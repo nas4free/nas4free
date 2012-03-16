@@ -1,0 +1,85 @@
+# NAS4Free by NAS4Free team.
+# Part of NAS4Free (http://www.nas4free.org)
+# Copyright (C) 2012 NAS4Free team <info@nas4free.org>.
+# All rights reserved.
+# Modified 2012 by Michael Zoon <zoon01@nas4free.org>.
+#
+
+============== SUMMARY =========
+
+1. Files and directories listing
+2. Generate an NAS4Free ISO or IMG  file
+3. Building NAS4Free from the latest sources
+4. Building the kernel
+
+================================
+1. Files and directories listing
+
+- /nas4free/bootloader:  This contains the FreeBSD boot loader files
+- /nas4free/rootfs: Minimum FreeBSD root filesystem and FreeNAS script/WebGUI
+- /nas4free/svn: Contains all released files and scripts
+
+================================
+2. Generate an NAS4Free ISO or IMG file
+
+Edit the script '/nas4free/svn/build/make.sh' and adapt the directory
+variables with your local ones.
+
+Check that you have installed the following ports:
+- subversion
+- bash
+- cdrtools
+- php5
+- xproto
+- portupgrade
+- cvsup-without-gui
+- perl
+- ruby
+- m4
+- bison
+
+Start /nas4free/svn/build/make.sh and follow the steps.
+
+=================================
+3. Building NAS4Free from the latest sources (normally possible with make.sh)
+
+Here is how to build NAS4Free from the latest sources:
+
+- It's important to use the root user-account on your FreeBSD installed system!.
+
+3.1 Update your NAS4Free scripts/WebGUI code with the SVN:
+(this creates the svn directory)
+
+- cd /usr/local/nas4free
+- svn co https://nas4free.svn.sourceforge.net/svnroot/nas4free/trunk/ svn
+
+You should now have these directories:
+/usr/local/nas4free
+/usr/local/nas4free/svn
+
+3.2 Update your ports collection:
+
+Using portsnap the first time:
+portsnap fetch extract
+
+To update the ports collection next time:
+portsnap fetch update
+
+3.3 Use the building script:
+
+svn/build/make.sh
+
+Execute all menus in '2' - Compile NAS4Free from scratch menu' to build your NAS4Free from scratch. After thit use one of the following menus:
+
+10 - Create 'Embedded' (IMG) file (rawrite to CF/USB/DD).
+11 - Create 'LiveCD' (ISO) file.
+12 - Create 'LiveCD' (ISO) file without 'Embedded' file.
+13 - Create 'Full' (TGZ) update file.
+
+=================================
+4. Building kernel
+
+Before building the kernel it is recommended to delete the directory /usr/src completely.
+Next, run the build scripts and update the kernel sources via cvsup + freebsd-update.
+Continue building using the 'Build kernel' menu in the build script.
+ 

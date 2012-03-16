@@ -1,0 +1,72 @@
+--- web/index.html.orig	2012-02-15 03:00:59.420010000 +0100
++++ web/index.html	2012-02-21 23:15:12.000000000 +0100
+@@ -286,18 +286,18 @@
+ 			<div class="dialog_top_bar"></div>
+ 			<div class="dialog_window">
+ 				<div class="dialog_logo" id="upload_dialog_logo"></div>
+-				<h2 class="dialog_heading">Upload Torrent Files</h2>
++				<h2 class="dialog_heading">Add a Torrent File</h2>
+ 				<form action="#" method="post" id="torrent_upload_form"
+ 					enctype="multipart/form-data" target="torrent_upload_frame">
+ 					<div class="dialog_message">
+-						<label for="torrent_upload_file">Please select a torrent file to upload:</label>
++						<label for="torrent_upload_file">Please select a torrent file to run:</label>
+ 							<input type="file" name="torrent_files[]" id="torrent_upload_file" multiple="multiple" />
+ 						<label for="torrent_upload_url">Or enter a URL:</label>
+ 							<input type="url" id="torrent_upload_url"/>
+ 							<input type="checkbox" id="torrent_auto_start" />
+ 						<label for="torrent_auto_start" id="auto_start_label">Start when added</label>
+ 					</div>
+-					<a href="#upload" id="upload_confirm_button">Upload</a>
++					<a href="#upload" id="upload_confirm_button">Run</a>
+ 					<a href="#cancel" id="upload_cancel_button">Cancel</a>
+ 				</form>
+ 			</div>
+@@ -309,9 +309,6 @@
+ 					<ul id="footer_super_menu">
+ 						<li id="about-button">About</li>
+ 						<li class="separator"></li>
+-						<li id="homepage">Transmission Homepage</li>
+-						<li id="tipjar">Transmission Tip Jar</li>
+-						<li class="separator"></li>
+ 						<li id="statistics">Statistics</li>
+ 						<li class="separator"></li>
+ 						<li>Total Download Rate
+@@ -319,7 +316,6 @@
+ 								<li id="unlimited_download_rate">Unlimited</li>
+ 								<li id="limited_download_rate">Limit (10 kB/s)</li>
+ 								<li class="separator"></li>
+-								<li class='download-speed'>5 kB/s</li>
+ 								<li class='download-speed'>10 kB/s</li>
+ 								<li class='download-speed'>20 kB/s</li>
+ 								<li class='download-speed'>30 kB/s</li>
+@@ -330,6 +326,10 @@
+ 								<li class='download-speed'>150 kB/s</li>
+ 								<li class='download-speed'>200 kB/s</li>
+ 								<li class='download-speed'>250 kB/s</li>
++								<li class='download-speed'>300 kB/s</li>
++								<li class='download-speed'>350 kB/s</li>
++								<li class='download-speed'>400 kB/s</li>
++								<li class='download-speed'>450 kB/s</li>
+ 								<li class='download-speed'>500 kB/s</li>
+ 								<li class='download-speed'>750 kB/s</li>
+ 							</ul>
+@@ -339,7 +339,6 @@
+ 								<li id="unlimited_upload_rate">Unlimited</li>
+ 								<li id="limited_upload_rate">Limit (10 kB/s)</li>
+ 								<li class="separator"></li>
+-								<li class='upload-speed'>5 kB/s</li>
+ 								<li class='upload-speed'>10 kB/s</li>
+ 								<li class='upload-speed'>20 kB/s</li>
+ 								<li class='upload-speed'>30 kB/s</li>
+@@ -350,6 +349,10 @@
+ 								<li class='upload-speed'>150 kB/s</li>
+ 								<li class='upload-speed'>200 kB/s</li>
+ 								<li class='upload-speed'>250 kB/s</li>
++								<li class='upload-speed'>300 kB/s</li>
++								<li class='upload-speed'>350 kB/s</li>
++								<li class='upload-speed'>400 kB/s</li>
++								<li class='upload-speed'>450 kB/s</li>
+ 								<li class='upload-speed'>500 kB/s</li>
+ 								<li class='upload-speed'>750 kB/s</li>
+ 							</ul>
