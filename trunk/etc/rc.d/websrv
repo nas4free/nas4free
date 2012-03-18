@@ -1,0 +1,220 @@
+#!/bin/sh
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# Copyright (c) 2008-2009 Volker Theile <votdev@gmx.de>.
+# All rights reserved.
+#
+
+# PROVIDE: websrv
+# REQUIRE: websrv_htpasswd DAEMON
+# KEYWORD: shutdown
+# XQUERY: -i "count(//websrv/enable) > 0" -o "0" -b
+# RCVAR: websrv
+
+. /etc/rc.subr
+. /etc/configxml.subr
+. /etc/util.subr
+
+name="websrv"
+rcvar=`set_rcvar`
+
+load_rc_config "${name}"
+
+# Custom commands
+start_precmd="websrv_mkconf"
+stop_postcmd="websrv_poststop"
+restart_precmd="websrv_check"
+reload_precmd="websrv_prereload"
+reload_postcmd="websrv_postreload"
+mkconf_cmd="websrv_mkconf"
+check_cmd="websrv_check"
+extra_commands="reload check mkconf"
+
+# Defaults
+websrv_enable=${websrv_enable:-"NO"}
+websrv_conf=${websrv_conf:-"/var/etc/websrv.conf"}
+websrv_certpem=${websrv_certpem:-"/var/etc/websrvcert.pem"}
+websrv_server_maxwriteidle=${websrv_server_maxwriteidle:-"360"}
+command=/usr/local/sbin/lighttpd
+command_args="-f ${websrv_conf} -m /usr/local/lib/lighttpd"
+pidfile=/var/run/websrv.pid
+sig_reload="-INT"
+
+websrv_mkconf()
+{
+	local _protocol _certificate _privatekey _documentroot
+
+	# Get configuration data
+	_protocol=`configxml_get "//websrv/protocol"`
+	_certificate=`configxml_get "//websrv/certificate"`
+	_privatekey=`configxml_get "//websrv/privatekey"`
+	_documentroot=`configxml_get "//websrv/documentroot"`
+
+	# Create .conf file
+	/usr/local/bin/xml sel -t -m "//websrv" \
+		-v "concat('server.port = ',port)" -n \
+		-v "concat('server.document-root = \"',documentroot,'\"')" -n \
+		-i "count(dirlisting) > 0" \
+			-o "server.dir-listing = \"enable\"" -n \
+			-o "dir-listing.activate = \"enable\"" -n \
+			-o "dir-listing.hide-dotfiles = \"enable\"" -n \
+			-o "dir-listing.encoding = \"utf-8\"" -n \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc > ${websrv_conf}
+
+	cat <<EOF >> ${websrv_conf}
+server.modules = (
+  "mod_access",
+  "mod_auth",
+  "mod_cgi",
+  "mod_rewrite",
+  "mod_redirect",
+  "mod_alias"
+ )
+server.errorlog-use-syslog = "enable"
+server.event-handler = "freebsd-kqueue"
+server.max-write-idle = ${websrv_server_maxwriteidle}
+index-file.names   = ( "index.php", "index.html", "index.htm", "index.shtml", "default.htm" )
+# mimetype mapping
+mimetype.assign             = (
+  ".pdf"          =>      "application/pdf",
+  ".sig"          =>      "application/pgp-signature",
+  ".spl"          =>      "application/futuresplash",
+  ".class"        =>      "application/octet-stream",
+  ".ps"           =>      "application/postscript",
+  ".torrent"      =>      "application/x-bittorrent",
+  ".dvi"          =>      "application/x-dvi",
+  ".gz"           =>      "application/x-gzip",
+  ".pac"          =>      "application/x-ns-proxy-autoconfig",
+  ".swf"          =>      "application/x-shockwave-flash",
+  ".tar.gz"       =>      "application/x-tgz",
+  ".tgz"          =>      "application/x-tgz",
+  ".tar"          =>      "application/x-tar",
+  ".zip"          =>      "application/zip",
+  ".mp3"          =>      "audio/mpeg",
+  ".m3u"          =>      "audio/x-mpegurl",
+  ".wma"          =>      "audio/x-ms-wma",
+  ".wax"          =>      "audio/x-ms-wax",
+  ".ogg"          =>      "application/ogg",
+  ".wav"          =>      "audio/x-wav",
+  ".gif"          =>      "image/gif",
+  ".jar"          =>      "application/x-java-archive",
+  ".jpg"          =>      "image/jpeg",
+  ".jpeg"         =>      "image/jpeg",
+  ".png"          =>      "image/png",
+  ".xbm"          =>      "image/x-xbitmap",
+  ".xpm"          =>      "image/x-xpixmap",
+  ".xwd"          =>      "image/x-xwindowdump",
+  ".css"          =>      "text/css",
+  ".html"         =>      "text/html",
+  ".htm"          =>      "text/html",
+  ".js"           =>      "text/javascript",
+  ".asc"          =>      "text/plain",
+  ".c"            =>      "text/plain",
+  ".cpp"          =>      "text/plain",
+  ".log"          =>      "text/plain",
+  ".conf"         =>      "text/plain",
+  ".text"         =>      "text/plain",
+  ".txt"          =>      "text/plain",
+  ".dtd"          =>      "text/xml",
+  ".xml"          =>      "text/xml",
+  ".mpeg"         =>      "video/mpeg",
+  ".mpg"          =>      "video/mpeg",
+  ".mov"          =>      "video/quicktime",
+  ".qt"           =>      "video/quicktime",
+  ".avi"          =>      "video/x-msvideo",
+  ".asf"          =>      "video/x-ms-asf",
+  ".asx"          =>      "video/x-ms-asf",
+  ".wmv"          =>      "video/x-ms-wmv",
+  ".bz2"          =>      "application/x-bzip",
+  ".tbz"          =>      "application/x-bzip-compressed-tar",
+  ".tar.bz2"      =>      "application/x-bzip-compressed-tar",
+  # default mime type
+  ""              =>      "application/octet-stream",
+ )
+url.access-deny = ( "~", ".inc", ".websrv_htpasswd" )
+static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
+server.pid-file = "${pidfile}"
+cgi.assign = (".php" => "/usr/local/bin/php")
+EOF
+
+	# Add auxparam
+	/usr/local/bin/xml sel -t -m "//websrv" \
+		-m "auxparam" \
+			-v "." -n \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${websrv_conf}
+
+	# Configure authentication.
+	if configxml_isset //websrv/authentication/enable; then
+		local _htpasswd="${_documentroot}/.websrv_htpasswd"
+
+		# Add authentication configuration.
+		cat <<EOF >> ${websrv_conf}
+auth.backend = "htpasswd"
+auth.backend.htpasswd.userfile = "${_htpasswd}"
+EOF
+
+		/usr/local/bin/xml sel -t -m "//websrv/authentication" \
+			-o "auth.require = ( " \
+			-m "url" \
+				-v "concat('\"',path,'\" =>')" -n\
+				-o "(" -n \
+					-o "\"method\" => \"basic\"," -n \
+					-v "concat('\"realm\" => \"',realm,'\",')" -n \
+					-o "\"require\" => \"valid-user\"" -n \
+				-o ")," -n \
+			-b \
+			-o ")" \
+			${configxml_file} | /usr/local/bin/xml unesc >> ${websrv_conf}
+	fi
+
+	if [ "${_protocol}" = "https" ]; then
+		cat <<EOF >> ${websrv_conf}
+ssl.engine = "enable"
+ssl.pemfile = "${websrv_certpem}"
+EOF
+
+		# Create .pem file (required)
+		if [ -n "${_certificate}" -a -n "${_privatekey}" ]; then
+			_tmpfile=/tmp/websrv$$.tmp
+
+			echo "${_certificate}" > ${_tmpfile}
+			/usr/bin/uudecode -m -p -r ${_tmpfile} > ${websrv_certpem}
+			echo "" >> ${websrv_certpem}
+			echo "${_privatekey}" > ${_tmpfile}
+			/usr/bin/uudecode -m -p -r ${_tmpfile} >> ${websrv_certpem}
+			/bin/chmod 0600 ${websrv_certpem}
+
+			/bin/rm -f ${_tmpfile}
+		fi
+	fi
+}
+
+websrv_check()
+{
+	echo "Performing sanity check on ${name} configuration:"
+	eval "${command} ${command_args} -t"
+}
+
+websrv_poststop()
+{
+	rm -f ${pidfile}
+}
+
+websrv_prereload()
+{
+	echo "Stopping ${name} and starting gracefully."
+}
+
+websrv_postreload()
+{
+	rm -f ${pidfile}
+	run_rc_command start
+}
+
+run_rc_command "$1"

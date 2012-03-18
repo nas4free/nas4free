@@ -1,0 +1,61 @@
+#!/bin/sh
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# Copyright (c) 2007-2009 Volker Theile <votdev@gmx.de>.
+# All rights reserved.
+#
+
+# PROVIDE: disks
+# REQUIRE: initrandom
+# KEYWORD: nojail shutdown
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="geli"
+
+load_rc_config "$name"
+
+# Custom commands
+start_cmd="geli_start"
+stop_cmd="geli_stop"
+
+# Creates a list of providers for GELI encryption
+geli_make_list()
+{
+	local _devices
+
+	_devices=`/usr/local/bin/xml sel -t -m "//geli/vdisk" \
+		-v devicespecialfile -n \
+		${configxml_file} | /usr/local/bin/xml unesc |
+		while read _provider; do
+			_provider=${_provider#/dev/}
+			_provider=${_provider%.eli}
+			echo "${_provider} "
+		done`
+
+	echo $_devices
+}
+
+geli_start()
+{
+	# Nothing to do here.
+}
+
+geli_stop()
+{
+	devices=`geli_make_list`
+
+	for provider in ${devices}; do
+		if [ -e "/dev/${provider}.eli" ]; then
+			umount "/dev/${provider}.eli" 2>/dev/null
+			geli detach "${provider}"
+		fi
+	done
+}
+
+run_rc_command "$1"

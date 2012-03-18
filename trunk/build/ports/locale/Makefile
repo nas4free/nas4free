@@ -6,7 +6,7 @@ MAINTAINER=		zoon01@nas4free.org
 
 DISTFILES?=
 
-.include <../freenas.mk>
+.include <../nas4free.mk>
 
 do-build:
 # Translate *po files to *.mo.
