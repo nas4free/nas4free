@@ -73,8 +73,8 @@
 	echo <<<EOD
 
 
-*** This is {$productname}, version {$version} (revision {$revision})
-    built on {$buildtime} for {$g['fullplatform']}
+*** {$productname} server version: {$version} (revision {$revision})
+    Built on {$buildtime} for {$g['fullplatform']}
     {$copyright}
     Visit http://{$producturl} for updates.
 

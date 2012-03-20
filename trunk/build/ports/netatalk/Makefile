@@ -41,7 +41,7 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/cnid_dbd/cnid_metad ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/cnid_dbd/cnid_dbd ${NAS4FREE_ROOTFS}/usr/local/sbin
 
-	@${MKDIR} -v ${FREENAS_ROOTFS}/etc/uams
+	@${MKDIR} -v ${NAS4FREE_ROOTFS}/etc/uams
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_passwd.so ${NAS4FREE_ROOTFS}/etc/uams
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_dhx_passwd.so ${NAS4FREE_ROOTFS}/etc/uams
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_dhx2_passwd.so ${NAS4FREE_ROOTFS}/etc/uams

@@ -109,7 +109,7 @@ function install_dd_image($harddrive)
 	return 0;
 }
 
-// Install FreeNAS on the destination harddrive.
+// Install NAS4Free on the destination harddrive.
 // Return 0 if successful, otherwise 1
 function install_harddrive_image($harddrive)
 {
@@ -226,7 +226,7 @@ EOD;
 	return 0;
 }
 
-// Upgrade a FreeNAS 'full' release on the destination harddrive.
+// Upgrade a NAS4Free 'full' release on the destination harddrive.
 // Return 0 if successful, otherwise 1
 function install_upgrade_full($harddrive)
 {

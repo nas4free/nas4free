@@ -138,7 +138,7 @@ install_unmount_cd();
 $text = <<<EOD
 
 {$productname} installed on device {$devinfo['device']}{$devinfo['partition']} has been upgraded.
-You can remove the CDROM and reboot the PC now.
+You can now safely remove the CDROM and reboot the server.
 EOD;
 
 tui_wait_keypress($text);

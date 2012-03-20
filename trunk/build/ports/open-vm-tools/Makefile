@@ -1,4 +1,4 @@
-PORTNAME=		freenas-open-vm-tools
+PORTNAME=		nas4free-open-vm-tools
 PORTVERSION=	1.0
 PORTREVISION=	1
 CATEGORIES=		emulators
@@ -31,7 +31,7 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${BLDSRC}/services/plugins/timeSync/.libs/libtimeSync.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/open-vm-tools/plugins/vmsvc
 	@${INSTALL_PROGRAM} -v ${BLDSRC}/services/plugins/vmbackup/.libs/libvmbackup.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/open-vm-tools/plugins/vmsvc
 
-	@${MKDIR} ${FREENAS_ROOTFS}/${PREFIX}/lib/vmware-tools/modules/drivers
+	@${MKDIR} ${NAS4FREE_ROOTFS}/${PREFIX}/lib/vmware-tools/modules/drivers
 	@${INSTALL_DATA} -v ${BLDSRC}/modules/freebsd/vmmemctl.ko ${NAS4FREE_ROOTFS}/${PREFIX}/lib/vmware-tools/modules/drivers/vmmemctl.ko
 	@${INSTALL_DATA} -v ${BLDSRC}/modules/freebsd/vmxnet.ko ${NAS4FREE_ROOTFS}/${PREFIX}/lib/vmware-tools/modules/drivers/vmxnet.ko
 	@${INSTALL_DATA} -v ${BLDSRC}/modules/freebsd/vmhgfs.ko ${NAS4FREE_ROOTFS}/${PREFIX}/lib/vmware-tools/modules/drivers/vmhgfs.ko
@@ -58,4 +58,4 @@ do-install:
 	@${INSTALL_SCRIPT} -v ${BLDSRC}/scripts/freebsd/network ${NAS4FREE_ROOTFS}/${PREFIX}/share/vmware-tools/scripts/vmware
 
 .include <bsd.port.mk>
-.include <../freenas.mk>
+.include <../nas4free.mk>

@@ -67,7 +67,7 @@ variable vmguest
 		drop
 	then
 	vmguest @ 0 <> if
-		s" 1" s" freenas.vmguest" setenv
+		s" 1" s" nas4free.vmguest" setenv
 		s" kern.hz" getenv dup -1 <> if
 			?number if
 				100 > if
@@ -79,7 +79,7 @@ variable vmguest
 			s" 100" s" kern.hz" setenv
 		then
 	else
-		s" 0" s" freenas.vmguest" setenv
+		s" 0" s" nas4free.vmguest" setenv
 	then
 ;
 
@@ -121,7 +121,7 @@ variable vmguest
 	clear
 	77 20 2 2 box
 	45 3 display-logo
-	5 7 at-xy ."Welcome to NAS4Free!"
+	5 7 at-xy ." Welcome to NAS4Free!"
 	printmenuitem ."  Boot [default]" bootkey !
 	s" arch-i386" environment? if
 		drop
