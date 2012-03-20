@@ -1,0 +1,23 @@
+#
+# hosts.allow access control file for "tcp wrapped" applications.
+# $FreeBSD: src/etc/hosts.allow,v 1.23.16.1.2.1 2011/11/11 04:20:22 kensmith Exp $
+#
+# NOTE: The hosts.deny file is deprecated.
+#       Place both 'allow' and 'deny' rules in the hosts.allow file.
+#	See hosts_options(5) for the format of this file.
+#	hosts_access(5) no longer fully applies.
+
+#	 _____                                      _          _
+#	| ____| __  __   __ _   _ __ ___    _ __   | |   ___  | |
+#	|  _|   \ \/ /  / _` | | '_ ` _ \  | '_ \  | |  / _ \ | |
+#	| |___   >  <  | (_| | | | | | | | | |_) | | | |  __/ |_|
+#	|_____| /_/\_\  \__,_| |_| |_| |_| | .__/  |_|  \___| (_)
+#					   |_|
+# !!! This is an example! You will need to modify it for your specific
+# !!! requirements!
+
+
+# Start by allowing everything (this prevents the rest of the file
+# from working, so remove it when you need protection).
+# The rules here work on a "First match wins" basis.
+ALL : ALL : allow

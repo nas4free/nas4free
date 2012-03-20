@@ -1,0 +1,10 @@
+--- Makefile.orig	2008-07-29 22:58:03.000000000 +0900
++++ Makefile	2011-10-18 01:23:12.000000000 +0900
+@@ -2,6 +2,6 @@
+ 
+ .PATH: ${.CURDIR}/../../misc
+ 
+-CLASS=	raid5
++GEOM_CLASS=	raid5
+ 
+ .include <bsd.lib.mk>
