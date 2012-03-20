@@ -32,7 +32,7 @@ do-install:
 	@${INSTALL_KLD} -v /usr/obj/usr/src/sys/modules/geom/geom_raid5/geom_raid5.ko ${NAS4FREE_ROOTFS}/boot/kernel
 
 	# Install application.
-	@${LN} -f -v -s /sbin/geom ${FREENAS_ROOTFS}/sbin/graid5
+	@${LN} -f -v -s /sbin/geom ${NAS4FREE_ROOTFS}/sbin/graid5
 	@${INSTALL_PROGRAM} -v /usr/obj/usr/src/sbin/geom/class/raid5/geom_raid5.so ${NAS4FREE_ROOTFS}/lib/geom
 
 pre-clean:
