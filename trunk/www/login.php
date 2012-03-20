@@ -94,12 +94,8 @@ $menu['forum']['desc'] = gettext("Forum");
 $menu['forum']['link'] = "http://apps.sourceforge.net/phpbb/nas4free/index.php";
 $menu['forum']['visible'] = TRUE;
 $menu['forum']['menuitem']['visible'] = FALSE;
-// Knogledge Base
-$menu['kb']['desc'] = gettext("Knowledge Base");
-$menu['kb']['visible'] = TRUE;
-$menu['kb']['menuitem']['visible'] = FALSE;
 // Info and Manual
-$menu['info']['desc'] = gettext("Information & Manual");
+$menu['info']['desc'] = gettext("Information & Manuals");
 $menu['info']['visible'] = TRUE;
 $menu['info']['link'] = "http://wiki.nas4free.org/";
 $menu['info']['menuitem']['visible'] = FALSE;
@@ -111,7 +107,7 @@ $menu['irc']['menuitem']['visible'] = FALSE;
 // Donate
 $menu['donate']['desc'] = gettext("Donate");
 $menu['donate']['visible'] = TRUE;
-$menu['donate']['link'] = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=SAW6UG4WBJVGG&lc=US&item_name=NAS4Free&item_number=Donation%20to%20NAS4Free&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
+$menu['donate']['link'] = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=SAW6UG4WBJVGG&lc=US&item_name=NAS4Free&item_number=Donation%20to%20NAS4Free&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted";
 $menu['donate']['menuitem']['visible'] = FALSE;
 
 
