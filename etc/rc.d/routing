@@ -1,0 +1,197 @@
+#!/bin/sh
+#
+# Configure routing and miscellaneous network tunables
+#
+# $FreeBSD: src/etc/rc.d/routing,v 1.143.8.1 2009/04/15 03:14:26 kensmith Exp $
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# Modified by Volker Theile <votdev@gmx.de>
+# Modified by Michael Zoon <zoon01@nas4free.org>
+# All rights reserved.
+#
+# Changes: 	- Remove requirement ppp
+# 		- Add command mkconf and delete
+#
+
+# PROVIDE: routing
+# REQUIRE: netif
+# KEYWORD: nojail
+
+. /etc/rc.subr
+. /etc/configxml.subr
+. /etc/util.subr
+
+name="routing"
+start_cmd="routing_start"
+stop_cmd="routing_stop"
+extra_commands="options static mkconf delete"
+static_cmd="static_start"
+options_cmd="options_start"
+mkconf_cmd="routing_mkconf"
+delete_cmd="routing_delete"
+
+routing_start()
+{
+	routing_mkconf
+
+	# Force reloading of rc.conf file
+	_rc_conf_loaded=false
+	load_rc_config "${name}"
+
+	static_start
+	options_start
+}
+
+routing_stop()
+{
+	route -n flush
+}
+
+routing_delete()
+{
+	local _route_id _route_args
+
+	_route_id=${1}
+
+	if [ -z "${_route_id}" ]; then
+		err 3 'USAGE: delete routeid'
+	fi
+
+	# Remove route from routing table
+	eval _route_args=\${route_${_route_id}% *}
+	_route_args=${_route_args#* }
+	/sbin/route delete ${_route_args}
+
+	# Remove route from rc.conf
+	/usr/local/sbin/rconf attribute remove "route_${_route_id}"
+	static_routes=`echo ${static_routes} | /usr/bin/sed -e "s/${_route_id}//g"`
+	/usr/local/sbin/rconf attribute set "static_routes" "${static_routes}"
+}
+
+routing_mkconf()
+{
+	local _index _uuid _route_id _network _gateway _protocol
+
+	_index=`configxml_get_count "//staticroutes/route"`
+	while [ ${_index} -gt 0 ]
+	do
+		_uuid=`configxml_get "//staticroutes/route[position()=${_index}]/uuid" | tr '-' '_'`
+		_network=`configxml_get "//staticroutes/route[position()=${_index}]/network"`
+		_gateway=`configxml_get "//staticroutes/route[position()=${_index}]/gateway"`
+		_route_id="conf_${_uuid}"
+		_protocol="-net"
+
+		if is_validip inet6 ${_network}; then
+			_protocol="-inet6"
+		fi
+
+		if [ `expr "${static_routes}" : ".*${_route_id}.*"` -le 0 ]; then
+			static_routes="${static_routes} ${_route_id}"
+		fi
+
+		/usr/local/sbin/rconf attribute set "route_${_route_id}" "${_protocol} ${_network} ${_gateway}"
+
+		_index=$(( ${_index} - 1 ))
+	done
+
+	/usr/local/sbin/rconf attribute set "static_routes" "${static_routes}"
+}
+
+static_start()
+{
+	case ${defaultrouter} in
+	[Nn][Oo] | '')
+		;;
+	*)
+		static_routes="default ${static_routes}"
+		route_default="default ${defaultrouter}"
+		;;
+	esac
+
+	# Setup static routes. This should be done before router discovery.
+	#
+	if [ -n "${static_routes}" ]; then
+		for i in ${static_routes}; do
+			eval route_args=\$route_${i}
+			route add ${route_args}
+		done
+	fi
+	# Now ATM static routes
+	#
+	if [ -n "${natm_static_routes}" ]; then
+		for i in ${natm_static_routes}; do
+			eval route_args=\$route_${i}
+			atmconfig natm add ${route_args}
+		done
+	fi
+}
+
+options_start()
+{
+	echo -n 'Additional routing options:'
+	case ${icmp_bmcastecho} in
+	[Yy][Ee][Ss])
+		echo -n ' broadcast ping responses=YES'
+		sysctl net.inet.icmp.bmcastecho=1 >/dev/null
+		;;
+	esac
+
+	case ${icmp_drop_redirect} in
+	[Yy][Ee][Ss])
+		echo -n ' ignore ICMP redirect=YES'
+		sysctl net.inet.icmp.drop_redirect=1 >/dev/null
+		;;
+	esac
+
+	case ${icmp_log_redirect} in
+	[Yy][Ee][Ss])
+		echo -n ' log ICMP redirect=YES'
+		sysctl net.inet.icmp.log_redirect=1 >/dev/null
+		;;
+	esac
+
+	case ${gateway_enable} in
+	[Yy][Ee][Ss])
+		echo -n ' IP gateway=YES'
+		sysctl net.inet.ip.forwarding=1 >/dev/null
+		;;
+	esac
+
+	case ${forward_sourceroute} in
+	[Yy][Ee][Ss])
+		echo -n ' do source routing=YES'
+		sysctl net.inet.ip.sourceroute=1 >/dev/null
+		;;
+	esac
+
+	case ${accept_sourceroute} in
+	[Yy][Ee][Ss])
+		echo -n ' accept source routing=YES'
+		sysctl net.inet.ip.accept_sourceroute=1 >/dev/null
+		;;
+	esac
+
+	case ${ipxgateway_enable} in
+	[Yy][Ee][Ss])
+		echo -n ' IPX gateway=YES'
+		sysctl net.ipx.ipx.ipxforwarding=1 >/dev/null
+		;;
+	esac
+
+	case ${arpproxy_all} in
+	[Yy][Ee][Ss])
+		echo -n ' ARP proxyall=YES'
+		sysctl net.link.ether.inet.proxyall=1 >/dev/null
+		;;
+	esac
+
+	echo '.'
+}
+
+load_rc_config $name
+run_rc_command "$@"

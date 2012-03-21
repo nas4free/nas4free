@@ -1,0 +1,30 @@
+/*
+	NAS4Free rebrand.txt
+*/
+
+Rebranding 'NAS4Free'
+--------------------
+
+1. Modify the following files:
+   etc/prd.copyright         - The copyright text. Used in console.
+   etc/prd.name              - The product name. Used in both console and webGUI.
+   etc/prd.url               - The url of the publisher without protocol (e.g. www or ftp). Used in both console and webGUI.
+   etc/prd.version           - The product version. Used in both console and webGUI.
+   etc/prd.version.buildtime - The buildtime, will be generated using build script. Used in both console and webGUI.
+   etc/inc/globals.inc
+   www/fend.inc
+   www/license.php
+   misc/.mkisofsrc
+
+2. Replace the images:
+   www/logo.gif
+   www/logobig.gif
+   boot/splash.bmp
+
+3. Modify the conf/config.xml file.
+   The following attributes may have to be modified also:
+   - system/hostname
+   - system/password
+   - interfaces/lan/ip
+   - samba/netbiosname
+   - samba/serverdesc

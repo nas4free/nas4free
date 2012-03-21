@@ -1,0 +1,96 @@
+#!/bin/sh
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# Copyright (c) 2007-2009 Volker Theile <votdev@gmx.de>.
+# All rights reserved.
+#
+
+# PROVIDE: sshd
+# REQUIRE: LOGIN cleanvar
+# XQUERY: -i "count(//sshd/enable) > 0" -o "0" -b
+# RCVAR: sshd
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="sshd"
+rcvar=`set_rcvar`
+
+load_rc_config "$name"
+
+# Custom commands
+start_precmd="sshd_mkconf"
+mkconf_cmd="sshd_mkconf"
+extra_commands="reload mkconf"
+
+# Defaults
+sshd_enable=${sshd_enable:-"NO"}
+sshd_config=${sshd_config:-"/var/etc/ssh/sshd_config"}
+sshd_hostdsakey=${sshd_hostdsakey:-"/var/etc/ssh/ssh_host_dsa_key"}
+command="/usr/sbin/${name}"
+command_args="-f /var/etc/ssh/sshd_config -h /var/etc/ssh/ssh_host_dsa_key"
+pidfile="/var/run/${name}.pid"
+
+sshd_mkconf()
+{
+	local _privatekey
+
+	# Create sshd_config file
+	/usr/local/bin/xml sel -t \
+		-o "SyslogFacility LOCAL3" -n \
+		-o "Protocol 2" -n \
+		-o "UseDNS no" -n \
+		-i "string-length(//sshd/subsystem) > 0" -v "concat('Subsystem ', //sshd/subsystem)" -n -b \
+		-i "string-length(//sshd/subsystem) = 0" -v "concat('Subsystem ', 'sftp /usr/libexec/sftp-server')" -n -b \
+		-o "ChallengeResponseAuthentication no" -n \
+		-m "//sshd" \
+			-i "count(port) > 0" -v "concat('Port ',port)" -n -b \
+			-i "count(permitrootlogin) > 0" -o "PermitRootLogin yes" -n -b \
+			-i "count(tcpforwarding) = 0" -o "AllowTcpForwarding no" -n -b \
+			-i "count(tcpforwarding) > 0" -o "AllowTcpForwarding yes" -n -b \
+			-i "count(compression) > 0" -o "Compression yes" -n -b \
+			-i "count(passwordauthentication) > 0" -o "PasswordAuthentication yes" -n -b \
+			-i "count(pubkeyauthentication) > 0" -o "PubkeyAuthentication yes" -n -b \
+			-m "auxparam" \
+				-v "." -n \
+			-b \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc > ${sshd_config}
+
+	# Create ssh_host_dsa_key file
+	_privatekey=`configxml_get "//sshd/private-key"`
+	if [ -n "${_privatekey}" ]; then
+		echo "${_privatekey}" > ${sshd_hostdsakey}.tmp
+		/usr/bin/uudecode -m -p -r ${sshd_hostdsakey}.tmp > ${sshd_hostdsakey}
+		/bin/rm -f ${sshd_hostdsakey}.tmp
+	else
+		echo "-----BEGIN DSA PRIVATE KEY-----
+MIIDPwIBAAKCAQEA8fkdytzZDMiLspAt/Xs35pS4V/Bvu4rG6iPOY7eTJvecx2fe
+z6t9MIktZMl4cJ4pvrIykMXVcZdnBU36iZZXwKwD22K84djNnCzdvRAH8kQ2NiaE
+ds2QqKOboRZdLK+wnZG4WPQ8Lz5y/vtkXHtVOevBmToTFy/u/nWP6qjkF6MsvVnJ
+shKV3+feRBYT4YmoFgn3On/blcSXuZpwfTajnyVGF+rKC6cOUqbjKKrfil+QDsVL
+h4c3Nxca+a1CUAd4O2zUA9sqrw4ChijIKjSCMr2dsDBt+bTKoznX54ijcfrEtaNI
+F0wj2C6qd00lamz0+kodrdu8zXEUHe9+hBnqbwIVAKf8ZCwMgP4ZpqwwNw4vIn1A
+uLnfAoIBAQCVfUrpUWFvf/TXPucJde4CuAmtoMOrjpepAiXK7N9dwGyq/PbVxr4t
+nJ/RTyNGOFmBroc6/n0MnxR0qmkQPJNtM/Yz+kk+BCgwsyu2uenVOIX/eJFuQPQY
+iUdktTcgAyChMp99WF4yfKKgv1CDdMkpFi8xgBEN03s1sOKCRNwJ5rlpTNqh9Lat
+uRyzWOIjNd7atkEYIQK92idJgqSmleo+UhJFfoOGjYlRbsnRVbvfqh7GVd7SSydh
+Khdb2eZjj2J8eMBwHNl1FLtqt02cnFW3FQDdXPbYYakN25z3F3sex/CPuBGJ0HRG
+q+y/Ynj/m99TPq9vLkzSUQPR4MmQ5feoAoIBAG5L9ffMc/8T9dTeF7FEPlS54ka7
+3M+pNY/5ehMykrrS9CVjFmvpeclnxkBpvjt3G5IlvkSsjUEE6kMk7mW9EV+USL0T
+TU/LavxXD8fLCSiIwResfLDRxjixjxVI1ouZeKNQ6B3tPOWOEIKR5nPlc7iy435n
+S77/NM3yBFH0KGdepr+3ZmdgWAjDLKjQhNyCz4Joc1IH1Vf5Ccvb6rsaJ91ajiq2
+9iI2ZpLXXIQsS1ZYzO1Gr9xBTNgmzEmeLqFMcxDSJ+rLMF4VDjRdL2zz5BSmv/Ff
+j2nICMgv/gj3zzuk7zcMpnbvGyA3W8VWb6IjJDvww4rJ21Q2gHBC5XCohJsCFQCD
+54IUfvQ56Flj87DvLXtOxoffWA==
+-----END DSA PRIVATE KEY-----" > ${sshd_hostdsakey}
+	fi
+
+	/bin/chmod 0600 ${sshd_hostdsakey}
+}
+
+run_rc_command "$1"

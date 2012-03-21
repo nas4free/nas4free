@@ -1,0 +1,153 @@
+#!/bin/sh
+# Part of NAS4Free copyright 2012 by NAS4Free team <info@nas4free.org>.
+# All rights reserved.
+# NAS4Free use portions of freenas which is Copyright © 2005-2011 by Olivier Cochard (olivier@freenas.org).
+# Copyright (c) 2006-2009 Volker Theile (votdev@gmx.de)
+# 
+
+# PROVIDE: mt-daapd
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+# XQUERY: -i "count(//daap/enable) > 0" -o "0" -b
+# RCVAR: mtdaapd
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="mtdaapd"
+rcvar=`set_rcvar`
+
+load_rc_config "${name}"
+
+# Custom commands
+extra_commands="mkconf"
+start_precmd="mtdaapd_mkconf"
+mkconf_cmd="mtdaapd_mkconf"
+
+# Defaults
+mtdaapd_enable=${mtdaapd_enable:-"NO"}
+mtdaapd_config=${mtdaapd_config-"/var/etc/mt-daapd.conf"}
+pidfile="/var/run/mt-daapd.pid"
+
+# See http://wiki.fireflymediaserver.org/Config_File
+# 'General' section
+mtdaapd_servername=${mtdaapd_servername:-"Firefly %v on %h"}
+mtdaapd_web_root=${mtdaapd_web_root:-"/usr/local/share/mt-daapd/admin-root"}
+mtdaapd_port=${mtdaapd_port:-"3689"}
+mtdaapd_logfile=${mtdaapd_logfile:-"/var/log/mt-daapd.log"}
+mtdaapd_runas=${mtdaapd_runas:-"root"}
+mtdaapd_admin_pw=${mtdaapd_admin_pw:-"mt-daapd"}
+mtdaapd_password=${mtdaapd_password:-""}
+mtdaapd_truncate=${mtdaapd_truncate:-"0"}
+mtdaapd_mp3_dir=${mtdaapd_mp3_dir:-"/mnt"}
+mtdaapd_extensions=${mtdaapd_extensions:-".mp3,.m4a,.m4p,.ogg,.flac,.wma"}
+mtdaapd_db_type=${mtdaapd_db_type:-"sqlite3"}
+mtdaapd_db_parms=${mtdaapd_db_parms:-"/var/db/mt-daapd"}
+mtdaapd_scan_type=${mtdaapd_scan_type:-"0"}
+mtdaapd_rescan_interval=${mtdaapd_rescan_interval:-"0"}
+mtdaapd_always_scan=${mtdaapd_always_scan:-"0"}
+# 'Scanning' section
+mtdaapd_case_sensitive=${mtdaapd_case_sensitive:-"1"}
+mtdaapd_ignore_appledouble=${mtdaapd_ignore_appledouble:-"1"}
+mtdaapd_ignore_dotfiles=${mtdaapd_ignore_dotfiles:-"1"}
+mtdaapd_concat_compilations=${mtdaapd_concat_compilations:-"0"}
+mtdaapd_follow_symlinks=${mtdaapd_follow_symlinks:-"1"}
+mtdaapd_skip_first=${mtdaapd_skip_first:-"0"}
+mtdaapd_process_playlists=${mtdaapd_process_playlists:-"1"}
+mtdaapd_process_m3u=${mtdaapd_process_m3u:-"1"}
+mtdaapd_process_itunes=${mtdaapd_process_itunes:-"1"}
+# 'DAAP' section
+mtdaapd_correct_order=${mtdaapd_correct_order:-"1"}
+# 'Plugins' section
+mtdaapd_plugin_dir=${mtdaapd_plugin_dir:-"/usr/local/share/mt-daapd/plugins"}
+
+command="/usr/local/sbin/mt-daapd"
+command_args="-m -c ${mtdaapd_config}"
+
+mtdaapd_mkconf()
+{
+	local _port _dbparms _mp3dir _rescaninterval _alwaysscan _scantype _servername _admin_pw
+
+	# Get setting from configuration file.
+	_servername=`configxml_get "//daap/servername"`
+	_port=`configxml_get "//daap/port"`
+	_dbparms=`configxml_get "//daap/dbdir"`
+	_mp3dir=`/usr/local/bin/xml sel -t -m "//daap/content" \
+		-v . \
+		-i "position() != last()" -o "," -b \
+		${configxml_file} | /usr/local/bin/xml unesc`
+	_rescaninterval=`configxml_get "//daap/rescaninterval"`
+	_alwaysscan=0
+	_scantype=`configxml_get "//daap/scantype"`
+	_admin_pw=`configxml_get "//daap/admin_pw"`
+
+	if configxml_isset //daap/alwaysscan; then
+		_alwaysscan=1
+	fi
+
+	# Set default values if necessary.
+	_servername=${_servername:-"${mtdaapd_servername}"}
+	_port=${_port:-"${mtdaapd_port}"}
+	_dbparms=${_dbparms:-"${mtdaapd_db_parms}"}
+	_mp3dir=${_mp3dir:-"${mtdaapd_mp3_dir}"}
+	_rescaninterval=${_rescaninterval:-"${mtdaapd_rescan_interval}"}
+	_alwaysscan=${_alwaysscan:-"${mtdaapd_always_scan}"}
+	_scantype=${_scantype:-"${mtdaapd_scan_type}"}
+	_admin_pw=${_admin_pw:-"${mtdaapd_admin_pw}"}
+
+	# Set server name. Use product name as default.
+	[ -z "${_servername}" ] && _servername=`get_product_name`
+
+	# Create configuration file.
+	cat <<EOF > ${mtdaapd_config}
+[general]
+servername = ${_servername}
+web_root = ${mtdaapd_web_root}
+port = ${_port}
+logfile = ${mtdaapd_logfile}
+runas	= ${mtdaapd_runas}
+admin_pw = ${_admin_pw}
+EOF
+
+	if [ -n ${mtdaapd_password} ]; then
+		 cat <<EOF >> ${mtdaapd_config}
+password = ${mtdaapd_password}
+EOF
+	fi
+
+	cat <<EOF >> ${mtdaapd_config}
+truncate = ${mtdaapd_truncate}
+mp3_dir = ${_mp3dir}
+extensions = ${mtdaapd_extensions}
+db_type = ${mtdaapd_db_type}
+db_parms = ${_dbparms}
+scan_type = ${_scantype}
+rescan_interval = ${_rescaninterval}
+always_scan = ${_alwaysscan}
+
+[plugins]
+plugin_dir = ${mtdaapd_plugin_dir}
+
+[scanning]
+case_sensitive = ${mtdaapd_case_sensitive}
+ignore_appledouble = ${mtdaapd_ignore_appledouble}
+ignore_dotfiles = ${mtdaapd_ignore_dotfiles}
+concat_compilations = ${mtdaapd_concat_compilations}
+follow_symlinks = ${mtdaapd_follow_symlinks}
+skip_first = ${mtdaapd_skip_first}
+process_playlists = ${mtdaapd_process_playlists}
+process_m3u = ${mtdaapd_process_m3u}
+process_itunes = ${mtdaapd_process_itunes}
+
+[daap]
+correct_order = ${mtdaapd_correct_order}
+EOF
+
+	# Delete existing database to fix messages like:
+	# kernel: pid 5285 (mt-daapd), uid 0 inumber 2542 on /: filesystem full
+	# mt-daapd[5285]: Query: vacuum
+	# mt-daapd[5285]: Error: disk I/O error
+	#rm ${_dbparms}/*.db
+}
+
+run_rc_command "$1"
