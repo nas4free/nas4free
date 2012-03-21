@@ -3,6 +3,12 @@
 #
 # PAM configuration for the "su" service
 #
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
+#
+# Modified 2012 by michael Zoon <zoon01@nas4free.org>.
+# changes: - remove ruser
 
 # auth
 auth		sufficient	pam_rootok.so		no_warn
