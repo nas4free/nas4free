@@ -1,0 +1,10 @@
+<OPTION value="en">English</OPTION>
+<OPTION value="enutf8">English (UTF-8)</OPTION>
+<OPTION value="de">Deutsch</OPTION>
+<OPTION value="es">Español</OPTION>
+<OPTION value="fr">Français</OPTION>
+<OPTION value="it">Italiano</OPTION>
+<OPTION value="ja">Japanese</OPTION>
+<OPTION value="nl">Nederlands</OPTION>
+<OPTION value="pl">Polski</OPTION>
+<OPTION value="ru">Russian</OPTION>

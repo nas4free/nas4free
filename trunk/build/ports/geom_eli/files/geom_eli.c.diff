@@ -1,0 +1,150 @@
+--- geom_eli.c.orig	2011-09-23 09:51:37.000000000 +0900
++++ geom_eli.c	2011-10-18 01:04:47.000000000 +0900
+@@ -74,6 +74,8 @@
+ static void eli_resize(struct gctl_req *req);
+ static void eli_clear(struct gctl_req *req);
+ static void eli_dump(struct gctl_req *req);
++static char *eli_get_passwd(struct gctl_req *, const char *, char *, size_t);
++static char *eli_get_stdin_passwd(void);
+ 
+ static int eli_backup_create(struct gctl_req *req, const char *prov,
+     const char *file);
+@@ -81,14 +83,14 @@
+ /*
+  * Available commands:
+  *
+- * init [-bhPv] [-a aalgo] [-B backupfile] [-e ealgo] [-i iterations] [-l keylen] [-J newpassfile] [-K newkeyfile] prov
++ * init [-bhPtv] [-a aalgo] [-B backupfile] [-e ealgo] [-i iterations] [-l keylen] [-J newpassfile] [-K newkeyfile] prov
+  * label - alias for 'init'
+- * attach [-dprv] [-j passfile] [-k keyfile] prov
++ * attach [-dprtv] [-j passfile] [-k keyfile] prov
+  * detach [-fl] prov ...
+  * stop - alias for 'detach'
+  * onetime [-d] [-a aalgo] [-e ealgo] [-l keylen] prov
+  * configure [-bB] prov ...
+- * setkey [-pPv] [-n keyno] [-j passfile] [-J newpassfile] [-k keyfile] [-K newkeyfile] prov
++ * setkey [-pPtv] [-n keyno] [-j passfile] [-J newpassfile] [-k keyfile] [-K newkeyfile] prov
+  * delkey [-afv] [-n keyno] prov
+  * suspend [-v] -a | prov ...
+  * resume [-pv] [-j passfile] [-k keyfile] prov
+@@ -112,9 +114,10 @@
+ 		{ 'l', "keylen", "0", G_TYPE_NUMBER },
+ 		{ 'P', "nonewpassphrase", NULL, G_TYPE_BOOL },
+ 		{ 's', "sectorsize", "0", G_TYPE_NUMBER },
++		{ 't', "password-from-stdin", NULL, G_TYPE_BOOL },
+ 		G_OPT_SENTINEL
+ 	    },
+-	    "[-bPv] [-a aalgo] [-B backupfile] [-e ealgo] [-i iterations] [-l keylen] [-J newpassfile] [-K newkeyfile] [-s sectorsize] prov"
++	    "[-bPtv] [-a aalgo] [-B backupfile] [-e ealgo] [-i iterations] [-l keylen] [-J newpassfile] [-K newkeyfile] [-s sectorsize] prov"
+ 	},
+ 	{ "label", G_FLAG_VERBOSE, eli_main,
+ 	    {
+@@ -128,6 +131,7 @@
+ 		{ 'l', "keylen", "0", G_TYPE_NUMBER },
+ 		{ 'P', "nonewpassphrase", NULL, G_TYPE_BOOL },
+ 		{ 's', "sectorsize", "0", G_TYPE_NUMBER },
++		{ 't', "password-from-stdin", NULL, G_TYPE_BOOL },
+ 		G_OPT_SENTINEL
+ 	    },
+ 	    "- an alias for 'init'"
+@@ -139,9 +143,10 @@
+ 		{ 'k', "keyfile", G_VAL_OPTIONAL, G_TYPE_STRING | G_TYPE_MULTI },
+ 		{ 'p', "nopassphrase", NULL, G_TYPE_BOOL },
+ 		{ 'r', "readonly", NULL, G_TYPE_BOOL },
++		{ 't', "password-from-stdin", NULL, G_TYPE_BOOL },
+ 		G_OPT_SENTINEL
+ 	    },
+-	    "[-dprv] [-j passfile] [-k keyfile] prov"
++	    "[-dprtv] [-j passfile] [-k keyfile] prov"
+ 	},
+ 	{ "detach", 0, NULL,
+ 	    {
+@@ -188,9 +193,10 @@
+ 		{ 'n', "keyno", "-1", G_TYPE_NUMBER },
+ 		{ 'p', "nopassphrase", NULL, G_TYPE_BOOL },
+ 		{ 'P', "nonewpassphrase", NULL, G_TYPE_BOOL },
++		{ 't', "password-from-stdin", NULL, G_TYPE_BOOL },
+ 		G_OPT_SENTINEL
+ 	    },
+-	    "[-pPv] [-n keyno] [-i iterations] [-j passfile] [-J newpassfile] [-k keyfile] [-K newkeyfile] prov"
++	    "[-pPtv] [-n keyno] [-i iterations] [-j passfile] [-J newpassfile] [-k keyfile] [-K newkeyfile] prov"
+ 	},
+ 	{ "delkey", G_FLAG_VERBOSE, eli_main,
+ 	    {
+@@ -429,9 +435,9 @@
+ 	char *p;
+ 
+ 	for (;;) {
+-		p = readpassphrase(
++		p = eli_get_passwd(req,
+ 		    new ? "Enter new passphrase:" : "Enter passphrase:",
+-		    passbuf, passbufsize, RPP_ECHO_OFF | RPP_REQUIRE_TTY);
++		    passbuf, passbufsize);
+ 		if (p == NULL) {
+ 			bzero(passbuf, passbufsize);
+ 			gctl_error(req, "Cannot read passphrase: %s.",
+@@ -442,9 +448,8 @@
+ 		if (new) {
+ 			char tmpbuf[BUFSIZ];
+ 
+-			p = readpassphrase("Reenter new passphrase: ",
+-			    tmpbuf, sizeof(tmpbuf),
+-			    RPP_ECHO_OFF | RPP_REQUIRE_TTY);
++			p = eli_get_passwd(req, "Reenter new passphrase: ",
++			    tmpbuf, sizeof(tmpbuf));
+ 			if (p == NULL) {
+ 				bzero(passbuf, passbufsize);
+ 				gctl_error(req,
+@@ -456,6 +461,10 @@
+ 			if (strcmp(passbuf, tmpbuf) != 0) {
+ 				bzero(passbuf, passbufsize);
+ 				fprintf(stderr, "They didn't match.\n");
++				/* Exit immediately if reading passwords from stdin. */
++				if (gctl_get_int(req, "password-from-stdin")) {
++					return (-1);
++				}
+ 				continue;
+ 			}
+ 			bzero(tmpbuf, sizeof(tmpbuf));
+@@ -1622,3 +1631,41 @@
+ 		printf("\n");
+ 	}
+ }
++
++static char *
++eli_get_passwd(struct gctl_req *req, const char *prompt, char *buf, size_t bufsiz)
++{
++	char *p = NULL;
++
++	if (gctl_get_int(req, "password-from-stdin")) {
++	p = eli_get_stdin_passwd();
++		strlcpy(buf, p, bufsiz);
++	} else {
++		p = readpassphrase(prompt, buf, bufsiz, RPP_ECHO_OFF | RPP_REQUIRE_TTY);
++	}
++
++	return p;
++}
++
++static char *
++eli_get_stdin_passwd(void)
++{
++	static char buf[BUFSIZ];
++	size_t len;
++
++	bzero(buf, sizeof(buf));
++
++	/*
++	 * if no error is reported from fgets() and string at least contains
++	 * the newline that ends the password, then replace the newline with
++	 * a null terminator.
++	 */
++	if (fgets(buf, sizeof(buf), stdin) != NULL) {
++		if ((len = strlen(buf)) > 0) {
++			if (buf[len-1] == '\n')
++				buf[len - 1] = 0;
++		}
++	}
++
++	return buf;
++}

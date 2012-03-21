@@ -1,0 +1,102 @@
+#!/bin/sh
+#
+# $FreeBSD: src/etc/rc.d/mountd,v 1.24.2.1.2.1 2011/11/11 04:20:22 kensmith Exp $
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# Modified by Volker Theile <votdev@gmx.de>
+# Modified by Michael Zoon <zoon01@nas4free.org>
+# All rights reserved.
+#
+# Changes:	- Remove nfsserver quota
+# 		- Add mkconf command
+#
+
+# PROVIDE: mountd
+# REQUIRE: NETWORKING rpcbind
+# KEYWORD: nojail shutdown
+# XQUERY: -i "count(//nfsd/enable) > 0" -o "0" -b
+# RCVAR: mountd
+
+. /etc/rc.subr
+. /etc/configxml.subr
+. /etc/util.subr
+
+name="mountd"
+rcvar=`set_rcvar`
+command="/usr/sbin/${name}"
+pidfile="/var/run/${name}.pid"
+mountd_config=${mountd_config:-"/var/etc/exports"}
+required_files="${mountd_config}"
+start_precmd="mountd_precmd"
+mkconf_cmd="mountd_mkconf"
+extra_commands="reload mkconf"
+
+# Clear existing file
+cat /dev/null > ${mountd_config}
+
+mountd_mkconf()
+{
+	local _index _ipaddr _network _mask
+
+	# Create /var/etc/exports file
+	_index=`configxml_get_count "//nfsd/share"`
+	while [ ${_index} -gt 0 ]
+	do
+		_ipaddr=`configxml_get "//nfsd/share[position()=${_index}]/network"`
+		_network=${_ipaddr%/*}
+		_mask=`get_subnetmask ${_ipaddr}`
+
+		/usr/local/bin/xml sel -t -m "//nfsd/share[position()=${_index}]" \
+			-v "path" \
+			-i "count(options/*) > 0" -o " -" -b \
+			-m "options/*" \
+				-i "position() > 1" -o "," -b \
+				-v "local-name()" \
+			-b \
+			-i "mapall[. = 'yes']" -o " -mapall=root" -b \
+			-i "mapall[. != 'yes']" -o " -maproot=root" -b \
+			-o " -network ${_network} -mask ${_mask}" -n \
+			${configxml_file} | /usr/local/bin/xml unesc >> ${mountd_config}
+
+		_index=$(( ${_index} - 1 ))
+	done
+}
+
+mountd_precmd()
+{
+	mountd_mkconf
+
+	if ! checkyesno rpcbind_enable  && \
+	    ! /etc/rc.d/rpcbind forcestatus 1>/dev/null 2>&1
+	then
+		force_depend rpcbind || return 1
+	fi
+
+	# mountd flags will differ depending on rc.conf settings
+	#
+	if checkyesno nfs_server_enable ; then
+		if checkyesno weak_mountd_authentication; then
+			rc_flags="${mountd_flags} -n"
+		fi
+	else
+		if checkyesno mountd_enable; then
+			checkyesno weak_mountd_authentication && rc_flags="-n"
+		fi
+	fi
+
+	if checkyesno zfs_enable; then
+		rc_flags="${rc_flags} /etc/exports /etc/zfs/exports"
+	fi
+
+	rm -f /var/db/mountdtab
+	( umask 022 ; > /var/db/mountdtab )
+	return 0
+}
+
+load_rc_config $name
+run_rc_command "$1"

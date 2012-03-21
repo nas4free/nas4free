@@ -1,0 +1,61 @@
+#!/bin/sh
+#
+# $FreeBSD: src/etc/rc.d/wpa_supplicant,v 1.2.2.1 2008/04/25 17:05:42 sam Exp $
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# Modified by Volker Theile <votdev@gmx.de>
+# All rights reserved.
+#
+
+# PROVIDE: wpa_supplicant
+# REQUIRE: mountcritremote
+# KEYWORD: nojail nostart
+# XQUERY: -i "count(//interfaces/*/wpa/enable) > 0" -o "0" -b
+# RCVAR: wpa_supplicant
+
+. /etc/rc.subr
+. /etc/network.subr
+. /etc/configxml.subr
+
+name="wpa_supplicant"
+rcvar=
+command="/usr/sbin/${name}"
+conf_file="/var/etc/wpa_supplicant.conf"
+
+ifn="$2"
+if [ -z "$ifn" ]; then
+	return 1
+fi
+
+case ${ifn} in
+ndis*)
+	driver="ndis"
+	;;
+*)
+	driver="bsd"
+	;;
+esac
+
+# Create wpa_supplicant.conf
+/usr/local/bin/xml sel -t -m "//interfaces/*/wireless/wpa[enable]" \
+	-o "network={" -n \
+	-v "concat('ssid=\"',../ssid,'\"')" -n \
+	-v "concat('key_mgmt=',keymgmt)" -n \
+	-v "concat('pairwise=',pairwise)" -n \
+	-v "concat('group=',pairwise)" -n \
+	-v "concat('psk=\"',psk,'\"')" -n \
+	-o "}" -n \
+	${configxml_file} | /usr/local/bin/xml unesc > ${conf_file}
+
+load_rc_config $name
+
+pidfile="/var/run/${name}/${ifn}.pid"
+command_args="-B -q -i $ifn -c $conf_file -D $driver -P $pidfile"
+required_files=$conf_file
+
+run_rc_command "$1"

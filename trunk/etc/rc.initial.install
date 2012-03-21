@@ -1,0 +1,53 @@
+#!/bin/sh
+
+# /etc/rc.initial
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+tmpfile=`tmpfile 2>/dev/null` || tmpfile=/tmp/tui$$
+trap "rm -f $tmpfile" 0 1 2 5 15
+
+# Endless loop
+while : ; do
+	cdialog --clear --title "Install & Upgrade" --cancel-label "Exit" --menu "" 12 73 6 \
+		"1" "Install 'embedded' OS on HDD/Flash/USB" \
+		"2" "Install 'embedded' OS on HDD/Flash/USB + DATA + SWAP partition" \
+		"3" "Install 'full' OS on HDD + DATA + SWAP partition" \
+		"4" "Upgrade 'embedded' OS from CDROM" \
+		"5" "Upgrade 'full' OS from CDROM" \
+		"6" "Upgrade and convert 'full' OS to 'embedded'" 2> $tmpfile
+
+	if [ 0 -ne $? ]; then
+		exit 0;
+	fi
+
+	choice=`cat ${tmpfile}`
+	case ${choice} in
+		1)
+			/etc/rc.initial.install1
+		 	;;
+		2)
+			/etc/rc.initial.install2
+		 	;;
+		3)
+			/etc/rc.initial.install3
+			;;
+		4)
+			/etc/rc.initial.embupgfromcdrom
+			;;
+		5)
+			/etc/rc.initial.fullupgfromcdrom
+			;;
+		6)
+			/etc/rc.initial.full2emb
+			;;
+	esac
+done
+
+fi
