@@ -1,0 +1,106 @@
+#!/bin/sh
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# Copyright (c) 2007-2009 Volker Theile <votdev@gmx.de>.
+# All rights reserved.
+#
+
+# PROVIDE: rsync_client
+# REQUIRE: DAEMON
+# BEFORE: cron
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="rsync_client"
+
+load_rc_config "$name"
+
+# Defaults
+rsync_client_logfile=${rsync_client_logfile:-"/var/log/${name}.log"}
+rsync_client_logfile_mode=${rsync_client_logfile_mode:-"0666"}
+
+# Get number of scripts to generate
+_scriptnum=`configxml_get_count "//rsync/rsyncclient"`
+
+# Generate scripts
+if [ 0 -lt ${_scriptnum} ]; then
+	echo "Generating client rsyncd cron scripts."
+
+	while [ ${_scriptnum} -gt 0 ]
+	do
+		_uuid=`configxml_get "//rsync/rsyncclient[${_scriptnum}]/uuid"`
+		_rsyncscript=/var/run/rsync_client_${_uuid}.sh
+		_rsyncflag=/var/run/rsync_client_running_${_uuid}
+		_who=`configxml_get "//rsync/rsyncclient[${_scriptnum}]/who"`
+
+		# Generate the shell script used by cron
+		/usr/local/bin/xml sel -t -m "//rsync/rsyncclient[position()=${_scriptnum}]" \
+			-o "#!/bin/sh" -n \
+			-i "count(options/reversedirection) = 0" \
+				-v "concat('/usr/bin/logger -p local4.notice \"Start of remote RSYNC synchronization from ',remoteshare,' on ',rsyncserverip,' to ',localshare,'\"')" -n \
+			-b \
+			-i "count(options/reversedirection) > 0" \
+				-v "concat('/usr/bin/logger -p local4.notice \"Start of remote RSYNC synchronization from ',localshare,' to ',remoteshare,' on ',rsyncserverip,'\"')" -n \
+			-b \
+			-o "if [ -r ${_rsyncflag} ]; then" -n \
+			-o "/usr/bin/logger -p local4.notice \"Previous client synchronization still running... exiting\"" -n \
+			-o "exit" -n \
+			-o "fi" -n \
+			-o "/usr/bin/touch ${_rsyncflag}" -n \
+			-o "/usr/local/bin/rsync --log-file=${rsync_client_logfile} " \
+			-m "options" \
+				-i "count(recursive) > 0" -o "--recursive " -b \
+				-i "count(times) > 0" -o "--times " -b \
+				-i "count(compress) > 0" -o "--compress " -b \
+				-i "count(archive) > 0" -o "--archive " -b \
+				-i "count(delete) > 0" -o "--delete " \
+					-i "delete_algorithm[. != 'default']" -v "concat('--delete-',delete_algorithm,' ')" -b \
+				-b \
+				-i "count(quiet) > 0" -o "--quiet " -b \
+				-i "count(perms) > 0" -o "--perms " -b \
+				-i "count(xattrs) > 0" -o "--xattrs " -b \
+				-i "string-length(extraoptions) > 0" -v "concat(extraoptions,' ')" -b \
+			-b \
+			-i "count(options/reversedirection) = 0" \
+				-i "not(contains(rsyncserverip,':'))" \
+					-v "concat('\"rsync://',rsyncserverip,'/',remoteshare,'\" \"',localshare,'\"')" -n \
+				-b \
+				-i "contains(rsyncserverip,':')" \
+					-v "concat('\"rsync://\\[',rsyncserverip,'\\]/',remoteshare,'\" \"',localshare,'\"')" -n \
+				-b \
+			-b \
+			-i "count(options/reversedirection) > 0" \
+				-i "not(contains(rsyncserverip,':'))" \
+					-v "concat('\"',localshare,'\" \"rsync://',rsyncserverip,'/',remoteshare,'\"')" -n \
+				-b \
+				-i "contains(rsyncserverip,':')" \
+					-v "concat('\"',localshare,'\" \"rsync://\\[',rsyncserverip,'\\]/',remoteshare,'\"')" -n \
+				-b \
+			-b \
+			-o "/bin/rm -f ${_rsyncflag}" -n \
+			-i "count(options/reversedirection) = 0" \
+				-v "concat('/usr/bin/logger -p local4.notice \"End of remote RSYNC synchronization from ',remoteshare,' on ',rsyncserverip,' to ',localshare,'\"')" \
+			-b \
+			-i "count(options/reversedirection) > 0" \
+				-v "concat('/usr/bin/logger -p local4.notice \"End of remote RSYNC synchronization from ',localshare,' to ',remoteshare,' on ',rsyncserverip,'\"')" \
+			-b \
+			${configxml_file} | /usr/local/bin/xml unesc > "${_rsyncscript}"
+
+		# Set owner and execute rights of the script
+		/usr/sbin/chown ${_who} "${_rsyncscript}"
+		/bin/chmod 0770 "${_rsyncscript}"
+
+		_scriptnum=$(( ${_scriptnum} - 1 ))
+	done
+fi
+
+# Set log file permissions.
+if [ ! -e "${rsync_client_logfile}" ]; then
+	cat /dev/null > "${rsync_client_logfile}"
+fi
+/bin/chmod ${rsync_client_logfile_mode} "${rsync_client_logfile}"

@@ -1,0 +1,30 @@
+#!/bin/sh
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# Copyright (c) 2007-2009 Volker Theile <votdev@gmx.de>.
+# All rights reserved.
+#
+
+# PROVIDE: execcmd_shutdown
+# REQUIRE: LOGIN
+# KEYWORD: nostart shutdown
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+if [ -x /etc/rc.d.php/shutdown ]; then
+	eval /etc/rc.d.php/shutdown
+fi
+
+# Execute all commands.
+/usr/local/bin/xml sel -t -m "//rc/shutdown/cmd" \
+	-v "." \
+	-i "position() != last()" -n -b \
+	${configxml_file} | /usr/local/bin/xml unesc | \
+	while read _cmd; do
+		eval ${_cmd}
+	done
