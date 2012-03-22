@@ -1,0 +1,95 @@
+#!/bin/sh
+# Part of NAS4Free copyright 2012 by NAS4Free team <info@nas4free.org>.
+# All rights reserved.
+# NAS4Free use portions of freenas which is Copyright © 2005-2011 by Olivier Cochard (olivier@freenas.org).
+
+# PROVIDE: LCDd
+# REQUIRE: DAEMON
+# XQUERY: -i "count(//lcdproc/enable) > 0" -o "0" -b
+# RCVAR: LCDd
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="LCDd"
+rcvar=$(set_rcvar)
+
+load_rc_config "${name}"
+
+# Custom commands
+start_precmd="LCDd_mkconf"
+start_cmd="LCDd_start"
+stop_cmd="LCDd_stop"
+mkconf_cmd="LCDd_mkconf"
+extra_commands="mkconf"
+
+# Defaults
+LCDd_enable=${LCDd_enable:-"NO"}
+LCDd_conf=${LCDd_conf:-"/var/etc/${name}.conf"}
+
+command="/usr/local/sbin/${name}"
+command_args="-c ${LCDd_conf}"
+
+LCDd_mkconf()
+{
+	# Create config file
+	/usr/local/bin/xml sel -t \
+		-o '[server]' -n \
+		-o 'DriverPath=/usr/local/lib/lcdproc/' -n \
+		-v "concat('Driver=', //lcdproc/driver)" -n \
+		-o 'Bind=127.0.0.1' -n \
+		-v "concat('Port=', //lcdproc/port)" -n \
+		-o 'ReportLevel=2' -n \
+		-o 'User=nobody' -n \
+		-v "concat('WaitTime=', //lcdproc/waittime)" -n \
+		-o 'ToggleRotateKey=Enter' -n \
+		-o 'PrevScreenKey=Left' -n \
+		-o 'NextScreenKey=Right' -n \
+		-o '#ScrollUpKey=Up' -n \
+		-o '#ScrollDownKey=Down' -n \
+		-m "//freenas/lcdproc/auxparam" \
+			-v "." -n \
+		-b \
+		-n \
+		-o '[menu]' -n \
+		-o 'MenuKey=Escape' -n \
+		-o 'EnterKey=Enter' -n \
+		-o 'UpKey=Up' -n \
+		-o 'DownKey=Down' -n \
+		-o '#LeftKey=Left' -n \
+		-o '#RightKey=Right' -n \
+		-n \
+		-v "concat('[', //lcdproc/driver,']')" -n \
+		-m "//freenas/lcdproc/param" \
+			-v "." -n \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc > ${LCDd_conf}
+}
+
+LCDd_start()
+{
+	local _driver=`configxml_get "//lcdproc/driver"`
+
+	if [ ! "$_rc_prefix" = "force" ]; then
+		if [ x"$_driver" = x"curses" -o x"$_driver" = x"text" ]; then
+			return 0;
+		fi
+	fi
+	unset start_cmd
+	run_rc_command "${_rc_prefix}${rc_arg}" ${rc_extra_args}
+}
+
+LCDd_stop()
+{
+	local _driver=`configxml_get "//lcdproc/driver"`
+
+	if [ ! "$_rc_prefix" = "force" ]; then
+		if [ x"$_driver" = x"curses" -o x"$_driver" = x"text" ]; then
+			return 0;
+		fi
+	fi
+	unset stop_cmd
+	run_rc_command "${_rc_prefix}${rc_arg}" ${rc_extra_args}
+}
+
+run_rc_command "$1"

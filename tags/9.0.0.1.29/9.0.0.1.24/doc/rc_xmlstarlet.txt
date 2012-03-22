@@ -1,0 +1,122 @@
+Howto convert PHP code into rc-init scripts:
+
+XMLStarlet is mostly used to create configuration files from services used
+in FreeNAS. Most of the config files are created in the rc-init scripts
+themselves. Several services need to have a PHP wrapper script because the
+conversion from PHP code to a shell script is not done completely.
+
+Most of the already completed shell scripts have the following structure:
+
+#!/bin/sh
+...
+# XQUERY: -i "count(//servicename/enable) > 0" -o "0" -b
+# RCVAR: rcvarname
+...
+. /etc/configxml.subr
+...
+# Custom commands
+start_precmd="create_conf"
+
+create_conf()
+{
+	# Config script is created here.
+}
+
+The XQUERY attribute is used by the /etc/rc.d/rcconf.sh script to find out
+whether the service should be enabled or not. It is the path to the element in
+/conf/config.xml that is used for evaluation.
+The RCVAR attribute defines the name of the service. This can differ from the
+filename. It is possible to set more than one service name.
+
+Example:
+--------
+
+# XQUERY: -i "count(//nfs/enable) > 0" -o "0" -b
+# RCVAR: rpc_statd rpc_lockd
+
+For the example above the following rc.conf entries are generated ('YES' or
+'NO' depending on whether //nfs/enable is set):
+
+rpc_statd_enable="YES|NO"
+rpc_lockd_enable="YES|NO"
+
+These two attributes are used mostly from services that are configurable using
+the WebGUI and that are stored in the /conf/config.xml file.
+The /etc/rc.d/rcconf.sh script evaluates these settings and creates the /etc/rc.conf file based on the configuration.
+
+To create the services configuration file XMLStarlet is used to parse the config.xml
+file. The following examples show how to convert PHP code to shell script.
+
+Example:
+--------
+
+if (isset($config['afp']['enable'])) {
+		$mdnsresponderconf .= <<<EOD
+EOD;
+}
+
+xml set -t -v "count(//afp/enable)" /conf/config.xml
+
+if (is_array($config['mounts']['mount']))
+{
+	...
+}
+
+xml set -t ... "count(//mounts/mount) > 0" ... -b /conf/config.xml
+
+Using the 'count()' XPATH function it is possible to emulate the PHP 'isset'
+and 'is_array' function.
+
+Example:
+--------
+
+if ($config['samba']['sndbuf']) {
+		$sambaconf .= <<<EOD
+SO_SNDBUF={$config['samba']['sndbuf']}
+EOD;
+}
+
+xml set -t \
+	-i "string-length(//samba/sndbuf) > 0" -o "SO_SNDBUF=" -v "//samba/sndbuf" -b \
+	/conf/config.xml
+
+xml set -t \
+	-i "string-length(//samba/sndbuf) > 0" -v "concat('SO_SNDBUF=',//samba/sndbuf)" -b \
+	/conf/config.xml
+
+xml set -t -m "//samba" \
+	-i "string-length(sndbuf) > 0" -v "concat('SO_SNDBUF=',sndbuf)" -b \
+	/conf/config.xml
+
+The three examples above do all exactly the same but each of them does it more
+elegantly than the previous one.
+A simple PHP string check can be emulated by using the 'if' command XMLStarlet
+provides (-i attribute). To do that the XPATH 'string-length' is used to check
+if the string '//samba/sndbuf' is greater than 0. An 'if' condition has to be
+closed by the -b attribute.
+The -o attribute is used to simply give out a string. The -v attribute is used
+to get the value from a specified XPATH element. It is possible to use
+XPATH functions. In the third example the 'concat' function is used to format the
+output.
+
+Example:
+
+if (is_array($config['mounts']['mount'])) {
+		foreach ($config['mounts']['mount'] as $mountent) {
+			$sambaconf .= <<<EOD
+comment = {$mountent['desc']}
+path = /mnt/{$mountent['sharename']}
+writeable = yes
+EOD;
+}
+}
+
+xml set -t -m "//mounts/mount" \
+	-v "concat('comment = ',desc)" -n \
+	-v "concat('path = /mnt/',sharename)" -n \
+	-o "writeable = yes" -n \
+	/conf/config.xml
+
+A 'foreach' loop can be implemented using the -m (match) attribute XMLStarlet
+provides. The 'is_array' check is not needed in this case. The 'foreach' loop
+is done for each element that matches //mounts/mount.

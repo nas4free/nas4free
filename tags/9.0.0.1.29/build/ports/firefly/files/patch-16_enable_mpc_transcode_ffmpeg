@@ -1,0 +1,11 @@
+--- src/plugins/ssc-ffmpeg.c	2009-04-30 12:06:46.187336156 +0200
++++ src/plugins/ssc-ffmpeg.c	2009-04-30 12:07:18.804086308 +0200
+@@ -128,7 +128,7 @@
+     NULL,                  /* event fns */
+     &_ptfn,                /* fns */
+     NULL,                  /* rend info */
+-    "flac,alac,ogg,wma"    /* codeclist */
++    "flac,alac,ogg,wma,mpc"    /* codeclist */
+ };
+ 
+ char *ssc_ffmpeg_error(void *pv) {

@@ -1,0 +1,190 @@
+#!/bin/sh
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# Copyright (c) 2007-2009 Volker Theile <votdev@gmx.de>.
+# All rights reserved.
+#
+
+# PROVIDE: pam
+# REQUIRE: var
+# BEFORE: NETWORK
+
+#
+# Configure PAM configuration files
+#
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="pam"
+
+load_rc_config "${name}"
+
+# Defaults
+system_config=${system_config:-"/etc/pam.d/system"}
+sshd_config=${sshd_config:-"/etc/pam.d/sshd"}
+ftp_config=${ftp_config:-"/etc/pam.d/ftp"}
+netatalk_config=${netatalk_config:-"/etc/pam.d/netatalk"}
+login_config=${login_config:-"/etc/pam.d/login"}
+
+# Ensure that target directory exists
+if [ ! -e /var/etc/pam.d ]; then
+	/bin/mkdir -m 0744 /var/etc/pam.d
+fi
+
+# Create /etc/pam.d/system
+/usr/local/bin/xml sel -t \
+	-o "# System-wide defaults" -n \
+	-n \
+	-o "# auth" -n \
+	-o "auth       sufficient   pam_opie.so             no_warn no_fake_prompts" -n \
+	-o "auth       requisite    pam_opieaccess.so       no_warn allow_local" -n \
+	-i "count(//ad/enable) > 0" \
+		-o "#auth       sufficient   /usr/local/lib/pam_winbind.so	debug try_first_pass" -n \
+	-b \
+	-i "count(//ldap/enable) > 0" \
+		-o "#auth       sufficient   /usr/local/lib/pam_ldap.so	no_warn try_first_pass" -n \
+	-b \
+	-o "auth       required     pam_unix.so             no_warn try_first_pass nullok" -n \
+	-n -o "# account" -n \
+	-i "count(//ad/enable) > 0" \
+		-o "#account    sufficient   /usr/local/lib/pam_winbind.so" -n \
+	-b \
+	-o "account    required     pam_login_access.so" -n \
+	-o "account    required     pam_unix.so" -n \
+	-n -o "# session" -n \
+	-o "session    required     pam_lastlog.so          no_fail" -n \
+	-n -o "# password" -n \
+	-i "count(//ad/enable) > 0" \
+		-o "#password   sufficient   /usr/local/lib/pam_winbind.so	debug try_first_pass" -n \
+	-b \
+	-o "password   required     pam_unix.so             no_warn try_first_pass" \
+	${configxml_file} | /usr/local/bin/xml unesc > ${system_config}
+
+# Create /etc/pam.d/sshd
+/usr/local/bin/xml sel -t \
+	-o "# PAM configuration for the \"sshd\" service" -n \
+	-n \
+	-o "# auth" -n \
+	-o "auth       sufficient      pam_opie.so             no_warn no_fake_prompts" -n \
+	-o "auth       requisite       pam_opieaccess.so       no_warn allow_local" -n \
+	-i "count(//ad/enable) > 0" \
+		-o "auth       sufficient      /usr/local/lib/pam_winbind.so	debug try_first_pass" -n \
+	-b \
+	-i "count(//ldap/enable) > 0" \
+		-o "auth       sufficient      /usr/local/lib/pam_ldap.so	no_warn try_first_pass" -n \
+	-b \
+	-o "auth       required        pam_unix.so             no_warn try_first_pass" -n \
+	-n -o "# account" -n \
+	-o "account    required        pam_nologin.so          no_warn" -n \
+	-o "account    required        pam_login_access.so" -n \
+	-i "count(//ad/enable) > 0" \
+		-o "account    sufficient		/usr/local/lib/pam_winbind.so" -n \
+	-b \
+	-i "count(//ldap/enable) > 0" \
+		-o "account    sufficient     /usr/local/lib/pam_ldap.so    ignore_authinfo_unavail" -n \
+	-b \
+	-o "account    required        pam_unix.so" -n \
+	-n -o "# session" -n \
+	-o "session    required        pam_permit.so" -n \
+	-o "session    required        /usr/local/lib/pam_mkhomedir.so" -n \
+	-n -o "# password" -n \
+	-i "count(//ad/enable) > 0" \
+		-o "password   sufficient	/usr/local/lib/pam_winbind.so	debug try_first_pass" -n \
+	-b \
+	-i "count(//ldap/enable) > 0" \
+		-o "password   sufficient /usr/local/lib/pam_ldap.so" -n \
+	-b \
+	-o "password   required        pam_unix.so             no_warn try_first_pass" \
+	${configxml_file} | /usr/local/bin/xml unesc > ${sshd_config}
+
+# Create /etc/pam.d/ftp
+/usr/local/bin/xml sel -t \
+	-o "# PAM configuration for the \"ftpd\" service" -n \
+	-n \
+	-o "# auth" -n \
+	-o "auth       sufficient      pam_opie.so             no_warn no_fake_prompts" -n \
+	-o "auth       requisite       pam_opieaccess.so       no_warn allow_local" -n \
+	-i "count(//ad/enable) > 0" \
+		-o "auth       sufficient      /usr/local/lib/pam_winbind.so	debug try_first_pass" -n \
+	-b \
+	-i "count(//ldap/enable) > 0" \
+		-o "auth       sufficient      /usr/local/lib/pam_ldap.so	no_warn try_first_pass" -n \
+	-b \
+	-o "auth       required        pam_unix.so             no_warn try_first_pass" -n \
+	-n -o "# account" -n \
+	-o "account    required        pam_nologin.so          no_warn" -n \
+	-i "count(//ad/enable) > 0" \
+		-o "account    sufficient	/usr/local/lib/pam_winbind.so" -n \
+	-b \
+	-i "count(//ldap/enable) > 0" \
+		-o "account    sufficient     /usr/local/lib/pam_ldap.so    ignore_authinfo_unavail" -n \
+	-b \
+	-o "account    required        pam_login_access.so" -n \
+	-o "account    required        pam_unix.so" -n \
+	-n -o "# session" -n \
+	-o "session    required        pam_permit.so" -n \
+	-o "session    required        /usr/local/lib/pam_mkhomedir.so" -n \
+	${configxml_file} | /usr/local/bin/xml unesc > ${ftp_config}
+
+# Create /etc/pam.d/netatalk
+/usr/local/bin/xml sel -t \
+	-o "# PAM configuration for the \"netatalk\" service" -n \
+	-n \
+	-o "# auth" -n \
+	-o "auth       sufficient      pam_opie.so             no_warn no_fake_prompts" -n \
+	-o "auth       requisite       pam_opieaccess.so       no_warn allow_local" -n \
+	-i "count(//ad/enable) > 0" \
+		-o "auth       sufficient      /usr/local/lib/pam_winbind.so	debug try_first_pass" -n \
+	-b \
+	-i "count(//ldap/enable) > 0" \
+		-o "auth       sufficient      /usr/local/lib/pam_ldap.so	no_warn try_first_pass" -n \
+	-b \
+	-o "auth       required        pam_unix.so             no_warn try_first_pass" -n \
+	-n -o "# account" -n \
+	-o "account    required        pam_nologin.so          no_warn" -n \
+	-i "count(//ad/enable) > 0" \
+		-o "account    sufficient       /usr/local/lib/pam_winbind.so" -n \
+	-b \
+	-i "count(//ldap/enable) > 0" \
+		-o "account    sufficient     /usr/local/lib/pam_ldap.so    ignore_authinfo_unavail" -n \
+	-b \
+	-o "account    required        pam_login_access.so" -n \
+	-o "account    required        pam_unix.so" -n \
+	-n -o "# session" -n \
+	-o "session    required        pam_permit.so" -n \
+	-o "session    required        /usr/local/lib/pam_mkhomedir.so" -n \
+	${configxml_file} | /usr/local/bin/xml unesc > ${netatalk_config}
+
+# Create /etc/pam.d/login
+/usr/local/bin/xml sel -t \
+	-o "# PAM configuration for the \"login\" service" -n \
+	-n \
+	-o "# auth" -n \
+	-i "count(//ad/enable) > 0" \
+		-o "auth       sufficient      /usr/local/lib/pam_winbind.so	debug try_first_pass" -n \
+	-b \
+	-i "count(//ldap/enable) > 0" \
+		-o "auth       sufficient      /usr/local/lib/pam_ldap.so	no_warn try_first_pass" -n \
+	-b \
+	-o "auth       sufficient      pam_self.so	no_warn" -n \
+	-o "auth       include         system" -n \
+	-n -o "# account" -n \
+	-o "account    required        pam_nologin.so          no_warn" -n \
+	-i "count(//ad/enable) > 0" \
+		-o "account    sufficient	/usr/local/lib/pam_winbind.so" -n \
+	-b \
+	-i "count(//ldap/enable) > 0" \
+		-o "account    sufficient     /usr/local/lib/pam_ldap.so    ignore_authinfo_unavail" -n \
+	-b \
+	-o "account    requisite       pam_securetty.so" -n \
+	-o "account    include         system" -n \
+	-n -o "# session" -n \
+	-o "session    include         system" -n \
+	-n -o "# password" -n \
+	-o "password   include         system" \
+	${configxml_file} | /usr/local/bin/xml unesc > ${login_config}

@@ -1,0 +1,24 @@
+#!/bin/sh
+#
+# rc.initial.reboot
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+# Display dialog
+cdialog --defaultno --yesno "Do you really want to reboot the system?" 5 46
+
+case $? in
+	0)
+		/sbin/shutdown -r now >/dev/null;
+		;;
+	1)
+		;;
+	255)
+		;;
+esac

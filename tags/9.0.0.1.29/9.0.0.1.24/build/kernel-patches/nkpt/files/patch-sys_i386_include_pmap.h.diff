@@ -1,0 +1,11 @@
+--- pmap.h.orig	2011-09-23 09:51:37.000000000 +0900
++++ pmap.h	2011-10-19 05:44:52.000000000 +0900
+@@ -129,7 +129,7 @@
+ #define	NKPT		240
+ #else
+ /* 18 page tables needed to map 4G (72B "struct vm_page", 4M page tables). */
+-#define	NKPT		30
++#define	NKPT		150
+ #endif
+ #endif
+ 
