@@ -272,7 +272,8 @@ function system_get_cpu_info() {
 			$cpuid2 = system_get_cpuid(0, "0x80000001");
 			// Brisbane BH-G1/BH-G2 ?
 			if ($cpuid2['eax'] == 0x00060fb1 || $cpuid2['eax'] == 0x00060fb2) {
-				$adj = 21.0;
+// for freebsd 9.x $adj = 21.0; set to $adj = 0.0; | $adj = 21.0; is needed on freebsd 7 series!
+				$adj = 0.0;
 			}
 
 		}
