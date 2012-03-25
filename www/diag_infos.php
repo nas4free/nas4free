@@ -47,6 +47,10 @@ require("auth.inc");
 require("guiconfig.inc");
 
 $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("Disks"));
+
+// Get all physical disks.
+$a_phy_disk = array_merge((array)get_physical_disks_list());
+
 ?>
 <?php include("fbegin.inc");?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -74,74 +78,28 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("Disks"
 	<tr>
 		<td class="tabcont">
 			<table width="100%" border="0">
-				<?php
-				unset($rawdata);
-				exec("/sbin/atacontrol list", $rawdata);
-				html_titleline(gettext("List of detected ATA disks"));
-				$disk_list=null;
-				exec("dmesg -N system | grep ata |  egrep ad[0-9]", $disk_list);
-				// first clean up dmesg
-				$disk_array=array();
-				foreach($disk_list as $disk)
-				{
-					$info = preg_match('=(ad[0-9]+):\s([0-9A-Z]+)\s\<([\w\s\/\-\.\_\:]+)\>\sat\s([\w-]+)=is', $disk, $tr);
-					$disk_array[$tr[1]]=array("size"=>$tr[2], "name"=>$tr[3], "port"=>$tr[4]);
-				}
-				// sort by channel
-				unset($disk);
-				$channel_array=array();
-				foreach($disk_array as $id => $disk)
-				{
-					preg_match('!([\w]+)\-([\w]+)!', $disk['port'], $channel);
-					$channel_array[$channel[1]][]=array(
-									'dev' =>$id, 
-									'name'=>$disk['name'], 
-									'size'=>$disk['size'],
-									'port'=>$channel[2]); 
-				}
-				?>
+				<?php html_titleline(gettext("List of detected disks"));?>
 				<tr>
 					<td>
-						<?php
-						if(count($channel_array) > 0)
-						{
-							echo '<table width="100%" border="0" cellspacing="0" cellpadding="0">';
-							 echo '<tr>
-                                                                        <td width="10%" class="listhdrlr">'.gettext("Port").'</td>
-                                                                        <td width="10%" class="listhdrlr">'.gettext("Disk").'</td>
-                                                                        <td width="20%" class="listhdrr">'.gettext("Size").'</td>
-                                                                        <td class="listhdrr">'.gettext("Description").'</td>
-                                                                </tr>';
-							foreach($channel_array as $channel => $data)
-							{
-								echo '<tr><td colspan="4" class="listtopic">'.strtoupper($channel).'</td></tr>';
-								foreach( $data as $disk )
-								{
-									echo '<tr>';
-									echo '<td class="vncellt" width="10%">'.ucfirst($disk['port']).'</td>';
-									echo '<td class="listr" width="10%" >'.strtoupper($disk['dev']).'</td>';
-									echo '<td class="listr" width="20%" >'.$disk['size'].'</td>';
-									echo '<td class="listr">'.$disk['name'].'</td>';
-									echo '</tr>';
-								}
-							}
-							echo '</table>';
-						}
-						?>
-					</td>
-				</tr>
-				<?php
-				unset($rawdata);
-				exec("/sbin/camcontrol devlist", $rawdata);
-				html_titleline(gettext("List of detected SCSI disks"));
-				?>
+			<table width="100%" border="0" cellpadding="0" cellspacing="0">
 				<tr>
-					<td>
-						<pre><?php if (empty($rawdata)) { echo gettext("n/a"); } else { echo htmlspecialchars(implode("\n", $rawdata)); }?></pre>
-					</td>
+					<td width="4%" class="listhdrlr"><?=gettext("Disk");?></td>
+					<td width="10%" class="listhdrr"><?=gettext("Size");?></td>
+					<td width="40%" class="listhdrr"><?=gettext("Device model"); ?></td>
+					<td width="40%" class="listhdrr"><?=gettext("Serial number"); ?></td>
+					<td width="6%" class="listhdrr"><?=gettext("Status");?></td>
 				</tr>
-			</table>
-		</td>
-	</tr>
-</table>
+				<?php foreach ($a_phy_disk as $disk):?>
+				<tr>
+					<td class="listlr"><?=htmlspecialchars($disk['name']);?></td>
+					<td class="listr"><?=htmlspecialchars($disk['size']);?></td>
+					<td class="listr"><?=htmlspecialchars(system_get_volume_model($disk['devicespecialfile']));?>&nbsp;</td>
+					<td class="listr"><?=htmlspecialchars(system_get_volume_serial($disk['devicespecialfile']));?>&nbsp;</td>
+					<td class="listbg"><?=(0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING");?>&nbsp;</td>
+				</tr>
+				<?php endforeach;?>
+				</table>
+			</td>
+		</tr>
+	</table>
 <?php include("fend.inc");?>

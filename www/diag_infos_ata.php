@@ -48,7 +48,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("Disks (ATA)"));
 
-$a_disk = get_ata_disks_list();
+$a_disk = &$config['disks']['disk'];
 ?>
 <?php include("fbegin.inc");?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -85,8 +85,10 @@ $a_disk = get_ata_disks_list();
 						$device = $diskv['devicespecialfile'];
 						$dmamode = trim(preg_replace("/current mode = /", "", exec("/sbin/atacontrol mode {$name}")));
 
-						echo gettext("Device name") . ":		{$name}<br />";
-						echo gettext("Transfer mode") . ":		{$dmamode}<br />";
+						echo gettext("Disk") . ":		{$name}<br />";
+						
+						// need fix
+						// echo gettext("Transfer mode") . ":		{$dma}<br />";
 
 						// Display more information
 						exec("/usr/local/sbin/ataidle {$device}", $rawdata);

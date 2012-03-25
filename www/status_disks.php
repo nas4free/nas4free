@@ -63,11 +63,12 @@ $raidstatus = get_sraid_disks_list();
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
 				<tr>
 					<td width="5%" class="listhdrlr"><?=gettext("Disk");?></td>
-					<td width="6%" class="listhdrr"><?=gettext("Capacity");?></td>
-					<td width="25%" class="listhdrr"><?=gettext("Description");?></td>
+					<td width="6%" class="listhdrr"><?=gettext("Size");?></td>
+					<td width="17%" class="listhdrr"><?=gettext("Description");?></td>
 					<td width="16%" class="listhdrr"><?=gettext("Device model"); ?></td>
-					<td width="16%" class="listhdrr"><?=gettext("Serial number"); ?></td>
-					<td width="16%" class="listhdrr"><?=gettext("I/O statistics");?></td>
+					<td width="13%" class="listhdrr"><?=gettext("Serial number"); ?></td>
+					<td width="9%" class="listhdrr"><?=gettext("File system"); ?></td>
+					<td width="18%" class="listhdrr"><?=gettext("I/O statistics");?></td>
 					<td width="8%" class="listhdrr"><?=gettext("Temperature");?></td>
 					<td width="8%" class="listhdrr"><?=gettext("Status");?></td>
 				</tr>
@@ -80,6 +81,7 @@ $raidstatus = get_sraid_disks_list();
 					<td class="listr"><?=htmlspecialchars($disk['desc']);?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars(system_get_volume_model($disk['devicespecialfile']));?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars(system_get_volume_serial($disk['devicespecialfile']));?>&nbsp;</td>
+					<td class="listr"><?=($disk['fstype']) ? htmlspecialchars(get_fstype_shortdesc($disk['fstype'])) : htmlspecialchars(gettext("Unknown or unformatted"))?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars($iostat);?>&nbsp;</td>
 					<td class="listr"><?=$temp;?>&nbsp;</td>
 					<td class="listbg"><?=(0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING");?>&nbsp;</td>
@@ -95,6 +97,7 @@ $raidstatus = get_sraid_disks_list();
 					<td class="listr"><?=htmlspecialchars(gettext("Software RAID"));?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
+					<td class="listr"><?=htmlspecialchars(($disk['fstype']));?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars($iostat);?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars($temp);?>&nbsp;</td>
 					<td class="listbg"><?=htmlspecialchars($diskv['state']);?>&nbsp;</td>
