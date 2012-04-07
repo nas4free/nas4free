@@ -1,5 +1,5 @@
 PORTNAME=		fuppes
-PORTVERSION=	0.691
+PORTVERSION=	0.692
 PORTEPOCH=	0
 CATEGORIES=		net
 COMMENT=		Free UPnP Entertainment Service
