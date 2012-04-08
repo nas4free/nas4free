@@ -18,9 +18,8 @@
 	Part of code from:
 	Exec+ v1.02-000 - Copyright 2001-2003, All rights reserved
 	Created by technologEase (http://www.technologEase.com).
-	modified for m0n0wall by Manuel Kasper <mk@neon1.net>)
-	re-modified for FreeNAS by Olivier Cochard-Labbe <olivier@freenas.org>)
-	adapted to FreeNAS GUI by Volker Theile <votdev@gmx.de>)
+	Modified for m0n0wall by Manuel Kasper <mk@neon1.net>)
+	Adapted to FreeNAS GUI by Volker Theile <votdev@gmx.de>)
 */
 // Configure page permission
 $pgperm['allowuser'] = TRUE;
@@ -41,7 +40,7 @@ pre {
 	white-space: pre;
 	line-height: 10pt;
 	font-size: 10pt;
-	width: 500pt;
+	width: 523pt;
 }
 -->
 </style>
@@ -100,15 +99,15 @@ EOD;
 		</tr>
 		<tr>
 			<td class="label" align="right"><?=gettext("Subject");?></td>
-			<td class="text"><input id="txtSubject" name="txtSubject" type="text" size="123" value="<?php echo $_POST['txtSubject']; ?>" /></td>
+			<td class="text"><input id="txtSubject" name="txtSubject" type="text" size="130" value="<?php echo $_POST['txtSubject']; ?>" /></td>
 		</tr>
 		<tr>
 			<td class="label" align="right"><?=gettext("Description");?></td>
-			<td class="text"><textarea id="txtDescription" name="txtDescription" rows="7" cols="77" wrap="on"><?=htmlspecialchars($_POST['txtDescription']);?></textarea></td>
+			<td class="text"><textarea id="txtDescription" name="txtDescription" rows="7" cols="80" wrap="on"><?=htmlspecialchars($_POST['txtDescription']);?></textarea></td>
 		</tr>
 		<tr>
 			<td align="right"><?=gettext("Error");?></td>
-			<td class="text"><textarea id="txtError" name="txtError" rows="3" cols="77" wrap="on"><?=htmlspecialchars($_POST['txtError']);?></textarea></td>
+			<td class="text"><textarea id="txtError" name="txtError" rows="3" cols="80" wrap="on"><?=htmlspecialchars($_POST['txtError']);?></textarea></td>
 		</tr>
 		<tr>
 			<td align="right"><?=gettext("Hardware");?></td>
@@ -138,14 +137,14 @@ EOD;
 		}
 		print str_replace("; ", "\n", $sys_summary).$nl.$nl;
 		if (isset($_POST['chk_Hardware'])) {
-		print wordwrap($hwinfo, 75, $nl, true);
+		print wordwrap($hwinfo, 70, $nl, true);
 		print $nl;			
 
 		}
-		print wordwrap($hr.$nl.$nl.$bs."Subject:".$be.$nl.$_POST['txtSubject'].$hr, 75, $nl, true);
-		print wordwrap($nl.$nl.$bs."Description:".$be.$nl.$_POST['txtDescription'], 75, $nl, true);
+		print wordwrap($hr.$nl.$nl.$bs."Subject:".$be.$nl.$_POST['txtSubject'].$hr, 80, $nl, true);
+		print wordwrap($nl.$nl.$bs."Description:".$be.$nl.$_POST['txtDescription'], 80, $nl, true);
 		if (!isBlank($_POST['txtError'])) {
-			print wordwrap($nl.$nl.$hr.$cs.$nl.$_POST['txtError'].$nl.$ce, 75, $nl, true);
+			print wordwrap($nl.$nl.$hr.$cs.$nl.$_POST['txtError'].$nl.$ce, 80, $nl, true);
 		}
 		puts("</pre>");
 	}
