@@ -50,7 +50,7 @@ $productname = get_product_name();
 // Display information
 $text = <<<EOD
 
-{$productname} 'embedded' installer for Flash device or HDD.
+{$productname} 'Embedded' installer for CF, USB Flash Drive or HDD.
 
 - Create 1 partition for OS image
 - Uses a RAM disk to limit read/write access to the device
@@ -59,11 +59,11 @@ WARNING: There will be some limitations:
 1. This will erase ALL partitions and data on the destination disk
 2. You can't use your destination disk for sharing data
 
-Installing on USB key is the preferred way:
-It saves you an IDE or SCSI channel for more hard drives.
+Installing on CF or USB Flash Drive is the preferred way:
+It saves you Power and a IDE/SATA/SCSI channel for more storage drives.
 
 EOD;
-$result = tui_display_message_ex("{$productname} installation", $text, 74, 17);
+$result = tui_display_message_ex("{$productname} Embedded Installation", $text, 74, 17);
 if (0 != $result)
 	exit(0);
 
@@ -72,7 +72,7 @@ $cdlist = get_cdrom_list();
 $disklist = get_physical_disks_list();
 
 if (0 == count($cdlist)) {
-	tui_wait_keypress("Failed to detect any CDROM.");
+	tui_wait_keypress("Failed to detect any CDROM drive.");
 	exit(0);
 }
 
@@ -107,7 +107,7 @@ if (disks_ismounted_ex($harddrive, "mdisk")) {
 }
 
 if (install_mount_cd($cdrom)) {
-	tui_wait_keypress("There was a problem while mounting the CDROM.");
+	tui_wait_keypress("There was a problem while mounting the CDROM drive.");
 	exit(0);
 }
 
@@ -123,7 +123,7 @@ install_unmount_cd();
 $text = <<<EOD
 
 {$productname} has been installed on {$harddrive}.
-You can now safely remove the CDROM and reboot the server.
+You can now safely remove the LiveCD and reboot the server.
 EOD;
 
 tui_wait_keypress($text);

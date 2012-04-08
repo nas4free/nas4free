@@ -120,7 +120,7 @@ if [ 0 != $opt_b ]; then
 fi
 # Enable bootmenu?
 if [ 0 != $opt_m ]; then
-	echo 'autoboot_delay="5"' >> $MINIBSD_DIR/loader.conf
+	echo 'autoboot_delay="3"' >> $MINIBSD_DIR/loader.conf
 else
 	echo 'autoboot_delay="-1"' >> $MINIBSD_DIR/loader.conf
 fi

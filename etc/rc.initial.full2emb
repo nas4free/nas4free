@@ -53,10 +53,13 @@ $productname = get_product_name();
 // Display information
 $text = <<<EOD
 
-This will convert and upgrade 'full' installation to 'embedded'.
+This will convert and upgrade 'Full' installation to 'Embedded'.
+
+Installing on CF or USB Flash Drive is the preferred way:
+It saves you Power and a IDE/SATA/SCSI channel for more storage drives.
 
 EOD;
-$result = tui_display_message_ex("{$productname} upgrade", $text, 70, 7);
+$result = tui_display_message_ex("{$productname} Convert & Upgrade", $text, 70, 12);
 if (0 != $result)
 	exit(0);
 
@@ -67,7 +70,7 @@ if (0 != install_detect_installation("full", $devinfo)) {
 }
 
 if ("a" === $devinfo['partition']) {
-	tui_wait_keypress("A 'full' installation has been detected, but on invalid slice.\nConvertion to 'embedded' is impossible. Please backup your configuration via WebGUI\nand reinstall as 'embedded'.");
+	tui_wait_keypress("A 'Full' installation has been detected, but on invalid slice.\nConvertion to 'Embedded' is impossible. Please backup your configuration via WebGUI\nand reinstall as 'Embedded'.");
 	exit(0);
 }
 
@@ -88,7 +91,7 @@ $cdlist = get_cdrom_list();
 $disklist = get_physical_disks_list();
 
 if (0 == count($cdlist)) {
-	tui_wait_keypress("Failed to detect any CDROM.");
+	tui_wait_keypress("Failed to detect any CDROM drive.");
 	exit(0);
 }
 
@@ -105,7 +108,7 @@ if (0 != $result)
 	exit(0);
 
 if (install_mount_cd($cdrom)) {
-	tui_wait_keypress("There was a problem while mounting the CDROM.");
+	tui_wait_keypress("There was a problem while mounting the CDROM drive.");
 	exit(0);
 }
 
@@ -140,7 +143,7 @@ install_unmount_cd();
 $text = <<<EOD
 
 {$productname} installed on device {$devinfo['device']}{$devinfo['partition']} has been converted and upgraded.
-You can now safely remove the CDROM and reboot the server.
+You can now safely remove the LiveCD and reboot the server.
 EOD;
 
 tui_wait_keypress($text);

@@ -70,7 +70,7 @@ do {
 } while (0 >= strlen($lanif));
 
 // Optional interfaces
-// skip OPT selection if there is only on interface detected
+// skip OPT selection if there is only one interface detected
 if (1 != count($iflist)) {
     $i = 0;
     $optif = array();

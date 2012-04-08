@@ -41,17 +41,17 @@ else
 		echo
 		echo "Console setup"
 		echo "-------------"
-		echo "1) Assign interfaces"
-		echo "2) Set LAN IP address"
-		echo "3) Reset WebGUI password"
-		echo "4) Reset to factory defaults"
-		echo "5) Ping host"
+		echo "1) Configure Network Interfaces"
+		echo "2) Configure Network IP address"
+		echo "3) Reset WebGUI Password"
+		echo "4) Reset to Factory Defaults"
+		echo "5) Ping Host"
 		echo "6) Shell"
-		echo "7) Reboot system"
-		echo "8) Shutdown system"
+		echo "7) Reboot System"
+		echo "8) Shutdown System"
 		case ${PLATFORM} in
 			*-live[cC][dD])
-				echo "9) Install/Upgrade to hard drive/flash device, etc.";;
+				echo "9) Install/Upgrade NAS4Free from LiveCD";;
 		esac
 
 		echo
