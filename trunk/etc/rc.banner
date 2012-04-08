@@ -73,10 +73,10 @@
 	echo <<<EOD
 
 
-*** {$productname} server version: {$version} (revision {$revision})
+    {$productname} server version: {$version} (revision {$revision})
     Built on {$buildtime} for {$g['fullplatform']}
-    {$copyright}
-    Visit http://{$producturl} for updates.
+    Copyright (C) 2012 NAS4Free. All rights reserved.
+    Visit: http://www.{$producturl} for updates
 
     LAN IPv4 address: {$ipaddr}
 

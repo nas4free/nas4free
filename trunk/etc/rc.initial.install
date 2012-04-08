@@ -15,13 +15,13 @@ trap "rm -f $tmpfile" 0 1 2 5 15
 
 # Endless loop
 while : ; do
-	cdialog --clear --title "Install & Upgrade" --cancel-label "Exit" --menu "" 12 73 6 \
-		"1" "Install 'embedded' OS on HDD/Flash/USB" \
-		"2" "Install 'embedded' OS on HDD/Flash/USB + DATA + SWAP partition" \
-		"3" "Install 'full' OS on HDD + DATA + SWAP partition" \
-		"4" "Upgrade 'embedded' OS from CDROM" \
-		"5" "Upgrade 'full' OS from CDROM" \
-		"6" "Upgrade and convert 'full' OS to 'embedded'" 2> $tmpfile
+	cdialog --clear --title "NAS4Free Install & Upgrade Options Menu" --cancel-label "Exit" --menu "" 12 73 6 \
+		"1" "Install 'Embedded' OS on CF/USB Flash Drive or Hard Drive" \
+		"2" "Install 'Embedded' OS on HDD/Flash/USB + DATA + SWAP partition" \
+		"3" "Install 'Full' OS on HDD + DATA + SWAP partition" \
+		"4" "Upgrade 'Embedded' OS from LiveCD" \
+		"5" "Upgrade 'Full' OS from LiveCD" \
+		"6" "Upgrade and convert 'Full' OS to 'Embedded'" 2> $tmpfile
 
 	if [ 0 -ne $? ]; then
 		exit 0;

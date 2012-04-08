@@ -59,7 +59,7 @@ $productname = get_product_name();
 // Display information
 $text = <<<EOD
 
-{$productname} 'full' installer for HDD.
+{$productname} 'Full' installer for Hard Drives & Solid State Drives.
 
 - Create MBR partition 1, using UFS, customizable size for OS
 - Create MBR partition 2, using UFS, for DATA
@@ -70,7 +70,7 @@ WARNING: There will be some limitations:
 1. This will erase ALL partitions and data on the destination disk
 
 EOD;
-$result = tui_display_message_ex("{$productname} installation", $text, 74, 15);
+$result = tui_display_message_ex("{$productname} Full Installation", $text, 74, 15);
 if (0 != $result)
 	exit(0);
 
@@ -79,7 +79,7 @@ $cdlist = get_cdrom_list();
 $disklist = get_physical_disks_list();
 
 if (0 == count($cdlist)) {
-	tui_wait_keypress("Failed to detect any CDROM.");
+	tui_wait_keypress("Failed to detect any CDROM drive.");
 	exit(0);
 }
 
@@ -143,7 +143,7 @@ if (0 == $result) {
 }
 
 if (install_mount_cd($cdrom)) {
-	tui_wait_keypress("There was a problem while mounting the CDROM.");
+	tui_wait_keypress("There was a problem while mounting the CDROM drive.");
 	exit(0);
 }
 
@@ -165,7 +165,7 @@ install_unmount_cd();
 $text = <<<EOD
 
 {$productname} has been installed on {$harddrive}s1.
-You can now safely remove the CDROM and reboot the server.
+You can now safely remove the LiveCD and reboot the server.
 
 To use the DATA partition:
 - Add the disk {$harddrive} on the 'Disks|Management' page.

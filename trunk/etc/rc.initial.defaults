@@ -70,7 +70,7 @@ function remove_logs() {
 }
 
 // Display dialog
-$result = tui_display_yesno("You are about to reset {$productname} to factory defaults. The LAN IP address will be reset to {$g['default_ip']} and the WebGUI password will be set to '{$g['default_passwd']}'. System will reboot after resetting the configuration.\n\nDo you want to proceed?", 60, 10, false);
+$result = tui_display_yesno("You are about to reset {$productname} to factory defaults. The LAN IP address will be reset to {$g['default_ip']} and the WebGUI password will be set to '{$g['default_passwd']}'. The server will reboot after resetting the configuration.\n\nDo you want to proceed?", 60, 10, false);
 
 if (0 == $result) {
 	config_unlock();

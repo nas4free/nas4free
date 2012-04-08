@@ -56,7 +56,7 @@ $text = <<<EOD
 This will upgrade your current installation to the latest version.
 
 EOD;
-$result = tui_display_message_ex("{$productname} upgrade", $text, 70, 7);
+$result = tui_display_message_ex("{$productname} Upgrade", $text, 70, 7);
 if (0 != $result)
 	exit(0);
 
@@ -83,7 +83,7 @@ $cdlist = get_cdrom_list();
 $disklist = get_physical_disks_list();
 
 if (0 == count($cdlist)) {
-	tui_wait_keypress("Failed to detect any CDROM.");
+	tui_wait_keypress("Failed to detect any CDROM drive.");
 	exit(0);
 }
 
@@ -100,7 +100,7 @@ if (0 != $result)
 	exit(0);
 
 if (install_mount_cd($cdrom)) {
-	tui_wait_keypress("There was a problem while mounting the CDROM.");
+	tui_wait_keypress("There was a problem while mounting the CDROM drive.");
 	exit(0);
 }
 
@@ -138,7 +138,7 @@ install_unmount_cd();
 $text = <<<EOD
 
 {$productname} installed on device {$devinfo['device']}{$devinfo['partition']} has been upgraded.
-You can now safely remove the CDROM and reboot the server.
+You can now safely remove the LiveCD and reboot the server.
 EOD;
 
 tui_wait_keypress($text);

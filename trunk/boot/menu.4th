@@ -122,10 +122,10 @@ variable vmguest
 	77 20 2 2 box
 	45 3 display-logo
 	5 7 at-xy ." Welcome to NAS4Free!"
-	printmenuitem ."  Boot [default]" bootkey !
+	printmenuitem ."  Boot NAS4Free in Normal Mode" bootkey !
 	s" arch-i386" environment? if
 		drop
-		printmenuitem ."  Boot with ACPI " bootacpikey !
+		printmenuitem ."  Boot NAS4Free with ACPI " bootacpikey !
 		acpienabled? if
 			." disabled"
 		else
@@ -134,10 +134,10 @@ variable vmguest
 	else
 		-2 bootacpikey !
 	then
-	printmenuitem ."  Boot in Safe Mode" bootsafekey !
-	printmenuitem ."  Boot with verbose logging" bootverbosekey !
+	printmenuitem ."  Boot NAS4Free in Safe Mode" bootsafekey !
+	printmenuitem ."  Boot NAS4Free with verbose logging" bootverbosekey !
 	printmenuitem ."  Escape to loader prompt" escapekey !
-	printmenuitem ."  Reboot" rebootkey !
+	printmenuitem ."  Reboot system" rebootkey !
 	menuX @ 20 at-xy
 	." Select option, [Enter] for default"
 	menuX @ 21 at-xy
