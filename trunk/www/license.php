@@ -57,7 +57,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
 
 		<p>NAS4Free use portions of freenas which is Copyright &copy; 2005-2011 by Olivier Cochard (olivier@freenas.org).</p>
 		<p>NAS4Free use portions of m0n0wall which is Copyright &copy; 2002-2006 by Manuel Kasper (mk@neon1.net).</p>
-		<p>NAS4Free code and documentation are released under the FreeBSD License, under terms as follows:</p>
+		<p>NAS4Free code and documentation are released under the Simplified BSD license, under terms as follows.</p>
             <p> Redistribution and use in source and binary forms, with or without<br />
               modification, are permitted provided that the following conditions
               are met:<br />
@@ -82,7 +82,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
               TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS<br />
 	      SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</strong><br />
             <p>The views and conclusions contained in the software and documentation are those of the authors and should<br /> 
-               not be interpreted as representing official policies, either expressed or implied, of the FreeBSD Project.</p>
+               not be interpreted as representing official policies, either expressed or implied, of the NAS4Free Project.</p>
 							</td>
 							
 						</tr>
@@ -103,6 +103,8 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
             <hr size="1" />
             <p>The following persons have contributed to NAS4Free documentation project:</p>
+            <div>Carsten Vinkler (<a href="mailto:carsten@indysign.dk">carsten@indysign.dk</a>)<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Danish translator of the WebGUI</font></em></div><br />            
             <div>Kris Verhoeven (<a href="mailto:kris@esiv.be">kris@esiv.be</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Dutch translator of the WebGUI</font></em></div><br />
             <div>Christophe Lherieau (<a href="skimpax+freenas@gmail.com">skimpax+freenas@gmail.com</a>)<br />
@@ -114,7 +116,9 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
             <div>Christian Sulmoni (<a href="mailto:csulmoni@gmail.com">csulmoni@gmail.com</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Italian translator of the WebGUI and QuiXplorer</font></em></div><br />              
             <div>Frederico Tavares (<a href="mailto:frederico-tavares@sapo.pt">frederico-tavares@sapo.pt</a>)<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Portuguese translator of the WebGUI</font></em></div><br />                                                   
+              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Portuguese translator of the WebGUI</font></em></div><br />
+            <div>Raul Fernandez Garcia (<a href="mailto:raulfg3@gmail.com">raulfg3@gmail.com</a>)<br />
+	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Spanish translator of the WebGUI</font></em></div><br />                                     
 						</td></tr>						
             <?php html_separator();?>
             <?php html_titleline(gettext("Software used"));?>
