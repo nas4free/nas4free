@@ -743,9 +743,9 @@ use_svn() {
 build_system() {
   while true; do
 echo -n '
-----------------------------
+-----------------------------
 Compile NAS4FREE from Scratch
-----------------------------
+-----------------------------
 Menu Options:
 
 1 - Update FreeBSD Source Tree and Ports Collections.
@@ -882,9 +882,9 @@ main() {
 	cd $NAS4FREE_WORKINGDIR
 
 	echo -n "
--------------------------
+--------------------------
 ${NAS4FREE_PRODUCTNAME} Build Environment
--------------------------
+--------------------------
 Menu Options:
 
 1  - Update NAS4FREE Source Files to CURRENT.
