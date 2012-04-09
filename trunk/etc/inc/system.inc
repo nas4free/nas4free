@@ -35,7 +35,7 @@
 
 	The views and conclusions contained in the software and documentation are those
 	of the authors and should not be interpreted as representing official policies, 
-	either expressed or implied, of the FreeBSD Project.
+	either expressed or implied, of the NAS4Free Project.
 */
 require_once("functions.inc");
 require_once("util.inc");
@@ -179,6 +179,23 @@ function system_get_user_list() {
 	}
 
 	return $userlist;
+}
+
+// SMBIOS get various info
+function get_smbios_info() {
+	$smbios = array();
+	$cmd = "/bin/kenv -q";
+	unset($rawdata, $rc);
+	mwexec2($cmd, $rawdata, $rc);
+	if ($rc != 0) {
+		return $smbios;
+	}
+	foreach ($rawdata as $line) {
+		if (preg_match("/^smbios\.([^\.=]+)\.([^\.=]+)=\"(.*)\"/", $line, $match)) {
+			$smbios[$match[1]][$match[2]] = $match[3];
+		}
+	}
+	return $smbios;
 }
 
 // Get number of CPUs

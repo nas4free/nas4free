@@ -46,7 +46,7 @@
 
 	The views and conclusions contained in the software and documentation are those
 	of the authors and should not be interpreted as representing official policies, 
-	either expressed or implied, of the FreeBSD Project.
+	either expressed or implied, of the NAS4Free Project.
 */
 // Configure page permission
 $pgperm['allowuser'] = TRUE;
@@ -59,6 +59,7 @@ require("sajax/sajax.php");
 $pgtitle = array(gettext("System information"));
 $pgtitle_omit = true;
 
+$smbios = get_smbios_info();
 $cpuinfo = system_get_cpu_info();
 
 function update_controls() {
@@ -98,12 +99,12 @@ if(function_exists("date_default_timezone_set") and function_exists("date_defaul
 			    <td width="75%" class="listr"><strong><?=get_product_version();?> <?=get_product_versionname();?></strong> (<?=gettext("revision");?> <?=get_product_revision();?>)</td>
 			  </tr>
 			  <tr>
-			    <td width="25%" valign="top" class="vncellt"><?=gettext("Built on");?></td>
+			    <td width="25%" valign="top" class="vncellt"><?=gettext("Built date");?></td>
 			    <td width="75%" class="listr"><?=get_product_buildtime();?>
 			    </td>
 			  </tr>
 			  <tr>
-			    <td width="25%" valign="top" class="vncellt"><?=gettext("OS Version");?></td>
+			    <td width="25%" valign="top" class="vncellt"><?=gettext("Platform OS");?></td>
 			    <td width="75%" class="listr">
 			      <?
 			        exec("/sbin/sysctl -n kern.ostype", $ostype);
@@ -120,13 +121,18 @@ if(function_exists("date_default_timezone_set") and function_exists("date_defaul
 			    </td>
 			  </tr>
 			  <tr>
+			    <td width="25%" class="vncellt"><?=gettext("System");?></td>
+			    <td width="75%" class="listr"><?=htmlspecialchars($smbios['planar']['maker']);?> <?=htmlspecialchars($smbios['planar']['product']);?> <?=sprintf(gettext("Bios:"));?> <?=htmlspecialchars($smbios['bios']['version']);?> <?=htmlspecialchars($smbios['bios']['reldate']);?></td>
+			    </td>
+			  </tr>
+			  <tr>
 			    <td width="25%" class="vncellt"><?=gettext("System time");?></td>
 			    <td width="75%" class="listr">
 			      <input style="padding: 0; border: 0;" size="30" name="date" id="date" value="<?=htmlspecialchars(shell_exec("date"));?>" />
 			    </td>
 			  </tr>
 			  <tr>
-			    <td width="25%" class="vncellt"><?=gettext("Uptime");?></td>
+			    <td width="25%" class="vncellt"><?=gettext("System uptime");?></td>
 			    <td width="75%" class="listr">
 						<?php $uptime = system_get_uptime();?>
 						<span name="uptime" id="uptime"><?=htmlspecialchars($uptime);?></span>
