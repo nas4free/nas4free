@@ -173,7 +173,7 @@ $menu['help']['menuitem'][] = array("desc" => gettext("Report Generator"), "link
 $menu['help']['menuitem'][] = array("type" => "separator", "visible" => TRUE);
 $menu['help']['menuitem'][] = array("desc" => gettext("Forum"), "link" => "http://apps.sourceforge.net/phpbb/nas4free/index.php", "visible" => TRUE, "target" => "_blank");
 $menu['help']['menuitem'][] = array("desc" => gettext("Information & Manual"), "link" => "http://wiki.nas4free.org/", "visible" => TRUE, "target" => "_blank");
-$menu['help']['menuitem'][] = array("desc" => gettext("IRC Live Support"), "link" => "http://webchat.freenode.net/?channels=#nas4free", "visible" => TRUE, "target" => "_blank");
+$menu['help']['menuitem'][] = array("desc" => gettext("IRC Live Support"), "link" => "http://www.webchat.nas4free.org", "visible" => TRUE, "target" => "_blank");
 $menu['help']['menuitem'][] = array("type" => "separator", "visible" => TRUE);
 $menu['help']['menuitem'][] = array("desc" => gettext("Release Notes"), "link" => "changes.php", "visible" => TRUE);
 $menu['help']['menuitem'][] = array("desc" => gettext("License & Credits"), "link" => "license.php", "visible" => TRUE);

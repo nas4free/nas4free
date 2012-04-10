@@ -102,7 +102,7 @@ $menu['info']['menuitem']['visible'] = FALSE;
 // IRC
 $menu['irc']['desc'] = gettext("IRC Live Support");
 $menu['irc']['visible'] = TRUE;
-$menu['irc']['link'] = "http://webchat.freenode.net/?channels=#nas4free";
+$menu['irc']['link'] = "http://www.webchat.nas4free.org";
 $menu['irc']['menuitem']['visible'] = FALSE;
 // Donate
 $menu['donate']['desc'] = gettext("Donate");
