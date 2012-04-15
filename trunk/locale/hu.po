@@ -1,16 +1,17 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
-"Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>"
-"POT-Creation-Date: 2012-03-12 03:02+0000\n"
-"PO-Revision-Date: 2012-03-17 08:18+0100\n"
+"Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>POT-Creation-Date: 2012-03-"
+"12 03:02+0000\n"
+"POT-Creation-Date: 2012-04-10 02:09+0000\n"
+"PO-Revision-Date: 2012-04-15 01:59+0000\n"
 "Last-Translator: zoon01 <zoon01@nas4free.org>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-28 12:49+0000\n"
-"X-Generator: Launchpad (build 14727)\n"
+"X-Launchpad-Export-Date: 2012-04-15 16:36+0000\n"
+"X-Generator: Launchpad (build 15070)\n"
 "X-Poedit-Country: HUNGARY\n"
 "Language: \n"
 "X-Poedit-Language: Hungarian\n"
@@ -24,11 +25,11 @@ msgstr " ki lett jelölve a "
 
 #, php-format
 msgid "%d days"
-msgstr ""
+msgstr "%d nap"
 
 #, php-format
 msgid "%d week"
-msgstr ""
+msgstr "%d hét"
 
 #, php-format
 msgid "%d weeks"
@@ -36,7 +37,7 @@ msgstr ""
 
 #, php-format
 msgid "%d year"
-msgstr ""
+msgstr "%d év"
 
 #, php-format
 msgid "%d years"
@@ -94,9 +95,13 @@ msgid "*** Imported duplicate ***"
 msgstr "*** duplikátum importálva ***"
 
 msgid "0=disabled, 1-255=enabled command queuing with specified depth."
-msgstr "0=nem engedélyezett, 1-255=engedélyezett parancsok sorba állítása a meghatározott tartományban."
+msgstr ""
+"0=nem engedélyezett, 1-255=engedélyezett parancsok sorba állítása a "
+"meghatározott tartományban."
 
-msgid "1. Use these specials actions for debugging only!<br />2. There is no need of using this menu for starting a RAID volume (start automaticaly)."
+msgid ""
+"1. Use these specials actions for debugging only!<br />2. There is no need "
+"of using this menu for starting a RAID volume (start automaticaly)."
 msgstr ""
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
@@ -106,41 +111,74 @@ msgid "<->"
 msgstr "<->"
 
 #, php-format
-msgid "<a href='%s'>SSHD</a> must be enabled for Unison to work, and the <a href='%s'>user</a> must have shell access."
+msgid ""
+"<a href='%s'>SSHD</a> must be enabled for Unison to work, and the <a "
+"href='%s'>user</a> must have shell access."
 msgstr ""
 
-msgid "<b>EFI GPT</b> if you want to mount a GPT formatted drive (<b>default partition since 0.684b</b>).<br /><b>MBR</b> partition, for UFS formatted drive or Software RAID volume (<b>created before 0.684b</b>) or imported disks from other OS.<br /><b>CD/DVD or Old software RAID</b> for old SoftwareRAID volumes (<b>created before version 0.68</b>) or CD/DVD."
+msgid ""
+"<b>EFI GPT</b> if you want to mount a GPT formatted drive (<b>default "
+"partition since 0.684b</b>).<br /><b>MBR</b> partition, for UFS formatted "
+"drive or Software RAID volume (<b>created before 0.684b</b>) or imported "
+"disks from other OS.<br /><b>CD/DVD or Old software RAID</b> for old "
+"SoftwareRAID volumes (<b>created before version 0.68</b>) or CD/DVD."
 msgstr ""
 
-msgid "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
-msgstr "<div id='enumeration'><ul><li>%d - Dátum</li><li>%h - Host név</li></ul></div>"
+msgid ""
+"<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
+msgstr ""
+"<div id='enumeration'><ul><li>%d - Dátum</li><li>%h - Host "
+"név</li></ul></div>"
 
-msgid "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync 3.0.0 or newer, and the 'before' algorithm when talking to an older rsync.</li><li>Before - File-deletions will be done before the transfer starts.</li><li>During - File-deletions will be done incrementally as the transfer happens.</li><li>Delay - File-deletions will be computed during the transfer, and then removed after the transfer completes.</li><li>After - File-deletions will be done after the transfer has completed.</li>"
+msgid ""
+"<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
+"3.0.0 or newer, and the 'before' algorithm when talking to an older "
+"rsync.</li><li>Before - File-deletions will be done before the transfer "
+"starts.</li><li>During - File-deletions will be done incrementally as the "
+"transfer happens.</li><li>Delay - File-deletions will be computed during the "
+"transfer, and then removed after the transfer completes.</li><li>After - "
+"File-deletions will be done after the transfer has completed.</li>"
 msgstr ""
 
-msgid "A Auth Group contains authorised users and secrets for additional security."
+msgid ""
+"A Auth Group contains authorised users and secrets for additional security."
 msgstr ""
 
-msgid "A Initiator Group contains authorised initiator names and networks to access the target."
+msgid ""
+"A Initiator Group contains authorised initiator names and networks to access "
+"the target."
 msgstr ""
 
-msgid "A NTP time server name may only contain the characters a-z, 0-9, '-' and '.'."
-msgstr "Az NTP idő szerver neve csak a-z, 0-9, '-' és '.' karaktereket tartalmazhat."
+msgid ""
+"A NTP time server name may only contain the characters a-z, 0-9, '-' and '.'."
+msgstr ""
+"Az NTP idő szerver neve csak a-z, 0-9, '-' és '.' karaktereket tartalmazhat."
 
-msgid "A Portal Group contains IP addresses and listening TCP ports to connect the target from the initiator."
+msgid ""
+"A Portal Group contains IP addresses and listening TCP ports to connect the "
+"target from the initiator."
 msgstr ""
 
 #, php-format
 msgid "A VLAN with the tag %s is already defined on this interface."
 msgstr ""
 
-msgid "A directory listing is generated if a directory is requested and no index-file (index.php, index.html, index.htm or default.htm) was found in that directory."
+msgid ""
+"A directory listing is generated if a directory is requested and no index-"
+"file (index.php, index.html, index.htm or default.htm) was found in that "
+"directory."
 msgstr ""
 
-msgid "A host name alias. This option can appear multiple times, for each domain that has the same IP. Use a space to separate multiple alias names."
+msgid ""
+"A host name alias. This option can appear multiple times, for each domain "
+"that has the same IP. Use a space to separate multiple alias names."
 msgstr ""
 
-msgid "A key will be either 5 or 13 characters (40 or 104 bits) depending of the local network and the capabilities of the adaptor. It may be specified either as a plain string or as a string of hexadecimal digits preceded by '0x'."
+msgid ""
+"A key will be either 5 or 13 characters (40 or 104 bits) depending of the "
+"local network and the capabilities of the adaptor. It may be specified "
+"either as a plain string or as a string of hexadecimal digits preceded by "
+"'0x'."
 msgstr ""
 
 msgid "A route to this destination network already exists."
@@ -149,8 +187,10 @@ msgstr "Az útvonal ehhez a célhálózathoz már létezik."
 msgid "A valid IP address must be specified."
 msgstr "Érvényes IP cím magdása szükséges."
 
-msgid "A valid IPv4 address must be specified for the primary/secondary DNS server."
-msgstr "Érvényes IPv4 cím megadása szükséges az elsődleges/másodlagos DNS szervernek."
+msgid ""
+"A valid IPv4 address must be specified for the primary/secondary DNS server."
+msgstr ""
+"Érvényes IPv4 cím megadása szükséges az elsődleges/másodlagos DNS szervernek."
 
 msgid "A valid IPv4 address must be specified."
 msgstr "Érvényes IPv4  cím megadása szükséges."
@@ -161,8 +201,10 @@ msgstr "Valós IPv4-es IP címet kell megadni."
 msgid "A valid IPv6 Gateway address must be specified."
 msgstr "Érvényes IPv4  cím megadása szükséges az átjárónak."
 
-msgid "A valid IPv6 address must be specified for the primary/secondary DNS server."
-msgstr "Érvényes IPv6 cím megadása szükséges az elsődleges/másodlagos DNS szervernek."
+msgid ""
+"A valid IPv6 address must be specified for the primary/secondary DNS server."
+msgstr ""
+"Érvényes IPv6 cím megadása szükséges az elsődleges/másodlagos DNS szervernek."
 
 msgid "A valid IPv6 address must be specified."
 msgstr "Érvényes IPv6  cím megadása szükséges."
@@ -180,7 +222,7 @@ msgid "A valid mtu size must be specified."
 msgstr "Érvéyes MTU méretet kell megadni."
 
 msgid "A valid network bit count (1-32) must be specified."
-msgstr ""
+msgstr "Érvényes hálózati bit számot (1-32) kell megadni."
 
 msgid "A valid prefix (1-128) must be specified."
 msgstr "Érvényes előtagot (1-128) kell megadni."
@@ -233,8 +275,12 @@ msgstr "Aktivál"
 msgid "Activate S.M.A.R.T. monitoring for this device."
 msgstr "Aktív S.M.A.R.T. megfigyelés ehhez az eszközhöz."
 
-msgid "Activate email report if you want to be notified if a failure or a new error has been detected, or if a S.M.A.R.T. command to a disk fails."
-msgstr "Kapcsolja be az e-mail figyelmeztetést, ha értesülni szeretne e-mailben egy esetleges hibákról vagy a merevlemez S.M.A.R.T. hibaüzeneteiről."
+msgid ""
+"Activate email report if you want to be notified if a failure or a new error "
+"has been detected, or if a S.M.A.R.T. command to a disk fails."
+msgstr ""
+"Kapcsolja be az e-mail figyelmeztetést, ha értesülni szeretne e-mailben egy "
+"esetleges hibákról vagy a merevlemez S.M.A.R.T. hibaüzeneteiről."
 
 msgid "Active Directory"
 msgstr "Címtár szolgáltatás (AD)"
@@ -378,11 +424,20 @@ msgid "Advanced settings"
 msgstr "Speciális beállítások"
 
 #, php-format
-msgid "After you click &quot;Save&quot;, you may also have to do one or more of the following steps before you can access %s again: <ul><li>change the IP address of your computer</li><li>access the webGUI with the new IP address</li></ul>"
+msgid ""
+"After you click &quot;Save&quot;, you may also have to do one or more of the "
+"following steps before you can access %s again: <ul><li>change the IP "
+"address of your computer</li><li>access the webGUI with the new IP "
+"address</li></ul>"
 msgstr ""
 
 #, php-format
-msgid "After you click &quot;Save&quot;, you must reboot %s to make the changes take effect. You may also have to do one or more of the following steps before you can access your NAS again: <ul><li><span class='vexpl'>change the IP address of your computer</span></li><li><span class='vexpl'>access the webGUI with the new IP address</span></li></ul>"
+msgid ""
+"After you click &quot;Save&quot;, you must reboot %s to make the changes "
+"take effect. You may also have to do one or more of the following steps "
+"before you can access your NAS again: <ul><li><span class='vexpl'>change the "
+"IP address of your computer</span></li><li><span class='vexpl'>access the "
+"webGUI with the new IP address</span></li></ul>"
 msgstr ""
 
 msgid "Aggregation protocol"
@@ -404,7 +459,9 @@ msgstr "Minden könyvtár"
 msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr ""
 
-msgid "All shares use the option 'usedots' thus making the filenames .Parent and anything beginning with .Apple illegal."
+msgid ""
+"All shares use the option 'usedots' thus making the filenames .Parent and "
+"anything beginning with .Apple illegal."
 msgstr ""
 
 msgid "All users will have the root privilege."
@@ -419,7 +476,8 @@ msgstr "Csak TLS/SSL kapcsolatok engedélyezése."
 msgid "Allow client access to accounts that have null passwords."
 msgstr "Engedélyezés a klienseknek a jelszó nélküli hozzáféréshez."
 
-msgid "Allow clients to attempt to store OS/2 style extended attributes on a share."
+msgid ""
+"Allow clients to attempt to store OS/2 style extended attributes on a share."
 msgstr ""
 
 msgid "Allow clients to resume interrupted uploads and downloads."
@@ -431,14 +489,18 @@ msgstr "Új állományok engedélyezése."
 msgid "Allow new files to be created."
 msgstr "Új állományok létrehozásának engedélyezése."
 
-msgid "Allows  certain  users and groups to have read/write access to a share. This follows the allow option format."
+msgid ""
+"Allows  certain  users and groups to have read/write access to a share. This "
+"follows the allow option format."
 msgstr ""
 
 #, php-format
 msgid "Allows %s to try and become a local master browser."
 msgstr "Engedélyezi %s számára, hogy helyi főtallózóként működjön."
 
-msgid "Allows certain users and groups to have read-only  access  to  a share. This follows the allow option format."
+msgid ""
+"Allows certain users and groups to have read-only  access  to  a share. This "
+"follows the allow option format."
 msgstr ""
 
 msgid "AltRoot"
@@ -459,7 +521,9 @@ msgstr "Mindig bekapcsolva"
 msgid "Always scan"
 msgstr "Mindig keres"
 
-msgid "Always use 0 for device number, helps when the device number is not constant across a reboot, cluster, ..."
+msgid ""
+"Always use 0 for device number, helps when the device number is not constant "
+"across a reboot, cluster, ..."
 msgstr ""
 
 msgid "An host with this name already exists."
@@ -477,11 +541,17 @@ msgstr "Anonymus kötés"
 msgid "Anonymous user bandwidth"
 msgstr "Anonymus felhasználó sávszélessége"
 
-msgid "Anonymous user download bandwith in KB/s. An empty field means infinity."
-msgstr "Anonymus felhasználó max letöltési sebessége KB/s-ban. Üresen hagyva nincs korlátozás."
+msgid ""
+"Anonymous user download bandwith in KB/s. An empty field means infinity."
+msgstr ""
+"Anonymus felhasználó max letöltési sebessége KB/s-ban. Üresen hagyva nincs "
+"korlátozás."
 
-msgid "Anonymous user upload bandwith in KB/s. An empty field means infinity."
-msgstr "Anonymus felhasználó max feltöltési sebessége KB/s-ban. Üresen hagyva nincs korlátozás."
+msgid ""
+"Anonymous user upload bandwith in KB/s. An empty field means infinity."
+msgstr ""
+"Anonymus felhasználó max feltöltési sebessége KB/s-ban. Üresen hagyva nincs "
+"korlátozás."
 
 msgid "Anonymous users only"
 msgstr "Csak névtelen felhasználók"
@@ -493,7 +563,7 @@ msgid "Apple Filing Protocol"
 msgstr ""
 
 msgid "Apply"
-msgstr ""
+msgstr "Alkalmaz"
 
 msgid "Apply changes"
 msgstr "Módosítások alkalmazása"
@@ -516,7 +586,9 @@ msgstr "Biztos, hogy leállítod a rendszert?"
 msgid "Asynchronous I/O (AIO)"
 msgstr "Aszinkron I/O (AIO)"
 
-msgid "At the highest level, a target is what is presented to the initiator, and is made up of one or more extents."
+msgid ""
+"At the highest level, a target is what is presented to the initiator, and is "
+"made up of one or more extents."
 msgstr ""
 
 msgid "Attached"
@@ -604,17 +676,22 @@ msgstr "Alap DN"
 msgid "Base Name"
 msgstr ""
 
-msgid "Base Name will be appended automatically when starting without 'iqn.'."
+msgid ""
+"Base Name will be appended automatically when starting without 'iqn.'."
 msgstr ""
 
 msgid "Best available"
 msgstr "Az elérhető legjobb"
 
 msgid "Bind DN"
-msgstr ""
+msgstr "Kapcsolódó DN"
 
 msgid "Bind password"
 msgstr "Jelszó kötése"
+
+#, php-format
+msgid "Bios:"
+msgstr ""
 
 msgid "BitTorrent"
 msgstr "BitTorrent"
@@ -625,8 +702,8 @@ msgstr ""
 msgid "Browseable"
 msgstr "Böngészhető"
 
-msgid "Built on"
-msgstr "Épül"
+msgid "Built date"
+msgstr ""
 
 msgid "Bulgarian"
 msgstr "Bulgár"
@@ -659,7 +736,7 @@ msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB információk"
 
 msgid "CP1251 (Cyrillic)"
-msgstr ""
+msgstr "CP1251 (cirill)"
 
 msgid "CP437 (Latin US)"
 msgstr ""
@@ -680,7 +757,7 @@ msgid "CP936 (Simplified Chinese GBK)"
 msgstr ""
 
 msgid "CP949 (Korean)"
-msgstr ""
+msgstr "CP949 (koreai)"
 
 msgid "CP950 (Traditional Chinese Big5)"
 msgstr ""
@@ -698,7 +775,7 @@ msgid "CPU usage"
 msgstr "CPU (processzor) kihasználtság"
 
 msgid "Cache"
-msgstr ""
+msgstr "Gyorsítótár"
 
 msgid "Cache Device"
 msgstr ""
@@ -727,7 +804,11 @@ msgstr "Kapacitás"
 msgid "Case Folding"
 msgstr ""
 
-msgid "Causes the server to display the network information for the specified IP address or DNS hostname to the client, on the assumption that that IP address or DNS host is acting as a NAT gateway or port forwarder for the server."
+msgid ""
+"Causes the server to display the network information for the specified IP "
+"address or DNS hostname to the client, on the assumption that that IP "
+"address or DNS host is acting as a NAT gateway or port forwarder for the "
+"server."
 msgstr ""
 
 msgid "Certificate"
@@ -743,7 +824,8 @@ msgid "Change password"
 msgstr "Megváltoztatni a jelszót"
 
 msgid "Changes to this option will take effect after a reboot."
-msgstr "Ezeknek a beállításoknak a módosításai újraindítás után lépnek életbe."
+msgstr ""
+"Ezeknek a beállításoknak a módosításai újraindítás után lépnek életbe."
 
 msgid "Channel"
 msgstr "Csatorna"
@@ -772,7 +854,10 @@ msgstr "Válaszd ki, melyik interfészt alkalmazza az útvonal."
 msgid "Clear"
 msgstr "Törlés"
 
-msgid "Click &quot;Enable firmware upload&quot; below, then choose the image file to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade process."
+msgid ""
+"Click &quot;Enable firmware upload&quot; below, then choose the image file "
+"to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
+"process."
 msgstr ""
 
 msgid "Click this button to download the system configuration in XML format."
@@ -788,7 +873,7 @@ msgid "Client sees uppercase, server sees lowercase"
 msgstr "Kliens megjelenítése nagybetüvel, szerver megjelenítése kisbetüvel"
 
 msgid "Clone"
-msgstr ""
+msgstr "Klón"
 
 msgid "Collecting initial data, please wait..."
 msgstr "Adatok gyűjtése folyamatban, kérem várjon..."
@@ -829,8 +914,14 @@ msgstr "Fájl adat tömörítése átvitel közben"
 msgid "Compression"
 msgstr "Tömörítés"
 
-msgid "Compression is worth using if your connection is slow. The efficiency of the compression depends on the type of the file, and varies widely. Useful for internet transfer only."
-msgstr "A tömörítés hasznos, ha lassú a kapcsolata. A tömörítés hatékonysága a fájl típusától, és sok egyéb dologtól is függ. Főleg internetes átvitelnél hasznos."
+msgid ""
+"Compression is worth using if your connection is slow. The efficiency of the "
+"compression depends on the type of the file, and varies widely. Useful for "
+"internet transfer only."
+msgstr ""
+"A tömörítés hasznos, ha lassú a kapcsolata. A tömörítés hatékonysága a fájl "
+"típusától, és sok egyéb dologtól is függ. Főleg internetes átvitelnél "
+"hasznos."
 
 msgid "Configuration"
 msgstr "Beállítások"
@@ -856,8 +947,12 @@ msgstr "Konzol képernyőkímélő"
 msgid "Contact"
 msgstr "Elérhetőség"
 
-msgid "Contact information, e.g. name or email of the person responsible for this system: 'admin@email.address'."
-msgstr "Elérhetőség, például a rendszerért felelős személy neve vagy email címe. \"rendszergazda@email.cím\"."
+msgid ""
+"Contact information, e.g. name or email of the person responsible for this "
+"system: 'admin@email.address'."
+msgstr ""
+"Elérhetőség, például a rendszerért felelős személy neve vagy email címe. "
+"\"rendszergazda@email.cím\"."
 
 msgid "Content"
 msgstr "Tartalom"
@@ -877,10 +972,22 @@ msgstr ""
 msgid "Controller TCP Port"
 msgstr ""
 
-msgid "Controls the compression algorithm used for this dataset. The 'lzjb' compression algorithm is optimized for performance while providing decent data compression. Setting compression to 'On' uses the 'lzjb' compression algorithm. You can specify the 'gzip' level by using the value 'gzip-N', where N is an integer from 1 (fastest) to 9 (best compression ratio). Currently, 'gzip' is equivalent to 'gzip-6'."
+msgid ""
+"Controls the compression algorithm used for this dataset. The 'lzjb' "
+"compression algorithm is optimized for performance while providing decent "
+"data compression. Setting compression to 'On' uses the 'lzjb' compression "
+"algorithm. You can specify the 'gzip' level by using the value 'gzip-N', "
+"where N is an integer from 1 (fastest) to 9 (best compression ratio). "
+"Currently, 'gzip' is equivalent to 'gzip-6'."
 msgstr ""
 
-msgid "Controls the compression algorithm used for this volume. The 'lzjb' compression algorithm is optimized for performance while providing decent data compression. Setting compression to 'On' uses the 'lzjb' compression algorithm. You can specify the 'gzip' level by using the value 'gzip-N', where N is an integer from 1 (fastest) to 9 (best compression ratio). Currently, 'gzip' is equivalent to 'gzip-6'."
+msgid ""
+"Controls the compression algorithm used for this volume. The 'lzjb' "
+"compression algorithm is optimized for performance while providing decent "
+"data compression. Setting compression to 'On' uses the 'lzjb' compression "
+"algorithm. You can specify the 'gzip' level by using the value 'gzip-N', "
+"where N is an integer from 1 (fastest) to 9 (best compression ratio). "
+"Currently, 'gzip' is equivalent to 'gzip-6'."
 msgstr ""
 
 msgid "Controls the dedup method."
@@ -923,7 +1030,7 @@ msgid "Creating partition"
 msgstr "Partíció létrehozása"
 
 msgid "Creation"
-msgstr ""
+msgstr "Létrehozás"
 
 msgid "Credits"
 msgstr "Készítők"
@@ -968,7 +1075,12 @@ msgid "DNS settings"
 msgstr "DNS beállítások"
 
 #, php-format
-msgid "DO NOT abort the firmware upgrade once it has started. %s will reboot automatically after storing the new firmware. The configuration will be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the System configuration before doing a Firmware upgrade."
+msgid ""
+"DO NOT abort the firmware upgrade once it has started. %s will reboot "
+"automatically after storing the new firmware. The configuration will be "
+"maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
+"update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
+"System configuration before doing a Firmware upgrade."
 msgstr ""
 
 msgid "DVD"
@@ -996,10 +1108,10 @@ msgid "Database directory"
 msgstr "Adatbázis könyvtár"
 
 msgid "Dataset"
-msgstr ""
+msgstr "Adattípus"
 
 msgid "Datasets"
-msgstr ""
+msgstr "Adattípusok"
 
 msgid "Date & Time"
 msgstr "Dátum & idő"
@@ -1021,7 +1133,7 @@ msgid "Default is %s."
 msgstr "%s az alapértelmezett."
 
 msgid "Default root"
-msgstr ""
+msgstr "Alapértelmezett root"
 
 msgid "Default user name is 'admin'."
 msgstr "Az 'admin' az alapértelmezett felhasználónév."
@@ -1206,7 +1318,9 @@ msgstr "Észlelt"
 msgid "Detected RSYNC remote shares"
 msgstr "Felismert rsync távoli megosztások"
 
-msgid "Determine the default timeout, in microseconds, before the first packet is retransmitted. The default is 1000000 (1 second)."
+msgid ""
+"Determine the default timeout, in microseconds, before the first packet is "
+"retransmitted. The default is 1000000 (1 second)."
 msgstr ""
 
 msgid "Device"
@@ -1223,15 +1337,17 @@ msgid "Device Pass-through"
 msgstr ""
 
 msgid "Device model"
-msgstr ""
-
-msgid "Device name"
-msgstr "Eszköz név"
+msgstr "Eszköz tipus"
 
 msgid "Device polling"
 msgstr "Device polling (eszköz szavaztatás)"
 
-msgid "Device polling is a technique that lets the system periodically poll network devices for new data instead of relying on interrupts. This can reduce CPU load and therefore increase throughput, at the expense of a slightly higher forwarding delay (the devices are polled 1000 times per second). Not all NICs support polling."
+msgid ""
+"Device polling is a technique that lets the system periodically poll network "
+"devices for new data instead of relying on interrupts. This can reduce CPU "
+"load and therefore increase throughput, at the expense of a slightly higher "
+"forwarding delay (the devices are polled 1000 times per second). Not all "
+"NICs support polling."
 msgstr ""
 
 #, php-format
@@ -1292,7 +1408,9 @@ msgstr "Rendszersípolás letíltása indulásnál és leállásnál."
 msgid "Disabled"
 msgstr "Tiltva"
 
-msgid "Disables :hex translations for anything except dot files. This option makes the '/' character illegal."
+msgid ""
+"Disables :hex translations for anything except dot files. This option makes "
+"the '/' character illegal."
 msgstr ""
 
 #, php-format
@@ -1365,8 +1483,12 @@ msgstr ""
 msgid "Do you really want to delete this device?"
 msgstr "Valóban törölni akarja ezt az eszközt?"
 
-msgid "Do you really want to delete this disk? All elements that still use it will become invalid (e.g. share)!"
-msgstr "Biztos, hogy el akarod távolítani ezt a lemezt? Minden erre hivatkozó elem érvénytelenné válik (pl.: megosztás)!"
+msgid ""
+"Do you really want to delete this disk? All elements that still use it will "
+"become invalid (e.g. share)!"
+msgstr ""
+"Biztos, hogy el akarod távolítani ezt a lemezt? Minden erre hivatkozó elem "
+"érvénytelenné válik (pl.: megosztás)!"
 
 msgid "Do you really want to delete this extent?"
 msgstr ""
@@ -1380,7 +1502,9 @@ msgstr "Biztos, hogy törlöd ezt az állomást?"
 msgid "Do you really want to delete this initiator group?"
 msgstr ""
 
-msgid "Do you really want to delete this initiator? All elements that still use it will become invalid (e.g. share)!"
+msgid ""
+"Do you really want to delete this initiator? All elements that still use it "
+"will become invalid (e.g. share)!"
 msgstr ""
 
 msgid "Do you really want to delete this interface?"
@@ -1389,8 +1513,12 @@ msgstr "Biztos, hogy törli ezt az interfészt?"
 msgid "Do you really want to delete this module?"
 msgstr "Valóban törölni akarja ezt a modult?"
 
-msgid "Do you really want to delete this mount point? All elements that still use it will become invalid (e.g. share)!"
-msgstr "Biztos, hogy törlöd ezt a csatolási pontot? Minden erre hivatkozó elem érvénytelenné válik (pl.: megosztás)!"
+msgid ""
+"Do you really want to delete this mount point? All elements that still use "
+"it will become invalid (e.g. share)!"
+msgstr ""
+"Biztos, hogy törlöd ezt a csatolási pontot? Minden erre hivatkozó elem "
+"érvénytelenné válik (pl.: megosztás)!"
 
 msgid "Do you really want to delete this option?"
 msgstr "Biztos, hogy törlöd ezt a beállítást?"
@@ -1426,11 +1554,11 @@ msgid "Do you really want to delete this volume?"
 msgstr ""
 
 msgid ""
-"Do you really want to delete this volume?\\n"
-"!!! Note, all data will get lost and can not be recovered. !!!"
+"Do you really want to delete this volume?\\n!!! Note, all data will get lost "
+"and can not be recovered. !!!"
 msgstr ""
-"Valóban törölni akarja ezt a kötetet?\\n"
-"!!! A rajta levő adatok végérvényesen elvesznek. !!!"
+"Valóban törölni akarja ezt a kötetet?\\n!!! A rajta levő adatok "
+"végérvényesen elvesznek. !!!"
 
 msgid "Do you really want to format this disk? All data will be lost!"
 msgstr "Biztos, hogy formázod ezt a lemezt? Minden adat törlődni fog!"
@@ -1445,7 +1573,8 @@ msgid "Document root"
 msgstr "Dokumentum főkönyvtár"
 
 msgid "Document root of the webserver. Home of the web page files."
-msgstr "A webkiszolgáló dokumentumainak főkönyvtára. A weblap fájlainak lakhelye."
+msgstr ""
+"A webkiszolgáló dokumentumainak főkönyvtára. A weblap fájlainak lakhelye."
 
 msgid "Domain"
 msgstr "Tartomány"
@@ -1477,7 +1606,9 @@ msgstr ""
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr "Ne töröld az MBR-t (használatos néhány RAID vezérlő kártyánál)"
 
-msgid "Don't stat volume path when enumerating volumes list, useful for automounting or volumes created by a preexec script."
+msgid ""
+"Don't stat volume path when enumerating volumes list, useful for "
+"automounting or volumes created by a preexec script."
 msgstr ""
 
 msgid "Donate"
@@ -1705,7 +1836,9 @@ msgstr ""
 msgid "Enable firmware upload"
 msgstr "Firmware feltöltés engedélyezése"
 
-msgid "Enable foreground/background file system consistency check during boot process."
+msgid ""
+"Enable foreground/background file system consistency check during boot "
+"process."
 msgstr ""
 
 msgid "Enable guest access"
@@ -1744,7 +1877,10 @@ msgstr "Lomtár engedélyezése"
 msgid "Enable remote monitoring of the local connected UPS."
 msgstr "Helyi UPS távoli megfigyelésének engedélyezése."
 
-msgid "Enable reverse DNS lookup performed on the remote host's IP address for incoming active mode data connections and outgoing passive mode data connections."
+msgid ""
+"Enable reverse DNS lookup performed on the remote host's IP address for "
+"incoming active mode data connections and outgoing passive mode data "
+"connections."
 msgstr ""
 
 msgid "Enable reverse DNS lookup."
@@ -1786,7 +1922,12 @@ msgstr "Webes felhasználói felület engedélyezése"
 msgid "Enabled"
 msgstr "Engedélyezve"
 
-msgid "Enables crlf translation for TEXT files, automatically converting macintosh line breaks into Unix ones. Use of this option might be dangerous since some older programs store binary data files as type 'TEXT' when saving and switch the filetype in a second step. Afpd will potentially destroy such files when 'erroneously' changing bytes in order to do line break translation."
+msgid ""
+"Enables crlf translation for TEXT files, automatically converting macintosh "
+"line breaks into Unix ones. Use of this option might be dangerous since some "
+"older programs store binary data files as type 'TEXT' when saving and switch "
+"the filetype in a second step. Afpd will potentially destroy such files when "
+"'erroneously' changing bytes in order to do line break translation."
 msgstr ""
 
 msgid "Encrypted"
@@ -1808,20 +1949,34 @@ msgstr "Titkosítási algoritmus használata"
 msgid "English"
 msgstr "Angol"
 
-msgid "Enter a custom port number for the WebGUI above if you want to override the default (80 for HTTP, 443 for HTTPS)."
-msgstr "Írjon be egy portszámot a WebGUI számára, ha felül akarja írni az alapbeállítást (HTTP 80-as, HTTPS 443-as)."
+msgid ""
+"Enter a custom port number for the WebGUI above if you want to override the "
+"default (80 for HTTP, 443 for HTTPS)."
+msgstr ""
+"Írjon be egy portszámot a WebGUI számára, ha felül akarja írni az "
+"alapbeállítást (HTTP 80-as, HTTPS 443-as)."
 
 msgid "Enter a valid sysctl MIB name."
 msgstr ""
 
-msgid "Enter desired system time directly (format mm/dd/yyyy hh:mm) or use icon to select it."
-msgstr "Írja be beállítandó rendszeridőt (hh/nn/éé óó:pp formátumban) vagy az ikonra kattintva válassza ki."
+msgid ""
+"Enter desired system time directly (format mm/dd/yyyy hh:mm) or use icon to "
+"select it."
+msgstr ""
+"Írja be beállítandó rendszeridőt (hh/nn/éé óó:pp formátumban) vagy az ikonra "
+"kattintva válassza ki."
 
-msgid "Enter the passphrase that will be used in WPA-PSK mode. This must be between 8 and 63 characters long."
+msgid ""
+"Enter the passphrase that will be used in WPA-PSK mode. This must be between "
+"8 and 63 characters long."
 msgstr ""
 
-msgid "Enter the path to the home directory of that user. Leave this field empty to use default path /mnt."
-msgstr "Írja be a felhasználó saját mappájának útvonalát. Ha üresen hagyja, akkor az alapértelmezett útvonal a /mnt."
+msgid ""
+"Enter the path to the home directory of that user. Leave this field empty to "
+"use default path /mnt."
+msgstr ""
+"Írja be a felhasználó saját mappájának útvonalát. Ha üresen hagyja, akkor az "
+"alapértelmezett útvonal a /mnt."
 
 msgid "Enter the port to send the traps to (default 162)."
 msgstr ""
@@ -1845,7 +2000,9 @@ msgstr "Végrehajtás"
 msgid "Execute command"
 msgstr "Parancs végrehajtása"
 
-msgid "Execute command pre or post system initialization (booting) or before system shutdown."
+msgid ""
+"Execute command pre or post system initialization (booting) or before system "
+"shutdown."
 msgstr ""
 
 msgid "Execute now"
@@ -1872,7 +2029,9 @@ msgstr "Hatókörnév"
 msgid "Extent name"
 msgstr "Hatókörnév"
 
-msgid "Extents must be defined before they can be used, and extents cannot be used more than once."
+msgid ""
+"Extents must be defined before they can be used, and extents cannot be used "
+"more than once."
 msgstr ""
 
 msgid "Extra options"
@@ -1881,8 +2040,13 @@ msgstr "Extra beállítások"
 msgid "Extra options (usually empty)."
 msgstr "Extra beállítások (általában üres)."
 
-msgid "Extra options to /etc/ssh/sshd_config (usually empty). Note, incorrect entered options prevent SSH service to be started."
-msgstr "Extra beállítások a /etc/ssh/sshd_config-hoz (általában üres). Ügyeljen arra, hogy a rosszul beírt beállítások meggátolhatják az SSh szolgáltatás elindulását."
+msgid ""
+"Extra options to /etc/ssh/sshd_config (usually empty). Note, incorrect "
+"entered options prevent SSH service to be started."
+msgstr ""
+"Extra beállítások a /etc/ssh/sshd_config-hoz (általában üres). Ügyeljen "
+"arra, hogy a rosszul beírt beállítások meggátolhatják az SSh szolgáltatás "
+"elindulását."
 
 msgid "Extra options to ifconfig (usually empty)."
 msgstr "Extra beállítások az ifconfighoz (általában üres)"
@@ -1917,8 +2081,12 @@ msgstr "FTP szerver kikapcsolva"
 msgid "FXP"
 msgstr "FXP"
 
-msgid "FXP allows transfers between two remote servers without any file data going to the client asking for the transfer (insecure!)."
-msgstr "Az FXP lehetővé teszi a két távoli szerver közti adatcserét anélkül, hogy a klienstől kérnék az átvitelt."
+msgid ""
+"FXP allows transfers between two remote servers without any file data going "
+"to the client asking for the transfer (insecure!)."
+msgstr ""
+"Az FXP lehetővé teszi a két távoli szerver közti adatcserét anélkül, hogy a "
+"klienstől kérnék az átvitelt."
 
 msgid "Factory defaults"
 msgstr "Gyári értékek"
@@ -1937,16 +2105,22 @@ msgid "Failed to send status report to: %s."
 msgstr "Az állapot jelentés küldése meghiúsult ehhez: %s."
 
 #, php-format
-msgid "Failed to send status report. Please check the <a href='%s'>log</a> files."
-msgstr "Az állapot jelentés küldése meghiúsult. Kérjük ellenőrizze a <a href='%s'>napló</a> fájlokat."
+msgid ""
+"Failed to send status report. Please check the <a href='%s'>log</a> files."
+msgstr ""
+"Az állapot jelentés küldése meghiúsult. Kérjük ellenőrizze a <a "
+"href='%s'>napló</a> fájlokat."
 
 #, php-format
 msgid "Failed to send test email to: %s."
 msgstr "Teszt e-mail küldése sikertelen ide: %s."
 
 #, php-format
-msgid "Failed to send test email. Please check the <a href='%s'>log</a> files."
-msgstr "Teszt e-mail küldése sikertelen. Kérjük ellenőrizze a <a href='%s'>napló</a> fájlokat."
+msgid ""
+"Failed to send test email. Please check the <a href='%s'>log</a> files."
+msgstr ""
+"Teszt e-mail küldése sikertelen. Kérjük ellenőrizze a <a href='%s'>napló</a> "
+"fájlokat."
 
 msgid "Failed to upload file."
 msgstr "Fájlfeltöltés sikertelen."
@@ -2004,7 +2178,7 @@ msgid "Filename"
 msgstr "Fájlnév"
 
 msgid "Filter"
-msgstr ""
+msgstr "Szűrő"
 
 msgid "Firewall"
 msgstr "Tűzfal"
@@ -2178,8 +2352,12 @@ msgid "Hint"
 msgstr "Tipp"
 
 #, php-format
-msgid "Hint: If this is checked, IP addresses in %s logs are resolved to real hostnames where possible."
-msgstr "Tipp: Ha ez be van kapcsolva, az IP címek a %s naplókban állomásnevekként jelennek meg, ahol ez lehetséges."
+msgid ""
+"Hint: If this is checked, IP addresses in %s logs are resolved to real "
+"hostnames where possible."
+msgstr ""
+"Tipp: Ha ez be van kapcsolva, az IP címek a %s naplókban állomásnevekként "
+"jelennek meg, ahol ez lehetséges."
 
 msgid "Home directory"
 msgstr "Saját könyvtár"
@@ -2217,11 +2395,18 @@ msgstr ""
 msgid "Hours"
 msgstr "Órák"
 
-msgid "How often the IP is checked. The period is in seconds (max. is 10 days)."
-msgstr "Milyen gyakran ellenőrizze az IP címet. Másodpercben adandó meg (maximuma 10 nap)."
+msgid ""
+"How often the IP is checked. The period is in seconds (max. is 10 days)."
+msgstr ""
+"Milyen gyakran ellenőrizze az IP címet. Másodpercben adandó meg (maximuma 10 "
+"nap)."
 
-msgid "How often the IP is updated even if it is not changed. The period is in seconds (max. is 10 days)."
-msgstr "Milyen gyakran elfrissítse az IP címet, még ha az nem is változott. Másodpercben adandó meg (maximuma 10 nap)."
+msgid ""
+"How often the IP is updated even if it is not changed. The period is in "
+"seconds (max. is 10 days)."
+msgstr ""
+"Milyen gyakran elfrissítse az IP címet, még ha az nem is változott. "
+"Másodpercben adandó meg (maximuma 10 nap)."
 
 msgid "Hungarian"
 msgstr "Magyar"
@@ -2255,7 +2440,9 @@ msgid "IP address of remote syslog server"
 msgstr "Távoli napló szerver IP címe"
 
 #, php-format
-msgid "IP addresses are resolved to hostnames if <a href='%s'>&quot;Resolve IP addresses to hostnames&quot;</a> is enabled."
+msgid ""
+"IP addresses are resolved to hostnames if <a href='%s'>&quot;Resolve IP "
+"addresses to hostnames&quot;</a> is enabled."
 msgstr ""
 
 msgid "IP or FQDN address of remote Rsync server."
@@ -2306,42 +2493,84 @@ msgstr ""
 msgid "Identifier"
 msgstr "Azonosító"
 
-msgid "Idle - Check the device unless it is in SLEEP, STANDBY or IDLE mode. In the IDLE state, most disks are still spinning, so this is probably not what you want."
-msgstr "Üresjárat - Ellenőrizze az eszközt, hacsak nem alszik vagy ki van kapcsolva vagy üresjáratban van. Üresjáratban a lemezek többsége továbbra is pörög, tehát ez nem teljesen az, amit akar."
+msgid ""
+"Idle - Check the device unless it is in SLEEP, STANDBY or IDLE mode. In the "
+"IDLE state, most disks are still spinning, so this is probably not what you "
+"want."
+msgstr ""
+"Üresjárat - Ellenőrizze az eszközt, hacsak nem alszik vagy ki van kapcsolva "
+"vagy üresjáratban van. Üresjáratban a lemezek többsége továbbra is pörög, "
+"tehát ez nem teljesen az, amit akar."
 
-msgid "If default root is enabled, a chroot operation is performed immediately after a client authenticates. This can be used to effectively isolate the client from a portion of the host system filespace."
+msgid ""
+"If default root is enabled, a chroot operation is performed immediately "
+"after a client authenticates. This can be used to effectively isolate the "
+"client from a portion of the host system filespace."
 msgstr ""
 
-msgid "If set afpd uses the ID information stored in AppleDouble V2 header files to reduce database load. Don't set this option if the volume is modified by non AFP clients (NFS/SMB/local)."
+msgid ""
+"If set afpd uses the ID information stored in AppleDouble V2 header files to "
+"reduce database load. Don't set this option if the volume is modified by non "
+"AFP clients (NFS/SMB/local)."
 msgstr ""
 
-msgid "If the selected disk/partition is mounted it will be unmounted temporarily to perform selected command, otherwise the commands work in read-only mode.<br />Service disruption to users accessing this mount will occur during this process."
+msgid ""
+"If the selected disk/partition is mounted it will be unmounted temporarily "
+"to perform selected command, otherwise the commands work in read-only "
+"mode.<br />Service disruption to users accessing this mount will occur "
+"during this process."
 msgstr ""
 
-msgid "If the server is behind a proxy set this parameters to give local services access to the internet via proxy."
-msgstr "Ha a kiszolgáló proxy mögött van, akkor állítsa be ezt a paramétert, hogy a helyi szolgáltatások proxy-n keresztül érjék el az internetet."
+msgid ""
+"If the server is behind a proxy set this parameters to give local services "
+"access to the internet via proxy."
+msgstr ""
+"Ha a kiszolgáló proxy mögött van, akkor állítsa be ezt a paramétert, hogy a "
+"helyi szolgáltatások proxy-n keresztül érjék el az internetet."
 
-msgid "If this parameter is set, Samba attempts to first read DOS attributes (SYSTEM, HIDDEN, ARCHIVE or READ-ONLY) from a filesystem extended attribute, before mapping DOS attributes to UNIX permission bits. When set, DOS attributes will be stored onto an extended attribute in the UNIX filesystem, associated with the file or directory."
+msgid ""
+"If this parameter is set, Samba attempts to first read DOS attributes "
+"(SYSTEM, HIDDEN, ARCHIVE or READ-ONLY) from a filesystem extended attribute, "
+"before mapping DOS attributes to UNIX permission bits. When set, DOS "
+"attributes will be stored onto an extended attribute in the UNIX filesystem, "
+"associated with the file or directory."
 msgstr ""
 
-msgid "If this parameter is set, then users may not create or modify files in the share."
-msgstr "Ha ez a paraméter be van állítva, akkor a felhasználók nem hozhatnak létre vagy módosíthatnak fájlokat a megosztásban."
+msgid ""
+"If this parameter is set, then users may not create or modify files in the "
+"share."
+msgstr ""
+"Ha ez a paraméter be van állítva, akkor a felhasználók nem hozhatnak létre "
+"vagy módosíthatnak fájlokat a megosztásban."
 
 msgid "If this property is disabled, the file system cannot be mounted."
 msgstr ""
 
-msgid "If this property is enabled, the snapshots are displayed into .zfs directory."
+msgid ""
+"If this property is enabled, the snapshots are displayed into .zfs directory."
 msgstr ""
 
 #, php-format
-msgid "If you click 'Yes', %s will be reset to factory defaults and will reboot immediately. The entire system configuration will be overwritten. The LAN IP address will be reset to %s and the password will be set to '%s'."
-msgstr "Ha az 'Igen'-re kattintasz, a %s visszaállítja a gyári beállításokat és újraindul. A mostani rendszer beállítás felül lesz írva. A LAN IP cím %s lesz, az admin jelszó pedig '%s' lesz."
+msgid ""
+"If you click 'Yes', %s will be reset to factory defaults and will reboot "
+"immediately. The entire system configuration will be overwritten. The LAN IP "
+"address will be reset to %s and the password will be set to '%s'."
+msgstr ""
+"Ha az 'Igen'-re kattintasz, a %s visszaállítja a gyári beállításokat és "
+"újraindul. A mostani rendszer beállítás felül lesz írva. A LAN IP cím %s "
+"lesz, az admin jelszó pedig '%s' lesz."
 
-msgid "If you want to change the password for accessing the WebGUI, enter it here twice."
-msgstr "Ha meg akarja változtatni a WebGUI hozzáférésének jelszavát, ide írja be kétszer."
+msgid ""
+"If you want to change the password for accessing the WebGUI, enter it here "
+"twice."
+msgstr ""
+"Ha meg akarja változtatni a WebGUI hozzáférésének jelszavát, ide írja be "
+"kétszer."
 
-msgid "If you want to change the username for accessing the WebGUI, enter it here."
-msgstr "Ha meg akarja változtatni a WebGUI-hoz tartozó felhasználónevét, írja ide."
+msgid ""
+"If you want to change the username for accessing the WebGUI, enter it here."
+msgstr ""
+"Ha meg akarja változtatni a WebGUI-hoz tartozó felhasználónevét, írja ide."
 
 msgid "Image upload failed (out of memory?)"
 msgstr "Lemezkép fájl feltöltési hiba (memória elfogyás?)"
@@ -2385,6 +2614,9 @@ msgstr "Információ"
 msgid "Information & Manual"
 msgstr ""
 
+msgid "Information & Manuals"
+msgstr ""
+
 msgid "Inherit permissions"
 msgstr "Örökölt tiltások"
 
@@ -2409,7 +2641,9 @@ msgstr ""
 msgid "Initiator Groups"
 msgstr ""
 
-msgid "Initiator authorised to access to the iSCSI target.  It takes a name or 'ALL' for any initiators."
+msgid ""
+"Initiator authorised to access to the iSCSI target.  It takes a name or "
+"'ALL' for any initiators."
 msgstr ""
 
 msgid "Initiator name"
@@ -2467,10 +2701,16 @@ msgstr "Érvénytelen max. blokk méret! A blokk méret %d-tól %d-ig terjedhet.
 msgid "It cannot be used combining SMB2 and Anonymous."
 msgstr ""
 
-msgid "It is impossible to enable 'Anonymous users only' and 'Local users only' authentication simultaneously."
-msgstr "Lehetetlen egyszerre a 'Csak Anonymus felhasználók' és 'Csak helyi felhasználók\" opció együttes használata."
+msgid ""
+"It is impossible to enable 'Anonymous users only' and 'Local users only' "
+"authentication simultaneously."
+msgstr ""
+"Lehetetlen egyszerre a 'Csak Anonymus felhasználók' és 'Csak helyi "
+"felhasználók\" opció együttes használata."
 
-msgid "It is not recommanded to import non healty pools nor virtual devices that are part of a non healthy pool."
+msgid ""
+"It is not recommanded to import non healty pools nor virtual devices that "
+"are part of a non healthy pool."
 msgstr ""
 
 msgid "Italian"
@@ -2479,8 +2719,12 @@ msgstr "Olasz"
 msgid "JBOD"
 msgstr "JBOD"
 
-msgid "January February March April May June July August September October November December"
-msgstr "Január Február Március Április Május Június Július Augusztus Szeptember Október November December"
+msgid ""
+"January February March April May June July August September October November "
+"December"
+msgstr ""
+"Január Február Március Április Május Június Július Augusztus Szeptember "
+"Október November December"
 
 msgid "Japanese"
 msgstr "Japán"
@@ -2500,14 +2744,8 @@ msgstr ""
 msgid "Kill encrypted volume"
 msgstr "Titkosított kötet kilövése"
 
-msgid "Knowledge Base"
-msgstr ""
-
-msgid "Knowledgebase"
-msgstr "Tudásbázis"
-
 msgid "Korean"
-msgstr ""
+msgstr "Koreai"
 
 msgid "LACP (Link Aggregation Control Protocol)"
 msgstr ""
@@ -2557,7 +2795,9 @@ msgid "Latvian"
 msgstr "Lett"
 
 #, php-format
-msgid "Leave '%s' for unformated disks and format them using <a href='%s'>format</a> menu."
+msgid ""
+"Leave '%s' for unformated disks and format them using <a "
+"href='%s'>format</a> menu."
 msgstr ""
 
 msgid "Leave already configured auto snapshots."
@@ -2576,7 +2816,9 @@ msgid "Level 127 - Intermediate power usage with Standby"
 msgstr "127. Szint - Közepes áramfelvétel készenléti állapottal"
 
 msgid "Level 128 - Minimum power usage without Standby (no spindown)"
-msgstr "128. Szint - Minimális áramfelvétel készenléti állapot nélkül (nincs lepörgés)"
+msgstr ""
+"128. Szint - Minimális áramfelvétel készenléti állapot nélkül (nincs "
+"lepörgés)"
 
 msgid "Level 192 - Intermediate power usage without Standby"
 msgstr "192. Szint - Közepes áramfelvétel készenléti állapot nélkül"
@@ -2603,7 +2845,12 @@ msgstr ""
 msgid "Lightweight Directory Access Protocol"
 msgstr ""
 
-msgid "Limits the amount of space a dataset and its descendants can consume. This property enforces a hard limit on the amount of space used. This includes all space consumed by descendants, including file systems and snapshots. To specify the size use the following human-readable suffixes (for example, 'k', 'KB', 'M', 'Gb', etc.)."
+msgid ""
+"Limits the amount of space a dataset and its descendants can consume. This "
+"property enforces a hard limit on the amount of space used. This includes "
+"all space consumed by descendants, including file systems and snapshots. To "
+"specify the size use the following human-readable suffixes (for example, "
+"'k', 'KB', 'M', 'Gb', etc.)."
 msgstr ""
 
 msgid "Link Aggregation and Failover"
@@ -2612,17 +2859,17 @@ msgstr ""
 msgid "List"
 msgstr "Lista"
 
-msgid "List of acceptable pairwise (unicast) ciphers for WPA. One or more of: CCMP (AES in Counter mode with CBC-MAC, RFC 3610, IEEE 802.11i/D7.0), TKIP (Temporal Key Integrity Protocol, IEEE 802.11i/D7.0)."
+msgid ""
+"List of acceptable pairwise (unicast) ciphers for WPA. One or more of: CCMP "
+"(AES in Counter mode with CBC-MAC, RFC 3610, IEEE 802.11i/D7.0), TKIP "
+"(Temporal Key Integrity Protocol, IEEE 802.11i/D7.0)."
 msgstr ""
 
 msgid "List of available target name on all configured iSCSI targets"
 msgstr ""
 
-msgid "List of detected ATA disks"
-msgstr "Felfedezett ATA lemezek listája"
-
-msgid "List of detected SCSI disks"
-msgstr "Felfedezett SCSI lemezek listája"
+msgid "List of detected disks"
+msgstr ""
 
 msgid "List of imported users"
 msgstr "Importált felhasználók listája"
@@ -2661,10 +2908,12 @@ msgid "Local user bandwidth"
 msgstr "Helyi felhasználó sávszélessége"
 
 msgid "Local user download bandwith in KB/s. An empty field means infinity."
-msgstr "Helyi felhasználó letöltési sávszélessége KB/s-ban. Üresen hagyva korlátlan."
+msgstr ""
+"Helyi felhasználó letöltési sávszélessége KB/s-ban. Üresen hagyva korlátlan."
 
 msgid "Local user upload bandwith in KB/s. An empty field means infinity."
-msgstr "Helyi felhasználó feltöltési sávszélessége KB/s-ban. Üresen hagyva korlátlan."
+msgstr ""
+"Helyi felhasználó feltöltési sávszélessége KB/s-ban. Üresen hagyva korlátlan."
 
 msgid "Local users only"
 msgstr "Csak helyi felhasználók"
@@ -2672,8 +2921,12 @@ msgstr "Csak helyi felhasználók"
 msgid "Location"
 msgstr "Hely"
 
-msgid "Location information, e.g. physical location of this system: 'Floor of building, Room xyz'."
-msgstr "Hely információk, pl.: fizikailag hol van a számítógép: 'x-edik emelet, x+1-es szoba'"
+msgid ""
+"Location information, e.g. physical location of this system: 'Floor of "
+"building, Room xyz'."
+msgstr ""
+"Hely információk, pl.: fizikailag hol van a számítógép: 'x-edik emelet, x+1-"
+"es szoba'"
 
 msgid "Location of the files to share."
 msgstr "Megosztandó fájlok helye"
@@ -2682,7 +2935,8 @@ msgid "Location where the content database file will be stored."
 msgstr ""
 
 #, php-format
-msgid "Location where the working files will be stored, e.g. %s/backup/.unison"
+msgid ""
+"Location where the working files will be stored, e.g. %s/backup/.unison"
 msgstr ""
 
 msgid "Log"
@@ -2764,8 +3018,11 @@ msgid "Make sure you have activated S.M.A.R.T. for your devices."
 msgstr "Bizonyosodjon meg róla, hogy a S.M.A.R.T.-ot aktiválta eszközein."
 
 #, php-format
-msgid "Make sure you have already configured your <a href='%s'>Email</a> settings."
-msgstr "Győződjön meg arról ,hogy az <a href='%s'>e-mail</a> beállításokat már elvégezte."
+msgid ""
+"Make sure you have already configured your <a href='%s'>Email</a> settings."
+msgstr ""
+"Győződjön meg arról ,hogy az <a href='%s'>e-mail</a> beállításokat már "
+"elvégezte."
 
 msgid "Management"
 msgstr "Menedzsment"
@@ -2812,7 +3069,8 @@ msgstr ""
 msgid "Max. sessions"
 msgstr "Max. munkamenetek"
 
-msgid "Max. time-to-live (max. number of hops) used in outgoing probe packets."
+msgid ""
+"Max. time-to-live (max. number of hops) used in outgoing probe packets."
 msgstr ""
 
 msgid "MaxBurstLength"
@@ -2841,7 +3099,9 @@ msgid "Maximum number of connections per IP address (0 = unlimited)."
 msgstr "Maximális kapcsolatok száma IP címenként (0 = korlátlan)."
 
 #, php-format
-msgid "Maximum number of pre-send R2T in each connection (%d by default). The actual number is limited to QueueDepth of the target."
+msgid ""
+"Maximum number of pre-send R2T in each connection (%d by default). The "
+"actual number is limited to QueueDepth of the target."
 msgstr ""
 
 #, php-format
@@ -2932,8 +3192,10 @@ msgstr "Csatolási pont"
 msgid "Mount point name"
 msgstr "Csatolási pont neve"
 
-msgid "Mount the file system read-only (even the super-user may not write it)."
-msgstr "Fájlrendszer csatolása csak olvashatóként (még a rendszergazda se írhat rá)."
+msgid ""
+"Mount the file system read-only (even the super-user may not write it)."
+msgstr ""
+"Fájlrendszer csatolása csak olvashatóként (még a rendszergazda se írhat rá)."
 
 msgid "Mounting device."
 msgstr "Eszköz felcsatolása."
@@ -2970,7 +3232,7 @@ msgid "NOT YET AVAILABLE"
 msgstr "MÉG NEM ELÉRHETŐ"
 
 msgid "NT1"
-msgstr ""
+msgstr "NT1"
 
 msgid "NTP time server"
 msgstr "NTP idő szerver"
@@ -2986,8 +3248,11 @@ msgstr "A NAS gép neve tartományok nélkül, pl.: %s."
 msgid "Name of the device to use as swap device, e.g. %s."
 msgstr "A cserehelyként (swap) használandó eszköz neve, pl.: %s."
 
-msgid "Name of the server. If this field is left empty the default server is specified."
-msgstr "A kiszolgáló neve. Ha üresen hagyja az alap kiszolgáló lesz beállítva."
+msgid ""
+"Name of the server. If this field is left empty the default server is "
+"specified."
+msgstr ""
+"A kiszolgáló neve. Ha üresen hagyja az alap kiszolgáló lesz beállítva."
 
 msgid "Name of the variable."
 msgstr "A változó neve."
@@ -3004,7 +3269,9 @@ msgstr "Hálózat"
 msgid "Network File System"
 msgstr "Hálózati fájlrendszer"
 
-msgid "Network authorised to access to the iSCSI target. It takes IP or CIDR addresses or 'ALL' for any IPs."
+msgid ""
+"Network authorised to access to the iSCSI target. It takes IP or CIDR "
+"addresses or 'ALL' for any IPs."
 msgstr ""
 
 msgid "Network mask"
@@ -3019,7 +3286,9 @@ msgstr ""
 msgid "Networks"
 msgstr "Hálózatok"
 
-msgid "Never - Poll (check) the device regardless of its power mode. This may cause a disk which is spun-down to be spun-up when it is checked."
+msgid ""
+"Never - Poll (check) the device regardless of its power mode. This may cause "
+"a disk which is spun-down to be spun-up when it is checked."
 msgstr ""
 
 msgid "Never - default"
@@ -3038,7 +3307,8 @@ msgid "No case folding"
 msgstr ""
 
 #, php-format
-msgid "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
+msgid ""
+"No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
 msgstr ""
 
 #, php-format
@@ -3046,11 +3316,15 @@ msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
 msgstr ""
 
 #, php-format
-msgid "No configured Initiator Group. Please add new <a href='%s'>Initiator Group</a> first."
+msgid ""
+"No configured Initiator Group. Please add new <a href='%s'>Initiator "
+"Group</a> first."
 msgstr ""
 
 #, php-format
-msgid "No configured Portal Group. Please add new <a href='%s'>Portal Group</a> first."
+msgid ""
+"No configured Portal Group. Please add new <a href='%s'>Portal Group</a> "
+"first."
 msgstr ""
 
 #, php-format
@@ -3058,7 +3332,9 @@ msgid "No configured pools. Please add new <a href='%s'>pools</a> first."
 msgstr ""
 
 #, php-format
-msgid "No configured virtual devices. Please add new <a href='%s'>virtual device</a> first."
+msgid ""
+"No configured virtual devices. Please add new <a href='%s'>virtual "
+"device</a> first."
 msgstr ""
 
 msgid "No device selected."
@@ -3089,7 +3365,10 @@ msgstr "Szokványos"
 msgid "Norwegian (Bokmal)"
 msgstr "Norvég (Bokmål)"
 
-msgid "Not all drivers/NICs support 802.1Q VLAN tagging properly. On cards that do not explicitly support it, VLAN tagging will still work, but the reduced MTU may cause problems."
+msgid ""
+"Not all drivers/NICs support 802.1Q VLAN tagging properly. On cards that do "
+"not explicitly support it, VLAN tagging will still work, but the reduced MTU "
+"may cause problems."
 msgstr ""
 
 msgid "Not attached"
@@ -3098,17 +3377,29 @@ msgstr "Nem csatolt"
 msgid "Note"
 msgstr "Jegyzet"
 
-msgid "Note! Selecting 'Time Machine' on multiple shares will may cause unpredictable behavior in MacOS."
+msgid ""
+"Note! Selecting 'Time Machine' on multiple shares will may cause "
+"unpredictable behavior in MacOS."
 msgstr ""
 
-msgid "Note: Ctrl-click (or command-click on the Mac) to select and de-select minutes, hours, days and months."
-msgstr "Megjegyzés: Ctrl-klikk (vagy command-klikk a Mac-eken) használható a percek, órák és napok kijelöléséhez, illetve annak megszüntetéséhez."
+msgid ""
+"Note: Ctrl-click (or command-click on the Mac) to select and de-select "
+"minutes, hours, days and months."
+msgstr ""
+"Megjegyzés: Ctrl-klikk (vagy command-klikk a Mac-eken) használható a percek, "
+"órák és napok kijelöléséhez, illetve annak megszüntetéséhez."
 
-msgid "Note: Ctrl-click (or command-click on the Mac) to select and deselect groups."
-msgstr "Megjegyzés: Ctrl-kattintással (vagy command-click Mac-en) kijelölhet csoportokat."
+msgid ""
+"Note: Ctrl-click (or command-click on the Mac) to select and deselect groups."
+msgstr ""
+"Megjegyzés: Ctrl-kattintással (vagy command-click Mac-en) kijelölhet "
+"csoportokat."
 
-msgid "Note: Ctrl-click (or command-click on the Mac) to select multiple entries."
-msgstr "Megjegyzés: Ctrl-kattintással (vagy command-click Mac-en) kijelölhet több bejegyzést is."
+msgid ""
+"Note: Ctrl-click (or command-click on the Mac) to select multiple entries."
+msgstr ""
+"Megjegyzés: Ctrl-kattintással (vagy command-click Mac-en) kijelölhet több "
+"bejegyzést is."
 
 msgid "Nothing to synchronize"
 msgstr "Nincs szinkronizálni való."
@@ -3130,7 +3421,8 @@ msgid "Number of log entries to show"
 msgstr "Megjelenítendó napló bejegyzések száma"
 
 msgid "Number of log entries to show must be between 5 and 1000."
-msgstr "A megjelenítendő naplófeljegyzések száma 5 és 1000 közé kell, hogy essen."
+msgstr ""
+"A megjelenítendő naplófeljegyzések száma 5 és 1000 közé kell, hogy essen."
 
 msgid "Number of servers"
 msgstr "Kiszolgálók száma"
@@ -3143,9 +3435,6 @@ msgstr "OK"
 
 msgid "ONLINE"
 msgstr "Online"
-
-msgid "OS Version"
-msgstr "Operációs rendszer verzió"
 
 msgid "Object name"
 msgstr "Objektumnév"
@@ -3165,21 +3454,33 @@ msgstr "Régi jelszó"
 msgid "On"
 msgstr "Be"
 
-msgid "Once you add the virtual device, it becomes impossible to delete again. It recommends adding the same number of drives as the existing virtual device."
+msgid ""
+"Once you add the virtual device, it becomes impossible to delete again. It "
+"recommends adding the same number of drives as the existing virtual device."
 msgstr ""
 
 msgid "Online version check"
 msgstr ""
 
-msgid "Only allow anonymous users. Use this on a public FTP site with no remote FTP access to real accounts."
-msgstr "Csak névtelen felhasználók. Ajánlott publikus FTP oldalaknál, ahol nincs FTP hozzáférés a valós felhasználókkal."
+msgid ""
+"Only allow anonymous users. Use this on a public FTP site with no remote FTP "
+"access to real accounts."
+msgstr ""
+"Csak névtelen felhasználók. Ajánlott publikus FTP oldalaknál, ahol nincs FTP "
+"hozzáférés a valós felhasználókkal."
 
 msgid "Only allow authenticated users. Anonymous logins are prohibited."
-msgstr "Csak hitelesített felhasználók engedélyezettek. Névtelen bejelentkezések tiltva."
+msgstr ""
+"Csak hitelesített felhasználók engedélyezettek. Névtelen bejelentkezések "
+"tiltva."
 
 #, php-format
-msgid "Open a %s configuration XML file and click the button below to restore the configuration."
-msgstr "Válassz ki egy %s beállítás XML fájlt és kattints a 'Beállítások visszaállítása'-ra."
+msgid ""
+"Open a %s configuration XML file and click the button below to restore the "
+"configuration."
+msgstr ""
+"Válassz ki egy %s beállítás XML fájlt és kattints a 'Beállítások "
+"visszaállítása'-ra."
 
 msgid "Option"
 msgstr "Beállítás"
@@ -3191,7 +3492,7 @@ msgid "Options"
 msgstr "Beállítások"
 
 msgid "Origin"
-msgstr ""
+msgstr "Eredet"
 
 msgid "Others"
 msgstr "Egyebek"
@@ -3251,7 +3552,7 @@ msgid "Painfully aggressive"
 msgstr "Sajnálatosan aggresszív"
 
 msgid "Pairwise"
-msgstr ""
+msgstr "Páros"
 
 msgid "Partition number"
 msgstr "Partíciószám"
@@ -3265,7 +3566,14 @@ msgstr "Partíciók"
 msgid "Passive ports"
 msgstr "Passzív portok"
 
-msgid "Passive ports restricts the range of ports from which the server will select when sent the PASV command from a client. The server will randomly choose a number from within the specified range until an open port is found. The port range selected must be in the non-privileged range (eg. greater than or equal to 1024). It is strongly recommended that the chosen range be large enough to handle many simultaneous passive connections (for example, 49152-65534, the IANA-registered ephemeral port range)."
+msgid ""
+"Passive ports restricts the range of ports from which the server will select "
+"when sent the PASV command from a client. The server will randomly choose a "
+"number from within the specified range until an open port is found. The port "
+"range selected must be in the non-privileged range (eg. greater than or "
+"equal to 1024). It is strongly recommended that the chosen range be large "
+"enough to handle many simultaneous passive connections (for example, 49152-"
+"65534, the IANA-registered ephemeral port range)."
 msgstr ""
 
 msgid "Passphrase"
@@ -3349,12 +3657,17 @@ msgstr "Ping/Traceroute"
 msgid "Platform"
 msgstr "Platform"
 
+msgid "Platform OS"
+msgstr ""
+
 #, php-format
 msgid "Please check the <a href='%s' target='_blank'>documentation</a>."
 msgstr "Kérjük nézze meg a <a href='%s' target='_blank'>dokumentációt</a>."
 
 msgid "Please note that blanks in path names are not allowed."
-msgstr "Kérjük ügyeljen arra, hogy az elérési útvonal nem tartalmazhat üres karaktert."
+msgstr ""
+"Kérjük ügyeljen arra, hogy az elérési útvonal nem tartalmazhat üres "
+"karaktert."
 
 msgid "Polish"
 msgstr "Lengyel"
@@ -3363,7 +3676,7 @@ msgid "Polling time"
 msgstr ""
 
 msgid "Pool"
-msgstr ""
+msgstr "Tároló"
 
 msgid "Pool information and status"
 msgstr ""
@@ -3396,8 +3709,12 @@ msgid "Port to listen on. Default port is %d."
 msgstr "Figyelendő port. Alapértelmezett port: %d."
 
 #, php-format
-msgid "Port to listen on. Only dynamic or private ports can be used (from %d through %d). Default port is %d."
-msgstr "Figyelendő port. Csak dinamikus vagy privát portok használhatóak (%d-tól %d-ig). Alapértelmezett port: %d."
+msgid ""
+"Port to listen on. Only dynamic or private ports can be used (from %d "
+"through %d). Default port is %d."
+msgstr ""
+"Figyelendő port. Csak dinamikus vagy privát portok használhatóak (%d-tól %d-"
+"ig). Alapértelmezett port: %d."
 
 msgid "Portal Group"
 msgstr "Portál csoport"
@@ -3412,10 +3729,10 @@ msgid "Ports"
 msgstr "Portok"
 
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "Portugál (brazil)"
 
 msgid "Portuguese (Portugal)"
-msgstr ""
+msgstr "portugál"
 
 msgid "PostInit"
 msgstr ""
@@ -3489,7 +3806,9 @@ msgstr "Kompatibilitást nyújt az Apple II kliensekkel."
 msgid "Proxy"
 msgstr "Proxy"
 
-msgid "Puts the hard disk into standby mode when the selected amount of time after the last hard disk access has been elapsed."
+msgid ""
+"Puts the hard disk into standby mode when the selected amount of time after "
+"the last hard disk access has been elapsed."
 msgstr ""
 
 msgid "Queue Depth"
@@ -3550,7 +3869,7 @@ msgid "Raid name"
 msgstr "RAID neve"
 
 msgid "Read"
-msgstr ""
+msgstr "Olvasás"
 
 msgid "Read Only (ro)"
 msgstr "Csak olvasható (ro)"
@@ -3573,10 +3892,13 @@ msgstr "Olvasás/írás"
 msgid "Read/Write (rw)"
 msgstr "Olvasás/írás (rw)"
 
-msgid "Read/Write (rw,dynamic) for removable types file size grow and shrink automatically by EOF (ignore specified size)"
+msgid ""
+"Read/Write (rw,dynamic) for removable types file size grow and shrink "
+"automatically by EOF (ignore specified size)"
 msgstr ""
 
-msgid "Read/Write (rw,extend) for removable types extend file size if EOM reached"
+msgid ""
+"Read/Write (rw,extend) for removable types extend file size if EOM reached"
 msgstr ""
 
 msgid "Read/Write Access"
@@ -3642,11 +3964,19 @@ msgstr ""
 msgid "Report Generator"
 msgstr "Jelentéskészítő"
 
-msgid "Report if the temperature had changed by at least N degrees Celsius since last report. Set to 0 to disable this report."
-msgstr "Jelentse, ha a hőmérséklet legalább N Celsius foknyit változott a legutolsó jelentés óta. (kikapcsoláshoz állítsa 0-ra.)"
+msgid ""
+"Report if the temperature had changed by at least N degrees Celsius since "
+"last report. Set to 0 to disable this report."
+msgstr ""
+"Jelentse, ha a hőmérséklet legalább N Celsius foknyit változott a legutolsó "
+"jelentés óta. (kikapcsoláshoz állítsa 0-ra.)"
 
-msgid "Report if the temperature is greater or equal than N degrees Celsius. Set to 0 to disable this report."
-msgstr "Jelentse, ha a hőmérséklet nagyobb, mint egyenlő, mint  N Celsius fok. (kikapcsoláshoz állítsa 0-ra.)"
+msgid ""
+"Report if the temperature is greater or equal than N degrees Celsius. Set to "
+"0 to disable this report."
+msgstr ""
+"Jelentse, ha a hőmérséklet nagyobb, mint egyenlő, mint  N Celsius fok. "
+"(kikapcsoláshoz állítsa 0-ra.)"
 
 msgid "Reports"
 msgstr "Jelentések"
@@ -3688,7 +4018,7 @@ msgid "Reverse DNS lookup"
 msgstr ""
 
 msgid "Reverse direction"
-msgstr ""
+msgstr "Fordított irányban"
 
 msgid "Romanian"
 msgstr "Román"
@@ -3709,7 +4039,7 @@ msgid "Roundrobin"
 msgstr ""
 
 msgid "Routes"
-msgstr ""
+msgstr "Útvonalak"
 
 msgid "Routing tables"
 msgstr ""
@@ -3756,7 +4086,8 @@ msgstr "S.M.A.R.T. napló"
 msgid "SMB2"
 msgstr ""
 
-msgid "SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."
+msgid ""
+"SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."
 msgstr ""
 
 msgid "SNMP"
@@ -3784,11 +4115,15 @@ msgid "SSL/TLS only"
 msgstr "Csak SSL/TLS"
 
 #, php-format
-msgid "Samba will read from file asynchronously when size of request is bigger than this value. (%d by default)"
+msgid ""
+"Samba will read from file asynchronously when size of request is bigger than "
+"this value. (%d by default)"
 msgstr ""
 
 #, php-format
-msgid "Samba will write to file asynchronously when size of request is bigger than this value. (%d by default)"
+msgid ""
+"Samba will write to file asynchronously when size of request is bigger than "
+"this value. (%d by default)"
 msgstr ""
 
 msgid "Save"
@@ -3806,7 +4141,11 @@ msgstr "Fájl mentése ide"
 msgid "Scan Targets"
 msgstr "Célpontok keresése"
 
-msgid "Scan file system every N seconds to see if any files have been added or removed. Set to 0 to disable background scanning. If background rescanning is disabled, a scan can still be forced from the status page of the administrative web interface."
+msgid ""
+"Scan file system every N seconds to see if any files have been added or "
+"removed. Set to 0 to disable background scanning. If background rescanning "
+"is disabled, a scan can still be forced from the status page of the "
+"administrative web interface."
 msgstr ""
 
 msgid "Scan type"
@@ -3929,19 +4268,29 @@ msgstr ""
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr ""
 
-msgid "Set the maximum transmission unit of the interface to n, default is interface specific. The MTU is used to limit the size of packets that are transmitted on an interface. Not all interfaces support setting the MTU, and some interfaces have range restrictions."
+msgid ""
+"Set the maximum transmission unit of the interface to n, default is "
+"interface specific. The MTU is used to limit the size of packets that are "
+"transmitted on an interface. Not all interfaces support setting the MTU, and "
+"some interfaces have range restrictions."
 msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
 
-msgid "Sets the database information to be stored in path. You have to specifiy a writable location, even if the volume is read only."
+msgid ""
+"Sets the database information to be stored in path. You have to specifiy a "
+"writable location, even if the volume is read only."
 msgstr ""
 
-msgid "Sets the interval between disk checks to N seconds. The minimum allowed value is 10."
+msgid ""
+"Sets the interval between disk checks to N seconds. The minimum allowed "
+"value is 10."
 msgstr ""
 
-msgid "Sets the umask for newly created files to the specified value. The default is zero (anyone can read or write)."
+msgid ""
+"Sets the umask for newly created files to the specified value. The default "
+"is zero (anyone can read or write)."
 msgstr ""
 
 msgid "Settings"
@@ -3975,7 +4324,8 @@ msgid "Shell"
 msgstr "Parancsértelmező"
 
 msgid "Show log entries in reverse order (newest entries on top)"
-msgstr "Napló bejegyzések megjelenítése fordított sorrendben (az újak vannak felül)"
+msgstr ""
+"Napló bejegyzések megjelenítése fordított sorrendben (az újak vannak felül)"
 
 msgid "Show process information"
 msgstr "Folyamat információk mutatása"
@@ -4006,7 +4356,9 @@ msgstr ""
 msgid "Size of send buffer (%d by default)."
 msgstr ""
 
-msgid "Size offered to the initiator. (up to 8EiB=8388608TiB. actual size is depend on your disks.)"
+msgid ""
+"Size offered to the initiator. (up to 8EiB=8388608TiB. actual size is depend "
+"on your disks.)"
 msgstr ""
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
@@ -4019,13 +4371,13 @@ msgid "Slovenian"
 msgstr "Szlovén"
 
 msgid "Snapshot"
-msgstr ""
+msgstr "Pillanatkép"
 
 msgid "Snapshot Visibility"
 msgstr ""
 
 msgid "Snapshots"
-msgstr ""
+msgstr "Pillanatkép"
 
 msgid "Sockets"
 msgstr "Aljazatok"
@@ -4069,48 +4421,64 @@ msgstr ""
 msgid "Specifies the command to be run."
 msgstr ""
 
-msgid "Specifies the maximum permitted block size. The permitted range for this parameter is from 512 to 65464."
+msgid ""
+"Specifies the maximum permitted block size. The permitted range for this "
+"parameter is from 512 to 65464."
 msgstr ""
 
-msgid "Specifies the share character set. For example UTF8, UTF8-MAC, ISO-8859-15, etc."
+msgid ""
+"Specifies the share character set. For example UTF8, UTF8-MAC, ISO-8859-15, "
+"etc."
 msgstr ""
 
 msgid "Specifies the time in hh:mm:ss after which the ban expires."
 msgstr ""
 
-msgid "Specifies the time interval in hh:mm:ss in which the given number of occurrences must happen to add the ban."
+msgid ""
+"Specifies the time interval in hh:mm:ss in which the given number of "
+"occurrences must happen to add the ban."
 msgstr ""
 
 msgid "Specifies the username which the service will run as."
 msgstr ""
 
-msgid "Specifies whether it is allowed to login as superuser (root) directly."
+msgid ""
+"Specifies whether it is allowed to login as superuser (root) directly."
 msgstr ""
 
-msgid "Specify the percentage of space held back from normal users. Note that lowering the threshold can adversely affect performance and auto-defragmentation."
-msgstr "Határozd meg a normál felhasználótól visszatartott hely százalékát. A küszöbérték csökkentése befolyásolja az automatikus-töredezettségmentesítési folyamat lefutását."
+msgid ""
+"Specify the percentage of space held back from normal users. Note that "
+"lowering the threshold can adversely affect performance and auto-"
+"defragmentation."
+msgstr ""
+"Határozd meg a normál felhasználótól visszatartott hely százalékát. A "
+"küszöbérték csökkentése befolyásolja az automatikus-töredezettségmentesítési "
+"folyamat lefutását."
 
 msgid "Split request"
 msgstr ""
 
 msgid "Standard"
-msgstr ""
+msgstr "Általános"
 
-msgid "Standby - Check the device unless it is in SLEEP or STANDBY mode. In these modes most disks are not spinning, so if you want to prevent a laptop disk from spinning up each poll, this is probably what you want."
+msgid ""
+"Standby - Check the device unless it is in SLEEP or STANDBY mode. In these "
+"modes most disks are not spinning, so if you want to prevent a laptop disk "
+"from spinning up each poll, this is probably what you want."
 msgstr ""
 
 msgid "Standby time"
 msgstr "Készenléti idő"
 
 msgid "Start"
-msgstr ""
+msgstr "Indítás"
 
 #, php-format
 msgid "Start scrub on '%s'."
 msgstr ""
 
 msgid "Static"
-msgstr ""
+msgstr "Statikus"
 
 msgid "Static Routes"
 msgstr ""
@@ -4129,13 +4497,13 @@ msgid "Status report successfully sent."
 msgstr ""
 
 msgid "Stop"
-msgstr ""
+msgstr "Leállítás"
 
 msgid "Stop after sending (and receiving) N packets."
 msgstr ""
 
 msgid "Stopped"
-msgstr ""
+msgstr "Leállítva"
 
 msgid "Storage"
 msgstr "Tároló"
@@ -4143,7 +4511,8 @@ msgstr "Tároló"
 msgid "Store DOS attributes"
 msgstr ""
 
-msgid "String displayed in the dialog presented to the user when accessing the URL."
+msgid ""
+"String displayed in the dialog presented to the user when accessing the URL."
 msgstr ""
 
 msgid "String identifier of the extent."
@@ -4162,7 +4531,7 @@ msgid "Subnet mask"
 msgstr "Alhálózati maszk"
 
 msgid "Subsystem"
-msgstr ""
+msgstr "Alrendszer"
 
 msgid "Successful"
 msgstr "Sikeres"
@@ -4208,7 +4577,10 @@ msgid "Synchronize"
 msgstr "Szinkronizálás"
 
 #, php-format
-msgid "Syslog sends UDP datagrams to port 514 on the specified remote syslog server. Be sure to set syslogd on the remote server to accept syslog messages from %s."
+msgid ""
+"Syslog sends UDP datagrams to port 514 on the specified remote syslog "
+"server. Be sure to set syslogd on the remote server to accept syslog "
+"messages from %s."
 msgstr ""
 
 msgid "System"
@@ -4240,6 +4612,9 @@ msgstr "Rendszeridő"
 
 msgid "System tuning"
 msgstr ""
+
+msgid "System uptime"
+msgstr "Aktivitási idő"
 
 msgid "TCP forwarding"
 msgstr ""
@@ -4307,7 +4682,7 @@ msgid "Target side user name. It is usually the initiator name by default."
 msgstr ""
 
 msgid "Targets"
-msgstr ""
+msgstr "Célok"
 
 msgid "Temperature"
 msgstr "Hőmérséklet"
@@ -4338,7 +4713,9 @@ msgstr "Teszt e-mail sikeresen elküldve ide: %s."
 msgid "Test email successfully sent."
 msgstr "Teszt e-mail sikeresen elküldve."
 
-msgid "The  deny  option specifies users and groups who are not allowed access to the share. It follows the same  format  as  the  allow option."
+msgid ""
+"The  deny  option specifies users and groups who are not allowed access to "
+"the share. It follows the same  format  as  the  allow option."
 msgstr ""
 
 msgid "The COM port in BIOS has to be enabled before enabling this option."
@@ -4356,7 +4733,9 @@ msgid "The MIB '%s' doesn't exist in sysctl."
 msgstr ""
 
 #, php-format
-msgid "The RAID volume is currently mounted! Remove the <a href='%s'>mount point</a> first before proceeding."
+msgid ""
+"The RAID volume is currently mounted! Remove the <a href='%s'>mount "
+"point</a> first before proceeding."
 msgstr ""
 
 msgid "The TCP port must be a valid port number."
@@ -4365,7 +4744,9 @@ msgstr "A TCP portnak érvényes port számnak kell lennie."
 msgid "The VLAN ID must be between 1 and 4094."
 msgstr ""
 
-msgid "The action which will be executed when the packet match the criteria specified below."
+msgid ""
+"The action which will be executed when the packet match the criteria "
+"specified below."
 msgstr ""
 
 msgid "The administrator has been notified to apply your changes."
@@ -4376,19 +4757,24 @@ msgid "The associated MIB files can be found at %s."
 msgstr ""
 
 #, c-format
-msgid "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+msgid ""
+"The attribute '%s' contains invalid characters and is no valid NetBIOS name."
 msgstr ""
 
 #, c-format
-msgid "The attribute '%s' contains invalid characters and is no valid domain name."
+msgid ""
+"The attribute '%s' contains invalid characters and is no valid domain name."
 msgstr ""
 
 #, c-format
-msgid "The attribute '%s' contains invalid characters and is no valid host name."
+msgid ""
+"The attribute '%s' contains invalid characters and is no valid host name."
 msgstr ""
 
 #, c-format
-msgid "The attribute '%s' contains invalid characters and is no valid workgroup name."
+msgid ""
+"The attribute '%s' contains invalid characters and is no valid workgroup "
+"name."
 msgstr ""
 
 #, c-format, php-format
@@ -4396,7 +4782,9 @@ msgid "The attribute '%s' contains invalid characters."
 msgstr ""
 
 #, c-format
-msgid "The attribute '%s' contains the illegal character ':' and is no valid password."
+msgid ""
+"The attribute '%s' contains the illegal character ':' and is no valid "
+"password."
 msgstr ""
 
 #, c-format
@@ -4444,7 +4832,8 @@ msgid "The attribute '%s' is required."
 msgstr "A(z) '%s' tulajdonság (attribútum) szükséges."
 
 #, php-format
-msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9, _ , -."
+msgid ""
+"The attribute '%s' may only consist of the characters a-z, A-Z, 0-9, _ , -."
 msgstr ""
 
 #, c-format
@@ -4471,17 +4860,29 @@ msgstr ""
 msgid "The attribute '%s' must contain at least one entry."
 msgstr ""
 
-msgid "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target name that is not starting with 'iqn.'."
+msgid ""
+"The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
+"name that is not starting with 'iqn.'."
 msgstr ""
 
-msgid "The basic configuration usually takes the form of 'daemon : address : action'. Where daemon is the daemon name of the service started. The address can be a valid hostname, an IP address or an IPv6 address enclosed in brackets. The action field can be either allow or deny to grant or deny access appropriately. Keep in mind that configuration works off a first rule match semantic, meaning that the configuration file is scanned in ascending order for a matching rule. When a match is found the rule is applied and the search process will halt."
+msgid ""
+"The basic configuration usually takes the form of 'daemon : address : "
+"action'. Where daemon is the daemon name of the service started. The address "
+"can be a valid hostname, an IP address or an IPv6 address enclosed in "
+"brackets. The action field can be either allow or deny to grant or deny "
+"access appropriately. Keep in mind that configuration works off a first rule "
+"match semantic, meaning that the configuration file is scanned in ascending "
+"order for a matching rule. When a match is found the rule is applied and the "
+"search process will halt."
 msgstr ""
 
 msgid "The changes have been applied successfully."
 msgstr "A módosítások sikeresen végrehajtva."
 
 #, c-format
-msgid "The changes have been saved. You have to <a href='%s'>reboot</a> the system for the changes to take effect."
+msgid ""
+"The changes have been saved. You have to <a href='%s'>reboot</a> the system "
+"for the changes to take effect."
 msgstr ""
 
 msgid "The cleartext credentials with which to bind."
@@ -4497,14 +4898,18 @@ msgstr "A beállítást nem lehetett helyreállítani"
 msgid "The configuration could not be restored. %s"
 msgstr ""
 
-msgid "The configuration has been changed.<br />You must apply the changes in order for them to take effect."
+msgid ""
+"The configuration has been changed.<br />You must apply the changes in order "
+"for them to take effect."
 msgstr ""
 
 #, php-format
 msgid "The configuration has been restored. %s is now rebooting."
 msgstr "A beállítás vissza lett állítva. %s újraindul"
 
-msgid "The confimed password does not match. Please ensure the passwords match exactly."
+msgid ""
+"The confimed password does not match. Please ensure the passwords match "
+"exactly."
 msgstr "A megerősített jelszó nem egyezik. Kérem ellenőrizze."
 
 msgid "The credentials with which to bind."
@@ -4514,55 +4919,74 @@ msgid "The cron job has been executed successfully."
 msgstr ""
 
 #, php-format
-msgid "The custom format of the snapshot for shadow copy service can be specified. The default format is %s used for ZFS auto snapshot."
+msgid ""
+"The custom format of the snapshot for shadow copy service can be specified. "
+"The default format is %s used for ZFS auto snapshot."
 msgstr ""
 
 msgid "The default SMTP mail server port, e.g. 25 or 587."
-msgstr "Az alapértelmezett SMTP levelezőszerver port például a 25-ös vagy az 587-es."
+msgstr ""
+"Az alapértelmezett SMTP levelezőszerver port például a 25-ös vagy az 587-es."
 
 #, php-format
 msgid "The default base distinguished name (DN) to use for searches, e.g. %s"
 msgstr ""
 
-msgid "The default key lengths are: 128 for AES, 128 for Blowfish, 128 for Camellia and 192 for 3DES."
+msgid ""
+"The default key lengths are: 128 for AES, 128 for Blowfish, 128 for Camellia "
+"and 192 for 3DES."
 msgstr ""
 
 msgid "The default time in seconds to display a screen."
 msgstr ""
 
 msgid "The device name may only consist of the characters a-z, A-Z, 0-9."
-msgstr "Az eszköz név csak a következő karaktereket tartalmazhatja: a-z, A-Z, 0-9"
+msgstr ""
+"Az eszköz név csak a következő karaktereket tartalmazhatja: a-z, A-Z, 0-9"
 
 msgid "The device's IP address."
 msgstr "Az eszköz IP címe."
 
-msgid "The directory containing the files you want to publish. The remote host does not need to pass along the directory as part of the transfer."
+msgid ""
+"The directory containing the files you want to publish. The remote host does "
+"not need to pass along the directory as part of the transfer."
 msgstr ""
 
 #, php-format
-msgid "The disk is currently mounted! <a href='%s'>Unmount</a> this disk first before proceeding."
+msgid ""
+"The disk is currently mounted! <a href='%s'>Unmount</a> this disk first "
+"before proceeding."
 msgstr ""
 
-msgid "The disk is currently mounted! The mount point will be removed temporarily to perform selected command."
+msgid ""
+"The disk is currently mounted! The mount point will be removed temporarily "
+"to perform selected command."
 msgstr ""
 
 msgid "The disk/partition is already configured."
 msgstr ""
 
 #, php-format
-msgid "The distinguished name with which to bind to the directory server, e.g. %s"
+msgid ""
+"The distinguished name with which to bind to the directory server, e.g. %s"
 msgstr ""
 
 #, php-format
-msgid "The driver used to communicate with your UPS. Get the list of available <a href='%s' target='_blank'>drivers</a>."
+msgid ""
+"The driver used to communicate with your UPS. Get the list of available <a "
+"href='%s' target='_blank'>drivers</a>."
 msgstr ""
 
 #, php-format
-msgid "The driver used to connect with the LCD. The list of available <a href='%s' target='_blank'>drivers</a>."
+msgid ""
+"The driver used to connect with the LCD. The list of available <a href='%s' "
+"target='_blank'>drivers</a>."
 msgstr ""
 
 #, php-format
-msgid "The encrypted device is currently mounted! <a href='%s'>Unmount</a> this disk first before proceeding."
+msgid ""
+"The encrypted device is currently mounted! <a href='%s'>Unmount</a> this "
+"disk first before proceeding."
 msgstr ""
 
 msgid "The extent name already exists."
@@ -4587,8 +5011,12 @@ msgstr "A csoportnév érvénytelen karaktereket tartalmaz."
 msgid "The host name contain invalid characters."
 msgstr "Az állomásnév érvénytelen karaktert tartalmaz."
 
-msgid "The host name may only consist of the characters a-z, A-Z and 0-9, - , _ and ."
-msgstr "Az állomásnév csak a következő karaktereket tartalmazhatja: a-z, A-Z, 0-9, - és _."
+msgid ""
+"The host name may only consist of the characters a-z, A-Z and 0-9, - , _ and "
+"."
+msgstr ""
+"Az állomásnév csak a következő karaktereket tartalmazhatja: a-z, A-Z, 0-9, - "
+"és _."
 
 msgid "The image file is corrupt"
 msgstr "A lemezkép fájl hibás."
@@ -4596,19 +5024,27 @@ msgstr "A lemezkép fájl hibás."
 msgid "The initial digest mode negotiated with the initiator."
 msgstr ""
 
-msgid "The initiator can access to the target via the portals by authorised initiator names and networks in specific Initiator Group."
+msgid ""
+"The initiator can access to the target via the portals by authorised "
+"initiator names and networks in specific Initiator Group."
 msgstr ""
 
-msgid "The initiator can access to the target with correct user and secret in specific Auth Group."
+msgid ""
+"The initiator can access to the target with correct user and secret in "
+"specific Auth Group."
 msgstr ""
 
 msgid "The initiator can connect to the portals in specific Portal Group."
 msgstr ""
 
-msgid "The initiator can discover the targets with correct user and secret in specific Auth Group."
+msgid ""
+"The initiator can discover the targets with correct user and secret in "
+"specific Auth Group."
 msgstr ""
 
-msgid "The istgtcontrol can access the targets with correct user and secret in specific Auth Group."
+msgid ""
+"The istgtcontrol can access the targets with correct user and secret in "
+"specific Auth Group."
 msgstr ""
 
 msgid "The login name contains invalid characters."
@@ -4623,31 +5059,45 @@ msgstr ""
 msgid "The max. connection per IP must be either 0 (unlimited) or greater."
 msgstr ""
 
-msgid "The maximum download bandwith in KiB/s. An empty field means infinity."
+msgid ""
+"The maximum download bandwith in KiB/s. An empty field means infinity."
 msgstr ""
 
 msgid "The maximum idle time be a number."
 msgstr "A maximális várakozási időnek számnak kell lennie."
 
-msgid "The maximum port to allocate for PASV style data connections (0 = use any port)."
+msgid ""
+"The maximum port to allocate for PASV style data connections (0 = use any "
+"port)."
 msgstr ""
 
 msgid "The maximum upload bandwith in KB/s. An empty field means infinity."
-msgstr "A maximális feltöltési sávszélesség KB/s-ban. Üresen hagyva végtelen."
+msgstr ""
+"A maximális feltöltési sávszélesség KB/s-ban. Üresen hagyva végtelen."
 
-msgid "The method can be accepted by the target. Auto means both none and authentication."
+msgid ""
+"The method can be accepted by the target. Auto means both none and "
+"authentication."
 msgstr ""
 
-msgid "The method can be accepted in discovery session. Auto means both none and authentication."
+msgid ""
+"The method can be accepted in discovery session. Auto means both none and "
+"authentication."
 msgstr ""
 
 msgid "The method can be accepted in the controller."
 msgstr ""
 
-msgid "The minimum port to allocate for PASV style data connections (0 = use any port)."
+msgid ""
+"The minimum port to allocate for PASV style data connections (0 = use any "
+"port)."
 msgstr ""
 
-msgid "The module provides automatic bans that are triggered based on configurable criteria. A ban prevents the banned user, host, or class from logging into the server, it does not prevent the banned user, host, or class from connecting to the server."
+msgid ""
+"The module provides automatic bans that are triggered based on configurable "
+"criteria. A ban prevents the banned user, host, or class from logging into "
+"the server, it does not prevent the banned user, host, or class from "
+"connecting to the server."
 msgstr ""
 
 msgid "The name or IP address of the LDAP server."
@@ -4687,24 +5137,38 @@ msgstr ""
 msgid "The peer connection encryption mode."
 msgstr ""
 
-msgid "The permissions on new files and directories are normally governed by create mask and directory mask but the inherit permissions parameter overrides this. This can be particularly useful on systems with many users to allow a single share to be used flexibly by each user."
+msgid ""
+"The permissions on new files and directories are normally governed by create "
+"mask and directory mask but the inherit permissions parameter overrides "
+"this. This can be particularly useful on systems with many users to allow a "
+"single share to be used flexibly by each user."
 msgstr ""
 
 msgid "The pool name does not match the naming rules."
 msgstr ""
 
-msgid "The port to listen to. The default is to listen to the tftp port specified in /etc/services."
+msgid ""
+"The port to listen to. The default is to listen to the tftp port specified "
+"in /etc/services."
 msgstr ""
 
 #, php-format
 msgid "The portal '%s' is invalid."
 msgstr ""
 
-msgid "The portal takes the form of 'address:port'. for example '192.168.1.1:3260' for IPv4, '[2001:db8:1:1::1]:3260' for IPv6. the port 3260 is standard iSCSI port number. For any IPs (wildcard address), use '0.0.0.0:3260' and/or '[::]:3260'. Do not mix wildcard and other IPs at same address family."
+msgid ""
+"The portal takes the form of 'address:port'. for example '192.168.1.1:3260' "
+"for IPv4, '[2001:db8:1:1::1]:3260' for IPv6. the port 3260 is standard iSCSI "
+"port number. For any IPs (wildcard address), use '0.0.0.0:3260' and/or "
+"'[::]:3260'. Do not mix wildcard and other IPs at same address family."
 msgstr ""
 
-msgid "The powerd utility monitors the system state and sets various power control options accordingly."
-msgstr "Az energia eszköz figyeli a rendszer állapotát és ennek megfelelően különféle  energia beállításokat módosít."
+msgid ""
+"The powerd utility monitors the system state and sets various power control "
+"options accordingly."
+msgstr ""
+"Az energia eszköz figyeli a rendszer állapotát és ennek megfelelően "
+"különféle  energia beállításokat módosít."
 
 msgid "The queuedepth range is invalid."
 msgstr ""
@@ -4740,7 +5204,9 @@ msgstr ""
 msgid "The subject of the email."
 msgstr "Az E-mail tárgya."
 
-msgid "The system has been reset to factory defaults and is now rebooting. This may take one minute."
+msgid ""
+"The system has been reset to factory defaults and is now rebooting. This may "
+"take one minute."
 msgstr ""
 
 msgid "The system is halting now. This may take one minute."
@@ -4755,7 +5221,9 @@ msgstr ""
 msgid "The target name already exists."
 msgstr ""
 
-msgid "The time in seconds until shutdown is initiated. If the UPS happens to come back before the time is up the shutdown is canceled."
+msgid ""
+"The time in seconds until shutdown is initiated. If the UPS happens to come "
+"back before the time is up the shutdown is canceled."
 msgstr ""
 
 msgid "The time update interval must be either between 6 and 1440."
@@ -4770,10 +5238,13 @@ msgstr ""
 msgid "The unique user ID is already used."
 msgstr ""
 
-msgid "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form."
+msgid ""
+"The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
+"the HTML form."
 msgstr ""
 
-msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini."
+msgid ""
+"The uploaded file exceeds the upload_max_filesize directive in php.ini."
 msgstr ""
 
 msgid "The uploaded file was only partially uploaded."
@@ -4833,16 +5304,24 @@ msgstr ""
 msgid "There must be selected a minimum of 1 interface."
 msgstr "Legalább egy interfészt kell választania."
 
-msgid "There should be enough to handle the maximum level of concurrency from its clients, typically four to six."
+msgid ""
+"There should be enough to handle the maximum level of concurrency from its "
+"clients, typically four to six."
 msgstr ""
 
-msgid "These MIBs will be added to /etc/sysctl.conf. This allow you to make changes to a running system."
+msgid ""
+"These MIBs will be added to /etc/sysctl.conf. This allow you to make changes "
+"to a running system."
 msgstr ""
 
-msgid "These commands will be executed pre or post system initialization (booting) or before system shutdown."
+msgid ""
+"These commands will be executed pre or post system initialization (booting) "
+"or before system shutdown."
 msgstr ""
 
-msgid "These option(s) will be added to /etc/rc.conf. This allow you to overwrite options used by various generic startup scripts."
+msgid ""
+"These option(s) will be added to /etc/rc.conf. This allow you to overwrite "
+"options used by various generic startup scripts."
 msgstr ""
 
 #, php-format
@@ -4869,32 +5348,43 @@ msgstr ""
 msgid "These parameters will be added to global settings in %s."
 msgstr ""
 
-msgid "These parameters will be added to the module configuration in rsyncd.conf."
+msgid ""
+"These parameters will be added to the module configuration in rsyncd.conf."
 msgstr ""
 
-msgid "This LAGG cannot be deleted because it is still being used as an interface."
+msgid ""
+"This LAGG cannot be deleted because it is still being used as an interface."
 msgstr ""
 
 msgid "This URL is already configured."
 msgstr ""
 
-msgid "This VLAN cannot be deleted because it is still being used as an interface."
+msgid ""
+"This VLAN cannot be deleted because it is still being used as an interface."
 msgstr ""
 
-msgid "This allows you to lower the power consumption of the drive, at the expense of performance."
+msgid ""
+"This allows you to lower the power consumption of the drive, at the expense "
+"of performance."
 msgstr ""
 
 msgid "This allows you to set how loud the drive is while it's operating."
 msgstr ""
 
-msgid "This allows you to set the file system for preformatted hard disks containing data."
+msgid ""
+"This allows you to set the file system for preformatted hard disks "
+"containing data."
 msgstr ""
 
 msgid "This allows you to set the transfer mode for ATA/IDE hard drives."
 msgstr ""
 
 #, php-format
-msgid "This configuration settings are used to generate the ups.conf configuration file which is required by the NUT UPS daemon. To get more information how to configure your UPS please check the NUT (Network UPS Tools) <a href='%s' target='_blank'>documentation</a>."
+msgid ""
+"This configuration settings are used to generate the ups.conf configuration "
+"file which is required by the NUT UPS daemon. To get more information how to "
+"configure your UPS please check the NUT (Network UPS Tools) <a href='%s' "
+"target='_blank'>documentation</a>."
 msgstr ""
 
 msgid "This controls how the case of filenames are viewed and stored."
@@ -4906,14 +5396,21 @@ msgstr ""
 msgid "This controls the access to this share with an access password."
 msgstr ""
 
-msgid "This controls whether the .AppleDouble directory gets created unless absolutely needed. This option should not be used if files are access mostly by Mac computers."
+msgid ""
+"This controls whether the .AppleDouble directory gets created unless "
+"absolutely needed. This option should not be used if files are access mostly "
+"by Mac computers."
 msgstr ""
 
 msgid "This controls whether this share is accessible by guest account."
 msgstr ""
 
-msgid "This controls whether this share is seen in the list of available shares in a net view and in the browse list."
-msgstr "Ez határozza meg, hogy a megosztás megjelenik-e a megosztások listájában (a net view parancsnál és a böngészési listában)."
+msgid ""
+"This controls whether this share is seen in the list of available shares in "
+"a net view and in the browse list."
+msgstr ""
+"Ez határozza meg, hogy a megosztás megjelenik-e a megosztások listájában (a "
+"net view parancsnál és a böngészési listában)."
 
 msgid "This couple targetname/targetaddress already exists in the disk list."
 msgstr ""
@@ -4930,7 +5427,9 @@ msgstr ""
 msgid "This extent is used."
 msgstr ""
 
-msgid "This forces filenames to be restricted to the character set used by Windows. This is not recommended for shares used principally by Mac computers."
+msgid ""
+"This forces filenames to be restricted to the character set used by Windows. "
+"This is not recommended for shares used principally by Mac computers."
 msgstr ""
 
 msgid "This function is unsupported. Use it on your own risk!"
@@ -4939,16 +5438,26 @@ msgstr "Ez a funkció nem támogatott, csak a saját felelősségére használja
 msgid "This group already exists in the group list."
 msgstr "Ez a csoport már szerepel a listában."
 
-msgid "This is both the name of the server as advertised via Zeroconf/Bonjour/Rendezvous, and the name of the database exported via DAAP."
+msgid ""
+"This is both the name of the server as advertised via "
+"Zeroconf/Bonjour/Rendezvous, and the name of the database exported via DAAP."
 msgstr ""
 
 msgid "This is for information only (not using during iSCSI negociation)."
 msgstr ""
 
-msgid "This may make more efficient use of the system CPU's and cause Samba to be faster. Samba automatically turns this off for clients that use protocol levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
+msgid ""
+"This may make more efficient use of the system CPU's and cause Samba to be "
+"faster. Samba automatically turns this off for clients that use protocol "
+"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
 msgstr ""
 
-msgid "This means that the image you uploaded is not an official/supported image and may lead to unexpected behavior or security compromises. Only install images that come from sources that you trust, and make sure that the image has not been tampered with.<br /><br />Do you want to install this image anyway (on your own risk)?"
+msgid ""
+"This means that the image you uploaded is not an official/supported image "
+"and may lead to unexpected behavior or security compromises. Only install "
+"images that come from sources that you trust, and make sure that the image "
+"has not been tampered with.<br /><br />Do you want to install this image "
+"anyway (on your own risk)?"
 msgstr ""
 
 msgid "This name already exists in the disk list."
@@ -4964,66 +5473,117 @@ msgstr "A név például: iqn.2005-01.il.ac.huji.cs:valaki."
 msgid "This name is used to uniquely identify your UPS on this system."
 msgstr ""
 
-msgid "This option allows the users and groups that access a share to be specified. Users and groups are specified, delimited by commas. Groups are designated by a @ prefix."
+msgid ""
+"This option allows the users and groups that access a share to be specified. "
+"Users and groups are specified, delimited by commas. Groups are designated "
+"by a @ prefix."
 msgstr ""
 
 msgid "This option causes rsync to copy the local data to the remote server."
 msgstr ""
 
-msgid "This option causes rsync to update the remote extended attributes to be the same as the local ones."
+msgid ""
+"This option causes rsync to update the remote extended attributes to be the "
+"same as the local ones."
 msgstr ""
 
-msgid "This option causes the receiving rsync to set the destination permissions to be the same as the source permissions."
+msgid ""
+"This option causes the receiving rsync to set the destination permissions to "
+"be the same as the source permissions."
 msgstr ""
 
-msgid "This option determines if this module should be listed when the client asks for a listing of available modules. By setting this to false you can create hidden modules."
+msgid ""
+"This option determines if this module should be listed when the client asks "
+"for a listing of available modules. By setting this to false you can create "
+"hidden modules."
 msgstr ""
 
-msgid "This option is a comma, space, or tab delimited set of host which are NOT permitted to access this module. Where the lists conflict, the allow list takes precedence. In the event that it is necessary to deny all by default, use the keyword ALL (or the netmask 0.0.0.0/0) and then explicitly specify to the hosts allow parameter those hosts that should be permitted access. Leave this field empty to use default settings."
+msgid ""
+"This option is a comma, space, or tab delimited set of host which are NOT "
+"permitted to access this module. Where the lists conflict, the allow list "
+"takes precedence. In the event that it is necessary to deny all by default, "
+"use the keyword ALL (or the netmask 0.0.0.0/0) and then explicitly specify "
+"to the hosts allow parameter those hosts that should be permitted access. "
+"Leave this field empty to use default settings."
 msgstr ""
 
-msgid "This option is a comma, space, or tab delimited set of host which are NOT permitted to access this share. Where the lists conflict, the allow list takes precedence. In the event that it is necessary to deny all by default, use the keyword ALL (or the netmask 0.0.0.0/0) and then explicitly specify to the hosts allow parameter those hosts that should be permitted access. Leave this field empty to use default settings."
+msgid ""
+"This option is a comma, space, or tab delimited set of host which are NOT "
+"permitted to access this share. Where the lists conflict, the allow list "
+"takes precedence. In the event that it is necessary to deny all by default, "
+"use the keyword ALL (or the netmask 0.0.0.0/0) and then explicitly specify "
+"to the hosts allow parameter those hosts that should be permitted access. "
+"Leave this field empty to use default settings."
 msgstr ""
 
-msgid "This option is a comma, space, or tab delimited set of hosts which are permitted to access this module. You can specify the hosts by name or IP number. Leave this field empty to use default settings."
+msgid ""
+"This option is a comma, space, or tab delimited set of hosts which are "
+"permitted to access this module. You can specify the hosts by name or IP "
+"number. Leave this field empty to use default settings."
 msgstr ""
 
-msgid "This option is a comma, space, or tab delimited set of hosts which are permitted to access this share. You can specify the hosts by name or IP number. Leave this field empty to use default settings."
+msgid ""
+"This option is a comma, space, or tab delimited set of hosts which are "
+"permitted to access this share. You can specify the hosts by name or IP "
+"number. Leave this field empty to use default settings."
 msgstr ""
 
-msgid "This option specifies the group name or group ID that file transfers to and from that module should take place. Leave this field empty to use default settings."
+msgid ""
+"This option specifies the group name or group ID that file transfers to and "
+"from that module should take place. Leave this field empty to use default "
+"settings."
 msgstr ""
 
 #, php-format
-msgid "This option specifies the user name or user ID that file transfers to and from that module should take place. In combination with the '%s' option this determines what file permissions are available. Leave this field empty to use default settings."
+msgid ""
+"This option specifies the user name or user ID that file transfers to and "
+"from that module should take place. In combination with the '%s' option this "
+"determines what file permissions are available. Leave this field empty to "
+"use default settings."
 msgstr ""
 
-msgid "This page reflects the configuration that has been created with the WebGUI."
+msgid ""
+"This page reflects the configuration that has been created with the WebGUI."
 msgstr ""
 
-msgid "This page reflects the current system configuration. It may be different to the configuration which has been created with the WebGUI if changes has been done via command line."
+msgid ""
+"This page reflects the current system configuration. It may be different to "
+"the configuration which has been created with the WebGUI if changes has been "
+"done via command line."
 msgstr ""
 
-msgid "This parameter controls whether files starting with a dot appear as hidden files."
+msgid ""
+"This parameter controls whether files starting with a dot appear as hidden "
+"files."
 msgstr ""
 
-msgid "This parameter says that if N occurrences of the event happen within the given time interval, then a ban is automatically added."
+msgid ""
+"This parameter says that if N occurrences of the event happen within the "
+"given time interval, then a ban is automatically added."
 msgstr ""
 
 #, php-format
-msgid "This parameter specifies the suffix that is used for groups when these are added to the LDAP directory, e.g. %s"
+msgid ""
+"This parameter specifies the suffix that is used for groups when these are "
+"added to the LDAP directory, e.g. %s"
 msgstr ""
 
 #, php-format
-msgid "This parameter specifies the suffix that is used for machines when these are added to the LDAP directory, e.g. %s"
+msgid ""
+"This parameter specifies the suffix that is used for machines when these are "
+"added to the LDAP directory, e.g. %s"
 msgstr ""
 
 #, php-format
-msgid "This parameter specifies the suffix that is used for passwords when these are added to the LDAP directory, e.g. %s"
+msgid ""
+"This parameter specifies the suffix that is used for passwords when these "
+"are added to the LDAP directory, e.g. %s"
 msgstr ""
 
 #, php-format
-msgid "This parameter specifies the suffix that is used for users when these are added to the LDAP directory, e.g. %s"
+msgid ""
+"This parameter specifies the suffix that is used for users when these are "
+"added to the LDAP directory, e.g. %s"
 msgstr ""
 
 msgid "This pool name already exists."
@@ -5051,16 +5611,22 @@ msgid "This virtual device name already exists."
 msgstr "A virtuális meghajtó neve már foglalt."
 
 #, php-format
-msgid "This will cause %s not to check for newer firmware versions when the <a href='%s'>%s</a> page is viewed."
+msgid ""
+"This will cause %s not to check for newer firmware versions when the <a "
+"href='%s'>%s</a> page is viewed."
 msgstr ""
 
 msgid "This will create a recycle bin on the share."
 msgstr "Ez csinál egy lomtárat a megosztáson."
 
-msgid "This will erase ALL data on the selected disks! Do not use this option if you want to add an already existing RAID again."
+msgid ""
+"This will erase ALL data on the selected disks! Do not use this option if "
+"you want to add an already existing RAID again."
 msgstr ""
 
-msgid "This will erase ALL data on your disk! Do not use this option if you want to add an existing encrypted disk."
+msgid ""
+"This will erase ALL data on your disk! Do not use this option if you want to "
+"add an existing encrypted disk."
 msgstr ""
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
@@ -5096,7 +5662,14 @@ msgstr "Időtúllépés"
 msgid "Times"
 msgstr "Idő"
 
-msgid "To configure the target, you must add at least Portal Group and Initiator Group and Extent.<br />Portal Group which is identified by tag number defines IP addresses and listening TCP ports.<br />Initiator Group which is identified by tag number defines authorised initiator names and networks.<br />Auth Group which is identified by tag number and is optional if the target does not use CHAP authentication defines authorised users and secrets for additional security.<br />Extent defines the storage area of the target."
+msgid ""
+"To configure the target, you must add at least Portal Group and Initiator "
+"Group and Extent.<br />Portal Group which is identified by tag number "
+"defines IP addresses and listening TCP ports.<br />Initiator Group which is "
+"identified by tag number defines authorised initiator names and networks.<br "
+"/>Auth Group which is identified by tag number and is optional if the target "
+"does not use CHAP authentication defines authorised users and secrets for "
+"additional security.<br />Extent defines the storage area of the target."
 msgstr ""
 
 msgid "To e-mail"
@@ -5106,25 +5679,39 @@ msgid "To email"
 msgstr ""
 
 #, php-format
-msgid "To get detailed informations about TCP Wrappers check the FreeBSD <a href='%s' target='_blank'>documentation</a>."
+msgid ""
+"To get detailed informations about TCP Wrappers check the FreeBSD <a "
+"href='%s' target='_blank'>documentation</a>."
 msgstr ""
 
 #, php-format
-msgid "To get detailed informations about writing firewall rules check the FreeBSD <a href='%s' target='_blank'>documentation</a>."
+msgid ""
+"To get detailed informations about writing firewall rules check the FreeBSD "
+"<a href='%s' target='_blank'>documentation</a>."
 msgstr ""
 
 #, php-format
-msgid "To get more information how to configure LCDproc check the LCDproc <a href='%s' target='_blank'>documentation</a>."
+msgid ""
+"To get more information how to configure LCDproc check the LCDproc <a "
+"href='%s' target='_blank'>documentation</a>."
 msgstr ""
 
 #, php-format
-msgid "To increase CIFS performance try the following:<div id='enumeration'><ul><li>Enable 'Asynchronous I/O (AIO)' switch</li><li>Enable 'Large read/write' switch</li><li>Enable '<a href='%s'>Tuning</a>' switch</li></ul></div>"
+msgid ""
+"To increase CIFS performance try the following:<div "
+"id='enumeration'><ul><li>Enable 'Asynchronous I/O (AIO)' "
+"switch</li><li>Enable 'Large read/write' switch</li><li>Enable '<a "
+"href='%s'>Tuning</a>' switch</li></ul></div>"
 msgstr ""
 
 msgid "To match any IP address leave this field empty."
 msgstr "Ha minden IP címet engedélyezni akarsz hagyd üresen."
 
-msgid "To use Active Directory the CIFS/SMB service will enabled, too. The following services will use AD authentication:<div id='enumeration'><ul><li>CIFS/SMB</li><li>SSH</li><li>FTP</li><li>AFP</li><li>System</li></ul></div>"
+msgid ""
+"To use Active Directory the CIFS/SMB service will enabled, too. The "
+"following services will use AD authentication:<div "
+"id='enumeration'><ul><li>CIFS/SMB</li><li>SSH</li><li>FTP</li><li>AFP</li><li"
+">System</li></ul></div>"
 msgstr ""
 
 msgid "Tolerated"
@@ -5144,8 +5731,12 @@ msgstr "Összes: %s | Használt: %s | Szabad: %s | Állapot: %s"
 msgid "Traceroute"
 msgstr "Traceroute"
 
-msgid "Traceroute may take a while to complete. You may hit the Stop button on your browser at any time to see the progress of failed traceroutes."
-msgstr "A Traceroute eltarthat egy ideig. Bármikor lenyomhatod a böngésződ stop gombját, ha hibás Traceroute folyamatot látsz."
+msgid ""
+"Traceroute may take a while to complete. You may hit the Stop button on your "
+"browser at any time to see the progress of failed traceroutes."
+msgstr ""
+"A Traceroute eltarthat egy ideig. Bármikor lenyomhatod a böngésződ stop "
+"gombját, ha hibás Traceroute folyamatot látsz."
 
 msgid "Traffic graph"
 msgstr "Forgalom grafikon"
@@ -5199,12 +5790,23 @@ msgid "UCD-SNMP-MIB"
 msgstr ""
 
 #, php-format
-msgid "UFS and variants are the NATIVE file format for FreeBSD (the underlying OS of %s). Attempting to use other file formats such as FAT, FAT32, EXT2, EXT3, or NTFS can result in unpredictable results, file corruption, and loss of data!"
+msgid ""
+"UFS and variants are the NATIVE file format for FreeBSD (the underlying OS "
+"of %s). Attempting to use other file formats such as FAT, FAT32, EXT2, EXT3, "
+"or NTFS can result in unpredictable results, file corruption, and loss of "
+"data!"
 msgstr ""
 
 #, php-format
-msgid "UFS is the NATIVE file format for FreeBSD (the underlying OS of %s). Attempting to use other file formats such as FAT, FAT32, EXT2, EXT3, or NTFS can result in unpredictable results, file corruption, and loss of data!"
-msgstr "Az UFS a FreeBSD (a %s alapjáúl szolgáló operációs rendszer) saját fájlrendszere. Az egyéb fájlrendszerekkel - mint FAT, FAT32, EXT2, EXT3 vagy NTFS - való kisérletezés kiszámíthatatlan eredményhez, fájl sérüléshez és adatvesztéshez vezethet."
+msgid ""
+"UFS is the NATIVE file format for FreeBSD (the underlying OS of %s). "
+"Attempting to use other file formats such as FAT, FAT32, EXT2, EXT3, or NTFS "
+"can result in unpredictable results, file corruption, and loss of data!"
+msgstr ""
+"Az UFS a FreeBSD (a %s alapjáúl szolgáló operációs rendszer) saját "
+"fájlrendszere. Az egyéb fájlrendszerekkel - mint FAT, FAT32, EXT2, EXT3 vagy "
+"NTFS - való kisérletezés kiszámíthatatlan eredményhez, fájl sérüléshez és "
+"adatvesztéshez vezethet."
 
 msgid "UID"
 msgstr "UID"
@@ -5293,44 +5895,61 @@ msgstr "Feltöltési sávszélesség"
 msgid "Uppercases names in both directions"
 msgstr ""
 
-msgid "Uptime"
-msgstr "Bekapcsolás óta eltelt idő (uptime)"
-
 msgid "Use AFP3 unix privileges."
 msgstr ""
 
-msgid "Use a space to separate multiple hosts (only one required). Remember to set up at least one DNS server if you enter a host name here!"
-msgstr "Használj szóközt a címek elválasztásához (csak egy szükséges). Ne felejts el legalább egy DNS szervert beállítnai, ha itt szerver nevet használsz."
+msgid ""
+"Use a space to separate multiple hosts (only one required). Remember to set "
+"up at least one DNS server if you enter a host name here!"
+msgstr ""
+"Használj szóközt a címek elválasztásához (csak egy szükséges). Ne felejts el "
+"legalább egy DNS szervert beállítnai, ha itt szerver nevet használsz."
 
 msgid "Use sendfile"
 msgstr ""
 
-msgid "Use the following IP address as the source address in outgoing packets."
+msgid ""
+"Use the following IP address as the source address in outgoing packets."
 msgstr ""
 
-msgid "Use the new 64k streaming read and write varient SMB requests introduced with Windows 2000."
+msgid ""
+"Use the new 64k streaming read and write varient SMB requests introduced "
+"with Windows 2000."
 msgstr ""
 
 msgid "Use the specified NTP server."
 msgstr "Meghatározott NTP kiszolgáló használata."
 
 #, php-format
-msgid "Use this option to override the default permission modes for newly created files (%s by default)."
+msgid ""
+"Use this option to override the default permission modes for newly created "
+"files (%s by default)."
 msgstr ""
 
-msgid "Use this option to override the directory creation mask (022 by default)."
-msgstr "Ezzel az opcióval felülírhatja a fájl létrehozási maszkot (alapból 022)."
+msgid ""
+"Use this option to override the directory creation mask (022 by default)."
+msgstr ""
+"Ezzel az opcióval felülírhatja a fájl létrehozási maszkot (alapból 022)."
 
-msgid "Use this option to override the directory creation mask (0777 by default)."
-msgstr "Ezzel az opcióval felülírhatja a mappa létrehozási maszkot (alapból 0777)."
+msgid ""
+"Use this option to override the directory creation mask (0777 by default)."
+msgstr ""
+"Ezzel az opcióval felülírhatja a mappa létrehozási maszkot (alapból 0777)."
 
 msgid "Use this option to override the file creation mask (0666 by default)."
-msgstr "Ezzel az opcióval felülírhatja a fájl létrehozási maszkot (alapból 0666)."
+msgstr ""
+"Ezzel az opcióval felülírhatja a fájl létrehozási maszkot (alapból 0666)."
 
 msgid "Use this option to override the file creation mask (077 by default)."
-msgstr "Ezzel az opcióval felülírhatja a fájl létrehozási maszkot (alapból 077)."
+msgstr ""
+"Ezzel az opcióval felülírhatja a fájl létrehozási maszkot (alapból 077)."
 
-msgid "Use this option to override the username ('ftp' by default) which will be used for access to services which are specified as guest. Whatever privileges this user has will be available to any client connecting to the guest service. This user must exist in the password file, but does not require a valid login."
+msgid ""
+"Use this option to override the username ('ftp' by default) which will be "
+"used for access to services which are specified as guest. Whatever "
+"privileges this user has will be available to any client connecting to the "
+"guest service. This user must exist in the password file, but does not "
+"require a valid login."
 msgstr ""
 
 msgid "Used"
@@ -5450,13 +6069,23 @@ msgstr "Figyelmeztetés"
 
 #, php-format
 msgid "Warning: This can cause a huge delay in loading the %s log page!"
-msgstr "Figyelem, ez hatalmas késéseket eredményezhet a %s naplózó oldal betöltésében!"
+msgstr ""
+"Figyelem, ez hatalmas késéseket eredményezhet a %s naplózó oldal "
+"betöltésében!"
 
-msgid "Warning: You are going to delete a RAID volume. All data will get lost and can not be recovered."
-msgstr "Figyelem, Ön egy RAID kötet törlésére készül, minden adat véglegesen elveszlik."
+msgid ""
+"Warning: You are going to delete a RAID volume. All data will get lost and "
+"can not be recovered."
+msgstr ""
+"Figyelem, Ön egy RAID kötet törlésére készül, minden adat véglegesen "
+"elveszlik."
 
-msgid "Warning: You are going to delete an encrypted volume. All data will get lost and can not be recovered."
-msgstr "Figyelem, Ön egy titkosított kötet törlésére készül, minden adat véglegesen elveszlik."
+msgid ""
+"Warning: You are going to delete an encrypted volume. All data will get lost "
+"and can not be recovered."
+msgstr ""
+"Figyelem, Ön egy titkosított kötet törlésére készül, minden adat véglegesen "
+"elveszlik."
 
 msgid "Watch directory"
 msgstr "Figyelt könyvtár"
@@ -5476,13 +6105,17 @@ msgstr ""
 msgid "Week days"
 msgstr ""
 
-msgid "When a client initially connects to the server the ident protocol is used to attempt to identify the remote username."
+msgid ""
+"When a client initially connects to the server the ident protocol is used to "
+"attempt to identify the remote username."
 msgstr ""
 
 msgid "Where to save downloaded data."
 msgstr "Letöltött fájlok mentése ide"
 
-msgid "Whether scans should be skipped if there are no users connected. This allows the drive to spin down when no users are connected."
+msgid ""
+"Whether scans should be skipped if there are no users connected. This allows "
+"the drive to spin down when no users are connected."
 msgstr ""
 
 msgid "Who"
@@ -5497,7 +6130,9 @@ msgstr "Vezetéknélküli beállítások"
 msgid "Workgroup"
 msgstr "Munkacsoport"
 
-msgid "Workgroup the server will appear to be in when queried by clients (maximum 15 characters)."
+msgid ""
+"Workgroup the server will appear to be in when queried by clients (maximum "
+"15 characters)."
 msgstr ""
 
 msgid "Working directory"
@@ -5515,21 +6150,28 @@ msgstr "Hibás a partíció típusa vagy a partíció száma."
 msgid "Yes"
 msgstr "Igen"
 
-msgid "You can also install a package via SSH or console using the the pkg_add command.<br />Example: pkg_add -r packagename"
+msgid ""
+"You can also install a package via SSH or console using the the pkg_add "
+"command.<br />Example: pkg_add -r packagename"
 msgstr ""
 
 msgid "You can use the following parameters for substitution:"
 msgstr ""
 
 #, php-format
-msgid "You can't mount the partition '%s' where the config file is stored.<br />"
+msgid ""
+"You can't mount the partition '%s' where the config file is stored.<br />"
 msgstr ""
 
-msgid "You can't unmount a drive which is used by swap file, a iSCSI-target file or any other running process!"
+msgid ""
+"You can't unmount a drive which is used by swap file, a iSCSI-target file or "
+"any other running process!"
 msgstr ""
 
 #, php-format
-msgid "You have to activate <a href='%s'>Zeroconf/Bonjour</a> to advertise this service to clients."
+msgid ""
+"You have to activate <a href='%s'>Zeroconf/Bonjour</a> to advertise this "
+"service to clients."
 msgstr ""
 
 #, c-format
@@ -5540,7 +6182,9 @@ msgid "You may enter a description here for your reference."
 msgstr "Itt megadhatsz egy leírást a saját tájékoztatásodra."
 
 #, php-format
-msgid "You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII chars)"
+msgid ""
+"You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII "
+"chars)"
 msgstr ""
 
 #, php-format
@@ -5599,7 +6243,9 @@ msgstr ""
 msgid "ZFS volume properties"
 msgstr ""
 
-msgid "ZFS volume size. To specify the size use the following human-readable suffixes (for example, 'k', 'KB', 'M', 'Gb', etc.)."
+msgid ""
+"ZFS volume size. To specify the size use the following human-readable "
+"suffixes (for example, 'k', 'KB', 'M', 'Gb', etc.)."
 msgstr ""
 
 msgid "Zeroconf/Bonjour"
@@ -5738,4 +6384,3 @@ msgstr "leválasztás"
 
 msgid "upriv"
 msgstr ""
-
