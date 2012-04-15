@@ -38,11 +38,11 @@ lcdproc_mkconf()
 		-o 'ReportLevel=2' -n \
 		-o 'ReportToSyslog=false' -n \
 		-o 'PidFile=/var/run/lcdproc.pid' -n \
-		-m "//freenas/lcdproc/lcdproc/auxparam" \
+		-m "//nas4free/lcdproc/lcdproc/auxparam" \
 			-v "." -n \
 		-b \
 		-n \
-		-m "//freenas/lcdproc/lcdproc/param" \
+		-m "//nas4free/lcdproc/lcdproc/param" \
 			-v "." -n \
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc > ${lcdproc_conf}

@@ -5,7 +5,7 @@
  get_sysname(void)
  {
 +#if 1
-+	/* FreeNAS */
++	/* NAS4Free */
 +	static char buf[1024];
 +	char buf1[1024];
 +	FILE *fp;
@@ -31,7 +31,7 @@
  get_sysrelease(void)
  {
 +#if 1
-+	/* FreeNAS */
++	/* NAS4Free */
 +	static char buf[1024];
 +	char buf1[1024], buf2[1024];
 +	FILE *fp;
