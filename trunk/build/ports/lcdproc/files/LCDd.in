@@ -47,7 +47,7 @@ LCDd_mkconf()
 		-o 'NextScreenKey=Right' -n \
 		-o '#ScrollUpKey=Up' -n \
 		-o '#ScrollDownKey=Down' -n \
-		-m "//freenas/lcdproc/auxparam" \
+		-m "//nas4free/lcdproc/auxparam" \
 			-v "." -n \
 		-b \
 		-n \
@@ -60,7 +60,7 @@ LCDd_mkconf()
 		-o '#RightKey=Right' -n \
 		-n \
 		-v "concat('[', //lcdproc/driver,']')" -n \
-		-m "//freenas/lcdproc/param" \
+		-m "//nas4free/lcdproc/param" \
 			-v "." -n \
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc > ${LCDd_conf}
