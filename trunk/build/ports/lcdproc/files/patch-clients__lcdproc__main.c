@@ -1,5 +1,5 @@
---- ./clients/lcdproc/main.c.orig	2011-10-02 03:38:55.000000000 +0900
-+++ ./clients/lcdproc/main.c	2011-11-27 09:31:18.000000000 +0900
+--- ./clients/lcdproc/main.c.orig	2011-10-01 20:38:56.000000000 +0200
++++ ./clients/lcdproc/main.c	2012-04-15 17:18:09.000000000 +0200
 @@ -139,6 +139,25 @@
  const char *
  get_sysname(void)

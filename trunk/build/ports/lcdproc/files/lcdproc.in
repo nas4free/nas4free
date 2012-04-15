@@ -3,7 +3,7 @@
 
 # PROVIDE: lcdproc
 # REQUIRE: LCDd
-# XQUERY: -i "count(//freenas/lcdproc/lcdproc/enable) > 0" -o "0" -b
+# XQUERY: -i "count(//nas4free/lcdproc/lcdproc/enable) > 0" -o "0" -b
 # RCVAR: lcdproc
 
 . /etc/rc.subr

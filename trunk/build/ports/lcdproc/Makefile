@@ -3,7 +3,7 @@ PORTVERSION=	0.5.5
 CATEGORIES=		sysutils
 MASTER_SITES=	SF
 COMMENT=		A client/server suite for LCD devices
-MAINTAINER=		aoyama@peach.ne.jp
+MAINTAINER=		zoon01@nas4free.org
 
 USE_AUTOTOOLS=	autoconf automake aclocal
 GNU_CONFIGURE=	yes
