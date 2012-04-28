@@ -1,10 +1,10 @@
 PORTNAME=		netatalk
-PORTVERSION=	2.2.1
-PORTEPOCH=	1
+PORTVERSION=	2.2.2
+PORTEPOCH=	0
 CATEGORIES=		net print
 MASTER_SITES=	SF
 COMMENT=		File server for Mac OS X
-MAINTAINER=		aoyama@peach.ne.jp
+MAINTAINER=		zoon01@nas4free.org
 
 LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt
 
