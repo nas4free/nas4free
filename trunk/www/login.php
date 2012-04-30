@@ -102,7 +102,7 @@ $menu['info']['menuitem']['visible'] = FALSE;
 // IRC
 $menu['irc']['desc'] = gettext("IRC Live Support");
 $menu['irc']['visible'] = TRUE;
-$menu['irc']['link'] = "http://www.webchat.nas4free.org";
+$menu['irc']['link'] = "http://webchat.freenode.net/?channels=#nas4free";
 $menu['irc']['menuitem']['visible'] = FALSE;
 // Donate
 $menu['donate']['desc'] = gettext("Donate");
@@ -227,8 +227,8 @@ function display_menu($menuid) {
 	</ul>
 	<div style="clear:both"></div>
 </div>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br />
         <div id="loginpage">
             <table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0">
 				<tbody>
@@ -271,11 +271,8 @@ function display_menu($menuid) {
 				</tbody>
 			</table>
         </div>
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-        <hr style="width:90%" />
         <div id="pagefooter">
-			<span><a title="www.<?=get_product_url();?>" href="http://<?=get_product_url();?>" target="_blank"></a> <?=str_replace("Copyright (C)","&copy;",get_product_copyright());?></a></span>
+			<span><p><a title="www.<?=get_product_url();?>" href="http://<?=get_product_url();?>" target="_blank"></a> <?=str_replace("Copyright (C)","&copy;",get_product_copyright());?></a></p></span>
 		</div>
     </body>
 </html>

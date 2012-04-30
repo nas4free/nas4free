@@ -38,7 +38,7 @@ body, td, th, input, select {
 	font-size: 11px;
 }
 body {
-	background: #F7F7F7;
+	background: #D9DCE1;
 	margin: 0 auto;
 	padding: 0pt;
 	min-width: 700px;
@@ -261,7 +261,7 @@ a {
 }
 .tabcont {
 	background-color: #EEEEEE;
-	padding: 15px;
+	padding: 20px;
 	border: 1px solid #DEDBD1;
 }
 .label {
@@ -293,7 +293,10 @@ div#errorbox table tr td.message, div#warningbox table tr td.message {
 }
 div#header {
 	height: 80px;
+	width: 100%;
 	background: #171717 url("header_bg.png") top left no-repeat;
+	position: fixed;
+	top: 0;
 }
 div#headerlogo {
 	float: left;
@@ -319,12 +322,18 @@ div#headerrlogo .hostname {
 	margin-right: 25px;
 }
 div#pagefooter {
-	margin: 5px 0px 20px 0px;
+	margin: 0px 0px 0px 0px;
 	text-align: center;
+	background: url(navbar_default.gif);
+	height: 20px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 }
-div#pagefooter span {
-	font-size: 11px;
-	color: #777777;
+div#pagefooter span p {
+	font-size: 10px;
+	padding: 4px;
+	color: #FFFFFF;
 }
 div#pagefooter span a:link, div#pagefooter span a:active, div#pagefooter span a:visited {
 	color: #777777;
@@ -335,18 +344,18 @@ div#pagefooter span a:hover {
 div#loginfooter {
 	position: fixed;
 	bottom: 0;
-	margin: 5px 0px 20px 0px;
+	margin: 5px 0px 0px 0px;
 	text-align: center;
 }
 div#headernavbar {
 	width: 100%;
 	background: black url(navbar_default.gif) center center repeat-x;
+	position: fixed;
+	top: 78px;
 }
 div#pagecontent {
-	background: #FFFFFF url(gradient.gif) repeat-x scroll left top;
-	border: 1px solid #DEDBD1;
 	margin: 20px 25px 10px 25px;
-	padding: 0 15px 15px 15px;
+	padding: 110px 15px 15px 15px;
 }
 div#submit {
 	margin-top: 10px;
