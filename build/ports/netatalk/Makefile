@@ -24,6 +24,7 @@ CONFIGURE_ARGS+=	--bindir=/usr/local/bin \
 			--enable-largefile \
 			--disable-tcp-wrappers \
 			--disable-cups \
+			--disable-sendfile \
 			--with-pam=/etc/pam.d \
 			--with-uams-path=/etc/uams/ \
 			--with-libiconv=${LOCALBASE} \
