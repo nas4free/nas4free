@@ -1,6 +1,6 @@
 <?php
 
-// German Mimes Module for v2.3 (translated by the QuiX project)
+// German Mimes Module for v2.3.2
 
 $GLOBALS["mimes"]=array(
 	// dir, exe, file
@@ -46,6 +46,7 @@ $GLOBALS["mimes"]=array(
 	"wav"	=> "WAV Audio Datei",
 	"midi"	=> "MIDI Audio Datei",
 	"real"	=> "RealAudio Datei",
+	"flac"	=> "FLAC Audio Datei",
 	
 	// movie
 	"mpg"	=> "MPG Video Datei",

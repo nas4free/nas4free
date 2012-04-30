@@ -27,15 +27,11 @@
 ------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
 Author: The QuiX project
-	quix@free.fr
-	http://www.quix.tk
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
+	QuiXplorer Version 2.3.2
 	Directory-Listing Functions
-	
-	Have Fun...
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
 // HELPER FUNCTIONS (USED BY MAIN FUNCTION 'list_dir', SEE BOTTOM)
@@ -83,7 +79,7 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
 		if(!@file_exists($abs_new_item)) show_error($dir.": ".$GLOBALS["error_msg"]["readdir"]);
 		if(!get_show_item($dir, $new_item)) continue;
 		
-		$new_file_size = get_file_size($dir, $new_item);
+		$new_file_size = filesize($abs_new_item);
 		$tot_file_size += $new_file_size;
 		$num_items++;
 		
@@ -149,7 +145,10 @@ function print_table($dir, $list, $allow) {	// print table of files
 		if(is_dir($abs_item)) {
 			$link = make_link("list",get_rel_item($dir, $item),NULL);
 		} else { //if(get_is_editable($dir,$item) || get_is_image($dir,$item)) {
-			$link = $GLOBALS["home_url"]."/".get_rel_item($dir, $item);
+//?? CK Hier wird kuenftig immer mit dem download-Link gearbeitet, damit
+//?? CK die Leute links klicken koennen
+//?? CK			$link = $GLOBALS["home_url"]."/".get_rel_item($dir, $item);
+			$link = make_link("download", $dir, $item);
 			$target = "_blank";
 		} //else $link = "";
 		
@@ -157,16 +156,12 @@ function print_table($dir, $list, $allow) {	// print table of files
 		echo htmlspecialchars($item)."\" onclick=\"javascript:Toggle(this);\"></TD>\n";
 	// Icon + Link
 		echo "<TD nowrap>";
-		if (get_is_dir($dir, $item)) {
-		/*if($link!="") */ echo"<A HREF=\"".$link."\" TARGET=\"".$target."\">";
+		/*if($link!="") */ echo"<A HREF=\"" . $link . "\">";
 		//else echo "<A>";
-		}
 		echo "<IMG border=\"0\" width=\"16\" height=\"16\" ";
 		echo "align=\"ABSMIDDLE\" src=\"_img/".get_mime_type($dir, $item, "img")."\" ALT=\"\">&nbsp;";
 		$s_item=$item;	if(strlen($s_item)>50) $s_item=substr($s_item,0,47)."...";
-		echo htmlspecialchars($s_item);
-		if (get_is_dir($dir, $item)) echo "</A>";
-		echo "</TD>\n";	// ...$extra...
+		echo htmlspecialchars($s_item)."</A></TD>\n";	// ...$extra...
 	// Size
 		echo "<TD>".parse_file_size(get_file_size($dir,$item))."</TD>\n";
 	// Type
@@ -202,17 +197,17 @@ function print_table($dir, $list, $allow) {	// print table of files
 		}
 		// DOWNLOAD
 		if(get_is_file($dir,$item)) {
-			if($GLOBALS["display_file_download_icon"]) {
-				if($allow) {
-					echo "<TD><A HREF=\"".make_link("download",$dir,$item)."\">";
-					echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-					echo "src=\"_img/_download.gif\" ALT=\"".$GLOBALS["messages"]["downlink"];
-					echo "\" TITLE=\"".$GLOBALS["messages"]["downlink"]."\"></A></TD>\n";
-				} else if(!$allow) {
-					echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-					echo "src=\"_img/_download_.gif\" ALT=\"".$GLOBALS["messages"]["downlink"];
-					echo "\" TITLE=\"".$GLOBALS["messages"]["downlink"]."\"></TD>\n";
-				}
+			if ($allow
+			|| (($GLOBALS["permissions"] & 16) == 16))
+			{
+				echo "<TD><A HREF=\"".make_link("download",$dir,$item)."\">";
+				echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
+				echo "src=\"_img/_download.gif\" ALT=\"".$GLOBALS["messages"]["downlink"];
+				echo "\" TITLE=\"".$GLOBALS["messages"]["downlink"]."\"></A></TD>\n";
+			} else if(!$allow) {
+				echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
+				echo "src=\"_img/_download_.gif\" ALT=\"".$GLOBALS["messages"]["downlink"];
+				echo "\" TITLE=\"".$GLOBALS["messages"]["downlink"]."\"></TD>\n";
 			}
 		} else {
 			echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
@@ -230,7 +225,7 @@ function list_dir($dir) {			// list directory contents
 	$dir_up = dirname($dir);
 	if($dir_up==".") $dir_up = "";
 	
-	if(!get_show_item($dir_up,base_name($dir))) show_error($dir." : ".$GLOBALS["error_msg"]["accessdir"]);
+	if(!get_show_item($dir_up,basename($dir))) show_error($dir." : ".$GLOBALS["error_msg"]["accessdir"]);
 	
 	// make file & dir tables, & get total filesize & number of items
 	make_tables($dir, $dir_list, $file_list, $tot_file_size, $num_items);
@@ -270,8 +265,6 @@ function list_dir($dir) {			// list directory contents
 	echo "ALT=\"".$GLOBALS["messages"]["searchlink"]."\" TITLE=\"".$GLOBALS["messages"]["searchlink"];
 	echo "\"></A></TD>\n";
 	
-	echo "<TD>::</TD>";
-	
 	if($allow) {
 		// COPY
 		echo "<TD><A HREF=\"javascript:Copy();\"><IMG border=\"0\" width=\"16\" height=\"16\" ";
@@ -286,17 +279,15 @@ function list_dir($dir) {			// list directory contents
 		echo "align=\"ABSMIDDLE\" src=\"_img/_delete.gif\" ALT=\"".$GLOBALS["messages"]["dellink"];
 		echo "\" TITLE=\"".$GLOBALS["messages"]["dellink"]."\"></A></TD>\n";
 		// UPLOAD
-		if($GLOBALS["display_file_upload_icon"]) {
-			if(get_cfg_var("file_uploads")) {
-				echo "<TD><A HREF=\"".make_link("upload",$dir,NULL)."\">";
-				echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-				echo "src=\"_img/_upload.gif\" ALT=\"".$GLOBALS["messages"]["uploadlink"];
-				echo "\" TITLE=\"".$GLOBALS["messages"]["uploadlink"]."\"></A></TD>\n";
-			} else {
-				echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-				echo "src=\"_img/_upload_.gif\" ALT=\"".$GLOBALS["messages"]["uploadlink"];
-				echo "\" TITLE=\"".$GLOBALS["messages"]["uploadlink"]."\"></TD>\n";
-			}
+		if(get_cfg_var("file_uploads")) {
+			echo "<TD><A HREF=\"".make_link("upload",$dir,NULL)."\">";
+			echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
+			echo "src=\"_img/_upload.gif\" ALT=\"".$GLOBALS["messages"]["uploadlink"];
+			echo "\" TITLE=\"".$GLOBALS["messages"]["uploadlink"]."\"></A></TD>\n";
+		} else {
+			echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
+			echo "src=\"_img/_upload_.gif\" ALT=\"".$GLOBALS["messages"]["uploadlink"];
+			echo "\" TITLE=\"".$GLOBALS["messages"]["uploadlink"]."\"></TD>\n";
 		}
 		// ARCHIVE
 		if($GLOBALS["zip"] || $GLOBALS["tar"] || $GLOBALS["tgz"]) {
@@ -325,7 +316,6 @@ function list_dir($dir) {			// list directory contents
 	
 	// ADMIN & LOGOUT
 	if($GLOBALS["require_login"]) {
-		echo "<TD>::</TD>";
 		// ADMIN
 		if($admin) {
 			echo "<TD><A HREF=\"".make_link("admin",$dir,NULL)."\">";

@@ -27,15 +27,11 @@
 ------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
 Author: The QuiX project
-	quix@free.fr
-	http://www.quix.tk
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
+	QuiXplorer Version 2.3.2
 	Zip, Tar & Gzip Functions
-	
-	Have Fun...
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
 if($GLOBALS["zip"]) include("./_lib/lib_zip.php");
@@ -73,7 +69,7 @@ function archive_items($dir) {
 	if(!$GLOBALS["zip"] && !$GLOBALS["tar"] && !$GLOBALS["tgz"]) show_error($GLOBALS["error_msg"]["miscnofunc"]);
 	
 	if(isset($GLOBALS['__POST']["name"])) {
-		$name=base_name(stripslashes($GLOBALS['__POST']["name"]));
+		$name=basename(stripslashes($GLOBALS['__POST']["name"]));
 		if($name=="") show_error($GLOBALS["error_msg"]["miscnoname"]);
 		switch($GLOBALS['__POST']["type"]) {
 			case "zip":	zip_items($dir,$name);	break;

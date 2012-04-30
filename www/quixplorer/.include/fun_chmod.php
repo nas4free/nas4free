@@ -27,15 +27,11 @@
 ------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
 Author: The QuiX project
-	quix@free.fr
-	http://www.quix.tk
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
+	QuiXplorer Version 2.3.2
 	Permission-Change Functions
-	
-	Have Fun...
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
 function chmod_item($dir, $item) {		// change permissions

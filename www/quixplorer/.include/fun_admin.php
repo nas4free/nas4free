@@ -27,15 +27,11 @@
 ------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
 Author: The QuiX project
-	quix@free.fr
-	http://www.quix.tk
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
+	QuiXplorer Version 2.3.2
 	Administrative Functions
-	
-	Have Fun...
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
 function admin($admin, $dir) {			// Change Password & Manage Users Form
@@ -159,7 +155,7 @@ function adduser($dir) {			// Add User
 	echo "<TR><TD>".$GLOBALS["messages"]["mischidepattern"].":</TD>\n";
 		echo "<TD align=\"right\"><INPUT type=\"text\" name=\"no_access\" size=\"30\" value=\"^\\.ht\"></TD></TR>\n";
 	echo "<TR><TD>".$GLOBALS["messages"]["miscperms"].":</TD><TD align=\"right\"><SELECT name=\"permissions\">\n";
-		$permvalues = array(0,1,2,3,7);
+		$permvalues = array(0,1,2,3,7,16);
 		for($i=0;$i<count($GLOBALS["messages"]["miscpermnames"]);++$i) {
 			echo "<OPTION value=\"".$permvalues[$i]."\">";
 			echo $GLOBALS["messages"]["miscpermnames"][$i]."</OPTION>\n";
@@ -245,7 +241,7 @@ function edituser($dir) {			// Edit User
 		echo "<TD align=\"right\"><INPUT type=\"text\" name=\"no_access\" size=\"30\" value=\"";
 		echo $data[5]."\"></TD></TR>\n";
 	echo "<TR><TD>".$GLOBALS["messages"]["miscperms"].":</TD><TD align=\"right\"><SELECT name=\"permissions\">\n";
-		$permvalues = array(0,1,2,3,7);
+		$permvalues = array(0,1,2,3,7,16);
 		for($i=0;$i<count($GLOBALS["messages"]["miscpermnames"]);++$i) {
 			echo "<OPTION value=\"".$permvalues[$i]."\"".($permvalues[$i]==$data[6]?" selected ":"").">";
 			echo $GLOBALS["messages"]["miscpermnames"][$i]."</OPTION>\n";

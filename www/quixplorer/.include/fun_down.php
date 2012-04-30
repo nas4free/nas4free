@@ -27,22 +27,21 @@
 ------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
 Author: The QuiX project
-	quix@free.fr
-	http://www.quix.tk
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
+	QuiXplorer Version 2.3.2
 	File-Download Functions
-	
-	Have Fun...
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
 function download_item($dir, $item) {		// download file
 	// Security Fix:
-	$item=base_name($item);
+	$item=basename($item);
 
-	if(($GLOBALS["permissions"]&01)!=01) show_error($GLOBALS["error_msg"]["accessfunc"]);
+	if ((($GLOBALS["permissions"] & 01) != 01)
+	&& (($GLOBALS["permissions"] & 16) != 16))
+		show_error($GLOBALS["error_msg"]["accessfunc"] . $GLOBALS["permissions"]);
+	
 	if(!get_is_file($dir,$item)) show_error($item.": ".$GLOBALS["error_msg"]["fileexist"]);
 	if(!get_show_item($dir, $item)) show_error($item.": ".$GLOBALS["error_msg"]["accessfile"]);
 	
@@ -52,8 +51,7 @@ function download_item($dir, $item) {		// download file
 		'application/octetstream':'application/octet-stream'));
 	header('Expires: '.gmdate('D, d M Y H:i:s').' GMT');
 	header('Content-Transfer-Encoding: binary');
-	header('Content-Length: '.get_file_size($dir,$item));
-	header('Content-Description: File Download');
+	header('Content-Length: '.filesize($abs_item));
 	if($browser=='IE') {
 		header('Content-Disposition: attachment; filename="'.$item.'"');
 		header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
@@ -64,18 +62,7 @@ function download_item($dir, $item) {		// download file
 		header('Pragma: no-cache');
 	}
 	
-	//@readfile($abs_item);
-	
-	flush();
-	$fp = popen("tail -c " . get_file_size($dir,$item) . " {$abs_item} 2>&1", "r");
-	while (!feof($fp)) {
-		// Send the current file part to the browser.
-		print fread($fp, 1024);
-		// Flush the content to the browser.
-		flush();
-	}
-	fclose($fp);
-	
+	@readfile($abs_item);
 	exit;
 }
 //------------------------------------------------------------------------------

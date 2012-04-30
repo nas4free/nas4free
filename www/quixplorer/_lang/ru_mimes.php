@@ -1,8 +1,6 @@
 <?php
 
-// Russian Mimes Module (translated by Mikhail M. Pigulsky - mikhail@mikhail.pp.ru)
-// Reviewed by Alexey P. Sannikov 
-// QuiXplorer Version 2.3.2
+// Russian Mimes Module for v2.3.2
 
 $GLOBALS["mimes"]=array(
       // dir, exe, file
@@ -48,6 +46,7 @@ $GLOBALS["mimes"]=array(
       "wav"       => "Файл WAV",
       "midi"      => "Файл MIDI",
       "real"      => "Файл RealAudio",
+      "flac"       => "Файл FLAC",
       
       // movie
       "mpg"       => "Видеофайл MPG",

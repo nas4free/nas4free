@@ -27,15 +27,11 @@
 ------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
 Author: The QuiX project
-	quix@free.fr
-	http://www.quix.tk
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
+	QuiXplorer Version 2.3.2
 	Make Dir/File Functions
-	
-	Have Fun...
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
 function make_item($dir) {		// make new directory or file
@@ -44,7 +40,7 @@ function make_item($dir) {		// make new directory or file
 	$mkname=$GLOBALS['__POST']["mkname"];
 	$mktype=$GLOBALS['__POST']["mktype"];
 	
-	$mkname=base_name(stripslashes($mkname));
+	$mkname=basename(stripslashes($mkname));
 	if($mkname=="") show_error($GLOBALS["error_msg"]["miscnoname"]);
 	
 	$new = get_abs_item($dir,$mkname);

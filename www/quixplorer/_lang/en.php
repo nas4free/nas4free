@@ -1,6 +1,6 @@
 <?php
 
-// English Language Module for v2.3 (translated by the QuiX project)
+// English Language Module for v2.3.2
 
 $GLOBALS["charset"] = "iso-8859-1";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)

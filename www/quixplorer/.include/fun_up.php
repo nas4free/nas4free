@@ -27,15 +27,11 @@
 ------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
 Author: The QuiX project
-	quix@free.fr
-	http://www.quix.tk
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
+	QuiXplorer Version 2.3.2
 	File-Upload Functions
-	
-	Have Fun...
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
 function upload_items($dir) {		// upload file
@@ -78,7 +74,7 @@ function upload_items($dir) {		// upload file
 			if(function_exists("move_uploaded_file")) {
 				$ok = @move_uploaded_file($tmp, $abs);
 			} else {
-				$ok = @copy_file($tmp, $abs);
+				$ok = @copy($tmp, $abs);
 				@unlink($tmp);	// try to delete...
 			}
 			

@@ -27,21 +27,16 @@
 ------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
 Author: The QuiX project
-	quix@free.fr
-	http://www.quix.tk
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
+	QuiXplorer Version 2.3.2
 	Footer File
-	
-	Have Fun...
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
 function show_footer() {			// footer for html-page
-	echo"\n<HR><SMALL><A class=\"title\" href=\"http://quixplorer.sourceforge.net\" target=\"_blank\">";
-	echo "QuiXplorer ".$GLOBALS["version"]."</A> - ";
-	echo "<A href=\"http://quix.tk\" target=\"_blank\">the QuiX project</A></SMALL>";
+	echo"\n<HR><SMALL>NAS4Free File Manager: <A class=\"title\"href=\"http://quixplorer.sourceforge.net\"target=\"_blank\">";
+	echo "QuiXplorer";
 	echo "</center></BODY>\n</HTML>";
 }
 //------------------------------------------------------------------------------

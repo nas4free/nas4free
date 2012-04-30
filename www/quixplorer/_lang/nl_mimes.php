@@ -4,7 +4,7 @@
 
 $GLOBALS["mimes"]=array(
 	// dir, exe, file
-	"dir"	=> "Map",
+	"dir"	=> "Folder",
 	"exe"	=> "Programma",
 	"file"	=> "Bestand",
 
@@ -46,6 +46,7 @@ $GLOBALS["mimes"]=array(
 	"wav"	=> "WAV Audio Bestand",
 	"midi"	=> "MIDI Audio Bestand",
 	"real"	=> "RealAudio Bestand",
+	"flac"	=> "FLAC Audio Bestand",
 	
 	// movie
 	"mpg"	=> "MPG Video Bestand",

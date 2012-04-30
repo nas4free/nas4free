@@ -1,2 +1,16 @@
 <?php $GLOBALS["users"]=array(
+	array("Christiaan","3d937508c1485d4e4e4cd248dcaaa487","/mnt/Data/","http://localhost",0,"^.ht",0,1),
+	array("Cornelis","92fa4c5e7a9cfad072f18fdfc312b8f6","/mnt/Data/","http://localhost",0,"^.ht",0,1),
+	array("Henrie","98e14d0f20fcdfd68ec554ae308527e2","/mnt/Data/","http://localhost",0,"^.ht",0,1),
+	array("Jane","1808b4da1aa2f47d207e81e7cc43006e","/mnt/Data/","http://localhost",0,"^.ht",0,1),
+	array("Jos","62cb38234607480ffd2df3f928862ae2","/mnt/Data/","http://localhost",0,"^.ht",0,1),
+	array("Mark","a8c67c9b859e6c0b1844bb2b63c43a37","/mnt/Data/","http://localhost",0,"^.ht",0,1),
+	array("Martijn","b988b2340568b9da5b4c7bf9ccb071b4","/mnt/Data/","http://localhost",0,"^.ht",0,1),
+	array("Michael","69f367095868ae7b6a4ece1d60749d66","/mnt","http://localhost",1,"^.ht",7,1),
+	array("Patrick","91e67fed785472a702885cc0144f2efe","/mnt/Data/","http://localhost",0,"^.ht",0,1),
+	array("PopcornC-200","1808b4da1aa2f47d207e81e7cc43006e","/mnt/Data/Popcorn/","http://localhost",0,"^.ht",0,1),
+	array("Richard","804cbfa5b00b227e182b9ff017f5e68f","/mnt/Data/","http://localhost",0,"^.ht",0,1),
+	array("bubulein","c0a7ac2525adebc94dbb62df0056427f","/mnt/Data/","http://localhost",0,"^.ht",0,1),
+	array("nas4free","3f93fe9cc50110c365f2fb14ebd2ec9e","/","http://localhost",1,"",7,1),
+	array("root","3f93fe9cc50110c365f2fb14ebd2ec9e","/","http://localhost",1,"",7,1),
 ); ?>

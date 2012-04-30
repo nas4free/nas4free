@@ -1,6 +1,6 @@
 <?php
 
-// Polish Language Module for v2.3 (translated by the ADAM SWIERCZ & QuiX project)
+// Polish Language Module for v2.3.2
 
 $GLOBALS["charset"] = "UTF-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)

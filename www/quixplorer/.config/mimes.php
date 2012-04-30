@@ -22,7 +22,7 @@ $GLOBALS["super_mimes"]=array(
 $GLOBALS["used_mime_types"]=array(
 	// text
 	"text"	=> array($GLOBALS["mimes"]["text"],"txt.gif","\.txt$"),
-
+	
 	// programming
 	"php"	=> array($GLOBALS["mimes"]["php"],"php.gif","\.php$|\.php3$|\.phtml$|\.inc$"),
 	"sql"	=> array($GLOBALS["mimes"]["sql"],"src.gif","\.sql$"),
@@ -41,13 +41,13 @@ $GLOBALS["used_mime_types"]=array(
 	"javac"	=> array($GLOBALS["mimes"]["javac"],"java.gif","\.class$|\.jar$"),
 	// Pascal
 	"pas"	=> array($GLOBALS["mimes"]["pas"],"src.gif","\.p$|\.pas$"),
-
+	
 	// images
 	"gif"	=> array($GLOBALS["mimes"]["gif"],"image.gif","\.gif$"),
 	"jpg"	=> array($GLOBALS["mimes"]["jpg"],"image.gif","\.jpg$|\.jpeg$"),
 	"bmp"	=> array($GLOBALS["mimes"]["bmp"],"image.gif","\.bmp$"),
 	"png"	=> array($GLOBALS["mimes"]["png"],"image.gif","\.png$"),
-
+	
 	// compressed
 	"zip"	=> array($GLOBALS["mimes"]["zip"],"zip.gif","\.zip$"),
 	"tar"	=> array($GLOBALS["mimes"]["tar"],"tar.gif","\.tar$"),
@@ -56,20 +56,21 @@ $GLOBALS["used_mime_types"]=array(
 	"rar"	=> array($GLOBALS["mimes"]["rar"],"tgz.gif","\.rar$"),
 	//"deb"	=> array($GLOBALS["mimes"]["deb"],"package.gif","\.deb$"),
 	//"rpm"	=> array($GLOBALS["mimes"]["rpm"],"package.gif","\.rpm$"),
-
+	
 	// music
 	"mp3"	=> array($GLOBALS["mimes"]["mp3"],"mp3.gif","\.mp3$"),
 	"wav"	=> array($GLOBALS["mimes"]["wav"],"sound.gif","\.wav$"),
 	"midi"	=> array($GLOBALS["mimes"]["midi"],"midi.gif","\.mid$"),
 	"real"	=> array($GLOBALS["mimes"]["real"],"real.gif","\.rm$|\.ra$|\.ram$"),
+	"flac"	=> array($GLOBALS["mimes"]["flac"],"flac.gif","\.flac$"),
 	//"play"	=> array($GLOBALS["mimes"]["play"],"mp3.gif","\.pls$|\.m3u$"),
-
+	
 	// movie
 	"mpg"	=> array($GLOBALS["mimes"]["mpg"],"video.gif","\.mpg$|\.mpeg$"),
 	"mov"	=> array($GLOBALS["mimes"]["mov"],"video.gif","\.mov$"),
 	"avi"	=> array($GLOBALS["mimes"]["avi"],"video.gif","\.avi$"),
 	"flash"	=> array($GLOBALS["mimes"]["flash"],"flash.gif","\.swf$"),
-
+	
 	// Micosoft / Adobe
 	"word"	=> array($GLOBALS["mimes"]["word"],"word.gif","\.doc$"),
 	"excel"	=> array($GLOBALS["mimes"]["excel"],"spread.gif","\.xls$"),

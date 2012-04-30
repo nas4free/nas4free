@@ -1,6 +1,6 @@
 <?php
 
-// Italian Mimes Module for v2.3 (translated by misterredman)
+// Italian Mimes Module for v2.3.2
 
 $GLOBALS["mimes"]=array(
 	// dir, exe, file
@@ -46,6 +46,7 @@ $GLOBALS["mimes"]=array(
 	"wav"	=> "File audio WAV",
 	"midi"	=> "File audio MIDI",
 	"real"	=> "File RealAudio",
+	"flac"	=> "File audio FLAC",
 	
 	// movie
 	"mpg"	=> "File video MPG",
