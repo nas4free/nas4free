@@ -101,5 +101,8 @@ $a_phy_disk = array_merge((array)get_physical_disks_list());
 				</table>
 			</td>
 		</tr>
-	</table>
+	  </table>
+    </td>
+  </tr>
+</table>
 <?php include("fend.inc");?>
