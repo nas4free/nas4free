@@ -55,14 +55,8 @@ td.tabnavtbl a {
 }
 td.tabnavtbl a:hover {
 }
-td.tabnavtbl a:visited, td.tabnavtbl a:link {
-	color: white;
-}
-td.tabnavtbl a:active, td.tabnavtbl a:hover {
-	color: black;
-}
 td.tabnavtbl span {
-	color: white;
+	color: grey;
 	float: left;
 	display: block;
 	background: #FFFFFF url("navbar_default.gif") repeat-x scroll left top;
@@ -84,12 +78,10 @@ td.tabnavtbl span {
 td.tabnavtbl a:hover span {
 	color: black;
 	background: #FFFFFF url("navbar_active.gif") repeat-x scroll left top;
-	border: 1px solid #DEDBD1;
 }
 td.tabnavtbl li.tabact a {
 }
 td.tabnavtbl li.tabact span {
-	background: #FFFFFF url("navbar_active.gif") repeat-x scroll left top;
-	color: black;
-	border: 1px solid #DEDBD1;
+	background: #FFFFFF url("navbar_default.gif") repeat-x scroll left top;
+	color: white;
 }
