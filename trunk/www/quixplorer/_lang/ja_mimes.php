@@ -1,6 +1,6 @@
 <?php
 
-// Japanese Mimes Module for v2.3 (translated by Daisuke Aoyama)
+// Japanese Mimes Module for v2.3.2
 
 $GLOBALS["mimes"]=array(
 	// dir, exe, file
@@ -46,6 +46,7 @@ $GLOBALS["mimes"]=array(
 	"wav"	=> "WAV オーディオファイル",
 	"midi"	=> "MIDI オーディオファイル",
 	"real"	=> "RealAudio ファイル",
+	"flac"	=> "FLAC オーディオファイル",
 	
 	// movie
 	"mpg"	=> "MPG ビデオファイル",

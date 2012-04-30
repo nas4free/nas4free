@@ -1,6 +1,6 @@
 <?php
 
-// French Mimes Module for v2.3 (translated by Olivier Pariseau)
+// French Mimes Module for v2.3.2
 
 $GLOBALS["mimes"]=array(
 	// dir, exe, file
@@ -46,6 +46,7 @@ $GLOBALS["mimes"]=array(
 	"wav"	=> "Fichier audio WAV",
 	"midi"	=> "Fichier audio MIDI",
 	"real"	=> "Fichier RealAudio",
+	"flac"	=> "Fichier audio FLAC",
 	
 	// movie
 	"mpg"	=> "Fichier vidéo MPG",

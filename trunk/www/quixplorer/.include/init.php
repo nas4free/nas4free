@@ -27,15 +27,11 @@
 ------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
 Author: The QuiX project
-	quix@free.fr
-	http://www.quix.tk
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
+	QuiXplorer Version 2.3.2
 	Main File
-	
-	Have Fun...
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
 // Vars
@@ -78,20 +74,26 @@ if(isset($GLOBALS['__GET']["srt"])) $GLOBALS["srt"]=stripslashes($GLOBALS['__GET
 else $GLOBALS["srt"]="yes";
 if($GLOBALS["srt"]=="") $GLOBALS["srt"]=="yes";
 // Get Language
-if(isset($GLOBALS['__GET']["lang"])) $GLOBALS["lang"]=$GLOBALS['__GET']["lang"];
-elseif(isset($GLOBALS['__POST']["lang"])) $GLOBALS["lang"]=$GLOBALS['__POST']["lang"];
+if(isset($GLOBALS['__GET']["lang"])) $GLOBALS["lang"]=basename($GLOBALS['__GET']["lang"]);
+elseif(isset($GLOBALS['__POST']["lang"])) $GLOBALS["lang"]=basename($GLOBALS['__POST']["lang"]); 
 //------------------------------------------------------------------------------
 // Necessary files
 ob_start(); // prevent unwanted output
 require "./.config/conf.php";
 if(isset($GLOBALS["lang"])) $GLOBALS["language"]=$GLOBALS["lang"];
-require "./_lang/".$GLOBALS["language"].".php";
-require "./_lang/".$GLOBALS["language"]."_mimes.php";
+if(file_exists("./_lang/".$GLOBALS["language"].".php")) require "./_lang/".$GLOBALS["language"].".php";
+else require "./_lang/en.php";
+if(file_exists("./_lang/".$GLOBALS["language"]."_mimes.php")) require "./_lang/".$GLOBALS["language"]."_mimes.php";
+else require "./_lang/en_mimes.php"; 
 require "./.config/mimes.php";
 require "./.include/fun_extra.php";
 require "./.include/header.php";
 require "./.include/footer.php";
 require "./.include/error.php";
+$tmp_msg = $GLOBALS["login_prompt"][$GLOBALS["language"]];
+if (isset($tmp_msg))
+	$GLOBALS["messages"]["actloginheader"] = $tmp_msg;
+
 ob_end_clean(); // get rid of cached unwanted output
 //------------------------------------------------------------------------------
 if($GLOBALS["require_login"]) {	// LOGIN

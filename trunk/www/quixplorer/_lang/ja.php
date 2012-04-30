@@ -1,6 +1,6 @@
 <?php
 
-// Japanese Language Module for v2.3 (translated by Daisuke Aoyama)
+// Japanese Language Module for v2.3.2
 
 $GLOBALS["charset"] = "utf-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)

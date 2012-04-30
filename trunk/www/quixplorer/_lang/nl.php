@@ -2,7 +2,7 @@
 
 // Dutch Language Module for v2.3 (translated by Michael Zoon & the QuiX project)
 
-$GLOBALS["charset"] = "UTF-8";
+$GLOBALS["charset"] = "iso-8859-1";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "d-m-Y H:i";
 $GLOBALS["error_msg"] = array(
@@ -74,7 +74,7 @@ $GLOBALS["messages"] = array(
 	"editlink"		=> "BEWERKEN",
 	"downlink"		=> "DOWNLOADEN",
 	"uplink"		=> "TERUG",
-	"homelink"		=> "HOOFDMAP",
+	"homelink"		=> "HOOFDFOLDER",
 	"reloadlink"		=> "VERNIEUWEN",
 	"copylink"		=> "KOPIËREN",
 	"movelink"		=> "VERPLAATSEN",
@@ -106,6 +106,7 @@ $GLOBALS["messages"] = array(
 	"btncopy"		=> "Kopiëren",
 	"btnmove"		=> "Verplaatsen",
 	"btnlogin"		=> "Aanmelden",
+
 	"btnlogout"		=> "Afmelden",
 	"btnadd"		=> "Toevoegen",
 	"btnedit"		=> "Bewerken",

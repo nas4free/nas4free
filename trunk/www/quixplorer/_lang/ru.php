@@ -1,8 +1,6 @@
 <?php
 
-// Russian Language Module (translated by Mikhail M. Pigulsky - mikhail@mikhail.pp.ru)
-// Reviewed by Alexey P. Sannikov 
-// QuiXplorer Version 2.3.2
+// Russian Language Module for v2.3.2
 
 $GLOBALS["charset"] = "utf-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)

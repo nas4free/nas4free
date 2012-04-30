@@ -1,6 +1,6 @@
 <?php
 
-// Polish Mimes Module for v2.3 (translated by the Adam Swiercz & QuiX project)
+// Polish Mimes Module for v2.3.2
 
 $GLOBALS["mimes"]=array(
 	// dir, exe, file
@@ -46,6 +46,7 @@ $GLOBALS["mimes"]=array(
 	"wav"	=> "Plik WAV Audio",
 	"midi"	=> "Plik MIDI Audio",
 	"real"	=> "Plik RealAudio",
+	"flac"	=> "Plik FLAC Audio",
 	
 	// movie
 	"mpg"	=> "Plik MPG Video",

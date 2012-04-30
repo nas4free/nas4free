@@ -1,5 +1,5 @@
 body, .rowdata {
-	background-color: #EAECEE;
+	background-color: #D9DCE1;
 }
 
 body, td, input, textarea, select {
@@ -9,25 +9,24 @@ body, td, input, textarea, select {
 }
 
 .rowdatasel {
-	background-color: #D8E1EB;
+	background-color: #F2F2C6;
 }
 
 td {
-	vertical-align: top;
+	vertical-align: center;
 }
 
 td.header {
-	background-color: #DDDDDD;
+	background-image: url(./tablebg.png);
 	vertical-align: middle;
 }
 
 td.title {
 	background-repeat: repeat-x;
-	background-image: url(./tablebg.gif);
+	background-image: url(./navbar.gif);
 	font-weight: bold;
 	font-size: 13;
-	border-top: solid 1px #000000;
-	border-bottom: solid 1px #000000;
+       color: #FFFFFF;
 }
 
 small {

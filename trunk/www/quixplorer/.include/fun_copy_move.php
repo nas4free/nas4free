@@ -27,15 +27,11 @@
 ------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
 Author: The QuiX project
-	quix@free.fr
-	http://www.quix.tk
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
+	QuiXplorer Version 2.3.2
 	File/Directory Copy & Move Functions
-	
-	Have Fun...
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
 function dir_list($dir) {			// make list of directories
@@ -178,7 +174,7 @@ function copy_move_items($dir) {		// copy/move file/dir
 	$err=false;
 	for($i=0;$i<$cnt;++$i) {
 		$tmp = stripslashes($GLOBALS['__POST']["selitems"][$i]);
-		$new = base_name(stripslashes($GLOBALS['__POST']["newitems"][$i]));
+		$new = basename(stripslashes($GLOBALS['__POST']["newitems"][$i]));
 		$abs_item = get_abs_item($dir,$tmp);
 		$abs_new_item = get_abs_item($new_dir,$new);
 		$items[$i] = $tmp;
@@ -205,7 +201,7 @@ function copy_move_items($dir) {		// copy/move file/dir
 		if($GLOBALS["action"]=="copy") {
 			if(@is_link($abs_item) || @is_file($abs_item)) {
 				// check file-exists to avoid error with 0-size files (PHP 4.3.0)
-				$ok=@copy_file($abs_item,$abs_new_item);	//||@file_exists($abs_new_item);
+				$ok=@copy($abs_item,$abs_new_item);	//||@file_exists($abs_new_item);
 			} elseif(@is_dir($abs_item)) {
 				$ok=copy_dir($abs_item,$abs_new_item);
 			}

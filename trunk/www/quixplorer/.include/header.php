@@ -27,15 +27,11 @@
 ------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------
 Author: The QuiX project
-	quix@free.fr
-	http://www.quix.tk
 	http://quixplorer.sourceforge.net
 
 Comment:
-	QuiXplorer Version 2.3
+	QuiXplorer Version 2.3.2
 	Header File
-	
-	Have Fun...
 -------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
 function show_header($title) {			// header for html-page
@@ -53,7 +49,7 @@ function show_header($title) {			// header for html-page
 		echo "<HTML lang=\"".$GLOBALS["language"]."\" dir=\"".$GLOBALS["text_dir"]."\">\n";
 	}
 	echo "<HEAD>\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=".$GLOBALS["charset"]."\">\n";
-	echo "<title>QuiXplorer ".$GLOBALS["version"]." - the QuiX project</title>\n";
+	echo "<title>File Manager"."</title>\n";
 	echo "<LINK href=\"_style/style.css\" rel=\"stylesheet\" type=\"text/css\">\n";
 	echo "</HEAD>\n<BODY><center>\n<table border=\"0\" width=\"100%\" cellspacing=\"0\" cellpadding=\"5\"><tbody>\n";
 	echo "<tr><td class=\"title\">";
