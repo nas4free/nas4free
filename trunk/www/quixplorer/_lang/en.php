@@ -36,6 +36,7 @@ $GLOBALS["error_msg"] = array(
 	"accesstarget"		=> "You are not allowed to access the target directory.",
 	
 	// actions
+	"chmod_not_allowed" => 'Changing Permissions to NONE is not allowed!',
 	"permread"		=> "Getting permissions failed.",
 	"permchange"		=> "Permission-change failed.",
 	"openfile"		=> "File opening failed.",

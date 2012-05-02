@@ -36,6 +36,7 @@ $GLOBALS["error_msg"] = array(
 	"accesstarget"		=> "指定されたディレクトリへのアクセスが許可されていません。",
 	
 	// actions
+	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
 	"permread"		=> "権限の取得ができません。",
 	"permchange"		=> "権限の変更ができません。",
 	"openfile"		=> "ファイルのオープンができません。",

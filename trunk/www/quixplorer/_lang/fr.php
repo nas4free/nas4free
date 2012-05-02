@@ -36,6 +36,7 @@ $GLOBALS["error_msg"] = array(
 	"accesstarget"		=> "Vous n'etes pas autorisé a accéder au repertoire cible.",
 	
 	// actions
+	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
 	"permread"		=> "Lecture des permissions échouée.",
 	"permchange"		=> "Changement des permissions échoué.",
 	"openfile"		=> "Ouverture du fichier échouée.",

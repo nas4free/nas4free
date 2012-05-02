@@ -36,6 +36,7 @@ $GLOBALS["error_msg"] = array(
 	"accesstarget"		=> "Zugriff auf das Zielverzeichnis verweigert.",
 	
 	// actions
+	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
 	"permread"		=> "Rechte lesen fehlgeschlagen.",
 	"permchange"		=> "Rechte ändern fehlgeschlagen.",
 	"openfile"		=> "Datei öffnen fehlgeschlagen.",

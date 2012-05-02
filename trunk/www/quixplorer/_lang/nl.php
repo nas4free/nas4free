@@ -36,6 +36,7 @@ $GLOBALS["error_msg"] = array(
 	"accesstarget"	=> "U heeft geen toegang tot de doel.",
 	
 	// actions
+	"chmod_not_allowed"  => 'Veranderen Rechten naar GEEN is niet toegestaan!',
 	"permread"		=> "Rechten opvragen is mislukt.",
 	"permchange"		=> "Het wijzigen van rechten is mislukt.",
 	"openfile"		=> "Het Bestand openen is mislukt.",

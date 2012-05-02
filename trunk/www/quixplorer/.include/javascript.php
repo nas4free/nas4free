@@ -1,3 +1,5 @@
+<?php
+?>
 <script language="JavaScript1.2" type="text/javascript">
 <!--
 	// Checkboxes
@@ -107,6 +109,15 @@
 			return;
 		}
 		document.selform.do_action.value = "move";
+		document.selform.submit();
+	}
+	
+	function Chmod() {
+		if(NumChecked()==0) {
+			alert("<?php echo $GLOBALS["error_msg"]["miscselitems"]; ?>");
+			return;
+		}
+		document.selform.do_action.value = "chmod";
 		document.selform.submit();
 	}
 	
