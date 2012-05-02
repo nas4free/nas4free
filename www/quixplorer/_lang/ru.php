@@ -36,6 +36,7 @@ $GLOBALS["error_msg"] = array(
       "accesstarget"         => "Вам не разрешен доступ к целевому каталогу",
 
       // actions
+	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
       "permread"             => "Ошибка получения прав доступа",
       "permchange"           => "Ошибка смены прав доступа",
       "openfile"             => "Ошибка открытия файла",

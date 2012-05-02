@@ -58,22 +58,6 @@ case "copy":	case "move":
 	copy_move_items($GLOBALS["dir"]);
 break;
 //------------------------------------------------------------------------------
-// DOWNLOAD FILE
-case "download":
-	ob_start(); // prevent unwanted output
-	require "./.include/fun_down.php";
-	ob_end_clean(); // get rid of cached unwanted output
-	download_item($GLOBALS["dir"], $GLOBALS["item"]);
-	ob_start(false); // prevent unwanted output
-	exit;
-break;
-//------------------------------------------------------------------------------
-// UPLOAD FILE(S)
-case "upload":
-	require "./.include/fun_up.php";
-	upload_items($GLOBALS["dir"]);
-break;
-//------------------------------------------------------------------------------
 // CREATE DIR/FILE
 case "mkitem":
 	require "./.include/fun_mkitem.php";

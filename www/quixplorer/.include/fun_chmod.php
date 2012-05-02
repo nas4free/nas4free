@@ -46,6 +46,9 @@ function chmod_item($dir, $item) {		// change permissions
 			$tmp="r_".$i.$j;
 			if(isset($GLOBALS['__POST'][$tmp]) &&$GLOBALS['__POST'][$tmp]=="1" ) $bin.='1';
 			else $bin.='0';
+
+			if($bin=='0') show_error($item.": ".$GLOBALS["error_msg"]["chmod_not_allowed"]); // Remove permissions from owner is not allowed!
+			
 		}
 		
 		if(!@chmod(get_abs_item($dir,$item),bindec($bin))) {

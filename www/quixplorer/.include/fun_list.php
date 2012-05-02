@@ -195,24 +195,6 @@ function print_table($dir, $list, $allow) {	// print table of files
 			echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
 			echo "src=\"_img/_.gif\" ALT=\"\"></TD>\n";
 		}
-		// DOWNLOAD
-		if(get_is_file($dir,$item)) {
-			if ($allow
-			|| (($GLOBALS["permissions"] & 16) == 16))
-			{
-				echo "<TD><A HREF=\"".make_link("download",$dir,$item)."\">";
-				echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-				echo "src=\"_img/_download.gif\" ALT=\"".$GLOBALS["messages"]["downlink"];
-				echo "\" TITLE=\"".$GLOBALS["messages"]["downlink"]."\"></A></TD>\n";
-			} else if(!$allow) {
-				echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-				echo "src=\"_img/_download_.gif\" ALT=\"".$GLOBALS["messages"]["downlink"];
-				echo "\" TITLE=\"".$GLOBALS["messages"]["downlink"]."\"></TD>\n";
-			}
-		} else {
-			echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-			echo "src=\"_img/_.gif\" ALT=\"\"></TD>\n";
-		}
 		echo "</TABLE>\n</TD></TR>\n";
 	}
 }
@@ -278,17 +260,6 @@ function list_dir($dir) {			// list directory contents
 		echo "<TD><A HREF=\"javascript:Delete();\"><IMG border=\"0\" width=\"16\" height=\"16\" ";
 		echo "align=\"ABSMIDDLE\" src=\"_img/_delete.gif\" ALT=\"".$GLOBALS["messages"]["dellink"];
 		echo "\" TITLE=\"".$GLOBALS["messages"]["dellink"]."\"></A></TD>\n";
-		// UPLOAD
-		if(get_cfg_var("file_uploads")) {
-			echo "<TD><A HREF=\"".make_link("upload",$dir,NULL)."\">";
-			echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-			echo "src=\"_img/_upload.gif\" ALT=\"".$GLOBALS["messages"]["uploadlink"];
-			echo "\" TITLE=\"".$GLOBALS["messages"]["uploadlink"]."\"></A></TD>\n";
-		} else {
-			echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
-			echo "src=\"_img/_upload_.gif\" ALT=\"".$GLOBALS["messages"]["uploadlink"];
-			echo "\" TITLE=\"".$GLOBALS["messages"]["uploadlink"]."\"></TD>\n";
-		}
 		// ARCHIVE
 		if($GLOBALS["zip"] || $GLOBALS["tar"] || $GLOBALS["tgz"]) {
 			echo "<TD><A HREF=\"javascript:Archive();\"><IMG border=\"0\" width=\"16\" height=\"16\" ";

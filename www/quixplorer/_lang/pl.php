@@ -36,6 +36,7 @@ $GLOBALS["error_msg"] = array(
 	"accesstarget"		=> "Nie masz dostêpu do katalogu docelowego.",
 	
 	// actions
+	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
 	"permread"		=> "Pobranie uprawnieñ nie uda³o siê.",
 	"permchange"		=> "Zmiana uprawnieñ siê nie powiod³a.",
 	"openfile"		=> "Otawrcie pliku siê nie powiod³o.",
