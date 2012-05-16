@@ -1,30 +1,38 @@
 <?php
-/*------------------------------------------------------------------------------
-     The contents of this file are subject to the Mozilla Public License
-     Version 1.1 (the "License"); you may not use this file except in
-     compliance with the License. You may obtain a copy of the License at
-     http://www.mozilla.org/MPL/
+/*
+	search.php
+	
+	Part of NAS4Free (http://www.nas4free.org).
+	Copyright (C) 2012 by NAS4Free Team <info@nas4free.org>.
+	All rights reserved.
 
-     Software distributed under the License is distributed on an "AS IS"
-     basis, WITHOUT WARRANTY OF ANY KIND, either express or implied. See the
-     License for the specific language governing rights and limitations
-     under the License.
+	Portions of Quixplorer (http://quixplorer.sourceforge.net).
+	Author: The QuiX project.
 
-     The Original Code is fun_search.php, released on 2003-03-31.
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met: 
 
-     The Initial Developer of the Original Code is The QuiX project.
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer. 
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution. 
 
-     Alternatively, the contents of this file may be used under the terms
-     of the GNU General Public License Version 2 or later (the "GPL"), in
-     which case the provisions of the GPL are applicable instead of
-     those above. If you wish to allow use of your version of this file only
-     under the terms of the GPL and not to allow others to use
-     your version of this file under the MPL, indicate your decision by
-     deleting  the provisions above and replace  them with the notice and
-     other provisions required by the GPL.  If you do not delete
-     the provisions above, a recipient may use your version of this file
-     under either the MPL or the GPL."
-------------------------------------------------------------------------------*/
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies, 
+	either expressed or implied, of the NAS4Free Project.
+*/
 /*------------------------------------------------------------------------------
 Author: The QuiX project
 	http://quixplorer.sourceforge.net
@@ -85,12 +93,12 @@ function print_table($list) {			// print table of found items
 			//}
 		}
 		
-		echo "<TR><TD>" . "<IMG border=\"0\" width=\"16\" height=\"16\" ";
+		echo "<CENTER><TR><TD>" . "<IMG border=\"0\" width=\"16\" height=\"16\" ";
 		echo "align=\"ABSMIDDLE\" src=\"_img/" . $img . "\" ALT=\"\">&nbsp;";
 		/*if($link!="")*/ echo"<A HREF=\"".$link."\" TARGET=\"".$target."\">";
 		//else echo "<A>";
 		echo $s_item."</A></TD><TD><A HREF=\"" . make_link("list",$dir,NULL)."\"> /";
-		echo $s_dir."</A></TD></TR>\n";
+		echo $s_dir."</A></TD></TR></CENTER>\n";
 	}
 }
 //------------------------------------------------------------------------------
@@ -109,13 +117,13 @@ function search_items($dir) {			// search for item
 	show_header($msg);
 	
 	// Search Box
-	echo "<BR><TABLE><FORM name=\"searchform\" action=\"".make_link("search",$dir,NULL);
+	echo "<CENTER><BR><TABLE><FORM name=\"searchform\" action=\"".make_link("search",$dir,NULL);
 	echo "\" method=\"post\">\n<TR><TD><INPUT name=\"searchitem\" type=\"text\" size=\"25\" value=\"";
 	echo $searchitem."\"><INPUT type=\"submit\" value=\"".$GLOBALS["messages"]["btnsearch"];
 	echo "\">&nbsp;<input type=\"button\" value=\"".$GLOBALS["messages"]["btnclose"];
 	echo "\" onClick=\"javascript:location='".make_link("list",$dir,NULL);
 	echo "';\"></TD></TR><TR><TD><INPUT type=\"checkbox\" name=\"subdir\" value=\"y\"";
-	echo ($subdir?" checked>":">").$GLOBALS["messages"]["miscsubdirs"]."</TD></TR></FORM></TABLE>\n";
+	echo ($subdir?" checked>":">").$GLOBALS["messages"]["miscsubdirs"]."</TD></TR></FORM></TABLE></CENTER>\n";
 	
 	// Results
 	if($searchitem!=NULL) {

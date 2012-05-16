@@ -34,6 +34,7 @@
 	of the authors and should not be interpreted as representing official policies, 
 	either expressed or implied, of the NAS4Free Project.
 */
+
 function gentitle($title) {
 	$navlevelsep = "|"; // Navigation level separator string.
 	return join($navlevelsep, $title);
@@ -147,7 +148,7 @@ $menu['advanced']['link'] = "";
 $menu['advanced']['menuitem'] = array();
 $menu['advanced']['menuitem'][] = array("desc" => gettext("File Editor"), "link" => "system_edit.php", "visible" => Session::isAdmin());
 if (!isset($config['system']['disablefm'])) {
-	$menu['advanced']['menuitem'][] = array("desc" => gettext("File Manager"), "link" => "quixplorer", "visible" => TRUE, "target" => "_blank");
+	$menu['advanced']['menuitem'][] = array("desc" => gettext("File Manager"), "link" => "/quixplorer/system_filemanager.php", "visible" => TRUE);
 }
 $menu['advanced']['menuitem'][] = array("type" => "separator", "visible" => Session::isAdmin());
 $menu['advanced']['menuitem'][] = array("desc" => gettext("Command"), "link" => "exec.php", "visible" => Session::isAdmin());
@@ -231,9 +232,9 @@ function display_menu($menuid) {
 	<?php if ($pgrefresh):?>
 	<meta http-equiv="refresh" content="<?=$pgrefresh;?>" />
 	<?php endif;?>
-	<link href="gui.css" rel="stylesheet" type="text/css" />
+    <link href="gui.css" rel="stylesheet" type="text/css" />
 	<link href="navbar.css" rel="stylesheet" type="text/css" />
-	<link href="tabs.css" rel="stylesheet" type="text/css" />
+	<link href="tabs.css" rel="stylesheet" type="text/css" />	
 	<script type="text/javascript" src="javascript/gui.js"></script>
 	<script type="text/javascript" src="javascript/navbar.js"></script>
 <?php

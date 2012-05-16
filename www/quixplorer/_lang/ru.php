@@ -2,7 +2,7 @@
 
 // Russian Language Module for v2.3.2
 
-$GLOBALS["charset"] = "utf-8";
+$GLOBALS["charset"] = "UTF-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "Y/m/d H:i";
 $GLOBALS["error_msg"] = array(
