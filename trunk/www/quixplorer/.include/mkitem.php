@@ -1,6 +1,6 @@
 <?php
 /*
-	error.php
+	mkitem.php
 	
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (C) 2012 by NAS4Free Team <info@nas4free.org>.
@@ -36,21 +36,35 @@
 /*------------------------------------------------------------------------------
 Author: The QuiX project
 	http://quixplorer.sourceforge.net
-	
+
 Comment:
 	QuiXplorer Version 2.3.2
-	Error Reporting File
+	Make Dir/File Functions
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
-function show_error($error,$extra=NULL) {		// show error-message
-	show_header($GLOBALS["error_msg"]["error"]);
-	echo "<CENTER><BR>".$GLOBALS["error_msg"]["error"].":"."<BR><BR>\n";
-	echo $error."\n<BR><BR><A HREF=\"javascript:window.history.back()\">";
-	echo $GLOBALS["error_msg"]["back"]."</A>";
-	if($extra!=NULL) echo " - ".$extra;
-	echo "<BR><BR></CENTER>\n";
-	show_footer();
-	exit;
+function make_item($dir) {		// make new directory or file
+	if(($GLOBALS["permissions"]&01)!=01) show_error($GLOBALS["error_msg"]["accessfunc"]);
+	
+	$mkname=$GLOBALS['__POST']["mkname"];
+	$mktype=$GLOBALS['__POST']["mktype"];
+	
+	$mkname=basename(stripslashes($mkname));
+	if($mkname=="") show_error($GLOBALS["error_msg"]["miscnoname"]);
+	
+	$new = get_abs_item($dir,$mkname);
+	if(@file_exists($new)) show_error($mkname.": ".$GLOBALS["error_msg"]["itemdoesexist"]);
+	
+	if($mktype!="file") {
+		$ok=@mkdir($new, 0777);
+		$err=$GLOBALS["error_msg"]["createdir"];
+	} else {
+		$ok=@touch($new);
+		$err=$GLOBALS["error_msg"]["createfile"];
+	}
+	
+	if($ok===false) show_error($err);
+	
+	header("Location: ".make_link("list",$dir,NULL));
 }
 //------------------------------------------------------------------------------
 ?>

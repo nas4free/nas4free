@@ -1,6 +1,6 @@
 <?php
 
-// Dutch Mimes Module for v2.3 (translated by the QuiX project)
+// Dutch Mimes Module for v2.3
 
 $GLOBALS["mimes"]=array(
 	// dir, exe, file

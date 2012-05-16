@@ -1,6 +1,6 @@
 <?php
 /*
-	error.php
+	del.php
 	
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (C) 2012 by NAS4Free Team <info@nas4free.org>.
@@ -36,21 +36,54 @@
 /*------------------------------------------------------------------------------
 Author: The QuiX project
 	http://quixplorer.sourceforge.net
-	
+
 Comment:
 	QuiXplorer Version 2.3.2
-	Error Reporting File
+	File-Delete Functions
 ------------------------------------------------------------------------------*/
 //------------------------------------------------------------------------------
-function show_error($error,$extra=NULL) {		// show error-message
-	show_header($GLOBALS["error_msg"]["error"]);
-	echo "<CENTER><BR>".$GLOBALS["error_msg"]["error"].":"."<BR><BR>\n";
-	echo $error."\n<BR><BR><A HREF=\"javascript:window.history.back()\">";
-	echo $GLOBALS["error_msg"]["back"]."</A>";
-	if($extra!=NULL) echo " - ".$extra;
-	echo "<BR><BR></CENTER>\n";
-	show_footer();
-	exit;
+function del_items($dir) {		// delete files/dirs
+	if(($GLOBALS["permissions"]&01)!=01) show_error($GLOBALS["error_msg"]["accessfunc"]);
+	
+	$cnt=count($GLOBALS['__POST']["selitems"]);
+	$err=false;
+	
+	// delete files & check for errors
+	for($i=0;$i<$cnt;++$i) {
+		$items[$i] = stripslashes($GLOBALS['__POST']["selitems"][$i]);
+		$abs = get_abs_item($dir,$items[$i]);
+	
+		if(!@file_exists(get_abs_item($dir, $items[$i]))) {
+			$error[$i]=$GLOBALS["error_msg"]["itemexist"];
+			$err=true;	continue;
+		}
+		if(!get_show_item($dir, $items[$i])) {
+			$error[$i]=$GLOBALS["error_msg"]["accessitem"];
+			$err=true;	continue;
+		}
+		
+		// Delete
+		$ok=remove(get_abs_item($dir,$items[$i]));
+		
+		if($ok===false) {
+			$error[$i]=$GLOBALS["error_msg"]["delitem"];
+			$err=true;	continue;
+		}
+		
+		$error[$i]=NULL;
+	}
+	
+	if($err) {			// there were errors
+		$err_msg="";
+		for($i=0;$i<$cnt;++$i) {
+			if($error[$i]==NULL) continue;
+			
+			$err_msg .= $items[$i]." : ".$error[$i]."<BR>\n";
+		}
+		show_error($err_msg);
+	}
+	
+	header("Location: ".make_link("list",$dir,NULL));
 }
 //------------------------------------------------------------------------------
 ?>

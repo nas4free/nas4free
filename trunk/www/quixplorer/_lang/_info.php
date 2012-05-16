@@ -1,5 +1,8 @@
 <OPTION value="en">English</OPTION>
 <OPTION value="enutf8">English (UTF-8)</OPTION>
+<OPTION value="bg">Bulgarian</OPTION>
+<OPTION value="cs">Czech</OPTION>
+<OPTION value="da">Dansk</OPTION>
 <OPTION value="de">Deutsch</OPTION>
 <OPTION value="es">Español</OPTION>
 <OPTION value="fr">Français</OPTION>
@@ -7,4 +10,6 @@
 <OPTION value="ja">Japanese</OPTION>
 <OPTION value="nl">Nederlands</OPTION>
 <OPTION value="pl">Polski</OPTION>
+<OPTION value="ptbr">Português - Brasil</OPTION>
+<OPTION value="ro">Românã</OPTION>
 <OPTION value="ru">Russian</OPTION>
