@@ -56,7 +56,7 @@ if ($_POST) {
 	$reqdfields = explode(" ", "host ttl");
 	$reqdfieldsn = array(gettext("Host"), gettext("Max. TTL"));
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (!$input_errors) {
 		$do_traceroute = true;

@@ -75,8 +75,8 @@ if ($_POST) {
 			$reqdfieldst = array_merge($reqdfieldst, array("string"));
 		}
 
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 		if (10 > $_POST['interval']) {
 			$input_errors[] = gettext("Interval must be greater or equal than 10 seconds.");

@@ -71,7 +71,7 @@ if ($_POST) {
 	// Input validation.
 	$reqdfields = explode(" ", "mountpoint action");
 	$reqdfieldsn = array(gettext("Mount point"), gettext("Command"));
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	// Check if mount point is used to store a swap file.
 	if (("umount" === $_POST['action']) &&

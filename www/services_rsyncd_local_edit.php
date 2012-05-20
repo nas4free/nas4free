@@ -118,11 +118,11 @@ if ($_POST) {
 	// Input validation
 	$reqdfields = explode(" ", "source destination who");
 	$reqdfieldsn = array(gettext("Source share"), gettext("Destination share"), gettext("Who"));
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (gettext("Execute now") !== $_POST['Submit']) {
 		// Validate synchronization time
-		do_input_validate_synctime($_POST, &$input_errors);
+		do_input_validate_synctime($_POST, $input_errors);
 	}
 
 	if (!$input_errors) {

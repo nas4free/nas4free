@@ -110,8 +110,8 @@ if ($_POST) {
 		gettext("Discovery Auth Group"));
 	$reqdfieldst = explode(" ", "string string numericint");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	$reqdfields = explode(" ", "timeout nopininterval maxr2t maxsessions maxconnections firstburstlength maxburstlength maxrecvdatasegmentlength maxoutstandingr2t defaulttime2wait defaulttime2retain");
 	$reqdfieldsn = array(gettext("I/O Timeout"),
@@ -127,8 +127,8 @@ if ($_POST) {
 		gettext("DefaultTime2Retain"));
 	$reqdfieldst = explode(" ", "numericint numericint numericint numericint numericint numericint numericint numericint numericint numericint numericint");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if ((strcasecmp("Auto", $pconfig['discoveryauthmethod']) != 0
 	   && strcasecmp("None", $pconfig['discoveryauthmethod']) != 0)
@@ -145,8 +145,8 @@ if ($_POST) {
 		gettext("Media Directory"));
 	$reqdfieldst = explode(" ", "string numericint string string numericint string");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if (isset($_POST['uctlenable'])) {
 		if ((strcasecmp("Auto", $pconfig['uctlauthmethod']) != 0

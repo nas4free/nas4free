@@ -95,7 +95,7 @@ if ($_POST) {
 	$reqdfields = explode(" ", "name vdevice");
 	$reqdfieldsn = array(gettext("Name"), gettext("Virtual devices"));
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	// Validate pool name
 	if (!zfs_is_valid_poolname($_POST['name'])) {

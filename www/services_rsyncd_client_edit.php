@@ -121,11 +121,11 @@ if ($_POST) {
 	// Input validation
 	$reqdfields = explode(" ", "rsyncserverip localshare remoteshare who");
 	$reqdfieldsn = array(gettext("Remote Rsync Server"), gettext("Local shares to be synchronized"), gettext("Remote module name"), gettext("Who"));
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (gettext("Execute now") !== $_POST['Submit']) {
 		// Validate synchronization time
-		do_input_validate_synctime($_POST, &$input_errors);
+		do_input_validate_synctime($_POST, $input_errors);
 	}
 
 	if (!$input_errors) {

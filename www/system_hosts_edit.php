@@ -83,7 +83,7 @@ if ($_POST) {
 	$reqdfields = explode(" ", "name address");
 	$reqdfieldsn = array(gettext("Hostname"),gettext("IP address"));
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (($_POST['name'] && !is_validdesc($_POST['name']))) {
 		$input_errors[] = gettext("The host name contain invalid characters.");

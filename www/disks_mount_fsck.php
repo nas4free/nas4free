@@ -64,7 +64,7 @@ if ($_POST) {
 	// Input validation
 	$reqdfields = explode(" ", "disk");
 	$reqdfieldsn = array(gettext("Disk"));
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (!$input_errors) {
 		$do_action = true;

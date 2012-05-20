@@ -89,12 +89,12 @@ if ($_POST) {
 	// Input validation.
 	$reqdfields = explode(" ", "disk type");
 	$reqdfieldsn = array(gettext("Disk"),gettext("Type"));
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	$reqdfields = explode(" ", "volumelabel");
 	$reqdfieldsn = array(gettext("Volume label"));
 	$reqdfieldst = explode(" ", "alias");
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if (!$input_errors) {
 		$do_format = true;

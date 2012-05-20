@@ -90,8 +90,8 @@ if ($_POST) {
 			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "string password"));
 		}
 
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
 
 	if (($_POST['bindpw'] !== $_POST['bindpw2'])) {

@@ -142,8 +142,8 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Name"));
 	$reqdfieldst = explode(" ", "string");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if (preg_match("/(\\s|\\@|\\'|\\\")+/", $_POST['name'])) {
 		$input_errors[] = sprintf(gettext("The attribute '%s' contains invalid characters."), gettext("Name"));

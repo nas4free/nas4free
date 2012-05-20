@@ -82,7 +82,7 @@ if ($_POST) {
 	// Input validation.
   $reqdfields = explode(" ", "disk ealgo passphrase passphraseconf");
   $reqdfieldsn = array(gettext("Disk"),gettext("Encryption algorithm"),gettext("Passphrase"),gettext("Passphrase"));
-  do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+  do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	// Check for duplicate disks.
 	if (array_search_ex("{$_POST['disk']}.eli", $a_geli, "devicespecialfile")) {

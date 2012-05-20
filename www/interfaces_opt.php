@@ -114,7 +114,7 @@ if ($_POST) {
 			$reqdfields = explode(" ", "descr ipaddr subnet");
 			$reqdfieldsn = array(gettext("Description"),gettext("IP address"),gettext("Subnet bit count"));
 
-			do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+			do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 			if (($_POST['ipaddr'] && !is_ipv4addr($_POST['ipaddr'])))
 				$input_errors[] = gettext("A valid IP address must be specified.");
@@ -126,7 +126,7 @@ if ($_POST) {
 			$reqdfields = explode(" ", "ipv6addr ipv6subnet");
 			$reqdfieldsn = array(gettext("IPv6 address"),gettext("Prefix"));
 
-			do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+			do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 			if (($_POST['ipv6addr'] && !is_ipv6addr($_POST['ipv6addr'])))
 				$input_errors[] = gettext("A valid IPv6 address must be specified.");

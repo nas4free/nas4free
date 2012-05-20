@@ -285,8 +285,8 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Target name"));
 	$reqdfieldst = explode(" ", "string");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	$reqdfields = explode(" ", "type flags portalgroup initiatorgroup storage");
 	$reqdfieldsn = array(gettext("Type"),
@@ -295,8 +295,8 @@ if ($_POST) {
 						 gettext("Initiator Group"),
 						 gettext("Storage"));
 	$reqdfieldst = explode(" ", "string string numericint numericint string");
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	$reqdfields = explode(" ", "authmethod authgroup digest queuedepth blocklen");
 	$reqdfieldsn = array(gettext("Auth Method"),
@@ -305,8 +305,8 @@ if ($_POST) {
 						 gettext("Queue Depth"),
 						 gettext("Logical Block Length"));
 	$reqdfieldst = explode(" ", "string numericint string numericint numericint");
-	//do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	//do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if ((strcasecmp("Auto", $pconfig['authmethod']) != 0
 	   && strcasecmp("None", $pconfig['authmethod']) != 0)

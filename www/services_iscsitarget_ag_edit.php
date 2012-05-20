@@ -109,8 +109,8 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Tag number"));
 	$reqdfieldst = explode(" ", "numericint");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if ($pconfig['tag'] < 1 || $pconfig['tag'] > 65535) {
 		$input_errors[] = gettext("The tag range is invalid.");

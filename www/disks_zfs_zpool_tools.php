@@ -648,7 +648,7 @@ function pool_change() {
 		case "upgrade": {
 		    switch ($option) {
 		    case "v": {
-			zfs_zpool_cmd($action, "-v", false, false, true, &$output);
+			zfs_zpool_cmd($action, "-v", false, false, true, $output);
 			foreach ($output as $line) {
 			    if (preg_match("/(\s+)(\d+)(\s+)(.*)/",$line, $match)) {
 				$href = "<a href=\"http://www.opensolaris.org/os/community/zfs/version/{$match[2]}\" target=\"_blank\">{$match[2]}</a>";

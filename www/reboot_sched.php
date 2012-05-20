@@ -71,7 +71,7 @@ if ($_POST){
 
 	// Validate synchronization time
 	if($_POST['enable']) {
-		do_input_validate_synctime($_POST, &$input_errors);
+		do_input_validate_synctime($_POST, $input_errors);
 	}
 
 	if (!$input_errors) {
