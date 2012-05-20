@@ -55,7 +55,7 @@ if ($_POST) {
 	/* input validation */
 	$reqdfields = explode(" ", "action object");
 	$reqdfieldsn = array(gettext("Command"),gettext("Object name"));
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (!$input_errors) {
 		$do_action = true;

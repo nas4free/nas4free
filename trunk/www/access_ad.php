@@ -73,8 +73,8 @@ if ($_POST) {
 		$reqdfieldsn = array(gettext("Domain controller name"), gettext("Domain name (DNS/Realm-Name)"), gettext("Domain name (NetBIOS-Name)"), gettext("Administrator name"), gettext("Administration password"));
 		$reqdfieldst = explode(" ", "string domain netbios string string");
 
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 		if (($_POST['password'] !== $_POST['password2'])) {
 			$input_errors[] = gettext("The confimed password does not match. Please ensure the passwords match exactly.");

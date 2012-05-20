@@ -67,8 +67,8 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Old password"), gettext("Password"), gettext("Password (confirmed)"));
 	$reqdfieldst = explode(" ", "password password password");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	// Validate old password.
 	if ($_POST['password_old'] !== $a_user[$cnid]['password']) {

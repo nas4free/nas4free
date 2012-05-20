@@ -72,12 +72,12 @@ if ($_POST) {
 	if ($_POST['enable']) {
 		$reqdfields = explode(" ", "provider domainname username password");
 		$reqdfieldsn = array(gettext("Provider"), gettext("Domain name"), gettext("Username"), gettext("Password"));
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 		$reqdfields = array_merge($reqdfields, explode(" ", "updateperiod forcedupdateperiod"));
 		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Update period"),gettext("Forced update period")));
 		$reqdfieldst = explode(" ", "string string string string numeric numeric");
-		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
 
 	if (!$input_errors) {

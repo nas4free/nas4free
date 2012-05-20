@@ -276,8 +276,8 @@ if ($_POST) {
 			     gettext("Controller Auth Method"));
 		$reqdfieldst = explode(" ", "string numericint string");
 
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 		if ($_POST['media_uctlauthmethod'] == 'CHAP'
 		    || $_POST['media_uctlauthmethod'] == 'CHAP mutual') {
@@ -286,8 +286,8 @@ if ($_POST) {
 				     gettext("Secret"));
 			$reqdfieldst = explode(" ", "string string");
 
-			do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-			do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+			do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+			do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 		}
 		if ($_POST['media_uctlauthmethod'] == 'CHAP mutual') {
 			$reqdfields = explode(" ", "media_uctlmuser media_uctlmsecret");
@@ -295,8 +295,8 @@ if ($_POST) {
 				     gettext("Peer Secret"));
 			$reqdfieldst = explode(" ", "string string");
 
-			do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-			do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+			do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+			do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 		}
 
 		if (isset($pconfig['media_uctlsave'])) {
@@ -405,8 +405,8 @@ if ($_POST) {
 				     gettext("Flags"));
 			$reqdfieldst = explode(" ", "string numericint string");
 		}
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 		if (!$input_errors) {
 			// change media

@@ -108,8 +108,8 @@ if ($_POST) {
 
 	$reqdfields = explode(" ", "disk type");
 	$reqdfieldsn = array(gettext("Disk"), gettext("Type"));
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validate_synctime($_POST, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validate_synctime($_POST, $input_errors);
 
 	if (!$input_errors) {
 		$selftest = array();

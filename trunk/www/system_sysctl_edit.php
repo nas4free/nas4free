@@ -88,8 +88,8 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Option"), gettext("Value"));
 	$reqdfieldst = explode(" ", "string string");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	// Check if MIB name exists.
 	exec("/sbin/sysctl -NA", $arr);

@@ -88,8 +88,8 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Physical interface"), gettext("VLAN tag"));
 	$reqdfieldst = explode(" ", "string numeric");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	// Validate tag range.
 	if (($_POST['tag'] < '1') || ($_POST['tag'] > '4094')) {

@@ -99,9 +99,9 @@ if ($_POST) {
 		$reqdfields = explode(" ", "security netbiosname workgroup");
 		$reqdfieldsn = array(gettext("Authentication"),gettext("NetBIOS name"),gettext("Workgroup"));
 		$reqdfieldst = explode(" ", "string domain workgroup");
-
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+		
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 		// Do additional input type validation.
 		$reqdfields = explode(" ", "sndbuf rcvbuf");
@@ -127,8 +127,8 @@ if ($_POST) {
 			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "numericint numericint"));
 		}
 
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
 
 	if (!$input_errors) {

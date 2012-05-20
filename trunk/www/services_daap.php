@@ -74,13 +74,13 @@ if ($_POST) {
 		$reqdfieldsn = array(gettext("Server name"), gettext("Port"), gettext("Database directory"), gettext("Content"), gettext("Password"));
 		$reqdfieldst = explode(" ", "string port string array password");
 
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 		$reqdfields = array_merge($reqdfields, array("rescaninterval"));
 		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Rescan interval")));
 		$reqdfieldst = array_merge($reqdfieldst, array("numeric"));
 
-		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 		// Check if port is already used.
 		if (services_is_port_used($_POST['port'], "daap"))

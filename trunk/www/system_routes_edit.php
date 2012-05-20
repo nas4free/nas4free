@@ -84,7 +84,7 @@ if ($_POST) {
 	$reqdfields = explode(" ", "interface network network_subnet gateway");
 	$reqdfieldsn = array(gettext("Interface"), gettext("Destination network"), gettext("Destination network bit count"), gettext("Gateway"));
 	
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	
 	if (($_POST['network'] && !is_ipaddr($_POST['network']))) {
 		$input_errors[] = gettext("A valid destination network must be specified.");

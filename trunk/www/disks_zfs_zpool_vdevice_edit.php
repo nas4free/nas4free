@@ -104,8 +104,8 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Name"), gettext("Type"));
 	$reqdfieldst = explode(" ", "string string");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	// Check for duplicate name
 	if (!(isset($uuid) && $_POST['name'] === $a_vdevice[$cnid]['name'])) {

@@ -89,7 +89,7 @@ if ($_POST) {
 			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "alias alias"));
 		}
 
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 		// Add additional type checks
 		if (isset($_POST['umask'])) {
@@ -98,7 +98,7 @@ if ($_POST) {
 			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "filemode"));
 		}
 
-		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 		// Check if port is already used.
 		if (services_is_port_used($_POST['port'], "bittorrent")) {

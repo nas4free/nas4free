@@ -47,7 +47,7 @@ require("zfs.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Pools"), gettext("Management"));
 
-if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']['pool']))
+if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']))
 	$config['zfs']['pools']['pool'] = array();
 
 array_sort_key($config['zfs']['pools']['pool'], "name");

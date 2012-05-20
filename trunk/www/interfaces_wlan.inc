@@ -94,7 +94,7 @@ function wireless_config_post() {
 				break;
 		}
 
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	}
 
 	if (!$input_errors) {

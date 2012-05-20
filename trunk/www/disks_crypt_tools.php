@@ -79,7 +79,7 @@ if ($_POST) {
 		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Passphrase")));
 	}
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (!$input_errors) {
 		$pconfig['do_action'] = true;

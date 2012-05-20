@@ -89,8 +89,8 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Aggregation protocol"));
 	$reqdfieldst = explode(" ", "string");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if (count($_POST['laggport']) < 1)
 		$input_errors[] = gettext("There must be selected a minimum of 1 interface.");

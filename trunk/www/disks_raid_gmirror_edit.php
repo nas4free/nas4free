@@ -87,7 +87,7 @@ if ($_POST) {
 	$reqdfields = explode(" ", "name");
 	$reqdfieldsn = array(gettext("Raid name"));
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (($_POST['name'] && !is_validaliasname($_POST['name']))) {
 		$input_errors[] = gettext("The device name may only consist of the characters a-z, A-Z, 0-9.");

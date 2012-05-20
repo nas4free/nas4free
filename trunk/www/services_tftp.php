@@ -72,13 +72,13 @@ if ($_POST) {
 		$reqdfieldsn = array(gettext("Directory"));
 		$reqdfieldst = explode(" ", "string");
 
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 		$reqdfields = array_merge($reqdfields, explode(" ", "port umask timeout maxblocksize"));
 		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Port"), gettext("umask"), gettext("Timeout"), gettext("Max. block size")));
 		$reqdfieldst = array_merge($reqdfieldst, explode(" ", "port numeric numeric numeric"));
 
-		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
 
 	if ($_POST['maxblocksize'] && ((512 > $_POST['maxblocksize']) || (65464 < $_POST['maxblocksize']))) {

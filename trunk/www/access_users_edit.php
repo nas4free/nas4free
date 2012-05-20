@@ -93,8 +93,8 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Name"), gettext("Full Name"), gettext("Primary Group"), gettext("User ID"), gettext("Shell"));
 	$reqdfieldst = explode(" ", "string string numeric numeric string");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	// Check for valid login name.
 	if (($_POST['login'] && !is_validlogin($_POST['login']))) {

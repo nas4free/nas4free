@@ -92,7 +92,7 @@ if ($_POST) {
 	// Input validation.
 	$reqdfields = explode(" ", "path network mask");
 	$reqdfieldsn = array(gettext("Path"), gettext("Authorised network"), gettext("Network mask"));
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	// remove last slash and check alldirs option
 	$path = $_POST['path'];

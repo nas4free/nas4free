@@ -82,7 +82,7 @@ if ($_POST) {
 		$reqdfields = array_merge($reqdfields, explode(" ", "workdir"));
 		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Working directory")));
 
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 		// Check if working directory exists
 		if (!$_POST['mkdir'] && !file_exists($_POST['workdir'])) {

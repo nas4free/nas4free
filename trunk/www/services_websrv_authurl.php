@@ -77,7 +77,7 @@ if ($_POST) {
 	// Input validation.
 	$reqdfields = explode(" ", "path realm");
 	$reqdfieldsn = array(gettext("URL"), gettext("Realm"));
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	// Check if URL is already configured.
 	$index = array_search_ex($_POST['path'], $a_authurl, "path");

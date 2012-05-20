@@ -84,12 +84,12 @@ if ($_POST) {
 		$reqdfieldsn = array(gettext("To e-mail"));
 		$reqdfieldst = explode(" ", "string");
 
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 		if (gettext("Send now") !== $_POST['Submit']) {
 			// Validate synchronization time
-			do_input_validate_synctime($_POST, &$input_errors);
+			do_input_validate_synctime($_POST, $input_errors);
 		}
 
 		// custom script

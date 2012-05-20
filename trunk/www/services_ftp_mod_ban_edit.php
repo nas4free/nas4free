@@ -82,8 +82,8 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Event"), gettext("Occurrence"), gettext("Time interval"), gettext("Expire"));
 	$reqdfieldst = explode(" ", "string numeric time time");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if (!$input_errors) {
 		$rule = array();
