@@ -1,5 +1,5 @@
 PORTNAME=		transmission
-PORTVERSION=	2.51
+PORTVERSION=	2.52
 PORTREVISION?= 0
 CATEGORIES?=		net-p2p
 COMMENT=		A fast and lightweight CLI bitTorrent client
