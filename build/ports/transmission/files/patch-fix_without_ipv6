@@ -1,5 +1,5 @@
---- libtransmission/fdlimit.c.orig	2012-02-15 03:00:19.967814000 +0100
-+++ libtransmission/fdlimit.c	2012-02-21 18:20:01.000000000 +0100
+--- libtransmission/fdlimit.c.orig	2012-05-19 15:51:10.000000000 +0200
++++ libtransmission/fdlimit.c	2012-05-21 23:40:29.000000000 +0200
 @@ -678,7 +678,7 @@
  
      if( gFd->peerCount < session->peerLimit )

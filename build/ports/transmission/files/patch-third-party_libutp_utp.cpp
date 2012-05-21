@@ -1,5 +1,5 @@
---- third-party/libutp/utp.cpp.orig	2012-02-15 03:00:56.511996000 +0100
-+++ third-party/libutp/utp.cpp	2012-02-21 17:58:19.000000000 +0100
+--- third-party/libutp/utp.cpp.orig	2012-05-19 15:51:14.000000000 +0200
++++ third-party/libutp/utp.cpp	2012-05-21 23:56:59.000000000 +0200
 @@ -10,6 +10,9 @@
  #include <stdlib.h>
  #include <errno.h>
