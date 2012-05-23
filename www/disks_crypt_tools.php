@@ -51,7 +51,7 @@ $pgtitle = array(gettext("Disks"), gettext("Encryption"), gettext("Tools"));
 // Omit no-cache headers because it confuses IE with file downloads.
 $omit_nocacheheaders = true;
 
-if (!is_array($config['geli']['vdisk']))
+if (!is_array($config['geli']))
 	$config['geli']['vdisk'] = array();
 
 if (!is_array($config['mounts']['mount']))

@@ -67,7 +67,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['gvinum']['vdisk']))
+if (!is_array($config['gvinum']))
 	$config['gvinum']['vdisk'] = array();
 
 array_sort_key($config['gvinum']['vdisk'], "name");

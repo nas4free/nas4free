@@ -64,7 +64,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['staticroutes']['route']))
+if (!is_array($config['staticroutes']))
 	$config['staticroutes']['route'] = array();
 
 array_sort_key($config['staticroutes']['route'], "network");

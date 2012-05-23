@@ -67,7 +67,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['gstripe']['vdisk']))
+if (!is_array($config['gstripe']))
 	$config['gstripe']['vdisk'] = array();
 
 array_sort_key($config['gstripe']['vdisk'], "name");

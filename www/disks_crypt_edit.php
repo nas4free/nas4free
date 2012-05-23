@@ -48,7 +48,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Disks"),gettext("Encryption"),gettext("Add"));
 
-if (!is_array($config['geli']['vdisk']))
+if (!is_array($config['geli']))
 	$config['geli']['vdisk'] = array();
 
 array_sort_key($config['geli']['vdisk'], "devicespecialfile");

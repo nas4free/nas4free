@@ -66,7 +66,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['gmirror']['vdisk']))
+if (!is_array($config['gmirror']))
 	$config['gmirror']['vdisk'] = array();
 
 array_sort_key($config['gmirror']['vdisk'], "name");

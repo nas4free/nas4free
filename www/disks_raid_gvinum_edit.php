@@ -52,7 +52,7 @@ if (isset($_POST['id']))
 
 $pgtitle = array(gettext("Disks"), gettext("Software RAID"), gettext("RAID 0/1/5"), isset($id) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['gvinum']['vdisk']))
+if (!is_array($config['gvinum']))
 	$config['gvinum']['vdisk'] = array();
 
 array_sort_key($config['gvinum']['vdisk'], "name");

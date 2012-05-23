@@ -1821,7 +1821,7 @@ function get_conf_zfs_vdevice_list() {
 
 	$result = array();
 
-	if (is_array($config['zfs']['vdevices']['vdevice'])) {
+	if (is_array($config['zfs']['vdevices'])) {
 		array_sort_key($config['zfs']['vdevices']['vdevice'], "name");
 		$a_vdevice = $config['zfs']['vdevices']['vdevice'];
 		foreach ($a_vdevice as &$vdevice) { $vdevice['class'] = "vdevice"; } // Set disk type
