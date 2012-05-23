@@ -46,7 +46,7 @@ require("zfs.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Datasets"), gettext("Dataset"));
 
-if (!isset($config['zfs']['datasets']) || !is_array($config['zfs']['datasets']['dataset']))
+if (!isset($config['zfs']['datasets']) || !is_array($config['zfs']['datasets']))
 	$config['zfs']['datasets']['dataset'] = array();
 
 array_sort_key($config['zfs']['datasets']['dataset'], "name");

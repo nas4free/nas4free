@@ -48,7 +48,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("iSCSI Initiator"));
 
-if (!is_array($config['iscsiinit']['vdisk'])) {
+if (!is_array($config['iscsiinit'])) {
 	$config['iscsiinit']['vdisk'] = array();
 }
 

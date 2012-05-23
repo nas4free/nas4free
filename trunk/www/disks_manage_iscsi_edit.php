@@ -51,7 +51,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Disks"), gettext("Management"), gettext("iSCSI Initiator"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['iscsiinit']['vdisk']))
+if (!is_array($config['iscsiinit']))
 	$config['iscsiinit']['vdisk'] = array();
 
 array_sort_key($config['iscsiinit']['vdisk'], "name");

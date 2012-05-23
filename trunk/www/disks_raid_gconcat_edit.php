@@ -52,7 +52,7 @@ if (isset($_POST['id']))
 
 $pgtitle = array(gettext("Disks"), gettext("Software RAID"), gettext("JBOD"),isset($id)?gettext("Edit"):gettext("Add"));
 
-if (!is_array($config['gconcat']['vdisk']))
+if (!is_array($config['gconcat']))
 	$config['gconcat']['vdisk'] = array();
 
 array_sort_key($config['gconcat']['vdisk'], "name");

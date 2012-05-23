@@ -66,7 +66,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['iscsiinit']['vdisk']))
+if (!is_array($config['iscsiinit']))
 	$config['iscsiinit']['vdisk'] = array();
 
 array_sort_key($config['iscsiinit']['vdisk'], "name");

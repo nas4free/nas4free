@@ -49,7 +49,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("System"), gettext("Advanced"), gettext("Cron"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['cron']['job']))
+if (!is_array($config['cron']))
 	$config['cron']['job'] = array();
 
 $a_cronjob = &$config['cron']['job'];

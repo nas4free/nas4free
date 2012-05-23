@@ -47,10 +47,10 @@ require("zfs.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Pools"), gettext("Tools"));
 
-if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']['pool']))
+if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']))
 	$config['zfs']['pools']['pool'] = array();
 
-if (!isset($config['zfs']['vdevices']) || !is_array($config['zfs']['vdevices']['vdevice']))
+if (!isset($config['zfs']['vdevices']) || !is_array($config['zfs']['vdevices']))
 	$config['zfs']['vdevices']['vdevice'] = array();
 
 array_sort_key($config['zfs']['pools']['pool'], "name");

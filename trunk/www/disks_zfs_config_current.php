@@ -47,10 +47,10 @@ $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Configuration"), get
 
 $zfs = $config['zfs'];
 
-if (!is_array($zfs['pools']['pool'])) $zfs['pools']['pool'] = array();
-if (!is_array($zfs['vdevices']['vdevice'])) $zfs['vdevices']['vdevice'] = array();
-if (!is_array($zfs['datasets']['dataset'])) $zfs['datasets']['dataset'] = array();
-if (!is_array($zfs['volumes']['volume'])) $zfs['volumes']['volume'] = array();
+if (!is_array($zfs['pools'])) $zfs['pools']['pool'] = array();
+if (!is_array($zfs['vdevices'])) $zfs['vdevices']['vdevice'] = array();
+if (!is_array($zfs['datasets'])) $zfs['datasets']['dataset'] = array();
+if (!is_array($zfs['volumes'])) $zfs['volumes']['volume'] = array();
 
 foreach ($zfs['pools']['pool'] as $index => $pool)
 {
