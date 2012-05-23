@@ -151,7 +151,7 @@ function lcdproc_enable_change(enable_change) {
 	<?php if ($savemsg) print_info_box($savemsg);?>
 	<table width="100%" border="0" cellpadding="6" cellspacing="0">
 	<?php html_titleline_checkbox("enable", gettext("LCDproc"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
-	<?php html_inputbox("driver", gettext("Driver"), $pconfig['driver'], sprintf(gettext("The driver used to connect with the LCD. The list of available <a href='%s' target='_blank'>drivers</a>."), "http://lcdproc.org/hardware.php3"), true, 30);?>
+	<?php html_inputbox("driver", gettext("Driver"), $pconfig['driver'], sprintf(gettext("The driver used to connect with the LCD. The list of available <a href='%s' target='_blank'>drivers</a>."), "http://lcdproc.omnipotent.net/hardware.php3"), true, 30);?>
 	<?php html_inputbox("port", gettext("Port"), $pconfig['port'], sprintf(gettext("Port to listen on. Default port is %d."), 13666), true, 10);?>
 	<?php html_inputbox("waittime", gettext("Wait time"), $pconfig['waittime'], gettext("The default time in seconds to display a screen."), true, 10);?>
 	<?php html_textarea("param", gettext("Driver parameters"), $pconfig['param'], gettext("Additional parameters to the hardware-specific part of the driver."), false, 65, 10, false, false);?>
@@ -165,7 +165,7 @@ function lcdproc_enable_change(enable_change) {
 	  <input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true); lcdproc_enable_change(true);" />
 	</div>
 	<div id="remarks">
-	  <?php html_remark("note", gettext("Note"), sprintf(gettext("To get more information how to configure LCDproc check the LCDproc <a href='%s' target='_blank'>documentation</a>."), "http://lcdproc.org/"));?>
+	  <?php html_remark("note", gettext("Note"), sprintf(gettext("To get more information how to configure LCDproc check the LCDproc <a href='%s' target='_blank'>documentation</a>."), "http://lcdproc.omnipotent.net"));?>
 	</div>
 	<?php include("formend.inc");?>
       </form>
