@@ -54,7 +54,7 @@ $pgtitle = array(gettext("Disks"), gettext("Management"), gettext("Disk"), isset
 // Get all physical disks including CDROM.
 $a_phy_disk = array_merge((array)get_physical_disks_list(), (array)get_cdrom_list());
 
-if (!is_array($config['disks']['disk']))
+if (!is_array($config['disks']))
 	$config['disks']['disk'] = array();
 
 array_sort_key($config['disks']['disk'], "name");
