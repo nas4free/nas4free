@@ -1,5 +1,5 @@
 PORTNAME=		php5
-PORTVERSION=	5.3.13
+PORTVERSION=	5.4.3
 PORTREVISION?= 0
 CATEGORIES=		lang
 COMMENT=		PHP5 Scripting Language
@@ -36,12 +36,24 @@ CONFIGURE_ARGS+=	--without-mysql \
 
 OPTIONS=	CLI "Build CLI version" on \
 		CGI "Build CGI version" on \
+		FPM "Build FPM version" off \
 		APACHE "Build Apache module" off \
+		AP2FILTER " Use Apache 2.x filter interface (experimental)" off \
+		EMBED "Build embedded library" off \
 		DEBUG "Enable debug" off \
-		SUHOSIN "Enable Suhosin protection system" on \
+		DTRACE "Enable DTrace support" off \
 		MULTIBYTE "Enable zend multibyte support" off \
 		IPV6 "Enable ipv6 support" on \
-		MAILHEAD "Enable mail header patch" off
+		MAILHEAD "Enable mail header patch" off \
+		LINKTHR "Link thread lib (for threaded extensions)" on
+#		SUHOSIN "Enable Suhosin protection system" on \
+
+.if defined(WITH_DTRACE)
+.if ${OSVERSION} < 900000
+IGNORE=		cannot be built with DTrace support on FreeBSD < 9.x
+.endif
+CONFIGURE_ARGS+=--enable-dtrace
+.endif
 
 # Work around issues with newer (>=2.64) autoconf
 pre-configure:

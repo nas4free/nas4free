@@ -77,7 +77,7 @@ if (!isset($do_action)) {
 	$do_action = false;
 }
 
-if (!is_array($config['disks']['disk']))
+if (!is_array($config['disks']))
 	$config['disks']['disk'] = array();
 
 array_sort_key($config['disks']['disk'], "name");
