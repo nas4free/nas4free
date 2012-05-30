@@ -78,11 +78,9 @@ $a_disk = &$config['disks']['disk'];
     	<table width="100%" border="0">
 			<?php 
 				if ($a_disk == "") {
-    					html_titleline(gettext("Disks (ATA) information"));
-					echo "<td>\n";
-					echo "<br><tr><td><td>No Disks Configured. Please add disks to see the diagnostic information of disks!</td></td></br></tr>\n";
-				} else 
-					{
+					html_titleline(gettext("Disks (ATA) information"));
+					echo "<tr><td><br /><p>No disks Configured. Please add disks to see the diagnostic information of disks!</p></td></tr>\n";
+				} else {
 					foreach($a_disk as $diskk => $diskv):
 					html_titleline(sprintf(gettext("Device /dev/%s - %s"), $diskk, $diskv['desc']));
 					echo "<tr>\n";
@@ -113,5 +111,3 @@ $a_disk = &$config['disks']['disk'];
   </tr>
 </table>
 <?php include("fend.inc");?>
-
-
