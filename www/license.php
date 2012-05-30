@@ -118,7 +118,9 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
             <div>Frederico Tavares (<a href="mailto:frederico-tavares@sapo.pt">frederico-tavares@sapo.pt</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Portuguese translator of the WebGUI</font></em></div><br />
             <div>Raul Fernandez Garcia (<a href="mailto:raulfg3@gmail.com">raulfg3@gmail.com</a>)<br />
-	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Spanish translator of the WebGUI</font></em></div><br />                                     
+	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Spanish translator of the WebGUI</font></em></div><br />
+	    <div>Kevin Fowler (<a href="mailto:kfowler@nas4free.org">kfowler@nas4free.org</a>)<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Webmaster, Documentation, NAS4Free code</font></em></div><br />	                                           
 						</td></tr>						
             <?php html_separator();?>
             <?php html_titleline(gettext("Software used"));?>
