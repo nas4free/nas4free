@@ -1,4 +1,4 @@
-# $FreeBSD: src/share/examples/cvsup/ports-supfile,v 1.38.12.1 2010/02/10 00:26:20 kensmith Exp $
+# $FreeBSD: src/share/examples/cvsup/ports-supfile,v 1.40.2.1.2.1 2011/11/11 04:20:22 kensmith Exp $
 #
 # This file contains all of the "CVSup collections" that make up the
 # FreeBSD-current ports collection.
@@ -24,7 +24,7 @@
 #		This specifies the server host which will supply the
 #		file updates.  You must change it to one of the CVSup
 #		mirror sites listed in the FreeBSD Handbook at
-#		http://www.freebsd.org/doc/handbook/mirrors.html.
+#		http://www.freebsd.org/doc/handbook/cvsup.html#CVSUP-MIRRORS.
 #		You can	override this setting on the command line
 #		with cvsup's "-h host" option.
 #
@@ -45,8 +45,8 @@
 # Defaults that apply to all the collections
 #
 # IMPORTANT: Change the next line to use one of the CVSup mirror sites
-# listed at http://www.freebsd.org/doc/handbook/mirrors.html.
-*default host=cvsup2.FreeBSD.org
+# listed at http://www.freebsd.org/doc/handbook/cvsup.html#CVSUP-MIRRORS.
+*default host=cvsup.nl.FreeBSD.org
 *default base=/var/db
 *default prefix=/usr
 *default release=cvs tag=.
@@ -104,7 +104,6 @@ ports-all
 #ports-lang
 #ports-mail
 #ports-math
-#ports-mbone
 #ports-misc
 #ports-multimedia
 #ports-net
