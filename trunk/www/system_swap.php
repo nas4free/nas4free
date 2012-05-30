@@ -49,10 +49,10 @@ require("guiconfig.inc");
 $pgtitle = array(gettext("System"), gettext("Advanced"), gettext("Swap"));
 
 $pconfig['enable'] = isset($config['system']['swap']['enable']);
-$pconfig['type'] = $config['system']['swap'];
-$pconfig['mountpoint'] = $config['system']['swap'];
-$pconfig['devicespecialfile'] = $config['system']['swap'];
-$pconfig['size'] = $config['system']['swap'];
+$pconfig['type'] = $config['system']['swap']['type'];
+$pconfig['mountpoint'] = $config['system']['swap']['mountpoint'];
+$pconfig['devicespecialfile'] = $config['system']['swap']['devicespecialfile'];
+$pconfig['size'] = $config['system']['swap']['size'];
 
 if ($_POST) {
 	unset($input_errors);

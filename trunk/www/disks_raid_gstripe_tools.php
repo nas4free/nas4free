@@ -48,7 +48,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("Software RAID"), gettext("RAID0"), gettext("Tools"));
 
-if (!is_array($config['gstripe']['vdisk']))
+if (!is_array($config['gstripe']))
 	$config['gstripe']['vdisk'] = array();
 
 array_sort_key($config['gstripe']['vdisk'], "name");

@@ -56,7 +56,7 @@ $pgtitle = array(gettext("Services"), gettext("AFP"), gettext("Share"), isset($u
 if (!is_array($config['mounts']['mount']))
 	$config['mounts']['mount'] = array();
 
-if (!is_array($config['afp']['share']))
+if (!is_array($config['afp']))
 	$config['afp']['share'] = array();
 
 array_sort_key($config['mounts']['mount'], "devicespecialfile");

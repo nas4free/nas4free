@@ -73,34 +73,45 @@ $a_disk = &$config['disks']['disk'];
 			</ul>
 		</td>
 	</tr>
-	<tr>
+  <tr>
     <td class="tabcont">
     	<table width="100%" border="0">
-  			<?php foreach($a_disk as $diskk => $diskv):?>
-  			<?php html_titleline(sprintf(gettext("Device /dev/%s - %s"), $diskk, $diskv['desc']));?>
-				<tr>
-			    <td>
-			    	<pre><?php
-			    	$name = $diskv['name'];
-						$device = $diskv['devicespecialfile'];
-						$dmamode = trim(preg_replace("/current mode = /", "", exec("/sbin/atacontrol mode {$name}")));
+			<?php 
+				if ($a_disk == "") {
+    					html_titleline(gettext("Disks (ATA) information"));
+					echo "<td>\n";
+					echo "<br><tr><td><td>No Disks Configured. Please add disks to see the diagnostic information of disks!</td></td></br></tr>\n";
+				} else 
+					{
+					foreach($a_disk as $diskk => $diskv):
+					html_titleline(sprintf(gettext("Device /dev/%s - %s"), $diskk, $diskv['desc']));
+					echo "<tr>\n";
+						echo "<td>\n";
+							echo "<pre>\n";
+								$name = $diskv['name'];
+								$device = $diskv['devicespecialfile'];
+								$dmamode = trim(preg_replace("/current mode = /", "", exec("/sbin/atacontrol mode {$name}")));
 
-						echo gettext("Disk") . ":		{$name}<br />";
+								echo gettext("Disk") . ":		{$name}<br />";
 						
-						// need fix
-						// echo gettext("Transfer mode") . ":		{$dma}<br />";
+								// need fix
+								// echo gettext("Transfer mode") . ":		{$dma}<br />";
 
-						// Display more information
-						exec("/usr/local/sbin/ataidle {$device}", $rawdata);
-						$rawdata = array_slice($rawdata, 2);
-						echo htmlspecialchars(implode("\n", $rawdata));
-						unset($rawdata);
-						?></pre>
-					</td>
-			  </tr>
-    		<?php endforeach;?>
+								// Display more information
+								exec("/usr/local/sbin/ataidle {$device}", $rawdata);
+								$rawdata = array_slice($rawdata, 2);
+								echo htmlspecialchars(implode("\n", $rawdata));
+								unset($rawdata);
+							echo "</pre>\n";
+						echo "</td>\n";
+					echo "</tr>\n";
+					endforeach;
+				}
+			?>
     	</table>
     </td>
   </tr>
 </table>
 <?php include("fend.inc");?>
+
+

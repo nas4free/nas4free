@@ -54,7 +54,7 @@ if(!is_array($config['samba']['auxparam']))
 
 sort($config['samba']['auxparam']);
 
-if (!is_array($config['mounts']['mount']))
+if (!is_array($config['mounts']))
 	$config['mounts']['mount'] = array();
 
 array_sort_key($config['mounts']['mount'], "devicespecialfile");
@@ -99,7 +99,7 @@ if ($_POST) {
 		$reqdfields = explode(" ", "security netbiosname workgroup");
 		$reqdfieldsn = array(gettext("Authentication"),gettext("NetBIOS name"),gettext("Workgroup"));
 		$reqdfieldst = explode(" ", "string domain workgroup");
-		
+
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 

@@ -547,7 +547,7 @@ class HTMLMountComboBox extends HTMLComboBox {
 		global $config;
 
 		// Generate options.
-		if (!is_array($config['mounts']['mount']))
+		if (!is_array($config['mounts']))
 			$config['mounts']['mount'] = array();
 		array_sort_key($config['mounts']['mount'], "devicespecialfile");
 

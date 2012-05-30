@@ -110,7 +110,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['disks']['disk']))
+if (!is_array($config['disks']))
 	$config['disks']['disk'] = array();
 
 if (!is_array($config['smartd']['selftest']))

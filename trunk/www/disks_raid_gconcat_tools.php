@@ -48,7 +48,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("Software RAID"), gettext("JBOD"), gettext("Tools"));
 
-if (!is_array($config['gconcat']['vdisk']))
+if (!is_array($config['gconcat']))
 	$config['gconcat']['vdisk'] = array();
 
 array_sort_key($config['gconcat']['vdisk'], "name");
