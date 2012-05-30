@@ -13,10 +13,14 @@ LIB_DEPENDS+=		uuid.1:${PORTSDIR}/misc/e2fsprogs-libuuid \
 							pcre.1:${PORTSDIR}/devel/pcre
 
 USE_BZIP2=				yes
-USE_AUTOTOOLS=	libtool
+#USE_AUTOTOOLS=	libtool
 GNU_CONFIGURE=		yes
 USE_OPENSSL=			yes
 USE_GNOME+=		libxml2
+
+USE_AUTOTOOLS=	autoconf autoheader aclocal automake libtool
+ACLOCAL_ARGS=	-I m4
+AUTOMAKE_ARGS=	--add-missing
 
 CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd --enable-static \
 						                     --sysconfdir=/var/etc/ \
