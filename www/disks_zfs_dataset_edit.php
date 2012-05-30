@@ -50,10 +50,10 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Datasets"), gettext("Dataset"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']['pool']))
+if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']))
 	$config['zfs']['pools']['pool'] = array();
 
-if (!isset($config['zfs']['datasets']) || !is_array($config['zfs']['datasets']['dataset']))
+if (!isset($config['zfs']['datasets']) || !is_array($config['zfs']['datasets']))
 	$config['zfs']['datasets']['dataset'] = array();
 
 array_sort_key($config['zfs']['pools']['pool'], "name");
@@ -109,8 +109,8 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Name"));
 	$reqdfieldst = explode(" ", "string");
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, &$input_errors);
-	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if (!$input_errors) {
 		$dataset = array();

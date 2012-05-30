@@ -48,7 +48,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("Software RAID"), gettext("RAID1"), gettext("Tools"));
 
-if (!is_array($config['gmirror']['vdisk']))
+if (!is_array($config['gmirror']))
 	$config['gmirror']['vdisk'] = array();
 
 array_sort_key($config['gmirror']['vdisk'], "name");

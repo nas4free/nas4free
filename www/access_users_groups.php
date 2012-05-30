@@ -65,7 +65,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['access']['group']))
+if (!is_array($config['access']))
 	$config['access']['group'] = array();
 
 array_sort_key($config['access']['group'], "name");

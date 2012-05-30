@@ -48,7 +48,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Status"), gettext("Disks"));
 
-if (!is_array($config['disks']['disk']))
+if (!is_array($config['disks']))
 	$config['disks']['disk'] = array();
 
 array_sort_key($config['disks']['disk'], "name");

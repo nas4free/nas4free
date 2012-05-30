@@ -49,7 +49,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Services"), gettext("CIFS/SMB"), gettext("Share"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['mounts']['mount']))
+if (!is_array($config['mounts']))
 	$config['mounts']['mount'] = array();
 
 if (!is_array($config['samba']['share']))

@@ -51,7 +51,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Access"), gettext("Users"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['access']['user']))
+if (!is_array($config['access']))
 	$config['access']['user'] = array();
 
 array_sort_key($config['access']['user'], "login");

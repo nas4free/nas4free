@@ -1745,7 +1745,7 @@ function get_conf_physical_disks_list() {
 
 	$a_physicaldisk = array();
 
-	if (is_array($config['disks']['disk'])) {
+	if (is_array($config['disks'])) {
 		array_sort_key($config['disks']['disk'], "name");
 		$a_disks = $config['disks']['disk'];
 		foreach ($a_disks as &$disk) { $disk['class'] = "physical"; } // Set disk type

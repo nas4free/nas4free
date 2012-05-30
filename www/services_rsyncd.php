@@ -44,7 +44,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"), gettext("Rsync"), gettext("Server"), gettext("Settings"));
 
-if (!is_array($config['access']['user']))
+if (!is_array($config['access']))
 	$config['access']['user'] = array();
 
 array_sort_key($config['access']['user'], "login");

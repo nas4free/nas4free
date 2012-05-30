@@ -50,7 +50,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Volumes"), gettext("Volume"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']['pool']))
+if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']))
 	$config['zfs']['pools']['pool'] = array();
 
 if (!isset($config['zfs']['volumes']) || !is_array($config['zfs']['volumes']['volume']))
