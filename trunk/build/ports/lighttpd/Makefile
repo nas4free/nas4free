@@ -1,6 +1,6 @@
 PORTNAME=		lighttpd
-PORTVERSION=	1.4.30
-PORTREVISION=   3
+PORTVERSION=	1.4.31
+PORTREVISION= 0
 CATEGORIES=		www
 COMMENT=		A secure, fast, compliant, and very flexible Web Server
 MAINTAINER=		zoon01@nas4free.org
@@ -12,11 +12,12 @@ LIB_DEPENDS+=		uuid.1:${PORTSDIR}/misc/e2fsprogs-libuuid \
 							sqlite3.8:${PORTSDIR}/databases/sqlite3 \
 							pcre.1:${PORTSDIR}/devel/pcre
 
-USE_BZIP2=				yes
-#USE_AUTOTOOLS=	libtool
-GNU_CONFIGURE=		yes
-USE_OPENSSL=			yes
-USE_GNOME+=		libxml2
+USE_BZIP2=	  yes
+#USE_AUTOTOOLS= libtool
+GNU_CONFIGURE=  yes
+USE_OPENSSL=	  yes
+USE_GNOME+=	  libxml2
+MAKE_JOBS_SAFE= yes
 
 USE_AUTOTOOLS=	autoconf autoheader aclocal automake libtool
 ACLOCAL_ARGS=	-I m4
