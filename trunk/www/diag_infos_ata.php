@@ -49,6 +49,7 @@ require("guiconfig.inc");
 $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("Disks (ATA)"));
 
 $a_disk = &$config['disks']['disk'];
+$disk_error = gettext("No disks configured, please add disks to see the diagnostic information of disks!");
 ?>
 <?php include("fbegin.inc");?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -78,9 +79,10 @@ $a_disk = &$config['disks']['disk'];
     	<table width="100%" border="0">
 			<?php 
 				if ($a_disk == "") {
-					html_titleline(gettext("Disks (ATA) information"));
-					echo "<tr><td><br /><p>No disks Configured. Please add disks to see the diagnostic information of disks!</p></td></tr>\n";
-				} else {
+    				html_titleline(gettext("Disks (ATA) information"));
+					echo "<tr><td><br />".$disk_error."</td></tr>\n";
+				} else 
+					{
 					foreach($a_disk as $diskk => $diskv):
 					html_titleline(sprintf(gettext("Device /dev/%s - %s"), $diskk, $diskv['desc']));
 					echo "<tr>\n";
