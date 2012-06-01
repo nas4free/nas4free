@@ -1,4 +1,4 @@
-PORTNAME=		freenas-virtualbox-ose-additions
+PORTNAME=		nas4free-virtualbox-ose-additions
 PORTVERSION=	1.0
 #PORTREVISION= 0
 CATEGORIES=		emulators
