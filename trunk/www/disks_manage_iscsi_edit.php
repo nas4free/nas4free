@@ -52,9 +52,9 @@ if (isset($_POST['uuid']))
 $pgtitle = array(gettext("Disks"), gettext("Management"), gettext("iSCSI Initiator"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
 if (!is_array($config['iscsiinit']))
-	$config['iscsiinit'] = array();
+	$config['iscsiinit']['vdisk'] = array();
 
-array_sort_key($config['iscsiinit']['vdisk'], "name");
+array_sort_key($config['iscsiinit'], "name");
 $a_iscsiinit = &$config['iscsiinit']['vdisk'];
 
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsiinit, "uuid")))) {
