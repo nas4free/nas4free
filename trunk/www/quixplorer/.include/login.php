@@ -81,10 +81,9 @@ function login() {
 			echo "<INPUT name=\"p_user\" type=\"text\" size=\"25\"></TD></TR>\n";
 			echo "<TR><TD>".$GLOBALS["messages"]["miscpassword"].":</TD><TD align=\"right\">";
 			echo "<INPUT name=\"p_pass\" type=\"password\" size=\"25\"></TD></TR>\n";
-			echo "<TR><TD>".$GLOBALS["messages"]["misclang"].":</TD><TD align=\"right\">";
-			echo "<SELECT name=\"lang\">\n";
-			@include "./_lang/_info.php";
-			echo "</SELECT></TD></TR>\n";
+			echo "<TR><TD>".gettext("Detected Language:<br />(Change if needed)")."</TD><TD align=\"right\">";
+			//Select box and auto language detection array
+			include('./_lang/_info.php');
 			echo "<TR><TD colspan=\"2\" align=\"right\"><INPUT type=\"submit\" value=\"";
 			echo $GLOBALS["messages"]["btnlogin"]."\"></TD></TR>\n</FORM></TABLE><BR></CENTER>\n";
 ?><script language="JavaScript1.2" type="text/javascript">
