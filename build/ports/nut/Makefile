@@ -1,5 +1,5 @@
 PORTNAME=		nut
-PORTVERSION=	2.6.3
+PORTVERSION=	2.6.4
 PORTREVISION=	0
 CATEGORIES=		sysutils
 COMMENT=		Network UPS tools
@@ -9,10 +9,10 @@ MASTER_SITES=	http://www.networkupstools.org/source/${PORTVERSION:R}/
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-USE_AUTOTOOLS=	autoconf
-GNU_CONFIGURE= yes
-USE_GMAKE= yes
-USE_LDCONFIG=	yes
+_AUTOTOOL_autoconf=	yes
+GNU_CONFIGURE=	yes
+USE_GMAKE=		yes
+USE_LDCONFIG=		yes
 USE_GNOME=		pkgconfig
 
 NUT_USER=		root
@@ -37,7 +37,7 @@ CONFIGURE_ARGS=	--sysconfdir=${NUT_SYSCONFDIR} \
 						--without-cgi \
 						--with-serial \
 						--with-usb=auto \
-						--without-neonxml \
+						--without-neon \
 						--without-snmp \
 						--without-powerman \
 						--without-hal \
@@ -47,11 +47,7 @@ CONFIGURE_ARGS=	--sysconfdir=${NUT_SYSCONFDIR} \
 						--with-wrap
 
 
-.if !defined(WITHOUT_IPV6)
-CONFIGURE_ARGS+=	--with-ipv6
-.else
-CONFIGURE_ARGS+=	--without-ipv6
-.endif
+
 
 .include <bsd.port.pre.mk>
 
@@ -93,7 +89,6 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/mge-shut ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/mge-utalk ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/microdowell ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/netxml-ups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/newmge-shut ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/oneac ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/optiups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
