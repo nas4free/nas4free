@@ -1,15 +1,29 @@
-<OPTION value="en">English</OPTION>
-<OPTION value="enutf8">English (UTF-8)</OPTION>
-<OPTION value="bg">Bulgarian</OPTION>
-<OPTION value="cs">Czech</OPTION>
-<OPTION value="da">Dansk</OPTION>
-<OPTION value="de">Deutsch</OPTION>
-<OPTION value="es">Español</OPTION>
-<OPTION value="fr">Français</OPTION>
-<OPTION value="it">Italiano</OPTION>
-<OPTION value="ja">Japanese</OPTION>
-<OPTION value="nl">Nederlands</OPTION>
-<OPTION value="pl">Polski</OPTION>
-<OPTION value="ptbr">Português - Brasil</OPTION>
-<OPTION value="ro">Românã</OPTION>
-<OPTION value="ru">Russian</OPTION>
+<?php
+	//Set the language array
+	$lang = array(
+		'en'		=> 'English', 
+		'enutf8' 	=> 'English (UTF-8)',
+		'bg'		=> 'Bulgarian',
+		'cs'		=> 'Czech',
+		'da'		=> 'Dansk',
+		'de'		=> 'Deutsch',
+		'es'		=> 'Español',
+		'fr'		=> 'Français',
+		'it'		=> 'Italiano',
+		'ja'		=> 'Japanese',
+		'nl'		=> 'Nederlands',
+		'pl'		=> 'Polski',
+		'ptbr'		=> 'Português - Brasil',
+		'ro'		=> 'Românã',
+		'ru'		=> 'Russian'
+	);
+
+	//Create the select box and options
+	echo "<SELECT name=\"lang\">\n";
+		foreach($lang as $key => $value) {
+			//Set the default language automatically based on global webgui language
+			$selected = ($key == $GLOBALS["language"]) ? " selected='selected'" : '';
+			//Now create the <options> list
+			echo "<option value='$key'$selected>$value</option>\n";
+	}
+	echo "</SELECT></TD></TR>\n";

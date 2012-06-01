@@ -42,7 +42,7 @@ require_once("config.inc");
 	$GLOBALS["require_login"] = true;
 
 	// language: (en, de, es, fr, it, ja, nl, pl, ru)
-	$GLOBALS["language"] = "en";
+	$GLOBALS["language"] = $config['system']['language'];
 
 	// the filename of the QuiXplorer script: (you rarely need to change this)
 	$GLOBALS["script_name"] = "{$config['system']['webgui']['protocol']}://".$GLOBALS['__SERVER']['HTTP_HOST'].$GLOBALS['__SERVER']["PHP_SELF"];
@@ -72,13 +72,6 @@ require_once("config.inc");
 	// user permissions bitfield: (1=modify, 2=password, 4=admin, add the numbers)
 	$GLOBALS["permissions"] = 7;
 //------------------------------------------------------------------------------
-
-	// Adding values for each language to this array changes
-	// the login prompt message from the language-specific file.
-	// If there is no value for a language here, the default value
-	// of the language file is used.
-	$GLOBALS["login_prompt"] = array(
-		"en"	=> "Login to use File Manager");
 
 /* NOTE:
 	Users can be defined by using the Admin-section,
