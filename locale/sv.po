@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-04-10 02:09+0000\n"
-"PO-Revision-Date: 2012-04-15 12:22+0000\n"
+"POT-Creation-Date: 2012-06-02 01:27+0000\n"
+"PO-Revision-Date: 2012-06-01 23:58+0000\n"
 "Last-Translator: zoon01 <zoon01@nas4free.org>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-09 19:40+0000\n"
-"X-Generator: Launchpad (build 15213)\n"
+"X-Launchpad-Export-Date: 2012-06-02 00:13+0000\n"
+"X-Generator: Launchpad (build 15342)\n"
 "X-Poedit-Country: SWEDEN\n"
 "Language: \n"
 "X-Poedit-Language: Swedish\n"
@@ -40,7 +40,7 @@ msgstr "%d år"
 
 #, php-format
 msgid "%d years"
-msgstr ""
+msgstr "%d år"
 
 #, c-format, php-format
 msgid "%d%% of %dMiB"
@@ -119,17 +119,11 @@ msgstr ""
 "att användaren <a href='%s'>user</a> har skalåtkomst."
 
 msgid ""
-"<b>EFI GPT</b> if you want to mount a GPT formatted drive (<b>default "
-"partition since 0.684b</b>).<br /><b>MBR</b> partition, for UFS formatted "
-"drive or Software RAID volume (<b>created before 0.684b</b>) or imported "
-"disks from other OS.<br /><b>CD/DVD or Old software RAID</b> for old "
-"SoftwareRAID volumes (<b>created before version 0.68</b>) or CD/DVD."
+"<b>EFI GPT partition</b> if you want to mount a GPT formatted drive "
+"(<b>default partition</b>).<br/><b>MBR partition</b> if you want to mount a "
+"UFS formatted drive or do imported disks from other OS.<br/><b>CD/DVD "
+"volume</b> if you want to mount a CD/DVD volume."
 msgstr ""
-"<b>EFI GPT</b> om du vill montera en GPT formaterad disk (<b>standard "
-"partition sedan 0.684b</b>).<br /><b>MBR</b> partition, för UFS formaterad "
-"disk eller mjukvaru RAID volym (<b>skapad före 0.684b</b>) eller importerade "
-"diskar från annat OS.<br /><b>CD/DVD eller gammal mjukvaru RAID</b> för "
-"gamla mjukvaruRAID volymer (<b>skapad före version 0.68</b>) eller CD/DVD."
 
 msgid ""
 "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
@@ -349,7 +343,7 @@ msgid "Add auth group"
 msgstr "Lägg till en autentisierings grupp."
 
 msgid "Add auto snapshot"
-msgstr ""
+msgstr "Lägg till automatisk avbildning"
 
 msgid "Add command"
 msgstr "Lägg till kommando"
@@ -406,7 +400,7 @@ msgid "Add share"
 msgstr "Lägg till utdelning"
 
 msgid "Add snapshot"
-msgstr ""
+msgstr "Lägg till avbildning"
 
 msgid "Add target"
 msgstr "Lägg till mål"
@@ -415,7 +409,7 @@ msgid "Add user"
 msgstr "Lägg till användare"
 
 msgid "Add volume"
-msgstr ""
+msgstr "Lägg till volym"
 
 msgid "Additional group"
 msgstr "Ytterligare grupp"
@@ -614,7 +608,7 @@ msgid "Apple Filing Protocol"
 msgstr "Apple Filprotokoll"
 
 msgid "Apply"
-msgstr ""
+msgstr "Tillämpa"
 
 msgid "Apply changes"
 msgstr "Verkställ ändringar"
@@ -679,7 +673,7 @@ msgid "Auto"
 msgstr "Automatisk"
 
 msgid "Auto Snapshot"
-msgstr ""
+msgstr "Automatisk avbildning"
 
 msgid "Auto size"
 msgstr "Automatisk storlek"
@@ -709,7 +703,7 @@ msgid "Backup/Restore"
 msgstr "Säkerhetskopiera/Återskapa"
 
 msgid "Bad User - non existing users"
-msgstr ""
+msgstr "Felaktig användare - användare saknas"
 
 msgid "Balance algorithm"
 msgstr "Balanseringsalgoritm"
@@ -744,7 +738,7 @@ msgstr "Bind lösenord"
 
 #, php-format
 msgid "Bios:"
-msgstr ""
+msgstr "Bios"
 
 msgid "BitTorrent"
 msgstr "BitTorrent"
@@ -756,7 +750,7 @@ msgid "Browseable"
 msgstr "Bläddringsbar"
 
 msgid "Built date"
-msgstr ""
+msgstr "Byggdatum"
 
 msgid "Bulgarian"
 msgstr "Bulgariska"
@@ -770,8 +764,8 @@ msgstr "CCMP"
 msgid "CCMP TKIP"
 msgstr "CCMP TKIP"
 
-msgid "CD/DVD or Old Software RAID"
-msgstr "CD/DVD eller gammal mjukvaru-RAID"
+msgid "CD/DVD"
+msgstr "CD/DVD"
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -789,31 +783,31 @@ msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB information"
 
 msgid "CP1251 (Cyrillic)"
-msgstr ""
+msgstr "CP1251 (Kyrilliskt)"
 
 msgid "CP437 (Latin US)"
-msgstr ""
+msgstr "CP437 (Latin US)"
 
 msgid "CP850 (Latin 1)"
-msgstr ""
+msgstr "CP850 (Latin 1)"
 
 msgid "CP852 (Latin 2)"
-msgstr ""
+msgstr "CP852 (Latin 2)"
 
 msgid "CP866 (Cyrillic CIS 1)"
-msgstr ""
+msgstr "CP866 (Kyrilliskt CIS 1)"
 
 msgid "CP932 (Japanese Shift-JIS)"
-msgstr ""
+msgstr "CP932 (Japanskt Shift-JIS)"
 
 msgid "CP936 (Simplified Chinese GBK)"
-msgstr ""
+msgstr "CP936 (Förenklad kinesiska GBK)"
 
 msgid "CP949 (Korean)"
-msgstr ""
+msgstr "CP949 (koreanskt)"
 
 msgid "CP950 (Traditional Chinese Big5)"
-msgstr ""
+msgstr "CP950 (Traditionell kinesiska Big5)"
 
 msgid "CPU frequency"
 msgstr "CPU frekvens"
@@ -837,7 +831,7 @@ msgid "Can't format the OS origin disk!"
 msgstr "Kan ej formatera operativsystemets ursprungsdisk!"
 
 msgid "Can't get UFS ID."
-msgstr ""
+msgstr "Kan inte erhålla UFS ID"
 
 msgid "Can't mount the system partition 1, the DATA partition is the 2."
 msgstr "Kan inte montera systempartition 1, DATA-partitionen är 2."
@@ -934,7 +928,7 @@ msgid "Client sees uppercase, server sees lowercase"
 msgstr "Klienten ser versaler, servern ser gemener."
 
 msgid "Clone"
-msgstr ""
+msgstr "Klona"
 
 msgid "Collecting initial data, please wait..."
 msgstr "Samlar in initial data, var god vänta..."
@@ -1056,9 +1050,14 @@ msgid ""
 "where N is an integer from 1 (fastest) to 9 (best compression ratio). "
 "Currently, 'gzip' is equivalent to 'gzip-6'."
 msgstr ""
+"Styr komprimeringsalgoritmerna för den här volymen. Komprimeringsalgoritmen "
+"'lzjb' är optimerad för prestanda och har måttlig komprimeringsgrad. 'lzjb' -"
+"algoritmen används när komprimering är inställd på 'På'. Du kan ange 'gzip' "
+"nivå med 'gzip-N' där N är ett heltal från 1 (snabbast) till 9 (bästa "
+"komprimeringsgrad). För nuvarande är 'gzip' ekvivalent med 'gzip-6'."
 
 msgid "Controls the dedup method."
-msgstr ""
+msgstr "Styr dedupliceringsmetod."
 
 msgid "Controls whether this dataset can be modified."
 msgstr "Kontrollerar huruvida detta Dataset kan modifieras"
@@ -1079,13 +1078,13 @@ msgid "Create work directory if it doesn't exist."
 msgstr "Skapa katalogen om den inte finns."
 
 msgid "Created UFS file system:"
-msgstr ""
+msgstr "Skapade UFS filsystem:"
 
 msgid "Creates the pool with an alternate root."
 msgstr "Skapar poolen med en alternativ root"
 
 msgid "Creates the recursive snapshot."
-msgstr ""
+msgstr "Skapar de rekursiva avbilderna."
 
 msgid "Creating filesystem"
 msgstr "Skapar filsystem"
@@ -1097,7 +1096,7 @@ msgid "Creating partition"
 msgstr "Skapar partition"
 
 msgid "Creation"
-msgstr ""
+msgstr "Skapa"
 
 msgid "Credits"
 msgstr "Tack till"
@@ -1196,7 +1195,7 @@ msgid "Debug"
 msgstr "Felsök"
 
 msgid "Dedup"
-msgstr ""
+msgstr "Deduplicering"
 
 msgid "Default"
 msgstr "Standard"
@@ -1269,10 +1268,10 @@ msgid "Delete auth group"
 msgstr "Radera autentiseringsgrupp"
 
 msgid "Delete auto snapshot"
-msgstr ""
+msgstr "Ta bort automatisk avbild"
 
 msgid "Delete clone"
-msgstr ""
+msgstr "Ta bort klon"
 
 msgid "Delete command"
 msgstr "Ta bort kommando"
@@ -1332,7 +1331,7 @@ msgid "Delete share"
 msgstr "Ta bort utdelning"
 
 msgid "Delete snapshot"
-msgstr ""
+msgstr "Ta bort avbild"
 
 msgid "Delete target"
 msgstr "Ta bort mål"
@@ -1341,10 +1340,10 @@ msgid "Delete user"
 msgstr "Ta bort användare"
 
 msgid "Delete volume"
-msgstr ""
+msgstr "Ta bort volym"
 
 msgid "Deletes the recursive snapshot."
-msgstr ""
+msgstr "Ta bort den rekursiva avbilden."
 
 msgid "Deleting"
 msgstr "Raderar"
@@ -1387,6 +1386,9 @@ msgstr "Destination utdelning"
 
 msgid "Detected"
 msgstr "Identifierad"
+
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
 
 msgid "Detected RSYNC remote shares"
 msgstr "Upptäckte fjärranslutna RSYNC utdelningar"
@@ -1518,6 +1520,9 @@ msgstr "Diskar"
 msgid "Disks (ATA)"
 msgstr "Diskar (ATA)"
 
+msgid "Disks (ATA) information"
+msgstr ""
+
 msgid "Display"
 msgstr "Visa"
 
@@ -1549,10 +1554,10 @@ msgid "Do you really want to delete this auth group?"
 msgstr "Vill du verkligen radera denna autentiseringsgrupp?"
 
 msgid "Do you really want to delete this auto snapshot?"
-msgstr ""
+msgstr "Vill Du verkligen ta bort den här automatiska avbilden?"
 
 msgid "Do you really want to delete this clone?"
-msgstr ""
+msgstr "Vill Du verkligen ta bort den här klonen?"
 
 msgid "Do you really want to delete this command?"
 msgstr "Vill du verkligen ta bort det här kommandot?"
@@ -1627,7 +1632,7 @@ msgid "Do you really want to delete this share?"
 msgstr "Vill du verkligen ta bort denna utdelning?"
 
 msgid "Do you really want to delete this snapshot?"
-msgstr ""
+msgstr "Vill Du verkligen ta bort den här avbilden?"
 
 msgid "Do you really want to delete this target?"
 msgstr "Vill du verkligen ta bort det här målet?"
@@ -1636,7 +1641,7 @@ msgid "Do you really want to delete this user?"
 msgstr "Vill du verkligen ta bort denna användare?"
 
 msgid "Do you really want to delete this volume?"
-msgstr ""
+msgstr "Vill Du verkligen ta bort den här volymen?"
 
 msgid ""
 "Do you really want to delete this volume?\\n!!! Note, all data will get lost "
@@ -1712,7 +1717,7 @@ msgid "Dos charset"
 msgstr "Dos-teckenuppsättning"
 
 msgid "Double-parity RAID-Z"
-msgstr ""
+msgstr "Dubbelparitets RAID-Z"
 
 msgid "Download"
 msgstr "Ladda ner"
@@ -1736,7 +1741,7 @@ msgid "Driver list"
 msgstr "Drivrutinslista"
 
 msgid "Driver parameters"
-msgstr ""
+msgstr "Drivrutinparametrar"
 
 msgid "Duplex"
 msgstr "Duplex"
@@ -1781,7 +1786,7 @@ msgid "Edit auth group"
 msgstr "Editera auth gruppen"
 
 msgid "Edit auto snapshot"
-msgstr ""
+msgstr "Redigera automatisk avbildning"
 
 msgid "Edit command"
 msgstr "Redigera kommando"
@@ -1838,7 +1843,7 @@ msgid "Edit share"
 msgstr "Redigera utdelning"
 
 msgid "Edit snapshot"
-msgstr ""
+msgstr "Redigera avbildning"
 
 msgid "Edit target"
 msgstr "Redigera mål"
@@ -1847,7 +1852,7 @@ msgid "Edit user"
 msgstr "Redigera användare"
 
 msgid "Edit volume"
-msgstr ""
+msgstr "Redigera volym"
 
 msgid "Email"
 msgstr "E-post"
@@ -1883,7 +1888,7 @@ msgid "Enable TLS/SSL connections."
 msgstr "Aktivera TLS/SSL anslutningar."
 
 msgid "Enable ZFS ACL"
-msgstr ""
+msgstr "Aktivera ZFS ACL"
 
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr ""
@@ -1933,7 +1938,7 @@ msgstr ""
 "uppstartsprocessen."
 
 msgid "Enable guest access"
-msgstr ""
+msgstr "Aktivera gästaccess"
 
 msgid "Enable guest access."
 msgstr "Aktivera gäståtkomst."
@@ -1983,7 +1988,7 @@ msgid "Enable serial console"
 msgstr "Aktivera seriellkonsol"
 
 msgid "Enable shadow copy"
-msgstr ""
+msgstr "Aktivera skuggkopia"
 
 msgid "Enable store DOS attributes"
 msgstr "Möjliggör lagring av DOS attribut"
@@ -2281,7 +2286,7 @@ msgid "Filename"
 msgstr "Filnamn"
 
 msgid "Filter"
-msgstr ""
+msgstr "Filtrera"
 
 msgid "Firewall"
 msgstr "Brandvägg"
@@ -2670,6 +2675,7 @@ msgstr "Om denna egenskap är avaktiverad så kan inte filsystemet monteras."
 msgid ""
 "If this property is enabled, the snapshots are displayed into .zfs directory."
 msgstr ""
+"Om denna egenskap är aktiverad så visar avbildningar i .zfs katalogen."
 
 #, php-format
 msgid ""
@@ -2737,7 +2743,7 @@ msgid "Information & Manual"
 msgstr "Information & Manual"
 
 msgid "Information & Manuals"
-msgstr ""
+msgstr "Information och Manualer"
 
 msgid "Inherit permissions"
 msgstr "Ärv rättigheter"
@@ -2827,6 +2833,8 @@ msgstr ""
 
 msgid "It cannot be used combining SMB2 and Anonymous."
 msgstr ""
+"Det kan inte användas tillsammans med SMB2 och anonym användare "
+"(\"Anonymous\")."
 
 msgid ""
 "It is impossible to enable 'Anonymous users only' and 'Local users only' "
@@ -2889,10 +2897,10 @@ msgid "LAN net"
 msgstr "LAN nät"
 
 msgid "LCDproc"
-msgstr ""
+msgstr "LCDproc"
 
 msgid "LCDproc (client)"
-msgstr ""
+msgstr "LCDproc (klient)"
 
 msgid "LDAP"
 msgstr "LDAP"
@@ -2914,11 +2922,11 @@ msgstr "Senaste konfigurationsändring"
 
 #, php-format
 msgid "Latest nightly build: %s"
-msgstr ""
+msgstr "Sensate dygnsbygg: %s"
 
 #, php-format
 msgid "Latest stable build: %s"
-msgstr ""
+msgstr "Senaste stabila bygg: %s"
 
 msgid "Latvian"
 msgstr "Lettiska"
@@ -2932,13 +2940,13 @@ msgstr ""
 "formata </ a> menyn."
 
 msgid "Leave already configured auto snapshots."
-msgstr ""
+msgstr "Lämna redan konfigurerade automatiska avbilder."
 
 msgid "Leave auto snapshot configuration"
-msgstr ""
+msgstr "Lämna konfigurering av automatiska avbild."
 
 msgid "Leave this field empty to use default settings."
-msgstr ""
+msgstr "Lämna fältet tomt för att använda grundinställningar"
 
 msgid "Level 1 - Minimum power usage with Standby (spindown)"
 msgstr "Nivå 1 - Lägsta strömförbrukning med Standby (spindown)"
@@ -2970,7 +2978,7 @@ msgid "License & Credits"
 msgstr "Licens & Erkännande"
 
 msgid "Life time"
-msgstr ""
+msgstr "Livstid"
 
 msgid "Lightweight Directory Access Protocol"
 msgstr "Lightweight Directory Access Protocol"
@@ -3007,7 +3015,7 @@ msgid "List of available target name on all configured iSCSI targets"
 msgstr "Lista med tillgängliga målnamn på alla konfigurerade iSCSI-mål."
 
 msgid "List of detected disks"
-msgstr ""
+msgstr "Lista med detekterade diskar"
 
 msgid "List of imported users"
 msgstr "Lista över importerade användare"
@@ -3172,7 +3180,7 @@ msgid "Map all users to root"
 msgstr "Mappa alla användare till root"
 
 msgid "Map to guest"
-msgstr ""
+msgstr "Länka till gäst"
 
 msgid "Map to user"
 msgstr "Koppla till användare"
@@ -3181,7 +3189,7 @@ msgid "Masquerade address"
 msgstr "Maskerad adress"
 
 msgid "Max Protocol"
-msgstr ""
+msgstr "Max Protocol"
 
 msgid "Max. TTL"
 msgstr "Max. TTL"
@@ -3375,7 +3383,7 @@ msgid "NOT YET AVAILABLE"
 msgstr "INTE TILLGÄNGLIG ÄN"
 
 msgid "NT1"
-msgstr ""
+msgstr "NT1"
 
 msgid "NTP time server"
 msgstr "NTP-tidsserver"
@@ -3441,7 +3449,7 @@ msgstr ""
 "kontrollerad."
 
 msgid "Never - default"
-msgstr ""
+msgstr "Aldrig - grundinställning"
 
 msgid "New Device"
 msgstr "Ny Enhet"
@@ -3507,6 +3515,11 @@ msgid "No disks available. Please add new <a href='%s'>disk</a> first."
 msgstr ""
 "Inga diskar tillgängliga. Var god lägg till en ny <a href='%s'>disk</a> "
 "först."
+
+msgid ""
+"No disks configured, please add disks to see the diagnostic information of "
+"disks!"
+msgstr ""
 
 msgid "No file was uploaded."
 msgstr "Ingen fil laddades upp."
@@ -3622,9 +3635,12 @@ msgid ""
 "Once you add the virtual device, it becomes impossible to delete again. It "
 "recommends adding the same number of drives as the existing virtual device."
 msgstr ""
+"Efter att en virtuell enhet har skapats är inte möjligt att ta bort den. Det "
+"rekommenderas att man lägger till samma antal diskar som antalet existerande "
+"virtuella enheter."
 
 msgid "Online version check"
-msgstr ""
+msgstr "Online versionskontroll"
 
 msgid ""
 "Only allow anonymous users. Use this on a public FTP site with no remote FTP "
@@ -3655,7 +3671,7 @@ msgid "Options"
 msgstr "Alternativ"
 
 msgid "Origin"
-msgstr ""
+msgstr "Ursprung"
 
 msgid "Others"
 msgstr "Övriga"
@@ -3829,7 +3845,7 @@ msgid "Platform"
 msgstr "Plattform"
 
 msgid "Platform OS"
-msgstr ""
+msgstr "Plattforms-OS"
 
 #, php-format
 msgid "Please check the <a href='%s' target='_blank'>documentation</a>."
@@ -4195,7 +4211,7 @@ msgid "Reverse DNS lookup"
 msgstr "Omvänd DNS-uppslagning"
 
 msgid "Reverse direction"
-msgstr ""
+msgstr "Motsatt riktning"
 
 msgid "Romanian"
 msgstr "Rumänska"
@@ -4261,11 +4277,13 @@ msgid "S.M.A.R.T. log"
 msgstr "S.M.A.R.T.-logg"
 
 msgid "SMB2"
-msgstr ""
+msgstr "SMB2"
 
 msgid ""
 "SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."
 msgstr ""
+"SMB2 anvnäds med nya OS såsom Windows 7 och Vista. NT1 är avsett för äldre "
+"OS såsom XP."
 
 msgid "SNMP"
 msgstr "SNMP"
@@ -4494,10 +4512,10 @@ msgid "Settings"
 msgstr "Inställningar"
 
 msgid "Shadow Copy"
-msgstr ""
+msgstr "Skuggkopia"
 
 msgid "Shadow Copy format"
-msgstr ""
+msgstr "Format för skuggkopia"
 
 msgid "Share"
 msgstr "Utdelning"
@@ -4539,7 +4557,7 @@ msgid "Simple Network Management Protocol"
 msgstr "Simple Network Management Protocol"
 
 msgid "Single-parity RAID-Z"
-msgstr ""
+msgstr "Enkelparitets RAID-Z"
 
 msgid "Size"
 msgstr "Storlek"
@@ -4570,13 +4588,13 @@ msgid "Slovenian"
 msgstr "Slovenska"
 
 msgid "Snapshot"
-msgstr ""
+msgstr "Avbild"
 
 msgid "Snapshot Visibility"
-msgstr ""
+msgstr "Synlighet för Avbild"
 
 msgid "Snapshots"
-msgstr ""
+msgstr "Avbilder"
 
 msgid "Sockets"
 msgstr "Uttag (sockets)"
@@ -4747,7 +4765,7 @@ msgid "Subnet mask"
 msgstr "Subnätmask"
 
 msgid "Subsystem"
-msgstr ""
+msgstr "Delsystem"
 
 msgid "Successful"
 msgstr "Lyckades"
@@ -4833,7 +4851,7 @@ msgid "System tuning"
 msgstr "Finjustering av systemet"
 
 msgid "System uptime"
-msgstr ""
+msgstr "Systemets upptid"
 
 msgid "TCP forwarding"
 msgstr "Vidarebefodran av TCP"
@@ -5179,6 +5197,8 @@ msgid ""
 "The custom format of the snapshot for shadow copy service can be specified. "
 "The default format is %s used for ZFS auto snapshot."
 msgstr ""
+"Ett specifikt avbildsformat för skuggkopia kan anges. Grundinställningen är "
+"%s som anvnäds för ZFS automatisk avbildning."
 
 msgid "The default SMTP mail server port, e.g. 25 or 587."
 msgstr "Standardporten för SMTP e-postserver, t.ex. 25 eller 587."
@@ -5197,7 +5217,7 @@ msgstr ""
 "Camellia och 192 för 3DES."
 
 msgid "The default time in seconds to display a screen."
-msgstr ""
+msgstr "Grundinställning för tid i sekunder att visa skärmbild."
 
 msgid "The device name may only consist of the characters a-z, A-Z, 0-9."
 msgstr "Enhetsnamnet får endast innehålla tecknen a-z, A-Z, 0-9."
@@ -5250,6 +5270,8 @@ msgid ""
 "The driver used to connect with the LCD. The list of available <a href='%s' "
 "target='_blank'>drivers</a>."
 msgstr ""
+"Drivrutinen som används för att ansluta till LCDn. Lista med tillgängliga <a "
+"href='%s' target='_blank'>drivrutiner</a>."
 
 #, php-format
 msgid ""
@@ -5606,7 +5628,7 @@ msgid "There must be at least 3 disks in a raidz2."
 msgstr "Åtminstone 3 diskar krävs för 'raidz2'."
 
 msgid "There must be at least 4 disks in a raidz3."
-msgstr ""
+msgstr "raidz3 kräver minst 4 diskar."
 
 msgid "There must be selected a minimum of 1 interface."
 msgstr "Minst ett gränssnitt måste väljas."
@@ -5738,6 +5760,7 @@ msgstr ""
 
 msgid "This controls whether this share is accessible by guest account."
 msgstr ""
+"Denna inställning styr huruvida denna delade enhet är nåbar med gästkonto."
 
 msgid ""
 "This controls whether this share is seen in the list of available shares in "
@@ -5835,6 +5858,8 @@ msgstr ""
 
 msgid "This option causes rsync to copy the local data to the remote server."
 msgstr ""
+"Detta tillval leder till att rsync kopierar den lokala datan till "
+"fjärrservern."
 
 msgid ""
 "This option causes rsync to update the remote extended attributes to be the "
@@ -6040,10 +6065,12 @@ msgstr ""
 "vill lägga till en existerande krypterad disk."
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
-msgstr ""
+msgstr "Detta aktiverar tillgång till ZFS ACL support. (endast ZFS)"
 
 msgid "This will provide shadow copy created by auto snapshot. (ZFS only)"
 msgstr ""
+"Detta aktiverar tillgång till skuggkopia skapad med automatisk avbild "
+"(endast ZFS)"
 
 msgid "TiB"
 msgstr "TiB"
@@ -6117,6 +6144,8 @@ msgid ""
 "To get more information how to configure LCDproc check the LCDproc <a "
 "href='%s' target='_blank'>documentation</a>."
 msgstr ""
+"För mer information om hur LCDproc konfigureras, se följande LCDproc <a "
+"href='%s' target='_blank'>dokumentation</a>."
 
 #, php-format
 msgid ""
@@ -6193,7 +6222,7 @@ msgid "Traps"
 msgstr "Fällor"
 
 msgid "Triple-parity RAID-Z"
-msgstr ""
+msgstr "Trippelparitets RAID-Z"
 
 msgid "Trivial File Transfer Protocol"
 msgstr "Trivial File Transfer Protocol"
@@ -6441,7 +6470,7 @@ msgstr "Användare och grupper"
 
 #, c-format
 msgid "Using %s bytes fragment size."
-msgstr ""
+msgstr "Använder %s bytes fragmentstorlek."
 
 msgid "VLAN"
 msgstr "VLAN"
@@ -6468,7 +6497,7 @@ msgid "Virtual interface"
 msgstr "Virtuellt gränssnitt"
 
 msgid "Volume"
-msgstr ""
+msgstr "Volym"
 
 msgid "Volume Name"
 msgstr "Volymnamn"
@@ -6480,7 +6509,7 @@ msgid "Volume label of the new file system."
 msgstr "Volymetikett för det nya filesystemet."
 
 msgid "Volumes"
-msgstr ""
+msgstr "Volymer"
 
 msgid "WAN address"
 msgstr "WAN adress"
@@ -6507,7 +6536,7 @@ msgid "WPA-PSK WPA-EAP"
 msgstr "WPA-PSK WPA-EAP"
 
 msgid "Wait time"
-msgstr ""
+msgstr "Väntetid"
 
 msgid "Wake On LAN"
 msgstr "Wake On LAN"
@@ -6541,7 +6570,7 @@ msgid "WebGUI"
 msgstr "WebGUI"
 
 msgid "WebGUI Login"
-msgstr ""
+msgstr "Inloggning för webbaserat gränssnitt"
 
 msgid "Webserver"
 msgstr "Webbserver"
@@ -6686,7 +6715,7 @@ msgid "ZFS"
 msgstr "ZFS"
 
 msgid "ZFS ACL"
-msgstr ""
+msgstr "ZFS ACL"
 
 msgid "ZFS dataset information and status"
 msgstr "ZFS dataset information och status"
@@ -6695,24 +6724,26 @@ msgid "ZFS dataset properties"
 msgstr "ZFS dataset egenskaper"
 
 msgid "ZFS snapshot information and status"
-msgstr ""
+msgstr "Information och status för ZFS avbild"
 
 msgid "ZFS snapshot properties"
-msgstr ""
+msgstr "Egenskaper för ZFS avbild"
 
 msgid "ZFS volume"
 msgstr "ZFS volym"
 
 msgid "ZFS volume information and status"
-msgstr ""
+msgstr "Information och status för ZFS volym"
 
 msgid "ZFS volume properties"
-msgstr ""
+msgstr "Egenskaper för ZFS volym"
 
 msgid ""
 "ZFS volume size. To specify the size use the following human-readable "
 "suffixes (for example, 'k', 'KB', 'M', 'Gb', etc.)."
 msgstr ""
+"Storlek för ZFS volym. Använd någon av följande suffix för att ange storlek "
+"(till exempel \"k\", \"KB\", \"M\", \"GB \", etc.)-"
 
 msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
@@ -6771,7 +6802,7 @@ msgid "iTunes/DAAP"
 msgstr "iTunes/DAAP"
 
 msgid "infinity"
-msgstr ""
+msgstr "oändlighet"
 
 msgid "load/unload failed."
 msgstr "load/unload misslyckades."
@@ -6850,3 +6881,19 @@ msgstr "umount"
 
 msgid "upriv"
 msgstr "upriv"
+
+#~ msgid ""
+#~ "<b>EFI GPT</b> if you want to mount a GPT formatted drive (<b>default "
+#~ "partition since 0.684b</b>).<br /><b>MBR</b> partition, for UFS formatted "
+#~ "drive or Software RAID volume (<b>created before 0.684b</b>) or imported "
+#~ "disks from other OS.<br /><b>CD/DVD or Old software RAID</b> for old "
+#~ "SoftwareRAID volumes (<b>created before version 0.68</b>) or CD/DVD."
+#~ msgstr ""
+#~ "<b>EFI GPT</b> om du vill montera en GPT formaterad disk (<b>standard "
+#~ "partition sedan 0.684b</b>).<br /><b>MBR</b> partition, för UFS formaterad "
+#~ "disk eller mjukvaru RAID volym (<b>skapad före 0.684b</b>) eller importerade "
+#~ "diskar från annat OS.<br /><b>CD/DVD eller gammal mjukvaru RAID</b> för "
+#~ "gamla mjukvaruRAID volymer (<b>skapad före version 0.68</b>) eller CD/DVD."
+
+#~ msgid "CD/DVD or Old Software RAID"
+#~ msgstr "CD/DVD eller gammal mjukvaru-RAID"
