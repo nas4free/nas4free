@@ -53,7 +53,7 @@ $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Volumes"), gettext("
 if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']))
 	$config['zfs']['pools']['pool'] = array();
 
-if (!isset($config['zfs']['volumes']) || !is_array($config['zfs']['volumes']['volume']))
+if (!isset($config['zfs']['volumes']) || !is_array($config['zfs']['volumes']))
 	$config['zfs']['volumes']['volume'] = array();
 
 array_sort_key($config['zfs']['pools']['pool'], "name");
