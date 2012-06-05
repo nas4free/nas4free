@@ -68,10 +68,10 @@ if ($_POST) {
 if (!is_array($config['access']))
 	$config['access']['group'] = array();
 
-array_sort_key($config['access']['group'], "name");
-$a_group_conf = &$config['access']['group'];
-
-$a_group = system_get_group_list();
+  array_sort_key($config['access'], "name");
+    $a_group_conf = &$config['access']['group'];
+	
+	$a_group = system_get_group_list();
 
 if ($_GET['act'] === "del") {
 	updatenotify_set("userdb_group", UPDATENOTIFY_MODE_DIRTY,  $_GET['uuid']);
@@ -115,43 +115,80 @@ function userdbgroup_process_updatenotification($mode, $data) {
 			<form action="access_users_groups.php" method="post">
 				<?php if ($savemsg) print_info_box($savemsg);?>
 				<?php if (updatenotify_exists("userdb_group")) print_config_change_box();?>
-				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<table width="100%">
 					<tr>
-						<td width="45%" class="listhdrlr"><?=gettext("Group");?></td>
-						<td width="5%" class="listhdrr"><?=gettext("GID");?></td>
-						<td width="40%" class="listhdrr"><?=gettext("Description");?></td>
-						<td width="10%" class="list"></td>
-					</tr>
-					<?php foreach ($a_group_conf as $groupv):?>
-					<?php $notificationmode = updatenotify_get_mode("userdb_group", $groupv['uuid']);?>
-					<tr>
-						<td class="listlr"><?=htmlspecialchars($groupv['name']);?>&nbsp;</td>
-						<td class="listr"><?=htmlspecialchars($groupv['id']);?>&nbsp;</td>
-						<td class="listr"><?=htmlspecialchars($groupv['desc']);?>&nbsp;</td>
-						<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
-						<td valign="middle" nowrap="nowrap" class="list">
-							<a href="access_users_groups_edit.php?uuid=<?=$groupv['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit group");?>" border="0" alt="<?=gettext("Edit group");?>" /></a>&nbsp;
-							<a href="access_users_groups.php?act=del&amp;uuid=<?=$groupv['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this group?");?>')"><img src="x.gif" title="<?=gettext("Delete group");?>" border="0" alt="<?=gettext("Delete group");?>" /></a>
+						<td>
+							<?php html_titleline(sprintf(gettext("User Defined Groups"))); ?>
 						</td>
-						<?php else:?>
-						<td valign="middle" nowrap="nowrap" class="list">
-							<img src="del.gif" border="0" alt="" />
+					</tr>
+					<tr>
+						<td>
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="45%" class="listhdrlr"><?=gettext("Group");?></td>
+									<td width="5%" class="listhdrr"><?=gettext("GID");?></td>
+									<td width="40%" class="listhdrr"><?=gettext("Description");?></td>
+									<td width="10%" class="list"></td>
+								</tr>
+								<?php
+									if ($a_group_conf == "") {
+										echo "<tr><td><br />".gettext('No User Defined Groups Found!')."</td></tr>\n";
+									} else {
+										foreach ($a_group_conf as $groupv):
+											$notificationmode = updatenotify_get_mode("userdb_group", $groupv['uuid']);
+											echo "<tr>\n";
+												echo "<td class=\"listlr\">".htmlspecialchars($groupv['name'])."&nbsp;</td>\n";
+												echo "<td class=\"listr\">".htmlspecialchars($groupv['id'])."&nbsp;</td>\n";
+												echo "<td class=\"listr\">".htmlspecialchars($groupv['desc'])."&nbsp;</td>\n";
+													if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):
+													echo "<td valign=\"middle\" nowrap=\"nowrap\" class=\"list\">\n";
+														echo "<a href=\"access_users_groups_edit.php?uuid=".$groupv['uuid']."\"><img src=\"e.gif\" title=\"".gettext('Edit group')."\" border=\"0\" alt=\"".gettext('Edit group')."\" /></a>&nbsp;\n";
+														echo "<a href=\"access_users_groups.php?act=del&amp;uuid=".$groupv['uuid']."\" onclick=\"return confirm('".gettext('Do you really want to delete this group?')."')\"><img src=\"x.gif\" title=\"".gettext('Delete group')."\" border=\"0\" alt=\"".gettext('Delete group')."\" /></a>\n";
+													echo "</td>\n";
+													else:
+														echo "<td valign=\"middle\" nowrap=\"nowrap\" class=\"list\">\n";
+															echo "<img src=\"del.gif\" border=\"0\" alt=\"\" />\n";
+														echo "</td>\n";
+													endif;
+											echo "</tr>\n";
+											endforeach;
+									};
+								?>
+								<tr>
+									<td class="list" colspan="3"></td>
+									<td class="list">
+										<a href="access_users_groups_edit.php"><img src="plus.gif" title="<?=gettext("Add group");?>" border="0" alt="<?=gettext("Add group");?>" /></a>
+									</td	>
+								</tr>
+							</table>
 						</td>
-						<?php endif;?>
-					</tr>
-					<?php endforeach;?>
-					<?php foreach ($a_group as $groupk => $groupv):?>
-					<?php if (false !== array_search_ex($groupv, $a_group_conf, "id")) continue; // Do not display user defined groups twice. ?>
+					</tr>	
+				</table>
+				<br />
+				<table width="100%">
 					<tr>
-						<td class="listlr"><?=$groupk;?>&nbsp;</td>
-						<td class="listr"><?=htmlspecialchars($groupv);?>&nbsp;</td>
-						<td class="listr"><?=gettext("System");?>&nbsp;</td>
+						<td>
+							<?php html_titleline(sprintf(gettext("Predefined System Groups"))); ?>
+						</td>
 					</tr>
-					<?php endforeach;?>
 					<tr>
-						<td class="list" colspan="3"></td>
-						<td class="list">
-							<a href="access_users_groups_edit.php"><img src="plus.gif" title="<?=gettext("Add group");?>" border="0" alt="<?=gettext("Add group");?>" /></a>
+						<td>
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="45%" class="listhdrlr"><?=gettext("Group");?></td>
+									<td width="5%" class="listhdrr"><?=gettext("GID");?></td>
+									<td width="40%" class="listhdrr"><?=gettext("Description");?></td>
+									<td width="10%" class="list"></td>
+								</tr>
+								<?php foreach ($a_group as $groupk => $groupv):?>
+								<?php if (false !== array_search_ex($groupv, $a_group_conf, "id")) continue; // Do not display user defined groups twice. ?>
+								<tr>
+									<td class="listlr"><?=$groupk;?>&nbsp;</td>
+									<td class="listr"><?=htmlspecialchars($groupv);?>&nbsp;</td>
+									<td class="listr"><?=gettext("System");?>&nbsp;</td>
+								</tr>
+								<?php endforeach;?>
+							</table>
 						</td>
 					</tr>
 				</table>
