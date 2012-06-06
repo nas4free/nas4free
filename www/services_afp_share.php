@@ -67,7 +67,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['afp']['share']))
+if (@!is_array($config['afp']['share']))
 	$config['afp']['share'] = array();
 
 array_sort_key($config['afp']['share'], "name");
