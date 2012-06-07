@@ -45,20 +45,18 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"),gettext("CIFS/SMB"),gettext("Settings"));
 
-if (!is_array($config['samba'])) {
+if (!isset($config['samba']) || !is_array($config['samba']))
 	$config['samba'] = array();
-}
 
-if(!is_array($config['samba']['auxparam']))
+if (!isset($config['samba']['auxparam']) || !is_array($config['samba']['auxparam']))
 	$config['samba']['auxparam'] = array();
 
 sort($config['samba']['auxparam']);
 
-if (!is_array($config['mounts']))
+if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
 	$config['mounts']['mount'] = array();
 
 array_sort_key($config['mounts']['mount'], "devicespecialfile");
-
 $a_mount = &$config['mounts']['mount'];
 
 $pconfig['netbiosname'] = $config['samba']['netbiosname'];

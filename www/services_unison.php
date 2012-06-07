@@ -62,9 +62,8 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"), gettext("Unison"));
 
-if (!is_array($config['unison'])) {
+if (!isset($config['unison']) || !is_array($config['unison']))
 	$config['unison'] = array();
-}
 
 $pconfig['enable'] = isset($config['unison']['enable']);
 $pconfig['workdir'] = $config['unison']['workdir'];
@@ -107,12 +106,12 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['mounts']))
+if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
 	$config['mounts']['mount'] = array();
 
 array_sort_key($config['mounts']['mount'], "devicespecialfile");
-
 $a_mount = &$config['mounts']['mount'];
+
 ?>
 <?php include("fbegin.inc"); ?>
 <script type="text/javascript">

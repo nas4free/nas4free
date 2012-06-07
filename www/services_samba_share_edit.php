@@ -49,10 +49,10 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Services"), gettext("CIFS/SMB"), gettext("Share"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['mounts']))
+if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
 	$config['mounts']['mount'] = array();
 
-if (!is_array($config['samba']['share']))
+if (!isset($config['samba']['share']) || !is_array($config['samba']['share']))
 	$config['samba']['share'] = array();
 
 array_sort_key($config['mounts']['mount'], "devicespecialfile");

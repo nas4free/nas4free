@@ -45,13 +45,13 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("System"),gettext("Advanced"),gettext("Command scripts"));
 
-if (!is_array($config['rc']['preinit']))
+if (!isset($config['rc']['preinit']['cmd']) || !is_array($config['rc']['preinit']['cmd']))
 	$config['rc']['preinit']['cmd'] = array();
 
-if (!is_array($config['rc']['postinit']))
+if (!isset($config['rc']['postinit']['cmd']) || !is_array($config['rc']['postinit']['cmd']))
 	$config['rc']['postinit']['cmd'] = array();
 
-if (!is_array($config['rc']['shutdown']))
+if (!isset($config['rc']['shutdown']['cmd']) || !is_array($config['rc']['shutdown']['cmd']))
 	$config['rc']['shutdown']['cmd'] = array();
 
 if ($_GET['act'] == "del")

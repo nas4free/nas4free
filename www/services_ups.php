@@ -46,7 +46,7 @@ require("email.inc");
 
 $pgtitle = array(gettext("Services"), gettext("UPS"));
 
-if(!is_array($config['ups']))
+if (!isset($config['ups']) || !is_array($config['ups']))
 	$config['ups'] = array();
 
 $pconfig['enable'] = isset($config['ups']['enable']);

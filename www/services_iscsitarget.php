@@ -46,13 +46,13 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"), gettext("iSCSI Target"));
 
-if (!is_array($config['iscsitarget']['portalgroup']))
+if (!isset($config['iscsitarget']['portalgroup']) || !is_array($config['iscsitarget']['portalgroup']))
 	$config['iscsitarget']['portalgroup'] = array();
 
-if (!is_array($config['iscsitarget']['initiatorgroup']))
+if (!isset($config['iscsitarget']['initiatorgroup']) || !is_array($config['iscsitarget']['initiatorgroup']))
 	$config['iscsitarget']['initiatorgroup'] = array();
 
-if (!is_array($config['iscsitarget']['authgroup']))
+if (!isset($config['iscsitarget']['authgroup']) || !is_array($config['iscsitarget']['authgroup']))
 	$config['iscsitarget']['authgroup'] = array();
 
 function cmp_tag($a, $b) {

@@ -66,7 +66,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['system']['sysctl']['param']))
+if (!isset($config['system']['sysctl']['param']) || !is_array($config['system']['sysctl']['param']))
 	$config['system']['sysctl']['param'] = array();
 
 array_sort_key($config['system']['sysctl']['param'], "name");

@@ -46,7 +46,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Pools"), gettext("Virtual device"));
 
-if (!isset($config['zfs']['vdevices']) || !is_array($config['zfs']['vdevices']))
+if (!isset($config['zfs']['vdevices']) || !is_array($config['zfs']['vdevices']['vdevice']))
 	$config['zfs']['vdevices']['vdevice'] = array();
 
 array_sort_key($config['zfs']['vdevices']['vdevice'], "name");

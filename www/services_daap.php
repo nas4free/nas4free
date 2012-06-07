@@ -44,7 +44,7 @@ require("services.inc");
 
 $pgtitle = array(gettext("Services"), gettext("iTunes/DAAP"));
 
-if (!is_array($config['daap']))
+if (!isset($config['daap']) || !is_array($config['daap']))
 	$config['daap'] = array();
 
 $pconfig['enable'] = isset($config['daap']['enable']);

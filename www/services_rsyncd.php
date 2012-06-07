@@ -44,16 +44,14 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"), gettext("Rsync"), gettext("Server"), gettext("Settings"));
 
-if (!is_array($config['access']))
+if (!isset($config['access']) || !is_array($config['access']))
 	$config['access']['user'] = array();
 
 array_sort_key($config['access']['user'], "login");
-
 $a_user = &$config['access']['user'];
 
-if (!is_array($config['rsync'])) {
+if (!isset($config['rsync']) || !is_array($config['rsync']))
 	$config['rsync'] = array();
-}
 
 $pconfig['enable'] = isset($config['rsyncd']['enable']);
 $pconfig['port'] = $config['rsyncd']['port'];
@@ -74,7 +72,7 @@ if ($_POST) {
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
-	}
+		}	
 
 	if (!$input_errors) {
 		$config['rsyncd']['enable'] = $_POST['enable'] ? true : false;

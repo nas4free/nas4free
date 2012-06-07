@@ -57,7 +57,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Services"), gettext("iSCSI Target"), gettext("Extent"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['iscsitarget']['extent']))
+if (!isset($config['iscsitarget']['extent']) || !is_array($config['iscsitarget']['extent']))
 	$config['iscsitarget']['extent'] = array();
 
 array_sort_key($config['iscsitarget']['extent'], "name");

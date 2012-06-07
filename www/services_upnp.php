@@ -49,10 +49,10 @@ require("services.inc");
 
 $pgtitle = array(gettext("Services"),gettext("UPnP"));
 
-if (!is_array($config['upnp']))
+if (!isset($config['upnp']) || !is_array($config['upnp']))
 	$config['upnp'] = array();
 
-if (!is_array($config['upnp']['content']))
+if (!isset($config['upnp']['content']) || !is_array($config['upnp']['content']))
 	$config['upnp']['content'] = array();
 
 sort($config['upnp']['content']);

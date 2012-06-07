@@ -65,10 +65,10 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['access']))
+if (!isset($config['access']['group']) || !is_array($config['access']['group']))
 	$config['access']['group'] = array();
-
-  array_sort_key($config['access'], "name");
+	
+array_sort_key($config['access']['group'], "name");
     $a_group_conf = &$config['access']['group'];
 	
 	$a_group = system_get_group_list();
@@ -118,7 +118,7 @@ function userdbgroup_process_updatenotification($mode, $data) {
 				<table width="100%">
 					<tr>
 						<td>
-							<?php html_titleline(sprintf(gettext("User Defined Groups"))); ?>
+							<?php html_titleline(sprintf(gettext("User defined groups"))); ?>
 						</td>
 					</tr>
 					<tr>
@@ -130,30 +130,24 @@ function userdbgroup_process_updatenotification($mode, $data) {
 									<td width="40%" class="listhdrr"><?=gettext("Description");?></td>
 									<td width="10%" class="list"></td>
 								</tr>
-								<?php
-									if ($a_group_conf == "") {
-										echo "<tr><td><br />".gettext('No User Defined Groups Found!')."</td></tr>\n";
-									} else {
-										foreach ($a_group_conf as $groupv):
-											$notificationmode = updatenotify_get_mode("userdb_group", $groupv['uuid']);
-											echo "<tr>\n";
-												echo "<td class=\"listlr\">".htmlspecialchars($groupv['name'])."&nbsp;</td>\n";
-												echo "<td class=\"listr\">".htmlspecialchars($groupv['id'])."&nbsp;</td>\n";
-												echo "<td class=\"listr\">".htmlspecialchars($groupv['desc'])."&nbsp;</td>\n";
-													if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):
-													echo "<td valign=\"middle\" nowrap=\"nowrap\" class=\"list\">\n";
-														echo "<a href=\"access_users_groups_edit.php?uuid=".$groupv['uuid']."\"><img src=\"e.gif\" title=\"".gettext('Edit group')."\" border=\"0\" alt=\"".gettext('Edit group')."\" /></a>&nbsp;\n";
-														echo "<a href=\"access_users_groups.php?act=del&amp;uuid=".$groupv['uuid']."\" onclick=\"return confirm('".gettext('Do you really want to delete this group?')."')\"><img src=\"x.gif\" title=\"".gettext('Delete group')."\" border=\"0\" alt=\"".gettext('Delete group')."\" /></a>\n";
-													echo "</td>\n";
-													else:
-														echo "<td valign=\"middle\" nowrap=\"nowrap\" class=\"list\">\n";
-															echo "<img src=\"del.gif\" border=\"0\" alt=\"\" />\n";
-														echo "</td>\n";
-													endif;
-											echo "</tr>\n";
-											endforeach;
-									};
-								?>
+								<?php foreach ($a_group_conf as $groupv):?>
+								<?php $notificationmode = updatenotify_get_mode("userdb_group", $groupv['uuid']); ?>
+								<tr>
+									<td class="listlr"><?=htmlspecialchars($groupv['name']);?>&nbsp;</td>
+									<td class="listr"><?=htmlspecialchars($groupv['id']);?>&nbsp;</td>
+									<td class="listr"><?=htmlspecialchars($groupv['desc']);?>&nbsp;</td>
+									<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
+										<td valign="middle" nowrap="nowrap" class="list">
+											<a href="access_users_groups_edit.php?uuid=<?=$groupv['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit group");?>" border="0" alt="<?=gettext("Edit group");?>" /></a>&nbsp;
+											<a href="access_users_groups.php?act=del&amp;uuid=<?=$groupv["uuid"];?>" onclick="return confirm('<?=gettext("Do you really want to delete this group?");?>')"><img src="x.gif" title="<?=gettext("Delete group");?>" border="0" alt="<?=gettext("Delete group");?>" /></a>
+										</td>
+									<?php else: ?>
+										<td valign="middle" nowrap="nowrap" class="list">
+											<img src="del.gif" border="0" alt="" />
+										</td>
+									<?php endif; ?>
+								</tr>
+								<?php endforeach; ?>
 								<tr>
 									<td class="list" colspan="3"></td>
 									<td class="list">
@@ -168,7 +162,7 @@ function userdbgroup_process_updatenotification($mode, $data) {
 				<table width="100%">
 					<tr>
 						<td>
-							<?php html_titleline(sprintf(gettext("Predefined System Groups"))); ?>
+							<?php html_titleline(sprintf(gettext("Predefined system groups"))); ?>
 						</td>
 					</tr>
 					<tr>

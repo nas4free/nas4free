@@ -43,9 +43,8 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("System"), gettext("Shutdown"), gettext("Scheduled"));
 
-if (!is_array($config['shutdown'])){
+if (!isset($config['shutdown']) || !is_array($config['shutdown']))
 	$config['shutdown'] = array();
-}
 
 $pconfig['enable'] = isset($config['shutdown']['enable']);
 $pconfig['minute'] = $config['shutdown']['minute'];

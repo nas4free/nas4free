@@ -49,11 +49,10 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("Software RAID"), gettext("RAID5"), gettext("Tools"));
 
-if (!is_array($config['graid5']))
+if (!isset($config['graid5']['vdisk']) || !is_array($config['graid5']['vdisk']))
 	$config['graid5']['vdisk'] = array();
 
 array_sort_key($config['graid5']['vdisk'], "name");
-
 $a_raid = &$config['graid5']['vdisk'];
 
 if ($_POST) {

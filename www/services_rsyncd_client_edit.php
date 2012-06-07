@@ -53,10 +53,10 @@ $pgtitle = array(gettext("Services"), gettext("Rsync"), gettext("Client"), isset
 $a_months = explode(" ",gettext("January February March April May June July August September October November December"));
 $a_weekdays = explode(" ",gettext("Sunday Monday Tuesday Wednesday Thursday Friday Saturday"));
 
-if (!is_array($config['rsync']))
+if (!isset($config['rsync']) || !is_array($config['rsync']))
 	$config['rsync'] = array();
 
-if (!is_array($config['rsync']['rsyncclient']))
+if (!isset($config['rsync']['rsyncclient']) || !is_array($config['rsync']['rsyncclient']))
 	$config['rsync']['rsyncclient'] = array();
 
 $a_rsyncclient = &$config['rsync']['rsyncclient'];

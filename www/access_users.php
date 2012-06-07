@@ -71,12 +71,11 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['access']))
+if (!isset($config['access']['user']) || !is_array($config['access']['user']))
 	$config['access']['user'] = array();
 
 array_sort_key($config['access']['user'], "login");
 $a_user = &$config['access']['user'];
-
 $a_group = system_get_group_list();
 
 if ($_GET['act'] === "del") {

@@ -53,7 +53,7 @@ $pgtitle = array(gettext("Services"), gettext("iSCSI Target"), gettext("Auth Gro
 $MAX_AUTHUSERS = 4;
 $GROW_AUTHUSERS = 4;
 
-if (!is_array($config['iscsitarget']['authgroup']))
+if (!isset($config['iscsitarget']['authgroup']) || !is_array($config['iscsitarget']['authgroup']))
 	$config['iscsitarget']['authgroup'] = array();
 
 array_sort_key($config['iscsitarget']['authgroup'], "tag");

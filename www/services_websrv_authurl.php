@@ -49,7 +49,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Services"), gettext("Webserver"), gettext("Authenticate URL"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['websrv']['authentication']['url']))
+if (!isset($config['websrv']['authentication']['url']) || !is_array($config['websrv']['authentication']['url']))
 	$config['websrv']['authentication']['url'] = array();
 
 array_sort_key($config['websrv']['authentication']['url'], "path");

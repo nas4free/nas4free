@@ -48,9 +48,8 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"),gettext("SSH"));
 
-if (!is_array($config['sshd'])) {
+if (!isset($config['sshd']) || !is_array($config['sshd']))
 	$config['sshd'] = array();
-}
 
 $os_release = exec('uname -r | cut -d - -f1');
 

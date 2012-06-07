@@ -48,9 +48,9 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("MS Active Directory"));
 
-if (!is_array($config['ad'])) {
+if (!isset($config['ad']) || !is_array($config['ad']))
 	$config['ad'] = array();
-}
+
 ?>
 <?php include("fbegin.inc");?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">

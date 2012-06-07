@@ -49,7 +49,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Disks"),gettext("Mount Point"),gettext("Fsck"));
 
-if (!is_array($config['mounts']['mount']))
+if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
 	$config['mounts']['mount'] = array();
 
 array_sort_key($config['mounts']['mount'], "devicespecialfile");

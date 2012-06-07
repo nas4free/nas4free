@@ -72,13 +72,13 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['iscsitarget']['portalgroup']))
+if (!isset($config['iscsitarget']['portalgroup']) || !is_array($config['iscsitarget']['portalgroup']))
 	$config['iscsitarget']['portalgroup'] = array();
 
-if (!is_array($config['iscsitarget']['initiatorgroup']))
+if (!isset($config['iscsitarget']['initiatorgroup']) || !is_array($config['iscsitarget']['initiatorgroup']))
 	$config['iscsitarget']['initiatorgroup'] = array();
 
-if (!is_array($config['iscsitarget']['authgroup']))
+if (!isset($config['iscsitarget']['authgroup']) || !is_array($config['iscsitarget']['authgroup']))
 	$config['iscsitarget']['authgroup'] = array();
 
 function cmp_tag($a, $b) {
@@ -90,13 +90,13 @@ usort($config['iscsitarget']['portalgroup'], "cmp_tag");
 usort($config['iscsitarget']['initiatorgroup'], "cmp_tag");
 usort($config['iscsitarget']['authgroup'], "cmp_tag");
 
-if (!is_array($config['iscsitarget']['extent']))
+if (!isset($config['iscsitarget']['extent']) || !is_array($config['iscsitarget']['extent']))
 	$config['iscsitarget']['extent'] = array();
 
-if (!is_array($config['iscsitarget']['device']))
+if (!isset($config['iscsitarget']['device']) || !is_array($config['iscsitarget']['device']))
 	$config['iscsitarget']['device'] = array();
 
-if (!is_array($config['iscsitarget']['target']))
+if (!isset($config['iscsitarget']['target']) || !is_array($config['iscsitarget']['target']))
 	$config['iscsitarget']['target'] = array();
 
 array_sort_key($config['iscsitarget']['extent'], "name");

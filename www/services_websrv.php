@@ -46,10 +46,10 @@ require("services.inc");
 
 $pgtitle = array(gettext("Services"),gettext("Webserver"));
 
-if (!is_array($config['websrv']))
+if (!isset($config['websrv']) || !is_array($config['websrv']))
 	$config['websrv'] = array();
 
-if (!is_array($config['websrv']['authentication']['url']))
+if (!isset($config['websrv']['authentication']['url']) || !is_array($config['websrv']['authentication']['url']))
 	$config['websrv']['authentication']['url'] = array();
 
 $pconfig['enable'] = isset($config['websrv']['enable']);

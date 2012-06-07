@@ -66,13 +66,14 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['iscsitarget']['portalgroup']))
+if (!isset($config['iscsitarget']['portalgroup']) || !is_array($config['iscsitarget']['portalgroup']))
 	$config['iscsitarget']['portalgroup'] = array();
+
 
 array_sort_key($config['iscsitarget']['portalgroup'], "tag");
 $a_iscsitarget_pg = &$config['iscsitarget']['portalgroup'];
 
-if (!is_array($config['iscsitarget']['target']))
+if (!isset($config['iscsitarget']['target']) || !is_array($config['iscsitarget']['target']))
 	$config['iscsitarget']['target'] = array();
 
 if ($_GET['act'] === "del") {

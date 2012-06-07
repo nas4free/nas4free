@@ -47,13 +47,11 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Access"), gettext("Active Directory"));
 
-if (!is_array($config['ad'])) {
+if (!isset($config['ad']) || !is_array($config['ad']))
 	$config['ad'] = array();
-}
 
-if (!is_array($config['samba'])) {
+if (!isset($config['samba']) || !is_array($config['samba']))
 	$config['samba'] = array();
-}
 
 $pconfig['enable'] = isset($config['ad']['enable']);
 $pconfig['domaincontrollername'] = $config['ad']['domaincontrollername'];

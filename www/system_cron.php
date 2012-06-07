@@ -61,7 +61,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['cron']))
+if (!isset($config['cron']['job']) || !is_array($config['cron']['job']))
 	$config['cron']['job'] = array();
 
 $a_cron = &$config['cron']['job'];

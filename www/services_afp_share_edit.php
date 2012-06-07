@@ -53,10 +53,10 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Services"), gettext("AFP"), gettext("Share"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (@!is_array($config['mounts']))
+if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
 	$config['mounts']['mount'] = array();
 
-if (@!is_array($config['afp']['share']))
+if (!isset($config['afp']['share']) || !is_array($config['afp']['share']))
 	$config['afp']['share'] = array();
 
 array_sort_key($config['mounts']['mount'], "devicespecialfile");

@@ -64,11 +64,11 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['rsync'])) {
+if (!isset($config['rsync']) || !is_array($config['rsync'])) {
 	$config['rsync'] = array();
-	if (!is_array($config['rsync']['rsynclocal']))
+	if (!isset($config['rsync']['rsynclocal']) || !is_array($config['rsync']['rsynclocal']))
 		$config['rsync']['rsynclocal'] = array();
-} else if (!is_array($config['rsync']['rsynclocal'])) {
+} else if (!isset($config['rsync']['rsynclocal']) || !is_array($config['rsync']['rsynclocal'])) {
 	$config['rsync']['rsynclocal'] = array();
 }
 

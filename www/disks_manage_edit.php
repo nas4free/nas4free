@@ -54,11 +54,10 @@ $pgtitle = array(gettext("Disks"), gettext("Management"), gettext("Disk"), isset
 // Get all physical disks including CDROM.
 $a_phy_disk = array_merge((array)get_physical_disks_list(), (array)get_cdrom_list());
 
-if (!is_array($config['disks']))
+if (!isset($config['disks']['disk']) || !is_array($config['disks']['disk']))
 	$config['disks']['disk'] = array();
 
 array_sort_key($config['disks']['disk'], "name");
-
 $a_disk = &$config['disks']['disk'];
 
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_disk, "uuid")))) {

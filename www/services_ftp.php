@@ -44,9 +44,8 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"), gettext("FTP"));
 
-if (!is_array($config['ftpd'])) {
+if (!isset($config['ftpd']) || !is_array($config['ftpd']))
 	$config['ftpd'] = array();
-}
 
 $pconfig['enable'] = isset($config['ftpd']['enable']);
 $pconfig['port'] = $config['ftpd']['port'];

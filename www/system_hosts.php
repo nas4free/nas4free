@@ -80,11 +80,12 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['system']['hosts']))
+if (!isset($config['system']['hosts']) || !is_array($config['system']['hosts']))
 	$config['system']['hosts'] = array();
 
-if (!is_array($config['system']['hostsacl']['rule']))
+if (!isset($config['system']['hostsacl']['rule']) || !is_array($config['system']['hostsacl']['rule']))
 	$config['system']['hostsacl']['rule'] = array();
+
 
 array_sort_key($config['system']['hosts'], "name");
 

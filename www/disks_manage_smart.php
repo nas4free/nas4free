@@ -110,10 +110,10 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['disks']))
+if (!isset($config['disks']['disk']) || !is_array($config['disks']['disk']))
 	$config['disks']['disk'] = array();
 
-if (!is_array($config['smartd']['selftest']))
+if (!isset($config['smartd']['selftest']) || !is_array($config['smartd']['selftest']))
 	$config['smartd']['selftest'] = array();
 
 $a_selftest = &$config['smartd']['selftest'];

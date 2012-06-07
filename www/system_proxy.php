@@ -45,13 +45,11 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("System"),gettext("Advanced"),gettext("Proxy"));
 
-if (!is_array($config['system']['proxy']['http'])) {
+if (!isset($config['system']['proxy']['http']) || !is_array($config['system']['proxy']['http']))
 	$config['system']['proxy']['http'] = array();
-}
 
-if (!is_array($config['system']['proxy']['ftp'])) {
+if (!isset($config['system']['proxy']['ftp']) || !is_array($config['system']['proxy']['ftp']))
 	$config['system']['proxy']['ftp'] = array();
-}
 
 $pconfig['http_enable'] = isset($config['system']['proxy']['http']['enable']);
 $pconfig['http_address'] = $config['system']['proxy']['http']['address'];

@@ -48,9 +48,8 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"), gettext("SNMP"));
 
-if (!is_array($config['snmpd'])) {
+if (!isset($config['snmpd']) || !is_array($config['snmpd']))
 	$config['snmpd'] = array();
-}
 
 $os_release = exec('uname -r | cut -d - -f1');
 

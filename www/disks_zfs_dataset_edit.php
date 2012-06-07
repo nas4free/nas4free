@@ -50,10 +50,10 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Datasets"), gettext("Dataset"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']))
+if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']['pool']))
 	$config['zfs']['pools']['pool'] = array();
 
-if (!isset($config['zfs']['datasets']) || !is_array($config['zfs']['datasets']))
+if (!isset($config['zfs']['datasets']) || !is_array($config['zfs']['datasets']['dataset']))
 	$config['zfs']['datasets']['dataset'] = array();
 
 array_sort_key($config['zfs']['pools']['pool'], "name");
