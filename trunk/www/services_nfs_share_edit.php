@@ -53,7 +53,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Services"), gettext("NFS"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['nfsd']['share']))
+if (!isset($config['nfsd']['share']) || !is_array($config['nfsd']['share']))
 	$config['nfsd']['share'] = array();
 
 array_sort_key($config['nfsd']['share'], "path");

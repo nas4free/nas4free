@@ -66,13 +66,13 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['iscsitarget']['authgroup']))
+if (!isset($config['iscsitarget']['authgroup']) || !is_array($config['iscsitarget']['authgroup']))
 	$config['iscsitarget']['authgroup'] = array();
 
 array_sort_key($config['iscsitarget']['authgroup'], "tag");
 $a_iscsitarget_ag = &$config['iscsitarget']['authgroup'];
 
-if (!is_array($config['iscsitarget']['target']))
+if (!isset($config['iscsitarget']['target']) || !is_array($config['iscsitarget']['target']))
 	$config['iscsitarget']['target'] = array();
 
 if ($_GET['act'] === "del") {

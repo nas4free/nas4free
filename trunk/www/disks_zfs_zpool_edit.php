@@ -51,10 +51,10 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Pools"), gettext("Management"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']))
+if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']['pool']))
 	$config['zfs']['pools']['pool'] = array();
 
-if (!isset($config['zfs']['vdevices']) || !is_array($config['zfs']['vdevices']))
+if (!isset($config['zfs']['vdevices']) || !is_array($config['zfs']['vdevices']['vdevice']))
 	$config['zfs']['vdevices']['vdevice'] = array();
 
 array_sort_key($config['zfs']['pools']['pool'], "name");

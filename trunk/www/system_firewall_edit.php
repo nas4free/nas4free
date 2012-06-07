@@ -49,7 +49,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Network"), gettext("Firewall"), gettext("Rule"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['system']['firewall']['rule']))
+if (!isset($config['system']['firewall']['rule']) || !is_array($config['system']['firewall']['rule']))
 	$config['system']['firewall']['rule'] = array();
 
 array_sort_key($config['system']['firewall']['rule'], "ruleno");

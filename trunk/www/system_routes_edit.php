@@ -52,7 +52,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Network"), gettext("Static routes"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['staticroutes']))
+if (!isset($config['staticroutes']['route']) || !is_array($config['staticroutes']['route']))
 	$config['staticroutes']['route'] = array();
 
 array_sort_key($config['staticroutes']['route'], "network");

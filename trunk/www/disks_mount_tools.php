@@ -60,7 +60,7 @@ if (isset($_GET['action'])) {
 	$action = $_GET['action'];
 }
 
-if (!is_array($config['mounts']['mount']))
+if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
 	$config['mounts']['mount'] = array();
 
 if ($_POST) {

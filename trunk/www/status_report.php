@@ -52,7 +52,7 @@ require("report.inc");
 
 $pgtitle = array(gettext("Status"), gettext("Email Report"));
 
-if (!is_array($config['statusreport']))
+if (!isset($config['statusreport']) || !is_array($config['statusreport']))
 	$config['statusreport'] = array();
 
 $pconfig['enable'] = isset($config['statusreport']['enable']);

@@ -52,8 +52,8 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Network"), gettext("Interface Management"), gettext("VLAN"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['vinterfaces']['vlan']))
-	$config['vinterfaces']['vlan'] = array();
+if (!isset($config['vinterfaces']['vlan']) || !is_array($config['vinterfaces']['vlan']))
+	$config['vinterfaces']['vlan'] = array(
 
 $a_vlans = &$config['vinterfaces']['vlan'];
 array_sort_key($a_vlans, "if");

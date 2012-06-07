@@ -66,7 +66,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['geli']))
+if (!isset($config['geli']['vdisk']) || !is_array($config['geli']['vdisk']))
 	$config['geli']['vdisk'] = array();
 
 array_sort_key($config['geli']['vdisk'], "devicespecialfile");

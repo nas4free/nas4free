@@ -46,7 +46,7 @@ require("services.inc");
 
 $pgtitle = array(gettext("Services"), gettext("BitTorrent"));
 
-if (!is_array($config['bittorrent']))
+if (!isset($config['bittorrent']) || !is_array($config['bittorrent']))
 	$config['bittorrent'] = array();
 
 $pconfig['enable'] = isset($config['bittorrent']['enable']);

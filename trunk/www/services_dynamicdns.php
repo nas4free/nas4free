@@ -49,7 +49,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"), gettext("Dynamic DNS"));
 
-if (!is_array($config['dynamicdns']))
+if (!isset($config['dynamicdns']) || !is_array($config['dynamicdns']))
 	$config['dynamicdns'] = array();
 
 $pconfig['enable'] = isset($config['dynamicdns']['enable']);

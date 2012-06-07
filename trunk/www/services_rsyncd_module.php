@@ -64,7 +64,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['rsyncd']['module']))
+if (!isset($config['rsyncd']['module']) || !is_array($config['rsyncd']['module']))
 	$config['rsyncd']['module'] = array();
 
 array_sort_key($config['rsyncd']['module'], "name");

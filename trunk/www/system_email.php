@@ -46,9 +46,8 @@ require("email.inc");
 
 $pgtitle = array(gettext("System"),gettext("Advanced"),gettext("Email"));
 
-if (!is_array($config['system']['email'])) {
+if (!isset($config['system']['email']) || !is_array($config['system']['email']))
 	$config['system']['email'] = array();
-}
 
 $pconfig['server'] = $config['system']['email']['server'];
 $pconfig['port'] = $config['system']['email']['port'];

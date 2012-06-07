@@ -49,8 +49,9 @@ require("email.inc");
 
 $pgtitle = array(gettext("System"), gettext("Password"));
 
-if (!is_array($config['access']['user']))
+if (!isset($config['access']['user']) || !is_array($config['access']['user']))
 	$config['access']['user'] = array();
+
 $a_user = &$config['access']['user'];
 
 // Get user configuration. Ensure current logged in user is available,

@@ -53,8 +53,8 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Network"), gettext("Interface Management"), gettext("Link Aggregation and Failover"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['vinterfaces']['lagg']))
-	$config['vinterfaces']['lagg'] = array();
+if (!isset($config['vinterfaces']['lagg']) || !is_array($config['vinterfaces']['lagg']))
+	$config['vinterfaces']['lagg'] = array(
 
 $a_lagg = &$config['vinterfaces']['lagg'];
 array_sort_key($a_lagg, "if");

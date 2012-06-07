@@ -61,7 +61,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['system']['rcconf']['param']))
+if (!isset($config['system']['rcconf']['param']) || !is_array($config['system']['rcconf']['param']))
 	$config['system']['rcconf']['param'] = array();
 
 array_sort_key($config['system']['rcconf']['param'], "name");

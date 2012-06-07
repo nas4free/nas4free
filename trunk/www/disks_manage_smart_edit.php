@@ -56,10 +56,10 @@ $pgtitle = array(gettext("Disks"), gettext("Management"), gettext("S.M.A.R.T."),
 $a_months = explode(" ",gettext("January February March April May June July August September October November December"));
 $a_weekdays = explode(" ",gettext("Sunday Monday Tuesday Wednesday Thursday Friday Saturday"));
 
-if (!is_array($config['smartd']))
+if (!isset($config['smartd']) || !is_array($config['smartd']))
 	$config['smartd'] = array();
 
-if (!is_array($config['smartd']['selftest']))
+if (!isset($config['smartd']['selftest']) || !is_array($config['smartd']['selftest']))
 	$config['smartd']['selftest'] = array();
 
 $a_selftest = &$config['smartd']['selftest'];

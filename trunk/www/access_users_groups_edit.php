@@ -16,16 +16,16 @@
 	
 	Portions of m0n0wall (http://m0n0.ch/wall).
 	Copyright (C) 2003-2006 Manuel Kasper <mk@neon1.net>.
-	All rights reserved.	
+	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met: 
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -51,9 +51,9 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Access"), gettext("Groups"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (@!is_array($config['access']['group']))
-	$config['access']['group'] = array();
-
+if (!isset($config['access']['group']) || !is_array($config['access']['group']))
+    $config['access']['group'] = array();
+	
 array_sort_key($config['access']['group'], "name");
 
 $a_group = &$config['access']['group'];

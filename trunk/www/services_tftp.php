@@ -45,7 +45,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"), gettext("TFTP"));
 
-if (!is_array($config['tftpd']))
+if (!isset($config['tftpd']) || !is_array($config['tftpd']))
 	$config['tftpd'] = array();
 
 $pconfig['enable'] = isset($config['tftpd']['enable']);

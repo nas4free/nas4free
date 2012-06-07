@@ -52,11 +52,10 @@ if (!isset($config['zfs']['autosnapshots']) || !is_array($config['zfs']['autosna
 array_sort_key($config['zfs']['autosnapshots']['autosnapshot'], "path");
 $a_autosnapshot = &$config['zfs']['autosnapshots']['autosnapshot'];
 
-if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']))
+if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']['pool']))
 	$config['zfs']['pools']['pool'] = array();
 
 array_sort_key($config['zfs']['pools']['pool'], "name");
-
 $a_pool = &$config['zfs']['pools']['pool'];
 
 if (!isset($uuid) && (!sizeof($a_pool))) {

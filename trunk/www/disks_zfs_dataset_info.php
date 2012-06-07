@@ -45,7 +45,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Datasets"), gettext("Information"));
 
-if (!isset($config['zfs']['datasets']) || !is_array($config['zfs']['datasets']))
+if (!isset($config['zfs']['datasets']) || !is_array($config['zfs']['datasets']['dataset']))
 	$config['zfs']['datasets']['dataset'] = array();
 
 $a_dataset = &$config['zfs']['datasets']['dataset'];

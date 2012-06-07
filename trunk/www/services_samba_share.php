@@ -64,7 +64,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['samba']['share']))
+if (!isset($config['samba']['share']) || !is_array($config['samba']['share']))
 	$config['samba']['share'] = array();
 
 array_sort_key($config['samba']['share'], "name");

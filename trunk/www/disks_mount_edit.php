@@ -52,7 +52,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Disks"), gettext("Mount Point"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['mounts']['mount']))
+if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
 	$config['mounts']['mount'] = array();
 
 array_sort_key($config['mounts']['mount'], "devicespecialfile");

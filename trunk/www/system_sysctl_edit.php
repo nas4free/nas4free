@@ -54,7 +54,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("System"), gettext("Advanced"), gettext("sysctl.conf"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['system']['sysctl']['param']))
+if (!isset($config['system']['sysctl']['param']) || !is_array($config['system']['sysctl']['param']))
 	$config['system']['sysctl']['param'] = array();
 
 array_sort_key($config['system']['sysctl']['param'], "name");

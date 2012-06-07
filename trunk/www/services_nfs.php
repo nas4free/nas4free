@@ -48,11 +48,10 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"),gettext("NFS"));
 
-if(!is_array($config['nfsd']['share']))
+if (!isset($config['nfsd']['share']) || !is_array($config['nfsd']['share']))
 	$config['nfsd']['share'] = array();
 
 array_sort_key($config['nfsd']['share'], "path");
-
 $a_share = &$config['nfsd']['share'];
 
 $pconfig['enable'] = isset($config['nfsd']['enable']);

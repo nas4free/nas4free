@@ -52,7 +52,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Network"), gettext("Hosts"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['system']['hosts']))
+if (!isset($config['system']['hosts']) || !is_array($config['system']['hosts']))
 	$config['system']['hosts'] = array();
 
 array_sort_key($config['system']['hosts'], "name");

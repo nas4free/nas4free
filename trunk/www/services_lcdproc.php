@@ -45,9 +45,9 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"), gettext("LCDproc"));
 
-if(!is_array($config['lcdproc']))
+if (!isset($config['lcdproc']) || !is_array($config['lcdproc']))
 	$config['lcdproc'] = array();
-if(!is_array($config['lcdproc']['lcdproc']))
+if (!isset($config['lcdproc']['lcdproc']) || !is_array($config['lcdproc']['lcdproc']))
 	$config['lcdproc']['lcdproc'] = array();
 
 $pconfig['enable'] = isset($config['lcdproc']['enable']);

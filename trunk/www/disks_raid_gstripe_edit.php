@@ -52,7 +52,7 @@ if (isset($_POST['id']))
 
 $pgtitle = array(gettext("Disks"), gettext("Software RAID"), gettext("RAID0"),isset($id)?gettext("Edit"):gettext("Add"));
 
-if (!is_array($config['gstripe']))
+if (!isset($config['gstripe']['vdisk']) || !is_array($config['gstripe']['vdisk']))
 	$config['gstripe']['vdisk'] = array();
 
 array_sort_key($config['gstripe']['vdisk'], "name");

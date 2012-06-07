@@ -66,7 +66,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['graid5']))
+if (!isset($config['graid5']['vdisk']) || !is_array($config['graid5']['vdisk']))
 	$config['graid5']['vdisk'] = array();
 
 array_sort_key($config['graid5']['vdisk'], "name");

@@ -79,7 +79,7 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['mounts']))
+if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
 	$config['mounts']['mount'] = array();
 
 array_sort_key($config['mounts']['mount'], "devicespecialfile");

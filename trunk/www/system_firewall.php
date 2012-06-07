@@ -145,8 +145,9 @@ if ($_POST['export']) {
 	}
 }
 
-if (!is_array($config['system']['firewall']['rule']))
+if (!isset($config['system']['firewall']['rule']) || !is_array($config['system']['firewall']['rule']))
 	$config['system']['firewall']['rule'] = array();
+
 
 array_sort_key($config['system']['firewall']['rule'], "ruleno");
 $a_rule = &$config['system']['firewall']['rule'];

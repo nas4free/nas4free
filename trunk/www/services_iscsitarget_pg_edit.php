@@ -50,7 +50,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Services"), gettext("iSCSI Target"), gettext("Portal Group"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['iscsitarget']['portalgroup']))
+if (!isset($config['iscsitarget']['portalgroup']) || !is_array($config['iscsitarget']['portalgroup']))
 	$config['iscsitarget']['portalgroup'] = array();
 
 array_sort_key($config['iscsitarget']['portalgroup'], "tag");

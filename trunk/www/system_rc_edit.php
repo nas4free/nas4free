@@ -53,13 +53,13 @@ if (isset($_POST['type']))
 
 $pgtitle = array(gettext("System"), gettext("Advanced"), gettext("Command scripts"), isset($id) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['rc']['preinit']))
+if (!isset($config['rc']['preinit']['cmd']) || !is_array($config['rc']['preinit']['cmd']))
 	$config['rc']['preinit']['cmd'] = array();
 
-if (!is_array($config['rc']['postinit']))
+if (!isset($config['rc']['postinit']['cmd']) || !is_array($config['rc']['postinit']['cmd']))
 	$config['rc']['postinit']['cmd'] = array();
 
-if (!is_array($config['rc']['shutdown']))
+if (!isset($config['rc']['shutdown']['cmd']) || !is_array($config['rc']['shutdown']['cmd']))
 	$config['rc']['shutdown']['cmd'] = array();
 
 if (isset($id) && isset($type)) {

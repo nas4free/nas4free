@@ -45,9 +45,8 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("System"),gettext("Reboot"), gettext("Scheduled"));
 
-if (!is_array($config['reboot'])){
+if (!isset($config['reboot']) || !is_array($config['reboot']))
 	$config['reboot'] = array();
-}
 
 $pconfig['enable'] = isset($config['reboot']['enable']);
 $pconfig['minute'] = $config['reboot']['minute'];

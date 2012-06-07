@@ -65,13 +65,13 @@ if ($_POST) {
 	}
 }
 
-if (!is_array($config['iscsitarget']['initiatorgroup']))
+if (!isset($config['iscsitarget']['initiatorgroup']) || !is_array($config['iscsitarget']['initiatorgroup']))
 	$config['iscsitarget']['initiatorgroup'] = array();
 
 array_sort_key($config['iscsitarget']['initiatorgroup'], "tag");
 $a_iscsitarget_ig = &$config['iscsitarget']['initiatorgroup'];
 
-if (!is_array($config['iscsitarget']['target']))
+if (!isset($config['iscsitarget']['target']) || !is_array($config['iscsitarget']['target']))
 	$config['iscsitarget']['target'] = array();
 
 if ($_GET['act'] === "del") {

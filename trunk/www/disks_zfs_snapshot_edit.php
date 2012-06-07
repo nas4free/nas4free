@@ -54,7 +54,6 @@ if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']['pool']
 	$config['zfs']['pools']['pool'] = array();
 
 array_sort_key($config['zfs']['pools']['pool'], "name");
-
 $a_pool = &$config['zfs']['pools']['pool'];
 
 function get_zfs_paths() {

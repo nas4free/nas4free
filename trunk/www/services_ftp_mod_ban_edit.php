@@ -49,7 +49,7 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Services"), gettext("FTP"), gettext("Ban list rule"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!is_array($config['ftpd']['mod_ban']['rule']))
+if (!isset($config['ftpd']['mod_ban']['rule']) || !is_array($config['ftpd']['mod_ban']['rule']))
 	$config['ftpd']['mod_ban']['rule'] = array();
 
 $a_rule = &$config['ftpd']['mod_ban']['rule'];
