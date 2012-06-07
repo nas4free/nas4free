@@ -45,10 +45,10 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Snapshots"), gettext("Information"));
 
-//if (!isset($config['zfs']['snapshots']) || !is_array($config['zfs']['snapshots']['snaposhot']))
-//	$config['zfs']['snapshots']['snapshot'] = array();
+if (!isset($config['zfs']['snapshots']['snapshot']) || !is_array($config['zfs']['snapshots']['snapshot']))
+	$config['zfs']['snapshots']['snapshot'] = array();
 
-//$a_snapshot = &$config['zfs']['snapshots']['snapshot'];
+$a_snapshot = &$config['zfs']['snapshots']['snapshot'];
 
 function zfs_snapshot_display_list() {
 	mwexec2("zfs list -t snapshot 2>&1", $rawdata);

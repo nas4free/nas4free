@@ -45,7 +45,7 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Volumes"), gettext("Information"));
 
-if (!isset($config['zfs']['volumes']) || !is_array($config['zfs']['volumes']['volume']))
+if (!isset($config['zfs']['volumes']['volume']) || !is_array($config['zfs']['volumes']['volume']))
 	$config['zfs']['volumes']['volume'] = array();
 
 $a_volume = &$config['zfs']['volumes']['volume'];

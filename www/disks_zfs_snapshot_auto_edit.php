@@ -50,13 +50,13 @@ if (isset($_POST['uuid']))
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Snapshots"), gettext("Auto Snapshot"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
-if (!isset($config['zfs']['autosnapshots']) || !is_array($config['zfs']['autosnapshots']['autosnapshot']))
+if (!isset($config['zfs']['autosnapshots']['autosnapshot']) || !is_array($config['zfs']['autosnapshots']['autosnapshot']))
 	$config['zfs']['autosnapshots']['autosnapshot'] = array();
 
 array_sort_key($config['zfs']['autosnapshots']['autosnapshot'], "path");
 $a_autosnapshot = &$config['zfs']['autosnapshots']['autosnapshot'];
 
-if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']['pool']))
+if (!isset($config['zfs']['pools']['pool']) || !is_array($config['zfs']['pools']['pool']))
 	$config['zfs']['pools']['pool'] = array();
 
 array_sort_key($config['zfs']['pools']['pool'], "name");
