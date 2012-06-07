@@ -50,11 +50,11 @@ require("zfs.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Snapshots"), gettext("Snapshot"));
 
-//if (!isset($config['zfs']['snapshots']) || !is_array($config['zfs']['snapshots']['snapshot']))
-//	$config['zfs']['snapshots']['snapshot'] = array();
+if (!isset($config['zfs']['snapshots']['snapshot']) || !is_array($config['zfs']['snapshots']['snapshot']))
+	$config['zfs']['snapshots']['snapshot'] = array();
 
-//array_sort_key($config['zfs']['snapshots']['snapshot'], "name");
-//$a_snapshot = &$config['zfs']['snapshots']['snapshot'];
+array_sort_key($config['zfs']['snapshots']['snapshot'], "name");
+$a_snapshot = &$config['zfs']['snapshots']['snapshot'];
 
 function get_zfs_snapshots() {
 	$result = array();

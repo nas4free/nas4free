@@ -46,10 +46,10 @@ require("sajax/sajax.php");
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Pools"), gettext("Information"));
 
-if (!isset($config['zfs']['pools']) || !is_array($config['zfs']['pools']['pool']))
+if (!isset($config['zfs']['pools']['pool']) || !is_array($config['zfs']['pools']['pool']))
 	$config['zfs']['pools']['pool'] = array();
 
-if (!isset($config['zfs']['vdevices']) || !is_array($config['zfs']['vdevices']['vdevice']))
+if (!isset($config['zfs']['vdevices']['vdevice']) || !is_array($config['zfs']['vdevices']['vdevice']))
 	$config['zfs']['vdevices']['vdevice'] = array();
 
 function zfs_zpool_get_status() {

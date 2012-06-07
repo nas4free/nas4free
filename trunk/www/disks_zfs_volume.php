@@ -46,7 +46,7 @@ require("zfs.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Volumes"), gettext("Volume"));
 
-if (!isset($config['zfs']['volumes']) || !is_array($config['zfs']['volumes']['volume']))
+if (!isset($config['zfs']['volumes']['volume']) || !is_array($config['zfs']['volumes']['volume']))
 	$config['zfs']['volumes']['volume'] = array();
 
 array_sort_key($config['zfs']['volumes']['volume'], "name");
