@@ -49,7 +49,7 @@ require("guiconfig.inc");
 $pgtitle = array(gettext("Network"), gettext("Interface Management"), gettext("VLAN"));
 
 if (!isset($config['vinterfaces']['vlan']) || !is_array($config['vinterfaces']['vlan']))
-	$config['vinterfaces']['vlan'] = array(
+	$config['vinterfaces']['vlan'] = array();
 
 $a_vlan = &$config['vinterfaces']['vlan'];
 array_sort_key($a_vlan, "if");
