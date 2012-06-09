@@ -404,6 +404,7 @@ if (isset($_POST['import_config']))
 			}
 		}
 		
+		$pconfig['zfs']['autosnapshots'] = $_GET['zfs']['autosnapshots'];
 		if (isset($_POST['leave_autosnapshots'])) {
 			$cfg['zfs']['autosnapshots'] = $config['zfs']['autosnapshots'];
 		}
