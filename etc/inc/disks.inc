@@ -47,7 +47,7 @@ function disks_mount_all()
 	global $config, $g;
 
 	// For each device configured:
-	if (is_array($config['mounts']['mount'])) {
+	if (is_array($config['mounts']) && is_array($config['mounts']['mount'])) {
 		// Mount real disks first
 		foreach ($config['mounts']['mount'] as $mount) {
 			if ("disk" !== $mount['type'])
@@ -88,7 +88,7 @@ function disks_umount_all()
 	// Sync disks first
 	mwexec("/bin/sync");
 
-	if (is_array($config['mounts']['mount'])) {
+	if (is_array($config['mounts'])) {
 		foreach ($config['mounts']['mount'] as $mountent) {
 			disks_umount($mountent);
 		}
@@ -114,7 +114,7 @@ function disks_mount($mount)
 	/* Mount the filesystem */
 	/* In booting mode, skip encrypted disk (need to enter the passphrase on the webgui) */
 	if (is_booting()) {
-		if (is_array($config['geli']['vdisk'])) {
+		if (is_array($config['geli']) && is_array($config['geli']['vdisk'])) {
 			if (array_search_ex($mount['mdisk'], $config['geli']['vdisk'], "devicespecialfile")) {
 				write_log("Skip mounting '{$mount['sharename']}': Passphrase needed for '{$mountname}'.");
 				return 0;
