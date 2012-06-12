@@ -111,7 +111,7 @@ function zfs_zpool_configure($uuid) {
 		$mountpoint = $pool['mountpoint'];
 
 	// Additional parameter
-	$param = "-m {$mountpoint} ";
+	$param = "-f -m {$mountpoint} ";
 
 	if (!empty($pool['root']))
 		$param .= "-R {$pool['root']} ";
