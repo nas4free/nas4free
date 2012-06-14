@@ -4,7 +4,6 @@
 # NAS4Free use portions of freenas which is Copyright © 2005-2011 by Olivier Cochard (olivier@freenas.org).
 # Copyright (c) 2007-2009 Volker Theile (votdev@gmx.de)
 # All rights reserved.
-# Modified for AIO/Samba3.5/3.6/AD/SMB2 by Daisuke Aoyama (aoyama@peach.ne.jp)
 
 # PROVIDE: nmbd smbd winbindd
 # REQUIRE: NETWORKING SERVERS DAEMON resolv
@@ -194,7 +193,7 @@ samba_mkconf_cmd()
 		-b \
 		-i "//samba/security[. = 'ads']" \
 			-o "passdb backend = tdbsam" -n \
-			-o "allow trusted domains = no" -n \
+			-o "allow trusted domains = yes" -n \
 			-o "idmap backend = tdb" -n \
 			-o "idmap uid = ${samba_idmap_uid}" -n \
 			-o "idmap gid = ${samba_idmap_gid}" -n \
