@@ -39,9 +39,9 @@ websrv_enable=${websrv_enable:-"NO"}
 websrv_conf=${websrv_conf:-"/var/etc/websrv.conf"}
 websrv_certpem=${websrv_certpem:-"/var/etc/websrvcert.pem"}
 websrv_server_maxwriteidle=${websrv_server_maxwriteidle:-"360"}
+pidfile="/var/run/websrv.pid"
 command=/usr/local/sbin/lighttpd
 command_args="-f ${websrv_conf} -m /usr/local/lib/lighttpd"
-pidfile=/var/run/websrv.pid
 sig_reload="-INT"
 
 websrv_mkconf()
@@ -76,6 +76,8 @@ server.modules = (
   "mod_alias"
  )
 server.errorlog-use-syslog = "enable"
+# debugmode ° debug.log-request-handling enable/disable
+debug.log-request-handling = "disable"
 server.event-handler = "freebsd-kqueue"
 server.max-write-idle = ${websrv_server_maxwriteidle}
 index-file.names   = ( "index.php", "index.html", "index.htm", "index.shtml", "default.htm" )
@@ -136,10 +138,13 @@ mimetype.assign             = (
   # default mime type
   ""              =>      "application/octet-stream",
  )
+server.username = "www"
+server.groupname = "www"
 url.access-deny = ( "~", ".inc", ".websrv_htpasswd" )
 static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
 server.pid-file = "${pidfile}"
 cgi.assign = (".php" => "/usr/local/bin/php")
+server.tag = "webrerv"
 EOF
 
 	# Add auxparam

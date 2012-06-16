@@ -9,7 +9,7 @@ Changes:
 - Changes to console.
 - Changes to cifs/smb allow trusted domains.
 - Cosmetic changes webgui.
-- Cosmetic changes file manager.
+- Cosmetic changes file manager and integration..
 - Upgrade GUI translations.
 - Upgrade bash 4.2 to patch 028.
 - Upgrade zoneinfo to 2012c.
@@ -26,13 +26,17 @@ Changes:
 - Upgrade nut to 2.6.4.
 - Upgrade bsnmp-ucd to 0.3.6.
 - Upgrade e2fsprogs to 1.42.4.
+- Upgrade to FreeBSD 9.0-RELEASE-p3.
 
 Bug fixes:
 
 - Fix LCDproc not working.
 - Fix quixplorer remote code execution vulnerability.
-- Fix serveral webgui bugs. 
-- Fix upgrade embedded installation from livced (BR-3533624).
+- Fix serveral webgui bugs.
+- Fix boot warnings.
+- Fix creating a zfs raid with 1 device larger than the rest of the members.
+- Fix upgrade embedded installation from livced. (BR-3533624)
+- Fix webserver no longer runs as root. (BR-3517751)
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
