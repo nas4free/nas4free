@@ -239,28 +239,26 @@ function display_menu($menuid) {
 									<tbody>
 										<tr>
 											<td align="center">
-												<div id="loginbox">
-													<fieldset><legend><b><?=gettext("WebGUI Login");?></b></legend>
-                                                    <table background="vncell_bg.png">
-														<tbody>
-															<tr>
-																<td><?=gettext("Username");?></td>
-																<td><input class="formfld" type="text" name="username" value="" /></td>
-															</tr>
-															<tr>
-																<td><?=gettext("Password");?></td>
-																<td><input class="formfld" type="password" name="password" value="" /></td>
-															</tr>
-															<tr>
-																<td></td>
-															</tr>
-															<tr>
-																<td align="center" colspan="2"><input class="formbtn" type="submit" value="<?=gettext("Login");?>" /></td>
-															</tr>
-														</tbody>
-													</table>
-                                                    </fieldset>
-												</div>
+												<div class="shadow">
+													<div id="loginboxheader"><b><?=gettext("NAS4Free WebGUI Login");?></b></div>
+													<div id="loginbox">
+														<table background="vncell_bg.png">
+															<tbody>
+																<tr>
+																	<td><b><?=gettext("Username");?>:</b></td>
+																	<td><input class="formfld" type="text" name="username" value="" /></td>
+																</tr>
+																<tr>
+																	<td><b><?=gettext("Password");?>:</b></td>
+																	<td><input class="formfld" type="password" name="password" value="" /></td>
+																</tr>
+																<tr>
+																	<td align="right" colspan="2"><input class="formbtn" type="submit" value="<?=gettext("Login");?>" /></td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</duv>
 											</td>
 										</tr>
 									</tbody>
