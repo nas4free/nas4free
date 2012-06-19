@@ -397,14 +397,37 @@ div#loginpage {
 	width: 15%;
 	height: auto;
 }
+
+div#loginboxheader {
+	background-image: url(./quixplorer/_style/tablebg.png);
+    height: 20px;
+	text-align: left;
+	padding: 5px 0px 0px 10px;
+	border-top: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;		
+}
+
 div#loginbox {
 	background-image: url(vncell_bg.png);
-	border: 1px solid #000000;
-	padding: 20px 25px 20px 25px;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	padding: 5px 10px 10px 10px;
 }
 
 div#loginbox table td {
 	white-space: nowrap;
+}
+
+.shadow {
+	-moz-box-shadow: 3px 3px 4px #000;
+	-webkit-box-shadow: 3px 3px 4px #000;
+	box-shadow: 3px 3px 4px #000;
+	/* For IE 8 & 9 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
 
 pre.cmdoutput {
