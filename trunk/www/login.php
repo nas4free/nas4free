@@ -89,16 +89,16 @@ function genhtmltitle($title) {
 }
 
 // Menu items.
-// Forum
-$menu['forum']['desc'] = gettext("Forum");
-$menu['forum']['link'] = "http://apps.sourceforge.net/phpbb/nas4free/index.php";
-$menu['forum']['visible'] = TRUE;
-$menu['forum']['menuitem']['visible'] = FALSE;
 // Info and Manual
 $menu['info']['desc'] = gettext("Information & Manuals");
 $menu['info']['visible'] = TRUE;
 $menu['info']['link'] = "http://wiki.nas4free.org/";
 $menu['info']['menuitem']['visible'] = FALSE;
+// Forum
+$menu['forum']['desc'] = gettext("Forum");
+$menu['forum']['link'] = "http://forums.nas4free.org";
+$menu['forum']['visible'] = TRUE;
+$menu['forum']['menuitem']['visible'] = FALSE;
 // IRC
 $menu['irc']['desc'] = gettext("IRC Live Support");
 $menu['irc']['visible'] = TRUE;
@@ -107,7 +107,7 @@ $menu['irc']['menuitem']['visible'] = FALSE;
 // Donate
 $menu['donate']['desc'] = gettext("Donate");
 $menu['donate']['visible'] = TRUE;
-$menu['donate']['link'] = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=SAW6UG4WBJVGG&lc=US&item_name=NAS4Free&item_number=Donation%20to%20NAS4Free&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted";
+$menu['donate']['link'] = "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=info%40nas4free%2eorg&lc=US&item_name=NAS4Free%20Project&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest";
 $menu['donate']['menuitem']['visible'] = FALSE;
 
 
@@ -220,7 +220,6 @@ function display_menu($menuid) {
 		<?php endif;?>
 		<!-- End extension section -->
 		<?=display_menu("forum");?>
-		<?=display_menu("kb");?>
 		<?=display_menu("info");?>
 		<?=display_menu("irc");?>
 		<?=display_menu("donate");?>
