@@ -172,13 +172,13 @@ $menu['help']['link'] = "";
 $menu['help']['menuitem'] = array();
 $menu['help']['menuitem'][] = array("desc" => gettext("Report Generator"), "link" => "report_generator.php", "visible" => TRUE);
 $menu['help']['menuitem'][] = array("type" => "separator", "visible" => TRUE);
-$menu['help']['menuitem'][] = array("desc" => gettext("Forum"), "link" => "http://apps.sourceforge.net/phpbb/nas4free/index.php", "visible" => TRUE, "target" => "_blank");
+$menu['help']['menuitem'][] = array("desc" => gettext("Forum"), "link" => "http://forums.nas4free.org", "visible" => TRUE, "target" => "_blank");
 $menu['help']['menuitem'][] = array("desc" => gettext("Information & Manual"), "link" => "http://wiki.nas4free.org/", "visible" => TRUE, "target" => "_blank");
 $menu['help']['menuitem'][] = array("desc" => gettext("IRC Live Support"), "link" => "http://webchat.freenode.net/?channels=#nas4free", "visible" => TRUE, "target" => "_blank");
 $menu['help']['menuitem'][] = array("type" => "separator", "visible" => TRUE);
 $menu['help']['menuitem'][] = array("desc" => gettext("Release Notes"), "link" => "changes.php", "visible" => TRUE);
 $menu['help']['menuitem'][] = array("desc" => gettext("License & Credits"), "link" => "license.php", "visible" => TRUE);
-$menu['help']['menuitem'][] = array("desc" => gettext("Donate"), "link" => "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=SAW6UG4WBJVGG&lc=US&item_name=NAS4Free&item_number=Donation%20to%20NAS4Free&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted", "visible" => TRUE, "target" => "_blank");
+$menu['help']['menuitem'][] = array("desc" => gettext("Donate"), "link" => "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=info%40nas4free%2eorg&lc=US&item_name=NAS4Free%20Project&no_note=0&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHostedGuest", "visible" => TRUE, "target" => "_blank");
 function display_menu($menuid) {
 	global $menu;
 
