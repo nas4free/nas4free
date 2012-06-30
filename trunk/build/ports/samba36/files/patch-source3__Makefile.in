@@ -1,5 +1,5 @@
---- ./source3/Makefile.in.orig	2011-10-19 03:48:48.000000000 +0900
-+++ ./source3/Makefile.in	2011-11-09 18:53:13.000000000 +0900
+--- ./source3/Makefile.in.orig	2012-06-24 19:21:16.000000000 +0200
++++ ./source3/Makefile.in	2012-07-01 00:52:56.000000000 +0200
 @@ -806,6 +806,7 @@
  VFS_EXPAND_MSDFS_OBJ = modules/vfs_expand_msdfs.o
  VFS_SHADOW_COPY_OBJ = modules/vfs_shadow_copy.o
@@ -8,7 +8,7 @@
  VFS_AFSACL_OBJ = modules/vfs_afsacl.o
  VFS_XATTR_TDB_OBJ = modules/vfs_xattr_tdb.o
  VFS_POSIXACL_OBJ = modules/vfs_posixacl.o
-@@ -1302,8 +1303,8 @@
+@@ -1303,8 +1304,8 @@
                   $(LIB_NONSMBD_OBJ) $(KRBCLIENT_OBJ) \
  		 $(LIBNDR_GEN_OBJ0)
  
@@ -19,7 +19,7 @@
  
  PAM_SMBPASS_OBJ_0 = pam_smbpass/pam_smb_auth.o pam_smbpass/pam_smb_passwd.o \
  		pam_smbpass/pam_smb_acct.o pam_smbpass/support.o ../lib/util/asn1.o
-@@ -1620,6 +1621,7 @@
+@@ -1621,6 +1622,7 @@
  
  .SUFFIXES:
  .SUFFIXES: .c .o .lo
@@ -27,7 +27,7 @@
  
  .PHONY: showflags SHOWFLAGS
  
-@@ -1681,6 +1683,9 @@
+@@ -1682,6 +1684,9 @@
  		$(COMPILE_CC) >/dev/null 2>&1
  @BROKEN_CC@	-mv `echo $@ | sed 's%^.*/%%g'` $@
  
@@ -37,7 +37,7 @@
  PRECOMPILED_HEADER = $(builddir)/include/includes.h.gch
  
  # this adds support for precompiled headers. To use it, install a snapshot
-@@ -2762,14 +2767,15 @@
+@@ -2763,14 +2768,15 @@
  		$(LDAP_LIBS) $(KRB5LIBS) $(LIBS) $(LIBTALLOC_LIBS) $(LIBTDB_LIBS) $(ZLIB_LIBS) \
  		@SONAMEFLAG@`basename $@`@NSSSONAMEVERSIONSUFFIX@
  
@@ -46,7 +46,7 @@
  	@echo "Linking $@"
 -	@$(SHLD) $(LDSHFLAGS) -o $@ $(WINBIND_KRB5_LOCATOR_OBJ) $(LIBWBCLIENT_LIBS) $(KRB5LIBS) \
 +	@$(SHLD) $(LDSHFLAGS) -o $@ $(WINBIND_KRB5_LOCATOR_OBJ) $(LIBTALLOC_LIBS) $(LIBWBCLIENT_LIBS) $(KRB5LIBS) \
- 		@SONAMEFLAG@`basename $@`
+ 		$(LIBREPLACE_LIBS) @SONAMEFLAG@`basename $@`
  
  bin/pam_winbind.@SHLIBEXT@: $(BINARY_PREREQS) $(PAM_WINBIND_OBJ) $(LIBTALLOC) $(LIBWBCLIENT)
  	@echo "Linking shared library $@"
@@ -55,7 +55,7 @@
  		$(LIBREPLACE_LIBS) $(LIBTALLOC_LIBS) $(LIBWBCLIENT_LIBS) @SONAMEFLAG@`basename $@`
  
  ##########
-@@ -2925,6 +2931,10 @@
+@@ -2926,6 +2932,10 @@
  	@echo "Building plugin $@"
  	@$(SHLD_MODULE) $(VFS_SHADOW_COPY2_OBJ)
  
@@ -66,7 +66,7 @@
  bin/syncops.@SHLIBEXT@: $(BINARY_PREREQS) $(VFS_SYNCOPS_OBJ)
  	@echo "Building plugin $@"
  	@$(SHLD_MODULE) $(VFS_SYNCOPS_OBJ)
-@@ -3117,7 +3127,8 @@
+@@ -3122,7 +3132,8 @@
  	@echo "Linking shared library $@"
  	@$(SHLD) $(LDSHFLAGS) -o $@ $(PAM_SMBPASS_OBJ) $(LIBCLI_LDAP_NDR_OBJ) -lpam $(DYNEXP) \
  		$(LIBS) $(LDAP_LIBS) $(NSCD_LIBS) \
