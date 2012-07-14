@@ -95,8 +95,6 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer & Project leader</font></em></div><br />
              <div>Michael Zoon (<a href="mailto:zoon01@nas4.org">zoon01@nas4free.org</a>)<br />             
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer & Project leader</font></em></div><br />
-             <div>Volker Theile (<a href="mailto:votdev@gmx.de">votdev@gmx.de</a>)<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer</font></em></div><br />
             <hr size="1" />
             <p>The following persons have contributed to NAS4Free support:</p>
               <div>Christian Degen alias bubulein (<a href="mailto:degen@nas4free.org">degen@nas4free.org</a>)<br />
