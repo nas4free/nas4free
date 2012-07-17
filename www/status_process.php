@@ -11,12 +11,6 @@
 	Copyright (C) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
 	All rights reserved.
 
-	Modified by Daisuke Aoyama (aoyama@peach.ne.jp)
-	Copyright (C) 2010 Daisuke Aoyama <aoyama@peach.ne.jp>.
-	Modified by Michael Zoon (zoon01@nas4free.org)
-	Copyright (C) 2008-2011 Michael Zoon (zoon01@nas4free.org).
-	All rights reserved.
-
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met: 
 

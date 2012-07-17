@@ -1,6 +1,7 @@
 <?php
 /*
 	xmlparse.inc
+
 	functions to parse/dump configuration files in XML format
 
 	Part of NAS4Free (http://www.nas4free.org).

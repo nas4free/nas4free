@@ -2,12 +2,9 @@
 <?php
 /*
 	status_interfaces.php
+	
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (C) 2012 by NAS4Free Team <info@nas4free.org>.
-	All rights reserved.
-	
-	Modified for XHTML by Daisuke Aoyama <aoyama@peach.ne.jp>
-	Copyright (C) 2010 Daisuke Aoyama <aoyama@peach.ne.jp>.	
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).

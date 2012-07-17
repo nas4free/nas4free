@@ -5,7 +5,6 @@
 #
 # Portions of freenas (http://www.freenas.org).
 # Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
-# Copyright (c) 2008 Volker Theile <votdev@gmx.de>.
 # All rights reserved.
 
 . /etc/rc.subr

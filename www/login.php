@@ -4,18 +4,6 @@
 	
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (C) 2012 by NAS4Free Team <info@nas4free.org>.
-	All rights reserved.	
-	
-	Modified for XHTML by Daisuke Aoyama (aoyama@peach.ne.jp)
-	Copyright (C) 2010-2011 Daisuke Aoyama <aoyama@peach.ne.jp>.
-	All rights reserved.
-
-	Modified by Michael Zoon
-	Copyright (C) 2010-2011 Michael Zoon <michael.zoon@freenas.org>.
-	All rights reserved.
-
-	Modified by Volker Theile
-	Copyright (C) 2009 Volker Theile (votdev@gmx.de)
 	All rights reserved.
 
 	Portions of FreeNAS (http://www.freenas.org)
