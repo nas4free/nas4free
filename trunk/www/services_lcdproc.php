@@ -9,7 +9,6 @@
 
 	Portions of freenas (http://www.freenas.org).
 	Copyright (C) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	Copyright (C) 2012 Daisuke Aoyama <aoyama@peach.ne.jp>
 	All rights reserved.
 	
 	Portions of m0n0wall (http://m0n0.ch/wall)

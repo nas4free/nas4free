@@ -6,25 +6,10 @@
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (C) 2012 by NAS4Free Team <info@nas4free.org>.
 	All rights reserved.
-	
-	Modified for XHTML by Daisuke Aoyama <aoyama@peach.ne.jp>
-	Copyright (C) 2010 Daisuke Aoyama <aoyama@peach.ne.jp>.	
-	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
 	Copyright (C) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	Copyright (C) 2008-2009 Volker Theile <votdev@gmx.de>.
 	All rights reserved.
-	
-	Copyright (C) 2004, 2005 Scott Ullrich
-	All rights reserved.
-
-	Adapted for FreeNAS by Volker Theile (votdev@gmx.de)
-	Copyright (C) 2006-2010 Volker Theile
-
-	Using dp.SyntaxHighlighter for syntax highlighting
-	http://www.dreamprojections.com/SyntaxHighlighter
-	Copyright (C) 2004-2006 Alex Gorbatchev. All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met: 

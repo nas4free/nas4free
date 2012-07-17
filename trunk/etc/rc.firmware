@@ -1,6 +1,7 @@
 #!/bin/sh
 #
 # /etc/rc.firmware
+#
 # Part of NAS4Free (http://www.nas4free.org).
 # Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
 # All rights reserved.
@@ -16,6 +17,7 @@
 # - disable: Erase ram drive
 # - upgrade <file> : Do an embedded release (IMG file) upgrade using the file <file>
 # - fullupgrade <file> : Do a full release (TGZ file) upgrade using the file <file>
+#
 
 SIZE="128M"
 CFDEVICE=`cat /etc/cfdevice | sed -e 's/[a-h]$//'`

@@ -9,7 +9,6 @@
 
 	Portions of freenas (http://www.freenas.org).
 	Copyright (C) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	Set time function added by Paul Wheels (pwheels@users.sourceforge.net).
 	All rights reserved.
 	
 	Portions of m0n0wall (http://m0n0.ch/wall).

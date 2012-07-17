@@ -5,17 +5,13 @@
 
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (C) 2012 by NAS4Free Team <info@nas4free.org>.
-	All rights reserved.
-	
-	Modified by Michael Zoon (C) 2010 <zoon01@nas4free.org>
 	All rights reserved.	
 
 	Portions of FreeNAS (http://www.freenas.org)
-	Copyright (C) 2005-2010 Olivier Cochard <olivier@freenas.org>
-	Copyright (C) 2009-2010 Dan Merschi
+	Copyright (C) 2005-2011 Olivier Cochard <olivier@freenas.org>
 	All rights reserved.
 
-	Part of code from:
+	Portions of code from:
 	Exec+ v1.02-000 - Copyright 2001-2003, All rights reserved
 	Created by technologEase (http://www.technologEase.com).
 	Modified for m0n0wall by Manuel Kasper <mk@neon1.net>)

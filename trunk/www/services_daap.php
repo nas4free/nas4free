@@ -3,15 +3,12 @@
 /*
 	services_daap.php
 	
-	Modified for XHTML by Daisuke Aoyama (aoyama@peach.ne.jp)
-	Copyright (C) 2010 Daisuke Aoyama <aoyama@peach.ne.jp>.
+	Part of NAS4Free (http://www.nas4free.org).
+	Copyright (C) 2012 by NAS4Free Team <info@nas4free.org>.
 	All rights reserved.
 
-	Copyright (C) 2006-2010 Volker Theile (votdev@gmx.de)
-	All rights reserved.
-
-	part of FreeNAS (http://www.freenas.org)
-	Copyright (C) 2005-2010 Olivier Cochard <olivier@freenas.org>.
+	Portions of FreeNAS (http://www.freenas.org)
+	Copyright (C) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without

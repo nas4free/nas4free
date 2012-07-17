@@ -4,15 +4,9 @@
 # Debug script
 # set -x
 #
-# Part of NAS4Free copyright (C)2012 by NAS4Free team <info@nas4free.org>.
-# Portions from freenas by Olivier Cochard-Labbé (http://www.freenas.org)
+# Part of NAS4Free copyright (C) 2012 by NAS4Free team <info@nas4free.org>.
+# Portions from freenas by Olivier Cochard-Labbé (http://www.freenas.org).
 # All rights reserved.
-#
-# Modified 2012 by Michael Zoon <zoon01@nas4free.org>.
-#
-# First creation by Scott Zahn.
-# Modified by Volker Theile (votdev@gmx.de).
-# Modified by Daisuke Aoyama (aoyama@peach.ne.jp).
 #
 
 ################################################################################
