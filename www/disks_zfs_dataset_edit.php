@@ -67,6 +67,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_dataset, "uuid
 	$pconfig['pool'] = $a_dataset[$cnid]['pool'][0];
 	$pconfig['compression'] = $a_dataset[$cnid]['compression'];
 	$pconfig['dedup'] = $a_dataset[$cnid]['dedup'];
+	$pconfig['atime'] = $a_dataset[$cnid]['atime'];	
 	$pconfig['canmount'] = isset($a_dataset[$cnid]['canmount']);
 	$pconfig['readonly'] = isset($a_dataset[$cnid]['readonly']);
 	$pconfig['xattr'] = isset($a_dataset[$cnid]['xattr']);
@@ -79,6 +80,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_dataset, "uuid
 	$pconfig['pool'] = "";
 	$pconfig['compression'] = "off";
 	$pconfig['dedup'] = "off";
+	$pconfig['atime'] = "off";	
 	$pconfig['canmount'] = true;
 	$pconfig['readonly'] = false;
 	$pconfig['xattr'] = true;
@@ -88,6 +90,10 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_dataset, "uuid
 }
 if ($pconfig['dedup'] == "") {
 	$pconfig['dedup'] = "off";
+}
+
+if ($pconfig['atime'] == "") {
+	$pconfig['atime'] = "off";
 }
 
 if ($_POST) {
@@ -114,6 +120,7 @@ if ($_POST) {
 		$dataset['pool'] = $_POST['pool'];
 		$dataset['compression'] = $_POST['compression'];
 		$dataset['dedup'] = $_POST['dedup'];
+		$dataset['atime'] = $_POST['atime'];
 		$dataset['canmount'] = $_POST['canmount'] ? true : false;
 		$dataset['readonly'] = $_POST['readonly'] ? true : false;
 		$dataset['xattr'] = $_POST['xattr'] ? true : false;
@@ -178,8 +185,12 @@ function enable_change(enable_change) {
 					<?php html_combobox("pool", gettext("Pool"), $pconfig['pool'], $a_poollist, "", true);?>
 					<?php $a_compressionmode = array("on" => gettext("On"), "off" => gettext("Off"), "lzjb" => "lzjb", "gzip" => "gzip", "zle" => "zle"); for ($n = 1; $n <= 9; $n++) { $mode = "gzip-{$n}"; $a_compressionmode[$mode] = $mode; }?>
 					<?php html_combobox("compression", gettext("Compression"), $pconfig['compression'], $a_compressionmode, gettext("Controls the compression algorithm used for this dataset. The 'lzjb' compression algorithm is optimized for performance while providing decent data compression. Setting compression to 'On' uses the 'lzjb' compression algorithm. You can specify the 'gzip' level by using the value 'gzip-N', where N is an integer from 1 (fastest) to 9 (best compression ratio). Currently, 'gzip' is equivalent to 'gzip-6'."), true);?>
-					<?php $a_dedup = array("on" => gettext("On"), "off" => gettext("Off"), "verify" => "verify", "sha256" => "sha256", "sha256,verify" => "sha256,verify"); ?>
+					<?php $a_dedup = array("on" => gettext("On"), "off" => gettext("Off"), "verify" => "verify", "sha256" => "sha256", "sha256,verify" => "sha256,verify"); ?>					
 					<?php html_combobox("dedup", gettext("Dedup"), $pconfig['dedup'], $a_dedup, gettext("Controls the dedup method."), true);?>
+					<?php 
+						$a_atime = array("on" => gettext("On"), "off" => gettext("Off"));
+						html_combobox("atime", gettext("Access Time"), $pconfig['atime'], $a_atime, gettext("Turn access time on or off for this dataset"), true);
+					?>
 					<?php html_checkbox("canmount", gettext("Canmount"), $pconfig['canmount'] ? true : false, gettext("If this property is disabled, the file system cannot be mounted."), "", false);?>
 					<?php html_checkbox("readonly", gettext("Readonly"), $pconfig['readonly'] ? true : false, gettext("Controls whether this dataset can be modified."), "", false);?>
 					<?php html_checkbox("xattr", gettext("Extended attributes"), $pconfig['xattr'] ? true : false, gettext("Enable extended attributes for this file system."), "", false);?>
