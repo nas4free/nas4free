@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>POT-Creation-Date: 2012-03-"
 "12 03:02+0000\n"
-"POT-Creation-Date: 2012-06-02 01:27+0000\n"
-"PO-Revision-Date: 2012-06-01 23:53+0000\n"
-"Last-Translator: zoon01 <zoon01@nas4free.org>\n"
+"POT-Creation-Date: 2012-07-17 20:52+0000\n"
+"PO-Revision-Date: 2012-07-16 18:44+0000\n"
+"Last-Translator: Carsten Matzon <carsten@matzon.dk>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-06-02 00:12+0000\n"
-"X-Generator: Launchpad (build 15342)\n"
+"X-Launchpad-Export-Date: 2012-07-17 19:22+0000\n"
+"X-Generator: Launchpad (build 15627)\n"
 "X-Poedit-Country: DENMARK\n"
 "Language: \n"
 "X-Poedit-Language: Danish\n"
@@ -283,6 +283,9 @@ msgstr "Adgang"
 
 msgid "Access Restrictions"
 msgstr "Adgangsbegrænsninger"
+
+msgid "Access Time"
+msgstr ""
 
 msgid "Access mode"
 msgstr "Adgangstilstand"
@@ -1385,7 +1388,7 @@ msgid "Detected"
 msgstr "Fundet"
 
 msgid "Detected Language:<br />(Change if needed)"
-msgstr ""
+msgstr "Opdaget sprog:<br />(Ændre hvis nødvendigt)"
 
 msgid "Detected RSYNC remote shares"
 msgstr "Fundne fjerne RSYNC shares"
@@ -3351,6 +3354,9 @@ msgstr "Mutual CHAP"
 msgid "Mutual CHAP Users"
 msgstr "Mutual CHAP brugere"
 
+msgid "NAS4Free WebGUI Login"
+msgstr ""
+
 msgid "NFS"
 msgstr "NFS"
 
@@ -3504,6 +3510,8 @@ msgid ""
 "No disks configured, please add disks to see the diagnostic information of "
 "disks!"
 msgstr ""
+"Ingen disk konfigureret, venligts tilføj disks for at se diagnotisk "
+"information på disks!"
 
 msgid "No file was uploaded."
 msgstr "Ingen fil blev oploaded."
@@ -3916,6 +3924,10 @@ msgstr "Strømtilstand"
 
 msgid "PreInit"
 msgstr "PreInit"
+
+#, php-format
+msgid "Predefined system groups"
+msgstr "Prædefineret system grupper"
 
 msgid "Preferred"
 msgstr "Foretrukken"
@@ -4434,6 +4446,9 @@ msgstr "Tjeneste"
 
 msgid "Services"
 msgstr "Tjenester"
+
+msgid "Set access time on or off on the volume."
+msgstr ""
 
 msgid "Set additional group memberships for this account."
 msgstr "Vælg yderligere gruppe medlemsskaber for denne konto."
@@ -6204,6 +6219,9 @@ msgstr "Forsøg at importere fra on-disk ZFS konfigurationen."
 msgid "Tuning"
 msgstr "Finjustering"
 
+msgid "Turn access time on or off for this dataset"
+msgstr ""
+
 msgid "Turn the monitor to standby after N seconds."
 msgstr "Sæt skærmen i standby efter N sekunder."
 
@@ -6403,6 +6421,10 @@ msgstr "Bruger"
 msgid "User ID"
 msgstr "Bruger ID"
 
+#, php-format
+msgid "User defined groups"
+msgstr "Bruger definerede grupper"
+
 msgid "User full name."
 msgstr "Brugerens fulde navn."
 
@@ -6534,9 +6556,6 @@ msgstr "Overvåget mappe"
 
 msgid "WebGUI"
 msgstr "WebGUI"
-
-msgid "WebGUI Login"
-msgstr "WebGUI Login"
 
 msgid "Webserver"
 msgstr "Webserver"
@@ -6844,19 +6863,5 @@ msgstr "umount"
 msgid "upriv"
 msgstr "upriv"
 
-#~ msgid ""
-#~ "<b>EFI GPT</b> if you want to mount a GPT formatted drive (<b>default "
-#~ "partition since 0.684b</b>).<br /><b>MBR</b> partition, for UFS formatted "
-#~ "drive or Software RAID volume (<b>created before 0.684b</b>) or imported "
-#~ "disks from other OS.<br /><b>CD/DVD or Old software RAID</b> for old "
-#~ "SoftwareRAID volumes (<b>created before version 0.68</b>) or CD/DVD."
-#~ msgstr ""
-#~ "<b>EFI GPT</b> hvis du vil montere et GPT formateret drev (<b>standard "
-#~ "partition siden 0.684b</b>).<br /><b>MBR</b> partition, for UFS formaterede "
-#~ "drev eller software RAID volume (<b>oprettet før 0.684b</b>) eller "
-#~ "importerede diske fra andre styresystemer.<br><b>CD/DVD eller gammel "
-#~ "software RAID</b> for gamle software RAID volumer (<b>oprettet før version "
-#~ "0.68</b>) eller CD/DVD."
-
-#~ msgid "CD/DVD or Old Software RAID"
-#~ msgstr "CD/DVD eller gammel software RAID"
+#~ msgid "WebGUI Login"
+#~ msgstr "WebGUI Login"
