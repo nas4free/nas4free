@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-04-10 02:09+0000\n"
+"POT-Creation-Date: 2012-07-17 20:52+0000\n"
 "PO-Revision-Date: 2012-04-21 01:49+0000\n"
 "Last-Translator: zoon01 <zoon01@nas4free.org>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-09 19:44+0000\n"
-"X-Generator: Launchpad (build 15213)\n"
+"X-Launchpad-Export-Date: 2012-07-17 19:23+0000\n"
+"X-Generator: Launchpad (build 15627)\n"
 "X-Poedit-Country: LATVIA\n"
 "Language: \n"
 "X-Poedit-Language: Latvian\n"
@@ -119,18 +119,11 @@ msgstr ""
 "href='%s'>lietotājam</a> vajag pieeju čaulai."
 
 msgid ""
-"<b>EFI GPT</b> if you want to mount a GPT formatted drive (<b>default "
-"partition since 0.684b</b>).<br /><b>MBR</b> partition, for UFS formatted "
-"drive or Software RAID volume (<b>created before 0.684b</b>) or imported "
-"disks from other OS.<br /><b>CD/DVD or Old software RAID</b> for old "
-"SoftwareRAID volumes (<b>created before version 0.68</b>) or CD/DVD."
+"<b>EFI GPT partition</b> if you want to mount a GPT formatted drive "
+"(<b>default partition</b>).<br/><b>MBR partition</b> if you want to mount a "
+"UFS formatted drive or do imported disks from other OS.<br/><b>CD/DVD "
+"volume</b> if you want to mount a CD/DVD volume."
 msgstr ""
-"<b>EFI GPT</b> ja tu vēlies pievienot ar GPT formatētu disku (<b>galvenā "
-"partīcija sākot no 0.684b</b>).<br /><b />MBR</b> partīcija, priekš UFS "
-"formatētiem diskiem vai Programmatūras RAID sējums (<b>izveidots pirms "
-"0.684b</b>) vai importēti diski no citas OS.<br /><b>CD/DVD vai vecs "
-"programmatūras RAID</b> priekš vecajiem programmatūrasRAID sējumiem "
-"(<b>izveidoti pirms 0.68</b>) vai CD/DVD."
 
 msgid ""
 "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
@@ -286,6 +279,9 @@ msgstr "Piekļuve"
 
 msgid "Access Restrictions"
 msgstr "Piekļuves ierobežojumi"
+
+msgid "Access Time"
+msgstr ""
 
 msgid "Access mode"
 msgstr "Piekļuves veids"
@@ -764,8 +760,8 @@ msgstr "CCMP"
 msgid "CCMP TKIP"
 msgstr "CCMP TKIP"
 
-msgid "CD/DVD or Old Software RAID"
-msgstr "CD/DVD vai Vecais programmatūras RAID"
+msgid "CD/DVD"
+msgstr ""
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -1381,6 +1377,9 @@ msgstr "Galamērķa kopīgojums"
 msgid "Detected"
 msgstr "Atklāts"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "Atklātas RSYNC attālinātais kopīgojums"
 
@@ -1509,6 +1508,9 @@ msgstr "Diski"
 
 msgid "Disks (ATA)"
 msgstr "Diski (ATA)"
+
+msgid "Disks (ATA) information"
+msgstr ""
 
 msgid "Display"
 msgstr "Rādīt"
@@ -3353,6 +3355,9 @@ msgstr "Savstarpējs CHAP"
 msgid "Mutual CHAP Users"
 msgstr "Savstarpējie CHAP Lietotāji"
 
+msgid "NAS4Free WebGUI Login"
+msgstr ""
+
 msgid "NFS"
 msgstr "NFS"
 
@@ -3502,6 +3507,11 @@ msgstr "Nav konfigurēts neviens disks."
 msgid "No disks available. Please add new <a href='%s'>disk</a> first."
 msgstr ""
 "Nav pieejami diski. Lūdzu pievieno jaunu <a href='%s'>disku</a> vispirms."
+
+msgid ""
+"No disks configured, please add disks to see the diagnostic information of "
+"disks!"
+msgstr ""
 
 msgid "No file was uploaded."
 msgstr "Neviena datne netika augšupielādēta."
@@ -3913,6 +3923,10 @@ msgstr "Jaudas režīms"
 
 msgid "PreInit"
 msgstr "Pirms inicializācijas"
+
+#, php-format
+msgid "Predefined system groups"
+msgstr ""
 
 msgid "Preferred"
 msgstr "Ieteicams"
@@ -4428,6 +4442,9 @@ msgstr "Serviss"
 
 msgid "Services"
 msgstr "Servisi"
+
+msgid "Set access time on or off on the volume."
+msgstr ""
 
 msgid "Set additional group memberships for this account."
 msgstr "Uzstādīt papildus grupu piederību šim lietotājam."
@@ -6179,6 +6196,9 @@ msgstr "Mēģināt importēt no uz-diska ZFS konfigurāciju."
 msgid "Tuning"
 msgstr "Pielāgošana"
 
+msgid "Turn access time on or off for this dataset"
+msgstr ""
+
 msgid "Turn the monitor to standby after N seconds."
 msgstr "Izslēgt monitoru pēc N sekundēm."
 
@@ -6381,6 +6401,10 @@ msgstr "Lietotājs"
 msgid "User ID"
 msgstr "Lietotāja ID"
 
+#, php-format
+msgid "User defined groups"
+msgstr ""
+
 msgid "User full name."
 msgstr "Lietotāja pilnais vārds"
 
@@ -6511,9 +6535,6 @@ msgstr "Uzraudzības mape"
 
 msgid "WebGUI"
 msgstr "WebGUI"
-
-msgid "WebGUI Login"
-msgstr ""
 
 msgid "Webserver"
 msgstr "Webserveris"
