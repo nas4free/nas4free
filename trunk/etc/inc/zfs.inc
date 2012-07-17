@@ -70,8 +70,9 @@ function zfs_get_pool_list() {
 		$result[$poolname]['avail'] = $aline[3];
 		$result[$poolname]['cap'] = $aline[4];
 		$result[$poolname]['dedup'] = $aline[5];
-		$result[$poolname]['health'] = $aline[6];
-		$result[$poolname]['altroot'] = $aline[7];
+		$result[$poolname]['atime'] = $aline[6];		
+		$result[$poolname]['health'] = $aline[7];
+		$result[$poolname]['altroot'] = $aline[8];
 
 		// Get correct used/available disk space.
 		// See http://bugs.opensolaris.org/bugdatabase/view_bug.do?bug_id=6308817
@@ -307,6 +308,9 @@ function zfs_dataset_configure($uuid) {
 	if (!empty($dataset['dedup']))
 		$param .= "-o dedup={$dataset['dedup']} ";
 
+	if (!empty($dataset['atime']))
+		$param .= "-o atime={$dataset['atime']} ";
+	
 	if (!isset($dataset['canmount']))
 		$param .= "-o canmount=off ";
 
@@ -376,7 +380,7 @@ function zfs_dataset_properties($uuid) {
 
 	$result = 0;
 
-	foreach (explode(" ", "compression dedup canmount readonly quota xattr snapdir") as $attr) {
+	foreach (explode(" ", "compression dedup atime canmount readonly quota xattr snapdir") as $attr) {
 		$param = "";
 
 		switch ($attr) {
@@ -388,6 +392,11 @@ function zfs_dataset_properties($uuid) {
 			case "dedup":
 				if (!empty($dataset['dedup']))
 					$param = "dedup={$dataset['dedup']}";
+				break;
+
+			case "atime":
+				if (!empty($dataset['atime']))
+					$param = "atime={$dataset['atime']}";
 				break;
 
 			case "canmount":
@@ -463,6 +472,9 @@ function zfs_volume_configure($uuid) {
 
 	if (!empty($volume['dedup']))
 		$param .= "-o dedup={$volume['dedup']} ";
+		
+	if (!empty($volume['atime']))
+		$param .= "-o atime={$volume['atime']} ";		
 
 	// Create the volume
 	$cmd = "zfs create -V {$volume['volsize']} {$param} {$volume['pool'][0]}/{$volume['name']}";
@@ -518,7 +530,7 @@ function zfs_volume_properties($uuid) {
 
 	$result = 0;
 
-	foreach (explode(" ", "volsize compression dedup") as $attr) {
+	foreach (explode(" ", "volsize compression dedup atime") as $attr) {
 		$param = "";
 
 		switch ($attr) {
@@ -536,8 +548,13 @@ function zfs_volume_properties($uuid) {
 				if (!empty($volume['dedup']))
 					$param = "dedup={$volume['dedup']}";
 				break;
-		}
 
+			case "atime":
+				if (!empty($volume['atime']))
+					$param = "atime={$volume['atime']}";
+				break;
+		}		
+		
 		// Update volume properties
 		if (!empty($param)) {
 			$cmd = "zfs set {$param} {$volume['pool'][0]}/{$volume['name']}";
