@@ -186,11 +186,9 @@ function enable_change(enable_change) {
 					<?php $a_compressionmode = array("on" => gettext("On"), "off" => gettext("Off"), "lzjb" => "lzjb", "gzip" => "gzip", "zle" => "zle"); for ($n = 1; $n <= 9; $n++) { $mode = "gzip-{$n}"; $a_compressionmode[$mode] = $mode; }?>
 					<?php html_combobox("compression", gettext("Compression"), $pconfig['compression'], $a_compressionmode, gettext("Controls the compression algorithm used for this dataset. The 'lzjb' compression algorithm is optimized for performance while providing decent data compression. Setting compression to 'On' uses the 'lzjb' compression algorithm. You can specify the 'gzip' level by using the value 'gzip-N', where N is an integer from 1 (fastest) to 9 (best compression ratio). Currently, 'gzip' is equivalent to 'gzip-6'."), true);?>
 					<?php $a_dedup = array("on" => gettext("On"), "off" => gettext("Off"), "verify" => "verify", "sha256" => "sha256", "sha256,verify" => "sha256,verify"); ?>					
-					<?php html_combobox("dedup", gettext("Dedup"), $pconfig['dedup'], $a_dedup, gettext("Controls the dedup method."), true);?>
-					<?php 
-						$a_atime = array("on" => gettext("On"), "off" => gettext("Off"));
-						html_combobox("atime", gettext("Access Time"), $pconfig['atime'], $a_atime, gettext("Turn access time on or off for this dataset"), true);
-					?>
+					<?php html_combobox("dedup", gettext("Dedup"), $pconfig['dedup'], $a_dedup, gettext("Controls the dedup method. <b><font color='red'>NOTE</font>: See <a href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide:disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & deduplication</a> wiki aticle before using this feature.</b>"), true);?>
+					<?php $a_atime = array("on" => gettext("On"), "off" => gettext("Off")); ?>
+					<?php html_combobox("atime", gettext("Access Time (atime)"), $pconfig['atime'], $a_atime, gettext("Turn access time on or off for this dataset"), true);?>
 					<?php html_checkbox("canmount", gettext("Canmount"), $pconfig['canmount'] ? true : false, gettext("If this property is disabled, the file system cannot be mounted."), "", false);?>
 					<?php html_checkbox("readonly", gettext("Readonly"), $pconfig['readonly'] ? true : false, gettext("Controls whether this dataset can be modified."), "", false);?>
 					<?php html_checkbox("xattr", gettext("Extended attributes"), $pconfig['xattr'] ? true : false, gettext("Enable extended attributes for this file system."), "", false);?>
