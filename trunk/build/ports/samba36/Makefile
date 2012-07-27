@@ -62,9 +62,7 @@ CONFIGURE_ENV+=		CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PKGCONFIGDIR_REL?=	${PKGCONFIGDIR:S|^${PREFIX}/||}
 
-PKG_CONFIG?=		${LOCALBASE}/bin/pkg-config
-CONFIGURE_ENV+=		PKG_CONFIG="${PKG_CONFIG}"
-BUILD_DEPENDS+=		${PKG_CONFIG}:${PORTSDIR}/devel/pkg-config
+USE_PKGCONFIG=          yes
 LIB_DEPENDS+=		execinfo.1:${PORTSDIR}/devel/libexecinfo
 BUILD_DEPENDS+=		talloc>=2.0.1:${PORTSDIR}/devel/talloc
 RUN_DEPENDS+=		talloc>=2.0.1:${PORTSDIR}/devel/talloc
