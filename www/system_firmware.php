@@ -140,18 +140,18 @@ function get_latest_file($rss) {
 }
 
 function check_firmware_version_rss($locale) {
-	$rss_stable = "http://sourceforge.net/api/file/index/project-id/722987/path/NAS4Free-9.0-Stable/mtime/desc/limit/20/rss";
-	$rss_nightly = "http://sourceforge.net/api/file/index/project-id/722987/path/NAS4Free-9.0-Nightly/mtime/desc/limit/20/rss";
+	$rss_release = "http://sourceforge.net/api/file/index/project-id/722987/path/NAS4Free-9.0.0.1/mtime/desc/limit/20/rss";
+	$rss_beta = "http://sourceforge.net/api/file/index/project-id/722987/path/NAS4Free-Beta/mtime/desc/limit/20/rss";
 
-	$stable = get_latest_file($rss_stable);
-	$nightly = get_latest_file($rss_nightly);
+	$release = get_latest_file($rss_release);
+	$beta = get_latest_file($rss_beta);
 	$resp = "";
-	if (!empty($stable)) {
-		$resp .= sprintf(gettext("Latest stable build: %s"), $stable);
+	if (!empty($release)) {
+		$resp .= sprintf(gettext("Latest Release: %s"), $release);
 		$resp .= "<br />\n";
 	}
-	if (!empty($nightly)) {
-		$resp .= sprintf(gettext("Latest nightly build: %s"), $nightly);
+	if (!empty($beta)) {
+		$resp .= sprintf(gettext("Latest Beta Build: %s"), $beta);
 		$resp .= "<br />\n";
 	}
 	return $resp;
@@ -253,7 +253,7 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
 			<?php if ($savemsg) print_info_box($savemsg); ?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
 			<?php html_titleline(gettext("Firmware"));?>
-			<?php html_text("version", gettext("Version"), sprintf("%s %s (%s)", get_product_name(), get_product_version(), get_product_revision()));?>
+			<?php html_text("Current version", gettext("Current Version:"), sprintf("%s %s (%s)", get_product_name(), get_product_version(), get_product_revision()));?>
 			<?php html_separator();?>
 			<?php if ($fwinfo) {
 				html_titleline(gettext("Online version check"));
