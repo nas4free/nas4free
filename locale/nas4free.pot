@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
-"POT-Creation-Date: 2012-07-17 20:52+0000\n"
+"POT-Creation-Date: 2012-07-29 00:47+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -211,7 +211,7 @@ msgstr ""
 msgid "Access Restrictions"
 msgstr ""
 
-msgid "Access Time"
+msgid "Access Time (atime)"
 msgstr ""
 
 msgid "Access mode"
@@ -883,7 +883,10 @@ msgstr ""
 msgid "Controls the compression algorithm used for this volume. The 'lzjb' compression algorithm is optimized for performance while providing decent data compression. Setting compression to 'On' uses the 'lzjb' compression algorithm. You can specify the 'gzip' level by using the value 'gzip-N', where N is an integer from 1 (fastest) to 9 (best compression ratio). Currently, 'gzip' is equivalent to 'gzip-6'."
 msgstr ""
 
-msgid "Controls the dedup method."
+msgid "Controls the dedup method. <b><font color='red'>NOTE/WARNING</font>: See <a href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide:disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> wiki article BEFORE using this feature.</b>"
+msgstr ""
+
+msgid "Controls the dedup method. <b><font color='red'>NOTE/WARNING</font>: See <a href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide:disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & deduplication</a> wiki article BEFORE using this feature.</b>"
 msgstr ""
 
 msgid "Controls whether this dataset can be modified."
@@ -938,6 +941,9 @@ msgid "Cron job"
 msgstr ""
 
 msgid "Current"
+msgstr ""
+
+msgid "Current Version:"
 msgstr ""
 
 msgid "Custom"
@@ -2542,11 +2548,11 @@ msgid "Last config change"
 msgstr ""
 
 #, php-format
-msgid "Latest nightly build: %s"
+msgid "Latest Beta Build: %s"
 msgstr ""
 
 #, php-format
-msgid "Latest stable build: %s"
+msgid "Latest Release: %s"
 msgstr ""
 
 msgid "Latvian"
@@ -3735,6 +3741,9 @@ msgstr ""
 msgid "Rules"
 msgstr ""
 
+msgid "Run as"
+msgstr ""
+
 msgid "Run now"
 msgstr ""
 
@@ -3936,6 +3945,9 @@ msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr ""
 
 msgid "Set the maximum transmission unit of the interface to n, default is interface specific. The MTU is used to limit the size of packets that are transmitted on an interface. Not all interfaces support setting the MTU, and some interfaces have range restrictions."
+msgstr ""
+
+msgid "Set what user the service will run as (www by default). <br><b><font color='red'>NOTE</font>: Running as root is <u>not recommended</u> for security reasons, use it on your own risk!.</b></br>"
 msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
