@@ -5,7 +5,6 @@
 #
 # Portions of freenas (http://www.freenas.org).
 # Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
-# Copyright (c) 2008-2009 Volker Theile <votdev@gmx.de>.
 # All rights reserved.
 #
 
@@ -46,17 +45,19 @@ sig_reload="-INT"
 
 websrv_mkconf()
 {
-	local _protocol _certificate _privatekey _documentroot
+	local _protocol _certificate _privatekey _documentroot _runasuser
 
 	# Get configuration data
 	_protocol=`configxml_get "//websrv/protocol"`
 	_certificate=`configxml_get "//websrv/certificate"`
 	_privatekey=`configxml_get "//websrv/privatekey"`
 	_documentroot=`configxml_get "//websrv/documentroot"`
+	_runasuser=`configxml_get "//websrv/runasuser"`
 
 	# Create .conf file
 	/usr/local/bin/xml sel -t -m "//websrv" \
 		-v "concat('server.port = ',port)" -n \
+		-v "concat('',runasuser,'')" -n \
 		-v "concat('server.document-root = \"',documentroot,'\"')" -n \
 		-i "count(dirlisting) > 0" \
 			-o "server.dir-listing = \"enable\"" -n \
@@ -65,8 +66,8 @@ websrv_mkconf()
 			-o "dir-listing.encoding = \"utf-8\"" -n \
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc > ${websrv_conf}
-
-	cat <<EOF >> ${websrv_conf}
+	
+	cat <<EOF >> ${websrv_conf}	
 server.modules = (
   "mod_access",
   "mod_auth",
@@ -138,15 +139,13 @@ mimetype.assign             = (
   # default mime type
   ""              =>      "application/octet-stream",
  )
-server.username = "www"
-server.groupname = "www"
 url.access-deny = ( "~", ".inc", ".websrv_htpasswd" )
 static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
 server.pid-file = "${pidfile}"
 cgi.assign = (".php" => "/usr/local/bin/php")
-server.tag = "webrerv"
+server.tag = "webserv"
 EOF
-
+	
 	# Add auxparam
 	/usr/local/bin/xml sel -t -m "//websrv" \
 		-m "auxparam" \

@@ -51,6 +51,7 @@ $pconfig['enable'] = isset($config['websrv']['enable']);
 $pconfig['protocol'] = $config['websrv']['protocol'];
 $pconfig['port'] = $config['websrv']['port'];
 $pconfig['documentroot'] = $config['websrv']['documentroot'];
+$pconfig['runasuser'] = $config['websrv']['runasuser'];
 $pconfig['privatekey'] = base64_decode($config['websrv']['privatekey']);
 $pconfig['certificate'] = base64_decode($config['websrv']['certificate']);
 $pconfig['authentication'] = isset($config['websrv']['authentication']['enable']);
@@ -94,6 +95,7 @@ if ($_POST) {
 		$config['websrv']['protocol'] = $_POST['protocol'];
 		$config['websrv']['port'] = $_POST['port'];
 		$config['websrv']['documentroot'] = $_POST['documentroot'];
+		$config['websrv']['runasuser'] = $_POST['runasuser'];
 		$config['websrv']['privatekey'] = base64_encode($_POST['privatekey']);
 		$config['websrv']['certificate'] = base64_encode($_POST['certificate']);
 		$config['websrv']['authentication']['enable'] = $_POST['authentication'] ? true : false;
@@ -162,6 +164,7 @@ function enable_change(enable_change) {
 	document.iform.port.disabled = endis;
 	document.iform.documentroot.disabled = endis;
 	document.iform.documentrootbrowsebtn.disabled = endis;
+	document.iform.runasuser.disabled = endis;
 	document.iform.privatekey.disabled = endis;
 	document.iform.certificate.disabled = endis;
 	document.iform.authentication.disabled = endis;
@@ -207,6 +210,7 @@ function authentication_change() {
 					<?php html_titleline_checkbox("enable", gettext("Webserver"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_combobox("protocol", gettext("Protocol"), $pconfig['protocol'], array("http" => "HTTP", "https" => "HTTPS"), "", true, false, "protocol_change()");?>
 					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], gettext("TCP port to bind the server to."), true, 5);?>
+					<?php html_combobox("runasuser", gettext("Run as"), $pconfig['runasuser'], array("server.username = \"www\"" => "www", "" => "root"), gettext("Set what user the service will run as (www by default). <br><b><font color='red'>NOTE</font>: Running as root is <u>not recommended</u> for security reasons, use it on your own risk!.</b></br>"), true);?>	
 					<?php html_textarea("certificate", gettext("Certificate"), $pconfig['certificate'], gettext("Paste a signed certificate in X.509 PEM format here."), true, 65, 7, false, false);?>
 					<?php html_textarea("privatekey", gettext("Private key"), $pconfig['privatekey'], gettext("Paste an private key in PEM format here."), true, 65, 7, false, false);?>
 					<?php html_filechooser("documentroot", gettext("Document root"), $pconfig['documentroot'], gettext("Document root of the webserver. Home of the web page files."), $g['media_path'], true, 60);?>
@@ -250,7 +254,7 @@ function authentication_change() {
 						</td>
 					</tr>
 					<?php html_checkbox("dirlisting", gettext("Directory listing"), $pconfig['dirlisting'] ? true : false, gettext("Enable directory listing."), gettext("A directory listing is generated if a directory is requested and no index-file (index.php, index.html, index.htm or default.htm) was found in that directory."), false);?>
-					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("These parameters will be added to %s."), "wersrv.conf")  . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://redmine.lighttpd.net/projects/lighttpd/wiki"), false, 65, 5, false, false);?>
+					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("These parameters will be added to %s."), "wersrv.conf")  . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://redmine.lighttpd.net/wiki/lighttpd"), false, 65, 5, false, false);?>
 			  </table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />
