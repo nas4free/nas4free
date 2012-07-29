@@ -68,7 +68,6 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_volume, "uuid"
 	$pconfig['volsize'] = $a_volume[$cnid]['volsize'];
 	$pconfig['compression'] = $a_volume[$cnid]['compression'];
 	$pconfig['dedup'] = $a_volume[$cnid]['dedup'];
-	$pconfig['atime'] = $a_volume[$cnid]['atime'];
 	$pconfig['desc'] = $a_volume[$cnid]['desc'];
 } else {
 	$pconfig['uuid'] = uuid();
@@ -77,15 +76,10 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_volume, "uuid"
 	$pconfig['compression'] = "off";
 	$pconfig['volsize'] = "";
 	$pconfig['dedup'] = "off";
-	$pconfig['atime'] = "off";
 	$pconfig['desc'] = "";
 }
 if ($pconfig['dedup'] == "") {
 	$pconfig['dedup'] = "off";
-}
-
-if ($pconfig['atime'] == "") {
-	$pconfig['atime'] = "off";
 }
 
 if ($_POST) {
@@ -113,7 +107,6 @@ if ($_POST) {
 		$volume['volsize'] = $_POST['volsize'];
 		$volume['compression'] = $_POST['compression'];
 		$volume['dedup'] = $_POST['dedup'];
-		$volume['atime'] = $_POST['atime'];
 		$volume['desc'] = $_POST['desc'];
 
 		if (isset($uuid) && (FALSE !== $cnid)) {
@@ -175,9 +168,7 @@ function enable_change(enable_change) {
 					<?php $a_compressionmode = array("on" => gettext("On"), "off" => gettext("Off"), "lzjb" => "lzjb", "gzip" => "gzip", "zle" => "zle"); for ($n = 1; $n <= 9; $n++) { $mode = "gzip-{$n}"; $a_compressionmode[$mode] = $mode; }?>
 					<?php html_combobox("compression", gettext("Compression"), $pconfig['compression'], $a_compressionmode, gettext("Controls the compression algorithm used for this volume. The 'lzjb' compression algorithm is optimized for performance while providing decent data compression. Setting compression to 'On' uses the 'lzjb' compression algorithm. You can specify the 'gzip' level by using the value 'gzip-N', where N is an integer from 1 (fastest) to 9 (best compression ratio). Currently, 'gzip' is equivalent to 'gzip-6'."), true);?>
 					<?php $a_dedup = array("on" => gettext("On"), "off" => gettext("Off"), "verify" => "verify", "sha256" => "sha256", "sha256,verify" => "sha256,verify"); ?>
-					<?php html_combobox("dedup", gettext("Dedup"), $pconfig['dedup'], $a_dedup, gettext("Controls the dedup method. <b><font color='red'>NOTE/WARNING</font>: See <a href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide:disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> wiki article BEFORE using this feature.</b>"), true);?>
-					<?php $a_atime = array("on" => gettext("On"), "off" => gettext("Off")); ?>
-					<?php html_combobox("atime", gettext("Access Time (atime)"), $pconfig['atime'], $a_atime, gettext("Set access time on or off on the volume."), true);?>
+					<?php html_combobox("dedup", gettext("Dedup"), $pconfig['dedup'], $a_dedup, gettext("Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See <a href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide:disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> wiki article BEFORE using this feature.</b></br>"), true);?>
 					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
 				</table>
 				<div id="submit">

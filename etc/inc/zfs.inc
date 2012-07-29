@@ -69,10 +69,10 @@ function zfs_get_pool_list() {
 		$result[$poolname]['used'] = $aline[2];
 		$result[$poolname]['avail'] = $aline[3];
 		$result[$poolname]['cap'] = $aline[4];
-		$result[$poolname]['dedup'] = $aline[5];
-		$result[$poolname]['atime'] = $aline[6];		
-		$result[$poolname]['health'] = $aline[7];
-		$result[$poolname]['altroot'] = $aline[8];
+		$result[$poolname]['dedup'] = $aline[5];		
+		$result[$poolname]['health'] = $aline[6];
+		$result[$poolname]['altroot'] = $aline[7];
+		$result[$poolname]['atime'] = $aline[8];
 
 		// Get correct used/available disk space.
 		// See http://bugs.opensolaris.org/bugdatabase/view_bug.do?bug_id=6308817
