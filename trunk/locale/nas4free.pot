@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
-"POT-Creation-Date: 2012-07-29 00:47+0000\n"
+"POT-Creation-Date: 2012-07-30 00:22+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -883,10 +883,10 @@ msgstr ""
 msgid "Controls the compression algorithm used for this volume. The 'lzjb' compression algorithm is optimized for performance while providing decent data compression. Setting compression to 'On' uses the 'lzjb' compression algorithm. You can specify the 'gzip' level by using the value 'gzip-N', where N is an integer from 1 (fastest) to 9 (best compression ratio). Currently, 'gzip' is equivalent to 'gzip-6'."
 msgstr ""
 
-msgid "Controls the dedup method. <b><font color='red'>NOTE/WARNING</font>: See <a href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide:disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> wiki article BEFORE using this feature.</b>"
+msgid "Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See <a href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide:disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> wiki article BEFORE using this feature.</b></br>"
 msgstr ""
 
-msgid "Controls the dedup method. <b><font color='red'>NOTE/WARNING</font>: See <a href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide:disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & deduplication</a> wiki article BEFORE using this feature.</b>"
+msgid "Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See <a href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide:disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & deduplication</a> wiki article BEFORE using this feature.</b></br>"
 msgstr ""
 
 msgid "Controls whether this dataset can be modified."
@@ -3918,9 +3918,6 @@ msgid "Service"
 msgstr ""
 
 msgid "Services"
-msgstr ""
-
-msgid "Set access time on or off on the volume."
 msgstr ""
 
 msgid "Set additional group memberships for this account."
