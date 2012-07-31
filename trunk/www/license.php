@@ -100,6 +100,8 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
             <p>The following persons have contributed to NAS4Free support:</p>
               <div>Christian Degen alias bubulein (<a href="mailto:degen@nas4free.org">degen@nas4free.org</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
+              <div>Samuel Tunis alias killermist (<a href="mailto:killermist@nas4free.org">killermist@nas4free.org</a>)<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
             <hr size="1" />
             <p>The following persons have contributed to NAS4Free documentation project:</p>
             <div>Carsten Vinkler (<a href="mailto:carsten@indysign.dk">carsten@indysign.dk</a>)<br />
@@ -119,7 +121,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
             <div>Raul Fernandez Garcia (<a href="mailto:raulfg3@gmail.com">raulfg3@gmail.com</a>)<br />
 	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Spanish translator of the WebGUI</font></em></div><br />
 	    <div>Kevin Fowler (<a href="mailto:kfowler@nas4free.org">kfowler@nas4free.org</a>)<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Webmaster, Documentation, NAS4Free code</font></em></div><br />	                                           
+              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Webmaster, Documentation & Coder</font></em></div><br />	                                           
 						</td></tr>						
             <?php html_separator();?>
             <?php html_titleline(gettext("Software used"));?>
