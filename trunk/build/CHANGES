@@ -6,13 +6,12 @@ Changes:
 - Add new logo.
 - Add Denon AVR profile to fuppes.
 - Add more system info to webgui.
-- Add turn on/off Access Time zfs dataset & volume edit.
+- Add turn on/off Access Time (atime) to zfs dataset edit.
 - Changes to console.
 - Changes to cifs/smb allow trusted domains.
 - Cosmetic changes webgui.
 - Cosmetic changes file manager and integration..
 - Upgrade GUI translations.
-- Upgrade bash 4.2 to patch 028.
 - Upgrade fuppes to 0.692.
 - Updates installation menu.
 - Upgrade netatalk to 2.2.2.
@@ -31,6 +30,7 @@ Changes:
 - Upgrade transmission to 2.61.
 - Upgrade zoneinfo to 2012d.
 - Upgrade istgt to 20120726.
+- Upgrade bash 4.2 to patch 037.
 
 
 Bug fixes:
@@ -42,7 +42,9 @@ Bug fixes:
 - Fix creating a zfs raid with 1 device larger than the rest of the members.
 - Fix upgrade embedded installation from livced. (BR-3533624)
 - Fix webserver no longer runs as root. (BR-3517751)
+  Add option to run as www (default) or root user.
 - Fix upssched regression nut.
+- Fix webgui zfs status.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
