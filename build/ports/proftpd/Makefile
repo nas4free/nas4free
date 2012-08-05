@@ -1,13 +1,11 @@
 PORTNAME=		proftpd
-PORTVERSION=	1.3.4a
+PORTVERSION=	1.3.4b
 CATEGORIES=		ftp
 COMMENT=		Highly configurable FTP daemon
 MAINTAINER=		zoon01@nas4free.org
 
 MASTER_SITES=		ftp://ftp.proftpd.org/distrib/source/ \
-						ftp://ftp.fastorama.com/mirrors/ftp.proftpd.org/distrib/source/ \
-						ftp://ftp.dataguard.no/ftp/pub/proftpd/distrib/source/ \
-						ftp://spirit.bentel.sk/mirrors/Proftpd/distrib/source/ \
+						https://github.com/downloads/proftpd/proftpd.github.com/ \
 						ftp://proftpd.networkedsystems.co.uk/distrib/source/ \
 						http://mirrors.ibiblio.org/pub/mirrors/proftpd/distrib/source/ \
 						http://www.mirrorservice.org/sites/ftp.proftpd.org/distrib/source/
@@ -15,7 +13,6 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 USE_GMAKE=		yes
-USE_BZIP2=		yes
 USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 USE_GETTEXT=		yes

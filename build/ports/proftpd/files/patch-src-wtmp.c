@@ -1,12 +1,11 @@
---- src/wtmp.c.orig	2010-07-05 09:52:50.147213835 +0200
-+++ src/wtmp.c	2010-07-05 09:53:25.075513542 +0200
-@@ -126,7 +126,9 @@
-   }
+--- src/wtmp.c.orig	2012-08-04 08:45:32.292505678 +0200
++++ src/wtmp.c	2012-08-04 08:45:35.508505108 +0200
+@@ -97,7 +97,7 @@
+ #else /* SVR4 */
+     utx.ut_syslen = strlen(utx.ut_host)+1;
  
- #else /* Non-SVR4 systems */
-+#if !defined(__FreeBSD_version) || __FreeBSD_version < 900007 || !defined(HAVE_UTMPX_H)
-   struct utmp ut;
-+#endif
-   static int fd = -1;
- 
-   if (fd < 0 &&
+-#  ifdef __sparcv9
++#  ifdef __sparcv9 && !defined(__FreeBSD__)
+     time(&t);
+     utx.ut_tv.tv_sec = (time32_t)t;
+ #  else
