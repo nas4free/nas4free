@@ -3,19 +3,46 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>POT-Creation-Date: 2012-03-"
 "12 03:02+0000\n"
-"POT-Creation-Date: 2012-07-17 20:52+0000\n"
-"PO-Revision-Date: 2012-06-02 00:23+0000\n"
-"Last-Translator: zoon01 <zoon01@nas4free.org>\n"
+"POT-Creation-Date: 2012-07-30 00:22+0000\n"
+"PO-Revision-Date: 2012-08-10 17:26+0000\n"
+"Last-Translator: Péter Kovács <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-17 19:23+0000\n"
-"X-Generator: Launchpad (build 15627)\n"
+"X-Launchpad-Export-Date: 2012-08-10 17:32+0000\n"
+"X-Generator: Launchpad (build 15780)\n"
 "X-Poedit-Country: HUNGARY\n"
 "Language: \n"
 "X-Poedit-Language: Hungarian\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+msgid "ARP Tables"
+msgstr "ARP (címfeloldási protokoll) táblák"
+
+msgid "ARP tables"
+msgstr "ARP (címfeloldási protokoll) táblák"
+
+msgid "Access"
+msgstr "Hozzáférés"
+
+msgid "Access Restrictions"
+msgstr "Hozzáférési korlátozások"
+
+msgid "Access mode"
+msgstr "Hozzáférési mód"
+
+msgid "Acoustic level"
+msgstr "Zajszint"
+
+msgid "Action"
+msgstr "Művelet"
+
+msgid "Activate"
+msgstr "Aktivál"
+
+msgid "Activate S.M.A.R.T. monitoring for this device."
+msgstr "Aktív S.M.A.R.T. megfigyelés ehhez az eszközhöz."
 
 msgid " interfaces:"
 msgstr " interfészek:"
@@ -242,40 +269,13 @@ msgid "AG"
 msgstr "AG"
 
 msgid "AIO read size"
-msgstr ""
+msgstr "AIO olvasási méret"
 
 msgid "AIO write size"
-msgstr ""
+msgstr "AIO írási méret"
 
-msgid "ARP Tables"
-msgstr "ARP (címfeloldási protokoll) táblák"
-
-msgid "ARP tables"
-msgstr "ARP (címfeloldási protokoll) táblák"
-
-msgid "Access"
-msgstr "Hozzáférés"
-
-msgid "Access Restrictions"
-msgstr "Hozzáférési korlátozások"
-
-msgid "Access Time"
-msgstr ""
-
-msgid "Access mode"
-msgstr "Hozzáférési mód"
-
-msgid "Acoustic level"
-msgstr "Zajszint"
-
-msgid "Action"
-msgstr "Művelet"
-
-msgid "Activate"
-msgstr "Aktivál"
-
-msgid "Activate S.M.A.R.T. monitoring for this device."
-msgstr "Aktív S.M.A.R.T. megfigyelés ehhez az eszközhöz."
+msgid "Access Time (atime)"
+msgstr "Hozzáférési idő"
 
 msgid ""
 "Activate email report if you want to be notified if a failure or a new error "
@@ -321,13 +321,13 @@ msgid "Add auth group"
 msgstr ""
 
 msgid "Add auto snapshot"
-msgstr ""
+msgstr "Automatikus pillanatkép hozzáadása"
 
 msgid "Add command"
 msgstr "Parancs hozzáadása"
 
 msgid "Add dataset"
-msgstr ""
+msgstr "Dataset hozzáadása"
 
 msgid "Add device"
 msgstr "Eszköz hozzáadása"
@@ -378,7 +378,7 @@ msgid "Add share"
 msgstr "Megosztás hozzáadása"
 
 msgid "Add snapshot"
-msgstr ""
+msgstr "Pillanatkép hozzáadása"
 
 msgid "Add target"
 msgstr "Cél hozzáadása"
@@ -387,7 +387,7 @@ msgid "Add user"
 msgstr "Felhasználó hozzáadása"
 
 msgid "Add volume"
-msgstr ""
+msgstr "Kötet hozzáadása"
 
 msgid "Additional group"
 msgstr "További csoport"
@@ -992,7 +992,20 @@ msgid ""
 "Currently, 'gzip' is equivalent to 'gzip-6'."
 msgstr ""
 
-msgid "Controls the dedup method."
+msgid ""
+"Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
+"<a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
+"wiki article BEFORE using this feature.</b></br>"
+msgstr ""
+
+msgid ""
+"Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
+"<a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & "
+"deduplication</a> wiki article BEFORE using this feature.</b></br>"
 msgstr ""
 
 msgid "Controls whether this dataset can be modified."
@@ -1048,6 +1061,9 @@ msgstr "Cron feladat"
 
 msgid "Current"
 msgstr "Aktuális"
+
+msgid "Current Version:"
+msgstr ""
 
 msgid "Custom"
 msgstr "Egyéni"
@@ -1396,7 +1412,7 @@ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
 msgstr ""
 
 msgid "Disable File Manager"
-msgstr ""
+msgstr "Fájlkezelő tiltása"
 
 msgid "Disable console menu"
 msgstr "Konzolos menü kikapcsolása"
@@ -1797,7 +1813,7 @@ msgid "Enable NTP"
 msgstr "NTP engedélyezése"
 
 msgid "Enable SMTP authentication."
-msgstr "SMTp hitelesítés engedélyezése"
+msgstr "SMTP hitelesítés engedélyezése"
 
 msgid "Enable TLS/SSL connections."
 msgstr "TLS/SSL kapcsolatok engedélyezése"
@@ -2620,10 +2636,10 @@ msgid "Information"
 msgstr "Információ"
 
 msgid "Information & Manual"
-msgstr ""
+msgstr "Információk és kézikönyv"
 
 msgid "Information & Manuals"
-msgstr ""
+msgstr "Információk és kézikönyv"
 
 msgid "Inherit permissions"
 msgstr "Örökölt tiltások"
@@ -2792,11 +2808,11 @@ msgid "Last config change"
 msgstr "Beállítás utolsó változtatása"
 
 #, php-format
-msgid "Latest nightly build: %s"
+msgid "Latest Beta Build: %s"
 msgstr ""
 
 #, php-format
-msgid "Latest stable build: %s"
+msgid "Latest Release: %s"
 msgstr ""
 
 msgid "Latvian"
@@ -4082,6 +4098,9 @@ msgstr "Szabály száma"
 msgid "Rules"
 msgstr "Szabályok"
 
+msgid "Run as"
+msgstr ""
+
 msgid "Run now"
 msgstr "Futtatás most"
 
@@ -4267,9 +4286,6 @@ msgstr "Szolgáltatás"
 msgid "Services"
 msgstr "Szolgáltatások"
 
-msgid "Set access time on or off on the volume."
-msgstr ""
-
 msgid "Set additional group memberships for this account."
 msgstr ""
 
@@ -4296,6 +4312,12 @@ msgid ""
 "interface specific. The MTU is used to limit the size of packets that are "
 "transmitted on an interface. Not all interfaces support setting the MTU, and "
 "some interfaces have range restrictions."
+msgstr ""
+
+msgid ""
+"Set what user the service will run as (www by default). <br><b><font "
+"color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
+"security reasons, use it on your own risk!.</b></br>"
 msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
@@ -4743,6 +4765,7 @@ msgstr ""
 
 msgid "The COM port in BIOS has to be enabled before enabling this option."
 msgstr ""
+"A COM portot engedélyezni kell a BIOS-ban mielőtt beállítaná ezt az opciót."
 
 msgid "The IP address that this hostname represents."
 msgstr "Az IP cím, melyet az állomásnév takar."
@@ -5638,6 +5661,8 @@ msgid ""
 "This will cause %s not to check for newer firmware versions when the <a "
 "href='%s'>%s</a> page is viewed."
 msgstr ""
+"Így a %s nem ellenőrzi a <a href='%s'>%s</a> oldalon, hogy elérhető-e újabb "
+"firmware verzió."
 
 msgid "This will create a recycle bin on the share."
 msgstr "Ez csinál egy lomtárat a megosztáson."
