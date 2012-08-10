@@ -1,6 +1,6 @@
---- clients/Makefile.in.orig	2012-05-31 12:38:07.000000000 +0200
-+++ clients/Makefile.in	2012-06-01 03:51:08.000000000 +0200
-@@ -506,7 +506,7 @@
+--- clients/Makefile.in.orig	2012-08-08 21:35:50.000000000 +0200
++++ clients/Makefile.in	2012-08-10 02:35:04.000000000 +0200
+@@ -513,7 +513,7 @@
  	rm -f $$list
  install-cgiexecPROGRAMS: $(cgiexec_PROGRAMS)
  	@$(NORMAL_INSTALL)
