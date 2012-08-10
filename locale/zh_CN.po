@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-07-17 20:52+0000\n"
-"PO-Revision-Date: 2012-03-17 09:15+0000\n"
-"Last-Translator: zoon01 <zoon01@nas4free.org>\n"
+"POT-Creation-Date: 2012-07-30 00:22+0000\n"
+"PO-Revision-Date: 2012-08-02 14:51+0000\n"
+"Last-Translator: ltye <laotaoyan@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-17 19:29+0000\n"
-"X-Generator: Launchpad (build 15627)\n"
+"X-Launchpad-Export-Date: 2012-08-10 17:28+0000\n"
+"X-Generator: Launchpad (build 15780)\n"
 "X-Poedit-Country: CHINA\n"
 "Language: \n"
 "X-Poedit-Language: Chinese (Simplified)\n"
@@ -25,23 +25,23 @@ msgstr " 被指派为 "
 
 #, php-format
 msgid "%d days"
-msgstr ""
+msgstr "%d 天"
 
 #, php-format
 msgid "%d week"
-msgstr ""
+msgstr "%d 周"
 
 #, php-format
 msgid "%d weeks"
-msgstr ""
+msgstr "%d 周"
 
 #, php-format
 msgid "%d year"
-msgstr ""
+msgstr "%d 年"
 
 #, php-format
 msgid "%d years"
-msgstr ""
+msgstr "%d 年"
 
 #, c-format, php-format
 msgid "%d%% of %dMiB"
@@ -100,7 +100,7 @@ msgstr "0=禁用, 1-255=以指定的深度启用"
 msgid ""
 "1. Use these specials actions for debugging only!<br />2. There is no need "
 "of using this menu for starting a RAID volume (start automaticaly)."
-msgstr ""
+msgstr "1.这些特殊操作仅适用于调试(debugging)！<br />2. 无需操作此菜单以启动RAID卷 (系统自动启动)。"
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN 标签 （介于1和4094之间）。"
@@ -258,8 +258,8 @@ msgstr "权限"
 msgid "Access Restrictions"
 msgstr "访问限制"
 
-msgid "Access Time"
-msgstr ""
+msgid "Access Time (atime)"
+msgstr "访问时间(atime)"
 
 msgid "Access mode"
 msgstr "存取模式"
@@ -318,7 +318,7 @@ msgid "Add auth group"
 msgstr "新增验证组"
 
 msgid "Add auto snapshot"
-msgstr ""
+msgstr "添加自动快照"
 
 msgid "Add command"
 msgstr "添加命令"
@@ -375,7 +375,7 @@ msgid "Add share"
 msgstr "添加共享"
 
 msgid "Add snapshot"
-msgstr ""
+msgstr "添加快照"
 
 msgid "Add target"
 msgstr "添加目标"
@@ -384,7 +384,7 @@ msgid "Add user"
 msgstr "添加用户"
 
 msgid "Add volume"
-msgstr ""
+msgstr "添加卷"
 
 msgid "Additional group"
 msgstr "附加群组"
@@ -440,6 +440,9 @@ msgid ""
 "IP address of your computer</span></li><li><span class='vexpl'>access the "
 "webGUI with the new IP address</span></li></ul>"
 msgstr ""
+"点击 &quot;保存&quot;后, 您需要重启 %s 以使改动生效。必要时请按以下步骤操作来重新访问NAS ：<ul><li><span "
+"class='vexpl'>变更您计算机的IP地址</span></li><li><span "
+"class='vexpl'>用新的IP地址访问管理页面(webGUI)</span></li></ul>"
 
 msgid "Aggregation protocol"
 msgstr "聚合协议"
@@ -448,7 +451,7 @@ msgid "Aggressive"
 msgstr ""
 
 msgid "Albanian"
-msgstr ""
+msgstr "阿尔巴尼亚"
 
 msgid "All"
 msgstr "所有"
@@ -458,7 +461,7 @@ msgstr "所有目录"
 
 #, php-format
 msgid "All dirs requires mounted path, but Path %s is not mounted."
-msgstr ""
+msgstr "所有目录需要挂载过的路径(path)，但是Path %s未被挂载。"
 
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
@@ -560,7 +563,7 @@ msgid "Apple Filing Protocol"
 msgstr "Apple Filing Protocol"
 
 msgid "Apply"
-msgstr ""
+msgstr "应用"
 
 msgid "Apply changes"
 msgstr "应用更改"
@@ -623,10 +626,10 @@ msgid "Auto"
 msgstr "自动"
 
 msgid "Auto Snapshot"
-msgstr ""
+msgstr "自动快照"
 
 msgid "Auto size"
-msgstr ""
+msgstr "自动大小"
 
 msgid "AutoScale"
 msgstr "自动扩展"
@@ -653,7 +656,7 @@ msgid "Backup/Restore"
 msgstr "备份/还原"
 
 msgid "Bad User - non existing users"
-msgstr ""
+msgstr "错误用户 - 不存在的用户"
 
 msgid "Balance algorithm"
 msgstr "平衡算法"
@@ -662,7 +665,7 @@ msgid "Ban list"
 msgstr "黑名单"
 
 msgid "Ban list rule"
-msgstr ""
+msgstr "禁止列表(ban list)的规则"
 
 msgid "Banner"
 msgstr "欢迎信息"
@@ -688,7 +691,7 @@ msgstr "绑定密码"
 
 #, php-format
 msgid "Bios:"
-msgstr ""
+msgstr "Bios:"
 
 msgid "BitTorrent"
 msgstr "BitTorrent"
@@ -700,7 +703,7 @@ msgid "Browseable"
 msgstr "提供浏览"
 
 msgid "Built date"
-msgstr ""
+msgstr "建立时间"
 
 msgid "Bulgarian"
 msgstr "保加利亚"
@@ -715,7 +718,7 @@ msgid "CCMP TKIP"
 msgstr "CCMP TKIP"
 
 msgid "CD/DVD"
-msgstr ""
+msgstr "CD/DVD"
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -733,28 +736,28 @@ msgid "CIFS/SMB informations"
 msgstr "网上邻居信息"
 
 msgid "CP1251 (Cyrillic)"
-msgstr ""
+msgstr "CP1251 (斯拉夫文)"
 
 msgid "CP437 (Latin US)"
-msgstr ""
+msgstr "CP437 (拉丁语 美国)"
 
 msgid "CP850 (Latin 1)"
-msgstr ""
+msgstr "CP850 (拉丁语 1)"
 
 msgid "CP852 (Latin 2)"
-msgstr ""
+msgstr "CP852 (拉丁语 2)"
 
 msgid "CP866 (Cyrillic CIS 1)"
-msgstr ""
+msgstr "CP866 (西里尔文 CIS 1)"
 
 msgid "CP932 (Japanese Shift-JIS)"
-msgstr ""
+msgstr "CP932 (日文 Shift-JIS)"
 
 msgid "CP936 (Simplified Chinese GBK)"
-msgstr ""
+msgstr "CP936 (简体中文 GBK)"
 
 msgid "CP949 (Korean)"
-msgstr ""
+msgstr "CP949 (韩文)"
 
 msgid "CP950 (Traditional Chinese Big5)"
 msgstr ""
@@ -781,7 +784,7 @@ msgid "Can't format the OS origin disk!"
 msgstr "不能格式化系统盘！"
 
 msgid "Can't get UFS ID."
-msgstr ""
+msgstr "无法获取UFS ID."
 
 msgid "Can't mount the system partition 1, the DATA partition is the 2."
 msgstr "不能挂载系统分区(第1区)，资料分区为第2区。"
@@ -815,7 +818,7 @@ msgid "Change"
 msgstr "更改"
 
 msgid "Change below file"
-msgstr ""
+msgstr "更改下列文件"
 
 msgid "Change password"
 msgstr "更改密码"
@@ -981,7 +984,20 @@ msgid ""
 "Currently, 'gzip' is equivalent to 'gzip-6'."
 msgstr ""
 
-msgid "Controls the dedup method."
+msgid ""
+"Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
+"<a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
+"wiki article BEFORE using this feature.</b></br>"
+msgstr ""
+
+msgid ""
+"Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
+"<a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & "
+"deduplication</a> wiki article BEFORE using this feature.</b></br>"
 msgstr ""
 
 msgid "Controls whether this dataset can be modified."
@@ -1037,6 +1053,9 @@ msgstr "Cron job"
 
 msgid "Current"
 msgstr "当前"
+
+msgid "Current Version:"
+msgstr ""
 
 msgid "Custom"
 msgstr "自定义"
@@ -2739,11 +2758,11 @@ msgid "Last config change"
 msgstr "最后一次修改设置"
 
 #, php-format
-msgid "Latest nightly build: %s"
+msgid "Latest Beta Build: %s"
 msgstr ""
 
 #, php-format
-msgid "Latest stable build: %s"
+msgid "Latest Release: %s"
 msgstr ""
 
 msgid "Latvian"
@@ -4000,6 +4019,9 @@ msgstr ""
 msgid "Rules"
 msgstr ""
 
+msgid "Run as"
+msgstr ""
+
 msgid "Run now"
 msgstr "现在运行"
 
@@ -4185,9 +4207,6 @@ msgstr "服务"
 msgid "Services"
 msgstr "服务"
 
-msgid "Set access time on or off on the volume."
-msgstr ""
-
 msgid "Set additional group memberships for this account."
 msgstr "设置此帐户的其余群组"
 
@@ -4214,6 +4233,12 @@ msgid ""
 "interface specific. The MTU is used to limit the size of packets that are "
 "transmitted on an interface. Not all interfaces support setting the MTU, and "
 "some interfaces have range restrictions."
+msgstr ""
+
+msgid ""
+"Set what user the service will run as (www by default). <br><b><font "
+"color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
+"security reasons, use it on your own risk!.</b></br>"
 msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
