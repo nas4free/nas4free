@@ -1,6 +1,6 @@
 PORTNAME=		msmtp
 PORTVERSION=	1.4.28
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=		mail ipv6
 COMMENT=		A SMTP client
 MAINTAINER=		zoon01@nas4free.org
@@ -40,7 +40,7 @@ RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_r
 .endif
 
 .if defined(WITH_GSASL)
-LIB_DEPENDS+=	gsasl.15:${PORTSDIR}/security/gsasl
+LIB_DEPENDS+=	gsasl.16:${PORTSDIR}/security/gsasl
 CONFIGURE_ARGS+=	--with-libgsasl
 .else
 CONFIGURE_ARGS+=	--without-libgsasl
