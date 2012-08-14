@@ -1,5 +1,5 @@
 PORTNAME=		samba36
-PORTVERSION=	  3.6.6
+PORTVERSION=	  3.6.7
 #PORTREVISION?= 0
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -64,11 +64,11 @@ PKGCONFIGDIR_REL?=	${PKGCONFIGDIR:S|^${PREFIX}/||}
 
 USE_PKGCONFIG=          yes
 LIB_DEPENDS+=		execinfo.1:${PORTSDIR}/devel/libexecinfo
-BUILD_DEPENDS+=		talloc>=2.0.1:${PORTSDIR}/devel/talloc
-RUN_DEPENDS+=		talloc>=2.0.1:${PORTSDIR}/devel/talloc
+BUILD_DEPENDS+=		talloc>=2.0.7:${PORTSDIR}/devel/talloc
+RUN_DEPENDS+=		talloc>=2.0.7:${PORTSDIR}/devel/talloc
 CONFIGURE_ARGS+=	--enable-external-libtalloc
-BUILD_DEPENDS+=		tdb>=1.2.6:${PORTSDIR}/databases/tdb
-RUN_DEPENDS+=		tdb>=1.2.6:${PORTSDIR}/databases/tdb
+BUILD_DEPENDS+=		tdb>=1.2.9:${PORTSDIR}/databases/tdb
+RUN_DEPENDS+=		tdb>=1.2.9:${PORTSDIR}/databases/tdb
 CONFIGURE_ARGS+=	--enable-external-libtdb
 
 CONFIGURE_ARGS+=	--without-libtalloc \
@@ -201,6 +201,8 @@ do-install:
 	@${CP} -pv $(WRKSRC)/bin/crossrename.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 	@${CP} -pv $(WRKSRC)/bin/default_quota.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 	@${CP} -pv $(WRKSRC)/bin/dirsort.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
+	@${CP} -pv $(WRKSRC)/bin/expand_msdfs.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
+	@${CP} -pv $(WRKSRC)/bin/extd_audit.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 	@${CP} -pv $(WRKSRC)/bin/fake_perms.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 	@${CP} -pv $(WRKSRC)/bin/full_audit.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 	@${CP} -pv $(WRKSRC)/bin/linux_xfs_sgid.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
@@ -210,12 +212,13 @@ do-install:
 	@${CP} -pv $(WRKSRC)/bin/scannedonly.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 	@${CP} -pv $(WRKSRC)/bin/shadow_copy.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 	@${CP} -pv $(WRKSRC)/bin/shadow_copy2.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
-	@${CP} -pv $(WRKSRC)/bin/shadow_copy3.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
+#	@${CP} -pv $(WRKSRC)/bin/shadow_copy3.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 	@${CP} -pv $(WRKSRC)/bin/smb_traffic_analyzer.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 	@${CP} -pv $(WRKSRC)/bin/streams_depot.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 	@${CP} -pv $(WRKSRC)/bin/streams_xattr.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 	@${CP} -pv $(WRKSRC)/bin/syncops.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 	@${CP} -pv $(WRKSRC)/bin/time_audit.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
+	@${CP} -pv $(WRKSRC)/bin/weird.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 	@${CP} -pv $(WRKSRC)/bin/xattr_tdb.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
 .if ${OSVERSION} > 800000
 	@${CP} -pv $(WRKSRC)/bin/zfsacl.so ${NAS4FREE_ROOTFS}${SAMBA_MODULEDIR}/vfs
