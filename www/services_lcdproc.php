@@ -53,6 +53,7 @@ $pconfig['enable'] = isset($config['lcdproc']['enable']);
 $pconfig['driver'] = $config['lcdproc']['driver'];
 $pconfig['port'] = $config['lcdproc']['port'];
 $pconfig['waittime'] = $config['lcdproc']['waittime'];
+$pconfig['titlespeed'] = $config['lcdproc']['titlespeed'];
 $pconfig['lcdproc_enable'] = isset($config['lcdproc']['lcdproc']['enable']);
 if (is_array($config['lcdproc']['param']))
 	$pconfig['param'] = implode("\n", $config['lcdproc']['param']);
@@ -72,6 +73,10 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Driver"), gettext("Port"), gettext("Wait time"));
 	$reqdfieldst = explode(" ", "string numeric numeric");
 
+	$reqdfields = explode(" ", "driver port titlespeed");
+	$reqdfieldsn = array(gettext("Driver"), gettext("Port"), gettext("TitleSpeed"));
+	$reqdfieldst = explode(" ", "string numeric numeric");
+
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
@@ -80,6 +85,7 @@ if ($_POST) {
 		$config['lcdproc']['driver'] = $_POST['driver'];
 		$config['lcdproc']['port'] = $_POST['port'];
 		$config['lcdproc']['waittime'] = $_POST['waittime'];
+		$config['lcdproc']['titlespeed'] = $_POST['titlespeed'];
 		$config['lcdproc']['lcdproc']['enable'] = $_POST['lcdproc_enable'] ? true : false;
 
 		# Write additional parameters.
@@ -131,6 +137,7 @@ function enable_change(enable_change) {
 	document.iform.driver.disabled = endis;
 	document.iform.port.disabled = endis;
 	document.iform.waittime.disabled = endis;
+	document.iform.titlespeed.disabled = endis;
 	document.iform.param.disabled = endis;
 	document.iform.auxparam.disabled = endis;
 }
@@ -153,6 +160,7 @@ function lcdproc_enable_change(enable_change) {
 	<?php html_inputbox("driver", gettext("Driver"), $pconfig['driver'], sprintf(gettext("The driver used to connect with the LCD. The list of available <a href='%s' target='_blank'>drivers</a>."), "http://lcdproc.omnipotent.net/hardware.php3"), true, 30);?>
 	<?php html_inputbox("port", gettext("Port"), $pconfig['port'], sprintf(gettext("Port to listen on. Default port is %d."), 13666), true, 10);?>
 	<?php html_inputbox("waittime", gettext("Wait time"), $pconfig['waittime'], gettext("The default time in seconds to display a screen."), true, 10);?>
+	<?php html_inputbox("titlespeed", gettext("TitleSpeed"), $pconfig['titlespeed'], gettext("Set title scrolling speed between 0-10 (default 10)."), true, 10);?>
 	<?php html_textarea("param", gettext("Driver parameters"), $pconfig['param'], gettext("Additional parameters to the hardware-specific part of the driver."), false, 65, 10, false, false);?>
 	<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], "", false, 65, 5, false, false);?>
 	<?php html_separator();?>
