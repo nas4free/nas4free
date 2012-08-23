@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- NAS4Free default system configuration -->
 <nas4free>
-	<version>1.0</version>
+	<version>1.2</version>
 	<lastchange></lastchange>
 	<system>
 		<hostname>nas4free</hostname>
@@ -1409,35 +1409,17 @@
 		<port>13666</port>
 		<waittime>10</waittime>
 		<titlespeed>10</titlespeed>
-		<param># USB connected FT245R based LCD</param>
-		<param>ConnectionType=ftdi</param>
-		<param>ftdi_mode=4</param>
-		<param>ftdi_line_RS=0x40</param>
-		<param>ftdi_line_RW=0x20</param>
-		<param>ftdi_line_EN=0x10</param>
-		<param>#Port=0x378</param>
-		<param>#Device=/dev/ttyu0</param>
-		<param>#Speed=0</param>
-		<param>Keypad=no</param>
-		<param>Contrast=0</param>
-		<param>#Brightness=1000</param>
-		<param>#OffBrightness=0</param>
-		<param>Backlight=no</param>
-		<param>OutputPort=no</param>
-		<param>#Lastline=yes</param>
+		<param># USB connected HD44780 based LCD</param>
+		<param>ConnectionType=lcd2usb</param>
+		<param>Contrast=825</param>
+		<param>Brightness=4</param>
+		<param>OffBrightness=0</param>
+		<param>Keypad=yes</param>
+		<param>Backlight=yes</param>
 		<param>Size=20x4</param>
-		<param>#vspan=2,2</param>
-		<param>#ExtendedMode=yes</param>
-		<param>#LineAddress=0x10</param>
-		<param>CharMap=hd44780_default</param>
-		<param>#DelayMult=2</param>
-		<param>#KeepAliveDisplay=0</param>
-		<param>#RefreshDisplay=5</param>
-		<param>DelayBus=true</param>
-		<param>KeyMatrix_4_1=Enter</param>
-		<param>KeyMatrix_4_2=Up</param>
-		<param>KeyMatrix_4_3=Down</param>
-		<param>KeyMatrix_4_4=Escape</param>
+		<param>KeyDirect_1=Enter</param>
+		<param>KeyDirect_2=Down</param>
+		<param>KeyDirect_3=Escape</param>
 		<!-- <auxparam></auxparam> -->
 		<lcdproc>
 			<param>[CPU]</param>
