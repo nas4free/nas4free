@@ -1,7 +1,12 @@
 #!/bin/sh
-# Part of NAS4Free copyright 2012 by NAS4Free team <info@nas4free.org>.
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
 # All rights reserved.
-# NAS4Free use portions of freenas which is Copyright © 2005-2011 by Olivier Cochard (olivier@freenas.org).
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
 
 # PROVIDE: LCDd
 # REQUIRE: DAEMON
@@ -41,12 +46,17 @@ LCDd_mkconf()
 		-v "concat('Port=', //lcdproc/port)" -n \
 		-o 'ReportLevel=2' -n \
 		-o 'User=nobody' -n \
+		-o 'Hello="    Welcome to"' -n \
+		-o 'Hello=" NAS4Free LCDproc!"' -n \
 		-v "concat('WaitTime=', //lcdproc/waittime)" -n \
+		-v "concat('TitleSpeed=', //lcdproc/titlespeed)" -n \
 		-o 'ToggleRotateKey=Enter' -n \
 		-o 'PrevScreenKey=Left' -n \
 		-o 'NextScreenKey=Right' -n \
 		-o '#ScrollUpKey=Up' -n \
 		-o '#ScrollDownKey=Down' -n \
+		-o 'GoodBye=" Thanks for using"' -n \
+		-o 'GoodBye=" NAS4Free LCDproc!"' -n \
 		-m "//nas4free/lcdproc/auxparam" \
 			-v "." -n \
 		-b \
