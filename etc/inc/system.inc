@@ -477,8 +477,8 @@ function system_get_volume_serial($devicefile) {
 	if (1 === preg_match("/^Serial:\s+(.+)$/", $rawdata[0], $matches))
 		return $matches[1];
 	/* failback to old method */
-	mwexec2("smartctl -i {$devicefile} | grep 'Serial Number'", $rawdata);
-	if (1 !== preg_match("/^Serial Number:\s+(.+)$/", $rawdata[0], $matches))
+	mwexec2("smartctl -i {$devicefile} | grep 'Serial Number'", $rawdata1);
+	if (1 !== preg_match("/^Serial Number:\s+(.+)$/", $rawdata1[0], $matches))
 		return gettext("n/a");
 	return $matches[1];
 }
@@ -494,8 +494,8 @@ function system_get_volume_model($devicefile) {
 	if (1 === preg_match("/^Model:\s+(.+)$/", $rawdata[0], $matches))
 		return $matches[1];
 	/* failback to old method */
-	mwexec2("smartctl -i {$devicefile} | grep 'Device Model'", $rawdata);
-	if (1 !== preg_match("/^Device Model:\s+(.+)$/", $rawdata[0], $matches))
+	mwexec2("smartctl -i {$devicefile} | grep 'Device Model'", $rawdata1);
+	if (1 !== preg_match("/^Device Model:\s+(.+)$/", $rawdata1[0], $matches))
 		return gettext("n/a");
 	return $matches[1];
 }
