@@ -1,7 +1,9 @@
 #!/bin/sh
 #This script does create the rootfs.
 #
-# Modified 2012 by Michael Zoon <zoon01@nas4free.org>.
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
 #
 
 

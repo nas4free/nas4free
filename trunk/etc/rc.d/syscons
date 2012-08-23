@@ -26,7 +26,14 @@
 #
 # $FreeBSD: src/etc/rc.d/syscons,v 1.23.2.1.2.1 2011/11/11 04:20:22 kensmith Exp $
 #
-# Modified by Volker Theile (votdev@gmx.de)
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
 # Changes:
 # - Reorder code to unload screen saver kernel modules. This is necessary
 #   to be able to disable console screen saver.
