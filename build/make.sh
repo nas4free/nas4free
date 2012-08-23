@@ -4,8 +4,8 @@
 # Debug script
 # set -x
 #
-# Part of NAS4Free copyright (C) 2012 by NAS4Free team <info@nas4free.org>.
-# Portions from freenas by Olivier Cochard-Labbé (http://www.freenas.org).
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
 # All rights reserved.
 #
 

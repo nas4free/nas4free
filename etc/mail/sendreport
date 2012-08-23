@@ -6,8 +6,8 @@
 #
 # Portions of freenas (http://www.freenas.org).
 # Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
-# Copyright (c) 2007 Volker Theile <votdev@gmx.de>.
 # All rights reserved.
+#
 require_once("report.inc");
 
 $retval = @report_send_mail();
