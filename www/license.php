@@ -92,7 +92,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
             <tr>
             	<td class="listt">
             <p>The following persons have contributed to NAS4Free code:</p>                         
-              <div>Daisuke Aoyama (<a href="mailto:aoyama@peach.ne.jp">aoyama@peach.ne.jp</a>)<br />              
+              <div>Daisuke Aoyama (<a href="mailto:aoyama@nas4free.org">aoyama@nas4free.org</a>)<br />              
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer & Project leader</font></em></div><br />
              <div>Michael Zoon (<a href="mailto:zoon01@nas4.org">zoon01@nas4free.org</a>)<br />             
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer & Project leader</font></em></div><br />
