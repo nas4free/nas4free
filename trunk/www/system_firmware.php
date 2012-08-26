@@ -97,9 +97,45 @@ function check_firmware_version($locale) {
 	return null;
 }
 
+function get_path_version($rss) {
+	$version = get_product_version();
+
+	$resp = "$version";
+	// e.g. version = 9.1.0.1 -> 9001, 0001
+	if (preg_match("/^.*(\d+)\.(\d+)\.(\d)\.(\d).*$/", $version, $m)) {
+		$os_ver = $m[1] * 1000 + $m[2];
+		$pd_ver = $m[3] * 1000 + $m[4];
+	} else {
+		return $resp;
+	}
+
+	$xml = @simplexml_load_file($rss);
+	if (empty($xml)) return $resp;
+	foreach ($xml->channel->item as $item) {
+		$title = $item->title;
+		$parts = pathinfo($title);
+		if ($parts['dirname'] === "/") {
+			if (preg_match("/^.*(\d+)\.(\d+)\.(\d)\.(\d).*$/",
+			    $parts['basename'], $m)) {
+			    	$os_ver2 = $m[1] * 1000 + $m[2];
+				$pd_ver2 = $m[3] * 1000 + $m[4];
+				$rss_version = sprintf("%d.%d.%d.%d",
+				    $m[1], $m[2], $m[3], $m[4]);
+				// Compare with rss version, equal or greater?
+				if ($os_ver2 > $os_ver
+				    || ($os_ver2 == $os_ver && $pd_ver2 >= $pd_ver)) {
+				    $resp = $rss_version;
+				    break;
+				}
+			}
+		}
+	}
+	return $resp;
+}
+
 function get_latest_file($rss) {
 	global $g;
-	$product =get_product_name();
+	$product = get_product_name();
 	$platform = $g['fullplatform'];
 	$version = get_product_version();
 	$revision = get_product_revision();
@@ -140,8 +176,16 @@ function get_latest_file($rss) {
 }
 
 function check_firmware_version_rss($locale) {
-	$rss_release = "http://sourceforge.net/api/file/index/project-id/722987/path/NAS4Free-9.0.0.1/mtime/desc/limit/20/rss";
+	$rss_path = "http://sourceforge.net/api/file/index/project-id/722987/mtime/desc/limit/20/rss";
+	$rss_release = "http://sourceforge.net/api/file/index/project-id/722987/path/NAS4Free-@@VERSION@@/mtime/desc/limit/20/rss";
 	$rss_beta = "http://sourceforge.net/api/file/index/project-id/722987/path/NAS4Free-Beta/mtime/desc/limit/20/rss";
+
+	// replace with existing version
+	$path_version = get_path_version($rss_path);
+	if (empty($path_version)) {
+		return "";
+	}
+	$rss_release = str_replace('@@VERSION@@', $path_version, $rss_release);
 
 	$release = get_latest_file($rss_release);
 	$beta = get_latest_file($rss_beta);
