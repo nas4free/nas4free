@@ -100,8 +100,8 @@ if(function_exists("date_default_timezone_set") and function_exists("date_defaul
 			      <?
 			        exec("/sbin/sysctl -n kern.ostype", $ostype);
 			        exec("/sbin/sysctl -n kern.osrelease", $osrelease);
-			        exec("/sbin/sysctl -n kern.osrevision", $osrevision);
-			        echo("$ostype[0] $osrelease[0] (revision $osrevision[0])");
+			        exec("/sbin/sysctl -n kern.osreldate", $osreldate);
+			        echo("$ostype[0] $osrelease[0] (reldate $osreldate[0])");
 			      ?>
 			    </td>
 			  </tr>
