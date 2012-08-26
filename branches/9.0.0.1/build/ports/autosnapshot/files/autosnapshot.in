@@ -1,0 +1,90 @@
+#!/bin/sh
+# Part of NAS4Free copyright 2012 by NAS4Free team <info@nas4free.org>.
+# All rights reserved.
+# NAS4Free use portions of freenas which is Copyright © 2005-2011 by Olivier Cochard (olivier@freenas.org).
+# Auto Snapshot (daily)
+# Created by Daisuke Aoyama <aoyama@peach.ne.jp>
+
+# PROVIDE: autosnapshot
+# REQUIRE: cron
+# XQUERY: -i "count(//zfs/autosnapshots) > 0" -o "0" -b
+# RCVAR: autosnapshot
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="autosnapshot"
+rcvar=`set_rcvar`
+
+load_rc_config "${name}"
+
+# Custom commands
+start_precmd="autosnapshot_mkconf"
+mkconf_cmd="autosnapshot_mkconf"
+extra_commands="mkconf"
+start_cmd="autosnapshot_start"
+stop_cmd="autosnapshot_stop"
+
+autosnapshot_config="/var/etc/autosnapshot.conf"
+
+autosnapshot_start()
+{
+    tmp=/tmp/crontab.$$
+
+    if /usr/bin/grep "autosnapshot" /etc/crontab > /dev/null 2>&1; then
+	# exist autosnapshot
+    else
+	# add new service
+	cat /etc/crontab > $tmp
+	echo "# autosnapshot" >> $tmp
+	#	minute hour    mday    month   wday    who     command
+	echo   "0	*/1	*	*	*	root	/usr/local/sbin/autosnapshot >/dev/null 2>&1" >> $tmp
+	cat $tmp > /etc/crontab
+	rm -f $tmp
+    fi
+}
+
+autosnapshot_stop()
+{
+    tmp=/tmp/crontab.$$
+
+    # remove service
+    /usr/bin/grep -v "autosnapshot" /etc/crontab > $tmp
+    cat $tmp > /etc/crontab
+    rm -f $tmp
+}
+
+autosnapshot_mkconf()
+{
+	# Clear existing file
+	cat /dev/null > ${autosnapshot_config}
+
+	# Create configuration
+	/usr/local/bin/xml sel -t \
+	    -m "//zfs/autosnapshots/autosnapshot" \
+		-v "concat(type, ' ', path, ' ', name, ' ', boolean(recursive), ' ', timeday, ' ', timewday, ' ', timehour, ' ', timemin, ' ', lifetime)" -n \
+	    -b \
+	${configxml_file} | /usr/local/bin/xml unesc \
+	| while read _type _path _name _recursive _timeday _timewday _timehour _timemin _lifetime; do
+	    if [ -z "${_type}" ]; then continue; fi
+	    if [ "${_type}" != "daily" ]; then continue; fi
+
+	    # lifetime to days and secs
+	    exp="0"
+	    case "${_lifetime}" in
+		*w) exp=`/bin/expr ${_lifetime%w} \* 7`;;
+		*d) exp=`/bin/expr ${_lifetime%d}`;;
+		*y) exp=`/bin/expr ${_lifetime%y} \* 365`;;
+	    esac
+	    if [ $exp -ne 0 ]; then
+		_lifetimesec=`/bin/expr \( 1 + $exp \) \* 24 \* 60 \* 60`
+	    else
+		_lifetimesec=0
+	    fi
+
+	    # write to config
+	    echo "$_type $_path $_name $_recursive $_timeday $_timewday $_timehour $_timemin $_lifetime $_lifetimesec" >> ${autosnapshot_config}
+	done
+}
+
+run_rc_command "$1"

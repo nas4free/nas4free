@@ -1,0 +1,385 @@
+#!/bin/sh
+# Part of NAS4Free copyright 2012 by NAS4Free team <info@nas4free.org>.
+# All rights reserved.
+# NAS4Free use portions of freenas which is Copyright © 2005-2011 by Olivier Cochard (olivier@freenas.org).
+# istgt.conf convert from NetBSD iscsi-target
+# Created by Daisuke Aoyama <aoyama@peach.ne.jp>
+
+# PROVIDE: istgt
+# REQUIRE: NETWORKING
+# BEFORE: mountcritremote
+# KEYWORD: shutdown
+# XQUERY: -i "count(//iscsitarget/enable) > 0" -o "0" -b
+# RCVAR: istgt
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="istgt"
+rcvar=`set_rcvar`
+
+load_rc_config "${name}"
+
+# Custom commands
+start_precmd="istgt_mkconf"
+mkconf_cmd="istgt_mkconf"
+extra_commands="mkconf"
+
+# Defaults
+istgt_enable=${istgt_enable:-"NO"}
+istgt_config="/var/etc/iscsi/istgt.conf"
+istgt_authfile="/var/etc/iscsi/auth.conf"
+istgt_ctlfile="/var/etc/iscsi/istgtcontrol.conf"
+istgt_pidfile="/var/run/istgt.pid"
+pidfile="${istgt_pidfile}"
+command="/usr/local/bin/istgt"
+command_args="-c ${istgt_config}"
+flag=""
+
+istgt_mkconf()
+{
+	VENDOR_IQN="iqn.2007-09.jp.ne.peach.istgt"
+	NETBSD_ISCSI_IQN="iqn.1994-04.org.netbsd.iscsi-target"
+	DISCOVERY_AG=9999
+	CONTROL_AG=10000
+	DEFAULT_PG=1
+	ISCSI_PORT=3260
+	CONTROL_PORT=3261
+	MEDIADIRECTORY="/mnt"
+
+	# Clear existing file
+	cat /dev/null > ${istgt_config}
+
+	# Create authfile
+	if [ ! -e ${istgt_authfile} ]; then
+	    cat /dev/null > ${istgt_authfile}
+	fi
+	# Create ctlfile
+	if [ ! -e ${istgt_ctlfile} ]; then
+	    cat /dev/null > ${istgt_ctlfile}
+	fi
+
+	# store authgroup or default for auth.conf
+	NB=`/usr/local/bin/xml sel -t \
+	    -i "count(//iscsitarget/nodebase) != 0" \
+	    -o "OK" \
+	    -b \
+	    ${configxml_file}`
+	if [ "$NB" = "OK" ]; then
+	    # Clear existing file
+	    cat /dev/null > ${istgt_authfile}
+	    cat /dev/null > ${istgt_ctlfile}
+	fi
+	if [ -f ${istgt_authfile} -a ! -s ${istgt_authfile} ]; then
+		# [AuthGroupXXXXX]
+		/usr/local/bin/xml sel -t \
+			-o "# AuthGroup section" -n \
+			-i "count(//iscsitarget/authgroup) != 0" \
+			-m "//iscsitarget/authgroup" \
+		    -v "concat('[AuthGroup',tag,']')" -n \
+		    -m "agauth" \
+			-i "string-length(authmuser) != 0" \
+			    -v "concat('  Auth \"',authuser,'\"',' ','\"',authsecret,'\"',' ','\"',authmuser,'\"',' ','\"',authmsecret,'\"')" -n \
+			-b \
+			-i "string-length(authmuser) = 0" \
+			    -v "concat('  Auth \"',authuser,'\"',' ','\"',authsecret,'\"')" -n \
+			-b \
+		    -b \
+		-n \
+		-b \
+		-b \
+		-i "count(//iscsitarget/authgroup) = 0" \
+		-m "//iscsitarget/target[storage=//iscsitarget/extent/name]" \
+		-v "concat('[AuthGroup',position(),']')" -n \
+		-i "1 and 'CHAP w/mutual CHAP'" \
+		    -v "concat('  #Auth \"','USER','\"',' ','\"','SECRET','\"',' ','\"','MUSER','\"',' ','\"','MSECRET','\"')" -n \
+		-b \
+		-i "1 and 'CHAP'" \
+		    -v "concat('  #Auth \"','USER','\"',' ','\"','SECRET','\"')" -n \
+		-b \
+		-n \
+		-b \
+		-v "concat('[AuthGroup','${DISCOVERY_AG}',']')" -n \
+		-o "  # NOTHING" -n \
+		-n \
+		-v "concat('[AuthGroup','${CONTROL_AG}',']')" -n \
+		-o "  # NOTHING" -n \
+		-n \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${istgt_authfile}
+	    chmod o-rwx ${istgt_authfile}
+	fi
+	# store default for istgtcontrol.conf
+	if [ -f ${istgt_ctlfile} -a ! -s ${istgt_ctlfile} ]; then
+		/usr/local/bin/xml sel -t \
+			-o "# Global section" -n \
+			-o "[Global]" -n \
+			-i "count(//iscsitarget/uctlenable) != 0" \
+				-v "concat('  Timeout ','30')" -n \
+				-v "concat('  AuthMethod ',//iscsitarget/uctlauthmethod)" -n \
+				-i "1 and 'CHAP w/mutual CHAP'" \
+					-v "concat('  #Auth \"','USER','\"',' ','\"','SECRET','\"',' ','\"','MUSER','\"',' ','\"','MSECRET','\"')" -n \
+				-b \
+				-m "//iscsitarget/authgroup[tag=//iscsitarget/uctlauthgroup]" \
+					-m "agauth[position()=1]" \
+						-i "string-length(authmuser) != 0" \
+							-v "concat('  Auth \"',authuser,'\"',' ','\"',authsecret,'\"',' ','\"',authmuser,'\"',' ','\"',authmsecret,'\"')" -n \
+						-b \
+						-i "string-length(authmuser) = 0" \
+							-v "concat('  Auth \"',authuser,'\"',' ','\"',authsecret,'\"')" -n \
+					-b \
+				-b \
+				-v "concat('  Host ',//iscsitarget/uctladdress)" -n \
+				-v "concat('  Port ',//iscsitarget/uctlport)" -n \
+				-v "concat('  #TargetName \"','iqn.xxxx','\"')" -n \
+				-v "concat('  Lun ','0')" -n \
+				-v "concat('  Flags ','ro')" -n \
+				-v "concat('  Size ','auto')" -n \
+			-b \
+			-i "count(//iscsitarget/uctlenable) = 0" \
+				-v "concat('  Timeout ','30')" -n \
+				-v "concat('  AuthMethod ','CHAP Mutual')" -n \
+				-i "1 and 'CHAP w/mutual CHAP'" \
+					-v "concat('  #Auth \"','USER','\"',' ','\"','SECRET','\"',' ','\"','MUSER','\"',' ','\"','MSECRET','\"')" -n \
+				-b \
+				-v "concat('  Host ', 'localhost')" -n \
+				-v "concat('  Port ', '${CONTROL_PORT}')" -n \
+				-v "concat('  #TargetName \"','iqn.xxxx','\"')" -n \
+				-v "concat('  Lun ','0')" -n \
+				-v "concat('  Flags ','ro')" -n \
+				-v "concat('  Size ','auto')" -n \
+			-b \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${istgt_ctlfile}
+		chmod o-rwx ${istgt_ctlfile}
+	fi
+
+	# create istgt.conf
+	/usr/local/bin/xml sel -t \
+		-o "# Global section" -n \
+		-o "[Global]" -n \
+		-i "count(//iscsitarget/nodebase) != 0" \
+			-v "concat('  NodeBase \"',//iscsitarget/nodebase,'\"')" -n \
+			-v "concat('  PidFile \"','${istgt_pidfile}','\"')" -n \
+			-v "concat('  AuthFile \"','${istgt_authfile}','\"')" -n \
+			-i "count(//iscsitarget/mediadirectory) != 0" \
+				-v "concat('  MediaDirectory \"',//iscsitarget/mediadirectory,'\"')" -n \
+			-b \
+			-i "count(//iscsitarget/mediadirectory) = 0" \
+				-v "concat('  MediaDirectory \"','${MEDIADIRECTORY}','\"')" -n \
+			-b \
+			-v "concat('  Timeout ',//iscsitarget/timeout)" -n \
+			-v "concat('  NopInInterval ',//iscsitarget/nopininterval)" -n \
+			-v "concat('  MaxR2T ',//iscsitarget/maxr2t)" -n \
+			-v "concat('  DiscoveryAuthMethod ',//iscsitarget/discoveryauthmethod)" -n \
+			-i "//iscsitarget/discoveryauthgroup != 0" \
+				-v "concat('  DiscoveryAuthGroup ','AuthGroup',//iscsitarget/discoveryauthgroup)" -n \
+			-b \
+			-i "//iscsitarget/discoveryauthgroup = 0" \
+				-v "concat('  DiscoveryAuthGroup ','None')" -n \
+			-b \
+			-v "concat('  MaxSessions ',//iscsitarget/maxsessions)" -n \
+			-v "concat('  MaxConnections ',//iscsitarget/maxconnections)" -n \
+			-v "concat('  FirstBurstLength ',//iscsitarget/firstburstlength)" -n \
+			-v "concat('  MaxBurstLength ',//iscsitarget/maxburstlength)" -n \
+			-v "concat('  MaxRecvDataSegmentLength ',//iscsitarget/maxrecvdatasegmentlength)" -n \
+			-v "concat('  MaxOutstandingR2T ',//iscsitarget/maxoutstandingr2t)" -n \
+			-v "concat('  DefaultTime2Wait ',//iscsitarget/defaulttime2wait)" -n \
+			-v "concat('  DefaultTime2Retain ',//iscsitarget/defaulttime2retain)" -n \
+		-b \
+		-i "count(//iscsitarget/nodebase) = 0" \
+			-v "concat('  NodeBase \"','${VENDOR_IQN}','\"')" -n \
+			-v "concat('  PidFile \"','${istgt_pidfile}','\"')" -n \
+			-v "concat('  AuthFile \"','${istgt_authfile}','\"')" -n \
+			-v "concat('  MediaDirectory \"','${MEDIADIRECTORY}','\"')" -n \
+			-v "concat('  Timeout ','30')" -n \
+			-v "concat('  NopInInterval ','20')" -n \
+			-v "concat('  MaxR2T ','32')" -n \
+			-v "concat('  DiscoveryAuthMethod ','Auto')" -n \
+			-v "concat('  DiscoveryAuthGroup ','AuthGroup','${DISCOVERY_AG}')" -n \
+			-v "concat('  MaxSessions ','16')" -n \
+			-v "concat('  MaxConnections ','4')" -n \
+			-v "concat('  FirstBurstLength ','262144')" -n \
+			-v "concat('  MaxBurstLength ','1048576')" -n \
+			-v "concat('  MaxRecvDataSegmentLength ','262144')" -n \
+			-v "concat('  MaxOutstandingR2T ','16')" -n \
+			-v "concat('  DefaultTime2Wait ','2')" -n \
+			-v "concat('  DefaultTime2Retain ','60')" -n \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${istgt_config}
+
+	# [UnitControl]
+	/usr/local/bin/xml sel -t \
+		-o "# UnitControl section" -n \
+		-o "[UnitControl]" -n \
+		-i "count(//iscsitarget/uctlenable) != 0" \
+			-v "concat('  AuthMethod ',//iscsitarget/uctlauthmethod)" -n \
+			-i "//iscsitarget/uctlauthgroup != 0" \
+				-v "concat('  AuthGroup ','AuthGroup',//iscsitarget/uctlauthgroup)" -n \
+			-b \
+			-i "//iscsitarget/uctlauthgroup = 0" \
+				-v "concat('  AuthGroup ','None')" -n \
+			-b \
+			-v "concat('  Portal UC1 ',//iscsitarget/uctladdress,':',//iscsitarget/uctlport)" -n \
+			-v "concat('  Netmask ',//iscsitarget/uctlnetmask)" -n \
+		-b \
+		-i "count(//iscsitarget/uctlenable) = 0" \
+		-o "  AuthMethod CHAP Mutual" -n \
+		-v "concat('  AuthGroup ','AuthGroup','${CONTROL_AG}')" -n \
+		-i "count(//interfaces/*[ipv6_enable]) != 0" \
+			-v "concat('  #Portal UC1 ','[::1]',':','${CONTROL_PORT}')" -n \
+		-b \
+		-i "count(//interfaces/*[enable]) != 0" \
+			-v "concat('  #Portal UC1 ','127.0.0.1',':','${CONTROL_PORT}')" -n \
+		-b \
+		-i "count(//interfaces/*[ipv6_enable]) != 0" \
+			-v "concat('  #Netmask ','[::1]')" -n \
+		-b \
+		-i "count(//interfaces/*[enable]) != 0" \
+			-v "concat('  #Netmask ','127.0.0.1')" -n \
+		-b \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${istgt_config}
+
+	# [PortalGroupXXXXX]
+	# DO NOT SPECIFY DIFFERENT BANDWIDTH NETWORK I/F IN SAME GROUP
+	# NOTE: PG MUST have two or more portals for using MCS/MPIO
+	#  (SendTargets in discovery session will reply only one of
+	#   [::] or 0.0.0.0 depend on connected IP address family)
+	#  two or more PGs may be used for MPIO
+	/usr/local/bin/xml sel -t \
+		-o "# PortalGroup section" -n \
+		-i "count(//iscsitarget/portalgroup) != 0" \
+			-m "//iscsitarget/portalgroup" \
+				-v "concat('[PortalGroup',tag,']')" -n \
+				-m "portal" \
+					-v "concat('  Portal ','DA',position(),' ',.)" -n \
+				-b \
+				-n \
+			-b \
+		-b \
+		-i "count(//iscsitarget/portalgroup) = 0" \
+			-v "concat('[PortalGroup','${DEFAULT_PG}',']')" -n \
+			-i "count(//interfaces/*[ipv6_enable and ipv6addr[.='auto']]) != 0" \
+				-v "concat('  Portal ','DA1',' ','[::]',':','${ISCSI_PORT}')" -n \
+			-b \
+			-i "count(//interfaces/*[ipv6_enable and ipv6addr[.='auto']]) = 0" \
+				-m "//interfaces/*[ipv6_enable and ipv6addr[.!='auto']]" \
+					-v "concat('  Portal ','DA',position(),' ','[',./ipv6addr,']',':','${ISCSI_PORT}')" -n \
+				-b \
+			-b \
+			-i "count(//interfaces/*[enable and ipaddr[.='dhcp']]) != 0" \
+				-v "concat('  Portal ','DA1',' ','0.0.0.0',':','${ISCSI_PORT}')" -n \
+			-b \
+			-i "count(//interfaces/*[enable and ipaddr[.='dhcp']]) = 0" \
+				-m "//interfaces/*[enable and ipaddr[.!='dhcp']]" \
+					-v "concat('  Portal ','DA',position(),' ',./ipaddr,':','${ISCSI_PORT}')" -n \
+				-b \
+			-b \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${istgt_config}
+
+	# [InitiatorGroupXXXXX]
+	/usr/local/bin/xml sel -t \
+		-o "# InitiatorGroup section" -n \
+		-i "count(//iscsitarget/initiatorgroup) != 0" \
+			-m "//iscsitarget/initiatorgroup" \
+				-v "concat('[InitiatorGroup',tag,']')" -n \
+				-m "iginitiatorname" \
+					-v "concat('  InitiatorName \"',.,'\"')" -n \
+				-b \
+				-m "ignetmask" \
+					-v "concat('  Netmask ',.)" -n \
+				-b \
+				-n \
+			-b \
+		-b \
+		-i "count(//iscsitarget/initiatorgroup) = 0" \
+			-m "//iscsitarget/target[storage=//iscsitarget/extent/name]" \
+				-v "concat('[InitiatorGroup',position(),']')" -n \
+				-v "concat('  InitiatorName \"','ALL','\"')" -n \
+				-v "concat('  Netmask ',ipaddr,'/',subnet)" -n \
+				-n \
+			-b \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${istgt_config}
+
+	# [LogicalUnitXXXXX]
+	# TODO: SHOULD use NodeBase for starting without "iqn."
+	#  (NETBSD_ISCSI_IQN is only backward compatibility)
+	# NOTE: the extents map iSCSI LUN (LUN0 - LUN15 in the target)
+	# NOTE: LU tag is used as IG tag and AG tag (may use others)
+	# NOTE: allow the initiators in IG via PG to connect LU (the target)
+	/usr/local/bin/xml sel -t \
+		-o "# LogicalUnit section" -n \
+		-i "count(//iscsitarget/nodebase) != 0" \
+			-i "count(//iscsitarget/target/lunmap) != 0" \
+				-m "//iscsitarget/target[lunmap/extentname=//iscsitarget/extent/name or lunmap/extentname='-']" \
+					-s "A:T:U" "name" \
+					-i "count(enable) = 0" \
+						-o "# disabled" -n \
+						-v "concat('#[LogicalUnit',position(),']')" -n \
+						-i "count(lunmap) != 0" \
+							-v "concat('#  TargetName \"',name,'\"')" -n \
+						-b -n \
+					-b \
+					-i "count(enable) != 0" \
+					-v "concat('[LogicalUnit',position(),']')" -n \
+					-i "count(lunmap) != 0" \
+						-v "concat('  TargetName \"',name,'\"')" -n \
+						-i "string-length(alias) != 0" \
+							-v "concat('  TargetAlias \"',alias,'\"')" -n \
+						-b \
+						-i "string-length(alias) = 0" \
+							-v "concat('  #TargetAlias \"','','\"')" -n \
+						-b \
+						-m "pgigmap" \
+							-v "concat('  Mapping ','PortalGroup',pgtag,' ','InitiatorGroup',igtag)" -n \
+						-b \
+						-v "concat('  AuthMethod ',authmethod)" -n \
+						-m "agmap" \
+							-i "agtag != 0" \
+								-v "concat('  AuthGroup ','AuthGroup',agtag)" -n \
+							-b \
+							-i "agtag = 0" \
+								-v "concat('  AuthGroup ','None')" -n \
+							-b \
+						-b \
+						-v "concat('  UseDigest ',digest)" -n \
+						-i "flags[.='ro']" -o "  ReadOnly Yes" -n -b \
+						-i "flags[.='rw']" -o "  ReadOnly No" -n -b \
+						-i "flags[.='rw,dynamic']" -o "  ReadOnly No" -n -b \
+						-i "flags[.='rw,extend']" -o "  ReadOnly No" -n -b \
+						-v "concat('  UnitType ',type)" -n \
+						-v "concat('  UnitOnline ','Yes')" -n \
+						-i "count(blocklen) != 0 and blocklen != 0" -v "concat('  BlockLength ',blocklen)" -n -b \
+						-i "string-length(queuedepth) != 0" -v "concat('  QueueDepth ',queuedepth)" -n -b \
+						-i "string-length(inqvendor) != 0 or string-length(inqproduct) != 0 or string-length(inqrevision) != 0 or string-length(inqserial) != 0" \
+							-v "concat('  UnitInquiry \"',inqvendor,'\"',' ','\"',inqproduct,'\"',' ','\"',inqrevision,'\"',' ', '\"',inqserial,'\"')" -n \
+						-b \
+						-m "lunmap" \
+							-i "type = 'Storage'" \
+								-v "concat('  LUN',lun,' ',type,' ',//iscsitarget/extent[name=current()/extentname]/path,' ',//iscsitarget/extent[name=current()/extentname]/size,//iscsitarget/extent[name=current()/extentname]/sizeunit)" -n \
+							-b \
+							-i "type = 'Removable'" \
+								-i "extentname != '-'" \
+									-v "concat('  LUN',lun,' ',type,' \"',../flags,'\" ',//iscsitarget/extent[name=current()/extentname]/path,' ',//iscsitarget/extent[name=current()/extentname]/size,//iscsitarget/extent[name=current()/extentname]/sizeunit)" -n \
+								-b \
+								-i "extentname = '-'" \
+									-v "concat('  LUN',lun,' ',type,' \"',../flags,'\" ','/dev/null',' ','0')" -n \
+								-b \
+							-b \
+							-i "type = 'Device'" \
+								-v "concat('  LUN',lun,' ',type,' ',//iscsitarget/extent[name=current()/extentname]/path)" -n \
+							-b \
+						-b \
+					-b -n \
+					-b \
+				-b \
+				-n \
+			-b \
+		-b \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${istgt_config}
+}
+
+run_rc_command "$1"
