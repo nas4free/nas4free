@@ -6,8 +6,8 @@
 # Created by Daisuke Aoyama <aoyama@peach.ne.jp>
 
 # PROVIDE: istgt
-# REQUIRE: NETWORKING
-# BEFORE: mountcritremote
+# REQUIRE: NETWORKING syslogd
+# BEFORE: LOGIN
 # KEYWORD: shutdown
 # XQUERY: -i "count(//iscsitarget/enable) > 0" -o "0" -b
 # RCVAR: istgt
@@ -23,7 +23,7 @@ load_rc_config "${name}"
 # Custom commands
 start_precmd="istgt_mkconf"
 mkconf_cmd="istgt_mkconf"
-extra_commands="mkconf"
+extra_commands="mkconf reload"
 
 # Defaults
 istgt_enable=${istgt_enable:-"NO"}
