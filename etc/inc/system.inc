@@ -282,7 +282,7 @@ function system_get_cpu_info() {
 	$cpus = system_get_cpus();
 	$cpuinfo['temperature2'] = array();
 	$temp = @exec("/sbin/sysctl -q -n dev.cpu.0.temperature");
-	if ($temp != '') {
+	if ($temp != '' && $temp != '-1') {
 		$adj = 0;
 		$cpuid = system_get_cpuid(0, "0x0");
 		// AuthenticAMD ?
