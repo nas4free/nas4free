@@ -1,0 +1,50 @@
+#!/bin/sh
+# Part of NAS4Free copyright 2012 by NAS4Free team <info@nas4free.org>.
+# All rights reserved.
+# NAS4Free use portions of freenas which is Copyright © 2005-2011 by Olivier Cochard (olivier@freenas.org).
+# Copyright (c) 2008-2009 Volker Theile (votdev@gmx.de)
+# All rights reserved.
+
+# PROVIDE: tftpd
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+# XQUERY: -i "count(//tftpd/enable) > 0" -o "0" -b
+# RCVAR: tftpd
+
+. /etc/rc.subr
+. /etc/util.subr
+. /etc/configxml.subr
+
+name="tftpd"
+rcvar=`set_rcvar`
+
+load_rc_config "${name}"
+
+# Custom commands
+start_precmd="tftpd_prestart"
+
+# Defaults
+tftpd_enable=${tftpd_enable:-"NO"}
+command="/usr/local/libexec/in.${name}"
+command_args="-v -l"
+
+tftpd_prestart()
+{
+	local _command_args
+
+	# Create command args line.
+	_command_args=`/usr/local/bin/xml sel -t -m "//tftpd" \
+		-i "count(allowfilecreation) > 0" -o " -c" -b \
+		-i "string-length(port) > 0" -v "concat(' -a :',port)" -b \
+		-i "string-length(username) > 0" -v "concat(' -u ',username)" -b \
+		-i "string-length(umask) > 0" -v "concat(' -U ',umask)" -b \
+		-i "string-length(timeout) > 0" -v "concat(' -T ',timeout)" -b \
+		-i "string-length(maxblocksize) > 0" -v "concat(' -B ',maxblocksize)" -b \
+		-i "string-length(extraoptions) > 0" -v "concat(' ',extraoptions)" -b \
+		-v "concat(' -s \"',dir,'\"')" \
+		${configxml_file} | /usr/local/bin/xml unesc`
+
+	command_args="${command_args} ${_command_args}"
+}
+
+run_rc_command "$1"
