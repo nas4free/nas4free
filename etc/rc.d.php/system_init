@@ -39,9 +39,24 @@
 	require_once("functions.inc");
 	require_once("util.inc");
 
+	$load_raw_config = 1;
 	// Parse the configuration and initialize $global array
 	require_once("config.inc");
-	
+	require_once("config_old.inc");
+
+	// Set root object to config
+	$keys = array_keys($config);
+	$config = $config[$keys[0]];
+
+	// Write configuration cache file
+	config_write_cache($config);
+
+	// root object is mine?
+	if ($keys[0] !== $g['xml_rootobj']) {
+		// Need convert
+		config_upgrade_old();
+	}
+
 	// Convert configuration, if necessary
 	config_upgrade();
 ?>

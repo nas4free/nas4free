@@ -332,14 +332,26 @@ function install_check_version($disk)
 	}
 
 	/* Load configuration file into array. */
-	$tmp_config = parse_xml_config("{$mnt_cf_disk}/conf/config.xml", $g['xml_rootobj']);
-	if (false === $tmp_config) {
+	$raw_config = parse_xml_config_raw("{$g['conf_path']}/config.xml", "");
+	if (false === $raw_config) {
 		write_console("Error: Failed to load config.xml.\n");
 		return 1;
 	}
+	$keys = array_keys($raw_config);
+	$tmp_config = $raw_config[$keys[0]];
+	$upgrade = true;
+
 	/* Check config version */
-	//if ((float)$tmp_config['version'] < (float)1.0) { // r1
-	if ((float)$tmp_config['version'] < (float)1.0) { // r1
+	if ($keys[0] !== $g['xml_rootobj']) {
+		if ((float)$tmp_config['version'] < (float)8.9) { // r5246(old)
+			$upgrade = false;
+		}
+	} else {
+		if ((float)$tmp_config['version'] < (float)1.0) { // r1
+			$upgrade = false;
+		}
+	}
+	if (false === $upgrade) {
 		write_console("Error: Does not support upgrading form this version.\n");
 		mwexec("/sbin/umount {$mnt_cf_disk}");
 		mwexec("/bin/rm -f -r {$mnt_cf_disk}");
