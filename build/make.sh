@@ -70,7 +70,7 @@ echo "NAS4FREE_TMPDIR=${NAS4FREE_TMPDIR}" >> ${NAS4FREE_MK}
 
 # Local variables
 NAS4FREE_URL=$(cat $NAS4FREE_SVNDIR/etc/prd.url)
-NAS4FREE_SVNURL="https://nas4free.svn.sourceforge.net/svnroot/nas4free/trunk"
+NAS4FREE_SVNURL="https://nas4free.svn.sourceforge.net/svnroot/nas4free/branches/9.0.0.1"
 
 # Size in MB of the MFS Root filesystem that will include all FreeBSD binary
 # and NAS4FREE WEbGUI/Scripts. Keep this file very small! This file is unzipped
