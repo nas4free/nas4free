@@ -31,7 +31,7 @@ setvar()
 		*)
 			# If running from liveCD or embedded use a memory filesystem for /var.
 			eval /usr/local/sbin/rconf attribute set varmfs "YES";
-			eval /usr/local/sbin/rconf attribute set varmfs_flags "-S -m 3";
+			eval /usr/local/sbin/rconf attribute set varmfs_flags "-S";
 			eval /usr/local/sbin/rconf attribute set populate_var "YES";
 			;;
 	esac
@@ -176,12 +176,8 @@ setifconfig()
 	done
 
 	# Cloned interfaces:
-	_cloned_interfaces=`/usr/local/bin/xml sel -t \
-		-i "//interfaces/*/if[contains(.,'lagg')]" \
-			-m "//vinterfaces/lagg/if" \
-				-v "concat(.,' ')" \
-			-b \
-		-b \
+	_cloned_interfaces=`/usr/local/bin/xml sel -t -m "//vinterfaces/*" \
+		-v "concat(if,' ')" \
 		${configxml_file} | /usr/local/bin/xml unesc`
 
 	eval /usr/local/sbin/rconf attribute set "cloned_interfaces" "${_cloned_interfaces}"
@@ -191,7 +187,10 @@ setifconfig()
 	/usr/local/bin/xml sel -t \
 		-i "//interfaces/*/if[contains(.,'lagg')]" \
 			-m "//vinterfaces/lagg/laggport" \
-				-v "concat(., ' ', //interfaces/*[if=current()/../if]/mtu)" \
+				-v . \
+				-m "//interfaces/*[if=if]/mtu" \
+					-v "concat(' ',.)" \
+				-b \
 			-n \
 			-b \
 		-b \

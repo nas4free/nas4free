@@ -126,7 +126,7 @@ function cData($parser, $data) {
 	}
 }
 
-function parse_xml_config_raw($cffile, $rootobj) {
+function parse_xml_config($cffile, $rootobj) {
 	global $depth, $curpath, $config, $havedata, $listtags;
 
 	$config = array();
@@ -160,22 +160,14 @@ function parse_xml_config_raw($cffile, $rootobj) {
 
 	xml_parser_free($xml_parser);
 
-	if (!empty($rootobj)) {
-		// Remember encoding
-		$config[$rootobj]['encoding'] = $encoding;
-	}
-
-	return $config;
-}
-
-function parse_xml_config($cffile, $rootobj) {
-	$raw_config = parse_xml_config_raw($cffile, $rootobj);
-
-	if (!$raw_config[$rootobj]) {
+	if (!$config[$rootobj]) {
 		die("XML error: no $rootobj object found!\n");
 	}
 
-	return $raw_config[$rootobj];
+	// Remember encoding
+	$config[$rootobj]['encoding'] = $encoding;
+
+	return $config[$rootobj];
 }
 
 // Dump configuration.
