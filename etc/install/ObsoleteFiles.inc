@@ -69,3 +69,4 @@ etc/rc.d/execcmd_postinit.sh
 etc/rc.d/execcmd_preinit.sh
 etc/rc.d/execcmd_shutdown.sh
 etc/rc.d/rcconf.sh
+etc/auth.conf
