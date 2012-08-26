@@ -7,6 +7,7 @@ Changes:
 - Add Denon AVR profile to fuppes.
 - Add more system info to webgui.
 - Add turn on/off Access Time (atime) to zfs dataset edit.
+- Add upgrade method from old system.
 - Changes to console.
 - Changes to cifs/smb allow trusted domains.
 - Cosmetic changes webgui.
@@ -19,7 +20,7 @@ Changes:
 - Upgrade msmtp to 1.4.28.
 - Upgrade lighttpd to 1.4.31.
 - Upgrade bsnmp-ucd to 0.3.6.
-- Upgrade to FreeBSD 9.0-RELEASE-p3.
+- Upgrade to FreeBSD 9.1-PRERELEASE.
 - Upgrade smartmontools to 5.43.
 - Upgrade translations.
 - Upgrade transmission to 2.61.
@@ -48,6 +49,7 @@ Bug fixes:
 - Fix webgui zfs status.
 - Fix transmission webgui errors.
 - Fix charset decoding file manager.
+- Fix empty laggX before it is used by Interface Management.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.

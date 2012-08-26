@@ -176,8 +176,15 @@ setifconfig()
 	done
 
 	# Cloned interfaces:
-	_cloned_interfaces=`/usr/local/bin/xml sel -t -m "//vinterfaces/*" \
-		-v "concat(if,' ')" \
+	#_cloned_interfaces=`/usr/local/bin/xml sel -t -m "//vinterfaces/*" \
+	#	-v "concat(if,' ')" \
+	#	${configxml_file} | /usr/local/bin/xml unesc`
+	_cloned_interfaces=`/usr/local/bin/xml sel -t \
+		-i "//interfaces/*/if[contains(.,'lagg')]" \
+			-m "//vinterfaces/lagg/if" \
+				-v "concat(.,' ')" \
+			-b \
+		-b \
 		${configxml_file} | /usr/local/bin/xml unesc`
 
 	eval /usr/local/sbin/rconf attribute set "cloned_interfaces" "${_cloned_interfaces}"
