@@ -9,7 +9,7 @@ USE_AUTOTOOLS=	autoconf automake aclocal
 GNU_CONFIGURE=	yes
 USE_GNOME=	pkgconfig
 
-LIB_DEPENDS+=	ftdi.19:${PORTSDIR}/devel/libftdi
+LIB_DEPENDS+=	ftdi.21:${PORTSDIR}/devel/libftdi
 LIB_DEPENDS+=	hid:${PORTSDIR}/devel/libhid
 
 CONFIGURE_ARGS=	--enable-drivers="${LCDPROC_DRIVERS}" \
@@ -80,7 +80,7 @@ LCDPROC_DRIVERS+=IOWarrior \
 		shuttleVFD
 
 . if ${PORT_OPTIONS:MFTDI}
-LIB_DEPENDS+=		ftdi.19:${PORTSDIR}/devel/libftdi
+LIB_DEPENDS+=		ftdi.21:${PORTSDIR}/devel/libftdi
 CONFIGURE_ARGS+=	--enable-libftdi
 PLIST_SUB+=		FTDI=""
 LCDPROC_DRIVERS+=i2500vfd \
