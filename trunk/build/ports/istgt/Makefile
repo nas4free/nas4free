@@ -1,8 +1,8 @@
 PORTNAME=		istgt
-PORTVERSION=	20120811
+PORTVERSION=		20120828
 CATEGORIES=		net
 COMMENT=		Implementation of userland ISCSI target
-MAINTAINER=		zoon01@nas4free.org
+MAINTAINER=		aoyama@nas4free.org
 
 MASTER_SITES=		http://www.peach.ne.jp/archives/istgt/
 
