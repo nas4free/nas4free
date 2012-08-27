@@ -143,8 +143,9 @@ function iscsitargetpg_process_updatenotification($mode, $data) {
         <td width="78%" class="vtable">
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-          <td width="10%" class="listhdrlr"><?=gettext("Tag");?></td>
-          <td width="80%" class="listhdrr"><?=gettext("Portals");?></td>
+          <td width="5%" class="listhdrlr"><?=gettext("Tag");?></td>
+          <td width="55%" class="listhdrr"><?=gettext("Portals");?></td>
+          <td width="30%" class="listhdrr"><?=gettext("Comment");?></td>
           <td width="10%" class="list"></td>
         </tr>
         <?php foreach($config['iscsitarget']['portalgroup'] as $pg):?>
@@ -156,6 +157,7 @@ function iscsitargetpg_process_updatenotification($mode, $data) {
           <?php echo htmlspecialchars($portal)."<br />\n"; ?>
           <?php endforeach; ?>
           </td>
+          <td class="listr"><?=htmlspecialchars($pg['comment']);?>&nbsp;</td>
           <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
           <td valign="middle" nowrap="nowrap" class="list">
             <a href="services_iscsitarget_pg_edit.php?uuid=<?=$pg['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit portal group");?>" border="0" alt="<?=gettext("Edit portal group");?>" /></a>
@@ -169,7 +171,7 @@ function iscsitargetpg_process_updatenotification($mode, $data) {
         </tr>
         <?php endforeach;?>
         <tr>
-          <td class="list" colspan="2"></td>
+          <td class="list" colspan="3"></td>
           <td class="list"><a href="services_iscsitarget_pg_edit.php"><img src="plus.gif" title="<?=gettext("Add portal group");?>" border="0" alt="<?=gettext("Add portal group");?>" /></a></td>
         </tr>
         </table>

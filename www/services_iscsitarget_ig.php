@@ -142,9 +142,10 @@ function iscsitargetig_process_updatenotification($mode, $data) {
         <td width="78%" class="vtable">
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-          <td width="10%" class="listhdrlr"><?=gettext("Tag");?></td>
-          <td width="40%" class="listhdrr"><?=gettext("Initiators");?></td>
-          <td width="40%" class="listhdrr"><?=gettext("Networks");?></td>
+          <td width="5%" class="listhdrlr"><?=gettext("Tag");?></td>
+          <td width="30%" class="listhdrr"><?=gettext("Initiators");?></td>
+          <td width="25%" class="listhdrr"><?=gettext("Networks");?></td>
+          <td width="30%" class="listhdrr"><?=gettext("Comment");?></td>
           <td width="10%" class="list"></td>
         </tr>
         <?php foreach($config['iscsitarget']['initiatorgroup'] as $ig):?>
@@ -161,6 +162,7 @@ function iscsitargetig_process_updatenotification($mode, $data) {
           <?php echo htmlspecialchars($netmask)."<br />\n"; ?>
           <?php endforeach;?>
           </td>
+          <td class="listr"><?=htmlspecialchars($ig['comment']);?>&nbsp;</td>
           <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
           <td valign="middle" nowrap="nowrap" class="list">
             <a href="services_iscsitarget_ig_edit.php?uuid=<?=$ig['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit initiator group");?>" border="0" alt="<?=gettext("Edit initiator group");?>" /></a>
@@ -174,7 +176,7 @@ function iscsitargetig_process_updatenotification($mode, $data) {
         </tr>
         <?php endforeach;?>
         <tr>
-          <td class="list" colspan="3"></td>
+          <td class="list" colspan="4"></td>
           <td class="list">
 						<a href="services_iscsitarget_ig_edit.php"><img src="plus.gif" title="<?=gettext("Add initiator group");?>" border="0" alt="<?=gettext("Add initiator group");?>" /></a>
 					</td>
