@@ -145,9 +145,10 @@ function iscsitargetag_process_updatenotification($mode, $data) {
         <td width="78%" class="vtable">
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-          <td width="10%" class="listhdrlr"><?=gettext("Tag");?></td>
-          <td width="40%" class="listhdrr"><?=gettext("CHAP Users");?></td>
-          <td width="40%" class="listhdrr"><?=gettext("Mutual CHAP Users");?></td>
+          <td width="5%" class="listhdrlr"><?=gettext("Tag");?></td>
+          <td width="30%" class="listhdrr"><?=gettext("CHAP Users");?></td>
+          <td width="30%" class="listhdrr"><?=gettext("Mutual CHAP Users");?></td>
+          <td width="25%" class="listhdrr"><?=gettext("Comment");?></td>
           <td width="10%" class="list"></td>
         </tr>
         <?php foreach($config['iscsitarget']['authgroup'] as $ag):?>
@@ -171,6 +172,7 @@ function iscsitargetag_process_updatenotification($mode, $data) {
           <?php echo htmlspecialchars($agauth['authmuser'])."<br />\n"; ?>
           <?php endforeach; ?>
           </td>
+          <td class="listr"><?=htmlspecialchars($ag['comment']);?>&nbsp;</td>
           <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
           <td valign="middle" nowrap="nowrap" class="list">
             <a href="services_iscsitarget_ag_edit.php?uuid=<?=$ag['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit auth group");?>" border="0" alt="<?=gettext("Edit auth group");?>" /></a>
@@ -184,7 +186,7 @@ function iscsitargetag_process_updatenotification($mode, $data) {
         </tr>
         <?php endforeach;?>
         <tr>
-          <td class="list" colspan="3"></td>
+          <td class="list" colspan="4"></td>
           <td class="list"><a href="services_iscsitarget_ag_edit.php"><img src="plus.gif" title="<?=gettext("Add auth group");?>" border="0" alt="<?=gettext("Add auth group");?>" /></a></td>
         </tr>
         </table>
