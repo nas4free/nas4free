@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>POT-Creation-Date: 2012-03-"
 "12 03:02+0000\n"
-"POT-Creation-Date: 2012-07-17 20:52+0000\n"
-"PO-Revision-Date: 2012-04-15 13:59+0000\n"
-"Last-Translator: zoon01 <zoon01@nas4free.org>\n"
+"POT-Creation-Date: 2012-08-23 20:37+0000\n"
+"PO-Revision-Date: 2012-08-27 02:00+0000\n"
+"Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-17 19:23+0000\n"
-"X-Generator: Launchpad (build 15627)\n"
+"X-Launchpad-Export-Date: 2012-08-27 02:04+0000\n"
+"X-Generator: Launchpad (build 15843)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
 "X-Poedit-Language: Japanese\n"
@@ -124,6 +124,9 @@ msgid ""
 "UFS formatted drive or do imported disks from other OS.<br/><b>CD/DVD "
 "volume</b> if you want to mount a CD/DVD volume."
 msgstr ""
+"<b>EFI GPT パーティション</b> GPTフォーマット済のドライブをマウントしたい場合 (<b>デフォルトパーティション</b>)．<br "
+"/><b>MBRパーティション</b> UFSフォーマット済みのドライブをマウントしたい場合、または他のＯＳからの移設．<br /><b>CD/DVD "
+"ボリューム</b> CD/DVD ボリュームをマウントしたい場合．"
 
 msgid ""
 "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
@@ -269,8 +272,8 @@ msgstr "アクセス"
 msgid "Access Restrictions"
 msgstr "アクセス制限"
 
-msgid "Access Time"
-msgstr ""
+msgid "Access Time (atime)"
+msgstr "アクセスタイム (atime)"
 
 msgid "Access mode"
 msgstr "アクセスモード"
@@ -707,7 +710,7 @@ msgstr "バインドパスワード"
 
 #, php-format
 msgid "Bios:"
-msgstr ""
+msgstr "Bios:"
 
 msgid "BitTorrent"
 msgstr "BitTorrent"
@@ -734,7 +737,7 @@ msgid "CCMP TKIP"
 msgstr "CCMP TKIP"
 
 msgid "CD/DVD"
-msgstr ""
+msgstr "CD/DVD"
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -1011,8 +1014,29 @@ msgstr ""
 "圧縮アルゴリズムを使用します。'gzip-N' で 'gzip' の圧縮レベルを指定できます。N は数値で、1 (最速) から 9 (最高圧縮率) "
 "です。現在、'gzip' は 'gzip-6' の指定と同じです。"
 
-msgid "Controls the dedup method."
-msgstr "重複排除で使用される方法を制御します。"
+msgid ""
+"Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
+"<a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
+"wiki article BEFORE using this feature.</b></br>"
+msgstr ""
+"重複排除の方法を指定します。<br><b><font color='red'>注意/警告</font>: この機能を使う前に <a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks-zfs-volumes-volume' target='_blank'>ZFS ボリュームと重複排除</a> のwiki "
+"記事を見てください。</b></br>"
+
+msgid ""
+"Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
+"<a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & "
+"deduplication</a> wiki article BEFORE using this feature.</b></br>"
+msgstr ""
+"重複排除の方法を指定します。<br><b><font color='red'>注意/警告</font>: この機能を使う前に <a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks_zfs_datasets_dataset' target='_blank'>ZFS データセットと重複排除</a> のwiki "
+"記事を見てください。</b></br>"
 
 msgid "Controls whether this dataset can be modified."
 msgstr "このデータセットが修正可能かどうか制御します。"
@@ -1067,6 +1091,9 @@ msgstr "Cron ジョブ"
 
 msgid "Current"
 msgstr "現在"
+
+msgid "Current Version:"
+msgstr "現在のバージョン:"
 
 msgid "Custom"
 msgstr "カスタム"
@@ -1341,7 +1368,7 @@ msgid "Detected"
 msgstr "検出"
 
 msgid "Detected Language:<br />(Change if needed)"
-msgstr ""
+msgstr "検出された言語:<br />(必要に応じて変更)"
 
 msgid "Detected RSYNC remote shares"
 msgstr "検出された RSYNC リモート共有"
@@ -1467,7 +1494,7 @@ msgid "Disks (ATA)"
 msgstr "ディスク(ATA)"
 
 msgid "Disks (ATA) information"
-msgstr ""
+msgstr "ディスク (ATA) 情報"
 
 msgid "Display"
 msgstr "表示"
@@ -2800,12 +2827,12 @@ msgid "Last config change"
 msgstr "最終設定変更日"
 
 #, php-format
-msgid "Latest nightly build: %s"
-msgstr "最新のナイトリービルド: %s"
+msgid "Latest Beta Build: %s"
+msgstr "最新ベータ版: %s"
 
 #, php-format
-msgid "Latest stable build: %s"
-msgstr "最新の安定版ビルド: %s"
+msgid "Latest Release: %s"
+msgstr "最新リリース版: %s"
 
 msgid "Latvian"
 msgstr "ラトビア語"
@@ -2890,7 +2917,7 @@ msgid "List of available target name on all configured iSCSI targets"
 msgstr "iSCSI ターゲットとして設定された使用可能なターゲット名の一覧"
 
 msgid "List of detected disks"
-msgstr ""
+msgstr "検出されたディスクのリスト"
 
 msgid "List of imported users"
 msgstr "インポートされたユーザの一覧"
@@ -3230,7 +3257,7 @@ msgid "Mutual CHAP Users"
 msgstr "双方向 CHAP ユーザ"
 
 msgid "NAS4Free WebGUI Login"
-msgstr ""
+msgstr "NAS4Free WebGUI ログイン"
 
 msgid "NFS"
 msgstr "NFS"
@@ -3368,7 +3395,7 @@ msgstr "利用可能なディスクがありません。まず最初に新しい
 msgid ""
 "No disks configured, please add disks to see the diagnostic information of "
 "disks!"
-msgstr ""
+msgstr "ディスクが構成されていません。ディスクの診断情報を見るためにディスクを追加してください。"
 
 msgid "No file was uploaded."
 msgstr "ファイルはアップロードされていませんでした。"
@@ -3762,7 +3789,7 @@ msgstr "初期化前"
 
 #, php-format
 msgid "Predefined system groups"
-msgstr ""
+msgstr "システム定義済みグループ"
 
 msgid "Preferred"
 msgstr "優先"
@@ -4076,6 +4103,9 @@ msgstr "ルール番号"
 msgid "Rules"
 msgstr "ルール"
 
+msgid "Run as"
+msgstr "実行ユーザ"
+
 msgid "Run now"
 msgstr "今すぐ実行"
 
@@ -4264,9 +4294,6 @@ msgstr "サービス"
 msgid "Services"
 msgstr "サービス"
 
-msgid "Set access time on or off on the volume."
-msgstr ""
-
 msgid "Set additional group memberships for this account."
 msgstr "このアカウントを他のグループのメンバーにします。"
 
@@ -4297,6 +4324,17 @@ msgstr ""
 "インタフェースの最大転送ユニットサイズ (MTU) を指定して下さい。デフォルトはインタフェース固有の値です。MTU "
 "はインタフェース上に転送されるパケットのサイズを制限する為に使用されます。インタフェースによっては MTU "
 "の設定をサポートしないものや、指定可能な範囲に制限があるものがあります。"
+
+msgid "Set title scrolling speed between 0-10 (default 10)."
+msgstr "タイトルのスクロールスピード 0～10 (初期値 10)"
+
+msgid ""
+"Set what user the service will run as (www by default). <br><b><font "
+"color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
+"security reasons, use it on your own risk!.</b></br>"
+msgstr ""
+"どのユーザでサービスを実行するか設定します。 (デフォルトは www) <br><b><font color='red'>注意</font>: "
+"rootユーザで実行する事はセキュリティの理由により <u>推奨されません。</u> 自己責任で使用してください！</b></br>"
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr "ルートデータセット用に別のマウントポイントを設定します。デフォルトは /mnt です。"
@@ -5731,6 +5769,9 @@ msgstr "タイムアウト"
 msgid "Times"
 msgstr "時刻"
 
+msgid "TitleSpeed"
+msgstr "タイトル時間"
+
 msgid ""
 "To configure the target, you must add at least Portal Group and Initiator "
 "Group and Extent.<br />Portal Group which is identified by tag number "
@@ -5864,7 +5905,7 @@ msgid "Tuning"
 msgstr "チューニング"
 
 msgid "Turn access time on or off for this dataset"
-msgstr ""
+msgstr "このデータセットのアクセスタイムの有効・無効を指定します。"
 
 msgid "Turn the monitor to standby after N seconds."
 msgstr "モニターを N 秒後にスタンバイ状態にする。"
@@ -6050,7 +6091,7 @@ msgstr "ユーザ ID"
 
 #, php-format
 msgid "User defined groups"
-msgstr ""
+msgstr "ユーザ定義グループ"
 
 msgid "User full name."
 msgstr "ユーザのフルネーム。"
@@ -6470,6 +6511,3 @@ msgstr "アンマウント"
 
 msgid "upriv"
 msgstr "upriv"
-
-#~ msgid "WebGUI Login"
-#~ msgstr "WebGUI ログイン"
