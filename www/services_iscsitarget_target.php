@@ -59,7 +59,7 @@ if ($_POST) {
 			$retval |= updatenotify_process("iscsitarget_extent", "iscsitargetextent_process_updatenotification");
 			$retval |= updatenotify_process("iscsitarget_target", "iscsitargettarget_process_updatenotification");
 			config_lock();
-			$retval |= rc_update_service("iscsi_target");
+			$retval |= rc_update_reload_service("iscsi_target");
 			config_unlock();
 		}
 		$savemsg = get_std_save_message($retval);

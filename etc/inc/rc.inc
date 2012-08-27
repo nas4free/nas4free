@@ -96,6 +96,19 @@ function rc_restart_service($name) {
 	return $retval;
 }
 
+// Reload service.
+// Return 0 if successful, otherwise 1.
+function rc_reload_service($name) {
+	// Execute script.
+	$retval = rc_exec_script("/etc/rc.d/{$name} reload");
+	if (0 == $retval) {
+		write_log("{$name} service reload");
+	}	else {
+		write_log("Failed to reload service {$name}");
+	}
+	return $retval;
+}
+
 // Stop service.
 // Return 0 if successful, otherwise 1.
 function rc_stop_service($name) {
@@ -111,7 +124,7 @@ function rc_stop_service($name) {
 
 // Update service (Modify rc.conf and execute rc script).
 // Return 0 if successful, otherwise 1.
-function rc_update_service($name) {
+function rc_update_service_ex($name, $reload) {
 	$retval = 0;
 
 	// Check if service is running
@@ -126,7 +139,11 @@ function rc_update_service($name) {
 
 		switch ($running) {
 			case 0:
-				$retval = rc_restart_service($name);
+				if ($reload) {
+					$retval = rc_reload_service($name);
+				} else {
+					$retval = rc_restart_service($name);
+				}
 				break;
 			case 1:
 				$retval = rc_start_service($name);
@@ -142,6 +159,13 @@ function rc_update_service($name) {
 	}
 
 	return $retval;
+}
+
+function rc_update_service($name) {
+	 return rc_update_service_ex($name, /* reload */0);
+}
+function rc_update_reload_service($name) {
+	 return rc_update_service_ex($name, /* reload */1);
 }
 
 // Update /etc/rc.conf file.
