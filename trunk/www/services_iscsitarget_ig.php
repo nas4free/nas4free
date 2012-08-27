@@ -54,7 +54,7 @@ if ($_POST) {
 		if (!file_exists($d_sysrebootreqd_path)) {
 			$retval |= updatenotify_process("iscsitarget_ig", "iscsitargetig_process_updatenotification");
 			config_lock();
-			$retval |= rc_update_service("iscsi_target");
+			$retval |= rc_update_reload_service("iscsi_target");
 			config_unlock();
 		}
 		$savemsg = get_std_save_message($retval);
