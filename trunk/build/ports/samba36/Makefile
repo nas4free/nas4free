@@ -75,6 +75,7 @@ CONFIGURE_ARGS+=	--without-libtalloc \
 			--without-libtdb \
 			--with-libiconv="${LOCALBASE}" \
 			--enable-as-needed \
+			--disable-pie \
 			--disable-cups \
 			--disable-fam \
 			--with-winbind \
