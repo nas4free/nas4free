@@ -138,6 +138,11 @@ if [ 0 != $opt_a ]; then
 fi
 # iSCSI driver
 echo 'isboot_load="YES"' >> $MINIBSD_DIR/loader.conf
+# preload kernel drivers
+#echo 'opensolaris_load="YES"' >> $MINIBSD_DIR/loader.conf
+echo 'zfs_load="YES"' >> $MINIBSD_DIR/loader.conf
+#echo 'geom_mirror_load="YES"' >> $MINIBSD_DIR/loader.conf
+#echo 'geom_stripe_load="YES"' >> $MINIBSD_DIR/loader.conf
 
 # Copy kernel.
 if [ -e "${NAS4FREE_WORKINGDIR}/kernel.gz" ] ; then

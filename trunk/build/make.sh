@@ -80,7 +80,7 @@ NAS4FREE_SVNURL="https://nas4free.svn.sourceforge.net/svnroot/nas4free/trunk"
 NAS4FREE_MFSROOT_SIZE=196
 NAS4FREE_IMG_SIZE=82
 if [ "amd64" = ${NAS4FREE_ARCH} ]; then
-	NAS4FREE_MFSROOT_SIZE=215
+	NAS4FREE_MFSROOT_SIZE=210
 	NAS4FREE_IMG_SIZE=88
 fi
 
@@ -506,6 +506,9 @@ create_image() {
 	fi
 	# iSCSI driver
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 iscsi/isboot/isboot.ko $NAS4FREE_TMPDIR/boot/kernel
+	# preload kernel drivers
+	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
+	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
 
 	echo "===> Unmount memory disk"
 	umount $NAS4FREE_TMPDIR
@@ -594,6 +597,9 @@ create_iso () {
 	fi
 	# iSCSI driver
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 iscsi/isboot/isboot.ko $NAS4FREE_TMPDIR/boot/kernel
+	# preload kernel drivers
+	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
+	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
 
 	if [ ! $LIGHT_ISO ]; then
 		echo "ISO: Copying IMG file to $NAS4FREE_TMPDIR"
@@ -682,15 +688,25 @@ create_full() {
 	fi
 	# iSCSI driver
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 iscsi/isboot/isboot.ko $NAS4FREE_TMPDIR/boot/kernel
+	# preload kernel drivers
+	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
+	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
 
 	#Generate a loader.conf for full mode:
 	echo 'kernel="kernel"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'bootfile="kernel"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'kernel_options=""' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'kern.hz="100"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'hw.est.msr_info="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'hw.hptrr.attach_generic="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'kern.maxfiles="65536"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'kern.maxfilesperproc="50000"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'kern.cam.boot_delay="8000"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'vfs.zfs.prefetch_disable="1"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'splash_bmp_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'bitmap_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'bitmap_name="/boot/splash.bmp"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'autoboot_delay="5"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'isboot_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 
 	#Check that there is no /etc/fstab file! This file can be generated only during install, and must be kept

@@ -156,6 +156,7 @@ kern.cam.boot_delay="8000"
 vfs.zfs.prefetch_disable="1"
 autoboot_delay="5"
 isboot_load="YES"
+zfs_load="YES"
 
 EOD;
 
