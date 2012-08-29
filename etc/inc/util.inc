@@ -2091,4 +2091,34 @@ function file_put_contents_safe($filename, $data, $binary = FALSE) {
 
 	return TRUE;
 }
+
+function set_php_timezone()
+{
+	global $g, $config;
+
+	$tz = $config['system']['timezone'];
+	if (empty($tz))
+		$tz = "Etc/UTC";
+
+	$lines = file("/usr/local/etc/php.ini");
+	if ($lines === FALSE) {
+		return FALSE;
+	}
+
+	// read lines of php.ini except timezone
+	$out = "";
+	foreach ($lines as $line) {
+		if (preg_match('/^\s*date\.timezone\s*=\s*/', $line, $m)) {
+			continue;
+		}
+		$out .= rtrim($line) . "\n";
+	}
+	// add timezone
+	$out .= "date.timezone = '{$tz}'\n";
+	// write php.ini
+	if (!file_put_contents_safe("/usr/local/etc/php.ini", $out)) {
+		return FALSE;
+	}
+	return TRUE;
+}
 ?>

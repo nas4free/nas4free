@@ -59,4 +59,7 @@
 
 	// Convert configuration, if necessary
 	config_upgrade();
+
+	// Set default timezone
+	set_php_timezone();
 ?>
