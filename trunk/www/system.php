@@ -187,6 +187,7 @@ if ($_POST) {
 		$config['system']['dnsallowoverride'] = $_POST['dnsallowoverride'] ? true : false;
 
 		write_config();
+		set_php_timezone();
 
 		// Check if a reboot is required.
 		if (($oldwebguiproto != $config['system']['webgui']['protocol']) ||
