@@ -73,7 +73,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("RSYNC 
 				<?php html_titleline(gettext("RSYNC Client informations"));?>
 				<tr>
 			    <td>
-			    	<?php if (!is_array($config['rsync'])):?>
+			    	<?php if (!is_array($config['rsync']) || !is_array($config['rsync']['rsyncclient'])):?>
 			    	<pre><?=gettext("No RSYNC Client configured");?></pre>
 			    	<?php else:?>
 			    	<pre><?php
