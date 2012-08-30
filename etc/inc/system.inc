@@ -531,7 +531,7 @@ function system_get_mount_usage() {
 		$capacity = chop($aline[5]);
 		$mountpoint = chop($aline[6]);
 
-		if (is_array($config['mounts'])) {
+		if (is_array($config['mounts']) && is_array($config['mounts']['mount'])) {
 			foreach ($config['mounts']['mount'] as $mountcfg) {
 				if (0 == strcmp($mountpoint, "{$g['media_path']}/{$mountcfg['sharename']}")) {
 					$result[$mountpoint] = array();
