@@ -1746,7 +1746,7 @@ function get_conf_physical_disks_list() {
 
 	$a_physicaldisk = array();
 
-	if (is_array($config['disks'])) {
+	if (is_array($config['disks']) && is_array($config['disks']['disk'])) {
 		array_sort_key($config['disks']['disk'], "name");
 		$a_disks = $config['disks']['disk'];
 		foreach ($a_disks as &$disk) { $disk['class'] = "physical"; } // Set disk type
@@ -1762,35 +1762,35 @@ function get_conf_sraid_disks_list() {
 
 	$a_vdisk = array();
 
-	if (is_array($config['gvinum'])) {
+	if (is_array($config['gvinum']) && is_array($config['gvinum']['vdisk'])) {
 		array_sort_key($config['gvinum']['vdisk'], "name");
 		$a_gvinum = $config['gvinum']['vdisk'];
 		foreach ($a_gvinum as &$vdisk) { $vdisk['class'] = "gvinum"; } // Set disk type
 		$a_vdisk = array_merge($a_vdisk, $a_gvinum);
   }
 
-	if (is_array($config['gmirror'])) {
+	if (is_array($config['gmirror']) && is_array($config['gmirror']['vdisk'])) {
 		array_sort_key($config['gmirror']['vdisk'], "name");
 		$a_gmirror = $config['gmirror']['vdisk'];
 		foreach ($a_gmirror as &$vdisk) { $vdisk['class'] = "gmirror"; } // Set disk type
 		$a_vdisk = array_merge($a_vdisk, $a_gmirror);
   }
 
-	if (is_array($config['gconcat'])) {
+	if (is_array($config['gconcat']) && is_array($config['gconcat']['vdisk'])) {
 		array_sort_key($config['gconcat']['vdisk'], "name");
 		$a_gconcat = $config['gconcat']['vdisk'];
 		foreach ($a_gconcat as &$vdisk) { $vdisk['class'] = "gconcat"; } // Set disk type
 		$a_vdisk = array_merge($a_vdisk, $a_gconcat);
   }
 
-	if (is_array($config['gstripe'])) {
+	if (is_array($config['gstripe']) && is_array($config['gstripe']['vdisk'])) {
 		array_sort_key($config['gstripe']['vdisk'], "name");
 		$a_gstripe = $config['gstripe']['vdisk'];
 		foreach ($a_gstripe as &$vdisk) { $vdisk['class'] = "gstripe"; } // Set disk type
 		$a_vdisk = array_merge($a_vdisk, $a_gstripe);
   }
 
-	if (is_array($config['graid5'])) {
+	if (is_array($config['graid5']) && is_array($config['graid5']['vdisk'])) {
 		array_sort_key($config['graid5']['vdisk'], "name");
 		$a_graid5 = $config['graid5']['vdisk'];
 		foreach ($a_graid5 as &$vdisk) { $vdisk['class'] = "graid5"; } // Set disk type
@@ -1806,7 +1806,7 @@ function get_conf_encryped_disks_list() {
 
 	$a_vdisk = array();
 
-	if (is_array($config['geli'])) {
+	if (is_array($config['geli']) && is_array($config['geli']['vdisk'])) {
 		array_sort_key($config['geli']['vdisk'], "name");
 		$a_geli = $config['geli']['vdisk'];
 		foreach ($a_geli as &$vdisk) { $vdisk['class'] = "geli"; } // Set disk type
@@ -1822,7 +1822,7 @@ function get_conf_zfs_vdevice_list() {
 
 	$result = array();
 
-	if (is_array($config['zfs']['vdevices'])) {
+	if (is_array($config['zfs']['vdevices']) && is_array($config['zfs']['vdevices']['vdevice'])) {
 		array_sort_key($config['zfs']['vdevices']['vdevice'], "name");
 		$a_vdevice = $config['zfs']['vdevices']['vdevice'];
 		foreach ($a_vdevice as &$vdevice) { $vdevice['class'] = "vdevice"; } // Set disk type

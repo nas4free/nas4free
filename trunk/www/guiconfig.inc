@@ -86,7 +86,7 @@ $tcpflags = array("fin", "syn", "rst", "psh", "ack", "urg");
 /* platforms that support firmware updating */
 $fwupplatforms = array('net45xx', 'net48xx', 'embedded', 'wrap', 'full');
 
-function do_input_validation($postdata, $reqdfields, $reqdfieldsn, $input_errors) {
+function do_input_validation($postdata, $reqdfields, $reqdfieldsn, &$input_errors) {
 	/* check for bad control characters */
 	foreach ($postdata as $pn => $pd) {
 		if (is_string($pd) && preg_match("/[\\x00-\\x08\\x0b\\x0c\\x0e-\\x1f]/", $pd)) {
@@ -102,7 +102,7 @@ function do_input_validation($postdata, $reqdfields, $reqdfieldsn, $input_errors
 }
 
 /* Validate attribute type. */
-function do_input_validation_type($postdata, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors) {
+function do_input_validation_type($postdata, $reqdfields, $reqdfieldsn, $reqdfieldst, &$input_errors) {
 	/* Validate type. */
 	for ($i = 0; $i < count($reqdfields); $i++) {
 		if (isset($postdata[$reqdfields[$i]]) && ($postdata[$reqdfields[$i]] !== "")) {
@@ -178,7 +178,7 @@ function do_input_validation_type($postdata, $reqdfields, $reqdfieldsn, $reqdfie
 	}
 }
 
-function do_input_validate_synctime($postdata, $input_errors) {
+function do_input_validate_synctime($postdata, &$input_errors) {
 	$data = array();
 	$data[] = array("field" => "minute", "all" => "all_mins", "text" => "minutes");
 	$data[] = array("field" => "hour", "all" => "all_hours", "text" => "hours");

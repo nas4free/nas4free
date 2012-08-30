@@ -69,13 +69,9 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	// Input validation.
-	$reqdfields = explode(" ", "driver port waittime");
-	$reqdfieldsn = array(gettext("Driver"), gettext("Port"), gettext("Wait time"));
-	$reqdfieldst = explode(" ", "string numeric numeric");
-
-	$reqdfields = explode(" ", "driver port titlespeed");
-	$reqdfieldsn = array(gettext("Driver"), gettext("Port"), gettext("TitleSpeed"));
-	$reqdfieldst = explode(" ", "string numeric numeric");
+	$reqdfields = explode(" ", "driver port waittime titlespeed");
+	$reqdfieldsn = array(gettext("Driver"), gettext("Port"), gettext("Wait time"), gettext("TitleSpeed"));
+	$reqdfieldst = explode(" ", "string numeric numeric  numeric");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
