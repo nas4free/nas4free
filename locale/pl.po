@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-07-17 20:52+0000\n"
+"POT-Creation-Date: 2012-08-23 20:37+0000\n"
 "PO-Revision-Date: 2012-06-02 00:23+0000\n"
-"Last-Translator: zoon01 <zoon01@nas4free.org>\n"
+"Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-17 19:24+0000\n"
-"X-Generator: Launchpad (build 15627)\n"
+"X-Launchpad-Export-Date: 2012-08-30 21:48+0000\n"
+"X-Generator: Launchpad (build 15877)\n"
 "X-Poedit-Country: POLAND\n"
 "Language: \n"
 "X-Poedit-Language: Polish\n"
@@ -283,7 +283,7 @@ msgstr "Dostęp"
 msgid "Access Restrictions"
 msgstr "Ograniczenia dostępu"
 
-msgid "Access Time"
+msgid "Access Time (atime)"
 msgstr ""
 
 msgid "Access mode"
@@ -1040,7 +1040,20 @@ msgid ""
 "Currently, 'gzip' is equivalent to 'gzip-6'."
 msgstr ""
 
-msgid "Controls the dedup method."
+msgid ""
+"Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
+"<a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
+"wiki article BEFORE using this feature.</b></br>"
+msgstr ""
+
+msgid ""
+"Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
+"<a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & "
+"deduplication</a> wiki article BEFORE using this feature.</b></br>"
 msgstr ""
 
 msgid "Controls whether this dataset can be modified."
@@ -1096,6 +1109,9 @@ msgstr "Zadanie Cron"
 
 msgid "Current"
 msgstr "Bieżący"
+
+msgid "Current Version:"
+msgstr ""
 
 msgid "Custom"
 msgstr "Własny"
@@ -2878,12 +2894,12 @@ msgid "Last config change"
 msgstr "Ostatnie zmiany konfiguracji"
 
 #, php-format
-msgid "Latest nightly build: %s"
-msgstr "Ostatnia wersja rozwojowa: %s"
+msgid "Latest Beta Build: %s"
+msgstr ""
 
 #, php-format
-msgid "Latest stable build: %s"
-msgstr "Ostatnia wersja stabilna: %s"
+msgid "Latest Release: %s"
+msgstr ""
 
 msgid "Latvian"
 msgstr "Łotewski"
@@ -4182,6 +4198,9 @@ msgstr "Numer reguły"
 msgid "Rules"
 msgstr "Reguły"
 
+msgid "Run as"
+msgstr ""
+
 msgid "Run now"
 msgstr "Uruchom teraz"
 
@@ -4371,9 +4390,6 @@ msgstr "Usługa"
 msgid "Services"
 msgstr "Usługi"
 
-msgid "Set access time on or off on the volume."
-msgstr ""
-
 msgid "Set additional group memberships for this account."
 msgstr "Ustaw dodatkową grupę dla tego konta."
 
@@ -4405,6 +4421,15 @@ msgstr ""
 "zależne od sprzętu. MTU jest używany do ograniczania rozmiaru pakietów "
 "transmitowanych przez interfejs. Nie wszystkie interfejsy wspierają "
 "ustawianie MTU, niektóre mają ograniczony zakres zmian MTU."
+
+msgid "Set title scrolling speed between 0-10 (default 10)."
+msgstr ""
+
+msgid ""
+"Set what user the service will run as (www by default). <br><b><font "
+"color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
+"security reasons, use it on your own risk!.</b></br>"
+msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
@@ -5897,6 +5922,9 @@ msgstr "Przekroczony limit czasu"
 
 msgid "Times"
 msgstr "Czasy"
+
+msgid "TitleSpeed"
+msgstr ""
 
 msgid ""
 "To configure the target, you must add at least Portal Group and Initiator "
