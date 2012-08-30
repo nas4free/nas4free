@@ -346,7 +346,13 @@ function disks_ismounted_ex($var,$key)
 			case "devicespecialfile":
 				// Must find the $val (e.g. ad0) in 'mdisk' (e.g. ad0s1).
 				// Must find the $val (e.g. /dev/ad1) in 'devicespecialfile' (e.g. /dev/ad1s1).
-				if (0 == preg_match("/^.+\/(\S{2,}\d+)([sp]\d+)$/", $var, $matches)) {
+				if (0 == preg_match("/^\/dev\/gptid\//", $var) || 0 == preg_match("/^\/dev\/ufsid\//", $var)) {
+					// complete path
+					if (0 == strcmp($amountv[$key], $var)) {
+						$result = 1;
+						break;
+					}
+				} else if (0 == preg_match("/^.+\/(\S{2,}\d+)([sp]\d+)$/", $var, $matches)) {
 					// e.g. /dev/ad10, /dev/cd1
 					if (preg_match("/" . preg_quote($var, "/") . "\D+/", $amountv[$key])) {
 						$result = 1;
@@ -370,6 +376,7 @@ function disks_ismounted_ex($var,$key)
 		}
 	}
 
+echo "resault = $result\n";
 	return $result;
 }
 
