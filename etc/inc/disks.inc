@@ -89,7 +89,7 @@ function disks_umount_all()
 	// Sync disks first
 	mwexec("/bin/sync");
 
-	if (is_array($config['mounts'])) {
+	if (is_array($config['mounts']) && is_array($config['mounts']['mount'])) {
 		foreach ($config['mounts']['mount'] as $mountent) {
 			disks_umount($mountent);
 		}
