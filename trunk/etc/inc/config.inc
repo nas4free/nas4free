@@ -44,6 +44,7 @@ require_once("xmlparse.inc");
 require_once("system.inc");
 require_once("array.inc");
 require_once("rc.inc");
+require_once("tui.inc");
 
 /* Get product information */
 $productname = get_product_name();
@@ -514,6 +515,21 @@ function config_write_cache($data) {
 // Return 0 if successful, otherwise 1
 function config_upgrade() {
 	global $config, $g;
+
+	if ($config['version'] == '9.6') {
+		putenv("TERM=xterm"); // not defined at boot
+		$result = tui_display_yesno("Your config is a blacklist. You must reset the config or reinstall.\n\nDo you want to reset to Factory Default now?", 50, 8, false);
+		if (0 == $result) {
+			config_unlock();
+			reset_factory_defaults();
+			write_console("\nrebooting now.\n");
+			mwexec("/sbin/reboot");
+			exit;
+		}
+		write_console("\ngoing to halt.\n");
+		mwexec("/sbin/halt");
+		exit;
+	}
 
 	if ($config['version'] == $g['latest_config'])
 		return 0;		/* already at latest version */
