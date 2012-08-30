@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>POT-Creation-Date: 2012-03-"
 "12 03:02+0000\n"
-"POT-Creation-Date: 2012-07-17 20:52+0000\n"
+"POT-Creation-Date: 2012-08-23 20:37+0000\n"
 "PO-Revision-Date: 2012-07-16 18:44+0000\n"
 "Last-Translator: Carsten Matzon <carsten@matzon.dk>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-07-17 19:22+0000\n"
-"X-Generator: Launchpad (build 15627)\n"
+"X-Launchpad-Export-Date: 2012-08-30 21:48+0000\n"
+"X-Generator: Launchpad (build 15877)\n"
 "X-Poedit-Country: DENMARK\n"
 "Language: \n"
 "X-Poedit-Language: Danish\n"
@@ -284,7 +284,7 @@ msgstr "Adgang"
 msgid "Access Restrictions"
 msgstr "Adgangsbegrænsninger"
 
-msgid "Access Time"
+msgid "Access Time (atime)"
 msgstr ""
 
 msgid "Access mode"
@@ -1055,8 +1055,21 @@ msgstr ""
 "tal fra 1 (hurtigst) til 9 (bedste kompressions faktor). På nuværende "
 "tidspunkt er 'gzip' det samme som 'gzip-6'."
 
-msgid "Controls the dedup method."
-msgstr "Kontrollerer metoden til dedup."
+msgid ""
+"Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
+"<a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
+"wiki article BEFORE using this feature.</b></br>"
+msgstr ""
+
+msgid ""
+"Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
+"<a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & "
+"deduplication</a> wiki article BEFORE using this feature.</b></br>"
+msgstr ""
 
 msgid "Controls whether this dataset can be modified."
 msgstr "Styrer om dette datasæt kan redigeres."
@@ -1111,6 +1124,9 @@ msgstr "Cron opgave"
 
 msgid "Current"
 msgstr "Nuværende"
+
+msgid "Current Version:"
+msgstr ""
 
 msgid "Custom"
 msgstr "Brugerdefineret"
@@ -2913,12 +2929,12 @@ msgid "Last config change"
 msgstr "Sidste konfigurations ændring"
 
 #, php-format
-msgid "Latest nightly build: %s"
-msgstr "Nyeste nightly build: %s"
+msgid "Latest Beta Build: %s"
+msgstr ""
 
 #, php-format
-msgid "Latest stable build: %s"
-msgstr "Nyeste stable build: %s"
+msgid "Latest Release: %s"
+msgstr ""
 
 msgid "Latvian"
 msgstr "Lettisk"
@@ -4251,6 +4267,9 @@ msgstr "Regel nummer"
 msgid "Rules"
 msgstr "Regler"
 
+msgid "Run as"
+msgstr ""
+
 msgid "Run now"
 msgstr "Kør nu"
 
@@ -4447,9 +4466,6 @@ msgstr "Tjeneste"
 msgid "Services"
 msgstr "Tjenester"
 
-msgid "Set access time on or off on the volume."
-msgstr ""
-
 msgid "Set additional group memberships for this account."
 msgstr "Vælg yderligere gruppe medlemsskaber for denne konto."
 
@@ -4481,6 +4497,15 @@ msgstr ""
 "grænseflade specifikt, MTUen bliver brugt til at begrænse størrelsen af "
 "pakkerne der sendes på grænsefladen. Ikke alle grænseflader understøtter "
 "justering af MTUen, og nogle grænseflader fra område begrænsninger."
+
+msgid "Set title scrolling speed between 0-10 (default 10)."
+msgstr ""
+
+msgid ""
+"Set what user the service will run as (www by default). <br><b><font "
+"color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
+"security reasons, use it on your own risk!.</b></br>"
+msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
@@ -6081,6 +6106,9 @@ msgstr "Timeout"
 msgid "Times"
 msgstr "Antal"
 
+msgid "TitleSpeed"
+msgstr ""
+
 msgid ""
 "To configure the target, you must add at least Portal Group and Initiator "
 "Group and Extent.<br />Portal Group which is identified by tag number "
@@ -6862,6 +6890,3 @@ msgstr "umount"
 
 msgid "upriv"
 msgstr "upriv"
-
-#~ msgid "WebGUI Login"
-#~ msgstr "WebGUI Login"
