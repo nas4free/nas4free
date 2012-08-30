@@ -376,7 +376,6 @@ function disks_ismounted_ex($var,$key)
 		}
 	}
 
-echo "resault = $result\n";
 	return $result;
 }
 
