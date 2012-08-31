@@ -120,6 +120,10 @@ setifconfig()
 	_gateway=`configxml_get "//interfaces/lan/gateway"`
 	if [ "${_ipaddr}" != "dhcp" -a -n "${_gateway}" ]; then
 		eval /usr/local/sbin/rconf attribute set "defaultrouter" "${_gateway}"
+		# wait response of LAN
+		eval /usr/local/sbin/rconf attribute set netwait_enable "YES"
+		eval /usr/local/sbin/rconf attribute set netwait_ip "${_gateway}"
+		eval /usr/local/sbin/rconf attribute set netwait_if "${_ifn}"
 	fi
 
 	# OPT interfaces:

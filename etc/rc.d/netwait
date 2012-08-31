@@ -12,6 +12,7 @@
 #
 # PROVIDE: netwait
 # REQUIRE: NETWORKING
+# BEFORE: DAEMON
 # KEYWORD: nojail
 #
 # The netwait script is intended to be used by systems which have
