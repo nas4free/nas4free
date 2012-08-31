@@ -550,6 +550,9 @@ usr/sbin/nfscbd
 ## rpcbind -- universal addresses to RPC program number mapper
 usr/sbin/rpcbind
 
+## rpcinfo -- report RPC information
+usr/bin/rpcinfo
+
 ## rpc.lockd -- NFS file locking daemon
 usr/sbin/rpc.lockd
 
@@ -690,6 +693,7 @@ etc/networks
 etc/protocols
 #etc/rc.firewall6
 etc/remote
+etc/rpc
 
 ####### contents of /etc/defaults
 etc/defaults/devfs.rules
