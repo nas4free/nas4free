@@ -41,6 +41,13 @@
 require_once("functions.inc");
 require_once("util.inc");
 
+// For convenience
+function set_kern_geom_debugflags($val) {
+	if (empty($val))
+		$val = 0;
+	system("/sbin/sysctl kern.geom.debugflags=$val 2>&1");
+}
+
 // Mount all configured disks.
 // Return 0 if successful, 1 if error
 function disks_mount_all()
@@ -858,7 +865,7 @@ function disks_format($disk, $type, $notinitmbr, $minspace, $volumelabel, $aft4k
 	// Get disk information
 	$diskinfo = disks_get_diskinfo($disk);
 
-	system("/sbin/sysctl kern.geom.debugflags=0x10 2>&1");
+	set_kern_geom_debugflags(0x10);
 	if (!$notinitmbr) {
 		echo gettext("Deleting MBR and partition table")."...\n";
 		$count = (1024*1024) / $diskinfo['sectorsize'];
@@ -988,7 +995,7 @@ function disks_format($disk, $type, $notinitmbr, $minspace, $volumelabel, $aft4k
 
 			break;
 	}
-	system("/sbin/sysctl kern.geom.debugflags=0 2>&1");
+	set_kern_geom_debugflags(0);
 
 	echo gettext("Done")."!\n";
 }
