@@ -22,6 +22,7 @@ load_rc_config "${name}"
 
 # Custom commands
 start_precmd="istgt_mkconf"
+reload_precmd="istgt_mkconf"
 mkconf_cmd="istgt_mkconf"
 extra_commands="mkconf reload"
 
