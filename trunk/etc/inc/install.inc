@@ -100,12 +100,15 @@ function install_dd_image($harddrive)
 		return 1;
 	}
 
+	set_kern_geom_debugflags(0x10);
 	// dd image file on the destination disk.
 	write_console("Installing system image on device {$harddrive}.\n");
 	if (mwexec("/usr/bin/gzip -cd /mnt/cdrom/{$imgfilename} | /bin/dd of=/dev/{$harddrive} ibs=16k obs=16k > /dev/null 2>&1")) {
+		set_kern_geom_debugflags(0);
 		write_console("Error: Failed to dd image on '/dev/{$harddrive}'!\n");
 		return 1;
 	}
+	set_kern_geom_debugflags(0);
 
 	return 0;
 }
@@ -482,6 +485,7 @@ function install_restore_config($disk)
 // Return 0 if successful, otherwise 1
 function install_init_disk($disk, $partlayout)
 {
+	set_kern_geom_debugflags(0x10);
 	// Initialize the destination using fdisk.
 	write_console("Create slice/partition table on device {$disk}.\n");
 	$slicesize = array(0, 0, 0, 0);
@@ -489,6 +493,7 @@ function install_init_disk($disk, $partlayout)
 		$slicesize[$partlayoutv['slice'] - 1] = $partlayoutv['size'];
 	}
 	if (install_fdisk($disk, $slicesize)) {
+		set_kern_geom_debugflags(0);
 		write_console("Error: Failed to create slice/partition table!\n");
 		return 1;
 	}
@@ -516,6 +521,7 @@ function install_init_disk($disk, $partlayout)
 		if ("swap" === $partlayoutv['fstype']) {
 			// Completely wipe any prior information
 			if (mwexec("/bin/dd if=/dev/zero of=/dev/{$diskdevicename} bs=512 count=34")) {
+				set_kern_geom_debugflags(0);
 				write_console("\nError: Failed to wipe any prior information on {$diskdevicename}.\n");
 				return 1;
 			}
@@ -523,6 +529,7 @@ function install_init_disk($disk, $partlayout)
 		}
 
 		if (install_bsdlabel($diskdevicename, $partlayoutv['fstype'], $startsector, $slicesize, $alignsector)) {
+			set_kern_geom_debugflags(0);
 			write_console("\nError: Failed to create BSD label on {$diskdevicename}!\n");
 			return 1;
 		}
@@ -540,10 +547,12 @@ function install_init_disk($disk, $partlayout)
 		write_console("  {$diskdevicename}\n");
 		if (install_newfs($diskdevicename, $partlayoutv['volname'],
 		   		  $newfs_sector, $newfs_fsize, $newfs_bsize)) {
+			set_kern_geom_debugflags(0);
 			write_console("\nError: Failed to create file system on {$diskdevicename}!\n");
 			return 1;
 		}
 	}
+	set_kern_geom_debugflags(0);
 
 	return 0;
 }
