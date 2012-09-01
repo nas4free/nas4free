@@ -15,12 +15,12 @@
 
 # PROVIDE: mountcritremote
 # REQUIRE: NETWORKING FILESYSTEMS cleanvar
-# KEYWORD: nojail
+# KEYWORD: nojail shutdown
 
 . /etc/rc.subr
 
 name="mountcritremote"
-stop_cmd=":"
+stop_cmd="mountcritremote_stop"
 start_cmd="mountcritremote_start"
 start_precmd="mountcritremote_precmd"
 
@@ -39,7 +39,22 @@ mountcritremote_precmd()
 
 mountcritremote_start()
 {
-	# Currently this script is used as dummy.
+	local _result
+
+	eval "/etc/rc.d.php/${name} cmd=start"
+	_result=$?
+
+	return ${_result}
+}
+
+mountcritremote_stop()
+{
+	local _result
+
+	eval "/etc/rc.d.php/${name} cmd=stop"
+	_result=$?
+
+	return ${_result}
 }
 
 load_rc_config $name

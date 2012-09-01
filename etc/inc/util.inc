@@ -916,6 +916,63 @@ function get_scsi_disks_list()
 	return $disklist;
 }
 
+function get_iscsi_disks_list()
+{
+	$disklist = array();
+
+	/* get all devlist w/bus */
+	exec("/sbin/camcontrol devlist -v",$rawdata);
+	$iscsi = false;
+	foreach ($rawdata as $line) {
+		/* iscsi bus? */
+		if (preg_match("/^scbus([-\d]+)\s+on\s+iscsi\d+\s+/",$line)) {
+			$iscsi = true;
+			continue;
+		} else if (preg_match("/^[^<]/",$line)) {
+			continue;
+		}
+		if (!$iscsi)
+			continue;
+
+		/* Get information include between parenthese: (pass0,da0) or (da0,pass0)*/
+		preg_match("/.*\(([^>]*)\).*/",$line,$match);
+		if ($match[1] == "") {
+			$iscsi = false;
+			continue;
+		}
+
+		/* Spare le resultat par la virgule  */
+		$temp = preg_split("/,/", $match[1]);
+
+		// Check if diskname is the first (da0,pass0) or the second (pass0,da0) arguement
+		$diskname = $temp[1];
+		if ($diskname[0] === "p")
+			$diskname = $temp[0];
+
+		/* On exlus les lecteurs cd */
+		if (!preg_match("/^(cd)/", $diskname  )) 	{
+			$disklist[$diskname] = array();
+			$disklist[$diskname]['name'] = $diskname;
+			$disklist[$diskname]['devicespecialfile'] = "/dev/" . $diskname;
+			$disklist[$diskname]['type'] = "iSCSI";
+
+			/* Match the description witch is include between < and > */
+			preg_match("/.*\<([^>]*)>.*/",$line,$match);
+			$disklist[$diskname]['desc'] = $match[1];
+
+			/* Get diskinfo to get disk size */
+			$diskinfo = disks_get_diskinfo($diskname);
+			$disklist[$diskname]['size'] = $diskinfo['mediasize_mbytes'] . "MB";
+
+			/* Get serial number */
+			$serial = system_get_volume_serial("/dev/" . $diskname);
+			$disklist[$diskname]['serial'] = $serial;
+		}
+	}
+
+	return $disklist;
+}
+
 // Get list of hardware RAID disks.
 //[aacd0] => Array
 //    (
