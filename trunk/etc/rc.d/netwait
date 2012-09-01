@@ -12,7 +12,7 @@
 #
 # PROVIDE: netwait
 # REQUIRE: NETWORKING
-# BEFORE: DAEMON
+# BEFORE: mountcritremote
 # KEYWORD: nojail
 #
 # The netwait script is intended to be used by systems which have

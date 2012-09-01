@@ -9,7 +9,8 @@
 #
 
 # PROVIDE: iscsi_initiator
-# REQUIRE: NETWORKING
+# REQUIRE: NETWORKING netwait
+# BEFORE: mountcritremote
 # KEYWORD: shutdown
 # XQUERY: -i "count(//iscsiinit/vdisk) > 0" -o "0" -b
 # RCVAR: iscsi_initiator
@@ -60,6 +61,21 @@ iscsi_initiator_stop()
 {
 	echo "Stopping ${name}."
 	/usr/bin/killall -HUP iscontrol > /dev/null 2>&1
+
+	retry=20
+	echo "Wait for iSCSI session end"
+	while [ $retry -ne 0 ]; do
+		num=`/sbin/sysctl -q -n net.iscsi_initiator.sessions`
+		[ $num -eq 0 ] && break;
+		echo -n "."
+		sleep 1
+		retry=`/bin/expr $retry - 1`
+	done
+	if [ $retry -eq 0 ]; then
+		echo ".Give up"
+	else
+		echo ".OK"
+	fi
 }
 
 run_rc_command "$1"
