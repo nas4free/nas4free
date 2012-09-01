@@ -59,6 +59,8 @@ if ($_POST) {
 		}
 		$savemsg = get_std_save_message($retval);
 		if ($retval == 0) {
+			$savemsg .= "<br>";
+			$savemsg .= sprintf(gettext("The reloading request has been sent to the daemon. You can see the result by <a href=\"%s\">Log</a>."), "diag_log.php?log=2");
 			updatenotify_delete("iscsitarget_ig");
 		}
 	}
