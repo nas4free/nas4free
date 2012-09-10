@@ -358,6 +358,7 @@ class FileChooser
 
 	function file_list($dir, $files)
 	{
+    $ret = "";
     $ret .= '<tr>';
     $ret .= '<td class="filelist">';
     $ret .= '<table cellspacing="0" border="0">';
@@ -495,6 +496,7 @@ class FileChooser
 
   function navigation_bar($path)
 	{
+    $ret = "";
     $ret .= <<<EOD
 	<tr>
 	<td class="navbar">

@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_firmware.php
@@ -246,13 +245,13 @@ if ($_POST && !file_exists($d_firmwarelock_path)) {
 			}
 
 			// Cleanup if there were errors.
-			if ($input_errors) {
+			if (!empty($input_errors)) {
 				rc_exec_script("/etc/rc.firmware disable");
 				unlink_if_exists($d_fwupenabled_path);
 			}
 
 			// Upgrade firmware if there were no errors.
-			if (!$input_errors && !file_exists($d_firmwarelock_path) && (!$sig_warning || $_POST['sig_override'])) {
+			if (empty($input_errors) && !file_exists($d_firmwarelock_path) && (empty($sig_warning) || $_POST['sig_override'])) {
 				touch($d_firmwarelock_path);
 
 				switch($g['platform']) {
@@ -293,13 +292,13 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="tabcont">
-			<?php if ($input_errors) print_input_errors($input_errors); ?>
-			<?php if ($savemsg) print_info_box($savemsg); ?>
+			<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
+			<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
 			<?php html_titleline(gettext("Firmware"));?>
 			<?php html_text("Current version", gettext("Current Version:"), sprintf("%s %s (%s)", get_product_name(), get_product_version(), get_product_revision()));?>
 			<?php html_separator();?>
-			<?php if ($fwinfo) {
+			<?php if (isset($fwinfo) && $fwinfo) {
 				html_titleline(gettext("Online version check"));
 				echo "<tr id='fwinfo'><td class='vtable' colspan='2'>";
 				echo "{$fwinfo}";
@@ -310,7 +309,7 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
 			</table>
 			<?php if (!in_array($g['platform'], $fwupplatforms)): ?>
 			<?php print_error_box(gettext("Firmware uploading is not supported on this platform."));?>
-			<?php elseif ($sig_warning && !$input_errors): ?>
+			<?php elseif (!empty($sig_warning) && empty($input_errors)): ?>
 			<form action="system_firmware.php" method="post">
 			<?php
 			$sig_warning = "<strong>" . $sig_warning . "</strong><br />".gettext("This means that the image you uploaded is not an official/supported image and may lead to unexpected behavior or security compromises. Only install images that come from sources that you trust, and make sure that the image has not been tampered with.<br /><br />Do you want to install this image anyway (on your own risk)?");

@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_rc.php
@@ -53,7 +52,7 @@ if (!isset($config['rc']['postinit']['cmd']) || !is_array($config['rc']['postini
 if (!isset($config['rc']['shutdown']['cmd']) || !is_array($config['rc']['shutdown']['cmd']))
 	$config['rc']['shutdown']['cmd'] = array();
 
-if ($_GET['act'] == "del")
+if (isset($_GET['act']) && $_GET['act'] == "del")
 {
 	switch($_GET['type']) {
 		case "PREINIT":

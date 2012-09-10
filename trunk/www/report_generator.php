@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	report_generator.php
@@ -45,7 +44,7 @@ EOD;
 <?php include("fbegin.inc");?>
 <?php
 // Function: is Blank. Returns true or false depending on blankness of argument.
-	function isBlank( $arg ) { return ereg( "^\s*$", $arg ); }
+	function isBlank( $arg ) { return preg_match( "/^\s*$/", $arg ); }
 
 // Put string, Ruby-style.
 	function puts( $arg ) { echo "$arg\n"; }
@@ -95,15 +94,15 @@ EOD;
 		</tr>
 		<tr>
 			<td class="label" align="right"><?=gettext("Subject");?></td>
-			<td class="text"><input id="txtSubject" name="txtSubject" type="text" size="130" value="<?php echo $_POST['txtSubject']; ?>" /></td>
+			<td class="text"><input id="txtSubject" name="txtSubject" type="text" size="130" value="<?php echo !empty($_POST['txtSubject']) ? $_POST['txtSubject'] : ""; ?>" /></td>
 		</tr>
 		<tr>
 			<td class="label" align="right"><?=gettext("Description");?></td>
-			<td class="text"><textarea id="txtDescription" name="txtDescription" rows="7" cols="80" wrap="on"><?=htmlspecialchars($_POST['txtDescription']);?></textarea></td>
+			<td class="text"><textarea id="txtDescription" name="txtDescription" rows="7" cols="80" wrap="on"><?=htmlspecialchars(!empty($_POST['txtDescription']) ? $_POST['txtDescription'] : "");?></textarea></td>
 		</tr>
 		<tr>
 			<td align="right"><?=gettext("Error");?></td>
-			<td class="text"><textarea id="txtError" name="txtError" rows="3" cols="80" wrap="on"><?=htmlspecialchars($_POST['txtError']);?></textarea></td>
+			<td class="text"><textarea id="txtError" name="txtError" rows="3" cols="80" wrap="on"><?=htmlspecialchars(!empty($_POST['txtError']) ? $_POST['txtError'] : "");?></textarea></td>
 		</tr>
 		<tr>
 			<td align="right"><?=gettext("Hardware");?></td>
@@ -122,7 +121,7 @@ EOD;
 		</tr>
   </table>
 	<?php
-	if (!isBlank($_POST['txtSubject']) && !isBlank($_POST['txtDescription'])) {
+	if (isset($_POST['txtSubject']) && !isBlank($_POST['txtSubject']) && isset($_POST['txtDescription']) && !isBlank($_POST['txtDescription'])) {
 		puts("<pre>");
 		if (isset($_POST['chk_phpBB'])) { //Format report for phpBB
 			$hr	= "[hr]1[/hr]";		//Set horizontal line

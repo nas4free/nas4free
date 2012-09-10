@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	reboot.php
@@ -65,7 +64,7 @@ if ($_POST) {
   </tr>
   <tr>
     <td class="tabcont">
-			<?php if ($rebootmsg): echo print_info_box($rebootmsg); system_reboot(); else:?>
+			<?php if (!empty($rebootmsg)): echo print_info_box($rebootmsg); system_reboot(); else:?>
 			<form action="reboot.php" method="post">
 			  <strong><?=gettext("Are you sure you want to reboot the system?");?></strong>
 				<div id="submit">

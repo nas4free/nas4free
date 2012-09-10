@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	reboot_sched.php
@@ -68,17 +67,17 @@ if ($_POST){
 	$pconfig = $_POST;
 
 	// Validate synchronization time
-	if($_POST['enable']) {
+	if(isset($_POST['enable'])) {
 		do_input_validate_synctime($_POST, $input_errors);
 	}
 
-	if (!$input_errors) {
-		$config['reboot']['enable'] = $_POST['enable'] ? true : false;
-		$config['reboot']['minute'] = $_POST['minute'];
-		$config['reboot']['hour'] = $_POST['hour'];
-		$config['reboot']['day'] = $_POST['day'];
-		$config['reboot']['month'] = $_POST['month'];
-		$config['reboot']['weekday'] = $_POST['weekday'];
+	if (empty($input_errors)) {
+		$config['reboot']['enable'] = isset($_POST['enable']) ? true : false;
+		$config['reboot']['minute'] = !empty($_POST['minute']) ? $_POST['minute'] : null;
+		$config['reboot']['hour'] = !empty($_POST['hour']) ? $_POST['hour'] : null;
+		$config['reboot']['day'] = !empty($_POST['day']) ? $_POST['day'] : null;
+		$config['reboot']['month'] = !empty($_POST['month']) ? $_POST['month'] : null;
+		$config['reboot']['weekday'] = !empty($_POST['weekday']) ? $_POST['weekday'] : null;
 		$config['reboot']['all_mins'] = $_POST['all_mins'];
 		$config['reboot']['all_hours'] = $_POST['all_hours'];
 		$config['reboot']['all_days'] = $_POST['all_days'];
@@ -144,9 +143,9 @@ function enable_change(enable_change) {
   <tr>
     <td class="tabcont">
       <form action="reboot_sched.php" method="post" name="iform" id="iform">
-      	<?php if ($input_errors) print_input_errors($input_errors);?>
+      	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
         <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Scheduled reboot"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Scheduled reboot"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
           <tr>
 						<td width="22%" valign="top" class="vncellreq"><?=gettext("Time");?></td>
 						<td width="78%" class="vtable">

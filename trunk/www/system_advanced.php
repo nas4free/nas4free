@@ -255,7 +255,7 @@ function sysconsaver_change() {
 		<td class="tabcont">
 			<form action="system_advanced.php" method="post" name="iform" id="iform">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_checkbox("disableconsolemenu", gettext("Console menu"), !empty($pconfig['disableconsolemenu']) ? true : false, gettext("Disable console menu"), gettext("Changes to this option will take effect after a reboot."));?>
 					<?php html_checkbox("enableserialconsole", gettext("Serial Console"), !empty($pconfig['enableserialconsole']) ? true : false, gettext("Enable serial console"), sprintf("<span class='red'><strong>%s</strong></span><br />%s", gettext("The COM port in BIOS has to be enabled before enabling this option."), gettext("Changes to this option will take effect after a reboot.")));?>

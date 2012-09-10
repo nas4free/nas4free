@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_cron_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -89,7 +89,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: system_cron.php");
 		exit;
 	}
@@ -104,16 +104,16 @@ if ($_POST) {
 		do_input_validate_synctime($_POST, $input_errors);
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$cronjob = array();
-		$cronjob['enable'] = $_POST['enable'] ? true : false;
+		$cronjob['enable'] = isset($_POST['enable']) ? true : false;
 		$cronjob['uuid'] = $_POST['uuid'];
 		$cronjob['desc'] = $_POST['desc'];
-		$cronjob['minute'] = $_POST['minute'];
-		$cronjob['hour'] = $_POST['hour'];
-		$cronjob['day'] = $_POST['day'];
-		$cronjob['month'] = $_POST['month'];
-		$cronjob['weekday'] = $_POST['weekday'];
+		$cronjob['minute'] = !empty($_POST['minute']) ? $_POST['minute'] : null;
+		$cronjob['hour'] = !empty($_POST['hour']) ? $_POST['hour'] : null;
+		$cronjob['day'] = !empty($_POST['day']) ? $_POST['day'] : null;
+		$cronjob['month'] = !empty($_POST['month']) ? $_POST['month'] : null;
+		$cronjob['weekday'] = !empty($_POST['weekday']) ? $_POST['weekday'] : null;
 		$cronjob['all_mins'] = $_POST['all_mins'];
 		$cronjob['all_hours'] = $_POST['all_hours'];
 		$cronjob['all_days'] = $_POST['all_days'];
@@ -175,9 +175,9 @@ function set_selected(name) {
   <tr>
     <td class="tabcont">
 			<form action="system_cron_edit.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($execmsg) print_info_box($execmsg);?>
-				<?php if ($execfailmsg) print_error_box($execfailmsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($execmsg)) print_info_box($execmsg);?>
+				<?php if (!empty($execfailmsg)) print_error_box($execfailmsg);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
           <?php html_titleline_checkbox("enable", gettext("Cron job"), $pconfig['enable'] ? true : false, gettext("Enable"));?>
 					<?php html_inputbox("command", gettext("Command"), $pconfig['command'], gettext("Specifies the command to be run."), true, 60);?>
