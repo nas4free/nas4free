@@ -87,9 +87,10 @@ fi
 # Media geometry, only relevant if bios doesn't understand LBA.
 NAS4FREE_IMG_SIZE_SEC=`expr ${NAS4FREE_IMG_SIZE} \* 2048`
 NAS4FREE_IMG_SECTS=63
-NAS4FREE_IMG_HEADS=16
+#NAS4FREE_IMG_HEADS=16
+NAS4FREE_IMG_HEADS=255
 # cylinder alignment
-NAS4FREE_IMG_SIZE_SEC=`expr \( $NAS4FREE_IMG_SIZE_SEC / \( $NAS4FREE_IMG_SECTS \* $NAS4FREE_IMG_HEADS \) \) \* \( $NAS4FREE_IMG_SECTS \* $NAS4FREE_IMG_HEADS \)`
+NAS4FREE_IMG_SIZE_SEC=`expr \( \( $NAS4FREE_IMG_SIZE_SEC - 1 + $NAS4FREE_IMG_SECTS \* $NAS4FREE_IMG_HEADS \) / \( $NAS4FREE_IMG_SECTS \* $NAS4FREE_IMG_HEADS \) \) \* \( $NAS4FREE_IMG_SECTS \* $NAS4FREE_IMG_HEADS \)`
 
 # aligned BSD partition on MBR slice
 NAS4FREE_IMG_SSTART=$NAS4FREE_IMG_SECTS
@@ -426,8 +427,8 @@ create_image() {
 	fi
 
 	# Cleanup.
-	[ -f ${NAS4FREE_WORKINGDIR}/image.bin ] && rm -f image.bin
-	[ -f ${NAS4FREE_WORKINGDIR}/image.bin.gz ] && rm -f image.bin.gz
+	[ -f ${NAS4FREE_WORKINGDIR}/image.bin ] && rm -f ${NAS4FREE_WORKINGDIR}/image.bin
+	[ -f ${NAS4FREE_WORKINGDIR}/image.bin.gz ] && rm -f ${NAS4FREE_WORKINGDIR}/image.bin.gz
 
 	# Set platform information.
 	PLATFORM="${NAS4FREE_XARCH}-embedded"
@@ -612,7 +613,7 @@ create_iso () {
 
 	echo "Generating SHA256 CHECKSUM File"
 	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.checksum"
-	cd ${NAS4FREE_ROOTDIR} && sha256 *.img *.iso >> ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
+	cd ${NAS4FREE_ROOTDIR} && sha256 *.img *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
 
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
@@ -625,6 +626,134 @@ create_iso_light() {
 	LIGHT_ISO=1
 	create_iso;
 	unset LIGHT_ISO
+	return 0
+}
+
+create_usb () {
+	# Check if rootfs (contining OS image) exists.
+	if [ ! -d "$NAS4FREE_ROOTFS" ]; then
+		echo "==> Error: ${NAS4FREE_ROOTFS} does not exist!."
+		return 1
+	fi
+
+	# Cleanup.
+	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
+	[ -f ${NAS4FREE_WORKINGDIR}/image.bin ] && rm -f ${NAS4FREE_WORKINGDIR}/image.bin
+	[ -f ${NAS4FREE_WORKINGDIR}/image.bin.gz ] && rm -f ${NAS4FREE_WORKINGDIR}/image.bin.gz
+	[ -f ${NAS4FREE_WORKINGDIR}/mfsroot.gz ] && rm -f ${NAS4FREE_WORKINGDIR}/mfsroot.gz
+	[ -f ${NAS4FREE_WORKINGDIR}/usb-image.bin ] && rm -f ${NAS4FREE_WORKINGDIR}/usb-image.bin
+	[ -f ${NAS4FREE_WORKINGDIR}/usb-image.bin.gz ] && rm -f ${NAS4FREE_WORKINGDIR}/usb-image.bin.gz
+
+	echo "USB: Generating the $NAS4FREE_PRODUCTNAME Image file:"
+	create_image;
+
+	# Set Platform Informations.
+	PLATFORM="${NAS4FREE_XARCH}-liveUSB"
+	echo $PLATFORM > ${NAS4FREE_ROOTFS}/etc/platform
+
+	# Set Revision.
+	echo ${NAS4FREE_REVISION} > ${NAS4FREE_ROOTFS}/etc/prd.revision
+
+	IMGFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveUSB-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.img"
+
+	echo "USB: Generating temporary folder '$NAS4FREE_TMPDIR'"
+	mkdir $NAS4FREE_TMPDIR
+	create_mfsroot;
+
+	IMGSIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/image.bin.gz)
+	MFSSIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/mfsroot.gz)
+	IMGSIZEM=$(expr \( $IMGSIZE + $MFSSIZE - 1 + 1024 \* 1024 \) / 1024 / 1024)
+	USBROOTM=64
+	USBIMGSIZEM=$(expr $USBROOTM + $IMGSIZEM)
+
+	# 1MB aligned USB stick
+	echo "USB: Creating Empty IMG File"
+	dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/usb-image.bin bs=1m count=${USBIMGSIZEM}
+	echo "USB: Use IMG as a memory disk"
+	md=`mdconfig -a -t vnode -f ${NAS4FREE_WORKINGDIR}/usb-image.bin -x ${NAS4FREE_IMG_SECTS} -y ${NAS4FREE_IMG_HEADS}`
+	diskinfo -v ${md}
+
+	echo "USB: Creating BSD partition on this memory disk"
+	gpart create -s mbr ${md}
+	gpart bootcode -b /boot/mbr ${md}
+	bsdlabel -w ${md}
+	bsdlabel -m ${NAS4FREE_ARCH} -B -b ${NAS4FREE_BOOTDIR}/boot ${md}
+	bsdlabel ${md}
+	mdp=${md}a
+
+	echo "USB: Formatting this memory disk using UFS"
+	#newfs -S 512 -b 32768 -f 4096 -O2 -U -j -o time -m 8 /dev/${mdp}
+	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -U -o space -m 0 /dev/${mdp}
+
+	echo "USB: Mount this virtual disk on $NAS4FREE_TMPDIR"
+	mount /dev/${mdp} $NAS4FREE_TMPDIR
+
+	echo "USB: Copying previously generated MFSROOT file to memory disk"
+	cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
+
+	echo "USB: Copying Bootloader File(s) to memory disk"
+	mkdir -p $NAS4FREE_TMPDIR/boot
+	mkdir -p $NAS4FREE_TMPDIR/boot/kernel $NAS4FREE_TMPDIR/boot/defaults $NAS4FREE_TMPDIR/boot/zfs
+	mkdir -p $NAS4FREE_TMPDIR/conf
+	cp $NAS4FREE_ROOTFS/conf.default/config.xml $NAS4FREE_TMPDIR/conf
+	cp $NAS4FREE_BOOTDIR/kernel/kernel.gz $NAS4FREE_TMPDIR/boot/kernel
+	cp $NAS4FREE_BOOTDIR/boot $NAS4FREE_TMPDIR/boot
+	cp $NAS4FREE_BOOTDIR/loader $NAS4FREE_TMPDIR/boot
+	cp $NAS4FREE_BOOTDIR/loader.conf $NAS4FREE_TMPDIR/boot
+	cp $NAS4FREE_BOOTDIR/loader.rc $NAS4FREE_TMPDIR/boot
+	cp $NAS4FREE_BOOTDIR/loader.4th $NAS4FREE_TMPDIR/boot
+	cp $NAS4FREE_BOOTDIR/support.4th $NAS4FREE_TMPDIR/boot
+	cp $NAS4FREE_BOOTDIR/defaults/loader.conf $NAS4FREE_TMPDIR/boot/defaults/
+	cp $NAS4FREE_BOOTDIR/device.hints $NAS4FREE_TMPDIR/boot
+	if [ 0 != $OPT_BOOTMENU ]; then
+		cp $NAS4FREE_SVNDIR/boot/menu.4th $NAS4FREE_TMPDIR/boot
+		#cp $NAS4FREE_BOOTDIR/screen.4th $NAS4FREE_TMPDIR/boot
+		#cp $NAS4FREE_BOOTDIR/frames.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/brand.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/check-password.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/color.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/delay.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/frames.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/menu-commands.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/screen.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/shortcuts.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/version.4th $NAS4FREE_TMPDIR/boot
+	fi
+	if [ 0 != $OPT_BOOTSPLASH ]; then
+		cp $NAS4FREE_SVNDIR/boot/splash.bmp $NAS4FREE_TMPDIR/boot
+		install -v -o root -g wheel -m 555 ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules/splash/bmp/splash_bmp.ko $NAS4FREE_TMPDIR/boot/kernel
+	fi
+	if [ "amd64" != ${NAS4FREE_ARCH} ]; then
+		cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 apm/apm.ko $NAS4FREE_TMPDIR/boot/kernel
+	fi
+	# iSCSI driver
+	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 iscsi/isboot/isboot.ko $NAS4FREE_TMPDIR/boot/kernel
+	# preload kernel drivers
+	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
+	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
+
+	echo "USB: Copying IMG file to $NAS4FREE_TMPDIR"
+	cp ${NAS4FREE_WORKINGDIR}/image.bin.gz ${NAS4FREE_TMPDIR}/${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-embedded.gz
+
+	echo "USB: Unmount memory disk"
+	umount $NAS4FREE_TMPDIR
+	echo "USB: Detach memory disk"
+	mdconfig -d -u ${md}
+	#echo "USB: Compress the IMG file"
+	#gzip -9n $NAS4FREE_WORKINGDIR/usb-image.bin
+	#cp $NAS4FREE_WORKINGDIR/usb-image.bin.gz $NAS4FREE_ROOTDIR/$IMGFILENAME
+	cp $NAS4FREE_WORKINGDIR/usb-image.bin $NAS4FREE_ROOTDIR/$IMGFILENAME
+
+	echo "Generating SHA256 CHECKSUM File"
+	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.checksum"
+	cd ${NAS4FREE_ROOTDIR} && sha256 *.img *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
+
+	# Cleanup.
+	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
+	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
+	[ -f $NAS4FREE_WORKINGDIR/image.bin ] && rm -f $NAS4FREE_WORKINGDIR/image.bin
+	[ -f $NAS4FREE_WORKINGDIR/usb-image.bin ] && rm -f $NAS4FREE_WORKINGDIR/usb-image.bin
+
 	return 0
 }
 
@@ -900,9 +1029,10 @@ Menu Options:
 1  - Update NAS4FREE Source Files to CURRENT.
 2  - Compile NAS4FREE from Scratch.
 10 - Create 'Embedded' (IMG) File (rawrite to CF/USB/DD).
-11 - Create 'LiveCD' (ISO) File.
-12 - Create 'LiveCD' (ISO) File without 'Embedded' File.
-13 - Create 'Full' (TGZ) Update File.
+11 - Create 'LiveUSB' (IMG) File.
+12 - Create 'LiveCD' (ISO) File.
+13 - Create 'LiveCD' (ISO) File without 'Embedded' File.
+14 - Create 'Full' (TGZ) Update File.
 *  - Exit.
 Press # "
 	read choice
@@ -910,9 +1040,10 @@ Press # "
 		1)	update_svn;;
 		2)	build_system;;
 		10)	create_image;;
-		11)	create_iso;;
-		12)	create_iso_light;;
-		13)	create_full;;
+		11)	create_usb;;
+		12)	create_iso;;
+		13)	create_iso_light;;
+		14)	create_full;;
 		*)	exit 0;;
 	esac
 

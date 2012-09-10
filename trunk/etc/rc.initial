@@ -35,6 +35,12 @@ if configxml_isset "//system/disableconsolemenu"; then
 		read tmp
 	done
 else
+	case ${PLATFORM} in
+		*-live[cC][dD]|*-live[uU][sS][bB])
+			echo
+			echo "Now, the blank USB memory for installation can be inserted.";;
+	esac
+
 	# endless loop
 	while : ; do
 		# display menu
@@ -51,8 +57,8 @@ else
 		echo "7) Reboot System"
 		echo "8) Shutdown System"
 		case ${PLATFORM} in
-			*-live[cC][dD])
-				echo "9) Install/Upgrade NAS4Free from LiveCD";;
+			*-live[cC][dD]|*-live[uU][sS][bB])
+				echo "9) Install/Upgrade NAS4Free from LiveCD/USB";;
 		esac
 
 		echo
@@ -86,7 +92,7 @@ else
 				;;
 			9)
 				case ${PLATFORM} in
-					*-live[cC][dD])
+					*-live[cC][dD]|*-live[uU][sS][bB])
 						/etc/rc.initial.install
 				esac
 				;;

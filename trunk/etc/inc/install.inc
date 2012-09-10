@@ -42,13 +42,63 @@ require_once("functions.inc");
 require_once("util.inc");
 require_once("xmlparse.inc");
 
+
+// Check image file
+function check_install_image($dev, $pt, $img)
+{
+	$mntpath = "/mnt";
+	if (!file_exists("{$dev}{$pt}"))
+		return 1;
+	if (0 != mwexec("/sbin/mount -r {$dev}{$pt} {$mntpath}"))
+		return 1;
+	if (!file_exists("{$mntpath}/{$img}")) {
+		mwexec("/sbin/umount {$mntpath}");
+		return 1;
+	}
+	mwexec("/sbin/umount {$mntpath}");
+	return 0;
+}
+
+// Search the drive that contains upgrade image.
+function get_install_source_drive()
+{
+	global $g;
+
+	$mntpath = "/mnt";
+	$imgfile = get_product_name(). "-{$g['arch']}-embedded.gz";
+
+	$cdlist = get_cdrom_list();
+	$dalist = get_scsi_disks_list();
+	$ptlist = array("a", "s1a", "p2");
+
+	$disklist = $cdlist;
+	foreach ($dalist as $disk) {
+		$dev = $disk['devicespecialfile'];
+		foreach ($ptlist as $pt) {
+			if (0 == check_install_image($dev, $pt, $imgfile)) {
+				$diskname = $disk['name'];
+				$disklist[$diskname] = array();
+				$disklist[$diskname]['name'] = $diskname;
+				$disklist[$diskname]['devicespecialfile'] = "{$dev}{$pt}";
+				$disklist[$diskname]['type'] = "UFS";
+				$disklist[$diskname]['size'] = "NA";
+				$disklist[$diskname]['desc'] = $disk['desc'];
+				$disklist[$diskname]['serial'] = $disk['desc'];
+				break;
+			}
+		}
+	}
+	return $disklist;
+}
+
 // Mount the CDROM.
 // Return 0 if successful, otherwise 1
-function install_mount_cd($cdrom)
+function install_mount_cd($drive)
 {
-	write_console("Mount CDROM.\n");
+	write_console("Mount CDROM/USB.\n");
 
 	$mntpath = "/mnt/cdrom";
+	$cdrom = $drive['name'];
 
 	// Creating temporary directory to mount CDROM.
 	if (1 == mwexec("/bin/mkdir -p {$mntpath}")) {
@@ -56,11 +106,20 @@ function install_mount_cd($cdrom)
 		return 1;
 	}
 
-	// Mounting the CDROM.
-	if (1 == mwexec("/sbin/mount_cd9660 /dev/{$cdrom} {$mntpath}")) {
-		write_console("Error: Failed to mount device '{$cdrom}'!\n");
-		@rmdir($mntpath);
-		return 1;
+	if ($drive['type'] == "UFS") {
+		// Mounting USB stick
+		if (1 == mwexec("/sbin/mount -r {$drive['devicespecialfile']} {$mntpath}")) {
+			write_console("Error: Failed to mount device '{$drive['name']}'!\n");
+			@rmdir($mntpath);
+			return 1;
+		}
+	} else {
+		// Mounting the CDROM.
+		if (1 == mwexec("/sbin/mount_cd9660 /dev/{$cdrom} {$mntpath}")) {
+			write_console("Error: Failed to mount device '{$cdrom}'!\n");
+			@rmdir($mntpath);
+			return 1;
+		}
 	}
 
 	return 0;
@@ -70,7 +129,7 @@ function install_mount_cd($cdrom)
 // Return 0 if successful, otherwise 1
 function install_unmount_cd()
 {
-	write_console("Unmount CDROM.\n");
+	write_console("Unmount CDROM/USB.\n");
 
 	$result = 0;
 	$mntpath = "/mnt/cdrom";
