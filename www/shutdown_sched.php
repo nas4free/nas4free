@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	shutdown_sched.php
@@ -68,17 +67,17 @@ if ($_POST){
 	$pconfig = $_POST;
 
 	// Validate synchronization time
-	if($_POST['enable']) {
+	if(isset($_POST['enable'])) {
 		do_input_validate_synctime($_POST, $input_errors);
 	}
 
-	if (!$input_errors) {
-		$config['shutdown']['enable'] = $_POST['enable'] ? true : false;
-		$config['shutdown']['minute'] = $_POST['minute'];
-		$config['shutdown']['hour'] = $_POST['hour'];
-		$config['shutdown']['day'] = $_POST['day'];
-		$config['shutdown']['month'] = $_POST['month'];
-		$config['shutdown']['weekday'] = $_POST['weekday'];
+	if (empty($input_errors)) {
+		$config['shutdown']['enable'] = isset($_POST['enable']) ? true : false;
+		$config['shutdown']['minute'] = !empty($_POST['minute']) ? $_POST['minute'] : null;
+		$config['shutdown']['hour'] = !empty($_POST['hour']) ? $_POST['hour'] : null;
+		$config['shutdown']['day'] = !empty($_POST['day']) ? $_POST['day'] : null;
+		$config['shutdown']['month'] = !empty($_POST['month']) ? $_POST['month'] : null;
+		$config['shutdown']['weekday'] = !empty($_POST['weekday']) ? $_POST['weekday'] : null;
 		$config['shutdown']['all_mins'] = $_POST['all_mins'];
 		$config['shutdown']['all_hours'] = $_POST['all_hours'];
 		$config['shutdown']['all_days'] = $_POST['all_days'];
@@ -144,9 +143,9 @@ function enable_change(enable_change) {
   <tr>
     <td class="tabcont">
       <form action="shutdown_sched.php" method="post" name="iform" id="iform">
-      	<?php if ($input_errors) print_input_errors($input_errors);?>
+      	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
         <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Scheduled shutdown"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Scheduled shutdown"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
           <tr>
 						<td width="22%" valign="top" class="vncellreq"><?=gettext("Time");?></td>
 						<td width="78%" class="vtable">

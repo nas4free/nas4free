@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_defaults.php
@@ -56,7 +55,7 @@ if ($_POST) {
 }
 ?>
 <?php include("fbegin.inc");?>
-<?php if ($rebootmsg): echo print_info_box($rebootmsg); else:?>
+<?php if (!empty($rebootmsg)): echo print_info_box($rebootmsg); else:?>
 <form action="system_defaults.php" method="post">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>

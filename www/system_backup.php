@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_backup.php
@@ -102,8 +101,8 @@ if ($_POST) {
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td class="tabcont">
-				<?php if ($errormsg) print_error_box($errormsg);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 			  <table width="100%" border="0" cellspacing="0" cellpadding="6">
 			    <tr>
 			      <td colspan="2" class="listtopic"><?=gettext("Backup configuration");?></td>

@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_edit.php
@@ -44,7 +43,7 @@ $savetopath = "";
 if (isset($_POST['savetopath']))
 	$savetopath = htmlspecialchars($_POST['savetopath']);
 
-if (($_POST['submit'] === gettext("Load")) && file_exists($savetopath) && is_file($savetopath)) {
+if ((isset($_POST['submit']) && $_POST['submit'] === gettext("Load")) && file_exists($savetopath) && is_file($savetopath)) {
 	$content = file_get_contents($savetopath);
 	$edit_area = "";
 	if (stristr($savetopath, ".php") == true)
@@ -59,22 +58,22 @@ if (($_POST['submit'] === gettext("Load")) && file_exists($savetopath) && is_fil
 		$language = "js";
 	else if (stristr($savetopath, ".css") == true)
 		$language = "css";
-} else if (($_POST['submit'] === gettext("Save"))) {
+} else if ((isset($_POST['submit']) && $_POST['submit'] === gettext("Save"))) {
 	conf_mount_rw();
-	$content = ereg_replace("\r","",$_POST['code']) ;
+	$content = preg_replace("/\r/","",$_POST['code']) ;
 	file_put_contents($savetopath, $content);
 	$edit_area = "";
 	$savemsg = gettext("Saved file to") . " " . $savetopath;
 	if ($savetopath === "{$g['cf_conf_path']}/config.xml")
 		unlink_if_exists("{$g['tmp_path']}/config.cache");
 	conf_mount_ro();
-} else if (($_POST['submit'] === gettext("Load")) && (!file_exists($savetopath) || !is_file($savetopath))) {
+} else if ((isset($_POST['submit']) && $_POST['submit'] === gettext("Load")) && (!file_exists($savetopath) || !is_file($savetopath))) {
 	$savemsg = gettext("File not found") . " " . $savetopath;
 	$content = "";
 	$savetopath = "";
 }
 
-if($_POST['highlight'] <> "") {
+if(isset($_POST['highlight']) && $_POST['highlight'] <> "") {
 	if($_POST['highlight'] == "yes" or
 	  $_POST['highlight'] == "enabled") {
 		$highlight = "yes";
@@ -85,12 +84,12 @@ if($_POST['highlight'] <> "") {
 	$highlight = "no";
 }
 
-if($_POST['rows'] <> "")
+if(isset($_POST['rows']) && $_POST['rows'] <> "")
 	$rows = $_POST['rows'];
 else
 	$rows = 30;
 
-if($_POST['cols'] <> "")
+if(isset($_POST['cols']) && $_POST['cols'] <> "")
 	$cols = $_POST['cols'];
 else
 	$cols = 66;
@@ -100,17 +99,17 @@ else
 	<tr>
 		<td class="tabcont">
 			<form action="system_edit.php" method="post">
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" cellpadding='9' cellspacing='9' bgcolor='#eeeeee'>
 					<tr>
 						<td>
 							<span class="label"><?=gettext("File path");?></span>
 							<input size="42" id="savetopath" name="savetopath" value="<?=$savetopath;?>" />
-							<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.savetopath; filechooser = window.open("filechooser.php?p="+escape(ifield.value), "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." />
+							<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.savetopath; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield.value), "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." />
 							<input name="submit" type="submit" class="formbtn" id="Load" value="<?=gettext("Load");?>" />
 							<input name="submit" type="submit" class="formbtn" id="Save" value="<?=gettext("Save");?>" />
 							<hr noshade="noshade" />
-							<?php if($_POST['highlight'] == "no"): ?>
+							<?php if(isset($_POST['highlight']) && $_POST['highlight'] == "no"): ?>
 							<?=gettext("Rows"); ?>: <input size="3" name="rows" value="<? echo $rows; ?>" />
 							<?=gettext("Cols"); ?>: <input size="3" name="cols" value="<? echo $cols; ?>" />
 							|
@@ -128,7 +127,7 @@ else
 						<td valign="top" class="label">
 							<div style="background: #eeeeee;" id="textareaitem">
 							<!-- NOTE: The opening *and* the closing textarea tag must be on the same line. -->
-							<textarea style="width: 98%; margin: 7px;" class="<?php echo $language; ?>:showcolumns" rows="<?php echo $rows; ?>" cols="<?php echo $cols; ?>" name="code"><?php echo htmlspecialchars($content);?></textarea>
+							<textarea style="width: 98%; margin: 7px;" class="<?php echo $language; ?>:showcolumns" rows="<?php echo $rows; ?>" cols="<?php echo $cols; ?>" name="code"><?php echo htmlspecialchars(!empty($content) ? $content : "");?></textarea>
 							</div>
 						</td>
 					</tr>

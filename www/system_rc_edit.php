@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_rc_edit.php
@@ -42,11 +41,13 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$id = $_GET['id'];
+if (isset($_GET['id']))
+	$id = $_GET['id'];
 if (isset($_POST['id']))
 	$id = $_POST['id'];
 
-$type = $_GET['type'];
+if (isset($_GET['type']))
+	$type = $_GET['type'];
 if (isset($_POST['type']))
 	$type = $_POST['type'];
 
@@ -83,7 +84,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: system_rc.php");
 		exit;
 	}
@@ -96,7 +97,7 @@ if ($_POST) {
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		switch($_POST['type']) {
 			case "PREINIT":
 				$a_cmd = &$config['rc']['preinit']['cmd'];
@@ -140,7 +141,7 @@ if ($_POST) {
   <tr>
     <td class="tabcont">
 			<form action="system_rc_edit.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors); ?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_inputbox("command", gettext("Command"), $pconfig['command'], gettext("The command to be executed."), true, 60);?>
 					<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("PREINIT" => "PreInit", "POSTINIT" => "PostInit", "SHUTDOWN" => "Shutdown"), gettext("Execute command pre or post system initialization (booting) or before system shutdown."), true, isset($pconfig['type']));?>

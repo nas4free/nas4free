@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_proxy.php
@@ -72,24 +71,24 @@ if ($_POST) {
 	$reqdfieldsn = array();
 	$reqdfieldst = array();
 
-	if ($_POST['http_enable']) {
+	if (isset($_POST['http_enable'])) {
 		$reqdfields = array_merge($reqdfields, explode(" ", "http_address http_port"));
 		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Address"),gettext("Port")));
 		$reqdfieldst = array_merge($reqdfieldst,array("string","numeric"));
 
-		if ($_POST['http_auth']) {
+		if (isset($_POST['http_auth'])) {
 			$reqdfields = array_merge($reqdfields, explode(" ", "http_username http_password"));
 			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("User"),gettext("Password")));
 			$reqdfieldst = array_merge($reqdfieldst,array("string","password"));
 		}
 	}
 
-	if ($_POST['ftp_enable']) {
+	if (isset($_POST['ftp_enable'])) {
 		$reqdfields = array_merge($reqdfields, explode(" ", "ftp_address ftp_port"));
 		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Address"),gettext("Port")));
 		$reqdfieldst = array_merge($reqdfieldst,array("string","numeric"));
 
-		if ($_POST['ftp_auth']) {
+		if (isset($_POST['ftp_auth'])) {
 			$reqdfields = array_merge($reqdfields, explode(" ", "ftp_username ftp_password"));
 			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("User"),gettext("Password")));
 			$reqdfieldst = array_merge($reqdfieldst,array("string","password"));
@@ -99,24 +98,24 @@ if ($_POST) {
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
-	if ($_POST['http_auth']) {
-		if (($_POST['password'] && !is_validpassword($_POST['password']))) {
+	if (isset($_POST['http_auth'])) {
+		if (($_POST['http_password'] && !is_validpassword($_POST['http_password']))) {
 			$input_errors[] = gettext("The password contains the illegal character ':'.");
 		}
 	}
 
-	if (!$input_errors) {
-		$config['system']['proxy']['http']['enable'] = $pconfig['http_enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['system']['proxy']['http']['enable'] = isset($pconfig['http_enable']) ? true : false;
 		$config['system']['proxy']['http']['address'] = $pconfig['http_address'];
 		$config['system']['proxy']['http']['port'] = $pconfig['http_port'];
-		$config['system']['proxy']['http']['auth'] = $pconfig['http_auth'] ? true : false;
+		$config['system']['proxy']['http']['auth'] = isset($pconfig['http_auth']) ? true : false;
 		$config['system']['proxy']['http']['username'] = $pconfig['http_username'];
 		$config['system']['proxy']['http']['password'] = $pconfig['http_password'];
 
-		$config['system']['proxy']['ftp']['enable'] = $pconfig['ftp_enable'] ? true : false;
+		$config['system']['proxy']['ftp']['enable'] = isset($pconfig['ftp_enable']) ? true : false;
 		$config['system']['proxy']['ftp']['address'] = $pconfig['ftp_address'];
 		$config['system']['proxy']['ftp']['port'] = $pconfig['ftp_port'];
-		$config['system']['proxy']['ftp']['auth'] = $pconfig['ftp_auth'] ? true : false;
+		$config['system']['proxy']['ftp']['auth'] = isset($pconfig['ftp_auth']) ? true : false;
 		$config['system']['proxy']['ftp']['username'] = $pconfig['ftp_username'];
 		$config['system']['proxy']['ftp']['password'] = $pconfig['ftp_password'];
 
@@ -205,21 +204,21 @@ function proxy_auth_change() {
   <tr>
     <td class="tabcont">
     	<form action="system_proxy.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("http_enable", gettext("HTTP Proxy"), $pconfig['http_enable'] ? true : false, gettext("Enable"), "enable_change(this)");?>
+					<?php html_titleline_checkbox("http_enable", gettext("HTTP Proxy"), !empty($pconfig['http_enable']) ? true : false, gettext("Enable"), "enable_change(this)");?>
           <?php html_inputbox("http_address", gettext("Address"), $pconfig['http_address'], "", true, 40);?>
           <?php html_inputbox("http_port", gettext("Port"), $pconfig['http_port'], "", true, 10);?>
-					<?php html_checkbox("http_auth", gettext("Authentication"), $pconfig['http_auth'] ? true : false, gettext("Enable proxy authentication."), "", false, "proxy_auth_change()");?>
+					<?php html_checkbox("http_auth", gettext("Authentication"), !empty($pconfig['http_auth']) ? true : false, gettext("Enable proxy authentication."), "", false, "proxy_auth_change()");?>
           <?php html_inputbox("http_username", gettext("User"), $pconfig['http_username'], "", true, 20);?>
 			    <?php html_inputbox("http_password", gettext("Password"), $pconfig['http_password'], "", true, 20);?>
 					<?php html_separator();?>
-					<?php html_titleline_checkbox("ftp_enable", gettext("FTP Proxy"), $pconfig['ftp_enable'] ? true : false, gettext("Enable"), "enable_change(this)");?>
+					<?php html_titleline_checkbox("ftp_enable", gettext("FTP Proxy"), !empty($pconfig['ftp_enable']) ? true : false, gettext("Enable"), "enable_change(this)");?>
           <?php html_inputbox("ftp_address", gettext("Address"), $pconfig['ftp_address'], "", true, 40);?>
           <?php html_inputbox("ftp_port", gettext("Port"), $pconfig['ftp_port'], "", true, 10);?>
-          <?php html_checkbox("ftp_auth", gettext("Authentication"), $pconfig['ftp_auth'] ? true : false, gettext("Enable proxy authentication."), "", false, "proxy_auth_change()");?>
+          <?php html_checkbox("ftp_auth", gettext("Authentication"), !empty($pconfig['ftp_auth']) ? true : false, gettext("Enable proxy authentication."), "", false, "proxy_auth_change()");?>
           <?php html_inputbox("ftp_username", gettext("User"), $pconfig['ftp_username'], "", true, 20);?>
 			    <?php html_inputbox("ftp_password", gettext("Password"), $pconfig['ftp_password'], "", true, 20);?>
 			  </table>

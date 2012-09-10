@@ -292,7 +292,7 @@ function webguiproto_change() {
     <td class="tabcont">
 			<form action="system.php" method="post" name="iform" id="iform">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 			  	<tr>
 						<td colspan="2" valign="top" class="listtopic"><?=gettext("Hostname");?></td>

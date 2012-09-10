@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	shutdown.php
@@ -65,7 +64,7 @@ if ($_POST) {
   </tr>
   <tr>
     <td class="tabcont">
-      <?php if ($rebootmsg): echo print_info_box($rebootmsg); system_halt(); else:?>
+      <?php if (!empty($rebootmsg)): echo print_info_box($rebootmsg); system_halt(); else:?>
       <form action="shutdown.php" method="post">
 				<strong><?=gettext("Are you sure you want to shutdown the system?");?></strong>
 				<div id="submit">

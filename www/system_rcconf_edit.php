@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_rcconf_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -72,7 +72,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: system_rcconf.php");
 		exit;
 	}
@@ -82,12 +82,12 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Option"), gettext("Value"));
 	$reqdfieldst = explode(" ", "string string");
 
-  do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
-  do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
+	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$param = array();
-		$param['enable'] = $_POST['enable'] ? true : false;
+		$param['enable'] = isset($_POST['enable']) ? true : false;
 		$param['uuid'] = $_POST['uuid'];
 		$param['name'] = $pconfig['name'];
 		$param['value'] = $pconfig['value'];
@@ -128,7 +128,7 @@ if ($_POST) {
   <tr>
     <td class="tabcont">
 			<form action="system_rcconf_edit.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors); ?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline_checkbox("enable", "", $pconfig['enable'] ? true : false, gettext("Enable"));?>
 					<?php html_inputbox("name", gettext("Name"), $pconfig['name'], gettext("Name of the variable."), true, 40);?>

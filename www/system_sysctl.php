@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_sysctl.php
@@ -45,7 +44,7 @@ require("guiconfig.inc");
 $pgtitle = array(gettext("System"), gettext("Advanced"), gettext("sysctl.conf"));
 
 if ($_POST) {
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			$retval |= updatenotify_process("sysctl", "sysctl_process_updatenotification");
@@ -66,7 +65,7 @@ if (!isset($config['system']['sysctl']['param']) || !is_array($config['system'][
 array_sort_key($config['system']['sysctl']['param'], "name");
 $a_sysctlvar = &$config['system']['sysctl']['param'];
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	if ($_GET['id'] === "all") {
 		foreach ($a_sysctlvar as $sysctlvark => $sysctlvarv) {
 			updatenotify_set("sysctl", UPDATENOTIFY_MODE_DIRTY, $a_sysctlvar[$sysctlvark]['uuid']);
@@ -120,7 +119,7 @@ function sysctl_process_updatenotification($mode, $data) {
   <tr>
     <td class="tabcont">
     	<form action="system_sysctl.php" method="post">
-    		<?php if ($savemsg) print_info_box($savemsg);?>
+    		<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 	    	<?php if (updatenotify_exists("sysctl")) print_config_change_box();?>
 	      <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	        <tr>

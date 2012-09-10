@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_email.php
@@ -66,7 +65,7 @@ if ($_POST) {
 	$reqdfieldsn = array();
 	$reqdfieldst = array();
 
-	if ($_POST['auth']) {
+	if (isset($_POST['auth'])) {
 		$reqdfields = array_merge($reqdfields, array("username", "password"));
 		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Username"), gettext("Password")));
 		$reqdfieldst = array_merge($reqdfieldst, array("string","string"));
@@ -76,14 +75,14 @@ if ($_POST) {
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	// Check for a password mismatch.
-	if ($_POST['auth'] && ($_POST['password'] !== $_POST['passwordconf'])) {
+	if (isset($_POST['auth']) && ($_POST['password'] !== $_POST['passwordconf'])) {
 		$input_errors[] = gettext("The passwords do not match.");
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$config['system']['email']['server'] = $_POST['server'];
 		$config['system']['email']['port'] = $_POST['port'];
-		$config['system']['email']['auth'] = $_POST['auth'] ? true : false;
+		$config['system']['email']['auth'] = isset($_POST['auth']) ? true : false;
 		$config['system']['email']['authmethod'] = $_POST['authmethod'];
 		$config['system']['email']['security'] = $_POST['security'];
 		$config['system']['email']['username'] = $_POST['username'];
@@ -156,15 +155,15 @@ function auth_change() {
   <tr>
     <td class="tabcont">
     	<form action="system_email.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
-				<?php if ($failmsg) print_error_box($failmsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
+				<?php if (!empty($failmsg)) print_error_box($failmsg);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_inputbox("from", gettext("From email"), $pconfig['from'], gettext("Your own email address."), true, 40);?>
 					<?php html_inputbox("server", gettext("Outgoing mail server"), $pconfig['server'], gettext("Outgoing SMTP mail server address, e.g. smtp.mycorp.com."), true, 40);?>
 					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], gettext("The default SMTP mail server port, e.g. 25 or 587."), true, 10);?>
 					<?php html_combobox("security", gettext("Security"), $pconfig['security'], array("none" => gettext("None"), "ssl" => "SSL", "tls" => "TLS"), "", true);?>
-					<?php html_checkbox("auth", gettext("Authentication"), $pconfig['auth'] ? true : false, gettext("Enable SMTP authentication."), "", false, "auth_change()");?>
+					<?php html_checkbox("auth", gettext("Authentication"), !empty($pconfig['auth']) ? true : false, gettext("Enable SMTP authentication."), "", false, "auth_change()");?>
 					<?php html_inputbox("username", gettext("Username"), $pconfig['username'], "", true, 40);?>
 					<?php html_passwordconfbox("password", "passwordconf", gettext("Password"), $pconfig['password'], $pconfig['passwordconf'], "", true);?>
 					<?php html_combobox("authmethod", gettext("Authentication method"), $pconfig['authmethod'], array("plain" => "Plain", "cram-md5" => "Cram-MD5", "digest-md5" => "Digest-MD5", "gssapi" => "GSSAPI", "external" => "External", "login" => "Login", "ntlm" => "NTLM", "on" => gettext("Best available")), "", true);?>

@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_swap.php
@@ -54,7 +53,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['enable']) {
+	if (isset($_POST['enable'])) {
 		$reqdfields = explode(" ", "type");
 		$reqdfieldsn = array(gettext("Type"));
 		$reqdfieldst = explode(" ", "string");
@@ -73,8 +72,8 @@ if ($_POST) {
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
 
-	if (!$input_errors) {
-		$config['system']['swap']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['system']['swap']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['system']['swap']['type'] = $_POST['type'];
 		$config['system']['swap']['mountpoint'] = $_POST['mountpoint'];
 		$config['system']['swap']['devicespecialfile'] = $_POST['devicespecialfile'];
@@ -138,10 +137,10 @@ function type_change() {
 	<tr>
 		<td class="tabcont">
 			<form action="system_swap.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors); ?>
-				<?php if ($savemsg) print_info_box($savemsg); ?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Swap memory"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Swap memory"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("file" => gettext("File"), "device" => gettext("Device")), "", true, false, "type_change()");?>
 					<?php html_mountcombobox("mountpoint", gettext("Mount point"), $pconfig['mountpoint'], gettext("Select mount point where to create the swap file."), true);?>
 					<?php html_inputbox("size", gettext("Size"), $pconfig['size'], gettext("The size of the swap file in MB."), true, 10);?>

@@ -206,7 +206,7 @@ function display_menu($menuid) {
 		if (!$menuv['visible']) {
 			continue;
 		}
-		if ("separator" !== $menuv['type']) {
+		if (!isset($menuv['type']) || "separator" !== $menuv['type']) {
 			# Display menuitem.
 			$link = $menuv['link'];
 			if ($link == '') $link = 'index.php';
@@ -236,7 +236,7 @@ function show_header($title) {			// header for html-page
 	echo "<head>\n";
 	echo "<meta http-equiv=\"Content-Type\" content=\"text/html\" charset=\"".$GLOBALS["charset"]."\">\n";
 	echo "<title>Nas4free.local - File Manager</title>\n";
-	if ($pgrefresh):
+	if (isset($pgrefresh) && $pgrefresh):
 		echo "<meta http-equiv='refresh' content=\"".$pgrefresh."\"/>\n";
 	endif;
 	echo "<link href=\"./_style/style.css\" rel=\"stylesheet\"	type=\"text/css\">\n";
@@ -276,7 +276,7 @@ function show_header($title) {			// header for html-page
 	echo display_menu("disks");
 	echo display_menu("services");
 	//-- Begin extension section --//
-	if (Session::isAdmin() && is_dir("{$g['www_path']}/ext")):
+	if (Session::isAdmin() && isset($g) && isset($g['www_path']) && is_dir("{$g['www_path']}/ext")):
 		echo "<li>\n";
 			echo "<a href=\"index.php\" onmouseover=\"mopen('extensions')\" onmouseout=\"mclosetime()\">".gettext("Extensions")."</a>\n";
 			echo "<div id=\"extensions\" onmouseover=\"mcancelclosetime()\" onmouseout=\"mclosetime()\">\n";
@@ -305,7 +305,7 @@ function show_header($title) {			// header for html-page
 	
 	// QuiXplorer Header
 	$pgtitle = array(gettext("Advanced"), gettext("File Manager"));
-	if (!$pgtitle_omit):
+	if (!isset($pgtitle_omit) || !$pgtitle_omit):
 		echo "<div style=\"margin-left: 50px;\"><p class=\"pgtitle\">".htmlspecialchars(gentitle($pgtitle))."</p></div>\n";
 	endif;
 	echo "<center>\n";
