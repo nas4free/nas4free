@@ -48,6 +48,8 @@
 		if (!empty($iscsi)) {
 			sleep(1);
 		}
+		/* XXX should take iscsi only */
+		disks_mount_all();
 	} else if ($_GET["cmd"] == "stop") {
 		$a_disks = get_iscsi_disks_list();
 		foreach ($a_disks as $diskv) {
