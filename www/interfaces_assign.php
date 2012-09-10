@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	interfaces_assign.php
@@ -53,7 +52,7 @@ $pgtitle = array(gettext("Network"), gettext("Interface Management"));
 $portlist = get_interface_list();
 
 // Add VLAN interfaces.
-if (is_array($config['vinterfaces']['vlan']) && count($config['vinterfaces']['vlan'])) {
+if (isset($config['vinterfaces']['vlan']) && is_array($config['vinterfaces']['vlan']) && count($config['vinterfaces']['vlan'])) {
 	foreach ($config['vinterfaces']['vlan'] as $vlanv) {
 		$portlist[$vlanv['if']] = $vlanv;
 		$portlist[$vlanv['if']]['isvirtual'] = true;
@@ -61,7 +60,7 @@ if (is_array($config['vinterfaces']['vlan']) && count($config['vinterfaces']['vl
 }
 
 // Add LAGG interfaces.
-if (is_array($config['vinterfaces']['lagg']) && count($config['vinterfaces']['lagg'])) {
+if (isset($config['vinterfaces']['lagg']) && is_array($config['vinterfaces']['lagg']) && count($config['vinterfaces']['lagg'])) {
 	foreach ($config['vinterfaces']['lagg'] as $laggv) {
 		$portlist[$laggv['if']] = $laggv;
 		$portlist[$laggv['if']]['isvirtual'] = true;
@@ -97,7 +96,7 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		/* No errors detected, so update the config */
 		foreach ($_POST as $ifname => $ifport) {
 			if (($ifname == 'lan') || (substr($ifname, 0, 3) == 'opt')) {
@@ -126,7 +125,7 @@ if ($_POST) {
 	}
 }
 
-if ($_GET['act'] == "del") {
+if (isset($_GET['act']) && $_GET['act'] == "del") {
 	$id = $_GET['id'];
 
 	$ifn = $config['interfaces'][$id]['if'];
@@ -143,7 +142,7 @@ if ($_GET['act'] == "del") {
 	$i++;
 
 	/* look at the following OPTn ports */
-	while (is_array($config['interfaces']['opt' . $i])) {
+	while (isset($config['interfaces']['opt' . $i]) && is_array($config['interfaces']['opt' . $i])) {
 		$config['interfaces']['opt' . ($i - 1)] =
 			$config['interfaces']['opt' . $i];
 
@@ -160,10 +159,10 @@ if ($_GET['act'] == "del") {
 	exit;
 }
 
-if ($_GET['act'] == "add") {
+if (isset($_GET['act']) && $_GET['act'] == "add") {
 	/* find next free optional interface number */
 	$i = 1;
-	while (is_array($config['interfaces']['opt' . $i]))
+	while (isset($config['interfaces']['opt' . $i]) && is_array($config['interfaces']['opt' . $i]))
 		$i++;
 
 	$newifname = 'opt' . $i;
@@ -178,7 +177,7 @@ if ($_GET['act'] == "add") {
 	foreach ($portlist as $portname => $portinfo) {
 		$portused = false;
 		foreach ($config['interfaces'] as $ifname => $ifdata) {
-			if ($ifdata['if'] == $portname) {
+			if (isset($ifdata['if']) && $ifdata['if'] == $portname) {
 				$portused = true;
 				break;
 			}
@@ -211,7 +210,7 @@ if ($_GET['act'] == "add") {
 	<tr>
 		<td class="tabcont">
 			<form action="interfaces_assign.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 				<table border="0" cellpadding="0" cellspacing="0">
 					<tr>
@@ -220,7 +219,7 @@ if ($_GET['act'] == "add") {
 						<td class="list">&nbsp;</td>
 					</tr>
 					<?php foreach ($config['interfaces'] as $ifname => $iface):
-					if ($iface['descr'])
+					if (isset($iface['descr']) && $iface['descr'])
 						$ifdescr = $iface['descr'];
 					else
 						$ifdescr = strtoupper($ifname);
@@ -232,7 +231,7 @@ if ($_GET['act'] == "add") {
 							  <?php foreach ($portlist as $portname => $portinfo):?>
 							  <option value="<?=$portname;?>" <?php if ($portname == $iface['if']) echo "selected=\"selected\"";?>>
 							  	<?php
-									if ($portinfo['isvirtual']) {
+									if (isset($portinfo['isvirtual']) && $portinfo['isvirtual']) {
 										$descr = $portinfo['if'];
 										if ($portinfo['desc']) {
 											$descr .= " ({$portinfo['desc']})";

@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	interfaces_lan.php
@@ -105,7 +104,7 @@ if ($_POST) {
 			$input_errors[] = gettext("A valid network bit count (1-32) must be specified.");
 	}
 
-	if ($_POST['ipv6_enable'] && ($_POST['ipv6type'] === "Static")) {
+	if (isset($_POST['ipv6_enable']) && $_POST['ipv6_enable'] && ($_POST['ipv6type'] === "Static")) {
 		$reqdfields = explode(" ", "ipv6addr ipv6subnet");
 		$reqdfieldsn = array(gettext("IPv6 address"),gettext("Prefix"));
 
@@ -139,7 +138,7 @@ if ($_POST) {
 			$lancfg['ipaddr'] = "dhcp";
 		}
 
-		$lancfg['ipv6_enable'] = $_POST['ipv6_enable'] ? true : false;
+		$lancfg['ipv6_enable'] = isset($_POST['ipv6_enable']) ? true : false;
 
 		if (0 == strcmp($_POST['ipv6type'],"Static")) {
 			$lancfg['ipv6addr'] = $_POST['ipv6addr'];
@@ -152,7 +151,7 @@ if ($_POST) {
 		$lancfg['mtu'] = $_POST['mtu'];
 		$lancfg['media'] = $_POST['media'];
 		$lancfg['mediaopt'] = $_POST['mediaopt'];
-		$lancfg['polling'] = $_POST['polling'] ? true : false;
+		$lancfg['polling'] = isset($_POST['polling']) ? true : false;
 		$lancfg['extraoptions'] = $_POST['extraoptions'];
 		if (!empty($ifinfo['wolevents']))
 			$lancfg['wakeon'] = $_POST['wakeon'];
@@ -263,7 +262,7 @@ function encryption_change() {
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td class="tabcont">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline(gettext("IPv4 Configuration"));?>
@@ -271,10 +270,10 @@ function encryption_change() {
 					<?php html_ipv4addrbox("ipaddr", "subnet", gettext("IP address"), $pconfig['ipaddr'], $pconfig['subnet'], "", true);?>
 					<?php html_inputbox("gateway", gettext("Gateway"), $pconfig['gateway'], "", true, 20);?>
 					<?php html_separator();?>
-					<?php html_titleline_checkbox("ipv6_enable", gettext("IPv6 Configuration"), $pconfig['ipv6_enable'] ? true : false, gettext("Activate"), "enable_change(this)");?>
+					<?php html_titleline_checkbox("ipv6_enable", gettext("IPv6 Configuration"), !empty($pconfig['ipv6_enable']) ? true : false, gettext("Activate"), "enable_change(this)");?>
 					<?php html_combobox("ipv6type", gettext("Type"), $pconfig['ipv6type'], array("Static" => gettext("Static"), "Auto" => "Auto"), "", true, false, "ipv6_type_change()");?>
-					<?php html_ipv6addrbox("ipv6addr", "ipv6subnet", gettext("IP address"), $pconfig['ipv6addr'], $pconfig['ipv6subnet'], "", true);?>
-					<?php html_inputbox("ipv6gateway", gettext("Gateway"), $pconfig['ipv6gateway'], "", true, 20);?>
+					<?php html_ipv6addrbox("ipv6addr", "ipv6subnet", gettext("IP address"), !empty($pconfig['ipv6addr']) ? $pconfig['ipv6addr'] : "", !empty($pconfig['ipv6subnet']) ? $pconfig['ipv6subnet'] : "", "", true);?>
+					<?php html_inputbox("ipv6gateway", gettext("Gateway"), !empty($pconfig['ipv6gateway']) ? $pconfig['ipv6gateway'] : "", "", true, 20);?>
 					<?php html_separator();?>
 					<?php html_titleline(gettext("Advanced Configuration"));?>
 					<?php html_inputbox("mtu", gettext("MTU"), $pconfig['mtu'], gettext("Set the maximum transmission unit of the interface to n, default is interface specific. The MTU is used to limit the size of packets that are transmitted on an interface. Not all interfaces support setting the MTU, and some interfaces have range restrictions."), false, 5);?>

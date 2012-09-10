@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	interfaces_lagg_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -74,7 +74,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: interfaces_lagg.php");
 		exit;
 	}
@@ -90,7 +90,7 @@ if ($_POST) {
 	if (count($_POST['laggport']) < 1)
 		$input_errors[] = gettext("There must be selected a minimum of 1 interface.");
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$lagg = array();
 		$lagg['enable'] = $_POST['enable'] ? true : false;
 		$lagg['uuid'] = $_POST['uuid'];
@@ -142,11 +142,11 @@ function get_nextlagg_id() {
 	<tr>
 		<td class="tabcont">
 			<form action="interfaces_lagg_edit.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_inputbox("if", gettext("Interface"), $pconfig['if'], "", true, 5, true);?>
 					<?php html_combobox("laggproto", gettext("Aggregation protocol"), $pconfig['laggproto'], array("failover" => gettext("Failover"), "fec" => gettext("FEC (Fast EtherChannel)"), "lacp" => gettext("LACP (Link Aggregation Control Protocol)"), "loadbalance" => gettext("Loadbalance"), "roundrobin" => gettext("Roundrobin"), "none" => gettext("None")), "", true);?>
-					<?php $a_port = array(); foreach (get_interface_list() as $ifk => $ifv) { if (eregi('lagg', $ifk)) { continue; } if (!(isset($uuid) && (FALSE !== $cnid)) && false !== array_search_ex($ifk, $a_lagg, "laggport")) { continue; } $a_port[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); } ?>
+					<?php $a_port = array(); foreach (get_interface_list() as $ifk => $ifv) { if (preg_match('/lagg/i', $ifk)) { continue; } if (!(isset($uuid) && (FALSE !== $cnid)) && false !== array_search_ex($ifk, $a_lagg, "laggport")) { continue; } $a_port[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); } ?>
 					<?php html_listbox("laggport", gettext("Ports"), $pconfig['laggport'], $a_port, gettext("Note: Ctrl-click (or command-click on the Mac) to select multiple entries."), true);?>
 					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
 				</table>

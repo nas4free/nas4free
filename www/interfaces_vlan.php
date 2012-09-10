@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	interfaces_vlan.php
@@ -56,7 +55,7 @@ function vlan_inuse($ifn) {
 	if ($config['interfaces']['lan']['if'] === $ifn)
 		return true;
 
-	if ($config['interfaces']['wan']['if'] === $ifn)
+	if (isset($config['interfaces']['wan']) && $config['interfaces']['wan']['if'] === $ifn)
 		return true;
 
 	for ($i = 1; isset($config['interfaces']['opt' . $i]); $i++) {
@@ -67,7 +66,7 @@ function vlan_inuse($ifn) {
 	return false;
 }
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	if (FALSE === ($cnid = array_search_ex($_GET['uuid'], $config['vinterfaces']['vlan'], "uuid"))) {
 		header("Location: interfaces_vlan.php");
 		exit;
@@ -105,7 +104,7 @@ if ($_GET['act'] === "del") {
 	<tr>
 		<td class="tabcont">
 			<form action="interfaces_vlan.php" method="post">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>

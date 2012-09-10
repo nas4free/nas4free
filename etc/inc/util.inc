@@ -1661,7 +1661,7 @@ function get_interface_info($if) {
 			}
 		}
 
-		if ($ifinfo['pppoelink'] != "down" && $ifinfo['pptplink'] != "down") {
+		if (isset($ifinfo['pppoelink']) && $ifinfo['pppoelink'] != "down" && isset($ifinfo['pptplink']) && $ifinfo['pptplink'] != "down") {
 			/* try to determine IP address and netmask with ifconfig */
 			unset($ifconfiginfo);
 			exec("/sbin/ifconfig " . $ifinfo['if'], $ifconfiginfo);
