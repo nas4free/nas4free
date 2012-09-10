@@ -88,11 +88,11 @@ if (0 != $result)
 	exit(0);
 
 // Detect hardware
-$cdlist = get_cdrom_list();
+$cdlist = get_install_source_drive();
 $disklist = get_physical_disks_list();
 
 if (0 == count($cdlist)) {
-	tui_wait_keypress("Failed to detect any CDROM drive.");
+	tui_wait_keypress("Failed to detect any CDROM/USB drive.");
 	exit(0);
 }
 
@@ -104,12 +104,12 @@ foreach ($cdlist as $cdromk => $cdromv) {
 	$menuitem['item'] = $cdromv['desc'];
 	$amenuitem[] = $menuitem;
 }
-$result = tui_display_menu("Choose installation media", "Select CD/DVD drive for installation.", 60, 10, 6, $amenuitem, $cdrom);
+$result = tui_display_menu("Choose installation media", "Select CD/DVD/USB drive for installation.", 60, 10, 6, $amenuitem, $cdrom);
 if (0 != $result)
 	exit(0);
 
-if (install_mount_cd($cdrom)) {
-	tui_wait_keypress("There was a problem while mounting the CDROM drive.");
+if (install_mount_cd($cdlist[$cdrom])) {
+	tui_wait_keypress("There was a problem while mounting the CDROM/USB drive.");
 	exit(0);
 }
 
@@ -144,7 +144,7 @@ install_unmount_cd();
 $text = <<<EOD
 
 {$productname} installed on device {$devinfo['device']}{$devinfo['partition']} has been converted and upgraded.
-You can now safely remove the LiveCD and reboot the server.
+You can now safely remove the LiveCD/USB and reboot the server.
 EOD;
 
 tui_wait_keypress($text);

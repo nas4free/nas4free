@@ -75,7 +75,7 @@ if (is_booting()) {
 		// Get list of kernel known disks
 		$disks = explode(" ", trim(preg_replace("/kern.disks: /", "", exec("/sbin/sysctl kern.disks"))));
 
-		if (stristr($g['platform'], "livecd")) {
+		if (stristr($g['platform'], "livecd") || stristr($g['platform'], "liveusb")) {
 			// Config is on floppy disk/USB stick for LiveCD version per default
 			$cfgdevice = $cfgpartition = "fd0";
 			$cfgfstype = "msdos";
@@ -243,7 +243,7 @@ if (!$noparseconfig) {
 	} else {
 		if (!file_exists("{$g['conf_path']}/config.xml")) {
 			if (is_booting()) {
-				if (stristr($g['platform'], "liveCD")) {
+				if (stristr($g['platform'], "livecd") || stristr($g['platform'], "liveusb")) {
 					// Try copying the default config.xml to the floppy disk/USB stick
 					config_unlock();
 					reset_factory_defaults();
