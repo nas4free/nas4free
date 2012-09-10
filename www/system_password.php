@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_password.php
@@ -71,7 +70,7 @@ if ($_POST) {
 		$input_errors[] = gettext("Webserver document root is missing.");
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$config['system']['password'] = $_POST['password_new'];
 
 		write_config();
@@ -103,7 +102,7 @@ if ($_POST) {
   <tr>
     <td class="tabcont">
 			<form action="system_password.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if ($savemsg) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_passwordbox("password_old", gettext("Old password"), "", "", true);?>

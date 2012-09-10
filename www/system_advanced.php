@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_advanced.php
@@ -61,7 +60,7 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	// Input validation.
-	if ($_POST['sysconsaver']) {
+	if (isset($_POST['sysconsaver'])) {
 		$reqdfields = explode(" ", "sysconsaverblanktime");
 		$reqdfieldsn = array(gettext("Blank time"));
 		$reqdfieldst = explode(" ", "numeric");
@@ -70,7 +69,7 @@ if ($_POST) {
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		// Process system tuning.
 		if ($_POST['tune_enable']) {
 			sysctl_tune(1);
@@ -112,24 +111,24 @@ if ($_POST) {
 				config_unlock();
 			}
 		}
-		if ((isset($config['system']['disablefm']) && (!$_POST['disablefm']))
-		    || (!isset($config['system']['disablefm']) && ($_POST['disablefm']))) {
+		if ((isset($config['system']['disablefm']) && (!isset($_POST['disablefm'])))
+		    || (!isset($config['system']['disablefm']) && (isset($_POST['disablefm'])))) {
 			// need restarting WebGUI
 			touch($d_sysrebootreqd_path);
 		}
 
-		$config['system']['disableconsolemenu'] = $_POST['disableconsolemenu'] ? true : false;
-		$config['system']['disablefm'] = $_POST['disablefm'] ? true : false;
-		$config['system']['disablefirmwarecheck'] = $_POST['disablefirmwarecheck'] ? true : false;
-		$config['system']['webgui']['noantilockout'] = $_POST['noantilockout'] ? true : false;
-		$config['system']['disablebeep'] = $_POST['disablebeep'] ? true : false;
-		$config['system']['tune'] = $_POST['tune_enable'] ? true : false;
-		$config['system']['zeroconf'] = $_POST['zeroconf'] ? true : false;
-		$config['system']['powerd'] = $_POST['powerd'] ? true : false;
+		$config['system']['disableconsolemenu'] = isset($_POST['disableconsolemenu']) ? true : false;
+		$config['system']['disablefm'] = isset($_POST['disablefm']) ? true : false;
+		$config['system']['disablefirmwarecheck'] = isset($_POST['disablefirmwarecheck']) ? true : false;
+		$config['system']['webgui']['noantilockout'] = isset($_POST['noantilockout']) ? true : false;
+		$config['system']['disablebeep'] = isset($_POST['disablebeep']) ? true : false;
+		$config['system']['tune'] = isset($_POST['tune_enable']) ? true : false;
+		$config['system']['zeroconf'] = isset($_POST['zeroconf']) ? true : false;
+		$config['system']['powerd'] = isset($_POST['powerd']) ? true : false;
 		$config['system']['motd'] = base64_encode($_POST['motd']); // Encode string, otherwise line breaks will get lost
-		$config['system']['sysconsaver']['enable'] = $_POST['sysconsaver'] ? true : false;
+		$config['system']['sysconsaver']['enable'] = isset($_POST['sysconsaver']) ? true : false;
 		$config['system']['sysconsaver']['blanktime'] = $_POST['sysconsaverblanktime'];
-		$config['system']['enableserialconsole'] = $_POST['enableserialconsole'] ? true : false;
+		$config['system']['enableserialconsole'] = isset($_POST['enableserialconsole']) ? true : false;
 
 		write_config();
 
@@ -255,21 +254,21 @@ function sysconsaver_change() {
 	<tr>
 		<td class="tabcont">
 			<form action="system_advanced.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if ($savemsg) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_checkbox("disableconsolemenu", gettext("Console menu"), $pconfig['disableconsolemenu'] ? true : false, gettext("Disable console menu"), gettext("Changes to this option will take effect after a reboot."));?>
-					<?php html_checkbox("enableserialconsole", gettext("Serial Console"), $pconfig['enableserialconsole'] ? true : false, gettext("Enable serial console"), sprintf("<span class='red'><strong>%s</strong></span><br />%s", gettext("The COM port in BIOS has to be enabled before enabling this option."), gettext("Changes to this option will take effect after a reboot.")));?>
-					<?php html_checkbox("sysconsaver", gettext("Console screensaver"), $pconfig['sysconsaver'] ? true : false, gettext("Enable console screensaver"), "", false, "sysconsaver_change()");?>
+					<?php html_checkbox("disableconsolemenu", gettext("Console menu"), !empty($pconfig['disableconsolemenu']) ? true : false, gettext("Disable console menu"), gettext("Changes to this option will take effect after a reboot."));?>
+					<?php html_checkbox("enableserialconsole", gettext("Serial Console"), !empty($pconfig['enableserialconsole']) ? true : false, gettext("Enable serial console"), sprintf("<span class='red'><strong>%s</strong></span><br />%s", gettext("The COM port in BIOS has to be enabled before enabling this option."), gettext("Changes to this option will take effect after a reboot.")));?>
+					<?php html_checkbox("sysconsaver", gettext("Console screensaver"), !empty($pconfig['sysconsaver']) ? true : false, gettext("Enable console screensaver"), "", false, "sysconsaver_change()");?>
 					<?php html_inputbox("sysconsaverblanktime", gettext("Blank time"), $pconfig['sysconsaverblanktime'], gettext("Turn the monitor to standby after N seconds."), true, 5);?>
-					<?php html_checkbox("disablefm", gettext("File Manager"), $pconfig['disablefm'] ? true : false, gettext("Disable File Manager"));?>
+					<?php html_checkbox("disablefm", gettext("File Manager"), !empty($pconfig['disablefm']) ? true : false, gettext("Disable File Manager"));?>
 					<?php if ("full" !== $g['platform']):?>
-					<?php html_checkbox("disablefirmwarecheck", gettext("Firmware version check"), $pconfig['disablefirmwarecheck'] ? true : false, gettext("Disable firmware version check"), sprintf(gettext("This will cause %s not to check for newer firmware versions when the <a href='%s'>%s</a> page is viewed."), get_product_name(), "system_firmware.php", gettext("System").": ".gettext("Firmware")));?>
+					<?php html_checkbox("disablefirmwarecheck", gettext("Firmware version check"), !empty($pconfig['disablefirmwarecheck']) ? true : false, gettext("Disable firmware version check"), sprintf(gettext("This will cause %s not to check for newer firmware versions when the <a href='%s'>%s</a> page is viewed."), get_product_name(), "system_firmware.php", gettext("System").": ".gettext("Firmware")));?>
 					<?php endif;?>
-					<?php html_checkbox("disablebeep", gettext("System Beep"), $pconfig['disablebeep'] ? true : false, gettext("Disable speaker beep on startup and shutdown"));?>
-					<?php html_checkbox("tune_enable", gettext("Tuning"), $pconfig['tune_enable'] ? true : false, gettext("Enable tuning of some kernel variables"));?>
-					<?php html_checkbox("powerd", gettext("Power Daemon"), $pconfig['powerd'] ? true : false, gettext("Enable the system power control utility"), gettext("The powerd utility monitors the system state and sets various power control options accordingly."));?>
-					<?php html_checkbox("zeroconf", gettext("Zeroconf/Bonjour"), $pconfig['zeroconf'] ? true : false, gettext("Enable Zeroconf/Bonjour to advertise services of this device"));?>
+					<?php html_checkbox("disablebeep", gettext("System Beep"), !empty($pconfig['disablebeep']) ? true : false, gettext("Disable speaker beep on startup and shutdown"));?>
+					<?php html_checkbox("tune_enable", gettext("Tuning"), !empty($pconfig['tune_enable']) ? true : false, gettext("Enable tuning of some kernel variables"));?>
+					<?php html_checkbox("powerd", gettext("Power Daemon"), !empty($pconfig['powerd']) ? true : false, gettext("Enable the system power control utility"), gettext("The powerd utility monitors the system state and sets various power control options accordingly."));?>
+					<?php html_checkbox("zeroconf", gettext("Zeroconf/Bonjour"), !empty($pconfig['zeroconf']) ? true : false, gettext("Enable Zeroconf/Bonjour to advertise services of this device"));?>
 					<?php html_textarea("motd", gettext("MOTD"), $pconfig['motd'], gettext("Message of the day."), false, 65, 7, false, false);?>
 				</table>
 				<div id="submit">
