@@ -143,7 +143,7 @@ if ($_POST) {
 		$input_errors[] = gettext("Webserver document root is missing.");
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		// Store old values for later processing.
 		$oldcert = $config['system']['webgui']['certificate'];
 		$oldkey = $config['system']['webgui']['privatekey'];
@@ -291,7 +291,7 @@ function webguiproto_change() {
   <tr>
     <td class="tabcont">
 			<form action="system.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if ($savemsg) print_info_box($savemsg);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 			  	<tr>
@@ -339,7 +339,7 @@ function webguiproto_change() {
 							<span class="vexpl"><?=gettext("Enter desired system time directly (format mm/dd/yyyy hh:mm) or use icon to select it.");?></span>
 						</td>
 			    </tr>
-					<?php html_checkbox("ntp_enable", gettext("Enable NTP"), isset($pconfig['ntp_enable']) ? true : false, gettext("Use the specified NTP server."), "", false, "ntp_change()");?>
+					<?php html_checkbox("ntp_enable", gettext("Enable NTP"), !empty($pconfig['ntp_enable']) ? true : false, gettext("Use the specified NTP server."), "", false, "ntp_change()");?>
 					<?php html_inputbox("ntp_timeservers", gettext("NTP time server"), $pconfig['ntp_timeservers'], gettext("Use a space to separate multiple hosts (only one required). Remember to set up at least one DNS server if you enter a host name here!"), true, 40);?>
 					<?php html_inputbox("ntp_updateinterval", gettext("Time update interval"), $pconfig['ntp_updateinterval'], gettext("Minutes between network time sync."), true, 20);?>
 			  </table>
