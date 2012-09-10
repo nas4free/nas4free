@@ -103,7 +103,7 @@ function display_menu($menuid) {
 	global $menu;
 
 	// Is menu visible?
-	if (!$menu[$menuid]['visible'])
+	if (!isset($menu[$menuid]) || !$menu[$menuid]['visible'])
 		return;
 
 	$link = $menu[$menuid]['link'];
@@ -145,11 +145,11 @@ function display_menu($menuid) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?=system_get_language_code();?>" lang="<?=system_get_language_code();?>">
 <head>
-	<title><?=htmlspecialchars(genhtmltitle($pgtitle));?></title>
+	<title><?=htmlspecialchars(genhtmltitle(isset($pgtitle) ? $pgtitle : ""));?></title>
 	<meta http-equiv="Content-Type" content="text/html; charset=<?=system_get_language_codeset();?>" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
 	<meta http-equiv="Content-Style-Type" content="text/css" />
-	<?php if ($pgrefresh):?>
+	<?php if (isset($pgrefresh) && $pgrefresh):?>
 	<meta http-equiv="refresh" content="<?=$pgrefresh;?>" />
 	<?php endif;?>
 	<link href="gui.css" rel="stylesheet" type="text/css" />

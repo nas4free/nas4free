@@ -198,7 +198,7 @@ function display_menu($menuid) {
 		if (!$menuv['visible']) {
 			continue;
 		}
-		if ("separator" !== $menuv['type']) {
+		if (!isset($menuv['type']) || "separator" !== $menuv['type']) {
 			# Display menuitem.
 			$link = $menuv['link'];
 			if ($link == '') $link = 'index.php';
@@ -229,7 +229,7 @@ function display_menu($menuid) {
 	<meta http-equiv="Content-Type" content="text/html; charset=<?=system_get_language_codeset();?>" />
 	<meta http-equiv="Content-Script-Type" content="text/javascript" />
 	<meta http-equiv="Content-Style-Type" content="text/css" />
-	<?php if ($pgrefresh):?>
+	<?php if (isset($pgrefresh) && $pgrefresh):?>
 	<meta http-equiv="refresh" content="<?=$pgrefresh;?>" />
 	<?php endif;?>
     <link href="gui.css" rel="stylesheet" type="text/css" />
@@ -302,6 +302,6 @@ function display_menu($menuid) {
 				<table width="100%" border="0" cellpadding="10" cellspacing="0">
 	        <tr>
 						<td>
-							<?php if (!$pgtitle_omit): ?>
+							<?php if (!isset($pgtitle_omit) || !$pgtitle_omit): ?>
 	      			<p class="pgtitle"><?=htmlspecialchars(gentitle($pgtitle));?></p>
 							<?php endif;?>

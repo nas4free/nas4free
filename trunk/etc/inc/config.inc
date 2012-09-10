@@ -229,7 +229,7 @@ EOD;
 }
 
 /* parse configuration */
-if (!$noparseconfig) {
+if (!isset($noparseconfig) || !$noparseconfig) {
 	config_lock();
 
 	/* see if there's a newer cache file */
