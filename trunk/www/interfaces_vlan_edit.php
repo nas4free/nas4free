@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	interfaces_vlan_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -74,7 +74,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: interfaces_vlan.php");
 		exit;
 	}
@@ -104,9 +104,9 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$vlan = array();
-		$vlan['enable'] = $_POST['enable'] ? true : false;
+		$vlan['enable'] = !empty($_POST['enable']) ? true : false;
 		$vlan['uuid'] = $_POST['uuid'];
 		$vlan['if'] = $_POST['if'];
 		$vlan['tag'] = $_POST['tag'];
@@ -159,7 +159,7 @@ function get_nextvlan_id() {
 				<?php if ($input_errors) print_input_errors($input_errors);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_inputbox("tag", gettext("VLAN tag"), $pconfig['tag'], gettext("802.1Q VLAN tag (between 1 and 4094)."), true, 4);?>
-					<?php $a_if = array(); foreach (get_interface_list() as $ifk => $ifv) { if (eregi('vlan', $ifk)) { continue; } $a_if[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); };?>
+					<?php $a_if = array(); foreach (get_interface_list() as $ifk => $ifv) { if (preg_match('/vlan/i', $ifk)) { continue; } $a_if[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); };?>
 					<?php html_combobox("vlandev", gettext("Physical interface"), $pconfig['vlandev'], $a_if, "", true);?>
 					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
 				</table>
