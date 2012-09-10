@@ -43,7 +43,7 @@ if(function_exists("date_default_timezone_set") and function_exists("date_defaul
      @date_default_timezone_set(@date_default_timezone_get());
 
 /* make sure nothing is cached */
-if (!$omit_nocacheheaders) {
+if (!isset($omit_nocacheheaders) || !$omit_nocacheheaders) {
 	header("Expires: 0");
 	header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 	header("Cache-Control: no-store, no-cache, must-revalidate");
@@ -85,6 +85,11 @@ $tcpflags = array("fin", "syn", "rst", "psh", "ack", "urg");
 
 /* platforms that support firmware updating */
 $fwupplatforms = array('net45xx', 'net48xx', 'embedded', 'wrap', 'full');
+
+/* default setting */
+$input_errors = array();
+$errormsg = "";
+$savemsg = "";
 
 function do_input_validation($postdata, $reqdfields, $reqdfieldsn, &$input_errors) {
 	/* check for bad control characters */

@@ -198,7 +198,7 @@ function rc_is_service_enabled($name) {
 	// Execute query
 	mwexec2("/usr/local/bin/xml sel -t {$xquery[1]} {$g['conf_path']}/config.xml", $output);
 
-	return ("0" === $output[0]) ? 0 : 1;
+	return (!empty($output) && "0" === $output[0]) ? 0 : 1;
 }
 
 /**

@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system.php
@@ -159,7 +158,7 @@ if ($_POST) {
 		$config['system']['webgui']['port'] = $_POST['webguiport'];
 		$config['system']['language'] = $_POST['language'];
 		$config['system']['timezone'] = $_POST['timezone'];
-		$config['system']['ntp']['enable'] = $_POST['ntp_enable'] ? true : false;
+		$config['system']['ntp']['enable'] = isset($_POST['ntp_enable']) ? true : false;
 		$config['system']['ntp']['timeservers'] = strtolower($_POST['ntp_timeservers']);
 		$config['system']['ntp']['updateinterval'] = $_POST['ntp_updateinterval'];
 		$config['system']['webgui']['certificate'] = base64_encode($_POST['certificate']);
@@ -183,8 +182,8 @@ if ($_POST) {
 				$config['system']['ipv6dnsserver'][] = $_POST['ipv6dns2'];
 		}
 
-		$olddnsallowoverride = $config['system']['dnsallowoverride'];
-		$config['system']['dnsallowoverride'] = $_POST['dnsallowoverride'] ? true : false;
+		$olddnsallowoverride = isset($config['system']['dnsallowoverride']);
+		$config['system']['dnsallowoverride'] = isset($_POST['dnsallowoverride']) ? true : false;
 
 		write_config();
 		set_php_timezone();
@@ -340,7 +339,7 @@ function webguiproto_change() {
 							<span class="vexpl"><?=gettext("Enter desired system time directly (format mm/dd/yyyy hh:mm) or use icon to select it.");?></span>
 						</td>
 			    </tr>
-					<?php html_checkbox("ntp_enable", gettext("Enable NTP"), $pconfig['ntp_enable'] ? true : false, gettext("Use the specified NTP server."), "", false, "ntp_change()");?>
+					<?php html_checkbox("ntp_enable", gettext("Enable NTP"), isset($pconfig['ntp_enable']) ? true : false, gettext("Use the specified NTP server."), "", false, "ntp_change()");?>
 					<?php html_inputbox("ntp_timeservers", gettext("NTP time server"), $pconfig['ntp_timeservers'], gettext("Use a space to separate multiple hosts (only one required). Remember to set up at least one DNS server if you enter a host name here!"), true, 40);?>
 					<?php html_inputbox("ntp_updateinterval", gettext("Time update interval"), $pconfig['ntp_updateinterval'], gettext("Minutes between network time sync."), true, 20);?>
 			  </table>

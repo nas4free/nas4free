@@ -1426,10 +1426,13 @@ function get_ipv4dnsserver() {
 			break;
 
 		default:
-			$result = $config['system']['dnsserver'];
+			if (isset($config['system']['dnsserver'])) {
+				$result = $config['system']['dnsserver'];
+			}
 			break;
 	}
 
+	$result = array_merge($result, array("", ""));
 	return $result;
 }
 
@@ -1457,6 +1460,7 @@ function get_ipv6dnsserver() {
 			break;
 	}
 
+	$result = array_merge($result, array("", ""));
 	return $result;
 }
 
