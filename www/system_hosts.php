@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_hosts.php
@@ -45,11 +44,11 @@ require("guiconfig.inc");
 $pgtitle = array(gettext("Network"), gettext("Hosts"));
 
 if ($_POST) {
-	if ($_POST['Submit']) {
+	if (isset($_POST['Submit']) && $_POST['Submit']) {
 		unset($input_errors);
 		$pconfig = $_POST;
 
-		if (!$input_errors) {
+		if (empty($input_errors)) {
 			unset($config['system']['hostsacl']['rule']);
 			foreach (explode("\n", $_POST['hostsacl']) as $rule) {
 				$rule = trim($rule, "\t\n\r");
@@ -61,7 +60,7 @@ if ($_POST) {
 		}
 	}
 
-	if ($_POST['apply'] || $_POST['Submit']) {
+	if ((isset($_POST['apply']) && $_POST['apply']) || (isset($_POST['Submit']) && $_POST['Submit'])) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			$retval |= updatenotify_process("hosts", "hosts_process_updatenotification");
@@ -90,7 +89,7 @@ $a_hosts = $config['system']['hosts'];
 if (is_array($config['system']['hostsacl']['rule']))
 	$pconfig['hostsacl'] = implode("\n", $config['system']['hostsacl']['rule']);
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	updatenotify_set("hosts", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
 	header("Location: system_hosts.php");
 	exit;
@@ -122,7 +121,7 @@ function hosts_process_updatenotification($mode, $data) {
 	<tr>
 		<td class="tabcont">
 			<form action="system_hosts.php" method="post">
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<?php if (updatenotify_exists("hosts")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<tr>

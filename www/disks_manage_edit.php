@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_manage_edit.php
@@ -41,7 +40,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -87,7 +87,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: disks_manage.php");
 		exit;
 	}
@@ -102,7 +102,7 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$devname = $_POST['name'];
 
 		$disks = array();
@@ -126,7 +126,7 @@ if ($_POST) {
 			$serial = "";
 		}
 		$disks['serial'] = $serial;
-		$disks['smart']['enable'] = $_POST['smart_enable'] ? true : false;
+		$disks['smart']['enable'] = isset($_POST['smart_enable']) ? true : false;
 		$disks['smart']['extraoptions'] = $_POST['smart_extraoptions'];
 
 		if (isset($uuid) && (FALSE !== $cnid)) {
@@ -178,7 +178,7 @@ function smart_enable_change() {
 	<tr>
 		<td class="tabcont">
 			<form action="disks_manage_edit.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors); ?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<tr>
 						<td width="22%" valign="top" class="vncellreq"><?=gettext("Disk");?></td>
@@ -201,7 +201,7 @@ function smart_enable_change() {
 					<?php html_combobox("apm", gettext("Advanced Power Management"), $pconfig['apm'], $options, gettext("This allows you to lower the power consumption of the drive, at the expense of performance."), false);?>
 					<?php $options = array(0 => gettext("Disabled"), 1 => gettext("Minimum performance, Minimum acoustic output"), 64 => gettext("Medium acoustic output"), 127 => gettext("Maximum performance, maximum acoustic output"));?>
 					<?php html_combobox("acoustic", gettext("Acoustic level"), $pconfig['acoustic'], $options, gettext("This allows you to set how loud the drive is while it's operating."), false);?>
-					<?php html_checkbox("smart_enable", gettext("S.M.A.R.T."), $pconfig['smart_enable'] ? true : false, gettext("Activate S.M.A.R.T. monitoring for this device."), "", false, "smart_enable_change()");?>
+					<?php html_checkbox("smart_enable", gettext("S.M.A.R.T."), !empty($pconfig['smart_enable']) ? true : false, gettext("Activate S.M.A.R.T. monitoring for this device."), "", false, "smart_enable_change()");?>
 					<?php html_inputbox("smart_extraoptions", gettext("S.M.A.R.T. extra options"), $pconfig['smart_extraoptions'], gettext("Extra options (usually empty).") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://smartmontools.sourceforge.net/man/smartd.conf.5.html"), false, 40);?>
 					<?php $options = get_fstype_list();?>
 					<?php html_combobox("fstype", gettext("Preformatted file system"), $pconfig['fstype'], $options, gettext("This allows you to set the file system for preformatted hard disks containing data.") . " " . sprintf(gettext("Leave '%s' for unformated disks and format them using <a href='%s'>format</a> menu."), "Unformated", "disks_init.php"), false);?>

@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_mount_fsck.php
@@ -61,10 +60,10 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Disk"));
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$do_action = true;
 		$disk = $_POST['disk'];
-		$umount = $_POST['umount'] ? true : false;
+		$umount = isset($_POST['umount']) ? true : false;
 	}
 }
 
@@ -107,7 +106,7 @@ if (!isset($do_action)) {
           <tr>
             <td width="22%" valign="top" class="vncell"></td>
             <td width="78%" class="vtable">
-              <input name="umount" type="checkbox" id="umount" value="yes" <?php if ($umount) echo "checked=\"checked\""; ?> />
+              <input name="umount" type="checkbox" id="umount" value="yes" <?php if (!empty($umount)) echo "checked=\"checked\""; ?> />
               <strong><?=gettext("Unmount disk/partition");?></strong><span class="vexpl"><br />
               <?=gettext("If the selected disk/partition is mounted it will be unmounted temporarily to perform selected command, otherwise the commands work in read-only mode.<br />Service disruption to users accessing this mount will occur during this process.");?></span>
             </td>
@@ -119,7 +118,7 @@ if (!isset($do_action)) {
 				<?php if($do_action) {
 				echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
 				echo('<pre class="cmdoutput">');
-				ob_end_flush();
+				//ob_end_flush();
 				/* Check filesystem */
 				$result = disks_fsck($disk,$umount);
 				/* Display result */

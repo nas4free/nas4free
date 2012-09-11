@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_init.php
@@ -47,11 +46,11 @@ $pgtitle = array(gettext("Disks"), gettext("Format"));
 
 // Get list of all supported file systems.
 $a_fst = get_fstype_list();
-unset($a_fst['ntfs']); // Remove NTFS: can't format on NTFS under FreeNAS
+unset($a_fst['ntfs']); // Remove NTFS: can't format on NTFS under NAS4Free
 unset($a_fst['geli']); // Remove geli
 unset($a_fst['cd9660']); // Remove cd9660: can't format a CD/DVD !
 $a_fst = array_slice($a_fst, 1); // Remove the first blank line 'unknown'
-unset($a_fst['ufs']); // Remove old UFS type: Now FreeNAS will impose only one UFS type: GPT/EFI with softupdate
+unset($a_fst['ufs']); // Remove old UFS type: Now NAS4Free will impose only one UFS type: GPT/EFI with softupdate
 unset($a_fst['ufs_no_su']);
 unset($a_fst['ufsgpt_no_su']);
 
@@ -92,14 +91,14 @@ if ($_POST) {
 	$reqdfieldst = explode(" ", "alias");
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$do_format = true;
 		$disk = $_POST['disk'];
 		$type = $_POST['type'];
 		$minspace = $_POST['minspace'];
-		$notinitmbr= $_POST['notinitmbr'];
+		$notinitmbr = isset($_POST['notinitmbr']) ? true : false;
 		$volumelabel = $_POST['volumelabel'];
-		$aft4k = $_POST['aft4k'] ? true : false;
+		$aft4k = isset($_POST['aft4k']) ? true : false;
 
 		// Check whether disk is mounted.
 		if (disks_ismounted_ex($disk, "devicespecialfile")) {
@@ -143,8 +142,8 @@ if (!isset($do_format)) {
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td class="tabcont">
-				<?php if($input_errors) print_input_errors($input_errors);?>
-				<?php if($errormsg) print_error_box($errormsg);?>
+				<?php if(!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if(!empty($errormsg)) print_error_box($errormsg);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 			    <tr>
 			      <td valign="top" class="vncellreq"><?=gettext("Disk"); ?></td>
@@ -205,7 +204,7 @@ if (!isset($do_format)) {
 				<?php if ($do_format) {
 				echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
 				echo('<pre class="cmdoutput">');
-				ob_end_flush();
+				//ob_end_flush();
 				disks_format($disk,$type,$notinitmbr,$minspace,$volumelabel, $aft4k);
 				echo('</pre>');
 				}

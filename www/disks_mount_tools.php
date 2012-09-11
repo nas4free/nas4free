@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_mount_tools.php
@@ -75,10 +74,10 @@ if ($_POST) {
 			($config['system']['swap']['mountpoint'] === $_POST['mountpoint'])) {
 		$index = array_search_ex($_POST['mountpoint'], $config['mounts']['mount'], "uuid");
 		$errormsg[] = gettext(sprintf("A swap file is located on the mounted device %s.",
-			$config['mounts']['mount'][$index]['devicespecialfile']));
-  }
+		$config['mounts']['mount'][$index]['devicespecialfile']));
+	}
 
-	if ((!$input_errors) || (!$errormsg)) {
+	if ((empty($input_errors)) || (empty($errormsg))) {
 		$do_action = true;
 		$uuid = $_POST['mountpoint'];
 		$action = $_POST['action'];
@@ -90,7 +89,7 @@ if (!isset($do_action)) {
 }
 ?>
 <?php include("fbegin.inc");?>
-<?php if($errormsg) print_input_errors($errormsg);?>
+<?php if(!empty($errormsg)) print_input_errors($errormsg);?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="tabnavtbl">
@@ -106,16 +105,16 @@ if (!isset($do_action)) {
       <?php if ($input_errors) print_input_errors($input_errors);?>
 			<form action="disks_mount_tools.php" method="post" name="iform" id="iform">
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_mountcombobox("mountpoint", gettext("Mount point"), $uuid, "", true);?>
-					<?php html_combobox("action", gettext("Command"), $action, array("mount" => gettext("mount"), "umount" => gettext("umount")), "", true);?>
+					<?php html_mountcombobox("mountpoint", gettext("Mount point"), !empty($uuid) ? $uuid : "", "", true);?>
+					<?php html_combobox("action", gettext("Command"), !empty($action) ? $action : "", array("mount" => gettext("mount"), "umount" => gettext("umount")), "", true);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Execute");?>" />
 				</div>
-				<?php if(($do_action) && (!$errormsg)) {
+				<?php if(($do_action) && (empty($errormsg))) {
 					echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
 					echo('<pre class="cmdoutput">');
-					ob_end_flush();
+					//ob_end_flush();
 
 					$index = array_search_ex($uuid, $config['mounts']['mount'], "uuid");
 					if (false !== $index) {

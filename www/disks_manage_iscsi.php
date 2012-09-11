@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_manage_iscsi.php
@@ -47,7 +46,7 @@ $pgtitle = array(gettext("Disks"), gettext("Management"), gettext("iSCSI Initiat
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			$retval |= updatenotify_process("iscsiinitiator", "iscsiinitiator_process_updatenotification");
@@ -68,7 +67,7 @@ if (!isset($config['iscsiinit']['vdisk']) || !is_array($config['iscsiinit']['vdi
 array_sort_key($config['iscsiinit']['vdisk'], "name");
 $a_iscsiinit = &$config['iscsiinit']['vdisk'];
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	updatenotify_set("iscsiinitiator", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
 	header("Location: disks_manage_iscsi.php");
 	exit;
@@ -111,7 +110,7 @@ function iscsiinitiator_process_updatenotification($mode, $data) {
   <tr> 
     <td class="tabcont">
       <form action="disks_manage_iscsi.php" method="post">
-        <?php if ($savemsg) print_info_box($savemsg); ?>
+        <?php if (!empty($savemsg)) print_info_box($savemsg); ?>
         <?php if (updatenotify_exists("iscsiinitiator")) print_config_change_box();?>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tr>

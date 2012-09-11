@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_manage.php
@@ -47,7 +46,7 @@ $pgtitle = array(gettext("Disks"),gettext("Management"));
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			$retval |= updatenotify_process("device", "diskmanagement_process_updatenotification");
@@ -63,7 +62,7 @@ if ($_POST) {
 		header("Location: disks_manage.php");
 		exit;
 	}
-	if ($_POST['disks_rescan']) {
+	if (isset($_POST['disks_rescan']) && $_POST['disks_rescan']) {
 		$do_action = true;
 		$disks_rescan = true;
 	}
@@ -79,7 +78,7 @@ if (!isset($config['disks']['disk']) || !is_array($config['disks']['disk']))
 array_sort_key($config['disks']['disk'], "name");
 $a_disk_conf = &$config['disks']['disk'];
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	updatenotify_set("device", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
 	header("Location: disks_manage.php");
 	exit;
@@ -161,7 +160,7 @@ function diskmanagement_process_updatenotification($mode, $data) {
 						<td class="listr"><?=htmlspecialchars(system_get_volume_model($disk['devicespecialfile']));?>&nbsp;</td>
 						<td class="listr"><?=htmlspecialchars(system_get_volume_serial($disk['devicespecialfile']));?>&nbsp;</td>
 						<td class="listr"><?php if ($disk['harddiskstandby']) { echo htmlspecialchars($disk['harddiskstandby']); } else { echo htmlspecialchars(gettext("Always on")); }?>&nbsp;</td>
-						<td class="listr"><?=($disk['fstype']) ? htmlspecialchars(get_fstype_shortdesc($disk['fstype'])) : htmlspecialchars(gettext("Unknown or unformatted"))?>&nbsp;</td>
+						<td class="listr"><?=(!empty($disk['fstype'])) ? htmlspecialchars(get_fstype_shortdesc($disk['fstype'])) : htmlspecialchars(gettext("Unknown or unformatted"))?>&nbsp;</td>
 						<td class="listbg"><?=htmlspecialchars($status);?>&nbsp;</td>
 						<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
 						<td valign="middle" nowrap="nowrap" class="list">
@@ -188,7 +187,7 @@ function diskmanagement_process_updatenotification($mode, $data) {
 				if ($do_action) {
 					echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
 					echo('<pre class="cmdoutput">');
-					ob_end_flush();
+					//ob_end_flush();
 					if (true == $disks_rescan) {
 						disks_rescan();
 					}
