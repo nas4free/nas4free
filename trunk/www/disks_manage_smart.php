@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_manage_smart.php
@@ -59,12 +58,12 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "interval powermode temp_diff temp_info temp_crit");
 		$reqdfieldsn = array(gettext("Check interval"), gettext("Power mode"), gettext("Difference"), gettext("Informal"), gettext("Critical"));
 		$reqdfieldst = explode(" ", "numericint string numericint numericint numericint");
 
-		if ($_POST['email_enable']) {
+		if (isset($_POST['email_enable']) && $_POST['email_enable']) {
 			$reqdfields = array_merge($reqdfields, array("email_to"));
 			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("To email")));
 			$reqdfieldst = array_merge($reqdfieldst, array("string"));
@@ -78,16 +77,16 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
-		$config['smartd']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['smartd']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['smartd']['interval'] = $_POST['interval'];
 		$config['smartd']['powermode'] = $_POST['powermode'];
 		$config['smartd']['temp']['diff'] = $_POST['temp_diff'];
 		$config['smartd']['temp']['info'] = $_POST['temp_info'];
 		$config['smartd']['temp']['crit'] = $_POST['temp_crit'];
-		$config['smartd']['email']['enable'] = $_POST['email_enable'] ? true : false;
-		$config['smartd']['email']['to'] = $_POST['email_to'];
-		$config['smartd']['email']['testemail'] = $_POST['email_testemail'] ? true : false;
+		$config['smartd']['email']['enable'] = isset($_POST['email_enable']) ? true : false;
+		$config['smartd']['email']['to'] = !empty($_POST['email_to']) ? $_POST['email_to'] : "";
+		$config['smartd']['email']['testemail'] = isset($_POST['email_testemail']) ? true : false;
 
 		write_config();
 
@@ -114,7 +113,7 @@ if (!isset($config['smartd']['selftest']) || !is_array($config['smartd']['selfte
 $a_selftest = &$config['smartd']['selftest'];
 $a_type = array( "S" => "Short Self-Test", "L" => "Long Self-Test", "C" => "Conveyance Self-Test", "O" => "Offline Immediate Test");
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	if ($_GET['uuid'] === "all") {
 		foreach ($a_selftest as $selftestv) {
 			updatenotify_set("smartssd", UPDATENOTIFY_MODE_DIRTY, $selftestv['uuid']);
@@ -191,13 +190,13 @@ function enable_change(enable_change) {
   <tr>
     <td class="tabcont">
       <form action="disks_manage_smart.php" method="post" name="iform" id="iform">
-				<?php if ($pconfig['enable'] && $pconfig['email_enable'] && (0 !== email_validate_settings())) print_error_box(sprintf(gettext("Make sure you have already configured your <a href='%s'>Email</a> settings."), "system_email.php"));?>
+				<?php if (!empty($pconfig['enable']) && !empty($pconfig['email_enable']) && (0 !== email_validate_settings())) print_error_box(sprintf(gettext("Make sure you have already configured your <a href='%s'>Email</a> settings."), "system_email.php"));?>
 				<?php $smart = false; foreach ($config['disks']['disk'] as $device) { if (isset($device['smart'])) $smart = true; } if (false === $smart) print_error_box(gettext("Make sure you have activated S.M.A.R.T. for your devices."));?>
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<?php if (updatenotify_exists("smartssd")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Self-Monitoring, Analysis and Reporting Technology"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(this)");?>
+					<?php html_titleline_checkbox("enable", gettext("Self-Monitoring, Analysis and Reporting Technology"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(this)");?>
 					<?php html_inputbox("interval", gettext("Check interval"), $pconfig['interval'], gettext("Sets the interval between disk checks to N seconds. The minimum allowed value is 10."), true, 5);?>
 					<tr>
 						<td width="22%" valign="top" class="vncellreq"><?=gettext("Power mode");?></td>
@@ -285,9 +284,9 @@ function enable_change(enable_change) {
 						</td>
 					</tr>
 					<?php html_separator();?>
-					<?php html_titleline_checkbox("email_enable", gettext("Email report"), $pconfig['email_enable'] ? true : false, gettext("Activate"), "enable_change(this)");?>
-					<?php html_inputbox("email_to", gettext("To email"), $pconfig['email_to'], sprintf("%s %s", gettext("Destination email address."), gettext("Separate email addresses by semi-colon.")), true, 40);?>
-					<?php html_checkbox("email_testemail", gettext("Test email"), $pconfig['email_testemail'] ? true : false, gettext("Send a TEST warning email on startup."));?>
+					<?php html_titleline_checkbox("email_enable", gettext("Email report"), !empty($pconfig['email_enable']) ? true : false, gettext("Activate"), "enable_change(this)");?>
+					<?php html_inputbox("email_to", gettext("To email"), !empty($pconfig['email_to']) ? $pconfig['email_to'] : "", sprintf("%s %s", gettext("Destination email address."), gettext("Separate email addresses by semi-colon.")), true, 40);?>
+					<?php html_checkbox("email_testemail", gettext("Test email"), !empty($pconfig['email_testemail']) ? true : false, gettext("Send a TEST warning email on startup."));?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />

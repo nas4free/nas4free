@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_hosts_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -70,7 +70,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: system_hosts.php");
 		exit;
 	}
@@ -96,7 +96,7 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$host = array();
 		$host['uuid'] = $_POST['uuid'];
 		$host['name'] = $_POST['name'];
@@ -124,7 +124,7 @@ if ($_POST) {
   <tr>
     <td class="tabcont">
       <form action="system_hosts_edit.php" method="post" name="iform" id="iform">
-      	<?php if ($input_errors) print_input_errors($input_errors); ?>
+      	<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
         <table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_inputbox("name", gettext("Hostname"), $pconfig['name'], gettext("The host name may only consist of the characters a-z, A-Z and 0-9, - , _ and ."), true, 40);?>
 					<?php html_inputbox("address", gettext("IP address"), $pconfig['address'], gettext("The IP address that this hostname represents."), true, 20);?>

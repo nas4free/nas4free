@@ -207,10 +207,12 @@ class XML_Parser extends PEAR
      *                       to have it call functions named after elements
      * @param string $tgtenc a valid target encoding
      */
+    /*
     function XML_Parser($srcenc = null, $mode = 'event', $tgtenc = null)
     {
         XML_Parser::__construct($srcenc, $mode, $tgtenc);
     }
+    */
     // }}}
     // {{{ php5 constructor
 
@@ -417,7 +419,7 @@ class XML_Parser extends PEAR
         /**
          * check, if file is a remote file
          */
-        if (eregi('^(http|ftp)://', substr($file, 0, 10))) {
+        if (preg_match('/^(http|ftp):\/\//i', substr($file, 0, 10))) {
             if (!ini_get('allow_url_fopen')) {
                 return $this->
                 raiseError('Remote files cannot be parsed, as safe mode is enabled.',
@@ -610,10 +612,11 @@ class XML_Parser extends PEAR
      *
      * @return XML_Parser_Error
      **/
-    function raiseError($msg = null, $ecode = 0)
+    function &raiseError($message = NULL, $code = NULL, $mode = NULL, $options = NULL, $userinfo = NULL, $error_class = NULL, $skipmsg = false)
     {
+	$msg = $message; $ecode = !is_null($code) ? $code : 0;
         $msg = !is_null($msg) ? $msg : $this->parser;
-        $err = &new XML_Parser_Error($msg, $ecode);
+        $err = new XML_Parser_Error($msg, $ecode);
         return parent::raiseError($err);
     }
 

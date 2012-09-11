@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_manage_smart_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -66,12 +66,14 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_selftest, "uui
 	$pconfig['uuid'] = $a_selftest[$cnid]['uuid'];
 	$pconfig['devicespecialfile'] = $a_selftest[$cnid]['devicespecialfile'];
 	$pconfig['type'] = $a_selftest[$cnid]['type'];
-	$pconfig['minute'] = $a_selftest[$cnid]['minute'];
+	//$pconfig['minute'] = $a_selftest[$cnid]['minute'];
+	$pconfig['minute'] = array();
 	$pconfig['hour'] = $a_selftest[$cnid]['hour'];
 	$pconfig['day'] = $a_selftest[$cnid]['day'];
 	$pconfig['month'] = $a_selftest[$cnid]['month'];
 	$pconfig['weekday'] = $a_selftest[$cnid]['weekday'];
-	$pconfig['all_mins'] = $a_selftest[$cnid]['all_mins'];
+	//$pconfig['all_mins'] = $a_selftest[$cnid]['all_mins'];
+	$pconfig['all_mins'] = 1;
 	$pconfig['all_hours'] = $a_selftest[$cnid]['all_hours'];
 	$pconfig['all_days'] = $a_selftest[$cnid]['all_days'];
 	$pconfig['all_months'] = $a_selftest[$cnid]['all_months'];
@@ -93,7 +95,7 @@ if ($_POST) {
 	unset($errormsg);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: disks_manage_smart.php");
 		exit;
 	}
@@ -106,15 +108,15 @@ if ($_POST) {
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validate_synctime($_POST, $input_errors);
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$selftest = array();
 		$selftest['uuid'] = $_POST['uuid'];
 		$selftest['devicespecialfile'] = $_POST['disk'];
 		$selftest['type'] = $_POST['type'];
-		$selftest['hour'] = $_POST['hour'];
-		$selftest['day'] = $_POST['day'];
-		$selftest['month'] = $_POST['month'];
-		$selftest['weekday'] = $_POST['weekday'];
+		$selftest['hour'] = !empty($_POST['hour']) ? $_POST['hour'] : null;
+		$selftest['day'] = !empty($_POST['day']) ? $_POST['day'] : null;
+		$selftest['month'] = !empty($_POST['month']) ? $_POST['month'] : null;
+		$selftest['weekday'] = !empty($_POST['weekday']) ? $_POST['weekday'] : null;
 		$selftest['all_hours'] = $_POST['all_hours'];
 		$selftest['all_days'] = $_POST['all_days'];
 		$selftest['all_months'] = $_POST['all_months'];
@@ -162,7 +164,7 @@ function enable_change(enable_change) {
   <tr>
     <td class="tabcont">
 			<form action="disks_manage_smart_edit.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<tr>
 			      <td valign="top" class="vncellreq"><?=gettext("Disk"); ?></td>

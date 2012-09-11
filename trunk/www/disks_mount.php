@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_mount.php
@@ -47,7 +46,7 @@ $pgtitle = array(gettext("Disks"), gettext("Mount Point"), gettext("Management")
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			// Process notifications
@@ -80,7 +79,7 @@ if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
 array_sort_key($config['mounts']['mount'], "devicespecialfile");
 $a_mount = &$config['mounts']['mount'];
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	$index = array_search_ex($_GET['uuid'], $config['mounts']['mount'], "uuid");
 	if (false !== $index) {
 		// MUST check if mount point is used by swap.
@@ -97,7 +96,7 @@ if ($_GET['act'] === "del") {
 	}
 }
 
-if ($_GET['act'] === "retry") {
+if (isset($_GET['act']) && $_GET['act'] === "retry") {
 	$index = array_search_ex($_GET['uuid'], $config['mounts']['mount'], "uuid");
 	if (false !== $index) {
 		if (0 == disks_mount($config['mounts']['mount'][$index])) {
@@ -144,7 +143,7 @@ function mountmanagement_process_updatenotification($mode, $data) {
 }
 ?>
 <?php include("fbegin.inc");?>
-<?php if($errormsg) print_input_errors($errormsg);?>
+<?php if(!empty($errormsg)) print_input_errors($errormsg);?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="tabnavtbl">
@@ -193,7 +192,7 @@ function mountmanagement_process_updatenotification($mode, $data) {
 					?>
           <tr>
           	<?php if ("disk" === $mount['type']):?>
-            <td class="listlr"><?=htmlspecialchars($mount['devicespecialfile']);?>&nbsp;</td>
+            <td class="listlr"><?=htmlspecialchars($mount['devicespecialfile']);?>&nbsp;<?php if ($mount['fstype'] == "ufs" && preg_match('/^\/dev\/(.+)$/', $mount['mdisk'], $match)) { echo "({$match[1]}{$mount['partition']})"; } ?></td>
             <?php else:?>
             <td class="listlr"><?=htmlspecialchars($mount['filename']);?>&nbsp;</td>
             <?php endif;?>

@@ -299,7 +299,8 @@ function disks_umount_ex($mount)
 		}
 	}
 
-	if ($mountname) {
+	$result = 0;
+	if (isset($mountname) && $mountname) {
 		if (mwexec("/sbin/umount -f '{$mountname}'") == 0) {
 			if(@rmdir("{$mountname}")) {
 				write_log("Successfully unmounted '{$mountname}'");
@@ -897,7 +898,7 @@ function disks_format($disk, $type, $notinitmbr, $minspace, $volumelabel, $aft4k
 			echo gettext("Creating partition")."...\n";
 			// Destroy old GTP partition
 			//system("/sbin/gpt destroy {$disk} 1>/dev/null 2>&1");
-			system("/sbin/gpart destroy {$disk} 1>/dev/null 2>&1");
+			system("/sbin/gpart destroy -F {$disk} 1>/dev/null 2>&1");
 			// Create new GPT partition
 			//system("/sbin/gpt create -f {$disk} 2>&1");
 			system("/sbin/gpart create -s gpt {$disk} 2>&1");
@@ -933,6 +934,9 @@ function disks_format($disk, $type, $notinitmbr, $minspace, $volumelabel, $aft4k
 		case "zfs":
 			// Calculate last sector of disk containing GEOM metadata.
 			$oseek = $diskinfo['mediasize_sectors'] - 1;
+
+			// Destroy old GTP partition
+			system("/sbin/gpart destroy -F {$disk} 1>/dev/null 2>&1");
 
 			// Initialize disk
 			// Ensure that existing GEOM metadata is completely removed.
@@ -1086,12 +1090,16 @@ function disks_get_partition_info($disk) {
 // Get UFS ID from partition.
 // the partition (e.g. ada1p1)
 // Result is ufsid.
-function disks_get_ufsid($partition) {
-	exec("/sbin/dumpfs -l ${partition}", $rawdata);
-	$info = preg_split("/\s+/", $rawdata[0]);
+function disks_get_ufsid($partition, &$out = false) {
 	$ufsid = "";
-	if (preg_match("/^\/dev\/ufsid\/(.*)$/", $info[0], $m)) {
-		$ufsid = $m[1];
+	exec("/sbin/dumpfs -l ${partition} 2>&1", $rawdata);
+	if ($out !== false && !empty($rawdata))
+		$out = $rawdata;
+	if (!empty($rawdata)) {
+		$info = preg_split("/\s+/", $rawdata[0]);
+		if (!empty($info[0]) && preg_match("/^\/dev\/ufsid\/(.*)$/", $info[0], $m)) {
+			$ufsid = $m[1];
+		}
 	}
 	return $ufsid;
 }
@@ -1168,16 +1176,16 @@ function disks_get_diskinfo($disk)
 	$diskinfo = preg_split("/\s+/", $rawdata[0]);
 
 	$result = array();
-	$result[name] = chop($diskinfo[0]);
-	$result[sectorsize] = chop($diskinfo[1]);
-	$result[mediasize_bytes] = chop($diskinfo[2]);
-	$result[mediasize_mbytes] = ceil(chop($diskinfo[2]) / 1024 / 1024);
-	$result[mediasize_sectors] = chop($diskinfo[3]);
-	$result[stripesize] = chop($diskinfo[4]);
-	$result[stripeoffset] = chop($diskinfo[5]);
-	$result[cylinders] = chop($diskinfo[6]);
-	$result[heads] = chop($diskinfo[7]);
-	$result[sectors] = chop($diskinfo[8]);
+	$result['name'] = chop($diskinfo[0]);
+	$result['sectorsize'] = chop($diskinfo[1]);
+	$result['mediasize_bytes'] = chop($diskinfo[2]);
+	$result['mediasize_mbytes'] = ceil(chop($diskinfo[2]) / 1024 / 1024);
+	$result['mediasize_sectors'] = chop($diskinfo[3]);
+	$result['stripesize'] = chop($diskinfo[4]);
+	$result['stripeoffset'] = chop($diskinfo[5]);
+	$result['cylinders'] = chop($diskinfo[6]);
+	$result['heads'] = chop($diskinfo[7]);
+	$result['sectors'] = chop($diskinfo[8]);
 
 	return $result;
 }
@@ -1318,7 +1326,7 @@ function disks_create_fdisk_configfile($type, $diskinfo, $file) {
 	if (!is_array($diskinfo))
 		return 1;
 
-	$fdiskconf .= <<<EOD
+	$fdiskconf = <<<EOD
 g c{$diskinfo['cylinders']} h{$diskinfo['heads']} s{$diskinfo['sectors']}
 p 1 {$type} {$diskinfo['sectors']} {$diskinfo['mediasize_sectors']}
 p 2 0 0 0

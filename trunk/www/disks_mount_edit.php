@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_mount_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -75,7 +75,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_mount, "uuid")
 	$pconfig['owner'] = $a_mount[$cnid]['accessrestrictions']['owner'];
 	$pconfig['group'] = $a_mount[$cnid]['accessrestrictions']['group'][0];
 	$pconfig['mode'] = $a_mount[$cnid]['accessrestrictions']['mode'];
-	$pconfig['filename'] = $a_mount[$cnid]['filename'];
+	$pconfig['filename'] = !empty($a_mount[$cnid]['filename']) ? $a_mount[$cnid]['filename'] : "";
 } else {
 	$pconfig['uuid'] = uuid();
 	$pconfig['type'] = "disk";
@@ -98,7 +98,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel'])) {
 		header("Location: disks_mount.php");
 		exit;
 	}
@@ -172,9 +172,10 @@ if ($_POST) {
 
 		// convert to UFSID
 		if ($_POST['fstype'] == "ufs") {
-			$ufsid = disks_get_ufsid($device);
+			$out = array();
+			$ufsid = disks_get_ufsid($device, $out);
 			if (empty($ufsid)) {
-				$input_errors[] = gettext("Can't get UFS ID.");
+				$input_errors[] = sprintf("%s: %s", $device, gettext("Can't get UFS ID."))."<br />".join('<br />', $out);
 			} else {
 				$device = "/dev/ufsid/$ufsid";
 			}
@@ -207,7 +208,7 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$mount = array();
 		$mount['uuid'] = $_POST['uuid'];
 		$mount['type'] = $_POST['type'];
@@ -222,8 +223,8 @@ if ($_POST) {
 				} else {
 					$mount['devicespecialfile'] = trim("{$mount['mdisk']}{$mount['partition']}");
 				}
-				$mount['readonly'] = $_POST['readonly'] ? true : false;
-				$mount['fsck'] = $_POST['fsck'] ? true : false;
+				$mount['readonly'] = isset($_POST['readonly']) ? true : false;
+				$mount['fsck'] = isset($_POST['fsck']) ? true : false;
 				break;
 
 			case "iso":
@@ -380,7 +381,7 @@ function enable_change(enable_change) {
   <tr>
     <td class="tabcont">
 			<form action="disks_mount_edit.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline(gettext("Settings"));?>
 					<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("disk" => gettext("Disk"), "iso" => "ISO"), "", true, false, "type_change()");?>
@@ -409,11 +410,11 @@ function enable_change(enable_change) {
 			      </td>
 			    </tr>
 					<?php html_inputbox("partitionnum", gettext("Partition number"), $pconfig['partitionnum'], "", true, 3);?>
-					<?php html_combobox("fstype", gettext("File system"), $pconfig['fstype'], array("ufs" => "UFS", "msdosfs" => "FAT", "cd9660" => "CD/DVD", "ntfs" => "NTFS", "ext2fs" => "EXT2"), "", true);?>
-					<?php html_filechooser("filename", "Filename", $pconfig['filename'], gettext("ISO file to be mounted."), $g['media_path'], true);?>
-					<?php html_inputbox("sharename", gettext("Mount point name"), $pconfig['sharename'], "", true, 20);?>
-					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
-					<?php html_checkbox("readonly", gettext("Read only"), $pconfig['readonly'] ? true : false, gettext("Mount the file system read-only (even the super-user may not write it)."), "", false);?>
+					<?php html_combobox("fstype", gettext("File system"), !empty($pconfig['fstype']) ? $pconfig['fstype'] : "", array("ufs" => "UFS", "msdosfs" => "FAT", "cd9660" => "CD/DVD", "ntfs" => "NTFS", "ext2fs" => "EXT2"), "", true);?>
+					<?php html_filechooser("filename", "Filename", !empty($pconfig['filename']) ? $pconfig['filename'] : "", gettext("ISO file to be mounted."), $g['media_path'], true);?>
+					<?php html_inputbox("sharename", gettext("Mount point name"), !empty($pconfig['sharename']) ? $pconfig['sharename'] : "", "", true, 20);?>
+					<?php html_inputbox("desc", gettext("Description"), !empty($pconfig['desc']) ? $pconfig['desc'] : "", gettext("You may enter a description here for your reference."), false, 40);?>
+					<?php html_checkbox("readonly", gettext("Read only"), !empty($pconfig['readonly']) ? true : false, gettext("Mount the file system read-only (even the super-user may not write it)."), "", false);?>
 					<?php html_checkbox("fsck", gettext("File system check"), $pconfig['fsck'] ? true : false, gettext("Enable foreground/background file system consistency check during boot process."), "", false);?>
 					<?php html_separator();?>
 					<?php html_titleline(gettext("Access Restrictions"));?>

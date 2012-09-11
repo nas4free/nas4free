@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_firewall.php
@@ -44,7 +43,7 @@ $pgtitle = array(gettext("Network"), gettext("Firewall"));
 
 $pconfig['enable'] = isset($config['system']['firewall']['enable']);
 
-if ($_POST['export']) {
+if (isset($_POST['export']) && $_POST['export']) {
 	$options = array(
 		XML_SERIALIZER_OPTION_XML_DECL_ENABLED => true,
 		XML_SERIALIZER_OPTION_INDENT           => "\t",
@@ -58,10 +57,10 @@ if ($_POST['export']) {
 		XML_SERIALIZER_OPTION_CONDENSE_BOOLS   => true,
 	);
 
-	$serializer = &new XML_Serializer($options);
+	$serializer = new XML_Serializer($options);
 	$status = $serializer->serialize($config['system']['firewall']['rule']);
 
-	if (PEAR::isError($status)) {
+	if (@PEAR::isError($status)) {
 		$errormsg = $status->getMessage();
 	} else {
 		$ts = date("YmdHis");
@@ -77,7 +76,7 @@ if ($_POST['export']) {
 
 		exit;
 	}
-} else if ($_POST['import']) {
+} else if (isset($_POST['import']) && $_POST['import']) {
 	if (is_uploaded_file($_FILES['rulesfile']['tmp_name'])) {
 		$options = array(
 			XML_UNSERIALIZER_OPTION_COMPLEXTYPE => 'array',
@@ -85,14 +84,14 @@ if ($_POST['export']) {
 			XML_UNSERIALIZER_OPTION_FORCE_ENUM  => $listtags,
 		);
 
-		$unserializer = &new XML_Unserializer($options);
+		$unserializer = new XML_Unserializer($options);
 		$status = $unserializer->unserialize($_FILES['rulesfile']['tmp_name'], true);
 
-		if (PEAR::isError($status)) {
+		if (@PEAR::isError($status)) {
 			$errormsg = $status->getMessage();
 		} else {
 			// Take care array already exists.
-			if (!is_array($config['system']['firewall']['rule']))
+			if (!isset($config['system']['firewall']['rule']) || !is_array($config['system']['firewall']['rule']))
 				$config['system']['firewall']['rule'] = array();
 
 			$data = $unserializer->getUnserializedData();
@@ -123,7 +122,7 @@ if ($_POST['export']) {
 } else if ($_POST) {
 	$pconfig = $_POST;
 
-	$config['system']['firewall']['enable'] = $_POST['enable'] ? true : false;
+	$config['system']['firewall']['enable'] = isset($_POST['enable']) ? true : false;
 
 	write_config();
 
@@ -147,7 +146,7 @@ if (!isset($config['system']['firewall']['rule']) || !is_array($config['system']
 array_sort_key($config['system']['firewall']['rule'], "ruleno");
 $a_rule = &$config['system']['firewall']['rule'];
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	if ($_GET['uuid'] === "all") {
 		foreach ($a_rule as $rulek => $rulev) {
 			updatenotify_set("firewall", UPDATENOTIFY_MODE_DIRTY, $a_rule[$rulek]['uuid']);
@@ -197,7 +196,7 @@ function enable_change(enable_change) {
 				<?php if ($savemsg) print_info_box($savemsg);?>
 				<?php if (updatenotify_exists("firewall")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("System firewall"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("System firewall"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<tr>
 						<td width="22%" valign="top" class="vncell"><?=gettext("Rules");?></td>
 						<td width="78%" class="vtable">

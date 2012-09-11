@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_routes.php
@@ -47,7 +46,7 @@ $pgtitle = array(gettext("Network"), gettext("Static routes"));
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			$retval |= updatenotify_process("routes", "routes_process_updatenotification");
@@ -66,7 +65,7 @@ if (!isset($config['staticroutes']['route']) || !is_array($config['staticroutes'
 array_sort_key($config['staticroutes']['route'], "network");
 $a_routes = &$config['staticroutes']['route'];
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	updatenotify_set("routes", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
 	header("Location: system_routes.php");
 	exit;
@@ -83,7 +82,7 @@ function routes_process_updatenotification($mode, $data) {
 			break;
 		case UPDATENOTIFY_MODE_DIRTY:
 			$cnid = array_search_ex($data, $config['staticroutes']['route'], "uuid");
-			if (FALSE !== $index) {
+			if (FALSE !== $cnid) {
 				rc_exec_service("routing delete conf_" . strtr($config['staticroutes']['route'][$cnid]['uuid'], "-", "_"));
 				unset($config['staticroutes']['route'][$cnid]);
 				write_config();
@@ -99,7 +98,7 @@ function routes_process_updatenotification($mode, $data) {
   <tr>
     <td class="tabcont">
 			<form action="system_routes.php" method="post">
-				<?php if ($savemsg) print_info_box($savemsg); ?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 				<?php if (updatenotify_exists("routes")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>

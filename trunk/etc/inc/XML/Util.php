@@ -176,7 +176,7 @@ class XML_Util
      * @static
      * @see reverseEntities()
      */
-    function replaceEntities($string, $replaceEntities = XML_UTIL_ENTITIES_XML,
+    static function replaceEntities($string, $replaceEntities = XML_UTIL_ENTITIES_XML,
         $encoding = 'ISO-8859-1')
     {
         switch ($replaceEntities) {
@@ -242,7 +242,7 @@ class XML_Util
      * @static
      * @see replaceEntities()
      */
-    function reverseEntities($string, $replaceEntities = XML_UTIL_ENTITIES_XML,
+    static function reverseEntities($string, $replaceEntities = XML_UTIL_ENTITIES_XML,
         $encoding = 'ISO-8859-1')
     {
         switch ($replaceEntities) {
@@ -286,7 +286,7 @@ class XML_Util
      * @static
      * @uses attributesToString() to serialize the attributes of the XML declaration
      */
-    function getXMLDeclaration($version = '1.0', $encoding = null, 
+    static function getXMLDeclaration($version = '1.0', $encoding = null, 
         $standalone = null)
     {
         $attributes = array(
@@ -325,7 +325,7 @@ class XML_Util
      * @static
      * @since 0.2
      */
-    function getDocTypeDeclaration($root, $uri = null, $internalDtd = null)
+    static function getDocTypeDeclaration($root, $uri = null, $internalDtd = null)
     {
         if (is_array($uri)) {
             $ref = sprintf(' PUBLIC "%s" "%s"', $uri['id'], $uri['uri']);
@@ -380,7 +380,7 @@ class XML_Util
      * @uses replaceEntities() to replace XML entities in attribute values
      * @todo allow sort also to be an options array
      */
-    function attributesToString($attributes, $sort = true, $multiline = false, 
+    static function attributesToString($attributes, $sort = true, $multiline = false, 
         $indent = '    ', $linebreak = "\n", $entities = XML_UTIL_ENTITIES_XML)
     {
         /*
@@ -451,7 +451,7 @@ class XML_Util
      * @todo PEAR CS - unable to avoid "space after open parens" error
      *       in the IF branch
      */
-    function collapseEmptyTags($xml, $mode = XML_UTIL_COLLAPSE_ALL) 
+    static function collapseEmptyTags($xml, $mode = XML_UTIL_COLLAPSE_ALL) 
     {
         if ($mode == XML_UTIL_COLLAPSE_XHTML_ONLY) {
             return preg_replace(
@@ -501,7 +501,7 @@ class XML_Util
      * @see createTagFromArray()
      * @uses createTagFromArray() to create the tag
      */
-    function createTag($qname, $attributes = array(), $content = null, 
+    static function createTag($qname, $attributes = array(), $content = null, 
         $namespaceUri = null, $replaceEntities = XML_UTIL_REPLACE_ENTITIES, 
         $multiline = false, $indent = '_auto', $linebreak = "\n", 
         $sortAttributes = true)
@@ -584,7 +584,7 @@ class XML_Util
      * @uses createCDataSection()
      * @uses raiseError()
      */
-    function createTagFromArray($tag, $replaceEntities = XML_UTIL_REPLACE_ENTITIES,
+    static function createTagFromArray($tag, $replaceEntities = XML_UTIL_REPLACE_ENTITIES,
         $multiline = false, $indent = '_auto', $linebreak = "\n", 
         $sortAttributes = true)
     {
@@ -697,7 +697,7 @@ class XML_Util
      * @static
      * @see createEndElement(), createTag()
      */
-    function createStartElement($qname, $attributes = array(), $namespaceUri = null,
+    static function createStartElement($qname, $attributes = array(), $namespaceUri = null,
         $multiline = false, $indent = '_auto', $linebreak = "\n", 
         $sortAttributes = true)
     {
@@ -751,7 +751,7 @@ class XML_Util
      * @static
      * @see createStartElement(), createTag()
      */
-    function createEndElement($qname)
+    static function createEndElement($qname)
     {
         $element = sprintf('</%s>', $qname);
         return $element;
@@ -773,7 +773,7 @@ class XML_Util
      * @access public
      * @static
      */
-    function createComment($content)
+    static function createComment($content)
     {
         $comment = sprintf('<!-- %s -->', $content);
         return $comment;
@@ -795,7 +795,7 @@ class XML_Util
      * @access public
      * @static
      */
-    function createCDataSection($data)
+    static function createCDataSection($data)
     {
         return sprintf('<![CDATA[%s]]>', 
             preg_replace('/\]\]>/', ']]]]><![CDATA[>', strval($data)));
@@ -826,7 +826,7 @@ class XML_Util
      * @access public
      * @static
      */
-    function splitQualifiedName($qname, $defaultNs = null)
+    static function splitQualifiedName($qname, $defaultNs = null)
     {
         if (strstr($qname, ':')) {
             $tmp = explode(':', $qname);
@@ -868,7 +868,7 @@ class XML_Util
      * @todo support for other charsets
      * @todo PEAR CS - unable to avoid 85-char limit on second preg_match
      */
-    function isValidName($string)
+    static function isValidName($string)
     {
         // check for invalid chars
         if (!preg_match('/^[[:alpha:]_]$/', $string{0})) {
@@ -902,10 +902,12 @@ class XML_Util
      * @static
      * @todo PEAR CS - should this use include_once instead?
      */
-    function raiseError($msg, $code)
+    static function raiseError($msg, $code)
     {
         require_once 'PEAR.php';
-        return PEAR::raiseError($msg, $code);
+        //return PEAR::raiseError($msg, $code);
+	$pear = new PEAR();
+	return $pear->raiseError($msg, $code);
     }
 }
 ?>

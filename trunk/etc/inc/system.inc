@@ -443,7 +443,7 @@ function system_get_device_temp($device) {
 
 	/* without smart */
 	mwexec2("ataidle /dev/{$device} | grep 'SMART Enabled'", $rawdata);
-	if (1 === preg_match("/^SMART Enabled:\s+(\S+)/", $rawdata[0], $matches)) {
+	if (!empty($rawdata) && 1 === preg_match("/^SMART Enabled:\s+(\S+)/", $rawdata[0], $matches)) {
 		if (strcasecmp($matches[1], "no") == 0) {
 			/* SMART disabled */
 			return $result;
@@ -453,7 +453,7 @@ function system_get_device_temp($device) {
 	mwexec2("smartctl -A /dev/{$device}", $rawdata);
 	foreach ($rawdata as $rawdatav) {
 		$arawdatav = preg_split("/\s+/", $rawdatav);
-		if ((0 == strncmp(trim($arawdatav[1]), "Temperature_", 12)) &&
+		if (!empty($arawdatav[1]) && (0 == strncmp(trim($arawdatav[1]), "Temperature_", 12)) &&
 			(0 != strcmp(trim($arawdatav[0]), "190"))) {
 			$result = chop($arawdatav[9]);
 			break;
@@ -474,13 +474,13 @@ function system_get_device_temp($device) {
 function system_get_volume_serial($devicefile) {
 	/* without smart */
 	mwexec2("ataidle {$devicefile} | grep 'Serial'", $rawdata);
-	if (1 === preg_match("/^Serial:\s+(.+)$/", $rawdata[0], $matches))
+	if (!empty($rawdata) && 1 === preg_match("/^Serial:\s+(.+)$/", $rawdata[0], $matches))
 		return $matches[1];
 	/* failback to old method */
 	mwexec2("smartctl -i {$devicefile} | grep 'Serial Number'", $rawdata1);
-	if (1 !== preg_match("/^Serial Number:\s+(.+)$/", $rawdata1[0], $matches))
-		return gettext("n/a");
-	return $matches[1];
+	if (!empty($rawdata1) && 1 === preg_match("/^Serial Number:\s+(.+)$/", $rawdata1[0], $matches))
+		return $matches[1];
+	return gettext("n/a");
 }
 
 /**
@@ -491,13 +491,13 @@ function system_get_volume_serial($devicefile) {
 function system_get_volume_model($devicefile) {
 	/* without smart */
 	mwexec2("ataidle {$devicefile} | grep 'Model'", $rawdata);
-	if (1 === preg_match("/^Model:\s+(.+)$/", $rawdata[0], $matches))
+	if (!empty($rawdata) && 1 === preg_match("/^Model:\s+(.+)$/", $rawdata[0], $matches))
 		return $matches[1];
 	/* failback to old method */
 	mwexec2("smartctl -i {$devicefile} | grep 'Device Model'", $rawdata1);
-	if (1 !== preg_match("/^Device Model:\s+(.+)$/", $rawdata1[0], $matches))
-		return gettext("n/a");
-	return $matches[1];
+	if (!empty($rawdata1) && 1 === preg_match("/^Device Model:\s+(.+)$/", $rawdata1[0], $matches))
+		return $matches[1];
+	return gettext("n/a");
 }
 
 /**

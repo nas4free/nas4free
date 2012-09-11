@@ -493,6 +493,8 @@ function get_mounts_list()
 
 		// Get the complete name /dev/devicename
 		$adevicespecialfile = explode("/", $devicespecialfile);
+		if (empty($adevicespecialfile[2]))
+			continue;
 		$devicename = $adevicespecialfile[2];
 
 		// Test if it's a gvinum, gmirror, gconcat or gstripe device
@@ -556,6 +558,8 @@ function get_sraid_disks_list()
 //    )
 function get_gvinum_disks_list()
 {
+	$disklist = array();
+
 	/* Send the shell cmd and get the result */
 	exec("/sbin/gvinum list",$rawdata);
 
@@ -596,6 +600,8 @@ function get_gvinum_disks_list()
 //    )
 function get_gmirror_disks_list()
 {
+	$disklist = array();
+
 	/* Display all configured gmirror volume */
 	exec("/sbin/gmirror list",$rawdata);
 
@@ -653,6 +659,8 @@ function get_gmirror_disks_list()
 //    )
 function get_gconcat_disks_list()
 {
+	$disklist = array();
+
 	/* Display all configured gconcat volume */
 	exec("/sbin/gconcat list",$rawdata);
 
@@ -710,6 +718,8 @@ function get_gconcat_disks_list()
 //    )
 function get_gstripe_disks_list()
 {
+	$disklist = array();
+
 	/* Display all configured gstripe volume */
 	exec("/sbin/gstripe list",$rawdata);
 
@@ -767,6 +777,8 @@ function get_gstripe_disks_list()
 //    )
 function get_graid5_disks_list()
 {
+	$disklist = array();
+
 	/* Display all configured graid5 volume */
 	exec("/sbin/graid5 list",$rawdata);
 

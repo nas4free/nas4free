@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php 
 /*
 	system_routes_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -71,7 +71,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: system_routes.php");
 		exit;
 	}
@@ -123,7 +123,7 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$route = array();
 		$route['uuid'] = $_POST['uuid'];
 		$route['interface'] = $_POST['interface'];
@@ -152,14 +152,14 @@ if ($_POST) {
   <tr>
     <td class="tabcont">
       <form action="system_routes_edit.php" method="post" name="iform" id="iform">
-      	<?php if ($input_errors) print_input_errors($input_errors); ?>
+      	<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
         <table width="100%" border="0" cellpadding="6" cellspacing="0">
           <?php $interfaces = array('lan' => 'LAN'); for ($i = 1; isset($config['interfaces']['opt' . $i]); $i++) { $interfaces['opt' . $i] = $config['interfaces']['opt' . $i]['descr']; }?>
-          <?php html_combobox("interface", gettext("Interface"), $pconfig['interface'], $interfaces, gettext("Choose which interface this route applies to."), true);?>
+          <?php html_combobox("interface", gettext("Interface"), !empty($pconfig['interface']) ? $pconfig['interface'] : "", $interfaces, gettext("Choose which interface this route applies to."), true);?>
           <tr>
             <td width="22%" valign="top" class="vncellreq"><?=gettext("Destination network");?></td>
             <td width="78%" class="vtable"> 
-							<input name="network" type="text" class="formfld" id="network" size="20" value="<?=htmlspecialchars($pconfig['network']);?>" /> 
+							<input name="network" type="text" class="formfld" id="network" size="20" value="<?=htmlspecialchars(!empty($pconfig['network']) ? $pconfig['network'] : "");?>" /> 
 							/
 							<select name="network_subnet" class="formfld" id="network_subnet">
 								<?php for ($i = 32; $i > 0; $i--):?>
