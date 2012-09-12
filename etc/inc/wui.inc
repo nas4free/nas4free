@@ -204,7 +204,7 @@ class HTMLPasswordConfBox extends HTMLEditBox {
 		$this->SetCtrlNameConf($ctrlnameconf);
 		$this->SetTitle($title);
 		$this->SetValue($value);
-		$this->SetValueConf($value);
+		$this->SetValueConf($valueconf);
 		$this->SetDescription($description);
 		$this->SetSize($size);
 	}
@@ -611,7 +611,7 @@ class HTMLInterfaceComboBox extends HTMLComboBox {
 		// Generate options.
 		$options = array('lan' => 'LAN');
 		for ($i = 1; isset($config['interfaces']['opt' . $i]); $i++) {
-			if (isset($config['interfaces']['opt' . $i]['enable']) && !$config['interfaces']['opt' . $i]['bridge']) {
+			if (isset($config['interfaces']['opt' . $i]['enable']) && isset($config['interfaces']['opt' . $i]['bridge']) && !$config['interfaces']['opt' . $i]['bridge']) {
 				$options['opt' . $i] = $config['interfaces']['opt' . $i]['descr'];
 			}
 		}

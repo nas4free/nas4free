@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_iscsitarget_ag_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -62,7 +62,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_ag
 	$pconfig['tag'] = $a_iscsitarget_ag[$cnid]['tag'];
 	$pconfig['comment'] = $a_iscsitarget_ag[$cnid]['comment'];
 	$i = 1;
-	if (!is_array($a_iscsitarget_ag[$cnid]['agauth']))
+	if (!isset($a_iscsitarget_ag[$cnid]['agauth']) || !is_array($a_iscsitarget_ag[$cnid]['agauth']))
 		$a_iscsitarget_ag[$cnid]['agauth'] = array();
 	array_sort_key($a_iscsitarget_ag[$cnid]['agauth'], "authuser");
 	foreach ($a_iscsitarget_ag[$cnid]['agauth'] as $agauth) {
@@ -97,7 +97,7 @@ if ($_POST) {
 	unset($errormsg);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: services_iscsitarget_ag.php");
 		exit;
 	}
@@ -121,8 +121,8 @@ if ($_POST) {
 	}
 
 	$auths = array();
-    for ($i = 1; $i <= $MAX_AUTHUSERS; $i++) {
-		$delete = $_POST["delete$i"] ? true : false;
+	for ($i = 1; $i <= $MAX_AUTHUSERS; $i++) {
+		$delete = isset($_POST["delete$i"]) ? true : false;
 		$user = $_POST["user$i"];
 		$secret = $_POST["secret$i"];
 		$secret2 = $_POST["secret2$i"];
@@ -166,7 +166,7 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$iscsitarget_ag = array();
 		$iscsitarget_ag['uuid'] = $_POST['uuid'];
 		$iscsitarget_ag['tag'] = $_POST['tag'];
@@ -220,8 +220,8 @@ function expand_ipv6addr($v6addr) {
 		if (strlen($v6rstr) == 0) {
 			$v6rstr = "0";
 		}
-		$v6lcnt = strlen(ereg_replace("[^:]", "", $v6lstr));
-		$v6rcnt = strlen(ereg_replace("[^:]", "", $v6rstr));
+		$v6lcnt = strlen(preg_replace("/[^:]/", "", $v6lstr));
+		$v6rcnt = strlen(preg_replace("/[^:]/", "", $v6rstr));
 		$v6str = $v6lstr;
 		$v6ncnt = 8 - ($v6lcnt + 1 + $v6rcnt + 1);
 		while ($v6ncnt > 0) {
@@ -249,7 +249,7 @@ function normalize_ipv6addr($v6addr) {
 	// suppress prefix zero
 	$v6a = explode(":", $v6str);
 	foreach ($v6a as &$tmp) {
-		$tmp = ereg_replace("^[0]+", "", $tmp);
+		$tmp = preg_replace("/^[0]+/", "", $tmp);
 		if (strlen($tmp) == 0) {
 			$tmp = "0";
 		}
@@ -275,9 +275,9 @@ function normalize_ipv6addr($v6addr) {
 	unset($tmp);
 	$v6str = implode(":", $v6a);
 	if ($found_zero > 1) {
-		$v6str = ereg_replace("(:?z:?)+", "::", $v6str);
+		$v6str = preg_replace("/(:?z:?)+/", "::", $v6str);
 	} else {
-		$v6str = ereg_replace("(z)+", "0", $v6str);
+		$v6str = preg_replace("/(z)+/", "0", $v6str);
 	}
 	return $v6str;
 }
@@ -299,7 +299,7 @@ function normalize_ipv6addr($v6addr) {
 	  </tr>
 	  <tr>
 	    <td class="tabcont">
-	      <?php if ($input_errors) print_input_errors($input_errors);?>
+	      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 	      <table width="100%" border="0" cellpadding="6" cellspacing="0">
 	      <?php html_inputbox("tag", gettext("Tag number"), $pconfig['tag'], gettext("Numeric identifier of the group."), true, 10, (isset($uuid) && (FALSE !== $cnid)));?>
 	      <?php html_inputbox("comment", gettext("Comment"), $pconfig['comment'], gettext("You may enter a description here for your reference."), false, 40);?>
@@ -311,6 +311,20 @@ function normalize_ipv6addr($v6addr) {
 	      <?php $lmuser=sprintf("muser%d", $i); ?>
 	      <?php $lmsecret=sprintf("msecret%d", $i); ?>
 	      <?php $lmsecret2=sprintf("msecret2%d", $i); ?>
+	      <?php
+		if (!isset($pconfig["$luser"]))
+			$pconfig["$luser"] = "";
+		if (!isset($pconfig["$lsecret"]))
+			$pconfig["$lsecret"] = "";
+		if (!isset($pconfig["$lsecret2"]))
+			$pconfig["$lsecret2"] = "";
+		if (!isset($pconfig["$lmuser"]))
+			$pconfig["$lmuser"] = "";
+		if (!isset($pconfig["$lmsecret"]))
+			$pconfig["$lmsecret"] = "";
+		if (!isset($pconfig["$lmsecret2"]))
+			$pconfig["$lmsecret2"] = "";
+	      ?>
 	      <?php html_separator();?>
 	      <?php html_titleline_checkbox("$ldelete", sprintf("%s%d", gettext("User"), $i), false, gettext("Delete"), false);?>
 	      <?php html_inputbox("$luser", gettext("User"), $pconfig["$luser"], gettext("Target side user name. It is usually the initiator name by default."), false, 60);?>

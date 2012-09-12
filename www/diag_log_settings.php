@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	diag_log_settings.php
@@ -67,25 +66,25 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	/* input validation */
-	if ($_POST['enable'] && !is_ipaddr($_POST['ipaddr'])) {
+	if (isset($_POST['enable']) && $_POST['enable'] && !is_ipaddr($_POST['ipaddr'])) {
 		$input_errors[] = gettext("A valid IP address must be specified.");
 	}
 	if (($_POST['nentries'] < 5) || ($_POST['nentries'] > 1000)) {
 		$input_errors[] = gettext("Number of log entries to show must be between 5 and 1000.");
 	}
 
-	if (!$input_errors) {
-		$config['syslogd']['reverse'] = $_POST['reverse'] ? true : false;
+	if (empty($input_errors)) {
+		$config['syslogd']['reverse'] = isset($_POST['reverse']) ? true : false;
 		$config['syslogd']['nentries'] = (int)$_POST['nentries'];
-		$config['syslogd']['resolve'] = $_POST['resolve'] ? true : false;
-		$config['syslogd']['remote']['enable'] = $_POST['enable'] ? true : false;
+		$config['syslogd']['resolve'] = isset($_POST['resolve']) ? true : false;
+		$config['syslogd']['remote']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['syslogd']['remote']['ipaddr'] = $_POST['ipaddr'];
-		$config['syslogd']['remote']['system'] = $_POST['system'] ? true : false;
-		$config['syslogd']['remote']['ftp'] = $_POST['ftp'] ? true : false;
-		$config['syslogd']['remote']['rsyncd'] = $_POST['rsyncd'] ? true : false;
-		$config['syslogd']['remote']['sshd'] = $_POST['sshd'] ? true : false;
-		$config['syslogd']['remote']['smartd'] = $_POST['smartd'] ? true : false;
-		$config['syslogd']['remote']['daemon'] = $_POST['daemon'] ? true : false;
+		$config['syslogd']['remote']['system'] = isset($_POST['system']) ? true : false;
+		$config['syslogd']['remote']['ftp'] = isset($_POST['ftp']) ? true : false;
+		$config['syslogd']['remote']['rsyncd'] = isset($_POST['rsyncd']) ? true : false;
+		$config['syslogd']['remote']['sshd'] = isset($_POST['sshd']) ? true : false;
+		$config['syslogd']['remote']['smartd'] = isset($_POST['smartd']) ? true : false;
+		$config['syslogd']['remote']['daemon'] = isset($_POST['daemon']) ? true : false;
 
 		write_config();
 
@@ -126,8 +125,8 @@ function enable_change(enable_change) {
   <tr>
     <td class="tabcont">
     	<form action="diag_log_settings.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 		  	<table width="100%" border="0" cellpadding="6" cellspacing="0">
 	        <tr>
 	          <td width="22%" valign="top" class="vncell">&nbsp;</td>

@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_iscsitarget_ig.php
@@ -47,7 +46,7 @@ $pgtitle = array(gettext("Services"), gettext("iSCSI Target"), gettext("Initiato
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		write_config();
 
 		$retval = 0;
@@ -75,7 +74,7 @@ $a_iscsitarget_ig = &$config['iscsitarget']['initiatorgroup'];
 if (!isset($config['iscsitarget']['target']) || !is_array($config['iscsitarget']['target']))
 	$config['iscsitarget']['target'] = array();
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	$index = array_search_ex($_GET['uuid'], $config['iscsitarget']['initiatorgroup'], "uuid");
 	if ($index !== false) {
 		$ig = $config['iscsitarget']['initiatorgroup'][$index];
@@ -90,7 +89,7 @@ if ($_GET['act'] === "del") {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		updatenotify_set("iscsitarget_ig", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
 		header("Location: services_iscsitarget_ig.php");
 		exit;
@@ -132,8 +131,8 @@ function iscsitargetig_process_updatenotification($mode, $data) {
   </tr>
   <tr>
     <td class="tabcont">
-      <?php if ($input_errors) print_input_errors($input_errors);?>
-      <?php if ($savemsg) print_info_box($savemsg);?>
+      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+      <?php if (!empty($savemsg)) print_info_box($savemsg);?>
       <?php if (updatenotify_exists("iscsitarget_ig")) print_config_change_box();?>
       <table width="100%" border="0" cellpadding="6" cellspacing="0">
       <tr>

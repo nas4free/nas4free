@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	status_interfaces.php
@@ -72,7 +71,7 @@ $pgtitle = array(gettext("Status"), gettext("Interfaces"));
 		          <?=htmlspecialchars($ifinfo['hwif']);?>
 		        </td>
 		      </tr>
-		      <?php if ($ifinfo['dhcplink']): ?>
+		      <?php if (isset($ifinfo['dhcplink']) && $ifinfo['dhcplink']): ?>
 		  	  <tr>
 		  		  <td width="22%" class="vncellt"><?=gettext("DHCP");?></td>
 		  			<td width="78%" class="listr">
@@ -84,7 +83,7 @@ $pgtitle = array(gettext("Status"), gettext("Interfaces"));
 		  			  <?php endif; ?>
 		  			</td>
 		  	  </tr>
-		      <?php endif; if ($ifinfo['pppoelink']): ?>
+		      <?php endif; if (isset($ifinfo['pppoelink']) && $ifinfo['pppoelink']): ?>
 		      <tr>
 		        <td width="22%" class="vncellt"><?=gettext("PPPoE");?></td>
 		        <td width="78%" class="listr">
@@ -96,7 +95,7 @@ $pgtitle = array(gettext("Status"), gettext("Interfaces"));
 		  			  <?php endif; ?>
 		        </td>
 		      </tr>
-		      <?php  endif; if ($ifinfo['pptplink']): ?>
+		      <?php  endif; if (isset($ifinfo['pptplink']) && $ifinfo['pptplink']): ?>
 		      <tr>
 		        <td width="22%" class="vncellt"><?=gettext("PPTP");?></td>
 		        <td width="78%" class="listr">
@@ -108,7 +107,7 @@ $pgtitle = array(gettext("Status"), gettext("Interfaces"));
 		  			  <?php endif; ?>
 		        </td>
 		      </tr>
-		      <?php  endif; if ($ifinfo['macaddr']): ?>
+		      <?php  endif; if (isset($ifinfo['macaddr']) && $ifinfo['macaddr']): ?>
 		      <tr>
 		        <td width="22%" class="vncellt"><?=gettext("MAC address");?></td>
 		        <td width="78%" class="listr">
@@ -116,43 +115,43 @@ $pgtitle = array(gettext("Status"), gettext("Interfaces"));
 		        </td>
 		      </tr>
 		      <?php endif; if ($ifinfo['status'] != "down"): ?>
-		  		<?php if ($ifinfo['dhcplink'] != "down" && $ifinfo['pppoelink'] != "down" && $ifinfo['pptplink'] != "down"): ?>
-		  		<?php if ($ifinfo['ipaddr']): ?>
+		  		<?php if ((!isset($ifinfo['dhcplink']) || $ifinfo['dhcplink'] != "down") && (!isset($ifinfo['pppoelink']) || $ifinfo['pppoelink'] != "down") && (!isset($ifinfo['pptplink']) || $ifinfo['pptplink'] != "down")): ?>
+		  		<?php if (isset($ifinfo['ipaddr']) && $ifinfo['ipaddr']): ?>
 		      <tr>
 		        <td width="22%" class="vncellt"><?=gettext("IP address");?></td>
 		        <td width="78%" class="listr">
 		          <?=htmlspecialchars($ifinfo['ipaddr']);?>&nbsp;
 		        </td>
 		      </tr>
-		      <?php endif; ?><?php if ($ifinfo['subnet']): ?>
+		      <?php endif; ?><?php if (isset($ifinfo['subnet']) && $ifinfo['subnet']): ?>
 		      <tr>
 		        <td width="22%" class="vncellt"><?=gettext("Subnet mask");?></td>
 		        <td width="78%" class="listr">
 		          <?=htmlspecialchars($ifinfo['subnet']);?>
 		        </td>
 		      </tr>
-		      <?php endif; ?><?php if ($ifinfo['gateway']): ?>
+		      <?php endif; ?><?php if (isset($ifinfo['gateway']) && $ifinfo['gateway']): ?>
 		      <tr>
 		        <td width="22%" class="vncellt"><?=gettext("Gateway");?></td>
 		        <td width="78%" class="listr">
 		          <?=htmlspecialchars($ifinfo['gateway']);?>
 		        </td>
 		      </tr>
-			  <?php endif; ?><?php if ($ifinfo['ipv6addr']): ?>
+			  <?php endif; ?><?php if (isset($ifinfo['ipv6addr']) && $ifinfo['ipv6addr']): ?>
 			  <tr>
 		        <td width="22%" class="vncellt"><?=gettext("IPv6 address");?></td>
 		        <td width="78%" class="listr">
 		          <?=htmlspecialchars($ifinfo['ipv6addr']);?>&nbsp;
 		        </td>
 		      </tr>
-		      <?php endif; ?><?php if ($ifinfo['ipv6subnet']): ?>
+		      <?php endif; ?><?php if (isset($ifinfo['ipv6subnet']) && $ifinfo['ipv6subnet']): ?>
 		      <tr>
 		        <td width="22%" class="vncellt"><?=gettext("IPv6 Prefix");?></td>
 		        <td width="78%" class="listr">
 		          <?=htmlspecialchars($ifinfo['ipv6subnet']);?>
 		        </td>
 		      </tr>
-		      <?php endif; ?><?php if ($ifinfo['ipv6gateway']): ?>
+		      <?php endif; ?><?php if (isset($ifinfo['ipv6gateway']) && $ifinfo['ipv6gateway']): ?>
 		      <tr>
 		        <td width="22%" class="vncellt"><?=gettext("IPv6 Gateway");?></td>
 		        <td width="78%" class="listr">
@@ -162,21 +161,21 @@ $pgtitle = array(gettext("Status"), gettext("Interfaces"));
 		      <?php endif; if ($ifdescr == "wan" && file_exists("{$g['varetc_path']}/nameservers.conf")): ?>
 		      <td width="22%" class="vncellt"><?=gettext("ISP DNS servers");?></td>
 		      <td width="78%" class="listr"><?php echo nl2br(file_get_contents("{$g['varetc_path']}/nameservers.conf")); ?></td>
-		      <?php endif; endif; if ($ifinfo['media']): ?>
+		      <?php endif; endif; if (isset($ifinfo['media']) && $ifinfo['media']): ?>
 		      <tr>
 		        <td width="22%" class="vncellt"><?=gettext("Media");?></td>
 		        <td width="78%" class="listr">
 		          <?=htmlspecialchars($ifinfo['media']);?>
 		        </td>
 		      </tr>
-		      <?php endif; ?><?php if ($ifinfo['channel']): ?>
+		      <?php endif; ?><?php if (isset($ifinfo['channel']) && $ifinfo['channel']): ?>
 		      <tr>
 		        <td width="22%" class="vncellt"><?=gettext("Channel");?></td>
 		        <td width="78%" class="listr">
 		          <?=htmlspecialchars($ifinfo['channel']);?>
 		        </td>
 		      </tr>
-		      <?php endif; ?><?php if ($ifinfo['ssid']): ?>
+		      <?php endif; ?><?php if (isset($ifinfo['ssid']) && $ifinfo['ssid']): ?>
 		      <tr>
 		        <td width="22%" class="vncellt"><?=gettext("SSID");?></td>
 		        <td width="78%" class="listr">

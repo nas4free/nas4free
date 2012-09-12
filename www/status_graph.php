@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	status_graph.php
@@ -45,7 +44,7 @@ require("guiconfig.inc");
 $pgtitle = array(gettext("Status"), gettext("Graph"),gettext("Traffic graph"));
 
 $curif = "lan";
-if ($_GET['if'])
+if (isset($_GET['if']) && $_GET['if'])
 	$curif = $_GET['if'];
 $ifnum = get_ifname($config['interfaces'][$curif]['if']);
 ?>

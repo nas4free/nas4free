@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	status_graph.php
@@ -39,7 +38,7 @@ require("auth.inc");
 require("guiconfig.inc");
 
 // Make sure no other output than the requested data is echoed.
-if (0 == strcmp("cpu", getenv(QUERY_STRING))) {
+if (0 == strcmp("cpu", getenv("QUERY_STRING"))) {
 	$cpuload = @system_get_cpu_usage();
 	echo $cpuload;
 } else {

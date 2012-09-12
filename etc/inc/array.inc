@@ -41,8 +41,11 @@
 
 // Search in a multidimensional array.
 function array_search_ex($needle, $haystack, $key) {
-	if (!is_array($haystack))
+	if (empty($haystack) || !is_array($haystack))
 		return false;
+	if ($needle === "" || $key === "")
+		return false;
+
 	foreach ($haystack as $haystackval => $value) {
 		$found = false;
 		if (is_array($needle) && is_array($key)) {
@@ -53,7 +56,9 @@ function array_search_ex($needle, $haystack, $key) {
 				}
 			}
 		} else {
-			if (true === is_array($value[$key])) {
+			if (!isset($value[$key])) {
+				$found = false;
+			} else if (true === is_array($value[$key])) {
 				$found = in_array($needle, $value[$key]);
 			} else {
 				$found = ($value[$key] === $needle);
@@ -73,10 +78,22 @@ function array_search_ex($needle, $haystack, $key) {
 function array_sort_key(array &$array, $key) {
 	global $_key;
 
+	if (empty($array) || !is_array($array))
+		return true;
+	if ($key === "")
+		return true;
+
 	// Declare local compare function.
 	if(!function_exists("_array_sort_key_cmp")) {
 		function _array_sort_key_cmp($a, $b) {
 			global $_key;
+			if (!isset($a[$_key])) {
+				if (!isset($b[$_key]))
+					return 0;
+				return -1;
+			} else if (!isset($b[$_key])) {
+				return 1;
+			}
 			return strnatcmp($a[$_key], $b[$_key]);
 		}
 	}

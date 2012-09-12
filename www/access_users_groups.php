@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	access_users_groups.php
@@ -47,7 +46,7 @@ $pgtitle = array(gettext("Access"), gettext("Groups"));
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			$retval |= updatenotify_process("userdb_group", "userdbgroup_process_updatenotification");
@@ -70,7 +69,7 @@ array_sort_key($config['access']['group'], "name");
 	
 	$a_group = system_get_group_list();
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	updatenotify_set("userdb_group", UPDATENOTIFY_MODE_DIRTY,  $_GET['uuid']);
 	header("Location: access_users_groups.php");
 	exit;

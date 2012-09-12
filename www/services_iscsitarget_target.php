@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_iscsitarget_target.php
@@ -51,7 +50,7 @@ if ($_POST) {
 
 	//$config['iscsitarget']['enable'] = $_POST['enable'] ? true : false;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		write_config();
 
 		$retval = 0;
@@ -124,7 +123,7 @@ function cmp_target($a, $b) {
 }
 usort($config['iscsitarget']['target'], "cmp_target");
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	switch ($_GET['type']) {
 		case "extent":
 			$index = array_search_ex($_GET['uuid'], $config['iscsitarget']['extent'], "uuid");
@@ -156,7 +155,7 @@ if ($_GET['act'] === "del") {
 					}
 				}
 			}
-			if (!$input_errors) {
+			if (empty($input_errors)) {
 				updatenotify_set("iscsitarget_extent", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
 				header("Location: services_iscsitarget_target.php");
 				exit;
@@ -224,8 +223,8 @@ function iscsitargettarget_process_updatenotification($mode, $data) {
   </tr>
   <tr>
     <td class="tabcont">
-      <?php if ($input_errors) print_input_errors($input_errors);?>
-      <?php if ($savemsg) print_info_box($savemsg);?>
+      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+      <?php if (!empty($savemsg)) print_info_box($savemsg);?>
       <?php if (updatenotify_exists("iscsitarget_extent") || updatenotify_exists("iscsitarget_target")) print_config_change_box();?>
       <table width="100%" border="0" cellpadding="6" cellspacing="0">
       <tr>

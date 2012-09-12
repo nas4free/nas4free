@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	diag_traceroute.php
@@ -54,11 +53,11 @@ if ($_POST) {
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$do_traceroute = true;
 		$host = $_POST['host'];
 		$ttl = $_POST['ttl'];
-		$resolve = $_POST['resolve'];
+		$resolve = isset($_POST['resolve']) ? true : false;
 	}
 }
 
@@ -82,7 +81,7 @@ if (!isset($do_traceroute)) {
 	<tr>
 		<td class="tabcont">
 			<form action="diag_traceroute.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_inputbox("host", gettext("Host"), $host, gettext("Destination host name or IP number."), true, 20);?>
 					<?php $a_ttl = array(); for ($i = 1; $i <= 64; $i++) { $a_ttl[$i] = $i; }?>
@@ -95,7 +94,7 @@ if (!isset($do_traceroute)) {
 				<?php if ($do_traceroute) {
 				echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
 				echo('<pre class="cmdoutput">');
-				ob_end_flush();
+				//ob_end_flush();
 				exec("/usr/sbin/traceroute " . ($resolve ? "" : "-n ") . "-w 2 -m " . escapeshellarg($ttl) . " " . escapeshellarg($host), $rawdata);
 				echo htmlspecialchars(implode("\n", $rawdata));
 				unset($rawdata);
