@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_iscsitarget_target_media.php
@@ -43,6 +42,21 @@ require("auth.inc");
 require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"), gettext("iSCSI Target"), gettext("Media"));
+
+if (!isset($config['iscsitarget']['media_uctladdress']))
+	$config['iscsitarget']['media_uctladdress'] = "127.0.0.1";
+if (!isset($config['iscsitarget']['media_uctlport']))
+	$config['iscsitarget']['media_uctlport'] = "3261";
+if (!isset($config['iscsitarget']['media_uctlauthmethod']))
+	$config['iscsitarget']['media_uctlauthmethod'] = "CHAP";
+if (!isset($config['iscsitarget']['media_uctluser']))
+	$config['iscsitarget']['media_uctluser'] = "";
+if (!isset($config['iscsitarget']['media_uctlsecret']))
+	$config['iscsitarget']['media_uctlsecret'] = "";
+if (!isset($config['iscsitarget']['media_uctlmuser']))
+	$config['iscsitarget']['media_uctlmuser'] = "";
+if (!isset($config['iscsitarget']['media_uctlmsecret']))
+	$config['iscsitarget']['media_uctlmsecret'] = "";
 
 $pconfig['media_uctladdress'] = $config['iscsitarget']['media_uctladdress'];
 $pconfig['media_uctlport'] = $config['iscsitarget']['media_uctlport'];
@@ -250,11 +264,11 @@ if ($_POST) {
 	$pconfig['target_info'] = array();
 	$pconfig['mediadirectory'] = $config['iscsitarget']['mediadirectory'];
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: services_iscsitarget.php");
 		exit;
 	}
-	if ($_POST['Delete']) {
+	if (isset($_POST['Delete']) && $_POST['Delete']) {
 		reset_uctlinfo($pconfig);
 		$config['iscsitarget']['media_uctladdress'] = $pconfig['media_uctladdress'];
 		$config['iscsitarget']['media_uctlport'] = $pconfig['media_uctlport'];
@@ -267,7 +281,7 @@ if ($_POST) {
 		header("Location: services_iscsitarget_media.php");
 		exit;
 	}
-	if ($_POST['Scan']) {
+	if (isset($_POST['Scan']) && $_POST['Scan']) {
 		$reqdfields = explode(" ", "media_uctladdress media_uctlport media_uctlauthmethod");
 		$reqdfieldsn = array(gettext("Controller IP address"),
 			     gettext("Controller TCP Port"),
@@ -298,7 +312,7 @@ if ($_POST) {
 		}
 
 		if (isset($pconfig['media_uctlsave'])) {
-			if (!$input_errors) {
+			if (empty($input_errors)) {
 				$config['iscsitarget']['media_uctladdress'] = $pconfig['media_uctladdress'];
 				$config['iscsitarget']['media_uctlport'] = $pconfig['media_uctlport'];
 				$config['iscsitarget']['media_uctlauthmethod'] = $pconfig['media_uctlauthmethod'];
@@ -311,7 +325,7 @@ if ($_POST) {
 		} else {
 			// ignore change
 		}
-		if (!$input_errors) {
+		if (empty($input_errors)) {
 			// scan target on specified Logical Unit Controller
 			if (scan_target($pconfig) != 0) {
 				if ($pconfig['error'] != "") {
@@ -322,7 +336,7 @@ if ($_POST) {
 			}
 		}
 	}
-	if ($_POST['Info']) {
+	if (isset($_POST['Info']) && $_POST['Info']) {
 		if (scan_target($pconfig) != 0) {
 			if ($pconfig['error'] != "") {
 				$errormsg = $pconfig['error'];
@@ -333,7 +347,7 @@ if ($_POST) {
 		if ($pconfig['target'] == "") {
 			$input_errors[] = gettext("Target is not selected.");
 		}
-		if (!$input_errors) {
+		if (empty($input_errors)) {
 			// get info on specified target
 			if (get_target_info($pconfig) != 0) {
 				if ($pconfig['error'] != "") {
@@ -344,7 +358,7 @@ if ($_POST) {
 			}
 		}
 	}
-	if ($_POST['Unload'] || $_POST['Load']) {
+	if ((isset($_POST['Unload']) && $_POST['Unload']) || (isset($_POST['Load']) && $_POST['Load'])) {
 		if (scan_target($pconfig) != 0) {
 			if ($pconfig['error'] != "") {
 				$errormsg = $pconfig['error'];
@@ -355,7 +369,7 @@ if ($_POST) {
 		if ($pconfig['target'] == "") {
 			$input_errors[] = gettext("Target is not selected.");
 		}
-		if (!$input_errors) {
+		if (empty($input_errors)) {
 			// load/unload media
 			if (do_load_unload($pconfig, $_POST['Unload'] ? 1 : 0) != 0) {
 				if ($pconfig['error'] != "") {
@@ -377,7 +391,7 @@ if ($_POST) {
 			}
 		}
 	}
-	if ($_POST['Change']) {
+	if (isset($_POST['Change']) && $_POST['Change']) {
 		if (scan_target($pconfig) != 0) {
 			if ($pconfig['error'] != "") {
 				$errormsg = $pconfig['error'];
@@ -406,7 +420,7 @@ if ($_POST) {
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
-		if (!$input_errors) {
+		if (empty($input_errors)) {
 			// change media
 			if (do_change($pconfig) != 0) {
 				if ($pconfig['error'] != "") {
@@ -442,7 +456,7 @@ function target_list(&$pconfig) {
 	echo '</tr>'."\n";
 	foreach ($pconfig['target_list'] as $targetv) {
 		$name = $targetv['name'];
-		$sel = ($pconfig['target'] == $name) ? " checked=\"checked\"" : "";
+		$sel = (isset($pconfig['target']) && $pconfig['target'] == $name) ? " checked=\"checked\"" : "";
 		echo '<tr>';
 		echo '  <td width="1%" class="listlr"><input name="target" type="radio" value="'.htmlspecialchars($name).'"'.$sel.' /></td>';
 		echo '  <td class="listr">'.htmlspecialchars($name).'&nbsp;</td>';
@@ -568,9 +582,9 @@ function sizeunit_change() {
   </tr>
   <tr>
     <td class="tabcont">
-      <?php if ($input_errors) print_input_errors($input_errors);?>
-      <?php if ($errormsg) print_error_box($errormsg);?>
-      <?php if ($savemsg) print_info_box($savemsg);?>
+      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+      <?php if (!empty($errormsg)) print_error_box($errormsg);?>
+      <?php if (!empty($savemsg)) print_info_box($savemsg);?>
       <table width="100%" border="0" cellpadding="6" cellspacing="0">
       <?php html_titleline(gettext("Logical Unit Controller login information"));?>
       <?php html_inputbox("media_uctladdress", gettext("Controller IP address"), $pconfig['media_uctladdress'], "", true, 30);?>
@@ -580,7 +594,7 @@ function sizeunit_change() {
       <?php html_passwordbox("media_uctlsecret", gettext("Secret"), $pconfig['media_uctlsecret'], "", true, 30);?>
       <?php html_inputbox("media_uctlmuser", gettext("Peer User"), $pconfig['media_uctlmuser'], "", true, 60);?>
       <?php html_passwordbox("media_uctlmsecret", gettext("Peer Secret"), $pconfig['media_uctlmsecret'], "", true, 30);?>
-      <?php html_checkbox("media_uctlsave", gettext("Save"), $pconfig['media_uctlsave'] ? true : false, gettext("Save login information in configuration file."), "", false);?>
+      <?php html_checkbox("media_uctlsave", gettext("Save"), !empty($pconfig['media_uctlsave']) ? true : false, gettext("Save login information in configuration file."), "", false);?>
       <tr>
         <td colspan="1" valign="top">
           <input name="Scan" type="submit" class="formbtn" value="<?=gettext("Scan Targets");?>" />

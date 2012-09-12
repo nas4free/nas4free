@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_iscsitarget_extent_edit.php
@@ -49,9 +48,12 @@ TODO: 	1) Script to creat file based extend in existing(mounted) File System e.g
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
+if (!isset($uuid))
+	$uuid = null;
 
 $pgtitle = array(gettext("Services"), gettext("iSCSI Target"), gettext("Extent"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
@@ -165,7 +167,7 @@ if ($_POST) {
 	unset($errormsg);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: services_iscsitarget_target.php");
 		exit;
 	}
@@ -237,7 +239,7 @@ if ($_POST) {
 	}
 	$pconfig['path'] = $path;
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$iscsitarget_extent = array();
 		$iscsitarget_extent['uuid'] = $_POST['uuid'];
 		$iscsitarget_extent['name'] = $_POST['name'];
@@ -317,7 +319,7 @@ function sizeunit_change() {
 	  </tr>
 	  <tr>
 	    <td class="tabcont">
-	      <?php if ($input_errors) print_input_errors($input_errors);?>
+	      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 	      <table width="100%" border="0" cellpadding="6" cellspacing="0">
 	      <?php html_inputbox("name", gettext("Extent Name"), $pconfig['name'], gettext("String identifier of the extent."), true, 30, (isset($uuid) && (FALSE !== $cnid)));?>
 	      <?php html_combobox("type", gettext("Type"), $pconfig['type'], array("file" => gettext("File"), "device" => gettext("Device"), "zvol" => gettext("ZFS volume")), gettext("Type used as extent."), true, false, "type_change()");?>

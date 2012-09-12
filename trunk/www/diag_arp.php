@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	diag_arp.php
@@ -44,11 +43,12 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Diagnostics"), gettext("ARP tables"));
 
-$id = $_GET['id'];
+if (isset($_GET['id']))
+  $id = $_GET['id'];
 if (isset($_POST['id']))
   $id = $_POST['id'];
 
-if ($_GET['act'] == "del") {
+if (isset($_GET['act']) && $_GET['act'] == "del") {
 	if (isset($id)) {
 		/* remove arp entry from arp table */
 		mwexec("/usr/sbin/arp -d " . escapeshellarg($id));

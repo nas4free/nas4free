@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_iscsitarget_pg_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -117,7 +117,7 @@ if ($_POST) {
 	unset($errormsg);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: services_iscsitarget_pg.php");
 		exit;
 	}
@@ -146,24 +146,18 @@ if ($_POST) {
 	foreach (explode("\n", $_POST['portals']) as $portal) {
 		$portal = trim($portal, " \t\r\n");
 		if (!empty($portal)) {
-			if (ereg("^\[([0-9a-fA-F:]+)\](:([0-9]+))?$", $portal, $tmp)) {
+			if (preg_match("/^\[([0-9a-fA-F:]+)\](:([0-9]+))?$/", $portal, $tmp)) {
 				// IPv6
 				$addr = normalize_ipv6addr($tmp[1]);
-				$port = $tmp[3];
-				if ($port === false) {
-					$port = 3260;
-				}
+				$port = isset($tmp[3]) ? $tmp[3] : 3260;
 				if (!is_ipv6addr($addr) || $port < 1 || $port > 65535) {
 					$input_errors[] = sprintf(gettext("The portal '%s' is invalid."), $portal);
 				}
 				$portals[] = sprintf("[%s]:%d", $addr, $port);
-			} else if (ereg("^([0-9\.]+)(:([0-9]+))?$", $portal, $tmp)) {
+			} else if (preg_match("/^([0-9\.]+)(:([0-9]+))?$/", $portal, $tmp)) {
 				// IPv4
 				$addr = $tmp[1];
-				$port = $tmp[3];
-				if ($port === false) {
-					$port = 3260;
-				}
+				$port = isset($tmp[3]) ? $tmp[3] : 3260;
 				if (!is_ipv4addr($addr) || $port < 1 || $port > 65535) {
 					$input_errors[] = sprintf(gettext("The portal '%s' is invalid."), $portal);
 				}
@@ -177,7 +171,7 @@ if ($_POST) {
 		$input_errors[] = sprintf(gettext("The attribute '%s' is required."), gettext("Portals"));
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$iscsitarget_pg = array();
 		$iscsitarget_pg['uuid'] = $_POST['uuid'];
 		$iscsitarget_pg['tag'] = $_POST['tag'];
@@ -231,8 +225,8 @@ function expand_ipv6addr($v6addr) {
 		if (strlen($v6rstr) == 0) {
 			$v6rstr = "0";
 		}
-		$v6lcnt = strlen(ereg_replace("[^:]", "", $v6lstr));
-		$v6rcnt = strlen(ereg_replace("[^:]", "", $v6rstr));
+		$v6lcnt = strlen(preg_replace("/[^:]/", "", $v6lstr));
+		$v6rcnt = strlen(preg_replace("/[^:]/", "", $v6rstr));
 		$v6str = $v6lstr;
 		$v6ncnt = 8 - ($v6lcnt + 1 + $v6rcnt + 1);
 		while ($v6ncnt > 0) {
@@ -260,7 +254,7 @@ function normalize_ipv6addr($v6addr) {
 	// suppress prefix zero
 	$v6a = explode(":", $v6str);
 	foreach ($v6a as &$tmp) {
-		$tmp = ereg_replace("^[0]+", "", $tmp);
+		$tmp = preg_replace("/^[0]+/", "", $tmp);
 		if (strlen($tmp) == 0) {
 			$tmp = "0";
 		}
@@ -286,9 +280,9 @@ function normalize_ipv6addr($v6addr) {
 	unset($tmp);
 	$v6str = implode(":", $v6a);
 	if ($found_zero > 1) {
-		$v6str = ereg_replace("(:?z:?)+", "::", $v6str);
+		$v6str = preg_replace("/(:?z:?)+/", "::", $v6str);
 	} else {
-		$v6str = ereg_replace("(z)+", "0", $v6str);
+		$v6str = preg_replace("/(z)+/", "0", $v6str);
 	}
 	return $v6str;
 }
@@ -310,7 +304,7 @@ function normalize_ipv6addr($v6addr) {
 	  </tr>
 	  <tr>
 	    <td class="tabcont">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 				<?php html_inputbox("tag", gettext("Tag number"), $pconfig['tag'], gettext("Numeric identifier of the group."), true, 10, (isset($uuid) && (FALSE !== $cnid)));?>
 				<?php html_textarea("portals", gettext("Portals"), $pconfig['portals'], gettext("The portal takes the form of 'address:port'. for example '192.168.1.1:3260' for IPv4, '[2001:db8:1:1::1]:3260' for IPv6. the port 3260 is standard iSCSI port number. For any IPs (wildcard address), use '0.0.0.0:3260' and/or '[::]:3260'. Do not mix wildcard and other IPs at same address family."), true, 65, 7, false, false);?>

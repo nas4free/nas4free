@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_iscsitarget_ig_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -127,7 +127,7 @@ if ($_POST) {
 	unset($errormsg);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: services_iscsitarget_ig.php");
 		exit;
 	}
@@ -167,24 +167,18 @@ if ($_POST) {
 	foreach (explode("\n", $_POST['netmasks']) as $netmask) {
 		$netmask = trim($netmask, " \t\r\n");
 		if (!empty($netmask)) {
-			if (ereg("^\[([0-9a-fA-F:]+)\](/([0-9]+))?$", $netmask, $tmp)) {
+			if (preg_match("/^\[([0-9a-fA-F:]+)\](\/([0-9]+))?$/", $netmask, $tmp)) {
 				// IPv6
 				$addr = normalize_ipv6addr($tmp[1]);
-				$mask = $tmp[3];
-				if ($mask === false) {
-					$mask = 128;
-				}
+				$mask = isset($tmp[3]) ? $tmp[3] : 128;
 				if (!is_ipv6addr($addr) || $mask < 0 || $mask > 128) {
 					$input_errors[] = sprintf(gettext("The network '%s' is invalid."), $netmask);
 				}
 				$netmasks[] = sprintf("[%s]/%d", $addr, $mask);
-			} else if (ereg("^([0-9\.]+)(/([0-9]+))?$", $netmask, $tmp)) {
+			} else if (preg_match("/^([0-9\.]+)(\/([0-9]+))?$/", $netmask, $tmp)) {
 				// IPv4
 				$addr = $tmp[1];
-				$mask = $tmp[3];
-				if ($mask === false) {
-					$mask = 32;
-				}
+				$mask = isset($tmp[3]) ? $tmp[3] : 32;
 				if (!is_ipv4addr($addr) || $mask < 0 || $mask > 32) {
 					$input_errors[] = sprintf(gettext("The network '%s' is invalid."), $netmask);
 				}
@@ -200,7 +194,7 @@ if ($_POST) {
 		$input_errors[] = sprintf(gettext("The attribute '%s' is required."), gettext("Authorised network"));
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$iscsitarget_ig = array();
 		$iscsitarget_ig['uuid'] = $_POST['uuid'];
 		$iscsitarget_ig['tag'] = $_POST['tag'];
@@ -255,8 +249,8 @@ function expand_ipv6addr($v6addr) {
 		if (strlen($v6rstr) == 0) {
 			$v6rstr = "0";
 		}
-		$v6lcnt = strlen(ereg_replace("[^:]", "", $v6lstr));
-		$v6rcnt = strlen(ereg_replace("[^:]", "", $v6rstr));
+		$v6lcnt = strlen(preg_replace("/[^:]/", "", $v6lstr));
+		$v6rcnt = strlen(preg_replace("/[^:]/", "", $v6rstr));
 		$v6str = $v6lstr;
 		$v6ncnt = 8 - ($v6lcnt + 1 + $v6rcnt + 1);
 		while ($v6ncnt > 0) {
@@ -284,7 +278,7 @@ function normalize_ipv6addr($v6addr) {
 	// suppress prefix zero
 	$v6a = explode(":", $v6str);
 	foreach ($v6a as &$tmp) {
-		$tmp = ereg_replace("^[0]+", "", $tmp);
+		$tmp = preg_replace("/^[0]+/", "", $tmp);
 		if (strlen($tmp) == 0) {
 			$tmp = "0";
 		}
@@ -310,9 +304,9 @@ function normalize_ipv6addr($v6addr) {
 	unset($tmp);
 	$v6str = implode(":", $v6a);
 	if ($found_zero > 1) {
-		$v6str = ereg_replace("(:?z:?)+", "::", $v6str);
+		$v6str = preg_replace("/(:?z:?)+/", "::", $v6str);
 	} else {
-		$v6str = ereg_replace("(z)+", "0", $v6str);
+		$v6str = preg_replace("/(z)+/", "0", $v6str);
 	}
 	return $v6str;
 }
@@ -383,7 +377,7 @@ function get_ipv6network($v6addr, $mask) {
 	  </tr>
 	  <tr>
 	    <td class="tabcont">
-	      <?php if ($input_errors) print_input_errors($input_errors);?>
+	      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 	      <table width="100%" border="0" cellpadding="6" cellspacing="0">
 	      <?php html_inputbox("tag", gettext("Tag number"), $pconfig['tag'], gettext("Numeric identifier of the group."), true, 10, (isset($uuid) && (FALSE !== $cnid)));?>
 	      <?php html_textarea("initiators", gettext("Initiators"), $pconfig['initiators'], gettext("Initiator authorised to access to the iSCSI target.  It takes a name or 'ALL' for any initiators."), true, 65, 7, false, false);?>

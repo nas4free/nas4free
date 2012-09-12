@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	access_users_groups_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -72,7 +72,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: access_users_groups.php");
 		exit;
 	}
@@ -106,7 +106,7 @@ if ($_POST) {
 		$input_errors[] = gettext("The unique group ID is already used.");
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$groups = array();
 		$groups['uuid'] = $_POST['uuid'];
 		$groups['id'] = $_POST['groupid'];
@@ -165,7 +165,7 @@ function get_nextgroup_id() {
 	<tr>
 		<td class="tabcont">
 			<form action="access_users_groups_edit.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors); ?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_inputbox("name", gettext("Name"), $pconfig['name'], gettext("Group name."), true, 20, isset($uuid) && (FALSE !== $cnid));?>
 					<?php html_inputbox("groupid", gettext("Group ID"), $pconfig['groupid'], gettext("Group numeric id."), true, 20, isset($uuid) && (FALSE !== $cnid));?>

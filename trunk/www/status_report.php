@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	status_report.php.
@@ -73,7 +72,7 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	// Input validation.
-	if($_POST['enable']) {
+	if(isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "to");
 		$reqdfieldsn = array(gettext("To e-mail"));
 		$reqdfieldst = explode(" ", "string");
@@ -96,17 +95,17 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
-		$config['statusreport']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['statusreport']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['statusreport']['to'] = $_POST['to'];
 		$config['statusreport']['subject'] = $_POST['subject'];
 		$config['statusreport']['report'] = $_POST['report'];
 		$config['statusreport']['report_scriptname'] = $_POST['report_scriptname'];
-		$config['statusreport']['minute'] = $_POST['minute'];
-		$config['statusreport']['hour'] = $_POST['hour'];
-		$config['statusreport']['day'] = $_POST['day'];
-		$config['statusreport']['month'] = $_POST['month'];
-		$config['statusreport']['weekday'] = $_POST['weekday'];
+		$config['statusreport']['minute'] = !empty($_POST['minute']) ? $_POST['minute'] : null;
+		$config['statusreport']['hour'] = !empty($_POST['hour']) ? $_POST['hour'] : null;
+		$config['statusreport']['day'] = !empty($_POST['day']) ? $_POST['day'] : null;
+		$config['statusreport']['month'] = !empty($_POST['month']) ? $_POST['month'] : null;
+		$config['statusreport']['weekday'] = !empty($_POST['weekday']) ? $_POST['weekday'] : null;
 		$config['statusreport']['all_mins'] = $_POST['all_mins'];
 		$config['statusreport']['all_hours'] = $_POST['all_hours'];
 		$config['statusreport']['all_days'] = $_POST['all_days'];
@@ -188,11 +187,11 @@ function enable_change(enable_change) {
 	  <tr>
 	    <td class="tabcont">
 	    	<?php if (0 !== email_validate_settings()) print_error_box(sprintf(gettext("Make sure you have already configured your <a href='%s'>Email</a> settings."), "system_email.php"));?>
-    		<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
-				<?php if ($failmsg) print_error_box($failmsg);?>
+    		<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
+				<?php if (!empty($failmsg)) print_error_box($failmsg);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Email Report"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Email Report"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<tr>
 						<td width="22%" valign="top" class="vncellreq"><?=gettext("To email");?></td>
 						<td width="78%" class="vtable">

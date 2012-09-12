@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	diag_log.php
@@ -43,7 +42,8 @@ require("auth.inc");
 require("guiconfig.inc");
 require("diag_log.inc");
 
-$log = $_GET['log'];
+if (isset($_GET['log']))
+	$log = $_GET['log'];
 if (isset($_POST['log']))
 	$log = $_POST['log'];
 if (empty($log))
@@ -51,18 +51,18 @@ if (empty($log))
 
 $pgtitle = array(gettext("Diagnostics"), gettext("Log"));
 
-if ($_POST['clear']) {
+if (isset($_POST['clear']) && $_POST['clear']) {
 	log_clear($loginfo[$log]);
 	header("Location: diag_log.php?log={$log}");
 	exit;
 }
 
-if ($_POST['download']) {
+if (isset($_POST['download']) && $_POST['download']) {
 	log_download($loginfo[$log]);
 	exit;
 }
 
-if ($_POST['refresh']) {
+if (isset($_POST['refresh']) && $_POST['refresh']) {
 	header("Location: diag_log.php?log={$log}");
 	exit;
 }

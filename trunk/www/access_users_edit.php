@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	access_users_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -70,9 +70,15 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_user, "uuid"))
 	$pconfig['userportal'] = isset($a_user[$cnid]['userportal']);
 } else {
 	$pconfig['uuid'] = uuid();
-	$pconfig['primarygroup'] = $a_group['guest'];
+	$pconfig['login'] = "";
+	$pconfig['fullname'] = "";
+	$pconfig['password'] = "";
+	$pconfig['passwordconf'] = "";
 	$pconfig['userid'] = get_nextuser_id();
+	$pconfig['primarygroup'] = $a_group['guest'];
+	$pconfig['group'] = array();
 	$pconfig['shell'] = "nologin";
+	$pconfig['homedir'] = "";
 	$pconfig['userportal'] = FALSE;
 }
 
@@ -80,7 +86,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: access_users.php");
 		exit;
 	}
@@ -121,12 +127,12 @@ if ($_POST) {
 	}
 
 	// Check if primary group is also selected in additional group.
-	if (is_array($_POST['group']) && in_array($_POST['primarygroup'], $_POST['group'])) {
+	if (isset($_POST['group']) && is_array($_POST['group']) && in_array($_POST['primarygroup'], $_POST['group'])) {
 		$input_errors[] = gettext("Primary group is also selected in additional group.");
 	}
 
 	// Check additional group count. Max=15 (Primary+14) 
-	if (is_array($_POST['group']) && count($_POST['group']) > 14) {
+	if (isset($_POST['group']) && is_array($_POST['group']) && count($_POST['group']) > 14) {
 		$input_errors[] = gettext("There are too many additional groups.");
 	}
 
@@ -142,7 +148,7 @@ if ($_POST) {
 		$input_errors[] = gettext("Webserver document root is missing.");
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$user = array();
 		$user['uuid'] = $_POST['uuid'];
 		$user['login'] = $_POST['login'];
@@ -154,7 +160,7 @@ if ($_POST) {
 			$user['group'] = $_POST['group'];
 		$user['homedir'] = $_POST['homedir'];
 		$user['id'] = $_POST['userid'];
-		$user['userportal'] = $_POST['userportal'] ? true : false;
+		$user['userportal'] = isset($_POST['userportal']) ? true : false;
 
 		if (isset($uuid) && (FALSE !== $cnid)) {
 			$a_user[$cnid] = $user;
@@ -208,8 +214,8 @@ function get_nextuser_id() {
 	<tr>
 		<td class="tabcont">
 			<form action="access_users_edit.php" method="post" name="iform" id="iform">
-				<?php if ($nogroup_errors) print_input_errors($nogroup_errors); ?>
-				<?php if ($input_errors) print_input_errors($input_errors); ?>
+				<?php if (!empty($nogroup_errors)) print_input_errors($nogroup_errors); ?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_inputbox("login", gettext("Name"), $pconfig['login'], gettext("Login name of user."), true, 20, isset($uuid) && (FALSE !== $cnid));?>
 					<?php html_inputbox("fullname", gettext("Full Name"), $pconfig['fullname'], gettext("User full name."), true, 20);?>
@@ -218,9 +224,9 @@ function get_nextuser_id() {
 					<?php html_combobox("shell", gettext("Shell"), $pconfig['shell'], array("nologin" => "nologin", "scponly" => "scponly", "sh" => "sh",  "csh" => "csh", "tcsh" => "tcsh", "bash" => "bash"), gettext("The user's login shell."), true);?>
 					<?php $grouplist = array(); foreach ($a_group as $groupk => $groupv) { $grouplist[$groupv] = $groupk; } ?>
 					<?php html_combobox("primarygroup", gettext("Primary group"), $pconfig['primarygroup'], $grouplist, gettext("Set the account's primary group to the given group."), true);?>
-					<?php html_listbox("group", gettext("Additional group"), $pconfig['group'], $grouplist, gettext("Set additional group memberships for this account.")."<br />".gettext("Note: Ctrl-click (or command-click on the Mac) to select and deselect groups."));?>
+					<?php html_listbox("group", gettext("Additional group"), !empty($pconfig['group']) ? $pconfig['group'] : array(), $grouplist, gettext("Set additional group memberships for this account.")."<br />".gettext("Note: Ctrl-click (or command-click on the Mac) to select and deselect groups."));?>
 					<?php html_filechooser("homedir", gettext("Home directory"), $pconfig['homedir'], gettext("Enter the path to the home directory of that user. Leave this field empty to use default path /mnt."), $g['media_path'], false, 60);?>
-					<?php html_checkbox("userportal", gettext("User portal"), $pconfig['userportal'] ? true : false, gettext("Grant access to the user portal."), "", false);?>
+					<?php html_checkbox("userportal", gettext("User portal"), !empty($pconfig['userportal']) ? true : false, gettext("Grant access to the user portal."), "", false);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />

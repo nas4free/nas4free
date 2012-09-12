@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	diag_infos_ata.php
@@ -80,7 +79,7 @@ $disk_error = gettext("No disks configured, please add disks to see the diagnost
 				} else 
 					{
 					foreach($a_disk as $diskk => $diskv):
-					html_titleline(sprintf(gettext("Device /dev/%s - %s"), $diskk, $diskv['desc']));
+					html_titleline(sprintf(gettext("Device /dev/%s - %s"), $diskv['name'], $diskv['desc']));
 					echo "<tr>\n";
 						echo "<td>\n";
 							echo "<pre>\n";

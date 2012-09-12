@@ -113,7 +113,9 @@ class StatusReportRendererText extends StatusReportRenderer
 class StatusReportRendererHTML extends StatusReportRenderer
 {
 	function _RenderReport(&$report,$articles) {
-		mwexec("/bin/date", $dateOutput, $dateStatus);
+		$dateOutput = array();
+		$dateStatus = null;
+		mwexec2("/bin/date", $dateOutput, $dateStatus);
 		$currentDate = $dateOutput[0];
 
 		$report = <<<EOD
@@ -181,7 +183,7 @@ EOD;
 		$this->_RenderTableOfContents($report, $articles);
 
 		// Render articles.
-		for ($i = 0; is_object($articles[$i]); $i++) {
+		for ($i = 0; isset($articles[$i]) && is_object($articles[$i]); $i++) {
 			$this->_RenderArticle($report,$articles[$i]);
 		}
 
@@ -196,7 +198,7 @@ EOD;
 		$report .= "<br>";
 		$report .= "This status page includes the following information:\n";
 		$report .= "<ul>\n";
-		for ($i = 0; is_object($articles[$i]); $i++) {
+		for ($i = 0; isset($articles[$i]) && is_object($articles[$i]); $i++) {
 			$report .= "<li><strong><a href=\"#" . $articles[$i]->GetTitle() . "\">" . $articles[$i]->GetTitle() . "</a></strong>\n";
 		}
     $report .= "</ul>\n";

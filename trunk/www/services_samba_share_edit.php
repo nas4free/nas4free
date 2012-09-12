@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_samba_share_edit.php
@@ -38,7 +37,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -69,11 +69,12 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_share, "uuid")
 	$pconfig['recyclebin'] = isset($a_share[$cnid]['recyclebin']);
 	$pconfig['hidedotfiles'] = isset($a_share[$cnid]['hidedotfiles']);
 	$pconfig['shadowcopy'] = isset($a_share[$cnid]['shadowcopy']);
-	$pconfig['shadowformat'] = $a_share[$cnid]['shadowformat'];
+	$pconfig['shadowformat'] = !empty($a_share[$cnid]['shadowformat']) ? $a_share[$cnid]['shadowformat'] : "";
 	$pconfig['zfsacl'] = isset($a_share[$cnid]['zfsacl']);
 	$pconfig['hostsallow'] = $a_share[$cnid]['hostsallow'];
 	$pconfig['hostsdeny'] = $a_share[$cnid]['hostsdeny'];
-	if (is_array($a_share[$cnid]['auxparam']))
+	$pconfig['auxparam'] = "";
+	if (isset($a_share[$cnid]['auxparam']) && is_array($a_share[$cnid]['auxparam']))
 		$pconfig['auxparam'] = implode("\n", $a_share[$cnid]['auxparam']);
 } else {
 	$pconfig['uuid'] = uuid();
@@ -101,7 +102,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: services_samba_share.php");
 		exit;
 	}
@@ -122,21 +123,21 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$share = array();
 		$share['uuid'] = $_POST['uuid'];
 		$share['name'] = $_POST['name'];
 		$share['path'] = $_POST['path'];
 		$share['comment'] = $_POST['comment'];
-		$share['readonly'] = $_POST['readonly'] ? true : false;
-		$share['browseable'] = $_POST['browseable'] ? true : false;
-		$share['guest'] = $_POST['guest'] ? true : false;
-		$share['inheritpermissions'] = $_POST['inheritpermissions'] ? true : false;
-		$share['recyclebin'] = $_POST['recyclebin'] ? true : false;
-		$share['hidedotfiles'] = $_POST['hidedotfiles'] ? true : false;
-		$share['shadowcopy'] = $_POST['shadowcopy'] ? true : false;
+		$share['readonly'] = isset($_POST['readonly']) ? true : false;
+		$share['browseable'] = isset($_POST['browseable']) ? true : false;
+		$share['guest'] = isset($_POST['guest']) ? true : false;
+		$share['inheritpermissions'] = isset($_POST['inheritpermissions']) ? true : false;
+		$share['recyclebin'] = isset($_POST['recyclebin']) ? true : false;
+		$share['hidedotfiles'] = isset($_POST['hidedotfiles']) ? true : false;
+		$share['shadowcopy'] = isset($_POST['shadowcopy']) ? true : false;
 		$share['shadowformat'] = $_POST['shadowformat'];
-		$share['zfsacl'] = $_POST['zfsacl'] ? true : false;
+		$share['zfsacl'] = isset($_POST['zfsacl']) ? true : false;
 		$share['hostsallow'] = $_POST['hostsallow'];
 		$share['hostsdeny'] = $_POST['hostsdeny'];
 
@@ -159,7 +160,7 @@ if ($_POST) {
 		updatenotify_set("smbshare", $mode, $share['uuid']);
 		write_config();
 
-    header("Location: services_samba_share.php");
+		header("Location: services_samba_share.php");
 		exit;
 	}
 }
@@ -177,7 +178,7 @@ if ($_POST) {
   <tr>
     <td class="tabcont">
 			<form action="services_samba_share_edit.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors); ?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 			  	<tr>
 			      <td width="22%" valign="top" class="vncellreq"><?=gettext("Name");?></td>
@@ -195,14 +196,14 @@ if ($_POST) {
 						<td width="22%" valign="top" class="vncellreq"><?=gettext("Path"); ?></td>
 						<td width="78%" class="vtable">
 							<input name="path" type="text" class="formfld" id="path" size="60" value="<?=htmlspecialchars($pconfig['path']);?>" />
-							<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.path; filechooser = window.open("filechooser.php?p="+escape(ifield.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." /><br />
+							<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.path; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." /><br />
 							<span class="vexpl"><?=gettext("Path to be shared.");?></span>
 					  </td>
 					</tr>
 					<tr>
 						<td width="22%" valign="top" class="vncell"><?=gettext("Read only");?></td>
 			      <td width="78%" class="vtable">
-							<input name="readonly" type="checkbox" id="readonly" value="yes" <?php if ($pconfig['readonly']) echo "checked=\"checked\""; ?> />
+							<input name="readonly" type="checkbox" id="readonly" value="yes" <?php if (isset($pconfig['readonly']) && $pconfig['readonly']) echo "checked=\"checked\""; ?> />
 							<?=gettext("Set read only");?><br />
 							<span class="vexpl"><?=gettext("If this parameter is set, then users may not create or modify files in the share.");?></span>
 			      </td>
@@ -210,7 +211,7 @@ if ($_POST) {
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("Browseable");?></td>
 			      <td width="78%" class="vtable">
-			      	<input name="browseable" type="checkbox" id="browseable" value="yes" <?php if ($pconfig['browseable']) echo "checked=\"checked\""; ?> />
+			      	<input name="browseable" type="checkbox" id="browseable" value="yes" <?php if (isset($pconfig['browseable']) && $pconfig['browseable']) echo "checked=\"checked\""; ?> />
 			      	<?=gettext("Set browseable");?><br />
 			        <span class="vexpl"><?=gettext("This controls whether this share is seen in the list of available shares in a net view and in the browse list.");?></span>
 			      </td>
@@ -218,7 +219,7 @@ if ($_POST) {
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("Guest");?></td>
 			      <td width="78%" class="vtable">
-			      	<input name="guest" type="checkbox" id="guest" value="yes" <?php if ($pconfig['guest']) echo "checked=\"checked\""; ?> />
+			      	<input name="guest" type="checkbox" id="guest" value="yes" <?php if (isset($pconfig['guest']) && $pconfig['guest']) echo "checked=\"checked\""; ?> />
 			      	<?=gettext("Enable guest access");?><br />
 			        <span class="vexpl"><?=gettext("This controls whether this share is accessible by guest account.");?></span>
 			      </td>
@@ -226,7 +227,7 @@ if ($_POST) {
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("Inherit permissions");?></td>
 			      <td width="78%" class="vtable">
-			        <input name="inheritpermissions" type="checkbox" id="inheritpermissions" value="yes" <?php if ($pconfig['inheritpermissions']) echo "checked=\"checked\""; ?> />
+			        <input name="inheritpermissions" type="checkbox" id="inheritpermissions" value="yes" <?php if (isset($pconfig['inheritpermissions']) && $pconfig['inheritpermissions']) echo "checked=\"checked\""; ?> />
 			        <?=gettext("Enable permission inheritance");?><br />
 							<span class="vexpl"><?=gettext("The permissions on new files and directories are normally governed by create mask and directory mask but the inherit permissions parameter overrides this. This can be particularly useful on systems with many users to allow a single share to be used flexibly by each user.");?></span>
 			      </td>
@@ -234,7 +235,7 @@ if ($_POST) {
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("Recycle bin");?></td>
 			      <td width="78%" class="vtable">
-			        <input name="recyclebin" type="checkbox" id="recyclebin" value="yes" <?php if ($pconfig['recyclebin']) echo "checked=\"checked\""; ?> />
+			        <input name="recyclebin" type="checkbox" id="recyclebin" value="yes" <?php if (isset($pconfig['recyclebin']) && $pconfig['recyclebin']) echo "checked=\"checked\""; ?> />
 			        <?=gettext("Enable recycle bin");?><br />
 			        <span class="vexpl"><?=gettext("This will create a recycle bin on the share.");?></span>
 			      </td>
@@ -242,14 +243,14 @@ if ($_POST) {
 			    <tr>
 						<td width="22%" valign="top" class="vncell"><?=gettext("Hide dot files");?></td>
 			      <td width="78%" class="vtable">
-							<input name="hidedotfiles" type="checkbox" id="hidedotfiles" value="yes" <?php if ($pconfig['hidedotfiles']) echo "checked=\"checked\"";?> />
+							<input name="hidedotfiles" type="checkbox" id="hidedotfiles" value="yes" <?php if (isset($pconfig['hidedotfiles']) && $pconfig['hidedotfiles']) echo "checked=\"checked\"";?> />
 							<span class="vexpl"><?=gettext("This parameter controls whether files starting with a dot appear as hidden files.");?></span>
 			      </td>
 			    </tr>
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("Shadow Copy");?></td>
 			      <td width="78%" class="vtable">
-			        <input name="shadowcopy" type="checkbox" id="shadowcopy" value="yes" <?php if ($pconfig['shadowcopy']) echo "checked=\"checked\""; ?> />
+			        <input name="shadowcopy" type="checkbox" id="shadowcopy" value="yes" <?php if (isset($pconfig['shadowcopy']) && $pconfig['shadowcopy']) echo "checked=\"checked\""; ?> />
 			        <?=gettext("Enable shadow copy");?><br />
 			        <span class="vexpl"><?=gettext("This will provide shadow copy created by auto snapshot. (ZFS only)");?></span>
 			      </td>
@@ -264,7 +265,7 @@ if ($_POST) {
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("ZFS ACL");?></td>
 			      <td width="78%" class="vtable">
-			        <input name="zfsacl" type="checkbox" id="zfsacl" value="yes" <?php if ($pconfig['zfsacl']) echo "checked=\"checked\""; ?> />
+			        <input name="zfsacl" type="checkbox" id="zfsacl" value="yes" <?php if (isset($pconfig['zfsacl']) && $pconfig['zfsacl']) echo "checked=\"checked\""; ?> />
 			        <?=gettext("Enable ZFS ACL");?><br />
 			        <span class="vexpl"><?=gettext("This will provide ZFS ACL support. (ZFS only)");?></span>
 			      </td>

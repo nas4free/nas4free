@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_iscsitarget_target_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -129,9 +129,11 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_ta
 	$pconfig['type'] = $a_iscsitarget_target[$cnid]['type'];
 	$pconfig['flags'] = $a_iscsitarget_target[$cnid]['flags'];
 	$pconfig['comment'] = $a_iscsitarget_target[$cnid]['comment'];
-	$pconfig['storage'] = $a_iscsitarget_target[$cnid]['storage'];
-	if (is_array($pconfig['storage']))
-		$pconfig['storage'] = $pconfig['storage'][0];
+	// OLD format
+	//$pconfig['storage'] = $a_iscsitarget_target[$cnid]['storage'];
+	//if (is_array($pconfig['storage']))
+	//	$pconfig['storage'] = $pconfig['storage'][0];
+	$pconfig['storage'] = "";
 	$pconfig['pgigmap'] = $a_iscsitarget_target[$cnid]['pgigmap'];
 	$pconfig['agmap'] = $a_iscsitarget_target[$cnid]['agmap'];
 	$pconfig['lunmap'] = $a_iscsitarget_target[$cnid]['lunmap'];
@@ -210,6 +212,9 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_ta
 		$pconfig['lunmap'][$i]['type'] = "$stype";
 		$pconfig['lunmap'][$i]['extentname'] = "-";
 	}
+	$pconfig['portalgroup'] = $pconfig['pgigmap'][0]['pgtag'];
+	$pconfig['initiatorgroup'] = $pconfig['pgigmap'][0]['igtag'];
+	$pconfig['authgroup'] = $pconfig['agmap'][0]['agtag'];
 	$pconfig['authmethod'] = "Auto";
 	$pconfig['digest'] = "Auto";
 	$pconfig['queuedepth'] = 32;
@@ -225,7 +230,7 @@ if ($_POST) {
 	unset($errormsg);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: services_iscsitarget_target.php");
 		exit;
 	}
@@ -354,7 +359,7 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$iscsitarget_target = array();
 		$iscsitarget_target['uuid'] = $_POST['uuid'];
 		$iscsitarget_target['enable'] = $_POST['enable'] ? true : false;

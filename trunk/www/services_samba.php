@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_samba.php
@@ -72,8 +71,8 @@ $pconfig['largereadwrite'] = isset($config['samba']['largereadwrite']);
 $pconfig['usesendfile'] = isset($config['samba']['usesendfile']);
 $pconfig['easupport'] = isset($config['samba']['easupport']);
 $pconfig['storedosattributes'] = isset($config['samba']['storedosattributes']);
-$pconfig['createmask'] = $config['samba']['createmask'];
-$pconfig['directorymask'] = $config['samba']['directorymask'];
+$pconfig['createmask'] = !empty($config['samba']['createmask']) ? $config['samba']['createmask'] : "";
+$pconfig['directorymask'] = !empty($config['samba']['directorymask']) ? $config['samba']['directorymask'] : "";
 $pconfig['guestaccount'] = $config['samba']['guestaccount'];
 $pconfig['maptoguest'] = $config['samba']['maptoguest'];
 $pconfig['nullpasswords'] = isset($config['samba']['nullpasswords']);
@@ -88,7 +87,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "security netbiosname workgroup");
 		$reqdfieldsn = array(gettext("Authentication"),gettext("NetBIOS name"),gettext("Workgroup"));
 		$reqdfieldst = explode(" ", "string domain workgroup");
@@ -114,7 +113,7 @@ if ($_POST) {
 			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("WINS server")));
 			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "ipaddr"));
 		}
-		if ($_POST['aio']) {
+		if (isset($_POST['aio']) && $_POST['aio']) {
 			$reqdfields = array_merge($reqdfields, explode(" ", "aiorsize aiowsize"));
 			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("AIO read size"), gettext("AIO write size")));
 			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "numericint numericint"));
@@ -124,8 +123,8 @@ if ($_POST) {
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
 
-	if (!$input_errors) {
-		$config['samba']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['samba']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['samba']['netbiosname'] = $_POST['netbiosname'];
 		$config['samba']['workgroup'] = $_POST['workgroup'];
 		$config['samba']['serverdesc'] = $_POST['serverdesc'];
@@ -143,10 +142,10 @@ if ($_POST) {
 		$config['samba']['loglevel'] = $_POST['loglevel'];
 		$config['samba']['sndbuf'] = $_POST['sndbuf'];
 		$config['samba']['rcvbuf'] = $_POST['rcvbuf'];
-		$config['samba']['largereadwrite'] = $_POST['largereadwrite'] ? true : false;
-		$config['samba']['usesendfile'] = $_POST['usesendfile'] ? true : false;
-		$config['samba']['easupport'] = $_POST['easupport'] ? true : false;
-		$config['samba']['storedosattributes'] = $_POST['storedosattributes'] ? true : false;
+		$config['samba']['largereadwrite'] = isset($_POST['largereadwrite']) ? true : false;
+		$config['samba']['usesendfile'] = isset($_POST['usesendfile']) ? true : false;
+		$config['samba']['easupport'] = isset($_POST['easupport']) ? true : false;
+		$config['samba']['storedosattributes'] = isset($_POST['storedosattributes']) ? true : false;
 		if (!empty($_POST['createmask']))
 			$config['samba']['createmask'] = $_POST['createmask'];
 		else
@@ -160,9 +159,9 @@ if ($_POST) {
 		else
 			unset($config['samba']['guestaccount']);
 		$config['samba']['maptoguest'] = $_POST['maptoguest'];
-		$config['samba']['nullpasswords'] = $_POST['nullpasswords'] ? true : false;
-		$config['samba']['aio'] = $_POST['aio'] ? true : false;
-		if ($_POST['aio']) {
+		$config['samba']['nullpasswords'] = isset($_POST['nullpasswords']) ? true : false;
+		$config['samba']['aio'] = isset($_POST['aio']) ? true : false;
+		if (isset($_POST['aio']) && $_POST['aio']) {
 			$config['samba']['aiorsize'] = $_POST['aiorsize'];
 			$config['samba']['aiowsize'] = $_POST['aiowsize'];
 			$config['samba']['aiowbehind'] = '';
@@ -274,10 +273,10 @@ function aio_change() {
   <tr>
     <td class="tabcont">
       <form action="services_samba.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Common Internet File System"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Common Internet File System"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_combobox("security", gettext("Authentication"), $pconfig['security'], array("share" => gettext("Anonymous"), "user" => gettext("Local User"), "ads" => gettext("Active Directory")), "", true, false, "authentication_change()");?>
 					<?php html_combobox("maxprotocol", gettext("Max Protocol"), $pconfig['maxprotocol'], array("SMB2" => gettext("SMB2"), "NT1" => gettext("NT1")), gettext("SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."), true, false, "");?>
           <tr>
@@ -383,16 +382,16 @@ function aio_change() {
   				<tr>
             <td width="22%" valign="top" class="vncell"><?=gettext("Large read/write");?></td>
             <td width="78%" class="vtable">
-              <input name="largereadwrite" type="checkbox" id="largereadwrite" value="yes" <?php if ($pconfig['largereadwrite']) echo "checked=\"checked\""; ?> />
+              <input name="largereadwrite" type="checkbox" id="largereadwrite" value="yes" <?php if (isset($pconfig['largereadwrite']) && $pconfig['largereadwrite']) echo "checked=\"checked\""; ?> />
               <?=gettext("Enable large read/write");?><span class="vexpl"><br />
               <?=gettext("Use the new 64k streaming read and write varient SMB requests introduced with Windows 2000.");?></span>
             </td>
           </tr>
-					<?php html_checkbox("usesendfile", gettext("Use sendfile"), $pconfig['usesendfile'] ? true : false, gettext("Enable use sendfile."), gettext("This may make more efficient use of the system CPU's and cause Samba to be faster. Samba automatically turns this off for clients that use protocol levels lower than NT LM 0.12 and when it detects a client is Windows 9x."), false);?>
+					<?php html_checkbox("usesendfile", gettext("Use sendfile"), !empty($pconfig['usesendfile']) ? true : false, gettext("Enable use sendfile."), gettext("This may make more efficient use of the system CPU's and cause Samba to be faster. Samba automatically turns this off for clients that use protocol levels lower than NT LM 0.12 and when it detects a client is Windows 9x."), false);?>
 					<tr>
 						<td width="22%" valign="top" class="vncell"><?=gettext("EA support");?></td>
 						<td width="78%" class="vtable">
-							<input name="easupport" type="checkbox" id="easupport" value="yes" <?php if ($pconfig['easupport']) echo "checked=\"checked\""; ?> />
+							<input name="easupport" type="checkbox" id="easupport" value="yes" <?php if (isset($pconfig['easupport']) && $pconfig['easupport']) echo "checked=\"checked\""; ?> />
 							<?=gettext("Enable extended attribute support");?><span class="vexpl"><br />
 							<?=gettext("Allow clients to attempt to store OS/2 style extended attributes on a share.");?></span>
 						</td>
@@ -400,7 +399,7 @@ function aio_change() {
 					<tr>
 						<td width="22%" valign="top" class="vncell"><?=gettext("Store DOS attributes");?></td>
 						<td width="78%" class="vtable">
-							<input name="storedosattributes" type="checkbox" id="storedosattributes" value="yes" <?php if ($pconfig['storedosattributes']) echo "checked=\"checked\""; ?> />
+							<input name="storedosattributes" type="checkbox" id="storedosattributes" value="yes" <?php if (isset($pconfig['storedosattributes']) && $pconfig['storedosattributes']) echo "checked=\"checked\""; ?> />
 							<?=gettext("Enable store DOS attributes");?><span class="vexpl"><br />
 							<?=gettext("If this parameter is set, Samba attempts to first read DOS attributes (SYSTEM, HIDDEN, ARCHIVE or READ-ONLY) from a filesystem extended attribute, before mapping DOS attributes to UNIX permission bits. When set, DOS attributes will be stored onto an extended attribute in the UNIX filesystem, associated with the file or directory.");?></span>
 						</td>
@@ -408,11 +407,11 @@ function aio_change() {
 					<tr>
 						<td width="22%" valign="top" class="vncell"><?=gettext("Null passwords");?></td>
 						<td width="78%" class="vtable">
-							<input name="nullpasswords" type="checkbox" id="nullpasswords" value="yes" <?php if ($pconfig['nullpasswords']) echo "checked=\"checked\""; ?> />
+							<input name="nullpasswords" type="checkbox" id="nullpasswords" value="yes" <?php if (isset($pconfig['nullpasswords']) && $pconfig['nullpasswords']) echo "checked=\"checked\""; ?> />
 							<?=gettext("Allow client access to accounts that have null passwords.");?>
 						</td>
 					</tr>
-					<?php html_checkbox("aio", gettext("Asynchronous I/O (AIO)"), $pconfig['aio'] ? true : false, gettext("Enable Asynchronous I/O (AIO)"), "", false, "aio_change()");?>
+					<?php html_checkbox("aio", gettext("Asynchronous I/O (AIO)"), !empty($pconfig['aio']) ? true : false, gettext("Enable Asynchronous I/O (AIO)"), "", false, "aio_change()");?>
 					<?php html_inputbox("aiorsize", gettext("AIO read size"), $pconfig['aiorsize'], sprintf(gettext("Samba will read from file asynchronously when size of request is bigger than this value. (%d by default)"), 1), true, 30);?>
 					<?php html_inputbox("aiowsize", gettext("AIO write size"), $pconfig['aiowsize'], sprintf(gettext("Samba will write to file asynchronously when size of request is bigger than this value. (%d by default)"), 1), true, 30);?>
 					<?php /*html_inputbox("aiowbehind", gettext("AIO write behind"), $pconfig['aiowbehind'], "", false, 60);*/?>

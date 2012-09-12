@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_iscsitarget.php
@@ -161,8 +160,8 @@ if ($_POST) {
 	$nodebase = preg_replace('/\s/', '', $nodebase);
 	$pconfig['nodebase'] = $nodebase;
 
-	if (!$input_errors) {
-		$config['iscsitarget']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['iscsitarget']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['iscsitarget']['nodebase'] = $nodebase;
 		$config['iscsitarget']['discoveryauthmethod'] = $_POST['discoveryauthmethod'];
 		$config['iscsitarget']['discoveryauthgroup'] = $_POST['discoveryauthgroup'];
@@ -178,7 +177,7 @@ if ($_POST) {
 		$config['iscsitarget']['defaulttime2wait'] = $_POST['defaulttime2wait'];
 		$config['iscsitarget']['defaulttime2retain'] = $_POST['defaulttime2retain'];
 
-		$config['iscsitarget']['uctlenable'] = $_POST['uctlenable'] ? true : false;
+		$config['iscsitarget']['uctlenable'] = isset($_POST['uctlenable']) ? true : false;
 		$config['iscsitarget']['uctladdress'] = $_POST['uctladdress'];
 		$config['iscsitarget']['uctlport'] = $_POST['uctlport'];
 		$config['iscsitarget']['uctlnetmask'] = $_POST['uctlnetmask'];
@@ -274,11 +273,11 @@ function uctlenable_change(enable_change) {
   <tr>
     <td class="tabcont">
       <form action="services_iscsitarget.php" method="post" name="iform" id="iform">
-	<?php if ($errormsg) print_error_box($errormsg);?>
-	<?php if ($input_errors) print_input_errors($input_errors);?>
-	<?php if ($savemsg) print_info_box($savemsg);?>
+	<?php if (!empty($errormsg)) print_error_box($errormsg);?>
+	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+	<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 	<table width="100%" border="0" cellpadding="6" cellspacing="0">
-	<?php html_titleline_checkbox("enable", gettext("iSCSI Target"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+	<?php html_titleline_checkbox("enable", gettext("iSCSI Target"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 	<?php html_inputbox("nodebase", gettext("Base Name"), $pconfig['nodebase'], gettext("The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target name that is not starting with 'iqn.'."), true, 60, false);?>
 	<?php html_combobox("discoveryauthmethod", gettext("Discovery Auth Method"), $pconfig['discoveryauthmethod'], array("Auto" => gettext("Auto"), "CHAP" => gettext("CHAP"), "CHAP Mutual" => gettext("Mutual CHAP"), "None" => gettext("None")), gettext("The method can be accepted in discovery session. Auto means both none and authentication."), true);?>
 	<?php
@@ -308,7 +307,7 @@ function uctlenable_change(enable_change) {
 	<?php html_inputbox("defaulttime2wait", gettext("DefaultTime2Wait"), $pconfig['defaulttime2wait'], sprintf(gettext("iSCSI initial parameter (%d by default)."), 2), true, 30, false);?>
 	<?php html_inputbox("defaulttime2retain", gettext("DefaultTime2Retain"), $pconfig['defaulttime2retain'], sprintf(gettext("iSCSI initial parameter (%d by default)."), 60), true, 30, false);?>
 	<?php html_separator();?>
-	<?php html_titleline_checkbox("uctlenable", gettext("iSCSI Target Logical Unit Controller"), $pconfig['uctlenable'] ? true : false, gettext("Enable"), "uctlenable_change(false)");?>
+	<?php html_titleline_checkbox("uctlenable", gettext("iSCSI Target Logical Unit Controller"), !empty($pconfig['uctlenable']) ? true : false, gettext("Enable"), "uctlenable_change(false)");?>
 	<?php html_inputbox("uctladdress", gettext("Controller IP address"), $pconfig['uctladdress'], sprintf(gettext("Logical Unit Controller IP address (%s by default)"), "127.0.0.1(localhost)"), true, 30, false);?>
 	<?php html_inputbox("uctlport", gettext("Controller TCP Port"), $pconfig['uctlport'], sprintf(gettext("Logical Unit Controller TCP port (%d by default)"), 3261), true, 15, false);?>
 	<?php html_inputbox("uctlnetmask", gettext("Controller Authorised network"), $pconfig['uctlnetmask'], sprintf(gettext("Logical Unit Controller Authorised network (%s by default)"), "127.0.0.1/8"), true, 30, false);?>

@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	diag_ping.php
@@ -54,7 +53,7 @@ if ($_POST) {
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$do_ping = true;
 		$host = $_POST['host'];
 		$interface = $_POST['interface'];
@@ -90,10 +89,10 @@ function get_interface_addr($ifdescr) {
 	<tr>
 		<td class="tabcont">
 			<form action="diag_ping.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_inputbox("host", gettext("Host"), $host, gettext("Destination host name or IP number."), true, 20);?>
-					<?php html_interfacecombobox("interface", gettext("Interface"), $interface, gettext("Use the following IP address as the source address in outgoing packets."), true);?>
+					<?php html_interfacecombobox("interface", gettext("Interface"), !empty($interface) ? $interface : "", gettext("Use the following IP address as the source address in outgoing packets."), true);?>
 					<?php $a_count = array(); for ($i = 1; $i <= 10; $i++) { $a_count[$i] = $i; }?>
 					<?php html_combobox("count", gettext("Count"), $count, $a_count, gettext("Stop after sending (and receiving) N packets."), true);?>
 				</table>
@@ -103,7 +102,7 @@ function get_interface_addr($ifdescr) {
 				<?php if ($do_ping) {
 				echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
 				echo('<pre class="cmdoutput">');
-				ob_end_flush();
+				//ob_end_flush();
 				$ifaddr = get_interface_addr($interface);
 				if ($ifaddr) {
 					exec("/sbin/ping -S {$ifaddr} -c {$count} " . escapeshellarg($host), $rawdata);

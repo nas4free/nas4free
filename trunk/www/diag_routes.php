@@ -48,7 +48,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Routing tables"));
 	<tr>
 		<td class="tabcont">
 <?php
-	$netstat = ($_POST['resolve'] == 'yes' ? 'netstat -rW' : 'netstat -nrW');
+	$netstat = ((isset($_POST['resolve']) && $_POST['resolve'] == 'yes') ? 'netstat -rW' : 'netstat -nrW');
 	list($dummy, $internet, $internet6) = explode("\n\n", shell_exec($netstat));
 
 	foreach (array(&$internet, &$internet6) as $tabindex => $table) {

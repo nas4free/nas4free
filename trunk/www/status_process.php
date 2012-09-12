@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	status_process.php
