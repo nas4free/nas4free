@@ -3,6 +3,7 @@ NAS4Free 9.1.0.1 - Sandstorm
 
 Changes:
 
+- Improve WebGUI under PHP 5.4.
 - Add LiveUSB mode as same as LiveCD.
 - Change to CHS=x,255,63 of embedded image.
 - v9.6 config is forever marked as a blacklist.
@@ -12,8 +13,10 @@ Changes:
 - Add graid geom utility.
 - Add kern.geom.debugflags when installing.
 - Add rpcinfo utility.
+- Add vmstat utility.
 - Wait response of LAN interface if static with gateway.
 - Run umount before iSCSI initiator shutdown.
+- Remount all after netif is up for iSCSI device.
 - Upgrade to FreeBSD 9.1-RC1.
 - Upgrade istgt to 20120901.
 - Upgrade isboot to 0.2.6.
