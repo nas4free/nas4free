@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_zfs_snapshot_edit.php
@@ -39,7 +38,8 @@ require("auth.inc");
 require("guiconfig.inc");
 require("zfs.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -74,7 +74,8 @@ if (!isset($uuid) && (!sizeof($a_pool))) {
 	$errormsg = sprintf(gettext("No configured pools. Please add new <a href='%s'>pools</a> first."), "disks_zfs_zpool.php");
 }
 
-$snapshot = $_GET['snapshot'];
+if (isset($_GET['snapshot']))
+	$snapshot = $_GET['snapshot'];
 if (isset($_POST['snapshot']))
 	$snapshot = $_POST['snapshot'];
 $cnid = FALSE;
@@ -93,6 +94,7 @@ if (isset($snapshot) && !empty($snapshot)) {
 	$pconfig['newpath'] = "";
 	$pconfig['newname'] = "";
 	$pconfig['recursive'] = false;
+	$pconfig['action'] = "clone";
 } else {
 	// not supported
 	$pconfig = array();
@@ -102,12 +104,13 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: disks_zfs_snapshot.php");
 		exit;
 	}
 
-	$action = $_POST['action'];
+	if (isset($_POST['action']))
+		$action = $_POST['action'];
 	if (empty($action)) {
 		$input_errors[] = sprintf(gettext("The attribute '%s' is required."), gettext("Action"));
 	} else if ($action == 'clone') {
@@ -123,14 +126,14 @@ if ($_POST) {
 			$input_errors[] = sprintf(gettext("The attribute '%s' contains invalid characters."), gettext("Path"));
 		}
 
-		if (!$input_errors) {
+		if (empty($input_errors)) {
 			$snapshot = array();
 			$snapshot['uuid'] = $_POST['uuid'];
 			$snapshot['pool'] = $_POST['pool'];
 			$snapshot['path'] = $_POST['newpath'];
-			$snapshot['name'] = $_POST['newname'];
+			//$snapshot['name'] = $_POST['newname'];
 			$snapshot['snapshot'] =	$_POST['snapshot'];
-			//$snapshot['recursive'] = $_POST['recursive'] ? true : false;
+			//$snapshot['recursive'] = isset($_POST['recursive']) ? true : false;
 
 			//$mode = UPDATENOTIFY_MODE_MODIFIED;
 			//updatenotify_set("zfssnapshot", $mode, serialize($snapshot));
@@ -148,14 +151,14 @@ if ($_POST) {
 		// Input validation
 		// nothing
 
-		if (!$input_errors) {
+		if (empty($input_errors)) {
 			$snapshot = array();
 			$snapshot['uuid'] = $_POST['uuid'];
 			//$snapshot['pool'] = $_POST['pool'];
 			//$snapshot['path'] = $_POST['path'];
 			//$snapshot['name'] = $_POST['name'];
 			$snapshot['snapshot'] =	$_POST['snapshot'];
-			$snapshot['recursive'] = $_POST['recursive'] ? true : false;
+			$snapshot['recursive'] = isset($_POST['recursive']) ? true : false;
 
 			//$mode = UPDATENOTIFY_MODE_DIRTY;
 			//updatenotify_set("zfssnapshot", $mode, serialize($snapshot));
@@ -223,15 +226,15 @@ function action_change() {
 	<tr>
 		<td class="tabcont">
 			<form action="disks_zfs_snapshot_edit.php" method="post" name="iform" id="iform">
-				<?php if ($errormsg) print_error_box($errormsg);?>
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_text("snapshot", gettext("Snapshot"), htmlspecialchars($pconfig['snapshot']));?>
 					<?php $a_action = array("clone" => gettext("Clone"), "delete" => gettext("Delete"));?>
 					<?php html_combobox("action", gettext("Action"), $pconfig['action'], $a_action, "", true, false, "action_change()");?>
-					<?php html_inputbox("newpath", gettext("Path"), $pconfig['newpath'], "", true, 20);?>
-					<?php html_checkbox("recursive", gettext("Recursive"), $pconfig['recursive'] ? true : false, gettext("Deletes the recursive snapshot."), "", false);?>
+					<?php html_inputbox("newpath", gettext("Path"), $pconfig['newpath'], "", true, 30);?>
+					<?php html_checkbox("recursive", gettext("Recursive"), !empty($pconfig['recursive']) ? true : false, gettext("Deletes the recursive snapshot."), "", false);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Execute");?>" onclick="enable_change(true)" />

@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_zfs_config_current.php
@@ -140,7 +139,7 @@ if (updatenotify_exists('zfs_import_config'))
 	</tr>
 	<tr>
 		<td class="tabcont">
-			<?php if (isset($savemsg)) print_info_box($savemsg); ?>
+			<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
 				<?php html_titleline(gettext('Pools').' ('.count($zfs['pools']['pool']).')', 8);?>
 				<tr>

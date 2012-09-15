@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_zfs_snapshot.php
@@ -111,12 +110,12 @@ $a_snapshot = get_zfs_snapshots_filter($a_snapshot_all, array('time' => $filter_
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['filter']) {
+	if (isset($_POST['filter']) && $_POST['filter']) {
 		$_SESSION['filter_time'] = $_POST['filter_time'];
 		header("Location: disks_zfs_snapshot.php");
 		exit;
 	}
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$ret = array("output" => array(), "retval" => 0);
 
 		if (!file_exists($d_sysrebootreqd_path)) {
@@ -135,7 +134,7 @@ if ($_POST) {
 	}
 }
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	$snapshot = array();
 	$snapshot['snapshot'] = $_GET['snapshot'];
 	$snapshot['recursive'] = false;
@@ -195,8 +194,8 @@ function zfssnapshot_process_updatenotification($mode, $data) {
 	<tr>
 		<td class="tabcont">
 			<form action="disks_zfs_snapshot.php" method="post">
-				<?php if ($errormsg) print_error_box($errormsg);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<?php if (updatenotify_exists("zfssnapshot")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<tr id="filter_tr">

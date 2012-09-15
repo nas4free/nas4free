@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_zfs_snapshot_auto_edit.php
@@ -39,7 +38,8 @@ require("auth.inc");
 require("guiconfig.inc");
 require("zfs.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -126,7 +126,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: disks_zfs_snapshot_auto.php");
 		exit;
 	}
@@ -143,14 +143,14 @@ if ($_POST) {
 		$input_errors[] = sprintf(gettext("The attribute '%s' contains invalid characters."), gettext("Name"));
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$autosnapshot = array();
 		$autosnapshot['uuid'] = $_POST['uuid'];
 		$autosnapshot['type'] = $_POST['type'];
 		$autosnapshot['path'] = $_POST['path'];
 		$autosnapshot['name'] = $_POST['name'];
 		$autosnapshot['snapshot'] = $autosnapshot['path'].'@'.$autosnapshot['name'];
-		$autosnapshot['recursive'] = $_POST['recursive'] ? true : false;
+		$autosnapshot['recursive'] = isset($_POST['recursive']) ? true : false;
 		$autosnapshot['timeday'] = $_POST['timeday'];
 		$autosnapshot['timewday'] = $_POST['timewday'];
 		$autosnapshot['timehour'] = $_POST['timehour'];
@@ -206,14 +206,14 @@ function enable_change(enable_change) {
 	<tr>
 		<td class="tabcont">
 			<form action="disks_zfs_snapshot_auto_edit.php" method="post" name="iform" id="iform">
-				<?php if ($errormsg) print_error_box($errormsg);?>
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php $a_pathlist = array(); foreach ($a_path as $pathv) { $a_pathlist[$pathv['path']] = htmlspecialchars($pathv['path']); }?>
 					<?php html_combobox("path", gettext("Path"), $pconfig['path'], $a_pathlist, "", true);?>
 					<?php html_inputbox("name", gettext("Name"), $pconfig['name'], "", true, 40);?>
-					<?php html_checkbox("recursive", gettext("Recursive"), $pconfig['recursive'] ? true : false, gettext("Creates the recursive snapshot."), "", false);?>
+					<?php html_checkbox("recursive", gettext("Recursive"), !empty($pconfig['recursive']) ? true : false, gettext("Creates the recursive snapshot."), "", false);?>
 					<?php html_text("type", gettext("Type"), htmlspecialchars($pconfig['type']));?>
 					<?php html_combobox("timehour", gettext("Schedule time"), $pconfig['timehour'], $a_timehour, "", true);?>
 					<?php html_combobox("lifetime", gettext("Life time"), $pconfig['lifetime'], $a_lifetime, "", true);?>

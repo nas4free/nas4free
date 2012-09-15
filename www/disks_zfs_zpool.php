@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_zfs_zpool.php
@@ -50,7 +49,7 @@ $a_pool = &$config['zfs']['pools']['pool'];
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			// Process notifications
@@ -65,7 +64,7 @@ if ($_POST) {
 	}
 }
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	updatenotify_set("zfszpool", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
 	header("Location: disks_zfs_zpool.php");
 	exit;
@@ -126,7 +125,7 @@ $a_poolstatus = zfs_get_pool_list();
 	<tr>
 		<td class="tabcont">
 			<form action="disks_zfs_zpool.php" method="post">
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<?php if (updatenotify_exists("zfszpool")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>

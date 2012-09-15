@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_zfs_zpool_edit.php
@@ -39,7 +38,8 @@ require("auth.inc");
 require("guiconfig.inc");
 require("zfs.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -80,7 +80,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: disks_zfs_zpool.php");
 		exit;
 	}
@@ -104,7 +104,7 @@ if ($_POST) {
 	}
 
 	// Check vdevices
-	if (is_array($_POST['vdevice'])) {
+	if (isset($_POST['vdevice']) && is_array($_POST['vdevice'])) {
 		$n = 0;
 		foreach ($_POST['vdevice'] as $vdev) {
 			$index = array_search_ex($vdev, $a_vdevice, "name");
@@ -115,10 +115,12 @@ if ($_POST) {
 				    || $vdevice['type'] == 'log') {
 					continue;
 				}
+				/*
 				if ($vdevice['type'] == 'disk') {
 					// sync disk
 					continue;
 				}
+				*/
 			}
 			$n++;
 		}
@@ -127,7 +129,7 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$pooldata = array();
 		$pooldata['uuid'] = $_POST['uuid'];
 		$pooldata['name'] = $_POST['name'];
@@ -189,13 +191,13 @@ function enable_change(enable_change) {
 	<tr>
 		<td class="tabcont">
 			<form action="disks_zfs_zpool_edit.php" method="post" name="iform" id="iform">
-				<?php if ($errormsg) print_error_box($errormsg);?>
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_inputbox("name", gettext("Name"), $pconfig['name'], "", true, 20);?>
-					<?php $a_device = array(); foreach ($a_vdevice as $vdevicev) { if (isset($uuid) && false !== $cnid && !(is_array($pconfig['vdevice']) && in_array($vdevicev['name'], $pconfig['vdevice']))) { continue; } if ((!isset($uuid) || isset($uuid) && false === $cnid) && false !== array_search_ex($vdevicev['name'], $a_pool, "vdevice")) { continue; } $a_device[$vdevicev['name']] = htmlspecialchars("{$vdevicev['name']} ({$vdevicev['type']}" . (!empty($vdevicev['desc']) ? ", {$vdevicev['desc']})" : ")")); }?>
-					<?php html_listbox("vdevice", gettext("Virtual devices"), $pconfig['vdevice'], $a_device, "", true);?>
+					<?php $a_device = array(); foreach ($a_vdevice as $vdevicev) { if (isset($uuid) && false !== $cnid && !(isset($pconfig['vdevice']) && is_array($pconfig['vdevice']) && in_array($vdevicev['name'], $pconfig['vdevice']))) { continue; } if ((!isset($uuid) || isset($uuid) && false === $cnid) && false !== array_search_ex($vdevicev['name'], $a_pool, "vdevice")) { continue; } $a_device[$vdevicev['name']] = htmlspecialchars("{$vdevicev['name']} ({$vdevicev['type']}" . (!empty($vdevicev['desc']) ? ", {$vdevicev['desc']})" : ")")); }?>
+					<?php html_listbox("vdevice", gettext("Virtual devices"), !empty($pconfig['vdevice']) ? $pconfig['vdevice'] : array(), $a_device, "", true);?>
 					<?php html_inputbox("root", gettext("Root"), $pconfig['root'], gettext("Creates the pool with an alternate root."), false, 40);?>
 					<?php html_inputbox("mountpoint", gettext("Mount point"), $pconfig['mountpoint'], gettext("Sets an alternate mount point for the root dataset. Default is /mnt."), false, 40);?>
 					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>

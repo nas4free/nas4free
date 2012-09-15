@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_zfs_snapshot_auto.php
@@ -74,7 +73,7 @@ $a_lifetime = array("0" => gettext("infinity"),
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$ret = array("output" => array(), "retval" => 0);
 
 		if (!file_exists($d_sysrebootreqd_path)) {
@@ -95,7 +94,7 @@ if ($_POST) {
 	}
 }
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	$autosnapshot = array();
 	$autosnapshot['uuid'] = $_GET['uuid'];
 	updatenotify_set("zfsautosnapshot", UPDATENOTIFY_MODE_DIRTY, serialize($autosnapshot));
@@ -158,8 +157,8 @@ function zfsautosnapshot_process_updatenotification($mode, $data) {
 	<tr>
 		<td class="tabcont">
 			<form action="disks_zfs_snapshot_auto.php" method="post">
-				<?php if ($errormsg) print_error_box($errormsg);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<?php if (updatenotify_exists("zfsautosnapshot")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
