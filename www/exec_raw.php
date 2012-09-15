@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	exec_raw.php

@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	userportal_system_password.php
@@ -76,7 +75,7 @@ if ($_POST) {
 		$input_errors[] = gettext("The confimed password does not match. Please ensure the passwords match exactly.");
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$a_user[$cnid]['password'] = $_POST['password_new'];
 
 		write_config();
@@ -99,8 +98,8 @@ if ($_POST) {
 	<tr>
 		<td class="tabcont">
 			<form action="<?=$_SERVER['SCRIPT_NAME'];?>" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_passwordbox("password_old", gettext("Old password"), "", "", true);?>
 					<?php html_passwordconfbox("password_new", "password_confirm", gettext("Password"), "", "", "", true);?>

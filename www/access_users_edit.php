@@ -64,7 +64,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_user, "uuid"))
 	$pconfig['passwordconf'] = $pconfig['password'];
 	$pconfig['userid'] = $a_user[$cnid]['id'];
 	$pconfig['primarygroup'] = $a_user[$cnid]['primarygroup'];
-	$pconfig['group'] = $a_user[$cnid]['group'];
+	$pconfig['group'] = !empty($a_user[$cnid]['group']) ? $a_user[$cnid]['group'] : array();
 	$pconfig['shell'] = $a_user[$cnid]['shell'];
 	$pconfig['homedir'] = $a_user[$cnid]['homedir'];
 	$pconfig['userportal'] = isset($a_user[$cnid]['userportal']);
@@ -156,7 +156,7 @@ if ($_POST) {
 		$user['password'] = $_POST['password'];
 		$user['shell'] = $_POST['shell'];
 		$user['primarygroup'] = $_POST['primarygroup'];
-		if (is_array($_POST['group']))
+		if (isset($_POST['group']) && is_array($_POST['group']))
 			$user['group'] = $_POST['group'];
 		$user['homedir'] = $_POST['homedir'];
 		$user['id'] = $_POST['userid'];
