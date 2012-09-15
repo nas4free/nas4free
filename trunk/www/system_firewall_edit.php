@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_firewall_edit.php
@@ -38,7 +37,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -86,7 +86,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: system_firewall.php");
 		exit;
 	}
@@ -100,13 +100,13 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$rule = array();
 		$rule['uuid'] = $_POST['uuid'];
-		$rule['enable'] = $_POST['enable'] ? true : false;
+		$rule['enable'] = isset($_POST['enable']) ? true : false;
 		$rule['ruleno'] = $_POST['ruleno'];
 		$rule['action'] = $_POST['action'];
-		$rule['log'] = $_POST['log'] ? true : false;
+		$rule['log'] = isset($_POST['log']) ? true : false;
 		$rule['protocol'] = $_POST['protocol'];
 		$rule['src'] = $_POST['src'];
 		$rule['srcport'] = $_POST['srcport'];
@@ -155,9 +155,9 @@ function get_next_rulenumber() {
   <tr>
     <td class="tabcont">
       <form action="system_firewall_edit.php" method="post" name="iform" id="iform">
-      	<?php if ($input_errors) print_input_errors($input_errors); ?>
+      	<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
         <table width="100%" border="0" cellpadding="6" cellspacing="0">
-        	<?php html_titleline_checkbox("enable", gettext("Firewall rule"), $pconfig['enable'] ? true : false, gettext("Enable"));?>
+        	<?php html_titleline_checkbox("enable", gettext("Firewall rule"), !empty($pconfig['enable']) ? true : false, gettext("Enable"));?>
         	<?php html_inputbox("ruleno", gettext("Rule number"), $pconfig['ruleno'], gettext("The rule number determines the order of the rule."), true, 10);?>
 					<?php html_combobox("action", gettext("Action"), $pconfig['action'], array("allow" => gettext("Allow"), "deny" => gettext("Deny"), "unreach host" => gettext("Reject")), gettext("The action which will be executed when the packet match the criteria specified below."), true);?>
 					<?php $a_interface = array("" => gettext("All"), get_ifname($config['interfaces']['lan']['if']) => "LAN"); for ($i = 1; isset($config['interfaces']['opt' . $i]); ++$i) { $a_interface[$config['interfaces']['opt' . $i]['if']] = $config['interfaces']['opt' . $i]['descr']; }?>
@@ -169,7 +169,7 @@ function get_next_rulenumber() {
 					<?php html_inputbox("dstport", gettext("Destination port"), $pconfig['dstport'], "", false, 5);?>
 					<?php html_inputbox("extraoptions", gettext("Options"), $pconfig['extraoptions'], "", false, 40);?>
 					<?php html_combobox("direction", gettext("Direction"), $pconfig['direction'], array("in" => gettext("In"), "out" => gettext("Out"), "" => gettext("Any")), "", true);?>
-					<?php html_checkbox("log", gettext("Log"), $pconfig['log'] ? true : false, gettext("Log packets that are handled by this rule to syslog."), "", false);?>
+					<?php html_checkbox("log", gettext("Log"), !empty($pconfig['log']) ? true : false, gettext("Log packets that are handled by this rule to syslog."), "", false);?>
 					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
         </table>
 				<div id="submit">

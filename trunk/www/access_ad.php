@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	acces_ad.php
@@ -63,7 +62,7 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	// Input validation.
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "domaincontrollername domainname_dns domainname_netbios username password");
 		$reqdfieldsn = array(gettext("Domain controller name"), gettext("Domain name (DNS/Realm-Name)"), gettext("Domain name (NetBIOS-Name)"), gettext("Administrator name"), gettext("Administration password"));
 		$reqdfieldst = explode(" ", "string domain netbios string string");
@@ -76,13 +75,13 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$config['ad']['domaincontrollername'] = $_POST['domaincontrollername'];
 		$config['ad']['domainname_dns'] = $_POST['domainname_dns'];
 		$config['ad']['domainname_netbios'] = $_POST['domainname_netbios'];
 		$config['ad']['username'] = $_POST['username'];
 		$config['ad']['password'] = $_POST['password'];
-		$config['ad']['enable'] = $_POST['enable'] ? true : false;
+		$config['ad']['enable'] = isset($_POST['enable']) ? true : false;
 
 		if ($config['ad']['enable']) {
 			$config['samba']['enable'] = true;
@@ -124,10 +123,10 @@ function enable_change(enable_change) {
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td class="tabcont">
-	    	<?php if ($input_errors) print_input_errors($input_errors);?>
+	    	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if ($savemsg) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Active Directory"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Active Directory"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 			    <tr>
 			      <td width="22%" valign="top" class="vncellreq"><?=gettext("Domain controller name");?></td>
 			      <td width="78%" class="vtable">

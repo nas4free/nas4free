@@ -81,8 +81,8 @@ function &find_user($user,$pass) {
 			}
 		}
 	}
-	
-	return NULL;
+	$result = NULL;
+	return $result;
 }
 //------------------------------------------------------------------------------
 function activate_user($user,$pass) {

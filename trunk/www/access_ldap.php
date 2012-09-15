@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	acces_ldap.php
@@ -52,8 +51,8 @@ if (!isset($config['samba']) || !is_array($config['samba'])) {
 
 }
 
-#LDAP take priority over MS ActiveDirectory (NAS4Free choicee), then disable AD:
-if (!is_array($config['ad'])) {
+//LDAP take priority over MS ActiveDirectory (NAS4Free choicee), then disable AD:
+if (!isset($config['ad']) || !is_array($config['ad'])) {
 	$config['ad'] = array();
 }
 
@@ -72,7 +71,7 @@ $pconfig['password_suffix'] = $config['ldap']['password_suffix'];
 $pconfig['group_suffix'] = $config['ldap']['group_suffix'];
 $pconfig['machine_suffix'] = $config['ldap']['machine_suffix'];
 $pconfig['pam_password'] = $config['ldap']['pam_password'];
-if (is_array($config['ldap']['auxparam']))
+if (isset($config['ldap']['auxparam']) && is_array($config['ldap']['auxparam']))
 	$pconfig['auxparam'] = implode("\n", $config['ldap']['auxparam']);
 
 if ($_POST) {
@@ -80,12 +79,12 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	// Input validation.
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "hostname base rootbinddn rootbindpw user_suffix group_suffix password_suffix machine_suffix");
 		$reqdfieldsn = array(gettext("Host name"), gettext("Base DN"), gettext("Root bind DN"), gettext("Root bind password"), gettext("User suffix"), gettext("Group suffix"), gettext("Password suffix"), gettext("Machine suffix"));
 		$reqdfieldst = explode(" ", "string string string password string string string string");
 
-		if (!$_POST['anonymousbind']) {
+		if (empty($_POST['anonymousbind'])) {
 			$reqdfields = array_merge($reqdfields, explode(" ", "binddn bindpw"));
 			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Bind DN"), gettext("Bind password")));
 			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "string password"));
@@ -99,11 +98,11 @@ if ($_POST) {
 		$input_errors[] = gettext("The confimed password does not match. Please ensure the passwords match exactly.");
 	}
 
-	if (!$input_errors) {
-		$config['ldap']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['ldap']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['ldap']['hostname'] = $_POST['hostname'];
 		$config['ldap']['base'] = $_POST['base'];
-		$config['ldap']['anonymousbind'] = $_POST['anonymousbind'] ? true : false;
+		$config['ldap']['anonymousbind'] = isset($_POST['anonymousbind']) ? true : false;
 		$config['ldap']['binddn'] = $_POST['binddn'];
 		$config['ldap']['bindpw'] = $_POST['bindpw'];
 		$config['ldap']['rootbinddn'] = $_POST['rootbinddn'];
@@ -184,13 +183,13 @@ function anonymousbind_change() {
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td class="tabcont">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Lightweight Directory Access Protocol"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Lightweight Directory Access Protocol"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_inputbox("hostname", gettext("Host name"), $pconfig['hostname'], gettext("The name or IP address of the LDAP server."), true, 20);?>
 					<?php html_inputbox("base", gettext("Base DN"), $pconfig['base'], sprintf(gettext("The default base distinguished name (DN) to use for searches, e.g. %s"), "dc=test,dc=org"), true, 40);?>
-					<?php html_checkbox("anonymousbind", gettext("Anonymous bind"), $pconfig['anonymousbind'] ? true : false, gettext("Enable anonymous bind."), "", true, "anonymousbind_change()");?>
+					<?php html_checkbox("anonymousbind", gettext("Anonymous bind"), !empty($pconfig['anonymousbind']) ? true : false, gettext("Enable anonymous bind."), "", true, "anonymousbind_change()");?>
 					<?php html_inputbox("binddn", gettext("Bind DN"), $pconfig['binddn'], sprintf(gettext("The distinguished name with which to bind to the directory server, e.g. %s"), "cn=admin,dc=test,dc=org"), true, 40);?>
 					<?php html_passwordconfbox("bindpw", "bindpw2", gettext("Bind password"), $pconfig['bindpw'], $pconfig['bindpw2'], gettext("The cleartext credentials with which to bind."), true);?>
 					<?php html_inputbox("rootbinddn", gettext("Root bind DN"), $pconfig['rootbinddn'], sprintf(gettext("The distinguished name with which to bind to the directory server, e.g. %s"), "cn=admin,dc=test,dc=org"), true, 40);?>
