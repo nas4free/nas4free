@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_zfs_config_sync.php
@@ -81,6 +80,7 @@ foreach($rawdata as $line)
 			'snapdir' => ($snapdir == 'visible'),
 			'readonly' => ($readonly == 'on'),
 			'dedup' => $dedup,
+			'desc' => '',
 		);
 	}
 	else // zpool
@@ -91,6 +91,7 @@ foreach($rawdata as $line)
 			'vdevice' => array(),
 			'root' => null,
 			'mountpoint' => ($mpoint == "/mnt/{$fname}") ? null : $mpoint,
+			'desc' => '',
 		);
 		$zfs['extra']['pools']['pool'][$fname] = array(
 			'size' => null,
@@ -124,6 +125,7 @@ foreach($rawdata as $line)
 			'volsize' => $volsize,
 			'compression' => $compress,
 			'dedup' => $dedup,
+			'desc' => '',
 		);
 	}
 }
@@ -161,7 +163,7 @@ $rawdata = null;
 mwexec2('zpool status', $rawdata);
 foreach ($rawdata as $line)
 {
-	if ($line[0] != "\t") continue;
+	if (empty($line[0]) || $line[0] != "\t") continue;
 
 	if (!is_null($vdev) && preg_match('/^\t    (\S+)/', $line, $m)) // dev
 	{
@@ -222,6 +224,7 @@ foreach ($rawdata as $line)
 				'name' => $vdev,
 				'type' => $type,
 				'device' => array(),
+				'desc' => '',
 			);
 			$zfs['extra']['vdevices']['vdevice'][$vdev]['pool'] = $pool;
 			$zfs['pools']['pool'][$pool]['vdevice'][] = $vdev;
@@ -399,7 +402,8 @@ if (isset($_POST['import_config']))
 			}
 		}
 		
-		$pconfig['zfs']['autosnapshots'] = $_GET['zfs']['autosnapshots'];
+		if (isset($_GET['zfs']['autosnapshots']))
+			$pconfig['zfs']['autosnapshots'] = $_GET['zfs']['autosnapshots'];
 		if (isset($_POST['leave_autosnapshots'])) {
 			$cfg['zfs']['autosnapshots'] = $config['zfs']['autosnapshots'];
 		}
@@ -450,7 +454,7 @@ if (!$health)
 	</tr>
 	<tr>
 		<td class="tabcont">
-			<?php if (isset($message_box_text)) print_core_box($message_box_type, $message_box_text);?>
+			<?php if (!empty($message_box_text)) print_core_box($message_box_type, $message_box_text);?>
 			<?php if (isset($import) && $import === false): ?>
 			<?php print_error_box(gettext('Nothing to synchronize'));?>
 			<?php endif; ?>

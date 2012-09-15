@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_zfs_volume_edit.php
@@ -39,7 +38,8 @@ require("auth.inc");
 require("guiconfig.inc");
 require("zfs.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -86,7 +86,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: disks_zfs_volume.php");
 		exit;
 	}
@@ -99,7 +99,7 @@ if ($_POST) {
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$volume = array();
 		$volume['uuid'] = $_POST['uuid'];
 		$volume['name'] = $_POST['name'];
@@ -157,8 +157,8 @@ function enable_change(enable_change) {
 	<tr>
 		<td class="tabcont">
 			<form action="disks_zfs_volume_edit.php" method="post" name="iform" id="iform">
-				<?php if ($errormsg) print_error_box($errormsg);?>
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_inputbox("name", gettext("Name"), $pconfig['name'], "", true, 20);?>

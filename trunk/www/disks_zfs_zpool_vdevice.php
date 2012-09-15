@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_zfs_zpool_vdevice.php
@@ -49,7 +48,7 @@ $a_vdevice = &$config['zfs']['vdevices']['vdevice'];
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			// Process notifications
@@ -64,7 +63,7 @@ if ($_POST) {
 	}
 }
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	$index = array_search_ex($_GET['uuid'], $config['zfs']['vdevices']['vdevice'], "uuid");
 	if (false !== $index) {
 		updatenotify_set("zfsvdev", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
@@ -124,7 +123,7 @@ function zfsvdev_process_updatenotification($mode, $data) {
 	<tr>
 		<td class="tabcont">
 			<form action="disks_zfs_zpool_vdevice.php" method="post">
-				<?php if ($savemsg) print_info_box($savemsg); ?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 				<?php if (updatenotify_exists("zfsvdev")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>

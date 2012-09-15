@@ -72,7 +72,7 @@ function zfs_get_pool_list() {
 		$result[$poolname]['dedup'] = $aline[5];		
 		$result[$poolname]['health'] = $aline[6];
 		$result[$poolname]['altroot'] = $aline[7];
-		$result[$poolname]['atime'] = $aline[8];
+		//$result[$poolname]['atime'] = $aline[8];
 
 		// Get correct used/available disk space.
 		// See http://bugs.opensolaris.org/bugdatabase/view_bug.do?bug_id=6308817
@@ -378,6 +378,11 @@ function zfs_dataset_properties($uuid) {
 	if (!is_array($dataset))
 		 return 1;
 
+	$mounted = false;
+	mwexec2("zfs list -H -t filesystem -o mounted {$dataset['pool'][0]}/{$dataset['name']}", $rawdata);
+	if (!empty($rawdata) && $rawdata[0] == "yes")
+		$mounted = true;
+
 	$result = 0;
 
 	foreach (explode(" ", "compression dedup atime canmount readonly quota xattr snapdir") as $attr) {
@@ -421,10 +426,12 @@ function zfs_dataset_properties($uuid) {
 				break;
 
 			case "xattr":
+				/*
 				if (!isset($dataset['xattr']))
 					$param = "xattr=off";
 				else
 					$param = "xattr=on";
+				*/
 				break;
 
 			case "snapdir":
@@ -438,8 +445,14 @@ function zfs_dataset_properties($uuid) {
 		// Update dataset properties
 		if (!empty($param)) {
 			$cmd = "zfs set {$param} {$dataset['pool'][0]}/{$dataset['name']}";
+			write_log($cmd);
 			$result |= mwexec($cmd, true);
 		}
+	}
+	if (isset($dataset['canmount']) && !$mounted) {
+		$cmd = "zfs mount {$dataset['pool'][0]}/{$dataset['name']}";
+		write_log($cmd);
+		$result |= mwexec($cmd, true);
 	}
 
 	return $result;
@@ -558,6 +571,7 @@ function zfs_volume_properties($uuid) {
 		// Update volume properties
 		if (!empty($param)) {
 			$cmd = "zfs set {$param} {$volume['pool'][0]}/{$volume['name']}";
+			write_log($cmd);
 			$result |= mwexec($cmd, true);
 		}
 	}
@@ -701,6 +715,7 @@ function zfs_snapshot_properties($snapshot) {
 		// Update snapshot properties
 		if (!empty($param)) {
 			$cmd = "zfs set {$param} {$snapshot['snapshot']}";
+			write_log($cmd);
 			$result |= mwexec($cmd, true);
 		}
 	}

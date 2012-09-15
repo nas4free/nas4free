@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_zfs_dataset.php
@@ -50,7 +49,7 @@ $a_dataset = &$config['zfs']['datasets']['dataset'];
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 
 		if (!file_exists($d_sysrebootreqd_path)) {
@@ -66,7 +65,7 @@ if ($_POST) {
 	}
 }
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	updatenotify_set("zfsdataset", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
 	header("Location: disks_zfs_dataset.php");
 	exit;
@@ -123,7 +122,7 @@ function zfsdataset_process_updatenotification($mode, $data) {
 	<tr>
 		<td class="tabcont">
 			<form action="disks_zfs_dataset.php" method="post">
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<?php if (updatenotify_exists("zfsdataset")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
