@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_rsyncd.php
@@ -53,14 +52,14 @@ $pconfig['enable'] = isset($config['rsyncd']['enable']);
 $pconfig['port'] = $config['rsyncd']['port'];
 $pconfig['motd'] = base64_decode($config['rsyncd']['motd']);
 $pconfig['rsyncd_user'] = $config['rsyncd']['rsyncd_user'];
-if (is_array($config['rsyncd']['auxparam']))
+if (isset($config['rsyncd']['auxparam']) && is_array($config['rsyncd']['auxparam']))
 	$pconfig['auxparam'] = implode("\n", $config['rsyncd']['auxparam']);
 
 if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		// Input validation.
 		$reqdfields = explode(" ", "rsyncd_user port");
 		$reqdfieldsn = array(gettext("Map to user"), gettext("TCP port"));
@@ -70,8 +69,8 @@ if ($_POST) {
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 		}	
 
-	if (!$input_errors) {
-		$config['rsyncd']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['rsyncd']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['rsyncd']['port'] = $_POST['port'];
 		$config['rsyncd']['motd'] = base64_encode($_POST['motd']); // Encode string, otherwise line breaks will get lost
 		$config['rsyncd']['rsyncd_user'] = $_POST['rsyncd_user'];
@@ -130,10 +129,10 @@ function enable_change(enable_change) {
 	<tr>
 		<td class="tabcont">
 			<form action="services_rsyncd.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Rsync"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Rsync"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<tr>
 						<td valign="top" class="vncellreq"><?=gettext("Map to user");?></td>
 						<td class="vtable">
@@ -153,7 +152,7 @@ function enable_change(enable_change) {
 						</td>
 					</tr>
 					<?php html_textarea("motd", gettext("MOTD"), $pconfig['motd'], gettext("Message of the day."), false, 65, 7, false, false);?>
-					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("These parameters will be added to [global] settings in %s."), "rsyncd.conf") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://rsync.samba.org/ftp/rsync/rsyncd.conf.html"), false, 65, 5, false, false);?>
+					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gettext("These parameters will be added to [global] settings in %s."), "rsyncd.conf") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://rsync.samba.org/ftp/rsync/rsyncd.conf.html"), false, 65, 5, false, false);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />
