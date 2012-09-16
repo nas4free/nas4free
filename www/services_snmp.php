@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_snmp.php
@@ -61,7 +60,7 @@ $pconfig['mibii'] = isset($config['snmpd']['modules']['mibii']);
 $pconfig['netgraph'] = isset($config['snmpd']['modules']['netgraph']);
 $pconfig['hostres'] = isset($config['snmpd']['modules']['hostres']);
 $pconfig['ucd'] = isset($config['snmpd']['modules']['ucd']);
-if (is_array($config['snmpd']['auxparam']))
+if (isset($config['snmpd']['auxparam']) && is_array($config['snmpd']['auxparam']))
 	$pconfig['auxparam'] = implode("\n", $config['snmpd']['auxparam']);
 
 if ($_POST) {
@@ -69,12 +68,12 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	// Input validation
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "location contact read");
 		$reqdfieldsn = array(gettext("Location"), gettext("Contact"), gettext("Community"));
 		$reqdfieldst = explode(" ", "string string string");
 
-		if ($_POST['trapenable']) {
+		if (isset($_POST['trapenable']) && $_POST['trapenable']) {
 			$reqdfields = array_merge($reqdfields, explode(" ", "traphost trapport trap"));
 			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Trap host"), gettext("Trap port"), gettext("Trap string")));
 			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "string port string"));
@@ -84,19 +83,19 @@ if ($_POST) {
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
 
-	if (!$input_errors) {
-		$config['snmpd']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['snmpd']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['snmpd']['location'] = $_POST['location'];
 		$config['snmpd']['contact'] = $_POST['contact'];
 		$config['snmpd']['read'] = $_POST['read'];
-		$config['snmpd']['trapenable'] = $_POST['trapenable'] ? true : false;
+		$config['snmpd']['trapenable'] = isset($_POST['trapenable']) ? true : false;
 		$config['snmpd']['traphost'] = $_POST['traphost'];
 		$config['snmpd']['trapport'] = $_POST['trapport'];
 		$config['snmpd']['trap'] = $_POST['trap'];
-		$config['snmpd']['modules']['mibii'] = $_POST['mibii'] ? true : false;
-		$config['snmpd']['modules']['netgraph'] = $_POST['netgraph'] ? true : false;
-		$config['snmpd']['modules']['hostres'] = $_POST['hostres'] ? true : false;
-		$config['snmpd']['modules']['ucd'] = $_POST['ucd'] ? true : false;
+		$config['snmpd']['modules']['mibii'] = isset($_POST['mibii']) ? true : false;
+		$config['snmpd']['modules']['netgraph'] = isset($_POST['netgraph']) ? true : false;
+		$config['snmpd']['modules']['hostres'] = isset($_POST['hostres']) ? true : false;
+		$config['snmpd']['modules']['ucd'] = isset($_POST['ucd']) ? true : false;
 
 		// Write additional parameters.
 		unset($config['snmpd']['auxparam']);
@@ -157,27 +156,27 @@ function trapenable_change() {
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td class="tabcont">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Simple Network Management Protocol"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Simple Network Management Protocol"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_inputbox("location", gettext("Location"), $pconfig['location'], gettext("Location information, e.g. physical location of this system: 'Floor of building, Room xyz'."), true, 40);?>
 					<?php html_inputbox("contact", gettext("Contact"), $pconfig['contact'], gettext("Contact information, e.g. name or email of the person responsible for this system: 'admin@email.address'."), true, 40);?>					
 					<?php html_inputbox("read", gettext("Community"), $pconfig['read'], gettext("In most cases, 'public' is used here."), true, 40);?>
-					<?php html_checkbox("trapenable", gettext("Traps"), $pconfig['trapenable'] ? true : false, gettext("Enable traps."), "", false, "trapenable_change()");?>
+					<?php html_checkbox("trapenable", gettext("Traps"), !empty($pconfig['trapenable']) ? true : false, gettext("Enable traps."), "", false, "trapenable_change()");?>
 					<?php html_inputbox("traphost", gettext("Trap host"), $pconfig['traphost'], gettext("Enter trap host name."), true, 40);?>
 					<?php html_inputbox("trapport", gettext("Trap port"), $pconfig['trapport'], gettext("Enter the port to send the traps to (default 162)."), true, 5);?>
 					<?php html_inputbox("trap", gettext("Trap string"), $pconfig['trap'], gettext("Trap string."), true, 40);?>
-					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("These parameters will be added to %s."), "snmpd.config")  . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://www.freebsd.org/cgi/man.cgi?query=bsnmpd&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD+${os_release}-RELEASE&amp;format=html"), false, 65, 5, false, false);?>
+					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gettext("These parameters will be added to %s."), "snmpd.config")  . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://www.freebsd.org/cgi/man.cgi?query=bsnmpd&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD+${os_release}-RELEASE&amp;format=html"), false, 65, 5, false, false);?>
 					<?php html_separator();?>
 					<?php html_titleline(gettext("Modules"));?>
 					<tr>
 						<td width="22%" valign="top" class="vncell"><?=gettext("SNMP Modules");?></td>
 						<td width="78%" class="vtable">
-							<input name="mibii" type="checkbox" id="mibii" value="yes" <?php if ($pconfig['mibii']) echo "checked=\"checked\""; ?> /><?=gettext("MibII");?><br />
-							<input name="netgraph" type="checkbox" id="netgraph" value="yes" <?php if ($pconfig['netgraph']) echo "checked=\"checked\""; ?> /><?=gettext("Netgraph");?><br />
-							<input name="hostres" type="checkbox" id="hostres" value="yes" <?php if ($pconfig['hostres']) echo "checked=\"checked\""; ?> /><?=gettext("Host resources");?><br />
-							<input name="ucd" type="checkbox" id="ucd" value="yes" <?php if ($pconfig['ucd']) echo "checked=\"checked\""; ?> /><?=gettext("UCD-SNMP-MIB");?>
+							<input name="mibii" type="checkbox" id="mibii" value="yes" <?php if (!empty($pconfig['mibii'])) echo "checked=\"checked\""; ?> /><?=gettext("MibII");?><br />
+							<input name="netgraph" type="checkbox" id="netgraph" value="yes" <?php if (!empty($pconfig['netgraph'])) echo "checked=\"checked\""; ?> /><?=gettext("Netgraph");?><br />
+							<input name="hostres" type="checkbox" id="hostres" value="yes" <?php if (!empty($pconfig['hostres'])) echo "checked=\"checked\""; ?> /><?=gettext("Host resources");?><br />
+							<input name="ucd" type="checkbox" id="ucd" value="yes" <?php if (!empty($pconfig['ucd'])) echo "checked=\"checked\""; ?> /><?=gettext("UCD-SNMP-MIB");?>
 						</td>
 					</tr>
 			  </table>

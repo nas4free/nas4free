@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_rsyncd_module_edit.php
@@ -38,7 +37,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -68,7 +68,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_module, "uuid"
 	$pconfig['hostsdeny'] = $a_module[$cnid]['hostsdeny'];
 	$pconfig['uid'] = $a_module[$cnid]['uid'];
 	$pconfig['gid'] = $a_module[$cnid]['gid'];
-	if (is_array($a_module[$cnid]['auxparam']))
+	if (isset($a_module[$cnid]['auxparam']) && is_array($a_module[$cnid]['auxparam']))
 		$pconfig['auxparam'] = implode("\n", $a_module[$cnid]['auxparam']);
 } else {
 	$pconfig['uuid'] = uuid();
@@ -89,7 +89,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: services_rsyncd_module.php");
 		exit;
 	}
@@ -102,13 +102,13 @@ if ($_POST) {
 	$reqdfieldst = explode(" ", "string string");
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
-	if(!$input_errors) {
+	if(empty($input_errors)) {
 		$module = array();
 		$module['uuid'] = $_POST['uuid'];
 		$module['name'] = $_POST['name'];
 		$module['path'] = $_POST['path'];
 		$module['comment'] = $_POST['comment'];
-		$module['list'] = $_POST['list'] ? true : false;
+		$module['list'] = isset($_POST['list']) ? true : false;
 		$module['rwmode'] = $_POST['rwmode'];
 		$module['maxconnections'] = $_POST['maxconnections'];
 		$module['hostsallow'] = $_POST['hostsallow'];
@@ -162,7 +162,7 @@ if ($_POST) {
   <tr>
     <td class="tabcont">
 			<form action="services_rsyncd_module_edit.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors); ?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 			  	<tr>
 			      <td width="22%" valign="top" class="vncellreq"><?=gettext("Name");?></td>
@@ -180,14 +180,14 @@ if ($_POST) {
 				  <td width="22%" valign="top" class="vncellreq"><?=gettext("Path");?></td>
 				  <td width="78%" class="vtable">
 				  	<input name="path" type="text" class="formfld" id="path" size="60" value="<?=htmlspecialchars($pconfig['path']);?>" />
-				  	<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.path; filechooser = window.open("filechooser.php?p="+escape(ifield.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." /><br />
+				  	<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.path; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." /><br />
 				  	<span class="vexpl"><?=gettext("Path to be shared.");?></span>
 				  </td>
 				</tr>
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("List");?></td>
 			      <td width="78%" class="vtable">
-			      	<input name="list" type="checkbox" id="list" value="yes" <?php if ($pconfig['list']) echo "checked=\"checked\""; ?> />
+			      	<input name="list" type="checkbox" id="list" value="yes" <?php if (!empty($pconfig['list'])) echo "checked=\"checked\""; ?> />
 			      	<?=gettext("Enable module listing.");?><br />
 			        <span class="vexpl"><?=gettext("This option determines if this module should be listed when the client asks for a listing of available modules. By setting this to false you can create hidden modules.");?></span>
 			      </td>
@@ -238,7 +238,7 @@ if ($_POST) {
 			        <span class="vexpl"><?=gettext("This option is a comma, space, or tab delimited set of host which are NOT permitted to access this module. Where the lists conflict, the allow list takes precedence. In the event that it is necessary to deny all by default, use the keyword ALL (or the netmask 0.0.0.0/0) and then explicitly specify to the hosts allow parameter those hosts that should be permitted access. Leave this field empty to use default settings.");?></span>
 			      </td>
 			    </tr>
-			    <?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], gettext("These parameters will be added to the module configuration in rsyncd.conf.") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://rsync.samba.org/ftp/rsync/rsync.html"), false, 65, 5, false, false);?>
+			    <?php html_textarea("auxparam", gettext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", gettext("These parameters will be added to the module configuration in rsyncd.conf.") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://rsync.samba.org/ftp/rsync/rsync.html"), false, 65, 5, false, false);?>
 			  </table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />

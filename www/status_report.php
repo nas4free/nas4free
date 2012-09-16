@@ -255,35 +255,35 @@ function enable_change(enable_change) {
 												<td valign="top">
 													<select multiple="multiple" size="12" name="minute[]" id="minutes1" onchange="set_selected('all_mins')">
 														<?php for ($i = 0; $i <= 11; $i++):?>
-														<option value="<?=$i;?>" <?php if (is_array($pconfig['minute']) && in_array("$i", $pconfig['minute'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
+														<option value="<?=$i;?>" <?php if (!empty($pconfig['minute']) && is_array($pconfig['minute']) && in_array("$i", $pconfig['minute'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
 														<?php endfor;?>
 													</select>
 												</td>
 												<td valign="top">
 													<select multiple="multiple" size="12" name="minute[]" id="minutes2" onchange="set_selected('all_mins')">
 														<?php for ($i = 12; $i <= 23; $i++):?>
-														<option value="<?=$i;?>" <?php if (is_array($pconfig['minute']) && in_array("$i", $pconfig['minute'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
+														<option value="<?=$i;?>" <?php if (!empty($pconfig['minute']) && is_array($pconfig['minute']) && in_array("$i", $pconfig['minute'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
 														<?php endfor;?>
 													</select>
 												</td>
 												<td valign="top">
 													<select multiple="multiple" size="12" name="minute[]" id="minutes3" onchange="set_selected('all_mins')">
 														<?php for ($i = 24; $i <= 35; $i++):?>
-														<option value="<?=$i;?>" <?php if (is_array($pconfig['minute']) && in_array("$i", $pconfig['minute'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
+														<option value="<?=$i;?>" <?php if (!empty($pconfig['minute']) && is_array($pconfig['minute']) && in_array("$i", $pconfig['minute'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
 														<?php endfor;?>
 													</select>
 												</td>
 												<td valign="top">
 													<select multiple="multiple" size="12" name="minute[]" id="minutes4" onchange="set_selected('all_mins')">
 														<?php for ($i = 36; $i <= 47; $i++):?>
-														<option value="<?=$i;?>" <?php if (is_array($pconfig['minute']) && in_array("$i", $pconfig['minute'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
+														<option value="<?=$i;?>" <?php if (!empty($pconfig['minute']) && is_array($pconfig['minute']) && in_array("$i", $pconfig['minute'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
 														<?php endfor;?>
 													</select>
 												</td>
 												<td valign="top">
 													<select multiple="multiple" size="12" name="minute[]" id="minutes5" onchange="set_selected('all_mins')">
 														<?php for ($i = 48; $i <= 59; $i++):?>
-														<option value="<?=$i;?>" <?php if (is_array($pconfig['minute']) && in_array("$i", $pconfig['minute'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
+														<option value="<?=$i;?>" <?php if (!empty($pconfig['minute']) && is_array($pconfig['minute']) && in_array("$i", $pconfig['minute'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
 														<?php endfor;?>
 													</select>
 												</td>
@@ -301,14 +301,14 @@ function enable_change(enable_change) {
 												<td valign="top">
 													<select multiple="multiple" size="12" name="hour[]" id="hours1" onchange="set_selected('all_hours')">
 														<?php for ($i = 0; $i <= 11; $i++):?>
-														<option value="<?=$i;?>" <?php if (is_array($pconfig['hour']) && in_array("$i", $pconfig['hour'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
+														<option value="<?=$i;?>" <?php if (!empty($pconfig['hour']) && is_array($pconfig['hour']) && in_array("$i", $pconfig['hour'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
 														<?php endfor;?>
 													</select>
 												</td>
 												<td valign="top">
 													<select multiple="multiple" size="12" name="hour[]" id="hours2" onchange="set_selected('all_hours')">
 														<?php for ($i = 12; $i <= 23; $i++):?>
-														<option value="<?=$i;?>" <?php if (is_array($pconfig['hour']) && in_array("$i", $pconfig['hour'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
+														<option value="<?=$i;?>" <?php if (!empty($pconfig['hour']) && is_array($pconfig['hour']) && in_array("$i", $pconfig['hour'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
 														<?php endfor;?>
 													</select>
 												</td>
@@ -325,21 +325,21 @@ function enable_change(enable_change) {
 												<td valign="top">
 													<select multiple="multiple" size="12" name="day[]" id="days1" onchange="set_selected('all_days')">
 														<?php for ($i = 1; $i <= 12; $i++):?>
-														<option value="<?=$i;?>" <?php if (is_array($pconfig['day']) && in_array("$i", $pconfig['day'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
+														<option value="<?=$i;?>" <?php if (!empty($pconfig['day']) && is_array($pconfig['day']) && in_array("$i", $pconfig['day'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
 														<?php endfor;?>
 													</select>
 												</td>
 												<td valign="top">
 													<select multiple="multiple" size="12" name="day[]" id="days2" onchange="set_selected('all_days')">
 														<?php for ($i = 13; $i <= 24; $i++):?>
-														<option value="<?=$i;?>" <?php if (is_array($pconfig['day']) && in_array("$i", $pconfig['day'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
+														<option value="<?=$i;?>" <?php if (!empty($pconfig['day']) && is_array($pconfig['day']) && in_array("$i", $pconfig['day'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
 														<?php endfor;?>
 													</select>
 												</td>
 												<td valign="top">
 													<select multiple="multiple" size="7" name="day[]" id="days3" onchange="set_selected('all_days')">
 														<?php for ($i = 25; $i <= 31; $i++):?>
-														<option value="<?=$i;?>" <?php if (is_array($pconfig['day']) && in_array("$i", $pconfig['day'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
+														<option value="<?=$i;?>" <?php if (!empty($pconfig['day']) && is_array($pconfig['day']) && in_array("$i", $pconfig['day'])) echo "selected=\"selected\"";?>><?=htmlspecialchars($i);?></option>
 														<?php endfor;?>
 													</select>
 												</td>

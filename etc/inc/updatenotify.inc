@@ -135,6 +135,31 @@ function updatenotify_delete($key) {
 	return TRUE;
 }
 
+// Clear the notification.
+// $key - File to be used
+// $data - Data to clear
+// Return TRUE if successful, otherwise FALSE.
+function updatenotify_clear($key, $data, $matchwholeword = TRUE) {
+	global $dbh;
+
+	try {
+		if (true === $matchwholeword)
+			$ssql = "data = :data";
+		else
+			$ssql = "data LIKE '%:data%'";
+
+		$sql = "DELETE FROM updatenotify WHERE key = :key AND {$ssql}";
+		$stmt = $dbh->prepare($sql);
+		$stmt->execute(array(':key' => $key, ':data' => $data));
+		$stmt = null;
+	} catch (PDOException $e) {
+		print $e->getMessage();
+		return FALSE;
+	}
+
+	return TRUE;
+}
+
 // Get the notification mode.
 // $key - File to be used
 // $data - Data to searched for

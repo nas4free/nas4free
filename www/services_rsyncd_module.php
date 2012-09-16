@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_rsyncd_module.php
@@ -43,7 +42,7 @@ $pgtitle = array(gettext("Services"), gettext("Rsync"), gettext("Server"), gette
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			$retval |= updatenotify_process("rsyncd", "rsyncd_process_updatenotification");
@@ -65,7 +64,7 @@ if (!isset($config['rsyncd']['module']) || !is_array($config['rsyncd']['module']
 array_sort_key($config['rsyncd']['module'], "name");
 $a_module = &$config['rsyncd']['module'];
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	updatenotify_set("rsyncd", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
 	header("Location: services_rsyncd_module.php");
 	exit;
@@ -114,7 +113,7 @@ function rsyncd_process_updatenotification($mode, $data) {
   <tr>
     <td class="tabcont">
       <form action="services_rsyncd_module.php" method="post">
-        <?php if ($savemsg) print_info_box($savemsg);?>
+        <?php if (!empty($savemsg)) print_info_box($savemsg);?>
         <?php if (updatenotify_exists("rsyncd")) print_config_change_box();?>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tr>

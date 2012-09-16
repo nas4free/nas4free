@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_rsyncd_local.php
@@ -43,7 +42,7 @@ $pgtitle = array(gettext("Services"), gettext("Rsync"), gettext("Local"));
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			$retval |= updatenotify_process("rsynclocal", "rsynclocal_process_updatenotification");
@@ -69,7 +68,7 @@ if (!isset($config['rsync']) || !is_array($config['rsync'])) {
 
 $a_rsynclocal = &$config['rsync']['rsynclocal'];
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	updatenotify_set("rsynclocal", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
 	header("Location: services_rsyncd_local.php");
 	exit;
@@ -111,7 +110,7 @@ function rsynclocal_process_updatenotification($mode, $data) {
   <tr>
     <td class="tabcont">
       <form action="services_rsyncd_local.php" method="post">
-        <?php if ($savemsg) print_info_box($savemsg);?>
+        <?php if (!empty($savemsg)) print_info_box($savemsg);?>
         <?php if (updatenotify_exists("rsynclocal")) print_config_change_box();?>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tr>
