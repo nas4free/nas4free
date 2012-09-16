@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_raid_gmirror.php
@@ -47,7 +46,7 @@ $pgtitle = array(gettext("Disks"), gettext("Software RAID"), gettext("RAID1"), g
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			// Process notifications
@@ -68,7 +67,7 @@ if (!isset($config['gmirror']['vdisk']) || !is_array($config['gmirror']['vdisk']
 array_sort_key($config['gmirror']['vdisk'], "name");
 $a_raid = &$config['gmirror']['vdisk'];
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	unset($errormsg);
 	if ($a_raid[$_GET['id']]) {
 		// Check if disk is mounted.
@@ -135,8 +134,8 @@ function gmirror_process_updatenotification($mode, $data) {
   <tr>
     <td class="tabcont">
 			<form action="disks_raid_gmirror.php" method="post">
-				<?php if ($errormsg) print_error_box($errormsg); ?>
-				<?php if ($savemsg) print_info_box($savemsg); ?>
+				<?php if (!empty($errormsg)) print_error_box($errormsg); ?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 				<?php if (updatenotify_exists_mode("raid_gmirror", UPDATENOTIFY_MODE_DIRTY)) print_warning_box(gettext("Warning: You are going to delete a RAID volume. All data will get lost and can not be recovered."));?>
 				<?php if (updatenotify_exists("raid_gmirror")) print_config_change_box();?>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">

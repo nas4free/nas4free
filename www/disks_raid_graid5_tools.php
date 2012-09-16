@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_raid_graid5_tools.php
@@ -59,7 +58,7 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Command"),gettext("Volume Name"),gettext("Disk"));
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$do_action = true;
 		$action = $_POST['action'];
 		$raid = $_POST['raid'];
@@ -166,7 +165,7 @@ function raid_change() {
 				<?php if ($do_action) {
 				echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
 				echo('<pre class="cmdoutput">');
-				ob_end_flush();
+				//ob_end_flush();
 
 				switch ($action) {
 					case "insert":

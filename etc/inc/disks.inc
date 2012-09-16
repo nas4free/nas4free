@@ -616,6 +616,8 @@ function disks_raid_gvinum_delete($uuid) {
 		 return 1;
 
 	exec("/sbin/gvinum lv {$vdisk['name']}", $rawdata);
+	if (empty($rawdata[0]))
+		return 1;
 	if (strpos($rawdata[0],"State: up") === false) {
 		return 0;
 	}
@@ -1183,9 +1185,17 @@ function disks_get_diskinfo($disk)
 	$result['mediasize_sectors'] = chop($diskinfo[3]);
 	$result['stripesize'] = chop($diskinfo[4]);
 	$result['stripeoffset'] = chop($diskinfo[5]);
-	$result['cylinders'] = chop($diskinfo[6]);
-	$result['heads'] = chop($diskinfo[7]);
-	$result['sectors'] = chop($diskinfo[8]);
+	if (isset($diskinfo[6]) && isset($diskinfo[7]) && isset($diskinfo[8])) {
+		$result['cylinders'] = chop($diskinfo[6]);
+		$result['heads'] = chop($diskinfo[7]);
+		$result['sectors'] = chop($diskinfo[8]);
+	} else {
+		/* XXX
+		$result['heads'] = 16;
+		$result['sectors'] = 63;
+		$result['cylinders'] = ceil($result['mediasize_sectors'] / ($result['heads'] * $result['sectors']));
+		*/
+	}
 
 	return $result;
 }

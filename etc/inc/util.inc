@@ -2009,6 +2009,8 @@ function get_conf_disks_filtered_ex($key, $pattern) {
 
 	if (is_array($a_disk)) {
 		foreach ($a_disk as $disk) {
+			if (!isset($disk[$key]))
+				continue;
 			if (1 <= preg_match("/{$pattern}/", $disk[$key])) {
 				$result[] = $disk;
 			}

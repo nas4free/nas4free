@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_raid_gvinum_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$id = $_GET['id'];
+if (isset($_GET['id']))
+	$id = $_GET['id'];
 if (isset($_POST['id']))
 	$id = $_POST['id'];
 
@@ -67,13 +67,19 @@ if (isset($id) && $a_raid[$id]) {
 	$pconfig['devicespecialfile'] = $a_raid[$id]['devicespecialfile'];
 	$pconfig['type'] = $a_raid[$id]['type'];
 	$pconfig['device'] = $a_raid[$id]['device'];
+} else {
+	$pconfig['uuid'] = uuid();
+	$pconfig['name'] = "";
+	$pconfig['devicespecialfile'] = "";
+	$pconfig['type'] = 0;
+	$pconfig['device'] = array();
 }
 
 if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: disks_raid_gvinum.php");
 		exit;
 	}
@@ -100,20 +106,20 @@ if ($_POST) {
 	switch ($_POST['type'])
 	{
 		case 0:
-			if (count($_POST['device']) < 2)
+			if (empty($_POST['device']) || count($_POST['device']) < 2)
 				$input_errors[] = gettext("There must be a minimum of 2 disks in a RAID 0 volume.");
 			break;
 		case 1:
-			if (count($_POST['device']) != 2)
+			if (empty($_POST['device']) || count($_POST['device']) != 2)
 				$input_errors[] = gettext("There must be 2 disks in a RAID 1 volume.");
 			break;
 		case 5:
-			if (count($_POST['device']) < 3)
+			if (empty($_POST['device']) || count($_POST['device']) < 3)
 				$input_errors[] = gettext("There must be a minimum of 3 disks in a RAID 5 volume.");
 			break;
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$raid = array();
 		$raid['uuid'] = uuid();
 		$raid['name'] = substr($_POST['name'], 0, 15); // Make sure name is only 15 chars long (GEOM limitation).
@@ -127,7 +133,7 @@ if ($_POST) {
 			$mode = UPDATENOTIFY_MODE_MODIFIED;
 		} else {
 			$a_raid[] = $raid;
-			if ($_POST['init'])
+			if (isset($_POST['init']))
 				$mode = UPDATENOTIFY_MODE_NEW;
 			else
 				$mode = UPDATENOTIFY_MODE_MODIFIED;
@@ -166,8 +172,8 @@ if ($_POST) {
   <tr>
     <td class="tabcont">
 			<form action="disks_raid_gvinum_edit.php" method="post" name="iform" id="iform">
-				<?php if ($nodisk_errors) print_input_errors($nodisk_errors); ?>
-				<?php if ($input_errors) print_input_errors($input_errors); ?>
+				<?php if (!empty($nodisk_errors)) print_input_errors($nodisk_errors); ?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 			    <tr>
 			      <td valign="top" class="vncellreq"><?=gettext("Raid name");?></td>
@@ -185,13 +191,13 @@ if ($_POST) {
 			        </select>
 			      </td>
 			    </tr>
-			    <?php $a_provider = array(); foreach ($a_disk as $diskv) { if (isset($id) && !(is_array($pconfig['device']) && in_array($diskv['devicespecialfile'], $pconfig['device']))) { continue; } if (!isset($id) && false !== array_search_ex($diskv['devicespecialfile'], $all_raid, "device")) { continue; } $a_provider[$diskv[devicespecialfile]] = htmlspecialchars("$diskv[name] ($diskv[size], $diskv[desc])"); }?>
-			    <?php html_listbox("device", gettext("Provider"), $pconfig['device'], $a_provider, gettext("Note: Ctrl-click (or command-click on the Mac) to select multiple entries."), true, isset($id));?>
+			    <?php $a_provider = array(); foreach ($a_disk as $diskv) { if (isset($id) && !(is_array($pconfig['device']) && in_array($diskv['devicespecialfile'], $pconfig['device']))) { continue; } if (!isset($id) && false !== array_search_ex($diskv['devicespecialfile'], $all_raid, "device")) { continue; } $a_provider[$diskv['devicespecialfile']] = htmlspecialchars("$diskv[name] ($diskv[size], $diskv[desc])"); }?>
+			    <?php html_listbox("device", gettext("Provider"), !empty($pconfig['device']) ? $pconfig['device'] : array(), $a_provider, gettext("Note: Ctrl-click (or command-click on the Mac) to select multiple entries."), true, isset($id));?>
 			    <?php if (!isset($id)):?>
 			    <tr>
 						<td width="22%" valign="top" class="vncell"><?=gettext("Initialize");?></td>
 			      <td width="78%" class="vtable">
-							<input name="init" type="checkbox" id="init" value="yes" <?php if (true === $pconfig['init']) echo "checked=\"checked\""; ?> />
+							<input name="init" type="checkbox" id="init" value="yes" <?php if (isset($pconfig['init']) && true === $pconfig['init']) echo "checked=\"checked\""; ?> />
 							<?=gettext("Create and initialize RAID.");?><br />
 							<span class="vexpl"><?=gettext("This will erase ALL data on the selected disks! Do not use this option if you want to add an already existing RAID again.");?></span>
 			      </td>
@@ -202,6 +208,7 @@ if ($_POST) {
 			  <div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Add");?>" />
 					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 				</div>
 				<?php endif;?>
 				<?php include("formend.inc");?>
