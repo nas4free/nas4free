@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_crypt_tools.php
@@ -70,14 +69,14 @@ if ($_POST) {
 	$reqdfields = explode(" ", "disk action");
 	$reqdfieldsn = array(gettext("Disk"), gettext("Command"));
 
-	if ($_POST['action'] === "attach") {
+	if (isset($_POST['action']) && $_POST['action'] === "attach") {
 		$reqdfields = array_merge($reqdfields, explode(" ", "passphrase"));
 		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Passphrase")));
 	}
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$pconfig['do_action'] = true;
 
 		// Action = 'detach' => Check if device is mounted
@@ -176,9 +175,9 @@ function action_change() {
   </tr>
   <tr>
     <td class="tabcont">
-    	<?php if ($nohttps_error) print_warning_box($nohttps_error);?>
-      <?php if ($input_errors) print_input_errors($input_errors);?>
-      <?php if ($errormsg) print_error_box($errormsg);?>
+    	<?php if (!empty($nohttps_error)) print_warning_box($nohttps_error);?>
+      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+      <?php if (!empty($errormsg)) print_error_box($errormsg);?>
 			<form action="disks_crypt_tools.php" method="post" name="iform" id="iform" enctype="multipart/form-data">
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
           <tr>
@@ -222,7 +221,7 @@ function action_change() {
 				<?php if ($pconfig['do_action']) {
 					echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
 					echo('<pre class="cmdoutput">');
-					ob_end_flush();
+					//ob_end_flush();
 
 					switch($pconfig['action']) {
 			  		case "attach":
