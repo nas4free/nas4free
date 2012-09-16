@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_ftp_mod_ban_edit.php
@@ -38,7 +37,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -67,7 +67,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (!empty($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: services_ftp_mod.php");
 		exit;
 	}
@@ -80,7 +80,7 @@ if ($_POST) {
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$rule = array();
 		$rule['uuid'] = $_POST['uuid'];
 		$rule['event'] = $_POST['event'];
@@ -117,7 +117,7 @@ if ($_POST) {
 	<tr>
 		<td class="tabcont">
 			<form action="services_ftp_mod_ban_edit.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors); ?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_combobox("event", gettext("Event"), $pconfig['event'], array("AnonRejectPasswords" => "AnonRejectPasswords", "ClientConnectRate" => "ClientConnectRate", "MaxClientsPerClass" => "MaxClientsPerClass", "MaxClientsPerHost" => "MaxClientsPerHost", "MaxClientsPerUser" => "MaxClientsPerUser", "MaxConnectionsPerHost" => "MaxConnectionsPerHost", "MaxHostsPerUser" => "MaxHostsPerUser", "MaxLoginAttempts" => "MaxLoginAttempts", "TimeoutIdle" => "TimeoutIdle", "TimeoutNoTransfer" => "TimeoutNoTransfer"), gettext("This rule is triggered whenever the selected event directive occurs."), true);?>
 					<?php html_inputbox("occurrence", gettext("Occurrence"), $pconfig['occurrence'], gettext("This parameter says that if N occurrences of the event happen within the given time interval, then a ban is automatically added."), true, 2);?>

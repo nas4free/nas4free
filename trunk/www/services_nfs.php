@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_nfs.php
@@ -58,7 +57,7 @@ if ($_POST) {
 
 	$pconfig = $_POST;
 
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "numproc");
 		$reqdfieldsn = array(gettext("Number of servers"));
 		$reqdfieldst = explode(" ", "numeric");
@@ -67,8 +66,8 @@ if ($_POST) {
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
 
-	if(!$input_errors) {
-		$config['nfsd']['enable'] = $_POST['enable'] ? true : false;
+	if(empty($input_errors)) {
+		$config['nfsd']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['nfsd']['numproc'] = $_POST['numproc'];
 
 		write_config();
@@ -110,10 +109,10 @@ function enable_change(enable_change) {
 	<tr>
 		<td class="tabcont">
 			<form action="services_nfs.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Network File System"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Network File System"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_inputbox("numproc", gettext("Number of servers"), $pconfig['numproc'], gettext("Specifies how many servers to create.") . " " . gettext("There should be enough to handle the maximum level of concurrency from its clients, typically four to six."), false, 2);?>
 				</table>
 				<div id="submit">
