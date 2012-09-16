@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_packages.php
@@ -47,7 +46,7 @@ $pgtitle = array(gettext("System"), gettext("Packages"));
 
 $a_packages = packages_get_installed();
 
-if ($_GET['act'] == "del") {
+if (isset($_GET['act']) && $_GET['act'] == "del") {
 	if ($a_packages[$_GET['id']]) {
 		packages_uninstall($a_packages[$_GET['id']]['name']);
 		header("Location: system_packages.php");
@@ -67,8 +66,8 @@ if ($_GET['act'] == "del") {
   <tr>
     <td class="tabcont">
 			<form action="system_packages.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors); ?>
-				<?php if ($savemsg) print_info_box($savemsg); ?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 				<?php if (file_exists($d_packagesconfdirty_path)) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 			    <tr>
