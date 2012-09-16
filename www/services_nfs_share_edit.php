@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_nfs_share_edit.php
@@ -42,7 +41,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -79,7 +79,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: services_nfs_share.php");
 		exit;
 	}
@@ -102,16 +102,16 @@ if ($_POST) {
 	   $input_errors[] = sprintf(gettext("All dirs requires mounted path, but Path %s is not mounted."), $path);
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$share = array();
 		$share['uuid'] = $_POST['uuid'];
 		$share['path'] = $path;
 		$share['mapall'] = $_POST['mapall'];
 		$share['network'] = gen_subnet($_POST['network'], $_POST['mask']) . "/" . $_POST['mask'];
 		$share['comment'] = $_POST['comment'];
-		$share['options']['alldirs'] = $_POST['alldirs'] ? true : false;
-		$share['options']['ro'] = $_POST['readonly'] ? true : false;
-		$share['options']['quiet'] = $_POST['quiet'] ? true : false;
+		$share['options']['alldirs'] = isset($_POST['alldirs']) ? true : false;
+		$share['options']['ro'] = isset($_POST['readonly']) ? true : false;
+		$share['options']['quiet'] = isset($_POST['quiet']) ? true : false;
 
 		if (isset($uuid) && (FALSE !== $cnid)) {
 			$a_share[$cnid] = $share;
@@ -148,7 +148,7 @@ if ($_POST) {
   				  <td width="22%" valign="top" class="vncellreq"><?=gettext("Path");?></td>
   				  <td width="78%" class="vtable">
   				  	<input name="path" type="text" class="formfld" id="path" size="60" value="<?=htmlspecialchars($pconfig['path']);?>" />
-  				  	<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.path; filechooser = window.open("filechooser.php?p="+escape(ifield.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." /><br />
+  				  	<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.path; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." /><br />
   				  	<span class="vexpl"><?=gettext("Path to be shared.");?> <?=gettext("Please note that blanks in path names are not allowed.");?></span>
   				  </td>
   				</tr>
@@ -188,21 +188,21 @@ if ($_POST) {
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("All dirs");?></td>
 			      <td width="78%" class="vtable">
-			      	<input name="alldirs" type="checkbox" id="alldirs" value="yes" <?php if ($pconfig['alldirs']) echo "checked=\"checked\"";?> />
+			      	<input name="alldirs" type="checkbox" id="alldirs" value="yes" <?php if (!empty($pconfig['alldirs'])) echo "checked=\"checked\"";?> />
 			      	<span class="vexpl"><?=gettext("Share all sub directories.");?></span>
 			      </td>
 			    </tr>
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("Read only");?></td>
 			      <td width="78%" class="vtable">
-			      	<input name="readonly" type="checkbox" id="readonly" value="yes" <?php if ($pconfig['readonly']) echo "checked=\"checked\"";?> />
+			      	<input name="readonly" type="checkbox" id="readonly" value="yes" <?php if (!empty($pconfig['readonly'])) echo "checked=\"checked\"";?> />
 			        <span class="vexpl"><?=gettext("Specifies that the file system should be exported read-only.");?></span>
 			      </td>
 			    </tr>
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("Quiet");?></td>
 			      <td width="78%" class="vtable">
-			      	<input name="quiet" type="checkbox" id="quiet" value="yes" <?php if ($pconfig['quiet']) echo "checked=\"checked\"";?> />
+			      	<input name="quiet" type="checkbox" id="quiet" value="yes" <?php if (!empty($pconfig['quiet'])) echo "checked=\"checked\"";?> />
 			        <span class="vexpl"><?=gettext("Inhibit some of the syslog diagnostics for bad lines in /etc/exports.");?></span>
 			      </td>
 			    </tr>

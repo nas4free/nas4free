@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_ftp_mod.php
@@ -45,7 +44,7 @@ $pconfig['mod_ban_enable'] = isset($config['ftpd']['mod_ban']['enable']);
 if ($_POST) {
 	$pconfig = $_POST;
 
-	$config['ftpd']['mod_ban']['enable'] = $_POST['mod_ban_enable'] ? true : false;
+	$config['ftpd']['mod_ban']['enable'] = isset($_POST['mod_ban_enable']) ? true : false;
 
 	write_config();
 
@@ -67,7 +66,7 @@ if (!isset($config['ftpd']['mod_ban']['rule']) || !is_array($config['ftpd']['mod
 
 $a_rule = &$config['ftpd']['mod_ban']['rule'];
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	if ($_GET['uuid'] === "all") {
 		foreach ($a_rule as $rulek => $rulev) {
 			updatenotify_set("ftpd_mod_ban", UPDATENOTIFY_MODE_DIRTY, $a_rule[$rulek]['uuid']);
@@ -116,9 +115,9 @@ function ftpd_mod_ban_process_updatenotification($mode, $data) {
 		<td class="tabcont">
 			<form action="services_ftp_mod.php" method="post">
 				<?php if (updatenotify_exists("ftpd_mod_ban")) print_config_change_box();?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("mod_ban_enable", gettext("Ban list"), $pconfig['mod_ban_enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("mod_ban_enable", gettext("Ban list"), !empty($pconfig['mod_ban_enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<tr>
 						<td width="22%" valign="top" class="vncell"><?=gettext("Rules");?></td>
 						<td width="78%" class="vtable">

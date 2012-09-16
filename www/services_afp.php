@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_afp.php
@@ -57,16 +56,16 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['enable'] && !($_POST['guest'] || $_POST['local'])) {
+	if (!empty($_POST['enable']) && (empty($_POST['guest']) && empty($_POST['local']))) {
 		$input_errors[] = gettext("You must select at least one authentication method.");
 	}
 
-	if (!$input_errors) {
-		$config['afp']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['afp']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['afp']['afpname'] = $_POST['afpname'];
-		$config['afp']['guest'] = $_POST['guest'] ? true : false;
-		$config['afp']['local'] = $_POST['local'] ? true : false;
-		$config['afp']['noddp'] = $_POST['noddp'] ? true : false;
+		$config['afp']['guest'] = isset($_POST['guest']) ? true : false;
+		$config['afp']['local'] = isset($_POST['local']) ? true : false;
+		$config['afp']['noddp'] = isset($_POST['noddp']) ? true : false;
 
 		write_config();
 
@@ -105,10 +104,10 @@ function enable_change(enable_change) {
   <tr>
     <td class="tabcont">
 			<form action="services_afp.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Apple Filing Protocol"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Apple Filing Protocol"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<tr>
 						<td width="22%" valign="top" class="vncell"><?=gettext("Server Name");?></td>
 						<td width="78%" class="vtable">
@@ -119,13 +118,13 @@ function enable_change(enable_change) {
 					<tr>
 						<td width="22%" valign="top" class="vncell"><strong><?=gettext("Authentication");?></strong></td>
 						<td width="78%" class="vtable">
-							<input name="guest" id="guest" type="checkbox" value="yes" <?php if ($pconfig['guest']) echo "checked=\"checked\"";?> />
+							<input name="guest" id="guest" type="checkbox" value="yes" <?php if (!empty($pconfig['guest'])) echo "checked=\"checked\"";?> />
 							<?=gettext("Enable guest access.");?><br />
-							<input name="local" id="local" type="checkbox" value="yes" <?php if ($pconfig['local']) echo "checked=\"checked\"";?> />
+							<input name="local" id="local" type="checkbox" value="yes" <?php if (!empty($pconfig['local'])) echo "checked=\"checked\"";?> />
 							<?=gettext("Enable local user authentication.");?>
 						</td>
 					</tr>
-					<?php html_checkbox("noddp", gettext("DDP"), $pconfig['noddp'] ? true : false, gettext("Disable AFP-over-Appletalk to prevent DDP connections."));?>
+					<?php html_checkbox("noddp", gettext("DDP"), !empty($pconfig['noddp']) ? true : false, gettext("Disable AFP-over-Appletalk to prevent DDP connections."));?>
 			  </table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />

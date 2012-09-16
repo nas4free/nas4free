@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_unison.php
@@ -73,22 +72,22 @@ if ($_POST) {
 	$reqdfields = array();
 	$reqdfieldsn = array();
 
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = array_merge($reqdfields, explode(" ", "workdir"));
 		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Working directory")));
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 		// Check if working directory exists
-		if (!$_POST['mkdir'] && !file_exists($_POST['workdir'])) {
+		if (empty($_POST['mkdir']) && !file_exists($_POST['workdir'])) {
 			$input_errors[] = gettext("The working directory does not exist.");
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$config['unison']['workdir'] = $_POST['workdir'];
-		$config['unison']['enable'] = $_POST['enable'] ? true : false;
-		$config['unison']['mkdir'] = $_POST['mkdir'] ? true : false;
+		$config['unison']['enable'] = isset($_POST['enable']) ? true : false;
+		$config['unison']['mkdir'] = isset($_POST['mkdir']) ? true : false;
 
 		write_config();
 
@@ -123,12 +122,12 @@ function enable_change(enable_change) {
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td class="tabcont">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>	    
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>	    
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Unison File Synchronisation"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Unison File Synchronisation"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_filechooser("workdir", gettext("Working directory"), $pconfig['workdir'], sprintf(gettext("Location where the working files will be stored, e.g. %s/backup/.unison"), $g['media_path']), $g['media_path'], true, 60);?>
-				  <?php html_checkbox("mkdir", "", $pconfig['mkdir'] ? true : false, gettext("Create work directory if it doesn't exist."), "", false);?>
+				  <?php html_checkbox("mkdir", "", !empty($pconfig['mkdir']) ? true : false, gettext("Create work directory if it doesn't exist."), "", false);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />

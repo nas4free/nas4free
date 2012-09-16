@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_tftp.php
@@ -62,7 +61,7 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	// Input validation.
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "dir");
 		$reqdfieldsn = array(gettext("Directory"));
 		$reqdfieldst = explode(" ", "string");
@@ -80,10 +79,10 @@ if ($_POST) {
 		$input_errors[] = sprintf(gettext("Invalid max. block size! It must be in the range from %d to %d."), 512, 65464);
 	}
 
-	if (!$input_errors) {
-		$config['tftpd']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['tftpd']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['tftpd']['dir'] = $_POST['dir'];
-		$config['tftpd']['allowfilecreation'] = $_POST['allowfilecreation'] ? true : false;
+		$config['tftpd']['allowfilecreation'] = isset($_POST['allowfilecreation']) ? true : false;
 		$config['tftpd']['port'] = $_POST['port'];
 		$config['tftpd']['username'] = $_POST['username'];
 		$config['tftpd']['umask'] = $_POST['umask'];
@@ -125,12 +124,12 @@ function enable_change(enable_change) {
 	<tr>
 		<td class="tabcont">
 			<form action="services_tftp.php" method="post" name="iform" id="iform">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Trivial File Transfer Protocol"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Trivial File Transfer Protocol"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_filechooser("dir", gettext("Directory"), $pconfig['dir'], gettext("The directory containing the files you want to publish. The remote host does not need to pass along the directory as part of the transfer."), $g['media_path'], true, 60);?>
-					<?php html_checkbox("allowfilecreation", gettext("Allow new files"), $pconfig['allowfilecreation'] ? true : false, gettext("Allow new files to be created."), gettext("By default, only already existing files can be uploaded."), false);?>
+					<?php html_checkbox("allowfilecreation", gettext("Allow new files"), !empty($pconfig['allowfilecreation']) ? true : false, gettext("Allow new files to be created."), gettext("By default, only already existing files can be uploaded."), false);?>
 					<?php html_separator();?>
 					<?php html_titleline(gettext("Advanced settings"));?>
 					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], gettext("The port to listen to. The default is to listen to the tftp port specified in /etc/services."), false, 5);?>
