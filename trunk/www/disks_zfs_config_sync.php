@@ -405,7 +405,7 @@ if (isset($_POST['import_config']))
 		if (isset($_GET['zfs']['autosnapshots']))
 			$pconfig['zfs']['autosnapshots'] = $_GET['zfs']['autosnapshots'];
 		if (isset($_POST['leave_autosnapshots'])) {
-			$cfg['zfs']['autosnapshots'] = $config['zfs']['autosnapshots'];
+			$cfg['zfs']['autosnapshots'] = !empty($config['zfs']['autosnapshots']) ? $config['zfs']['autosnapshots'] : array();
 		}
 		$config['zfs'] = $cfg['zfs'];
 		$config['disks'] = $cfg['disks'];
@@ -418,8 +418,10 @@ if (isset($_POST['import_config']))
 }
 
 $health = true;
-$health &= (bool)!array_search_ex('DEGRADED', $zfs['extra']['pools']['pool'], 'health');
-$health &= (bool)!array_search_ex('FAULTED', $zfs['extra']['pools']['pool'], 'health');
+if (!empty($zfs['extra']) && !empty($zfs['extra']['pools']) && !empty($zfs['extra']['pools']['pool'])) {
+	$health &= (bool)!array_search_ex('DEGRADED', $zfs['extra']['pools']['pool'], 'health');
+	$health &= (bool)!array_search_ex('FAULTED', $zfs['extra']['pools']['pool'], 'health');
+}
 
 if (!$health)
 {

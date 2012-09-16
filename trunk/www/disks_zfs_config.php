@@ -324,8 +324,10 @@ HTML;
 }
 
 $health = true;
-$health &= (bool)!array_search_ex('DEGRADED', $zfs['extra']['pools']['pool'], 'health');
-$health &= (bool)!array_search_ex('FAULTED', $zfs['extra']['pools']['pool'], 'health');
+if (!empty($zfs['extra']) && !empty($zfs['extra']['pools']) && !empty($zfs['extra']['pools']['pool'])) {
+	$health &= (bool)!array_search_ex('DEGRADED', $zfs['extra']['pools']['pool'], 'health');
+	$health &= (bool)!array_search_ex('FAULTED', $zfs['extra']['pools']['pool'], 'health');
+}
 
 if (!$health)
 {

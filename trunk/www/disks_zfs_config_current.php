@@ -41,10 +41,10 @@ $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Configuration"), get
 
 $zfs = $config['zfs'];
 
-if (!is_array($zfs['pools'])) $zfs['pools']['pool'] = array();
-if (!is_array($zfs['vdevices'])) $zfs['vdevices']['vdevice'] = array();
-if (!is_array($zfs['datasets'])) $zfs['datasets']['dataset'] = array();
-if (!is_array($zfs['volumes'])) $zfs['volumes']['volume'] = array();
+if (empty($zfs['pools']) || !is_array($zfs['pools'])) $zfs['pools']['pool'] = array();
+if (empty($zfs['vdevices']) || !is_array($zfs['vdevices'])) $zfs['vdevices']['vdevice'] = array();
+if (empty($zfs['datasets']) || !is_array($zfs['datasets'])) $zfs['datasets']['dataset'] = array();
+if (empty($zfs['volumes']) || !is_array($zfs['volumes'])) $zfs['volumes']['volume'] = array();
 
 foreach ($zfs['pools']['pool'] as $index => $pool)
 {
@@ -178,7 +178,7 @@ if (updatenotify_exists('zfs_import_config'))
 				<tr>
 					<td class="listlr"><?= $vdevice['name']; ?></td>
 					<td class="listr"><?= $vdevice['type']; ?></td>
-					<td class="listr"><?= $vdevice['pool']; ?></td>
+					<td class="listr"><?= !empty($vdevice['pool']) ? $vdevice['pool'] : ""; ?></td>
 					<td class="listr"><?= implode(', ', $vdevice['device']); ?></td>
 				</tr>
 				<?php endforeach; ?>
