@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_crypt_edit.php
@@ -66,10 +65,9 @@ if ("http" === $config['system']['webgui']['protocol']) {
 if ($_POST) {
 	unset($input_errors);
 	unset($errormsg);
-	unset($pconfig['do_action']);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: disks_crypt.php");
 		exit;
 	}
@@ -89,9 +87,9 @@ if ($_POST) {
 		$input_errors[] = gettext("Passphrase don't match.");
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$pconfig['do_action'] = true;
-		$pconfig['init'] = $_POST['init'] ? true : false;
+		$pconfig['init'] = isset($_POST['init']) ? true : false;
 		$pconfig['name'] = $a_alldisk[$_POST['disk']]['name']; // e.g. da2
 		$pconfig['devicespecialfile'] = $a_alldisk[$_POST['disk']]['devicespecialfile']; // e.g. /dev/da2
 		$pconfig['aalgo'] = "none";
@@ -177,10 +175,10 @@ function ealgo_change() {
   <tr>
     <td class="tabcont">
 			<form action="disks_crypt_edit.php" method="post" name="iform" id="iform">
-				<?php if ($nohttps_error) print_warning_box($nohttps_error);?>
-				<?php if ($nodisks_error) print_error_box($nodisks_error);?>
-				<?php if ($errormsg) print_error_box($errormsg);?>
-				<?php if ($input_errors) print_input_errors($input_errors);?>
+				<?php if (!empty($nohttps_error)) print_warning_box($nohttps_error);?>
+				<?php if (!empty($nodisks_error)) print_error_box($nodisks_error);?>
+				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 			    <tr>
 			      <td valign="top" class="vncellreq"><?=gettext("Disk");?></td>
@@ -231,9 +229,9 @@ function ealgo_change() {
 				<?php if ($pconfig['do_action']) {
 				echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
 				echo('<pre class="cmdoutput">');
-				ob_end_flush();
+				//ob_end_flush();
 
-				if (true === $pconfig['init']) {
+				if (isset($pconfig['init']) && true === $pconfig['init']) {
 					// Initialize and encrypt the disk.
 					echo sprintf(gettext("Encrypting '%s'... Please wait") . "!<br />", $pconfig['devicespecialfile']);
 					disks_geli_init($pconfig['devicespecialfile'], $pconfig['aalgo'], $pconfig['ealgo'], $pconfig['keylen'], $pconfig['passphrase'], true);

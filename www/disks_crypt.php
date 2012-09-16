@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	disks_crypt.php
@@ -47,7 +46,7 @@ $pgtitle = array(gettext("Disks"),gettext("Encryption"),gettext("Management"));
 if ($_POST) {
 	$pconfig = $_POST;
 
-	if ($_POST['apply']) {
+	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			// Process notifications
@@ -68,7 +67,7 @@ if (!isset($config['geli']['vdisk']) || !is_array($config['geli']['vdisk']))
 array_sort_key($config['geli']['vdisk'], "devicespecialfile");
 $a_geli = &$config['geli']['vdisk'];
 
-if ($_GET['act'] === "del") {
+if (isset($_GET['act']) && $_GET['act'] === "del") {
 	if (FALSE !== ($cnid = array_search_ex($_GET['uuid'], $config['geli']['vdisk'], "uuid"))) {
 		if (disks_exists($config['geli']['vdisk'][$cnid]['devicespecialfile'])) {
 			updatenotify_set("geli", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
@@ -104,7 +103,7 @@ function geli_process_updatenotification($mode, $data) {
 }
 ?>
 <?php include("fbegin.inc"); ?>
-<?php if($errormsg) print_input_errors($errormsg);?>
+<?php if(!empty($errormsg)) print_input_errors($errormsg);?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
     <td class="tabnavtbl">
@@ -117,7 +116,7 @@ function geli_process_updatenotification($mode, $data) {
   <tr>
     <td class="tabcont">
       <form action="disks_crypt.php" method="post">
-        <?php if ($savemsg) print_info_box($savemsg); ?>
+        <?php if (!empty($savemsg)) print_info_box($savemsg); ?>
         <?php if (updatenotify_exists_mode("geli", UPDATENOTIFY_MODE_DIRTY)) print_warning_box(gettext("Warning: You are going to delete an encrypted volume. All data will get lost and can not be recovered."));?>
         <?php if (updatenotify_exists("geli")) print_config_change_box();?>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -145,6 +144,7 @@ function geli_process_updatenotification($mode, $data) {
 								}
 								echo htmlspecialchars($status);
               } else {
+		$notificationmode = UPDATENOTIFY_MODE_UNKNOWN;
                 if(disks_exists($geli['devicespecialfile'])) {
                   echo("<a href=\"disks_crypt_tools.php?disk={$geli['devicespecialfile']}&amp;action=attach\">" . htmlspecialchars(gettext("Not attached")) . "</a>");
                 } else {

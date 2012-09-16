@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_sshd.php
@@ -57,7 +56,7 @@ $pconfig['key'] = base64_decode($config['sshd']['private-key']);
 $pconfig['passwordauthentication'] = isset($config['sshd']['passwordauthentication']);
 $pconfig['compression'] = isset($config['sshd']['compression']);
 $pconfig['subsystem'] = $config['sshd']['subsystem'];
-if (is_array($config['sshd']['auxparam']))
+if (isset($config['sshd']['auxparam']) && is_array($config['sshd']['auxparam']))
 	$pconfig['auxparam'] = implode("\n", $config['sshd']['auxparam']);
 
 if ($_POST) {
@@ -68,12 +67,12 @@ if ($_POST) {
 	$reqdfields = array();
 	$reqdfieldsn = array();
 
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = array_merge($reqdfields, explode(" ", "port"));
 		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("TCP port")));
 		$reqdfieldst = explode(" ", "port");
 		
-		if ($_POST['key']) {
+		if (!empty($_POST['key'])) {
 			$reqdfields = array_merge($reqdfields, array("key"));
 			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Private key")));
 			$reqdfieldst = array_merge($reqdfieldst, array("privatedsakey"));
@@ -83,14 +82,14 @@ if ($_POST) {
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$config['sshd']['port'] = $_POST['port'];
-		$config['sshd']['permitrootlogin'] = $_POST['permitrootlogin'] ? true : false;
-		$config['sshd']['tcpforwarding'] = $_POST['tcpforwarding'] ? true : false;
-		$config['sshd']['enable'] = $_POST['enable'] ? true : false;
+		$config['sshd']['permitrootlogin'] = isset($_POST['permitrootlogin']) ? true : false;
+		$config['sshd']['tcpforwarding'] = isset($_POST['tcpforwarding']) ? true : false;
+		$config['sshd']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['sshd']['private-key'] = base64_encode($_POST['key']);
-		$config['sshd']['passwordauthentication'] = $_POST['passwordauthentication'] ? true : false;
-		$config['sshd']['compression'] = $_POST['compression'] ? true : false;
+		$config['sshd']['passwordauthentication'] = isset($_POST['passwordauthentication']) ? true : false;
+		$config['sshd']['compression'] = isset($_POST['compression']) ? true : false;
 		$config['sshd']['subsystem'] = $_POST['subsystem'];
 
 		# Write additional parameters.
@@ -134,10 +133,10 @@ function enable_change(enable_change) {
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td class="tabcont">
-		    <?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+		    <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Secure Shell"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Secure Shell"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 			    <tr>
 			      <td width="22%" valign="top" class="vncellreq"><?=gettext("TCP port");?></td>
 			      <td width="78%" class="vtable">
@@ -147,31 +146,31 @@ function enable_change(enable_change) {
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("Permit root login");?></td>
 			      <td width="78%" class="vtable">
-			        <input name="permitrootlogin" type="checkbox" id="permitrootlogin" value="yes" <?php if ($pconfig['permitrootlogin']) echo "checked=\"checked\""; ?> />
+			        <input name="permitrootlogin" type="checkbox" id="permitrootlogin" value="yes" <?php if (!empty($pconfig['permitrootlogin'])) echo "checked=\"checked\""; ?> />
 			        <?=gettext("Specifies whether it is allowed to login as superuser (root) directly.");?></td>
 			    </tr>
 					<tr>
 						<td width="22%" valign="top" class="vncell"><?=gettext("Password authentication");?></td>
 						<td width="78%" class="vtable">
-							<input name="passwordauthentication" type="checkbox" id="passwordauthentication" value="yes" <?php if ($pconfig['passwordauthentication']) echo "checked=\"checked\""; ?> />
+							<input name="passwordauthentication" type="checkbox" id="passwordauthentication" value="yes" <?php if (!empty($pconfig['passwordauthentication'])) echo "checked=\"checked\""; ?> />
 							<?=gettext("Enable keyboard-interactive authentication.");?></td>
 					</tr>
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("TCP forwarding");?></td>
 			      <td width="78%" class="vtable">
-			        <input name="tcpforwarding" type="checkbox" id="tcpforwarding" value="yes" <?php if ($pconfig['tcpforwarding']) echo "checked=\"checked\""; ?> />
+			        <input name="tcpforwarding" type="checkbox" id="tcpforwarding" value="yes" <?php if (!empty($pconfig['tcpforwarding'])) echo "checked=\"checked\""; ?> />
 			        <?=gettext("Permit to do SSH Tunneling.");?></td>
 			    </tr>
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("Compression");?></td>
 			      <td width="78%" class="vtable">
-			        <input name="compression" type="checkbox" id="compression" value="yes" <?php if ($pconfig['compression']) echo "checked=\"checked\""; ?> />
+			        <input name="compression" type="checkbox" id="compression" value="yes" <?php if (!empty($pconfig['compression'])) echo "checked=\"checked\""; ?> />
 			        <?=gettext("Enable compression.");?><br />
 			        <span class="vexpl"><?=gettext("Compression is worth using if your connection is slow. The efficiency of the compression depends on the type of the file, and varies widely. Useful for internet transfer only.");?></span></td>
 			    </tr>
 					<?php html_textarea("key", gettext("Private Key"), $pconfig['key'], gettext("Paste a DSA PRIVATE KEY in PEM format here."), false, 65, 7, false, false);?>
 			    <?php html_inputbox("subsystem", gettext("Subsystem"), $pconfig['subsystem'], gettext("Leave this field empty to use default settings."), false, 40);?>
-			    <?php html_textarea("auxparam", gettext("Extra options"), $pconfig['auxparam'], gettext("Extra options to /etc/ssh/sshd_config (usually empty). Note, incorrect entered options prevent SSH service to be started.") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://www.freebsd.org/cgi/man.cgi?query=sshd_config&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD+${os_release}-RELEASE&amp;format=html"), false, 65, 5, false, false);?>
+			    <?php html_textarea("auxparam", gettext("Extra options"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", gettext("Extra options to /etc/ssh/sshd_config (usually empty). Note, incorrect entered options prevent SSH service to be started.") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://www.freebsd.org/cgi/man.cgi?query=sshd_config&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD+${os_release}-RELEASE&amp;format=html"), false, 65, 5, false, false);?>
 			  </table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />
