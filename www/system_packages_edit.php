@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	system_packages_edit.php
@@ -45,7 +44,7 @@ require("packages.inc");
 
 $pgtitle = array(gettext("System"),gettext("Packages"),gettext("Install"));
 
-if ($_POST) {
+if (isset($_POST) && $_POST) {
 	unset($input_errors);
 
 	if (is_uploaded_file($_FILES['ulfile']['tmp_name'])) {
@@ -85,8 +84,8 @@ if(!isset($do_action)) {
   <tr>
     <td class="tabcont">
 			<form action="system_packages_edit.php" method="post" enctype="multipart/form-data">
-				<?php if ($input_errors) print_input_errors($input_errors); ?>
-				<?php if ($savemsg) print_info_box($savemsg); ?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<tr>
 						<td width="22%" valign="top" class="vncellreq"><?=gettext("Package file");?></td>
@@ -103,7 +102,7 @@ if(!isset($do_action)) {
 				{
 				echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
 				echo('<pre class="cmdoutput">');
-				ob_end_flush();
+				//ob_end_flush();
 				ob_start();
 				
 				// Install package.
