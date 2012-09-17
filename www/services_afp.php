@@ -47,7 +47,7 @@ if (!isset($config['afp']) || !is_array($config['afp']))
 	$config['afp'] = array();
 
 $pconfig['enable'] = isset($config['afp']['enable']);
-$pconfig['afpname'] = $config['afp']['afpname'];
+$pconfig['afpname'] = !empty($config['afp']['afpname']) ? $config['afp']['afpname'] : "";
 $pconfig['guest'] = isset($config['afp']['guest']);
 $pconfig['local'] = isset($config['afp']['local']);
 $pconfig['noddp'] = isset($config['afp']['noddp']);
