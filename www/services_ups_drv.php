@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_ups_drv.php
@@ -50,13 +49,13 @@ function nut_get_driverlist() {
 
 	// Parse data
 	foreach ($a_driver as $driver) {
-		// Syntax should look like: '"<manufacturer>" "<model name>" "<model extra>" "<driver>"'.
-		if (preg_match("/^\"(.*)\".*\"(.*)\".*\"(.*)\".*\"(.*)\".*/", $driver, $matches)) {
+		// Syntax should look like: '"<manufacturer>" "<device type>" "<support level>" "<model name>" "<model extra>" "<driver>"'.
+		if (preg_match("/^\"(.*)\".*\"(.*)\".*\"(.*)\".*\"(.*)\".*\"(.*)\".*\"(.*)\".*/", $driver, $matches)) {
 			$driverinfo = array();
 			$driverinfo['manufacturer'] = $matches[1];
-			$driverinfo['modelname'] = $matches[2];
-			$driverinfo['modelextra'] = $matches[3];
-			$driverinfo['driver'] = $matches[4];
+			$driverinfo['modelname'] = $matches[4];
+			$driverinfo['modelextra'] = $matches[5];
+			$driverinfo['driver'] = $matches[6];
 			
 			$a_driverinfo[] = $driverinfo;
 		}

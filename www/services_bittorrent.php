@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_bittorrent.php
@@ -53,13 +52,13 @@ $pconfig['password'] = $config['bittorrent']['password'];
 $pconfig['authrequired'] = isset($config['bittorrent']['authrequired']);
 $pconfig['peerport'] = $config['bittorrent']['peerport'];
 $pconfig['portforwarding'] = isset($config['bittorrent']['portforwarding']);
-$pconfig['uplimit'] = $config['bittorrent']['uplimit'];
-$pconfig['downlimit'] = $config['bittorrent']['downlimit'];
+$pconfig['uplimit'] = !empty($config['bittorrent']['uplimit']) ? $config['bittorrent']['uplimit'] : "";
+$pconfig['downlimit'] = !empty($config['bittorrent']['downlimit']) ? $config['bittorrent']['downlimit'] : "";
 $pconfig['pex'] = isset($config['bittorrent']['pex']);
 $pconfig['dht'] = isset($config['bittorrent']['dht']);
 $pconfig['encryption'] = $config['bittorrent']['encryption'];
 $pconfig['watchdir'] = $config['bittorrent']['watchdir'];
-$pconfig['incompletedir'] = $config['bittorrent']['incompletedir'];
+$pconfig['incompletedir'] = !empty($config['bittorrent']['incompletedir']) ? $config['bittorrent']['incompletedir'] : "";
 $pconfig['umask'] = $config['bittorrent']['umask'];
 $pconfig['extraoptions'] = $config['bittorrent']['extraoptions'];
 
@@ -71,12 +70,12 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	// Input validation.
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "port downloaddir peerport");
 		$reqdfieldsn = array(gettext("Port"), gettext("Download directory"), gettext("Peer port"));
 		$reqdfieldst = explode(" ", "port string port");
 
-		if ($_POST['authrequired']) {
+		if (!empty($_POST['authrequired'])) {
 			// !!! Note !!! It seems TransmissionBT does not support special characters,
 			// so use 'alias' instead of 'password' check.
 			$reqdfields = array_merge($reqdfields, explode(" ", "username password"));
@@ -106,20 +105,20 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
-		$config['bittorrent']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['bittorrent']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['bittorrent']['port'] = $_POST['port'];
 		$config['bittorrent']['downloaddir'] = $_POST['downloaddir'];
 		$config['bittorrent']['configdir'] = $_POST['configdir'];
 		$config['bittorrent']['username'] = $_POST['username'];
 		$config['bittorrent']['password'] = $_POST['password'];
-		$config['bittorrent']['authrequired'] = $_POST['authrequired'] ? true : false;
+		$config['bittorrent']['authrequired'] = isset($_POST['authrequired']) ? true : false;
 		$config['bittorrent']['peerport'] = $_POST['peerport'];
-		$config['bittorrent']['portforwarding'] = $_POST['portforwarding'] ? true : false;
+		$config['bittorrent']['portforwarding'] = isset($_POST['portforwarding']) ? true : false;
 		$config['bittorrent']['uplimit'] = $_POST['uplimit'];
 		$config['bittorrent']['downlimit'] = $_POST['downlimit'];
-		$config['bittorrent']['pex'] = $_POST['pex'] ? true : false;
-		$config['bittorrent']['dht'] = $_POST['dht'] ? true : false;
+		$config['bittorrent']['pex'] = isset($_POST['pex']) ? true : false;
+		$config['bittorrent']['dht'] = isset($_POST['dht']) ? true : false;
 		$config['bittorrent']['encryption'] = $_POST['encryption'];
 		$config['bittorrent']['watchdir'] = $_POST['watchdir'];
 		$config['bittorrent']['incompletedir'] = $_POST['incompletedir'];
@@ -187,16 +186,16 @@ function authrequired_change() {
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td class="tabcont">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-			  	<?php html_titleline_checkbox("enable", gettext("BitTorrent"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+			  	<?php html_titleline_checkbox("enable", gettext("BitTorrent"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_inputbox("peerport", gettext("Peer port"), $pconfig['peerport'], sprintf(gettext("Port to listen for incoming peer connections. Default port is %d."), 51413), true, 5);?>
 					<?php html_filechooser("downloaddir", gettext("Download directory"), $pconfig['downloaddir'], gettext("Where to save downloaded data."), $g['media_path'], true, 60);?>
 					<?php html_filechooser("configdir", gettext("Configuration directory"), $pconfig['configdir'], gettext("Alternative configuration directory (usually empty)."), $g['media_path'], false, 60);?>
-					<?php html_checkbox("portforwarding", gettext("Port forwarding"), $pconfig['portforwarding'] ? true : false, gettext("Enable port forwarding via NAT-PMP or UPnP."), "", false);?>
-					<?php html_checkbox("pex", gettext("Peer exchange"), $pconfig['pex'] ? true : false, gettext("Enable peer exchange (PEX)."), "", false);?>
-					<?php html_checkbox("dht", gettext("Distributed hash table"), $pconfig['dht'] ? true : false, gettext("Enable distributed hash table."), "", false);?>
+					<?php html_checkbox("portforwarding", gettext("Port forwarding"), !empty($pconfig['portforwarding']) ? true : false, gettext("Enable port forwarding via NAT-PMP or UPnP."), "", false);?>
+					<?php html_checkbox("pex", gettext("Peer exchange"), !empty($pconfig['pex']) ? true : false, gettext("Enable peer exchange (PEX)."), "", false);?>
+					<?php html_checkbox("dht", gettext("Distributed hash table"), !empty($pconfig['dht']) ? true : false, gettext("Enable distributed hash table."), "", false);?>
 					<?php html_combobox("encryption", gettext("Encryption"), $pconfig['encryption'], array("0" => gettext("Tolerated"), "1" => gettext("Preferred"), "2" => gettext("Required")), gettext("The peer connection encryption mode."), false);?>
 					<?php html_inputbox("uplimit", gettext("Upload bandwidth"), $pconfig['uplimit'], gettext("The maximum upload bandwith in KB/s. An empty field means infinity."), false, 5);?>
 					<?php html_inputbox("downlimit", gettext("Download bandwidth"), $pconfig['downlimit'], gettext("The maximum download bandwith in KiB/s. An empty field means infinity."), false, 5);?>
@@ -207,7 +206,7 @@ function authrequired_change() {
 					<?php html_separator();?>
 					<?php html_titleline(gettext("Administrative WebGUI"));?>
 					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], sprintf(gettext("Port to listen on. Default port is %d."), 9091), true, 5);?>
-					<?php html_checkbox("authrequired", gettext("Authentication"), $pconfig['authrequired'] ? true : false, gettext("Require authentication."), "", false, "authrequired_change()");?>
+					<?php html_checkbox("authrequired", gettext("Authentication"), !empty($pconfig['authrequired']) ? true : false, gettext("Require authentication."), "", false, "authrequired_change()");?>
 					<?php html_inputbox("username", gettext("Username"), $pconfig['username'], "", true, 20);?>
 					<?php html_passwordbox("password", gettext("Password"), $pconfig['password'], gettext("Password for the administrative pages."), true, 20);?>
 					<?php
