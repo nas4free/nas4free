@@ -45,9 +45,9 @@ $pgtitle = array(gettext("System"), gettext("Advanced"), gettext("Swap"));
 
 $pconfig['enable'] = isset($config['system']['swap']['enable']);
 $pconfig['type'] = $config['system']['swap']['type'];
-$pconfig['mountpoint'] = $config['system']['swap']['mountpoint'];
-$pconfig['devicespecialfile'] = $config['system']['swap']['devicespecialfile'];
-$pconfig['size'] = $config['system']['swap']['size'];
+$pconfig['mountpoint'] = !empty($config['system']['swap']['mountpoint']) ? $config['system']['swap']['mountpoint'] : "";
+$pconfig['devicespecialfile'] = !empty($config['system']['swap']['devicespecialfile']) ? $config['system']['swap']['devicespecialfile'] : "";
+$pconfig['size'] = !empty($config['system']['swap']['size']) ? $config['system']['swap']['size'] : "";
 
 if ($_POST) {
 	unset($input_errors);

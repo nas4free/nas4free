@@ -47,7 +47,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Log"), gettext("Settings"));
 $pconfig['reverse']  = isset($config['syslogd']['reverse']);
 $pconfig['nentries'] = $config['syslogd']['nentries'];
 $pconfig['resolve']  = isset($config['syslogd']['resolve']);
-if (is_array($config['syslogd']['remote'])) {
+if (!empty($config['syslogd']['remote']) && is_array($config['syslogd']['remote'])) {
 	$pconfig['enable'] = isset($config['syslogd']['remote']['enable']);
 	$pconfig['ipaddr'] = $config['syslogd']['remote']['ipaddr'];
 	$pconfig['daemon'] = isset($config['syslogd']['remote']['daemon']);
@@ -131,7 +131,7 @@ function enable_change(enable_change) {
 	        <tr>
 	          <td width="22%" valign="top" class="vncell">&nbsp;</td>
 	          <td width="78%" class="vtable">
-							<input name="reverse" type="checkbox" id="reverse" value="yes" <?php if ($pconfig['reverse']) echo "checked=\"checked\""; ?> />
+							<input name="reverse" type="checkbox" id="reverse" value="yes" <?php if (!empty($pconfig['reverse'])) echo "checked=\"checked\""; ?> />
 	            <strong><?=gettext("Show log entries in reverse order (newest entries on top)");?></strong>
 						</td>
 	        </tr>
@@ -144,7 +144,7 @@ function enable_change(enable_change) {
 	        <tr>
 	          <td width="22%" valign="top" class="vncell">&nbsp;</td>
 	          <td width="78%" class="vtable">
-							<input name="resolve" type="checkbox" id="resolve" value="yes" <?php if ($pconfig['resolve']) echo "checked=\"checked\""; ?> />
+							<input name="resolve" type="checkbox" id="resolve" value="yes" <?php if (!empty($pconfig['resolve'])) echo "checked=\"checked\""; ?> />
 	            <strong><?=gettext("Resolve IP addresses to hostnames");?></strong><br />
 	            <?php echo sprintf(gettext("Hint: If this is checked, IP addresses in %s logs are resolved to real hostnames where possible."), get_product_name());?><br />
 							<?php echo sprintf(gettext("Warning: This can cause a huge delay in loading the %s log page!"), get_product_name());?>
@@ -153,7 +153,7 @@ function enable_change(enable_change) {
 	        <tr>
 	          <td width="22%" valign="top" class="vncell">&nbsp;</td>
 	          <td width="78%" class="vtable">
-							<input name="enable" type="checkbox" id="enable" value="yes" <?php if ($pconfig['enable']) echo "checked=\"checked\""; ?> onclick="enable_change(false)" />
+							<input name="enable" type="checkbox" id="enable" value="yes" <?php if (!empty($pconfig['enable'])) echo "checked=\"checked\""; ?> onclick="enable_change(false)" />
 	            <strong><?=gettext("Enable syslog'ing to remote syslog server");?></strong></td>
 	        </tr>
 	        <tr>
@@ -162,17 +162,17 @@ function enable_change(enable_change) {
 							<input name="ipaddr" id="ipaddr" type="text" class="formfld" size="20" value="<?=htmlspecialchars($pconfig['ipaddr']);?>" />
 	            <br />
 	            <?=gettext("IP address of remote syslog server");?><br /><br />
-							<input name="system" id="system" type="checkbox" value="yes" <?php if ($pconfig['system']) echo "checked=\"checked\""; ?> />
+							<input name="system" id="system" type="checkbox" value="yes" <?php if (!empty($pconfig['system'])) echo "checked=\"checked\""; ?> />
 	            <?=gettext("System events");?><br />
-							<input name="ftp" id="ftp" type="checkbox" value="yes" <?php if ($pconfig['ftp']) echo "checked=\"checked\""; ?> />
+							<input name="ftp" id="ftp" type="checkbox" value="yes" <?php if (!empty($pconfig['ftp'])) echo "checked=\"checked\""; ?> />
 	            <?=gettext("FTP events");?><br />
-							<input name="rsyncd" id="rsyncd" type="checkbox" value="yes" <?php if ($pconfig['rsyncd']) echo "checked=\"checked\""; ?> />
+							<input name="rsyncd" id="rsyncd" type="checkbox" value="yes" <?php if (!empty($pconfig['rsyncd'])) echo "checked=\"checked\""; ?> />
 	            <?=gettext("RSYNC events");?><br />
-							<input name="sshd" id="sshd" type="checkbox" value="yes" <?php if ($pconfig['sshd']) echo "checked=\"checked\""; ?> />
+							<input name="sshd" id="sshd" type="checkbox" value="yes" <?php if (!empty($pconfig['sshd'])) echo "checked=\"checked\""; ?> />
 	            <?=gettext("SSH events");?><br />
-	            <input name="smartd" id="smartd" type="checkbox" value="yes" <?php if ($pconfig['smartd']) echo "checked=\"checked\""; ?> />
+	            <input name="smartd" id="smartd" type="checkbox" value="yes" <?php if (!empty($pconfig['smartd'])) echo "checked=\"checked\""; ?> />
 	            <?=gettext("S.M.A.R.T. events");?><br />
-	            <input name="daemon" id="daemon" type="checkbox" value="yes" <?php if ($pconfig['daemon']) echo "checked=\"checked\""; ?> />
+	            <input name="daemon" id="daemon" type="checkbox" value="yes" <?php if (!empty($pconfig['daemon'])) echo "checked=\"checked\""; ?> />
 	            <?=gettext("Daemon events");?><br />
 	          </td>
 	        </tr>

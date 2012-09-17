@@ -69,11 +69,11 @@ if (strcmp($lancfg['ipv6addr'], "auto") == 0) {
 }
 $pconfig['gateway'] = get_defaultgateway();
 $pconfig['ipv6gateway'] = get_ipv6defaultgateway();
-$pconfig['mtu'] = $lancfg['mtu'];
-$pconfig['media'] = $lancfg['media'];
-$pconfig['mediaopt'] = $lancfg['mediaopt'];
+$pconfig['mtu'] = !empty($lancfg['mtu']) ? $lancfg['mtu'] : "";
+$pconfig['media'] = !empty($lancfg['media']) ? $lancfg['media'] : "autoselect";
+$pconfig['mediaopt'] = !empty($lancfg['mediaopt']) ? $lancfg['mediaopt'] : "";
 $pconfig['polling'] = isset($lancfg['polling']);
-$pconfig['extraoptions'] = $lancfg['extraoptions'];
+$pconfig['extraoptions'] = !empty($lancfg['extraoptions']) ? $lancfg['extraoptions'] : "";
 if (!empty($ifinfo['wolevents']))
 	$pconfig['wakeon'] = $lancfg['wakeon'];
 
