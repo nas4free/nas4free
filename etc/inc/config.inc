@@ -360,18 +360,17 @@ function write_config() {
 	// Save current configuration file
 	$filename = "{$g['cf_conf_path']}/config.xml";
 	if (file_exists($filename)) {
-		$filename_bk2 = preg_replace("/.xml$/", ".bk2", $filename);
-		$filename_bk1 = preg_replace("/.xml$/", ".bk1", $filename);
+		for ($n = 6; --$n > 0; ) {
+			$filename_bk2 = preg_replace("/.xml$/", ".bk".$n, $filename);
+			$filename_bk1 = preg_replace("/.xml$/", ".bk".($n-1), $filename);
+			if (file_exists($filename_bk2) && unlink($filename_bk2) === FALSE) {
+				die("Error: Failed to delete configuration file '{$filename_bk2}'");
+			}
+			if (file_exists($filename_bk1) && rename($filename_bk1, $filename_bk2) === FALSE) {
+				die("Error: Failed to rename configuration file '{$filename_bk1}'");
+			}
+		}
 		$filename_bk0 = preg_replace("/.xml$/", ".bk0", $filename);
-		if (file_exists($filename_bk2) && unlink($filename_bk2) === FALSE) {
-			die("Error: Failed to delete configuration file '{$filename_bk2}'");
-		}
-		if (file_exists($filename_bk1) && rename($filename_bk1, $filename_bk2) === FALSE) {
-			die("Error: Failed to rename configuration file '{$filename_bk1}'");
-		}
-		if (file_exists($filename_bk0) && rename($filename_bk0, $filename_bk1) === FALSE) {
-			die("Error: Failed to rename configuration file '{$filename_bk0}'");
-		}
 		if (rename($filename, $filename_bk0) === FALSE) {
 			die("Error: Failed to rename configuration file '{$filename}'");
 		}
