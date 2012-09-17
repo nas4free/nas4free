@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_websrv.php
@@ -51,13 +50,13 @@ $pconfig['enable'] = isset($config['websrv']['enable']);
 $pconfig['protocol'] = $config['websrv']['protocol'];
 $pconfig['port'] = $config['websrv']['port'];
 $pconfig['documentroot'] = $config['websrv']['documentroot'];
-$pconfig['runasuser'] = $config['websrv']['runasuser'];
+$pconfig['runasuser'] = !empty($config['websrv']['runasuser']) ? $config['websrv']['runasuser'] : "";
 $pconfig['privatekey'] = base64_decode($config['websrv']['privatekey']);
 $pconfig['certificate'] = base64_decode($config['websrv']['certificate']);
 $pconfig['authentication'] = isset($config['websrv']['authentication']['enable']);
 $pconfig['dirlisting'] = isset($config['websrv']['dirlisting']);
 $pconfig['auxparam'] = "";
-if (is_array($config['websrv']['auxparam']))
+if (isset($config['websrv']['auxparam']) && is_array($config['websrv']['auxparam']))
 	$pconfig['auxparam'] = implode("\n", $config['websrv']['auxparam']);
 
 if ($_POST) {
@@ -65,7 +64,7 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	// Input validation.
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "port documentroot");
 		$reqdfieldsn = array(gettext("Port"), gettext("Document root"));
 		$reqdfieldst = explode(" ", "port string");
@@ -90,16 +89,16 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
-		$config['websrv']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['websrv']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['websrv']['protocol'] = $_POST['protocol'];
 		$config['websrv']['port'] = $_POST['port'];
 		$config['websrv']['documentroot'] = $_POST['documentroot'];
 		$config['websrv']['runasuser'] = $_POST['runasuser'];
 		$config['websrv']['privatekey'] = base64_encode($_POST['privatekey']);
 		$config['websrv']['certificate'] = base64_encode($_POST['certificate']);
-		$config['websrv']['authentication']['enable'] = $_POST['authentication'] ? true : false;
-		$config['websrv']['dirlisting'] = $_POST['dirlisting'] ? true : false;
+		$config['websrv']['authentication']['enable'] = isset($_POST['authentication']) ? true : false;
+		$config['websrv']['dirlisting'] = isset($_POST['dirlisting']) ? true : false;
 
 		// Write additional parameters.
 		unset($config['websrv']['auxparam']);
@@ -128,7 +127,7 @@ if ($_POST) {
 	}
 }
 
-if($_GET['act'] === "del") {
+if(isset($_GET['act']) && $_GET['act'] === "del") {
 	updatenotify_set("websrvauth", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
 	header("Location: services_websrv.php");
 	exit;
@@ -203,18 +202,18 @@ function authentication_change() {
   <tr>
     <td class="tabcont">
     	<form action="services_websrv.php" method="post" name="iform" id="iform">
-	    	<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+	    	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<?php if (updatenotify_exists("websrvauth")) print_config_change_box();?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Webserver"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Webserver"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_combobox("protocol", gettext("Protocol"), $pconfig['protocol'], array("http" => "HTTP", "https" => "HTTPS"), "", true, false, "protocol_change()");?>
 					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], gettext("TCP port to bind the server to."), true, 5);?>
 					<?php html_combobox("runasuser", gettext("Run as"), $pconfig['runasuser'], array("server.username = \"www\"" => "www", "" => "root"), gettext("Set what user the service will run as (www by default). <br><b><font color='red'>NOTE</font>: Running as root is <u>not recommended</u> for security reasons, use it on your own risk!.</b></br>"), true);?>	
 					<?php html_textarea("certificate", gettext("Certificate"), $pconfig['certificate'], gettext("Paste a signed certificate in X.509 PEM format here."), true, 65, 7, false, false);?>
 					<?php html_textarea("privatekey", gettext("Private key"), $pconfig['privatekey'], gettext("Paste an private key in PEM format here."), true, 65, 7, false, false);?>
 					<?php html_filechooser("documentroot", gettext("Document root"), $pconfig['documentroot'], gettext("Document root of the webserver. Home of the web page files."), $g['media_path'], true, 60);?>
-			    <?php html_checkbox("authentication", gettext("Authentication"), $pconfig['authentication'] ? true : false, gettext("Enable authentication."), gettext("Give only local users access to the web page."), false, "authentication_change()");?>
+			    <?php html_checkbox("authentication", gettext("Authentication"), !empty($pconfig['authentication']) ? true : false, gettext("Enable authentication."), gettext("Give only local users access to the web page."), false, "authentication_change()");?>
 					<tr id="authdirs_tr">
 						<td width="22%" valign="top" class="vncell">&nbsp;</td>
 						<td width="78%" class="vtable">
@@ -253,8 +252,8 @@ function authentication_change() {
 							<span class="vexpl"><?=gettext("Define directories/URL's that require authentication.");?></span>
 						</td>
 					</tr>
-					<?php html_checkbox("dirlisting", gettext("Directory listing"), $pconfig['dirlisting'] ? true : false, gettext("Enable directory listing."), gettext("A directory listing is generated if a directory is requested and no index-file (index.php, index.html, index.htm or default.htm) was found in that directory."), false);?>
-					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("These parameters will be added to %s."), "wersrv.conf")  . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://redmine.lighttpd.net/projects/lighttpd/wiki"), false, 65, 5, false, false);?>
+					<?php html_checkbox("dirlisting", gettext("Directory listing"), !empty($pconfig['dirlisting']) ? true : false, gettext("Enable directory listing."), gettext("A directory listing is generated if a directory is requested and no index-file (index.php, index.html, index.htm or default.htm) was found in that directory."), false);?>
+					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gettext("These parameters will be added to %s."), "wersrv.conf")  . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://redmine.lighttpd.net/projects/lighttpd/wiki"), false, 65, 5, false, false);?>
 			  </table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />

@@ -1,7 +1,6 @@
-#!/usr/local/bin/php
 <?php
 /*
-	services_upnp.php
+	services_dynamicdns.php
 
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (C) 2012 by NAS4Free Team <info@nas4free.org>.
@@ -48,14 +47,14 @@ if (!isset($config['dynamicdns']) || !is_array($config['dynamicdns']))
 	$config['dynamicdns'] = array();
 
 $pconfig['enable'] = isset($config['dynamicdns']['enable']);
-$pconfig['provider'] = $config['dynamicdns']['provider'];
-$pconfig['domainname'] = $config['dynamicdns']['domainname'];
-$pconfig['username'] = $config['dynamicdns']['username'];
-$pconfig['password'] = $config['dynamicdns']['password'];
-$pconfig['updateperiod'] = $config['dynamicdns']['updateperiod'];
-$pconfig['forcedupdateperiod'] = $config['dynamicdns']['forcedupdateperiod'];
+$pconfig['provider'] = !empty($config['dynamicdns']['provider']) ? $config['dynamicdns']['provider'] : "";
+$pconfig['domainname'] = !empty($config['dynamicdns']['domainname']) ? $config['dynamicdns']['domainname'] : "";
+$pconfig['username'] = !empty($config['dynamicdns']['username']) ? $config['dynamicdns']['username'] : "";
+$pconfig['password'] = !empty($config['dynamicdns']['password']) ? $config['dynamicdns']['password'] : "";
+$pconfig['updateperiod'] = !empty($config['dynamicdns']['updateperiod']) ? $config['dynamicdns']['updateperiod'] : "";
+$pconfig['forcedupdateperiod'] = !empty($config['dynamicdns']['forcedupdateperiod']) ? $config['dynamicdns']['forcedupdateperiod'] : "";
 $pconfig['wildcard'] = isset($config['dynamicdns']['wildcard']);
-if (is_array($config['dynamicdns']['auxparam']))
+if (isset($config['dynamicdns']['auxparam']) && is_array($config['dynamicdns']['auxparam']))
 	$pconfig['auxparam'] = implode("\n", $config['dynamicdns']['auxparam']);
 
 if ($_POST) {
@@ -64,7 +63,7 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	/* input validation */
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "provider domainname username password");
 		$reqdfieldsn = array(gettext("Provider"), gettext("Domain name"), gettext("Username"), gettext("Password"));
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -75,15 +74,15 @@ if ($_POST) {
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
 
-	if (!$input_errors) {
-		$config['dynamicdns']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['dynamicdns']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['dynamicdns']['provider'] = $_POST['provider'];
 		$config['dynamicdns']['domainname'] = $_POST['domainname'];
 		$config['dynamicdns']['username'] = $_POST['username'];
 		$config['dynamicdns']['password'] = $_POST['password'];
 		$config['dynamicdns']['updateperiod'] = $_POST['updateperiod'];
 		$config['dynamicdns']['forcedupdateperiod'] = $_POST['forcedupdateperiod'];
-		$config['dynamicdns']['wildcard'] = $_POST['wildcard'] ? true : false;
+		$config['dynamicdns']['wildcard'] = isset($_POST['wildcard']) ? true : false;
 
 		# Write additional parameters.
 		unset($config['dynamicdns']['auxparam']);
@@ -143,18 +142,18 @@ function provider_change() {
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td class="tabcont">
-	    	<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+	    	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Dynamic DNS"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Dynamic DNS"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_combobox("provider", gettext("Provider"), $pconfig['provider'], array("dyndns.org" => "dyndns.org", "freedns.afraid.org" => "freedns.afraid.org", "zoneedit.com" => "zoneedit.com", "no-ip.com" => "no-ip.com", "easydns.com" => "easydns.com", "3322.org" => "3322.org", "custom" => gettext("Custom")), "", true, false, "provider_change()");?>
 					<?php html_inputbox("domainname", gettext("Domain name"), $pconfig['domainname'], gettext("A host name alias. This option can appear multiple times, for each domain that has the same IP. Use a space to separate multiple alias names."), true, 40);?>
 					<?php html_inputbox("username", gettext("Username"), $pconfig['username'], "", true, 20);?>
 					<?php html_passwordbox("password", gettext("Password"), $pconfig['password'], "", true, 20);?>
 					<?php html_inputbox("updateperiod", gettext("Update period"), $pconfig['updateperiod'], gettext("How often the IP is checked. The period is in seconds (max. is 10 days)."), false, 20);?>
 					<?php html_inputbox("forcedupdateperiod", gettext("Forced update period"), $pconfig['forcedupdateperiod'], gettext("How often the IP is updated even if it is not changed. The period is in seconds (max. is 10 days)."), false, 20);?>
-					<?php html_checkbox("wildcard", gettext("Wildcard"), $pconfig['wildcard'] ? true : false, gettext("Enable domain wildcarding."), "", false);?>
-					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("These parameters will be added to global settings in %s."), "inadyn.conf"), false, 65, 3, false, false);?>
+					<?php html_checkbox("wildcard", gettext("Wildcard"), !empty($pconfig['wildcard']) ? true : false, gettext("Enable domain wildcarding."), "", false);?>
+					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gettext("These parameters will be added to global settings in %s."), "inadyn.conf"), false, 65, 3, false, false);?>
 			  </table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />

@@ -52,10 +52,10 @@ $pconfig['port'] = $config['sshd']['port'];
 $pconfig['permitrootlogin'] = isset($config['sshd']['permitrootlogin']);
 $pconfig['tcpforwarding'] = isset($config['sshd']['tcpforwarding']);
 $pconfig['enable'] = isset($config['sshd']['enable']);
-$pconfig['key'] = base64_decode($config['sshd']['private-key']);
+$pconfig['key'] = !empty($config['sshd']['private-key']) ? base64_decode($config['sshd']['private-key']) : "";
 $pconfig['passwordauthentication'] = isset($config['sshd']['passwordauthentication']);
 $pconfig['compression'] = isset($config['sshd']['compression']);
-$pconfig['subsystem'] = $config['sshd']['subsystem'];
+$pconfig['subsystem'] = !empty($config['sshd']['subsystem']) ? $config['sshd']['subsystem'] : "";
 if (isset($config['sshd']['auxparam']) && is_array($config['sshd']['auxparam']))
 	$pconfig['auxparam'] = implode("\n", $config['sshd']['auxparam']);
 

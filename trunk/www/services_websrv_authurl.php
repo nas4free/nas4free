@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_websrv_authurl.php
@@ -38,7 +37,8 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$uuid = $_GET['uuid'];
+if (isset($_GET['uuid']))
+	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
@@ -64,7 +64,7 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
-	if ($_POST['Cancel']) {
+	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
 		header("Location: services_websrv.php");
 		exit;
 	}
@@ -82,7 +82,7 @@ if ($_POST) {
 		}
 	}
 
-	if (!$input_errors) {
+	if (empty($input_errors)) {
 		$url = array();
 		$url['uuid'] = $_POST['uuid'];
 		$url['path'] = $_POST['path'];
@@ -109,7 +109,7 @@ if ($_POST) {
   <tr>
 	<td class="tabcont">
 		<form action="services_websrv_authurl.php" method="post" name="iform" id="iform">
-			<?php if ($input_errors) print_input_errors($input_errors);?>
+			<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
 				<?php html_inputbox("path", gettext("Path"), $pconfig['path'], gettext("Path of the URL relative to document root."), true, 60);?>
 				<?php html_inputbox("realm", gettext("Realm"), $pconfig['realm'], gettext("String displayed in the dialog presented to the user when accessing the URL."), true, 20);?>

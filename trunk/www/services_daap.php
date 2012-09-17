@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_daap.php
@@ -45,10 +44,10 @@ if (!isset($config['daap']) || !is_array($config['daap']))
 	$config['daap'] = array();
 
 $pconfig['enable'] = isset($config['daap']['enable']);
-$pconfig['servername'] = $config['daap']['servername'];
+$pconfig['servername'] = !empty($config['daap']['servername']) ? $config['daap']['servername'] : "";
 $pconfig['port'] = $config['daap']['port'];
 $pconfig['dbdir'] = $config['daap']['dbdir'];
-$pconfig['content'] = $config['daap']['content'];
+$pconfig['content'] = !empty($config['daap']['content']) ? $config['daap']['content'] : array();
 $pconfig['rescaninterval'] = $config['daap']['rescaninterval'];
 $pconfig['alwaysscan'] = isset($config['daap']['alwaysscan']);
 $pconfig['scantype'] = $config['daap']['scantype'];
@@ -66,7 +65,7 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	// Input validation.
-	if ($_POST['enable']) {
+	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "servername port dbdir content admin_pw");
 		$reqdfieldsn = array(gettext("Server name"), gettext("Port"), gettext("Database directory"), gettext("Content"), gettext("Password"));
 		$reqdfieldst = explode(" ", "string port string array password");
@@ -84,14 +83,14 @@ if ($_POST) {
 			$input_errors[] = sprintf(gettext("Port %ld is already used by another service."), $_POST['port']);
 	}
 
-	if (!$input_errors) {
-		$config['daap']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['daap']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['daap']['servername'] = $_POST['servername'];
 		$config['daap']['port'] = $_POST['port'];
 		$config['daap']['dbdir'] = $_POST['dbdir'];
-		$config['daap']['content'] = $_POST['content'];
+		$config['daap']['content'] = !empty($_POST['content']) ? $_POST['content'] : array();
 		$config['daap']['rescaninterval'] = $_POST['rescaninterval'];
-		$config['daap']['alwaysscan'] = $_POST['alwaysscan'] ? true : false;
+		$config['daap']['alwaysscan'] = isset($_POST['alwaysscan']) ? true : false;
 		$config['daap']['scantype'] = $_POST['scantype'];
 		$config['daap']['admin_pw'] = $_POST['admin_pw'];
 
@@ -135,17 +134,17 @@ function enable_change(enable_change) {
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td class="tabcont">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<?php if ($savemsg) print_info_box($savemsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<?php if (!isset($config['system']['zeroconf'])) print_error_box(sprintf(gettext("You have to activate <a href='%s'>Zeroconf/Bonjour</a> to advertise this service to clients."), "system_advanced.php"));?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Digital Audio Access Protocol"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gettext("Digital Audio Access Protocol"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_inputbox("servername", gettext("Server name"), $pconfig['servername'], gettext("This is both the name of the server as advertised via Zeroconf/Bonjour/Rendezvous, and the name of the database exported via DAAP."), true, 20);?>
 					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], gettext("Port to listen on. Default iTunes port is 3689."), true, 5);?>
 					<?php html_filechooser("dbdir", gettext("Database directory"), $pconfig['dbdir'], gettext("Location where the content database file will be stored."), $g['media_path'], true, 60);?>
-					<?php html_folderbox("content", gettext("Content"), $pconfig['content'], gettext("Location of the files to share."), $g['media_path'], true);?>
+					<?php html_folderbox("content", gettext("Content"), !empty($pconfig['content']) ? $pconfig['content'] : array(), gettext("Location of the files to share."), $g['media_path'], true);?>
 					<?php html_inputbox("rescaninterval", gettext("Rescan interval"), $pconfig['rescaninterval'], gettext("Scan file system every N seconds to see if any files have been added or removed. Set to 0 to disable background scanning. If background rescanning is disabled, a scan can still be forced from the status page of the administrative web interface."), false, 5);?>
-					<?php html_checkbox("alwaysscan", gettext("Always scan"), $pconfig['alwaysscan'] ? true : false, "", gettext("Whether scans should be skipped if there are no users connected. This allows the drive to spin down when no users are connected."), false);?>
+					<?php html_checkbox("alwaysscan", gettext("Always scan"), !empty($pconfig['alwaysscan']) ? true : false, "", gettext("Whether scans should be skipped if there are no users connected. This allows the drive to spin down when no users are connected."), false);?>
 					<?php html_combobox("scantype", gettext("Scan type"), $pconfig['scantype'], array("0" => gettext("Normal"), "1" => gettext("Aggressive"), "2" => gettext("Painfully aggressive")), "", false);?>
 					<?php html_separator();?>
 					<?php html_titleline(gettext("Administrative WebGUI"));?>

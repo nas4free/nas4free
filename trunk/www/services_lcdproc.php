@@ -1,4 +1,3 @@
-#!/usr/local/bin/php
 <?php
 /*
 	services_lcdproc.php
@@ -55,13 +54,13 @@ $pconfig['port'] = $config['lcdproc']['port'];
 $pconfig['waittime'] = $config['lcdproc']['waittime'];
 $pconfig['titlespeed'] = $config['lcdproc']['titlespeed'];
 $pconfig['lcdproc_enable'] = isset($config['lcdproc']['lcdproc']['enable']);
-if (is_array($config['lcdproc']['param']))
+if (isset($config['lcdproc']['param']) && is_array($config['lcdproc']['param']))
 	$pconfig['param'] = implode("\n", $config['lcdproc']['param']);
-if (is_array($config['lcdproc']['auxparam']))
+if (isset($config['lcdproc']['auxparam']) && is_array($config['lcdproc']['auxparam']))
 	$pconfig['auxparam'] = implode("\n", $config['lcdproc']['auxparam']);
-if (is_array($config['lcdproc']['lcdproc']['param']))
+if (isset($config['lcdproc']['lcdproc']['param']) && is_array($config['lcdproc']['lcdproc']['param']))
 	$pconfig['lcdproc_param'] = implode("\n", $config['lcdproc']['lcdproc']['param']);
-if (is_array($config['lcdproc']['lcdproc']['auxparam']))
+if (isset($config['lcdproc']['lcdproc']['auxparam']) && is_array($config['lcdproc']['lcdproc']['auxparam']))
 	$pconfig['lcdproc_auxparam'] = implode("\n", $config['lcdproc']['lcdproc']['auxparam']);
 
 if ($_POST) {
@@ -76,13 +75,13 @@ if ($_POST) {
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
-	if (!$input_errors) {
-		$config['lcdproc']['enable'] = $_POST['enable'] ? true : false;
+	if (empty($input_errors)) {
+		$config['lcdproc']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['lcdproc']['driver'] = $_POST['driver'];
 		$config['lcdproc']['port'] = $_POST['port'];
 		$config['lcdproc']['waittime'] = $_POST['waittime'];
 		$config['lcdproc']['titlespeed'] = $_POST['titlespeed'];
-		$config['lcdproc']['lcdproc']['enable'] = $_POST['lcdproc_enable'] ? true : false;
+		$config['lcdproc']['lcdproc']['enable'] = isset($_POST['lcdproc_enable']) ? true : false;
 
 		# Write additional parameters.
 		unset($config['lcdproc']['param']);
@@ -149,20 +148,20 @@ function lcdproc_enable_change(enable_change) {
   <tr>
     <td class="tabcont">
       <form action="services_lcdproc.php" method="post" name="iform" id="iform">
-	<?php if ($input_errors) print_input_errors($input_errors);?>
-	<?php if ($savemsg) print_info_box($savemsg);?>
+	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+	<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 	<table width="100%" border="0" cellpadding="6" cellspacing="0">
-	<?php html_titleline_checkbox("enable", gettext("LCDproc"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
+	<?php html_titleline_checkbox("enable", gettext("LCDproc"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 	<?php html_inputbox("driver", gettext("Driver"), $pconfig['driver'], sprintf(gettext("The driver used to connect with the LCD. The list of available <a href='%s' target='_blank'>drivers</a>."), "http://lcdproc.omnipotent.net/hardware.php3"), true, 30);?>
 	<?php html_inputbox("port", gettext("Port"), $pconfig['port'], sprintf(gettext("Port to listen on. Default port is %d."), 13666), true, 10);?>
 	<?php html_inputbox("waittime", gettext("Wait time"), $pconfig['waittime'], gettext("The default time in seconds to display a screen."), true, 10);?>
 	<?php html_inputbox("titlespeed", gettext("TitleSpeed"), $pconfig['titlespeed'], gettext("Set title scrolling speed between 0-10 (default 10)."), true, 10);?>
-	<?php html_textarea("param", gettext("Driver parameters"), $pconfig['param'], gettext("Additional parameters to the hardware-specific part of the driver."), false, 65, 10, false, false);?>
-	<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], "", false, 65, 5, false, false);?>
+	<?php html_textarea("param", gettext("Driver parameters"), !empty($pconfig['param']) ? $pconfig['param'] : "", gettext("Additional parameters to the hardware-specific part of the driver."), false, 65, 10, false, false);?>
+	<?php html_textarea("auxparam", gettext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", "", false, 65, 5, false, false);?>
 	<?php html_separator();?>
-	<?php html_titleline_checkbox("lcdproc_enable", gettext("LCDproc (client)"), $pconfig['lcdproc_enable'] ? true : false, gettext("Enable"), "lcdproc_enable_change(false)");?>
-	<?php html_textarea("lcdproc_param", gettext("Extra options"), $pconfig['lcdproc_param'], "", false, 65, 10, false, false);?>
-	<?php html_textarea("lcdproc_auxparam", gettext("Auxiliary parameters"), $pconfig['lcdproc_auxparam'], "", false, 65, 5, false, false);?>
+	<?php html_titleline_checkbox("lcdproc_enable", gettext("LCDproc (client)"), !empty($pconfig['lcdproc_enable']) ? true : false, gettext("Enable"), "lcdproc_enable_change(false)");?>
+	<?php html_textarea("lcdproc_param", gettext("Extra options"), !empty($pconfig['lcdproc_param']) ? $pconfig['lcdproc_param'] : "", "", false, 65, 10, false, false);?>
+	<?php html_textarea("lcdproc_auxparam", gettext("Auxiliary parameters"), !empty($pconfig['lcdproc_auxparam']) ? $pconfig['lcdproc_auxparam'] : "", "", false, 65, 5, false, false);?>
 	</table>
 	<div id="submit">
 	  <input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true); lcdproc_enable_change(true);" />
