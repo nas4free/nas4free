@@ -59,12 +59,12 @@ $spa = @exec("sysctl -q -n vfs.zfs.version.spa");
 if ($spa == '' || $spa < 21) {
 	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin', $rawdata);
 } else {
-	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin,dedup', $rawdata);
+	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin,dedup,atime', $rawdata);
 }
 foreach($rawdata as $line)
 {
 	if ($line == 'no datasets available') { continue; }
-	list($fname, $mpoint, $compress, $canmount, $quota, $used, $avail, $xattr, $snapdir, $readonly, $origin, $dedup) = explode("\t", $line);
+	list($fname, $mpoint, $compress, $canmount, $quota, $used, $avail, $xattr, $snapdir, $readonly, $origin, $dedup, $atime) = explode("\t", $line);
 	if (strpos($fname, '/') !== false) // dataset
 	{
 		if (empty($origin) || $origin != '-') continue;
@@ -80,6 +80,7 @@ foreach($rawdata as $line)
 			'snapdir' => ($snapdir == 'visible'),
 			'readonly' => ($readonly == 'on'),
 			'dedup' => $dedup,
+			'atime' => $atime,
 			'desc' => '',
 		);
 	}
@@ -349,7 +350,9 @@ if (isset($_POST['import_config']))
 				if (preg_match("/^(.*)p\d+$/", $device, $m)) {
 					$device = $m[1];
 				}
-				$index = array_search_ex($device, $cfg['disks']['disk'], 'devicespecialfile');
+				$index = false;
+				if (!empty($cfg['disks']['disk']))
+					$index = array_search_ex($device, $cfg['disks']['disk'], 'devicespecialfile');
 				if ($index === false && isset($_POST['import_disks']))
 				{
 					$disk = array_search_ex($device, $disks, 'devicespecialfile');
