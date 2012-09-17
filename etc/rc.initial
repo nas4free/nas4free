@@ -38,7 +38,8 @@ else
 	case ${PLATFORM} in
 		*-live[cC][dD]|*-live[uU][sS][bB])
 			echo
-			echo "Now, the blank USB memory for installation can be inserted.";;
+			echo "Now, the blank USB memory for installation can be inserted."
+			echo "To redisplay Console setup, press enter key.";;
 	esac
 
 	# endless loop
@@ -58,7 +59,7 @@ else
 		echo "8) Shutdown System"
 		case ${PLATFORM} in
 			*-live[cC][dD]|*-live[uU][sS][bB])
-				echo "9) Install/Upgrade NAS4Free from LiveCD/USB";;
+				echo "9) Install/Upgrade NAS4Free from LiveCD/LiveUSB";;
 		esac
 
 		echo

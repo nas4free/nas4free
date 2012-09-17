@@ -20,8 +20,8 @@ while : ; do
 		"1" "Install 'Embedded' OS on CF/USB Flash Drive or Hard Drive" \
 		"2" "Install 'Embedded' OS on HDD/Flash/USB + DATA + SWAP partition" \
 		"3" "Install 'Full' OS on HDD + DATA + SWAP partition" \
-		"4" "Upgrade 'Embedded' OS from LiveCD" \
-		"5" "Upgrade 'Full' OS from LiveCD" \
+		"4" "Upgrade 'Embedded' OS from LiveCD/LiveUSB" \
+		"5" "Upgrade 'Full' OS from LiveCD/LiveUSB" \
 		"6" "Upgrade and convert 'Full' OS to 'Embedded'" 2> $tmpfile
 
 	if [ 0 -ne $? ]; then
