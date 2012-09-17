@@ -76,7 +76,7 @@ if ($spa == '' || $spa < 21) {
 foreach($rawdata as $line)
 {
 	if ($line == 'no datasets available') { continue; }
-	list($fname, $mpoint, $compress, $canmount, $quota, $used, $avail, $xattr, $snapdir, $readonly, $origin, $dedup) = explode("\t", $line);
+	list($fname, $mpoint, $compress, $canmount, $quota, $used, $avail, $xattr, $snapdir, $readonly, $origin, $dedup, $atime) = explode("\t", $line);
 	if (strpos($fname, '/') !== false) // dataset
 	{
 		if (empty($origin) || $origin != '-') continue;
