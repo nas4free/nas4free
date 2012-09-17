@@ -71,7 +71,7 @@ $spa = @exec("sysctl -q -n vfs.zfs.version.spa");
 if ($spa == '' || $spa < 21) {
 	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin', $rawdata);
 } else {
-	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin,dedup', $rawdata);
+	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin,dedup,atime', $rawdata);
 }
 foreach($rawdata as $line)
 {
@@ -92,6 +92,7 @@ foreach($rawdata as $line)
 			'snapdir' => ($snapdir == 'visible'),
 			'readonly' => ($readonly == 'on'),
 			'dedup' => $dedup,
+			'atime' => $atime,
 			'desc' => '',
 		);
 	}
