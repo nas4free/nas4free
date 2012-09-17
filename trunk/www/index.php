@@ -73,6 +73,20 @@ if(function_exists("date_default_timezone_set") and function_exists("date_defaul
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <td>&nbsp;</td>
 </table>
+<?php
+	// make sure normal user such as www can write to temporary
+	$perms = fileperms("/tmp");
+	if (($perms & 01777) != 01777) {
+		$errormsg .= sprintf(gettext("Wrong permission on %s."), "/tmp");
+		$errormsg .= "<br />\n";
+	}
+	$perms = fileperms("/var/tmp");
+	if (($perms & 01777) != 01777) {
+		$errormsg .= sprintf(gettext("Wrong permission on %s."), "/var/tmp");
+		$errormsg .= "<br />\n";
+	}
+	if (!empty($errormsg)) print_error_box($errormsg);
+?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="tabcont">

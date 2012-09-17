@@ -85,6 +85,12 @@ if [ ! -d /var/tmp ]; then
 	chmod 1777 /var/tmp
 fi
 
+# Make writable tmp for www
+chown 0:0 /tmp
+chmod 1777 /tmp
+chown 0:0 /var/tmp
+chmod 1777 /var/tmp
+
 # Configure the shared library cache
 /sbin/ldconfig -elf /usr/lib /usr/local/lib /lib
 
