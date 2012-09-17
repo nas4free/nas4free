@@ -1351,7 +1351,7 @@ function get_ipaddr($if)
     }
   }
 
-  return $ipaddr;
+  return !empty($ipaddr) ? $ipaddr : null;
 }
 
 // Get subnet bits.
@@ -1388,7 +1388,7 @@ function get_ipv6addr($if)
     }
   }
 
-  return $ipaddr;
+  return !empty($ipaddr) ? $ipaddr : null;
 }
 
 // Get local MAC address
@@ -1410,7 +1410,7 @@ function get_macaddr($if)
     }
   }
 
-  return $macaddr;
+  return !empty($macaddr) ? $macaddr : null;
 }
 
 // Get DNS servers.

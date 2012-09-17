@@ -65,7 +65,7 @@ function strip_partition($device) {
 	return $device;
 }
 
-if (!isset($uuid) && (!sizeof($a_disk)) && (!sizeof($a_encrypteddisk))) {
+if (!isset($uuid) && (empty($a_disk)) && (empty($a_encrypteddisk))) {
 	$errormsg = sprintf(gettext("No disks available. Please add new <a href='%s'>disk</a> first."), "disks_manage.php");
 }
 

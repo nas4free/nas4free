@@ -337,7 +337,7 @@ if (isset($config['interfaces']['lan']['ipv6_enable'])) {
         write_console("IPv6 enabled, but can't get one\n");
 }
 
-$port = $config['system']['webgui']['port'] ? $config['system']['webgui']['port'] : 80;
+$port = !empty($config['system']['webgui']['port']) ? $config['system']['webgui']['port'] : 80;
 $protocol = $config['system']['webgui']['protocol'];
 
 write_console("\n");

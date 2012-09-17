@@ -75,11 +75,11 @@ if ($config['interfaces']['opt' . $index]['ipv6addr'] == "auto") {
 }
 $pconfig['descr'] = $optcfg['descr'];
 $pconfig['enable'] = isset($optcfg['enable']);
-$pconfig['mtu'] = $optcfg['mtu'];
+$pconfig['mtu'] = !empty($optcfg['mtu']) ? $optcfg['mtu'] : "";
 $pconfig['polling'] = isset($optcfg['polling']);
-$pconfig['media'] = $optcfg['media'];
-$pconfig['mediaopt'] = $optcfg['mediaopt'];
-$pconfig['extraoptions'] = $optcfg['extraoptions'];
+$pconfig['media'] = !empty($optcfg['media']) ? $optcfg['media'] : "autoselect";
+$pconfig['mediaopt'] = !empty($optcfg['mediaopt']) ? $optcfg['mediaopt'] : "";
+$pconfig['extraoptions'] = !empty($optcfg['extraoptions']) ? $optcfg['extraoptions'] : "";
 if (!empty($ifinfo['wolevents']))
 	$pconfig['wakeon'] = $optcfg['wakeon'];
 
