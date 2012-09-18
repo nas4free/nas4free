@@ -235,7 +235,7 @@ function dump_xml_config_sub($arr, $indent, $in_charset, $out_charset) {
 
 function dump_xml_config($arr, $rootobj, $encoding) {
 	// Set in/out encoding
-	$in_charset = $arr['encoding'];
+	$in_charset = !empty($arr['encoding']) ? $arr['encoding'] : "";
 	$out_charset = $encoding;
 
 	// Do not dump temporary encoding attribute
