@@ -84,6 +84,7 @@ $a_filter_time = array(
 	    "1week" => sprintf(gettext("%d week"), 1),
 	    "2weeks" => sprintf(gettext("%d weeks"), 2),
 	    "30days" => sprintf(gettext("%d days"), 30),
+	    "60days" => sprintf(gettext("%d days"), 60),
 	    "90days" => sprintf(gettext("%d days"), 90),
 	    "180days" => sprintf(gettext("%d days"), 180),
 	    "0" => gettext("All"));
