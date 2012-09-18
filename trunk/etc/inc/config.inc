@@ -515,6 +515,7 @@ function config_write_cache($data) {
 function config_upgrade() {
 	global $config, $g;
 
+	/* Reject blacklist config */
 	if ($config['version'] == '9.6') {
 		putenv("TERM=xterm"); // not defined at boot
 		$result = tui_display_yesno("Your config is a blacklist. You must reset the config or reinstall.\n\nDo you want to reset to Factory Default now?", 50, 8, false);
@@ -534,7 +535,7 @@ function config_upgrade() {
 		return 0;		/* already at latest version */
 
 	if (is_booting())
-		echo "Converting configuration. ";
+		echo "Converting configuration. ({$config['version']} to {$g['latest_config']}) ";
 
 	/* Convert from older config */
 	if ($config['version'] === "0.9") {
@@ -574,6 +575,92 @@ function config_upgrade() {
 		$config['version'] = "1.2";
 	}
 
+	/* Convert 1.2 -> 1.3 */
+	if ($config['version'] === "1.2") {
+		// modify existing key
+		if ($config['system']['motd'] === "V2VsY29tZSB0byBOQVM0RnJlZSE=")
+			$config['system']['motd'] = "V2VsY29tZSB0byBOQVM0RnJlZSENCg==";
+		if ($config['samba']['aiorsize'] < 4096)
+			$config['samba']['aiorsize'] = 4096;
+		if ($config['samba']['aiowsize'] < 4096)
+			$config['samba']['aiowsize'] = 4096;
+		if (empty($config['iscsitarget']['uctladdress'])) {
+			$config['iscsitarget']['uctladdress'] = "127.0.0.1";
+			$config['iscsitarget']['uctlport'] = "3261";
+			$config['iscsitarget']['uctlnetmask'] = "127.0.0.1/8";
+			$config['iscsitarget']['uctlauthmethod'] = "CHAP";
+			$config['iscsitarget']['uctlauthgroup'] = 0;
+			$config['iscsitarget']['mediadirectory'] = "/mnt";
+		}
+		if (!empty($config['system']['sysctl']) && !empty($config['system']['sysctl']['param'])) {
+			$index = array_search_ex("kern.maxfilesperproc", $config['system']['sysctl']['param'], "name");
+			if ($index !== false) {
+				if ($config['system']['sysctl']['param'][$index]['value'] === "32768") {
+					$config['system']['sysctl']['param'][$index]['value'] = "50000";
+				}
+			}
+		}
+		// remove unused key
+		if (!empty($config['system']['sysctl']) && !empty($config['system']['sysctl']['param'])) {
+			$index = array_search_ex("hw.ata.to", $config['system']['sysctl']['param'], "name");
+			if ($index !== false) {
+				unset($config['system']['sysctl']['param'][$index]);
+			}
+		}
+		unset($a);
+		// remove empty entry
+		if (isset($config['system']['hosts'])) {
+			$r = array();
+			foreach ($config['system']['hosts'] as &$a) {
+				if (empty($a) || !isset($a['uuid'])) continue;
+				$r[] = $a;
+			}
+			$config['system']['hosts'] = $r;
+			unset($a);
+		}
+		// add missing values
+		if (!empty($config['zfs']['pools']) && !empty($config['zfs']['pools']['pool'])) {
+			foreach ($config['zfs']['pools']['pool'] as &$a) {
+				if (!isset($a['desc']))
+					$a['desc'] = "";
+			}
+			unset($a);
+		}
+		if (!empty($config['zfs']['vdevices']) && !empty($config['zfs']['vdevices']['vdevice'])) {
+			foreach ($config['zfs']['vdevices']['vdevice'] as &$a) {
+				if (!isset($a['desc']))
+					$a['desc'] = "";
+			}
+			unset($a);
+		}
+		if (!empty($config['zfs']['datasets']) && !empty($config['zfs']['datasets']['dataset'])) {
+			foreach ($config['zfs']['datasets']['dataset'] as &$a) {
+				if (!isset($a['desc']))
+					$a['desc'] = "";
+				if (!isset($a['atime']))
+					$a['atime'] = "on";
+			}
+			unset($a);
+		}
+		if (!empty($config['zfs']['volumes']) && !empty($config['zfs']['volumes']['volume'])) {
+			foreach ($config['zfs']['volumes']['volume'] as &$a) {
+				if (!isset($a['desc']))
+					$a['desc'] = "";
+			}
+			unset($a);
+		}
+		// replace certificate and privatekey
+		if (md5($config['system']['webgui']['certificate']) === "ee3e3c2ddc0f186e8d40e797e8af6f36") {
+			$config['system']['webgui']['certificate'] = "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tDQpNSUlEWURDQ0FrZ0NDUUNZaG9rNlRyekZCakFOQmdrcWhraUc5dzBCQVFVRkFEQnlNUXN3Q1FZRFZRUUdFd0pLDQpVREVUTUJFR0ExVUVDQk1LVTI5dFpTMVRkR0YwWlRFUk1BOEdBMVVFQ2hNSVRrRlRORVp5WldVeEZ6QVZCZ05WDQpCQU1URG01aGN6Um1jbVZsTG14dlkyRnNNU0l3SUFZSktvWklodmNOQVFrQkZoTnBibVp2UUc1aGN6Um1jbVZsDQpMbXh2WTJGc01CNFhEVEV5TURreE56RXlNVEkxTmxvWERUTXlNRGt4TWpFeU1USTFObG93Y2pFTE1Ba0dBMVVFDQpCaE1DU2xBeEV6QVJCZ05WQkFnVENsTnZiV1V0VTNSaGRHVXhFVEFQQmdOVkJBb1RDRTVCVXpSR2NtVmxNUmN3DQpGUVlEVlFRREV3NXVZWE0wWm5KbFpTNXNiMk5oYkRFaU1DQUdDU3FHU0liM0RRRUpBUllUYVc1bWIwQnVZWE0wDQpabkpsWlM1c2IyTmhiRENDQVNJd0RRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFMSCtTR1hrDQpjSzRnNVp2MWRSRFJKQVh0NVhHMVVpZVEzZ1UzdlIvZjBYZnJ5RFBPNjJ3WkhnTWdONTJocGVRL1VvNXl4dTRMDQp1azJtUlpTYlpPai92b0xSZWlpSy8zY0grUStRVml4SFpaMlpQNThBeWpHTXNUOGJ0T3pwYlN4MWtkQkEvUkhqDQpmYmpPamRFK0FocDJiWkVoQzVmaXlYVjlrdjFzTmZmMnFlM0REMUZtd0RGbDM0cVdPT1g2SEFYNHpWOWcrY1dJDQo0S0FRdEYwZ3FJWWd5Z29OckM5dDI4VVc4Z2dqcWs4T0EycnNMUFRsMmkzMk5DanVJSThjL1EzOUhYNkZBRUdvDQo1VGZGL3V0WTlBaFBaaHpWbk0zazJtUFR1RGdMbVZaZmtieml1eHVES293ZzBGUC9IZlZabWRoMkV3M3Y1NmZGDQpDLzh3N1F2QkdPRjF2SXNDQXdFQUFUQU5CZ2txaGtpRzl3MEJBUVVGQUFPQ0FRRUFidWxJNlJCTXFJTzFMT21jDQo1OGg5aHJ1Z25vTFkxNndIRFZQdTE4WmpUSzZYcDBDYWlONVYyR1MwdWdUNzJ2QzVrcXQ0cW1CUWFBa2MwbVdWDQpQQi9YUXhyaEFTd25VMzh1TGVJeWlnMzFCWkx3Yll5S3IzTUJ4cVI5dWwvdWY1MWErR2dVOGFETk42VDRQbGJJDQp5Z0M2dDUxa2E1VzBLbFFGeWhwNTlXT21GOElLOURRTlZpQWpTWkk0WUZsZXhJc1dFTC9DNCtMTGNhTVp3YUUzDQpLUTVKK1lFcG5qMFBKOUYvU1Y4MHFNdnE0RWJ4YmUzbGpFSGlMSVU0VktwV2I0VWJMSWxVNEZNeWtTSzNYMGp4DQpESzJGcERPRnUxL3c2d0FrYW5KanFSQXozUVViRVVocFhCNnVUVUVGcTVJSHNqNkZkbTBkMThkU2NiT0xWcmJGDQpBYlYrZHc9PQ0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==";
+		}
+		if (md5($config['system']['webgui']['privatekey']) === "d0b0ae6c3eed857b471287b96f2bd072") {
+			$config['system']['webgui']['privatekey'] = "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQ0KTUlJRXBBSUJBQUtDQVFFQXNmNUlaZVJ3cmlEbG0vVjFFTkVrQmUzbGNiVlNKNURlQlRlOUg5L1JkK3ZJTTg3cg0KYkJrZUF5QTNuYUdsNUQ5U2puTEc3Z3U2VGFaRmxKdGs2UCsrZ3RGNktJci9kd2Y1RDVCV0xFZGxuWmsvbndESw0KTVl5eFB4dTA3T2x0TEhXUjBFRDlFZU45dU02TjBUNENHblp0a1NFTGwrTEpkWDJTL1d3MTkvYXA3Y01QVVdiQQ0KTVdYZmlwWTQ1Zm9jQmZqTlgyRDV4WWpnb0JDMFhTQ29oaURLQ2cyc0wyM2J4UmJ5Q0NPcVR3NERhdXdzOU9YYQ0KTGZZMEtPNGdqeHo5RGYwZGZvVUFRYWpsTjhYKzYxajBDRTltSE5XY3plVGFZOU80T0F1WlZsK1J2T0s3RzRNcQ0KakNEUVUvOGQ5Vm1aMkhZVERlL25wOFVML3pEdEM4RVk0WFc4aXdJREFRQUJBb0lCQUU0TTFTNXBCOGd6Z0x2cw0KM0pLdFF3Q2VteGhMakdUeEw0cFdNTWFEWE5VYlBVVUtuVTFmamp1TXF4YWlSWjVhN2hhczJmS1VqZk55ejl3aw0KY0JHRDQ4UjFtdjJnUmZtcU0xclJ6aGZJanhTV21NRmVsVXM1Q0poRnpBWi9MWEpyYzY5QWNEaWg2d1ZZL2ZNZA0KSDhyKzEzam1ackVKcjVHbnFRY2JwbWEvY1RCaXR2TnNib3VSZmlQSFB5ck84UlBEdXVIc3k1VXovSVB6cDFMTA0KWmNNd2hwK1RsSjlnVmNDMHRvN2VlemxUMEZ6a2hsMTgwVTlla09wTlB1WUJGc1NsdWZyVEhqTnBzRVE5aGtmKw0KeGJjQjdlZTFvZXJtUjdOSmdBRWVHeS9FeXVuK0UvOWZpOUovb1JCbjZnVXhiaDkvQ1dPd2VGeVRZVVZvd1d1RA0KUC9NY0prRUNnWUVBNUs4YzJKdmtQbWhpWGtNRU9GQkxZQkxvaFBKa2hqdU0rQWlMaERxeENpRTg4S0pod3d3WQ0KdWFpaU0rbXkraTcrbzBDZVF5NlJvb0d2UVRYVHRFUkhEMldtaS9JZzlDdFF0cWNibnRsbEtGYVQrcnZHdmp0RA0KZ3dzV1Y0N09Ia3pwUThWUkZueVZOMnBLZVNudzVnR1F3a2RXaFdIR0wwdXBJNklIakExVVI1c0NnWUVBeDBFYg0KY01BYXVkNXZlZW1NQzN5ZmZTMEx0Z2dtR2dGMGxLSFBJTm5XbXBWdkhjTkZZaGtXMENKMVdNQm5sTlhESkdJKw0KWHkyU3lBNVlteWZCN2FTWWdxVTI5S3ZSejJVR0kvOUlJY1NTM09TK2NEdjcyQjljQjlQN3VMUVBSN281S0s3eA0KSEM4NkxuWVIrb2lqbDBXYzJYUmxrdmt4U0h0YkhVVm8yUXIzeGRFQ2dZRUFubmgyN2VnQm4vbW9DUmc1eVdoag0KQTEyM0FjSVRSUzNwUDB4MG1ob3Q2dzRqYzhHaks0MnJhS1RpV2tVZGdOK21GNjFFdnR0N2tuaDU0UitTNkQzVQ0KWEdnZHBLY1NqUUdqT2gvTk5TUURSSlBTa2hNajQxbWdMQ1EzeEU4eXFLNjFpd0FtZEFXN1JaNkRvemtjTmRkcA0KNENlZFhtcmw4b3BrMkV1RkhWbHpTUGNDZ1lCdFRsb3ZVRE5aSTUwajArcnZvajRiL1VvZllma0U2eWQ1SWdydQ0KaXBJZjJ6cEpxWVcyZXV6NDRPNWU4YTNoQ0NNMUltLzA1cHRQQkErM2plZms1aGFFRlA1QTJzRU9kTzBaY2tHdg0KeEphTWR5L0JnaVoyT1QzVFRZY1puQzJGdTdML2pualdiVklOaXRmeUNHTTE2UXBTZ0hmNFdKdWdsNHMwVTQ5aA0KQVpOTEFRS0JnUURKZzNlUWV0TWR3WUpKbjFzZmVTbUVnTVFNMjZOLzNidURSUG1rTUVtdTgvcVJRYTM4T3VXOA0KUUFmTFVNOC83Vm5OUlhvbmZMR2s0eUpKdG5RSlQ0TlZLdjEvUzgweldNSXJ5azM4L3ZreGVsbDA1Q1Y2Rnp5eA0KdGVtcjRZcE8yMDBxWFl5MjR0aC9QM0RhbFYwcDhWcXJvemJ4eExiS1k5TUpLSWZpWHo5bnV3PT0NCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0t";
+		}
+		$config['version'] = "1.3";
+	}
+
+	/* XXX Convert 9.5 -> 9.7 (must skip 9.6) */
+
 	write_config();
 
 	if (is_booting())
@@ -588,10 +675,12 @@ function config_preinit() {
 
 	$need_write_config = false;
 
+/* remove after 9.1.0.1.294
 	// temporary disable AIO
 	if ($config['samba']['maxprotocol'] == "SMB2") {
 		unset($config['samba']['aio']);
 	}
+*/
 
 	if ($need_write_config) {
 		echo "save config\n";

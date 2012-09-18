@@ -20,6 +20,13 @@ Changes:
 - Clear notify after execute now of rsync client/local.
 - Increase the number of config backup to 6.
 - Confirm permission on temporary directory.
+- Remove existing cache and notify at boot.
+- Change default AIO size to 4096.
+- Change kern.maxfilesperproc to 50000.
+- Update SSL certificate and privatekey.
+- Add iscsi default values to default config.
+- Remove unused hw.ata.to from sysctl.
+- Remove AIO disable at boot.
 - Upgrade to FreeBSD 9.1-RC1.
 - Upgrade istgt to 20120901.
 - Upgrade isboot to 0.2.6.
@@ -33,6 +40,9 @@ Bug fixes:
 - Remove extra space.
 - Fix istgt reload operation is failed.
 - Remount zfs dataset after modifying canmount.
+- Remove unused empty hosts.
+- Add LF to motd.
+- Fix missing desc and atime field of ZFS settings.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
