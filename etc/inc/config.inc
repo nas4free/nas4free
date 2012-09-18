@@ -659,6 +659,31 @@ function config_upgrade() {
 		$config['version'] = "1.3";
 	}
 
+	/* Convert 1.3 -> 1.4 */
+	if ($config['version'] === "1.3") {
+		// add missing values
+		if (!empty($config['zfs']['datasets']) && !empty($config['zfs']['datasets']['dataset'])) {
+			foreach ($config['zfs']['datasets']['dataset'] as &$a) {
+				if (!isset($a['dedup']))
+					$a['dedup'] = "off";
+				if (!isset($a['sync']))
+					$a['sync'] = "standard";
+			}
+			unset($a);
+		}
+		if (!empty($config['zfs']['volumes']) && !empty($config['zfs']['volumes']['volume'])) {
+			foreach ($config['zfs']['volumes']['volume'] as &$a) {
+				if (!isset($a['dedup']))
+					$a['dedup'] = "off";
+				if (!isset($a['sync']))
+					$a['sync'] = "standard";
+			}
+			unset($a);
+		}
+		$config['version'] = "1.4";
+	}
+
+
 	/* XXX Convert 9.5 -> 9.7 (must skip 9.6) */
 
 	write_config();

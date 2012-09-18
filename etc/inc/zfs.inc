@@ -308,6 +308,9 @@ function zfs_dataset_configure($uuid) {
 	if (!empty($dataset['dedup']))
 		$param .= "-o dedup={$dataset['dedup']} ";
 
+	if (!empty($dataset['sync']))
+		$param .= "-o sync={$dataset['sync']} ";
+
 	if (!empty($dataset['atime']))
 		$param .= "-o atime={$dataset['atime']} ";
 	
@@ -385,7 +388,7 @@ function zfs_dataset_properties($uuid) {
 
 	$result = 0;
 
-	foreach (explode(" ", "compression dedup atime canmount readonly quota xattr snapdir") as $attr) {
+	foreach (explode(" ", "compression dedup sync atime canmount readonly quota xattr snapdir") as $attr) {
 		$param = "";
 
 		switch ($attr) {
@@ -397,6 +400,11 @@ function zfs_dataset_properties($uuid) {
 			case "dedup":
 				if (!empty($dataset['dedup']))
 					$param = "dedup={$dataset['dedup']}";
+				break;
+
+			case "sync":
+				if (!empty($dataset['sync']))
+					$param = "sync={$dataset['sync']}";
 				break;
 
 			case "atime":
@@ -486,6 +494,9 @@ function zfs_volume_configure($uuid) {
 	if (!empty($volume['dedup']))
 		$param .= "-o dedup={$volume['dedup']} ";
 		
+	if (!empty($volume['sync']))
+		$param .= "-o sync={$volume['sync']} ";
+		
 	if (!empty($volume['atime']))
 		$param .= "-o atime={$volume['atime']} ";		
 
@@ -543,7 +554,7 @@ function zfs_volume_properties($uuid) {
 
 	$result = 0;
 
-	foreach (explode(" ", "volsize compression dedup atime") as $attr) {
+	foreach (explode(" ", "volsize compression dedup sync atime") as $attr) {
 		$param = "";
 
 		switch ($attr) {
@@ -560,6 +571,11 @@ function zfs_volume_properties($uuid) {
 			case "dedup":
 				if (!empty($volume['dedup']))
 					$param = "dedup={$volume['dedup']}";
+				break;
+
+			case "sync":
+				if (!empty($volume['sync']))
+					$param = "sync={$volume['sync']}";
 				break;
 
 			case "atime":
