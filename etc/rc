@@ -91,6 +91,10 @@ chmod 1777 /tmp
 chown 0:0 /var/tmp
 chmod 1777 /var/tmp
 
+# Remove existing cache and notify
+/bin/rm -f /tmp/config.cache
+/bin/rm -f /var/db/updatenotify.db
+
 # Configure the shared library cache
 /sbin/ldconfig -elf /usr/lib /usr/local/lib /lib
 
