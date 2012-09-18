@@ -71,12 +71,12 @@ $spa = @exec("sysctl -q -n vfs.zfs.version.spa");
 if ($spa == '' || $spa < 21) {
 	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin', $rawdata);
 } else {
-	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin,dedup,atime', $rawdata);
+	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin,dedup,sync,atime', $rawdata);
 }
 foreach($rawdata as $line)
 {
 	if ($line == 'no datasets available') { continue; }
-	list($fname, $mpoint, $compress, $canmount, $quota, $used, $avail, $xattr, $snapdir, $readonly, $origin, $dedup, $atime) = explode("\t", $line);
+	list($fname, $mpoint, $compress, $canmount, $quota, $used, $avail, $xattr, $snapdir, $readonly, $origin, $dedup, $sync, $atime) = explode("\t", $line);
 	if (strpos($fname, '/') !== false) // dataset
 	{
 		if (empty($origin) || $origin != '-') continue;
@@ -92,6 +92,7 @@ foreach($rawdata as $line)
 			'snapdir' => ($snapdir == 'visible'),
 			'readonly' => ($readonly == 'on'),
 			'dedup' => $dedup,
+			'sync' => $sync,
 			'atime' => $atime,
 			'desc' => '',
 		);
@@ -121,12 +122,12 @@ $spa = @exec("sysctl -q -n vfs.zfs.version.spa");
 if ($spa == '' || $spa < 21) {
 	mwexec2('zfs list -H -t volume -o name,volsize,compression,origin', $rawdata);
 } else {
-	mwexec2('zfs list -H -t volume -o name,volsize,compression,origin,dedup', $rawdata);
+	mwexec2('zfs list -H -t volume -o name,volsize,compression,origin,dedup,sync', $rawdata);
 }
 foreach($rawdata as $line)
 {
 	if ($line == 'no datasets available') { continue; }
-	list($fname, $volsize, $compress, $origin, $dedup) = explode("\t", $line);
+	list($fname, $volsize, $compress, $origin, $dedup, $sync) = explode("\t", $line);
 	if (strpos($fname, '/') !== false) // volume
 	{
 		if (empty($origin) || $origin != '-') continue;
@@ -138,6 +139,7 @@ foreach($rawdata as $line)
 			'volsize' => $volsize,
 			'compression' => $compress,
 			'dedup' => $dedup,
+			'sync' => $sync,
 			'desc' => '',
 		);
 	}
@@ -407,17 +409,18 @@ if (!$health)
 			</table>
 			<br />
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
-				<?php html_titleline(gettext('Datasets').' ('.count($zfs['datasets']['dataset']).')', 9);?>
+				<?php html_titleline(gettext('Datasets').' ('.count($zfs['datasets']['dataset']).')', 10);?>
 				<tr>
-					<td width="16%" class="listhdrlr"><?=gettext("Name");?></td>
+					<td width="14%" class="listhdrlr"><?=gettext("Name");?></td>
 					<td width="14%" class="listhdrr"><?=gettext("Pool");?></td>
-					<td width="10%" class="listhdrr"><?=gettext("Compression");?></td>
-					<td width="10%" class="listhdrr"><?=gettext("Dedup");?></td>
-					<td width="10%" class="listhdrr"><?=gettext("Canmount");?></td>
-					<td width="10%" class="listhdrr"><?=gettext("Quota");?></td>
-					<td width="10%" class="listhdrr"><?=gettext("Extended attributes");?></td>
-					<td width="10%" class="listhdrr"><?=gettext("Readonly");?></td>
-					<td width="10%" class="listhdrr"><?=gettext("Snapshot Visibility");?></td>
+					<td width="9%" class="listhdrr"><?=gettext("Compression");?></td>
+					<td width="9%" class="listhdrr"><?=gettext("Dedup");?></td>
+					<td width="9%" class="listhdrr"><?=gettext("Sync");?></td>
+					<td width="9%" class="listhdrr"><?=gettext("Canmount");?></td>
+					<td width="9%" class="listhdrr"><?=gettext("Quota");?></td>
+					<td width="9%" class="listhdrr"><?=gettext("Extended attributes");?></td>
+					<td width="9%" class="listhdrr"><?=gettext("Readonly");?></td>
+					<td width="9%" class="listhdrr"><?=gettext("Snapshot Visibility");?></td>
 				</tr>
 				<?php foreach ($zfs['datasets']['dataset'] as $dataset):?>
 				<tr>
@@ -425,6 +428,7 @@ if (!$health)
 					<td class="listr"><?= $dataset['pool']; ?></td>
 					<td class="listr"><?= $dataset['compression']; ?></td>
 					<td class="listr"><?= $dataset['dedup']; ?></td>
+					<td class="listr"><?= $dataset['sync']; ?></td>
 					<td class="listr"><?= empty($dataset['canmount']) ? 'on' : $dataset['canmount']; ?></td>
 					<td class="listr"><?= empty($dataset['quota']) ? 'none' : $dataset['quota']; ?></td>
 					<td class="listr"><?= empty($dataset['xattr']) ? 'off' : 'on'; ?></td>
@@ -435,13 +439,14 @@ if (!$health)
 			</table>
 			<br />
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
-				<?php html_titleline(gettext('Volumes').' ('.count($zfs['volumes']['volume']).')', 5);?>
+				<?php html_titleline(gettext('Volumes').' ('.count($zfs['volumes']['volume']).')', 6);?>
 				<tr>
 					<td width="16%" class="listhdrlr"><?=gettext("Name");?></td>
-					<td width="21%" class="listhdrr"><?=gettext("Pool");?></td>
-					<td width="21%" class="listhdrr"><?=gettext("Size");?></td>
-					<td width="21%" class="listhdrr"><?=gettext("Compression");?></td>
-					<td width="21%" class="listhdrr"><?=gettext("Dedup");?></td>
+					<td width="17%" class="listhdrr"><?=gettext("Pool");?></td>
+					<td width="17%" class="listhdrr"><?=gettext("Size");?></td>
+					<td width="17%" class="listhdrr"><?=gettext("Compression");?></td>
+					<td width="17%" class="listhdrr"><?=gettext("Dedup");?></td>
+					<td width="16%" class="listhdrr"><?=gettext("Sync");?></td>
 				</tr>
 				<?php foreach ($zfs['volumes']['volume'] as $volume):?>
 				<tr>
@@ -450,6 +455,7 @@ if (!$health)
 					<td class="listr"><?= $volume['volsize']; ?></td>
 					<td class="listr"><?= $volume['compression']; ?></td>
 					<td class="listr"><?= $volume['dedup']; ?></td>
+					<td class="listr"><?= $volume['sync']; ?></td>
 				</tr>
 				<?php endforeach;?>
 			</table>
