@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-09-01 09:21+0000\n"
+"POT-Creation-Date: 2012-09-21 02:40+0000\n"
 "PO-Revision-Date: 2012-04-16 00:17+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-09-13 05:16+0000\n"
-"X-Generator: Launchpad (build 15944)\n"
+"X-Launchpad-Export-Date: 2012-09-20 18:12+0000\n"
+"X-Generator: Launchpad (build 15985)\n"
 "X-Poedit-Country: ALBANIA\n"
 "Language: \n"
 "X-Poedit-Language: Albanian\n"
@@ -900,6 +900,12 @@ msgstr "Zgjidh ne cilen nderfaqe kjo rruge duhet te aplikohet."
 msgid "Clear"
 msgstr "Pastro"
 
+msgid "Clear config and Import disks"
+msgstr ""
+
+msgid "Clear config and Import software raid disks"
+msgstr ""
+
 msgid ""
 "Click &quot;Enable firmware upload&quot; below, then choose the image file "
 "to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
@@ -1018,6 +1024,9 @@ msgstr "Kontrolli i Adreses IP"
 
 msgid "Controller TCP Port"
 msgstr "Kontrolluesi i portes TCP"
+
+msgid "Controls the behavior of synchronous requests."
+msgstr ""
 
 msgid ""
 "Controls the compression algorithm used for this dataset. The 'lzjb' "
@@ -1514,6 +1523,11 @@ msgstr "Ekran"
 msgid "Distributed hash table"
 msgstr ""
 
+msgid ""
+"Do you really want to clear and import?\\nThe existing config will be "
+"cleared and overwritten."
+msgstr ""
+
 msgid "Do you really want to delete all MIBs?"
 msgstr "Doni te fshini me te vertete te gjitha MIBs?"
 
@@ -1640,6 +1654,10 @@ msgid "Do you really want to format this disk? All data will be lost!"
 msgstr ""
 "Dini me te vertete te formatoni kete disk? Te gjitha te dhenat qe ndodhen ne "
 "te do te humbin!"
+
+msgid ""
+"Do you really want to import?\\nThe existing config may be overwritten."
+msgstr ""
 
 msgid "Do you really want to remove the selected item from the list?"
 msgstr "Doni te hiqni me te vertete kete artikull nga lista ?"
@@ -2665,6 +2683,9 @@ msgstr "Importo rregullat e firewall-it."
 
 msgid "Import on-disk ZFS config"
 msgstr "Importo ne disk konfigurimin ZFS"
+
+msgid "Import software raid disks"
+msgstr ""
 
 msgid "In"
 msgstr "Ne"
@@ -4566,10 +4587,6 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
-#, php-format
-msgid "Start scrub on '%s'."
-msgstr ""
-
 msgid "Static"
 msgstr ""
 
@@ -4661,6 +4678,9 @@ msgstr ""
 
 #, php-format
 msgid "Switch to %s/s"
+msgstr ""
+
+msgid "Sync"
 msgstr ""
 
 msgid "Synchronization time"
@@ -5870,7 +5890,7 @@ msgstr "Provo importimin e ZFS-së nga disku."
 msgid "Tuning"
 msgstr "Duke kërkuar"
 
-msgid "Turn access time on or off for this dataset"
+msgid "Turn access time on or off for this dataset."
 msgstr ""
 
 msgid "Turn the monitor to standby after N seconds."
@@ -6237,6 +6257,10 @@ msgstr "Vetem shkrim"
 msgid "Wrong partition type or partition number."
 msgstr "Numri i particionit ose tipi i particionit te gabuar."
 
+#, php-format
+msgid "Wrong permission on %s."
+msgstr ""
+
 msgid "Yes"
 msgstr "Po"
 
@@ -6342,6 +6366,12 @@ msgstr ""
 msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
 
+msgid "all encrypted disks are imported."
+msgstr ""
+
+msgid "all software raid disks are imported."
+msgstr ""
+
 msgid "cachecnid"
 msgstr ""
 
@@ -6362,6 +6392,9 @@ msgstr "ditë(t)"
 
 msgid "dbpath"
 msgstr "dbpath"
+
+msgid "detected an error while importing."
+msgstr ""
 
 #, php-format
 msgid "e.g. %s"
@@ -6418,6 +6451,12 @@ msgstr "mswindows"
 
 msgid "n/a"
 msgstr "n/a"
+
+msgid "no new encrypted disk found."
+msgstr ""
+
+msgid "no new software raid disk found."
+msgstr ""
 
 msgid "noadouble"
 msgstr "noadouble"

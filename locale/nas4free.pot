@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
-"POT-Creation-Date: 2012-09-01 09:21+0000\n"
+"POT-Creation-Date: 2012-09-21 02:40+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -772,6 +772,12 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
+msgid "Clear config and Import disks"
+msgstr ""
+
+msgid "Clear config and Import software raid disks"
+msgstr ""
+
 msgid "Click &quot;Enable firmware upload&quot; below, then choose the image file to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade process."
 msgstr ""
 
@@ -875,6 +881,9 @@ msgid "Controller IP address"
 msgstr ""
 
 msgid "Controller TCP Port"
+msgstr ""
+
+msgid "Controls the behavior of synchronous requests."
 msgstr ""
 
 msgid "Controls the compression algorithm used for this dataset. The 'lzjb' compression algorithm is optimized for performance while providing decent data compression. Setting compression to 'On' uses the 'lzjb' compression algorithm. You can specify the 'gzip' level by using the value 'gzip-N', where N is an integer from 1 (fastest) to 9 (best compression ratio). Currently, 'gzip' is equivalent to 'gzip-6'."
@@ -1332,6 +1341,9 @@ msgstr ""
 msgid "Distributed hash table"
 msgstr ""
 
+msgid "Do you really want to clear and import?\\nThe existing config will be cleared and overwritten."
+msgstr ""
+
 msgid "Do you really want to delete all MIBs?"
 msgstr ""
 
@@ -1438,6 +1450,9 @@ msgid "Do you really want to delete this volume?\\n!!! Note, all data will get l
 msgstr ""
 
 msgid "Do you really want to format this disk? All data will be lost!"
+msgstr ""
+
+msgid "Do you really want to import?\\nThe existing config may be overwritten."
 msgstr ""
 
 msgid "Do you really want to remove the selected item from the list?"
@@ -2364,6 +2379,9 @@ msgid "Import firewall rules."
 msgstr ""
 
 msgid "Import on-disk ZFS config"
+msgstr ""
+
+msgid "Import software raid disks"
 msgstr ""
 
 msgid "In"
@@ -4123,10 +4141,6 @@ msgstr ""
 msgid "Start"
 msgstr ""
 
-#, php-format
-msgid "Start scrub on '%s'."
-msgstr ""
-
 msgid "Static"
 msgstr ""
 
@@ -4217,6 +4231,9 @@ msgstr ""
 
 #, php-format
 msgid "Switch to %s/s"
+msgstr ""
+
+msgid "Sync"
 msgstr ""
 
 msgid "Synchronization time"
@@ -5214,7 +5231,7 @@ msgstr ""
 msgid "Tuning"
 msgstr ""
 
-msgid "Turn access time on or off for this dataset"
+msgid "Turn access time on or off for this dataset."
 msgstr ""
 
 msgid "Turn the monitor to standby after N seconds."
@@ -5541,6 +5558,10 @@ msgstr ""
 msgid "Wrong partition type or partition number."
 msgstr ""
 
+#, php-format
+msgid "Wrong permission on %s."
+msgstr ""
+
 msgid "Yes"
 msgstr ""
 
@@ -5634,6 +5655,12 @@ msgstr ""
 msgid "Zeroconf/Bonjour"
 msgstr ""
 
+msgid "all encrypted disks are imported."
+msgstr ""
+
+msgid "all software raid disks are imported."
+msgstr ""
+
 msgid "cachecnid"
 msgstr ""
 
@@ -5653,6 +5680,9 @@ msgid "day(s)"
 msgstr ""
 
 msgid "dbpath"
+msgstr ""
+
+msgid "detected an error while importing."
 msgstr ""
 
 #, php-format
@@ -5709,6 +5739,12 @@ msgid "mswindows"
 msgstr ""
 
 msgid "n/a"
+msgstr ""
+
+msgid "no new encrypted disk found."
+msgstr ""
+
+msgid "no new software raid disk found."
 msgstr ""
 
 msgid "noadouble"

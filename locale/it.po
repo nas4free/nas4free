@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>POT-Creation-Date: 2012-03-"
 "12 03:02+0000\n"
-"POT-Creation-Date: 2012-09-01 09:21+0000\n"
+"POT-Creation-Date: 2012-09-21 02:40+0000\n"
 "PO-Revision-Date: 2012-09-04 17:16+0000\n"
 "Last-Translator: misterredman <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-09-13 05:16+0000\n"
-"X-Generator: Launchpad (build 15944)\n"
+"X-Launchpad-Export-Date: 2012-09-20 18:12+0000\n"
+"X-Generator: Launchpad (build 15985)\n"
 "X-Poedit-Country: ITALY\n"
 "Language: \n"
 "X-Poedit-Language: Italian\n"
@@ -919,6 +919,12 @@ msgstr "Scegli a quale interfaccia applicare questa route."
 msgid "Clear"
 msgstr "Pulisci"
 
+msgid "Clear config and Import disks"
+msgstr ""
+
+msgid "Clear config and Import software raid disks"
+msgstr ""
+
 msgid ""
 "Click &quot;Enable firmware upload&quot; below, then choose the image file "
 "to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
@@ -1041,6 +1047,9 @@ msgstr "Indirizzo IP del controller"
 
 msgid "Controller TCP Port"
 msgstr "Porta TCP del controller"
+
+msgid "Controls the behavior of synchronous requests."
+msgstr ""
 
 msgid ""
 "Controls the compression algorithm used for this dataset. The 'lzjb' "
@@ -1576,6 +1585,11 @@ msgstr "Display"
 msgid "Distributed hash table"
 msgstr "Tabella hash distribuita"
 
+msgid ""
+"Do you really want to clear and import?\\nThe existing config will be "
+"cleared and overwritten."
+msgstr ""
+
 msgid "Do you really want to delete all MIBs?"
 msgstr "Vuoi cancellare davvero tutti i MIB?"
 
@@ -1700,6 +1714,10 @@ msgstr ""
 msgid "Do you really want to format this disk? All data will be lost!"
 msgstr ""
 "Si vuole realmente formattare questo disco? Verranno persi tutti i dati!"
+
+msgid ""
+"Do you really want to import?\\nThe existing config may be overwritten."
+msgstr ""
 
 msgid "Do you really want to remove the selected item from the list?"
 msgstr "Vuoi veramente eliminare l'oggetto selezionato dalla lista?"
@@ -2775,6 +2793,9 @@ msgstr "Importa regole firewall"
 
 msgid "Import on-disk ZFS config"
 msgstr "Importa la configurazione ZFS che risiede sui dischi."
+
+msgid "Import software raid disks"
+msgstr ""
 
 msgid "In"
 msgstr "Ingresso"
@@ -4796,10 +4817,6 @@ msgstr "Tempo per lo standby"
 msgid "Start"
 msgstr "Inizia"
 
-#, php-format
-msgid "Start scrub on '%s'."
-msgstr "Inizia scrub su '%s'."
-
 msgid "Static"
 msgstr "Statico"
 
@@ -4894,6 +4911,9 @@ msgstr "Passa a"
 #, php-format
 msgid "Switch to %s/s"
 msgstr "Passa a %s/s"
+
+msgid "Sync"
+msgstr ""
 
 msgid "Synchronization time"
 msgstr "Periodo di sincronizzazione"
@@ -6358,8 +6378,8 @@ msgstr "Prova a importare la configurazione ZFS che risiede sui dischi."
 msgid "Tuning"
 msgstr "Ottimizzazione"
 
-msgid "Turn access time on or off for this dataset"
-msgstr "Attiva il tempo di accesso (atime) per questo dataset"
+msgid "Turn access time on or off for this dataset."
+msgstr ""
 
 msgid "Turn the monitor to standby after N seconds."
 msgstr "Standby dello schermo dopo N secondi."
@@ -6759,6 +6779,10 @@ msgstr "Sola scrittura"
 msgid "Wrong partition type or partition number."
 msgstr "Tipo di partizione o numero di partizione errato."
 
+#, php-format
+msgid "Wrong permission on %s."
+msgstr ""
+
 msgid "Yes"
 msgstr "Si"
 
@@ -6878,6 +6902,12 @@ msgstr ""
 msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
 
+msgid "all encrypted disks are imported."
+msgstr ""
+
+msgid "all software raid disks are imported."
+msgstr ""
+
 msgid "cachecnid"
 msgstr "cachecnid"
 
@@ -6898,6 +6928,9 @@ msgstr "giorno(i)"
 
 msgid "dbpath"
 msgstr "dbpath"
+
+msgid "detected an error while importing."
+msgstr ""
 
 #, php-format
 msgid "e.g. %s"
@@ -6955,6 +6988,12 @@ msgstr "mswindows"
 msgid "n/a"
 msgstr "n.d."
 
+msgid "no new encrypted disk found."
+msgstr ""
+
+msgid "no new software raid disk found."
+msgstr ""
+
 msgid "noadouble"
 msgstr "noadouble"
 
@@ -7011,3 +7050,10 @@ msgstr "smonta"
 
 msgid "upriv"
 msgstr "upriv"
+
+#, php-format
+#~ msgid "Start scrub on '%s'."
+#~ msgstr "Inizia scrub su '%s'."
+
+#~ msgid "Turn access time on or off for this dataset"
+#~ msgstr "Attiva il tempo di accesso (atime) per questo dataset"
