@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-09-01 09:21+0000\n"
+"POT-Creation-Date: 2012-09-21 02:40+0000\n"
 "PO-Revision-Date: 2012-06-02 00:13+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-09-13 05:16+0000\n"
-"X-Generator: Launchpad (build 15944)\n"
+"X-Launchpad-Export-Date: 2012-09-20 18:12+0000\n"
+"X-Generator: Launchpad (build 15985)\n"
 "X-Poedit-Country: SLOVAKIA\n"
 "Language: \n"
 "X-Poedit-Language: Slovak\n"
@@ -893,6 +893,12 @@ msgstr "Zvoľte, ktorého rozhrania sa táto cesta týka."
 msgid "Clear"
 msgstr "Vyčistiť"
 
+msgid "Clear config and Import disks"
+msgstr ""
+
+msgid "Clear config and Import software raid disks"
+msgstr ""
+
 msgid ""
 "Click &quot;Enable firmware upload&quot; below, then choose the image file "
 "to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
@@ -1010,6 +1016,9 @@ msgid "Controller IP address"
 msgstr ""
 
 msgid "Controller TCP Port"
+msgstr ""
+
+msgid "Controls the behavior of synchronous requests."
 msgstr ""
 
 msgid ""
@@ -1519,6 +1528,11 @@ msgstr ""
 msgid "Distributed hash table"
 msgstr "Distribuovaná hašovacia tabuľka"
 
+msgid ""
+"Do you really want to clear and import?\\nThe existing config will be "
+"cleared and overwritten."
+msgstr ""
+
 msgid "Do you really want to delete all MIBs?"
 msgstr "Skutočne chcete zmazať všetky MIB?"
 
@@ -1642,6 +1656,10 @@ msgstr ""
 
 msgid "Do you really want to format this disk? All data will be lost!"
 msgstr "Naozaj chcete formátovať disk? Všetky údaje sa stratia!"
+
+msgid ""
+"Do you really want to import?\\nThe existing config may be overwritten."
+msgstr ""
 
 msgid "Do you really want to remove the selected item from the list?"
 msgstr "Skutočne chcete odstrániť vybranú položku zo zoznamu?"
@@ -2695,6 +2713,9 @@ msgid "Import firewall rules."
 msgstr "Importovať pravidlá firewallu."
 
 msgid "Import on-disk ZFS config"
+msgstr ""
+
+msgid "Import software raid disks"
 msgstr ""
 
 msgid "In"
@@ -4651,10 +4672,6 @@ msgstr "Čas prechodu do pohotovostného režimu"
 msgid "Start"
 msgstr ""
 
-#, php-format
-msgid "Start scrub on '%s'."
-msgstr ""
-
 msgid "Static"
 msgstr ""
 
@@ -4748,6 +4765,9 @@ msgstr "Prepnúť na"
 #, php-format
 msgid "Switch to %s/s"
 msgstr "Zmeniť na %s/s"
+
+msgid "Sync"
+msgstr ""
 
 msgid "Synchronization time"
 msgstr ""
@@ -6097,7 +6117,7 @@ msgstr ""
 msgid "Tuning"
 msgstr "Ladenie"
 
-msgid "Turn access time on or off for this dataset"
+msgid "Turn access time on or off for this dataset."
 msgstr ""
 
 msgid "Turn the monitor to standby after N seconds."
@@ -6488,6 +6508,10 @@ msgstr "Len na zápis"
 msgid "Wrong partition type or partition number."
 msgstr "Neznámy typ alebo číslo oblasti."
 
+#, php-format
+msgid "Wrong permission on %s."
+msgstr ""
+
 msgid "Yes"
 msgstr "Áno"
 
@@ -6594,6 +6618,12 @@ msgstr ""
 msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
 
+msgid "all encrypted disks are imported."
+msgstr ""
+
+msgid "all software raid disks are imported."
+msgstr ""
+
 msgid "cachecnid"
 msgstr "cachecnid"
 
@@ -6614,6 +6644,9 @@ msgstr ""
 
 msgid "dbpath"
 msgstr "dbpath"
+
+msgid "detected an error while importing."
+msgstr ""
 
 #, php-format
 msgid "e.g. %s"
@@ -6670,6 +6703,12 @@ msgstr "mswindows"
 
 msgid "n/a"
 msgstr "n/a"
+
+msgid "no new encrypted disk found."
+msgstr ""
+
+msgid "no new software raid disk found."
+msgstr ""
 
 msgid "noadouble"
 msgstr "noadouble"

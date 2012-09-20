@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-09-01 09:21+0000\n"
+"POT-Creation-Date: 2012-09-21 02:40+0000\n"
 "PO-Revision-Date: 2012-06-02 00:14+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-09-13 05:17+0000\n"
-"X-Generator: Launchpad (build 15944)\n"
+"X-Launchpad-Export-Date: 2012-09-20 18:12+0000\n"
+"X-Generator: Launchpad (build 15985)\n"
 "X-Poedit-Country: Brazilian Portuguese\n"
 "Language: \n"
 "X-Poedit-Language: Brazilian Portuguese\n"
@@ -913,6 +913,12 @@ msgstr "Esolha a qual interface esta rota de ve ser aplicada."
 msgid "Clear"
 msgstr "Limpar"
 
+msgid "Clear config and Import disks"
+msgstr ""
+
+msgid "Clear config and Import software raid disks"
+msgstr ""
+
 msgid ""
 "Click &quot;Enable firmware upload&quot; below, then choose the image file "
 "to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
@@ -1034,6 +1040,9 @@ msgstr "Endereço IP do controlador"
 
 msgid "Controller TCP Port"
 msgstr "Porta TCP do controlador"
+
+msgid "Controls the behavior of synchronous requests."
+msgstr ""
 
 msgid ""
 "Controls the compression algorithm used for this dataset. The 'lzjb' "
@@ -1551,6 +1560,11 @@ msgstr "Display"
 msgid "Distributed hash table"
 msgstr "Tabela hash distribuida"
 
+msgid ""
+"Do you really want to clear and import?\\nThe existing config will be "
+"cleared and overwritten."
+msgstr ""
+
 msgid "Do you really want to delete all MIBs?"
 msgstr "Deseja realmente ecluir todas as MIBs"
 
@@ -1675,6 +1689,10 @@ msgstr ""
 
 msgid "Do you really want to format this disk? All data will be lost!"
 msgstr "Deseja realmente formatar este disco? Todos os dados serão perdidos!"
+
+msgid ""
+"Do you really want to import?\\nThe existing config may be overwritten."
+msgstr ""
 
 msgid "Do you really want to remove the selected item from the list?"
 msgstr "Deseja realmente remover o item selecionado da lista?"
@@ -2742,6 +2760,9 @@ msgstr "Importar regras de firewall."
 
 msgid "Import on-disk ZFS config"
 msgstr "Importar configuração ZFS em disco (on-disk)"
+
+msgid "Import software raid disks"
+msgstr ""
 
 msgid "In"
 msgstr "Entrada"
@@ -4749,10 +4770,6 @@ msgstr "Tempo de standby"
 msgid "Start"
 msgstr "Iniciar"
 
-#, php-format
-msgid "Start scrub on '%s'."
-msgstr "Iniciar scrub em '%s'."
-
 msgid "Static"
 msgstr "Estático"
 
@@ -4847,6 +4864,9 @@ msgstr "Alternar para"
 #, php-format
 msgid "Switch to %s/s"
 msgstr "Alternar para %s/s"
+
+msgid "Sync"
+msgstr ""
 
 msgid "Synchronization time"
 msgstr "Horário de sincronização"
@@ -6278,7 +6298,7 @@ msgstr "Tentar importar a partir da configuração on-disk do ZFS."
 msgid "Tuning"
 msgstr "Ajustes finos"
 
-msgid "Turn access time on or off for this dataset"
+msgid "Turn access time on or off for this dataset."
 msgstr ""
 
 msgid "Turn the monitor to standby after N seconds."
@@ -6675,6 +6695,10 @@ msgstr "Somente escrita"
 msgid "Wrong partition type or partition number."
 msgstr "Tipo ou número de partição errado."
 
+#, php-format
+msgid "Wrong permission on %s."
+msgstr ""
+
 msgid "Yes"
 msgstr "Sim"
 
@@ -6791,6 +6815,12 @@ msgstr ""
 msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
 
+msgid "all encrypted disks are imported."
+msgstr ""
+
+msgid "all software raid disks are imported."
+msgstr ""
+
 msgid "cachecnid"
 msgstr "cachecnid"
 
@@ -6811,6 +6841,9 @@ msgstr "dia(s)"
 
 msgid "dbpath"
 msgstr "dbpath"
+
+msgid "detected an error while importing."
+msgstr ""
 
 #, php-format
 msgid "e.g. %s"
@@ -6868,6 +6901,12 @@ msgstr "mswindows"
 msgid "n/a"
 msgstr "n/d"
 
+msgid "no new encrypted disk found."
+msgstr ""
+
+msgid "no new software raid disk found."
+msgstr ""
+
 msgid "noadouble"
 msgstr "noadouble"
 
@@ -6924,3 +6963,7 @@ msgstr "desmontar"
 
 msgid "upriv"
 msgstr "upriv"
+
+#, php-format
+#~ msgid "Start scrub on '%s'."
+#~ msgstr "Iniciar scrub em '%s'."

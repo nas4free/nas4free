@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-09-01 09:21+0000\n"
-"PO-Revision-Date: 2012-06-10 19:27+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2012-09-21 02:40+0000\n"
+"PO-Revision-Date: 2012-09-16 22:07+0000\n"
+"Last-Translator: Lars Sundström <lasun@bredband.net>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-09-13 05:17+0000\n"
-"X-Generator: Launchpad (build 15944)\n"
+"X-Launchpad-Export-Date: 2012-09-20 18:12+0000\n"
+"X-Generator: Launchpad (build 15985)\n"
 "X-Poedit-Country: SWEDEN\n"
 "Language: \n"
 "X-Poedit-Language: Swedish\n"
@@ -124,6 +124,10 @@ msgid ""
 "UFS formatted drive or do imported disks from other OS.<br/><b>CD/DVD "
 "volume</b> if you want to mount a CD/DVD volume."
 msgstr ""
+"<b>EFI GPT partition</b> om Du vill montera en GPT formaterad disk "
+"(<b>förvald partition</b>).<br/><b>MBR partition</b> Om Du vill montera en "
+"UFS formaterad disk eller hantera en importerad disk från ett annat "
+"OS.<br/><b>CD/DVD volym</b> om Du vill montera en CD/DVD volym."
 
 msgid ""
 "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
@@ -284,7 +288,7 @@ msgid "Access Restrictions"
 msgstr "Åtkomstbegränsningar"
 
 msgid "Access Time (atime)"
-msgstr ""
+msgstr "Access tid (atime)"
 
 msgid "Access mode"
 msgstr "Åtkomstläge"
@@ -908,6 +912,12 @@ msgstr "Välj det gränssnitt som denna väg gäller."
 msgid "Clear"
 msgstr "Rensa"
 
+msgid "Clear config and Import disks"
+msgstr ""
+
+msgid "Clear config and Import software raid disks"
+msgstr ""
+
 msgid ""
 "Click &quot;Enable firmware upload&quot; below, then choose the image file "
 "to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
@@ -1030,6 +1040,9 @@ msgstr "IP Adress för kontrollant"
 msgid "Controller TCP Port"
 msgstr "TCP Port för kontrollant"
 
+msgid "Controls the behavior of synchronous requests."
+msgstr ""
+
 msgid ""
 "Controls the compression algorithm used for this dataset. The 'lzjb' "
 "compression algorithm is optimized for performance while providing decent "
@@ -1066,6 +1079,10 @@ msgid ""
 ":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
 "wiki article BEFORE using this feature.</b></br>"
 msgstr ""
+"Styr dedup metod. <br><b><font color='red'>NOTERING/VARNING</font>: Se <a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks-zfs-volumes-volume' target='_blank'>ZFS volymer & deduplikation</a> "
+"wiki artikel FÖRE användning av denna funktion.</b></br>"
 
 msgid ""
 "Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
@@ -1074,6 +1091,10 @@ msgid ""
 ":disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & "
 "deduplication</a> wiki article BEFORE using this feature.</b></br>"
 msgstr ""
+"Styr dedup metod. <br><b><font color='red'>NOTERING/VARNING</font>: Se <a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks_zfs_datasets_dataset' target='_blank'>ZFS dataset & deduplikation</a> "
+"wiki article FÖRE användande av denna funktion.</b></br>"
 
 msgid "Controls whether this dataset can be modified."
 msgstr "Kontrollerar huruvida detta Dataset kan modifieras"
@@ -1130,7 +1151,7 @@ msgid "Current"
 msgstr "Aktuellt"
 
 msgid "Current Version:"
-msgstr ""
+msgstr "NUvarande version:"
 
 msgid "Custom"
 msgstr "Anpassad"
@@ -1548,6 +1569,11 @@ msgstr "Visa"
 msgid "Distributed hash table"
 msgstr "Distribuerad hashtabell"
 
+msgid ""
+"Do you really want to clear and import?\\nThe existing config will be "
+"cleared and overwritten."
+msgstr ""
+
 msgid "Do you really want to delete all MIBs?"
 msgstr "Vill du verkligen radera all MIB:er?"
 
@@ -1672,6 +1698,10 @@ msgstr ""
 msgid "Do you really want to format this disk? All data will be lost!"
 msgstr ""
 "Vill du verkligen formatera den här disken? All data kommer att förloras!"
+
+msgid ""
+"Do you really want to import?\\nThe existing config may be overwritten."
+msgstr ""
 
 msgid "Do you really want to remove the selected item from the list?"
 msgstr "Vill du verkligen ta bort det valda föremålet från listan?"
@@ -2737,6 +2767,9 @@ msgstr "Importera brandväggsregler"
 msgid "Import on-disk ZFS config"
 msgstr "Importera diskbaserad ZFS konfiguration"
 
+msgid "Import software raid disks"
+msgstr ""
+
 msgid "In"
 msgstr "In"
 
@@ -2941,11 +2974,11 @@ msgstr "Senaste konfigurationsändring"
 
 #, php-format
 msgid "Latest Beta Build: %s"
-msgstr ""
+msgstr "Senast beta version: %s"
 
 #, php-format
 msgid "Latest Release: %s"
-msgstr ""
+msgstr "Senast utgåva: %s"
 
 msgid "Latvian"
 msgstr "Lettiska"
@@ -3386,7 +3419,7 @@ msgid "Mutual CHAP Users"
 msgstr "Gemensamma CHAP-användare"
 
 msgid "NAS4Free WebGUI Login"
-msgstr ""
+msgstr "NAS4Free WebGUI Login"
 
 msgid "NFS"
 msgstr "NFS"
@@ -3542,6 +3575,8 @@ msgid ""
 "No disks configured, please add disks to see the diagnostic information of "
 "disks!"
 msgstr ""
+"Inga diskar är konfigurerade.  Lägg till diskar för att kunna se "
+"diagnosinformation för diskar."
 
 msgid "No file was uploaded."
 msgstr "Ingen fil laddades upp."
@@ -4282,7 +4317,7 @@ msgid "Rules"
 msgstr "Regler"
 
 msgid "Run as"
-msgstr ""
+msgstr "Kör som"
 
 msgid "Run now"
 msgstr "Kör nu"
@@ -4512,13 +4547,16 @@ msgstr ""
 "MTU, och vissa gränssnitt har olika begränsningar."
 
 msgid "Set title scrolling speed between 0-10 (default 10)."
-msgstr ""
+msgstr "Ställ in rullhastiget mellan 0-10 (förval är 10)."
 
 msgid ""
 "Set what user the service will run as (www by default). <br><b><font "
 "color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
 "security reasons, use it on your own risk!.</b></br>"
 msgstr ""
+"Ange med vilken användare tjänsten ska köras med (www är "
+"förval).<br><b><font color='red'>NOTE</font>: Att köra som root "
+"<u>rekommenderas inte</u> av säkerhetsskäl, det sker på egen risk!.<br><br>"
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
@@ -4743,10 +4781,6 @@ msgstr "Tid för väntläge"
 msgid "Start"
 msgstr "Starta"
 
-#, php-format
-msgid "Start scrub on '%s'."
-msgstr "Påbörja städning på '%s'"
-
 msgid "Static"
 msgstr "Statisk"
 
@@ -4841,6 +4875,9 @@ msgstr "Växla till"
 #, php-format
 msgid "Switch to %s/s"
 msgstr "Skifta till %s/s"
+
+msgid "Sync"
+msgstr ""
 
 msgid "Synchronization time"
 msgstr "Synkroniseringstid"
@@ -5546,6 +5583,8 @@ msgid ""
 "The reloading request has been sent to the daemon. You can see the result by "
 "<a href=\"%s\">Log</a>."
 msgstr ""
+"Begäran om omladdning har skickat till daemon. Resultatet kan ses via <a "
+"href=\"%s\">Log</a>."
 
 #, php-format
 msgid "The removable area mapped to LUN%d."
@@ -6144,7 +6183,7 @@ msgid "Times"
 msgstr "Tider"
 
 msgid "TitleSpeed"
-msgstr ""
+msgstr "TitleSpeed"
 
 msgid ""
 "To configure the target, you must add at least Portal Group and Initiator "
@@ -6283,7 +6322,7 @@ msgstr "Försök att importera från diskbaserad ZFS konfiguration."
 msgid "Tuning"
 msgstr "Justering"
 
-msgid "Turn access time on or off for this dataset"
+msgid "Turn access time on or off for this dataset."
 msgstr ""
 
 msgid "Turn the monitor to standby after N seconds."
@@ -6681,6 +6720,10 @@ msgstr "Enbart skrivbar"
 msgid "Wrong partition type or partition number."
 msgstr "Felaktig partition eller partitionsnummer"
 
+#, php-format
+msgid "Wrong permission on %s."
+msgstr ""
+
 msgid "Yes"
 msgstr "Ja"
 
@@ -6799,6 +6842,12 @@ msgstr ""
 msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
 
+msgid "all encrypted disks are imported."
+msgstr ""
+
+msgid "all software raid disks are imported."
+msgstr ""
+
 msgid "cachecnid"
 msgstr "cachecnid (cnid-buffert)"
 
@@ -6819,6 +6868,9 @@ msgstr "dag(ar)"
 
 msgid "dbpath"
 msgstr "dbpath"
+
+msgid "detected an error while importing."
+msgstr ""
 
 #, php-format
 msgid "e.g. %s"
@@ -6876,23 +6928,29 @@ msgstr "mswindows"
 msgid "n/a"
 msgstr "ej tillgängligt"
 
+msgid "no new encrypted disk found."
+msgstr ""
+
+msgid "no new software raid disk found."
+msgstr ""
+
 msgid "noadouble"
-msgstr "ogörligt"
+msgstr "noadouble"
 
 msgid "nodev"
-msgstr "ej dev"
+msgstr "nodev"
 
 msgid "nofileid"
-msgstr "ingen fält identitet"
+msgstr "nofileid"
 
 msgid "nohex"
-msgstr "ej hex"
+msgstr "nohex"
 
 msgid "none"
 msgstr "ingen"
 
 msgid "nostat"
-msgstr "ingen status"
+msgstr "nostat"
 
 msgid "phpBB"
 msgstr "phpBB"
@@ -6910,7 +6968,7 @@ msgid "rotated block-interleaved parity"
 msgstr "roterad block-interfolierad paritet"
 
 msgid "scan target failed."
-msgstr "scanning av målet misslyckades"
+msgstr "skanning av målet misslyckades."
 
 msgid "second(s)"
 msgstr "sekund(er)"
@@ -6925,10 +6983,17 @@ msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
 msgid "umask"
-msgstr "demaskering"
+msgstr "umask"
 
 msgid "umount"
 msgstr "umount"
 
 msgid "upriv"
 msgstr "upriv"
+
+#, php-format
+#~ msgid "Start scrub on '%s'."
+#~ msgstr "Påbörja städning på '%s'"
+
+#~ msgid "Turn access time on or off for this dataset"
+#~ msgstr "Slå av/på access tid för detta dataset"

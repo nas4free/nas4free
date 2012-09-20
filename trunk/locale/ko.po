@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-09-01 09:21+0000\n"
+"POT-Creation-Date: 2012-09-21 02:40+0000\n"
 "PO-Revision-Date: 2012-03-17 08:48+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-09-13 05:16+0000\n"
-"X-Generator: Launchpad (build 15944)\n"
+"X-Launchpad-Export-Date: 2012-09-20 18:12+0000\n"
+"X-Generator: Launchpad (build 15985)\n"
 "X-Poedit-Country: KOREA\n"
 "Language: \n"
 "X-Poedit-Language: Korean\n"
@@ -869,6 +869,12 @@ msgstr "이 라우트가 적용되어야 할 인터페이스를 선택하십시�
 msgid "Clear"
 msgstr "제거"
 
+msgid "Clear config and Import disks"
+msgstr ""
+
+msgid "Clear config and Import software raid disks"
+msgstr ""
+
 msgid ""
 "Click &quot;Enable firmware upload&quot; below, then choose the image file "
 "to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
@@ -984,6 +990,9 @@ msgstr "컨트롤러 IP 주소"
 
 msgid "Controller TCP Port"
 msgstr "컨트롤러 TCP 포트"
+
+msgid "Controls the behavior of synchronous requests."
+msgstr ""
 
 msgid ""
 "Controls the compression algorithm used for this dataset. The 'lzjb' "
@@ -1487,6 +1496,11 @@ msgstr "표시"
 msgid "Distributed hash table"
 msgstr "분산 해쉬 테이블"
 
+msgid ""
+"Do you really want to clear and import?\\nThe existing config will be "
+"cleared and overwritten."
+msgstr ""
+
 msgid "Do you really want to delete all MIBs?"
 msgstr "정말로 모든 MIB를 삭제하시겠습니까?"
 
@@ -1602,6 +1616,10 @@ msgstr "정말로 이 볼륨을 삭제하시겠습니까?\\n!!! 주의. 모든 �
 
 msgid "Do you really want to format this disk? All data will be lost!"
 msgstr "정말로 이 디스크를 포맷 하시겠습니까? 모든 데이터를 잃게 될 것입니다!"
+
+msgid ""
+"Do you really want to import?\\nThe existing config may be overwritten."
+msgstr ""
 
 msgid "Do you really want to remove the selected item from the list?"
 msgstr "리스트에서 선택된 항목을 정말로 삭제하시겠습니까?"
@@ -2618,6 +2636,9 @@ msgstr "방화벽 규칙 가져오기."
 
 msgid "Import on-disk ZFS config"
 msgstr "온-디스크 ZFS 설정 가져오기"
+
+msgid "Import software raid disks"
+msgstr ""
 
 msgid "In"
 msgstr "안"
@@ -4509,10 +4530,6 @@ msgstr "대기 시간"
 msgid "Start"
 msgstr "시작"
 
-#, php-format
-msgid "Start scrub on '%s'."
-msgstr "'%s'에서 scrub 시작."
-
 msgid "Static"
 msgstr "스태틱"
 
@@ -4605,6 +4622,9 @@ msgstr "전환 대상:"
 #, php-format
 msgid "Switch to %s/s"
 msgstr "%s/s로(으로) 전환"
+
+msgid "Sync"
+msgstr ""
 
 msgid "Synchronization time"
 msgstr "동기화 시간"
@@ -5881,7 +5901,7 @@ msgstr "온-디스크 ZFS 설정에서 가져오기를 시도하십시오."
 msgid "Tuning"
 msgstr "미세 조정"
 
-msgid "Turn access time on or off for this dataset"
+msgid "Turn access time on or off for this dataset."
 msgstr ""
 
 msgid "Turn the monitor to standby after N seconds."
@@ -6249,6 +6269,10 @@ msgstr "쓰기 전용"
 msgid "Wrong partition type or partition number."
 msgstr "잘못된 파티션 타입이나 파티션 번호."
 
+#, php-format
+msgid "Wrong permission on %s."
+msgstr ""
+
 msgid "Yes"
 msgstr "예"
 
@@ -6353,6 +6377,12 @@ msgstr ""
 msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
 
+msgid "all encrypted disks are imported."
+msgstr ""
+
+msgid "all software raid disks are imported."
+msgstr ""
+
 msgid "cachecnid"
 msgstr "cachecnid"
 
@@ -6373,6 +6403,9 @@ msgstr "일"
 
 msgid "dbpath"
 msgstr "dbpath"
+
+msgid "detected an error while importing."
+msgstr ""
 
 #, php-format
 msgid "e.g. %s"
@@ -6430,6 +6463,12 @@ msgstr "mswindows"
 msgid "n/a"
 msgstr "n/a"
 
+msgid "no new encrypted disk found."
+msgstr ""
+
+msgid "no new software raid disk found."
+msgstr ""
+
 msgid "noadouble"
 msgstr "noadouble"
 
@@ -6486,3 +6525,7 @@ msgstr "마운트 해제"
 
 msgid "upriv"
 msgstr "upriv"
+
+#, php-format
+#~ msgid "Start scrub on '%s'."
+#~ msgstr "'%s'에서 scrub 시작."
