@@ -44,8 +44,26 @@ require("guiconfig.inc");
 $pgtitle = array(gettext("Disks"),gettext("Encryption"),gettext("Management"));
 
 if ($_POST) {
+	unset($input_errors);
 	$pconfig = $_POST;
 
+	$clean_import = false;
+	if (!empty($_POST['clear_import'])) {
+		$clean_import = true;
+	}
+	if (!empty($_POST['import']) || !empty($_POST['clear_import'])) {
+		$retval = disks_import_all_encrypted_disks($clean_import);
+		if ($retval == 0) {
+			$savemsg = gettext("no new encrypted disk found.");
+		} else if ($retval > 0) {
+			$savemsg = gettext("all encrypted disks are imported.");
+		} else {
+			$input_errors[] = gettext("detected an error while importing.");
+		}
+		//skip redirect
+		//header("Location: disks_crypt.php");
+		//exit;
+	}
 	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
@@ -117,6 +135,8 @@ function geli_process_updatenotification($mode, $data) {
     <td class="tabcont">
       <form action="disks_crypt.php" method="post">
         <?php if (!empty($savemsg)) print_info_box($savemsg); ?>
+	<?php if (!empty($errormsg)) print_error_box($errormsg);?>
+	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
         <?php if (updatenotify_exists_mode("geli", UPDATENOTIFY_MODE_DIRTY)) print_warning_box(gettext("Warning: You are going to delete an encrypted volume. All data will get lost and can not be recovered."));?>
         <?php if (updatenotify_exists("geli")) print_config_change_box();?>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -172,6 +192,10 @@ function geli_process_updatenotification($mode, $data) {
 						</td>
 			    </tr>
         </table>
+	<div id="submit">
+		<input name="import" type="submit" class="formbtn" value="<?=gettext("Import disks");?>" onclick="return confirm('<?=gettext("Do you really want to import?\\nThe existing config may be overwritten.");?>');" />
+		<input name="clear_import" type="submit" class="formbtn" value="<?=gettext("Clear config and Import disks");?>" onclick="return confirm('<?=gettext("Do you really want to clear and import?\\nThe existing config will be cleared and overwritten.");?>');" />
+	</div>
         <?php include("formend.inc");?>
       </form>
 	  </td>

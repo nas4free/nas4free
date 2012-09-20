@@ -1386,6 +1386,121 @@ function disks_rescan() {
 	mwexec2("camcontrol rescan all");
 }
 
+// Import action
+// 0: no found, n > 0: n disks imported, n < 0: error
+function disks_import_all_encrypted_disks($clean_import) {
+	global $config;
+
+	$a_ealgo = array("AES-XTS" => "AES", "AES-CBC" => "AES", "Blowfish-CBC" => "Blowfish",
+		 "CAMELLIA-CBC" => "Camellia", "3DES-CBC" => "3DES");
+	$need_write_config = false;
+	$num = $error = 0;
+
+	$disks = get_all_disks_list();
+	if (empty($disks))
+		return $num;
+
+	if (empty($config['disks']['disk']))
+		$config['disks']['disk'] = array();
+	if (empty($config['geli']['vdisk']))
+		$config['geli']['vdisk'] = array();
+	if (!empty($clean_import))
+		$config['geli']['vdisk'] = array();
+
+	foreach ($disks as $diskv) {
+		$dev = $diskv['devicespecialfile'];
+		mwexec2("geli dump {$dev} 2>/dev/null", $rawdata);
+		if (empty($rawdata))
+			continue;
+		$ealgo = $keylen = "";
+		foreach ($rawdata as $line) {
+			if (preg_match("/^\s*ealgo\s*:\s*(.+)$/", $line, $m)) {
+				$ealgo = $m[1];
+			} else if (preg_match("/^\s*keylen\s*:\s*(.+)$/", $line, $m)) {
+				$keylen = $m[1];
+			}
+		}
+		if (empty($ealgo) || empty($keylen)) {
+			$error++;
+			continue;
+		}
+		if (!array_key_exists($ealgo, $a_ealgo)) {
+			$error++;
+			continue;
+		}
+		$ealgo = $a_ealgo[$ealgo];
+
+		// exist geli?
+		$index = array_search_ex($dev, $config['geli']['vdisk'], "device");
+		if (false === $index) {
+			$num++; // detected
+
+			$geli = array();
+			$geli['uuid'] = uuid();
+			$geli['name'] = $diskv['name'];
+			$geli['device'] = $dev;
+			$geli['devicespecialfile'] = "{$geli['device']}.eli";
+			$geli['desc'] = "Encrypted disk";
+			$geli['size'] = $diskv['size'];
+			$geli['aalgo'] = "none";
+			$geli['ealgo'] = $ealgo;
+
+			$config['geli']['vdisk'][] = $geli;
+			$need_write_config = true;
+		} else {
+			// already exist in config
+		}
+
+		// exist disks?
+		$index = array_search_ex($dev, $config['disks']['disk'], "devicespecialfile");
+		if ($clean_import && false !== $index) {
+			unset($config['disks']['disk'][$index]);
+			$index = false;
+		}
+		if (false === $index) {
+			if ($diskv['type'] == 'SCSI' || $diskv['type'] == 'RAID' || $diskv['type'] == 'IDE') {
+				$pdisk = array();
+				$pdisk['uuid'] = uuid();
+				$pdisk['name'] = $diskv['name'];
+				$pdisk['devicespecialfile'] = $dev;
+				$pdisk['harddiskstandby'] = "0";
+				$pdisk['acoustic'] = "0";
+				$pdisk['fstype'] = "geli";
+				$pdisk['apm'] = "0";
+				$pdisk['transfermode'] = "auto";
+				$pdisk['type'] = $diskv['type'];
+				$pdisk['desc'] = !empty($diskv['desc']) ? $diskv['desc'] : "";
+				$pdisk['size'] = $diskv['size'];
+				$serial = "";
+				if (!empty($diskv['serial'])) {
+					$serial = $diskv['serial'];
+				}
+				if (($serial == "n/a") || ($serial == gettext("n/a"))) {
+					$serial = "";
+				}
+				$pdisk['serial'] = $serial;
+				$pdisk['smart']['enable'] = false;
+				$pdisk['smart']['extraoptions'] = "";
+				
+				$config['disks']['disk'][] = $pdisk;
+				$need_write_config = true;
+			}
+		} else {
+			// already exist in config
+			if ($diskv['type'] == 'SCSI' || $diskv['type'] == 'RAID' || $diskv['type'] == 'IDE') {
+				$config['disks']['disk'][$index]['fstype'] = "geli";
+				$need_write_config = true;
+			}
+		}
+	}
+	if ($need_write_config) {
+		write_config();
+	}
+	if ($error != 0)
+		return -$error;
+	return $num;
+}
+
 // Convert old ad to ada
 function disks_convert_vdisk_to_ada($key, &$admap, &$raidmap) {
 	global $config;
