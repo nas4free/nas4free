@@ -2036,7 +2036,7 @@ function set_conf_disk_fstype($disk, $fstype)
 										"geli"    => "vdisk");
 
 	while (list($class, $val) = each($diskconf)) {
-		if (!is_array($config[$class][$val]))
+		if (empty($config[$class][$val]) || !is_array($config[$class][$val]))
 			continue;
 //	echo "Searching array \$config['$class']['$val'] using key 'devicespecialfile'\n";
 		$id = array_search_ex($disk, $config[$class][$val], "devicespecialfile");
