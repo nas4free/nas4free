@@ -1383,7 +1383,7 @@ function disks_rescan() {
 		}
 	}
 	*/
-	mwexec2("camcontrol rescan all", $buslist, $return_val);
+	mwexec2("camcontrol rescan all");
 }
 
 // Convert old ad to ada
