@@ -605,7 +605,7 @@ function get_gmirror_disks_list()
 	/* Display all configured gmirror volume */
 	exec("/sbin/gmirror list",$rawdata);
 
-	$foundname = 0 ;
+	$foundstate = $foundname = 0 ;
 
 	foreach ($rawdata as $line) {
 		/* Use space for break the line */
@@ -638,8 +638,19 @@ function get_gmirror_disks_list()
 		if ( (strcmp($aline[0],"State:") == 0) && $foundname) {
 			$disklist[$diskname]['state'] = $aline[1];
 
-			// init the check variable for the next RAID volume
+			// check next
 			$foundname = 0 ;
+			$foundstate = 1 ;
+			continue ;
+		}
+
+		// look for this output:
+		// Balance: round-robin
+		if ( (strcmp($aline[0],"Balance:") == 0) && $foundstate) {
+			$disklist[$diskname]['balance'] = $aline[1];
+
+			// init the check variable for the next RAID volume
+			$foundstate = 0 ;
 			continue ;
 		}
 	}

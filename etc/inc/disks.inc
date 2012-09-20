@@ -1386,7 +1386,215 @@ function disks_rescan() {
 	mwexec2("camcontrol rescan all");
 }
 
+// Import all consumers used by software raid
+function disks_import_consumers($name, $type, $dev, $disks, $clean_import) {
+	global $config;
+
+	$consumers = array();
+
+	unset($rawdata);
+	mwexec2("/sbin/{$type} list {$name}", $rawdata);
+	if (empty($rawdata))
+		return $consumers;
+	$found_consumers = 0;
+	foreach ($rawdata as $line) {
+		if (preg_match("/^Consumers:/", $line)) {
+			$found_consumers = 1;
+			continue;
+		}
+		if ($found_consumers && preg_match("/^.+\s+Name:\s+(.+)$/", $line, $m)) {
+			$consumers[] = "/dev/".$m[1];
+			continue;
+		}
+	}
+
+	// import consumers and mark as softraid
+	foreach ($consumers as $condev) {
+		// encrypted?
+		if (preg_match("/.+\.eli$/", $condev, $m)) {
+			$index = array_search_ex($condev, $config['geli']['vdisk'], "devicespecialfile");
+			if (false === $index) {
+				// XXX not import encrypted consumer
+			} else {
+				$config['geli']['vdisk'][$index]['fstype'] = "softraid";
+			}
+		} else {
+			$index = array_search_ex($condev, $config['disks']['disk'], "devicespecialfile");
+			if ($clean_import && false !== $index) {
+				unset($config['disks']['disk'][$index]);
+				$index = false;
+			}
+			$index2 = array_search_ex($condev, $disks, "devicespecialfile");
+			if (false === $index && false === $index2) {
+				// not found both config and detect list
+			} else if (false === $index && false !== $index2) {
+				// no config but detect
+				$diskv = $disks[$index2];
+				if ($diskv['type'] == 'SCSI' || $diskv['type'] == 'RAID' || $diskv['type'] == 'IDE') {
+					$pdisk = array();
+					$pdisk['uuid'] = uuid();
+					$pdisk['name'] = $diskv['name'];
+					$pdisk['devicespecialfile'] = $condev;
+					$pdisk['harddiskstandby'] = "0";
+					$pdisk['acoustic'] = "0";
+					$pdisk['fstype'] = "softraid";
+					$pdisk['apm'] = "0";
+					$pdisk['transfermode'] = "auto";
+					$pdisk['type'] = $diskv['type'];
+					$pdisk['desc'] = !empty($diskv['desc']) ? $diskv['desc'] : "";
+					$pdisk['size'] = $diskv['size'];
+					$serial = "";
+					if (!empty($diskv['serial'])) {
+						$serial = $diskv['serial'];
+					}
+					if (($serial == "n/a") || ($serial == gettext("n/a"))) {
+						$serial = "";
+					}
+					$pdisk['serial'] = $serial;
+					$pdisk['smart']['enable'] = false;
+					$pdisk['smart']['extraoptions'] = "";
+				
+					$config['disks']['disk'][] = $pdisk;
+				}
+			} else if (false !== $index) {
+				// found config
+				$config['disks']['disk'][$index]['fstype'] = "softraid";
+			}
+		}
+	}
+
+	return $consumers;
+}
+
 // Import action
+// 0: no found, n > 0: n disks imported, n < 0: error
+function disks_import_all_swraid_disks($clean_import) {
+	global $config;
+
+	$need_write_config = false;
+	$num = $error = 0;
+
+	$disks = get_all_disks_list();
+	if (empty($disks))
+		return $num;
+
+	if (empty($config['disks']['disk']))
+		$config['disks']['disk'] = array();
+	if (empty($config['gconcat']['vdisk']))
+		$config['gconcat']['vdisk'] = array();
+	if (empty($config['gstripe']['vdisk']))
+		$config['gstripe']['vdisk'] = array();
+	if (empty($config['gmirror']['vdisk']))
+		$config['gmirror']['vdisk'] = array();
+	if (empty($config['graid5']['vdisk']))
+		$config['graid5']['vdisk'] = array();
+	if (empty($config['gvinum']['vdisk']))
+		$config['gvinum']['vdisk'] = array();
+	if (!empty($clean_import)) {
+		$config['gconcat']['vdisk'] = array();
+		$config['gstripe']['vdisk'] = array();
+		$config['gmirror']['vdisk'] = array();
+		$config['graid5']['vdisk'] = array();
+		$config['gvinum']['vdisk'] = array();
+	}
+
+	foreach ($disks as $diskv) {
+		$name = $diskv['name'];
+		$type = $diskv['type'];
+		$dev = $diskv['devicespecialfile'];
+		if ($type == "gmirror") {
+			// swraid exist in config?
+			$index = array_search_ex($dev, $config['gmirror']['vdisk'], "devicespecialfile");
+			if (false === $index) {
+				$num++; // detected
+
+				$consumers = disks_import_consumers($name, $type, $dev, $disks, $clean_import);
+				$swraid = array();
+				$swraid['uuid'] = uuid();
+				$swraid['name'] = $name;
+				$swraid['balance'] = $diskv['balance'];
+				$swraid['type'] = 1;
+				$swraid['device'] = $consumers;
+				$swraid['desc'] = "Software gmirror RAID 1";
+				$swraid['devicespecialfile'] = $dev;
+
+				$config['gmirror']['vdisk'][] = $swraid;
+				$need_write_config = true;
+			} else {
+				// already exist in config
+			}
+		} else if ($type == "gstripe") {
+			// swraid exist in config?
+			$index = array_search_ex($dev, $config['gstripe']['vdisk'], "devicespecialfile");
+			if (false === $index) {
+				$num++; // detected
+
+				$consumers = disks_import_consumers($name, $type, $dev, $disks, $clean_import);
+				$swraid = array();
+				$swraid['uuid'] = uuid();
+				$swraid['name'] = $name;
+				$swraid['type'] = 0;
+				$swraid['device'] = $consumers;
+				$swraid['desc'] = "Software gstripe RAID 0";
+				$swraid['devicespecialfile'] = $dev;
+
+				$config['gstripe']['vdisk'][] = $swraid;
+				$need_write_config = true;
+			} else {
+				// already exist in config
+			}
+		} else if ($type == "gconcat") {
+			// swraid exist in config?
+			$index = array_search_ex($dev, $config['gconcat']['vdisk'], "devicespecialfile");
+			if (false === $index) {
+				$num++; // detected
+
+				$consumers = disks_import_consumers($name, $type, $dev, $disks, $clean_import);
+				$swraid = array();
+				$swraid['uuid'] = uuid();
+				$swraid['name'] = $name;
+				$swraid['type'] = "JBOD";
+				$swraid['device'] = $consumers;
+				$swraid['desc'] = "Software gconcat JBOD";
+				$swraid['devicespecialfile'] = $dev;
+
+				$config['gconcat']['vdisk'][] = $swraid;
+				$need_write_config = true;
+			} else {
+				// already exist in config
+			}
+		} else if ($type == "graid5") {
+			// swraid exist in config?
+			$index = array_search_ex($dev, $config['graid5']['vdisk'], "devicespecialfile");
+			if (false === $index) {
+				$num++; // detected
+
+				$consumers = disks_import_consumers($name, $type, $dev, $disks, $clean_import);
+				$swraid = array();
+				$swraid['uuid'] = uuid();
+				$swraid['name'] = $name;
+				$swraid['type'] = 5;
+				$swraid['device'] = $consumers;
+				$swraid['desc'] = "Software graid5 RAID 5";
+				$swraid['devicespecialfile'] = $dev;
+
+				$config['graid5']['vdisk'][] = $swraid;
+				$need_write_config = true;
+			} else {
+				// already exist in config
+			}
+		} else if ($type == "gvinum") {
+			// not supported
+		}
+	}
+	if ($need_write_config) {
+		write_config();
+	}
+	if ($error != 0)
+		return -$error;
+	return $num;
+}
+
 // 0: no found, n > 0: n disks imported, n < 0: error
 function disks_import_all_encrypted_disks($clean_import) {
 	global $config;
@@ -1409,6 +1617,7 @@ function disks_import_all_encrypted_disks($clean_import) {
 
 	foreach ($disks as $diskv) {
 		$dev = $diskv['devicespecialfile'];
+		unset($rawdata);
 		mwexec2("geli dump {$dev} 2>/dev/null", $rawdata);
 		if (empty($rawdata))
 			continue;
