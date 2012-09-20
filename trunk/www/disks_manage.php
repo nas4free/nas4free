@@ -46,6 +46,23 @@ $pgtitle = array(gettext("Disks"),gettext("Management"));
 if ($_POST) {
 	$pconfig = $_POST;
 
+	$clean_import = false;
+	if (!empty($_POST['clear_import'])) {
+		$clean_import = true;
+	}
+	if (!empty($_POST['import']) || !empty($_POST['clear_import'])) {
+		$retval = disks_import_all_swraid_disks($clean_import);
+		if ($retval == 0) {
+			$savemsg = gettext("no new software raid disk found.");
+		} else if ($retval > 0) {
+			$savemsg = gettext("all software raid disks are imported.");
+		} else {
+			$input_errors[] = gettext("detected an error while importing.");
+		}
+		//skip redirect
+		//header("Location: disks_manage.php");
+		//exit;
+	}
 	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
@@ -121,7 +138,9 @@ function diskmanagement_process_updatenotification($mode, $data) {
   <tr>
     <td class="tabcont">
 			<form action="disks_manage.php" method="post">
-				<?php if ($savemsg) print_info_box($savemsg); ?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
+				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (updatenotify_exists("device")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
@@ -180,8 +199,10 @@ function diskmanagement_process_updatenotification($mode, $data) {
 					</tr>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Rescan disks");?>" />
-					<input type="hidden" name="disks_rescan" value="1" />
+					<input name="import" type="submit" class="formbtn" value="<?=gettext("Import software raid disks");?>" onclick="return confirm('<?=gettext("Do you really want to import?\\nThe existing config may be overwritten.");?>');" />
+					<input name="clear_import" type="submit" class="formbtn" value="<?=gettext("Clear config and Import software raid disks");?>" onclick="return confirm('<?=gettext("Do you really want to clear and import?\\nThe existing config will be cleared and overwritten.");?>');" />
+
+					<input name="disks_rescan" type="submit" class="formbtn" value="<?=gettext("Rescan disks");?>" />
 				</div>
 				<?php
 				if ($do_action) {
