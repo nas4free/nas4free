@@ -1,4 +1,4 @@
---- amdtemp/amdtemp.c.orig	2011-09-23 09:51:37.000000000 +0900
+--- amdtemp/amdtemp.c.orig	2012-08-14 08:53:33.000000000 +0900
 +++ amdtemp/amdtemp.c	2012-09-20 18:17:54.000000000 +0900
 @@ -1,7 +1,7 @@
  /*-
@@ -19,7 +19,7 @@
   */
  
  #include <sys/cdefs.h>
--__FBSDID("$FreeBSD: src/sys/dev/amdtemp/amdtemp.c,v 1.8.2.1 2011/09/23 00:51:37 kensmith Exp $");
+-__FBSDID("$FreeBSD: releng/9.1/sys/dev/amdtemp/amdtemp.c 197205 2009-09-14 23:08:19Z jkim $");
 +__FBSDID("$FreeBSD: head/sys/dev/amdtemp/amdtemp.c 232090 2012-02-24 00:02:46Z jkim $");
  
  #include <sys/param.h>
