@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2012-09-21 02:40+0000\n"
-"PO-Revision-Date: 2012-09-14 22:23+0000\n"
+"PO-Revision-Date: 2012-09-21 23:58+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-09-20 18:12+0000\n"
-"X-Generator: Launchpad (build 15985)\n"
+"X-Launchpad-Export-Date: 2012-09-26 16:28+0000\n"
+"X-Generator: Launchpad (build 16033)\n"
 "X-Poedit-Country: Netherlands\n"
 "Language: \n"
 "X-Poedit-Language: Dutch\n"
@@ -928,10 +928,10 @@ msgid "Clear"
 msgstr "Wissen"
 
 msgid "Clear config and Import disks"
-msgstr ""
+msgstr "Config leegmaken en schijven importeren"
 
 msgid "Clear config and Import software raid disks"
-msgstr ""
+msgstr "Config leegmaken en software raid schijven importeren"
 
 msgid ""
 "Click &quot;Enable firmware upload&quot; below, then choose the image file "
@@ -1059,7 +1059,7 @@ msgid "Controller TCP Port"
 msgstr "TCP-poort Controller"
 
 msgid "Controls the behavior of synchronous requests."
-msgstr ""
+msgstr "Bepaalt het gedrag van synchrone aanvragen."
 
 msgid ""
 "Controls the compression algorithm used for this dataset. The 'lzjb' "
@@ -1245,7 +1245,7 @@ msgid "Dataset"
 msgstr "Dataset"
 
 msgid "Datasets"
-msgstr "Datasetten"
+msgstr "Datasets"
 
 msgid "Date & Time"
 msgstr "Datum & Tijd"
@@ -1599,6 +1599,8 @@ msgid ""
 "Do you really want to clear and import?\\nThe existing config will be "
 "cleared and overwritten."
 msgstr ""
+"Weet u zeker dat u wilt leegmaken en importeren?\\nDe huidige config zal "
+"worden leeggemaakt en overschreven."
 
 msgid "Do you really want to delete all MIBs?"
 msgstr "Weet u zeker dat u alle MIBs wilt verwijderen?"
@@ -1729,6 +1731,8 @@ msgstr ""
 msgid ""
 "Do you really want to import?\\nThe existing config may be overwritten."
 msgstr ""
+"Weet u zeker dat u wilt importeren?\\nDe bestaande config kan worden "
+"overschreven."
 
 msgid "Do you really want to remove the selected item from the list?"
 msgstr ""
@@ -2819,7 +2823,7 @@ msgid "Import on-disk ZFS config"
 msgstr "Importeer op-schijf ZFS config"
 
 msgid "Import software raid disks"
-msgstr ""
+msgstr "Importeer software raid schijven"
 
 msgid "In"
 msgstr "In"
@@ -4882,7 +4886,7 @@ msgid "Stop"
 msgstr "Stop"
 
 msgid "Stop after sending (and receiving) N packets."
-msgstr "Stop na het verzenden (en ontvangen) van N pakketten."
+msgstr "Stop na het verzenden (en ontvangen) van X aantal pakketten."
 
 msgid "Stopped"
 msgstr "Gestopt"
@@ -4955,7 +4959,7 @@ msgid "Switch to %s/s"
 msgstr "Schakel naar %s/s"
 
 msgid "Sync"
-msgstr ""
+msgstr "Sync"
 
 msgid "Synchronization time"
 msgstr "Synchronisatietijd"
@@ -6418,13 +6422,13 @@ msgid "Try to force import."
 msgstr "Probeer geforceerd te importeren."
 
 msgid "Try to import from on-disk ZFS config."
-msgstr "Probeer te importeren van on-disk ZFS config."
+msgstr "Probeer te importeren van op-schijf ZFS config."
 
 msgid "Tuning"
 msgstr "Optimalisatie"
 
 msgid "Turn access time on or off for this dataset."
-msgstr ""
+msgstr "Access time in of uitschakelen voor deze dataset."
 
 msgid "Turn the monitor to standby after N seconds."
 msgstr "Schakelt de monitor in de stand-by stand na X seconden."
@@ -6824,7 +6828,7 @@ msgstr "Fout partitie type of partitie nummer."
 
 #, php-format
 msgid "Wrong permission on %s."
-msgstr ""
+msgstr "Verkeerde permissie op %s."
 
 msgid "Yes"
 msgstr "Ja"
@@ -6949,10 +6953,10 @@ msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
 
 msgid "all encrypted disks are imported."
-msgstr ""
+msgstr "alle versleutelde schijven worden geïmporteerd."
 
 msgid "all software raid disks are imported."
-msgstr ""
+msgstr "alle software raid schijven zijn geïmporteerd."
 
 msgid "cachecnid"
 msgstr "cachecnid"
@@ -6976,7 +6980,7 @@ msgid "dbpath"
 msgstr "dbpad"
 
 msgid "detected an error while importing."
-msgstr ""
+msgstr "Fout geconstateerd tijdens het importeren."
 
 #, php-format
 msgid "e.g. %s"
@@ -7035,10 +7039,10 @@ msgid "n/a"
 msgstr "n.v.t."
 
 msgid "no new encrypted disk found."
-msgstr ""
+msgstr "geen nieuwe versleutelde schijven gevonden."
 
 msgid "no new software raid disk found."
-msgstr ""
+msgstr "geen nieuwe software raid schijven gevonden."
 
 msgid "noadouble"
 msgstr "noadouble"
@@ -7096,10 +7100,3 @@ msgstr "loskoppelen"
 
 msgid "upriv"
 msgstr "upriv"
-
-#, php-format
-#~ msgid "Start scrub on '%s'."
-#~ msgstr "Start scrub op '%s'."
-
-#~ msgid "Turn access time on or off for this dataset"
-#~ msgstr "Inschakelen/uitschakelen toegangstijd voor de dataset."
