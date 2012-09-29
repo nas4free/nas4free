@@ -150,7 +150,7 @@ if ($_POST) {
 
 	// Do some 'disk' specific checks.
 	if ("disk" === $_POST['type']) {
-		if (($_POST['partition'] == "p1") && (($_POST['fstype'] == "msdosfs") || ($_POST['fstype'] == "cd9660") || ($_POST['fstype'] == "ntfs") || ($_POST['fstype'] == "ext2fs")))  {
+		if (($_POST['partition'] == "p1") && (($_POST['fstype'] == "msdosfs") || ($_POST['fstype'] == "cd9660") || ($_POST['fstype'] == "ext2fs")))  {
 			$input_errors[] = gettext("EFI/GPT partition can be use with UFS only.");
 		}
 
