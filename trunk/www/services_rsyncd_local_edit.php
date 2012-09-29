@@ -245,7 +245,7 @@ function delete_change() {
 						<td width="22%" valign="top" class="vncellreq"><?=gettext("Destination share");?></td>
 						<td width="78%" class="vtable">
 							<input name="destination" type="text" class="formfld" id="destination" size="60" value="<?=htmlspecialchars($pconfig['destination']);?>" />
-							<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.destination; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." /><br />
+							<input name="browse2" type="button" class="formbtn" id="Browse2" onclick='ifield2 = form.destination; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield2.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield2; window.ifield = ifield2;' value="..." /><br />
 							<span class="vexpl"><?=gettext("Target directory.");?></span>
 					  </td>
 					</tr>
