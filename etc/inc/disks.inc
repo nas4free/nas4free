@@ -1386,6 +1386,225 @@ function disks_rescan() {
 	mwexec2("camcontrol rescan all");
 }
 
+// detect filesystem
+function disks_try_zfs($file) {
+	mwexec2("/usr/sbin/zdb -l {$file} | grep version 2>/dev/null", $rawdata);
+	if (empty($rawdata))
+		return false;
+	return "ZFS";
+}
+
+function disks_try_ntfs($file) {
+	$mntpath = "/tmp/disks_import";
+	if (0 != mwexec("/usr/local/bin/ntfs-3g -o ro {$file} {$mntpath} 2>/dev/null"))
+		return false;
+	if (1 == mwexec("/sbin/umount {$mntpath}"))
+		return false;
+	return "NTFS";
+}
+
+function disks_import_try_allfs($dev) {
+	$mntpath = "/tmp/disks_import";
+
+	// direct device
+	$devs = array("{$dev}");
+	foreach ($devs as $file) {
+		if (file_exists($file)) {
+			$ufsid = disks_get_ufsid($file);
+			if (!empty($ufsid))
+				return "ufsgpt";
+			$zfs = disks_try_zfs($file);
+			if (!empty($zfs))
+				return "zfs";
+			$ntfs = disks_try_ntfs($file);
+			if (!empty($ntfs))
+				return "ntfs";
+		}
+	}
+
+	// GPT?
+	$devs = array("{$dev}p1", "{$dev}p2", "{$dev}p3", "{$dev}p4", "{$dev}p5", "{$dev}p6");
+	foreach ($devs as $file) {
+		if (file_exists($file)) {
+			$ufsid = disks_get_ufsid($file);
+			if (!empty($ufsid))
+				return "ufsgpt";
+			$zfs = disks_try_zfs($file);
+			if (!empty($zfs))
+				return "zfs";
+			$ntfs = disks_try_ntfs($file);
+			if (!empty($ntfs))
+				return "ntfs";
+			$zfs = disks_try_zfs($file);
+			if (!empty($zfs))
+				return "zfs";
+		}
+	}
+
+	// MBR? with slise only
+	$devs = array("{$dev}s1", "{$dev}s2", "{$dev}s3", "{$dev}s4");
+	foreach ($devs as $file) {
+		if (file_exists($file)) {
+			$ufsid = disks_get_ufsid($file);
+			if (!empty($ufsid))
+				return "ufs";
+			$zfs = disks_try_zfs($file);
+			if (!empty($zfs))
+				return "zfs";
+			$ntfs = disks_try_ntfs($file);
+			if (!empty($ntfs))
+				return "ntfs";
+		}
+	}
+
+	// MBR/ZFS/UFS? without slice and with bsdlabel
+	$devs = array("{$dev}a", "{$dev}d", "{$dev}e", "{$dev}f", "{$dev}g", "{$dev}h");
+	foreach ($devs as $file) {
+		if (file_exists($file)) {
+			$ufsid = disks_get_ufsid($file);
+			if (!empty($ufsid))
+				return "ufs";
+			$zfs = disks_try_zfs($file);
+			if (!empty($zfs))
+				return "zfs";
+		}
+	}
+
+	// MBR/ZFS/UFS? with slice and bsdlabel
+	$devs = array("{$dev}s1a", "{$dev}s1d", "{$dev}s1e", "{$dev}s1f", "{$dev}s1g", "{$dev}s1h");
+	foreach ($devs as $file) {
+		if (file_exists($file)) {
+			$ufsid = disks_get_ufsid($file);
+			if (!empty($ufsid))
+				return "ufs";
+			$zfs = disks_try_zfs($file);
+			if (!empty($zfs))
+				return "zfs";
+		}
+	}
+	$devs = array("{$dev}s2a", "{$dev}s2d", "{$dev}s2e", "{$dev}s2f", "{$dev}s2g", "{$dev}s2h");
+	foreach ($devs as $file) {
+		if (file_exists($file)) {
+			$ufsid = disks_get_ufsid($file);
+			if (!empty($ufsid))
+				return "ufs";
+			$zfs = disks_try_zfs($file);
+			if (!empty($zfs))
+				return "zfs";
+		}
+	}
+	$devs = array("{$dev}s3a", "{$dev}s3d", "{$dev}s3e", "{$dev}s3f", "{$dev}s3g", "{$dev}s3h");
+	foreach ($devs as $file) {
+		if (file_exists($file)) {
+			$ufsid = disks_get_ufsid($file);
+			if (!empty($ufsid))
+				return "ufs";
+			$zfs = disks_try_zfs($file);
+			if (!empty($zfs))
+				return "zfs";
+		}
+	}
+	$devs = array("{$dev}s4a", "{$dev}s4d", "{$dev}s4e", "{$dev}s4f", "{$dev}s4g", "{$dev}s4h");
+	foreach ($devs as $file) {
+		if (file_exists($file)) {
+			$ufsid = disks_get_ufsid($file);
+			if (!empty($ufsid))
+				return "ufs";
+			$zfs = disks_try_zfs($file);
+			if (!empty($zfs))
+				return "zfs";
+		}
+	}
+
+	// unknown
+	return "";
+}
+
+function disks_import_get_fstype($dev) {
+	if (!preg_match("/^\/dev\//", $dev, $m))
+		$dev = "/dev/{$dev}";
+
+	$mntpath = "/tmp/disks_import";
+	if (1 == mwexec("/bin/mkdir -p {$mntpath}"))
+		return "";
+
+	$fstype = disks_import_try_allfs($dev);
+
+	@rmdir($mntpath);
+
+	return $fstype;
+}
+
+// Import action
+// 0: no found, n > 0: n disks imported, n < 0: error
+function disks_import_all_disks($clean_import) {
+	global $config;
+
+	$need_write_config = false;
+	$num = $error = 0;
+
+	$disks = get_all_disks_list();
+	if (empty($disks))
+		return $num;
+
+	if (empty($config['disks']['disk']))
+		$config['disks']['disk'] = array();
+	if (!empty($clean_import)) {
+		$config['disks']['disk'] = array();
+	}
+
+	foreach ($disks as $diskv) {
+		$name = $diskv['name'];
+		$type = $diskv['type'];
+		$dev = $diskv['devicespecialfile'];
+		if ($type == 'SCSI' || $type == 'RAID' || $type == 'IDE') {
+			// disk exist in config?
+			$index = array_search_ex($dev, $config['disks']['disk'], "devicespecialfile");
+			if (false === $index) {
+				$num++; // detected
+
+				$fstype = disks_import_get_fstype($dev);
+
+				$pdisk = array();
+				$pdisk['uuid'] = uuid();
+				$pdisk['name'] = $diskv['name'];
+				$pdisk['devicespecialfile'] = $dev;
+				$pdisk['harddiskstandby'] = "0";
+				$pdisk['acoustic'] = "0";
+				$pdisk['fstype'] = $fstype;
+				$pdisk['apm'] = "0";
+				$pdisk['transfermode'] = "auto";
+				$pdisk['type'] = $diskv['type'];
+				$pdisk['desc'] = !empty($diskv['desc']) ? $diskv['desc'] : "";
+				$pdisk['size'] = $diskv['size'];
+				$serial = "";
+				if (!empty($diskv['serial'])) {
+					$serial = $diskv['serial'];
+				}
+				if (($serial == "n/a") || ($serial == gettext("n/a"))) {
+					$serial = "";
+				}
+				$pdisk['serial'] = $serial;
+				$pdisk['smart']['enable'] = false;
+				$pdisk['smart']['extraoptions'] = "";
+
+				$config['disks']['disk'][] = $pdisk;
+				$need_write_config = true;
+			} else {
+				// already exist in config
+			}
+		} else if ($type == "XXX") {
+			// not supported
+		}
+	}
+	if ($need_write_config) {
+		write_config();
+	}
+	if ($error != 0)
+		return -$error;
+	return $num;
+}
+
 // Import all consumers used by software raid
 function disks_import_consumers($name, $type, $dev, $disks, $clean_import) {
 	global $config;
@@ -1473,6 +1692,12 @@ function disks_import_all_swraid_disks($clean_import) {
 
 	$need_write_config = false;
 	$num = $error = 0;
+
+	exec("/sbin/gconcat load");
+	exec("/sbin/gstripe load");
+	exec("/sbin/gmirror load");
+	exec("/sbin/graid5 load");
+	exec("/sbin/gvinum load");
 
 	$disks = get_all_disks_list();
 	if (empty($disks))

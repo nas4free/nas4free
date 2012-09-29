@@ -47,10 +47,23 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	$clean_import = false;
-	if (!empty($_POST['clear_import'])) {
+	if (!empty($_POST['clear_import']) || !empty($_POST['clear_import_swraid'])) {
 		$clean_import = true;
 	}
 	if (!empty($_POST['import']) || !empty($_POST['clear_import'])) {
+		$retval = disks_import_all_disks($clean_import);
+		if ($retval == 0) {
+			$savemsg = gettext("no new disk found.");
+		} else if ($retval > 0) {
+			$savemsg = gettext("all disks are imported.");
+		} else {
+			$input_errors[] = gettext("detected an error while importing.");
+		}
+		//skip redirect
+		//header("Location: disks_manage.php");
+		//exit;
+	}
+	if (!empty($_POST['import_swraid']) || !empty($_POST['clear_import_swraid'])) {
 		$retval = disks_import_all_swraid_disks($clean_import);
 		if ($retval == 0) {
 			$savemsg = gettext("no new software raid disk found.");
@@ -199,10 +212,13 @@ function diskmanagement_process_updatenotification($mode, $data) {
 					</tr>
 				</table>
 				<div id="submit">
-					<input name="import" type="submit" class="formbtn" value="<?=gettext("Import software raid disks");?>" onclick="return confirm('<?=gettext("Do you really want to import?\\nThe existing config may be overwritten.");?>');" />
-					<input name="clear_import" type="submit" class="formbtn" value="<?=gettext("Clear config and Import software raid disks");?>" onclick="return confirm('<?=gettext("Do you really want to clear and import?\\nThe existing config will be cleared and overwritten.");?>');" />
-
+					<input name="import" type="submit" class="formbtn" value="<?=gettext("Import disks");?>" onclick="return confirm('<?=gettext("Do you really want to import?\\nThe existing config may be overwritten.");?>');" />
+					<input name="clear_import" type="submit" class="formbtn" value="<?=gettext("Clear config and Import disks");?>" onclick="return confirm('<?=gettext("Do you really want to clear and import?\\nThe existing config will be cleared and overwritten.");?>');" />
 					<input name="disks_rescan" type="submit" class="formbtn" value="<?=gettext("Rescan disks");?>" />
+					<br />
+					<br />
+					<input name="import_swraid" type="submit" class="formbtn" value="<?=gettext("Import software raid disks");?>" onclick="return confirm('<?=gettext("Do you really want to import?\\nThe existing config may be overwritten.");?>');" />
+					<input name="clear_import_swraid" type="submit" class="formbtn" value="<?=gettext("Clear config and Import software raid disks");?>" onclick="return confirm('<?=gettext("Do you really want to clear and import?\\nThe existing config will be cleared and overwritten.");?>');" />
 				</div>
 				<?php
 				if ($do_action) {
