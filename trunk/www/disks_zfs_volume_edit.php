@@ -69,6 +69,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_volume, "uuid"
 	$pconfig['compression'] = $a_volume[$cnid]['compression'];
 	$pconfig['dedup'] = $a_volume[$cnid]['dedup'];
 	$pconfig['sync'] = $a_volume[$cnid]['sync'];
+	$pconfig['sparse'] = isset($a_volume[$cnid]['sparse']);
 	$pconfig['desc'] = $a_volume[$cnid]['desc'];
 } else {
 	$pconfig['uuid'] = uuid();
@@ -78,6 +79,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_volume, "uuid"
 	$pconfig['volsize'] = "";
 	$pconfig['dedup'] = "off";
 	$pconfig['sync'] = "standard";
+	$pconfig['sparse'] = false;
 	$pconfig['desc'] = "";
 }
 
@@ -107,6 +109,7 @@ if ($_POST) {
 		$volume['compression'] = $_POST['compression'];
 		$volume['dedup'] = $_POST['dedup'];
 		$volume['sync'] = $_POST['sync'];
+		$volume['sparse'] = isset($_POST['sparse']) ? true : false;
 		$volume['desc'] = $_POST['desc'];
 
 		if (isset($uuid) && (FALSE !== $cnid)) {
@@ -171,6 +174,7 @@ function enable_change(enable_change) {
 					<?php html_combobox("dedup", gettext("Dedup"), $pconfig['dedup'], $a_dedup, gettext("Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See <a href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide:disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> wiki article BEFORE using this feature.</b></br>"), true);?>
 					<?php $a_sync = array("standard" => "standard", "always" => "always", "disabled" => "disabled"); ?>
 					<?php html_combobox("sync", gettext("Sync"), $pconfig['sync'], $a_sync, gettext("Controls the behavior of synchronous requests."), true);?>
+					<?php html_checkbox("sparse", gettext("Sparse Volume"), !empty($pconfig['sparse']) ? true : false, gettext("Use as sparse volume. (thin provisioning)"), "", false);?>
 					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
 				</table>
 				<div id="submit">

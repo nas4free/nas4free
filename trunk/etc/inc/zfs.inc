@@ -488,6 +488,9 @@ function zfs_volume_configure($uuid) {
 	// Additional parameter
 	$param = "";
 
+	if (isset($volume['sparse']))
+		$param .= "-s ";
+
 	if (!empty($volume['compression']))
 		$param .= "-o compression={$volume['compression']} ";
 
@@ -533,6 +536,21 @@ function zfs_volume_destroy($uuid) {
 	return mwexec($cmd, true);
 }
 
+function zfs_get_volume_reservation($volsize) {
+	if (empty($volsize)) {
+		return "";
+	}
+	if (preg_match("/^(\d+(\.\d+)?)(.*)$/", $volsize, $m)) {
+		$size = (float)$m[1] * 1.03;
+		$suffix = $m[3];
+		if (preg_match("/(m|k|^$)/", $suffix, $m)) {
+			$size = ceil($size);
+		}
+		return "{$size}{$suffix}";
+	}
+	return flase;
+}
+
 /**
  * Update properties of a ZFS volume.
  * @param[in] uuid	The UUID of the volume to be updated.
@@ -552,15 +570,26 @@ function zfs_volume_properties($uuid) {
 	if (!is_array($volume))
 		 return 1;
 
+	$reservation = zfs_get_volume_reservation($volume['volsize']);
+	if (false === $reservation)
+		return 1;
+
 	$result = 0;
 
-	foreach (explode(" ", "volsize compression dedup sync atime") as $attr) {
+	foreach (explode(" ", "volsize sparse compression dedup sync atime") as $attr) {
 		$param = "";
 
 		switch ($attr) {
 			case "volsize":
 				if (!empty($volume['volsize']))
 					$param = "volsize={$volume['volsize']}";
+				break;
+
+			case "sparse":
+				if (isset($volume['sparse']))
+					$param = "refreservation=none";
+				else if (!empty($volume['volsize']))
+					$param = "refreservation={$volume['volsize']}";
 				break;
 
 			case "compression":

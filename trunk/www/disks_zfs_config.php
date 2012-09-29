@@ -120,14 +120,14 @@ foreach($rawdata as $line)
 $rawdata = null;
 $spa = @exec("sysctl -q -n vfs.zfs.version.spa");
 if ($spa == '' || $spa < 21) {
-	mwexec2('zfs list -H -t volume -o name,volsize,compression,origin', $rawdata);
+	mwexec2('zfs list -H -t volume -o name,volsize,volblocksize,compression,origin', $rawdata);
 } else {
-	mwexec2('zfs list -H -t volume -o name,volsize,compression,origin,dedup,sync', $rawdata);
+	mwexec2('zfs list -H -t volume -o name,volsize,volblocksize,compression,origin,dedup,sync,refreservation', $rawdata);
 }
 foreach($rawdata as $line)
 {
 	if ($line == 'no datasets available') { continue; }
-	list($fname, $volsize, $compress, $origin, $dedup, $sync) = explode("\t", $line);
+	list($fname, $volsize, $volblocksize, $compress, $origin, $dedup, $sync, $refreservation) = explode("\t", $line);
 	if (strpos($fname, '/') !== false) // volume
 	{
 		if (empty($origin) || $origin != '-') continue;
@@ -137,9 +137,11 @@ foreach($rawdata as $line)
 			'name' => $name,
 			'pool' => $pool,
 			'volsize' => $volsize,
+			'volblocksize' => $volblocksize,
 			'compression' => $compress,
 			'dedup' => $dedup,
 			'sync' => $sync,
+			'sparse' => ($refreservation == "none") ? true : false,
 			'desc' => '',
 		);
 	}
@@ -439,20 +441,24 @@ if (!$health)
 			</table>
 			<br />
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
-				<?php html_titleline(gettext('Volumes').' ('.count($zfs['volumes']['volume']).')', 6);?>
+				<?php html_titleline(gettext('Volumes').' ('.count($zfs['volumes']['volume']).')', 8);?>
 				<tr>
 					<td width="16%" class="listhdrlr"><?=gettext("Name");?></td>
-					<td width="17%" class="listhdrr"><?=gettext("Pool");?></td>
-					<td width="17%" class="listhdrr"><?=gettext("Size");?></td>
-					<td width="17%" class="listhdrr"><?=gettext("Compression");?></td>
-					<td width="17%" class="listhdrr"><?=gettext("Dedup");?></td>
-					<td width="16%" class="listhdrr"><?=gettext("Sync");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Pool");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Size");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Blocksize");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Sparse");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Compression");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Dedup");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Sync");?></td>
 				</tr>
 				<?php foreach ($zfs['volumes']['volume'] as $volume):?>
 				<tr>
 					<td class="listlr"><?= $volume['name']; ?></td>
 					<td class="listr"><?= $volume['pool']; ?></td>
 					<td class="listr"><?= $volume['volsize']; ?></td>
+					<td class="listr"><?= $volume['volblocksize']; ?></td>
+					<td class="listr"><?= empty($volume['sparse']) ? '-' : 'on'; ?></td>
 					<td class="listr"><?= $volume['compression']; ?></td>
 					<td class="listr"><?= $volume['dedup']; ?></td>
 					<td class="listr"><?= $volume['sync']; ?></td>

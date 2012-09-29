@@ -215,20 +215,24 @@ if (updatenotify_exists('zfs_import_config'))
 			</table>
 			<br />
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
-				<?php html_titleline(gettext('Volumes').' ('.count($zfs['volumes']['volume']).')', 6);?>
+				<?php html_titleline(gettext('Volumes').' ('.count($zfs['volumes']['volume']).')', 8);?>
 				<tr>
 					<td width="16%" class="listhdrlr"><?=gettext("Name");?></td>
-					<td width="17%" class="listhdrr"><?=gettext("Pool");?></td>
-					<td width="17%" class="listhdrr"><?=gettext("Size");?></td>
-					<td width="17%" class="listhdrr"><?=gettext("Compression");?></td>
-					<td width="17%" class="listhdrr"><?=gettext("Dedup");?></td>
-					<td width="16%" class="listhdrr"><?=gettext("Sync");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Pool");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Size");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Blocksize");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Sparse");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Compression");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Dedup");?></td>
+					<td width="12%" class="listhdrr"><?=gettext("Sync");?></td>
 				</tr>
 				<?php foreach ($zfs['volumes']['volume'] as $volume):?>
 				<tr>
 					<td class="listlr"><?= $volume['name']; ?></td>
 					<td class="listr"><?= $volume['pool'][0]; ?></td>
 					<td class="listr"><?= $volume['volsize']; ?></td>
+					<td class="listr"><?= !empty($volume['volblocksize']) ?$volume['volblocksize']: '-'; ?></td>
+					<td class="listr"><?= !isset($volume['sparse']) ? '-' : 'on'; ?></td>
 					<td class="listr"><?= $volume['compression']; ?></td>
 					<td class="listr"><?= $volume['dedup']; ?></td>
 					<td class="listr"><?= $volume['sync']; ?></td>
