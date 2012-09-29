@@ -144,6 +144,14 @@ function diskmanagement_process_updatenotification($mode, $data) {
 }
 ?>
 <?php include("fbegin.inc");?>
+<?php
+	// make sure detected disks have same ID in config.
+	$verify_errors = disks_verify_all_disks();
+	if (!empty($verify_errors)) {
+		$errormsg .= gettext("There is wrong ID in the disk of config. Please remove the disk and re-add it or use 'clear and import'.");
+		$errormsg .= "<br />\n";
+	}
+?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
 		<td class="tabnavtbl">
@@ -190,13 +198,22 @@ function diskmanagement_process_updatenotification($mode, $data) {
 							$status = (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING");
 							break;
 					}
+					$verify_error = !empty($verify_errors[$disk['devicespecialfile']]) ? true : false;
 					?>
 					<tr>
+<?php if (!empty($verify_error)) { ?>
+						<td class="listlr"><span style="color: #ff0000;font-weight:bold;"><?=htmlspecialchars($disk['name']);?></span></td>
+<?php } else { ?>
 						<td class="listlr"><?=htmlspecialchars($disk['name']);?></td>
+<?php } ?>
 						<td class="listr"><?=htmlspecialchars($disk['size']);?></td>
 						<td class="listr"><?=htmlspecialchars($disk['desc']);?>&nbsp;</td>
 						<td class="listr"><?=htmlspecialchars(system_get_volume_model($disk['devicespecialfile']));?>&nbsp;</td>
+<?php if (!empty($verify_error)) { ?>
+						<td class="listr"><span style="color: #ff0000;font-weight:bold;"><?=htmlspecialchars(system_get_volume_serial($disk['devicespecialfile']));?></span>&nbsp;</td>
+<?php } else { ?>
 						<td class="listr"><?=htmlspecialchars(system_get_volume_serial($disk['devicespecialfile']));?>&nbsp;</td>
+<?php } ?>
 						<td class="listr"><?php if ($disk['harddiskstandby']) { echo htmlspecialchars($disk['harddiskstandby']); } else { echo htmlspecialchars(gettext("Always on")); }?>&nbsp;</td>
 						<td class="listr"><?=(!empty($disk['fstype'])) ? htmlspecialchars(get_fstype_shortdesc($disk['fstype'])) : htmlspecialchars(gettext("Unknown or unformatted"))?>&nbsp;</td>
 						<td class="listbg"><?=htmlspecialchars($status);?>&nbsp;</td>

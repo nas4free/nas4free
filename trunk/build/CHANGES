@@ -21,6 +21,7 @@ Changes:
 - Update mount points after importing disks. (GPT UFS/MBR UFS/GPT NTFS only)
 - Add ZFS sparse volume support.
 - Add GPT UUID to mount point.
+- Add a warning for changing of the disk in config.
 - Wait response of LAN interface if static with gateway.
 - Run umount before iSCSI initiator shutdown.
 - Remount all after netif is up for iSCSI device.
