@@ -117,7 +117,7 @@ if (isset($_GET['act']) && $_GET['act'] === "retry") {
 function mountmanagement_process_updatenotification($mode, $data) {
 	global $config;
 
-	if (!is_array($config['mounts']['mount']))
+	if (empty($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
 		return 1;
 
 	$index = array_search_ex($data, $config['mounts']['mount'], "uuid");
