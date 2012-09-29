@@ -1521,8 +1521,18 @@ function disks_import_try_allfs($dev) {
 }
 
 function disks_import_get_fstype($dev) {
+	global $config;
+
 	if (!preg_match("/^\/dev\//", $dev, $m))
 		$dev = "/dev/{$dev}";
+
+	// keep encrypted disks
+	if (!empty($config['geli']['vdisk'])) {
+		$index = array_search_ex($dev, $config['geli']['vdisk'], "device");
+		if (false !== $index) {
+			return "geli";
+		}
+	}
 
 	$mntpath = "/tmp/disks_import";
 	if (1 == mwexec("/bin/mkdir -p {$mntpath}"))
