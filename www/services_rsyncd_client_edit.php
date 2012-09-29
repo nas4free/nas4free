@@ -187,10 +187,12 @@ if ($_POST) {
 			config_lock();
 			$retval |= rc_exec_service("rsync_client");
 			$retval |= rc_update_service("cron");
-			$retval |= rc_exec_script("su -m {$rsyncclient['who']} -c '/bin/sh /var/run/rsync_client_{$rsyncclient['uuid']}.sh'");
 			config_unlock();
+			if ($retval == 0) {
+				updatenotify_clear("rsyncclient", $rsyncclient['uuid']);
+			}
 
-			updatenotify_clear("rsyncclient", $rsyncclient['uuid']);
+			$retval |= rc_exec_script("su -m {$rsyncclient['who']} -c '/bin/sh /var/run/rsync_client_{$rsyncclient['uuid']}.sh'");
 
 			$savemsg = get_std_save_message($retval);
 		} else {
