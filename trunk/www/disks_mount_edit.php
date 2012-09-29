@@ -170,6 +170,13 @@ if ($_POST) {
 			$input_errors[] = gettext("Wrong partition type or partition number.");
 		}
 
+		// get rawuuid
+		if ($_POST['partitiontype'] == "p") {
+			$rawuuid = disks_get_rawuuid($device);
+		} else {
+			$rawuuid = ""; // should be fixed
+		}
+
 		// convert to UFSID
 		if ($_POST['fstype'] == "ufs") {
 			$out = array();
@@ -218,6 +225,8 @@ if ($_POST) {
 				$mount['mdisk'] = $_POST['mdisk'];
 				$mount['partition'] = $_POST['partition'];
 				$mount['fstype'] = $_POST['fstype'];
+				$mount['gpt'] = ($_POST['partitiontype'] == "p") ? true : false;
+				$mount['rawuuid'] = $rawuuid;
 				if ($mount['fstype'] == "ufs") {
 					$mount['devicespecialfile'] = $device;
 				} else {

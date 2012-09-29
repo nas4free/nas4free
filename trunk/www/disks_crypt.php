@@ -60,6 +60,9 @@ if ($_POST) {
 		} else {
 			$input_errors[] = gettext("detected an error while importing.");
 		}
+		if ($retval >= 0) {
+			disks_update_mounts();
+		}
 		//skip redirect
 		//header("Location: disks_crypt.php");
 		//exit;
