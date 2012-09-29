@@ -1829,6 +1829,12 @@ function disks_import_all_encrypted_disks($clean_import) {
 	$need_write_config = false;
 	$num = $error = 0;
 
+	exec("/sbin/gconcat load");
+	exec("/sbin/gstripe load");
+	exec("/sbin/gmirror load");
+	exec("/sbin/graid5 load");
+	exec("/sbin/gvinum load");
+
 	$disks = get_all_disks_list();
 	if (empty($disks))
 		return $num;
