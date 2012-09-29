@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>POT-Creation-Date: 2012-03-"
 "12 03:02+0000\n"
-"POT-Creation-Date: 2012-09-21 02:40+0000\n"
-"PO-Revision-Date: 2012-09-20 18:05+0000\n"
+"POT-Creation-Date: 2012-09-30 00:14+0000\n"
+"PO-Revision-Date: 2012-09-29 15:31+0000\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-09-20 18:12+0000\n"
-"X-Generator: Launchpad (build 15985)\n"
+"X-Launchpad-Export-Date: 2012-09-29 15:44+0000\n"
+"X-Generator: Launchpad (build 16049)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
 "X-Poedit-Language: Japanese\n"
@@ -717,6 +717,9 @@ msgstr "BitTorrent"
 
 msgid "Blank time"
 msgstr "待機時間"
+
+msgid "Blocksize"
+msgstr "ブロックサイズ"
 
 msgid "Browseable"
 msgstr "ブラウズ可能"
@@ -4493,6 +4496,12 @@ msgstr "使用量"
 msgid "Spanish"
 msgstr "スペイン語"
 
+msgid "Sparse"
+msgstr "スパース"
+
+msgid "Sparse Volume"
+msgstr "スパースボリューム"
+
 msgid "Specifies how many servers to create."
 msgstr "作成するサーバ数を指定します。"
 
@@ -6060,6 +6069,9 @@ msgid ""
 msgstr ""
 "スペース区切りで複数のホストを指定出来ます (1つは必須です)。ここでホスト名を入力する場合、少なくとも1つの DNS サーバを設定して下さい!"
 
+msgid "Use as sparse volume. (thin provisioning)"
+msgstr "スパースボリュームとして利用する。（シン・プロビジョニング）"
+
 msgid "Use sendfile"
 msgstr "sendfile を使用"
 
@@ -6408,6 +6420,9 @@ msgstr "サイズを指定するには、以下の人間が読める接尾語を
 msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
 
+msgid "all disks are imported."
+msgstr "ディスクをすべてインポートします。"
+
 msgid "all encrypted disks are imported."
 msgstr "暗号化されたディスクをすべてインポートします。"
 
@@ -6494,6 +6509,9 @@ msgstr "MS-Windows"
 msgid "n/a"
 msgstr "n/a"
 
+msgid "no new disk found."
+msgstr "新しいディスクは見つかりません。"
+
 msgid "no new encrypted disk found."
 msgstr "新しい暗号化ディスクは見つかりません。"
 
@@ -6556,10 +6574,3 @@ msgstr "アンマウント"
 
 msgid "upriv"
 msgstr "upriv"
-
-#, php-format
-#~ msgid "Start scrub on '%s'."
-#~ msgstr "'%s' のスクラブが開始しました。"
-
-#~ msgid "Turn access time on or off for this dataset"
-#~ msgstr "このデータセットのアクセスタイムの有効・無効を指定します。"
