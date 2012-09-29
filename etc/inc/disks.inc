@@ -1434,6 +1434,38 @@ function disks_rescan() {
 	mwexec2("camcontrol rescan all");
 }
 
+// verify disks
+function disks_verify_all_disks() {
+	global $config;
+
+	$num = $error = 0;
+	$result = array();
+
+	if (empty($config['disks']['disk']))
+		$config['disks']['disk'] = array();
+
+	$disks = $config['disks']['disk'];
+	if (empty($disks))
+		return $result;
+
+	foreach ($disks as $diskv) {
+		$name = $diskv['name'];
+		$type = $diskv['type'];
+		$dev = $diskv['devicespecialfile'];
+		if (!empty($diskv['serial'])) {
+			$serial = system_get_volume_serial($dev);
+			if (($serial == "n/a") || ($serial == gettext("n/a"))) {
+				$serial = "";
+			}
+			if (!empty($serial) && $serial != $diskv['serial']) {
+				$result[$dev] = $serial;
+				$error++;
+			}
+		}
+	}
+	return $result;
+}
+
 // update mount lists after import disks
 function disks_update_mounts() {
 	global $config;
