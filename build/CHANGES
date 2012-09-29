@@ -18,7 +18,9 @@ Changes:
 - Add ability to import encrypted disks.
 - Add ability to import software raid disks. (except vinum)
 - Add ability to import single disks. (detect ZFS/UFS/NTFS only)
+- Update mount points after importing disks. (GPT UFS/MBR UFS/GPT NTFS only)
 - Add ZFS sparse volume support.
+- Add GPT UUID to mount point.
 - Wait response of LAN interface if static with gateway.
 - Run umount before iSCSI initiator shutdown.
 - Remount all after netif is up for iSCSI device.

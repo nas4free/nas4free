@@ -1089,6 +1089,54 @@ function disks_get_partition_info($disk) {
   return $result;
 }
 
+// Get raw UUID from partition.
+function disks_get_rawuuid($partition, &$out = false) {
+	$rawuuid = "";
+	$devname = $partition;
+
+	if (preg_match("/^\/dev\/(.+)(p\d+|s\d)(\..+)?$/", $partition, $m)) {
+		$devname = $m[1];
+	}
+	exec("/sbin/gpart list {$devname} 2>&1", $rawdata);
+	if ($out !== false && !empty($rawdata))
+		$out = $rawdata;
+	if (!empty($rawdata)) {
+		$scheme = "";
+		$name = "";
+		$rawuuids = array();
+		$found_providers = 0;
+		foreach ($rawdata as $line) {
+			if (preg_match("/^scheme:\s+(.*)$/", $line, $m)) {
+				$scheme = $m[1];
+			}
+			if (preg_match("/^Providers:/", $line)) {
+				$found_providers = 1;
+				continue;
+			}
+			if (preg_match("/^Consumers:/", $line)) {
+				break;
+			}
+			if ($found_providers && preg_match("/^.+\s+Name:\s+(.+)$/", $line, $m)) {
+				$name = "/dev/".$m[1];
+				continue;
+			}
+			if ($found_providers && !empty($name) && preg_match("/^\s+rawuuid:\s+(.+)$/", $line, $m)) {
+				$rawuuids[$name] = $m[1];
+				continue;
+			}
+		}
+		if (!empty($rawuuids)) {
+			foreach ($rawuuids as $k => $v) {
+				if ($partition == $k) {
+					$rawuuid = $v;
+					break;
+				}
+			}
+		}
+	}
+	return $rawuuid;
+}
+
 // Get UFS ID from partition.
 // the partition (e.g. ada1p1)
 // Result is ufsid.
@@ -1384,6 +1432,76 @@ function disks_rescan() {
 	}
 	*/
 	mwexec2("camcontrol rescan all");
+}
+
+// update mount lists after import disks
+function disks_update_mounts() {
+	global $config;
+
+	$need_write_config = false;
+
+	if (empty($config['disks']['disk']))
+		$config['disks']['disk'] = array();
+	if (empty($config['mounts']['mount']))
+		$config['mounts']['mount'] = array();
+
+	$disks = $config['disks']['disk'];
+	foreach ($disks as $diskv) {
+		$name = $diskv['name'];
+		$type = $diskv['type'];
+		$fstype = $diskv['fstype'];
+		$dev = $diskv['devicespecialfile'];
+		if ($fstype == 'ufs' || $fstype == 'ufsgpt' || $fstype == 'ufs_no_su'
+		    || $fstype == 'ufsgpt_no_su') {
+			foreach ($config['mounts']['mount'] as &$mountv) {
+				if ($mountv['fstype'] != "ufs")
+					continue;
+				$mdisk = $mountv['mdisk'];
+				$partition = $mountv['partition'];
+				$file = $mountv['devicespecialfile'];
+				if (!file_exists("{$dev}{$partition}"))
+					continue;
+				$ufsid = disks_get_ufsid("{$dev}{$partition}");
+				if (empty($ufsid))
+					continue;
+				if ($file != "/dev/ufsid/{$ufsid}")
+					continue;
+				// UFSID matched.
+				$mountv['mdisk'] = $dev;
+				//$mountv['devicespecialfile'] = "{$dev}{$partition}";
+				$mountv['devicespecialfile'] = "/dev/ufsid/{$ufsid}";
+				$need_write_config = true;
+			}
+			unset($mountv);
+		} else if ($fstype == 'ntfs') {
+			foreach ($config['mounts']['mount'] as &$mountv) {
+				if ($mountv['fstype'] != "ntfs")
+					continue;
+				$mdisk = $mountv['mdisk'];
+				$partition = $mountv['partition'];
+				$file = $mountv['devicespecialfile'];
+				if (!file_exists("{$dev}{$partition}"))
+					continue;
+				if (empty($mountv['rawuuid']))
+					continue;
+				$rawuuid = disks_get_rawuuid("{$dev}{$partition}");
+				if (empty($rawuuid))
+					continue;
+				if ($rawuuid != $mountv['rawuuid'])
+					continue;
+				// raw uuid matched.
+				$mountv['mdisk'] = $dev;
+				$mountv['devicespecialfile'] = "{$dev}{$partition}";
+				$need_write_config = true;
+			}
+			unset($mountv);
+		} else {
+			// not supported
+		}
+	}
+	if ($need_write_config) {
+		write_config();
+	}
 }
 
 // detect filesystem
