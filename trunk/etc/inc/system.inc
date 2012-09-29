@@ -477,9 +477,13 @@ function system_get_volume_serial($devicefile) {
 	if (!empty($rawdata) && 1 === preg_match("/^Serial:\s+(.+)$/", $rawdata[0], $matches))
 		return $matches[1];
 	/* failback to old method */
-	mwexec2("smartctl -i {$devicefile} | grep 'Serial Number'", $rawdata1);
-	if (!empty($rawdata1) && 1 === preg_match("/^Serial Number:\s+(.+)$/", $rawdata1[0], $matches))
+	mwexec2("smartctl -i {$devicefile} | grep -i 'Serial Number'", $rawdata1);
+	if (!empty($rawdata1) && 1 === preg_match("/^Serial Number:\s+(.+)$/i", $rawdata1[0], $matches))
 		return $matches[1];
+	mwexec2("camcontrol inquiry {$devicefile} -S", $rawdata2);
+	if (!empty($rawdata2) && !empty($rawdata2[0]))
+		return $rawdata2[0];
+
 	return gettext("n/a");
 }
 
@@ -497,6 +501,10 @@ function system_get_volume_model($devicefile) {
 	mwexec2("smartctl -i {$devicefile} | grep 'Device Model'", $rawdata1);
 	if (!empty($rawdata1) && 1 === preg_match("/^Device Model:\s+(.+)$/", $rawdata1[0], $matches))
 		return $matches[1];
+	mwexec2("camcontrol inquiry {$devicefile} -D", $rawdata2);
+	if (!empty($rawdata2) && 1 === preg_match("/<([^>]+)>/", $rawdata2[0], $matches))
+		return $matches[1];
+
 	return gettext("n/a");
 }
 
