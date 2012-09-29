@@ -64,7 +64,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsiinit, "uu
 	$pconfig['name'] = "";
 	$pconfig['targetname'] = "";
 	$pconfig['targetaddress'] = "";
-	$pconfig['initiatorname'] = "";
+	$pconfig['initiatorname'] = "iqn.2012-03.org.nas4free:nas4free";
 }
 if (isset($config['iscsitarget']['nodebase'])
     && !empty($config['iscsitarget']['nodebase'])) {
