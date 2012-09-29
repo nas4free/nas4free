@@ -1562,7 +1562,7 @@ function disks_import_try_allfs($dev) {
 		if (file_exists($file)) {
 			$ufsid = disks_get_ufsid($file);
 			if (!empty($ufsid))
-				return "ufsgpt";
+				return "ufs";
 			$zfs = disks_try_zfs($file);
 			if (!empty($zfs))
 				return "zfs";
