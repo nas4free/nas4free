@@ -1,6 +1,6 @@
---- /usr/local/nas4free/svn/build/ports/transmission/work/transmission-2.61/web/index.html.orig	2012-07-24 03:59:05.297474000 +0200
-+++ /usr/local/nas4free/svn/build/ports/transmission/work/transmission-2.61/web/index.html	2012-08-03 00:16:55.000000000 +0200
-@@ -287,18 +287,18 @@
+--- web/index.html.orig	2012-09-26 19:02:54.234402000 +0200
++++ web/index.html	2012-09-30 16:48:38.000000000 +0200
+@@ -283,18 +283,18 @@
  			<div class="dialog_top_bar"></div>
  			<div class="dialog_window">
  				<div class="dialog_logo" id="upload_dialog_logo"></div>
@@ -22,7 +22,7 @@
  					<a href="#cancel" id="upload_cancel_button">Cancel</a>
  				</form>
  			</div>
-@@ -310,9 +310,6 @@
+@@ -323,9 +323,6 @@
  					<ul id="footer_super_menu">
  						<li id="about-button">About</li>
  						<li class="separator"></li>
@@ -32,7 +32,7 @@
  						<li id="statistics">Statistics</li>
  						<li id="toggle_notifications" style="display: none">Notifcations</li>
  						<li class="separator"></li>
-@@ -321,7 +318,6 @@
+@@ -334,7 +331,6 @@
  								<li id="unlimited_download_rate">Unlimited</li>
  								<li id="limited_download_rate">Limit (10 kB/s)</li>
  								<li class="separator"></li>
@@ -40,7 +40,7 @@
  								<li class='download-speed'>10 kB/s</li>
  								<li class='download-speed'>20 kB/s</li>
  								<li class='download-speed'>30 kB/s</li>
-@@ -332,8 +328,13 @@
+@@ -345,8 +341,13 @@
  								<li class='download-speed'>150 kB/s</li>
  								<li class='download-speed'>200 kB/s</li>
  								<li class='download-speed'>250 kB/s</li>
@@ -54,7 +54,7 @@
  							</ul>
  						</li>
  						<li>Total Upload Rate
-@@ -341,7 +342,6 @@
+@@ -354,7 +355,6 @@
  								<li id="unlimited_upload_rate">Unlimited</li>
  								<li id="limited_upload_rate">Limit (10 kB/s)</li>
  								<li class="separator"></li>
@@ -62,7 +62,7 @@
  								<li class='upload-speed'>10 kB/s</li>
  								<li class='upload-speed'>20 kB/s</li>
  								<li class='upload-speed'>30 kB/s</li>
-@@ -352,8 +352,13 @@
+@@ -365,8 +365,13 @@
  								<li class='upload-speed'>150 kB/s</li>
  								<li class='upload-speed'>200 kB/s</li>
  								<li class='upload-speed'>250 kB/s</li>
