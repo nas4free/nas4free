@@ -755,7 +755,7 @@ function disks_raid_graid5_delete($uuid) {
 // Return 0 if successful, 1 if error
 function disks_geli_init($provider, $aalgo, $ealgo, $keylen, $passphrase, $verbose = false)
 {
-	$param = "-t";
+	$param = "-J -";
 	$result = 1;
 
 	// Add additional parameters
@@ -765,7 +765,7 @@ function disks_geli_init($provider, $aalgo, $ealgo, $keylen, $passphrase, $verbo
 	if (!empty($keylen)) $param .= " -l {$keylen}";
 
 	// Init disk
-	system("(/bin/echo {$passphrase}; /bin/echo {$passphrase}) | /sbin/geli init {$param} {$provider} 2>&1", $result);
+	system("/bin/echo {$passphrase} | /sbin/geli init {$param} {$provider} 2>&1", $result);
 
 	return $result;
 }
@@ -777,14 +777,14 @@ function disks_geli_init($provider, $aalgo, $ealgo, $keylen, $passphrase, $verbo
 // Return 0 if successful, 1 if error
 function disks_geli_attach($provider, $passphrase, $verbose = false)
 {
-	$param = "-t";
+	$param = "-j -";
 	$result = 1;
 
 	// Add additional parameters
 	if (true == $verbose) $param .= " -v";
 
 	// Attach disk
-	system("(/bin/echo {$passphrase}; /bin/echo {$passphrase}) | /sbin/geli attach {$param} {$provider} 2>&1", $result);
+	system("/bin/echo {$passphrase} | /sbin/geli attach {$param} {$provider} 2>&1", $result);
 
 	return $result;
 }
@@ -839,7 +839,7 @@ function disks_geli_detach_all()
 // Return 0 if successful, 1 if error
 function disks_geli_setkey($devicespecialfile, $oldpassphrase, $passphrase, $verbose = false)
 {
-	$param = "-t";
+	$param = "-J -";
 	$result = 1;
 
 	// Extract provider data.
@@ -850,10 +850,14 @@ function disks_geli_setkey($devicespecialfile, $oldpassphrase, $passphrase, $ver
 
 	if (0 == disks_exists($devicespecialfile)) {
 		// Provider is already attached
-		system("(/bin/echo {$passphrase}; /bin/echo {$passphrase}) | /sbin/geli setkey {$param} {$provider} 2>&1", $result);
+		system("/bin/echo {$passphrase} | /sbin/geli setkey {$param} {$provider} 2>&1", $result);
 	} else {
 		// Provider has not already been attached
-		system("(/bin/echo {$oldpassphrase}; /bin/echo {$passphrase}; /bin/echo {$passphrase}) | /sbin/geli setkey {$param} {$provider} 2>&1", $result);
+		system("/bin/echo {$oldpassphrase} | /sbin/geli attach -j - {$provider} 2>&1", $result0);
+		if ($result0 == 0) {
+			system("/bin/echo {$passphrase} | /sbin/geli setkey {$param} {$provider} 2>&1", $result);
+			system("/sbin/geli detach {$provider} 2>&1", $result0);
+		}
 	}
 
 	return $result;
