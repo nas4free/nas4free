@@ -20,7 +20,7 @@
 # - fullupgrade <file> : Do a full release (TGZ file) upgrade using the file <file>
 #
 
-SIZE="128M"
+SIZE="200M"
 CFDEVICE=`cat /etc/cfdevice | sed -e 's/[a-h]$//'`
 FTMP="/var/tmp/ftmp"
 
