@@ -67,12 +67,14 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_pool, "uuid"))
 	$pconfig['vdevice'] = $a_pool[$cnid]['vdevice'];
 	$pconfig['root'] = $a_pool[$cnid]['root'];
 	$pconfig['mountpoint'] = $a_pool[$cnid]['mountpoint'];
+	$pconfig['force'] = isset($a_dataset[$cnid]['force']);
 	$pconfig['desc'] = $a_pool[$cnid]['desc'];	
 } else {
 	$pconfig['uuid'] = uuid();
 	$pconfig['name'] = "";
 	$pconfig['root'] = "";
 	$pconfig['mountpoint'] = "";
+	$pconfig['force'] = false;
 	$pconfig['desc'] = "";	
 }
 
@@ -97,7 +99,7 @@ if ($_POST) {
 	}
 
 	// Check for duplicate name
-	if (!(isset($uuid) && $_POST['name'] === $a_pool[$cnid]['name'])) {
+	if (!(!empty($cnid) && $_POST['name'] === $a_pool[$cnid]['name'])) {
 		if (false !== array_search_ex($_POST['name'], $a_pool, "name")) {
 			$input_errors[] = gettext("This pool name already exists.");
 		}
@@ -136,6 +138,7 @@ if ($_POST) {
 		$pooldata['vdevice'] = $_POST['vdevice'];
 		$pooldata['root'] = $_POST['root'];
 		$pooldata['mountpoint'] = $_POST['mountpoint'];
+		$pooldata['force'] = isset($_POST['force']) ? true : false;
 		$pooldata['desc'] = $_POST['desc'];
 
 		if (isset($uuid) && (FALSE !== $cnid)) {
@@ -200,6 +203,7 @@ function enable_change(enable_change) {
 					<?php html_listbox("vdevice", gettext("Virtual devices"), !empty($pconfig['vdevice']) ? $pconfig['vdevice'] : array(), $a_device, "", true);?>
 					<?php html_inputbox("root", gettext("Root"), $pconfig['root'], gettext("Creates the pool with an alternate root."), false, 40);?>
 					<?php html_inputbox("mountpoint", gettext("Mount point"), $pconfig['mountpoint'], gettext("Sets an alternate mount point for the root dataset. Default is /mnt."), false, 40);?>
+					<?php html_checkbox("force", gettext("Force use"), !empty($pconfig['force']) ? true : false, gettext("Forces use of vdevs, even if they appear in use or specify different size."), "", false);?>
 					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
 				</table>
 				<div id="submit">

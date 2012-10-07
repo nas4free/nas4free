@@ -142,7 +142,13 @@ $a_poolstatus = zfs_get_pool_list();
 					<?php foreach ($a_pool as $poolk => $poolv):?>
 					<?php
 					$notificationmode = updatenotify_get_mode("zfszpool", $poolv['uuid']);
-					$altroot = $cap = $avail = $used = $size = $health = gettext("Unknown");
+					if (UPDATENOTIFY_MODE_NEW == $notificationmode) {
+						$altroot = $cap = $avail = $used = $size = $dedup = $health = gettext("Initializing");
+					} else if (UPDATENOTIFY_MODE_MODIFIED == $notificationmode) {
+						$altroot = $cap = $avail = $used = $size = $dedup = $health = gettext("Modifying");
+					} else {
+						$altroot = $cap = $avail = $used = $size = $dedup = $health = gettext("Unknown");
+					}
 					if (is_array($a_poolstatus) && array_key_exists($poolv['name'], $a_poolstatus)) {
 						$size = $a_poolstatus[$poolv['name']]['size'];
 						$used = $a_poolstatus[$poolv['name']]['used'];

@@ -22,6 +22,7 @@ Changes:
 - Add ZFS sparse volume support.
 - Add GPT UUID to mount point.
 - Add a warning for changing of the disk in config.
+- Add force flag to ZFS pool creation.
 - Wait response of LAN interface if static with gateway.
 - Run umount before iSCSI initiator shutdown.
 - Remount all after netif is up for iSCSI device.
@@ -62,6 +63,7 @@ Bug fixes:
 - Load geom before import disks.
 - Remove lock before execute now of rsync client/local.
 - Fix using same ifield on file chooser.
+- Fix unknown state when creating ZFS pool.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.

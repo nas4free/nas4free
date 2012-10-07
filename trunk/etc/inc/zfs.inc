@@ -115,6 +115,8 @@ function zfs_zpool_configure($uuid) {
 	// Additional parameter
 	$param = "-m {$mountpoint} ";
 
+	if (isset($pool['force']))
+		$param .= "-f ";
 	if (!empty($pool['root']))
 		$param .= "-R {$pool['root']} ";
 
@@ -138,6 +140,7 @@ function zfs_zpool_configure($uuid) {
 
 		switch ($vdevice['type']) {
 			case "stripe":
+			case "disk":
 				break;
 
 			case "cache":
