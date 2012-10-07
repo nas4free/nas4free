@@ -76,6 +76,9 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_dataset, "uuid
 	$pconfig['quota'] = $a_dataset[$cnid]['quota'];
 	$pconfig['reservation'] = $a_dataset[$cnid]['reservation'];
 	$pconfig['desc'] = $a_dataset[$cnid]['desc'];
+	$pconfig['owner'] = $a_dataset[$cnid]['accessrestrictions']['owner'];
+	$pconfig['group'] = $a_dataset[$cnid]['accessrestrictions']['group'][0];
+	$pconfig['mode'] = $a_dataset[$cnid]['accessrestrictions']['mode'];
 } else {
 	$pconfig['uuid'] = uuid();
 	$pconfig['name'] = "";
@@ -91,7 +94,12 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_dataset, "uuid
 	$pconfig['quota'] = "";
 	$pconfig['reservation'] = "";
 	$pconfig['desc'] = "";
+	$pconfig['owner'] = "root";
+	$pconfig['group'] = "wheel";
+	$pconfig['mode'] = "0777";
 }
+
+initmodectrl($pconfig, $pconfig['mode']);
 
 if ($_POST) {
 	unset($input_errors);
@@ -126,6 +134,9 @@ if ($_POST) {
 		$dataset['quota'] = $_POST['quota'];
 		$dataset['reservation'] = $_POST['reservation'];
 		$dataset['desc'] = $_POST['desc'];
+		$dataset['accessrestrictions']['owner'] = $_POST['owner'];
+		$dataset['accessrestrictions']['group'] = $_POST['group'];
+		$dataset['accessrestrictions']['mode'] = getmodectrl($pconfig['mode_owner'], $pconfig['mode_group'], $pconfig['mode_others']);
 
 		if (isset($uuid) && (FALSE !== $cnid)) {
 			$mode = UPDATENOTIFY_MODE_MODIFIED;
@@ -141,6 +152,65 @@ if ($_POST) {
 		header("Location: disks_zfs_dataset.php");
 		exit;
 	}
+}
+
+function initmodectrl(&$pconfig, $mode) {
+	$pconfig['mode_owner'] = array();
+	$pconfig['mode_group'] = array();
+	$pconfig['mode_others'] = array();
+
+	// Convert octal to decimal
+	$mode = octdec($mode);
+
+	// Owner
+	if ($mode & 0x0100) $pconfig['mode_owner'][] = "r"; //Read
+	if ($mode & 0x0080) $pconfig['mode_owner'][] = "w"; //Write
+	if ($mode & 0x0040) $pconfig['mode_owner'][] = "x"; //Execute
+
+	// Group
+	if ($mode & 0x0020) $pconfig['mode_group'][] = "r"; //Read
+	if ($mode & 0x0010) $pconfig['mode_group'][] = "w"; //Write
+	if ($mode & 0x0008) $pconfig['mode_group'][] = "x"; //Execute
+
+	// Others
+	if ($mode & 0x0004) $pconfig['mode_others'][] = "r"; //Read
+	if ($mode & 0x0002) $pconfig['mode_others'][] = "w"; //Write
+	if ($mode & 0x0001) $pconfig['mode_others'][] = "x"; //Execute
+}
+
+function getmodectrl($owner, $group, $others) {
+		$mode = "";
+		$legal = array("r", "w", "x");
+
+		foreach ($legal as $value) {
+			$mode .= (is_array($owner) && in_array($value, $owner)) ? $value : "-";
+		}
+		foreach ($legal as $value) {
+			$mode .= (is_array($group) && in_array($value, $group)) ? $value : "-";
+		}
+		foreach ($legal as $value) {
+			$mode .= (is_array($others) && in_array($value, $others)) ? $value : "-";
+		}
+
+    $realmode = "";
+    $legal = array("", "w", "r", "x", "-");
+    $attarray = preg_split("//",$mode);
+
+    for ($i=0; $i<count($attarray); $i++) {
+        if ($key = array_search($attarray[$i], $legal)) {
+            $realmode .= $legal[$key];
+        }
+    }
+
+    $mode = str_pad($realmode, 9, '-');
+    $trans = array('-'=>'0', 'r'=>'4', 'w'=>'2', 'x'=>'1');
+    $mode = strtr($mode, $trans);
+    $newmode = "0";
+    $newmode .= $mode[0]+$mode[1]+$mode[2];
+    $newmode .= $mode[3]+$mode[4]+$mode[5];
+    $newmode .= $mode[6]+$mode[7]+$mode[8];
+
+    return $newmode;
 }
 ?>
 <?php include("fbegin.inc");?>
@@ -179,6 +249,7 @@ function enable_change(enable_change) {
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<?php html_titleline(gettext("Settings"));?>
 					<?php html_inputbox("name", gettext("Name"), $pconfig['name'], "", true, 20);?>
 					<?php $a_poollist = array(); foreach ($a_pool as $poolv) { $poolstatus = zfs_get_pool_list(); $poolstatus = $poolstatus[$poolv['name']]; $text = "{$poolv['name']}: {$poolstatus['size']}"; if (!empty($poolv['desc'])) { $text .= " ({$poolv['desc']})"; } $a_poollist[$poolv['name']] = htmlspecialchars($text); }?>
 					<?php html_combobox("pool", gettext("Pool"), $pconfig['pool'], $a_poollist, "", true);?>
@@ -197,6 +268,44 @@ function enable_change(enable_change) {
 					<?php html_inputbox("reservation", gettext("Reservation"), $pconfig['reservation'], gettext("The minimum amount of space guaranteed to a dataset (usually empty). To specify the size use the following human-readable suffixes (for example, 'k', 'KB', 'M', 'Gb', etc.)."), false, 10);?>
 					<?php html_inputbox("quota", gettext("Quota"), $pconfig['quota'], gettext("Limits the amount of space a dataset and its descendants can consume. This property enforces a hard limit on the amount of space used. This includes all space consumed by descendants, including file systems and snapshots. To specify the size use the following human-readable suffixes (for example, 'k', 'KB', 'M', 'Gb', etc.)."), false, 10);?>
 					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
+					<?php html_separator();?>
+					<?php html_titleline(gettext("Access Restrictions"));?>
+					<?php $a_owner = array(); foreach (system_get_user_list() as $userk => $userv) { $a_owner[$userk] = htmlspecialchars($userk); }?>
+					<?php html_combobox("owner", gettext("Owner"), $pconfig['owner'], $a_owner, "", false);?>
+					<?php $a_group = array(); foreach (system_get_group_list() as $groupk => $groupv) { $a_group[$groupk] = htmlspecialchars($groupk); }?>
+					<?php html_combobox("group", gettext("Group"), $pconfig['group'], $a_group, "", false);?>
+					<tr>
+						<td width="22%" valign="top" class="vncell"><?=gettext("Mode");?></td>
+						<td width="78%" class="vtable">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="20%" class="listhdrlr">&nbsp;</td>
+									<td width="20%" class="listhdrc"><?=gettext("Read");?></td>
+									<td width="50%" class="listhdrc"><?=gettext("Write");?></td>
+									<td width="20%" class="listhdrc"><?=gettext("Execute");?></td>
+									<td width="10%" class="list"></td>
+								</tr>
+								<tr>
+									<td class="listlr"><?=gettext("Owner");?>&nbsp;</td>
+									<td class="listrc" align="center"><input type="checkbox" name="mode_owner[]" id="owner_read" value="r" <?php if (in_array("r", $pconfig['mode_owner'])) echo "checked=\"checked\"";?> />&nbsp;</td>
+									<td class="listrc" align="center"><input type="checkbox" name="mode_owner[]" id="owner_write" value="w" <?php if (in_array("w", $pconfig['mode_owner'])) echo "checked=\"checked\"";?> />&nbsp;</td>
+									<td class="listrc" align="center"><input type="checkbox" name="mode_owner[]" id="owner_execute" value="x" <?php if (in_array("x", $pconfig['mode_owner'])) echo "checked=\"checked\"";?> />&nbsp;</td>
+								</tr>
+								<tr>
+									<td class="listlr"><?=gettext("Group");?>&nbsp;</td>
+									<td class="listrc" align="center"><input type="checkbox" name="mode_group[]" id="group_read" value="r" <?php if (in_array("r", $pconfig['mode_group'])) echo "checked=\"checked\"";?> />&nbsp;</td>
+									<td class="listrc" align="center"><input type="checkbox" name="mode_group[]" id="group_write" value="w" <?php if (in_array("w", $pconfig['mode_group'])) echo "checked=\"checked\"";?> />&nbsp;</td>
+									<td class="listrc" align="center"><input type="checkbox" name="mode_group[]" id="group_execute" value="x" <?php if (in_array("x", $pconfig['mode_group'])) echo "checked=\"checked\"";?> />&nbsp;</td>
+								</tr>
+								<tr>
+									<td class="listlr"><?=gettext("Others");?>&nbsp;</td>
+									<td class="listrc" align="center"><input type="checkbox" name="mode_others[]" id="others_read" value="r" <?php if (in_array("r", $pconfig['mode_others'])) echo "checked=\"checked\"";?> />&nbsp;</td>
+									<td class="listrc" align="center"><input type="checkbox" name="mode_others[]" id="others_write" value="w" <?php if (in_array("w", $pconfig['mode_others'])) echo "checked=\"checked\"";?> />&nbsp;</td>
+									<td class="listrc" align="center"><input type="checkbox" name="mode_others[]" id="others_execute" value="x" <?php if (in_array("x", $pconfig['mode_others'])) echo "checked=\"checked\"";?> />&nbsp;</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=((isset($uuid) && (FALSE !== $cnid))) ? gettext("Save") : gettext("Add");?>" onclick="enable_change(true)" />

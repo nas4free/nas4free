@@ -449,6 +449,11 @@ function zfs_dataset_properties($uuid) {
 	if (!empty($rawdata) && $rawdata[0] == "yes")
 		$mounted = true;
 
+	$mountpoint = "/mnt/{$dataset['pool'][0]}/{$dataset['name']}";
+	mwexec2("zfs list -H -t filesystem -o mountpoint {$dataset['pool'][0]}/{$dataset['name']}", $rawdata2);
+	if (!empty($rawdata2) && $rawdata2[0] != "none" && $rawdata2[0] != "legacy")
+		$mountpoint = $rawdata2[0];
+
 	$result = 0;
 
 	foreach (explode(" ", "compression dedup sync atime canmount readonly reservation quota xattr snapdir") as $attr) {
@@ -531,6 +536,19 @@ function zfs_dataset_properties($uuid) {
 		$cmd = "zfs mount {$dataset['pool'][0]}/{$dataset['name']}";
 		write_log($cmd);
 		$result |= mwexec($cmd, true);
+	}
+	if (!empty($mountpoint) && isset($dataset['canmount'])) {
+		if (is_array($dataset['accessrestrictions'])) {
+			$mode = $dataset['accessrestrictions']['mode'];
+			$owner = $dataset['accessrestrictions']['owner'];
+			$group = $dataset['accessrestrictions']['group'][0];
+write_log("{$mountpoint} $mode $owner $group");
+			if (file_exists($mountpoint) && is_writable($mountpoint)) {
+				if (!@chmod($mountpoint, octdec($mode)) || !@chown($mountpoint, $owner) || !@chgrp($mountpoint, $group)) {
+					write_log("Error: Failed to set access restrictions on directory '{$mountpoint}'");
+				}
+			}
+		}
 	}
 
 	return $result;
