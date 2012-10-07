@@ -203,7 +203,7 @@ function enable_change(enable_change) {
 					<?php html_listbox("vdevice", gettext("Virtual devices"), !empty($pconfig['vdevice']) ? $pconfig['vdevice'] : array(), $a_device, "", true);?>
 					<?php html_inputbox("root", gettext("Root"), $pconfig['root'], gettext("Creates the pool with an alternate root."), false, 40);?>
 					<?php html_inputbox("mountpoint", gettext("Mount point"), $pconfig['mountpoint'], gettext("Sets an alternate mount point for the root dataset. Default is /mnt."), false, 40);?>
-					<?php html_checkbox("force", gettext("Force use"), !empty($pconfig['force']) ? true : false, gettext("Forces use of vdevs, even if they appear in use or specify different size."), "", false);?>
+					<?php html_checkbox("force", gettext("Force use"), !empty($pconfig['force']) ? true : false, gettext("Forces use of vdevs, even if they appear in use or specify different size. (This is not recommended.)"), "", false);?>
 					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
 				</table>
 				<div id="submit">
