@@ -257,6 +257,63 @@ function zfs_zpool_destroy($uuid) {
 	return $result;
 }
 
+/**
+ * Update properties of a zpool.
+ * @param[in] uuid	The UUID of the zpool to be updated.
+ * @return Return 0 if successful, otherwise 1.
+ */
+function zfs_zpool_properties($uuid) {
+	global $config;
+
+	if (!is_array($config['zfs']['pools']['pool']))
+		return 1;
+
+	$index = array_search_ex($uuid, $config['zfs']['pools']['pool'], "uuid");
+	if (false === $index)
+		return 1;
+
+	$pool = $config['zfs']['pools']['pool'][$index];
+	if (!is_array($pool))
+		 return 1;
+
+	$result = 0;
+
+	$mountpoint = "/mnt/{$pool['name']}";
+	if (!empty($pool['mountpoint']))
+		$mountpoint = $pool['mountpoint'];
+
+	// unmount the pool
+	$cmd = "zfs umount -a";
+	write_log($cmd);
+	$result |= mwexec($cmd, true);
+
+	// update properties
+	foreach (explode(" ", "mountpoint") as $attr) {
+		$param = "";
+
+		switch ($attr) {
+			case "mountpoint":
+				if (!empty($mountpoint))
+					$param = "mountpoint={$mountpoint} ";
+				break;
+		}
+
+		// Update zpool properties
+		if (!empty($param)) {
+			$cmd = "zfs set {$param} {$pool['name']}";
+			write_log($cmd);
+			$result |= mwexec($cmd, true);
+		}
+	}
+
+	// remount the pool
+	$cmd = "zfs mount -a";
+	write_log($cmd);
+	$result |= mwexec($cmd, true);
+
+	return $result;
+}
+
 // Wrapper to execute zpool commands.
 // $command - Command to execute (e.g. upgrade).
 // $param   - The command parameter.
