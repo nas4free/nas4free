@@ -628,6 +628,7 @@ class HTMLListBox extends HTMLMultiSelectControl {
 
 class HTMLSeparator extends HTMLBaseControl {
 	var $_colspan = 2;
+	var $_idname = '';
 
 	function __construct() {
 		// Nothing to do here...
@@ -641,10 +642,14 @@ class HTMLSeparator extends HTMLBaseControl {
 		$this->_colspan = $colspan;
 	}
 
+	function SetIdName($idname) {
+		$this->_idname = $idname;
+	}
+
 	function Render() {
 		$colspan = $this->GetColSpan();
 
-		echo "<tr>\n";
+		echo ($this->_idname != '') ? "<tr id='{$this->_idname}'>\n" : "<tr>\n";
 		echo "	<td colspan='{$colspan}' class='list' height='12'></td>\n";
 		echo "</tr>\n";
 	}
@@ -652,6 +657,7 @@ class HTMLSeparator extends HTMLBaseControl {
 
 class HTMLTitleLine extends HTMLBaseControl {
 	var $_colspan = 2;
+	var $_idname = '';
 
 	function __construct($title) {
 		$this->SetTitle($title);
@@ -665,11 +671,15 @@ class HTMLTitleLine extends HTMLBaseControl {
 		$this->_colspan = $colspan;
 	}
 
+	function SetIdName($idname) {
+		$this->_idname = $idname;
+	}
+
 	function Render() {
 		$title = $this->GetTitle();
 		$colspan = $this->GetColSpan();
 
-		echo "<tr>\n";
+		echo ($this->_idname != '') ? "<tr id='{$this->_idname}'>\n" : "<tr>\n";
 		echo "	<td colspan='{$colspan}' valign='top' class='listtopic'>{$title}</td>\n";
 		echo "</tr>\n";
 	}
@@ -697,7 +707,7 @@ class HTMLTitleLineCheckBox extends HTMLCheckBox {
 		$param = $this->GetParam();
 		$colspan = $this->GetColSpan();
 
-		echo "<tr>\n";
+		echo "<tr id='{$ctrlname}_tr'>\n";
 		echo "	<td colspan='{$colspan}' valign='top' class='optsect_t'>\n";
 		echo "    <table border='0' cellspacing='0' cellpadding='0' width='100%'>\n";
 		echo "      <tr>\n";

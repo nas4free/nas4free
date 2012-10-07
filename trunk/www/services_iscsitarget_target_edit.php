@@ -49,7 +49,7 @@ if (isset($_POST['uuid']))
 $pgtitle = array(gettext("Services"), gettext("iSCSI Target"), gettext("Target"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
 /* currently support LUN0 only */
-$MAX_LUNS = 1;
+$MAX_LUNS = 4;
 /* supported block length */
 $MAX_BLOCKLEN = 4096;
 //$MAX_BLOCKLEN = 128 * 1024;
@@ -422,6 +422,8 @@ function type_change() {
 			var tr_name = "storage" + idx + "_tr";
 			//eval("document.iform." + sw_name + ".checked = true");
 			eval("document.iform." + sw_name + ".disabled = false");
+			showElementById("lun"+idx+"_separator", 'show');
+			showElementById(sw_name+"_tr", 'show');
 			showElementById(tr_name, 'hide');
 		}
 <?php endif; ?>
@@ -441,6 +443,8 @@ function type_change() {
 			var tr_name = "storage" + idx + "_tr";
 			eval("document.iform." + sw_name + ".checked = false");
 			eval("document.iform." + sw_name + ".disabled = true");
+			showElementById("lun"+idx+"_separator", 'hide');
+			showElementById(sw_name+"_tr", 'hide');
 			showElementById(tr_name, 'hide');
 		}
 <?php endif; ?>
@@ -460,6 +464,8 @@ function type_change() {
 			var tr_name = "storage" + idx + "_tr";
 			eval("document.iform." + sw_name + ".checked = false");
 			eval("document.iform." + sw_name + ".disabled = true");
+			showElementById("lun"+idx+"_separator", 'hide');
+			showElementById(sw_name+"_tr", 'hide');
 			showElementById(tr_name, 'hide');
 		}
 <?php endif; ?>
@@ -479,6 +485,8 @@ function type_change() {
 			var tr_name = "storage" + idx + "_tr";
 			eval("document.iform." + sw_name + ".checked = false");
 			eval("document.iform." + sw_name + ".disabled = true");
+			showElementById("lun"+idx+"_separator", 'hide');
+			showElementById(sw_name+"_tr", 'hide');
 			showElementById(tr_name, 'hide');
 		}
 <?php endif; ?>
@@ -655,7 +663,7 @@ function enable_change(enable_change) {
 				$a_storage_opt=array_merge(array("-" => gettext("None")), $a_storage_edit);
 			}
 			?>
-      <?php html_separator();?>
+			<?php html_separator(2, sprintf("lun%d_separator", $i));?>
 			<?php html_titleline_checkbox("$lenable", sprintf("%s%d", gettext("LUN"), $i), $enabled ? true : false, gettext("Enable"), "lun_change($i)");?>
       <?php
 			$index = array_search_ex("$i", $pconfig['lunmap'], "lun");
