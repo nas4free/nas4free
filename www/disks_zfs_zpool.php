@@ -81,6 +81,7 @@ function zfszpool_process_updatenotification($mode, $data) {
 			break;
 
 		case UPDATENOTIFY_MODE_MODIFIED:
+			$retval = zfs_zpool_properties($data);
 			break;
 
 		case UPDATENOTIFY_MODE_DIRTY:

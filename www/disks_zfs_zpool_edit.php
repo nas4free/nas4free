@@ -99,7 +99,7 @@ if ($_POST) {
 	}
 
 	// Check for duplicate name
-	if (!(!empty($cnid) && $_POST['name'] === $a_pool[$cnid]['name'])) {
+	if (!isset($cnid) || !($_POST['name'] === $a_pool[$cnid]['name'])) {
 		if (false !== array_search_ex($_POST['name'], $a_pool, "name")) {
 			$input_errors[] = gettext("This pool name already exists.");
 		}
@@ -164,7 +164,7 @@ function enable_change(enable_change) {
 	document.iform.name.disabled = !enable_change;
 	document.iform.vdevice.disabled = !enable_change;
 	document.iform.root.disabled = !enable_change;
-	document.iform.mountpoint.disabled = !enable_change;
+	//document.iform.mountpoint.disabled = !enable_change;
 }
 // -->
 </script>
