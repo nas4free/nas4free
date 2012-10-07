@@ -683,6 +683,21 @@ function config_upgrade() {
 		$config['version'] = "1.4";
 	}
 
+	/* Convert 1.4 -> 1.5 */
+	if ($config['version'] === "1.4") {
+		// add missing values
+		if (!empty($config['zfs']['datasets']) && !empty($config['zfs']['datasets']['dataset'])) {
+			foreach ($config['zfs']['datasets']['dataset'] as &$a) {
+				$a['reservation'] = "";
+				$a['accessrestrictions']['owner'] = "root";
+				$a['accessrestrictions']['group'] = "wheel";
+				$a['accessrestrictions']['mode'] = "0777";
+			}
+			unset($a);
+		}
+		$config['version'] = "1.5";
+	}
+
 
 	/* XXX Convert 9.5 -> 9.7 (must skip 9.6) */
 
