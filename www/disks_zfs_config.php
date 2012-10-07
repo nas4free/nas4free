@@ -71,12 +71,12 @@ $spa = @exec("sysctl -q -n vfs.zfs.version.spa");
 if ($spa == '' || $spa < 21) {
 	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin', $rawdata);
 } else {
-	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin,dedup,sync,atime', $rawdata);
+	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin,reservation,dedup,sync,atime', $rawdata);
 }
 foreach($rawdata as $line)
 {
 	if ($line == 'no datasets available') { continue; }
-	list($fname, $mpoint, $compress, $canmount, $quota, $used, $avail, $xattr, $snapdir, $readonly, $origin, $dedup, $sync, $atime) = explode("\t", $line);
+	list($fname, $mpoint, $compress, $canmount, $quota, $used, $avail, $xattr, $snapdir, $readonly, $origin, $reservation, $dedup, $sync, $atime) = explode("\t", $line);
 	if (strpos($fname, '/') !== false) // dataset
 	{
 		if (empty($origin) || $origin != '-') continue;
@@ -88,6 +88,7 @@ foreach($rawdata as $line)
 			'compression' => $compress,
 			'canmount' => ($canmount == 'on') ? null : $canmount,
 			'quota' => ($quota == 'none') ? null : $quota,
+			'reservation' => ($reservation == 'none') ? null : $reservation,
 			'xattr' => ($xattr == 'on'),
 			'snapdir' => ($snapdir == 'visible'),
 			'readonly' => ($readonly == 'on'),
