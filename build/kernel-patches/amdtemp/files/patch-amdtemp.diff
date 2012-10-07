@@ -1,5 +1,5 @@
---- amdtemp/amdtemp.c.orig	2012-08-14 08:53:33.000000000 +0900
-+++ amdtemp/amdtemp.c	2012-09-20 18:17:54.000000000 +0900
+--- amdtemp/amdtemp.c.orig	2012-08-06 01:54:33.000000000 +0200
++++ amdtemp/amdtemp.c	2012-10-07 06:51:29.000000000 +0200
 @@ -1,7 +1,7 @@
  /*-
   * Copyright (c) 2008, 2009 Rui Paulo <rpaulo@FreeBSD.org>
@@ -9,7 +9,7 @@
   * All rights reserved.
   *
   * Redistribution and use in source and binary forms, with or without
-@@ -27,12 +27,12 @@
+@@ -27,7 +27,7 @@
   */
  
  /*
@@ -17,13 +17,7 @@
 + * Driver for the AMD CPU on-die thermal sensors.
   * Initially based on the k8temp Linux driver.
   */
- 
- #include <sys/cdefs.h>
--__FBSDID("$FreeBSD: releng/9.1/sys/dev/amdtemp/amdtemp.c 197205 2009-09-14 23:08:19Z jkim $");
-+__FBSDID("$FreeBSD: head/sys/dev/amdtemp/amdtemp.c 232090 2012-02-24 00:02:46Z jkim $");
- 
- #include <sys/param.h>
- #include <sys/bus.h>
+
 @@ -47,12 +47,13 @@
  #include <machine/specialreg.h>
  
