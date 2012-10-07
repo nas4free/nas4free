@@ -380,6 +380,9 @@ function zfs_dataset_configure($uuid) {
 	if (isset($dataset['readonly']))
 		$param .= "-o readonly=on ";
 
+	if (!empty($dataset['reservation']))
+		$param .= "-o reservation={$dataset['reservation']} ";
+
 	if (!empty($dataset['quota']))
 		$param .= "-o quota={$dataset['quota']} ";
 
@@ -448,7 +451,7 @@ function zfs_dataset_properties($uuid) {
 
 	$result = 0;
 
-	foreach (explode(" ", "compression dedup sync atime canmount readonly quota xattr snapdir") as $attr) {
+	foreach (explode(" ", "compression dedup sync atime canmount readonly reservation quota xattr snapdir") as $attr) {
 		$param = "";
 
 		switch ($attr) {
@@ -484,6 +487,13 @@ function zfs_dataset_properties($uuid) {
 					$param = "readonly=on";
 				else
 					$param = "readonly=off";
+				break;
+
+			case "reservation":
+				if (!empty($dataset['reservation']))
+					$param = "reservation={$dataset['reservation']}";
+				else
+					$param = "reservation=none";
 				break;
 
 			case "quota":

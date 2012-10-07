@@ -74,6 +74,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_dataset, "uuid
 	$pconfig['xattr'] = isset($a_dataset[$cnid]['xattr']);
 	$pconfig['snapdir'] = isset($a_dataset[$cnid]['snapdir']);
 	$pconfig['quota'] = $a_dataset[$cnid]['quota'];
+	$pconfig['reservation'] = $a_dataset[$cnid]['reservation'];
 	$pconfig['desc'] = $a_dataset[$cnid]['desc'];
 } else {
 	$pconfig['uuid'] = uuid();
@@ -88,6 +89,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_dataset, "uuid
 	$pconfig['xattr'] = true;
 	$pconfig['snapdir'] = false;
 	$pconfig['quota'] = "";
+	$pconfig['reservation'] = "";
 	$pconfig['desc'] = "";
 }
 
@@ -122,6 +124,7 @@ if ($_POST) {
 		$dataset['xattr'] = isset($_POST['xattr']) ? true : false;
 		$dataset['snapdir'] = isset($_POST['snapdir']) ? true : false;
 		$dataset['quota'] = $_POST['quota'];
+		$dataset['reservation'] = $_POST['reservation'];
 		$dataset['desc'] = $_POST['desc'];
 
 		if (isset($uuid) && (FALSE !== $cnid)) {
@@ -191,6 +194,7 @@ function enable_change(enable_change) {
 					<?php html_checkbox("readonly", gettext("Readonly"), !empty($pconfig['readonly']) ? true : false, gettext("Controls whether this dataset can be modified."), "", false);?>
 					<?php html_checkbox("xattr", gettext("Extended attributes"), !empty($pconfig['xattr']) ? true : false, gettext("Enable extended attributes for this file system."), "", false);?>
 					<?php html_checkbox("snapdir", gettext("Snapshot Visibility"), !empty($pconfig['snapdir']) ? true : false, gettext("If this property is enabled, the snapshots are displayed into .zfs directory."), "", false);?>
+					<?php html_inputbox("reservation", gettext("Reservation"), $pconfig['reservation'], gettext("The minimum amount of space guaranteed to a dataset (usually empty). To specify the size use the following human-readable suffixes (for example, 'k', 'KB', 'M', 'Gb', etc.)."), false, 10);?>
 					<?php html_inputbox("quota", gettext("Quota"), $pconfig['quota'], gettext("Limits the amount of space a dataset and its descendants can consume. This property enforces a hard limit on the amount of space used. This includes all space consumed by descendants, including file systems and snapshots. To specify the size use the following human-readable suffixes (for example, 'k', 'KB', 'M', 'Gb', etc.)."), false, 10);?>
 					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
 				</table>
