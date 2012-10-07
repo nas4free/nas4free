@@ -109,6 +109,9 @@ vmsetup_start()
     if [ "$_vmtype" = "vmware" ]; then
 	echo "Virtual machine setup for $_vmtype"
 	eval "vmware_kmod_start"
+	if [ "`/sbin/sysctl -n kern.smp.cpus`" != "1" ]; then
+	    /sbin/sysctl kern.timecounter.hardware=ACPI-fast > /dev/null
+	fi
     elif [ "$_vmtype" = "vbox" ]; then
 	echo "Virtual machine setup for $_vmtype"
 	eval "vbox_kmod_start"
