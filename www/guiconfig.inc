@@ -380,15 +380,17 @@ function html_checkbox($ctrlname, $title, $checked, $caption = "", $desc = "", $
 	$ctrl->Render();
 }
 
-function html_separator($colspan = 2) {
+function html_separator($colspan = 2, $idname = '') {
 	$ctrl = new HTMLSeparator();
 	$ctrl->SetColSpan($colspan);
+	$ctrl->SetIdName($idname);
 	$ctrl->Render();
 }
 
-function html_titleline($title, $colspan = 2) {
+function html_titleline($title, $colspan = 2, $idname = '') {
 	$ctrl = new HTMLTitleLine($title);
 	$ctrl->SetColSpan($colspan);
+	$ctrl->SetIdName($idname);
 	$ctrl->Render();
 }
 
