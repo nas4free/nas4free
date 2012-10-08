@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# This script is designed to automate the assembly of NAS4Free.
+# This script is designed to automate the assembly of NAS4Free builds.
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (C) 2012 by NAS4Free <info@nas4free.org>.
+# All rights reserved.
 #
 # Debug script
 # set -x
-#
-# Part of NAS4Free (http://www.nas4free.org).
-# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
-# All rights reserved.
 #
 
 ################################################################################
@@ -539,14 +539,14 @@ create_iso () {
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
 
-	if [ ! $LIGHT_ISO ]; then
+	if [ ! $TINY_ISO ]; then
 		LABEL="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveCD-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}"
 		VOLUMEID="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveCD-${NAS4FREE_VERSION}"
 		echo "ISO: Generating the $NAS4FREE_PRODUCTNAME Image file:"
 		create_image;
 	else
-		LABEL="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveCD-light-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}"
-		VOLUMEID="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveCD-light-${NAS4FREE_VERSION}"
+		LABEL="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveCD-Tiny-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}"
+		VOLUMEID="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveCD-Tiny-${NAS4FREE_VERSION}"
 	fi
 
 	# Set Platform Informations.
@@ -602,7 +602,7 @@ create_iso () {
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
 
-	if [ ! $LIGHT_ISO ]; then
+	if [ ! $TINY_ISO ]; then
 		echo "ISO: Copying IMG file to $NAS4FREE_TMPDIR"
 		cp ${NAS4FREE_WORKINGDIR}/image.bin.gz ${NAS4FREE_TMPDIR}/${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-embedded.gz
 	fi
@@ -622,10 +622,10 @@ create_iso () {
 	return 0
 }
 
-create_iso_light() {
-	LIGHT_ISO=1
+create_iso_tiny() {
+	TINY_ISO=1
 	create_iso;
-	unset LIGHT_ISO
+	unset TINY_ISO
 	return 0
 }
 
@@ -1031,7 +1031,7 @@ Menu Options:
 10 - Create 'Embedded' (IMG) File (rawrite to CF/USB/DD).
 11 - Create 'LiveUSB' (IMG) File.
 12 - Create 'LiveCD' (ISO) File.
-13 - Create 'LiveCD' (ISO) File without 'Embedded' File.
+13 - Create 'LiveCD-Tiny' (ISO) File without 'Embedded' File.
 14 - Create 'Full' (TGZ) Update File.
 *  - Exit.
 Press # "
@@ -1042,7 +1042,7 @@ Press # "
 		10)	create_image;;
 		11)	create_usb;;
 		12)	create_iso;;
-		13)	create_iso_light;;
+		13)	create_iso_tiny;;
 		14)	create_full;;
 		*)	exit 0;;
 	esac
