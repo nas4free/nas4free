@@ -845,6 +845,7 @@ function install_newfs($disk, $volname, $sector, $fsize, $bsize) {
 function install_detect_installation($mode, &$devinfo) {
 	global $g;
 
+	$imgfile = get_product_name(). "-{$g['arch']}-embedded.gz";
 	$result = 1;
 	$devinfo = array();
 
@@ -875,7 +876,8 @@ function install_detect_installation($mode, &$devinfo) {
 				// Check install mode
 				switch ($mode) {
 					case 'embedded':
-						if (file_exists("{$mnt_cf_disk}/mfsroot.gz")) {
+						if (file_exists("{$mnt_cf_disk}/mfsroot.gz")
+						   && !file_exists("{$mnt_cf_disk}/{$imgfile}")) {
 							$result = 0;
 						}
 						break;
@@ -910,7 +912,8 @@ function install_detect_installation($mode, &$devinfo) {
 				// Check install mode
 				switch ($mode) {
 					case 'embedded':
-						if (file_exists("{$mnt_cf_disk}/mfsroot.gz")) {
+						if (file_exists("{$mnt_cf_disk}/mfsroot.gz")
+						   && !file_exists("{$mnt_cf_disk}/{$imgfile}")) {
 							$result = 0;
 						}
 						break;
