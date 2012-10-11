@@ -1,5 +1,5 @@
 PORTNAME=		xmlstarlet
-PORTVERSION=	1.3.1
+PORTVERSION=	1.4.0
 CATEGORIES=		textproc
 COMMENT=		Command line XML toolkit
 MAINTAINER=		zoon01@nas4free.org
