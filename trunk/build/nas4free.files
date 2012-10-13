@@ -493,7 +493,10 @@ usr/bin/patch
 usr/bin/xz:usr/bin/unxz:usr/bin/xzcat:usr/bin/lzma:usr/bin/unlzma:usr/bin/lzcat
 
 ####### contents of /usr/sbin
-##  ancontrol -- configure Aironet 4500/4800 devices
+## acpiconf -- control ACPI power management
+usr/sbin/acpiconf
+
+## ancontrol -- configure Aironet 4500/4800 devices
 usr/sbin/ancontrol
 
 ## arp -- address resolution display and control
@@ -618,7 +621,7 @@ usr/sbin/gstat
 usr/sbin/cpucontrol
 
 ## wake -- send Wake on LAN frames to hosts on a local Ethernet network
-#usr/sbin/wake
+usr/sbin/wake
 
 ## zdb - ZFS debugg
 usr/sbin/zdb
@@ -686,6 +689,8 @@ boot/gptboot
 ####### contents of /etc
 etc/rc.shutdown
 etc/rc.subr
+etc/rc.resume
+etc/rc.suspend
 etc/network.subr
 etc/pccard_ether
 etc/gettytab
