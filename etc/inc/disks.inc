@@ -765,6 +765,7 @@ function disks_geli_init($provider, $aalgo, $ealgo, $keylen, $passphrase, $verbo
 	if (!empty($keylen)) $param .= " -l {$keylen}";
 
 	// Init disk
+	$passphrase = escapeshellarg($passphrase);
 	system("/bin/echo {$passphrase} | /sbin/geli init {$param} {$provider} 2>&1", $result);
 
 	return $result;
@@ -784,6 +785,7 @@ function disks_geli_attach($provider, $passphrase, $verbose = false)
 	if (true == $verbose) $param .= " -v";
 
 	// Attach disk
+	$passphrase = escapeshellarg($passphrase);
 	system("/bin/echo {$passphrase} | /sbin/geli attach {$param} {$provider} 2>&1", $result);
 
 	return $result;
@@ -850,11 +852,14 @@ function disks_geli_setkey($devicespecialfile, $oldpassphrase, $passphrase, $ver
 
 	if (0 == disks_exists($devicespecialfile)) {
 		// Provider is already attached
+		$passphrase = escapeshellarg($passphrase);
 		system("/bin/echo {$passphrase} | /sbin/geli setkey {$param} {$provider} 2>&1", $result);
 	} else {
 		// Provider has not already been attached
+		$oldpassphrase = escapeshellarg($oldpassphrase);
 		system("/bin/echo {$oldpassphrase} | /sbin/geli attach -j - {$provider} 2>&1", $result0);
 		if ($result0 == 0) {
+			$passphrase = escapeshellarg($passphrase);
 			system("/bin/echo {$passphrase} | /sbin/geli setkey {$param} {$provider} 2>&1", $result);
 			system("/sbin/geli detach {$provider} 2>&1", $result0);
 		}
