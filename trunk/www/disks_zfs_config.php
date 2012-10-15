@@ -97,6 +97,24 @@ foreach($rawdata as $line)
 			'atime' => $atime,
 			'desc' => '',
 		);
+		list($mp_owner, $mp_group, $mp_mode) = array('root', 'wheel', 0777);
+		if ($canmount == 'on' && !empty($mpoint) && file_exists($mpoint)) {
+			$mp_uid = fileowner($mpoint);
+			$mp_gid = filegroup($mpoint);
+			$mp_perm = (fileperms($mpoint) & 0777);
+			$tmp = posix_getpwuid($mp_uid);
+			if (!empty($tmp) && !empty($tmp['name']))
+				$mp_owner = $tmp['name'];
+			$tmp = posix_getgrgid($mp_gid);
+			if (!empty($tmp) && !empty($tmp['name']))
+				$mp_group = $tmp['name'];
+			$mp_mode = sprintf("0%o", $mp_perm);
+		}
+		$zfs['datasets']['dataset'][$name]['accessrestrictions'] = array(
+			'owner' => $mp_owner,
+			'group' => $mp_group,
+			'mode' => $mp_mode,
+		);
 	}
 	else // zpool
 	{
