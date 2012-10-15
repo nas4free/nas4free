@@ -165,6 +165,7 @@ function enable_change(enable_change) {
 	document.iform.vdevice.disabled = !enable_change;
 	document.iform.root.disabled = !enable_change;
 	//document.iform.mountpoint.disabled = !enable_change;
+	document.iform.force.disabled = !enable_change;
 }
 // -->
 </script>
