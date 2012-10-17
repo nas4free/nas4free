@@ -3,7 +3,7 @@
 	disks_zfs_zpool_vdevice_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (C) 2012 by NAS4Free Team <info@nas4free.org>.
+	Copyright (C) 2012 by NAS4Free <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).

@@ -2,7 +2,7 @@
 /*
 	acces_ldap.php
 	Part of NAS4Free (http://www.nas4free.org)
-	Copyright (C) 2012 by nas4free team <info@nas4free.org>.
+	Copyright (C) 2012 by nas4free <info@nas4free.org>.
 	All rights reserved.
 
 	portions of FreeNAS (http://www.freenas.org)

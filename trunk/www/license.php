@@ -3,7 +3,7 @@
 	license.php
 	
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (C) 2012 NAS4Free team <info@nas4free.org>.
+	Copyright (C) 2012 by NAS4Free <info@nas4free.org>.
 	All rights reserved.
 
 	Portions from freenas (http://www.freenas.org).
