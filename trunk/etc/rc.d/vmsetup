@@ -48,6 +48,10 @@ vmware_kmod_start()
 	echo "Load vmhgfs module"
 	/sbin/kldload $_kmoddir/vmhgfs.ko >/dev/null 2>&1
     fi
+    if ! /sbin/kldstat -q -m pci/vmxnet3; then
+	echo "Load vmxnet3 module"
+	/sbin/kldload /boot/kernel/vmxnet3.ko >/dev/null 2>&1
+    fi
 }
 
 vmware_kmod_stop()
@@ -72,6 +76,10 @@ vmware_kmod_stop()
     if /sbin/kldstat -q -m vmmemctl; then
 	echo "Unload vmmemctl module"
 	/sbin/kldunload $_kmoddir/vmmemctl.ko >/dev/null 2>&1
+    fi
+    if /sbin/kldstat -q -m pci/vmxnet3; then
+	echo "Unload vmxnet3 module"
+	/sbin/kldunload /boot/kernel/vmxnet3.ko >/dev/null 2>&1
     fi
 }
 
