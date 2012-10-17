@@ -51,7 +51,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
 				<?php html_titleline(gettext("License"));?>
 				<tr>
 					<td class="listt">
-            <p><strong>NAS4Free is Copyright &copy; 2012 by NAS4Free Team
+            <p><strong>NAS4Free is Copyright &copy; 2012 by NAS4Free
               (<a href="mailto:info@nas4free.org">info@nas4free.org</a>).<br />
               All rights reserved.</strong></p>
 
