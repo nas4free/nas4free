@@ -5,7 +5,6 @@
     SUBDIR += autosnapshot
     SUBDIR += bash
     SUBDIR += bsnmp-ucd
-    SUBDIR += bsnmptools
     SUBDIR += cdialog
     SUBDIR += clog
     SUBDIR += e2fsprogs
@@ -13,7 +12,6 @@
     SUBDIR += firefly
     SUBDIR += fuppes
     SUBDIR += fusefs-ntfs
-    SUBDIR += geom_eli
     SUBDIR += geom_raid5
     SUBDIR += gzip
     SUBDIR += host
@@ -49,6 +47,7 @@
     SUBDIR += transmission
     SUBDIR += unison
     SUBDIR += vbox-additions
+    SUBDIR += vmxnet3
     SUBDIR += wol
     SUBDIR += xmlstarlet
     SUBDIR += zoneinfo
