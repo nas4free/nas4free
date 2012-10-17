@@ -221,6 +221,9 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
       <p>pfSense: NAS4Free use some pfSense code too (<a href="http://www.pfsense.com" target="_blank">http://www.pfsense.com</a>)<br />
         Copyright &copy; 2004, 2005, 2006 Scott Ullrich. All rights reserved.</p>
 
+      <p>VMXNET3 NIC driver for FreeBSD (<a href="http://www.vmware.com" target="_blank">http://www.vmware.com</a>)<br />
+        Copyright &copy; 2010 VMware, Inc. All Rights Reserved.</p>
+
       <p>Open Virtual Machine Tools (<a href="http://sourceforge.net/projects/open-vm-tools/" target="_blank">http://sourceforge.net/projects/open-vm-tools/</a>)</p>
 
       <p>VirtualBox Open Source Edition (OSE) (guest additions) (<a href="http://www.virtualbox.org/" target="_blank">http://www.virtualbox.org/</a>)</p>
