@@ -1,7 +1,7 @@
 # $FreeBSD: src/etc/root/dot.profile,v 1.20 1999/08/27 23:24:09 peter Exp $
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# Copyright (C) 2012 by NAS4Free <info@nas4free.org>.
 # All rights reserved.
 #
 # Portions of freenas (http://www.freenas.org).

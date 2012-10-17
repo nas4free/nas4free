@@ -1,10 +1,7 @@
 <?php
 /*
-	Exec+ v1.02-000 - Copyright 2001-2003, All rights reserved
-	Created by technologEase (http://www.technologEase.com).
-	
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (C) 2012 by NAS4Free Team <info@nas4free.org>.
+	Copyright (C) 2012 by NAS4Free <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -13,7 +10,10 @@
 	
 	portions of m0n0wall (http://m0n0.ch/wall)
 	Copyright (C) 2003-2006 Manuel Kasper <mk@neon1.net>.
-	All rights reserved.	
+	All rights reserved.
+
+	Exec+ v1.02-000 - Copyright 2001-2003, All rights reserved
+	Created by technologEase (http://www.technologEase.com).	
 
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met: 
