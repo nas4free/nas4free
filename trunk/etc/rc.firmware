@@ -3,7 +3,7 @@
 # /etc/rc.firmware
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (C) 2012 NAS4Free <info@nas4free.org>.
+# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
 # All rights reserved.
 #
 # Portions of freenas (http://www.freenas.org).
@@ -132,7 +132,7 @@ case $1 in
 				printf "\33[31m%s\33[0m\n" "${msg}"
 				/usr/bin/logger "UPGRADE ${msg}"
 			else
-				msg="Firmware installed successful."
+				msg="Firmware installed successfully."
 				printf "\33[37;44m%s\33[0m\n" "${msg}"
 				/usr/bin/logger "UPGRADE: ${msg}"
 			fi
