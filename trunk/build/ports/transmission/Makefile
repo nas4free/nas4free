@@ -1,12 +1,12 @@
 PORTNAME=		transmission
-PORTVERSION=	2.71
+PORTVERSION=	2.72
 PORTREVISION?= 0
 CATEGORIES?=		net-p2p
 COMMENT=		A fast and lightweight CLI bitTorrent client
 MAINTAINER=		zoon01@nas4free.org
 
-#MASTER_SITES=	http://download.m0k.org/${PORTNAME}/files/
-MASTER_SITES=   	http://transmission.cachefly.net/
+MASTER_SITES=   	http://download-origin.transmissionbt.com/files/ \
+			http://transmission.cachefly.net/
 
 LIB_DEPENDS=		curl.6:${PORTSDIR}/ftp/curl \
 	    		event-2.0.6:${PORTSDIR}/devel/libevent2
