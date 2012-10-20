@@ -3,15 +3,15 @@
 	diag_routes.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (C) 2012 by NAS4Free <info@nas4free.org>.
+	Copyright (c) 2012 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
-	Copyright (C) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
 	All rights reserved.
 	
 	Portions of m0n0wall (http://m0n0.ch/wall).
-	Copyright (C) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
 	All rights reserved.	
 
 	Redistribution and use in source and binary forms, with or without

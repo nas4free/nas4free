@@ -1,18 +1,15 @@
 /*
  * 
  * 	Part of NAS4Free (http://www.nas4free.org).
- * 	Copyright (C) 2012 by NAS4Free Team <info@nas4free.org>.
+ * 	Copyright (c) 2012 The NAS4Free Project <info@nas4free.org>.
  * 	All rights reserved.
  * 
  * 	Portions of freenas (http://www.freenas.org).
- * 	Copyright (C) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+ * 	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
  * 	All rights reserved.
  * 
- * 
- * 	Copyright (C) 2004 Baron Schwartz <baron at sequent dot org> 
+ * 	Copyright (c) 2004 Baron Schwartz <baron at sequent dot org> 
  * 	http://www.xaprb.com/blog/2005/09/29/javascript-date-chooser
- *
- * 	Modified by Volker Theile (votdev@gmx.de) 04/2008.
  *
  * 	This program is free software; you can redistribute it and/or modify it
  * 	under the terms of the GNU Lesser General Public License as published by the
