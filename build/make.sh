@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
+#
 # This script is designed to automate the assembly of NAS4Free builds.
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (C) 2012 by NAS4Free <info@nas4free.org>.
+# Copyright (c) 2012 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # Debug script

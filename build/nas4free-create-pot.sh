@@ -1,8 +1,9 @@
 #!/bin/sh
+#
 # Extract gettext strings from source.
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (C) 2012 NAS4Free Team <info@nas4free.org>.
+# Copyright (c) 2012 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 

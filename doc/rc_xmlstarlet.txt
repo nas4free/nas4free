@@ -1,7 +1,7 @@
 Howto convert PHP code into rc-init scripts:
 
 XMLStarlet is mostly used to create configuration files from services used
-in FreeNAS. Most of the config files are created in the rc-init scripts
+in NAS4Free. Most of the config files are created in the rc-init scripts
 themselves. Several services need to have a PHP wrapper script because the
 conversion from PHP code to a shell script is not done completely.
 

@@ -3,7 +3,7 @@
 	login.php
 	
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (C) 2012 by NAS4Free <info@nas4free.org>.
+	Copyright (c) 2012 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
