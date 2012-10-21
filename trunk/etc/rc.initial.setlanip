@@ -325,14 +325,14 @@ else
   $laninfov6 = "$lanipv6/{$config['interfaces']['lan']['ipv6subnet']}";
 
 write_console("\n\n");
-write_console("The LAN IP address has been set to:\n");
+write_console("The IP address has been set to:\n");
 if ($laninfov4 !== "")
-    write_console("IPv4: {$laninfov4}\n");
+    write_console("LAN Network IPv4 Address: {$laninfov4}\n");
 else
     write_console("Error: Don't get IPv4 address!\n");
 if (isset($config['interfaces']['lan']['ipv6_enable'])) {
     if ($laninfov6 !== "")
-	    write_console("IPv6: {$laninfov6}\n");
+	    write_console("LAN Network IPv6 Address: {$laninfov6}\n");
     else
         write_console("IPv6 enabled, but can't get one\n");
 }

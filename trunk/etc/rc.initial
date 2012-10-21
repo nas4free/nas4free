@@ -11,7 +11,6 @@
 # All rights reserved.
 #
 
-
 . /etc/rc.subr
 . /etc/configxml.subr
 
@@ -41,11 +40,9 @@ else
 			echo "Now, the blank USB memory for installation can be inserted."
 			echo "To redisplay Console setup, press enter key.";;
 	esac
-
 	# endless loop
 	while : ; do
 		# display menu
-		echo
 		echo
 		echo "Console setup"
 		echo "-------------"
