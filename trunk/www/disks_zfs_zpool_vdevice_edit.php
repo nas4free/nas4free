@@ -92,6 +92,8 @@ if ($_POST) {
 		header("Location: disks_zfs_zpool_vdevice.php");
 		exit;
 	}
+	if (!isset($_POST['device']))
+		$_POST['device'] = $pconfig['device'] = array();
 
 	// Input validation
 	$reqdfields = explode(" ", "name type");
@@ -102,7 +104,7 @@ if ($_POST) {
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	// Check for duplicate name
-	if (!(isset($uuid) && $_POST['name'] === $a_vdevice[$cnid]['name'])) {
+	if (!isset($uuid) || $cnid === FALSE || !($_POST['name'] === $a_vdevice[$cnid]['name'])) {
 		if (false !== array_search_ex($_POST['name'], $a_vdevice, "name")) {
 			$input_errors[] = gettext("This virtual device name already exists.");
 		}
