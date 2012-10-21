@@ -95,11 +95,13 @@ if ($_POST) {
 		header("Location: disks_zfs_snapshot.php");
 		exit;
 	}
+	if (!isset($_POST['path']))
+		$pconfig['path'] = "";
 
 	// Input validation
-	$reqdfields = explode(" ", "name");
-	$reqdfieldsn = array(gettext("Name"));
-	$reqdfieldst = explode(" ", "string");
+	$reqdfields = explode(" ", "path name");
+	$reqdfieldsn = array(gettext("Path"), gettext("Name"));
+	$reqdfieldst = explode(" ", "string string");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);

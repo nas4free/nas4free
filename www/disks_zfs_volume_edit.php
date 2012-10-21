@@ -91,11 +91,13 @@ if ($_POST) {
 		header("Location: disks_zfs_volume.php");
 		exit;
 	}
+	if (!isset($_POST['pool']))
+		$pconfig['pool'] = "";
 
 	// Input validation
-	$reqdfields = explode(" ", "name volsize");
-	$reqdfieldsn = array(gettext("Name"), gettext("Size"));
-	$reqdfieldst = explode(" ", "string string");
+	$reqdfields = explode(" ", "pool name volsize");
+	$reqdfieldsn = array(gettext("Pool"), gettext("Name"), gettext("Size"));
+	$reqdfieldst = explode(" ", "string string string");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);

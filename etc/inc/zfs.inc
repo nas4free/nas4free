@@ -96,7 +96,7 @@ function zfs_get_pool_list() {
 function zfs_zpool_configure($uuid) {
 	global $config;
 
-	if (!is_array($config['zfs']['pools']['pool']))
+	if (!isset($config['zfs']['pools']['pool']) || !is_array($config['zfs']['pools']['pool']))
 		return 1;
 
 	$index = array_search_ex($uuid, $config['zfs']['pools']['pool'], "uuid");
@@ -212,7 +212,7 @@ function zfs_zpool_configure($uuid) {
 function zfs_zpool_destroy($uuid) {
 	global $config;
 
-	if (!is_array($config['zfs']['pools']['pool']))
+	if (!isset($config['zfs']['pools']['pool']) || !is_array($config['zfs']['pools']['pool']))
 		return 1;
 
 	$index = array_search_ex($uuid, $config['zfs']['pools']['pool'], "uuid");
@@ -265,7 +265,7 @@ function zfs_zpool_destroy($uuid) {
 function zfs_zpool_properties($uuid) {
 	global $config;
 
-	if (!is_array($config['zfs']['pools']['pool']))
+	if (!isset($config['zfs']['pools']['pool']) || !is_array($config['zfs']['pools']['pool']))
 		return 1;
 
 	$index = array_search_ex($uuid, $config['zfs']['pools']['pool'], "uuid");
@@ -348,7 +348,7 @@ function zfs_zpool_cmd($command, $param, $verbose = false, $stderr = true, $out 
 function zfs_dataset_configure($uuid) {
 	global $config;
 
-	if (!is_array($config['zfs']['datasets']['dataset']))
+	if (!isset($config['zfs']['datasets']['dataset']) || !is_array($config['zfs']['datasets']['dataset']))
 		return 1;
 
 	$index = array_search_ex($uuid, $config['zfs']['datasets']['dataset'], "uuid");
@@ -407,7 +407,7 @@ function zfs_dataset_configure($uuid) {
 function zfs_dataset_destroy($uuid) {
 	global $config;
 
-	if (!is_array($config['zfs']['datasets']['dataset']))
+	if (!isset($config['zfs']['datasets']['dataset']) || !is_array($config['zfs']['datasets']['dataset']))
 		return 1;
 
 	$index = array_search_ex($uuid, $config['zfs']['datasets']['dataset'], "uuid");
@@ -433,7 +433,7 @@ function zfs_dataset_destroy($uuid) {
 function zfs_dataset_properties($uuid) {
 	global $config;
 
-	if (!is_array($config['zfs']['datasets']['dataset']))
+	if (!isset($config['zfs']['datasets']['dataset']) || !is_array($config['zfs']['datasets']['dataset']))
 		return 1;
 
 	$index = array_search_ex($uuid, $config['zfs']['datasets']['dataset'], "uuid");
@@ -562,7 +562,7 @@ write_log("{$mountpoint} $mode $owner $group");
 function zfs_volume_configure($uuid) {
 	global $config;
 
-	if (!is_array($config['zfs']['volumes']['volume']))
+	if (!isset($config['zfs']['volumes']['volume']) || !is_array($config['zfs']['volumes']['volume']))
 		return 1;
 
 	$index = array_search_ex($uuid, $config['zfs']['volumes']['volume'], "uuid");
@@ -606,7 +606,7 @@ function zfs_volume_configure($uuid) {
 function zfs_volume_destroy($uuid) {
 	global $config;
 
-	if (!is_array($config['zfs']['volumes']['volume']))
+	if (!isset($config['zfs']['volumes']['volume']) || !is_array($config['zfs']['volumes']['volume']))
 		return 1;
 
 	$index = array_search_ex($uuid, $config['zfs']['volumes']['volume'], "uuid");
@@ -647,7 +647,7 @@ function zfs_get_volume_reservation($volsize) {
 function zfs_volume_properties($uuid) {
 	global $config;
 
-	if (!is_array($config['zfs']['volumes']['volume']))
+	if (!isset($config['zfs']['volumes']['volume']) || !is_array($config['zfs']['volumes']['volume']))
 		return 1;
 
 	$index = array_search_ex($uuid, $config['zfs']['volumes']['volume'], "uuid");

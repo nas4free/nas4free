@@ -99,7 +99,7 @@ if ($_POST) {
 	}
 
 	// Check for duplicate name
-	if (!isset($cnid) || !($_POST['name'] === $a_pool[$cnid]['name'])) {
+	if (!isset($cnid) || $cnid === FALSE || !($_POST['name'] === $a_pool[$cnid]['name'])) {
 		if (false !== array_search_ex($_POST['name'], $a_pool, "name")) {
 			$input_errors[] = gettext("This pool name already exists.");
 		}
