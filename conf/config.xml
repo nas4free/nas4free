@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!-- NAS4Free default system configuration -->
 <nas4free>
-	<version>1.5</version>
+	<version>1.6</version>
 	<lastchange></lastchange>
 	<system>
 		<hostname>nas4free</hostname>
@@ -40,6 +40,9 @@
 		<disablebeep/>
 		<powerd/>
 		-->
+		<pwmode>hiadaptive</pwmode>
+		<pwmax/>
+		<pwmin/>
 		<tune/>
 		<swap>
 			<type>file</type>
@@ -95,7 +98,7 @@
 			<param>
 				<uuid>f69687d9-acdf-42d9-bd27-04486068874b</uuid>
 				<name>powerd_flags</name>
-				<value>-a adaptive -b adaptive</value>
+				<value>-a hiadaptive -b hiadaptive -n hiadaptive</value>
 				<comment>System power control options</comment>
 				<enable/>
 			</param>
