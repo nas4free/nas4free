@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-10-08 06:28+0000\n"
-"PO-Revision-Date: 2012-07-29 22:33+0000\n"
-"Last-Translator: m <galant-rostov@yandex.ru>\n"
+"POT-Creation-Date: 2012-10-22 08:12+0000\n"
+"PO-Revision-Date: 2012-10-15 14:58+0000\n"
+"Last-Translator: Eugene Marshal <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-10-07 21:44+0000\n"
-"X-Generator: Launchpad (build 16061)\n"
+"X-Launchpad-Export-Date: 2012-10-21 23:28+0000\n"
+"X-Generator: Launchpad (build 16165)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
 "X-Poedit-Language: Russian\n"
@@ -757,7 +757,7 @@ msgid "Blank time"
 msgstr "Время простоя"
 
 msgid "Blocksize"
-msgstr ""
+msgstr "Размер блока"
 
 msgid "Browseable"
 msgstr "Просматриваемый"
@@ -824,6 +824,9 @@ msgstr "CP950 (Традиционный китайский Big5)"
 
 msgid "CPU frequency"
 msgstr "Частота ЦП"
+
+msgid "CPU frequency:"
+msgstr ""
 
 msgid "CPU load"
 msgstr "Загрузка процессора"
@@ -919,10 +922,10 @@ msgid "Clear"
 msgstr "Очистить"
 
 msgid "Clear config and Import disks"
-msgstr ""
+msgstr "Очистить конфигурацию и импортировать диски"
 
 msgid "Clear config and Import software raid disks"
-msgstr ""
+msgstr "Очистить конфигурацию и импортировать диски с программным RAID"
 
 msgid ""
 "Click &quot;Enable firmware upload&quot; below, then choose the image file "
@@ -1046,8 +1049,11 @@ msgstr "IP-адрес контроллера"
 msgid "Controller TCP Port"
 msgstr "TCP-порт контроллера"
 
-msgid "Controls the behavior of synchronous requests."
+msgid "Controls power consumption."
 msgstr ""
+
+msgid "Controls the behavior of synchronous requests."
+msgstr "Управляет поведение синхронных запросов."
 
 msgid ""
 "Controls the compression algorithm used for this dataset. The 'lzjb' "
@@ -1573,6 +1579,8 @@ msgid ""
 "Do you really want to clear and import?\\nThe existing config will be "
 "cleared and overwritten."
 msgstr ""
+"Вы действительно хотите очистить и импортировать?\\nСуществующая "
+"конфигурация будет очищена и перезаписана."
 
 msgid "Do you really want to delete all MIBs?"
 msgstr "Вы действительно хотите удалить все MIB?"
@@ -1704,6 +1712,8 @@ msgstr ""
 msgid ""
 "Do you really want to import?\\nThe existing config may be overwritten."
 msgstr ""
+"Вы действительно хотите импортировать?\\nСуществующая конфигурация может "
+"быть перезаписана."
 
 msgid "Do you really want to remove the selected item from the list?"
 msgstr "Вы действительно хотите удалить выбранный пункт из списка?"
@@ -1915,6 +1925,9 @@ msgstr "Уведомление по е-mail"
 
 msgid "Email report"
 msgstr "Отправить отчет по e-mail"
+
+msgid "Empty as default."
+msgstr ""
 
 msgid "Enable"
 msgstr "Включить"
@@ -3297,6 +3310,9 @@ msgstr "MaxRecvDataSegmentLength"
 msgid "Maximum connections"
 msgstr "Максимальное количество соединений"
 
+msgid "Maximum frequency"
+msgstr ""
+
 msgid "Maximum idle time in seconds."
 msgstr "Максимальное время бездействия (в секундах)."
 
@@ -3364,6 +3380,9 @@ msgstr "Минимальный"
 
 msgid "Minimum free space"
 msgstr "Минимум свободного места"
+
+msgid "Minimum frequency"
+msgstr ""
 
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Минимальная производительность, минимум шума"
@@ -4004,6 +4023,9 @@ msgstr "Постинициализация"
 
 msgid "Power Daemon"
 msgstr "Процесс управления электропитанием"
+
+msgid "Power Mode"
+msgstr ""
 
 msgid "Power mode"
 msgstr "Режим электропитания"
@@ -6745,7 +6767,7 @@ msgstr "Неверный номер или тип раздела."
 
 #, php-format
 msgid "Wrong permission on %s."
-msgstr ""
+msgstr "Неправильное разрешение на%s."
 
 msgid "Yes"
 msgstr "Да"
@@ -6866,11 +6888,14 @@ msgstr ""
 msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
 
-msgid "all disks are imported."
+msgid "adaptive (low power consumption)"
 msgstr ""
 
+msgid "all disks are imported."
+msgstr "все диски импортированы."
+
 msgid "all encrypted disks are imported."
-msgstr ""
+msgstr "все диски использующие шифрование импортированы."
 
 msgid "all software raid disks are imported."
 msgstr ""
@@ -6897,7 +6922,7 @@ msgid "dbpath"
 msgstr "dbpath"
 
 msgid "detected an error while importing."
-msgstr ""
+msgstr "обнаружена ошибка во время импортирования."
 
 #, php-format
 msgid "e.g. %s"
@@ -6908,6 +6933,9 @@ msgstr "Выбор файла"
 
 msgid "get target info failed."
 msgstr "неудачное получение информации о цели."
+
+msgid "hiadaptive (high performance)"
+msgstr ""
 
 msgid "hour(s)"
 msgstr "час."
@@ -6937,6 +6965,12 @@ msgstr "бесконечность"
 msgid "load/unload failed."
 msgstr "неудачная загрузка/выгрузка."
 
+msgid "maximum (highest performance)"
+msgstr ""
+
+msgid "minimum (power saving)"
+msgstr ""
+
 msgid "minute(s)"
 msgstr "мин."
 
@@ -6956,10 +6990,10 @@ msgid "n/a"
 msgstr "n/a"
 
 msgid "no new disk found."
-msgstr ""
+msgstr "новый диск не найден."
 
 msgid "no new encrypted disk found."
-msgstr ""
+msgstr "новый диск использующий шифрование не найден."
 
 msgid "no new software raid disk found."
 msgstr ""
