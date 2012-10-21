@@ -29,6 +29,7 @@ Changes:
 - Add GPT UUID to mount point.
 - Add a warning for changing of the disk in config.
 - Add force flag to ZFS pool creation.
+- Add random SCSI serial when creating iSCSI target.
 - Wait response of LAN interface if static with gateway.
 - Run umount before iSCSI initiator shutdown.
 - Remount all after netif is up for iSCSI device.
@@ -81,11 +82,11 @@ Bug fixes:
 - Fix error on empty ZFS config.
 - Fix gnop is not deleted at ZFS pool destruction.
 - Fix broken serial output.
+- Fix error on empty iSCSI target.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
 - It is not possible to encrypt a disk partition, only complete disks are supported.
-- Enable 'polling' on interfaces used by a LAGG interface will make it inoperable.
 
 Known bugs:
 - If DHCP for IPv4 is used, the IPv6 statically configured DNS server will be

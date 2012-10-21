@@ -106,6 +106,28 @@ $a_iscsitarget_extent = &$config['iscsitarget']['extent'];
 $a_iscsitarget_device = &$config['iscsitarget']['device'];
 $a_iscsitarget_target = &$config['iscsitarget']['target'];
 
+function get_random_iscsi_sn($length = 8){
+	global $config;
+	$xstr0 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	$xstr = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	$zero = str_repeat("0", $length);
+	$result = "";
+	while (1) {
+		$tmp = mt_rand(0, strlen($xstr0) - 1);
+		$result .= substr($xstr0, $tmp, 1);
+		for ($i = 1; $i < $length; $i++) {
+			$tmp = mt_rand(0, strlen($xstr) - 1);
+			$result .= substr($xstr, $tmp, 1);
+		}
+		if (strcmp($result, $zero) == 0)
+			continue;
+		$index = array_search_ex($result, $config['iscsitarget']['target'], "inqserial");
+		if (false === $index)
+			break;
+	}
+	return $result;
+}
+
 $errormsg = "";
 if (count($config['iscsitarget']['portalgroup']) == 0) {
 	$errormsg .= sprintf(gettext("No configured Portal Group. Please add new <a href='%s'>Portal Group</a> first."), "services_iscsitarget_pg.php")."<br />\n";
@@ -217,7 +239,10 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_ta
 	$pconfig['inqvendor'] = "";
 	$pconfig['inqproduct'] = "";
 	$pconfig['inqrevision'] = "";
-	$pconfig['inqserial'] = "";
+	$sid = "00";
+	//$serial = "NFSN{$sid}".substr(preg_replace("/\-/", "", $pconfig['uuid']), -8);
+	$serial = "NFSN{$sid}".get_random_iscsi_sn(8);
+	$pconfig['inqserial'] = $serial;
 	$pconfig['blocklen'] = "512";
 }
 
@@ -230,6 +255,8 @@ if ($_POST) {
 		header("Location: services_iscsitarget_target.php");
 		exit;
 	}
+	if (!isset($_POST['storage']))
+		$_POST['storage'] = $pconfig['storage'] = "";
 	$type = $_POST['type'];
 	$blocklen = 0;
 	if ($type == "Disk"){
@@ -265,7 +292,7 @@ if ($_POST) {
 		$lunmap[0]['extentname'] = $_POST['storage'];
 	}
 	for ($i = 1; $i < $MAX_LUNS; $i++) {
-		if ($_POST['enable'.$i]
+		if (isset($_POST['enable'.$i])
 			&& $_POST['storage'.$i] !== "-") {
 			$lunmap[$i]['lun'] = "$i";
 			$lunmap[$i]['type'] = "$stype";
@@ -358,7 +385,7 @@ if ($_POST) {
 	if (empty($input_errors)) {
 		$iscsitarget_target = array();
 		$iscsitarget_target['uuid'] = $_POST['uuid'];
-		$iscsitarget_target['enable'] = $_POST['enable'] ? true : false;
+		$iscsitarget_target['enable'] = isset($_POST['enable']) ? true : false;
 		$iscsitarget_target['name'] = $tgtname;
 		$iscsitarget_target['alias'] = $_POST['alias'];
 		$iscsitarget_target['type'] = $_POST['type'];
@@ -554,8 +581,8 @@ function enable_change(enable_change) {
 
   <tr>
     <td class="tabcont">
-      <?php if ($errormsg) print_error_box($errormsg);?>
-      <?php if ($input_errors) print_input_errors($input_errors);?>
+      <?php if (!empty($errormsg)) print_error_box($errormsg);?>
+      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
       <table width="100%" border="0" cellpadding="6" cellspacing="0">
       <?php html_titleline_checkbox("enable", gettext("iSCSI Target"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
       <?php html_inputbox("name", gettext("Target Name"), $pconfig['name'], gettext("Base Name will be appended automatically when starting without 'iqn.'."), true, 70, false);?>
