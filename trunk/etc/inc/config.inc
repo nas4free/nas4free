@@ -698,6 +698,26 @@ function config_upgrade() {
 		$config['version'] = "1.5";
 	}
 
+	/* Convert 1.5 -> 1.6 */
+	if ($config['version'] === "1.5") {
+		$config['system']['pwmode'] = "hiadaptive";
+		$config['system']['pwmax'] = "";
+		$config['system']['pwmin'] = "";
+		$pwopt = "-a hiadaptive -b hiadaptive -n hiadaptive";
+		$index = array_search_ex("powerd_flags", $config['system']['rcconf']['param'], "name");
+		if ($index !== false) {
+			$config['system']['rcconf']['param'][$index]['value'] = $pwopt;
+		} else {
+			$config['system']['rcconf']['param'][] = array(
+				"uuid" => uuid(),
+				"name" => "powerd_flags",
+				"value" => $pwopt,
+				"comment" => "System power control options",
+				"enable" => true );
+		}
+		$config['version'] = "1.6";
+	}
+
 
 	/* XXX Convert 9.5 -> 9.7 (must skip 9.6) */
 

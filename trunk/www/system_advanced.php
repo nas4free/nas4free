@@ -50,6 +50,9 @@ $pconfig['disablebeep'] = isset($config['system']['disablebeep']);
 $pconfig['tune_enable'] = isset($config['system']['tune']);
 $pconfig['zeroconf'] = isset($config['system']['zeroconf']);
 $pconfig['powerd'] = isset($config['system']['powerd']);
+$pconfig['pwmode'] = $config['system']['pwmode'];
+$pconfig['pwmax'] = !empty($config['system']['pwmax']) ? $config['system']['pwmax'] : "";
+$pconfig['pwmin'] = !empty($config['system']['pwmin']) ? $config['system']['pwmin'] : "";
 $pconfig['motd'] = base64_decode($config['system']['motd']);
 $pconfig['sysconsaver'] = isset($config['system']['sysconsaver']['enable']);
 $pconfig['sysconsaverblanktime'] = $config['system']['sysconsaver']['blanktime'];
@@ -59,6 +62,11 @@ if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
+	if (!isset($pconfig['pwmax']))
+		$pconfig['pwmax'] = "";
+	if (!isset($pconfig['pwmin']))
+		$pconfig['pwmin'] = "";
+
 	// Input validation.
 	if (isset($_POST['sysconsaver'])) {
 		$reqdfields = explode(" ", "sysconsaverblanktime");
@@ -66,6 +74,14 @@ if ($_POST) {
 		$reqdfieldst = explode(" ", "numeric");
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
+	}
+	if (isset($_POST['powerd'])) {
+		$reqdfields = explode(" ", "pwmax pwmin");
+		$reqdfieldsn = array(gettext("Maximum frequency"), gettext("Minimum frequency"));
+		$reqdfieldst = explode(" ", "numeric numeric");
+
+		//do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
 
@@ -125,10 +141,34 @@ if ($_POST) {
 		$config['system']['tune'] = isset($_POST['tune_enable']) ? true : false;
 		$config['system']['zeroconf'] = isset($_POST['zeroconf']) ? true : false;
 		$config['system']['powerd'] = isset($_POST['powerd']) ? true : false;
+		$config['system']['pwmode'] = $_POST['pwmode'];
+		$config['system']['pwmax'] = $_POST['pwmax'];
+		$config['system']['pwmin'] = $_POST['pwmin'];
 		$config['system']['motd'] = base64_encode($_POST['motd']); // Encode string, otherwise line breaks will get lost
 		$config['system']['sysconsaver']['enable'] = isset($_POST['sysconsaver']) ? true : false;
 		$config['system']['sysconsaver']['blanktime'] = $_POST['sysconsaverblanktime'];
 		$config['system']['enableserialconsole'] = isset($_POST['enableserialconsole']) ? true : false;
+
+		// adjust power mode
+		$pwmode = $config['system']['pwmode'];
+		$pwmax = $config['system']['pwmax'];
+		$pwmin = $config['system']['pwmin'];
+		$pwopt = "-a {$pwmode} -b {$pwmode} -n {$pwmode}";
+		if (!empty($pwmax))
+			$pwopt .= " -M {$pwmax}";
+		if (!empty($pwmin))
+			$pwopt .= " -m {$pwmin}";
+		$index = array_search_ex("powerd_flags", $config['system']['rcconf']['param'], "name");
+		if ($index !== false) {
+			$config['system']['rcconf']['param'][$index]['value'] = $pwopt;
+		} else {
+			$config['system']['rcconf']['param'][] = array(
+				"uuid" => uuid(),
+				"name" => "powerd_flags",
+				"value" => $pwopt,
+				"comment" => "System power control options",
+				"enable" => true );
+		}
 
 		write_config();
 
@@ -234,6 +274,21 @@ function sysconsaver_change() {
 			break;
 	}
 }
+function powerd_change() {
+	switch (document.iform.powerd.checked) {
+		case true:
+			showElementById('pwmode_tr','show');
+			showElementById('pwmax_tr','show');
+			showElementById('pwmin_tr','show');
+			break;
+
+		case false:
+			showElementById('pwmode_tr','hide');
+			showElementById('pwmax_tr','hide');
+			showElementById('pwmin_tr','hide');
+			break;
+	}
+}
 //-->
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -267,7 +322,22 @@ function sysconsaver_change() {
 					<?php endif;?>
 					<?php html_checkbox("disablebeep", gettext("System Beep"), !empty($pconfig['disablebeep']) ? true : false, gettext("Disable speaker beep on startup and shutdown"));?>
 					<?php html_checkbox("tune_enable", gettext("Tuning"), !empty($pconfig['tune_enable']) ? true : false, gettext("Enable tuning of some kernel variables"));?>
-					<?php html_checkbox("powerd", gettext("Power Daemon"), !empty($pconfig['powerd']) ? true : false, gettext("Enable the system power control utility"), gettext("The powerd utility monitors the system state and sets various power control options accordingly."));?>
+					<?php html_checkbox("powerd", gettext("Power Daemon"), !empty($pconfig['powerd']) ? true : false, gettext("Enable the system power control utility"), gettext("The powerd utility monitors the system state and sets various power control options accordingly."), false, "powerd_change()");?>
+					<?php $a_pwmode = array("maximum" => gettext("maximum (highest performance)"), "hiadaptive" => gettext("hiadaptive (high performance)"), "adaptive" => gettext("adaptive (low power consumption)"), "minimum" => gettext("minimum (power saving)")); ?>
+					<?php html_combobox("pwmode", gettext("Power Mode"), $pconfig['pwmode'], $a_pwmode, gettext("Controls power consumption."), false);?>
+					<?php $clocks = @exec("/sbin/sysctl -q -n dev.cpu.0.freq_levels");
+					    $a_freq = array();
+					   if (!empty($clocks)) {
+						$a_tmp = preg_split("/\s/", $clocks);
+						foreach ($a_tmp as $val) {
+							list($freq,$tmp) = preg_split("/\//", $val);
+							if (!empty($freq))
+								$a_freq[] = $freq;
+						}
+					   }
+					?>
+					<?php html_inputbox("pwmax", gettext("Maximum frequency"), $pconfig['pwmax'], sprintf("%s %s", gettext("CPU frequency:"), join(", ", $a_freq))."<br />".gettext("Empty as default."), false, 5);?>
+					<?php html_inputbox("pwmin", gettext("Minimum frequency"), $pconfig['pwmin'], gettext("Empty as default."), false, 5);?>
 					<?php html_checkbox("zeroconf", gettext("Zeroconf/Bonjour"), !empty($pconfig['zeroconf']) ? true : false, gettext("Enable Zeroconf/Bonjour to advertise services of this device"));?>
 					<?php html_textarea("motd", gettext("MOTD"), $pconfig['motd'], gettext("Message of the day."), false, 65, 7, false, false);?>
 				</table>
@@ -282,6 +352,7 @@ function sysconsaver_change() {
 <script type="text/javascript">
 <!--
 sysconsaver_change();
+powerd_change();
 //-->
 </script>
 <?php include("fend.inc");?>
