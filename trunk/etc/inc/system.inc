@@ -475,20 +475,20 @@ function system_get_volume_serial($devicefile) {
 	/* without smart */
 	mwexec2("ataidle {$devicefile} | grep 'Serial'", $rawdata);
 	if (!empty($rawdata) && 1 === preg_match("/^Serial:\s+(.+)$/", $rawdata[0], $matches)) {
-		$serial = preg_replace("/[\x00-\x1f\x7f]/g", "", $matches[1]);
+		$serial = preg_replace("/[\x01-\x1f\x7f]/", "", $matches[1]);
 		if (!empty($serial))
 			return $serial;
 	}
 	/* failback to old method */
 	mwexec2("smartctl -i {$devicefile} | grep -i 'Serial Number'", $rawdata1);
 	if (!empty($rawdata1) && 1 === preg_match("/^Serial Number:\s+(.+)$/i", $rawdata1[0], $matches)) {
-		$serial = preg_replace("/[\x00-\x1f\x7f]/g", "", $matches[1]);
+		$serial = preg_replace("/[\x01-\x1f\x7f]/", "", $matches[1]);
 		if (!empty($serial))
 			return $serial;
 	}
 	mwexec2("camcontrol inquiry {$devicefile} -S", $rawdata2);
 	if (!empty($rawdata2) && !empty($rawdata2[0])) {
-		$serial = preg_replace("/[\x00-\x1f\x7f]/g", "", $rawdata2[0]);
+		$serial = preg_replace("/[\x01-\x1f\x7f]/", "", $rawdata2[0]);
 		if (!empty($serial))
 			return $serial;
 	}
@@ -504,15 +504,24 @@ function system_get_volume_serial($devicefile) {
 function system_get_volume_model($devicefile) {
 	/* without smart */
 	mwexec2("ataidle {$devicefile} | grep 'Model'", $rawdata);
-	if (!empty($rawdata) && 1 === preg_match("/^Model:\s+(.+)$/", $rawdata[0], $matches))
-		return $matches[1];
+	if (!empty($rawdata) && 1 === preg_match("/^Model:\s+(.+)$/", $rawdata[0], $matches)) {
+		$model = preg_replace("/[\x01-\x1f\x7f]/", "", $matches[1]);
+		if (!empty($model))
+			return $model;
+	}
 	/* failback to old method */
 	mwexec2("smartctl -i {$devicefile} | grep 'Device Model'", $rawdata1);
-	if (!empty($rawdata1) && 1 === preg_match("/^Device Model:\s+(.+)$/", $rawdata1[0], $matches))
-		return $matches[1];
+	if (!empty($rawdata1) && 1 === preg_match("/^Device Model:\s+(.+)$/", $rawdata1[0], $matches)) {
+		$model = preg_replace("/[\x01-\x1f\x7f]/", "", $matches[1]);
+		if (!empty($model))
+			return $model;
+	}
 	mwexec2("camcontrol inquiry {$devicefile} -D", $rawdata2);
-	if (!empty($rawdata2) && 1 === preg_match("/<([^>]+)>/", $rawdata2[0], $matches))
-		return $matches[1];
+	if (!empty($rawdata2) && 1 === preg_match("/<([^>]+)>/", $rawdata2[0], $matches)) {
+		$model = preg_replace("/[\x01-\x1f\x7f]/", "", $matches[1]);
+		if (!empty($model))
+			return $model;
+	}
 
 	return gettext("n/a");
 }
