@@ -236,7 +236,7 @@ function zfs_zpool_destroy($uuid) {
 	@rmdir($mountpoint);
 
 	// destroy gnop devices
-	if ($result != 0) {
+	if ($result == 0) {
 		foreach ($pool['vdevice'] as $vdevicev) {
 			$index = array_search_ex($vdevicev, $config['zfs']['vdevices']['vdevice'], "name");
 			if (false === $index)
