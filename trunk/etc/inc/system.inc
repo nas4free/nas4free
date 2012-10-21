@@ -474,15 +474,24 @@ function system_get_device_temp($device) {
 function system_get_volume_serial($devicefile) {
 	/* without smart */
 	mwexec2("ataidle {$devicefile} | grep 'Serial'", $rawdata);
-	if (!empty($rawdata) && 1 === preg_match("/^Serial:\s+(.+)$/", $rawdata[0], $matches))
-		return $matches[1];
+	if (!empty($rawdata) && 1 === preg_match("/^Serial:\s+(.+)$/", $rawdata[0], $matches)) {
+		$serial = preg_replace("/[\x00-\x1f\x7f]/g", "", $matches[1]);
+		if (!empty($serial))
+			return $serial;
+	}
 	/* failback to old method */
 	mwexec2("smartctl -i {$devicefile} | grep -i 'Serial Number'", $rawdata1);
-	if (!empty($rawdata1) && 1 === preg_match("/^Serial Number:\s+(.+)$/i", $rawdata1[0], $matches))
-		return $matches[1];
+	if (!empty($rawdata1) && 1 === preg_match("/^Serial Number:\s+(.+)$/i", $rawdata1[0], $matches)) {
+		$serial = preg_replace("/[\x00-\x1f\x7f]/g", "", $matches[1]);
+		if (!empty($serial))
+			return $serial;
+	}
 	mwexec2("camcontrol inquiry {$devicefile} -S", $rawdata2);
-	if (!empty($rawdata2) && !empty($rawdata2[0]))
-		return $rawdata2[0];
+	if (!empty($rawdata2) && !empty($rawdata2[0])) {
+		$serial = preg_replace("/[\x00-\x1f\x7f]/g", "", $rawdata2[0]);
+		if (!empty($serial))
+			return $serial;
+	}
 
 	return gettext("n/a");
 }
