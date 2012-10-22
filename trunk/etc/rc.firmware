@@ -52,7 +52,7 @@ case $1 in
 
 		# Use auto-unit feature to automatically select an unused device.
 		/sbin/mdmfs -m 0 -s $SIZE -b 8192 -f 1024 md ${FTMP} > /dev/null 2>&1
-		if [ 0 != $? ]; then # successful?
+		if [ 0 != $? ]; then # successfully?
 			msg="ERROR: Failed to create in-memory file system."
 			printf "\n\33[31m%s\33[0m\n" "${msg}"
 			/usr/bin/logger "UPGRADE ${msg}"
@@ -69,7 +69,7 @@ case $1 in
 
 		# Umount in-memory file system.
 		/sbin/umount -f ${FTMP} > /dev/null 2>&1
-		if [ 0 != $? ]; then # successful?
+		if [ 0 != $? ]; then # successfully?
 			msg="ERROR: Failed to umount in-memory file system."
 			printf "\n\33[31m%s\33[0m\n" "${msg}"
 			/usr/bin/logger "UPGRADE ${msg}"
@@ -115,7 +115,7 @@ case $1 in
 
 		# Unmount /cf
 		/sbin/umount -f /cf
-		if [ 0 != $? ]; then # successful?
+		if [ 0 != $? ]; then # successfully?
 			msg="ERROR: Failed to umount '/cf'!"
 			printf "\33[31m%s\33[0m\n" "${msg}"
 			/usr/bin/logger "UPGRADE ${msg}"
@@ -126,7 +126,7 @@ case $1 in
 		if [ -r "$2" ]; then
 			/usr/bin/gzip -cd "$2" | /bin/dd of=/dev/${CFDEVICE} ibs=16k obs=16k > /dev/null 2>&1
 			result=$?
-			if [ 0 != ${result} ]; then # successful?
+			if [ 0 != ${result} ]; then # successfully?
 				msg="ERROR: Failed to install firmware image on '/dev/${CFDEVICE}'!"
 				printf "\33[31m%s\33[0m\n" "${msg}"
 				/usr/bin/logger "UPGRADE ${msg}"
@@ -151,9 +151,9 @@ case $1 in
 		/sbin/umount -f /cf
 		/sbin/mount -r /cf
 
-		# Reboot system if upgrade was successful.
+		# Reboot system if upgrade was successfully.
 		if [ 0 -eq ${result} ]; then
-			msg="Rebooting system..."
+			msg="Rebooting server..."
 			printf "\33[37m%s\33[0m\n" "${msg}"
 			/usr/bin/logger "${msg}"
 			/sbin/shutdown -r now > /dev/null 2>&1
@@ -200,12 +200,12 @@ case $1 in
 
 		/usr/bin/tar xzUPf "$2" -C / 2>&1
 		result=$?
-		if [ 0 != ${result} ]; then # successful?
-			msg="ERROR: Failed to upgrade firmware!"
+		if [ 0 != ${result} ]; then # successfully?
+			msg="ERROR: Failed to upgrade system firmware!"
 			printf "\33[31m%s\33[0m\n" "${msg}"
 			/usr/bin/logger "UPGRADE ${msg}"
 		else
-			msg="Firmware installed successful."
+			msg="Firmware installed successfully."
 			printf "\33[37;44m%s\33[0m\n" "${msg}"
 			/usr/bin/logger "UPGRADE: ${msg}"
 		fi
@@ -226,9 +226,9 @@ case $1 in
 		# Start upgrade script to remove obsolete files
 		/etc/install/upgrade.sh clean /
 
-		# Reboot system if upgrade was successful.
+		# Reboot system if upgrade was successfully.
 		if [ 0 -eq ${result} ]; then
-			msg="Rebooting system..."
+			msg="Rebooting server..."
 			printf "\33[37m%s\33[0m\n" "${msg}"
 			/usr/bin/logger "${msg}"
 			/sbin/shutdown -r now > /dev/null 2>&1
