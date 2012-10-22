@@ -52,8 +52,8 @@ else
 		echo "4) Reset to Factory Defaults"
 		echo "5) Ping Host"
 		echo "6) Shell"
-		echo "7) Reboot System"
-		echo "8) Shutdown System"
+		echo "7) Reboot Server"
+		echo "8) Shutdown Server"
 		case ${PLATFORM} in
 			*-live[cC][dD]|*-live[uU][sS][bB])
 				echo "9) Install/Upgrade NAS4Free from LiveCD/LiveUSB";;
