@@ -1,5 +1,5 @@
 --- ./source3/configure.in.orig	2012-09-14 10:12:09.000000000 +0200
-+++ ./source3/configure.in	2012-10-18 14:15:46.000000000 +0200
++++ ./source3/configure.in	2012-10-23 20:14:41.000000000 +0200
 @@ -868,9 +868,13 @@
  	AC_PATH_PROG(CUPS_CONFIG, cups-config)
  
@@ -37,6 +37,15 @@
  
  	elif test x"$enable_cups" = x"yes"; then
  		AC_MSG_ERROR(Cups support required but cups-config not located.  Make sure cups-devel related files are installed.)
+@@ -1849,7 +1853,7 @@
+ fi
+ 
+ if test x"$BLDSHARED" = x"true" ; then
+-	LDFLAGS="$LDFLAGS -L./bin"
++	LDFLAGS="-L./bin $LDFLAGS"
+ fi
+ 
+ AC_MSG_RESULT($BLDSHARED)
 @@ -1980,9 +1984,6 @@
  AC_MSG_CHECKING([PICFLAG])
  AC_MSG_RESULT([$PICFLAG])
@@ -203,3 +212,11 @@
  dnl Remove -L/usr/lib/? from LDFLAGS and LIBS
  LIB_REMOVE_USR_LIB(LDFLAGS)
  LIB_REMOVE_USR_LIB(LIBS)
+@@ -7142,6 +7210,7 @@
+ AC_SUBST(SMBD_LIBS)
+ 
+ CFLAGS="${CFLAGS} \$(FLAGS)"
++CFLAGS="${CFLAGS} -I%%LOCALBASE%%/include"
+ CFLAGS="${CFLAGS} -D_SAMBA_BUILD_=3"
+ 
+ # If we had to expand the includes, make tsure the output file is moved back

@@ -3,7 +3,7 @@ PORTVERSION=	  3.6.8
 #PORTREVISION?= 0
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
-MASTER_SITE_SUBDIR=	. old-versions rc pre
+MASTER_SITE_SUBDIR=	samba samba/old-versions samba/rc samba/pre
 DISTNAME=		${PORTNAME:S|36$||}-${PORTVERSION:S|.p|pre|:S|.r|rc|:S|.t|tp|:S|.a|alpha|}
 
 MAINTAINER?=		zoon01@nas4free.org
@@ -49,6 +49,7 @@ CONFIGURE_ARGS+=	--exec-prefix="${PREFIX}" \
 			--localstatedir="${VARDIR}" \
 			--with-piddir="${SAMBA_RUNDIR}" \
 			--with-ncalrpcdir="${SAMBA_RUNDIR}/ncalrpc" \
+			--with-nmbdsocketdir="${SAMBA_RUNDIR}/nmbd" \
 			--with-lockdir="${SAMBA_LOCKDIR}" \
 			--with-statedir="${SAMBA_LOCKDIR}" \
 			--with-cachedir="${SAMBA_LOCKDIR}" \
@@ -106,6 +107,7 @@ CONFIGURE_ARGS+=	--without-libtalloc \
 			--with-acl-support \
 			--without-dnsupdate \
 			--disable-avahi \
+			--disable-pthreadpool \
 			--with-included-popt
 
 CONFIGURE_ARGS+=	--with-ads
@@ -136,6 +138,9 @@ CONFIGURE_ARGS+=	--with-shared-modules="idmap_tdb2,idmap_ad,idmap_adex,idmap_has
 post-patch:
 		@${REINPLACE_CMD} -e 's|%%SAMBA_CONFIG%%|${SAMBA_CONFIG}|g' \
 		    ${WRKSRC}/Makefile.in
+
+		@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+		    ${WRKSRC}/configure.in ${WRKSRC}/m4/aclocal.m4
 
 pre-configure:
 	@${FIND} ${WRKDIR}/${DISTNAME} -type d | ${XARGS} ${CHMOD} u+w,a+rx
