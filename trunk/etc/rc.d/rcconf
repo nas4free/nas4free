@@ -187,6 +187,9 @@ setifconfig()
 				-v "concat(.,' ')" \
 			-b \
 		-b \
+		-m "//vinterfaces/vlan/if" \
+			-v "concat(.,' ')" \
+		-b \
 		${configxml_file} | /usr/local/bin/xml unesc`
 
 	eval /usr/local/sbin/rconf attribute set "cloned_interfaces" "${_cloned_interfaces}"
