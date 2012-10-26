@@ -23,7 +23,7 @@ load_rc_config "$name"
 
 # Defaults
 passdb_file=${passdb_file:-"/var/etc/private/passdb"}
-passdb_minuid=${passdb_minuid:-"1001"}
+passdb_minuid=${passdb_minuid:-"1000"}
 
 # Display message
 echo "Updating passdb."
