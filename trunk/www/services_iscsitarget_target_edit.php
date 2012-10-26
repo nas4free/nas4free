@@ -161,6 +161,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_ta
 	$pconfig['authmethod'] = $a_iscsitarget_target[$cnid]['authmethod'];
 	$pconfig['digest'] = $a_iscsitarget_target[$cnid]['digest'];
 	$pconfig['queuedepth'] = $a_iscsitarget_target[$cnid]['queuedepth'];
+	$pconfig['writecache'] = !isset($a_iscsitarget_target[$cnid]['disablewritecache']);
 	$pconfig['inqvendor'] = $a_iscsitarget_target[$cnid]['inqvendor'];
 	$pconfig['inqproduct'] = $a_iscsitarget_target[$cnid]['inqproduct'];
 	$pconfig['inqrevision'] = $a_iscsitarget_target[$cnid]['inqrevision'];
@@ -236,6 +237,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_ta
 	$pconfig['authmethod'] = "Auto";
 	$pconfig['digest'] = "Auto";
 	$pconfig['queuedepth'] = 32;
+	$pconfig['writecache'] = true;
 	$pconfig['inqvendor'] = "";
 	$pconfig['inqproduct'] = "";
 	$pconfig['inqrevision'] = "";
@@ -397,6 +399,7 @@ if ($_POST) {
 		$iscsitarget_target['authmethod'] = $_POST['authmethod'];
 		$iscsitarget_target['digest'] = $_POST['digest'];
 		$iscsitarget_target['queuedepth'] = $queuedepth;
+		$iscsitarget_target['disablewritecache'] = !isset($_POST['writecache']);
 		$iscsitarget_target['inqvendor'] = $_POST['inqvendor'];
 		$iscsitarget_target['inqproduct'] = $_POST['inqproduct'];
 		$iscsitarget_target['inqrevision'] = $_POST['inqrevision'];
@@ -715,6 +718,7 @@ function enable_change(enable_change) {
       ?>
       <?php html_combobox("digest", gettext("Initial Digest"), $pconfig['digest'], array("Auto" => gettext("Auto"), "Header" => gettext("Header digest"), "Data" => gettext("Data digest"), "Header Data" => gettext("Header and Data digest")), gettext("The initial digest mode negotiated with the initiator."), false);?>
       <?php html_inputbox("queuedepth", gettext("Queue Depth"), $pconfig['queuedepth'], gettext("0=disabled, 1-255=enabled command queuing with specified depth.")." ".sprintf(gettext("The recommended queue depth is %d."), 32), false, 10);?>
+      <?php html_checkbox("writecache", gettext("Write Cache"), !empty($pconfig['writecache']) ? true : false, gettext("Enable write cache mode."), gettext("It can be changed from the client side by standard SCSI mode page at any time."), false);?>
       <?php html_inputbox("inqvendor", gettext("Inquiry Vendor"), $pconfig['inqvendor'], sprintf(gettext("You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII chars)"), 8), false, 20);?>
       <?php html_inputbox("inqproduct", gettext("Inquiry Product"), $pconfig['inqproduct'], sprintf(gettext("You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII chars)"), 16), false, 20);?>
       <?php html_inputbox("inqrevision", gettext("Inquiry Revision"), $pconfig['inqrevision'], sprintf(gettext("You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII chars)"), 4), false, 20);?>
