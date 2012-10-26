@@ -377,6 +377,8 @@ istgt_mkconf()
 							-i "type = 'Device'" \
 								-v "concat('  LUN',lun,' ',type,' ',//iscsitarget/extent[name=current()/extentname]/path)" -n \
 							-b \
+							-i "count(../disablewritecache) = 0" -v "concat('  LUN',lun,' Option WriteCache ','Enable')" -n -b \
+							-i "count(../disablewritecache) != 0" -v "concat('  LUN',lun,' Option WriteCache ','Disable')" -n -b \
 						-b \
 					-b -n \
 					-b \
