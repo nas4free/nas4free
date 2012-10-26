@@ -81,6 +81,17 @@ if(function_exists("date_default_timezone_set") and function_exists("date_defaul
 		$errormsg .= sprintf(gettext("Wrong permission on %s."), "/var/tmp");
 		$errormsg .= "<br />\n";
 	}
+	// check DNS
+	list($v4dns1,$v4dns2) = get_ipv4dnsserver();
+	list($v6dns1,$v6dns2) = get_ipv6dnsserver();
+	if (empty($v4dns1) && empty($v4dns2) && empty($v6dns1) && empty($v6dns2)) {
+		// need by service/firmware check?
+		if (!isset($config['system']['disablefirmwarecheck'])
+		   || isset($config['ftpd']['enable'])) {
+			$errormsg .= gettext("No DNS setting found.");
+			$errormsg .= "<br />\n";
+		}
+	}
 	if (!empty($errormsg)) print_error_box($errormsg);
 ?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
