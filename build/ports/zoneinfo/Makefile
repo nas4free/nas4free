@@ -1,5 +1,5 @@
 PORTNAME=		zoneinfo
-DISTVERSION=	2012g
+DISTVERSION=	2012h
 CATEGORIES=		misc
 COMMENT=		Updated timezone definitions
 MAINTAINER=		zoon01@nas4free.org
