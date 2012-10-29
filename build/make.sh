@@ -78,11 +78,11 @@ NAS4FREE_SVNURL="https://nas4free.svn.sourceforge.net/svnroot/nas4free/trunk"
 # to a RAM disk at NAS4FREE startup.
 #NAS4FREE_MFSROOT_SIZE=164
 #NAS4FREE_IMG_SIZE=66
-NAS4FREE_MFSROOT_SIZE=196
-NAS4FREE_IMG_SIZE=82
+NAS4FREE_MFSROOT_SIZE=198
+NAS4FREE_IMG_SIZE=83
 if [ "amd64" = ${NAS4FREE_ARCH} ]; then
-	NAS4FREE_MFSROOT_SIZE=210
-	NAS4FREE_IMG_SIZE=88
+	NAS4FREE_MFSROOT_SIZE=212
+	NAS4FREE_IMG_SIZE=89
 fi
 
 # Media geometry, only relevant if bios doesn't understand LBA.
