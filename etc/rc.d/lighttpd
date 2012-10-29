@@ -100,6 +100,7 @@ mimetype.assign             = (
   ".jpg"          =>      "image/jpeg",
   ".jpeg"         =>      "image/jpeg",
   ".png"          =>      "image/png",
+  ".svg"          =>      "image/svg+xml",
   ".xbm"          =>      "image/x-xbitmap",
   ".xpm"          =>      "image/x-xpixmap",
   ".xwd"          =>      "image/x-xwindowdump",
@@ -114,8 +115,11 @@ mimetype.assign             = (
   ".conf"         =>      "text/plain",
   ".text"         =>      "text/plain",
   ".txt"          =>      "text/plain",
+  ".spec"         =>      "text/plain",
   ".dtd"          =>      "text/xml",
   ".xml"          =>      "text/xml",
+  ".mp4"          =>      "video/mp4",
+  ".mpg4"         =>      "video/mp4",
   ".mpeg"         =>      "video/mpeg",
   ".mpg"          =>      "video/mpeg",
   ".mov"          =>      "video/quicktime",
@@ -127,7 +131,8 @@ mimetype.assign             = (
   ".bz2"          =>      "application/x-bzip",
   ".tbz"          =>      "application/x-bzip-compressed-tar",
   ".tar.bz2"      =>      "application/x-bzip-compressed-tar",
-  # default mime type
+  ".rpm"          =>      "application/x-rpm",
+  # make the default mime type application/octet-stream.
   ""              =>      "application/octet-stream",
  )
 url.access-deny = ( "~", ".inc", ".htpasswd" )
