@@ -12,27 +12,52 @@ DISTFILES=		${DISTNAME}${EXTRACT_SUFX}:release
 USE_BZIP2=		yes
 
 BUILD_DEPENDS=	sqlite3>=3.0:${PORTSDIR}/databases/sqlite3
+LIB_DEPENDS=	pcre.1:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	curl.6:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	mcrypt.8:${PORTSDIR}/security/libmcrypt
+LIB_DEPENDS+=	onig.1:${PORTSDIR}/devel/oniguruma4
+LIB_DEPENDS+=	freetype.9:${PORTSDIR}/print/freetype2
+LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
 
 USE_AUTOTOOLS=	autoconf
 AUTOTOOLSFILES=	scripts/phpize.in
-USE_GETOPT_LONG=	yes
-USE_GNOME=			libxml2
-USE_OPENSSL=		yes
+USE_BZIP2=	yes
+USE_GETOPT_LONG=yes
+USE_GNOME=	libxml2
+USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 
-CONFIGURE_ARGS+=	--without-mysql \
-								--without-pear \
-								--with-openssl \
-								--without-sqlite \
-								--with-pcre-regex=yes \
-								--with-gettext \
-								--enable-libxml \
-								--disable-mysqlnd \
-								--with-libxml-dir=${LOCALBASE} \
-								--with-config-file-path=/usr/local/etc \
-								--enable-pdo \
-								--with-pdo-sqlite=${LOCALBASE} \
-								--with-iconv-dir=${LOCALBASE}
+CONFIGURE_ARGS+=	\
+		--without-mysql \
+		--without-pear \
+		--with-openssl \
+		--with-gettext \
+		--enable-libxml \
+		--disable-mysqlnd \
+		--with-libxml-dir=${LOCALBASE} \
+		--with-pcre-regex=${LOCALBASE} \
+		--with-zlib-dir=/usr \
+		--with-config-file-path=/usr/local/etc \
+		--with-config-file-scan-dir=/usr/local/etc/php \
+		--enable-pdo \
+		--with-pdo-sqlite=${LOCALBASE} \
+		--with-sqlite3 \
+		--with-iconv-dir=${LOCALBASE} \
+		--with-bz2=/usr \
+		--with-curl=${LOCALBASE} \
+		--with-gd \
+		--with-freetype-dir=${LOCALBASE} \
+		--with-jpeg-dir=${LOCALBASE} \
+		--with-png-dir=${LOCALBASE} \
+		--enable-mbstring \
+		--with-onig=${LOCALBASE} \
+		--with-pcre-dir=${LOCALBASE} \
+		--with-mcrypt=${LOCALBASE} \
+		--enable-soap \
+		--with-xmlrpc \
+		--enable-zip \
+		--with-zlib=/usr
 
 OPTIONS=	CLI "Build CLI version" on \
 		CGI "Build CGI version" on \
@@ -42,7 +67,6 @@ OPTIONS=	CLI "Build CLI version" on \
 		EMBED "Build embedded library" off \
 		DEBUG "Enable debug" off \
 		DTRACE "Enable DTrace support" off \
-		MULTIBYTE "Enable zend multibyte support" off \
 		IPV6 "Enable ipv6 support" on \
 		MAILHEAD "Enable mail header patch" off \
 		LINKTHR "Link thread lib (for threaded extensions)" on
