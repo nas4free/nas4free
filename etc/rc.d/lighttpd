@@ -56,6 +56,7 @@ fi
 if [ ! -d "${lighttpd_uploaddir}/ftmp" ]; then
 	mkdir -p "${lighttpd_uploaddir}/ftmp"
 fi
+chmod 1777 "${lighttpd_uploaddir}/ftmp"
 
 lighttpd_mkconf()
 {
