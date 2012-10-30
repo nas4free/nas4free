@@ -89,6 +89,7 @@ mkdir usr/local/sbin ;
 mkdir usr/local/share ;
 mkdir usr/local/share/locale ;
 mkdir usr/local/etc ;
+mkdir usr/local/etc/php ;
 mkdir usr/local/www ;
 mkdir usr/local/www/javascript ;
 mkdir usr/local/www/sajax ;
