@@ -147,7 +147,7 @@ mimetype.assign             = (
 url.access-deny = ( "~", ".inc", ".websrv_htpasswd" )
 static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
 server.pid-file = "${pidfile}"
-cgi.assign = (".php" => "/usr/local/bin/php-cgi")
+cgi.assign = (".php" => "/usr/local/bin/php-cgi-websrv")
 server.tag = "webserv"
 EOF
 	

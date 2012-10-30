@@ -1,0 +1,8 @@
+#!/bin/sh
+
+SESSION_NAME="WS_PHPSESSID"
+MEMORY_LIMIT="512M"
+UPLOAD_MAX="512M"
+POST_MAX="512M"
+
+/usr/local/bin/php-cgi -d session.name="$SESSION_NAME" -d memory_limit="$MEMORY_LIMIT" -d upload_max_filesize="$UPLOAD_MAX" -d post_max_size="$POST_MAX" "$@"
