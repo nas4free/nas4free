@@ -1384,6 +1384,13 @@ function get_ipv6addr($if)
   $if = get_ifname($if);
 
   unset($ipaddr);
+  exec("/sbin/ifconfig {$if} inet6", $rawdata);
+  foreach($rawdata as $line) {
+    if (preg_match("/^\s+inet6\s+(\S+)\s/", $line, $m)) {
+      $ipaddr = $m[1];
+    }
+  }
+  if (!empty($ipaddr)) return $ipaddr;
   exec("/usr/bin/netstat -inW -f inet6 -I {$if}", $inetinfo);
   array_shift($inetinfo);
 
