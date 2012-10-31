@@ -36,8 +36,10 @@ extra_commands="reload check mkconf"
 # Defaults
 websrv_enable=${websrv_enable:-"NO"}
 websrv_conf=${websrv_conf:-"/var/etc/websrv.conf"}
+websrv_uploaddir_conf=${websrv_uploaddir_conf:-"/var/etc/websrv-uploaddir.conf"}
 websrv_certpem=${websrv_certpem:-"/var/etc/websrvcert.pem"}
 websrv_server_maxwriteidle=${websrv_server_maxwriteidle:-"360"}
+websrv_maxrequestsize=${websrv_maxrequestsize:-"2097152"}
 pidfile="/var/run/websrv.pid"
 command=/usr/local/sbin/lighttpd
 command_args="-f ${websrv_conf} -m /usr/local/lib/lighttpd"
@@ -45,14 +47,18 @@ sig_reload="-INT"
 
 websrv_mkconf()
 {
-	local _protocol _certificate _privatekey _documentroot _runasuser
+	local _protocol _certificate _privatekey _documentroot _uploaddir _runasuser
 
 	# Get configuration data
 	_protocol=`configxml_get "//websrv/protocol"`
 	_certificate=`configxml_get "//websrv/certificate"`
 	_privatekey=`configxml_get "//websrv/privatekey"`
 	_documentroot=`configxml_get "//websrv/documentroot"`
+	_uploaddir=`configxml_get "//websrv/uploaddir"`
 	_runasuser=`configxml_get "//websrv/runasuser"`
+	if [ -z "$_uploaddir" ]; then
+		_uploaddir="/var/tmp/ftmp"
+	fi
 
 	# Create .conf file
 	/usr/local/bin/xml sel -t -m "//websrv" \
@@ -149,6 +155,13 @@ static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
 server.pid-file = "${pidfile}"
 cgi.assign = (".php" => "/usr/local/bin/php-cgi-websrv")
 server.tag = "webserv"
+EOF
+
+	# Set temporary directory
+	echo "${_uploaddir}" > ${websrv_uploaddir_conf}
+	cat <<EOF >> ${websrv_conf}
+server.upload-dirs = ( "${_uploaddir}" )
+server.max-request-size = ${websrv_maxrequestsize}
 EOF
 	
 	# Add auxparam

@@ -46,11 +46,14 @@ if (!isset($config['websrv']) || !is_array($config['websrv']))
 if (!isset($config['websrv']['authentication']['url']) || !is_array($config['websrv']['authentication']['url']))
 	$config['websrv']['authentication']['url'] = array();
 
+$default_uploaddir = "/var/tmp/ftmp";
+$default_runas = "server.username = \"www\"";
 $pconfig['enable'] = isset($config['websrv']['enable']);
 $pconfig['protocol'] = $config['websrv']['protocol'];
 $pconfig['port'] = $config['websrv']['port'];
 $pconfig['documentroot'] = $config['websrv']['documentroot'];
-$pconfig['runasuser'] = !empty($config['websrv']['runasuser']) ? $config['websrv']['runasuser'] : "";
+$pconfig['uploaddir'] = !empty($config['websrv']['uploaddir']) ? $config['websrv']['uploaddir'] : $default_uploaddir;
+$pconfig['runasuser'] = isset($config['websrv']['runasuser']) ? $config['websrv']['runasuser'] : $default_runas;
 $pconfig['privatekey'] = base64_decode($config['websrv']['privatekey']);
 $pconfig['certificate'] = base64_decode($config['websrv']['certificate']);
 $pconfig['authentication'] = isset($config['websrv']['authentication']['enable']);
@@ -94,6 +97,7 @@ if ($_POST) {
 		$config['websrv']['protocol'] = $_POST['protocol'];
 		$config['websrv']['port'] = $_POST['port'];
 		$config['websrv']['documentroot'] = $_POST['documentroot'];
+		$config['websrv']['uploaddir'] = $_POST['uploaddir'];
 		$config['websrv']['runasuser'] = $_POST['runasuser'];
 		$config['websrv']['privatekey'] = base64_encode($_POST['privatekey']);
 		$config['websrv']['certificate'] = base64_encode($_POST['certificate']);
@@ -163,6 +167,8 @@ function enable_change(enable_change) {
 	document.iform.port.disabled = endis;
 	document.iform.documentroot.disabled = endis;
 	document.iform.documentrootbrowsebtn.disabled = endis;
+	document.iform.uploaddir.disabled = endis;
+	document.iform.uploaddirbrowsebtn.disabled = endis;
 	document.iform.runasuser.disabled = endis;
 	document.iform.privatekey.disabled = endis;
 	document.iform.certificate.disabled = endis;
@@ -213,6 +219,7 @@ function authentication_change() {
 					<?php html_textarea("certificate", gettext("Certificate"), $pconfig['certificate'], gettext("Paste a signed certificate in X.509 PEM format here."), true, 65, 7, false, false);?>
 					<?php html_textarea("privatekey", gettext("Private key"), $pconfig['privatekey'], gettext("Paste an private key in PEM format here."), true, 65, 7, false, false);?>
 					<?php html_filechooser("documentroot", gettext("Document root"), $pconfig['documentroot'], gettext("Document root of the webserver. Home of the web page files."), $g['media_path'], true, 60);?>
+					<?php html_filechooser("uploaddir", gettext("Upload directory"), $pconfig['uploaddir'], sprintf(gettext("Upload directory of the webserver. The default is %s."), $default_uploaddir), $default_uploaddir, true, 60);?>
 			    <?php html_checkbox("authentication", gettext("Authentication"), !empty($pconfig['authentication']) ? true : false, gettext("Enable authentication."), gettext("Give only local users access to the web page."), false, "authentication_change()");?>
 					<tr id="authdirs_tr">
 						<td width="22%" valign="top" class="vncell">&nbsp;</td>
