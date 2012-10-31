@@ -36,10 +36,17 @@ get_if()
 # get_ipaddr inet6 auto
 get_ipaddr()
 {
-	local _protocol_family _interface
+	local _protocol_family _interface _ipaddr
 
 	_protocol_family=$1
 	_interface=`get_if $2`
+
+	if [ "$_protocol_family" = "inet6" ]; then
+		_ipaddr=`/sbin/ifconfig ${_interface} inet6 | grep inet6 | head -n 1 | /usr/bin/awk '{print $2}'`
+		if [ -n "$_ipaddr" ]; then
+			echo "$_ipaddr"; return
+		fi
+	fi
 
 	echo `/usr/bin/netstat -inW -f ${_protocol_family} -I ${_interface} | /usr/bin/grep ${_interface} | /usr/bin/awk '{print $4}'`
 }
