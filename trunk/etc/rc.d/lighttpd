@@ -62,7 +62,7 @@ chmod 1777 "${lighttpd_uploaddir}/ftmp"
 lighttpd_mkconf()
 {
 	local _protocol _certificate _privatekey _tmpfile
-	local _ifn _ipaddr _ipv6addr
+	local _ifn _ipaddr _ipv6addr _port
 
 	# LAN IF/ADDR
 	_ifn=`configxml_get "//interfaces/lan/if"`
@@ -76,6 +76,17 @@ lighttpd_mkconf()
 		_ipv6addr=`configxml_get "//interfaces/lan/ipv6addr"`
 		if [ "${_ipv6addr}" = "auto" ]; then
 			_ipv6addr=`get_ipaddr inet6 ${_ifn}`
+		fi
+	fi
+
+	# TCP port
+	_protocol=`configxml_get "//system/webgui/protocol"`
+	_port=`configxml_get "//system/webgui/port"`
+	if [ -z "$_port" ]; then
+		if [ "${_protocol}" = "https" ]; then
+			_port="443"
+		else
+			_port="80"
 		fi
 	fi
 
@@ -158,11 +169,24 @@ server.pid-file = "${pidfile}"
 cgi.assign = (".php" => "/usr/local/bin/php-cgi")
 EOF
 
-	# Set IP address
+	# Set IP address and TCP port
 	if [ -n "${_ipaddr}" ]; then
 		cat <<EOF >> ${lighttpd_conf}
 server.bind = "${_ipaddr}"
+server.port = "${_port}"
 EOF
+		if [ -n "${_ipv6addr}" ]; then
+			cat <<EOF >> ${lighttpd_conf}
+\$SERVER["socket"] == "[${_ipv6addr}]:${_port}" { }
+EOF
+		fi
+	else
+		if [ -n "${_ipv6addr}" ]; then
+			cat <<EOF >> ${lighttpd_conf}
+server.bind = "${_ipv6addr}"
+server.port = "${_port}"
+EOF
+		fi
 	fi
 
 	# Set temporary directory
