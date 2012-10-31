@@ -219,7 +219,6 @@ EOF
 	fi
 
 	/usr/local/bin/xml sel -t \
-		-i "string-length(//system/webgui/port) > 0" -v "concat('server.port = ',//system/webgui/port)" -n -b \
 		-i "//system/webgui/protocol[. = 'https']" \
 			-o "ssl.engine = \"enable\"" -n \
 			-o "ssl.pemfile = \"${lighttpd_certpem}\"" -n \
