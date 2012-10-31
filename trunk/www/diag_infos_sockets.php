@@ -75,6 +75,16 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("Socket
 						?></pre>
 					</td>
 				</tr>
+    		<?php html_titleline(gettext("Sockets"));?>
+				<tr>
+					<td>
+						<pre><?php
+						exec("/usr/bin/sockstat", $rawdata);
+						echo htmlspecialchars(implode("\n", $rawdata));
+						unset($rawdata);
+						?></pre>
+					</td>
+				</tr>
     	</table>
     </td>
   </tr>
