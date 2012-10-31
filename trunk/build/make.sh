@@ -76,13 +76,14 @@ NAS4FREE_SVNURL="https://nas4free.svn.sourceforge.net/svnroot/nas4free/trunk"
 # Size in MB of the MFS Root filesystem that will include all FreeBSD binary
 # and NAS4FREE WEbGUI/Scripts. Keep this file very small! This file is unzipped
 # to a RAM disk at NAS4FREE startup.
+# The image must fit on 256MB CF/USB.
 #NAS4FREE_MFSROOT_SIZE=164
 #NAS4FREE_IMG_SIZE=66
 NAS4FREE_MFSROOT_SIZE=198
-NAS4FREE_IMG_SIZE=83
+NAS4FREE_IMG_SIZE=110
 if [ "amd64" = ${NAS4FREE_ARCH} ]; then
 	NAS4FREE_MFSROOT_SIZE=212
-	NAS4FREE_IMG_SIZE=89
+	NAS4FREE_IMG_SIZE=110
 fi
 
 # Media geometry, only relevant if bios doesn't understand LBA.
@@ -416,6 +417,21 @@ create_mfsroot() {
 	return 0
 }
 
+copy_kmod() {
+	local kmodlist
+	echo "Copy kmod to $NAS4FREE_TMPDIR/boot/kernel"
+	kmodlist=`(cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules; find . -name '*.ko' | sed -e 's/\.\///')`
+	for f in $kmodlist; do
+		if grep -q "^${f}" $NAS4FREE_SVNDIR/build/nas4free.kmod.exclude > /dev/null; then
+			echo "skip: $f"
+			continue;
+		fi
+		b=`basename ${f}`
+		(cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules; install -v -o root -g wheel -m 555 ${f} $NAS4FREE_TMPDIR/boot/kernel/${b}; gzip -9 $NAS4FREE_TMPDIR/boot/kernel/${b})
+	done
+	return 0;
+}
+
 create_image() {
 	echo "--------------------------------------------------------------"
 	echo ">>> Generating ${NAS4FREE_PRODUCTNAME} IMG File (to be rawrite on CF/USB/HD/SSD)"
@@ -511,6 +527,8 @@ create_image() {
 	# preload kernel drivers
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
+	# copy kernel modules
+	copy_kmod
 
 	echo "===> Unmount memory disk"
 	umount $NAS4FREE_TMPDIR
@@ -602,6 +620,8 @@ create_iso () {
 	# preload kernel drivers
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
+	# copy kernel modules
+	copy_kmod
 
 	if [ ! $TINY_ISO ]; then
 		echo "ISO: Copying IMG file to $NAS4FREE_TMPDIR"
@@ -732,6 +752,8 @@ create_usb () {
 	# preload kernel drivers
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
+	# copy kernel modules
+	copy_kmod
 
 	echo "USB: Copying IMG file to $NAS4FREE_TMPDIR"
 	cp ${NAS4FREE_WORKINGDIR}/image.bin.gz ${NAS4FREE_TMPDIR}/${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-embedded.gz
@@ -821,6 +843,8 @@ create_full() {
 	# preload kernel drivers
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
+	# copy kernel modules
+	copy_kmod
 
 	#Generate a loader.conf for full mode:
 	echo 'kernel="kernel"' >> $NAS4FREE_TMPDIR/boot/loader.conf
