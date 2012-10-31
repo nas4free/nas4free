@@ -81,7 +81,7 @@ if ($_POST) {
 
 		if ($config['ad']['enable']) {
 			$config['samba']['enable'] = true;
-			$config['samba']['security'] = "domain";
+			$config['samba']['security'] = "ads";
 			$config['samba']['workgroup'] = $_POST['domainname_netbios'];
 		}
 

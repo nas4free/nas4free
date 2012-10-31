@@ -95,7 +95,7 @@ if (!isset($config['ad']) || !is_array($config['ad']))
 				<tr>
 					<td>
 						<pre><?php
-						exec("/usr/local/bin/net rpc user -S {$config['ad']['domaincontrollername']} -U {$config['ad']['username']}%{$config['ad']['password']} 2>&1", $rawdata);
+						exec("/usr/local/bin/net rpc user -S {$config['ad']['domaincontrollername']} -U ".escapeshellarg("{$config['ad']['username']}%{$config['ad']['password']}")." 2>&1", $rawdata);
 						echo htmlspecialchars(implode("\n", $rawdata));
 						unset($rawdata);
 						?></pre>
