@@ -372,6 +372,16 @@ samba_reload_cmd() {
 	done
 }
 
+safe_shellquote()
+{
+	local _result
+	# replace inside quote &<>| => \X, ' => '\''
+	#_result=`echo "$@" | sed -e "s/\([\&\<\>\|]\)/\\\\\\\\\1/g" -e "s/'/'\\\\\\''/g"`
+	_result=`echo "$@" | sed -e 's/"/"\\\\\\\\\\\\""/g'`
+	# return quoted string
+	echo "${_result}"
+}
+
 samba_cmd() {
 	local name rcvar command pidfile samba_daemons
 	# Prevent recursive calling
@@ -387,11 +397,13 @@ samba_cmd() {
 			local _srvname=`configxml_get "//ad/domaincontrollername"`
 			local _username=`configxml_get "//ad/username"`
 			local _password=`configxml_get "//ad/password"`
-			/usr/local/bin/net rpc join -S ${_srvname} -U ${_username}%${_password}
+			local _up=`safe_shellquote "${_username}%${_password}"`
+			/usr/local/bin/net rpc join -S ${_srvname} -U "${_up}"
 		fi
  		if [ 0 -eq ${samba_ldap} ]; then
 			local _password=`configxml_get "//ldap/rootbindpw"`
-			#/usr/local/bin/smbpasswd -w ${_password}
+			local _p=`safe_shellquote "${_password}"`
+			#/usr/local/bin/smbpasswd -w "${_p}"
 		fi
 	fi
 
