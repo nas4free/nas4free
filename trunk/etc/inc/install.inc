@@ -240,6 +240,8 @@ EOD;
 
 	// Decompress kernel.
 	mwexec("/usr/bin/gzip -d -f {$mntpath}/boot/kernel/kernel.gz");
+	// Decompress modules.
+	mwexec("(cd {$mntpath}/boot/kernel; for f in *.gz; do /usr/bin/gzip -d -f \$f; done)");
 
 	// Generate /etc/fstab.
 	$ufsid = disks_get_ufsid("/dev/{$harddrive}s1a");
@@ -338,6 +340,8 @@ function install_upgrade_full($harddrive)
 
 	// Decompress kernel
 	mwexec("/usr/bin/gzip -d -f {$mntpath}/boot/kernel/kernel.gz");
+	// Decompress modules
+	mwexec("(cd {$mntpath}/boot/kernel; for f in *.gz; do /usr/bin/gzip -d -f \$f; done)");
 
 	// Restore system files
 	write_console("Restore system configuration.\n");
