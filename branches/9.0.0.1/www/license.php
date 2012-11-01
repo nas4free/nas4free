@@ -1,14 +1,9 @@
-#!/usr/local/bin/php
 <?php
 /*
 	license.php
 	
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (C) 2012 NAS4Free team <info@nas4free.org>.
-	All rights reserved.
-
-	Portions from freenas (http://www.freenas.org).
-	Copyright (C) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+	Copyright (c) 2012 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -52,7 +47,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
 				<?php html_titleline(gettext("License"));?>
 				<tr>
 					<td class="listt">
-            <p><strong>NAS4Free is Copyright &copy; 2012 by NAS4Free Team
+            <p><strong>NAS4Free is Copyright &copy; 2012 by NAS4Free
               (<a href="mailto:info@nas4free.org">info@nas4free.org</a>).<br />
               All rights reserved.</strong></p>
 
@@ -98,9 +93,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer & Project leader</font></em></div><br />
             <hr size="1" />
             <p>The following persons have contributed to NAS4Free support:</p>
-              <div>Christian Degen alias bubulein (<a href="mailto:degen@nas4free.org">degen@nas4free.org</a>)<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
-              <div>Samuel Tunis alias killermist (<a href="mailto:killermist@nas4free.org">killermist@nas4free.org</a>)<br />
+            <div>Samuel Tunis alias killermist (<a href="mailto:killermist@nas4free.org">killermist@nas4free.org</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
             <hr size="1" />
             <p>The following persons have contributed to NAS4Free documentation project:</p>
@@ -221,6 +214,9 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
 
       <p>pfSense: NAS4Free use some pfSense code too (<a href="http://www.pfsense.com" target="_blank">http://www.pfsense.com</a>)<br />
         Copyright &copy; 2004, 2005, 2006 Scott Ullrich. All rights reserved.</p>
+
+      <p>VMXNET3 NIC driver for FreeBSD (<a href="http://www.vmware.com" target="_blank">http://www.vmware.com</a>)<br />
+        Copyright &copy; 2010 VMware, Inc. All Rights Reserved.</p>
 
       <p>Open Virtual Machine Tools (<a href="http://sourceforge.net/projects/open-vm-tools/" target="_blank">http://sourceforge.net/projects/open-vm-tools/</a>)</p>
 
