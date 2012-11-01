@@ -1,13 +1,47 @@
 <?php
+/*
+	es.php
+	
+	Part of NAS4Free (http://www.nas4free.org).
+	Copyright (c) 2012 The NAS4Free Project <info@nas4free.org>.
+	All rights reserved.
 
-// Spanish Language Module for v2.3.2
+	Portions of Quixplorer (http://quixplorer.sourceforge.net).
+	Author: The QuiX project.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met: 
+
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer. 
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution. 
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies, 
+	either expressed or implied, of the NAS4Free Project.
+*/
+// Spanish Language Module
 
 $GLOBALS["charset"] = "UTF-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "Y/m/d H:i";
 $GLOBALS["error_msg"] = array(
+
 	// error
-	"error"			=> "ERROR(ES)",
+	"error"		=> "ERROR(ES)",
 	"back"			=> "Ir Atrás",
 	
 	// root
@@ -19,7 +53,7 @@ $GLOBALS["error_msg"] = array(
 	"direxist"		=> "Este directorio no existe.",
 	//"filedoesexist"	=>  "Este archivo ya existe.",
 	"fileexist"		=> "Este archivo no existe.",
-	"itemdoesexist"		=> "Este artículo ya existe.",
+	"itemdoesexist"	=> "Este artículo ya existe.",
 	"itemexist"		=> "Este artículo no existe.",
 	"targetexist"		=> "El directorio objetivo no existe.",
 	"targetdoesexist"	=> "El artículo objetivo ya existe.",
@@ -33,7 +67,7 @@ $GLOBALS["error_msg"] = array(
 	"accessfile"		=> "Ud. no está permitido accesar a este archivo.",
 	"accessitem"		=> "Ud. no está permitido accesar a este artículo.",
 	"accessfunc"		=> "Ud. no está permitido usar esta funcion.",
-	"accesstarget"		=> "Ud. no está permitido accesar al directorio objetivo.",
+	"accesstarget"	=> "Ud. no está permitido accesar al directorio objetivo.",
 	
 	// actions
 	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
@@ -51,22 +85,22 @@ $GLOBALS["error_msg"] = array(
 	"deluser"		=> "Fracaso Removiendo usuario.",
 	"adduser"		=> "Fracaso Agragando usuario.",
 	"saveuser"		=> "Fracaso Guardadno usuario.",
-	"searchnothing"		=> "Ud. debe suministrar algo para la busqueda.",
+	"searchnothing"	=> "Ud. debe suministrar algo para la busqueda.",
 	
 	// misc
 	"miscnofunc"		=> "Función no disponible.",
-	"miscfilesize"		=> "Archivo excede maximo tamaño.",
-	"miscfilepart"		=> "Archivo fue parcialmente subido.",
+	"miscfilesize"	=> "Archivo excede maximo tamaño.",
+	"miscfilepart"	=> "Archivo fue parcialmente subido.",
 	"miscnoname"		=> "Ud. debe suministrar un nombre.",
-	"miscselitems"		=> "Ud. no tiene seleccionado(s) ningun artículo.",
-	"miscdelitems"		=> "Está seguro de querer borrar este(os) \"+num+\" artículo(s)?",
+	"miscselitems"	=> "Ud. no tiene seleccionado(s) ningun artículo.",
+	"miscdelitems"	=> "Está seguro de querer borrar este(os) \"+num+\" artículo(s)?",
 	"miscdeluser"		=> "Está seguro de querer borrar usuario '\"+user+\"'?",
 	"miscnopassdiff"	=> "Nuevo password no difiere del actual.",
 	"miscnopassmatch"	=> "No coinciden los Passwords.",
 	"miscfieldmissed"	=> "Ud. falló en un importante campo.",
 	"miscnouserpass"	=> "Usuario o password incorrecto.",
 	"miscselfremove"	=> "Ud. no puede borrarse a si mismo.",
-	"miscuserexist"		=> "Usuario ya existe.",
+	"miscuserexist"	=> "Usuario ya existe.",
 	"miscnofinduser"	=> "No se puede encontrar usuario.",
 );
 $GLOBALS["messages"] = array(
@@ -92,7 +126,7 @@ $GLOBALS["messages"] = array(
 	"typeheader"		=> "Tipo",
 	"modifheader"		=> "Modificado",
 	"permheader"		=> "Permisos",
-	"actionheader"		=> "Acciones",
+	"actionheader"	=> "Acciones",
 	"pathheader"		=> "Ruta",
 	
 	// buttons
@@ -117,9 +151,9 @@ $GLOBALS["messages"] = array(
 	"actperms"		=> "Cambiar permisos",
 	"actedit"		=> "Editar archivo",
 	"actsearchresults"	=> "Resultado de busqueda.",
-	"actcopyitems"		=> "Copiar artículos(s)",
+	"actcopyitems"	=> "Copiar artículos(s)",
 	"actcopyfrom"		=> "Copia de /%s a /%s ",
-	"actmoveitems"		=> "Mover artículo(s)",
+	"actmoveitems"	=> "Mover artículo(s)",
 	"actmovefrom"		=> "Mover de /%s a /%s ",
 	"actlogin"		=> "Login",
 	"actloginheader"	=> "Login para usar QuiXplorer",
@@ -132,11 +166,11 @@ $GLOBALS["messages"] = array(
 	// misc
 	"miscitems"		=> "Artículo(s)",
 	"miscfree"		=> "Libre",
-	"miscusername"		=> "Nombre de usuario",
-	"miscpassword"		=> "Password",
+	"miscusername"	=> "Nombre de usuario",
+	"miscpassword"	=> "Password",
 	"miscoldpass"		=> "Password Antiguo",
 	"miscnewpass"		=> "Password Nuevo",
-	"miscconfpass"		=> "Confirmar password",
+	"miscconfpass"	=> "Confirmar password",
 	"miscconfnewpass"	=> "Confirmar nuevo password",
 	"miscchpass"		=> "Cambiar password",
 	"mischomedir"		=> "Directorio Home",
@@ -144,14 +178,14 @@ $GLOBALS["messages"] = array(
 	"miscshowhidden"	=> "Mostrar artículos ocultos",
 	"mischidepattern"	=> "Ocultar patrón",
 	"miscperms"		=> "Permisos",
-	"miscuseritems"		=> "(nombre, directorio home, mostrar artículos ocultos, permisos, activar)",
+	"miscuseritems"	=> "(nombre, directorio home, mostrar artículos ocultos, permisos, activar)",
 	"miscadduser"		=> "añadir usuario",
-	"miscedituser"		=> "editar usario '%s'",
+	"miscedituser"	=> "editar usario '%s'",
 	"miscactive"		=> "Activar",
 	"misclang"		=> "Lenguaje",
-	"miscnoresult"		=> "Resultado(s) no disponible(s).",
+	"miscnoresult"	=> "Resultado(s) no disponible(s).",
 	"miscsubdirs"		=> "Búsqueda de subdirectorios",
-	"miscpermnames"		=> array("Solo ver","Modificar","Cambiar password","Modificar & Cambiar password", "Administrador"),
+	"miscpermnames"	=> array("Solo ver","Modificar","Cambiar password","Modificar & Cambiar password","Administrador"),
 	"miscyesno"		=> array("Si","No","S","N"),
 	"miscchmod"		=> array("Propietario", "Grupo", "Público"),
 );

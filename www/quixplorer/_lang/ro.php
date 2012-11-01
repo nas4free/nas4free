@@ -1,13 +1,47 @@
 <?php
+/*
+	ro.php
+	
+	Part of NAS4Free (http://www.nas4free.org).
+	Copyright (c) 2012 The NAS4Free Project <info@nas4free.org>.
+	All rights reserved.
 
-// Romanian Language Module for v2.3.2
+	Portions of Quixplorer (http://quixplorer.sourceforge.net).
+	Author: The QuiX project.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met: 
+
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer. 
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution. 
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies, 
+	either expressed or implied, of the NAS4Free Project.
+*/
+// Romanian Language Module
 
 $GLOBALS["charset"] = "UTF-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "d-m-Y H:i";
 $GLOBALS["error_msg"] = array(
+
 	// error
-	"error"			=> "EROARE(I)",
+	"error"		=> "EROARE(I)",
 	"back"			=> "Înapoi",
 	
 	// root
@@ -19,7 +53,7 @@ $GLOBALS["error_msg"] = array(
 	"direxist"		=> "Acest director nu existã.",
 	//"filedoesexist"	=> "Acest fiºier existã deja.",
 	"fileexist"		=> "Acest fiºier nu existã.",
-	"itemdoesexist"		=> "Acest element existã deja.",
+	"itemdoesexist"	=> "Acest element existã deja.",
 	"itemexist"		=> "Acest element nu existã.",
 	"targetexist"		=> "Directorul þintã nu existã.",
 	"targetdoesexist"	=> "Elementul þintã existã deja.",
@@ -33,7 +67,7 @@ $GLOBALS["error_msg"] = array(
 	"accessfile"		=> "Nu ai permisiunea de a accesa acest fiºier.",
 	"accessitem"		=> "Nu eºti autorizat sã accesezi acest element.",
 	"accessfunc"		=> "Nu eºti autorizat sã foloseºti aceastã funcþie.",
-	"accesstarget"		=> "Nu eºti autorizat sã accesezi directorul þintã.",
+	"accesstarget"	=> "Nu eºti autorizat sã accesezi directorul þintã.",
 	
 	// actions
 	"permread"		=> "Obþinerea permisiunii a eºuat.",
@@ -50,22 +84,22 @@ $GLOBALS["error_msg"] = array(
 	"deluser"		=> "ªtergerea utilizatorului a eºuat.",
 	"adduser"		=> "Adãugarea utilizatorului a eºuat.",
 	"saveuser"		=> "Salvarea utilizatorului a eºuat.",
-	"searchnothing"		=> "Trebuie sã defineºti ce trebuie cãutat.",
+	"searchnothing"	=> "Trebuie sã defineºti ce trebuie cãutat.",
 	
 	// misc
 	"miscnofunc"		=> "Funcþie indisponibilã.",
-	"miscfilesize"		=> "Fiºierul depãºeºte dimensiunea maximã.",
-	"miscfilepart"		=> "Fiºierul a fost încãrcat parþial.",
+	"miscfilesize"	=> "Fiºierul depãºeºte dimensiunea maximã.",
+	"miscfilepart"	=> "Fiºierul a fost încãrcat parþial.",
 	"miscnoname"		=> "Trebuie sã furnizezi un nume.",
-	"miscselitems"		=> "Nu ai selectat nici un element.",
-	"miscdelitems"		=> "Sigur vrei sã ºtergi acest(e) \"+num+\" element(e)?",
+	"miscselitems"	=> "Nu ai selectat nici un element.",
+	"miscdelitems"	=> "Sigur vrei sã ºtergi acest(e) \"+num+\" element(e)?",
 	"miscdeluser"		=> "Sigur vrei sã ºtergi utilizatorul '\"+user+\"'?",
 	"miscnopassdiff"	=> "Parola nouã nu diferã de cea curentã.",
 	"miscnopassmatch"	=> "Parolele nu sunt identice.",
 	"miscfieldmissed"	=> "Ai sãrit un câmp important.",
 	"miscnouserpass"	=> "Utilizator sau parolã incorect(ã).",
 	"miscselfremove"	=> "Nu te poþi ºterge pe tine insuþi.",
-	"miscuserexist"		=> "Utilizatorul existã deja.",
+	"miscuserexist"	=> "Utilizatorul existã deja.",
 	"miscnofinduser"	=> "Nu gãsesc utilizatorul.",
 );
 $GLOBALS["messages"] = array(
@@ -91,7 +125,7 @@ $GLOBALS["messages"] = array(
 	"typeheader"		=> "Tip",
 	"modifheader"		=> "Modificat",
 	"permheader"		=> "Permisiuni",
-	"actionheader"		=> "Acþiuni",
+	"actionheader"	=> "Acþiuni",
 	"pathheader"		=> "Cale",
 	
 	// buttons
@@ -116,9 +150,9 @@ $GLOBALS["messages"] = array(
 	"actperms"		=> "Schimbare permisiuni",
 	"actedit"		=> "Editare fiºier",
 	"actsearchresults"	=> "Cãutare rezultate",
-	"actcopyitems"		=> "Copiere element(e)",
+	"actcopyitems"	=> "Copiere element(e)",
 	"actcopyfrom"		=> "Copiere din /%s în /%s ",
-	"actmoveitems"		=> "Mutare element(e)",
+	"actmoveitems"	=> "Mutare element(e)",
 	"actmovefrom"		=> "Mutare din /%s în /%s ",
 	"actlogin"		=> "Logare",
 	"actloginheader"	=> "Logare pentru folosirea QuiXplorer",
@@ -131,11 +165,11 @@ $GLOBALS["messages"] = array(
 	// misc
 	"miscitems"		=> "Element(e)",
 	"miscfree"		=> "Liber",
-	"miscusername"		=> "Utilizator",
-	"miscpassword"		=> "Parola",
+	"miscusername"	=> "Utilizator",
+	"miscpassword"	=> "Parola",
 	"miscoldpass"		=> "Parola veche",
 	"miscnewpass"		=> "Parola nouã",
-	"miscconfpass"		=> "Confirmare parolã",
+	"miscconfpass"	=> "Confirmare parolã",
 	"miscconfnewpass"	=> "Confirmare parolã nouã",
 	"miscchpass"		=> "Schimbare parolã",
 	"mischomedir"		=> "Director implicit",
@@ -143,15 +177,14 @@ $GLOBALS["messages"] = array(
 	"miscshowhidden"	=> "Aratã elementele ascunse",
 	"mischidepattern"	=> "Ascunde elementul",
 	"miscperms"		=> "Permisiuni",
-	"miscuseritems"		=> "(nume, director implicit, aratã elementele ascunse, permisiuni, activ)",
+	"miscuseritems"	=> "(nume, director implicit, aratã elementele ascunse, permisiuni, activ)",
 	"miscadduser"		=> "adãugare utilizator",
-	"miscedituser"		=> "editare utilizator '%s'",
+	"miscedituser"	=> "editare utilizator '%s'",
 	"miscactive"		=> "Activ",
 	"misclang"		=> "Limba",
-	"miscnoresult"		=> "Nu existã rezultate disponibile.",
+	"miscnoresult"	=> "Nu existã rezultate disponibile.",
 	"miscsubdirs"		=> "Cãutare subdirectoare",
-	"miscpermnames"		=> array("Doar vizualizare","Modificare","Schimbare parolã","Modificare & Schimbare parolã",
-					"Administrator"),
+	"miscpermnames"	=> array("Doar vizualizare","Modificare","Schimbare parolã","Modificare & Schimbare parolã","Administrator"),
 	"miscyesno"		=> array("Da","Nu","D","N"),
 	"miscchmod"		=> array("Proprietar", "Grup", "Public"),
 );

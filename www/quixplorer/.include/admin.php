@@ -49,7 +49,7 @@ function admin($admin, $dir) {			// Change Password & Manage Users Form
 	include "./.include/js_admin.php";
 	
 	// Change Password
-	echo "<CENTER><BR><HR width=\"95%\"><TABLE width=\"350\"><TR><TD colspan=\"2\" class=\"header\"><B>";
+	echo "<CENTER><BR><HR width=\"75%\"><TABLE width=\"350\"><TR><TD colspan=\"2\" class=\"header\"><B>";
 	echo $GLOBALS["messages"]["actchpwd"].":</B></TD></TR>\n";
 	echo "<FORM name=\"chpwd\" action=\"".make_link("admin",$dir,NULL)."\" method=\"post\">\n";
 	echo "<INPUT type=\"hidden\" name=\"action2\" value=\"chpwd\">\n";
@@ -64,7 +64,7 @@ function admin($admin, $dir) {			// Change Password & Manage Users Form
 	
 	// Edit / Add / Remove User
 	if($admin) {
-		echo "<CENTER><HR width=\"95%\"><TABLE width=\"350\"><TR><TD colspan=\"6\" class=\"header\" nowrap>";
+		echo "<CENTER><HR width=\"75%\"><TABLE width=\"375\"><TR><TD colspan=\"6\" class=\"header\" nowrap>";
 		echo "<B>".$GLOBALS["messages"]["actusers"].":</B></TD></TR>\n";
 		echo "<TR><TD colspan=\"5\">".$GLOBALS["messages"]["miscuseritems"]."</TD></TR>\n";
 		echo "<FORM name=\"userform\" action=\"".make_link("admin",$dir,NULL)."\" method=\"post\">\n";
@@ -74,17 +74,16 @@ function admin($admin, $dir) {			// Change Password & Manage Users Form
 			// Username & Home dir:
 			$user=$GLOBALS["users"][$i][0];	if(strlen($user)>15) $user=substr($user,0,12)."...";
 			$home=$GLOBALS["users"][$i][2];	if(strlen($home)>30) $home=substr($home,0,27)."...";
-			
 			echo "<TR><TD width=\"1%\"><INPUT TYPE=\"radio\" name=\"user\" value=\"";
 			echo $GLOBALS["users"][$i][0]."\"".(($i==0)?" checked":"")."></TD>\n";
-			echo "<TD width=\"30%\">".$user."</TD><TD width=\"60%\">".$home."</TD>\n";
+			echo "<TD width=\"30%\">".$user."</TD><TD width=\"70%\">".$home."</TD>\n";
 			echo "<TD width=\"3%\">".($GLOBALS["users"][$i][4]?$GLOBALS["messages"]["miscyesno"][2]:
 				$GLOBALS["messages"]["miscyesno"][3])."</TD>\n";
 			echo "<TD width=\"3%\">".$GLOBALS["users"][$i][6]."</TD>\n";
 			echo "<TD width=\"3%\">".($GLOBALS["users"][$i][7]?$GLOBALS["messages"]["miscyesno"][2]:
 				$GLOBALS["messages"]["miscyesno"][3])."</TD></TR>\n";
 		}
-		echo "<TR><TD colspan=\"6\" align=\"right\">";
+		echo "<TR><TD colspan=\"6\" align=\"center\">";
 		echo "<input type=\"button\" value=\"".$GLOBALS["messages"]["btnadd"];
 		echo "\" onClick=\"javascript:location='".make_link("admin",$dir,NULL)."&action2=adduser';\">\n";
 		echo "<input type=\"button\" value=\"".$GLOBALS["messages"]["btnedit"];
@@ -93,7 +92,7 @@ function admin($admin, $dir) {			// Change Password & Manage Users Form
 		echo "\" onClick=\"javascript:Delete();\">\n</TD></TR></FORM></TABLE>\n";
 	}
 	
-	echo "<HR width=\"95%\"><input type=\"button\" value=\"".$GLOBALS["messages"]["btnclose"];
+	echo "<HR width=\"75%\"><input type=\"button\" value=\"".$GLOBALS["messages"]["btnclose"];
 	echo "\" onClick=\"javascript:location='".make_link("list",$dir,NULL)."';\"></CENTER><BR><BR>\n";
 ?><script language="JavaScript1.2" type="text/javascript">
 <!--
