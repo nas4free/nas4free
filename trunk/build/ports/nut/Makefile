@@ -9,7 +9,7 @@ MASTER_SITES=	http://www.networkupstools.org/source/${PORTVERSION:R}/
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-_AUTOTOOL_autoconf=	yes
+USE_AUTOTOOLS=  autoconf
 GNU_CONFIGURE=	yes
 USE_GMAKE=		yes
 USE_LDCONFIG=		yes
@@ -26,34 +26,37 @@ NUT_DRVDIR=			/usr/local/libexec/${PORTNAME}
 OPTIONS=		IPV6		"IPV6 support"  on 
 
 CONFIGURE_ARGS=	--sysconfdir=${NUT_SYSCONFDIR} \
-						--program-transform-name="" \
-						--localstatedir=${NUT_STATEDIR} \
-						--datadir=${NUT_DATADIR} \
-						--with-drvpath=${NUT_DRVDIR} \
-						--with-statepath=${NUT_STATEDIR} \
-						--with-altpidpath=${NUT_PIDDIR} \
-						--with-pidpath=${NUT_PIDDIR} \
-						--without-pkgconfig-dir \
-						--without-cgi \
-						--with-serial \
-						--with-usb=auto \
-						--without-neon \
-						--without-snmp \
-						--without-powerman \
-						--without-hal \
-						--without-dev \
-						--with-user=${NUT_USER} \
-						--with-group=${NUT_GROUP} \
-						--with-wrap
-
-
-
+		--program-transform-name="" \
+		--localstatedir=${NUT_STATEDIR} \
+		--datadir=${NUT_DATADIR} \
+		--with-drvpath=${NUT_DRVDIR} \
+		--with-statepath=${NUT_STATEDIR} \
+		--with-altpidpath=${NUT_PIDDIR} \
+		--with-pidpath=${NUT_PIDDIR} \
+		--without-pkgconfig-dir \
+		--without-cgi \
+		--with-serial \
+		--with-usb=auto \
+		--with-snmp \
+		--with-neon \
+		--with-powerman \
+		--with-ipmi \
+		--with-freeipmi \
+		--without-hal \
+		--without-dev \
+		--with-user=${NUT_USER} \
+		--with-group=${NUT_GROUP} \
+		--with-wrap
 
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} < 800069
 LIB_DEPENDS+=	usb-0.1.8:${PORTSDIR}/devel/libusb
 .endif
+LIB_DEPENDS+=	netsnmp.30:${PORTSDIR}/net-mgmt/net-snmp
+LIB_DEPENDS+=	neon.27:${PORTSDIR}/www/neon29
+LIB_DEPENDS+=	powerman.0:${PORTSDIR}/sysutils/powerman
+LIB_DEPENDS+=	freeipmi:${PORTSDIR}/sysutils/freeipmi
 
 
 do-install:
@@ -76,6 +79,7 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/blazer_usb ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/clone ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/clone-outlet ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/.libs/dummy-ups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/etapro ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/everups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/gamatronic ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
@@ -89,15 +93,19 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/mge-shut ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/mge-utalk ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/microdowell ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/netxml-ups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/.libs/nut-ipmipsu ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/oldmge-shut ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/oneac ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/optiups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/powercom ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/powerman-pdu ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/powerpanel ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/rhino ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/richcomm_usb ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/safenet ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/skel ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/snmp-ups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/solis ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/tripplite ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/tripplite_usb ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
