@@ -25,6 +25,7 @@ AUTOTOOLSFILES=	scripts/phpize.in
 USE_BZIP2=	yes
 USE_GETOPT_LONG=yes
 USE_GNOME=	libxml2
+USE_OPENLDAP=	yes
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 
@@ -50,6 +51,7 @@ CONFIGURE_ARGS+=	\
 		--with-freetype-dir=${LOCALBASE} \
 		--with-jpeg-dir=${LOCALBASE} \
 		--with-png-dir=${LOCALBASE} \
+		--with-ldap=${LOCALBASE} \
 		--enable-mbstring \
 		--with-onig=${LOCALBASE} \
 		--with-pcre-dir=${LOCALBASE} \
