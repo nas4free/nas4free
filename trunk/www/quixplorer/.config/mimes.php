@@ -66,12 +66,15 @@ $GLOBALS["used_mime_types"]=array(
 	"cgi"	=> array($GLOBALS["mimes"]["cgi"],"exe.gif","\.cgi$"),
 	//"py"	=> array($GLOBALS["mimes"]["py"],"py.gif","\.py$"),
 	//"sh"	=> array($GLOBALS["mimes"]["sh"],"sh.gif","\.sh$"),
+
 	// C++
 	"cpps"	=> array($GLOBALS["mimes"]["cpps"],"cpp.gif","\.cpp$|\.c$|\.cc$|\.cxx$"),
 	"cpph"	=> array($GLOBALS["mimes"]["cpph"],"h.gif","\.hpp$|\.h$"),
+
 	// Java
 	"javas" => array($GLOBALS["mimes"]["javas"],"java.gif","\.java$"),
 	"javac" => array($GLOBALS["mimes"]["javac"],"java.gif","\.class$|\.jar$"),
+
 	// Pascal
 	"pas"	=> array($GLOBALS["mimes"]["pas"],"src.gif","\.p$|\.pas$"),
 	

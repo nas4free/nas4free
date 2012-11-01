@@ -1,13 +1,47 @@
 <?php
+/*
+	pl.php
+	
+	Part of NAS4Free (http://www.nas4free.org).
+	Copyright (c) 2012 The NAS4Free Project <info@nas4free.org>.
+	All rights reserved.
 
-// Polish Language Module for v2.3.2
+	Portions of Quixplorer (http://quixplorer.sourceforge.net).
+	Author: The QuiX project.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met: 
+
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer. 
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution. 
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies, 
+	either expressed or implied, of the NAS4Free Project.
+*/
+// Polish Language Module
 
 $GLOBALS["charset"] = "UTF-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "d-m-Y H:i";
 $GLOBALS["error_msg"] = array(
+
 	// error
-	"error"			=> "B£¡D(ÊDY)",
+	"error"		=> "B£¡D(ÊDY)",
 	"back"			=> "Z Powrotem",
 	
 	// root
@@ -33,7 +67,7 @@ $GLOBALS["error_msg"] = array(
 	"accessfile"		=> "Nie masz dostêpu do tego pliku.",
 	"accessitem"		=> "Nie masz dostêpu do tej pozycji.",
 	"accessfunc"		=> "Nie masz dostêpu do tej funkcji.",
-	"accesstarget"		=> "Nie masz dostêpu do katalogu docelowego.",
+	"accesstarget"	=> "Nie masz dostêpu do katalogu docelowego.",
 	
 	// actions
 	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
@@ -51,22 +85,22 @@ $GLOBALS["error_msg"] = array(
 	"deluser"		=> "Usuwanie u¿ytkowika siê nie powiod³o.",
 	"adduser"		=> "Dodanie u¿ytkownika siê nie powiod³o.",
 	"saveuser"		=> "Zapis u¿ytkownika siê nie powiod³o.",
-	"searchnothing"		=> "Musisz dostarczyæ czego¶ do szukania.",
+	"searchnothing"	=> "Musisz dostarczyæ czego¶ do szukania.",
 	
 	// misc
 	"miscnofunc"		=> "Funkcja niedostêpna.",
-	"miscfilesize"		=> "Rozmiar pliku przekroczy³ maksymaln± warto¶æ.",
-	"miscfilepart"		=> "Plik zosta³ za³adowany tylko czê¶ciowo.",
+	"miscfilesize"	=> "Rozmiar pliku przekroczy³ maksymaln± warto¶æ.",
+	"miscfilepart"	=> "Plik zosta³ za³adowany tylko czê¶ciowo.",
 	"miscnoname"		=> "Musisz nadaæ nazwê.",
-	"miscselitems"		=> "Nie zaznaczy³e¶ ¿adnej pozycji.",
-	"miscdelitems"		=> "Jeste¶ pewny ¿e chcesz usun±æ te (\"+num+\") pozycje?",
+	"miscselitems"	=> "Nie zaznaczy³e¶ ¿adnej pozycji.",
+	"miscdelitems"	=> "Jeste¶ pewny ¿e chcesz usun±æ te (\"+num+\") pozycje?",
 	"miscdeluser"		=> "Jeste¶ pewny ¿e chcesz usun±æ u¿ytkownika '\"+user+\"'?",
 	"miscnopassdiff"	=> "Nowe has³o nie ró¿ni siê od obecnego.",
 	"miscnopassmatch"	=> "Podane has³a ró¿ni± siê.",
 	"miscfieldmissed"	=> "Opuszczono wa¿ne pole.",
 	"miscnouserpass"	=> "U¿ytkownik i has³o s± niezgodne.",
 	"miscselfremove"	=> "Nie mo¿esz siebie usun±æ.",
-	"miscuserexist"		=> "U¿ytkownik ju¿ istnieje.",
+	"miscuserexist"	=> "U¿ytkownik ju¿ istnieje.",
 	"miscnofinduser"	=> "U¿ytkownika nie znaleziono.",
 );
 $GLOBALS["messages"] = array(
@@ -92,7 +126,7 @@ $GLOBALS["messages"] = array(
 	"typeheader"		=> "Typ",
 	"modifheader"		=> "Zmodyfikowano",
 	"permheader"		=> "Prawa dostêpu",
-	"actionheader"		=> "Akcje",
+	"actionheader"	=> "Akcje",
 	"pathheader"		=> "¦cie¿ka",
 	
 	// buttons
@@ -117,9 +151,9 @@ $GLOBALS["messages"] = array(
 	"actperms"		=> "Zmiana uprawnieñ",
 	"actedit"		=> "Edycja pliku",
 	"actsearchresults"	=> "Rezultaty szukania",
-	"actcopyitems"		=> "Kopiuj pozycje",
+	"actcopyitems"	=> "Kopiuj pozycje",
 	"actcopyfrom"		=> "Kpiuj z /%s do /%s ",
-	"actmoveitems"		=> "Przenie¶ pozycje",
+	"actmoveitems"	=> "Przenie¶ pozycje",
 	"actmovefrom"		=> "Przenie¶ z /%s do /%s ",
 	"actlogin"		=> "Nazwa u¿ytkownika",
 	"actloginheader"	=> "Zaloguj siê by u¿ywaæ QuiXplorer",
@@ -132,11 +166,11 @@ $GLOBALS["messages"] = array(
 	// misc
 	"miscitems"		=> " -Ilo¶c elementów",
 	"miscfree"		=> "Wolnego miejsca",
-	"miscusername"		=> "Nazwa u¿ytkownika",
-	"miscpassword"		=> "Has³o",
+	"miscusername"	=> "Nazwa u¿ytkownika",
+	"miscpassword"	=> "Has³o",
 	"miscoldpass"		=> "Stare has³o",
 	"miscnewpass"		=> "Nowe has³o",
-	"miscconfpass"		=> "Potwierd¼ has³o",
+	"miscconfpass"	=> "Potwierd¼ has³o",
 	"miscconfnewpass"	=> "Potwierd¼ nowe has³o",
 	"miscchpass"		=> "Zmieñ has³o",
 	"mischomedir"		=> "Katalog g³ówny",
@@ -144,15 +178,14 @@ $GLOBALS["messages"] = array(
 	"miscshowhidden"	=> "Show hidden items",
 	"mischidepattern"	=> "Hide pattern",
 	"miscperms"		=> "Uprawnienia",
-	"miscuseritems"		=> "(nazwa, katalog domowy, poka¿ pozycje ukryte, uprawnienia, czy aktywny)",
+	"miscuseritems"	=> "(nazwa, katalog domowy, poka¿ pozycje ukryte, uprawnienia, czy aktywny)",
 	"miscadduser"		=> "dodaj u¿ytkownika",
-	"miscedituser"		=> "edycja u¿ytkownika '%s'",
+	"miscedituser"	=> "edycja u¿ytkownika '%s'",
 	"miscactive"		=> "Aktywny",
 	"misclang"		=> "Jêzyk",
-	"miscnoresult"		=> "Bez rezultatu.",
+	"miscnoresult"	=> "Bez rezultatu.",
 	"miscsubdirs"		=> "Szukaj w podkatalogach",
-	"miscpermnames"		=> array("Tylko przegl±danie","Modyfikacja","Zmiana has³a","Modyfikacja i zmiana has³a",
-					"Administrator"),
+	"miscpermnames"	=> array("Tylko przegl±danie","Modyfikacja","Zmiana has³a","Modyfikacja i zmiana has³a","Administrator"),
 	"miscyesno"		=> array("Tak","Nie","T","N"),
 	"miscchmod"		=> array("W³a¶ciciel", "Grupa", "Publiczny"),
 );

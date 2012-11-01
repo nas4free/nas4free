@@ -1,13 +1,46 @@
 <?php
+/*
+	de.php
+	
+	Part of NAS4Free (http://www.nas4free.org).
+	Copyright (c) 2012 The NAS4Free Project <info@nas4free.org>.
+	All rights reserved.
 
-// German Language Module for v2.3.2
+	Portions of Quixplorer (http://quixplorer.sourceforge.net).
+	Author: The QuiX project.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met: 
+
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer. 
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution. 
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies, 
+	either expressed or implied, of the NAS4Free Project.
+*/
+// German Language Module
 
 $GLOBALS["charset"] = "UTF-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "d.m.Y H:i";
 $GLOBALS["error_msg"] = array(
 	// error
-	"error"			=> "FEHLER",
+	"error"		=> "FEHLER",
 	"back"			=> "Zurück",
 	
 	// root
@@ -19,7 +52,7 @@ $GLOBALS["error_msg"] = array(
 	"direxist"		=> "Dieses Verzeichnis existiert nicht.",
 	//"filedoesexist"	=> "Diese Datei existiert bereits.",
 	"fileexist"		=> "Diese Datei existiert nicht.",
-	"itemdoesexist"		=> "Dieses Objekt existiert bereits.",
+	"itemdoesexist"	=> "Dieses Objekt existiert bereits.",
 	"itemexist"		=> "Dieses Objekt existiert nicht.",
 	"targetexist"		=> "Das Zielverzeichnis existiert nicht.",
 	"targetdoesexist"	=> "Das Zielobjekt existiert bereits.",
@@ -33,7 +66,7 @@ $GLOBALS["error_msg"] = array(
 	"accessfile"		=> "Zugriff auf diese Datei verweigert.",
 	"accessitem"		=> "Zugriff auf dieses Objekt verweigert.",
 	"accessfunc"		=> "Zugriff auf diese Funktion verweigert.",
-	"accesstarget"		=> "Zugriff auf das Zielverzeichnis verweigert.",
+	"accesstarget"	=> "Zugriff auf das Zielverzeichnis verweigert.",
 	
 	// actions
 	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
@@ -51,22 +84,22 @@ $GLOBALS["error_msg"] = array(
 	"deluser"		=> "Benutzer löschen fehlgeschlagen.",
 	"adduser"		=> "Benutzer hinzufügen fehlgeschlagen.",
 	"saveuser"		=> "Benutzer speichern fehlgeschlagen.",
-	"searchnothing"		=> "Sie müssen etwas zum suchen eintragen.",
+	"searchnothing"	=> "Sie müssen etwas zum suchen eintragen.",
 	
 	// misc
 	"miscnofunc"		=> "Funktion nicht vorhanden.",
-	"miscfilesize"		=> "Datei ist größer als die maximale Größe.",
-	"miscfilepart"		=> "Datei wurde nur zum Teil hochgeladen.",
+	"miscfilesize"	=> "Datei ist größer als die maximale Größe.",
+	"miscfilepart"	=> "Datei wurde nur zum Teil hochgeladen.",
 	"miscnoname"		=> "Sie müssen einen Namen eintragen",
-	"miscselitems"		=> "Sie haben keine Objekt(e) ausgewählt.",
-	"miscdelitems"		=> "Sollen die \"+num+\" markierten Objekt(e) gelöscht werden?",
+	"miscselitems"	=> "Sie haben keine Objekt(e) ausgewählt.",
+	"miscdelitems"	=> "Sollen die \"+num+\" markierten Objekt(e) gelöscht werden?",
 	"miscdeluser"		=> "Soll der Benutzer '\"+user+\"' gelöscht werden?",
 	"miscnopassdiff"	=> "Das neue und das heutige Passwort sind nicht verschieden.",
 	"miscnopassmatch"	=> "Passwörter sind nicht gleich.",
 	"miscfieldmissed"	=> "Sie haben ein wichtiges Eingabefeld vergessen auszufüllen",
 	"miscnouserpass"	=> "Benutzer oder Passwort unbekannt.",
 	"miscselfremove"	=> "Sie können sich selbst nicht löschen.",
-	"miscuserexist"		=> "Der Benutzer existiert bereits.",
+	"miscuserexist"	=> "Der Benutzer existiert bereits.",
 	"miscnofinduser"	=> "Kann Benutzer nicht finden.",
 );
 $GLOBALS["messages"] = array(
@@ -92,7 +125,7 @@ $GLOBALS["messages"] = array(
 	"typeheader"		=> "Typ",
 	"modifheader"		=> "Geändert",
 	"permheader"		=> "Rechte",
-	"actionheader"		=> "Aktionen",
+	"actionheader"	=> "Aktionen",
 	"pathheader"		=> "Pfad",
 	
 	// buttons
@@ -117,9 +150,9 @@ $GLOBALS["messages"] = array(
 	"actperms"		=> "Rechte ändern",
 	"actedit"		=> "Datei bearbeiten",
 	"actsearchresults"	=> "Suchergebnisse",
-	"actcopyitems"		=> "Objekt(e) kopieren",
+	"actcopyitems"	=> "Objekt(e) kopieren",
 	"actcopyfrom"		=> "Kopiere von /%s nach /%s ",
-	"actmoveitems"		=> "Objekt(e) verschieben",
+	"actmoveitems"	=> "Objekt(e) verschieben",
 	"actmovefrom"		=> "Versetze von /%s nach /%s ",
 	"actlogin"		=> "Anmelden",
 	"actloginheader"	=> "Melden sie sich an um QuiXplorer zu benutzen",
@@ -132,11 +165,11 @@ $GLOBALS["messages"] = array(
 	// misc
 	"miscitems"		=> "Objekt(e)",
 	"miscfree"		=> "Freier Speicher",
-	"miscusername"		=> "Benutzername",
-	"miscpassword"		=> "Passwort",
+	"miscusername"	=> "Benutzername",
+	"miscpassword"	=> "Passwort",
 	"miscoldpass"		=> "Altes Passwort",
 	"miscnewpass"		=> "Neues Passwort",
-	"miscconfpass"		=> "Bestätige Passwort",
+	"miscconfpass"	=> "Bestätige Passwort",
 	"miscconfnewpass"	=> "Bestätige neues Passwort",
 	"miscchpass"		=> "Ändere Passwort",
 	"mischomedir"		=> "Home-Verzeichnis",
@@ -144,15 +177,14 @@ $GLOBALS["messages"] = array(
 	"miscshowhidden"	=> "Versteckte Objekte anzeigen",
 	"mischidepattern"	=> "Versteck-Filter",
 	"miscperms"		=> "Rechte",
-	"miscuseritems"		=> "(Name, Home-Verzeichnis, versteckte Objekte anzeigen, Rechte, aktiviert)",
+	"miscuseritems"	=> "(Name, Home-Verzeichnis, versteckte Objekte anzeigen, Rechte, aktiviert)",
 	"miscadduser"		=> "Benutzer hinzufügen",
-	"miscedituser"		=> "Benutzer '%s' ändern",
+	"miscedituser"	=> "Benutzer '%s' ändern",
 	"miscactive"		=> "Aktiviert",
 	"misclang"		=> "Sprache",
-	"miscnoresult"		=> "Suche ergebnislos.",
+	"miscnoresult"	=> "Suche ergebnislos.",
 	"miscsubdirs"		=> "Suche in Unterverzeichnisse",
-	"miscpermnames"		=> array("Nur ansehen","Ändern","Passwort ändern",
-					"Ändern & Passwort ändern","Administrator"),
+	"miscpermnames"	=> array("Nur ansehen","Ändern","Passwort ändern","Ändern & Passwort ändern","Administrator"),
 	"miscyesno"		=> array("Ja","Nein","J","N"),
 	"miscchmod"		=> array("Besitzer", "Gruppe", "Publik"),
 );

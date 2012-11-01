@@ -1,6 +1,6 @@
 <?php
 /*
-	cs_mimes.php
+	el_mimes.php
 	
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012 The NAS4Free Project <info@nas4free.org>.
@@ -33,66 +33,66 @@
 	of the authors and should not be interpreted as representing official policies, 
 	either expressed or implied, of the NAS4Free Project.
 */
-// Czech Mimes Module
+// Greek Mimes Module
 
 $GLOBALS["mimes"]=array(
 
 	// dir, exe, file
-	"dir"		=> "Adresαψ",
-	"exe"		=> "Spustitelnύ soubor",
-	"file"		=> "Soubor",
+	"dir"		=> "Κατάλογος",
+	"exe"		=> "Εκτελέσιμο αρχείο",
+	"file"		=> "Αρχείο",
 
 	// text
-	"text"		=> "Textovύ soubor",
+	"text"		=> "Αρχείο κειμένου",
 	
 	// programming
-	"php"		=> "PHP script",
-	"sql"		=> "SQL soubor",
-	"perl"		=> "PERL script",
-	"html"		=> "HTML strαnka",
-	"js"		=> "Javascript",
-	"css"		=> "CSS",
-	"cgi"		=> "CGI script",
+	"php"		=> "PHP Script",
+	"sql"		=> "SQL Αρχείο",
+	"perl"		=> "PERL Script",
+	"html"		=> "HTML σελίδα",
+	"js"		=> "Javascript Aρχείο",
+	"css"		=> "CSS Αρχείο",
+	"cgi"		=> "CGI Script",
 
 	// C++
-	"cpps"		=> "C++ zdrojovύ soubor",
-	"cpph"		=> "C++ hlaviθka",
+	"cpps"		=> "C++ Πηγαίο αρχείο",
+	"cpph"		=> "C++ Αρχείο κεφαλίδας",
 
 	// Java
-	"javas"	=> "Java zdrojovύ soubor",
-	"javac"	=> "Java hlavnν soubor",
+	"javas"	=> "Java Aρχείο πηγής",
+	"javac"	=> "Java Κλάση αρχείο",
 
 	// Pascal
-	"pas"		=> "Pascal",
+	"pas"		=> "Pascal αρχείο",
 	
 	// images
-	"gif"		=> "GIF",
-	"jpg"		=> "JPG",
-	"bmp"		=> "BMP",
-	"png"		=> "PNG",
+	"gif"		=> "GIF Φωτογραφία",
+	"jpg"		=> "JPG Φωτογραφία",
+	"bmp"		=> "BMP Φωτογραφία",
+	"png"		=> "PNG Φωτογραφία",
 	
 	// compressed
-	"zip"		=> "ZIP Archνv",
-	"tar"		=> "TAR Archνv",
-	"gzip"		=> "GZIP Archνv",
-	"bzip2"	=> "BZIP2 Archνv",
-	"rar"		=> "RAR Archνv",
+	"zip"		=> "ZIP τύπος αρχείου",
+	"tar"		=> "TAR τύπος αρχείου",
+	"gzip"		=> "GZIP τύπος αρχείου",
+	"bzip2"	=> "BZIP2 τύπος αρχείου",
+	"rar"		=> "RAR τύπος αρχείου",
 	
 	// music
-	"mp3"		=> "MP3 audio soubor",
-	"wav"		=> "WAV audio soubor",
-	"midi"		=> "MIDI audio soubor",
-	"real"		=> "RealAudio soubor",
-	"flac"  	=> "FLAC audio soubor",
+	"mp3"		=> "MP3 Μουσικό αρχείο",
+	"wav"		=> "WAV Μουσικό αρχείο",
+	"midi"		=> "MIDI Μουσικό αρχείο",
+	"real"		=> "Real Μουσικό αρχείο",
+	"flac"		=> "FLAC Μουσικό αρχείο",
 	
 	// movie
-	"mpg"		=> "MPG video soubor",
-	"mov"		=> "MOV video soubor",
-	"avi"		=> "AVI video soubor",
-	"flash"	=> "Flash soubor",
+	"mpg"		=> "MPG Αρχείο βίντεο",
+	"mov"		=> "Αρχείο εικόνας mov",
+	"avi"		=> "AVI Αρχείο βίντεο",
+	"flash"	=> "Flash αρχείο",
 	
 	// Micosoft / Adobe
-	"word"		=> "Word dokument",
-	"excel"	=> "Excel dokument",
-	"pdf"		=> "PDF soubor"
+	"word"		=> "Word Έγγραφο",
+	"excel"	=> "Excel Έγγραφο",
+	"pdf"		=> "PDF Αρχείο"
 ); ?>

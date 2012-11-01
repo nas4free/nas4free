@@ -1,13 +1,47 @@
 <?php
+/*
+	fr.php
+	
+	Part of NAS4Free (http://www.nas4free.org).
+	Copyright (c) 2012 The NAS4Free Project <info@nas4free.org>.
+	All rights reserved.
 
-// French Language Module for v2.3.2
+	Portions of Quixplorer (http://quixplorer.sourceforge.net).
+	Author: The QuiX project.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met: 
+
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer. 
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution. 
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies, 
+	either expressed or implied, of the NAS4Free Project.
+*/
+// French Language Module
 
 $GLOBALS["charset"] = "UTF-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "d/m/Y H:i";
 $GLOBALS["error_msg"] = array(
+
 	// error
-	"error"			=> "ERREUR(S)",
+	"error"		=> "ERREUR(S)",
 	"back"			=> "Page précédente",
 	
 	// root
@@ -19,7 +53,7 @@ $GLOBALS["error_msg"] = array(
 	"direxist"		=> "Ce répertoire n'existe pas.",
 	//"filedoesexist"	=> "Ce fichier existe deja.",
 	"fileexist"		=> "Ce fichier n'existe pas.",
-	"itemdoesexist"		=> "Cet item existe deja.",
+	"itemdoesexist"	=> "Cet item existe deja.",
 	"itemexist"		=> "Cet item n'existe pas.",
 	"targetexist"		=> "Le répertoire cible n'existe pas.",
 	"targetdoesexist"	=> "L'item cible existe deja.",
@@ -33,7 +67,7 @@ $GLOBALS["error_msg"] = array(
 	"accessfile"		=> "Vous n'etes pas autorisé a accéder a ce fichier.",
 	"accessitem"		=> "Vous n'etes pas autorisé a accéder a cet item.",
 	"accessfunc"		=> "Vous ne pouvez pas utiliser cette fonction.",
-	"accesstarget"		=> "Vous n'etes pas autorisé a accéder au repertoire cible.",
+	"accesstarget"	=> "Vous n'etes pas autorisé a accéder au repertoire cible.",
 	
 	// actions
 	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
@@ -51,22 +85,22 @@ $GLOBALS["error_msg"] = array(
 	"deluser"		=> "La supression de l'usager a échouée.",
 	"adduser"		=> "L'ajout de l'usager a échouée.",
 	"saveuser"		=> "La sauvegarde de l'usager a échouée.",
-	"searchnothing"		=> "Vous devez entrez quelquechose à chercher.",
+	"searchnothing"	=> "Vous devez entrez quelquechose à chercher.",
 	
 	// misc
 	"miscnofunc"		=> "Fonctionalité non disponible.",
-	"miscfilesize"		=> "La taille du fichier excède la taille maximale autorisée.",
-	"miscfilepart"		=> "L'envoi du fichier n'a pas été complété.",
+	"miscfilesize"	=> "La taille du fichier excède la taille maximale autorisée.",
+	"miscfilepart"	=> "L'envoi du fichier n'a pas été complété.",
 	"miscnoname"		=> "Vous devez entrer un nom.",
-	"miscselitems"		=> "Vous n'avez sélectionné aucuns item(s).",
-	"miscdelitems"		=> "Êtes-vous certain de vouloir supprimer ces \"+num+\" item(s)?",
+	"miscselitems"	=> "Vous n'avez sélectionné aucuns item(s).",
+	"miscdelitems"	=> "Êtes-vous certain de vouloir supprimer ces \"+num+\" item(s)?",
 	"miscdeluser"		=> "Êtes-vous certain de vouloir supprimer l'usager '\"+user+\"'?",
 	"miscnopassdiff"	=> "Le nouveau mot de passe est indentique au précédent.",
 	"miscnopassmatch"	=> "Les mots de passe diffèrent.",
 	"miscfieldmissed"	=> "Un champs requis n'a pas été rempli.",
 	"miscnouserpass"	=> "Nom d'usager ou mot de passe invalide.",
 	"miscselfremove"	=> "Vous ne pouvez pas supprimer votre compte.",
-	"miscuserexist"		=> "Ce nom d'usager existe déjà.",
+	"miscuserexist"	=> "Ce nom d'usager existe déjà.",
 	"miscnofinduser"	=> "Usager non trouvé.",
 );
 $GLOBALS["messages"] = array(
@@ -92,7 +126,7 @@ $GLOBALS["messages"] = array(
 	"typeheader"		=> "Type",
 	"modifheader"		=> "Modifié",
 	"permheader"		=> "Perm's",
-	"actionheader"		=> "Actions",
+	"actionheader"	=> "Actions",
 	"pathheader"		=> "Chemin",
 	
 	// buttons
@@ -117,9 +151,9 @@ $GLOBALS["messages"] = array(
 	"actperms"		=> "Changer les permissions",
 	"actedit"		=> "Éditer le fichier",
 	"actsearchresults"	=> "Résultats de la recherche",
-	"actcopyitems"		=> "Copier le(s) item(s)",
+	"actcopyitems"	=> "Copier le(s) item(s)",
 	"actcopyfrom"		=> "Copier de /%s à /%s ",
-	"actmoveitems"		=> "Déplacer le(s) item(s)",
+	"actmoveitems"	=> "Déplacer le(s) item(s)",
 	"actmovefrom"		=> "Déplacer de /%s à /%s ",
 	"actlogin"		=> "Connecter",
 	"actloginheader"	=> "Connecter pour utiliser QuiXplorer",
@@ -132,11 +166,11 @@ $GLOBALS["messages"] = array(
 	// misc
 	"miscitems"		=> "Item(s)",
 	"miscfree"		=> "Disponible",
-	"miscusername"		=> "Usager",
-	"miscpassword"		=> "Mot de passe",
+	"miscusername"	=> "Usager",
+	"miscpassword"	=> "Mot de passe",
 	"miscoldpass"		=> "Ancien mot de passe",
 	"miscnewpass"		=> "Nouveau mot de passe",
-	"miscconfpass"		=> "Confirmer le mot de passe",
+	"miscconfpass"	=> "Confirmer le mot de passe",
 	"miscconfnewpass"	=> "Confirmer le nouveau mot de passe",
 	"miscchpass"		=> "Changer le mot de passe",
 	"mischomedir"		=> "Répertoire home",
@@ -144,15 +178,14 @@ $GLOBALS["messages"] = array(
 	"miscshowhidden"	=> "Voir les items cachés",
 	"mischidepattern"	=> "Cacher pattern",
 	"miscperms"		=> "Permissions",
-	"miscuseritems"		=> "(nom, répertoire home, Voir les items cachés, permissions, actif)",
+	"miscuseritems"	=> "(nom, répertoire home, Voir les items cachés, permissions, actif)",
 	"miscadduser"		=> "ajouter un usager",
-	"miscedituser"		=> "editer l'usager '%s'",
+	"miscedituser"	=> "editer l'usager '%s'",
 	"miscactive"		=> "Actif",
 	"misclang"		=> "Langage",
-	"miscnoresult"		=> "Aucun résultats.",
+	"miscnoresult"	=> "Aucun résultats.",
 	"miscsubdirs"		=> "Rechercher dans les sous-répertoires",
-	"miscpermnames"		=> array("Lecture seulement","Modifier","Changement le mot de passe","Modifier & Changer le mot de passe",
-					"Administrateur"),
+	"miscpermnames"	=> array("Lecture seulement","Modifier","Changement le mot de passe","Modifier & Changer le mot de passe","Administrateur"),
 	"miscyesno"		=> array("Oui","Non","O","N"),
 	"miscchmod"		=> array("Propriétaire", "Groupe", "Publique"),
 );
