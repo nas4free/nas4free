@@ -7,6 +7,7 @@
     SUBDIR += bsnmp-ucd
     SUBDIR += cdialog
     SUBDIR += clog
+    SUBDIR += dmidecode
     SUBDIR += e2fsprogs
     SUBDIR += fdisk
     SUBDIR += firefly
@@ -38,7 +39,6 @@
     SUBDIR += proftpd
     SUBDIR += rconf
     SUBDIR += rsync
-    SUBDIR += samba35
     SUBDIR += samba36
     SUBDIR += scponly
     SUBDIR += sipcalc
