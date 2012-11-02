@@ -65,16 +65,27 @@ function email_validate_settings() {
 // $error - Contains an error message if submission fails.
 // Return 0 if successful, otherwise 1.
 function email_send($address, $subject, $message, &$error) {
-	global $config;
+	global $config, $g_languages;
 
 	$msgfilepath = "/tmp/message";
 
 	// Get date in RFC 2882 format.
 	$rfcdate = date('r');
 
+	// Get the language configured.
+	$language = $config['system']['language'];
+	$codeset = $g_languages[$language]['codeset'];
+	$preferences = array(
+		"input-charset" => $codeset,
+		"output-charset" => "UTF-8",
+		"line-length" => 76,
+		"line-break-chars" => "\n"
+	);
+
 	// Substitute special characters in subject.
 	$subject = str_replace("%d", trim(shell_exec("date")), $subject);
 	$subject = str_replace("%h", system_get_hostname(), $subject); 
+	$subject = iconv_mime_encode("Subject", $subject, $preferences);
 
 	// Convert adresses for msmtp.
 	$address = strtr($address, array(";" => " ", "," => " "));
@@ -86,8 +97,11 @@ function email_send($address, $subject, $message, &$error) {
 	}
 	$data .= <<<EOD
 From: {$config['system']['email']['from']}
-Subject: {$subject}
+{$subject}
 Date: {$rfcdate}
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 {$message}
 
