@@ -307,6 +307,7 @@ if ("dhcp" === $config['interfaces']['lan']['ipaddr']) {
 }
 //rc_restart_service("network_ipv6");
 rc_restart_service("resolv");
+rc_restart_service("lighttpd");
 
 // Get current IP.
 $lanipv4 = get_ipaddr($config['interfaces']['lan']['if']);
