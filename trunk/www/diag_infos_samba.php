@@ -77,7 +77,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("CIFS/S
 				<tr>
 					<td>
 						<pre><?php
-						exec("/usr/bin/smbstatus -S", $rawdata);
+						exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -S", $rawdata);
 						echo htmlspecialchars(implode("\n", $rawdata));
 						unset($rawdata);
 						?></pre>
@@ -87,7 +87,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("CIFS/S
 				<tr>
 					<td>
 						<pre><?php
-						exec("/usr/bin/smbstatus -L", $rawdata);
+						exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -L", $rawdata);
 						$rawdata = array_slice($rawdata, 4);
 						echo htmlspecialchars(implode("\n", $rawdata));
 						unset($rawdata);
@@ -98,7 +98,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("CIFS/S
 				<tr>
 					<td>
 						<pre><?php
-						exec("/usr/bin/smbstatus -u", $rawdata);
+						exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -u", $rawdata);
 						$rawdata = array_slice($rawdata, 4);
 						echo htmlspecialchars(implode("\n", $rawdata));
 						unset($rawdata);
