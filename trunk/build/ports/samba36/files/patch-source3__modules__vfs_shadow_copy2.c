@@ -1,5 +1,5 @@
---- ./source3/modules/vfs_shadow_copy2.c.orig	2011-10-19 03:48:48.000000000 +0900
-+++ ./source3/modules/vfs_shadow_copy2.c	2011-11-09 18:48:16.000000000 +0900
+--- ./source3/modules/vfs_shadow_copy2.c.orig	2012-10-19 03:37:47.475803452 +0000
++++ ./source3/modules/vfs_shadow_copy2.c	2012-10-19 03:39:42.665808023 +0000
 @@ -237,7 +237,7 @@
  	if (shadow_copy2_match_name(fname, &gmt_start)) {	\
  		char *name2; \
