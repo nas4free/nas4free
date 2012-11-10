@@ -136,6 +136,9 @@ samba_mkconf_cmd()
 			-o "SO_RCVBUF=64240 " \
 		-b \
 		-n -o "# End of performance section" -n \
+		-i "string-length(//samba/pwdsrv) > 0" \
+			-v "concat('password server = ',//samba/pwdsrv)" -n \
+		-b \
 		-i "string-length(//samba/winssrv) > 0" \
 			-v "concat('wins server = ',//samba/winssrv)" -n \
 		-b \

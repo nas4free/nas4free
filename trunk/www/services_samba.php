@@ -59,6 +59,7 @@ $pconfig['serverdesc'] = $config['samba']['serverdesc'];
 $pconfig['security'] = $config['samba']['security'];
 $pconfig['maxprotocol'] = $config['samba']['maxprotocol'];
 $pconfig['localmaster'] = $config['samba']['localmaster'];
+$pconfig['pwdsrv'] = !empty($config['samba']['pwdsrv']) ? $config['samba']['pwdsrv'] : "";
 $pconfig['winssrv'] = !empty($config['samba']['winssrv']) ? $config['samba']['winssrv'] : "";
 $pconfig['timesrv'] = !empty($config['samba']['timesrv']) ? $config['samba']['timesrv'] : "";
 $pconfig['unixcharset'] = !empty($config['samba']['unixcharset']) ? $config['samba']['unixcharset'] : "";
@@ -108,6 +109,11 @@ if ($_POST) {
 			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Create mask"), gettext("Directory mask")));
 			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "filemode filemode"));
 		}
+		if (!empty($_POST['pwdsrv'])) {
+			$reqdfields = array_merge($reqdfields, explode(" ", "pwdsrv"));
+			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Password server")));
+			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "string"));
+		}
 		if (!empty($_POST['winssrv'])) {
 			$reqdfields = array_merge($reqdfields, explode(" ", "winssrv"));
 			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("WINS server")));
@@ -135,6 +141,7 @@ if ($_POST) {
 			$config['samba']['maxprotocol'] = $_POST['maxprotocol'];
 		}
 		$config['samba']['localmaster'] = $_POST['localmaster'];
+		$config['samba']['pwdsrv'] = $_POST['pwdsrv'];
 		$config['samba']['winssrv'] = $_POST['winssrv'];
 		$config['samba']['timesrv'] = $_POST['timesrv'];
 		$config['samba']['doscharset'] = $_POST['doscharset'];
@@ -201,6 +208,7 @@ function enable_change(enable_change) {
 	document.iform.netbiosname.disabled = endis;
 	document.iform.workgroup.disabled = endis;
 	document.iform.localmaster.disabled = endis;
+	document.iform.pwdsrv.disabled = endis;
 	document.iform.winssrv.disabled = endis;
 	document.iform.timesrv.disabled = endis;
 	document.iform.serverdesc.disabled = endis;
@@ -231,16 +239,19 @@ function authentication_change() {
 		case "share":
 			showElementById('createmask_tr','show');
 			showElementById('directorymask_tr','show');
+			showElementById('pwdsrv_tr','hide');
 			showElementById('winssrv_tr','hide');
 			break;
 		case "ads":
 			showElementById('createmask_tr','hide');
 			showElementById('directorymask_tr','hide');
+			showElementById('pwdsrv_tr','show');
 			showElementById('winssrv_tr','show');
 			break;
 		default:
 			showElementById('createmask_tr','hide');
 			showElementById('directorymask_tr','hide');
+			showElementById('pwdsrv_tr','hide');
 			showElementById('winssrv_tr','hide');
 			break;
 	}
@@ -328,6 +339,13 @@ function aio_change() {
               <?php endfor; ?>
               </select>
               <br /><?php echo sprintf(gettext("%s advertises itself as a time server to Windows clients."), get_product_name());?>
+            </td>
+          </tr>
+          <tr id="pwdsrv_tr">
+            <td width="22%" valign="top" class="vncell"><?=gettext("Password server"); ?></td>
+            <td width="78%" class="vtable">
+              <input name="pwdsrv" type="text" class="formfld" id="pwdsrv" size="30" value="<?=htmlspecialchars($pconfig['pwdsrv']);?>" />
+              <br /><?=gettext("Password server name or IP address (e.g. Active Directory domain controller).");?>
             </td>
           </tr>
           <tr id="winssrv_tr">
