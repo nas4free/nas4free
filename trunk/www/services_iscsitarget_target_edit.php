@@ -157,6 +157,13 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_ta
 	$pconfig['lunmap'] = $a_iscsitarget_target[$cnid]['lunmap'];
 	$pconfig['portalgroup'] = $pconfig['pgigmap'][0]['pgtag'];
 	$pconfig['initiatorgroup'] = $pconfig['pgigmap'][0]['igtag'];
+	if (!empty($pconfig['pgigmap'][1])) {
+		$pconfig['portalgroup2'] = $pconfig['pgigmap'][1]['pgtag'];
+		$pconfig['initiatorgroup2'] = $pconfig['pgigmap'][1]['igtag'];
+	} else {
+		$pconfig['portalgroup2'] = 0;
+		$pconfig['initiatorgroup2'] = 0;
+	}
 	$pconfig['authgroup'] = $pconfig['agmap'][0]['agtag'];
 	$pconfig['authmethod'] = $a_iscsitarget_target[$cnid]['authmethod'];
 	$pconfig['digest'] = $a_iscsitarget_target[$cnid]['digest'];
@@ -220,6 +227,8 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_ta
 	$pconfig['pgigmap'] = array();
 	$pconfig['pgigmap'][0]['pgtag'] = 0;
 	$pconfig['pgigmap'][0]['igtag'] = 0;
+	$pconfig['pgigmap'][1]['pgtag'] = 0;
+	$pconfig['pgigmap'][1]['igtag'] = 0;
 	$pconfig['agmap'] = array();
 	$pconfig['agmap'][0]['agtag'] = 0;
 	$pconfig['lunmap'] = array();
@@ -233,6 +242,13 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_ta
 	}
 	$pconfig['portalgroup'] = $pconfig['pgigmap'][0]['pgtag'];
 	$pconfig['initiatorgroup'] = $pconfig['pgigmap'][0]['igtag'];
+	if (!empty($pconfig['pgigmap'][1])) {
+		$pconfig['portalgroup2'] = $pconfig['pgigmap'][1]['pgtag'];
+		$pconfig['initiatorgroup2'] = $pconfig['pgigmap'][1]['igtag'];
+	} else {
+		$pconfig['portalgroup2'] = 0;
+		$pconfig['initiatorgroup2'] = 0;
+	}
 	$pconfig['authgroup'] = $pconfig['agmap'][0]['agtag'];
 	$pconfig['authmethod'] = "Auto";
 	$pconfig['digest'] = "Auto";
@@ -276,6 +292,10 @@ if ($_POST) {
 	$pgigmap = array();
 	$pgigmap[0]['pgtag'] = $_POST['portalgroup'];
 	$pgigmap[0]['igtag'] = $_POST['initiatorgroup'];
+	if (!empty($_POST['portalgroup2']) || !empty($_POST['initiatorgroup2'])) {
+		$pgigmap[1]['pgtag'] = $_POST['portalgroup2'];
+		$pgigmap[1]['igtag'] = $_POST['initiatorgroup2'];
+	}
 	$pconfig['pgigmap'] = $pgigmap;
 	$agmap = array();
 	$agmap[0]['agtag'] = $_POST['authgroup'];
@@ -316,13 +336,15 @@ if ($_POST) {
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
-	$reqdfields = explode(" ", "type flags portalgroup initiatorgroup storage");
+	$reqdfields = explode(" ", "type flags portalgroup initiatorgroup portalgroup initiatorgroup storage");
 	$reqdfieldsn = array(gettext("Type"),
 						 gettext("Flags"),
 						 gettext("Portal Group"),
 						 gettext("Initiator Group"),
+						 gettext("Portal Group"),
+						 gettext("Initiator Group"),
 						 gettext("Storage"));
-	$reqdfieldst = explode(" ", "string string numericint numericint string");
+	$reqdfieldst = explode(" ", "string string numericint numericint numericint numericint string");
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
@@ -335,6 +357,15 @@ if ($_POST) {
 	$reqdfieldst = explode(" ", "string numericint string numericint numericint");
 	//do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
+
+	if ((!empty($_POST['portalgroup2']) && empty($_POST['initiatorgroup2']))
+	   || (empty($_POST['portalgroup2']) && !empty($_POST['initiatorgroup2']))) {
+
+		if (empty($_POST['portalgroup2']))
+			$input_errors[] = sprintf(gettext("The attribute '%s' is required."), gettext("Portal Group"));
+		if (empty($_POST['initiatorgroup2']))
+			$input_errors[] = sprintf(gettext("The attribute '%s' is required."), gettext("Initiator Group"));
+	}
 
 	if ((strcasecmp("Auto", $pconfig['authmethod']) != 0
 	   && strcasecmp("None", $pconfig['authmethod']) != 0)
@@ -603,20 +634,24 @@ function enable_change(enable_change) {
 		  }
 		  $pg_list[$pg['tag']] = htmlspecialchars($l);
 		}
-		html_combobox("portalgroup", gettext("Portal Group"), $pconfig['portalgroup'], $pg_list, gettext("The initiator can connect to the portals in specific Portal Group."), true);
+		html_combobox("portalgroup", sprintf("%s (%s)", gettext("Portal Group"), gettext("Primary")), $pconfig['portalgroup'], $pg_list, gettext("The initiator can connect to the portals in specific Portal Group."), true);
       ?>
       <?php
-			$ig_list = array();
-			//$ig_list['0'] = gettext("None");
-			foreach($config['iscsitarget']['initiatorgroup'] as $ig) {
-			  if ($ig['comment']) {
-				  $l = sprintf(gettext("Tag%d (%s)"), $ig['tag'], $ig['comment']);
-			  } else {
-				  $l = sprintf(gettext("Tag%d"), $ig['tag']);
-			  }
-			  $ig_list[$ig['tag']] = htmlspecialchars($l);
-			}
-			html_combobox("initiatorgroup", gettext("Initiator Group"), $pconfig['initiatorgroup'], $ig_list, gettext("The initiator can access to the target via the portals by authorised initiator names and networks in specific Initiator Group."), true);
+		$ig_list = array();
+		//$ig_list['0'] = gettext("None");
+		foreach($config['iscsitarget']['initiatorgroup'] as $ig) {
+		  if ($ig['comment']) {
+			  $l = sprintf(gettext("Tag%d (%s)"), $ig['tag'], $ig['comment']);
+		  } else {
+			  $l = sprintf(gettext("Tag%d"), $ig['tag']);
+		  }
+		  $ig_list[$ig['tag']] = htmlspecialchars($l);
+		}
+		html_combobox("initiatorgroup", sprintf("%s (%s)", gettext("Initiator Group"), gettext("Primary")), $pconfig['initiatorgroup'], $ig_list, gettext("The initiator can access to the target via the portals by authorised initiator names and networks in specific Initiator Group."), true);
+      ?>
+      <?php	// secondary
+		html_combobox("portalgroup2", sprintf("%s (%s)", gettext("Portal Group"), gettext("Secondary")), $pconfig['portalgroup2'], array_merge(array("0" => gettext("None")), $pg_list), "", true);
+		html_combobox("initiatorgroup2", sprintf("%s (%s)", gettext("Initiator Group"), gettext("Secondary")), $pconfig['initiatorgroup2'], array_merge(array("0" => gettext("None")), $ig_list), "", true);
       ?>
       <?php html_inputbox("comment", gettext("Comment"), $pconfig['comment'], gettext("You may enter a description here for your reference."), false, 40);?>
       <?php
