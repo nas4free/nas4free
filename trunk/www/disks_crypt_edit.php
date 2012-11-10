@@ -83,6 +83,10 @@ if ($_POST) {
 		$input_errors[] = gettext("Passphrase don't match.");
 	}
 
+	if (0 != mwexec("/sbin/kldstat -q -m aesni")) {
+		mwexec("/sbin/kldload -q aesni.ko");
+	}
+
 	if (empty($input_errors)) {
 		$pconfig['do_action'] = true;
 		$pconfig['init'] = isset($_POST['init']) ? true : false;
@@ -145,6 +149,7 @@ function ealgo_change() {
 			disabled = (document.iform.keylen.options[i].value >= 256);
 			break;
 		case "AES":
+		case "AES-CBC":
 		case "Camellia":
 			disabled = (document.iform.keylen.options[i].value > 256);
 			break;
@@ -211,7 +216,7 @@ function ealgo_change() {
 			    </tr>
 					*/
 					?>
-					<?php $options = array("AES" => "AES", "Blowfish" => "Blowfish", "Camellia" => "Camellia", "3DES" => "3DES");?>
+					<?php $options = array("AES" => "AES-XTS", "AES-CBC" => "AES-CBC", "Blowfish" => "Blowfish", "Camellia" => "Camellia", "3DES" => "3DES");?>
 					<?php html_combobox("ealgo", gettext("Encryption algorithm"), $pconfig['ealgo'], $options, gettext("Encryption algorithm to use."), true, false, "ealgo_change()");?>
 					<?php $options = array("" => gettext("Default"), 128 => "128", 192 => "192", 256 => "256", 448 => "448");?>
 					<?php html_combobox("keylen", gettext("Key length"), $pconfig['keylen'], $options, gettext("Key length to use with the given cryptographic algorithm.") . " " . gettext("The default key lengths are: 128 for AES, 128 for Blowfish, 128 for Camellia and 192 for 3DES."), false);?>

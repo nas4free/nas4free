@@ -72,6 +72,10 @@ if ($_POST) {
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
+	if (0 != mwexec("/sbin/kldstat -q -m aesni")) {
+		mwexec("/sbin/kldload -q aesni.ko");
+	}
+
 	if (empty($input_errors)) {
 		$pconfig['do_action'] = true;
 
