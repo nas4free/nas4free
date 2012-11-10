@@ -1,5 +1,5 @@
 --- src/sys/cddl/contrib/opensolaris/uts/common/fs/zfs/arc.c.orig	2012-01-05 20:06:05.000000000 +0900
-+++ src/sys/cddl/contrib/opensolaris/uts/common/fs/zfs/arc.c	2012-11-11 03:22:39.000000000 +0900
++++ src/sys/cddl/contrib/opensolaris/uts/common/fs/zfs/arc.c	2012-11-11 05:10:25.000000000 +0900
 @@ -3752,12 +3752,37 @@
  #endif	/* sun */
  	/* set min cache to 1/32 of all memory, or 16MB, whichever is more */
@@ -14,23 +14,23 @@
 +#endif
 +#if 1
 +	/* for NAS4Free tuning */
-+	/* max = kmem - 4GB if kmem >= 8GB */
-+	/* max = 1GB if kmem >= 4GB */
-+	/* max = 512MB if kmem >= 2GB */
-+	/* max = 256MB if kmem >= 1.5GB */
-+	/* max = 128MB if kmem >= 1GB */
++	/* max = pmem - 4GB if pmem >= 8GB */
++	/* max = 1GB if pmem >= 4GB */
++	/* max = 512MB if pmem >= 2GB */
++	/* max = 256MB if pmem >= 1.5GB */
++	/* max = 128MB if pmem >= 1GB */
 +	/* otherwise adjust to small */
-+	if (arc_c * 8 >= (8192UL * (1<<20)))
-+		arc_c_max = (arc_c * 8) - (4096UL * (1<<20));
-+	else if (arc_c * 8 >= (4096UL * (1<<20)))
++	if (((uint64_t)physmem * PAGESIZE) >= (8192UL * (1<<20)))
++		arc_c_max = ((uint64_t)physmem * PAGESIZE) - (4096UL * (1<<20));
++	else if (((uint64_t)physmem * PAGESIZE) >= (4096UL * (1<<20)))
 +		arc_c_max = (1024UL * (1<<20));
-+	else if (arc_c * 8 >= (2048UL * (1<<20)))
++	else if (((uint64_t)physmem * PAGESIZE) >= (2048UL * (1<<20)))
 +		arc_c_max = (512UL * (1<<20));
-+	else if (arc_c * 8 >= (1536UL * (1<<20)))
++	else if (((uint64_t)physmem * PAGESIZE) >= (1536UL * (1<<20)))
 +		arc_c_max = (256UL * (1<<20));
-+	else if (arc_c * 8 >= (1024UL * (1<<20)))
++	else if (((uint64_t)physmem * PAGESIZE) >= (1024UL * (1<<20)))
 +		arc_c_max = (128UL * (1<<20));
-+	else if (arc_c * 8 >= (512UL * (1<<20)))
++	else if (((uint64_t)physmem * PAGESIZE) >= (512UL * (1<<20)))
 +		arc_c_max = (64UL * (1<<20));
 +	else
 +		arc_c_max = MIN(arc_c_min, (32UL * (1<<20)));
