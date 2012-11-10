@@ -281,6 +281,13 @@ function iscsitargettarget_process_updatenotification($mode, $data) {
         <?php
 			$pgtag = $target['pgigmap'][0]['pgtag'];
 			$igtag = $target['pgigmap'][0]['igtag'];
+			if (!empty($target['pgigmap'][1])) {
+				$pgtag2 = $target['pgigmap'][1]['pgtag'];
+				$igtag2 = $target['pgigmap'][1]['igtag'];
+			} else {
+				$pgtag2 = 0;
+				$igtag2 = 0;
+			}
 			$agtag = $target['agmap'][0]['agtag'];
 			$name = get_fulliqn($target['name']);
 			$disabled = !isset($target['enable']) ? sprintf("(%s)", gettext("Disabled")) : "";
@@ -326,6 +333,9 @@ function iscsitargettarget_process_updatenotification($mode, $data) {
 				} else {
 					echo htmlspecialchars($pgtag);
 				}
+				if ($pgtag2 != 0) {
+					echo ",".htmlspecialchars($pgtag2);
+				}
           ?>
           </td>
           <td class="listr">
@@ -334,6 +344,9 @@ function iscsitargettarget_process_updatenotification($mode, $data) {
 					echo htmlspecialchars(gettext("none"));
 				} else {
 					echo htmlspecialchars($igtag);
+				}
+				if ($igtag2 != 0) {
+					echo ",".htmlspecialchars($igtag2);
 				}
           ?>
           </td>
