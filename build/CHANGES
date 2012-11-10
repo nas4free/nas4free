@@ -10,6 +10,7 @@ Changes:
 - Change php to php-cgi.
 - v9.6 config is forever marked as a blacklist.
 - Load zfs.ko and opensolaris.ko from loader.
+- Use AES-NI in geli by default.
 - Add upgrade method from old system.
 - Add reload iSCSI target.
 - Add graid geom utility.
@@ -41,6 +42,7 @@ Changes:
 - Add force flag to ZFS pool creation.
 - Add random SCSI serial when creating iSCSI target.
 - Add auto IPv6 fot WebGUI.
+- Add AES-CBC at disk encryption.
 - Wait response of LAN interface if static with gateway.
 - Run umount before iSCSI initiator shutdown.
 - Remount all after netif is up for iSCSI device.
