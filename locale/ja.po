@@ -1,17 +1,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
-"Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>POT-Creation-Date: 2012-03-"
-"12 03:02+0000\n"
-"POT-Creation-Date: 2012-11-01 02:09+0000\n"
-"PO-Revision-Date: 2012-10-31 17:22+0000\n"
+"Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
+"POT-Creation-Date: 2012-11-11 09:48+0000\n"
+"PO-Revision-Date: 2012-11-11 10:16+0900\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-01 03:16+0000\n"
-"X-Generator: Launchpad (build 16218)\n"
+"X-Launchpad-Export-Date: 2012-11-11 01:08+0000\n"
+"X-Generator: Launchpad (build 16251)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
 "X-Poedit-Language: Japanese\n"
@@ -3706,6 +3705,13 @@ msgstr "管理画面のパスワード"
 msgid "Password of domain administrator account."
 msgstr "ドメイン管理者アカウントのパスワードを入力して下さい。"
 
+msgid "Password server"
+msgstr "パスワードサーバ"
+
+msgid ""
+"Password server name or IP address (e.g. Active Directory domain controller)."
+msgstr "パスワードサーバ名、またはIPアドレス。 (例: Active Directory ドメインコントローラ)"
+
 msgid "Password suffix"
 msgstr "パスワードサフィックス"
 
@@ -3869,6 +3875,9 @@ msgstr "更新時刻を保持します。"
 
 msgid "Preserve permissions"
 msgstr "パーミッションを保持します。"
+
+msgid "Primary"
+msgstr "プライマリ"
 
 msgid "Primary Group"
 msgstr "プライマリグループ"
@@ -4279,6 +4288,9 @@ msgstr "スケジュールされたセルフテスト"
 
 msgid "Scheduled shutdown"
 msgstr "シャットダウンスケジュール"
+
+msgid "Secondary"
+msgstr "セカンダリ"
 
 msgid "Secret"
 msgstr "シークレット"
@@ -5249,9 +5261,6 @@ msgstr ""
 "モジュールは設定可能な基準に基づき、自動的に BAN (禁止) の起動を提供します。BAN (禁止) "
 "は、禁止されたユーザ、ホスト、クラスがサーバにログインする事を防ぎますが、禁止されたユーザ、ホスト、クラスがサーバへ接続する事を防ぐわけではありません。"
 
-msgid "The name or IP address of the LDAP server."
-msgstr "LDAP サーバのホスト名または IP アドレスを入力して下さい。"
-
 #, php-format
 msgid "The network '%s' is invalid."
 msgstr "ネットワーク名 '%s' は無効です。"
@@ -5356,6 +5365,11 @@ msgstr "この共有名は既に使用されています。"
 
 msgid "The size of the swap file in MB."
 msgstr "スワップファイルサイズを MB で指定して下さい。"
+
+msgid "The space-separated list of URIs for the LDAP server."
+msgstr ""
+"The space-separated list of URIs for the LDAP server.\r\n"
+"スペースで区切られたLDAPサーバのURIリスト。"
 
 #, php-format
 msgid "The storage area mapped to LUN%d."
@@ -6053,6 +6067,9 @@ msgstr "UPnP A/V メディアサーバ"
 msgid "UPnP friendly name."
 msgstr "UPnP フレンドリ名。"
 
+msgid "URI"
+msgstr "URI"
+
 msgid "URL"
 msgstr "URL"
 
@@ -6649,3 +6666,6 @@ msgstr "アンマウント"
 
 msgid "upriv"
 msgstr "upriv"
+
+#~ msgid "The name or IP address of the LDAP server."
+#~ msgstr "LDAP サーバのホスト名または IP アドレスを入力して下さい。"

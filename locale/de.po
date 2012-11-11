@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>POT-Creation-Date: 2012-03-"
 "12 03:02+0000\n"
-"POT-Creation-Date: 2012-11-01 02:09+0000\n"
-"PO-Revision-Date: 2012-10-31 20:13+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2012-11-11 09:48+0000\n"
+"PO-Revision-Date: 2012-11-11 00:54+0000\n"
+"Last-Translator: Christian Wandel <info@wandel.de>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-01 03:16+0000\n"
-"X-Generator: Launchpad (build 16218)\n"
+"X-Launchpad-Export-Date: 2012-11-11 01:08+0000\n"
+"X-Generator: Launchpad (build 16251)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
 "X-Poedit-Language: German\n"
@@ -768,7 +768,7 @@ msgid "Blank time"
 msgstr "untätig"
 
 msgid "Blocksize"
-msgstr ""
+msgstr "Blockgrösse"
 
 msgid "Browseable"
 msgstr "Sichtbar"
@@ -940,10 +940,10 @@ msgid "Clear"
 msgstr "Zurücksetzen"
 
 msgid "Clear config and Import disks"
-msgstr ""
+msgstr "Konfiguration bereinigen und Platten importieren"
 
 msgid "Clear config and Import software raid disks"
-msgstr ""
+msgstr "Entferne Konfiguration und importiere die Software RAID Platten"
 
 msgid ""
 "Click &quot;Enable firmware upload&quot; below, then choose the image file "
@@ -1067,10 +1067,10 @@ msgid "Controller TCP Port"
 msgstr "Kontroller TCP Port"
 
 msgid "Controls power consumption."
-msgstr ""
+msgstr "Steuert den Stromverbrauch."
 
 msgid "Controls the behavior of synchronous requests."
-msgstr ""
+msgstr "Steuert das Verhalten von synchronen Anfragen."
 
 msgid ""
 "Controls the compression algorithm used for this dataset. The 'lzjb' "
@@ -1110,6 +1110,11 @@ msgid ""
 ":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
 "wiki article BEFORE using this feature.</b></br>"
 msgstr ""
+"Steuert die Deduplizierungs-Methode. <br><b><font "
+"color='red'>HINWEIS/WARNUNG</font>: Siehe den <a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
+"Wiki Artikel BEVOR diese Funktion genutzt wird.</b></br>"
 
 msgid ""
 "Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
@@ -1118,6 +1123,11 @@ msgid ""
 ":disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & "
 "deduplication</a> wiki article BEFORE using this feature.</b></br>"
 msgstr ""
+"Steuert die Deduplizierungs-Methode. <br><b><font "
+"color='red'>HINWEIS/WARNUNG</font>: Siehe den <a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
+"Wiki Artikel BEVOR diese Funktion genutzt wird.</b></br>"
 
 msgid "Controls whether this dataset can be modified."
 msgstr "Steuert, ob dieser Datensatz geändert werden kann"
@@ -1599,6 +1609,8 @@ msgid ""
 "Do you really want to clear and import?\\nThe existing config will be "
 "cleared and overwritten."
 msgstr ""
+"Wollen Sie wirklich l&ouml;schen und importieren?\\nDie bestehende "
+"Konfiguration wird entfernt und &uuml;berschrieben"
 
 msgid "Do you really want to delete all MIBs?"
 msgstr "Wollen Sie wirklich sämtliche MIBs löschen?"
@@ -1729,6 +1741,8 @@ msgstr ""
 msgid ""
 "Do you really want to import?\\nThe existing config may be overwritten."
 msgstr ""
+"Wollen Sie wirklich importieren?\\nDie bestehende Konfiguration wird unter "
+"Umst&auml;nden &uuml;berschrieben."
 
 msgid "Do you really want to remove the selected item from the list?"
 msgstr ""
@@ -1946,7 +1960,7 @@ msgid "Email report"
 msgstr "E-Mail Bericht"
 
 msgid "Empty as default."
-msgstr ""
+msgstr "Standard: Leer."
 
 msgid "Enable"
 msgstr "Freigeben"
@@ -2102,7 +2116,7 @@ msgid "Enable web user interface."
 msgstr "Aktiviere browserunterstützte Benutzerschnittstelle."
 
 msgid "Enable write cache mode."
-msgstr ""
+msgstr "Schreib-Cache Modus aktivieren."
 
 msgid "Enabled"
 msgstr "Aktiviert"
@@ -2407,7 +2421,7 @@ msgid "Follow"
 msgstr "Nachfolgen"
 
 msgid "Force use"
-msgstr ""
+msgstr "Erzwinge Nutzung"
 
 msgid "Forced update period"
 msgstr "Erzwungene Updateperiode"
@@ -2416,6 +2430,8 @@ msgid ""
 "Forces use of vdevs, even if they appear in use or specify different size. "
 "(This is not recommended.)"
 msgstr ""
+"Erzwinge die Nutzung von \"vdevs\", auch wenn diese in Benutzung erscheinen "
+"oder andere Gr&ouml;&szlig;e angeben. (dies wird nicht empfohlen.)"
 
 msgid "Format"
 msgstr "Formatieren"
@@ -2825,7 +2841,7 @@ msgid "Import on-disk ZFS config"
 msgstr "Importiere ZFS Konfiguration von Festplatte"
 
 msgid "Import software raid disks"
-msgstr ""
+msgstr "Software RAID Platten importieren"
 
 msgid "In"
 msgstr "Ankommend"
@@ -2944,6 +2960,8 @@ msgid ""
 "It can be changed from the client side by standard SCSI mode page at any "
 "time."
 msgstr ""
+"Kann von Client-Seite durch Standard SCSI Modus Seiten (mode page) zu jeder "
+"Zeit ge&auml;ndert werden."
 
 msgid "It cannot be used combining SMB2 and Anonymous."
 msgstr "Es kann nicht genutzt werden, wenn SMB2 und Anonym kombiniert werden"
@@ -3352,7 +3370,7 @@ msgid "Maximum connections"
 msgstr "Max. Verbindungen"
 
 msgid "Maximum frequency"
-msgstr ""
+msgstr "Maximale Frequenz"
 
 msgid "Maximum idle time in seconds."
 msgstr "Maximale Leerlaufzeit in Sekunden."
@@ -3425,7 +3443,7 @@ msgid "Minimum free space"
 msgstr "Unteres Limit für freien Speicherplatz"
 
 msgid "Minimum frequency"
-msgstr ""
+msgstr "Minimale Frequenz"
 
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Minimale Performance, minimale Geräuschbelastung"
@@ -3590,7 +3608,7 @@ msgid "No"
 msgstr "Nein"
 
 msgid "No DNS setting found."
-msgstr ""
+msgstr "Keine DNS-Einstellung gefunden."
 
 msgid "No RSYNC Client configured"
 msgstr "Kein RSYNC Client eingerichtet"
@@ -3933,6 +3951,13 @@ msgstr "Passwort für die administrativen Einstellungen."
 msgid "Password of domain administrator account."
 msgstr "Passwort für das Domain-Administratorkonto"
 
+msgid "Password server"
+msgstr ""
+
+msgid ""
+"Password server name or IP address (e.g. Active Directory domain controller)."
+msgstr ""
+
 msgid "Password suffix"
 msgstr "Passwortsuffix"
 
@@ -4071,7 +4096,7 @@ msgid "Power Daemon"
 msgstr "Power Daemon"
 
 msgid "Power Mode"
-msgstr ""
+msgstr "Strom-Modus"
 
 msgid "Power mode"
 msgstr "Expertenmodus"
@@ -4100,6 +4125,9 @@ msgstr "Zeit der letzten Änderung beibehalten"
 
 msgid "Preserve permissions"
 msgstr "Dateirechte beibehalten"
+
+msgid "Primary"
+msgstr ""
 
 msgid "Primary Group"
 msgstr "Primäre Gruppe"
@@ -4338,7 +4366,7 @@ msgid "Rescan interval"
 msgstr "Durchsuchungsintervall"
 
 msgid "Reservation"
-msgstr ""
+msgstr "Reservierung"
 
 msgid "Resolve"
 msgstr "Auflösen"
@@ -4531,6 +4559,9 @@ msgstr "Geplante Selbst-Tests"
 msgid "Scheduled shutdown"
 msgstr "Geplantes Herunterfahren"
 
+msgid "Secondary"
+msgstr ""
+
 msgid "Secret"
 msgstr "Geheimnis"
 
@@ -4645,7 +4676,7 @@ msgstr ""
 "Schnittstellen haben Bereichsbegrenzungen."
 
 msgid "Set title scrolling speed between 0-10 (default 10)."
-msgstr ""
+msgstr "Bildlaufgeschwindigkeit der Titel von 0-10 setzen (Standard: 10)."
 
 msgid ""
 "Set what user the service will run as (www by default). <br><b><font "
@@ -4807,10 +4838,10 @@ msgid "Spanish"
 msgstr "Spanisch"
 
 msgid "Sparse"
-msgstr ""
+msgstr "Karg"
 
 msgid "Sparse Volume"
-msgstr ""
+msgstr "Karger Datentr&auml;ger"
 
 msgid "Specifies how many servers to create."
 msgstr "Legt fest, wie viele Server erstellt werden sollen."
@@ -4982,7 +5013,7 @@ msgid "Switch to %s/s"
 msgstr "Schalte um zu %s/s"
 
 msgid "Sync"
-msgstr ""
+msgstr "Synchronisation"
 
 msgid "Synchronization time"
 msgstr "Synchronisationszeit"
@@ -5590,6 +5621,9 @@ msgid ""
 "specify the size use the following human-readable suffixes (for example, "
 "'k', 'KB', 'M', 'Gb', etc.)."
 msgstr ""
+"Minimaler Platz-Anteil der einem Datensatz garantiert wird (normalerweise "
+"leer). Um die Größe anzugeben k&ouml;nnen die folgenden Anh&auml;nge "
+"verwendet werden (z.B. \"k\", \"KB\", \"M\", \"GB\", usw.)."
 
 msgid ""
 "The minimum port to allocate for PASV style data connections (0 = use any "
@@ -5609,9 +5643,6 @@ msgstr ""
 "Benutzer, Rechner oder Klasse sich beim Server anmeldet, es verhindert "
 "nicht, dass der gebannte Benutzer, Rechner oder Klasse sich zum Server "
 "verbindet."
-
-msgid "The name or IP address of the LDAP server."
-msgstr "Der Name oder die IP-Adresse des LDAP Server."
 
 #, php-format
 msgid "The network '%s' is invalid."
@@ -5709,6 +5740,8 @@ msgid ""
 "The reloading request has been sent to the daemon. You can see the result by "
 "<a href=\"%s\">Log</a>."
 msgstr ""
+"Die Anfrage wurde an das Hintergrundprogramm gesendet. Das Ergebnis kann "
+"unter <a href=\"%s\">Log</a> eingesehen werden."
 
 #, php-format
 msgid "The removable area mapped to LUN%d."
@@ -5725,6 +5758,9 @@ msgstr "Der Freigabenamen ist bereits vergeben."
 
 msgid "The size of the swap file in MB."
 msgstr "Die Größe der Swap-Datei in MB."
+
+msgid "The space-separated list of URIs for the LDAP server."
+msgstr ""
 
 #, php-format
 msgid "The storage area mapped to LUN%d."
@@ -5815,6 +5851,8 @@ msgid ""
 "There is wrong ID in the disk of config. Please remove the disk and re-add "
 "it or use 'clear and import'."
 msgstr ""
+"Falsche ID in der Konfigurations-Platte. Bitte die Platte entfernen und "
+"wieder hinzuf&uuml;gen oder 'L&ouml;schen und Importieren' nutzen."
 
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "Zwei Festplatten sind für ein RAID 1 notwendig."
@@ -6336,7 +6374,7 @@ msgid "Times"
 msgstr "Zeiten"
 
 msgid "TitleSpeed"
-msgstr ""
+msgstr "Titel-Geschwindigkeit"
 
 msgid ""
 "To configure the target, you must add at least Portal Group and Initiator "
@@ -6475,7 +6513,7 @@ msgid "Tuning"
 msgstr "Feineinstellungen"
 
 msgid "Turn access time on or off for this dataset."
-msgstr ""
+msgstr "Zugriffszeiten f&uuml;r diesen Datensatz an- oder abschalten."
 
 msgid "Turn the monitor to standby after N seconds."
 msgstr "Schaltet den Monitor nach N Sekunden in den Standby-Modus."
@@ -6540,6 +6578,9 @@ msgstr "UPnP A/V Media Server"
 msgid "UPnP friendly name."
 msgstr "UPnP-konformer Name."
 
+msgid "URI"
+msgstr ""
+
 msgid "URL"
 msgstr "URL"
 
@@ -6598,11 +6639,11 @@ msgid "Upload bandwidth"
 msgstr "Upload-Bandbreite"
 
 msgid "Upload directory"
-msgstr ""
+msgstr "Verzeichnis hochladen"
 
 #, php-format
 msgid "Upload directory of the webserver. The default is %s."
-msgstr ""
+msgstr "Verzeichnis des Webservers hochladen. Standard ist %s."
 
 msgid "Uppercases names in both directions"
 msgstr "Großschreibung in beiden Verzeichnissen"
@@ -6619,7 +6660,7 @@ msgstr ""
 "einen Hostnamen eintragen!"
 
 msgid "Use as sparse volume. (thin provisioning)"
-msgstr ""
+msgstr "Verwende karge Datenträger. (magere Bereitstellung)"
 
 msgid "Use sendfile"
 msgstr "Verwende Sendfile"
@@ -6878,7 +6919,7 @@ msgid "Write"
 msgstr "Schreiben"
 
 msgid "Write Cache"
-msgstr ""
+msgstr "Schreib-Zwischenspeicher"
 
 msgid "Write only"
 msgstr "Nur-schreib-Zugriff"
@@ -6888,7 +6929,7 @@ msgstr "Falsche Partition/-typ"
 
 #, php-format
 msgid "Wrong permission on %s."
-msgstr ""
+msgstr "Falsche Berechtigung auf %s."
 
 msgid "Yes"
 msgstr "Ja"
@@ -7011,16 +7052,16 @@ msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
 
 msgid "adaptive (low power consumption)"
-msgstr ""
+msgstr "adaptiv (geringer Stromverbrauch)"
 
 msgid "all disks are imported."
-msgstr ""
+msgstr "Alle Platten importiert."
 
 msgid "all encrypted disks are imported."
-msgstr ""
+msgstr "Alle verschl&uuml;sselten Platten importiert."
 
 msgid "all software raid disks are imported."
-msgstr ""
+msgstr "Alle Software-RAID Platten importiert."
 
 msgid "cachecnid"
 msgstr "cachecnid"
@@ -7044,7 +7085,7 @@ msgid "dbpath"
 msgstr "dbpath"
 
 msgid "detected an error while importing."
-msgstr ""
+msgstr "Fehler beim Importieren festgestellt."
 
 #, php-format
 msgid "e.g. %s"
@@ -7057,7 +7098,7 @@ msgid "get target info failed."
 msgstr "Keine Info über Ziel erhalten"
 
 msgid "hiadaptive (high performance)"
-msgstr ""
+msgstr "hi-adaptiv (hohe Leistung)"
 
 msgid "hour(s)"
 msgstr "Stunde(n)"
@@ -7088,10 +7129,10 @@ msgid "load/unload failed."
 msgstr "iSCSI Target konnte nicht geladen/entladen werden"
 
 msgid "maximum (highest performance)"
-msgstr ""
+msgstr "Maximum (h&ouml;chste Leistung)"
 
 msgid "minimum (power saving)"
-msgstr ""
+msgstr "Minimum (Stromparmodus)"
 
 msgid "minute(s)"
 msgstr "Minute(n)"
@@ -7112,13 +7153,13 @@ msgid "n/a"
 msgstr "k.A."
 
 msgid "no new disk found."
-msgstr ""
+msgstr "keine neue Platte gefunden."
 
 msgid "no new encrypted disk found."
-msgstr ""
+msgstr "keine neuen verschl&uuml;sselten Platten gefunden."
 
 msgid "no new software raid disk found."
-msgstr ""
+msgstr "keine neuen Software RAID Platte gefunden."
 
 msgid "noadouble"
 msgstr "noadouble"
@@ -7176,3 +7217,6 @@ msgstr "Aushängen"
 
 msgid "upriv"
 msgstr "upriv"
+
+#~ msgid "The name or IP address of the LDAP server."
+#~ msgstr "Der Name oder die IP-Adresse des LDAP Server."

@@ -3,15 +3,15 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>POT-Creation-Date: 2012-03-"
 "12 03:02+0000\n"
-"POT-Creation-Date: 2012-11-01 02:09+0000\n"
-"PO-Revision-Date: 2012-10-31 20:08+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2012-11-11 09:48+0000\n"
+"PO-Revision-Date: 2012-11-01 11:14+0000\n"
+"Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-01 03:16+0000\n"
-"X-Generator: Launchpad (build 16218)\n"
+"X-Launchpad-Export-Date: 2012-11-11 01:09+0000\n"
+"X-Generator: Launchpad (build 16251)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
 "X-Poedit-Language: Greek\n"
@@ -3975,6 +3975,13 @@ msgstr "Κωδικός για τις σελίδες διαχείρισης."
 msgid "Password of domain administrator account."
 msgstr "Κωδικός για τον λογαριασμού του διαχειριστή του τομέα."
 
+msgid "Password server"
+msgstr ""
+
+msgid ""
+"Password server name or IP address (e.g. Active Directory domain controller)."
+msgstr ""
+
 msgid "Password suffix"
 msgstr "Επίθεμα κωδικού"
 
@@ -4143,6 +4150,9 @@ msgstr "Διατήρηση της ημν/ίας τροποποίησης."
 
 msgid "Preserve permissions"
 msgstr "Διατήρηση δικαιωμάτων"
+
+msgid "Primary"
+msgstr ""
 
 msgid "Primary Group"
 msgstr "Πρωτεύουσα Ομάδα"
@@ -4572,6 +4582,9 @@ msgstr "Προγραμματισμένες αυτοεξετάσεις"
 
 msgid "Scheduled shutdown"
 msgstr "Προγραμματισμένος τερματισμός υπολογιστή"
+
+msgid "Secondary"
+msgstr ""
 
 msgid "Secret"
 msgstr "Συνθηματικό"
@@ -5670,9 +5683,6 @@ msgstr ""
 "υπολογιστή, ή κατηγορία, από την είσοδο στον διακομιστή. Δεν εμποδίζει τον "
 "αποκλεισμένο χρήστη, υπολογιστή, ή κατηγορία από τη σύνδεση με το διακομιστή."
 
-msgid "The name or IP address of the LDAP server."
-msgstr "Το όνομα ή η IP διεύθυνση του LDAP διακομιστή."
-
 #, php-format
 msgid "The network '%s' is invalid."
 msgstr "Το δίκτυο '%s' δεν είναι έγκυρο."
@@ -5786,6 +5796,9 @@ msgstr "Το όνομα του κοινόχρηστου χρησιμοποιεί
 
 msgid "The size of the swap file in MB."
 msgstr "Το μέγεθος του αρχείου swap σε MB."
+
+msgid "The space-separated list of URIs for the LDAP server."
+msgstr ""
 
 #, php-format
 msgid "The storage area mapped to LUN%d."
@@ -6615,6 +6628,9 @@ msgstr "UPnP A/V Διακομιστής Πολυμέσων"
 msgid "UPnP friendly name."
 msgstr "φιλικό όνομα UPnP."
 
+msgid "URI"
+msgstr ""
+
 msgid "URL"
 msgstr "Διεύθυνση URL"
 
@@ -6673,11 +6689,13 @@ msgid "Upload bandwidth"
 msgstr "Ταχύτητα αποστολής"
 
 msgid "Upload directory"
-msgstr "Ανέβασε τον κατάλογο"
+msgstr "Φάκελος για αποστολές"
 
 #, php-format
 msgid "Upload directory of the webserver. The default is %s."
-msgstr "Ανέβασε τον κατάλογο στον webserver. Το προκαθορισμένο είναι %s."
+msgstr ""
+"Ο φάκελος του διακομιστή web για αποστολές αρχείων. Ο προκαθορισμένος είναι "
+"ο %s."
 
 msgid "Uppercases names in both directions"
 msgstr "Κεφαλαία ονόματα και στις δύο κατευθύνσεις"
@@ -7263,3 +7281,6 @@ msgstr "αποπροσάρτηση"
 
 msgid "upriv"
 msgstr "upriv"
+
+#~ msgid "The name or IP address of the LDAP server."
+#~ msgstr "Το όνομα ή η IP διεύθυνση του LDAP διακομιστή."
