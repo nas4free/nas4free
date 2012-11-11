@@ -215,7 +215,7 @@ samba_mkconf_cmd()
 				-o "passdb backend = tdbsam" -n \
 			-b \
 			-i "count(//ldap/enable) > 0" \
-				-v "concat('passdb backend = ldapsam:\"ldap://',//ldap/hostname,'\"')" -n \
+				-v "concat('passdb backend = ldapsam:\"',//ldap/hostname,'\"')" -n \
 				-v "concat('ldap admin dn = ',//ldap/rootbinddn)" -n \
 				-v "concat('ldap suffix = ',//ldap/base)" -n \
 				-v "concat('ldap user suffix = ',//ldap/user_suffix)" -n \
