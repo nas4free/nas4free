@@ -36,8 +36,7 @@ ldap_secret=${ldap_secret:-"/var/etc/ldap.secret"}
 if configxml_isset //ldap/enable; then
 	echo "Generating ldap.conf."
 	/usr/local/bin/xml sel -t -m "//ldap" \
-		-v "concat('host ',hostname)" -n \
-		-v "concat('uri ldap://',hostname)" -n \
+		-v "concat('uri ',hostname)" -n \
 		-v "concat('base ',base)" -n \
 		-i "count(anonymousbind) = 0" \
 			-v "concat('binddn ',binddn)" -n \
