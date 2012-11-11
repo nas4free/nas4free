@@ -718,6 +718,22 @@ function config_upgrade() {
 		$config['version'] = "1.6";
 	}
 
+	/* Convert 1.6 -> 1.7 */
+	if ($config['version'] === "1.6") {
+		if (!empty($config['system']['sysctl']) && !empty($config['system']['sysctl']['param'])) {
+			$index = array_search_ex("kern.maxfilesperproc", $config['system']['sysctl']['param'], "name");
+			if ($index !== false) {
+				if ($config['system']['sysctl']['param'][$index]['value'] < 50000) {
+					$config['system']['sysctl']['param'][$index]['value'] = "50000";
+				}
+			}
+		}
+		if (!empty($config['ldap']['hostname'])) {
+			$config['ldap']['hostname'] = "ldap://".$config['ldap']['hostname'];
+		}
+		$config['version'] = "1.7";
+	}
+
 
 	/* XXX Convert 9.5 -> 9.7 (must skip 9.6) */
 
