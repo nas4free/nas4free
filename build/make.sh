@@ -395,8 +395,6 @@ create_mfsroot() {
 	dd if=/dev/zero of=$NAS4FREE_WORKINGDIR/mfsroot bs=1k count=$(expr ${NAS4FREE_MFSROOT_SIZE} \* 1024)
 	# Configure this file as a memory disk
 	md=`mdconfig -a -t vnode -f $NAS4FREE_WORKINGDIR/mfsroot`
-	# Create label on memory disk
-	#bsdlabel -m ${NAS4FREE_ARCH} -w ${md} auto
 	# Format memory disk using UFS
 	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -o space -m 0 /dev/${md}
 	# Umount memory disk (if already used)
@@ -468,18 +466,13 @@ create_image() {
 	echo "===> Use IMG as a memory disk"
 	md=`mdconfig -a -t vnode -f ${NAS4FREE_WORKINGDIR}/image.bin -x ${NAS4FREE_IMG_SECTS} -y ${NAS4FREE_IMG_HEADS}`
 	diskinfo -v ${md}
-	#echo "===> Creating partition on this memory disk"
-	#fdisk -BI -b $NAS4FREE_BOOTDIR/mbr ${md}
-	echo "===> Configuring FreeBSD label on this memory disk"
-	echo "
-# /dev/${md}:
-8 partitions:
-#        size   offset    fstype   [fsize bsize bps/cpg]
-  a: ${NAS4FREE_IMG_PSIZE}  ${NAS4FREE_IMG_PSTART}  4.2BSD        0     0
-  c: ${NAS4FREE_IMG_SSIZE}  0    unused        0     0         # "raw" part, don't edit
-" > ${NAS4FREE_WORKINGDIR}/bsdlabel.$$
-	bsdlabel -m ${NAS4FREE_ARCH} -R -B -b ${NAS4FREE_BOOTDIR}/boot ${md} ${NAS4FREE_WORKINGDIR}/bsdlabel.$$
-	bsdlabel ${md}
+
+	echo "===> Creating BSD partition on this memory disk"
+	gpart create -s bsd ${md}
+	gpart bootcode -b ${NAS4FREE_BOOTDIR}/boot ${md}
+	gpart add -t freebsd-ufs ${md}
+	mdp=${md}a
+
 	echo "===> Formatting this memory disk using UFS"
 	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -U -o space -m 0 /dev/${md}a
 	echo "===> Mount this virtual disk on $NAS4FREE_TMPDIR"
@@ -542,7 +535,6 @@ create_image() {
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
 	[ -f $NAS4FREE_WORKINGDIR/image.bin ] && rm -f $NAS4FREE_WORKINGDIR/image.bin
-	[ -f $NAS4FREE_WORKINGDIR/bsdlabel.$$ ] && rm -f $NAS4FREE_WORKINGDIR/bsdlabel.$$
 
 	return 0
 }
@@ -695,11 +687,9 @@ create_usb () {
 	diskinfo -v ${md}
 
 	echo "USB: Creating BSD partition on this memory disk"
-	gpart create -s mbr ${md}
-	gpart bootcode -b /boot/mbr ${md}
-	bsdlabel -w ${md}
-	bsdlabel -m ${NAS4FREE_ARCH} -B -b ${NAS4FREE_BOOTDIR}/boot ${md}
-	bsdlabel ${md}
+	gpart create -s bsd ${md}
+	gpart bootcode -b ${NAS4FREE_BOOTDIR}/boot ${md}
+	gpart add -t freebsd-ufs ${md}
 	mdp=${md}a
 
 	echo "USB: Formatting this memory disk using UFS"
