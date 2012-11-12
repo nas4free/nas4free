@@ -327,6 +327,9 @@ usr/bin/killall
 ## logger -- make entries in the system log
 usr/bin/logger
 
+## mktemp -- make temporary file name (unique)
+usr/bin/mktemp
+
 ## netstat -- show network status
 usr/bin/netstat
 
@@ -609,6 +612,15 @@ usr/sbin/nologin:sbin/nologin
 ## ip6addrctl -- configure address selection policy for IPv6 and IPv4
 usr/sbin/ip6addrctl
 
+## jail -- manage system jails
+usr/sbin/jail
+
+## jexec -- execute a command inside an existing jail
+usr/sbin/jexec
+
+## jls -- list jails
+usr/sbin/jls
+
 ## mount_smbfs -- mount a shared resource from an SMB file server
 usr/sbin/mount_smbfs
 
@@ -746,6 +758,7 @@ etc/rc.d/swap1
 etc/rc.d/devd
 etc/rc.d/dmesg
 etc/rc.d/hostid
+etc/rc.d/jail
 
 ####### contents of /usr/share/snmp/defs
 usr/share/snmp/defs/atm_freebsd.def
