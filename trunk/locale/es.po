@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-11 09:48+0000\n"
-"PO-Revision-Date: 2012-11-11 07:57+0000\n"
+"POT-Creation-Date: 2012-11-15 01:46+0000\n"
+"PO-Revision-Date: 2012-11-12 08:05+0000\n"
 "Last-Translator: raul fernandez garcia <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-11 13:51+0000\n"
-"X-Generator: Launchpad (build 16251)\n"
+"X-Launchpad-Export-Date: 2012-11-14 17:36+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
 "X-Poedit-Country: SPAIN\n"
 "Language: \n"
 "X-Poedit-Language: Spanish\n"
@@ -172,8 +172,8 @@ msgstr ""
 msgid ""
 "A NTP time server name may only contain the characters a-z, 0-9, '-' and '.'."
 msgstr ""
-"El nombre de un servidor de tiempo NTP solo puede contener caracteres de la "
-"a a la z y del 0 al 9 '-' y '.'."
+"El nombre de un servidor de tiempo NTP solo puede contener los siguientes "
+"caracteres a-z, 0-9, '-' y '.'."
 
 msgid ""
 "A Portal Group contains IP addresses and listening TCP ports to connect the "
@@ -462,6 +462,9 @@ msgstr "Gestion avanzada de energía"
 
 msgid "Advanced settings"
 msgstr "Ajustes avanzados"
+
+msgid "Advertisement skew"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -766,6 +769,9 @@ msgstr "Tiempo en blanco"
 msgid "Blocksize"
 msgstr "Tamaño de bloque"
 
+msgid "Bridge"
+msgstr ""
+
 msgid "Browseable"
 msgstr "Visible"
 
@@ -777,6 +783,9 @@ msgstr "Búlgaro"
 
 msgid "By default, only already existing files can be uploaded."
 msgstr "Por defecto, sólo se pueden subir archivos que ya existan."
+
+msgid "CARP"
+msgstr ""
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -3406,6 +3415,9 @@ msgstr "Directorio multimedia"
 msgid "Medium acoustic output"
 msgstr "Ruido medio"
 
+msgid "Member Interface"
+msgstr ""
+
 msgid "Memory usage"
 msgstr "Uso de memoria"
 
@@ -3940,8 +3952,8 @@ msgstr "Servidor de contraseñas"
 msgid ""
 "Password server name or IP address (e.g. Active Directory domain controller)."
 msgstr ""
-"IP o nombre del servidor de contraseñas (Ej: uncontrolador de dominio de "
-"Active Directory)"
+"IP o nombre del servidor de contraseñas (Ej: un controlador de dominio de "
+"Active Directory)."
 
 msgid "Password suffix"
 msgstr "Sufijo de contraseña"
@@ -4774,6 +4786,9 @@ msgstr ""
 "Tamaño ofrecido al iniciador. (Hasta 8EiB=8388608TiB. El tamaño actual "
 "depende de sus discos.)"
 
+msgid "Skew"
+msgstr ""
+
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "Sleep - Controla el disco a menos que este dormido (Sleep)"
 
@@ -5297,7 +5312,7 @@ msgstr ""
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr "El atributo '%s' sólo puede consistir en caracteres a-z, A-Z, 0-9."
 
-#, c-format
+#, c-format, php-format
 msgid "The attribute '%s' must be a number."
 msgstr "El atributo '%s' debe ser un número."
 
@@ -5926,6 +5941,14 @@ msgid ""
 "These parameters will be added to the module configuration in rsyncd.conf."
 msgstr ""
 "Estos parámetros se añadirán a la configuración del módulo en rsyncd.conf."
+
+msgid ""
+"This Bridge cannot be deleted because it is still being used as an interface."
+msgstr ""
+
+msgid ""
+"This CARP cannot be deleted because it is still being used as an interface."
+msgstr ""
 
 msgid ""
 "This LAGG cannot be deleted because it is still being used as an interface."
@@ -6751,6 +6774,9 @@ msgstr "Usuarios y Grupos"
 msgid "Using %s bytes fragment size."
 msgstr "Usar %s bytes de tamaño de fragmentación"
 
+msgid "VHID"
+msgstr ""
+
 msgid "VLAN"
 msgstr "VLAN"
 
@@ -6765,6 +6791,12 @@ msgstr "Variable"
 
 msgid "Version"
 msgstr "Versión"
+
+msgid "Virtual Host ID"
+msgstr ""
+
+msgid "Virtual IP address"
+msgstr ""
 
 msgid "Virtual device"
 msgstr "Dispositivo virtual"
@@ -7199,6 +7231,3 @@ msgstr "Desmontar"
 
 msgid "upriv"
 msgstr "upriv"
-
-#~ msgid "The name or IP address of the LDAP server."
-#~ msgstr "El nombre o dirección IP del servidor LDAP."

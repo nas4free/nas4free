@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-11 09:48+0000\n"
+"POT-Creation-Date: 2012-11-15 01:46+0000\n"
 "PO-Revision-Date: 2012-11-03 08:49+0000\n"
 "Last-Translator: Laurentiu BUBUIANU <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-11 02:17+0000\n"
-"X-Generator: Launchpad (build 16251)\n"
+"X-Launchpad-Export-Date: 2012-11-14 17:36+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
 "X-Poedit-Country: ROMANIA\n"
 "Language: \n"
 "X-Poedit-Language: Romanian\n"
@@ -456,6 +456,9 @@ msgstr "Mod avansat de management energie"
 msgid "Advanced settings"
 msgstr "Setări avansate"
 
+msgid "Advertisement skew"
+msgstr ""
+
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
@@ -760,6 +763,9 @@ msgstr "Timp nul"
 msgid "Blocksize"
 msgstr "Dimensiune Block"
 
+msgid "Bridge"
+msgstr ""
+
 msgid "Browseable"
 msgstr "Vizibil"
 
@@ -771,6 +777,9 @@ msgstr "Bulgară"
 
 msgid "By default, only already existing files can be uploaded."
 msgstr "Implicit, doar fişierele existente deja pot fi încărcate."
+
+msgid "CARP"
+msgstr ""
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -3388,6 +3397,9 @@ msgstr "Folder Media"
 msgid "Medium acoustic output"
 msgstr "Nivel Mediu de Zgomot"
 
+msgid "Member Interface"
+msgstr ""
+
 msgid "Memory usage"
 msgstr "Utilizare memorie"
 
@@ -4743,6 +4755,9 @@ msgstr ""
 "Dimensiune oferită iniţiatorului. (maxim 8EiB=8388608TiB, dimensiunea reală "
 "depinzînd de mărimea discurilor dumneavoastră)."
 
+msgid "Skew"
+msgstr ""
+
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "Sleep - Verificare dispozitiv doar dacă nu este deja în modul Sleep."
 
@@ -5255,7 +5270,7 @@ msgstr "Atributul '%s' poate contine doar caracterele a-z, A-Z, 0-9, _ , -."
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr "Atributul '%s' poate conţine doar caracterele a-z, A-Z, 0-9."
 
-#, c-format
+#, c-format, php-format
 msgid "The attribute '%s' must be a number."
 msgstr "Atributul '%s' trebuie sa fie tip numar."
 
@@ -5868,6 +5883,14 @@ msgid ""
 "These parameters will be added to the module configuration in rsyncd.conf."
 msgstr ""
 "Aceşti parametri vor fi adăugaţi la modulul de configurare în rsyncd.conf."
+
+msgid ""
+"This Bridge cannot be deleted because it is still being used as an interface."
+msgstr ""
+
+msgid ""
+"This CARP cannot be deleted because it is still being used as an interface."
+msgstr ""
 
 msgid ""
 "This LAGG cannot be deleted because it is still being used as an interface."
@@ -6675,6 +6698,9 @@ msgstr "Utilizatori şi Grupuri"
 msgid "Using %s bytes fragment size."
 msgstr "Utilizare fragmente de %s octeţi."
 
+msgid "VHID"
+msgstr ""
+
 msgid "VLAN"
 msgstr "VLAN"
 
@@ -6689,6 +6715,12 @@ msgstr "Variabilă"
 
 msgid "Version"
 msgstr "Versiune"
+
+msgid "Virtual Host ID"
+msgstr ""
+
+msgid "Virtual IP address"
+msgstr ""
 
 msgid "Virtual device"
 msgstr "Dispozitiv virtual"
@@ -7122,6 +7154,3 @@ msgstr "de-montare"
 
 msgid "upriv"
 msgstr "upriv"
-
-#~ msgid "The name or IP address of the LDAP server."
-#~ msgstr "Numele sau adresa IP a server-ului LDAP."

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-11 09:48+0000\n"
-"PO-Revision-Date: 2012-11-11 02:33+0000\n"
+"POT-Creation-Date: 2012-11-15 01:46+0000\n"
+"PO-Revision-Date: 2012-11-14 17:12+0000\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-11 02:44+0000\n"
-"X-Generator: Launchpad (build 16251)\n"
+"X-Launchpad-Export-Date: 2012-11-14 17:36+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
 "X-Poedit-Language: Japanese\n"
@@ -437,6 +437,9 @@ msgstr "高度な電源管理"
 msgid "Advanced settings"
 msgstr "高度な設定"
 
+msgid "Advertisement skew"
+msgstr "広告スキュー"
+
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
@@ -720,6 +723,9 @@ msgstr "待機時間"
 msgid "Blocksize"
 msgstr "ブロックサイズ"
 
+msgid "Bridge"
+msgstr "ブリッジ"
+
 msgid "Browseable"
 msgstr "ブラウズ可能"
 
@@ -731,6 +737,9 @@ msgstr "ブルガリア語"
 
 msgid "By default, only already existing files can be uploaded."
 msgstr "デフォルトでは、既に存在しているファイルのみアップロードする事が出来ます。"
+
+msgid "CARP"
+msgstr "CARP"
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -3219,6 +3228,9 @@ msgstr "メディアディレクトリ"
 msgid "Medium acoustic output"
 msgstr "中間の音響出力"
 
+msgid "Member Interface"
+msgstr "メンバ インターフェース"
+
 msgid "Memory usage"
 msgstr "メモリ使用率"
 
@@ -4497,6 +4509,9 @@ msgid ""
 "on your disks.)"
 msgstr "イニシエータに提供するサイズ。(最大8EiB=8388608TiB。実際の最大値はディスク容量に依存します。)"
 
+msgid "Skew"
+msgstr "スキュー"
+
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "Sleep - スリープモードで無い場合にデバイスをチェックします。"
 
@@ -4985,7 +5000,7 @@ msgstr "'%s' は英数字と一部の記号が使用できます。( a-z, A-Z, 0
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr "'%s' は英数字が使用できます。( a-z, A-Z, 0-9. )"
 
-#, c-format
+#, c-format, php-format
 msgid "The attribute '%s' must be a number."
 msgstr "'%s' は数字である必要があります。"
 
@@ -5531,6 +5546,14 @@ msgstr "ここで指定したパラメータは %s のグローバル設定に�
 msgid ""
 "These parameters will be added to the module configuration in rsyncd.conf."
 msgstr "ここで指定したパラメータは rsyncd.conf のモジュール設定に追加されます。"
+
+msgid ""
+"This Bridge cannot be deleted because it is still being used as an interface."
+msgstr "このブリッジインタフェースは現在も使用されている為、削除する事が出来ませんでした。"
+
+msgid ""
+"This CARP cannot be deleted because it is still being used as an interface."
+msgstr "このCARPインタフェースは現在も使用されている為、削除する事が出来ませんでした。"
 
 msgid ""
 "This LAGG cannot be deleted because it is still being used as an interface."
@@ -6240,6 +6263,9 @@ msgstr "ユーザとグループ"
 msgid "Using %s bytes fragment size."
 msgstr "%s バイトのフラグメントサイズを利用します。"
 
+msgid "VHID"
+msgstr "VHID"
+
 msgid "VLAN"
 msgstr "VLAN"
 
@@ -6254,6 +6280,12 @@ msgstr "変数"
 
 msgid "Version"
 msgstr "バージョン"
+
+msgid "Virtual Host ID"
+msgstr "仮想ホストID"
+
+msgid "Virtual IP address"
+msgstr "仮想IPアドレス"
 
 msgid "Virtual device"
 msgstr "仮想デバイス"
@@ -6664,6 +6696,3 @@ msgstr "アンマウント"
 
 msgid "upriv"
 msgstr "upriv"
-
-#~ msgid "The name or IP address of the LDAP server."
-#~ msgstr "LDAP サーバのホスト名または IP アドレスを入力して下さい。"

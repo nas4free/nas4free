@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-11 09:48+0000\n"
+"POT-Creation-Date: 2012-11-15 01:46+0000\n"
 "PO-Revision-Date: 2012-11-11 00:54+0000\n"
 "Last-Translator: Christian Wandel <info@wandel.de>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-11 02:16+0000\n"
-"X-Generator: Launchpad (build 16251)\n"
+"X-Launchpad-Export-Date: 2012-11-14 17:36+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
 "X-Poedit-Language: German\n"
@@ -466,6 +466,9 @@ msgstr "Advanced Power Management"
 msgid "Advanced settings"
 msgstr "Erweiterte Einstellungen"
 
+msgid "Advertisement skew"
+msgstr ""
+
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
@@ -769,6 +772,9 @@ msgstr "untätig"
 msgid "Blocksize"
 msgstr "Blockgrösse"
 
+msgid "Bridge"
+msgstr ""
+
 msgid "Browseable"
 msgstr "Sichtbar"
 
@@ -781,6 +787,9 @@ msgstr "Bulgarisch"
 msgid "By default, only already existing files can be uploaded."
 msgstr ""
 "Standardmäßig können nur bereits existierende Dateien hochgeladen werden."
+
+msgid "CARP"
+msgstr ""
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -3420,6 +3429,9 @@ msgstr "Medien Verzeichnis"
 msgid "Medium acoustic output"
 msgstr "Mittlere Geräuschbelastung"
 
+msgid "Member Interface"
+msgstr ""
+
 msgid "Memory usage"
 msgstr "Speicherbelegung"
 
@@ -4784,6 +4796,9 @@ msgstr ""
 "Größe, die vom Initiator zur Verfügung gestellt wird (bis zu 8 EiB = "
 "8.388.608 TiB; aktuelle Größe hängt von der Festplatte ab)"
 
+msgid "Skew"
+msgstr ""
+
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr ""
 "Sleep - Überprüfe das Gerät es sei denn es befindet sich im SLEEP Modus."
@@ -5309,7 +5324,7 @@ msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr ""
 "Das Attribut '%s' darf nur aus folgenden Zeichen bestehen: a-z, A-Z, 0-9."
 
-#, c-format
+#, c-format, php-format
 msgid "The attribute '%s' must be a number."
 msgstr "Das Attribut '%s' muss eine Zahl sein."
 
@@ -5944,6 +5959,14 @@ msgid ""
 "These parameters will be added to the module configuration in rsyncd.conf."
 msgstr ""
 "Diese Optionen werden der Modulkonfiguration in rsyncd.conf hinzugefügt."
+
+msgid ""
+"This Bridge cannot be deleted because it is still being used as an interface."
+msgstr ""
+
+msgid ""
+"This CARP cannot be deleted because it is still being used as an interface."
+msgstr ""
 
 msgid ""
 "This LAGG cannot be deleted because it is still being used as an interface."
@@ -6767,6 +6790,9 @@ msgstr "Benutzer & Gruppen"
 msgid "Using %s bytes fragment size."
 msgstr "Nutze %s Bytes Fragmentgröße."
 
+msgid "VHID"
+msgstr ""
+
 msgid "VLAN"
 msgstr "VLAN"
 
@@ -6781,6 +6807,12 @@ msgstr "Variable"
 
 msgid "Version"
 msgstr "Version"
+
+msgid "Virtual Host ID"
+msgstr ""
+
+msgid "Virtual IP address"
+msgstr ""
 
 msgid "Virtual device"
 msgstr "Virtuelles Gerät"
@@ -7216,6 +7248,3 @@ msgstr "Aushängen"
 
 msgid "upriv"
 msgstr "upriv"
-
-#~ msgid "The name or IP address of the LDAP server."
-#~ msgstr "Der Name oder die IP-Adresse des LDAP Server."

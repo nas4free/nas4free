@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-11 09:48+0000\n"
+"POT-Creation-Date: 2012-11-15 01:46+0000\n"
 "PO-Revision-Date: 2012-03-17 08:48+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-11 02:17+0000\n"
-"X-Generator: Launchpad (build 16251)\n"
+"X-Launchpad-Export-Date: 2012-11-14 17:36+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
 "X-Poedit-Country: KOREA\n"
 "Language: \n"
 "X-Poedit-Language: Korean\n"
@@ -433,6 +433,9 @@ msgstr "고급 전원 관리"
 msgid "Advanced settings"
 msgstr "고급 설정"
 
+msgid "Advertisement skew"
+msgstr ""
+
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
@@ -716,6 +719,9 @@ msgstr "빈 시간"
 msgid "Blocksize"
 msgstr ""
 
+msgid "Bridge"
+msgstr ""
+
 msgid "Browseable"
 msgstr "검색 가능 여부"
 
@@ -727,6 +733,9 @@ msgstr "불가리아어"
 
 msgid "By default, only already existing files can be uploaded."
 msgstr "기본 값으로 이미 존재하는 파일들만 업로드 될 수 있습니다."
+
+msgid "CARP"
+msgstr ""
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -3201,6 +3210,9 @@ msgstr "매체 디렉터리"
 msgid "Medium acoustic output"
 msgstr "보통 소음 출력"
 
+msgid "Member Interface"
+msgstr ""
+
 msgid "Memory usage"
 msgstr "메모리 사용량"
 
@@ -4473,6 +4485,9 @@ msgid ""
 "on your disks.)"
 msgstr "개시자에게 제공된 크기. (8EiB=8388608TiB까지. 실제 크기 디스크에 의존한다.)"
 
+msgid "Skew"
+msgstr ""
+
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "휴면 - 휴면 모드가 아닐 경우 장치를 check 합니다."
 
@@ -4961,7 +4976,7 @@ msgstr "속성 '%s'은(는) a-z, A-Z, 0-9, _, - 문자만 포함할 수 있습�
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr "속성 '%s'은(는) a-z, A-Z, 0-9 문자만 포함할 수 있습니다."
 
-#, c-format
+#, c-format, php-format
 msgid "The attribute '%s' must be a number."
 msgstr "속성 '%s'은(는) 숫자여야 합니다."
 
@@ -5499,6 +5514,14 @@ msgstr "이 인자들은 %s의 전역 설정에 추가될 것입니다."
 msgid ""
 "These parameters will be added to the module configuration in rsyncd.conf."
 msgstr "이들 인자들이 rsyncd.conf의 모듈 설정에 추가될 것입니다."
+
+msgid ""
+"This Bridge cannot be deleted because it is still being used as an interface."
+msgstr ""
+
+msgid ""
+"This CARP cannot be deleted because it is still being used as an interface."
+msgstr ""
 
 msgid ""
 "This LAGG cannot be deleted because it is still being used as an interface."
@@ -6211,6 +6234,9 @@ msgstr "사용자와 그룹"
 msgid "Using %s bytes fragment size."
 msgstr ""
 
+msgid "VHID"
+msgstr ""
+
 msgid "VLAN"
 msgstr "VLAN"
 
@@ -6225,6 +6251,12 @@ msgstr "변수"
 
 msgid "Version"
 msgstr "버전"
+
+msgid "Virtual Host ID"
+msgstr ""
+
+msgid "Virtual IP address"
+msgstr ""
 
 msgid "Virtual device"
 msgstr "가상 장치"
@@ -6632,6 +6664,3 @@ msgstr "마운트 해제"
 
 msgid "upriv"
 msgstr "upriv"
-
-#~ msgid "The name or IP address of the LDAP server."
-#~ msgstr "LDAP 서버의 이름이나 IP 주소."
