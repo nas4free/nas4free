@@ -112,8 +112,8 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td width="20%" class="listhdrlr"><?=gettext("Virtual interface");?></td>
-						<td width="20%" class="listhdrr"><?=gettext("Ports");?></td>
-						<td width="45%" class="listhdrr"><?=gettext("Description");?></td>
+						<td width="35%" class="listhdrr"><?=gettext("Ports");?></td>
+						<td width="35%" class="listhdrr"><?=gettext("Description");?></td>
 						<td width="10%" class="list"></td>
 					</tr>
 					<?php foreach ($a_lagg as $lagg):?>
