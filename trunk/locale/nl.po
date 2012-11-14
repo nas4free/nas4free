@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2012-11-15 01:46+0000\n"
-"PO-Revision-Date: 2012-11-11 16:14+0000\n"
+"PO-Revision-Date: 2012-11-14 20:00+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-14 17:36+0000\n"
+"X-Launchpad-Export-Date: 2012-11-14 20:20+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 "X-Poedit-Country: Netherlands\n"
 "Language: \n"
@@ -465,7 +465,7 @@ msgid "Advanced settings"
 msgstr "Geavanceerde opties"
 
 msgid "Advertisement skew"
-msgstr ""
+msgstr "Advertisement skew"
 
 #, php-format
 msgid ""
@@ -772,7 +772,7 @@ msgid "Blocksize"
 msgstr "Blocksize"
 
 msgid "Bridge"
-msgstr ""
+msgstr "Brug"
 
 msgid "Browseable"
 msgstr "Verkenbaar"
@@ -787,7 +787,7 @@ msgid "By default, only already existing files can be uploaded."
 msgstr "Standaard kunnen alleen bestaande bestanden geupload worden."
 
 msgid "CARP"
-msgstr ""
+msgstr "CARP"
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -943,10 +943,10 @@ msgid "Clear"
 msgstr "Wissen"
 
 msgid "Clear config and Import disks"
-msgstr "Config leegmaken en schijven importeren"
+msgstr "Config leegmaken en importeer schijven"
 
 msgid "Clear config and Import software raid disks"
-msgstr "Config leegmaken en software raid schijven importeren"
+msgstr "Config leegmaken en importeer Software RAID schijven"
 
 msgid ""
 "Click &quot;Enable firmware upload&quot; below, then choose the image file "
@@ -1074,7 +1074,7 @@ msgid "Controller TCP Port"
 msgstr "TCP-poort Controller"
 
 msgid "Controls power consumption."
-msgstr "Beheer stroomverbruik."
+msgstr "Instelling van het energieverbruik."
 
 msgid "Controls the behavior of synchronous requests."
 msgstr "Bepaalt het gedrag van synchrone aanvragen."
@@ -2857,7 +2857,7 @@ msgid "Import on-disk ZFS config"
 msgstr "Importeer op-schijf ZFS config"
 
 msgid "Import software raid disks"
-msgstr "Importeer software raid schijven"
+msgstr "Importeer Software RAID schijven"
 
 msgid "In"
 msgstr "In"
@@ -3438,7 +3438,7 @@ msgid "Medium acoustic output"
 msgstr "Medium geluidsproductie"
 
 msgid "Member Interface"
-msgstr ""
+msgstr "Gebrruikers Interface"
 
 msgid "Memory usage"
 msgstr "Geheugengebruik"
@@ -4120,7 +4120,7 @@ msgid "Power Daemon"
 msgstr "Energie Service"
 
 msgid "Power Mode"
-msgstr "Power Mode"
+msgstr "Energie Mode"
 
 msgid "Power mode"
 msgstr "Energie mode"
@@ -4257,7 +4257,7 @@ msgid "RSYNC log"
 msgstr "RSYNC log"
 
 msgid "Raid name"
-msgstr "Raid naam"
+msgstr "RAID naam"
 
 msgid "Read"
 msgstr "Lezen"
@@ -4811,7 +4811,7 @@ msgstr ""
 "grootte is afhankelijk van uw schijven."
 
 msgid "Skew"
-msgstr ""
+msgstr "Skew"
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr ""
@@ -4836,7 +4836,7 @@ msgid "Sockets"
 msgstr "Sockets"
 
 msgid "SoftRaid"
-msgstr "SoftRaid"
+msgstr "SoftRAID"
 
 msgid "Software RAID"
 msgstr "Software RAID"
@@ -5893,13 +5893,13 @@ msgid "There must be at least 2 disks in a mirror."
 msgstr "Er dienen minimaal 2 schijven in een mirror te zijn."
 
 msgid "There must be at least 2 disks in a raidz."
-msgstr "Er dienen minimaal 2 schijven in een raidz te zijn."
+msgstr "Er dienen minimaal 2 schijven in een RAID-Z te zijn."
 
 msgid "There must be at least 3 disks in a raidz2."
-msgstr "Er dienen minimaal 3 schijven in een raidz2 te zijn."
+msgstr "Er dienen minimaal 3 schijven in een RAID-Z2 te zijn."
 
 msgid "There must be at least 4 disks in a raidz3."
-msgstr "Een raidz3 moet uit tenminste 4 schijven bestaan"
+msgstr "Een RAID-Z3 moet tenminste uit 4 schijven bestaan"
 
 msgid "There must be selected a minimum of 1 interface."
 msgstr "Er moet minimaal 1 netwerkkaart geselecteerd zijn."
@@ -5968,10 +5968,14 @@ msgstr ""
 msgid ""
 "This Bridge cannot be deleted because it is still being used as an interface."
 msgstr ""
+"Deze brug kan niet worden verwijderd omdat het nog steeds als interface in "
+"gebruikt is."
 
 msgid ""
 "This CARP cannot be deleted because it is still being used as an interface."
 msgstr ""
+"Deze CARP kan niet worden verwijderd omdat het nog steeds als een interface "
+"wordt gebruikt."
 
 msgid ""
 "This LAGG cannot be deleted because it is still being used as an interface."
@@ -6791,7 +6795,7 @@ msgid "Using %s bytes fragment size."
 msgstr "%s fragment groote gebruiken"
 
 msgid "VHID"
-msgstr ""
+msgstr "VHID"
 
 msgid "VLAN"
 msgstr "VLAN"
@@ -6809,10 +6813,10 @@ msgid "Version"
 msgstr "Versie"
 
 msgid "Virtual Host ID"
-msgstr ""
+msgstr "Virtueel Host ID"
 
 msgid "Virtual IP address"
-msgstr ""
+msgstr "Virtueel IP adres"
 
 msgid "Virtual device"
 msgstr "Virtuele schijf"
@@ -7094,7 +7098,7 @@ msgid "all encrypted disks are imported."
 msgstr "alle versleutelde schijven worden geïmporteerd."
 
 msgid "all software raid disks are imported."
-msgstr "alle software raid schijven zijn geïmporteerd."
+msgstr "alle Software RAID schijven zijn geïmporteerd."
 
 msgid "cachecnid"
 msgstr "cachecnid"
@@ -7192,7 +7196,7 @@ msgid "no new encrypted disk found."
 msgstr "geen nieuwe versleutelde schijven gevonden."
 
 msgid "no new software raid disk found."
-msgstr "geen nieuwe software raid schijven gevonden."
+msgstr "er zijn geen nieuwe Software RAID schijven gevonden."
 
 msgid "noadouble"
 msgstr "noadouble"
