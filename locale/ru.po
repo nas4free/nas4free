@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-11 09:48+0000\n"
+"POT-Creation-Date: 2012-11-15 01:46+0000\n"
 "PO-Revision-Date: 2012-10-15 14:58+0000\n"
 "Last-Translator: Eugene Marshal <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-11 02:17+0000\n"
-"X-Generator: Launchpad (build 16251)\n"
+"X-Launchpad-Export-Date: 2012-11-14 17:36+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
 "X-Poedit-Language: Russian\n"
@@ -455,6 +455,9 @@ msgstr "Расширенное управление питанием"
 msgid "Advanced settings"
 msgstr "Расширенные настройки"
 
+msgid "Advertisement skew"
+msgstr ""
+
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
@@ -759,6 +762,9 @@ msgstr "Время простоя"
 msgid "Blocksize"
 msgstr "Размер блока"
 
+msgid "Bridge"
+msgstr ""
+
 msgid "Browseable"
 msgstr "Просматриваемый"
 
@@ -770,6 +776,9 @@ msgstr "Болгарский"
 
 msgid "By default, only already existing files can be uploaded."
 msgstr "По умолчанию могут быть загружены только уже существующие файлы."
+
+msgid "CARP"
+msgstr ""
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -3368,6 +3377,9 @@ msgstr "Каталог носителей"
 msgid "Medium acoustic output"
 msgstr "Средний уровень шума"
 
+msgid "Member Interface"
+msgstr ""
+
 msgid "Memory usage"
 msgstr "Использование памяти"
 
@@ -4726,6 +4738,9 @@ msgstr ""
 "Размер, предлагаемый инициатору (до 8 Эксабайт, 8EiB=8388608TiB). "
 "Действительный размер зависит от ваших дисков."
 
+msgid "Skew"
+msgstr ""
+
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "Sleep - проверять устройство, пока оно не в режиме сна (SLEEP)."
 
@@ -5231,7 +5246,7 @@ msgstr "Атрибут '%s' может состоять только из сим
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr "Параметр '%s' может состоять только из символов a-z, A-Z, 0-9."
 
-#, c-format
+#, c-format, php-format
 msgid "The attribute '%s' must be a number."
 msgstr "Атрибут '%s' должен быть числом."
 
@@ -5842,6 +5857,14 @@ msgstr "Эти параметры будут добавлены к глобал�
 msgid ""
 "These parameters will be added to the module configuration in rsyncd.conf."
 msgstr "Эти параметры будут добавлены к настройкам модуля в rsyncd.conf."
+
+msgid ""
+"This Bridge cannot be deleted because it is still being used as an interface."
+msgstr ""
+
+msgid ""
+"This CARP cannot be deleted because it is still being used as an interface."
+msgstr ""
 
 msgid ""
 "This LAGG cannot be deleted because it is still being used as an interface."
@@ -6642,6 +6665,9 @@ msgstr "Пользователи и группы"
 msgid "Using %s bytes fragment size."
 msgstr "Использовать резмер фрагмента в %s байт."
 
+msgid "VHID"
+msgstr ""
+
 msgid "VLAN"
 msgstr "VLAN"
 
@@ -6656,6 +6682,12 @@ msgstr "Переменная"
 
 msgid "Version"
 msgstr "Версия"
+
+msgid "Virtual Host ID"
+msgstr ""
+
+msgid "Virtual IP address"
+msgstr ""
 
 msgid "Virtual device"
 msgstr "Виртуальные устройства"
@@ -7091,6 +7123,3 @@ msgstr "размонтировать"
 
 msgid "upriv"
 msgstr "upriv"
-
-#~ msgid "The name or IP address of the LDAP server."
-#~ msgstr "Имя или IP-адрес сервера LDAP."

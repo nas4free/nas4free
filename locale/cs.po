@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-11 09:48+0000\n"
+"POT-Creation-Date: 2012-11-15 01:46+0000\n"
 "PO-Revision-Date: 2012-06-02 00:22+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-11 02:16+0000\n"
-"X-Generator: Launchpad (build 16251)\n"
+"X-Launchpad-Export-Date: 2012-11-14 17:36+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 "Language: \n"
 "X-Poedit-Language: Czech\n"
@@ -443,6 +443,9 @@ msgstr "Pokročilá správa napájení"
 msgid "Advanced settings"
 msgstr "Pokročilá nastavení"
 
+msgid "Advertisement skew"
+msgstr ""
+
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
@@ -741,6 +744,9 @@ msgstr "Čas, po kterém zčerná obrazovka"
 msgid "Blocksize"
 msgstr ""
 
+msgid "Bridge"
+msgstr ""
+
 msgid "Browseable"
 msgstr "Prohlížitelné"
 
@@ -752,6 +758,9 @@ msgstr "Bulharština"
 
 msgid "By default, only already existing files can be uploaded."
 msgstr "Implicitně mohu být nahrávány pouze existující soubory."
+
+msgid "CARP"
+msgstr ""
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -3293,6 +3302,9 @@ msgstr ""
 msgid "Medium acoustic output"
 msgstr "Střední hlučnost"
 
+msgid "Member Interface"
+msgstr ""
+
 msgid "Memory usage"
 msgstr "Využití paměti"
 
@@ -4603,6 +4615,9 @@ msgid ""
 "on your disks.)"
 msgstr ""
 
+msgid "Skew"
+msgstr ""
+
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "Sleep - Kontrolovat stav zařízení pouze pokud není ve SLEEP režimu."
 
@@ -5098,7 +5113,7 @@ msgstr "Atribut „%s“ může obsahovat pouze znaky a-z, A-Z, 0-9, _ , -."
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr "Atribut „%s“ může obsahovat pouze znaky a-z, A-Z, 0-9."
 
-#, c-format
+#, c-format, php-format
 msgid "The attribute '%s' must be a number."
 msgstr "Atribut „%s“ musí být číslo."
 
@@ -5638,6 +5653,14 @@ msgstr "Tyto parametry budou přidány do globálního nastavení v %s."
 msgid ""
 "These parameters will be added to the module configuration in rsyncd.conf."
 msgstr "Tyto parametry budou přidány k nastavení modulu v rsyncd.conf."
+
+msgid ""
+"This Bridge cannot be deleted because it is still being used as an interface."
+msgstr ""
+
+msgid ""
+"This CARP cannot be deleted because it is still being used as an interface."
+msgstr ""
 
 msgid ""
 "This LAGG cannot be deleted because it is still being used as an interface."
@@ -6332,6 +6355,9 @@ msgstr "Uživatelé a skupiny"
 msgid "Using %s bytes fragment size."
 msgstr ""
 
+msgid "VHID"
+msgstr ""
+
 msgid "VLAN"
 msgstr "VLAN"
 
@@ -6346,6 +6372,12 @@ msgstr "Proměná"
 
 msgid "Version"
 msgstr "Verze"
+
+msgid "Virtual Host ID"
+msgstr ""
+
+msgid "Virtual IP address"
+msgstr ""
 
 msgid "Virtual device"
 msgstr ""
@@ -6758,6 +6790,3 @@ msgstr "odpojit"
 
 msgid "upriv"
 msgstr "upriv"
-
-#~ msgid "The name or IP address of the LDAP server."
-#~ msgstr "Jméno nebo IP adresa LDAP serveru."
