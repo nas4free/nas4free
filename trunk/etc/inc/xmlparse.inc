@@ -50,6 +50,7 @@ $listtags = explode(" ", "dnsserver winsserver disk vdisk diskr sharetosync " .
 	"minute hour day month weekday content rsyncclient rsynclocal package " .
 	"ipv6dnsserver share auxparam extent device target storage group job report " .
 	"cmd module selftest url param lagg laggport vdevice pool dataset volume " .
+	"bridge bridgeif carp " .
 	"snapshot autosnapshot rule " .
 	"portalgroup portal initiatorgroup iginitiatorname ignetmask authgroup " .
 	"agauth pgigmap agmap lunmap");
