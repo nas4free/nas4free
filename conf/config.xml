@@ -545,6 +545,28 @@
 			<laggport>rl0<laggport>
 			<desc>xxx</desc>
 		</lagg>
+		<bridge>
+			<enable/>
+			<uuid>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</uuid>
+			<if>bridge0</if>
+			<bridgeif>vmx3f0</bridgeif>
+			<bridgeif>vmx3f1</bridgeif>
+			<mtu>9000</mtu>
+			<extraoptions/>
+			<desc>xxx</desc>
+		</bridge>
+		<carp>
+			<enable/>
+			<uuid>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</uuid>
+			<if>carp0</if>
+			<vhid>1</vhid>
+			<vipaddr>192.168.1.100</vipaddr>
+			<vsubnet>24</vsubnet>
+			<advskew>100</advskew>
+			<password>xxx</password>
+			<extraoptions/>
+			<desc>xxx</desc>
+		</carp>
 	</vinterfaces>
 	-->
 	<staticroutes>
