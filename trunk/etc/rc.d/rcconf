@@ -212,7 +212,7 @@ setifconfig()
 		${configxml_file} | /usr/local/bin/xml unesc | \
 		while read _laggport _laggport_mtu; do
 			_laggport_args="up"
-			[ -n "${_laggport_mtu}" ] && _laggport_args="$_laggport_args mtu ${_laggport_mtu}"
+			[ -n "${_laggport_mtu}" ] && _laggport_args="${_laggport_args} mtu ${_laggport_mtu}"
 			[ -n "${_laggport}" ] && eval /usr/local/sbin/rconf attribute set "ifconfig_${_laggport}" "${_laggport_args}"
 		done
 
@@ -225,7 +225,7 @@ setifconfig()
 		${configxml_file} | /usr/local/bin/xml unesc | \
 		while read _bridgeif _bridgeif_mtu; do
 			_bridgeif_args="up"
-			[ -n "${_bridgeif_mtu}" ] && _bridgeif_args="$_bridgeif_args mtu ${_bridgeif_mtu}"
+			[ -n "${_bridgeif_mtu}" ] && _bridgeif_args="${_bridgeif_args} mtu ${_bridgeif_mtu}"
 			[ -n "${_bridgeif}" ] && eval /usr/local/sbin/rconf attribute set "ifconfig_${_bridgeif}" "${_bridgeif_args}"
 		done
 	/usr/local/bin/xml sel -t \
@@ -239,7 +239,17 @@ setifconfig()
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc | \
 		while read _bridge _bridge_args; do
-			_bridge_args="up $_bridge_args"
+			_bridge_args="up ${_bridge_args}"
+			_bridge_addr=`/usr/local/bin/xml sel -t -m "//interfaces/*[if = '${_bridge}']" \
+				-i "ipaddr[. = 'dhcp']" -o "syncdhcp" -b \
+				-i "ipaddr[. != 'dhcp']" -v "concat('inet ',ipaddr,'/',subnet)" -b \
+				-b \
+				${configxml_file} | /usr/local/bin/xml unesc`
+			if [ "${_bridge_addr}" = "syncdhcp" ]; then
+				_bridge_args="${_bridge_args} ${_bridge_addr}"
+			else
+				[ -n "${_bridge_addr}" ] && eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_bridge}" "${_bridge_addr}"
+			fi
 			[ -n "${_bridge}" ] && eval /usr/local/sbin/rconf attribute set "ifconfig_${_bridge}" "${_bridge_args}"
 		done
 
