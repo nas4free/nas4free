@@ -392,11 +392,41 @@ function zfs_dataset_configure($uuid) {
 	if (isset($dataset['snapdir']))
 		$param .= "-o snapdir=visible ";
 
+	$result = 0;
+
 	// Create the dataset
 	$cmd = "zfs create {$param} {$dataset['pool'][0]}/{$dataset['name']}";
 	write_log($cmd);
+	$result |= mwexec($cmd, true);
 
-	return mwexec($cmd, true);
+	if ($result != 0) {
+		write_log("Error: Failed to create the dataset '{$dataset[name]}'");
+		return $result;
+	}
+
+	// Check mountpoint
+	$mounted = isset($dataset['canmount']) ? true : falese;
+	$mountpoint = "/mnt/{$dataset['pool'][0]}/{$dataset['name']}";
+	mwexec2("zfs list -H -t filesystem -o mountpoint {$dataset['pool'][0]}/{$dataset['name']}", $rawdata2);
+	if (!empty($rawdata2) && $rawdata2[0] != "none" && $rawdata2[0] != "legacy")
+		$mountpoint = $rawdata2[0];
+
+	// Set access restrictions
+	if (!empty($mountpoint) && isset($dataset['canmount'])) {
+		if (is_array($dataset['accessrestrictions'])) {
+			$mode = $dataset['accessrestrictions']['mode'];
+			$owner = $dataset['accessrestrictions']['owner'];
+			$group = $dataset['accessrestrictions']['group'][0];
+			write_log("{$mountpoint} $mode $owner $group");
+			if (file_exists($mountpoint) && is_writable($mountpoint)) {
+				if (!@chmod($mountpoint, octdec($mode)) || !@chown($mountpoint, $owner) || !@chgrp($mountpoint, $group)) {
+					write_log("Error: Failed to set access restrictions on directory '{$mountpoint}'");
+				}
+			}
+		}
+	}
+
+	return $result;
 }
 
 /**
@@ -537,12 +567,14 @@ function zfs_dataset_properties($uuid) {
 		write_log($cmd);
 		$result |= mwexec($cmd, true);
 	}
+
+	// Set access restrictions
 	if (!empty($mountpoint) && isset($dataset['canmount'])) {
 		if (is_array($dataset['accessrestrictions'])) {
 			$mode = $dataset['accessrestrictions']['mode'];
 			$owner = $dataset['accessrestrictions']['owner'];
 			$group = $dataset['accessrestrictions']['group'][0];
-write_log("{$mountpoint} $mode $owner $group");
+			write_log("{$mountpoint} $mode $owner $group");
 			if (file_exists($mountpoint) && is_writable($mountpoint)) {
 				if (!@chmod($mountpoint, octdec($mode)) || !@chown($mountpoint, $owner) || !@chgrp($mountpoint, $group)) {
 					write_log("Error: Failed to set access restrictions on directory '{$mountpoint}'");
