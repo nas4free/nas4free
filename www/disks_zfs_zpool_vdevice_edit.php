@@ -64,6 +64,27 @@ function strip_partition($device) {
 	}
 	return $device;
 }
+function strip_exists($device, &$a_vdevice) {
+	if (false !== array_search_ex($diskv['devicespecialfile'], $a_vdevice, "device"))
+		return true;
+	foreach ($a_vdevice as $vdevs) {
+		foreach ($vdevs['device'] as $dev) {
+			// label
+			$tmp = disks_label_to_device($dev);
+			if (strcmp($tmp, $device) == 0)
+				return true;
+			// label+partition
+			$tmp = strip_partition($tmp);
+			if (strcmp($tmp, $device) == 0)
+				return true;
+			// partition
+			$tmp = strip_partition($dev);
+			if (strcmp($tmp, $device) == 0)
+				return true;
+		}
+	}
+	return false;
+}
 
 if (!isset($uuid) && (empty($a_disk)) && (empty($a_encrypteddisk))) {
 	$errormsg = sprintf(gettext("No disks available. Please add new <a href='%s'>disk</a> first."), "disks_manage.php");
@@ -217,7 +238,7 @@ function enable_change(enable_change) {
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_inputbox("name", gettext("Name"), $pconfig['name'], "", true, 20, isset($uuid) && false !== $cnid);?>
 					<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("stripe" => gettext("Stripe"), "mirror" => gettext("Mirror"), "raidz1" => gettext("Single-parity RAID-Z"), "raidz2" => gettext("Double-parity RAID-Z"), "raidz3" => gettext("Triple-parity RAID-Z"), "spare" => gettext("Hot Spare"), "cache" => gettext("Cache"), "log" => gettext("Log"), "log-mirror" => gettext("Log (mirror)")), "", true, isset($uuid) && false !== $cnid);?>
-					<?php $a_device = array(); foreach ($a_disk as $diskv) { if (isset($uuid) && false !== $cnid && !(is_array($pconfig['device']) && in_array($diskv['devicespecialfile'], $pconfig['device']))) { continue; } if ((!isset($uuid) || isset($uuid) && false === $cnid) && false !== array_search_ex($diskv['devicespecialfile'], $a_vdevice, "device")) { continue; } $a_device[$diskv['devicespecialfile']] = htmlspecialchars("{$diskv['name']} ({$diskv['size']}, {$diskv['desc']})"); }?>
+					<?php $a_device = array(); foreach ($a_disk as $diskv) { if (isset($uuid) && false !== $cnid && !(is_array($pconfig['device']) && in_array($diskv['devicespecialfile'], $pconfig['device']))) { continue; } if ((!isset($uuid) || isset($uuid) && false === $cnid) && false !== strip_exists($diskv['devicespecialfile'], $a_vdevice)) { continue; } $a_device[$diskv['devicespecialfile']] = htmlspecialchars("{$diskv['name']} ({$diskv['size']}, {$diskv['desc']})"); }?>
 					<?php
 					    if (isset($uuid) && false !== $cnid) {
 						foreach($a_vdevice[$cnid]['device'] as $dev) {
