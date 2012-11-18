@@ -36,7 +36,6 @@
 */
 require("auth.inc");
 require("guiconfig.inc");
-require("sajax/sajax.php");
 
 $pgtitle = array(gettext("Status"), gettext("Processes"));
 
@@ -45,16 +44,21 @@ function get_process_info() {
 	return implode("\n", $result);
 }
 
-sajax_init();
-sajax_export("get_process_info");
-sajax_handle_client_request();
+if (is_ajax()) {
+	$procinfo = get_process_info();
+	render_ajax($procinfo);
+}
 ?>
 <?php include("fbegin.inc");?>
 <script type="text/javascript">//<![CDATA[
-<?php sajax_show_javascript();?>
+$(document).ready(function(){
+	var gui = new GUI;
+	gui.recall(0, 5000, 'status_process.php', null, function(data) {
+		$('#procinfo').val(data.data);
+	});
+});
 //]]>
 </script>
-<script type="text/javascript" src="javascript/status_process.js"></script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="tabcont">
@@ -62,7 +66,7 @@ sajax_handle_client_request();
 				<?php html_titleline(gettext("Processes information"));?>
 			  <tr>
 			    <td class="listt">
-			    	<pre><textarea style="width: 98%;" id="procinfo" name="procinfo" class="listcontent" cols="95" rows="30" readonly="readonly"><?=htmlspecialchars(get_process_info());?></textarea></pre>
+			    	<pre><textarea style="width: 98%;" id="procinfo" name="procinfo" class="listcontent" cols="95" rows="30" readonly="readonly"></textarea></pre>
 			    </td>
 			  </tr>
 			</table>
