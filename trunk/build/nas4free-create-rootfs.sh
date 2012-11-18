@@ -64,6 +64,7 @@ mkdir dev ;
 mkdir etc ;
 mkdir etc/mail ;
 mkdir etc/defaults ;
+mkdir etc/devd ;
 mkdir etc/inc ;
 mkdir etc/install ;
 mkdir etc/pam.d ;

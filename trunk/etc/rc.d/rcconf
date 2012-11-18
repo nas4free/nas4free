@@ -264,7 +264,27 @@ setifconfig()
 		${configxml_file} | /usr/local/bin/xml unesc | \
 		while read _carp _carp_args; do
 			_carp_args="up $_carp_args"
+			_carp_linkup=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${_carp}']" \
+				-v "linkup" \
+				${configxml_file} | /usr/local/bin/xml unesc`
+			_carp_linkdown=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${_carp}']" \
+				-v "linkdown" \
+				${configxml_file} | /usr/local/bin/xml unesc`
 			[ -n "${_carp}" ] && eval /usr/local/sbin/rconf attribute set "ifconfig_${_carp}" "${_carp_args}"
+			[ -n "${_carp}" ] && cat <<EOF > "/etc/devd/${_carp}.conf"
+notify 30 {
+	match "system" "IFNET";
+	match "subsystem" "${_carp}";
+	match "type" "LINK_UP";
+	action "${_carp_linkup}";
+};
+notify 30 {
+	match "system" "IFNET";
+	match "subsystem" "${_carp}";
+	match "type" "LINK_DOWN";
+	action "${_carp_linkdown}";
+};
+EOF
 		done
 
 	#########################################################################
