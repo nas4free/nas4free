@@ -133,6 +133,9 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
       <p> PHP (<a href="http://www.php.net" target="_blank">http://www.php.net</a>).<br />
         Copyright &copy; 1999-2012 The PHP Group. All rights reserved.</p>
 
+      <p> jQuery (<a href="http://jquery.com" target="_blank">http://jquery.com</a>).<br />
+        Copyright &copy; 2012 jQuery Foundation.</p>
+
       <p> Lighttpd (<a href="http://www.lighttpd.net" target="_blank">http://www.lighttpd.net</a>)<br />
         Copyright &copy; 2004 by Jan Kneschke (jan@kneschke.de). All rights reserved.</p>
 

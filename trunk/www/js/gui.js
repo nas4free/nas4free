@@ -5,10 +5,6 @@
 	Copyright (c) 2012 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met: 
 
@@ -33,34 +29,54 @@
 	of the authors and should not be interpreted as representing official policies, 
 	either expressed or implied, of the FreeBSD Project.
 */
+
+// backward compatibility
 function showElementById(id, state) {
-	var element = document.getElementById(id);
 	switch (state) {
 		case "show":
-			element.style.display = "";
-			break;
+	    		jQuery('#'+id).show(); break;
 		case "hide":
-			element.style.display = "none";
+			jQuery('#'+id).hide(); break;
 	}
 }
 
-function onKeyPress(evt) {
-	var evt = (evt) ? evt : ((event) ? event : null);
-	var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
-	if ((evt.keyCode == 13) && ((node.type=="text") || node.type=="checkbox")) { return false; }
-}
+// prevent enter key in the form
+jQuery(document).keypress(function(e){
+	if (e.which == 13) {
+		if (e.target.type == "text" || e.target.type == "checkbox") {
+			e.preventDefault();
+			return;
+		}
+	}
+});
 
-/**
- * Helper function to check the browser type
- */
-function isBrowser(regex) {
-		return regex.test(navigator.userAgent.toLowerCase());
-}
-
-/**
- * Local variables for browser checking
- */ 
-var isOpera = isBrowser(/opera/),
-	isIE = !isOpera && isBrowser(/msie/);
-
-document.onkeypress = onKeyPress;
+// gui constructor and methods
+var GUI = function(){
+	this.timer = null;
+	this.setup();
+};
+GUI.prototype = {
+	setup: function() {
+		var self = this;
+		// other setup...
+	},
+	recall: function(firstTime, nextTime, url, data, callback) {
+		var self = this;
+		self.timer = setTimeout(function ajaxFunc() {
+			jQuery.when(
+				jQuery.ajax({
+					type: 'GET',
+					url: url,
+					dataType: 'json',
+					data: data,
+				})
+			).then(function(data, textStatus, jqXHR) {
+				callback(data, textStatus, jqXHR);
+				self.timer = setTimeout(ajaxFunc, nextTime);
+			}, function(jqXHR, textStatus, errorThrown) {
+				clearTimeout(self.timer);
+			});
+		}, firstTime);
+		return self;
+	}
+};
