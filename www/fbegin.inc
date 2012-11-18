@@ -104,6 +104,8 @@ $menu['services']['desc'] = gettext("Services");
 $menu['services']['visible'] = Session::isAdmin();
 $menu['services']['link'] = "status_services.php";
 $menu['services']['menuitem'] = array();
+$menu['services']['menuitem'][] = array("desc" => gettext("HAST"), "link" => "services_hast.php", "visible" => TRUE);
+$menu['services']['menuitem'][] = array("type" => "separator", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("CIFS/SMB"), "link" => "services_samba.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("FTP"), "link" => "services_ftp.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("TFTP"), "link" => "services_tftp.php", "visible" => TRUE);
@@ -236,10 +238,11 @@ function display_menu($menuid) {
 	<?php if (isset($pgrefresh) && $pgrefresh):?>
 	<meta http-equiv="refresh" content="<?=$pgrefresh;?>" />
 	<?php endif;?>
-    <link href="gui.css" rel="stylesheet" type="text/css" />
+	<link href="gui.css" rel="stylesheet" type="text/css" />
 	<link href="navbar.css" rel="stylesheet" type="text/css" />
 	<link href="tabs.css" rel="stylesheet" type="text/css" />	
-	<script type="text/javascript" src="javascript/gui.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/gui.js"></script>
 	<script type="text/javascript" src="javascript/navbar.js"></script>
 <?php
 	if (isset($pglocalheader) && !empty($pglocalheader)) {

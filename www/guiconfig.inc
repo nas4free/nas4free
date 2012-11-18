@@ -87,6 +87,32 @@ $input_errors = array();
 $errormsg = "";
 $savemsg = "";
 
+/* AJAX misc */
+function is_ajax() {
+	if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])) {
+		if (strcasecmp($_SERVER['HTTP_X_REQUESTED_WITH'], 'XMLHttpRequest') == 0)
+			return true;
+	}
+	return false;
+}
+
+function render_ajax($data, $result = 0)
+{
+	$a = array('result' => $result);
+	if (isset($data)) {
+		if (is_array($data)) {
+			$a = array_merge($a, $data);
+		} else {
+			$a = array_merge($a, array('data' => $data));
+		}
+	}
+
+	header("Content-Type: application/json; UTF-8\n");
+	echo json_encode($a);
+	exit;
+}
+
+
 function do_input_validation($postdata, $reqdfields, $reqdfieldsn, &$input_errors) {
 	/* check for bad control characters */
 	foreach ($postdata as $pn => $pd) {

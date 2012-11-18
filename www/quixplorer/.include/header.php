@@ -115,6 +115,8 @@ $menu['services']['desc'] = gettext("Services");
 $menu['services']['visible'] = Session::isAdmin();
 $menu['services']['link'] = "../status_services.php";
 $menu['services']['menuitem'] = array();
+$menu['services']['menuitem'][] = array("desc" => gettext("HAST"), "link" => "../services_hast.php", "visible" => TRUE);
+$menu['services']['menuitem'][] = array("type" => "separator", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("CIFS/SMB"), "link" => "../services_samba.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("FTP"), "link" => "../services_ftp.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("TFTP"), "link" => "../services_tftp.php", "visible" => TRUE);
