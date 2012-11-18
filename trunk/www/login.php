@@ -155,7 +155,8 @@ function display_menu($menuid) {
 	<link href="gui.css" rel="stylesheet" type="text/css" />
 	<link href="navbar.css" rel="stylesheet" type="text/css" />
 	<link href="tabs.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="javascript/gui.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/gui.js"></script>
 	<script type="text/javascript" src="javascript/navbar.js"></script>
 <?php
 	if (isset($pglocalheader) && !empty($pglocalheader)) {
