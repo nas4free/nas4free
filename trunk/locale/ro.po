@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2012-11-15 01:46+0000\n"
-"PO-Revision-Date: 2012-11-03 08:49+0000\n"
+"PO-Revision-Date: 2012-11-17 10:09+0000\n"
 "Last-Translator: Laurentiu BUBUIANU <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-14 17:36+0000\n"
-"X-Generator: Launchpad (build 16265)\n"
+"X-Launchpad-Export-Date: 2012-11-18 00:32+0000\n"
+"X-Generator: Launchpad (build 16278)\n"
 "X-Poedit-Country: ROMANIA\n"
 "Language: \n"
 "X-Poedit-Language: Romanian\n"
@@ -439,7 +439,7 @@ msgid "Administrator name"
 msgstr "Nume Administrator"
 
 msgid "Advanced"
-msgstr "Setări avansate"
+msgstr "Setări Avansate"
 
 msgid "Advanced Configuration"
 msgstr "Configurare avansată"
@@ -454,10 +454,10 @@ msgid "Advanced Power Management"
 msgstr "Mod avansat de management energie"
 
 msgid "Advanced settings"
-msgstr "Setări avansate"
+msgstr "Setări Avansate"
 
 msgid "Advertisement skew"
-msgstr ""
+msgstr "Decalaj anunţat"
 
 #, php-format
 msgid ""
@@ -620,7 +620,7 @@ msgid "Apple Filing Protocol"
 msgstr "Protocol Apple Filing"
 
 msgid "Apply"
-msgstr "Aplica"
+msgstr "Aplică"
 
 msgid "Apply changes"
 msgstr "Aplicare modificări"
@@ -764,7 +764,7 @@ msgid "Blocksize"
 msgstr "Dimensiune Block"
 
 msgid "Bridge"
-msgstr ""
+msgstr "Bridge"
 
 msgid "Browseable"
 msgstr "Vizibil"
@@ -779,7 +779,7 @@ msgid "By default, only already existing files can be uploaded."
 msgstr "Implicit, doar fişierele existente deja pot fi încărcate."
 
 msgid "CARP"
-msgstr ""
+msgstr "CARP"
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -2183,7 +2183,7 @@ msgstr "Eroare"
 
 #, c-format
 msgid "Error: The changes could not be applied (error code %s)."
-msgstr "Eroare: Schimbarile nu pot fi aplicate (cod de eroare %s)."
+msgstr "Eroare: Modificările nu pot fi aplicate (cod de eroare %s)."
 
 msgid "Event"
 msgstr "Eveniment"
@@ -3398,7 +3398,7 @@ msgid "Medium acoustic output"
 msgstr "Nivel Mediu de Zgomot"
 
 msgid "Member Interface"
-msgstr ""
+msgstr "Interfaţă membru"
 
 msgid "Memory usage"
 msgstr "Utilizare memorie"
@@ -3930,11 +3930,11 @@ msgid "Password of domain administrator account."
 msgstr "Parola contului de administrator."
 
 msgid "Password server"
-msgstr ""
+msgstr "Server Parolă"
 
 msgid ""
 "Password server name or IP address (e.g. Active Directory domain controller)."
-msgstr ""
+msgstr "Nume sau adresă IP server parolă (ex. controler AD)"
 
 msgid "Password suffix"
 msgstr "Sufix parola"
@@ -4105,7 +4105,7 @@ msgid "Preserve permissions"
 msgstr "Păstrează permisiunile"
 
 msgid "Primary"
-msgstr ""
+msgstr "Primar"
 
 msgid "Primary Group"
 msgstr "Grup primar"
@@ -4533,7 +4533,7 @@ msgid "Scheduled shutdown"
 msgstr "Oprire Programată"
 
 msgid "Secondary"
-msgstr ""
+msgstr "Secundar"
 
 msgid "Secret"
 msgstr "Secret"
@@ -4617,7 +4617,7 @@ msgid "Set additional group memberships for this account."
 msgstr "Selecteaza grupuri aditionale pentru acest cont."
 
 msgid "Set browseable"
-msgstr "Activare Rasfoire"
+msgstr "Activare Răsfoire"
 
 msgid "Set read only"
 msgstr "Setare doar citire"
@@ -4756,7 +4756,7 @@ msgstr ""
 "depinzînd de mărimea discurilor dumneavoastră)."
 
 msgid "Skew"
-msgstr ""
+msgstr "Skew"
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "Sleep - Verificare dispozitiv doar dacă nu este deja în modul Sleep."
@@ -5342,8 +5342,8 @@ msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
 "for them to take effect."
 msgstr ""
-"Configuraţia a fost modificată.<br />Trebuie să aplicaţi modificările pentru "
-"a deveni active."
+"Configuraţia a fost modificată.<br />Pentru a deveni activă însă trebuie să "
+"utilizaţi butonul 'Aplică'."
 
 #, php-format
 msgid "The configuration has been restored. %s is now rebooting."
@@ -5702,7 +5702,7 @@ msgid "The size of the swap file in MB."
 msgstr "Dimensiunea fişierului swap în MB."
 
 msgid "The space-separated list of URIs for the LDAP server."
-msgstr ""
+msgstr "Lista URIs (cu separator spaţiu) pentru serverul LDAP."
 
 #, php-format
 msgid "The storage area mapped to LUN%d."
@@ -5887,10 +5887,12 @@ msgstr ""
 msgid ""
 "This Bridge cannot be deleted because it is still being used as an interface."
 msgstr ""
+"Conexiunea tip Bridge nu poate fi ştearsă fiind încă utilizată ca interfaţă."
 
 msgid ""
 "This CARP cannot be deleted because it is still being used as an interface."
 msgstr ""
+"Conexiunea CARP nu poate fi ştearsă fiind încă utilizată ca interfaţă."
 
 msgid ""
 "This LAGG cannot be deleted because it is still being used as an interface."
@@ -5964,8 +5966,8 @@ msgid ""
 "This controls whether this share is seen in the list of available shares in "
 "a net view and in the browse list."
 msgstr ""
-"Se stabileste daca partajarea definita este vizibila sau nu in modul "
-"Rasfoire."
+"Stabileşte dacă partajarea definită va fi vizibilă sau nu în modul Răsfoire "
+"(Browse)."
 
 msgid "This couple targetname/targetaddress already exists in the disk list."
 msgstr "Acest cuplu nume tinta/adresa tinta exista deja."
@@ -6398,9 +6400,9 @@ msgid ""
 "Traceroute may take a while to complete. You may hit the Stop button on your "
 "browser at any time to see the progress of failed traceroutes."
 msgstr ""
-"Trasarea rutei poate dura cîteva momente. Puteţi apăsa în orice moment "
-"butonul Stop în browser pentru a vedea rutele descoperite pină în acel "
-"moment."
+"Trasarea rutei poate dura cîteva momente. Puteţi renunţa în orice moment "
+"apăsînd butonul Stop, în browser fiind afişate rutele descoperite pină în "
+"acel moment."
 
 msgid "Traffic graph"
 msgstr "Grafic Trafic"
@@ -6506,7 +6508,7 @@ msgid "UPnP friendly name."
 msgstr "Nume simplu UPnP."
 
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 msgid "URL"
 msgstr "URL"
@@ -6699,7 +6701,7 @@ msgid "Using %s bytes fragment size."
 msgstr "Utilizare fragmente de %s octeţi."
 
 msgid "VHID"
-msgstr ""
+msgstr "VHID"
 
 msgid "VLAN"
 msgstr "VLAN"
@@ -6717,10 +6719,10 @@ msgid "Version"
 msgstr "Versiune"
 
 msgid "Virtual Host ID"
-msgstr ""
+msgstr "ID Sistem Virtual"
 
 msgid "Virtual IP address"
-msgstr ""
+msgstr "Adresă IP Virtuală"
 
 msgid "Virtual device"
 msgstr "Dispozitiv virtual"
@@ -6943,8 +6945,7 @@ msgstr "Trebuie sa selectati cel putin o metoda de autentificare."
 
 msgid "You should use HTTPS as WebGUI protocol for sending passphrase."
 msgstr ""
-"Va trebuie sa folositi protocolul HTTPS pentru Interfata Web la trimiterea "
-"frazei de control"
+"Pentru trimiterea frazei de control trebuie să folosiţi protocolul HTTPS"
 
 msgid "Your ZFS system is not healthy."
 msgstr "Sistemul ZFS conţine erori."
