@@ -36,7 +36,6 @@
 */
 require("auth.inc");
 require("guiconfig.inc");
-require("sajax/sajax.php");
 
 $pgtitle = array(gettext("Disks"), gettext("Format"));
 
@@ -65,12 +64,14 @@ function get_fs_type($devicespecialfile) {
 	return $a_disk[$index]['fstype'];
 }
 
+if (is_ajax()) {
+	$devfile = $_GET['devfile'];
+	$fstype = get_fs_type($devfile);
+	render_ajax($fstype);
+}
+
 // Advanced Format
 $pconfig['aft4k'] = false;
-
-sajax_init();
-sajax_export("get_fs_type");
-sajax_handle_client_request();
 
 if ($_POST) {
 	unset($input_errors);
@@ -130,10 +131,38 @@ if (!isset($do_format)) {
 ?>
 <?php include("fbegin.inc");?>
 <script type="text/javascript">//<![CDATA[
-<?php sajax_show_javascript();?>
+$(document).ready(function(){
+	var gui = new GUI;
+	$('#type').change(function(){
+		switch ($('#type').val()) {
+		case "ufsgpt":
+			$('#minspace_tr').show();
+			$('#volumelabel_tr').show();
+			$('#aft4k_tr').show();
+			break;
+		case "ext2":
+		case "msdos":
+			$('#minspace_tr').hide();
+			$('#volumelabel_tr').show();
+			$('#aft4k_tr').hide();
+			break;
+		default:
+			$('#minspace_tr').hide();
+			$('#volumelabel_tr').hide();
+			$('#aft4k_tr').hide();
+			break;
+		}
+	});
+	$('#disk').change(function(){
+		var devfile = $('#disk').val();
+		gui.ajax('', { devfile: devfile }, function(data){
+			$('#type').val(data.data).change();
+		});
+	});
+	$('#type').change();
+});
 //]]>
 </script>
-<script type="text/javascript" src="javascript/disks_init.js"></script>
 <form action="disks_init.php" method="post" name="iform" id="iform">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
@@ -144,7 +173,7 @@ if (!isset($do_format)) {
 			    <tr>
 			      <td valign="top" class="vncellreq"><?=gettext("Disk"); ?></td>
 			      <td class="vtable">
-			        <select name="disk" class="formfld" id="disk" onchange="disk_change()">
+			        <select name="disk" class="formfld" id="disk">
 								<option value=""><?=gettext("Must choose one");?></option>
 								<?php foreach ($a_disk as $diskv):?>
 								<?php if (0 == strcmp($diskv['size'], "NA")) continue;?>
@@ -159,7 +188,7 @@ if (!isset($do_format)) {
 					<tr>
 				    <td valign="top" class="vncellreq"><?=gettext("File system");?></td>
 				    <td class="vtable">
-				      <select name="type" class="formfld" id="type" onchange="type_change()">
+				      <select name="type" class="formfld" id="type">
 				        <?php foreach ($a_fst as $fstval => $fstname): ?>
 				        <option value="<?=$fstval;?>" <?php if($type == $fstval) echo 'selected="selected"';?>><?=htmlspecialchars($fstname);?></option>
 				        <?php endforeach; ?>
@@ -213,9 +242,4 @@ if (!isset($do_format)) {
 	</table>
 	<?php include("formend.inc");?>
 </form>
-<script type="text/javascript">
-<!--
-disk_change();
-//-->
-</script>
 <?php include("fend.inc");?>

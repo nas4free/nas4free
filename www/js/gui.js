@@ -78,5 +78,20 @@ GUI.prototype = {
 			});
 		}, firstTime);
 		return self;
+	},
+	ajax: function(url, data, callback) {
+		var self = this;
+		jQuery.when(
+			jQuery.ajax({
+				type: 'GET',
+				url: url,
+				dataType: 'json',
+				data: data,
+			})
+		).then(function(data, textStatus, jqXHR) {
+			callback(data, textStatus, jqXHR);
+		}, function(jqXHR, textStatus, errorThrown) {
+		});
+		return self;
 	}
 };
