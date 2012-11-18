@@ -890,6 +890,7 @@ use_svn() {
 	echo "===> Replacing old code with SVN code"
 
 	cd ${NAS4FREE_SVNDIR}/build && cp -pv CHANGES ${NAS4FREE_ROOTFS}/usr/local/www
+	cd ${NAS4FREE_SVNDIR}/build/scripts && cp -pv carp-hast-switch ${NAS4FREE_ROOTFS}/usr/local/sbin
 	cd ${NAS4FREE_SVNDIR}/root && find . \! -iregex ".*/\.svn.*" -print | cpio -pdumv ${NAS4FREE_ROOTFS}/root
 	cd ${NAS4FREE_SVNDIR}/etc && find . \! -iregex ".*/\.svn.*" -print | cpio -pdumv ${NAS4FREE_ROOTFS}/etc
 	cd ${NAS4FREE_SVNDIR}/www && find . \! -iregex ".*/\.svn.*" -print | cpio -pdumv ${NAS4FREE_ROOTFS}/usr/local/www
