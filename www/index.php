@@ -71,26 +71,26 @@ $(document).ready(function(){
 		}
 		if ($('#loadaverage').size() > 0)
 			$('#loadaverage').val(data.loadaverage);
-		if (data.cputemp)
+		if (typeof(data.cputemp) != 'undefined')
 			if ($('#cputemp').size() > 0)
 				$('#cputemp').val(data.cputemp);
-		if (data.cputemp2) {
+		if (typeof(data.cputemp2) != 'undefined') {
 			for (var idx = 0; idx < data.cputemp2.length; idx++) {
 				if ($('#cputemp'+idx).size() > 0)
 					$('#cputemp'+idx).val(data.cputemp2[idx]);
 			}
 		}
-		if (data.cpufreq)
+		if (typeof(data.cpufreq) != 'undefined')
 			if ($('#cpufreq').size() > 0)
 				$('#cpufreq').val(data.cpufreq + 'MHz');
-		if (data.cpuusage) {
+		if (typeof(data.cpuusage) != 'undefined') {
 			if ($('#cpuusage').size() > 0) {
 				$('#cpuusage').val(data.cpuusage + '%');
 				$('#cpuusageu').attr('width', data.cpuusage + 'px');
 				$('#cpuusagef').attr('width', (100 - data.cpuusage) + 'px');
 			}
 		}
-		if (data.cpuusage2) {
+		if (typeof(data.cpuusage2) != 'undefined') {
 			for (var idx = 0; idx < data.cpuusage2.length; idx++) {
 				if ($('#cpuusage'+idx).size() > 0) {
 					$('#cpuusage'+idx).val(data.cpuusage2[idx] + '%');
@@ -100,7 +100,7 @@ $(document).ready(function(){
 			}
 		}
 
-		if (data.diskusage) {
+		if (typeof(data.diskusage) != 'undefined') {
 			for (var idx = 0; idx < data.diskusage.length; idx++) {
 				var du = data.diskusage[idx];
 				if ($('#diskusage_'+du.id+'_bar_used').size() > 0) {
@@ -116,7 +116,7 @@ $(document).ready(function(){
 				}
 			}
 		}
-		if (data.swapusage) {
+		if (typeof(data.swapusage) != 'undefined') {
 			for (var idx = 0; idx < data.swapusage.length; idx++) {
 				var su = data.swapusage[idx];
 				if ($('#swapusage_'+su.id+'_bar_used').size() > 0) {
