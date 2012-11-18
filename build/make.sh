@@ -72,6 +72,7 @@ echo "NAS4FREE_TMPDIR=${NAS4FREE_TMPDIR}" >> ${NAS4FREE_MK}
 # Local variables
 NAS4FREE_URL=$(cat $NAS4FREE_SVNDIR/etc/prd.url)
 NAS4FREE_SVNURL="https://nas4free.svn.sourceforge.net/svnroot/nas4free/trunk"
+NAS4FREE_SVN_SRCTREE="svn://svn.FreeBSD.org/base/releng/9.1"
 
 # Size in MB of the MFS Root filesystem that will include all FreeBSD binary
 # and NAS4FREE WEbGUI/Scripts. Keep this file very small! This file is unzipped
@@ -155,8 +156,9 @@ update_sources() {
 	tempfile=$NAS4FREE_WORKINGDIR/tmp$$
 
 	# Choose what to do.
-	$DIALOG --title "$NAS4FREE_PRODUCTNAME - Update Sources" --checklist "Please select what to update." 10 60 4 \
-		"cvsup" "Update source tree" OFF \
+	$DIALOG --title "$NAS4FREE_PRODUCTNAME - Update Sources" --checklist "Please select what to update." 12 60 5 \
+		"svnco" "Fetch source tree" OFF \
+		"svnup" "Update source tree" OFF \
 		"freebsd-update" "Fetch and install binary updates" OFF \
 		"portsnap" "Update ports collection" OFF \
 		"portupgrade" "Upgrade ports on host" OFF 2> $tempfile
@@ -174,8 +176,10 @@ update_sources() {
 				freebsd-update fetch install;;
 			portsnap)
 				portsnap fetch update;;
-			cvsup)
-				csup -L 2 ${NAS4FREE_SVNDIR}/build/source-supfile;;
+			svnco)
+				rm -rf /usr/src; svn co ${NAS4FREE_SVN_SRCTREE} /usr/src;;
+			svnup)
+				svn up /usr/src;;
 			portupgrade)
 				portupgrade -aFP;;
   	esac
@@ -259,7 +263,7 @@ pre_build_kernel() {
 	# Create list of available packages.
 	echo "#! /bin/sh
 $DIALOG --title \"$NAS4FREE_PRODUCTNAME - Kernel Patches\" \\
---checklist \"Select the patches you want to add. Make sure you have clean/origin kernel sources (via cvsup) to apply patches successful.\" 22 75 14 \\" > $tempfile
+--checklist \"Select the patches you want to add. Make sure you have clean/origin kernel sources (via suvbersion) to apply patches successful.\" 22 75 14 \\" > $tempfile
 
 	for s in $NAS4FREE_SVNDIR/build/kernel-patches/*; do
 		[ ! -d "$s" ] && continue

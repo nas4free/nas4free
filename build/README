@@ -31,7 +31,6 @@ Check that you have installed the following ports:
 - php5
 - xproto
 - portupgrade
-- cvsup-without-gui
 - perl
 - ruby
 - m4
@@ -79,6 +78,6 @@ Execute all menus in '2' - Compile NAS4Free from scratch menu' to build your NAS
 4. Building kernel
 
 Before building the kernel it is recommended to delete the directory /usr/src completely.
-Next, run the build scripts and update the kernel sources via cvsup + freebsd-update.
+Next, run the build scripts and update the kernel sources via subversion + freebsd-update.
 Continue building using the 'Build kernel' menu in the build script.
  
