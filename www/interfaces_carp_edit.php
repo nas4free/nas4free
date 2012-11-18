@@ -55,6 +55,8 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_carp, "uuid"))
 	$pconfig['vsubnet'] = $a_carp[$cnid]['vsubnet'];
 	$pconfig['advskew'] = $a_carp[$cnid]['advskew'];
 	$pconfig['password'] = $a_carp[$cnid]['password'];
+	$pconfig['linkup'] = !empty($a_carp[$cnid]['linkup']) ? $a_carp[$cnid]['linkup'] : "";
+	$pconfig['linkdown'] = !empty($a_carp[$cnid]['linkdown']) ? $a_carp[$cnid]['linkdown'] : "";
 	$pconfig['extraoptions'] = !empty($a_carp[$cnid]['extraoptions']) ? $a_carp[$cnid]['extraoptions'] : "";
 	$pconfig['desc'] = $a_carp[$cnid]['desc'];
 } else {
@@ -66,6 +68,8 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_carp, "uuid"))
 	$pconfig['vsubnet'] = "24";
 	$pconfig['advskew'] = "100";
 	$pconfig['password'] = "";
+	$pconfig['linkup'] = "";
+	$pconfig['linkdown'] = "";
 	$pconfig['extraoptions'] = "";
 	$pconfig['desc'] = "";
 }
@@ -109,6 +113,8 @@ if ($_POST) {
 		$carp['vsubnet'] = $_POST['vsubnet'];
 		$carp['advskew'] = $_POST['advskew'];
 		$carp['password'] = $_POST['password'];
+		$carp['linkup'] = $_POST['linkup'];
+		$carp['linkdown'] = $_POST['linkdown'];
 		$carp['extraoptions'] = $_POST['extraoptions'];
 		$carp['desc'] = $_POST['desc'];
 
@@ -164,6 +170,8 @@ function get_nextcarp_id() {
 				<?php html_ipv4addrbox("vipaddr", "vsubnet", gettext("Virtual IP address"), $pconfig['vipaddr'], $pconfig['vsubnet'], "", true);?>
 				<?php html_inputbox("advskew", gettext("Advertisement skew"), $pconfig['advskew'], "", true, 5);?>
 				<?php html_inputbox("password", gettext("Password"), $pconfig['password'], "", true, 20);?>
+				<?php html_inputbox("linkup", gettext("Link up action"), $pconfig['linkup'], "", false, 60);?>
+				<?php html_inputbox("linkdown", gettext("Link down action"), $pconfig['linkdown'], "", false, 60);?>
 				<?php html_inputbox("extraoptions", gettext("Extra options"), $pconfig['extraoptions'], gettext("Extra options to ifconfig (usually empty)."), false, 40);?>
 				<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
 			</table>
