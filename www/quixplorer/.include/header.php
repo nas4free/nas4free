@@ -252,7 +252,8 @@ function show_header($title) {			// header for html-page
 	echo "<link href=\"../gui.css\" rel=\"stylesheet\" type=\"text/css\">\n";
 	echo "<link href=\"../navbar.css\" rel=\"stylesheet\" type=\"text/css\">\n";
 	echo "<link href=\"../tabs.css\" rel=\"stylesheet\" type=\"text/css\">\n";	
-	echo "<script type=\"text/javascript\" src=\"../javascript/gui.js\"></script>";
+	echo "<script type=\"text/javascript\" src=\"../js/jquery.min.js\"></script>\n";
+	echo "<script type=\"text/javascript\" src=\"../js/gui.js\"></script>\n";
 	echo "<script type=\"text/javascript\" src=\"../javascript/navbar.js\"></script>";
 	if (isset($pglocalheader) && !empty($pglocalheader)) {
 		if (is_array($pglocalheader)) {
