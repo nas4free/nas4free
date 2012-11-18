@@ -36,7 +36,6 @@
 */
 require("auth.inc");
 require("guiconfig.inc");
-require("sajax/sajax.php");
 
 $pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Pools"), gettext("I/O statistics"));
 
@@ -50,16 +49,21 @@ function zfs_zpool_get_iostat() {
 	return implode("\n", $rawdata);
 }
 
-sajax_init();
-sajax_export("zfs_zpool_get_iostat");
-sajax_handle_client_request();
+if (is_ajax()) {
+	$iostat = zfs_zpool_get_iostat();
+	render_ajax($iostat);
+}
 ?>
 <?php include("fbegin.inc");?>
 <script type="text/javascript">//<![CDATA[
-<?php sajax_show_javascript();?>
+$(document).ready(function(){
+	var gui = new GUI;
+	gui.recall(0, 5000, 'disks_zfs_zpool_io.php', null, function(data) {
+		$('#zfs_zpool_iostat').text(data.data);
+	});
+});
 //]]>
 </script>
-<script type="text/javascript" src="javascript/disks_zfs_zpool_io.js"></script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabnavtbl">
@@ -89,7 +93,7 @@ sajax_handle_client_request();
 				<?php html_titleline(gettext("Pool information and status"));?>
 				<tr>
 					<td class="listt">
-						<pre><span id="zfs_zpool_iostat"><?=zfs_zpool_get_iostat();?></span></pre>
+						<pre><span id="zfs_zpool_iostat"></span></pre>
 					</td>
 				</tr>
 			</table>
