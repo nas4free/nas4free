@@ -40,7 +40,6 @@ $pgperm['allowuser'] = TRUE;
 require("auth.inc");
 require("guiconfig.inc");
 require("zfs.inc");
-require("sajax/sajax.php");
 
 $pgtitle = array(gettext("System information"));
 $pgtitle_omit = true;
@@ -48,24 +47,94 @@ $pgtitle_omit = true;
 $smbios = get_smbios_info();
 $cpuinfo = system_get_cpu_info();
 
-function update_controls() {
+if (is_ajax()) {
 	$sysinfo = system_get_sysinfo();
-	return json_encode($sysinfo);
+	render_ajax($sysinfo);
 }
-
-sajax_init();
-sajax_export("update_controls");
-sajax_handle_client_request();
 
 if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
      @date_default_timezone_set(@date_default_timezone_get());
 ?>
 <?php include("fbegin.inc");?>
 <script type="text/javascript">//<![CDATA[
-<?php sajax_show_javascript();?>
+$(document).ready(function(){
+	var gui = new GUI;
+	gui.recall(5000, 5000, 'index.php', null, function(data) {
+		if ($('#uptime').size() > 0)
+			$('#uptime').text(data.uptime);
+		if ($('#date').size() > 0)
+			$('#date').val(data.date);
+		if ($('#memusage').size() > 0) {
+			$('#memusage').val(data.memusage.caption);
+			$('#memusageu').attr('width', data.memusage.percentage + 'px');
+			$('#memusagef').attr('width', (100 - data.memusage.percentage) + 'px');
+		}
+		if ($('#loadaverage').size() > 0)
+			$('#loadaverage').val(data.loadaverage);
+		if (data.cputemp)
+			if ($('#cputemp').size() > 0)
+				$('#cputemp').val(data.cputemp);
+		if (data.cputemp2) {
+			for (var idx = 0; idx < data.cputemp2.length; idx++) {
+				if ($('#cputemp'+idx).size() > 0)
+					$('#cputemp'+idx).val(data.cputemp2[idx]);
+			}
+		}
+		if (data.cpufreq)
+			if ($('#cpufreq').size() > 0)
+				$('#cpufreq').val(data.cpufreq + 'MHz');
+		if (data.cpuusage) {
+			if ($('#cpuusage').size() > 0) {
+				$('#cpuusage').val(data.cpuusage + '%');
+				$('#cpuusageu').attr('width', data.cpuusage + 'px');
+				$('#cpuusagef').attr('width', (100 - data.cpuusage) + 'px');
+			}
+		}
+		if (data.cpuusage2) {
+			for (var idx = 0; idx < data.cpuusage2.length; idx++) {
+				if ($('#cpuusage'+idx).size() > 0) {
+					$('#cpuusage'+idx).val(data.cpuusage2[idx] + '%');
+					$('#cpuusageu'+idx).attr('width', data.cpuusage2[idx] + 'px');
+					$('#cpuusagef'+idx).attr('width', (100 - data.cpuusage2[idx]) + 'px');
+				}
+			}
+		}
+
+		if (data.diskusage) {
+			for (var idx = 0; idx < data.diskusage.length; idx++) {
+				var du = data.diskusage[idx];
+				if ($('#diskusage_'+du.id+'_bar_used').size() > 0) {
+					$('#diskusage_'+du.id+'_name').text(du.name);
+					$('#diskusage_'+du.id+'_bar_used').attr('width', du.percentage + 'px');
+					$('#diskusage_'+du.id+'_bar_used').attr('title', du['tooltip'].used);
+					$('#diskusage_'+du.id+'_bar_free').attr('width', (100 - du.percentage) + 'px');
+					$('#diskusage_'+du.id+'_bar_free').attr('title', du['tooltip'].available);
+					$('#diskusage_'+du.id+'_capacity').text(du.capacity);
+					$('#diskusage_'+du.id+'_total').text(du.size);
+					$('#diskusage_'+du.id+'_used').text(du.used);
+					$('#diskusage_'+du.id+'_free').text(du.avail);
+				}
+			}
+		}
+		if (data.swapusage) {
+			for (var idx = 0; idx < data.swapusage.length; idx++) {
+				var su = data.swapusage[idx];
+				if ($('#swapusage_'+su.id+'_bar_used').size() > 0) {
+					$('#swapusage_'+su.id+'_bar_used').attr('width', su.percentage + 'px');
+					$('#swapusage_'+su.id+'_bar_used').attr('title', su['tooltip'].used);
+					$('#swapusage_'+su.id+'_bar_free').attr('width', (100 - su.percentage) + 'px');
+					$('#swapusage_'+su.id+'_bar_free').attr('title', su['tooltip'].available);
+					$('#swapusage_'+su.id+'_capacity').text(su.capacity);
+					$('#swapusage_'+su.id+'_total').text(su.total);
+					$('#swapusage_'+su.id+'_used').text(su.used);
+					$('#swapusage_'+su.id+'_free').text(su.avail);
+				}
+			}
+		}
+	});
+});
 //]]>
 </script>
-<script type="text/javascript" src="javascript/index.js"></script>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 <td>&nbsp;</td>
 </table>
@@ -244,7 +313,6 @@ if(function_exists("date_default_timezone_set") and function_exists("date_defaul
 							array_sort_key($swapinfo, "device");
 							$ctrlid = 0;
 							foreach ($swapinfo as $swapk => $swapv) {
-								$ctrlid++;
 								$percent_used = rtrim($swapv['capacity'], "%");
 								$tooltip_used = sprintf(gettext("%sB used of %sB"), $swapv['used'], $swapv['total']);
 								$tooltip_available = sprintf(gettext("%sB available of %sB"), $swapv['avail'], $swapv['total']);
@@ -265,6 +333,7 @@ if(function_exists("date_default_timezone_set") and function_exists("date_defaul
 									"<span name='swapusage_{$ctrlid}_free' id='swapusage_{$ctrlid}_free' class='free'>{$swapv['avail']}</span>");
 								echo "</div></td></tr>";
 
+								$ctrlid++;
 								if ($ctrlid < count($swapinfo))
 										echo "<tr><td><hr size='1' /></td></tr>";
 							}?>
