@@ -162,3 +162,20 @@ get_vmtype()
     fi
     echo "$_type";
 }
+
+# get_hast_role
+get_hast_role()
+{
+	local _role
+
+	_role="unknown"
+	/bin/pgrep -q -lf "hastd: .* \(primary\)"
+	if [ $? -eq 0 ]; then
+		_role="primary"
+	fi
+	/bin/pgrep -q -lf "hastd: .* \(secondary\)"
+	if [ $? -eq 0 ]; then
+		_role="secondary"
+	fi
+	echo "$_role"
+}
