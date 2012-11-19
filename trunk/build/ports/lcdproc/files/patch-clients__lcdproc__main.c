@@ -1,63 +1,23 @@
---- ./clients/lcdproc/main.c.orig	2011-10-01 20:38:56.000000000 +0200
-+++ ./clients/lcdproc/main.c	2012-04-15 17:18:09.000000000 +0200
-@@ -139,6 +139,25 @@
- const char *
- get_sysname(void)
- {
-+#if 1
-+	/* NAS4Free */
-+	static char buf[1024];
-+	char buf1[1024];
-+	FILE *fp;
-+	char *p;
+--- ./clients/lcdproc/Makefile.am.orig	1970-01-01 01:00:00.000000000 +0100
++++ ./clients/lcdproc/Makefile.am	2009-06-07 16:18:19.000000000 +0200
+@@ -0,0 +1,20 @@
++## Process this file with automake to produce Makefile.in
 +
-+	fp = fopen("/etc/prd.name", "r");
-+	if (fp != NULL) {
-+		fgets(buf1, sizeof buf1, fp);
-+		fclose(fp);
-+		p = strchr(buf1, '\n');
-+		if (p != NULL) {
-+			*p = '\0';
-+		}
-+		snprintf(buf, sizeof buf, "%s", buf1);
-+		return (buf);
-+	}
-+#endif
- 	return (unamebuf.sysname);
- }
- 
-@@ -146,6 +165,34 @@
- const char *
- get_sysrelease(void)
- {
-+#if 1
-+	/* NAS4Free */
-+	static char buf[1024];
-+	char buf1[1024], buf2[1024];
-+	FILE *fp;
-+	char *p;
++sysconf_DATA = lcdproc.conf
 +
-+	fp = fopen("/etc/prd.version", "r");
-+	if (fp != NULL) {
-+		fgets(buf1, sizeof buf1, fp);
-+		fclose(fp);
-+		p = strchr(buf1, '\n');
-+		if (p != NULL) {
-+			*p = '\0';
-+		}
-+		fp = fopen("/etc/prd.revision", "r");
-+		if (fp != NULL) {
-+			fgets(buf2, sizeof buf2, fp);
-+			fclose(fp);
-+			p = strchr(buf2, '\n');
-+			if (p != NULL) {
-+				*p = '\0';
-+			}
-+			snprintf(buf, sizeof buf, "%s (%s)", buf1, buf2);
-+			return (buf);
-+		}
-+	}
-+#endif
- 	return (unamebuf.release);
- }
- 
++bin_PROGRAMS = lcdproc
++
++lcdproc_SOURCES = main.c main.h mode.c mode.h batt.c batt.h chrono.c chrono.h cpu.c cpu.h cpu_smp.c cpu_smp.h disk.c disk.h load.c load.h mem.c mem.h eyebox.c eyebox.h machine.h machine_Linux.c machine_OpenBSD.c machine_FreeBSD.c machine_NetBSD.c machine_Darwin.c machine_SunOS.c util.c util.h iface.c iface.h
++
++lcdproc_LDADD = ../../shared/libLCDstuff.a
++
++if DARWIN
++AM_LDFLAGS = -framework CoreFoundation -framework IOKit
++endif
++
++AM_CPPFLAGS = -I$(top_srcdir) -I$(top_srcdir)/shared -DSYSCONFDIR=\"$(sysconfdir)\" -DPIDFILEDIR=\"$(pidfiledir)\"
++
++
++EXTRA_DIST = $(sysconf_DATA)
++
++## EOF
