@@ -1,5 +1,5 @@
 PORTNAME=		lcdproc
-PORTVERSION=	0.5.5
+PORTVERSION=	0.5.6
 CATEGORIES=		sysutils
 MASTER_SITES=	SF
 COMMENT=		A client/server suite for LCD devices
@@ -29,7 +29,6 @@ ACLOCAL_ARGS=
 
 LCDPROC_DRIVERS=	bayrad \
 					CFontz \
-					CFontz633 \
 					CFontzPacket \
 					CwLnx \
 					curses \
