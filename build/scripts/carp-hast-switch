@@ -45,9 +45,9 @@ case "$1" in
 
 	# Wait for the /dev/hast/* devices to appear
 	for disk in ${resources}; do
-	    for I in $( jot 60 ); do
+	    for I in $( jot 120 ); do
 		[ -c "/dev/hast/${disk}" ] && break
-		sleep 1
+		sleep 0.5
 	    done
 
 	    if [ ! -c "/dev/hast/${disk}" ]; then
@@ -59,7 +59,7 @@ case "$1" in
 	logger -p $log -t $name "Role for HAST resources ${resources} switched to primary."
 
 	# iSCSI service
-	/etc/rc.d/iscsi_target forcestart
+	/etc/rc.d/iscsi_target start
 
 #	logger -p $log -t $name "Mounting disks."
 #	for disk in ${resources}; do

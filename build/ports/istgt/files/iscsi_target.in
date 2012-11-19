@@ -19,6 +19,7 @@
 
 . /etc/rc.subr
 . /etc/configxml.subr
+. /etc/util.subr
 
 name="istgt"
 rcvar=`set_rcvar`
@@ -26,6 +27,9 @@ rcvar=`set_rcvar`
 load_rc_config "${name}"
 
 # Custom commands
+start_cmd="istgt_start"
+stop_cmd="istgt_stop"
+reload_cmd="istgt_reload"
 start_precmd="istgt_mkconf"
 reload_precmd="istgt_mkconf"
 mkconf_cmd="istgt_mkconf"
@@ -388,6 +392,39 @@ istgt_mkconf()
 		-b \
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc >> ${istgt_config}
+}
+
+istgt_start()
+{
+	local _role
+
+	_role=`get_hast_role`
+	if [ "$_role" = "primary" -o "$_rc_prefix" = "force" ]; then
+		unset start_cmd
+		run_rc_command "start"
+	fi
+}
+
+istgt_stop()
+{
+	local _role
+
+	_role=`get_hast_role`
+	if [ "$_role" = "primary" -o "$_rc_prefix" = "force" ]; then
+		unset stop_cmd
+		run_rc_command "stop"
+	fi
+}
+
+istgt_reload()
+{
+	local _role
+
+	_role=`get_hast_role`
+	if [ "$_role" = "primary" -o "$_rc_prefix" = "force" ]; then
+		unset reload_cmd
+		run_rc_command "reload"
+	fi
 }
 
 run_rc_command "$1"
