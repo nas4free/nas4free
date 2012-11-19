@@ -46,6 +46,9 @@ if (!isset($config['vinterfaces']['carp']) || !is_array($config['vinterfaces']['
 $a_carp = &$config['vinterfaces']['carp'];
 array_sort_key($a_carp, "if");
 
+$default_linkup = "/usr/local/sbin/carp-hast-switch master";
+$default_linkdown = "/usr/local/sbin/carp-hast-switch slave";
+
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_carp, "uuid")))) {
 	$pconfig['enable'] = isset($a_carp[$cnid]['enable']);
 	$pconfig['uuid'] = $a_carp[$cnid]['uuid'];
@@ -170,8 +173,8 @@ function get_nextcarp_id() {
 				<?php html_ipv4addrbox("vipaddr", "vsubnet", gettext("Virtual IP address"), $pconfig['vipaddr'], $pconfig['vsubnet'], "", true);?>
 				<?php html_inputbox("advskew", gettext("Advertisement skew"), $pconfig['advskew'], "", true, 5);?>
 				<?php html_inputbox("password", gettext("Password"), $pconfig['password'], "", true, 20);?>
-				<?php html_inputbox("linkup", gettext("Link up action"), $pconfig['linkup'], "", false, 60);?>
-				<?php html_inputbox("linkdown", gettext("Link down action"), $pconfig['linkdown'], "", false, 60);?>
+				<?php html_inputbox("linkup", gettext("Link up action"), $pconfig['linkup'], sprintf(gettext("Command for LINK_UP event (e.g. %s)."), $default_linkup), false, 60);?>
+				<?php html_inputbox("linkdown", gettext("Link down action"), $pconfig['linkdown'], sprintf(gettext("Command for LINK_DOWN event (e.g. %s)."), $default_linkdown), false, 60);?>
 				<?php html_inputbox("extraoptions", gettext("Extra options"), $pconfig['extraoptions'], gettext("Extra options to ifconfig (usually empty)."), false, 40);?>
 				<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
 			</table>
