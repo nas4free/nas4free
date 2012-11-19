@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2012-11-19 09:14+0000\n"
-"PO-Revision-Date: 2012-11-14 20:00+0000\n"
+"PO-Revision-Date: 2012-11-19 04:03+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-19 01:13+0000\n"
+"X-Launchpad-Export-Date: 2012-11-19 04:16+0000\n"
 "X-Generator: Launchpad (build 16278)\n"
 "X-Poedit-Country: Netherlands\n"
 "Language: \n"
@@ -989,11 +989,11 @@ msgstr "Opdracht Uitvoeren"
 
 #, php-format
 msgid "Command for LINK_DOWN event (e.g. %s)."
-msgstr ""
+msgstr "Opdracht voor LINK_DOWN gebeurtenis (bijvoorbeeld %s)."
 
 #, php-format
 msgid "Command for LINK_UP event (e.g. %s)."
-msgstr ""
+msgstr "Opdracht voor LINK_UP gebeurtenis (bijvoorbeeld %s)."
 
 msgid "Command output:"
 msgstr "Opdracht uitkomst:"
@@ -1869,6 +1869,7 @@ msgstr "Dynamische DNS"
 
 msgid "Dynamic IP (DHCP) can not be used for HAST resources."
 msgstr ""
+"Dynamische IP adressen (DHCP) kunnen niet worden gebruikt voor HAST bronnen."
 
 msgid "EA support"
 msgstr "EA support"
@@ -2570,13 +2571,13 @@ msgid "Guest account"
 msgstr "Gast account"
 
 msgid "HAST"
-msgstr ""
+msgstr "HAST"
 
 msgid "HAST (Highly Available Storage)"
-msgstr ""
+msgstr "HAST (Highly Available Storage)"
 
 msgid "HAST status of the configured resources"
-msgstr ""
+msgstr "HAST status van de geconfigureerde bronnen"
 
 msgid "HTTP Proxy"
 msgstr "HTTP Proxy"
@@ -3165,10 +3166,10 @@ msgid "Link Aggregation and Failover"
 msgstr "Link Aggregation and Failover"
 
 msgid "Link down action"
-msgstr ""
+msgstr "Link down actie"
 
 msgid "Link up action"
-msgstr ""
+msgstr "Link up actie"
 
 msgid "List"
 msgstr "Lijst"
@@ -3672,13 +3673,15 @@ msgstr ""
 "href='%s'>Auth Groep</a> toe."
 
 msgid "No configured CARP interfaces."
-msgstr ""
+msgstr "WEr zijn geen geconfigureerde CARP netwerken."
 
 #, php-format
 msgid ""
 "No configured CARP interfaces. Please add new <a href='%s'>CARP "
 "interface</a> first."
 msgstr ""
+"Er zijn geen CARP netwerken geconfigureerd. U dient eerst een nieuw <a "
+"href='%s'>CARP netwerk</a> toe te voegen."
 
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
@@ -3744,10 +3747,10 @@ msgid "Node Base"
 msgstr "Node Base"
 
 msgid "Node ID"
-msgstr ""
+msgstr "Knooppunt ID"
 
 msgid "Node Name"
-msgstr ""
+msgstr "Knooppuntnaam"
 
 msgid "None"
 msgstr "None (Geen)"
@@ -5247,6 +5250,8 @@ msgstr ""
 
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
+"De HAST volumes kunnen niet worden geopend voor dat de HAST knooppunt "
+"primair is geworden."
 
 msgid "The IP address that this hostname represents."
 msgstr "Het IP-adres dat deze hostnaam vertegenwoordigd."
@@ -6958,6 +6963,9 @@ msgid ""
 "When HAST is enabled, the local devices, the local services and the "
 "additional packages which do not support HAST volume cannot be used."
 msgstr ""
+"Wanneer HAST is ingeschakeld, kunnen de lokale apparaten en de lokale "
+"diensten met aanvullende pakketten die geen ondersteuning voor HAST volumes "
+"bieden niet worden gebruikt."
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
