@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-15 01:46+0000\n"
+"POT-Creation-Date: 2012-11-19 09:14+0000\n"
 "PO-Revision-Date: 2012-09-05 08:21+0000\n"
 "Last-Translator: Carsten Matzon <carsten@matzon.dk>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-14 17:36+0000\n"
-"X-Generator: Launchpad (build 16265)\n"
+"X-Launchpad-Export-Date: 2012-11-19 01:12+0000\n"
+"X-Generator: Launchpad (build 16278)\n"
 "X-Poedit-Country: DENMARK\n"
 "Language: \n"
 "X-Poedit-Language: Danish\n"
@@ -960,6 +960,14 @@ msgstr "Kolonner"
 msgid "Command"
 msgstr "Kommando"
 
+#, php-format
+msgid "Command for LINK_DOWN event (e.g. %s)."
+msgstr ""
+
+#, php-format
+msgid "Command for LINK_UP event (e.g. %s)."
+msgstr ""
+
 msgid "Command output:"
 msgstr "Kommando resultat."
 
@@ -1804,6 +1812,9 @@ msgstr "Hollandsk"
 msgid "Dynamic DNS"
 msgstr "Dynamisk DNS"
 
+msgid "Dynamic IP (DHCP) can not be used for HAST resources."
+msgstr ""
+
 msgid "EA support"
 msgstr "EA understøttelse"
 
@@ -2493,6 +2504,15 @@ msgstr "Gæst"
 msgid "Guest account"
 msgstr "Gæste konto"
 
+msgid "HAST"
+msgstr ""
+
+msgid "HAST (Highly Available Storage)"
+msgstr ""
+
+msgid "HAST status of the configured resources"
+msgstr ""
+
 msgid "HTTP Proxy"
 msgstr "HTTP proxy"
 
@@ -3063,6 +3083,12 @@ msgstr ""
 msgid "Link Aggregation and Failover"
 msgstr "Link Aggregering og Failover"
 
+msgid "Link down action"
+msgstr ""
+
+msgid "Link up action"
+msgstr ""
+
 msgid "List"
 msgstr "Liste"
 
@@ -3544,6 +3570,15 @@ msgstr ""
 "Ingen konfigureret Auth Gruppe. Tilføj venligst en ny <a href='%s'>Auth "
 "Gruppe</a> først."
 
+msgid "No configured CARP interfaces."
+msgstr ""
+
+#, php-format
+msgid ""
+"No configured CARP interfaces. Please add new <a href='%s'>CARP "
+"interface</a> first."
+msgstr ""
+
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
 msgstr ""
@@ -3606,6 +3641,12 @@ msgstr "Ingen pulje fundet."
 
 msgid "Node Base"
 msgstr "Node Base"
+
+msgid "Node ID"
+msgstr ""
+
+msgid "Node Name"
+msgstr ""
 
 msgid "None"
 msgstr "Ingen"
@@ -5075,6 +5116,9 @@ msgstr ""
 
 msgid "The COM port in BIOS has to be enabled before enabling this option."
 msgstr "COM-porten skal aktiveres i BIOS, inden denne indstilling aktiveres."
+
+msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
+msgstr ""
 
 msgid "The IP address that this hostname represents."
 msgstr "IP-adressen som dette værtsnavn repræsenterer."
@@ -6741,6 +6785,11 @@ msgstr "Webserver dokument-rod mangler."
 
 msgid "Week days"
 msgstr "Ugedage"
+
+msgid ""
+"When HAST is enabled, the local devices, the local services and the "
+"additional packages which do not support HAST volume cannot be used."
+msgstr ""
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "

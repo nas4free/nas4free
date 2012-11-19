@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-15 01:46+0000\n"
+"POT-Creation-Date: 2012-11-19 09:14+0000\n"
 "PO-Revision-Date: 2012-03-17 08:48+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-14 17:36+0000\n"
-"X-Generator: Launchpad (build 16265)\n"
+"X-Launchpad-Export-Date: 2012-11-19 01:13+0000\n"
+"X-Generator: Launchpad (build 16278)\n"
 "X-Poedit-Country: KOREA\n"
 "Language: \n"
 "X-Poedit-Language: Korean\n"
@@ -925,6 +925,14 @@ msgstr "열"
 msgid "Command"
 msgstr "명령"
 
+#, php-format
+msgid "Command for LINK_DOWN event (e.g. %s)."
+msgstr ""
+
+#, php-format
+msgid "Command for LINK_UP event (e.g. %s)."
+msgstr ""
+
 msgid "Command output:"
 msgstr "명령 출력:"
 
@@ -1738,6 +1746,9 @@ msgstr "독일어"
 msgid "Dynamic DNS"
 msgstr "Dynamic DNS"
 
+msgid "Dynamic IP (DHCP) can not be used for HAST resources."
+msgstr ""
+
 msgid "EA support"
 msgstr "EA 지원"
 
@@ -2404,6 +2415,15 @@ msgstr "게스트"
 msgid "Guest account"
 msgstr "게스트 계정"
 
+msgid "HAST"
+msgstr ""
+
+msgid "HAST (Highly Available Storage)"
+msgstr ""
+
+msgid "HAST status of the configured resources"
+msgstr ""
+
 msgid "HTTP Proxy"
 msgstr "HTTP 프록시"
 
@@ -2940,6 +2960,12 @@ msgstr ""
 msgid "Link Aggregation and Failover"
 msgstr "링크 통합과 장애 조치"
 
+msgid "Link down action"
+msgstr ""
+
+msgid "Link up action"
+msgstr ""
+
 msgid "List"
 msgstr "리스트"
 
@@ -3407,6 +3433,15 @@ msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
 msgstr "설정된 인증 그룹이 없습니다. 먼저 새 <a href='%s'>인증 그룹</a>을 추가하십시오."
 
+msgid "No configured CARP interfaces."
+msgstr ""
+
+#, php-format
+msgid ""
+"No configured CARP interfaces. Please add new <a href='%s'>CARP "
+"interface</a> first."
+msgstr ""
+
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
 msgstr "구성된 범위가 없습니다. 먼저 새 <a href='%s'>범위</a>를 추가하십시오."
@@ -3456,6 +3491,12 @@ msgstr "풀을 찾을 수 없습니다."
 
 msgid "Node Base"
 msgstr "노드 베이스"
+
+msgid "Node ID"
+msgstr ""
+
+msgid "Node Name"
+msgstr ""
 
 msgid "None"
 msgstr "없음"
@@ -4855,6 +4896,9 @@ msgstr "거부 옵션은 이 공유에 접근이 허용되지 않은 사용자�
 
 msgid "The COM port in BIOS has to be enabled before enabling this option."
 msgstr "이 옵션을 활성화하기 전에 바이오스에서 COM 포트가 활성화되어야 합니다."
+
+msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
+msgstr ""
 
 msgid "The IP address that this hostname represents."
 msgstr "이 호스트 명이 가리키는 IP 주소."
@@ -6343,6 +6387,11 @@ msgstr "웹 서버 문서 루트가 없습니다."
 
 msgid "Week days"
 msgstr "요일"
+
+msgid ""
+"When HAST is enabled, the local devices, the local services and the "
+"additional packages which do not support HAST volume cannot be used."
+msgstr ""
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "

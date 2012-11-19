@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-15 01:46+0000\n"
-"PO-Revision-Date: 2012-11-17 10:09+0000\n"
+"POT-Creation-Date: 2012-11-19 09:14+0000\n"
+"PO-Revision-Date: 2012-11-18 07:58+0000\n"
 "Last-Translator: Laurentiu BUBUIANU <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-18 00:32+0000\n"
+"X-Launchpad-Export-Date: 2012-11-19 01:12+0000\n"
 "X-Generator: Launchpad (build 16278)\n"
 "X-Poedit-Country: ROMANIA\n"
 "Language: \n"
@@ -977,6 +977,14 @@ msgstr "Coloane"
 msgid "Command"
 msgstr "Comenzi"
 
+#, php-format
+msgid "Command for LINK_DOWN event (e.g. %s)."
+msgstr ""
+
+#, php-format
+msgid "Command for LINK_UP event (e.g. %s)."
+msgstr ""
+
 msgid "Command output:"
 msgstr "Rezultat comanda:"
 
@@ -1556,7 +1564,7 @@ msgid "Disable firmware version check"
 msgstr "Dezactivare verificare versiune Firmware"
 
 msgid "Disable speaker beep on startup and shutdown"
-msgstr "Dezactivare sunet sistem la pornirea/oprirea sistemului"
+msgstr "Dezactivare sunet atenţionare la pornirea/oprirea sistemului"
 
 msgid "Disabled"
 msgstr "Dezactivare"
@@ -1835,6 +1843,9 @@ msgstr "Olandeză"
 msgid "Dynamic DNS"
 msgstr "DNS Dinamic"
 
+msgid "Dynamic IP (DHCP) can not be used for HAST resources."
+msgstr ""
+
 msgid "EA support"
 msgstr "Suport Atribute Extinse"
 
@@ -1982,7 +1993,7 @@ msgid "Enable anonymous bind."
 msgstr "Permite legătură anonimă."
 
 msgid "Enable authentication."
-msgstr "Activare autentificare"
+msgstr "Activare autentificare."
 
 msgid "Enable automatic disk discovery."
 msgstr "Activare detecţie automată disc."
@@ -2000,7 +2011,7 @@ msgid "Enable directory listing."
 msgstr "Activare listare foldere."
 
 msgid "Enable distributed hash table."
-msgstr "Activare tabelă  distribuită de asocieri"
+msgstr "Activare tabelă  distribuită de asocieri."
 
 msgid "Enable domain wildcarding."
 msgstr "Activare caractere speciale pentru domeniu."
@@ -2031,7 +2042,7 @@ msgid "Enable keyboard-interactive authentication."
 msgstr "Activare autentificare interactivă de la tastatură."
 
 msgid "Enable large read/write"
-msgstr "Activare Citire/Scriere in pachet"
+msgstr "Utilizare pachete mari de date la Citire/Scriere"
 
 msgid "Enable local user authentication."
 msgstr "Activare autentificare locală."
@@ -2043,7 +2054,7 @@ msgid "Enable peer exchange (PEX)."
 msgstr "Activare schimburi în grup (PEX)"
 
 msgid "Enable permission inheritance"
-msgstr "Activare permisiuni ierarhice"
+msgstr "Activare propagare permisiuni ierarhice"
 
 msgid "Enable port forwarding via NAT-PMP or UPnP."
 msgstr "Activare port forwarding prin NAT-PMP sau UPnP."
@@ -2052,7 +2063,7 @@ msgid "Enable proxy authentication."
 msgstr "Activare autentificare proxy."
 
 msgid "Enable recycle bin"
-msgstr "Activare Cos"
+msgstr "Activare Recycle Bin"
 
 msgid "Enable remote monitoring of the local connected UPS."
 msgstr "Activare monitorizare remote pentru UPS-urile locale."
@@ -2067,7 +2078,7 @@ msgstr ""
 "ieşire."
 
 msgid "Enable reverse DNS lookup."
-msgstr "Activare căutare inversă DNS."
+msgstr "Activare căutare inversă în DNS."
 
 msgid "Enable serial console"
 msgstr "Activare consolă serială."
@@ -2079,13 +2090,13 @@ msgid "Enable store DOS attributes"
 msgstr "Activare salvare atribute DOS"
 
 msgid "Enable syslog'ing to remote syslog server"
-msgstr "Activare trimitere mesaje syslog catre server-ul remote syslog"
+msgstr "Activare trimitere mesaje syslog către server-ul remote syslog"
 
 msgid "Enable the ident protocol (RFC1413)."
 msgstr "Activare protocol identificare (RFC1413)."
 
 msgid "Enable the system power control utility"
-msgstr "Activare utilitar control alimentare sistem (UPS)"
+msgstr "Activare utilitar control alimentare sistem"
 
 msgid "Enable transcoding."
 msgstr "Activare transcodare."
@@ -2100,7 +2111,7 @@ msgid "Enable use sendfile."
 msgstr "Activare sendfile"
 
 msgid "Enable web user interface."
-msgstr "Activare interfaţa Web pentru utilizatori."
+msgstr "Activare Interfaţa Web pentru utilizatori."
 
 msgid "Enable write cache mode."
 msgstr "Activare mod cache la scriere."
@@ -2527,6 +2538,15 @@ msgstr "Oaspete"
 
 msgid "Guest account"
 msgstr "Cont \"anonim\""
+
+msgid "HAST"
+msgstr ""
+
+msgid "HAST (Highly Available Storage)"
+msgstr ""
+
+msgid "HAST status of the configured resources"
+msgstr ""
 
 msgid "HTTP Proxy"
 msgstr "Proxy HTTP"
@@ -3114,6 +3134,12 @@ msgstr ""
 msgid "Link Aggregation and Failover"
 msgstr "Agregare Conexiuni şi protecţie la întreruperi (Failover)"
 
+msgid "Link down action"
+msgstr ""
+
+msgid "Link up action"
+msgstr ""
+
 msgid "List"
 msgstr "Lista"
 
@@ -3602,6 +3628,15 @@ msgstr ""
 "Niciun Grup Autorizat configurat. Adăugaţi mai întîii un <a href='%s'>Grup "
 "Autorizat</a>"
 
+msgid "No configured CARP interfaces."
+msgstr ""
+
+#, php-format
+msgid ""
+"No configured CARP interfaces. Please add new <a href='%s'>CARP "
+"interface</a> first."
+msgstr ""
+
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
 msgstr ""
@@ -3664,6 +3699,12 @@ msgstr "Nu a fost găsit niciun grup."
 
 msgid "Node Base"
 msgstr "Nod de Bază"
+
+msgid "Node ID"
+msgstr ""
+
+msgid "Node Name"
+msgstr ""
 
 msgid "None"
 msgstr "Niciunul (niciuna)"
@@ -5141,6 +5182,9 @@ msgstr ""
 
 msgid "The COM port in BIOS has to be enabled before enabling this option."
 msgstr "Portul COM trebuie să fie mai întâi activat în BIOS."
+
+msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
+msgstr ""
 
 msgid "The IP address that this hostname represents."
 msgstr "Adresa IP corespunzatoare sistemului."
@@ -6816,6 +6860,11 @@ msgstr "Folderul de bază pentru documente lipseşte."
 
 msgid "Week days"
 msgstr "Zilele săptămînii"
+
+msgid ""
+"When HAST is enabled, the local devices, the local services and the "
+"additional packages which do not support HAST volume cannot be used."
+msgstr ""
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "

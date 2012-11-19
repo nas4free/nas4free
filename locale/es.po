@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-15 01:46+0000\n"
+"POT-Creation-Date: 2012-11-19 09:14+0000\n"
 "PO-Revision-Date: 2012-11-17 09:51+0000\n"
 "Last-Translator: raul fernandez garcia <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-18 00:32+0000\n"
+"X-Launchpad-Export-Date: 2012-11-19 01:13+0000\n"
 "X-Generator: Launchpad (build 16278)\n"
 "X-Poedit-Country: SPAIN\n"
 "Language: \n"
@@ -983,6 +983,14 @@ msgstr "Columnas"
 msgid "Command"
 msgstr "Comando"
 
+#, php-format
+msgid "Command for LINK_DOWN event (e.g. %s)."
+msgstr ""
+
+#, php-format
+msgid "Command for LINK_UP event (e.g. %s)."
+msgstr ""
+
 msgid "Command output:"
 msgstr "Salida del comando:"
 
@@ -1846,6 +1854,9 @@ msgstr "Neerlandés"
 msgid "Dynamic DNS"
 msgstr "DNS dinamico"
 
+msgid "Dynamic IP (DHCP) can not be used for HAST resources."
+msgstr ""
+
 msgid "EA support"
 msgstr "Soporte EA"
 
@@ -2541,6 +2552,15 @@ msgstr "Invitado"
 msgid "Guest account"
 msgstr "Cuenta de invitado"
 
+msgid "HAST"
+msgstr ""
+
+msgid "HAST (Highly Available Storage)"
+msgstr ""
+
+msgid "HAST status of the configured resources"
+msgstr ""
+
 msgid "HTTP Proxy"
 msgstr "Proxy HTTP"
 
@@ -3126,6 +3146,12 @@ msgstr ""
 msgid "Link Aggregation and Failover"
 msgstr "Agregación de vínculo y sobrefalla"
 
+msgid "Link down action"
+msgstr ""
+
+msgid "Link up action"
+msgstr ""
+
 msgid "List"
 msgstr "Lista"
 
@@ -3618,6 +3644,15 @@ msgstr ""
 "Grupo de Portal no configurado. Por favor agregue primero un <a "
 "href='%s'>Grupo de Portal</a> nuevo."
 
+msgid "No configured CARP interfaces."
+msgstr ""
+
+#, php-format
+msgid ""
+"No configured CARP interfaces. Please add new <a href='%s'>CARP "
+"interface</a> first."
+msgstr ""
+
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
 msgstr ""
@@ -3681,6 +3716,12 @@ msgstr "Ningun poll fue encontrado."
 
 msgid "Node Base"
 msgstr "Base de Nodo"
+
+msgid "Node ID"
+msgstr ""
+
+msgid "Node Name"
+msgstr ""
 
 msgid "None"
 msgstr "Ninguno"
@@ -5177,6 +5218,9 @@ msgstr ""
 msgid "The COM port in BIOS has to be enabled before enabling this option."
 msgstr ""
 "El puerto COM debe ser habilitado en la BIOS antes de habilitar esta funcion"
+
+msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
+msgstr ""
 
 msgid "The IP address that this hostname represents."
 msgstr "La dirección IP que representa esta máquina."
@@ -6892,6 +6936,11 @@ msgstr "Servidor web no encuentra el directorio raiz"
 
 msgid "Week days"
 msgstr "Dias de la semana"
+
+msgid ""
+"When HAST is enabled, the local devices, the local services and the "
+"additional packages which do not support HAST volume cannot be used."
+msgstr ""
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "

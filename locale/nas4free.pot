@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
-"POT-Creation-Date: 2012-11-15 01:46+0000\n"
+"POT-Creation-Date: 2012-11-19 09:14+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -823,6 +823,14 @@ msgstr ""
 msgid "Command"
 msgstr ""
 
+#, php-format
+msgid "Command for LINK_DOWN event (e.g. %s)."
+msgstr ""
+
+#, php-format
+msgid "Command for LINK_UP event (e.g. %s)."
+msgstr ""
+
 msgid "Command output:"
 msgstr ""
 
@@ -1569,6 +1577,9 @@ msgstr ""
 msgid "Dynamic DNS"
 msgstr ""
 
+msgid "Dynamic IP (DHCP) can not be used for HAST resources."
+msgstr ""
+
 msgid "EA support"
 msgstr ""
 
@@ -2197,6 +2208,15 @@ msgstr ""
 msgid "Guest account"
 msgstr ""
 
+msgid "HAST"
+msgstr ""
+
+msgid "HAST (Highly Available Storage)"
+msgstr ""
+
+msgid "HAST status of the configured resources"
+msgstr ""
+
 msgid "HTTP Proxy"
 msgstr ""
 
@@ -2662,6 +2682,12 @@ msgstr ""
 msgid "Link Aggregation and Failover"
 msgstr ""
 
+msgid "Link down action"
+msgstr ""
+
+msgid "Link up action"
+msgstr ""
+
 msgid "List"
 msgstr ""
 
@@ -3106,6 +3132,13 @@ msgstr ""
 msgid "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
 msgstr ""
 
+msgid "No configured CARP interfaces."
+msgstr ""
+
+#, php-format
+msgid "No configured CARP interfaces. Please add new <a href='%s'>CARP interface</a> first."
+msgstr ""
+
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
 msgstr ""
@@ -3146,6 +3179,12 @@ msgid "No pool was found."
 msgstr ""
 
 msgid "Node Base"
+msgstr ""
+
+msgid "Node ID"
+msgstr ""
+
+msgid "Node Name"
 msgstr ""
 
 msgid "None"
@@ -4454,6 +4493,9 @@ msgstr ""
 msgid "The COM port in BIOS has to be enabled before enabling this option."
 msgstr ""
 
+msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
+msgstr ""
+
 msgid "The IP address that this hostname represents."
 msgstr ""
 
@@ -5626,6 +5668,9 @@ msgid "Webserver document root is missing."
 msgstr ""
 
 msgid "Week days"
+msgstr ""
+
+msgid "When HAST is enabled, the local devices, the local services and the additional packages which do not support HAST volume cannot be used."
 msgstr ""
 
 msgid "When a client initially connects to the server the ident protocol is used to attempt to identify the remote username."
