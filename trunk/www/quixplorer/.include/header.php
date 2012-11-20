@@ -274,7 +274,7 @@ function show_header($title) {			// header for html-page
 	echo "<a title=\"www.".get_product_url()."\" href=\"http://".get_product_url()."\" target='_blank'><img src='../header_logo.png' alt='logo' /></a>\n";
 	echo "</div>\n";
 	echo "<div id=\"headerrlogo\">\n";
-	echo "<div class=\"hostname\"\n";
+	echo "<div class=\"hostname\">\n";
 	echo "<span>".system_get_hostname()."&nbsp;</span>\n";
 	echo "</div>\n";
 	echo "</div>\n";
