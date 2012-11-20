@@ -432,7 +432,7 @@ function get_interface_list() {
 		if (substr($ifname, -1) === "*")
 			$ifname = substr($ifname, 0, strlen($ifname) - 1);
 		/* add the plip interface to be excluded too */
-		if (!preg_match("/^(ppp|sl|gif|faith|lo|vlan|tun|plip|ipfw|usbus)/", $ifname)) {
+		if (!preg_match("/^(ppp|sl|gif|faith|lo|vlan|tun|plip|ipfw|usbus|carp)/", $ifname)) {
 			$iflist[$ifname] = array();
 
 			$iflist[$ifname]['mac'] = chop($alink[3]);
@@ -1330,7 +1330,7 @@ function get_ifname($if)
   if ($if === "auto")   {
     $interfaces = explode(" ", exec("/sbin/ifconfig -l"));
     foreach($interfaces as $ifname) {
-	if (!preg_match("/^(ppp|sl|gif|faith|lo|vlan|tun|plip|ipfw|usbus)/", $ifname)) {
+	if (!preg_match("/^(ppp|sl|gif|faith|lo|vlan|tun|plip|ipfw|usbus|carp)/", $ifname)) {
 	    $if = $ifname;
 	    break;
 	}
