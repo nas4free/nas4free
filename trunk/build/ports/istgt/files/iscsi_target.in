@@ -396,10 +396,11 @@ istgt_mkconf()
 
 istgt_start()
 {
-	local _role
+	local _enable _role
 
+	_enable=`configxml_get_count "//hast/enable"`
 	_role=`get_hast_role`
-	if [ "$_role" = "primary" -o "$_rc_prefix" = "force" ]; then
+	if [ "$_enable" = "0" -o "$_role" = "primary" -o "$_rc_prefix" = "force" ]; then
 		unset start_cmd
 		run_rc_command "start"
 	fi
@@ -407,10 +408,11 @@ istgt_start()
 
 istgt_stop()
 {
-	local _role
+	local _enable _role
 
+	_enable=`configxml_get_count "//hast/enable"`
 	_role=`get_hast_role`
-	if [ "$_role" = "primary" -o "$_rc_prefix" = "force" ]; then
+	if [ "$_enable" = "0" -o "$_role" = "primary" -o "$_rc_prefix" = "force" ]; then
 		unset stop_cmd
 		run_rc_command "stop"
 	fi
@@ -418,10 +420,11 @@ istgt_stop()
 
 istgt_reload()
 {
-	local _role
+	local _enable _role
 
+	_enable=`configxml_get_count "//hast/enable"`
 	_role=`get_hast_role`
-	if [ "$_role" = "primary" -o "$_rc_prefix" = "force" ]; then
+	if [ "$_enable" = "0" -o "$_role" = "primary" -o "$_rc_prefix" = "force" ]; then
 		unset reload_cmd
 		run_rc_command "reload"
 	fi
