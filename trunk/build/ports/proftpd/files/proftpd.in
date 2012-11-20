@@ -245,6 +245,9 @@ EOF
 		fi
 
 		# Add mod_wrap
+		if [ 0 -ne `configxml_get_count "//ftpd/disabletcpwrapper"` ]; then
+			proftpd_modwrap_enable="NO"
+		fi
 		if checkyesno proftpd_modwrap_enable; then
 			cat <<EOF >> ${proftpd_config}
 <IfModule mod_wrap.c>
