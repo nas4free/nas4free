@@ -65,6 +65,9 @@ unison_start()
 unison_status()
 {
 	# Nothing to do here, but keep empty implementation
+	if [ 0 -eq `configxml_get_count "//unison/enable"` ]; then
+		return 1;
+	fi
 }
 
 run_rc_command "$1"
