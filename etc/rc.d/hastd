@@ -22,6 +22,7 @@ load_rc_config "${name}"
 
 start_precmd="hastd_mkconf"
 stop_precmd="hastd_stop_precmd"
+mkconf_cmd="hastd_mkconf"
 extra_commands="reload mkconf"
 
 hastd_config=${hastd_config:-"/var/etc/hast.conf"}
@@ -36,6 +37,22 @@ hastd_mkconf()
 	/usr/local/bin/xml sel -t -m "//hast" \
 	    -m "auxparam" \
 		-v "." -n -b \
+	    -n \
+	    -m "hastresource" \
+		-v "concat('resource ',name, ' {')" -n \
+		-m "auxparam" \
+		    -v "." -n \
+		-b \
+		-v "concat('	on ',aname, ' {')" -n \
+		-v "concat('		local ',apath)" -n \
+		-v "concat('		remote ',aremoteaddr)" -n \
+		-o "	}" -n \
+		-v "concat('	on ',bname, ' {')" -n \
+		-v "concat('		local ',bpath)" -n \
+		-v "concat('		remote ',bremoteaddr)" -n \
+		-o "	}" -n \
+		-o "}" -n \
+	    -b \
 	    ${configxml_file} | /usr/local/bin/xml unesc > ${hastd_config}
 }
 
