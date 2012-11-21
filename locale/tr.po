@@ -1,109 +1,115 @@
+# Turkish translation for freenas
+# Copyright (c) 2007 Rosetta Contributors and Canonical Ltd 2007
+# This file is distributed under the same license as the freenas package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2007.
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
-"Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-11-21 15:47+0000\n"
-"PO-Revision-Date: 2012-08-02 14:51+0000\n"
-"Last-Translator: ltye <laotaoyan@gmail.com>\n"
-"Language-Team: NAS4Free\n"
+"PO-Revision-Date: 2012-07-09 19:53+0000\n"
+"Last-Translator: Hasan Yılmaz <iletisim@hasanyilmaz.net>\n"
+"Language-Team: NAS4Free <tr@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-21 15:01+0000\n"
+"X-Launchpad-Export-Date: 2012-11-21 15:05+0000\n"
 "X-Generator: Launchpad (build 16293)\n"
-"X-Poedit-Country: CHINA\n"
-"Language: \n"
-"X-Poedit-Language: Chinese (Simplified)\n"
+"X-Poedit-Country: TURKEY\n"
+"X-Poedit-Language: Turkish\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 
 msgid " interfaces:"
-msgstr " 接口："
+msgstr " Arayüzler"
 
 msgid " was assigned to "
-msgstr " 被指派为 "
+msgstr " ayrılmıştır. "
 
 #, php-format
 msgid "%d days"
-msgstr "%d 天"
+msgstr "%d gün"
 
 #, php-format
 msgid "%d week"
-msgstr "%d 周"
+msgstr "%d hafta"
 
 #, php-format
 msgid "%d weeks"
-msgstr "%d 周"
+msgstr "%d hafta"
 
 #, php-format
 msgid "%d year"
-msgstr "%d 年"
+msgstr "%d yıl"
 
 #, php-format
 msgid "%d years"
-msgstr "%d 年"
+msgstr "%d yıl"
 
 #, c-format, php-format
 msgid "%d%% of %dMiB"
-msgstr "已用百分之 %d ，共 %dMB"
+msgstr "%d%% in %dMiB"
 
 #, php-format
 msgid "%dB / block"
-msgstr "%dB / 块"
+msgstr "%dB / bloğu"
 
 #, php-format
 msgid "%s advertises itself as a time server to Windows clients."
-msgstr "设置%s成为一个Windows客户端的时间服务器。"
+msgstr "%s  Windows kullanıcılıarına  zaman sunucusu olarak algılatır."
 
 #, php-format
 msgid "%s interface"
-msgstr "%s 接口"
+msgstr "%s arayüzü"
 
 #, php-format
 msgid "%s is too long."
-msgstr "%s 太长了。"
+msgstr "%s çok uzun."
 
 #, php-format
 msgid "%s is used to create %s volumes."
-msgstr "%s 被用来创建 %s 分卷。"
+msgstr "%s oluşturmak için kullanılacak %s birim."
 
 #, php-format
 msgid "%s of %sB"
-msgstr "%s 与 %sB"
+msgstr "%sB'nin %s"
 
 #, php-format
 msgid "%s on %s"
-msgstr "%2$s 上的 %1$s"
+msgstr "%s üzerinde %s"
 
 #, php-format
 msgid "%s will reboot after restoring the configuration."
-msgstr "%s  还原设置以后将会自动重启。"
+msgstr "Yapılandırma geri alındıktan sonra %s yeniden başlatılacaktır."
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
-msgstr "%s%d %s 早已被 %s%d 使用。"
+msgstr "%s%d %s zaten %s%d tarafından kullanılmaktadır."
 
 #, c-format, php-format
 msgid "%sB available of %sB"
-msgstr "%sB 有效，于 %sB"
+msgstr "%sB'nin %sB'si kullanılabilir"
 
 #, c-format, php-format
 msgid "%sB used of %sB"
-msgstr "%sB 已用，于 %sB"
+msgstr "%sB'nin %sB'si kullanıldı."
 
 msgid "*** Imported duplicate ***"
-msgstr "*** 重复导入 ***"
+msgstr "*** Tekrarlanan işlem ***"
 
 msgid "0=disabled, 1-255=enabled command queuing with specified depth."
-msgstr "0=禁用, 1-255=以指定的深度启用"
+msgstr "0=devre dışı, 1-255=komutu belirtilen derinliği ile kuyruk etkin"
 
 msgid ""
 "1. Use these specials actions for debugging only!<br />2. There is no need "
 "of using this menu for starting a RAID volume (start automaticaly)."
-msgstr "1.这些特殊操作仅适用于调试(debugging)！<br />2. 无需操作此菜单以启动RAID卷 (系统自动启动)。"
+msgstr ""
+"1. Bu özel eylemi sadece hata ayıklama için kullanın!<br />1.  Raid birimini "
+"çalıştırmak için bu menünün kullanımına gerek yoktur (otomatik olarak "
+"çalışır )."
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
-msgstr "802.1Q VLAN 标签 （介于1和4094之间）。"
+msgstr "802.1Q VLAN etiketi (1 ve 4094 arası)."
 
 msgid "<->"
 msgstr "<->"
@@ -113,6 +119,8 @@ msgid ""
 "<a href='%s'>SSHD</a> must be enabled for Unison to work, and the <a "
 "href='%s'>user</a> must have shell access."
 msgstr ""
+"<a href='%s'>SSHD</a> Unision 'ın çalışması için etkinleştirilmelidir, ve <a "
+"href='%s'>kullanıcısı</a> kabuk erişimine sahip olmalıdır."
 
 msgid ""
 "<b>EFI GPT partition</b> if you want to mount a GPT formatted drive "
@@ -124,7 +132,8 @@ msgstr ""
 msgid ""
 "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
 msgstr ""
-"<div id='enumeration'><ul><li>%d - 日期</li><li>%h - 主机名</li></ul></div>"
+"<div id='enumeration'><ul><li>%d - Tarih</li><li>%h - Host "
+"adı</li></ul></div>"
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -135,104 +144,106 @@ msgid ""
 "transfer, and then removed after the transfer completes.</li><li>After - "
 "File-deletions will be done after the transfer has completed.</li>"
 msgstr ""
-"<li>默认 - Rsync会在连接到rsync 3.0.0或更高版本时选择'during'算法, "
-"而在连接至旧版本时使用'before'算法。</li><li>Before - 文件删除工作将在传输开始之前完成。</li><li>During - "
-"文件删除工作将在传输过程中逐渐进行。</li><li>Delay - 文件删除工作仅在传输时进行计算， 并在传输完成后进行。</li><li>After "
-"- 文件删除工作将在传输完成后进行。</li>"
 
 msgid ""
 "A Auth Group contains authorised users and secrets for additional security."
 msgstr ""
+"Bir Auth Group yetkili kullanıcıları ve ek güvenlik için sırları içerir."
 
 msgid ""
 "A Initiator Group contains authorised initiator names and networks to access "
 "the target."
 msgstr ""
+"Initiator Grubu hedef erişimine isim ve ağları için yetkileri içerir."
 
 msgid ""
 "A NTP time server name may only contain the characters a-z, 0-9, '-' and '.'."
-msgstr "NTP服务器的名称只能包含字符a-z， 0-9，'-' 及 '.'。"
+msgstr ""
+"Bir NTP saat sunucu adı sadece a'dan z'ye harf 0'dan 9'a rakam \"-\" ve "
+"\".\" içerebilir."
 
 msgid ""
 "A Portal Group contains IP addresses and listening TCP ports to connect the "
 "target from the initiator."
 msgstr ""
+"Hedefe bağlanmak için Portal grubunun Ip adreslerini içerir ve Tcp "
+"portlarını dinler."
 
 #, php-format
 msgid "A VLAN with the tag %s is already defined on this interface."
-msgstr "已经有一个标记为 %s 的VLAN定义在此接口上。"
+msgstr "etiketi %s olan VLAN zaten bu arabirimde tanımlanır."
 
 msgid ""
 "A directory listing is generated if a directory is requested and no index-"
 "file (index.php, index.html, index.htm or default.htm) was found in that "
 "directory."
 msgstr ""
-"如果文件夹没有索引文件，系统将会自动产生一个。(index.php, index.html, index.htm 或者 default.htm)"
 
 msgid ""
 "A host name alias. This option can appear multiple times, for each domain "
 "that has the same IP. Use a space to separate multiple alias names."
-msgstr "主机别名。在同一IP地址上有多个域名时，此选项可多次出现。使用空格分隔多个别名。"
+msgstr ""
 
 msgid ""
 "A key will be either 5 or 13 characters (40 or 104 bits) depending of the "
 "local network and the capabilities of the adaptor. It may be specified "
 "either as a plain string or as a string of hexadecimal digits preceded by "
 "'0x'."
-msgstr "密钥可能是5或13个字符（40或104位），这取决于本地网络适配器的性能。可使用字符串或以0x开头的十六进制数字来制定。"
+msgstr ""
 
 msgid "A route to this destination network already exists."
-msgstr "到目标网段的路由设置已经存在。"
+msgstr "Hedef ağ'a bir yönlendirme bulunuyor."
 
 msgid "A valid IP address must be specified."
-msgstr "必须设置一个有效的IP地址。"
+msgstr "Geçerli bir İP adresinin belirtilmiş olması gerekir."
 
 msgid ""
 "A valid IPv4 address must be specified for the primary/secondary DNS server."
-msgstr "必须为主/从DNS服务器设置一个有效的IPv4地址。"
+msgstr "Birincil ve ikincil DNS sunucusu için bir geçerli IPv4 adresi girin"
 
 msgid "A valid IPv4 address must be specified."
-msgstr "必须设置一个有效的IPv4地址。"
+msgstr "Geçerli bir IPv4 adresinin belirtilmiş olması gerekir."
 
 msgid "A valid IPv4 network bit count must be specified."
-msgstr "必须设置一个有效的IPv4网络比特值。"
+msgstr "Geçerli bir IPv4 network bit hesaplaması belirtilmiş olması gerekir."
 
 msgid "A valid IPv6 Gateway address must be specified."
-msgstr "必须设置一个有效的IPv6网关地址。"
+msgstr "Geçerli bir IPv6 Ağ Geçidi adresi belirtilmiş olması gerekir."
 
 msgid ""
 "A valid IPv6 address must be specified for the primary/secondary DNS server."
-msgstr "必须为主/从DNS服务器设置一个有效的IPv6地址。"
+msgstr ""
+"Birincil ve İkincil DNS Server için geçerli bir IPv6 adresi belirtilmelidir."
 
 msgid "A valid IPv6 address must be specified."
-msgstr "请指定一个有效的 IPv6 地址。"
+msgstr "Geçerli bir IPv6 adresi belirtilmelidir."
 
 msgid "A valid IPv6 prefix must be specified."
-msgstr "必须设置一个有效的IPv6前缀。"
+msgstr "Geçerli bir IPv6 ön eki belirtilmelidir."
 
 msgid "A valid destination network must be specified."
-msgstr "必须指定一个有效的目标网络。"
+msgstr "Geçerli bir hedef ağ belirtilmelidir."
 
 msgid "A valid gateway IP address must be specified."
-msgstr "必须指定一个有效的网关IP地址。"
+msgstr "Geçerli bir Ağ geçidi IP adresi belirtilmelidir."
 
 msgid "A valid mtu size must be specified."
-msgstr "必须指定一个有效的MTU大小。"
+msgstr "Geçerli bir MTU boyutu belirtilmelidir."
 
 msgid "A valid network bit count (1-32) must be specified."
-msgstr "必须指定一个有效的网络比特值 (1-32) 。"
+msgstr "Geçerli bir ağ bit sayımı belirtilmelidir. (1-32 arasında)"
 
 msgid "A valid prefix (1-128) must be specified."
-msgstr "必须指定一个有效的前缀 (1-128)。"
+msgstr "Geçerli bir ön ek (1-128) belirtilmiş olması gerekir."
 
 msgid "A valid systctl MIB value."
-msgstr "有效的systctl MIB值"
+msgstr "Geçerli bir Systctl MIB değeri."
 
 msgid "AD authentication disabled"
-msgstr "关闭 AD 认证"
+msgstr "AD doğrulaması devredışı"
 
 msgid "AD or PDC name."
-msgstr "AD或PDC 的名称。"
+msgstr "AD veya PDC ismi"
 
 msgid "AFP"
 msgstr "AFP"
@@ -241,186 +252,188 @@ msgid "AG"
 msgstr "AG"
 
 msgid "AIO read size"
-msgstr "AIO读大小"
+msgstr "AIO okuma boyutu"
 
 msgid "AIO write size"
-msgstr "AIO写大小"
+msgstr "AIO yazma boyutu"
 
 msgid "ARP Tables"
-msgstr "ARP 表"
+msgstr "ARP Tabloları"
 
 msgid "ARP tables"
-msgstr "ARP 表"
+msgstr "ARP Tabloları"
 
 msgid "Access"
-msgstr "权限"
+msgstr "Erişim"
 
 msgid "Access Restrictions"
-msgstr "访问限制"
+msgstr "Erişim Kısıtlamaları"
 
 msgid "Access Time (atime)"
-msgstr "访问时间(atime)"
+msgstr ""
 
 msgid "Access mode"
-msgstr "存取模式"
+msgstr "Erişim Modu"
 
 msgid "Acoustic level"
-msgstr "噪音控制"
+msgstr "Akustik Seviyesi"
 
 msgid "Action"
-msgstr "动作"
+msgstr "Eylem"
 
 msgid "Activate"
-msgstr "激活"
+msgstr "Etkinleştir"
 
 msgid "Activate S.M.A.R.T. monitoring for this device."
-msgstr "开启这个设备的 S.M.A.R.T. 监测"
+msgstr "Bu aygıt için S.M.A.R.T. özelliğini etkinleştir."
 
 msgid ""
 "Activate email report if you want to be notified if a failure or a new error "
 "has been detected, or if a S.M.A.R.T. command to a disk fails."
-msgstr "如果你想在检测到新的错误或S.M.A.R.T命令失败时获得通知，请开启Email报告。"
+msgstr ""
+"Hata, problem veya S.M.A.R.T'ın uyardığı disk hataları için e-posta raporu "
+"gönderilmesini etkinleştir."
 
 msgid "Active Directory"
-msgstr "活动目录"
+msgstr "Active Directory"
 
 msgid "Active Users"
-msgstr "活跃用户"
+msgstr "Aktif Kullanıcılar"
 
 msgid "Active shares"
-msgstr ""
+msgstr "Aktif paylaşımlar"
 
 msgid "Add"
-msgstr "添加"
+msgstr "Ekle"
 
 msgid "Add Host"
-msgstr "添加主机"
+msgstr "Bilgisayar Ekle"
 
 msgid "Add MIB"
-msgstr "添加MIB"
+msgstr "MIB Ekle"
 
 msgid "Add RAID"
-msgstr "添加RAID"
+msgstr "RAID Ekle"
 
 msgid "Add Route"
-msgstr "添加路由"
+msgstr "Route Ekle"
 
 msgid "Add Rsync job"
-msgstr "新增 Rsync 任务"
+msgstr "Rsync görevi ekle"
 
 msgid "Add URL"
-msgstr "新增 URL"
+msgstr "URL ekle"
 
 msgid "Add additional scheduled self-test."
-msgstr "添加附加的计划自我检测"
+msgstr "Rutin olarak self-test ekle"
 
 msgid "Add auth group"
-msgstr "新增验证组"
+msgstr "Doğrulama grubu ekle"
 
 msgid "Add auto snapshot"
-msgstr "添加自动快照"
+msgstr ""
 
 msgid "Add command"
-msgstr "添加命令"
+msgstr "Komut Ekle"
 
 msgid "Add dataset"
-msgstr "新增数据集"
+msgstr "Veriseti ekle"
 
 msgid "Add device"
-msgstr "添加设备"
+msgstr "Aygıt Ekle"
 
 msgid "Add disk"
-msgstr "添加磁盘"
+msgstr "Disk Ekle"
 
 msgid "Add extent"
-msgstr "新增 extent"
+msgstr "Uzantı Ekle"
 
 msgid "Add group"
-msgstr "添加组群"
+msgstr "Grup ekle"
 
 msgid "Add initiator"
-msgstr "添加发起人"
+msgstr "Initiator Ekle"
 
 msgid "Add initiator group"
-msgstr "新增初始组"
+msgstr "Başlatıcı grup ekle"
 
 msgid "Add interface"
-msgstr "添加接口"
+msgstr "Arayüz Ekle"
 
 msgid "Add job"
-msgstr "新增工作"
+msgstr "Görev Ekle"
 
 msgid "Add module"
-msgstr "添加模块"
+msgstr "Modül Ekle"
 
 msgid "Add mount point"
-msgstr "添加挂载点"
+msgstr "Bağlama noktası ekle"
 
 msgid "Add option"
-msgstr "添加选项"
+msgstr "Seçenek ekle"
 
 msgid "Add pool"
-msgstr "新增池"
+msgstr "Havuz ekle"
 
 msgid "Add portal group"
-msgstr "添加 portal 组"
+msgstr "Portal grubu ekle"
 
 msgid "Add rule"
-msgstr "添加规则"
+msgstr "Kural ekle"
 
 msgid "Add self-test"
-msgstr "添加自我检测"
+msgstr "Self-Test ekle"
 
 msgid "Add share"
-msgstr "添加共享"
+msgstr "Paylaşım Ekle"
 
 msgid "Add snapshot"
-msgstr "添加快照"
+msgstr ""
 
 msgid "Add target"
-msgstr "添加目标"
+msgstr "Hedef Ekle"
 
 msgid "Add user"
-msgstr "添加用户"
+msgstr "Kullanıcı Ekle"
 
 msgid "Add volume"
-msgstr "添加卷"
+msgstr ""
 
 msgid "Additional group"
-msgstr "附加群组"
+msgstr "Ek Grup"
 
 msgid "Additional parameters to the hardware-specific part of the driver."
-msgstr "驱动中与硬件相关到附加参数"
+msgstr ""
 
 msgid "Address"
-msgstr "位置"
+msgstr "Adres"
 
 msgid "Administration password"
-msgstr "管理员密码"
+msgstr "Yönetici Parolası"
 
 msgid "Administrative WebGUI"
-msgstr "Web管理接口"
+msgstr ""
 
 msgid "Administrator name"
-msgstr "管理员名称"
+msgstr "Yönetici Adı"
 
 msgid "Advanced"
-msgstr "高级"
+msgstr "Gelişmiş"
 
 msgid "Advanced Configuration"
-msgstr "高级选项"
+msgstr "Gelişmiş Yapılandırma"
 
 msgid "Advanced Format"
-msgstr "高级格式化"
+msgstr "Gelişmiş Format"
 
 msgid "Advanced Options"
-msgstr "高级选项"
+msgstr "Gelişmiş Seçenekler"
 
 msgid "Advanced Power Management"
-msgstr "高级电源管理"
+msgstr "Gelişmiş Güç Yönetimi"
 
 msgid "Advanced settings"
-msgstr "高级设置"
+msgstr "Gelişmiş Ayarlar"
 
 msgid "Advertisement skew"
 msgstr ""
@@ -432,8 +445,6 @@ msgid ""
 "address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
-"点击&quot;&quot;之后，可能需要执行下列的步骤，才能再次连接至%s：<ul><li>变更电脑上的IP位置</li><li>使用新的IP位置来连接"
-"网页管理介面</li></ul>"
 
 #, php-format
 msgid ""
@@ -443,28 +454,26 @@ msgid ""
 "IP address of your computer</span></li><li><span class='vexpl'>access the "
 "webGUI with the new IP address</span></li></ul>"
 msgstr ""
-"点击 &quot;保存&quot;后, 您需要重启 %s 以使改动生效。必要时请按以下步骤操作来重新访问NAS ：<ul><li><span "
-"class='vexpl'>变更您计算机的IP地址</span></li><li><span "
-"class='vexpl'>用新的IP地址访问管理页面(webGUI)</span></li></ul>"
 
 msgid "Aggregation protocol"
-msgstr "聚合协议"
+msgstr "Yığın protokolü"
 
 msgid "Aggressive"
 msgstr ""
 
 msgid "Albanian"
-msgstr "阿尔巴尼亚"
+msgstr "Arnavutça"
 
 msgid "All"
-msgstr "所有"
+msgstr "Tümü"
 
 msgid "All dirs"
-msgstr "所有目录"
+msgstr "Tüm Dizinler"
 
 #, php-format
 msgid "All dirs requires mounted path, but Path %s is not mounted."
-msgstr "所有目录需要挂载过的路径(path)，但是Path %s未被挂载。"
+msgstr ""
+"%s konumu tanımlanmamış.Tüm dizinler tanımlanmış bir konuma ihtiyaç duyuyor."
 
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
@@ -472,61 +481,65 @@ msgid ""
 msgstr ""
 
 msgid "All users will have the root privilege."
-msgstr "让所有的用户都有 root 权限。"
+msgstr "Tüm kullanıcılar root hakkına sahip olacak."
 
 msgid "Allow"
-msgstr "允许"
+msgstr "İzin ver"
 
 msgid "Allow TLS/SSL connections only."
-msgstr "只允许 TLS/SSL 连接."
+msgstr "Sadece TLS/SSL bağlantılarına izin ver."
 
 msgid "Allow client access to accounts that have null passwords."
-msgstr "允许没有设置密码的帐号连接。"
+msgstr "Parolası boş olan hesaplara istemci erişim izni ver."
 
 msgid ""
 "Allow clients to attempt to store OS/2 style extended attributes on a share."
-msgstr "允许使用者以 OS/2 延伸属性于分享区储存档案。"
+msgstr ""
 
 msgid "Allow clients to resume interrupted uploads and downloads."
-msgstr "允许客户端在上传和下载时断点续传"
+msgstr ""
+"Kullanıcıların yükleme ve indirmelerini durdurup devam etmelerine izin ver."
 
 msgid "Allow new files"
-msgstr "允许新文件"
+msgstr "Yeni dosyalara izin ver"
 
 msgid "Allow new files to be created."
-msgstr "允许创建新文件."
+msgstr "Yeni dosyalar oluşturulmasına izin ver."
 
 msgid ""
 "Allows  certain  users and groups to have read/write access to a share. This "
 "follows the allow option format."
-msgstr "允许特定用户与群组可以读写某个共享区。这将使用允许选项的格式。"
+msgstr ""
+"Belirli ve kullanıcı ve gruplara yazma/okuma ve paylaşım erişimine izin ver."
 
 #, php-format
 msgid "Allows %s to try and become a local master browser."
-msgstr "让 %s 尝试成为 local master browser。"
+msgstr ""
 
 msgid ""
 "Allows certain users and groups to have read-only  access  to  a share. This "
 "follows the allow option format."
-msgstr "允许特定用户与群组只能对某个共享区唯读。这将使用允许选项的格式。"
+msgstr ""
+"Belirlenmiş kullanıcılara ve gruplara bir paylaşıma erişim için sadece okuma "
+"izni ver, Bu işlem izin verme seçeneğinden sonra gelir"
 
 msgid "AltRoot"
-msgstr ""
+msgstr "AltRoot"
 
 msgid "Alternate TCP port. Default is 22"
-msgstr "更改TCP端口。默认为22"
+msgstr "Varsayılan alternatif TCP Port 22'dir."
 
 msgid "Alternate TCP port. Default is 873"
-msgstr "更改TCP端口。默认为873"
+msgstr "Varsayılan Alternatif TCP port 873'tür."
 
 msgid "Alternative configuration directory (usually empty)."
-msgstr "备用配置目录（通常是空的） 。"
+msgstr "Alternaif yapılandırma dizini (genelde boştur)"
 
 msgid "Always on"
-msgstr "永远开启"
+msgstr "Her zaman açık."
 
 msgid "Always scan"
-msgstr "总是扫描"
+msgstr "Her zaman tara"
 
 msgid ""
 "Always use 0 for device number, helps when the device number is not constant "
@@ -534,60 +547,62 @@ msgid ""
 msgstr ""
 
 msgid "An host with this name already exists."
-msgstr "已经有一个相同的主机名称存在了。"
+msgstr "Bu isim ile zaten bir bilgisayar mevcut"
 
 msgid "An interface with the specified description already exists."
-msgstr "接口与指定的描述已经存在。"
+msgstr "Belirtmiş olduğunuz tanım zaten bir arayüzde tanımlanmış."
 
 msgid "Anonymous"
-msgstr "匿名"
+msgstr "Anonim"
 
 msgid "Anonymous bind"
-msgstr "匿名绑定"
+msgstr ""
 
 msgid "Anonymous user bandwidth"
-msgstr "匿名用户带宽"
+msgstr "Blinmeyen kullanıcı bağlantıgenişliği"
 
 msgid ""
 "Anonymous user download bandwith in KB/s. An empty field means infinity."
-msgstr "用KB/s计算的匿名用户下载带宽。留空则为最大。"
+msgstr ""
+"Blinmeyen kullanıcı indirme KB/s belirtilmiştir. Boş alan sonsuz demektir."
 
 msgid ""
 "Anonymous user upload bandwith in KB/s. An empty field means infinity."
-msgstr "你们用户上传带宽的速度限制 KB/s，若为空表示不受限。"
+msgstr ""
+"Blinmeyen kullanıcı yükleme KB/s belirtilmiştir. Boş alan sonsuz demektir."
 
 msgid "Anonymous users only"
-msgstr "只允许匿名用户"
+msgstr "Sadece anonim kullanıcılar"
 
 msgid "Any"
-msgstr "任意"
+msgstr ""
 
 msgid "Apple Filing Protocol"
-msgstr "Apple Filing Protocol"
+msgstr ""
 
 msgid "Apply"
-msgstr "应用"
+msgstr "Uygula"
 
 msgid "Apply changes"
-msgstr "应用更改"
+msgstr "Değişiklikleri uygula"
 
 msgid "Archive"
-msgstr "存档"
+msgstr "Arşiv"
 
 msgid "Archive mode."
-msgstr "存档模式。"
+msgstr "Arşivleme modu."
 
 msgid "Are you sure you want to proceed?"
-msgstr "确定要继续进行？"
+msgstr "Devam etmek istediğinize emin misiniz?"
 
 msgid "Are you sure you want to reboot the system?"
-msgstr "确定要重启系统？"
+msgstr "Sistemi yeniden başlatmak istediğinize emin misiniz?"
 
 msgid "Are you sure you want to shutdown the system?"
-msgstr "确定要关闭系统？"
+msgstr "Sistemi kapatmak istediğinize emin misiniz?"
 
 msgid "Asynchronous I/O (AIO)"
-msgstr "异步 I/O (AIO)"
+msgstr "Asenkronize I/O (AIO)"
 
 msgid ""
 "At the highest level, a target is what is presented to the initiator, and is "
@@ -595,86 +610,86 @@ msgid ""
 msgstr ""
 
 msgid "Attached"
-msgstr "连接成功"
+msgstr "Eklenmiş"
 
 #, php-format
 msgid "Attaching provider '%s'."
-msgstr "连接 '%s' 中。"
+msgstr "Bağlantı Sağlayan '%s'"
 
 msgid "Auth Group"
-msgstr ""
+msgstr "Doğrulama Grubu"
 
 msgid "Auth Groups"
-msgstr ""
+msgstr "Doğrulama Gruplar"
 
 msgid "Auth Method"
-msgstr "验证模式"
+msgstr "Doğrulama Methodu"
 
 msgid "Authenticate URL"
-msgstr "认证 URL"
+msgstr "URL Doğrula"
 
 msgid "Authentication"
-msgstr "认证方式"
+msgstr "Kimlik Denetimi"
 
 msgid "Authentication method"
-msgstr "认证方式"
+msgstr "Doğrulama yöntemi"
 
 msgid "Authorised network"
-msgstr "通过认证的网络"
+msgstr "Yetkilendirilmiş Ağ"
 
 msgid "Auths"
-msgstr ""
+msgstr "Doğrulamalar"
 
 msgid "Auto"
-msgstr "自动"
+msgstr "Otomatik"
 
 msgid "Auto Snapshot"
-msgstr "自动快照"
+msgstr ""
 
 msgid "Auto size"
-msgstr "自动大小"
+msgstr "Otomatik boyut"
 
 msgid "AutoScale"
-msgstr "自动扩展"
+msgstr "OtomatikÖlçeklendirme"
 
 msgid "Automatic disk discovery"
-msgstr "自动发现磁盘"
+msgstr "Otomatik disk kurtarma"
 
 msgid "Automatic disk discovery mode"
-msgstr "自动发现磁盘模式"
+msgstr "Otomatik disk kurtarma modu"
 
 msgid "Autoselect"
-msgstr "自动选择"
+msgstr "Otomatik seçim"
 
 msgid "Auxiliary parameters"
-msgstr "附属参数"
+msgstr "Yardımcı Parametreler"
 
 msgid "Backup configuration"
-msgstr "备份设置"
+msgstr "Yapılandırmayı Yedekle"
 
 msgid "Backup file"
-msgstr "备份文件"
+msgstr "Yedek dosyası"
 
 msgid "Backup/Restore"
-msgstr "备份/还原"
+msgstr "Yedekle/Geri al"
 
 msgid "Bad User - non existing users"
-msgstr "错误用户 - 不存在的用户"
+msgstr ""
 
 msgid "Balance algorithm"
-msgstr "平衡算法"
+msgstr "Balans Algoritması"
 
 msgid "Ban list"
-msgstr "黑名单"
+msgstr "Yasak listesi"
 
 msgid "Ban list rule"
-msgstr "禁止列表(ban list)的规则"
+msgstr "Yasak liste kuralları"
 
 msgid "Banner"
-msgstr "欢迎信息"
+msgstr "Banner"
 
 msgid "Base DN"
-msgstr "基本 DN"
+msgstr "Taban DN"
 
 msgid "Base Name"
 msgstr ""
@@ -684,23 +699,23 @@ msgid ""
 msgstr ""
 
 msgid "Best available"
-msgstr "最可用的"
+msgstr "Mümkün olan en iyisi"
 
 msgid "Bind DN"
-msgstr "绑定 DN"
+msgstr "DN ekle"
 
 msgid "Bind password"
-msgstr "绑定密码"
+msgstr "Parolayı ekle"
 
 #, php-format
 msgid "Bios:"
-msgstr "Bios:"
+msgstr ""
 
 msgid "BitTorrent"
 msgstr "BitTorrent"
 
 msgid "Blank time"
-msgstr "空闲时间"
+msgstr "Belirsiz zaman"
 
 msgid "Blocksize"
 msgstr ""
@@ -709,16 +724,16 @@ msgid "Bridge"
 msgstr ""
 
 msgid "Browseable"
-msgstr "提供浏览"
+msgstr "Gözatılabilir"
 
 msgid "Built date"
-msgstr "建立时间"
+msgstr ""
 
 msgid "Bulgarian"
-msgstr "保加利亚"
+msgstr "Bulgarca"
 
 msgid "By default, only already existing files can be uploaded."
-msgstr "默认只能上传已经存在的文件"
+msgstr "Varsayalın ayarlara göre, sadece varolan dosya yüklenebilir."
 
 msgid "CARP"
 msgstr ""
@@ -730,91 +745,91 @@ msgid "CCMP TKIP"
 msgstr "CCMP TKIP"
 
 msgid "CD/DVD"
-msgstr "CD/DVD"
+msgstr ""
 
 msgid "CHAP"
 msgstr "CHAP"
 
 msgid "CHAP Users"
-msgstr "CHAP 用户"
+msgstr "CHAP Kullanıcıları"
 
 msgid "CIFS/SMB"
-msgstr "CIFS/SMB/网上邻居"
+msgstr "CIFS/SMB"
 
 msgid "CIFS/SMB disabled"
-msgstr "网上邻居服务器关闭"
+msgstr "CIFS/SMB etkin değil"
 
 msgid "CIFS/SMB informations"
-msgstr "网上邻居信息"
+msgstr "CIFS/SMB bilgileri"
 
 msgid "CP1251 (Cyrillic)"
-msgstr "CP1251 (斯拉夫文)"
+msgstr ""
 
 msgid "CP437 (Latin US)"
-msgstr "CP437 (拉丁语 美国)"
+msgstr ""
 
 msgid "CP850 (Latin 1)"
-msgstr "CP850 (拉丁语 1)"
+msgstr ""
 
 msgid "CP852 (Latin 2)"
-msgstr "CP852 (拉丁语 2)"
+msgstr ""
 
 msgid "CP866 (Cyrillic CIS 1)"
-msgstr "CP866 (西里尔文 CIS 1)"
+msgstr ""
 
 msgid "CP932 (Japanese Shift-JIS)"
-msgstr "CP932 (日文 Shift-JIS)"
+msgstr ""
 
 msgid "CP936 (Simplified Chinese GBK)"
-msgstr "CP936 (简体中文 GBK)"
+msgstr ""
 
 msgid "CP949 (Korean)"
-msgstr "CP949 (韩文)"
+msgstr ""
 
 msgid "CP950 (Traditional Chinese Big5)"
 msgstr ""
 
 msgid "CPU frequency"
-msgstr "CPU 频率"
+msgstr "İşlemci Hızı"
 
 msgid "CPU frequency:"
 msgstr ""
 
 msgid "CPU load"
-msgstr "CPU 负载"
+msgstr "İşlemci Yükü"
 
 msgid "CPU temperature"
-msgstr "CPU 温度"
+msgstr "İşlemci sıcaklığı"
 
 msgid "CPU usage"
-msgstr "CPU 负载"
+msgstr "CPU kullanımı"
 
 msgid "Cache"
-msgstr "缓存"
+msgstr "Önebllek"
 
 msgid "Cache Device"
-msgstr "缓存设备"
+msgstr "Önbellek aygıtı"
 
 msgid "Can't format the OS origin disk!"
-msgstr "不能格式化系统盘！"
+msgstr "Os Başlangıç Diski Biçimlendirilemez"
 
 msgid "Can't get UFS ID."
-msgstr "无法获取UFS ID."
+msgstr ""
 
 msgid "Can't mount the system partition 1, the DATA partition is the 2."
-msgstr "不能挂载系统分区(第1区)，资料分区为第2区。"
+msgstr ""
 
 msgid "Cancel"
-msgstr "取消"
+msgstr "İptal\""
 
 msgid "Canmount"
-msgstr "可以挂载"
+msgstr ""
 
 msgid "Cannot get data about interface"
-msgstr "不能得到的数据接口"
+msgstr "Arayüz hakkında veri alınamıyor"
 
 msgid "Capacity"
-msgstr "容量"
+msgstr "Kapasite"
 
 msgid "Case Folding"
 msgstr ""
@@ -827,46 +842,46 @@ msgid ""
 msgstr ""
 
 msgid "Certificate"
-msgstr "证书"
+msgstr "Sertifika"
 
 msgid "Change"
-msgstr "更改"
+msgstr "Değiştir"
 
 msgid "Change below file"
-msgstr "更改下列文件"
+msgstr ""
 
 msgid "Change password"
-msgstr "更改密码"
+msgstr "Parolayı değiştir"
 
 msgid "Changes to this option will take effect after a reboot."
-msgstr "要使用设置生效必须重启系统。"
+msgstr "Değişiklikleri görebilmek için yeniden başlatınız"
 
 msgid "Channel"
-msgstr "频道"
+msgstr "Kanal"
 
 msgid "Check interval"
-msgstr "检查间隔"
+msgstr "Kontrol aralığı"
 
 msgid "Check shared secret:"
-msgstr "检查密码共享："
+msgstr "Gizli Paylaşımları Kontrol Et"
 
 msgid "Chinese (Simplified)"
-msgstr "中文（简体）"
+msgstr "Çince (Basitleştirilmiş)"
 
 msgid "Chinese (Traditional)"
-msgstr "中文（繁体）"
+msgstr "Çince (Geleneksel)"
 
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
 
 msgid "Choose which IP protocol this rule should match."
-msgstr "选择此规则将会匹配的 IP 协议。"
+msgstr ""
 
 msgid "Choose which interface this route applies to."
-msgstr "选择本路由设置要应用到哪一个网络介面。"
+msgstr "bu yola uygulanacak arayüzü seçin"
 
 msgid "Clear"
-msgstr "清除"
+msgstr "Temizle"
 
 msgid "Clear config and Import disks"
 msgstr ""
@@ -881,31 +896,32 @@ msgid ""
 msgstr ""
 
 msgid "Click this button to download the system configuration in XML format."
-msgstr "点这个按钮下载 XML 格式的系统组态"
+msgstr ""
+"Sistem yapılandırmasını XML formatında indirmek için bu butona tıklayınız"
 
 msgid "Client"
-msgstr "客户端"
+msgstr "İstemci"
 
 msgid "Client sees lowercase, server sees uppercase"
-msgstr "客户端显示小写，服务器端显示大写。"
+msgstr "İstemci Küçük Harfleri, Sunucu Büyük Harfleri görür."
 
 msgid "Client sees uppercase, server sees lowercase"
-msgstr "客户端显示大写，服务器端显示小写"
+msgstr "İstemci Büyük Harfleri, Sunucu Küçük Harfleri görür"
 
 msgid "Clone"
 msgstr ""
 
 msgid "Collecting initial data, please wait..."
-msgstr "Collecting initial data, please wait..."
+msgstr "Başlangıç verisi toplanıyor, lütfen bekleyin..."
 
 msgid "Collisions"
-msgstr "封包冲撞"
+msgstr "Çarpışma"
 
 msgid "Cols"
-msgstr "栏"
+msgstr "Cols"
 
 msgid "Command"
-msgstr "执行命令"
+msgstr "Komut"
 
 #, php-format
 msgid "Command for LINK_DOWN event (e.g. %s)."
@@ -916,84 +932,86 @@ msgid "Command for LINK_UP event (e.g. %s)."
 msgstr ""
 
 msgid "Command output:"
-msgstr "指令输出："
+msgstr "Komut Çıktısı"
 
 msgid "Command scripts"
-msgstr "命令脚本"
+msgstr "Komut Scripti"
 
 msgid "Comment"
-msgstr "注释"
+msgstr "Açıklama"
 
 msgid "Common Internet File System"
-msgstr "通用网络文件系统(CIFS)"
+msgstr "Ortak İnternet Dosya Sistemi"
 
 msgid "Community"
-msgstr "Community"
+msgstr "Topluluk"
 
 msgid "Compliant profile to be used."
-msgstr "使用的附加设置。"
+msgstr "Compliant Profil kullanılmış."
 
 msgid "Compress"
-msgstr "压缩"
+msgstr "Sıkıştırma"
 
 msgid "Compress file data during the transfer."
-msgstr "压缩文件数据正在传输。"
+msgstr "Transfer esnasında dosya verilerini sıkıştır."
 
 msgid "Compression"
-msgstr "资料压缩"
+msgstr "Sıkıştırma"
 
 msgid ""
 "Compression is worth using if your connection is slow. The efficiency of the "
 "compression depends on the type of the file, and varies widely. Useful for "
 "internet transfer only."
-msgstr "如果你的网际网络连接速度很慢，开启资料压缩可以增快工作效率。注意：资料压缩的比例会依据不同的文件类型而有很大的差异。"
+msgstr ""
 
 msgid "Configuration"
-msgstr "配置"
+msgstr "Yapılandırma"
 
 msgid "Configuration directory"
-msgstr "配置目录"
+msgstr "Yapılandırma dizini"
 
 msgid "Configuring"
-msgstr "设置中"
+msgstr "Ayarla"
 
 msgid "Confirmation"
-msgstr "确认"
+msgstr "Doğrulama"
 
 msgid "Connected FTP users"
-msgstr "已连接 FTP 用户"
+msgstr "Bağlı FTP kullanıcıları"
 
 msgid "Console menu"
-msgstr "Console选单"
+msgstr "Konsol Menü"
 
 msgid "Console screensaver"
-msgstr "控制台屏保"
+msgstr "Konsol ekran koruyucusu"
 
 msgid "Contact"
-msgstr "联系人"
+msgstr "İletişim"
 
 msgid ""
 "Contact information, e.g. name or email of the person responsible for this "
 "system: 'admin@email.address'."
-msgstr "联系人信息，例：系统管理员的姓名或是 email：admin@email.address。"
+msgstr ""
+"İletişim Bilgileri, Örn. Bu sistem için sorumlu kişinin email ve ismi: "
+"'admin@email.address'."
 
 msgid "Content"
-msgstr "内容"
+msgstr "İçerik"
 
 msgid "Controller Auth Group"
-msgstr ""
+msgstr "Doğrulama Grubu Denetleyicisi"
 
 msgid "Controller Auth Method"
-msgstr ""
+msgstr "Doğrulama Metodu Denetleyicisi"
 
 msgid "Controller Authorised network"
-msgstr ""
+msgstr "Doğrulanmış Ağ Denetleyicisi"
 
 msgid "Controller IP address"
-msgstr ""
+msgstr "IP adres Denetleyicisi"
 
 msgid "Controller TCP Port"
-msgstr ""
+msgstr "TCP Port Denetleyicisi"
 
 msgid "Controls power consumption."
 msgstr ""
@@ -1036,22 +1054,22 @@ msgid ""
 msgstr ""
 
 msgid "Controls whether this dataset can be modified."
-msgstr "控制此数据能否被修改。"
+msgstr ""
 
 msgid "Count"
-msgstr "次数"
+msgstr "Sayı"
 
 msgid "Create and initialize RAID."
-msgstr "建立并初始 RAID。"
+msgstr "RAID oluştur ve başlat"
 
 msgid "Create encrypted volume"
-msgstr "建立加密硬盘"
+msgstr "Şifrelenmiş Volume Oluşturuldu"
 
 msgid "Create mask"
-msgstr "建立遮罩"
+msgstr "Maske Oluşturuldu"
 
 msgid "Create work directory if it doesn't exist."
-msgstr "如果工作目录不存在，则创建目录"
+msgstr "Çalışma dizini yoksa oluştur."
 
 msgid "Created UFS file system:"
 msgstr ""
@@ -1063,49 +1081,49 @@ msgid "Creates the recursive snapshot."
 msgstr ""
 
 msgid "Creating filesystem"
-msgstr "建立文件系统"
+msgstr "Dosya sistemi oluşturuluyor"
 
 msgid "Creating filesystem with 'Soft Updates'"
-msgstr "建立'Soft Updates'的文件系统"
+msgstr "Dosya sistemi 'Basit Güncelleme' ile oluşturuluyor'"
 
 msgid "Creating partition"
-msgstr "创建分区"
+msgstr "Birim oluşturuluyor"
 
 msgid "Creation"
 msgstr ""
 
 msgid "Credits"
-msgstr "致谢"
+msgstr "Katkıda Bulunanlar"
 
 msgid "Critical"
-msgstr "重要"
+msgstr "Kritik"
 
 msgid "Cron"
 msgstr "Cron"
 
 msgid "Cron job"
-msgstr "Cron job"
+msgstr "Cron Görevi"
 
 msgid "Current"
-msgstr "当前"
+msgstr ""
 
 msgid "Current Version:"
 msgstr ""
 
 msgid "Custom"
-msgstr "自定义"
+msgstr ""
 
 msgid "Custom script"
-msgstr "定制脚本"
+msgstr ""
 
 msgid "Custom script is not found."
-msgstr "未找到定制脚本"
+msgstr ""
 
 msgid "Custom script is required."
 msgstr ""
 
 msgid "Czech"
-msgstr ""
+msgstr "Çek"
 
 msgid "DAAP"
 msgstr "DAAP"
@@ -1117,7 +1135,7 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DNS settings"
-msgstr "DNS 设置"
+msgstr "DNS ayarları"
 
 #, php-format
 msgid ""
@@ -1132,113 +1150,113 @@ msgid "DVD"
 msgstr "DVD"
 
 msgid "Daemon"
-msgstr "常驻程序"
+msgstr "Daemon"
 
 msgid "Daemon events"
-msgstr "Daemon事件"
+msgstr "Daemon olayları"
 
 msgid "Daemon log"
-msgstr "常驻程序记录"
+msgstr "Daemon Kayıt defteri"
 
 msgid "Danish"
-msgstr "丹麦语"
+msgstr ""
 
 msgid "Data digest"
 msgstr ""
 
 msgid "Data integrity"
-msgstr "资料完整性"
+msgstr "Veri Bütünlüğü"
 
 msgid "Database directory"
-msgstr "资料库目录"
+msgstr "Veritabanı Dizini"
 
 msgid "Dataset"
-msgstr ""
+msgstr "Veriseti"
 
 msgid "Datasets"
-msgstr ""
+msgstr "Verisetleri"
 
 msgid "Date & Time"
-msgstr "日期和时间"
+msgstr "Tarih & Saat"
 
 msgid "Days"
-msgstr "天"
+msgstr "Günler"
 
 msgid "Debug"
-msgstr "调试"
+msgstr "Hata ayıklama"
 
 msgid "Dedup"
 msgstr ""
 
 msgid "Default"
-msgstr "默认值"
+msgstr "Varsayılan"
 
 #, php-format
 msgid "Default is %s."
-msgstr "默认是 %s 。"
+msgstr "Varsayılan %s."
 
 msgid "Default root"
-msgstr ""
+msgstr "Varsayılan root"
 
 msgid "Default user name is 'admin'."
-msgstr "默认情况下用户名是“admin”。"
+msgstr "İlk geçerli kullanıcı adı 'admin' dir."
 
 msgid "DefaultTime2Retain"
-msgstr ""
+msgstr "Varsayılan Time2Retain"
 
 msgid "DefaultTime2Wait"
-msgstr ""
+msgstr "Varsayılan Time2Wait"
 
 msgid "Define directories/URL's that require authentication."
-msgstr "指定需要认证的目录/URL"
+msgstr "Kimlik doğrulaması gerektiren URL'lerin konumlarını belirleyin."
 
 msgid "Defines when the shutdown is initiated."
-msgstr "定义何时关机。"
+msgstr "Kapanmanın ne zaman başlatılacağını belirleyin."
 
 msgid "Delete"
-msgstr "删除"
+msgstr "Sil"
 
 msgid "Delete ARP entry"
-msgstr "删除ARP项目"
+msgstr "ARP girdisini Sil"
 
 msgid "Delete Host"
-msgstr "删除主机资讯"
+msgstr "Bilgisayarı Sil"
 
 msgid "Delete Login Info"
-msgstr "删除登录信息"
+msgstr "Oturum açma bilgisini sil"
 
 msgid "Delete MIB"
-msgstr "删除MIB"
+msgstr "MIB'yi sil"
 
 msgid "Delete RAID"
-msgstr "删除RAID"
+msgstr "RAID Sil"
 
 msgid "Delete Route"
-msgstr "删除路由"
+msgstr "Route Sil"
 
 msgid "Delete Rsync job"
-msgstr "删除 Rsync 作业"
+msgstr "Rsync Görevini Sil"
 
 msgid "Delete URL"
-msgstr "删除 URL"
+msgstr "URL sil"
 
 msgid "Delete algorithm"
-msgstr "删除规则"
+msgstr "Algoritmayı sil"
 
 msgid "Delete all MIBs"
-msgstr "删除所有MIB"
+msgstr "Tüm MIB'leri sil"
 
 msgid "Delete all options"
-msgstr "删除所有选择"
+msgstr "Tüm ayarları sil"
 
 msgid "Delete all rules"
-msgstr "删除全部规则"
+msgstr "Tüm kuralları sil"
 
 msgid "Delete all self-tests"
-msgstr "删除所有的自我测试"
+msgstr "Tüm self-test'leri sil"
 
 msgid "Delete auth group"
-msgstr ""
+msgstr "Tüm doğrulama gruplarını sil"
 
 msgid "Delete auto snapshot"
 msgstr ""
@@ -1247,70 +1265,70 @@ msgid "Delete clone"
 msgstr ""
 
 msgid "Delete command"
-msgstr "删除指令"
+msgstr "Komut Sil"
 
 msgid "Delete dataset"
-msgstr ""
+msgstr "Verisetini sil"
 
 msgid "Delete device"
-msgstr "删除设备"
+msgstr "Aygıt Sil"
 
 msgid "Delete disk"
-msgstr "删除硬盘"
+msgstr "Disk Sil"
 
 msgid "Delete extent"
-msgstr "删除 extent"
+msgstr "Uzantı Sil"
 
 msgid "Delete files on the receiving side that don't exist on sender."
-msgstr "删除不存在的发件人的文件。"
+msgstr "Gönderici tarafı olmayan dosyaları sil."
 
 msgid "Delete group"
-msgstr "删除群组"
+msgstr "Grup Sil"
 
 msgid "Delete initiator"
-msgstr "删除初始器"
+msgstr "İnitiator'u sil"
 
 msgid "Delete initiator group"
-msgstr ""
+msgstr "Başlatıcı grubunu sil"
 
 msgid "Delete interface"
-msgstr "删除介面"
+msgstr "Arayüz Sil"
 
 msgid "Delete job"
-msgstr "删除工作"
+msgstr "Görev Sil"
 
 msgid "Delete module"
-msgstr "删除模组"
+msgstr "Modül Sil"
 
 msgid "Delete mount point"
-msgstr "删除挂载点"
+msgstr "Disk bağlantı noktasını sil"
 
 msgid "Delete option"
-msgstr "删除选项"
+msgstr "Seçeneği sil"
 
 msgid "Delete pool"
-msgstr "删除池"
-
-msgid "Delete portal group"
 msgstr ""
 
+msgid "Delete portal group"
+msgstr "Portal grubunu sil"
+
 msgid "Delete rule"
-msgstr "删除规则"
+msgstr "Kuralı sil"
 
 msgid "Delete self-test"
-msgstr "删除自我检测"
+msgstr "Self-test'i sil"
 
 msgid "Delete share"
-msgstr "删除共享区"
+msgstr "Paylaşım Sil"
 
 msgid "Delete snapshot"
 msgstr ""
 
 msgid "Delete target"
-msgstr "删除目标"
+msgstr "Hedef Sil"
 
 msgid "Delete user"
-msgstr "删除用户"
+msgstr "Kullanıcı sil"
 
 msgid "Delete volume"
 msgstr ""
@@ -1319,76 +1337,78 @@ msgid "Deletes the recursive snapshot."
 msgstr ""
 
 msgid "Deleting"
-msgstr "删除"
+msgstr "Siliniyor"
 
 msgid "Deleting GEOM metadata"
-msgstr "删除 GEOM 元数据"
+msgstr "GEOM metadaları siliniyor"
 
 msgid "Deleting MBR and partition table"
-msgstr "删除 MBR 和分区表"
+msgstr "MBR ve Disk birimlerini siliyor"
 
 msgid "Deny"
-msgstr "拒绝"
+msgstr "Reddet"
 
 msgid "Description"
-msgstr "描述"
+msgstr "Açıklama"
 
 msgid "Destination"
-msgstr "目地位置"
+msgstr "Hedef"
 
 msgid "Destination email address."
-msgstr "收件之 email"
+msgstr "Hedef E-mail adresi"
 
 msgid "Destination host name or IP number."
-msgstr "目标主机名或IP地址。"
+msgstr "Hedef IP adresi yada ismi."
 
 msgid "Destination network"
-msgstr "目标网段"
+msgstr "Hedef Ağ"
 
 msgid "Destination network bit count"
-msgstr "目标网域 bit count"
+msgstr "Hedef Ağ Bit sayısı"
 
 msgid "Destination network for this static route"
-msgstr "本路由设置要应用的目标网段"
+msgstr "Bu statik Roue için hedef network"
 
 msgid "Destination port"
-msgstr "目的地端口"
+msgstr "Hedef port"
 
 msgid "Destination share"
-msgstr "目标位置"
+msgstr "Hedef Paylaşım"
 
 msgid "Detected"
-msgstr "删除"
+msgstr "Algılandı"
 
 msgid "Detected Language:<br />(Change if needed)"
 msgstr ""
 
 msgid "Detected RSYNC remote shares"
-msgstr "删除 RSYNC 远端共享"
+msgstr "RSYNC Uzak paylaşım algıladı"
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
 "retransmitted. The default is 1000000 (1 second)."
-msgstr "确定第一次重发包的默认超时，单位为毫秒。默认为 1000000 （一秒）。"
+msgstr ""
+"Paketlerin tekrar iletilmeden önce mikrosaniye olarak zaman aşımı süresi "
+"belirleyin. Ön tanımlı 1000000 (1 saniyedir)."
 
 msgid "Device"
-msgstr "设备"
+msgstr "Aygıt"
 
 #, php-format
 msgid "Device /dev/%s - %s"
-msgstr "设备 /dev/%s - %s"
+msgstr "Aygıt /dev/%s - %s"
 
 msgid "Device IP"
-msgstr "设备 IP"
+msgstr "Aygıt IP"
 
 msgid "Device Pass-through"
 msgstr ""
 
 msgid "Device model"
-msgstr ""
+msgstr "Cihaz modeli"
 
 msgid "Device polling"
-msgstr ""
+msgstr "Aygıt seçimi"
 
 msgid ""
 "Device polling is a technique that lets the system periodically poll network "
@@ -1397,69 +1417,68 @@ msgid ""
 "forwarding delay (the devices are polled 1000 times per second). Not all "
 "NICs support polling."
 msgstr ""
-"Polling 是一种定期访查网络卡资料区的方式（每秒将检查 1000 次），这可以降低 CPU "
-"的负载同时增加处理量，但是会使得资料传输时间些微的拉长（forwarding delay）。但并非所有网络卡都支援 Polling。"
 
 #, php-format
 msgid "Device: %s | Total: %s | Used: %s | Free: %s"
-msgstr "设备： %s | 总共： %s | 已使用： %s | 空闲： %s"
+msgstr "Aygıt: %s | Toplam: %s | Kullanılan: %s | Boş: %s"
 
 msgid "Devices"
-msgstr "设备"
+msgstr "Aygıtlar"
 
 msgid "Diagnostics"
-msgstr "诊断"
+msgstr "sistem Kontrolü"
 
 msgid "Difference"
-msgstr "差异"
+msgstr ""
 
 msgid "Digital Audio Access Protocol"
-msgstr "Digital Audio Access Protocol"
+msgstr "Dijital Ses Erişim Protokolül"
 
 msgid "Direction"
-msgstr "方向"
+msgstr ""
 
 msgid "Directory"
-msgstr "目录"
+msgstr "Dizin"
 
 msgid "Directory listing"
-msgstr "目录清单"
+msgstr "Dizin listeleme"
 
 msgid "Directory mask"
-msgstr "目录遮罩"
+msgstr "Dizin Maskesi"
 
 msgid "Directory that contains removable media. (e.g /mnt/iscsi/)"
-msgstr ""
+msgstr "Dizin çıkartılabilir aygıtlar içeriyor. (örn /mnt/iscsi/)"
 
 msgid "Directory to incomplete files. An empty field means disable."
 msgstr ""
 
 msgid "Directory to watch for new .torrent files."
-msgstr "监视 .torrent 文件的目录"
+msgstr ""
 
 msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-msgstr "关闭 AFP-over-Appletalk 避免 DDP 连接。"
+msgstr ""
+"DDP bğlantılarını engellemek için AFP-over-Appletalk devre dışı bırakın"
 
 msgid "Disable File Manager"
-msgstr ""
+msgstr "Dosya Yöneticisini Devredışı Bırak"
 
 msgid "Disable TCP wrapper (mod_wrap module)."
 msgstr ""
 
 msgid "Disable console menu"
-msgstr "关闭console选单"
+msgstr "Konsol menüsünü Devre Dışı bırak"
 
 msgid "Disable firmware upload"
-msgstr "关闭固件升级功能"
+msgstr "Firmware yüklemeyi devre dışı bırak"
 
 msgid "Disable firmware version check"
-msgstr "关闭固件版本检查功能"
+msgstr "Firmware versiyon kontrolünü Devre Dışı bırak"
 
 msgid "Disable speaker beep on startup and shutdown"
-msgstr "关闭开/关机时的提示声响"
+msgstr "Kapanırken ve Açılırken hoparler Bip sesini Devre Dışı bırak"
 
 msgid "Disabled"
-msgstr "禁用"
+msgstr "Devre Dışı bırak"
 
 msgid ""
 "Disables :hex translations for anything except dot files. This option makes "
@@ -1468,25 +1487,25 @@ msgstr ""
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
-msgstr "搜寻 %s 上的 iSCSI 目标。"
-
-msgid "Discovery Auth Group"
-msgstr "查找 Auth 组"
-
-msgid "Discovery Auth Method"
 msgstr ""
 
+msgid "Discovery Auth Group"
+msgstr "Doğrulama Grubunu Tanımla"
+
+msgid "Discovery Auth Method"
+msgstr "Doğrulama Grubunu Tanımla"
+
 msgid "Disk"
-msgstr "硬盘"
+msgstr "Disk"
 
 msgid "Disk space usage"
-msgstr "硬盘空间"
+msgstr "Diskteki boş alan"
 
 msgid "Disks"
-msgstr "硬盘"
+msgstr "Diskler"
 
 msgid "Disks (ATA)"
-msgstr "硬盘（ATA）"
+msgstr "Diskler (ATA)"
 
 msgid "Disks (ATA) information"
 msgstr ""
@@ -1495,7 +1514,7 @@ msgid "Display"
 msgstr ""
 
 msgid "Distributed hash table"
-msgstr "分布式哈希表"
+msgstr ""
 
 msgid ""
 "Do you really want to clear and import?\\nThe existing config will be "
@@ -1503,28 +1522,28 @@ msgid ""
 msgstr ""
 
 msgid "Do you really want to delete all MIBs?"
-msgstr "你真的要删除所有MIB？"
+msgstr "Tüm MIB'ları silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete all options?"
-msgstr "你真的要删除所有选择？"
+msgstr "Tüm ayarlarları silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete all rules?"
-msgstr "是否要删除全部规则？"
+msgstr "Tüm kuralları silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete all scheduled self-tests?"
-msgstr "你真的要删除所有自我测试任务吗?"
+msgstr "Tüm zamanlanmış self-test'leri silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete this MIB?"
-msgstr "你真的要删除这个MIB？"
+msgstr "Bu MIB silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete this Rsync job?"
-msgstr "你真的要删除这个 Rsync 作业吗?"
+msgstr "Bu Rsync görevini silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete this URL?"
-msgstr "确定要删除这个 URL 吗？"
+msgstr "Bu URL silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete this auth group?"
-msgstr ""
+msgstr "Bu doğrulama grubunu silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete this auto snapshot?"
 msgstr ""
@@ -1533,79 +1552,84 @@ msgid "Do you really want to delete this clone?"
 msgstr ""
 
 msgid "Do you really want to delete this command?"
-msgstr "确认要删除指令吗？"
+msgstr "Bu komutu gerçekten silmek istediğinize emin misiniz?"
 
 msgid "Do you really want to delete this cron job?"
-msgstr "确定要删除这项 Cron 任务？"
+msgstr "Bu Cron görevini gerçekten silmek istediğinize emin misiniz?"
 
 msgid "Do you really want to delete this dataset?"
-msgstr ""
+msgstr "Bu verisetini silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete this device?"
-msgstr "确定要删除这个设备？"
+msgstr "Bu aygıtı gerçekten silmek istediğinize emin misiniz?"
 
 msgid ""
 "Do you really want to delete this disk? All elements that still use it will "
 "become invalid (e.g. share)!"
-msgstr "确定要删除这个硬盘吗？所有使用此硬盘的内容都会失效！(例：共享)"
+msgstr ""
+"Bu diski gerçekten silmek istediğinize emin misiniz? Kullanılan tüm öğeler "
+"geçersiz kılınacak (Paylaşım gibi)"
 
 msgid "Do you really want to delete this extent?"
-msgstr "确定要删除这个 extent？"
+msgstr "Bu uzantıyı gerçekten silmek istediğinize emin misiniz?"
 
 msgid "Do you really want to delete this group?"
-msgstr "确定要删除此群组？"
+msgstr "Bu grubu gerçekten silmek istediğinize emin misiniz?"
 
 msgid "Do you really want to delete this host?"
-msgstr "确定要删除此主机信息吗？"
+msgstr "Bu Bilgisayarı gerçekten silmek istediğinize emin misiniz?"
 
 msgid "Do you really want to delete this initiator group?"
-msgstr ""
+msgstr "Bu başlatıcı grubu silmek istediğinden emin misin?"
 
 msgid ""
 "Do you really want to delete this initiator? All elements that still use it "
 "will become invalid (e.g. share)!"
-msgstr "确定要删除这个初始器？所有使用此硬盘的内容都会失效！"
+msgstr ""
+"Bu iniator'u gerçekten silmek istediğinize emin misiniz?  (Paylaşım gibi)"
 
 msgid "Do you really want to delete this interface?"
-msgstr "你真的要删除这个接口？"
+msgstr "Bu arayüzü silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete this module?"
-msgstr "确定要删除这个模块？"
+msgstr "Bu modülü gerçekten silmek istediğinize emin misiniz?"
 
 msgid ""
 "Do you really want to delete this mount point? All elements that still use "
 "it will become invalid (e.g. share)!"
-msgstr "确定要删除这个挂载点吗？所有使用此硬盘的内容都会失效！(例：共享)"
+msgstr ""
+"Fazladan yaratılmış bu noktayı silmek istiyor musunuz?Kullanılan öğeler "
+"geçersiz kılınacak"
 
 msgid "Do you really want to delete this option?"
-msgstr "你真的要清除这个选项？"
+msgstr "Bu seçeneği kaldırmak istediğinden emin misin?"
 
 msgid "Do you really want to delete this pool?"
-msgstr "你真的要删除这个池吗?"
+msgstr "Bu MIB silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete this portal group?"
-msgstr ""
+msgstr "Bu portal grubunu silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete this route?"
-msgstr "确定要删除此路由信息吗？"
+msgstr "Bu Route'u gerçekten silmek istediğinize emin misiniz?"
 
 msgid "Do you really want to delete this rule?"
-msgstr "是否要删除此规则？"
+msgstr "Bu kuralı silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete this scheduled self-test?"
-msgstr "确定要删除这项自我检测流程吗？"
+msgstr "Bu zamanlanmış self-test'ini silmek istediğinden emin misin?"
 
 msgid "Do you really want to delete this share?"
-msgstr "确定要删除这个共享区？"
+msgstr "Bu paylaşımı gerçekten silmek istediğinize emin misiniz?"
 
 msgid "Do you really want to delete this snapshot?"
 msgstr ""
 
 msgid "Do you really want to delete this target?"
-msgstr "确定要删除这个iSCSI目标吗？"
+msgstr "Bu hedefi gerçekten silmek istediğinize emin misiniz?"
 
 msgid "Do you really want to delete this user?"
-msgstr "确定要删除这个用户？"
+msgstr "Bu kullanıcıyı gerçekten silmek istediğinize emin misiniz?"
 
 msgid "Do you really want to delete this volume?"
 msgstr ""
@@ -1613,56 +1637,60 @@ msgstr ""
 msgid ""
 "Do you really want to delete this volume?\\n!!! Note, all data will get lost "
 "and can not be recovered. !!!"
-msgstr "你真的要删除此卷吗？\\n！！！ 注意，所有数据将被删除，并且无法恢复。 ！！！"
+msgstr ""
+"Bu disk alanını karldırmak istediğine emin misin?\\n!!! Tüm veri geri "
+"çağrılamayacak şekilde silinicek. !!!"
 
 msgid "Do you really want to format this disk? All data will be lost!"
-msgstr "确定真的要格式化这个硬盘？硬盘内所有资料都会消失！"
+msgstr ""
+"Bu diski gerçekten silmek istediğinize emin misiniz? Tüm verileriniz "
+"kaybolacaktır!"
 
 msgid ""
 "Do you really want to import?\\nThe existing config may be overwritten."
 msgstr ""
 
 msgid "Do you really want to remove the selected item from the list?"
-msgstr "你真的要从列表中删除该项吗?"
+msgstr "Seçilen öğeyi listeden kaldırmak istediğinden emin misin?"
 
 msgid "Do you really want to uninstall this package?"
-msgstr "确定要移除这个套件？"
+msgstr "Bu paketi gerçekten kaldırmak istediğinize emin misiniz?"
 
 msgid "Document root"
-msgstr "根目录"
-
-msgid "Document root of the webserver. Home of the web page files."
-msgstr "网页服务器根目录。"
-
-msgid "Domain"
-msgstr "域控制器"
-
-msgid "Domain controller name"
-msgstr "域控制器的名称"
-
-msgid "Domain name"
-msgstr "域控制器名称"
-
-msgid "Domain name (DNS/Realm-Name)"
-msgstr "域控制器名称（DNS/Realm-Name）"
-
-msgid "Domain name (NetBIOS-Name)"
-msgstr "域控制器名称（NetBIOS-Name）"
-
-msgid "Domain name in old format, e.g. EXAMPLE."
-msgstr "老式域控制器名称，例：DOMAIN"
-
-msgid "Domain name, e.g. example.com."
-msgstr "域名，例：domain.com"
-
-msgid "Don't Erase MBR"
-msgstr "不要删除MBR"
-
-msgid "Don't advertise createfileid, resolveid, deleteid calls."
 msgstr ""
 
+msgid "Document root of the webserver. Home of the web page files."
+msgstr ""
+
+msgid "Domain"
+msgstr "Alan Adı"
+
+msgid "Domain controller name"
+msgstr ""
+
+msgid "Domain name"
+msgstr "Alan adı"
+
+msgid "Domain name (DNS/Realm-Name)"
+msgstr "Domain adı (DNS/Realm-Name)"
+
+msgid "Domain name (NetBIOS-Name)"
+msgstr "Domain adı (NetBIOS-İsmi)"
+
+msgid "Domain name in old format, e.g. EXAMPLE."
+msgstr ""
+
+msgid "Domain name, e.g. example.com."
+msgstr "Domain adı, örenğin mynet.com."
+
+msgid "Don't Erase MBR"
+msgstr "MBR silinemez"
+
+msgid "Don't advertise createfileid, resolveid, deleteid calls."
+msgstr "deleteid, resolveid, createfileid çağrılarını bildirme"
+
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
-msgstr "保留原来的MBR (某些RAID控制卡需要)"
+msgstr "MBR silinemez (Bazı RAID kontrol kartları için yararlıdır)"
 
 msgid ""
 "Don't stat volume path when enumerating volumes list, useful for "
@@ -1670,276 +1698,279 @@ msgid ""
 msgstr ""
 
 msgid "Donate"
-msgstr "捐赠"
+msgstr "Bağış"
 
 msgid "Done"
-msgstr "完成"
+msgstr ""
 
 msgid "Done."
-msgstr "完成。"
+msgstr "Bitti"
 
 msgid "Dos charset"
-msgstr "多字符集"
+msgstr "Dos karakter seti"
 
 msgid "Double-parity RAID-Z"
 msgstr ""
 
 msgid "Download"
-msgstr "下载"
+msgstr "İndirme"
 
 msgid "Download bandwidth"
-msgstr "下载带宽"
+msgstr "İndirme hızı"
 
 msgid "Download configuration"
-msgstr "下载设置"
+msgstr "Yapılanıdırmayı indir"
 
 msgid "Download directory"
-msgstr "下载目录"
+msgstr "İndirme dizini"
 
 msgid "Download firewall rules."
-msgstr "下载防火墙规则。"
+msgstr "İndirme için güvenlik duvarı kuralları"
 
 msgid "Driver"
-msgstr "设备"
+msgstr "Sürücü"
 
 msgid "Driver list"
-msgstr "设备列表"
+msgstr "Sürücü listesi"
 
 msgid "Driver parameters"
 msgstr ""
 
 msgid "Duplex"
-msgstr "双工模式"
+msgstr "Duplex"
 
 msgid "Duplicate mount point name."
-msgstr "重复的挂载点名称"
+msgstr "Bağlantı noktası ismini çoğalt"
 
 msgid "Dutch"
-msgstr "荷兰语"
+msgstr ""
 
 msgid "Dynamic DNS"
-msgstr "动态 DNS"
+msgstr "Dinamik DNS"
 
 msgid "Dynamic IP (DHCP) can not be used for HAST resources."
 msgstr ""
 
 msgid "EA support"
-msgstr "EA 支持"
+msgstr "EA desteği"
 
 msgid "EFI/GPT partition can be use with UFS only."
-msgstr "EFI/GPT 只相容于 UFS 文件系统。"
+msgstr "EFI/GPT bölümü sadece UFS ile kullanılabilir"
 
 msgid "Edit"
-msgstr "编辑"
+msgstr "Düzenle"
 
 msgid "Edit Host"
-msgstr "编辑主机信息"
+msgstr "Host'u Düzenle"
 
 msgid "Edit MIB"
-msgstr "编辑MIB"
+msgstr "MIB Düzenle"
 
 msgid "Edit RAID"
-msgstr "编辑RAID"
+msgstr "RAID'i Düzenle"
 
 msgid "Edit Route"
-msgstr "编辑路由"
+msgstr "Route'u Düzenle"
 
 msgid "Edit Rsync job"
-msgstr "编辑 Rsync 任务"
+msgstr "Rsync Görevini Düzenle"
 
 msgid "Edit URL"
-msgstr "编辑 URL"
+msgstr "URL'yi Düzenle"
 
 msgid "Edit auth group"
-msgstr ""
+msgstr "Doğrulama grubunu Düzenle"
 
 msgid "Edit auto snapshot"
 msgstr ""
 
 msgid "Edit command"
-msgstr "编辑命令"
+msgstr "Komutu düzenle"
 
 msgid "Edit dataset"
-msgstr "编辑数据集"
+msgstr "Verisetini düzenle"
 
 msgid "Edit device"
-msgstr "编辑设备"
+msgstr "Aygıt Düzenle"
 
 msgid "Edit disk"
-msgstr "编辑硬盘"
+msgstr "Disk Düzenle"
 
 msgid "Edit extent"
-msgstr "编辑 extent"
+msgstr "Uzantı Düzenle"
 
 msgid "Edit group"
-msgstr "编辑群组"
+msgstr "Grubu düzenle"
 
 msgid "Edit initiator"
-msgstr "编辑初始器"
+msgstr "Initiotr'u düzenle"
 
 msgid "Edit initiator group"
-msgstr ""
+msgstr "Başlatıcı grubunu düzenle"
 
 msgid "Edit interface"
-msgstr "编辑接口"
+msgstr "Arayüzü düzenle"
 
 msgid "Edit job"
-msgstr "编辑工作"
+msgstr "Görev Düzenle"
 
 msgid "Edit module"
-msgstr "编辑模块"
+msgstr "Modül Düzenle"
 
 msgid "Edit mount point"
-msgstr "编辑挂载点"
+msgstr "Disk bağlantı noktasını düzenle"
 
 msgid "Edit option"
-msgstr "编辑选项"
+msgstr "Seçenek düzenle"
 
 msgid "Edit pool"
-msgstr "编辑池"
+msgstr "Havuzu düzenle"
 
 msgid "Edit portal group"
-msgstr ""
+msgstr "Portal grubunu düzenle"
 
 msgid "Edit rule"
-msgstr "编辑规则"
+msgstr "Kuralı düzenle"
 
 msgid "Edit self-test"
-msgstr "编辑自我检测流程"
+msgstr "Self-testi düzenle"
 
 msgid "Edit share"
-msgstr "编辑"
+msgstr "Paylaşım Düzenle"
 
 msgid "Edit snapshot"
 msgstr ""
 
 msgid "Edit target"
-msgstr "编辑目标"
+msgstr "Hedef Düzenle"
 
 msgid "Edit user"
-msgstr "编辑用户"
+msgstr "Kullanıcı düzenle"
 
 msgid "Edit volume"
 msgstr ""
 
 msgid "Email"
-msgstr "Email"
+msgstr "E-posta"
 
 msgid "Email Report"
-msgstr "Email 报告"
+msgstr "Email Raporu"
 
 msgid "Email notification"
-msgstr "电子邮件通知"
+msgstr "E-posta Bildirimi"
 
 msgid "Email report"
-msgstr "Email 报告"
+msgstr "Email Raporu"
 
 msgid "Empty as default."
 msgstr ""
 
 msgid "Enable"
-msgstr "启动"
+msgstr "Etkinleştir"
 
 msgid "Enable Advanced Format (4KB sector)"
-msgstr ""
+msgstr "Gelişmiş Format'ı (4KB sector) Etkinleştir"
 
 msgid "Enable Asynchronous I/O (AIO)"
-msgstr ""
+msgstr "Asynchronous I/O (AIO) Etkinleştir"
 
 msgid "Enable FXP protocol."
-msgstr "开启FXP协定支援。"
+msgstr "FXP protocolünü Aktifleştir"
 
 msgid "Enable NTP"
-msgstr "开启 NTP"
+msgstr "NTP'yi Aktifleştir"
 
 msgid "Enable SMTP authentication."
-msgstr "启用 SMTP 认证。"
+msgstr "SMTP kimlik doğrulamasını etkinleştir."
 
 msgid "Enable TLS/SSL connections."
-msgstr "允许使用 TLS/SSL 连接"
+msgstr "TLS/SSL bağlantılarını etkinleştir."
 
 msgid "Enable ZFS ACL"
 msgstr ""
 
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr ""
+"Zeroconf/Bonjour hizmetleri bu aygıt üzerinde yayın yapmasını etkinleştir"
 
 msgid "Enable anonymous bind."
-msgstr "启用匿名绑定。"
+msgstr ""
 
 msgid "Enable authentication."
-msgstr "启用认证。"
+msgstr "Kimlik doğrulamasını etkinleştir."
 
 msgid "Enable automatic disk discovery."
-msgstr ""
+msgstr "Otomatik disk kurtarmayı etkinleştir."
 
 msgid "Enable compression."
-msgstr "开启资料压缩。"
+msgstr "Sıkıştırmayı Aktifleştir"
 
 msgid "Enable console screensaver"
-msgstr ""
+msgstr "Konsol ekran koruyucusunu etkinleştir"
 
 msgid "Enable device polling"
-msgstr "开启device polling"
+msgstr "Aygıt seçimini Aktifleştir"
 
 msgid "Enable directory listing."
-msgstr "开启目录清单。"
+msgstr "Dizin listelemeyi etkinleştir."
 
 msgid "Enable distributed hash table."
-msgstr "启用分布散列表。"
+msgstr "Dağıtılabilen hash tablolarını etkinleştir."
 
 msgid "Enable domain wildcarding."
-msgstr "启用域通配符。"
-
-msgid "Enable extended attribute support"
-msgstr "开启附加属性"
-
-msgid "Enable extended attributes for this file system."
 msgstr ""
 
+msgid "Enable extended attribute support"
+msgstr "Genişletilmiş öztenlik desteğini aktifleştir"
+
+msgid "Enable extended attributes for this file system."
+msgstr "Bu dosya sisteminde genişletilmiş öznitelikleri etkinleştir."
+
 msgid "Enable firmware upload"
-msgstr "开启固件升级功能"
+msgstr "Firmware yüklemeyi aktifleştir"
 
 msgid ""
 "Enable foreground/background file system consistency check during boot "
 "process."
-msgstr "开启启动阶段文件系统完整性检查。"
+msgstr ""
+"Boot işlemi süresinde dosya sistem kontrol uyumunu önplan/arka plan da "
+"aktifleştir"
 
 msgid "Enable guest access"
 msgstr ""
 
 msgid "Enable guest access."
-msgstr "Guest可以登入。"
+msgstr "Misafir erişimini Aktifleştir"
 
 msgid "Enable keyboard-interactive authentication."
-msgstr "开启键盘认证。"
+msgstr "Keyboard-interactivedoğrulamayı aktifleştir"
 
 msgid "Enable large read/write"
-msgstr "开启 大笔资料读写"
+msgstr "Büyük yazma ve okumayı Aktifleştir"
 
 msgid "Enable local user authentication."
-msgstr "启用本地端用户可以登入。"
+msgstr "Lokal kullanıcı yetkilendirmesini Aktifleştir"
 
 msgid "Enable module listing."
-msgstr "开启模块列表。"
+msgstr "Modül listelemeyi Aktifleştir"
 
 msgid "Enable peer exchange (PEX)."
-msgstr "启用对等交换(PEX)"
+msgstr "Kaynak değiş-tokuşunu etkinleştir (PEX)."
 
 msgid "Enable permission inheritance"
-msgstr "开启权限继承"
+msgstr "miras iznini etkin kıl"
 
 msgid "Enable port forwarding via NAT-PMP or UPnP."
-msgstr "开启 NAT-PMP 或 UPnP 方式的端口映射"
+msgstr "NAT-PMP veya UPnP üzerinden port yanıtlamayı etkinleştir."
 
 msgid "Enable proxy authentication."
-msgstr "启用 Proxy 认证。"
+msgstr "Proxy üzerinden kimlik doğrulamasını etkinleştir"
 
 msgid "Enable recycle bin"
-msgstr "开启文件垃圾桶"
+msgstr "Geri Dönüşüm Kutusunu Aktifleştir"
 
 msgid "Enable remote monitoring of the local connected UPS."
-msgstr "启用远程监控本地 UPS 状态"
+msgstr ""
 
 msgid ""
 "Enable reverse DNS lookup performed on the remote host's IP address for "
@@ -1948,7 +1979,7 @@ msgid ""
 msgstr ""
 
 msgid "Enable reverse DNS lookup."
-msgstr "启用反查 DNS"
+msgstr ""
 
 msgid "Enable serial console"
 msgstr ""
@@ -1957,37 +1988,37 @@ msgid "Enable shadow copy"
 msgstr ""
 
 msgid "Enable store DOS attributes"
-msgstr "开启 DOS 属性储存"
+msgstr "DOS simgelerini yedeklemeyi etkin kıl"
 
 msgid "Enable syslog'ing to remote syslog server"
-msgstr "开启 syslog'ing 写入远端 syslog 服务器"
+msgstr "uzaktan erişimde syslog sunucusuna sysloging ile etkin kıl"
 
 msgid "Enable the ident protocol (RFC1413)."
-msgstr "启用 RFC1413 协议"
+msgstr ""
 
 msgid "Enable the system power control utility"
-msgstr "开启电源监控程序。"
+msgstr "Sistem güç kontrol aracından faydalan"
 
 msgid "Enable transcoding."
-msgstr "启用转换。"
+msgstr ""
 
 msgid "Enable traps."
 msgstr ""
 
 msgid "Enable tuning of some kernel variables"
-msgstr "开启系统核心的参数微调"
+msgstr "bazı kernel değişkenlerinde değişiklik yapmayı etkin kıl"
 
 msgid "Enable use sendfile."
 msgstr ""
 
 msgid "Enable web user interface."
-msgstr "开启 Web 控制界面。"
+msgstr "Web kullanıcı arayüzünü Aktifleştir"
 
 msgid "Enable write cache mode."
 msgstr ""
 
 msgid "Enabled"
-msgstr "启用"
+msgstr "Etkinleştirildi"
 
 msgid ""
 "Enables crlf translation for TEXT files, automatically converting macintosh "
@@ -1998,41 +2029,43 @@ msgid ""
 msgstr ""
 
 msgid "Encrypted"
-msgstr "已加密"
+msgstr "Şifreli"
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
-msgstr "正在加密 '%s'... 请稍待..."
+msgstr "'%s' şifreleniyor...Lütfen Bekleyin"
 
 msgid "Encryption"
-msgstr "加密方式"
+msgstr "Şifreleme"
 
 msgid "Encryption algorithm"
-msgstr "加密演算法"
+msgstr "Şifreleme Algoritması"
 
 msgid "Encryption algorithm to use."
 msgstr ""
 
 msgid "English"
-msgstr "英语(English)"
+msgstr "İngilizce"
 
 msgid ""
 "Enter a custom port number for the WebGUI above if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
-msgstr "输入自订的网页管理界面连接端口，Http 默认是 80，Https 为 443。"
+msgstr ""
+"Varsayılan portun (80 HTTP, 443 HTTPS)üstüne yukarıdaki WebGUI'ye yazılması "
+"için bir port numarası girin."
 
 msgid "Enter a valid sysctl MIB name."
-msgstr ""
+msgstr "Geçerli bir sysctl MIB ismi girin."
 
 msgid ""
 "Enter desired system time directly (format mm/dd/yyyy hh:mm) or use icon to "
 "select it."
-msgstr "直接输入要设置的系统时间 (格式为 mm/dd/yyyy hh:mm) ，或是点选图示选择时间"
+msgstr ""
 
 msgid ""
 "Enter the passphrase that will be used in WPA-PSK mode. This must be between "
 "8 and 63 characters long."
-msgstr "输入密码，此密码将用于WPA-PSK模式。密码长度必须是8至63个字符。"
+msgstr ""
 
 msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
@@ -2040,77 +2073,77 @@ msgid ""
 msgstr ""
 
 msgid "Enter the port to send the traps to (default 162)."
-msgstr "输入 Traps 传输端口（默认为 162）"
+msgstr "Tuzakları (varsayılan 162) göndermek için port numarasını girin"
 
 msgid "Enter trap host name."
-msgstr "输入 Trap 主机名。"
+msgstr "Uzak bilgşsayar adını gir."
 
 msgid "Error"
-msgstr "错误"
+msgstr "Hata"
 
 #, c-format
 msgid "Error: The changes could not be applied (error code %s)."
-msgstr "错误：不能应用设置（错误代码 %s）。"
+msgstr "Hata: Değişiklikler uygulanamadı (Hata kodu: %s)."
 
 msgid "Event"
-msgstr "事件"
+msgstr "Olay"
 
 msgid "Execute"
-msgstr "运行"
+msgstr ""
 
 msgid "Execute command"
-msgstr "执行命令"
+msgstr "Komut Çalıştır"
 
 msgid ""
 "Execute command pre or post system initialization (booting) or before system "
 "shutdown."
-msgstr "在系统启动/关机之前或之后的命令。"
+msgstr ""
 
 msgid "Execute now"
-msgstr "立即运行"
+msgstr ""
 
 msgid "Expire"
-msgstr "过期"
+msgstr ""
 
 msgid "Export"
-msgstr "导出"
+msgstr "Dışa aktar"
 
 msgid "Extended attributes"
-msgstr "扩展属性"
+msgstr ""
 
 msgid "Extensions"
-msgstr "扩展"
+msgstr "Uzantılar"
 
 msgid "Extent"
-msgstr "Extent"
+msgstr "Uzantı"
 
 msgid "Extent Name"
-msgstr "扩展名"
+msgstr ""
 
 msgid "Extent name"
-msgstr "Extent 名称"
+msgstr "Uzantı adı"
 
 msgid ""
 "Extents must be defined before they can be used, and extents cannot be used "
 "more than once."
-msgstr "在使用 Extent 之前必须先定义他们，而 extent 不能够被使用超过一次。"
+msgstr ""
 
 msgid "Extra options"
-msgstr "附加的选项"
+msgstr "Extra ayarlar"
 
 msgid "Extra options (usually empty)."
-msgstr "附加选项(通常为空)"
+msgstr ""
 
 msgid ""
 "Extra options to /etc/ssh/sshd_config (usually empty). Note, incorrect "
 "entered options prevent SSH service to be started."
-msgstr "/etc/ssh/sshd_config （通常是空的） 的附加的选项。注意，不正确配置可能会导致SSH服务不能启动。"
+msgstr ""
 
 msgid "Extra options to ifconfig (usually empty)."
-msgstr "ifconfig附加的选项（通常是空的） 。"
+msgstr ""
 
 msgid "Extra options to rsync (usually empty)."
-msgstr "rsync 附加的选项（通常是空的） 。"
+msgstr "Rsync için extra ayarlar(genellikle boştur)."
 
 msgid "FEC (Fast EtherChannel)"
 msgstr "FEC (Fast EtherChannel)"
@@ -2119,22 +2152,22 @@ msgid "FTP"
 msgstr "FTP"
 
 msgid "FTP - Ban module"
-msgstr ""
+msgstr "FTP - Yasaklama modulü"
 
 msgid "FTP - File transfer"
-msgstr "FTP - 文件传输"
+msgstr "FTP - Dosya transferi"
 
 msgid "FTP Proxy"
-msgstr "FTP 代理"
+msgstr "FTP Proxy"
 
 msgid "FTP events"
-msgstr "FTP 事件"
+msgstr "FTP olayları"
 
 msgid "FTP log"
-msgstr "FTP 记录"
+msgstr "FTP günlüğü"
 
 msgid "FTP server disabled"
-msgstr "FTP 服务器关闭"
+msgstr "FTP sunucu devredışı"
 
 msgid "FXP"
 msgstr "FXP"
@@ -2142,92 +2175,98 @@ msgstr "FXP"
 msgid ""
 "FXP allows transfers between two remote servers without any file data going "
 "to the client asking for the transfer (insecure!)."
-msgstr "FXP是支持两个远端服务器互传文件的通讯协议。(有安全疑虑！)."
+msgstr ""
+"FXP uzaktaki iki sunucunun istemciye veriyi transfer etmeyi sormadan direk "
+"bu iki sunucu arasında transfer etmesini sağlar (güvensizdir!)"
 
 msgid "Factory defaults"
-msgstr "恢复出厂设置"
+msgstr "Fabrika ayarları"
 
 msgid "Failed"
-msgstr "失败"
+msgstr "Başarısız"
 
 msgid "Failed to create in-memory file system."
-msgstr "无法创建 RAM Disk"
+msgstr "in-memory dosya sistemi oşuturmada başarısız oldu"
 
 msgid "Failed to execute cron job."
-msgstr "不能运行的cron任务。"
+msgstr ""
 
 #, c-format
 msgid "Failed to send status report to: %s."
-msgstr "发送状态报告到 %s 失败。"
+msgstr "Durum raporu gönderilemedi: %s."
 
 #, php-format
 msgid ""
 "Failed to send status report. Please check the <a href='%s'>log</a> files."
-msgstr "发送状态报告失败，请检查<a href='%s'>日志</a>文件。"
+msgstr ""
+"Durum raporu gönderilemedi.Ayrıntılı bilgi için <a href='%s'>log</a> "
+"dosyalarını inceleye bilirsiniz.\""
 
 #, php-format
 msgid "Failed to send test email to: %s."
-msgstr "向 %s 发送测试消息失败"
+msgstr "Test e-postası gönderilemedi: %s."
 
 #, php-format
 msgid ""
 "Failed to send test email. Please check the <a href='%s'>log</a> files."
-msgstr "发送测试消息失败。详情请参见<a href='%s'>日志</a>文件"
+msgstr ""
+"Test e-postası gönderilemedi. Ayrıntılı bilgi için <a href='%s'>log</a> "
+"dosyalarını inceleye bilirsiniz."
 
 msgid "Failed to upload file."
-msgstr "上传文件失败。"
+msgstr "Dosya gönderilemedi."
 
 msgid "Failed to upload metadata backup file."
-msgstr "元数据备份文件上传失败。"
+msgstr "Metada yedek dosyasını gönderemedi."
 
 msgid "Failed to write file to disk."
-msgstr "无法将文件写入磁盘。"
+msgstr ""
 
 msgid "Failed."
-msgstr "失败"
+msgstr "Başarısız."
 
 msgid "Failover"
-msgstr "容错"
+msgstr ""
 
 msgid "File"
-msgstr "文件"
+msgstr "Dosya"
 
 msgid "File Editor"
-msgstr "文件编辑器"
+msgstr "Dosya Düzenleyici"
 
 msgid "File Manager"
-msgstr "文件管理器"
+msgstr "Dosya Yöneticisi"
 
 msgid "File Transfer Protocol"
-msgstr "文件传输协议"
+msgstr "Dosya Transfer Protokolü"
 
 msgid "File not found"
-msgstr "没有这个文件"
+msgstr "Dosya bulunamadı"
 
 msgid "File path"
-msgstr "文件路径"
+msgstr "Dosya yolu"
 
 #, php-format
 msgid "File path (e.g. /mnt/sharename/extent/%s) used as extent."
 msgstr ""
 
 msgid "File size"
-msgstr "文件大小"
+msgstr "Dosya boyutu"
 
 msgid "File sizeunit"
 msgstr ""
 
 msgid "File system"
-msgstr "文件系统"
+msgstr "Dosya sistemi"
 
 msgid "File system check"
-msgstr "文件系统检查"
+msgstr "Dosya sistem kontrolü"
 
 msgid "File upload stopped by extension."
-msgstr ""
+msgstr "Dosya gönderimi uzantısı sebebiyle durduruldu."
 
 msgid "Filename"
-msgstr "文件名"
+msgstr "Dosya ismi"
 
 msgid "Filter"
 msgstr ""
@@ -2236,37 +2275,37 @@ msgid "Finnish"
 msgstr ""
 
 msgid "Firewall"
-msgstr "防火墙"
+msgstr "Güvenlik Duvarı"
 
 msgid "Firewall rule"
-msgstr "防火墙规则"
+msgstr "Güvenlik Duvarı kural"
 
 msgid "Firmware"
-msgstr "固件"
+msgstr "Firmware"
 
 msgid "Firmware image file"
-msgstr "固件镜像文件"
+msgstr "Firmware image dosyası"
 
 msgid "Firmware uploading is not supported on this platform."
-msgstr "此系统并不支持固件上传功能。."
+msgstr "Firmware yükleme bu platform üstünde desteklenmez"
 
 msgid "Firmware version check"
-msgstr "固件版本检查"
+msgstr "Firmware versiyon kontrolü"
 
 msgid "FirstBurstLength"
 msgstr ""
 
 msgid "Flags"
-msgstr "旗帜"
+msgstr "İşaretler"
 
 msgid "Follow"
-msgstr "跟随"
+msgstr "Takip et"
 
 msgid "Force use"
 msgstr ""
 
 msgid "Forced update period"
-msgstr "强制更新时间间隔"
+msgstr "Periyodik olarak güncellemeye zorla"
 
 msgid ""
 "Forces use of vdevs, even if they appear in use or specify different size. "
@@ -2274,31 +2313,31 @@ msgid ""
 msgstr ""
 
 msgid "Format"
-msgstr "格式化"
+msgstr "Biçim"
 
 msgid "Format disk"
-msgstr "格式化硬盘"
+msgstr "Diski biçimlendir"
 
 msgid "Format the report for phpBB forum."
-msgstr "将报告格式化成适合 phpBB 论坛的形式"
-
-msgid "Forum"
-msgstr "论坛"
-
-msgid "Free"
 msgstr ""
 
+msgid "Forum"
+msgstr "Forum"
+
+msgid "Free"
+msgstr "Boş"
+
 msgid "Free disk space"
-msgstr "可用空间"
+msgstr "Boş Alan"
 
 msgid "French"
-msgstr "法语"
+msgstr "Fransızca"
 
 msgid "Frequency"
-msgstr "频率"
+msgstr ""
 
 msgid "From email"
-msgstr "来源 email"
+msgstr "E-mail'den"
 
 msgid "Fsck"
 msgstr "Fsck"
@@ -2307,82 +2346,82 @@ msgid "Full"
 msgstr ""
 
 msgid "Full Name"
-msgstr "全名"
+msgstr "Tam Adı"
 
 msgid "GID"
-msgstr "GID"
+msgstr ""
 
 msgid "GPT partition"
 msgstr ""
 
 msgid "Gateway"
-msgstr "网关"
+msgstr "Ağ Geçidi"
 
 msgid "Gateway to be used to reach the destination network."
-msgstr "网关可以把数据转发送到目的的网络。"
+msgstr ""
 
 msgid "General"
-msgstr "常规"
+msgstr "Genel"
 
 msgid "General Setup"
-msgstr "一般设置"
+msgstr "Genel Ayarlar"
 
 msgid "Generate"
-msgstr "生成"
+msgstr ""
 
 msgid "German"
-msgstr "德语"
+msgstr "Almanca"
 
 msgid "Get Target Info"
 msgstr ""
 
 msgid "GiB"
-msgstr ""
+msgstr "GiB"
 
 msgid "Give only local users access to the web page."
-msgstr "只有本机用户可以使用网页服务器。"
+msgstr ""
 
 msgid "Grant access to the user portal."
 msgstr ""
 
 msgid "Graph"
-msgstr "图表"
+msgstr "Grafik"
 
 msgid "Graph shows last 120 seconds"
 msgstr ""
 
 msgid "Greek"
-msgstr "希腊语"
+msgstr "Yunanca"
 
 msgid "Greeting banner displayed by FTP when a connection first comes in."
-msgstr "当用户刚连接上FTP所显示的信息。"
+msgstr "Bağlantı gerçekleştiğinde FTP üzerinden  ekranda kutucuk göster"
 
 msgid "Group"
-msgstr "组"
+msgstr "Grup"
 
 msgid "Group ID"
-msgstr "组 ID"
+msgstr "Grup Kimliği"
 
 msgid "Group description."
-msgstr "组描述。"
+msgstr "Grup tanımlaması"
 
 msgid "Group name."
-msgstr "组名称。"
+msgstr "Grup ismi"
 
 msgid "Group numeric id."
-msgstr "组ID。"
+msgstr "Grup sayı kimliği"
 
 msgid "Group suffix"
-msgstr "组后缀"
+msgstr "Grup soneki"
 
 msgid "Groups"
-msgstr "组"
+msgstr "Gruplar"
 
 msgid "Guest"
-msgstr "Guest"
+msgstr "Misafir"
 
 msgid "Guest account"
-msgstr "Guest 帐号"
+msgstr "Misafir hesabı"
 
 msgid "HAST"
 msgstr ""
@@ -2394,13 +2433,13 @@ msgid "HAST status of the configured resources"
 msgstr ""
 
 msgid "HTTP Proxy"
-msgstr "HTTP 代理"
+msgstr "HTTP Proxy"
 
 msgid "Hard disk standby time"
-msgstr "硬盘等待时间"
+msgstr ""
 
 msgid "Hardware"
-msgstr "硬件"
+msgstr "Donanım"
 
 msgid "Header and Data digest"
 msgstr ""
@@ -2409,101 +2448,102 @@ msgid "Header digest"
 msgstr ""
 
 msgid "Health"
-msgstr "健康"
+msgstr ""
 
 msgid "Help"
-msgstr "说明"
+msgstr "Yardım"
 
 msgid "Hide dot files"
-msgstr "隐藏以点开头的文件"
+msgstr ""
 
 msgid "Highlighting"
-msgstr "语法高亮度显示"
+msgstr "Vurgu"
 
 msgid "Hint"
-msgstr "提示"
+msgstr "İpucu"
 
 #, php-format
 msgid ""
 "Hint: If this is checked, IP addresses in %s logs are resolved to real "
 "hostnames where possible."
-msgstr "提示：如果开启这个选项，%s 日志中的 IP 位置都会转换成对应主机名称。"
+msgstr ""
 
 msgid "Home directory"
-msgstr "家目录"
+msgstr "Başlangıç dizini"
 
 msgid "Host"
-msgstr "主机"
+msgstr "Bilgisayar"
 
 msgid "Host access control"
-msgstr "主机访问控制"
+msgstr "Sunucu erişim kontrolü"
 
 msgid "Host name"
-msgstr "主机名称"
+msgstr "Sunucu adu"
 
 msgid "Host resources"
-msgstr "主机资源"
+msgstr "Host kaynakları"
 
 msgid "Hostname"
-msgstr "主机名"
+msgstr "Bilgisayar adı"
 
 msgid "Hostname database"
-msgstr "主机名数据库"
+msgstr ""
 
 msgid "Hosts"
-msgstr "主机列表"
+msgstr "Bilgisayarlar"
 
 msgid "Hosts allow"
-msgstr "允许主机"
+msgstr "Bilgisayarlara izin ver"
 
 msgid "Hosts deny"
-msgstr "拒绝主机"
+msgstr "Bilgisayarlara reddet"
 
 msgid "Hot Spare"
 msgstr ""
 
 msgid "Hours"
-msgstr "小时"
+msgstr ""
 
 msgid ""
 "How often the IP is checked. The period is in seconds (max. is 10 days)."
-msgstr "多久检查一次 IP。以秒为单位（最多为 10 天）"
+msgstr ""
+"Ne sıklıkla kontrol edilmiş. Bu periyod saniyeler içinde (maks. 10 gün)."
 
 msgid ""
 "How often the IP is updated even if it is not changed. The period is in "
 "seconds (max. is 10 days)."
-msgstr "多久强制更新一次 IP 资讯。以秒为单位（最多 10 天）"
+msgstr ""
 
 msgid "Hungarian"
 msgstr ""
 
 msgid "I/O Timeout"
-msgstr ""
+msgstr "I/O Zaman aşımı"
 
 msgid "I/O errors"
-msgstr "I/O错误"
+msgstr "I/O hataları"
 
 msgid "I/O packets"
-msgstr "I/O封包"
+msgstr "I/O paketleri"
 
 msgid "I/O statistics"
-msgstr ""
+msgstr "I/O İstatistikleri"
 
 #, php-format
 msgid "I/O timeout in seconds (%d by default)."
-msgstr ""
+msgstr "I/O saniyedeki zaman aşımı (Ön tanımlı%d )."
 
 msgid "IG"
-msgstr ""
+msgstr "IG"
 
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 msgid "IP address"
-msgstr "IP 地址"
+msgstr "IP adresi"
 
 msgid "IP address of remote syslog server"
-msgstr "远端 syslog 服务器的IP位置"
+msgstr "Uzak syslog sunucu IP adresi"
 
 #, php-format
 msgid ""
@@ -2515,61 +2555,61 @@ msgid "IP or FQDN address of remote Rsync server."
 msgstr ""
 
 msgid "IP type mismatch for network and gateway."
-msgstr "IP地址类型和网关不匹配。"
+msgstr "Ağ geçidi ve network için uyumsuz ip türü"
 
 msgid "IPv4 Configuration"
-msgstr "IPv4 配置"
+msgstr "IPv4 Yapılandırması"
 
 msgid "IPv4 DNS servers"
-msgstr "IPv4 DNS 服务器"
+msgstr "IPv4 DNS sunucuları"
 
 msgid "IPv4 addresses"
-msgstr "IPv4 地址"
+msgstr "IPv4 adresleri"
 
 msgid "IPv6 Configuration"
-msgstr "IPv6 配置"
+msgstr "IPv6 yapılandırması"
 
 msgid "IPv6 DNS servers"
-msgstr "IPv6 DNS 服务器"
+msgstr "IPv6 DNS sunucuları"
 
 msgid "IPv6 Gateway"
-msgstr "IPv6 网关"
+msgstr "IPv6 Ağ geçidi"
 
 msgid "IPv6 Prefix"
-msgstr "IPv6 前缀"
+msgstr "IPv6 Öneki(prefix)"
 
 msgid "IPv6 address"
-msgstr "IPv6 地址"
+msgstr "IPv6 adresi"
 
 msgid "IPv6 addresses"
-msgstr "IPv6 地址"
+msgstr "IPv6 adresleri"
 
 msgid "IRC Live Support"
-msgstr ""
+msgstr "IRC Canlı Destek"
 
 msgid "ISO file to be mounted."
-msgstr "ISO将被挂载。"
+msgstr ""
 
 msgid "ISP DNS servers"
-msgstr "ISP的DNS服务器"
+msgstr "ISP DNS sunucuları"
 
 msgid "Ident protocol"
 msgstr ""
 
 msgid "Identifier"
-msgstr "标识"
+msgstr ""
 
 msgid ""
 "Idle - Check the device unless it is in SLEEP, STANDBY or IDLE mode. In the "
 "IDLE state, most disks are still spinning, so this is probably not what you "
 "want."
-msgstr "闲置 - 设备除了在睡眠、待命、闲置模式以外都要进行检查。大部分的硬盘在闲置状态下依然会转动磁盘，所以这并不能节省电源。"
+msgstr ""
 
 msgid ""
 "If default root is enabled, a chroot operation is performed immediately "
 "after a client authenticates. This can be used to effectively isolate the "
 "client from a portion of the host system filespace."
-msgstr "如果开启了默认的root, chroot操作会在客户端验证后立即执行。这可以用来有效得将客户端从主机系统空间中隔离开来。"
+msgstr ""
 
 msgid ""
 "If set afpd uses the ID information stored in AppleDouble V2 header files to "
@@ -2600,7 +2640,7 @@ msgstr ""
 msgid ""
 "If this parameter is set, then users may not create or modify files in the "
 "share."
-msgstr "如勾选此项，用户将无法在共享区中新增与修改文件。"
+msgstr ""
 
 msgid "If this property is disabled, the file system cannot be mounted."
 msgstr ""
@@ -2615,43 +2655,47 @@ msgid ""
 "immediately. The entire system configuration will be overwritten. The LAN IP "
 "address will be reset to %s and the password will be set to '%s'."
 msgstr ""
-"当你点选了'是'， %s 将会重设回原厂默认值并立刻重启。全部系统的设置将会被覆写，IP位置也将重设为 %s 。 而密码将设置为 '%s' 。"
+"'Evet'e tıklarsan %s fabrika ayarlarına dönecek ve hemen yeniden "
+"başlatacak.Tüm sistemin kurulumunun üzerine yazılacak. LAN IP adresi %s'e "
+"sıfırlanacak  ve parola '%s'e ayarlanacak."
 
 msgid ""
 "If you want to change the password for accessing the WebGUI, enter it here "
 "twice."
-msgstr "如果你想变更网页控制界面的密码，请在这里输入。"
+msgstr ""
+"WebGUI'ye erişmek için parola değiştirmek istiyorsanız, iki kere girin."
 
 msgid ""
 "If you want to change the username for accessing the WebGUI, enter it here."
-msgstr "如果你想变更网页控制界面的用户名称，请在这里输入。"
+msgstr ""
+"WebGUI'ye erişmek için kullanıcı ismi değiştirmek istiyorsanız buraya girin."
 
 msgid "Image upload failed (out of memory?)"
-msgstr "镜像文件上传失败(内存不足？)"
+msgstr "Resim yükleme başarısız ( yetersiz bellek?)"
 
 msgid "Import"
-msgstr "导入"
+msgstr "İçe aktart"
 
 msgid "Import disks"
-msgstr "导入磁盘"
+msgstr ""
 
 msgid "Import disks used in configuration."
-msgstr "导入配置文件中使用的磁盘"
+msgstr ""
 
 msgid "Import firewall rules."
-msgstr "导入防火墙规则。"
+msgstr ""
 
 msgid "Import on-disk ZFS config"
-msgstr "导入 on-disk ZFS 配置"
+msgstr ""
 
 msgid "Import software raid disks"
 msgstr ""
 
 msgid "In"
-msgstr ""
+msgstr "İçerde"
 
 msgid "In most cases, 'public' is used here."
-msgstr "大多数的情况下，这里应该是'public'"
+msgstr "Genellikle burada \"public\" kullanılır."
 
 msgid "Include basic hardware information."
 msgstr ""
@@ -2660,13 +2704,13 @@ msgid "Incomplete directory"
 msgstr ""
 
 msgid "Info"
-msgstr "消息"
+msgstr "Bilgi"
 
 msgid "Informal"
-msgstr "非正式"
+msgstr ""
 
 msgid "Information"
-msgstr "信息"
+msgstr "Bilgi"
 
 msgid "Information & Manual"
 msgstr ""
@@ -2675,28 +2719,30 @@ msgid "Information & Manuals"
 msgstr ""
 
 msgid "Inherit permissions"
-msgstr "权限继承"
+msgstr "İzinleri miras olarak al"
 
 msgid "Inhibit some of the syslog diagnostics for bad lines in /etc/exports."
-msgstr "系统记录程序发现一些错误在 /etc/exports。"
+msgstr ""
+"/etc/exports içindeki  kötü çizgiler için syslog teşhislerinin bazılarını "
+"miras olarak al."
 
 msgid "Initial Digest"
 msgstr ""
 
 msgid "Initialize"
-msgstr "初始化"
+msgstr "Başlangıç"
 
 msgid "Initialize and encrypt disk."
 msgstr ""
 
 msgid "Initializing"
-msgstr "初始化"
+msgstr "Başlatılıyor"
 
 msgid "Initiator Group"
-msgstr ""
+msgstr "Başlatıcı Grup"
 
 msgid "Initiator Groups"
-msgstr ""
+msgstr "Başlatıcı Gruplar"
 
 msgid ""
 "Initiator authorised to access to the iSCSI target.  It takes a name or "
@@ -2704,7 +2750,7 @@ msgid ""
 msgstr ""
 
 msgid "Initiator name"
-msgstr "初始名称"
+msgstr "Başlatanın ismi"
 
 msgid "Initiator side secret. (for mutual CHAP autentication)"
 msgstr ""
@@ -2728,25 +2774,25 @@ msgid "Inquiry Vendor"
 msgstr ""
 
 msgid "Install"
-msgstr "安装"
+msgstr "Kur"
 
 msgid "Install package"
-msgstr "安装软件包安装套件"
+msgstr "Paket yükle"
 
 msgid "Interface"
-msgstr "网络接口"
+msgstr "Arayüz"
 
 msgid "Interface Management"
-msgstr "接口管理"
+msgstr "Arayüz Yönetimi"
 
 msgid "Interface to listen to."
-msgstr "要使用的网络接口"
+msgstr "Dinlenen arayüz"
 
 msgid "Interfaces"
-msgstr "网络"
+msgstr "Arayüzler"
 
 msgid "Interval must be greater or equal than 10 seconds."
-msgstr "间隔必需大于等于 10 秒。"
+msgstr ""
 
 msgid "Invalid file format."
 msgstr ""
@@ -2766,15 +2812,17 @@ msgstr ""
 msgid ""
 "It is impossible to enable 'Anonymous users only' and 'Local users only' "
 "authentication simultaneously."
-msgstr "'只允许匿名用户'与'只允许本地端用户存取'并不能够同时选取。"
+msgstr ""
+"Aynı anda hem \"Yalnızca yerel kullanıcılar\" ve \"Yalnızca adı bilinmeyen "
+"kullanıcılar\"ı etkinleştirmek olanaksız."
 
 msgid ""
 "It is not recommanded to import non healty pools nor virtual devices that "
 "are part of a non healthy pool."
-msgstr "不建议导入不健康的存储池或者是隶属不健康池的虚拟设备。"
+msgstr ""
 
 msgid "Italian"
-msgstr ""
+msgstr "İtalyanca"
 
 msgid "JBOD"
 msgstr "JBOD"
@@ -2782,40 +2830,41 @@ msgstr "JBOD"
 msgid ""
 "January February March April May June July August September October November "
 "December"
-msgstr "一月 二月 三月 四月 五月 六月 七月 八月 九月 十月 十一月 十二月"
+msgstr ""
+"Ocak Şubat Mart Nisan Mayıs Haziran Temmuz Ağustos Eylül Ekim Kasım Aralık"
 
 msgid "Japanese"
-msgstr ""
+msgstr "Japonca"
 
 msgid "Key"
-msgstr "密钥"
+msgstr "Anahtar"
 
 msgid "Key Management Protocol"
-msgstr "密钥管理协议"
+msgstr "Anahtar Yönetim Protokolü"
 
 msgid "Key length"
-msgstr ""
+msgstr "Anahtar Uzunluğu"
 
 msgid "Key length to use with the given cryptographic algorithm."
 msgstr ""
 
 msgid "Kill encrypted volume"
-msgstr "删除加密硬盘"
+msgstr "Şifrelenmiş Volümü Sil"
 
 msgid "Korean"
-msgstr ""
+msgstr "Korece"
 
 msgid "LACP (Link Aggregation Control Protocol)"
-msgstr "LACP（链路汇聚控制协议）"
+msgstr "LACP (Link Aggregation Control Protocol)"
 
 msgid "LAGG"
 msgstr "LAGG"
 
 msgid "LAN Management"
-msgstr ""
+msgstr "Lan Yönetimi"
 
 msgid "LAN net"
-msgstr "区域网络"
+msgstr "LAN ağı"
 
 msgid "LCDproc"
 msgstr ""
@@ -2827,19 +2876,19 @@ msgid "LDAP"
 msgstr "LDAP"
 
 msgid "LUN"
-msgstr ""
+msgstr "LUN"
 
 msgid "LUNs"
-msgstr ""
+msgstr "LUNs"
 
 msgid "Language"
-msgstr "语言"
+msgstr "Dil"
 
 msgid "Large read/write"
-msgstr "大笔资料 读／写"
+msgstr "Büyük okuma/yazma"
 
 msgid "Last config change"
-msgstr "最后一次修改设置"
+msgstr "Son ayar dosyasını değiştir"
 
 #, php-format
 msgid "Latest Beta Build: %s"
@@ -2868,32 +2917,33 @@ msgid "Leave this field empty to use default settings."
 msgstr ""
 
 msgid "Level 1 - Minimum power usage with Standby (spindown)"
-msgstr ""
+msgstr "Seviye 1 - Bekleme konumda en düşük güç tüketimi (spindown)"
 
 msgid "Level 127 - Intermediate power usage with Standby"
-msgstr ""
+msgstr "Seviye 127 - Bekleme konumunda orta seviye güç tüketimi"
 
 msgid "Level 128 - Minimum power usage without Standby (no spindown)"
 msgstr ""
+"Seviye 128 - Bekleme konumunda olmadan minimum güç tüketimi (no spindown)"
 
 msgid "Level 192 - Intermediate power usage without Standby"
-msgstr ""
+msgstr "Seviye 192 - Bekleme konumunda olmadan orta seviye güç tüketimi"
 
 msgid "Level 254 - Maximum performance, maximum power usage"
-msgstr ""
+msgstr "Seviye 254 - Maximum performans, maximum güç tüketemi"
 
 msgid "Level 64 - Intermediate power usage with Standby"
-msgstr ""
+msgstr "Seviye 64 - Bekleme konumunda orta seviye güç tüketimi"
 
 #, php-format
 msgid "Levels (MHz/mW): %s"
-msgstr ""
+msgstr "Seviyeler (MHz/mW): %s"
 
 msgid "License"
-msgstr "许可"
+msgstr "Lisans"
 
 msgid "License & Credits"
-msgstr "协议及答谢"
+msgstr "Katkıda Bulunanlar & Lisans"
 
 msgid "Life time"
 msgstr ""
@@ -2910,7 +2960,7 @@ msgid ""
 msgstr ""
 
 msgid "Link Aggregation and Failover"
-msgstr "链路聚合和故障"
+msgstr ""
 
 msgid "Link down action"
 msgstr ""
@@ -2919,7 +2969,7 @@ msgid "Link up action"
 msgstr ""
 
 msgid "List"
-msgstr "列表"
+msgstr "Liste"
 
 msgid ""
 "List of acceptable pairwise (unicast) ciphers for WPA. One or more of: CCMP "
@@ -2928,43 +2978,43 @@ msgid ""
 msgstr ""
 
 msgid "List of available target name on all configured iSCSI targets"
-msgstr "列出 iSCSI 内可用的目标名称"
+msgstr ""
 
 msgid "List of detected disks"
 msgstr ""
 
 msgid "List of imported users"
-msgstr "已导入的用户"
+msgstr ""
 
 msgid "List of mount points"
-msgstr "挂载点列表"
+msgstr "Bağlantı noktalarının listesi"
 
 msgid "List of open files"
-msgstr "已打开文件"
+msgstr "Açık dosyaların listesi"
 
 msgid "Load"
-msgstr "载入"
+msgstr "Yükle"
 
 msgid "Load averages"
-msgstr "系统负载"
+msgstr "Ortalamaları yükle"
 
 msgid "Loadbalance"
-msgstr "负载均衡"
+msgstr ""
 
 msgid "Local"
-msgstr "本地"
+msgstr "Yerel"
 
 msgid "Local Master Browser"
-msgstr "本地主浏览器"
+msgstr "Local Master Browser"
 
 msgid "Local User"
-msgstr "本机用户"
+msgstr "Yerel Kullanıcı"
 
 msgid "Local share (destination)"
-msgstr "本机共享(目标)"
+msgstr "Yerel paylaşım (hedef)"
 
 msgid "Local shares to be synchronized"
-msgstr "欲同步的本机共享区"
+msgstr "Senkronize edilmiş olan paylaşımların listesi"
 
 msgid "Local user bandwidth"
 msgstr ""
@@ -2976,15 +3026,17 @@ msgid "Local user upload bandwith in KB/s. An empty field means infinity."
 msgstr ""
 
 msgid "Local users only"
-msgstr "只允许本机用户存取"
+msgstr "Sadece yerek kullanıcılar"
 
 msgid "Location"
-msgstr "位置"
+msgstr "Konum"
 
 msgid ""
 "Location information, e.g. physical location of this system: 'Floor of "
 "building, Room xyz'."
-msgstr "位置信息，例：这台机器实际存放的地点：'哪栋大楼的几楼几室'。"
+msgstr ""
+"Yer bilgisi, Örneğin bu sistemin fiziksel yer bilgisi (Binanın x katı, y "
+"odası)"
 
 msgid "Location of the files to share."
 msgstr ""
@@ -2998,73 +3050,73 @@ msgid ""
 msgstr ""
 
 msgid "Log"
-msgstr ""
+msgstr "Günlük"
 
 msgid "Log (mirror)"
 msgstr ""
 
 msgid "Log Level"
-msgstr "日志等级"
+msgstr "Günlükleme Seviyesi"
 
 msgid "Log packets that are handled by this rule to syslog."
 msgstr ""
 
 msgid "Logical Block Length"
-msgstr ""
+msgstr "Matıksal Blok Uzunluğu"
 
 #, php-format
 msgid "Logical Unit Controller Authorised network (%s by default)"
-msgstr ""
+msgstr "Doğrulanmış Ağlar için Mantıksal Birim Denetleyicisi (%s varsayılan)"
 
 #, php-format
 msgid "Logical Unit Controller IP address (%s by default)"
-msgstr ""
+msgstr "IP adresi Mantıksal Birim Denetleyicisi (%s varsayılan)"
 
 #, php-format
 msgid "Logical Unit Controller TCP port (%d by default)"
-msgstr ""
+msgstr "TCP Portu Mantıksal Birim Denetleyicisi (%d varsayılan)"
 
 msgid "Logical Unit Controller login information"
-msgstr ""
+msgstr "Oturum bilgisi Mantıksal Birim Denetleyicisi)"
 
 msgid "Logical Unit Type mapped to LUN."
 msgstr ""
 
 msgid "Login"
-msgstr "登录"
+msgstr "Oturum Açma"
 
 msgid "Login name of user."
-msgstr "用户登录的帐号"
+msgstr "Kullanıcının oturum açma adı"
 
 msgid "Logout"
-msgstr ""
+msgstr "Oturumu kapat"
 
 msgid "Lowercases names in both directions"
-msgstr "双向小写名称"
+msgstr "Her iki talimatdada küçük harfli isimler"
 
 msgid "MAC address"
-msgstr "MAC地址"
+msgstr "MAC adresi"
 
 msgid "MBR partition"
-msgstr ""
+msgstr "MBR disk bölümü"
 
 msgid "MIB"
 msgstr "MIB"
 
 msgid "MISSING"
-msgstr "遗失"
+msgstr "MISSING"
 
 msgid "MOTD"
 msgstr "MOTD"
 
 msgid "MS Active Directory"
-msgstr "微软活动目录"
+msgstr "MS Active Directory"
 
 msgid "MS Active Directory informations"
-msgstr "微软活动目录"
+msgstr ""
 
 msgid "MS Domain"
-msgstr "微软域控制器"
+msgstr "MS Domain"
 
 msgid "MTU"
 msgstr "MTU"
@@ -3073,27 +3125,27 @@ msgid "Machine suffix"
 msgstr ""
 
 msgid "Make sure you have activated S.M.A.R.T. for your devices."
-msgstr "请确认这个硬盘的S.M.A.R.T已经激活。"
+msgstr ""
 
 #, php-format
 msgid ""
 "Make sure you have already configured your <a href='%s'>Email</a> settings."
-msgstr "确认你的<a href='%s'>Email</a>信息是否设置好了。"
+msgstr ""
 
 msgid "Management"
-msgstr "管理"
+msgstr "Yönetim"
 
 msgid "Manufacturer"
-msgstr "制造商"
+msgstr "Üretici"
 
 msgid "Map all users to root"
-msgstr "视所有用户为root"
+msgstr "Tüm kullanıcıları roota yönlendir"
 
 msgid "Map to guest"
 msgstr ""
 
 msgid "Map to user"
-msgstr "对应到本地用户"
+msgstr "Kullanıcıya yönlendir"
 
 msgid "Masquerade address"
 msgstr ""
@@ -3102,28 +3154,28 @@ msgid "Max Protocol"
 msgstr ""
 
 msgid "Max. TTL"
-msgstr "最大TTL"
+msgstr "Max. TTL"
 
 msgid "Max. block size"
-msgstr ""
+msgstr "Max. blok boyutu"
 
 msgid "Max. conn. per IP"
-msgstr "相同IP的连接数目"
+msgstr "IP başıma maksimum bağlantı"
 
 msgid "Max. connections"
-msgstr ""
+msgstr "Max. bağlantı"
 
 msgid "Max. login attempts"
 msgstr ""
 
 msgid "Max. passive port"
-msgstr "主动端口数上限"
+msgstr "Max. pasif port"
 
 msgid "Max. pre-send R2T"
 msgstr ""
 
 msgid "Max. sessions"
-msgstr ""
+msgstr "Max. oturum"
 
 msgid ""
 "Max. time-to-live (max. number of hops) used in outgoing probe packets."
@@ -3139,7 +3191,7 @@ msgid "MaxRecvDataSegmentLength"
 msgstr ""
 
 msgid "Maximum connections"
-msgstr "连接数目上线"
+msgstr "Maksimum bağlantılar"
 
 msgid "Maximum frequency"
 msgstr ""
@@ -3155,7 +3207,7 @@ msgid "Maximum number of connections in each session (%d by default)."
 msgstr ""
 
 msgid "Maximum number of connections per IP address (0 = unlimited)."
-msgstr "来自相同IP的连接数目上限(0 = 不限制)。"
+msgstr "IP adresi başına en fazla bağlantı sayısı (0=limitsiz)."
 
 #, php-format
 msgid ""
@@ -3168,58 +3220,58 @@ msgid "Maximum number of sessions holding at same time (%d by default)."
 msgstr ""
 
 msgid "Maximum number of simultaneous clients."
-msgstr "连接数目上限。"
+msgstr "Aynı anda en fazla istemci sayısı"
 
 msgid "Maximum number of simultaneous connections. Default is 0 (unlimited)."
-msgstr "同时最高连接数目。默认为0(不限制)。"
+msgstr "Aynı anda en fazla bağlantı sayısı.Varsayılan 0'dır.(Limitsiz)"
 
 msgid "Maximum performance, maximum acoustic output"
-msgstr "最大性能/噪音"
+msgstr "en fazla performans, en fazla akustik üretim"
 
 msgid "Media"
-msgstr "Media"
+msgstr "Ortam"
 
 msgid "Media Directory"
 msgstr ""
 
 msgid "Medium acoustic output"
-msgstr "中等性能/噪音"
+msgstr "Medium acoustic output"
 
 msgid "Member Interface"
 msgstr ""
 
 msgid "Memory usage"
-msgstr "内存使用"
+msgstr "Bellek kullanımı"
 
 msgid "Message of the day."
-msgstr "每日信息(每次登录时显示)。"
+msgstr "Günün mesajı"
 
 msgid "MiB"
-msgstr ""
+msgstr "MiB"
 
 msgid "MibII"
 msgstr "MibII"
 
 msgid "Min. passive port"
-msgstr "主动端口数下限"
-
-msgid "Minimum"
 msgstr ""
 
+msgid "Minimum"
+msgstr "Minimum"
+
 msgid "Minimum free space"
-msgstr "最少需求空间"
+msgstr "Mnimum boş alan"
 
 msgid "Minimum frequency"
 msgstr ""
 
 msgid "Minimum performance, Minimum acoustic output"
-msgstr "最小性能/噪音"
+msgstr "Mnimum performans, Minimum acoustic output"
 
 msgid "Minutes"
 msgstr ""
 
 msgid "Minutes between network time sync."
-msgstr "多少分钟进行一次校时。"
+msgstr "Network zaman senkronizasyonu arasındaki dakikalar"
 
 msgid "Mirror"
 msgstr ""
@@ -3228,50 +3280,50 @@ msgid "Missing a temporary folder."
 msgstr ""
 
 msgid "Mode"
-msgstr "模式"
+msgstr ""
 
 msgid "Model extra"
-msgstr "附加模式"
+msgstr ""
 
 msgid "Model name"
-msgstr "型号名称"
+msgstr ""
 
 msgid "Modifying"
-msgstr "修改"
+msgstr ""
 
 msgid "Module"
-msgstr "模块"
+msgstr "Modül"
 
 msgid "Modules"
-msgstr "模块"
+msgstr "Modüller"
 
 msgid "Months"
 msgstr ""
 
 msgid "Mount Point"
-msgstr "挂载点"
+msgstr "Bağlanma Noktası"
 
 msgid "Mount point"
-msgstr "挂载点"
+msgstr "Bağlanma noktası"
 
 msgid "Mount point name"
 msgstr ""
 
 msgid ""
 "Mount the file system read-only (even the super-user may not write it)."
-msgstr "以只读模式挂载（超级用户也无法写入）。"
+msgstr ""
 
 msgid "Mounting device."
-msgstr "设备挂载中。"
+msgstr "Bağlanan aygıt."
 
 msgid "Mounting..."
-msgstr "挂载中..."
+msgstr "Bağlanıyor"
 
 msgid "Mounts"
-msgstr "挂载点"
+msgstr ""
 
 msgid "Must choose one"
-msgstr "必选栏位。"
+msgstr "Birtane seçilmeli"
 
 msgid "Mutual CHAP"
 msgstr ""
@@ -3302,14 +3354,14 @@ msgid "NT1"
 msgstr ""
 
 msgid "NTP time server"
-msgstr "NTP 时间服务器"
+msgstr "NTP saat server"
 
 msgid "Name"
-msgstr "名称"
+msgstr "İsim"
 
 #, php-format
 msgid "Name of the NAS host, without domain part e.g. %s."
-msgstr "NAS 主机名，不包含域名。例：%s。"
+msgstr ""
 
 #, php-format
 msgid "Name of the device to use as swap device, e.g. %s."
@@ -3318,22 +3370,22 @@ msgstr ""
 msgid ""
 "Name of the server. If this field is left empty the default server is "
 "specified."
-msgstr "这台服务器的名称。如果留白则会使用默认的服务器名称。"
+msgstr "Sunucunun adı.Bu alan boş bırakılırsa varsayılan sunucu belirlenir."
 
 msgid "Name of the variable."
-msgstr "改名名称。"
+msgstr "Değişken ismi"
 
 msgid "NetBIOS name"
-msgstr "NetBIOS 名称"
+msgstr "NetBIOS ismi"
 
 msgid "Netgraph"
-msgstr "网络图"
+msgstr "Netgraph"
 
 msgid "Network"
-msgstr "网络"
+msgstr "Network"
 
 msgid "Network File System"
-msgstr ""
+msgstr "Ağ Dosya Sistemi"
 
 msgid ""
 "Network authorised to access to the iSCSI target. It takes IP or CIDR "
@@ -3341,44 +3393,46 @@ msgid ""
 msgstr ""
 
 msgid "Network mask"
-msgstr "子网掩码"
+msgstr "Network Maskesi"
 
 msgid "Network port"
-msgstr "网络端口"
+msgstr "Network port"
 
 msgid "Network that is authorised to access the NFS share."
-msgstr "授权可以存取 NFS 共享区的网络。"
+msgstr ""
 
 msgid "Networks"
-msgstr ""
+msgstr "Ağlar"
 
 msgid ""
 "Never - Poll (check) the device regardless of its power mode. This may cause "
 "a disk which is spun-down to be spun-up when it is checked."
-msgstr "永不 - 永远不理会目标硬盘的电源模式而进行检查。"
+msgstr ""
 
 msgid "Never - default"
 msgstr ""
 
 msgid "New Device"
-msgstr ""
+msgstr "Yeni Aygıt"
 
 msgid "No"
-msgstr "否"
+msgstr "Hayır"
 
 msgid "No DNS setting found."
 msgstr ""
 
 msgid "No RSYNC Client configured"
-msgstr "尚无RSYNC客户端设置"
+msgstr "Yapılandırılmış RSYNC Client yok"
 
 msgid "No case folding"
-msgstr "大小写视为相异"
+msgstr ""
 
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
 msgstr ""
+"Yapılandırılmış doğrulama grubu yok. Önce lütfen yeni bir<a "
+"href='%s'>Doğrulama Grubu</a> ekleyin."
 
 msgid "No configured CARP interfaces."
 msgstr ""
@@ -3398,12 +3452,16 @@ msgid ""
 "No configured Initiator Group. Please add new <a href='%s'>Initiator "
 "Group</a> first."
 msgstr ""
+"Yapılandırılmış başlatıcı grubu yok. Önce lütfen yeni bir<a "
+"href='%s'>Başlatıcı Grubu</a> ekleyin."
 
 #, php-format
 msgid ""
 "No configured Portal Group. Please add new <a href='%s'>Portal Group</a> "
 "first."
 msgstr ""
+"Yapılandırılmış portal grubu yok. Önce lütfen yeni bir<a href='%s'>Portal "
+"Grubu</a> ekleyin."
 
 #, php-format
 msgid "No configured pools. Please add new <a href='%s'>pools</a> first."
@@ -3416,14 +3474,15 @@ msgid ""
 msgstr ""
 
 msgid "No device selected."
-msgstr ""
+msgstr "Herhangi bir aygıt seçilmedi"
 
 msgid "No disk configured"
-msgstr "没有配置的硬盘"
+msgstr "Yapılandırılmış Disk yok"
 
 #, php-format
 msgid "No disks available. Please add new <a href='%s'>disk</a> first."
 msgstr ""
+"Herhangi bir disk yok. Lütfen yeni bir <a href='%s'>disk</a> ekleyin."
 
 msgid ""
 "No disks configured, please add disks to see the diagnostic information of "
@@ -3446,10 +3505,10 @@ msgid "Node Name"
 msgstr ""
 
 msgid "None"
-msgstr "无"
+msgstr "Hiçbiri"
 
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 msgid "Norwegian (Bokmal)"
 msgstr ""
@@ -3459,14 +3518,12 @@ msgid ""
 "not explicitly support it, VLAN tagging will still work, but the reduced MTU "
 "may cause problems."
 msgstr ""
-"不是所有的驱动、网卡都正确支持 802.1Q VLAN tagging。有些卡虽然没有明确表示支持，VLAN tagging "
-"也可能工作，但是减小的MTU可能会导致一些问题。"
 
 msgid "Not attached"
-msgstr "无连接"
+msgstr "Ekli değil"
 
 msgid "Note"
-msgstr "提示"
+msgstr "Not"
 
 msgid ""
 "Note! Selecting 'Time Machine' on multiple shares will may cause "
@@ -3476,15 +3533,15 @@ msgstr ""
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
 "minutes, hours, days and months."
-msgstr "备注：按 Ctrl 配合鼠标左键（Mac 请按 Cmd）可以选择多个目标。"
+msgstr ""
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and deselect groups."
-msgstr "备注：按 Ctrl 配合鼠标左键（Mac 请按 Cmd）可以选择多个目标。"
+msgstr ""
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select multiple entries."
-msgstr "备注：按 Ctrl 配合鼠标左键（Mac 请按 Cmd）可以选择多个目标。"
+msgstr ""
 
 msgid "Nothing to synchronize"
 msgstr ""
@@ -3494,49 +3551,49 @@ msgid "Notification email from host: %s"
 msgstr ""
 
 msgid "Now"
-msgstr "现在"
+msgstr "Şimdi"
 
 msgid "Null passwords"
-msgstr "空密码"
+msgstr "Boş parolalar"
 
 msgid "Number of clients"
-msgstr "连接数目"
+msgstr "İstemcilerin numarası"
 
 msgid "Number of log entries to show"
-msgstr "显示的记录数量"
+msgstr ""
 
 msgid "Number of log entries to show must be between 5 and 1000."
-msgstr "一次要检查多少条记录（5-100）"
+msgstr ""
 
 msgid "Number of servers"
-msgstr "服务器数量"
+msgstr "Serverların numarası"
 
 msgid "Numeric identifier of the group."
 msgstr ""
 
 msgid "OK"
-msgstr "OK"
+msgstr "Tamam"
 
 msgid "ONLINE"
-msgstr "在线"
+msgstr "ONLINE"
 
 msgid "Object name"
-msgstr "对象名称"
+msgstr "Nesne adı"
 
 msgid "Occurrence"
-msgstr ""
+msgstr "Tekrarlanma"
 
 msgid "Off"
-msgstr ""
+msgstr "Açık"
 
 msgid "Old passphrase"
-msgstr "旧密码"
+msgstr ""
 
 msgid "Old password"
-msgstr "旧密码"
+msgstr "Eski parola"
 
 msgid "On"
-msgstr ""
+msgstr "Açık"
 
 msgid ""
 "Once you add the virtual device, it becomes impossible to delete again. It "
@@ -3549,40 +3606,40 @@ msgstr ""
 msgid ""
 "Only allow anonymous users. Use this on a public FTP site with no remote FTP "
 "access to real accounts."
-msgstr "只允许匿名用户。使用此公共FTP站点的没有远程FTP访问实际帐号。"
+msgstr ""
 
 msgid "Only allow authenticated users. Anonymous logins are prohibited."
-msgstr "只允许授权的用户，匿名用户无法连接。"
+msgstr ""
 
 #, php-format
 msgid ""
 "Open a %s configuration XML file and click the button below to restore the "
 "configuration."
-msgstr "开启 %s XML 配置文件，然后点击下面的按钮来恢复配置。"
+msgstr ""
 
 msgid "Option"
-msgstr "选项"
+msgstr ""
 
 msgid "Optional user-friendly string of the target."
 msgstr ""
 
 msgid "Options"
-msgstr ""
+msgstr "Ayarlar"
 
 msgid "Origin"
 msgstr ""
 
 msgid "Others"
-msgstr "其他"
+msgstr ""
 
 msgid "Out"
-msgstr "发送"
+msgstr "Dışarı"
 
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
-msgstr "发送 SMTP 邮件服务器位置，例：smtp.mycorp.com"
+msgstr "giden SMTP mail server adresi, örn. smtp.mycorp.com"
 
 msgid "Outgoing mail server"
-msgstr "外部邮件服务器"
+msgstr "giden mail sunucusu"
 
 msgid "Overwrite already configured disks (only affects filesystem value)."
 msgstr ""
@@ -3591,13 +3648,13 @@ msgid "Overwrite disks configuration"
 msgstr ""
 
 msgid "Owner"
-msgstr "所有者"
+msgstr ""
 
 msgid "PG"
-msgstr ""
+msgstr "PG"
 
 msgid "PHP Command"
-msgstr ""
+msgstr "PHP komutu"
 
 msgid "PPPoE"
 msgstr "PPPoE"
@@ -3606,43 +3663,43 @@ msgid "PPTP"
 msgstr "PPTP"
 
 msgid "PPTP clients"
-msgstr "PPTP 客户"
+msgstr "PPTP istemcileri"
 
 msgid "PSK"
 msgstr "PSK"
 
 msgid "Package Name"
-msgstr "软件包名称"
+msgstr "Paket Adı"
 
 msgid "Package file"
-msgstr "软件包文件"
+msgstr "Paket Adı"
 
 msgid "Package is already installed."
-msgstr "软件包已经安装"
+msgstr "Paket zaten yüklenmiş"
 
 msgid "Package upload failed (out of memory?)"
-msgstr "软件包上传失败（内存不足？）"
+msgstr "Paket gönderimi başarısız (yetersiz bellek?)"
 
 msgid "Packages"
-msgstr "软件包"
+msgstr "Paketler"
 
 msgid "Painfully aggressive"
 msgstr ""
 
 msgid "Pairwise"
-msgstr "成对"
+msgstr ""
 
 msgid "Partition number"
-msgstr ""
+msgstr "Birim numarası"
 
 msgid "Partition type"
-msgstr ""
+msgstr "Birim türü"
 
 msgid "Partitions"
-msgstr "分区"
+msgstr "Disk bölümleri"
 
 msgid "Passive ports"
-msgstr ""
+msgstr "Pasif portlar"
 
 msgid ""
 "Passive ports restricts the range of ports from which the server will select "
@@ -3655,31 +3712,31 @@ msgid ""
 msgstr ""
 
 msgid "Passphrase"
-msgstr "密码"
+msgstr ""
 
 msgid "Passphrase don't match."
-msgstr "密码不匹配。"
+msgstr ""
 
 msgid "Password"
-msgstr "密码"
+msgstr "Parola"
 
 msgid "Password (confirmed)"
-msgstr "密码（确认）"
+msgstr "Parola (doğrulanmış)"
 
 msgid "Password authentication"
-msgstr "密码认证"
+msgstr "Parola doğrulaması"
 
 msgid "Password don't match."
-msgstr "密码不匹配。"
+msgstr "Parola eşleşmiyor."
 
 msgid "Password encryption"
-msgstr "密码加密"
+msgstr "Parola şifrelemesi"
 
 msgid "Password for the administrative pages."
-msgstr "管理界面密码"
+msgstr "Yönetici sayfaları için parola"
 
 msgid "Password of domain administrator account."
-msgstr "请在此设置域管理员的密码。"
+msgstr ""
 
 msgid "Password server"
 msgstr ""
@@ -3689,25 +3746,25 @@ msgid ""
 msgstr ""
 
 msgid "Password suffix"
-msgstr "密码前缀"
+msgstr "Parola son eki"
 
 msgid "Paste a DSA PRIVATE KEY in PEM format here."
-msgstr "在此贴上PEM格式的私钥。"
+msgstr ""
 
 msgid "Paste a signed certificate in X.509 PEM format here."
-msgstr "请在此贴上X.509 PEM格式的验证码。"
+msgstr ""
 
 msgid "Paste an private key in PEM format here."
-msgstr "将 PEM 密钥在这里输入"
+msgstr ""
 
 msgid "Path"
-msgstr "路径"
+msgstr "Dosya yolu"
 
 msgid "Path of the URL relative to document root."
-msgstr "URL 相对路径（从目录开始）"
+msgstr ""
 
 msgid "Path to be shared."
-msgstr "欲共享的路径"
+msgstr ""
 
 msgid "Peer Secret"
 msgstr ""
@@ -3719,28 +3776,28 @@ msgid "Peer exchange"
 msgstr ""
 
 msgid "Peer port"
-msgstr ""
+msgstr "Kaynak portu"
 
 msgid "Permit root login"
-msgstr "允许root登录"
+msgstr ""
 
 msgid "Permit to do SSH Tunneling."
-msgstr "允许使用 SSH 隧道"
+msgstr ""
 
 msgid "Physical interface"
-msgstr "物理接口"
+msgstr "Fiziksel arayüz"
 
 msgid "Ping"
 msgstr "Ping"
 
 msgid "Ping winbindd to see if it is alive:"
-msgstr "Ping winbindd 看看:"
+msgstr ""
 
 msgid "Ping/Traceroute"
 msgstr "Ping/Traceroute"
 
 msgid "Platform"
-msgstr "硬件平台"
+msgstr "Platform"
 
 msgid "Platform OS"
 msgstr ""
@@ -3750,13 +3807,13 @@ msgid "Please check the <a href='%s' target='_blank'>documentation</a>."
 msgstr ""
 
 msgid "Please note that blanks in path names are not allowed."
-msgstr "请注意在路径中不可以有空白字符。"
+msgstr ""
 
 msgid "Polish"
 msgstr ""
 
 msgid "Polling time"
-msgstr "Polling 时间"
+msgstr ""
 
 msgid "Pool"
 msgstr ""
@@ -3768,46 +3825,46 @@ msgid "Pools"
 msgstr ""
 
 msgid "Port"
-msgstr "端口"
+msgstr "Port"
 
 msgid "Port "
-msgstr "端口 "
+msgstr "Port "
 
 #, php-format
 msgid "Port %ld is already used by another service."
-msgstr ""
+msgstr "%ld portunu başka bir hizmet kullanılıyor."
 
 msgid "Port forwarding"
-msgstr "端口映射"
+msgstr ""
 
 #, php-format
 msgid "Port to listen for incoming peer connections. Default port is %d."
-msgstr "监听传入对等连接的端口。默认是 %d。"
+msgstr ""
 
 msgid "Port to listen on. Default iTunes port is 3689."
-msgstr "监听端口。iTunes的默认端口是3689 。"
+msgstr "Port dinleme açık.Varsayılan iTunes portu %d."
 
 #, php-format
 msgid "Port to listen on. Default port is %d."
-msgstr "监听端口。默认端口是 %d 。"
+msgstr "Port dinleme açık.Varsayılan port %d."
 
 #, php-format
 msgid ""
 "Port to listen on. Only dynamic or private ports can be used (from %d "
 "through %d). Default port is %d."
-msgstr "监听端口。只有动态或私有端口可以使用（从 %d 到 %d  ）项。默认端口是 %d 。"
+msgstr ""
 
 msgid "Portal Group"
-msgstr ""
+msgstr "Portal Grubu"
 
 msgid "Portal Groups"
-msgstr ""
+msgstr "Portal Grupları"
 
 msgid "Portals"
-msgstr ""
+msgstr "Portallar"
 
 msgid "Ports"
-msgstr "端口"
+msgstr "Portlar"
 
 msgid "Portuguese (Brazil)"
 msgstr ""
@@ -3816,19 +3873,19 @@ msgid "Portuguese (Portugal)"
 msgstr ""
 
 msgid "PostInit"
-msgstr "后置初始动作"
+msgstr ""
 
 msgid "Power Daemon"
-msgstr "电源监控"
+msgstr ""
 
 msgid "Power Mode"
 msgstr ""
 
 msgid "Power mode"
-msgstr "电源模式"
+msgstr "Güç modu"
 
 msgid "PreInit"
-msgstr "前置初始动作"
+msgstr "PreInit"
 
 #, php-format
 msgid "Predefined system groups"
@@ -3838,75 +3895,75 @@ msgid "Preferred"
 msgstr ""
 
 msgid "Prefix"
-msgstr "前缀"
+msgstr ""
 
 msgid "Preformatted file system"
-msgstr "已格式化的文件系统"
+msgstr ""
 
 msgid "Preserve extended attributes"
-msgstr "扩展属性维护"
+msgstr ""
 
 msgid "Preserve modification times."
 msgstr ""
 
 msgid "Preserve permissions"
-msgstr "权限维护"
+msgstr ""
 
 msgid "Primary"
 msgstr ""
 
 msgid "Primary Group"
-msgstr "主要群组"
+msgstr "Öncelikli Grup"
 
 msgid "Primary group"
-msgstr "主要群组"
+msgstr "Öncelikli grup"
 
 msgid "Primary group is also selected in additional group."
-msgstr "主要群组也会被加入到附加群组中。"
-
-msgid "Private Key"
-msgstr "私钥"
-
-msgid "Private key"
-msgstr "私钥"
-
-msgid "Process"
-msgstr "进程列表"
-
-msgid "Processes"
-msgstr "进程列表"
-
-msgid "Processes information"
-msgstr "进程信息"
-
-msgid "Profile"
-msgstr "配置文件"
-
-msgid "Proto"
 msgstr ""
 
+msgid "Private Key"
+msgstr ""
+
+msgid "Private key"
+msgstr ""
+
+msgid "Process"
+msgstr "İşlem"
+
+msgid "Processes"
+msgstr "İşlemler"
+
+msgid "Processes information"
+msgstr "İşlem bilgileri"
+
+msgid "Profile"
+msgstr "Profile\""
+
+msgid "Proto"
+msgstr "Proto"
+
 msgid "Protocol"
-msgstr "协议"
+msgstr "Protokol"
 
 msgid "Provider"
-msgstr "供应商"
+msgstr "Sağlayıcı"
 
 msgid "Provides compatibility with Apple II clients."
-msgstr "兼容 Apple II。"
+msgstr ""
 
 msgid "Proxy"
-msgstr "代理服务器"
+msgstr "Proxy"
 
 msgid ""
 "Puts the hard disk into standby mode when the selected amount of time after "
 "the last hard disk access has been elapsed."
-msgstr "设置当硬盘没有作动多久之后将其设为待机模式。"
-
-msgid "Queue Depth"
 msgstr ""
 
+msgid "Queue Depth"
+msgstr "Sıra Uzunluğu"
+
 msgid "Quiet"
-msgstr "静音"
+msgstr ""
 
 msgid "Quota"
 msgstr ""
@@ -3915,7 +3972,7 @@ msgid "RAID 0"
 msgstr "RAID 0"
 
 msgid "RAID 0/1/5"
-msgstr ""
+msgstr "RAID 0/1/5"
 
 msgid "RAID 1"
 msgstr "RAID 1"
@@ -3936,37 +3993,37 @@ msgid "RSYNC"
 msgstr "RSYNC"
 
 msgid "RSYNC - Client"
-msgstr ""
+msgstr "RSYNC - İstemcisi"
 
 msgid "RSYNC - Local"
-msgstr ""
+msgstr "RSYNC - Yerel"
 
 msgid "RSYNC - Server"
-msgstr ""
+msgstr "RSYNC - Sunucusu"
 
 msgid "RSYNC Client"
-msgstr "RSYNC 客户端"
+msgstr "RSYNC İstemcisi"
 
 msgid "RSYNC Client informations"
-msgstr "RSYNC Client 信息"
+msgstr "RSYNC İstemci bilgileri"
 
 msgid "RSYNC events"
-msgstr "RSYNC 事件"
+msgstr "RSYNC olayları"
 
 msgid "RSYNC log"
-msgstr "RSYNC 记录"
+msgstr "RSYNC günlüğü"
 
 msgid "Raid name"
-msgstr "RAID 名"
+msgstr "Raid adı"
 
 msgid "Read"
-msgstr "显示"
+msgstr ""
 
 msgid "Read Only (ro)"
 msgstr ""
 
 msgid "Read Only Access"
-msgstr "只读连接"
+msgstr ""
 
 msgid "Read from biggest priority"
 msgstr ""
@@ -3975,10 +4032,10 @@ msgid "Read from lowest load"
 msgstr ""
 
 msgid "Read only"
-msgstr "只读"
+msgstr ""
 
 msgid "Read/Write"
-msgstr "读/写"
+msgstr ""
 
 msgid "Read/Write (rw)"
 msgstr ""
@@ -3993,104 +4050,104 @@ msgid ""
 msgstr ""
 
 msgid "Read/Write Access"
-msgstr "读/写 连接"
+msgstr ""
 
 msgid "Readonly"
-msgstr ""
+msgstr "Saltokunur"
 
 msgid "Realm"
 msgstr ""
 
 msgid "Reboot"
-msgstr "重启"
+msgstr "Yeniden Başlat"
 
 msgid "Receive Buffer Size"
-msgstr "接收缓冲区的大小"
+msgstr ""
 
 msgid "Recurse into directories."
 msgstr ""
 
 msgid "Recursive"
-msgstr "递归"
+msgstr ""
 
 msgid "Recycle bin"
-msgstr "回收站"
+msgstr "Çöp kutusu"
 
 msgid "Refresh"
-msgstr ""
+msgstr "Yenile"
 
 msgid "Reject"
-msgstr ""
+msgstr "Reddet"
 
 msgid "Release Notes"
-msgstr ""
+msgstr "Sürüm Bilgileri"
 
 msgid "Reload page"
-msgstr "刷新页面"
+msgstr "Sayfayı yenile"
 
 msgid "Remote Rsync Server"
 msgstr ""
 
 msgid "Remote address"
-msgstr "远端位置"
+msgstr ""
 
 msgid "Remote module (source)"
-msgstr "远端模组（来源）"
+msgstr ""
 
 msgid "Remote module name"
-msgstr "远端模组名称"
+msgstr ""
 
 msgid "Remote monitoring"
 msgstr ""
 
 msgid "Remote syslog server"
-msgstr "远端 syslog 服务器"
+msgstr ""
 
 msgid "Removable"
 msgstr ""
 
 msgid "Remove all entries from ARP table"
-msgstr "移除所有ARP table内的项目"
+msgstr ""
 
 msgid "Report Generator"
-msgstr "报告生成器"
+msgstr "Rapor Oluşturucu"
 
 msgid ""
 "Report if the temperature had changed by at least N degrees Celsius since "
 "last report. Set to 0 to disable this report."
-msgstr "设置自上次回报之后最少变异了摄氏多少度才会再次回报，设为 0 则可以取消这个功能。"
+msgstr ""
 
 msgid ""
 "Report if the temperature is greater or equal than N degrees Celsius. Set to "
 "0 to disable this report."
-msgstr "如果温度大于等于摄氏 N 便回报。设为 0 则可以禁用这项功能。"
+msgstr ""
 
 msgid "Reports"
-msgstr "报告"
+msgstr "Raporlar"
 
 msgid "Require authentication."
-msgstr ""
+msgstr "Kimlik doğrulaması gerekli."
 
 msgid "Required"
-msgstr ""
+msgstr "Gerekli"
 
 msgid "Rescan disks"
-msgstr ""
+msgstr "Diskleri yeniden tara"
 
 msgid "Rescan interval"
-msgstr "再次扫描的间隔"
+msgstr ""
 
 msgid "Reservation"
 msgstr ""
 
 msgid "Resolve"
-msgstr "解决"
+msgstr ""
 
 msgid "Resolve IP addresses to hostnames"
-msgstr "将 IP 解析成主机名称"
+msgstr ""
 
 msgid "Restore configuration"
-msgstr "还原设置"
+msgstr ""
 
 msgid "Restore metadata from the given file to the given provider."
 msgstr ""
@@ -4099,10 +4156,10 @@ msgid "Results for net rpc testjoin:"
 msgstr ""
 
 msgid "Resume"
-msgstr "续传"
+msgstr ""
 
 msgid "Retry"
-msgstr "重试"
+msgstr ""
 
 msgid "Reverse DNS lookup"
 msgstr ""
@@ -4114,7 +4171,7 @@ msgid "Romanian"
 msgstr ""
 
 msgid "Root"
-msgstr ""
+msgstr "Root"
 
 msgid "Root bind DN"
 msgstr ""
@@ -4126,55 +4183,55 @@ msgid "Round-robin read"
 msgstr ""
 
 msgid "Roundrobin"
-msgstr "轮叫调度"
+msgstr ""
 
 msgid "Routes"
-msgstr "路由"
+msgstr "Rotalar"
 
 msgid "Routing tables"
-msgstr "路由表"
+msgstr "Yönlendirme tabloları"
 
 msgid "Rows"
-msgstr "行"
+msgstr "Satırlar"
 
 msgid "Rsync"
-msgstr ""
+msgstr "Rsync"
 
 msgid "Rsync job"
 msgstr ""
 
 msgid "Rule"
-msgstr ""
+msgstr "Kural"
 
 msgid "Rule number"
-msgstr ""
+msgstr "Kural numarası"
 
 msgid "Rules"
-msgstr ""
+msgstr "Kurallar"
 
 msgid "Run as"
 msgstr ""
 
 msgid "Run now"
-msgstr "现在运行"
+msgstr "Şimdi çalıştır"
 
 msgid "Running"
-msgstr ""
+msgstr "Çalışıyor"
 
 msgid "Russian"
-msgstr ""
+msgstr "Rusça"
 
 msgid "S.M.A.R.T."
 msgstr "S.M.A.R.T."
 
 msgid "S.M.A.R.T. events"
-msgstr "S.M.A.R.T. 事件"
+msgstr "S.M.A.R.T. olayları"
 
 msgid "S.M.A.R.T. extra options"
-msgstr ""
+msgstr "S.M.A.R.T. extra ayarlar"
 
 msgid "S.M.A.R.T. log"
-msgstr "S.M.A.R.T. 记录"
+msgstr "S.M.A.R.T. günlüğü"
 
 msgid "SMB2"
 msgstr ""
@@ -4187,16 +4244,16 @@ msgid "SNMP"
 msgstr "SNMP"
 
 msgid "SNMP Modules"
-msgstr "SNMP 模块"
+msgstr "SNMP Modulleri"
 
 msgid "SSH"
 msgstr "SSH"
 
 msgid "SSH events"
-msgstr "SSH 事件"
+msgstr "SSH olayları"
 
 msgid "SSHD log"
-msgstr "SSHD 记录"
+msgstr "SSHD günlüğü"
 
 msgid "SSID"
 msgstr "SSID"
@@ -4205,7 +4262,7 @@ msgid "SSL/TLS"
 msgstr "SSL/TLS"
 
 msgid "SSL/TLS only"
-msgstr ""
+msgstr "Sadece SSL/TLS kullan"
 
 #, php-format
 msgid ""
@@ -4220,19 +4277,19 @@ msgid ""
 msgstr ""
 
 msgid "Save"
-msgstr "储存"
+msgstr "Kaydet"
 
 msgid "Save and Restart"
-msgstr "保存并重启服务"
+msgstr "Kaydet ve Yeniden Başlat"
 
 msgid "Save login information in configuration file."
-msgstr ""
+msgstr "Oturum açma bilgilerini yapılandırma dosyasına kaydet"
 
 msgid "Saved file to"
-msgstr "将文件储存至"
+msgstr ""
 
 msgid "Scan Targets"
-msgstr ""
+msgstr "Hedefi Tara"
 
 msgid ""
 "Scan file system every N seconds to see if any files have been added or "
@@ -4242,25 +4299,25 @@ msgid ""
 msgstr ""
 
 msgid "Scan type"
-msgstr "扫描类型"
+msgstr "Tarama tipi"
 
 msgid "Schedule time"
-msgstr "排程时间"
+msgstr "Zamanlanmış süre"
 
 msgid "Scheduled"
-msgstr "排程"
+msgstr "Zamanlanmış"
 
 msgid "Scheduled Self-Test"
-msgstr "排程自我检测"
+msgstr "Zamanlanmış self-test"
 
 msgid "Scheduled reboot"
-msgstr "排程重开机"
+msgstr "Zamanlanmış yeniden başlatma"
 
 msgid "Scheduled self-tests"
-msgstr "排程自我检测"
+msgstr "Zamanlanmış self-test'ler"
 
 msgid "Scheduled shutdown"
-msgstr "排程关机"
+msgstr "Zamanlanmış kapanma"
 
 msgid "Secondary"
 msgstr ""
@@ -4272,52 +4329,52 @@ msgid "Secure Shell"
 msgstr ""
 
 msgid "Security"
-msgstr "安全"
+msgstr "Güvenlik"
 
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
-msgstr "选择要开启 S.M.A.R.T. 监控的硬盘。"
+msgstr ""
 
 msgid "Select item to remove from the list"
 msgstr ""
 
 msgid "Select mount point where to create the swap file."
-msgstr "选择建立交换文件分区分区的挂载点。"
+msgstr ""
 
 msgid "Select the FreeBSD package to be installed."
-msgstr "选择要安装的 FreeBSD 软件包。"
+msgstr ""
 
 msgid "Select the location closest to you."
-msgstr "选择最邻近的区域。"
+msgstr ""
 
 msgid "Select your read balance algorithm."
-msgstr "选择平衡演算法"
+msgstr ""
 
 msgid "Selected"
-msgstr "已选择"
+msgstr "Seçildi"
 
 msgid "Selected file isn't an valid ISO file."
-msgstr "所选择的文件不是一个有效的 ISO 文件。"
+msgstr "Seçtiğin doysa geçerli bir ISO dosyası değil."
 
 msgid "Self-Monitoring, Analysis and Reporting Technology"
 msgstr ""
 
 msgid "Send Buffer Size"
-msgstr "发送缓冲区的大小"
+msgstr ""
 
 msgid "Send Command!"
-msgstr "发送命令！"
+msgstr ""
 
 msgid "Send a TEST warning email on startup."
-msgstr "启动发送电子邮件警告。"
+msgstr ""
 
 msgid "Send now"
-msgstr "立刻发送"
+msgstr "Şimdigönder"
 
 msgid "Send test email"
-msgstr "发送测试邮件"
+msgstr "Test maili gönder"
 
 msgid "Separate email addresses by semi-colon."
-msgstr "邮件地址使用分号隔开。"
+msgstr ""
 
 msgid "Serial Console"
 msgstr ""
@@ -4326,43 +4383,43 @@ msgid "Serial number"
 msgstr ""
 
 msgid "Server"
-msgstr "服务器"
+msgstr "Sunuc"
 
 msgid "Server Name"
-msgstr "服务器名称"
+msgstr "Sunucu Adı"
 
 msgid "Server description. This can usually be left blank."
-msgstr "服务器描述文字。通常可以留空。"
+msgstr "Sunucu açıklaması. Genelde boş bırakılır"
 
 msgid "Server name"
-msgstr "服务器名称"
+msgstr "Sunucu adı"
 
 msgid "Service"
-msgstr "服务"
+msgstr "Hizmet"
 
 msgid "Services"
-msgstr "服务"
+msgstr "Hizmetler"
 
 msgid "Set additional group memberships for this account."
-msgstr "设置此帐户的其余群组"
+msgstr "Bu grup için ek olarak grup üyeliği ayarla"
 
 msgid "Set browseable"
-msgstr "设为可浏览"
+msgstr "Gezilebilebilir olarak ayarla"
 
 msgid "Set read only"
-msgstr "设成只读"
+msgstr ""
 
 msgid "Set share password."
-msgstr "设置共享密码。"
+msgstr "Ortak parola ayarla."
 
 msgid "Set the CNID backend to be used for the volume."
 msgstr ""
 
 msgid "Set the account's primary group to the given group."
-msgstr "设置帐号的主要群组。"
+msgstr ""
 
 msgid "Set the desired Service Set Identifier (aka network name)."
-msgstr "设置所需的服务器标识符（又称网络名称）。"
+msgstr ""
 
 msgid ""
 "Set the maximum transmission unit of the interface to n, default is "
@@ -4391,7 +4448,7 @@ msgstr ""
 msgid ""
 "Sets the interval between disk checks to N seconds. The minimum allowed "
 "value is 10."
-msgstr "设置硬盘检查间隔时间，单位是秒，最少是 10。"
+msgstr ""
 
 msgid ""
 "Sets the umask for newly created files to the specified value. The default "
@@ -4399,7 +4456,7 @@ msgid ""
 msgstr ""
 
 msgid "Settings"
-msgstr "设置"
+msgstr "Ayarlar"
 
 msgid "Shadow Copy"
 msgstr ""
@@ -4408,49 +4465,49 @@ msgid "Shadow Copy format"
 msgstr ""
 
 msgid "Share"
-msgstr "共享"
+msgstr "Paylaşım"
 
 msgid "Share Character Set"
-msgstr "共享的字符编码"
+msgstr ""
 
 msgid "Share Password"
-msgstr "共享密码"
+msgstr "Ortak Parola"
 
 msgid "Share all sub directories."
-msgstr "共享所有子目录。"
+msgstr ""
 
 msgid "Share passwords can not be more than 8 characters."
-msgstr "共享文件夹密码不能够超过 8 个字符。"
+msgstr ""
 
 msgid "Shares"
-msgstr "共享"
+msgstr "Paylaşımlar"
 
 msgid "Shell"
 msgstr ""
 
 msgid "Show log entries in reverse order (newest entries on top)"
-msgstr "反向显示记录资料(最新的在上面)"
+msgstr ""
 
 msgid "Show process information"
-msgstr "查看进程信息"
+msgstr "İşlem bilgilerini göster"
 
 msgid "Shutdown"
-msgstr "关机"
+msgstr "KApat"
 
 msgid "Shutdown mode"
-msgstr ""
+msgstr "Kapatma modu"
 
 msgid "Shutdown timer"
-msgstr ""
+msgstr "Kapanma zamanlayıcısı"
 
 msgid "Simple Network Management Protocol"
-msgstr "简单网络管理协议"
+msgstr "Simple Network Management Protocol"
 
 msgid "Single-parity RAID-Z"
 msgstr ""
 
 msgid "Size"
-msgstr "大小"
+msgstr "Boyut"
 
 #, php-format
 msgid "Size of receive buffer (%d by default)."
@@ -4469,7 +4526,7 @@ msgid "Skew"
 msgstr ""
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
-msgstr "睡眠 - 设备除了在睡眠模式之外都将检查。"
+msgstr ""
 
 msgid "Slovak"
 msgstr ""
@@ -4487,37 +4544,37 @@ msgid "Snapshots"
 msgstr ""
 
 msgid "Sockets"
-msgstr "Sockets"
+msgstr ""
 
 msgid "SoftRaid"
 msgstr ""
 
 msgid "Software RAID"
-msgstr "软RAID"
+msgstr "RAID programı"
 
 msgid "Software RAID information and status"
-msgstr "软RAID信息与状态"
+msgstr ""
 
 msgid "Software used"
-msgstr "使用软RAID"
+msgstr ""
 
 msgid "Source"
-msgstr "来源位置"
+msgstr "Kaynak"
 
 msgid "Source directory to be synchronized."
-msgstr "要备份的资料夹。"
+msgstr ""
 
 msgid "Source port"
-msgstr "源端口"
+msgstr ""
 
 msgid "Source share"
-msgstr "源位置"
+msgstr ""
 
 msgid "Space Used"
-msgstr "空间使用"
+msgstr "kullanılıyor"
 
 msgid "Spanish"
-msgstr ""
+msgstr "İspanyolca"
 
 msgid "Sparse"
 msgstr ""
@@ -4526,13 +4583,13 @@ msgid "Sparse Volume"
 msgstr ""
 
 msgid "Specifies how many servers to create."
-msgstr "输入预建立服务器的数量。"
+msgstr ""
 
 msgid "Specifies that the file system should be exported read-only."
-msgstr "指定这个文件系统只能只读。"
+msgstr ""
 
 msgid "Specifies the command to be run."
-msgstr "运行指定命令。"
+msgstr ""
 
 msgid ""
 "Specifies the maximum permitted block size. The permitted range for this "
@@ -4542,7 +4599,7 @@ msgstr ""
 msgid ""
 "Specifies the share character set. For example UTF8, UTF8-MAC, ISO-8859-15, "
 "etc."
-msgstr "指定这个共享区的文件名的编码，UTF8、UTF8-MAC、ISO-8859-15等等"
+msgstr ""
 
 msgid "Specifies the time in hh:mm:ss after which the ban expires."
 msgstr ""
@@ -4557,70 +4614,69 @@ msgstr ""
 
 msgid ""
 "Specifies whether it is allowed to login as superuser (root) directly."
-msgstr "指定超级用户 (root)是否可以通过SSH直接登入。"
+msgstr ""
 
 msgid ""
 "Specify the percentage of space held back from normal users. Note that "
 "lowering the threshold can adversely affect performance and auto-"
 "defragmentation."
-msgstr "指定要用多少百分比的硬盘空间配置给一般用户。注意将门槛降低会影响到硬盘性能。"
+msgstr ""
 
 msgid "Split request"
 msgstr ""
 
 msgid "Standard"
-msgstr "标准"
+msgstr "Standart"
 
 msgid ""
 "Standby - Check the device unless it is in SLEEP or STANDBY mode. In these "
 "modes most disks are not spinning, so if you want to prevent a laptop disk "
 "from spinning up each poll, this is probably what you want."
 msgstr ""
-"待命 - 设备除了在睡眠、待命模式之外都将检查。这个情况下大部分的硬盘都会停止旋转，如果你想预防硬盘不断因为检查而重新启动，这应该就是你要的。"
 
 msgid "Standby time"
-msgstr "进入待机需要的时间"
+msgstr "Beklemede kala süresi"
 
 msgid "Start"
-msgstr ""
+msgstr "Başlat"
 
 msgid "Static"
-msgstr ""
+msgstr "Statik"
 
 msgid "Static Routes"
-msgstr "静态路由"
+msgstr ""
 
 msgid "Static routes"
-msgstr "静态路由"
+msgstr ""
 
 msgid "Status"
-msgstr "状态"
+msgstr "Durum"
 
 #, c-format
 msgid "Status report successfully sent to: %s."
-msgstr "状态报告成功发送到 %s。"
+msgstr ""
 
 msgid "Status report successfully sent."
-msgstr "状态报告已发送成功。"
+msgstr ""
 
 msgid "Stop"
-msgstr ""
+msgstr "Durdur"
 
 msgid "Stop after sending (and receiving) N packets."
 msgstr ""
 
 msgid "Stopped"
-msgstr "已停止"
+msgstr "Durduruldu"
 
 msgid "Storage"
-msgstr "储存空间"
+msgstr ""
 
 msgid "Store DOS attributes"
-msgstr "储存 DOS 属性"
+msgstr ""
 
 msgid ""
 "String displayed in the dialog presented to the user when accessing the URL."
-msgstr "当用户连接到这个 URL 将显示的对话框。"
+msgstr ""
 
 msgid "String identifier of the extent."
 msgstr ""
@@ -4629,53 +4685,53 @@ msgid "Stripe"
 msgstr ""
 
 msgid "Subject"
-msgstr "题目"
+msgstr "Konu"
 
 msgid "Subnet bit count"
-msgstr "子网掩码位数"
+msgstr ""
 
 msgid "Subnet mask"
-msgstr "子网掩码"
+msgstr ""
 
 msgid "Subsystem"
 msgstr ""
 
 msgid "Successful"
-msgstr "完成"
+msgstr ""
 
 msgid "Successful."
-msgstr "完成。"
+msgstr ""
 
 msgid "Sunday Monday Tuesday Wednesday Thursday Friday Saturday"
-msgstr "星期日 星期一 星期二 星期三 星期四 星期五 星期六"
+msgstr ""
 
 msgid "Suppress non-error messages."
-msgstr "只显示错误讯息。"
+msgstr ""
 
 msgid "Swap"
-msgstr "Swap 分区"
+msgstr ""
 
 msgid "Swap disabled"
-msgstr "关闭 Swap"
+msgstr ""
 
 msgid "Swap memory"
-msgstr "Swap 内存"
+msgstr ""
 
 msgid "Swap status"
-msgstr "Swap 状态"
+msgstr ""
 
 msgid "Swap usage"
-msgstr "Swap 使用量"
+msgstr ""
 
 msgid "Swedish"
 msgstr ""
 
 msgid "Switch to"
-msgstr "切换到"
+msgstr ""
 
 #, php-format
 msgid "Switch to %s/s"
-msgstr "切换到 %s/s"
+msgstr ""
 
 msgid "Sync"
 msgstr ""
@@ -4692,55 +4748,54 @@ msgid ""
 "server. Be sure to set syslogd on the remote server to accept syslog "
 "messages from %s."
 msgstr ""
-"Syslog 会透过 UDP 514 端口将资料送到指定的远端 syslog 服务器。请确定远端的 syslog 服务器将会接受来自 %s 的记录资料。"
 
 msgid "System"
-msgstr "系统"
+msgstr "Sistem"
 
 msgid "System Beep"
-msgstr "声音提示"
+msgstr "Sistem Uyarısı"
 
 msgid "System events"
-msgstr "系统事件"
+msgstr "Sistem Olayları"
 
 msgid "System firewall"
-msgstr ""
+msgstr "Sistem Güvenlik Duvarı"
 
 msgid "System info"
-msgstr "系统信息"
+msgstr "Sistem Bilgisi"
 
 msgid "System information"
-msgstr "系统信息"
+msgstr "Sistem bilgileri"
 
 msgid "System log"
-msgstr "系统日志"
+msgstr "Sistem günlükleri"
 
 msgid "System message buffer"
-msgstr "系统缓冲消息"
+msgstr "Sistem mesaj belleği"
 
 msgid "System time"
-msgstr "系统时间"
+msgstr "Sistem zamanı"
 
 msgid "System tuning"
-msgstr "系统微调"
+msgstr ""
 
 msgid "System uptime"
 msgstr ""
 
 msgid "TCP forwarding"
-msgstr "TCP 转送"
+msgstr ""
 
 msgid "TCP port"
-msgstr "TCP 端口"
+msgstr "TCP port"
 
 msgid "TCP port to bind the server to."
-msgstr "这个服务将使用的 TCP 链接端口。"
+msgstr ""
 
 msgid "TCP wrapper"
 msgstr ""
 
 msgid "TFTP"
-msgstr ""
+msgstr "TFTP"
 
 msgid "TKIP"
 msgstr "TKIP"
@@ -4763,19 +4818,19 @@ msgid "Tape"
 msgstr ""
 
 msgid "Target"
-msgstr "目标"
+msgstr "Hedef"
 
 msgid "Target Alias"
 msgstr ""
 
 msgid "Target Name"
-msgstr "目标名称"
+msgstr ""
 
 msgid "Target address"
-msgstr "目标位置"
+msgstr ""
 
 msgid "Target directory."
-msgstr "目标目录。"
+msgstr ""
 
 msgid "Target information"
 msgstr ""
@@ -4787,7 +4842,7 @@ msgid "Target list"
 msgstr ""
 
 msgid "Target name"
-msgstr "目标名称"
+msgstr ""
 
 msgid "Target side secret."
 msgstr ""
@@ -4799,22 +4854,22 @@ msgid "Targets"
 msgstr ""
 
 msgid "Temperature"
-msgstr "温度"
+msgstr ""
 
 msgid "Temperature monitoring"
-msgstr "温度监测"
+msgstr ""
 
 msgid "Temporary Device"
 msgstr ""
 
 msgid "Temporary directory"
-msgstr "临时目录。"
+msgstr ""
 
 msgid "Temporary directory to store transcoded files."
-msgstr "用来存储转换文件的临时目录。"
+msgstr ""
 
 msgid "Test email"
-msgstr "邮件测试"
+msgstr "Test email"
 
 #, php-format
 msgid "Test email from host: %s"
@@ -4825,7 +4880,7 @@ msgid "Test email successfully sent to: %s."
 msgstr ""
 
 msgid "Test email successfully sent."
-msgstr "测试邮件发送成功。"
+msgstr ""
 
 msgid ""
 "The  deny  option specifies users and groups who are not allowed access to "
@@ -4839,11 +4894,11 @@ msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
 
 msgid "The IP address that this hostname represents."
-msgstr "主机名称所代表的 IP 位置"
+msgstr ""
 
 #, php-format
 msgid "The MIB '%s' already exist."
-msgstr "MIB '%s' 已经存在"
+msgstr "MIB '%s' zaten var."
 
 #, php-format
 msgid "The MIB '%s' doesn't exist in sysctl."
@@ -4854,12 +4909,14 @@ msgid ""
 "The RAID volume is currently mounted! Remove the <a href='%s'>mount "
 "point</a> first before proceeding."
 msgstr ""
+"RAID bölümü az önce tanımlandı! İşleme başalamadan önce <a href='%s'>mount "
+"point</a> siliniz."
 
 msgid "The TCP port must be a valid port number."
-msgstr "请输入一个有效的端口号。"
+msgstr "TCP portu geçerli bir port numarası olmalıdır."
 
 msgid "The VLAN ID must be between 1 and 4094."
-msgstr "VLAN ID必须在1和4094之间。"
+msgstr "VLAN ID 1 ile 4094 arasında bir değer olmalıdır."
 
 msgid ""
 "The action which will be executed when the packet match the criteria "
@@ -4877,105 +4934,111 @@ msgstr ""
 msgid ""
 "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
 msgstr ""
+"'%s' özniteliği geçerli NetBIOS adı değil, gerçersiz karakterler içeriyor."
 
 #, c-format
 msgid ""
 "The attribute '%s' contains invalid characters and is no valid domain name."
-msgstr "属性 '%s' 包含了无效字符，请输入有效的网域名称。"
+msgstr ""
+"'%s' özniteliği geçerli domain adı değil, gerçersiz karakterler içeriyor."
 
 #, c-format
 msgid ""
 "The attribute '%s' contains invalid characters and is no valid host name."
-msgstr "属性 '%s' 包含了无效字符，请输入有效的主机名称。"
+msgstr ""
+"'%s' özniteliği geçerli sunucu adı değil, gerçersiz karakterler içeriyor."
 
 #, c-format
 msgid ""
 "The attribute '%s' contains invalid characters and is no valid workgroup "
 "name."
-msgstr "属性 '%s' 包含了无效字符，请输入有效的工作群组名称。"
+msgstr ""
+"'%s' özniteliği geçerli çalışma grubu adı değil, gerçersiz karakterler "
+"içeriyor."
 
 #, c-format, php-format
 msgid "The attribute '%s' contains invalid characters."
-msgstr "属性 '%s' 包含了无效的字符。"
+msgstr "'%s' özniteliği gerçersiz karakter içeriyor."
 
 #, c-format
 msgid ""
 "The attribute '%s' contains the illegal character ':' and is no valid "
 "password."
-msgstr "属性 '%s' 包含了无效字符 ':'，请输入有效的密码。"
+msgstr "'%s' özniteliği gerçersiz karakter içeriyor ':'."
 
 #, c-format
 msgid "The attribute '%s' does not appear to be a valid certificate."
-msgstr "这个验证 '%s' 似乎是无效的。"
+msgstr "'%s' özniteliğinin geçerli bir sertfikası yok."
 
 #, c-format
 msgid "The attribute '%s' does not appear to be a valid private %s key."
-msgstr "这个验证 '%s' 似乎是无效的 '%s' 密钥。"
+msgstr ""
 
 #, c-format
 msgid "The attribute '%s' does not appear to be a valid private key."
-msgstr "这个验证 '%s' 似乎是无效的。"
+msgstr ""
 
 #, c-format
 msgid "The attribute '%s' is an invalid port number."
-msgstr "属性 '%s' 是无效的端口号。"
+msgstr "'%s' özniteliğinin port numarası geçersiz."
 
 #, c-format, php-format
 msgid "The attribute '%s' is invalid."
-msgstr "属性 '%s' 是无效的。"
+msgstr "'%s' özniteliği geçersiz"
 
 #, c-format
 msgid "The attribute '%s' is no valid IP address."
-msgstr "属性 '%s' 是无效的 IP 位置。"
+msgstr "'%s' özniteliği geçerli bir IP adresi yok."
 
 #, c-format
 msgid "The attribute '%s' is no valid MAC address."
-msgstr "属性 '%s' 是无效的 MAC 位置。"
+msgstr "'%s' özniteliğinin geçerili bir MAC adresi yok."
 
 #, c-format
 msgid "The attribute '%s' is no valid file mode mask."
-msgstr "属性 '%s' 是无效的文件权限码。"
+msgstr "'%s' özniteliğinin geçerili bir dosya modu maskesi yok."
 
 #, c-format
 msgid "The attribute '%s' is no valid subnet mask."
-msgstr "属性 '%s' 是无效的子网掩码。"
+msgstr "'%s' özniteliğinin geçerili bir subnet maskesiyok."
 
 #, c-format
 msgid "The attribute '%s' is no valid time."
-msgstr ""
+msgstr "'%s' özniteliğinin geçerili bir süresi yok."
 
 #, c-format, php-format
 msgid "The attribute '%s' is required."
-msgstr "属性 '%s' 是必须栏位。"
+msgstr "Öznielik için '%s' gerekli."
 
 #, php-format
 msgid ""
 "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9, _ , -."
-msgstr "属性 '%s' 只可以由下列的字符组成 a-z, A-Z, 0-9, _, -."
+msgstr ""
+"The attribute '%s' may only consist of the characters a-z, A-Z, 0-9, _ , -."
 
 #, c-format
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
-msgstr "'%s' 只能由字符a-z, A-Z, 0-9组成"
+msgstr "Öznitelik  '%s' yanlızca a-z, A-Z, 0-9 karakterlerinden oluşabilir"
 
 #, c-format, php-format
 msgid "The attribute '%s' must be a number."
-msgstr "属性 '%s' 必须是数字。"
+msgstr "Öznitelik '%s' bir rakam olmalı."
 
 #, c-format
 msgid "The attribute '%s' must be a string."
-msgstr "属性 '%s' 是字串。"
+msgstr "Öznitelik '%s' bir karakter olmalı."
 
 #, php-format
 msgid "The attribute '%s' must be in the range from %d to %d."
-msgstr ""
+msgstr "Öznitelik '%s' %d to %d arasında olmalı."
 
 #, php-format
 msgid "The attribute '%s' must be less than '%s'."
-msgstr ""
+msgstr "Öznitelik '%s' '%s' küçük olmalı."
 
 #, c-format
 msgid "The attribute '%s' must contain at least one entry."
-msgstr ""
+msgstr "Öznitelik '%s' bir giriş içeriyor olmalı."
 
 msgid ""
 "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
@@ -4994,7 +5057,7 @@ msgid ""
 msgstr ""
 
 msgid "The changes have been applied successfully."
-msgstr "这些变化已成功应用。"
+msgstr "Değişiklikler başarıyla uygulandı"
 
 #, c-format
 msgid ""
@@ -5006,10 +5069,10 @@ msgid "The cleartext credentials with which to bind."
 msgstr ""
 
 msgid "The command to be executed."
-msgstr "该命令将被执行。"
+msgstr "Komut çalıştırıldı."
 
 msgid "The configuration could not be restored."
-msgstr "无法恢复设置组态。"
+msgstr "Yapılandırma geriye alınamadı."
 
 #, php-format
 msgid "The configuration could not be restored. %s"
@@ -5022,18 +5085,18 @@ msgstr ""
 
 #, php-format
 msgid "The configuration has been restored. %s is now rebooting."
-msgstr "设置组态恢复成功。 %s 现在正重新启动。"
+msgstr ""
 
 msgid ""
 "The confimed password does not match. Please ensure the passwords match "
 "exactly."
-msgstr "密码输入并不一致，请在确认一次输入的密码是否一致。"
+msgstr ""
 
 msgid "The credentials with which to bind."
 msgstr ""
 
 msgid "The cron job has been executed successfully."
-msgstr "该计划任务已被顺利执行。"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -5042,7 +5105,7 @@ msgid ""
 msgstr ""
 
 msgid "The default SMTP mail server port, e.g. 25 or 587."
-msgstr "默认的 SMTP 邮件服务器端口号，例：25 或 587。"
+msgstr "Varsayılan SMTP mail sunucu portu,  25 veya 587."
 
 #, php-format
 msgid "The default base distinguished name (DN) to use for searches, e.g. %s"
@@ -5052,15 +5115,17 @@ msgid ""
 "The default key lengths are: 128 for AES, 128 for Blowfish, 128 for Camellia "
 "and 192 for 3DES."
 msgstr ""
+"Varsayılan anahtar uzunlukları: AES için 128, Blowfish için 128, Camellia "
+"için 128 ve 3DES 192."
 
 msgid "The default time in seconds to display a screen."
 msgstr ""
 
 msgid "The device name may only consist of the characters a-z, A-Z, 0-9."
-msgstr "设备的名称只可以由 a-z, A-Z, 0-9 组成。"
+msgstr "Aygıt ismi yanlızca a-z, A-Z, 0-9 karakterlerini içerebilir."
 
 msgid "The device's IP address."
-msgstr "该设备的IP地址。"
+msgstr "Aygıtın IP adresi"
 
 msgid ""
 "The directory containing the files you want to publish. The remote host does "
@@ -5109,30 +5174,30 @@ msgstr ""
 
 #, php-format
 msgid "The firmware is now being installed. %s will reboot automatically."
-msgstr "新的固件正在安装中，完成之后%s将会自动重新开机。"
+msgstr ""
 
 msgid "The following input errors were detected"
-msgstr "检测到以下的输入错误"
+msgstr ""
 
 msgid "The full name contains invalid characters."
-msgstr "全名包含无效的字符。"
+msgstr ""
 
 msgid "The group description contains invalid characters."
-msgstr "群组描述包含了无效字符。"
+msgstr ""
 
 msgid "The group name contains invalid characters."
-msgstr "群组名称包含无效字符。"
+msgstr ""
 
 msgid "The host name contain invalid characters."
-msgstr "主机名称输入了无效的字符。"
+msgstr ""
 
 msgid ""
 "The host name may only consist of the characters a-z, A-Z and 0-9, - , _ and "
 "."
-msgstr "主机名称只可以由 a-z, A-Z, 0-9 组成。"
+msgstr ""
 
 msgid "The image file is corrupt"
-msgstr "镜像文件已经损坏"
+msgstr ""
 
 msgid "The initial digest mode negotiated with the initiator."
 msgstr ""
@@ -5161,28 +5226,28 @@ msgid ""
 msgstr ""
 
 msgid "The login name contains invalid characters."
-msgstr "登入帐号含有无效的字符。"
+msgstr ""
 
 msgid "The login name is a reserved login name."
-msgstr "默认的登入帐号。"
+msgstr ""
 
 msgid "The login name is limited to 16 characters."
 msgstr ""
 
 msgid "The max. connection per IP must be either 0 (unlimited) or greater."
-msgstr "每个 IP 的最大连接数必需是 0 （不限制）或更大。"
+msgstr ""
 
 msgid ""
 "The maximum download bandwith in KiB/s. An empty field means infinity."
 msgstr ""
 
 msgid "The maximum idle time be a number."
-msgstr "失效时间必须是一个数字。"
+msgstr ""
 
 msgid ""
 "The maximum port to allocate for PASV style data connections (0 = use any "
 "port)."
-msgstr "被动式端口号的区段终点(0 = 不限制)"
+msgstr ""
 
 msgid "The maximum upload bandwith in KB/s. An empty field means infinity."
 msgstr ""
@@ -5209,7 +5274,7 @@ msgstr ""
 msgid ""
 "The minimum port to allocate for PASV style data connections (0 = use any "
 "port)."
-msgstr "被动式端口号的区段起点(0 = 不限制)"
+msgstr ""
 
 msgid ""
 "The module provides automatic bans that are triggered based on configurable "
@@ -5220,22 +5285,22 @@ msgstr ""
 
 #, php-format
 msgid "The network '%s' is invalid."
-msgstr ""
+msgstr "'%s'ağı geçersiz."
 
 msgid "The number of clients must be between 1 and 50."
-msgstr "用户上限必须介于 1 至 50。"
+msgstr "İstemci sayısı 1 ile 50 arasında olmalıdır."
 
 msgid "The old password is not correct."
-msgstr "旧的密码错误。"
+msgstr "Eski parola yanlış."
 
 msgid "The password change protocol to use."
 msgstr ""
 
 msgid "The password contains the illegal character ':'."
-msgstr "密码包含了无效的字符 ':'。"
+msgstr ""
 
 msgid "The passwords do not match."
-msgstr "您输入的密码不相符。"
+msgstr "Parolalar eşleşmiyor."
 
 #, php-format
 msgid "The path '%s' does not exist."
@@ -5265,11 +5330,11 @@ msgstr ""
 msgid ""
 "The port to listen to. The default is to listen to the tftp port specified "
 "in /etc/services."
-msgstr "监听的端口。默认是监听 /etc/services 中指定的 tftp 端口。"
+msgstr ""
 
 #, php-format
 msgid "The portal '%s' is invalid."
-msgstr ""
+msgstr "'%s' portalı geçersiz."
 
 msgid ""
 "The portal takes the form of 'address:port'. for example '192.168.1.1:3260' "
@@ -5281,7 +5346,7 @@ msgstr ""
 msgid ""
 "The powerd utility monitors the system state and sets various power control "
 "options accordingly."
-msgstr "电源监控程序会监控系统的整体状态并且设置相关的电源控制项目。"
+msgstr ""
 
 msgid "The queuedepth range is invalid."
 msgstr ""
@@ -5308,10 +5373,10 @@ msgid "The rule number determines the order of the rule."
 msgstr ""
 
 msgid "The serial or USB port where your UPS is connected."
-msgstr "您的UPS相连USB端口。"
+msgstr ""
 
 msgid "The share name is already used."
-msgstr "该名称已经被使用"
+msgstr "Paylaşım ismi zaten kullanılıyor."
 
 msgid "The size of the swap file in MB."
 msgstr ""
@@ -5324,21 +5389,22 @@ msgid "The storage area mapped to LUN%d."
 msgstr ""
 
 msgid "The subject of the email."
-msgstr "电子邮件主题。"
+msgstr "E-posta konusu."
 
 msgid ""
 "The system has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
-msgstr "系统已经恢复为初始设置，现在已经自动进入重新开机程序，可能要花一分钟的时间。"
+msgstr ""
+"Fabrika ayarları yüklendi ve yeniden başlatılıyor. Biraz zaman alabilir."
 
 msgid "The system is halting now. This may take one minute."
-msgstr "系统关闭中，可能需要一分钟的时间..."
+msgstr ""
 
 msgid "The system is rebooting now. This may take one minute."
-msgstr "系统重新启动中，可能需要一分钟的时间..."
+msgstr ""
 
 msgid "The tag range is invalid."
-msgstr ""
+msgstr "Etiket aralığı geçersiz"
 
 msgid "The target name already exists."
 msgstr ""
@@ -5349,16 +5415,16 @@ msgid ""
 msgstr ""
 
 msgid "The time update interval must be either between 6 and 1440."
-msgstr "时间更新间隔必需为 6 到 1440 之间。"
-
-msgid "The unique group ID is already used."
-msgstr "这个 GID 已经被用过了。"
-
-msgid "The unique rule number is already used."
 msgstr ""
 
+msgid "The unique group ID is already used."
+msgstr "Benzersiz Grup kimliği kullanımda."
+
+msgid "The unique rule number is already used."
+msgstr "Benzersiz Grup kural numarası kullanımda."
+
 msgid "The unique user ID is already used."
-msgstr "这个 UID 已经被用过了。"
+msgstr ""
 
 msgid ""
 "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
@@ -5373,25 +5439,25 @@ msgid "The uploaded file was only partially uploaded."
 msgstr ""
 
 msgid "The uploaded image file is not for this platform"
-msgstr "上传的镜像文件并不适于这个系统"
+msgstr ""
 
 msgid "The user's login shell."
 msgstr ""
 
 msgid "The value of the variable."
-msgstr ""
+msgstr "Değişkenin değeri"
 
 msgid "The volume must be detached before it can be deleted."
-msgstr "硬盘必需先移除才可以删除。"
+msgstr ""
 
 msgid "The working directory does not exist."
 msgstr ""
 
 msgid "There are too many additional groups."
-msgstr ""
+msgstr "Çok fazla ek grup var."
 
 msgid "There is no error, the file uploaded with success."
-msgstr ""
+msgstr "Herhangi bir hata olmadı, dosya başarıyla yüklendi."
 
 msgid ""
 "There is wrong ID in the disk of config. Please remove the disk and re-add "
@@ -5399,37 +5465,37 @@ msgid ""
 msgstr ""
 
 msgid "There must be 2 disks in a RAID 1 volume."
-msgstr "要使用 RAID 1 最少要有两个硬盘。"
+msgstr "RAID 1 Biriminde en az 2 disk olmalı."
 
 msgid "There must be a minimum of 2 disks in a JBOD."
-msgstr "JBOD 模式必需至少有两个硬盘。"
+msgstr "JBOD en az iki disk bulunmalı."
 
 msgid "There must be a minimum of 2 disks in a RAID 0 volume."
-msgstr "要使用 RAID 0 最少要有两个硬盘。"
+msgstr "RAID 0 biriminde en az iki disk olmalı."
 
 msgid "There must be a minimum of 2 disks in a RAID 5 volume."
-msgstr "要使用 RAID 5 最少要有两个硬盘。"
+msgstr "RAID 5 biriminde en az 2 disk olmalı."
 
 msgid "There must be a minimum of 3 disks in a RAID 5 volume."
-msgstr "RAID 5 模式必需最少需要三个硬盘。"
+msgstr "RAID 5 biriminde en az 3 disk olmalı."
 
 msgid "There must be at least 1 disks selected."
-msgstr ""
+msgstr "Bir disk seçmelesin."
 
 msgid "There must be at least 2 disks in a mirror."
-msgstr ""
+msgstr "Yansıma için en az 2 disk seçmelesin."
 
 msgid "There must be at least 2 disks in a raidz."
-msgstr ""
+msgstr "Raidz için iki disk seçmelisin."
 
 msgid "There must be at least 3 disks in a raidz2."
-msgstr ""
+msgstr "Raidz2 için 3 disk seçmelisin."
 
 msgid "There must be at least 4 disks in a raidz3."
 msgstr ""
 
 msgid "There must be selected a minimum of 1 interface."
-msgstr "必须选择一个接口。"
+msgstr "Bir arayüz seçmelisin."
 
 msgid ""
 "There should be enough to handle the maximum level of concurrency from its "
@@ -5453,7 +5519,7 @@ msgstr ""
 
 #, php-format
 msgid "These parameters are added to %s."
-msgstr ""
+msgstr "%s parametreler eklendi."
 
 #, php-format
 msgid "These parameters are added to [Global] section of %s."
@@ -5461,11 +5527,11 @@ msgstr ""
 
 #, php-format
 msgid "These parameters are added to [Share] section of %s."
-msgstr ""
+msgstr "Parametreler %s'in [Paylaşım]'ına eklendi."
 
 #, php-format
 msgid "These parameters will be added to %s."
-msgstr ""
+msgstr "%s parametre eklenecek"
 
 #, php-format
 msgid "These parameters will be added to [global] settings in %s."
@@ -5473,11 +5539,11 @@ msgstr ""
 
 #, php-format
 msgid "These parameters will be added to global settings in %s."
-msgstr "这些参数将被添加到全局设置 %s 中。"
+msgstr ""
 
 msgid ""
 "These parameters will be added to the module configuration in rsyncd.conf."
-msgstr "这些参数将被添加到全局设置 rsyncd.conf 中。"
+msgstr ""
 
 msgid ""
 "This Bridge cannot be deleted because it is still being used as an interface."
@@ -5492,7 +5558,7 @@ msgid ""
 msgstr ""
 
 msgid "This URL is already configured."
-msgstr "这个 URL 已经设置过了。"
+msgstr ""
 
 msgid ""
 "This VLAN cannot be deleted because it is still being used as an interface."
@@ -5504,15 +5570,15 @@ msgid ""
 msgstr ""
 
 msgid "This allows you to set how loud the drive is while it's operating."
-msgstr "这是硬盘的运作噪音控制选项。"
+msgstr ""
 
 msgid ""
 "This allows you to set the file system for preformatted hard disks "
 "containing data."
-msgstr "如果原本的硬盘内部有资料，请在这里选择资料存在的文件系统格式。"
+msgstr ""
 
 msgid "This allows you to set the transfer mode for ATA/IDE hard drives."
-msgstr "这是硬盘的 ATA 传输模式选项。"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -5529,7 +5595,7 @@ msgid "This controls the access a remote host has to this module."
 msgstr ""
 
 msgid "This controls the access to this share with an access password."
-msgstr ""
+msgstr "Bu denetleyici bu paylaşıma parola ile ulaşmanızı sağlar."
 
 msgid ""
 "This controls whether the .AppleDouble directory gets created unless "
@@ -5543,16 +5609,16 @@ msgstr ""
 msgid ""
 "This controls whether this share is seen in the list of available shares in "
 "a net view and in the browse list."
-msgstr "控制这个共享资料夹能不能直接的被浏览器看到。"
+msgstr ""
 
 msgid "This couple targetname/targetaddress already exists in the disk list."
-msgstr "硬盘列表中已经存在了这组 targetname/targetaddress。"
+msgstr ""
 
 msgid "This device already exists in the raid volume list."
-msgstr "这个设备已经是RAID成员。"
+msgstr "Bu aygıt raid birimleri listesinde zaten var."
 
 msgid "This disk already exists in the disk list."
-msgstr "这个硬盘已经加入过了。"
+msgstr "Bu disk zaten var."
 
 msgid "This email has been send to validate your email configuration."
 msgstr ""
@@ -5566,10 +5632,10 @@ msgid ""
 msgstr ""
 
 msgid "This function is unsupported. Use it on your own risk!"
-msgstr "这个功能不是官方支持的。您得自己承担使用它的风险！"
+msgstr ""
 
 msgid "This group already exists in the group list."
-msgstr "这个组已经建立过了。"
+msgstr "Bu grup zaten grup listesinde mevcut."
 
 msgid ""
 "This is both the name of the server as advertised via "
@@ -5577,7 +5643,7 @@ msgid ""
 msgstr ""
 
 msgid "This is for information only (not using during iSCSI negociation)."
-msgstr "只是提供资料之用（并非给 iSCSI 沟通的资料）"
+msgstr ""
 
 msgid ""
 "This may make more efficient use of the system CPU's and cause Samba to be "
@@ -5594,14 +5660,14 @@ msgid ""
 msgstr ""
 
 msgid "This name already exists in the disk list."
-msgstr "硬盘列表已经有这个名称存在。"
+msgstr "Bu isim zaten disk listesinde mevcut."
 
 #, php-format
 msgid "This name is for example: %s."
-msgstr ""
+msgstr "Örnek isim: %s."
 
 msgid "This name is for example: iqn.2005-01.il.ac.huji.cs:somebody."
-msgstr "范例名称：iqn.2005-01.il.ac.huji.cs:somebody."
+msgstr "Bu isim için örnek: iqn.2005-01.il.ac.huji.cs:somebody."
 
 msgid "This name is used to uniquely identify your UPS on this system."
 msgstr ""
@@ -5688,7 +5754,7 @@ msgstr ""
 msgid ""
 "This parameter controls whether files starting with a dot appear as hidden "
 "files."
-msgstr "这个参数将会应用在所有的文件，包含点为开头的隐藏文件。"
+msgstr ""
 
 msgid ""
 "This parameter says that if N occurrences of the event happen within the "
@@ -5726,22 +5792,22 @@ msgid "This rule is triggered whenever the selected event directive occurs."
 msgstr ""
 
 msgid "This tag already exists."
-msgstr ""
+msgstr "Etiket kullanılıyor."
 
 msgid "This tag is used."
-msgstr ""
+msgstr "Etiket kullanıldı."
 
 msgid "This the IP address or DNS name of the iSCSI target."
-msgstr "这是 iSCSI 的 IP 位置或者 DNS 名称"
+msgstr ""
 
 msgid "This user already exists in the user list."
-msgstr "用户帐号已经存在。"
+msgstr "Bu kullanıcı zaten kayıtlı"
 
 msgid "This user already exists."
-msgstr "该用户已经存在。"
+msgstr "Bu kullanıcı zaten var."
 
 msgid "This virtual device name already exists."
-msgstr "该虚拟设备的名称已经存在。"
+msgstr "Sanal aygıt ismi zaten var."
 
 #, php-format
 msgid ""
@@ -5750,12 +5816,12 @@ msgid ""
 msgstr ""
 
 msgid "This will create a recycle bin on the share."
-msgstr "将产生一个回收站的文件夹。"
+msgstr "Bu paylaşımda bir geri dönüşüm kutusu oluşturacak."
 
 msgid ""
 "This will erase ALL data on the selected disks! Do not use this option if "
 "you want to add an already existing RAID again."
-msgstr "这个动作会把选取的硬盘内资料清空！如果你想要新增一个已经设置好的 RAID 请勿使用这个选项。"
+msgstr ""
 
 msgid ""
 "This will erase ALL data on your disk! Do not use this option if you want to "
@@ -5772,28 +5838,28 @@ msgid "TiB"
 msgstr "TiB"
 
 msgid "Time"
-msgstr "时间"
+msgstr "Süre"
 
 msgid "Time Machine"
-msgstr ""
+msgstr "Makine saati"
 
 msgid "Time interval"
-msgstr "统计间隔"
+msgstr "Zaman aralığı"
 
 msgid "Time server"
-msgstr "时间服务器"
+msgstr "Saat sunucusu"
 
 msgid "Time update interval"
-msgstr "时间同步间隔"
+msgstr "Saat güncelleme aralığı"
 
 msgid "Time zone"
-msgstr "时区"
+msgstr "Zaman dilimi"
 
 msgid "Timeout"
-msgstr "失效时间"
+msgstr "Zaman aşımı"
 
 msgid "Times"
-msgstr ""
+msgstr "Süreler"
 
 msgid "TitleSpeed"
 msgstr ""
@@ -5809,22 +5875,22 @@ msgid ""
 msgstr ""
 
 msgid "To e-mail"
-msgstr "发送到 email"
+msgstr "Alıcı"
 
 msgid "To email"
-msgstr "发送到 email"
+msgstr "Alıcı"
 
 #, php-format
 msgid ""
 "To get detailed informations about TCP Wrappers check the FreeBSD <a "
 "href='%s' target='_blank'>documentation</a>."
-msgstr "要获取更多关于TCP封装的详细信息，请查阅FreeBSD的<a href='%s' target='_blank'>文档</a>。"
+msgstr ""
 
 #, php-format
 msgid ""
 "To get detailed informations about writing firewall rules check the FreeBSD "
 "<a href='%s' target='_blank'>documentation</a>."
-msgstr "要获取更多关于防火墙规则的详细信息，请查阅FreeBSD的<a href='%s' target='_blank'>文档</a>。"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -5854,47 +5920,47 @@ msgid "Tolerated"
 msgstr ""
 
 msgid "Tools"
-msgstr "工具"
+msgstr "Araçlar"
 
 #, php-format
 msgid "Total: %s | Used: %s | Free: %s"
-msgstr "总共： %s | 已使用： %s | 空闲： %s"
+msgstr "Toolam: %s | Kullanılan: %s | Boş: %s"
 
 #, php-format
 msgid "Total: %s | Used: %s | Free: %s | State: %s"
-msgstr "总共: %s | 已使用: %s | 空闲: %s | 状态: %s"
+msgstr "Toolam: %s | Kullanılan: %s | Boş: %s | Durum: %s"
 
 msgid "Traceroute"
-msgstr "路由追踪"
+msgstr "Traceroute"
 
 msgid ""
 "Traceroute may take a while to complete. You may hit the Stop button on your "
 "browser at any time to see the progress of failed traceroutes."
-msgstr "路由追踪一段时间才能完成。你可以随时按下浏览器的停止载入钮并观看结果。"
+msgstr ""
 
 msgid "Traffic graph"
-msgstr "流量图表"
+msgstr ""
 
 msgid "Transcoding"
 msgstr ""
 
 msgid "Transfer mode"
-msgstr "传输模式"
+msgstr ""
 
 msgid "Trap host"
-msgstr "Trap 主机"
+msgstr ""
 
 msgid "Trap port"
-msgstr "Trap 端口"
+msgstr ""
 
 msgid "Trap string"
-msgstr "Trap 字符串"
+msgstr ""
 
 msgid "Trap string."
-msgstr "Trap 字符串。"
+msgstr ""
 
 msgid "Traps"
-msgstr "Traps"
+msgstr ""
 
 msgid "Triple-parity RAID-Z"
 msgstr ""
@@ -5903,13 +5969,13 @@ msgid "Trivial File Transfer Protocol"
 msgstr ""
 
 msgid "Try to force import."
-msgstr "尝试强制导入"
+msgstr ""
 
 msgid "Try to import from on-disk ZFS config."
 msgstr ""
 
 msgid "Tuning"
-msgstr "微调"
+msgstr ""
 
 msgid "Turkish"
 msgstr ""
@@ -5918,16 +5984,16 @@ msgid "Turn access time on or off for this dataset."
 msgstr ""
 
 msgid "Turn the monitor to standby after N seconds."
-msgstr "在 N 秒之后让显示器待机"
+msgstr ""
 
 msgid "Type"
-msgstr "类别"
+msgstr "Tür"
 
 msgid "Type used as extent."
 msgstr ""
 
 msgid "UCD-SNMP-MIB"
-msgstr ""
+msgstr "UCD-SNMP-MIB"
 
 #, php-format
 msgid ""
@@ -5936,8 +6002,6 @@ msgid ""
 "or NTFS can result in unpredictable results, file corruption, and loss of "
 "data!"
 msgstr ""
-"UFS 文件系统格式是 FreeBSD 原生文件格式 (%s的OS)。 如果使用FAT, FAT32, EXT2, EXT3, 或是 NTFS "
-"可能会导致文件损毁等不可预期的错误！"
 
 #, php-format
 msgid ""
@@ -5945,8 +6009,6 @@ msgid ""
 "Attempting to use other file formats such as FAT, FAT32, EXT2, EXT3, or NTFS "
 "can result in unpredictable results, file corruption, and loss of data!"
 msgstr ""
-"UFS 文件系统格式是 FreeBSD 原生文件格式 (%s之原生OS)。 如果使用FAT, FAT32, EXT2, EXT3, 或是 NTFS "
-"文件格式可能会导致文件损毁等不可预期的错误！"
 
 msgid "UID"
 msgstr "UID"
@@ -5955,25 +6017,25 @@ msgid "UPS"
 msgstr "UPS"
 
 msgid "UPS disabled"
-msgstr "UPS 关闭"
+msgstr "Ups devredışı"
 
 msgid "UPS goes on battery"
 msgstr ""
 
 msgid "UPS reaches low battery"
-msgstr "UPS电量低"
+msgstr ""
 
 msgid "UPS status"
-msgstr "UPS 状态"
+msgstr "UPS durumu"
 
 msgid "UPnP"
 msgstr "UPnP"
 
 msgid "UPnP A/V Media Server"
-msgstr "UPnP 多媒体服务器"
+msgstr ""
 
 msgid "UPnP friendly name."
-msgstr "UPnP 友好名称"
+msgstr ""
 
 msgid "URI"
 msgstr ""
@@ -5985,7 +6047,7 @@ msgid "Unformated"
 msgstr ""
 
 msgid "Uninstall package"
-msgstr "移除软件包"
+msgstr ""
 
 msgid "Uninterruptible Power Supply"
 msgstr ""
@@ -5994,46 +6056,46 @@ msgid "Unison"
 msgstr "Unison"
 
 msgid "Unison File Synchronisation"
-msgstr "Unison 文件同步机制"
+msgstr ""
 
 msgid "Unix Command"
-msgstr "Unix 命令"
+msgstr ""
 
 msgid "Unix charset"
-msgstr "Unix 字符编码"
+msgstr ""
 
 msgid "Unknown"
-msgstr "未知"
+msgstr ""
 
 msgid "Unknown or unformatted"
-msgstr "未知/未格式化"
+msgstr ""
 
 msgid "Unload"
 msgstr ""
 
 msgid "Unmount disk/partition"
-msgstr "卸载 硬盘/分区"
+msgstr ""
 
 msgid "Unmounting..."
-msgstr "卸载中..."
+msgstr ""
 
 msgid "Up"
-msgstr "上"
+msgstr ""
 
 msgid "Update period"
-msgstr "更新间隔"
+msgstr ""
 
 msgid "Updating in 5 seconds."
-msgstr "五秒内更新"
+msgstr ""
 
 msgid "Upgrade firmware"
-msgstr "固件升级"
+msgstr ""
 
 msgid "Upload"
-msgstr "上传"
+msgstr ""
 
 msgid "Upload bandwidth"
-msgstr "上传带宽"
+msgstr ""
 
 msgid "Upload directory"
 msgstr ""
@@ -6043,15 +6105,15 @@ msgid "Upload directory of the webserver. The default is %s."
 msgstr ""
 
 msgid "Uppercases names in both directions"
-msgstr "双向大写名称"
+msgstr ""
 
 msgid "Use AFP3 unix privileges."
-msgstr "使用 AFP3 UNIX 权限。"
+msgstr ""
 
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
 "up at least one DNS server if you enter a host name here!"
-msgstr "使用空白字符来分隔多个主机位置(一个空白即可)。如果你输入主机名称，请先设置DNS服务器。"
+msgstr ""
 
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr ""
@@ -6066,10 +6128,10 @@ msgstr ""
 msgid ""
 "Use the new 64k streaming read and write varient SMB requests introduced "
 "with Windows 2000."
-msgstr "使用 Windows 2000 之后新增的 64K 串流选项。"
+msgstr ""
 
 msgid "Use the specified NTP server."
-msgstr "使用指定的 NTP 服务器。"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -6079,17 +6141,17 @@ msgstr ""
 
 msgid ""
 "Use this option to override the directory creation mask (022 by default)."
-msgstr "设置新增目录umask（默认为022）。"
+msgstr ""
 
 msgid ""
 "Use this option to override the directory creation mask (0777 by default)."
-msgstr "设置新增目录umask（默认为0777）。"
+msgstr ""
 
 msgid "Use this option to override the file creation mask (0666 by default)."
-msgstr "设置新增文件umask（默认为0666）。"
+msgstr ""
 
 msgid "Use this option to override the file creation mask (077 by default)."
-msgstr "设置新增文件umask罩（默认为077）。"
+msgstr ""
 
 msgid ""
 "Use this option to override the username ('ftp' by default) which will be "
@@ -6098,50 +6160,49 @@ msgid ""
 "guest service. This user must exist in the password file, but does not "
 "require a valid login."
 msgstr ""
-"设置用户名称（默认为'ftp'），默认权限为guest。这个用户所拥有的权限也会应用在其他的服务上。您可以取消这个用户的登入权限，但是千万不能将他删除。"
 
 msgid "Used"
 msgstr ""
 
 msgid "User"
-msgstr "用户"
+msgstr "Kullanıcı"
 
 msgid "User ID"
-msgstr "User ID"
+msgstr ""
 
 #, php-format
 msgid "User defined groups"
 msgstr ""
 
 msgid "User full name."
-msgstr "用户全名"
+msgstr ""
 
 msgid "User mask"
 msgstr ""
 
 msgid "User numeric id."
-msgstr "用户 ID"
+msgstr ""
 
 msgid "User password."
-msgstr "用户密码"
+msgstr "Kullanıcı parolası."
 
 msgid "User portal"
 msgstr ""
 
 msgid "User suffix"
-msgstr "用户名称后缀"
+msgstr ""
 
 msgid "Username"
-msgstr "用户名"
+msgstr "Kullanıcı Adı"
 
 msgid "Username of a domain administrator account."
-msgstr "请在此设置管理员的帐号。"
+msgstr ""
 
 msgid "Users"
-msgstr "用户"
+msgstr "Kullanıcılar"
 
 msgid "Users and Groups"
-msgstr "用户/组"
+msgstr "Kullanıcılar ve Gruplar"
 
 #, c-format
 msgid "Using %s bytes fragment size."
@@ -6154,16 +6215,16 @@ msgid "VLAN"
 msgstr "VLAN"
 
 msgid "VLAN tag"
-msgstr "VLAN标识"
+msgstr "VLAN etiketi"
 
 msgid "Value"
-msgstr "值"
+msgstr "Değer"
 
 msgid "Variable"
-msgstr "变量"
+msgstr "Değişken"
 
 msgid "Version"
-msgstr "版本"
+msgstr "Sürüm"
 
 msgid "Virtual Host ID"
 msgstr ""
@@ -6172,49 +6233,49 @@ msgid "Virtual IP address"
 msgstr ""
 
 msgid "Virtual device"
-msgstr ""
+msgstr "Sanal aygıt"
 
 msgid "Virtual devices"
-msgstr ""
+msgstr "Sanal aygıtlat"
 
 msgid "Virtual interface"
-msgstr "虚拟接口"
+msgstr "Sanal arayüz"
 
 msgid "Volume"
 msgstr ""
 
 msgid "Volume Name"
-msgstr "卷名"
+msgstr "Birim İsmi"
 
 msgid "Volume label"
-msgstr "卷标"
+msgstr "Birim etiketi"
 
 msgid "Volume label of the new file system."
-msgstr "新文件系统的硬盘卷标"
+msgstr "Yeni dosya sisteminin birim etiketi"
 
 msgid "Volumes"
 msgstr ""
 
 msgid "WAN address"
-msgstr "广域网地址"
+msgstr "WAN adresi"
 
 msgid "WEP"
 msgstr "WEP"
 
 msgid "WINS server"
-msgstr "WINS 服务器"
+msgstr "WINS sunucu"
 
 msgid "WINS server IP address (e.g. from MS Active Directory server)."
-msgstr "WINS 服务器位置 (AD Server)"
+msgstr "WINS server IP address (e.g. from MS Active Directory server)."
 
 msgid "WPA"
 msgstr "WPA"
 
 msgid "WPA-EAP (Extensible Authentication Protocol)"
-msgstr "WPA-EAP（可扩展认证协议）"
+msgstr "WPA-EAP (Extensible Authentication Protocol)"
 
 msgid "WPA-PSK (Pre Shared Key)"
-msgstr "WPA-PSK"
+msgstr "WPA-PSK (Pre Shared Key)"
 
 msgid "WPA-PSK WPA-EAP"
 msgstr "WPA-PSK WPA-EAP"
@@ -6226,36 +6287,36 @@ msgid "Wake On LAN"
 msgstr ""
 
 msgid "Warning"
-msgstr "警告"
+msgstr "Dikkat"
 
 #, php-format
 msgid "Warning: This can cause a huge delay in loading the %s log page!"
-msgstr "注意：读取 %s 日志文件可能会再成很大的延迟！"
+msgstr ""
 
 msgid ""
 "Warning: You are going to delete a RAID volume. All data will get lost and "
 "can not be recovered."
-msgstr "警告：您将要要删除RAID卷。上面的所有数据都将丢失，且无法恢复。"
+msgstr ""
 
 msgid ""
 "Warning: You are going to delete an encrypted volume. All data will get lost "
 "and can not be recovered."
-msgstr "警告：您将要删除一个加密卷。上面的所有数据都将丢失，且无法恢复。"
-
-msgid "Watch directory"
 msgstr ""
 
+msgid "Watch directory"
+msgstr "Dizini gözetle"
+
 msgid "WebGUI"
-msgstr "网页介面"
+msgstr "WebGUI"
 
 msgid "Webserver"
-msgstr "网页服务器"
+msgstr "Webserver"
 
 msgid "Webserver document root is missing."
 msgstr ""
 
 msgid "Week days"
-msgstr ""
+msgstr "Haftanın günleri"
 
 msgid ""
 "When HAST is enabled, the local devices, the local services and the "
@@ -6268,7 +6329,7 @@ msgid ""
 msgstr ""
 
 msgid "Where to save downloaded data."
-msgstr "哪里保存已下载的数据"
+msgstr ""
 
 msgid ""
 "Whether scans should be skipped if there are no users connected. This allows "
@@ -6276,16 +6337,16 @@ msgid ""
 msgstr ""
 
 msgid "Who"
-msgstr "Who"
+msgstr ""
 
 msgid "Wildcard"
-msgstr "通配符"
+msgstr ""
 
 msgid "Wireless configuration"
-msgstr "无线网络配置"
+msgstr "Kablosuz yapılandırma"
 
 msgid "Workgroup"
-msgstr "工作组"
+msgstr ""
 
 msgid ""
 "Workgroup the server will appear to be in when queried by clients (maximum "
@@ -6296,23 +6357,23 @@ msgid "Working directory"
 msgstr ""
 
 msgid "Write"
-msgstr "写入"
+msgstr ""
 
 msgid "Write Cache"
 msgstr ""
 
 msgid "Write only"
-msgstr "只供写入"
+msgstr ""
 
 msgid "Wrong partition type or partition number."
-msgstr "错误的分区格式或分区数"
+msgstr "Yanlış birim türü yada numarası."
 
 #, php-format
 msgid "Wrong permission on %s."
 msgstr ""
 
 msgid "Yes"
-msgstr "是"
+msgstr "Evet"
 
 msgid ""
 "You can also install a package via SSH or console using the the pkg_add "
@@ -6330,7 +6391,7 @@ msgstr ""
 msgid ""
 "You can't unmount a drive which is used by swap file, a iSCSI-target file or "
 "any other running process!"
-msgstr "正在被 Swap、iSCSI 目标或是任何程序使用的硬盘不能够被卸载。"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -6340,10 +6401,10 @@ msgstr ""
 
 #, c-format
 msgid "You have to select at least one item for '%s'."
-msgstr "请至少从 '%s' 选择一个项目。"
+msgstr ""
 
 msgid "You may enter a description here for your reference."
-msgstr "可以加注必要的描述文字。"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -6356,29 +6417,29 @@ msgid "You may specify logical block length (%d by default)."
 msgstr ""
 
 msgid "You must add disks first."
-msgstr "请先加入硬盘。"
+msgstr "Önce diskleri eklemelisin"
 
 msgid "You must enter the same IP type for network and gateway."
-msgstr "您必须输入相同网络类型的IP和网关。"
+msgstr ""
 
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr ""
 
 msgid "You must reboot the system before you can upgrade the firmware."
-msgstr "系统必须重新开机才能开启固件升级功能。"
+msgstr ""
 
 msgid "You must select at least one authentication method."
-msgstr "请至少选择一种认证方式。"
+msgstr "En az bir tane doğrulama methodu seçmelisiniz."
 
 msgid "You should use HTTPS as WebGUI protocol for sending passphrase."
-msgstr "建议您使用 HTTPS 加密模式连接 WebGUI 来传送加密密钥。"
+msgstr ""
 
 msgid "Your ZFS system is not healthy."
 msgstr ""
 
 msgid "Your own email address."
-msgstr "你的 email"
+msgstr "E-posta adresin"
 
 msgid "ZFS"
 msgstr "ZFS"
@@ -6387,10 +6448,10 @@ msgid "ZFS ACL"
 msgstr ""
 
 msgid "ZFS dataset information and status"
-msgstr ""
+msgstr "ZFS veriseti bilgisi ve durumu"
 
 msgid "ZFS dataset properties"
-msgstr ""
+msgstr "ZFS veriseti ayarları"
 
 msgid "ZFS snapshot information and status"
 msgstr ""
@@ -6399,7 +6460,7 @@ msgid "ZFS snapshot properties"
 msgstr ""
 
 msgid "ZFS volume"
-msgstr ""
+msgstr "ZFS birimi"
 
 msgid "ZFS volume information and status"
 msgstr ""
@@ -6413,7 +6474,7 @@ msgid ""
 msgstr ""
 
 msgid "Zeroconf/Bonjour"
-msgstr ""
+msgstr "Zeroconf/Bonjour"
 
 msgid "adaptive (low power consumption)"
 msgstr ""
@@ -6428,35 +6489,35 @@ msgid "all software raid disks are imported."
 msgstr ""
 
 msgid "cachecnid"
-msgstr ""
+msgstr "cachecnid"
 
 msgid "change failed."
-msgstr ""
+msgstr "değişiklik yapılamadı."
 
 msgid "chroot() everyone, but root."
 msgstr ""
 
 msgid "cnidscheme"
-msgstr ""
+msgstr "cnidscheme"
 
 msgid "crlf"
-msgstr ""
+msgstr "crlf"
 
 msgid "day(s)"
-msgstr "天"
+msgstr "Gün"
 
 msgid "dbpath"
-msgstr "资料库位置"
+msgstr "dbpath"
 
 msgid "detected an error while importing."
 msgstr ""
 
 #, php-format
 msgid "e.g. %s"
-msgstr "例：%s"
+msgstr ""
 
 msgid "filechooser"
-msgstr ""
+msgstr "filechooser"
 
 msgid "get target info failed."
 msgstr ""
@@ -6465,23 +6526,23 @@ msgid "hiadaptive (high performance)"
 msgstr ""
 
 msgid "hour(s)"
-msgstr "小时"
+msgstr ""
 
 msgid "iSCSI Initiator"
-msgstr "iSCSI 初始"
+msgstr "iSCSI Başlatıcı"
 
 msgid "iSCSI Target"
-msgstr "iSCSI 目标"
+msgstr ""
 
 msgid "iSCSI Target Logical Unit Controller"
-msgstr ""
+msgstr "iSCSI Mantıksal Birim Kontrol Hedefi"
 
 #, php-format
 msgid "iSCSI initial parameter (%d by default)."
-msgstr ""
+msgstr "iSCSI başlangıç parametresi (%d varsayılan)."
 
 msgid "iSCSI initiator disabled"
-msgstr "关闭 iSCSI 初始器"
+msgstr "iSCSI başlatıcı devredışı"
 
 msgid "iTunes/DAAP"
 msgstr "iTunes/DAAP"
@@ -6499,22 +6560,22 @@ msgid "minimum (power saving)"
 msgstr ""
 
 msgid "minute(s)"
-msgstr "分钟"
+msgstr "dakika(lar)"
 
 msgid "minutes"
-msgstr "分"
+msgstr "dakikadır"
 
 msgid "mirroring"
-msgstr "镜像"
+msgstr ""
 
 msgid "mount"
-msgstr "挂载"
+msgstr ""
 
 msgid "mswindows"
-msgstr "微软小窗窗"
+msgstr "mswindows"
 
 msgid "n/a"
-msgstr "无资料"
+msgstr ""
 
 msgid "no new disk found."
 msgstr ""
@@ -6529,7 +6590,7 @@ msgid "noadouble"
 msgstr ""
 
 msgid "nodev"
-msgstr ""
+msgstr "nodev"
 
 msgid "nofileid"
 msgstr ""
@@ -6541,7 +6602,7 @@ msgid "none"
 msgstr ""
 
 msgid "nostat"
-msgstr ""
+msgstr "nostat"
 
 msgid "phpBB"
 msgstr "phpBB"
@@ -6553,22 +6614,22 @@ msgid "rc.conf"
 msgstr "rc.conf"
 
 msgid "revision"
-msgstr ""
+msgstr "revizyon"
 
 msgid "rotated block-interleaved parity"
 msgstr ""
 
 msgid "scan target failed."
-msgstr "扫描目标失败"
+msgstr "hedef tarama başarısız"
 
 msgid "second(s)"
-msgstr "秒"
+msgstr "saniye(ler)"
 
 msgid "striping"
-msgstr "striping"
+msgstr ""
 
 msgid "successfully."
-msgstr ""
+msgstr "Başarılı"
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
@@ -6577,7 +6638,7 @@ msgid "umask"
 msgstr "umask"
 
 msgid "umount"
-msgstr "卸载"
+msgstr "umount"
 
 msgid "upriv"
 msgstr "upriv"
