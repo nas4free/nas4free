@@ -72,6 +72,7 @@ $(document).ready(function(){
     <td class="tabnavtbl">
       <ul id="tabnav">
 	<li class="tabinact"><a href="services_hast.php"><span><?=gettext("Settings");?></span></a></li>
+	<li class="tabinact"><a href="services_hast_resource.php"><span><?=gettext("Resources");?></span></a></li>
 	<li class="tabact"><a href="services_hast_info.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Information");?></span></a></li>
       </ul>
     </td>
