@@ -125,9 +125,40 @@ function get_all_zvol($a_extent,$uuid) {
 	return $a;
 }
 
+function get_all_hast($a_extent,$uuid) {
+	$a = array();
+	$a[''] = gettext("Must choose one");
+	mwexec2("hastctl dump | grep resource", $rawdata);
+	foreach ($rawdata as $line) {
+		$hast = preg_split("/\s/", $line);
+		$name = $hast[1];
+		$file = "/dev/hast/$name";
+		if (file_exists($file)) {
+			$diskinfo = disks_get_diskinfo($file);
+			$size = $diskinfo[mediasize_mbytes];
+			if ($size > 1024) {
+				$size = (int) ($size / 1024);
+				$size .= "GB";
+			} else {
+				$size .= "MB";
+			}
+		} else {
+			$size = "(secondary)";
+		}
+		$index = array_search_ex($file, $a_extent, "path");
+		if (FALSE !== $index) {
+			if (!isset($uuid)) continue;
+			if ($a_extent[$index]['uuid'] != $uuid) continue;
+		}
+		$a[$file] = htmlspecialchars("$name: $size");
+	}
+	return $a;
+}
+
 $a_device = get_all_device($a_iscsitarget_extent,$uuid);
 $a_scsi_device = get_all_scsi_device($a_iscsitarget_extent,$uuid);
 $a_zvol = get_all_zvol($a_iscsitarget_extent,$uuid);
+$a_hast = get_all_hast($a_iscsitarget_extent,$uuid);
 
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_extent, "uuid")))) {
 	$pconfig['uuid'] = $a_iscsitarget_extent[$cnid]['uuid'];
@@ -185,6 +216,14 @@ if ($_POST) {
 		$reqdfields = explode(" ", "name zvol");
 		$reqdfieldsn = array(gettext("Extent name"), gettext("ZFS volume"));
 		$reqdfieldst = explode(" ", "string string");
+	} else if ($_POST['type'] == 'hast') {
+		$pconfig['sizeunit'] = "auto";
+		$_POST['sizeunit'] = "auto";
+		$pconfig['size'] = "";
+		$_POST['size'] = "";
+		$reqdfields = explode(" ", "name hast");
+		$reqdfieldsn = array(gettext("Extent name"), gettext("HAST volume"));
+		$reqdfieldst = explode(" ", "string string");
 	} else {
 		if ($pconfig['sizeunit'] == 'auto'){
 			$pconfig['size'] = "";
@@ -230,6 +269,8 @@ if ($_POST) {
 		}
 	} else if ($_POST['type'] == 'zvol') {
 		$path = $_POST['zvol'];
+	} else if ($_POST['type'] == 'hast') {
+		$path = $_POST['hast'];
 	} else {
 		$path = $_POST['device'];
 	}
@@ -271,18 +312,28 @@ function type_change() {
 		showElementById("size_tr", 'show');
 		showElementById("device_tr", 'hide');
 		showElementById("zvol_tr", 'hide');
+		showElementById("hast_tr", 'hide');
 		break;
 	case "device":
 		showElementById("path_tr", 'hide');
 		showElementById("size_tr", 'hide');
 		showElementById("device_tr", 'show');
 		showElementById("zvol_tr", 'hide');
+		showElementById("hast_tr", 'hide');
 		break;
 	case "zvol":
 		showElementById("path_tr", 'hide');
 		showElementById("size_tr", 'hide');
 		showElementById("device_tr", 'hide');
 		showElementById("zvol_tr", 'show');
+		showElementById("hast_tr", 'hide');
+		break;
+	case "hast":
+		showElementById("path_tr", 'hide');
+		showElementById("size_tr", 'hide');
+		showElementById("device_tr", 'hide');
+		showElementById("zvol_tr", 'hide');
+		showElementById("hast_tr", 'show');
 		break;
 	}
 }
@@ -318,10 +369,11 @@ function sizeunit_change() {
 	      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 	      <table width="100%" border="0" cellpadding="6" cellspacing="0">
 	      <?php html_inputbox("name", gettext("Extent Name"), $pconfig['name'], gettext("String identifier of the extent."), true, 30, (isset($uuid) && (FALSE !== $cnid)));?>
-	      <?php html_combobox("type", gettext("Type"), $pconfig['type'], array("file" => gettext("File"), "device" => gettext("Device"), "zvol" => gettext("ZFS volume")), gettext("Type used as extent."), true, false, "type_change()");?>
+	      <?php html_combobox("type", gettext("Type"), $pconfig['type'], array("file" => gettext("File"), "device" => gettext("Device"), "zvol" => gettext("ZFS volume"), "hast" => gettext("HAST volume")), gettext("Type used as extent."), true, false, "type_change()");?>
 	      <?php html_filechooser("path", gettext("Path"), $pconfig['path'], sprintf(gettext("File path (e.g. /mnt/sharename/extent/%s) used as extent."), $pconfig['name']), $g['media_path'], true);?>
 	      <?php html_combobox("device", gettext("Device"), $pconfig['path'], $a_device, "", true);?>
 	      <?php html_combobox("zvol", gettext("ZFS volume"), $pconfig['path'], $a_zvol, "", true);?>
+	      <?php html_combobox("hast", gettext("HAST volume"), $pconfig['path'], $a_hast, "", true);?>
 	      <tr id="size_tr">
 	        <td width="22%" valign="top" class="vncellreq"><?=gettext("File size");?></td>
 	        <td width="78%" class="vtable">
