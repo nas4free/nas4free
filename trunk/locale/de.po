@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-21 16:22+0000\n"
-"PO-Revision-Date: 2012-11-21 14:55+0000\n"
+"POT-Creation-Date: 2012-11-22 02:11+0000\n"
+"PO-Revision-Date: 2012-11-21 17:22+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-21 16:05+0000\n"
+"X-Launchpad-Export-Date: 2012-11-21 17:24+0000\n"
 "X-Generator: Launchpad (build 16293)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
@@ -410,7 +410,7 @@ msgid "Add portal group"
 msgstr "Portalgruppe hinzufügen"
 
 msgid "Add resource"
-msgstr ""
+msgstr "Ressource hinzufügen"
 
 msgid "Add rule"
 msgstr "Regel hinzufügen"
@@ -444,6 +444,7 @@ msgstr "Adresse"
 
 msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr ""
+"Adresse des Remote HAST Dienstes. Es muss eine statische IP Adresse sein"
 
 msgid "Administration password"
 msgstr "Administrationspasswort"
@@ -473,7 +474,7 @@ msgid "Advanced settings"
 msgstr "Erweiterte Einstellungen"
 
 msgid "Advertisement skew"
-msgstr ""
+msgstr "Advertisement skew"
 
 #, php-format
 msgid ""
@@ -779,7 +780,7 @@ msgid "Blocksize"
 msgstr "Blockgrösse"
 
 msgid "Bridge"
-msgstr ""
+msgstr "Netzwerkbrücke"
 
 msgid "Browseable"
 msgstr "Sichtbar"
@@ -997,11 +998,11 @@ msgstr "Befehl"
 
 #, php-format
 msgid "Command for LINK_DOWN event (e.g. %s)."
-msgstr ""
+msgstr "Befehl für das LINK_DOWN Ereignis (z.B. %s)"
 
 #, php-format
 msgid "Command for LINK_UP event (e.g. %s)."
-msgstr ""
+msgstr "Befehl für das LINK_UP Ereignis (z.B. %s)"
 
 msgid "Command output:"
 msgstr "Befehlsausgabe:"
@@ -1417,7 +1418,7 @@ msgid "Delete portal group"
 msgstr "Lösche Portalgruppe"
 
 msgid "Delete resource"
-msgstr ""
+msgstr "Ressource löschen"
 
 msgid "Delete rule"
 msgstr "Regel löschen"
@@ -1578,7 +1579,7 @@ msgid "Disable File Manager"
 msgstr "deaktiviere Dateimanager"
 
 msgid "Disable TCP wrapper (mod_wrap module)."
-msgstr ""
+msgstr "Deaktivieren des TCP Wrapper (mod_wrap Modul)"
 
 msgid "Disable console menu"
 msgstr "Konsolenmenü deaktivieren"
@@ -1731,7 +1732,7 @@ msgid "Do you really want to delete this portal group?"
 msgstr "Möchten Sie wirklich diese Portalgruppe löschen?"
 
 msgid "Do you really want to delete this resource?"
-msgstr ""
+msgstr "Möchten Sie diese Ressource wirklich entfernen?"
 
 msgid "Do you really want to delete this route?"
 msgstr "Wollen Sie diese Route wirklich löschen?"
@@ -1881,6 +1882,7 @@ msgstr "Dynamic DNS"
 
 msgid "Dynamic IP (DHCP) can not be used for HAST resources."
 msgstr ""
+"Dynamische IP's (DHCP) können nicht für HAST Ressourcen verwendet werden"
 
 msgid "EA support"
 msgstr "EA Unterstützung"
@@ -1961,7 +1963,7 @@ msgid "Edit portal group"
 msgstr "Editiere Portalgruppe"
 
 msgid "Edit resource"
-msgstr ""
+msgstr "Ressource bearbeiten"
 
 msgid "Edit rule"
 msgstr "Regel bearbeiten"
@@ -2585,16 +2587,19 @@ msgid "Guest account"
 msgstr "Gastkonto"
 
 msgid "HAST"
-msgstr ""
+msgstr "HAST"
 
 msgid "HAST (Highly Available Storage)"
-msgstr ""
+msgstr "HAST (High Available Storage (Hoch verfügbares Storage))"
 
 msgid "HAST resource"
-msgstr ""
+msgstr "HAST Ressource"
 
 msgid "HAST status of the configured resources"
-msgstr ""
+msgstr "HAST Status der konfigurierten Ressourcen"
+
+msgid "HAST volume"
+msgstr "HAST Volumen"
 
 msgid "HTTP Proxy"
 msgstr "HTTP-Proxy"
@@ -3182,10 +3187,10 @@ msgid "Link Aggregation and Failover"
 msgstr "Link Aggregation und Failover"
 
 msgid "Link down action"
-msgstr ""
+msgstr "Schnittstelle aus Aktion"
 
 msgid "Link up action"
-msgstr ""
+msgstr "Schnittstelle an Aktion"
 
 msgid "List"
 msgstr "Liste"
@@ -3480,7 +3485,7 @@ msgid "Medium acoustic output"
 msgstr "Mittlere Geräuschbelastung"
 
 msgid "Member Interface"
-msgstr ""
+msgstr "Mitglieds Schnittstelle"
 
 msgid "Memory usage"
 msgstr "Speicherbelegung"
@@ -3685,13 +3690,15 @@ msgstr ""
 "href='%s'>Auth Gruppe</a> zuerst hinzu."
 
 msgid "No configured CARP interfaces."
-msgstr ""
+msgstr "Keine konfigurierten CARP Schnittstellen"
 
 #, php-format
 msgid ""
 "No configured CARP interfaces. Please add new <a href='%s'>CARP "
 "interface</a> first."
 msgstr ""
+"Keine konfigurierten CARP Schnittstellen. Bitte zuerst eine neue <a "
+"href='%s'> CARP Schnittstelle </a> hinzufügen"
 
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
@@ -3755,25 +3762,25 @@ msgid "No pool was found."
 msgstr "Keinen Pool gefunden."
 
 msgid "Node A IP address"
-msgstr ""
+msgstr "IP Adresse des Knoten A"
 
 msgid "Node A settings"
-msgstr ""
+msgstr "Einstellungen des Knoten A"
 
 msgid "Node B IP address"
-msgstr ""
+msgstr "IP Adresse des Knoten B"
 
 msgid "Node B settings"
-msgstr ""
+msgstr "Einstellungen des Knoten B"
 
 msgid "Node Base"
 msgstr "Knotenbasis"
 
 msgid "Node ID"
-msgstr ""
+msgstr "Knoten-ID"
 
 msgid "Node Name"
-msgstr ""
+msgstr "Knotenname"
 
 msgid "None"
 msgstr "Keine"
@@ -4040,11 +4047,13 @@ msgid "Password of domain administrator account."
 msgstr "Passwort für das Domain-Administratorkonto"
 
 msgid "Password server"
-msgstr ""
+msgstr "Passwort Server"
 
 msgid ""
 "Password server name or IP address (e.g. Active Directory domain controller)."
 msgstr ""
+"Passwort Server Name oder IP Adresse (z.B. Active Directory Domain "
+"Controller)"
 
 msgid "Password suffix"
 msgstr "Passwortsuffix"
@@ -4069,7 +4078,7 @@ msgstr "Freizugebender Pfad."
 
 #, php-format
 msgid "Path to the local device. (e.g. %s)"
-msgstr ""
+msgstr "Pfad zum lokalen Gerät (z.B. %s)"
 
 msgid "Peer Secret"
 msgstr "Peer Geheimnis (Peer Secret)"
@@ -4219,7 +4228,7 @@ msgid "Preserve permissions"
 msgstr "Dateirechte beibehalten"
 
 msgid "Primary"
-msgstr ""
+msgstr "Primärer"
 
 msgid "Primary Group"
 msgstr "Primäre Gruppe"
@@ -4467,13 +4476,13 @@ msgid "Resolve IP addresses to hostnames"
 msgstr "IP-Adressen als Hostnamen auflösen"
 
 msgid "Resource"
-msgstr ""
+msgstr "Ressource"
 
 msgid "Resource name"
-msgstr ""
+msgstr "Ressourcen Name"
 
 msgid "Resources"
-msgstr ""
+msgstr "Ressourcen"
 
 msgid "Restore configuration"
 msgstr "Konfiguration wiederherstellen"
@@ -4661,7 +4670,7 @@ msgid "Scheduled shutdown"
 msgstr "Geplantes Herunterfahren"
 
 msgid "Secondary"
-msgstr ""
+msgstr "Sekundärer"
 
 msgid "Secret"
 msgstr "Geheimnis"
@@ -4887,7 +4896,7 @@ msgstr ""
 "8.388.608 TiB; aktuelle Größe hängt von der Festplatte ab)"
 
 msgid "Skew"
-msgstr ""
+msgstr "Skew"
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr ""
@@ -5284,6 +5293,8 @@ msgstr ""
 
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
+"Auf das HAST Volumen kann erst zugegriffen werden wenn der HAST Knoten der "
+"primäre Knoten ist."
 
 msgid "The IP address that this hostname represents."
 msgstr "Die IP Adresse, welche diesen Hostnamen repräsentiert."
@@ -5871,6 +5882,8 @@ msgstr "Die Größe der Swap-Datei in MB."
 
 msgid "The space-separated list of URIs for the LDAP server."
 msgstr ""
+"Die durch Leerzeichen getrennte Liste von URI (Uniform Resource Identifier) "
+"für den LDAP Server"
 
 #, php-format
 msgid "The storage area mapped to LUN%d."
@@ -6059,10 +6072,13 @@ msgstr ""
 msgid ""
 "This Bridge cannot be deleted because it is still being used as an interface."
 msgstr ""
+"Diese Brücke kann nicht gelöscht werden da sie als Schnittstelle aktiv ist"
 
 msgid ""
 "This CARP cannot be deleted because it is still being used as an interface."
 msgstr ""
+"Diese CARP Schnittstelle kann nicht gelöscht werden, da sie aktiv benutzt "
+"wird."
 
 msgid ""
 "This LAGG cannot be deleted because it is still being used as an interface."
@@ -6700,7 +6716,7 @@ msgid "UPnP friendly name."
 msgstr "UPnP-konformer Name."
 
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 msgid "URL"
 msgstr "URL"
@@ -6890,7 +6906,7 @@ msgid "Using %s bytes fragment size."
 msgstr "Nutze %s Bytes Fragmentgröße."
 
 msgid "VHID"
-msgstr ""
+msgstr "VHID"
 
 msgid "VLAN"
 msgstr "VLAN"
@@ -6908,10 +6924,10 @@ msgid "Version"
 msgstr "Version"
 
 msgid "Virtual Host ID"
-msgstr ""
+msgstr "Virtuelle Host ID"
 
 msgid "Virtual IP address"
-msgstr ""
+msgstr "Virtuelle IP Adresse"
 
 msgid "Virtual device"
 msgstr "Virtuelles Gerät"
@@ -7009,6 +7025,9 @@ msgid ""
 "When HAST is enabled, the local devices, the local services and the "
 "additional packages which do not support HAST volume cannot be used."
 msgstr ""
+"Wenn HAST aktiviert ist können lokale Geräte und Dienste sowie die "
+"zusätzlichen Pakete, die von HAST Volumen nicht unterstützt werden, nicht "
+"genutzt werden"
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
