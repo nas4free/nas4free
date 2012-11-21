@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-19 09:14+0000\n"
-"PO-Revision-Date: 2012-11-15 09:04+0000\n"
+"POT-Creation-Date: 2012-11-21 15:47+0000\n"
+"PO-Revision-Date: 2012-11-20 10:30+0000\n"
 "Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-19 01:13+0000\n"
-"X-Generator: Launchpad (build 16278)\n"
+"X-Launchpad-Export-Date: 2012-11-21 15:02+0000\n"
+"X-Generator: Launchpad (build 16293)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
 "X-Poedit-Language: Greek\n"
@@ -995,11 +995,11 @@ msgstr "Εκτέλεση εντολής"
 
 #, php-format
 msgid "Command for LINK_DOWN event (e.g. %s)."
-msgstr ""
+msgstr "Εντολή για το συμβάν LINK_DOWN (π.χ. %s)."
 
 #, php-format
 msgid "Command for LINK_UP event (e.g. %s)."
-msgstr ""
+msgstr "Εντολή για το συμβάν LINK_UP (π.χ. %s)."
 
 msgid "Command output:"
 msgstr "Έξοδος εντολής:"
@@ -1573,6 +1573,9 @@ msgstr ""
 msgid "Disable File Manager"
 msgstr "Απενεργοποίηση διαχειριστή αρχείων"
 
+msgid "Disable TCP wrapper (mod_wrap module)."
+msgstr ""
+
 msgid "Disable console menu"
 msgstr "Απενεργοποίηση μενού κονσόλας"
 
@@ -1871,6 +1874,8 @@ msgstr "Δυναμικό DNS"
 
 msgid "Dynamic IP (DHCP) can not be used for HAST resources."
 msgstr ""
+"Δεν μπορείτε να χρησιμοποιήσετε δυναμική απόδοση διευθύνσεων IP (DHCP) για "
+"πόρους HAST."
 
 msgid "EA support"
 msgstr "Υποτήριξη ΕΑ"
@@ -2423,6 +2428,9 @@ msgstr "Όνομα αρχείου"
 msgid "Filter"
 msgstr "Φίλτρο"
 
+msgid "Finnish"
+msgstr ""
+
 msgid "Firewall"
 msgstr "Τείχος προστασίας"
 
@@ -2577,13 +2585,13 @@ msgid "Guest account"
 msgstr "Λογαριασμός επισκέπτη"
 
 msgid "HAST"
-msgstr ""
+msgstr "HAST"
 
 msgid "HAST (Highly Available Storage)"
-msgstr ""
+msgstr "HAST (Χώρος Αποθήκευσης Υψηλής Διαθεσιμότητας)"
 
 msgid "HAST status of the configured resources"
-msgstr ""
+msgstr "Κατάσταση του HAST για τους ρυθμισμένους πόρους"
 
 msgid "HTTP Proxy"
 msgstr "Διακομιστής μεσολάβησης HTTP"
@@ -3180,10 +3188,10 @@ msgid "Link Aggregation and Failover"
 msgstr "Συνάθροιση συνδέσεων και ανακατεύθυνσης"
 
 msgid "Link down action"
-msgstr ""
+msgstr "Ενέργεια απενεργοποίησης σύνδεσης"
 
 msgid "Link up action"
-msgstr ""
+msgstr "Ενέργεια ενεργοποίησης σύνδεσης"
 
 msgid "List"
 msgstr "Λίστα"
@@ -3679,13 +3687,15 @@ msgstr ""
 "href='%s'>Ομάδα Πιστοποίησης</a> πρώτα."
 
 msgid "No configured CARP interfaces."
-msgstr ""
+msgstr "Δεν υπάρχουν ρυθμισμένες διεπαφές CARP."
 
 #, php-format
 msgid ""
 "No configured CARP interfaces. Please add new <a href='%s'>CARP "
 "interface</a> first."
 msgstr ""
+"Δεν υπάρχουν ρυθμισμένες διεπαφές CARP. Παρακαλώ προσθέστε πρώτα μια νέα <a "
+"href='%s'>διεπαφή CARP </a>."
 
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
@@ -3752,10 +3762,10 @@ msgid "Node Base"
 msgstr "Βάση του κόμβου"
 
 msgid "Node ID"
-msgstr ""
+msgstr "ID κόμβου"
 
 msgid "Node Name"
-msgstr ""
+msgstr "Όνομα κόμβου"
 
 msgid "None"
 msgstr "Κανένα"
@@ -5160,6 +5170,9 @@ msgstr "Θύρα TCP"
 msgid "TCP port to bind the server to."
 msgstr "Θύρα TCP που θα δεσμεύσει ο διακομιστής."
 
+msgid "TCP wrapper"
+msgstr ""
+
 msgid "TFTP"
 msgstr "TFTP"
 
@@ -5268,6 +5281,8 @@ msgstr ""
 
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
+"Οι τόμοι HAST δεν μπορούν να προσπελαστούν μέχρι ο κόμβος HAST να γίνει "
+"πρωτεύων."
 
 msgid "The IP address that this hostname represents."
 msgstr "Η διεύθυνση IP που αντιπροσωπεύει αυτό το όνομα υπολογιστή."
@@ -6633,6 +6648,9 @@ msgstr "Προσπαθήστε να εισάγετε μια ZFS ρύθμιση �
 msgid "Tuning"
 msgstr "Βελτιστοποίηση"
 
+msgid "Turkish"
+msgstr ""
+
 msgid "Turn access time on or off for this dataset."
 msgstr ""
 "Ενεργοποίηση ή απενεργοποίηση της ώρας πρόσβασης για αυτό το dataset."
@@ -7018,6 +7036,9 @@ msgid ""
 "When HAST is enabled, the local devices, the local services and the "
 "additional packages which do not support HAST volume cannot be used."
 msgstr ""
+"Όταν το HAST είναι ενεργοποιημένο, οι τοπικές συσκευές, οι τοπικές υπηρεσίες "
+"και τα πρόσθετα πακέτα που δεν υποστηρίζουν τόμο HAST δεν μπορούν να "
+"χρησιμοποιηθούν."
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
