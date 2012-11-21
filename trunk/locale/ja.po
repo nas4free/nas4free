@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-21 15:47+0000\n"
-"PO-Revision-Date: 2012-11-19 00:43+0000\n"
+"POT-Creation-Date: 2012-11-21 16:22+0000\n"
+"PO-Revision-Date: 2012-11-21 15:33+0000\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-21 15:02+0000\n"
+"X-Launchpad-Export-Date: 2012-11-21 15:44+0000\n"
 "X-Generator: Launchpad (build 16293)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
@@ -380,6 +380,9 @@ msgstr "プールの追加"
 msgid "Add portal group"
 msgstr "ポータルグループの追加"
 
+msgid "Add resource"
+msgstr "リソースの追加"
+
 msgid "Add rule"
 msgstr "ルールの追加"
 
@@ -409,6 +412,9 @@ msgstr "ドライバのハードウェア固有のパラメータを追加。"
 
 msgid "Address"
 msgstr "アドレス"
+
+msgid "Address of the remote hastd daemon. It must be a static IP address."
+msgstr "リモート hastd デーモンのアドレス。固定IPアドレスでなければいけません。"
 
 msgid "Administration password"
 msgstr "管理者パスワード"
@@ -931,11 +937,11 @@ msgstr "コマンド"
 
 #, php-format
 msgid "Command for LINK_DOWN event (e.g. %s)."
-msgstr "リンクダウンイベント用のコマンド (例 %s)"
+msgstr "リンクダウンイベント用のコマンド (例: %s)"
 
 #, php-format
 msgid "Command for LINK_UP event (e.g. %s)."
-msgstr "リンクアップイベント用のコマンド (例 %s)"
+msgstr "リンクアップイベント用のコマンド (例: %s)"
 
 msgid "Command output:"
 msgstr "コマンド出力:"
@@ -1335,6 +1341,9 @@ msgstr "プールの削除"
 msgid "Delete portal group"
 msgstr "ポータルグループの削除"
 
+msgid "Delete resource"
+msgstr "リソースの削除"
+
 msgid "Delete rule"
 msgstr "ルールを削除"
 
@@ -1486,7 +1495,7 @@ msgid "Disable File Manager"
 msgstr "ファイルマネージャを無効にする"
 
 msgid "Disable TCP wrapper (mod_wrap module)."
-msgstr ""
+msgstr "TCP wrapper (mod_wrapモジュール) を無効にします。"
 
 msgid "Disable console menu"
 msgstr "コンソールメニューを無効にする"
@@ -1627,6 +1636,9 @@ msgstr "このプールを削除してもよろしいですか？"
 
 msgid "Do you really want to delete this portal group?"
 msgstr "このポータルグループを削除してもよろしいですか？"
+
+msgid "Do you really want to delete this resource?"
+msgstr "このリソースを削除してもよろしいですか?"
 
 msgid "Do you really want to delete this route?"
 msgstr "このルーティング情報を削除してもよろしいですか?"
@@ -1845,6 +1857,9 @@ msgstr "プールの編集"
 
 msgid "Edit portal group"
 msgstr "ポータルグループの編集"
+
+msgid "Edit resource"
+msgstr "リソースの編集"
 
 msgid "Edit rule"
 msgstr "ルールを編集"
@@ -2287,7 +2302,7 @@ msgid "Filter"
 msgstr "フィルタ"
 
 msgid "Finnish"
-msgstr ""
+msgstr "フィンランド語"
 
 msgid "Firewall"
 msgstr "ファイアウォール"
@@ -2443,6 +2458,9 @@ msgstr "HAST"
 
 msgid "HAST (Highly Available Storage)"
 msgstr "HAST (高可用性ストレージ)"
+
+msgid "HAST resource"
+msgstr "HAST リソース"
 
 msgid "HAST status of the configured resources"
 msgstr "構成済みリソースのHASTステータス"
@@ -3513,6 +3531,18 @@ msgstr "ファイルはアップロードされていませんでした。"
 msgid "No pool was found."
 msgstr "プールは見つかりませんでした。"
 
+msgid "Node A IP address"
+msgstr "ノード A IPアドレス"
+
+msgid "Node A settings"
+msgstr "ノード A 設定"
+
+msgid "Node B IP address"
+msgstr "ノードB IPアドレス"
+
+msgid "Node B settings"
+msgstr "ノード B 設定"
+
 msgid "Node Base"
 msgstr "ノードベース"
 
@@ -3791,6 +3821,10 @@ msgstr "ドキュメントルートからの相対 URL パス。"
 
 msgid "Path to be shared."
 msgstr "共有するパス。"
+
+#, php-format
+msgid "Path to the local device. (e.g. %s)"
+msgstr "ローカルデバイスのパス。 (例: %s)"
 
 msgid "Peer Secret"
 msgstr "ピアシークレット"
@@ -4171,6 +4205,15 @@ msgstr "逆引き"
 
 msgid "Resolve IP addresses to hostnames"
 msgstr "IP アドレスからホスト名を解決する"
+
+msgid "Resource"
+msgstr "リソース"
+
+msgid "Resource name"
+msgstr "リソース名"
+
+msgid "Resources"
+msgstr "リソース"
 
 msgid "Restore configuration"
 msgstr "設定のリストア"
@@ -4832,7 +4875,7 @@ msgid "TCP port to bind the server to."
 msgstr "サーバが待ち受ける TCP ポート。"
 
 msgid "TCP wrapper"
-msgstr ""
+msgstr "TCP wrapper"
 
 msgid "TFTP"
 msgstr "TFTP"
@@ -6081,7 +6124,7 @@ msgid "Tuning"
 msgstr "チューニング"
 
 msgid "Turkish"
-msgstr ""
+msgstr "トルコ語"
 
 msgid "Turn access time on or off for this dataset."
 msgstr "このデータセットのアクセスタイムの有効・無効を指定します。"
