@@ -57,7 +57,7 @@ sethostname()
 # Set interface configuration
 setifconfig()
 {
-	local _value _ifn _ifconfig_args _ipaddr _gateway _cloned_interfaces _id
+	local _value _ifn _ifconfig_args _ipaddr _subnet _gateway _cloned_interfaces _id
 	local _ifn_isboot
 
 	# Cleanup
@@ -75,7 +75,6 @@ setifconfig()
 	_ifn_isboot=`sysctl -q -n net.isboot.nic`
 	_ifconfig_args=`/usr/local/bin/xml sel -t -m "//interfaces/lan" \
 		-i "ipaddr[. = 'dhcp']" -o "syncdhcp" -b \
-		-i "ipaddr[. != 'dhcp']" -v "concat('inet ',ipaddr,'/',subnet)" -b \
 		-i "media[. != 'autoselect'] and count(mediaopt) > 0" -v "concat(' media ',media,' mediaopt ',mediaopt)" -b \
 		-i "starts-with(if,'lagg') = 0" \
 			-i "wakeon[. != 'off']" -v "concat(' -wol ',translate(wakeon, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))" -b \
@@ -110,14 +109,16 @@ setifconfig()
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc`
 
+	_ipaddr=`configxml_get "//interfaces/lan/ipaddr"`
+	_subnet=`configxml_get "//interfaces/lan/subnet"`
 	if [ "${_ifn}" = "${_ifn_isboot}" ]; then
 		# don't set default for iSCSI booted NIC
 	elif [ -n "${_ifconfig_args}" ]; then
 		eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
+		eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "inet ${_ipaddr}/${_subnet}"
 	fi
 
 	# Set gateway.
-	_ipaddr=`configxml_get "//interfaces/lan/ipaddr"`
 	_gateway=`configxml_get "//interfaces/lan/gateway"`
 	if [ "${_ipaddr}" != "dhcp" -a -n "${_gateway}" ]; then
 		eval /usr/local/sbin/rconf attribute set "defaultrouter" "${_gateway}"
@@ -135,7 +136,6 @@ setifconfig()
 		if configxml_isset "//interfaces/*[name() = 'opt${_id}']/enable"; then
 			_ifconfig_args=`/usr/local/bin/xml sel -t -m "//interfaces/*[name() = 'opt${_id}']" \
 				-i "ipaddr[. = 'dhcp']" -o "syncdhcp" -b \
-				-i "ipaddr[. != 'dhcp']" -v "concat('inet ',ipaddr,'/',subnet)" -b \
 				-i "media[. != 'autoselect'] and count(mediaopt) > 0" -v "concat(' media ',media,' mediaopt ',mediaopt)" -b \
 				-i "starts-with(if,'lagg') = 0" \
 					-i "wakeon[. != 'off']" -v "concat(' -wol ',translate(wakeon, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'))" -b \
@@ -170,8 +170,11 @@ setifconfig()
 				-b \
 				${configxml_file} | /usr/local/bin/xml unesc`
 
+			_ipaddr=`configxml_get "//interfaces/*[name() = 'opt${_id}']/ipaddr"`
+			_subnet=`configxml_get "//interfaces/*[name() = 'opt${_id}']/subnet"`
 			if [ -n "${_ifconfig_args}" ]; then
 				eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
+				eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "inet ${_ipaddr}/${_subnet}"
 			fi
 		else
 			eval /usr/local/sbin/rconf attribute remove "ifconfig_${_ifn}"
