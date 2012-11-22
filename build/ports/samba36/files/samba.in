@@ -198,9 +198,8 @@ samba_mkconf_cmd()
 		-i "//samba/security[. = 'ads']" \
 			-o "passdb backend = tdbsam" -n \
 			-o "allow trusted domains = no" -n \
-			-o "idmap backend = tdb" -n \
-			-o "idmap uid = ${samba_idmap_uid}" -n \
-			-o "idmap gid = ${samba_idmap_gid}" -n \
+			-o "idmap config * : backend = tdb" -n \
+			-o "idmap config * : range = ${samba_idmap_range}" -n \
 			-v "concat('idmap config ',//ad/domainname_netbios,' : backend = rid')" -n \
 			-v "concat('idmap config ',//ad/domainname_netbios,' : range = ${samba_idmap_range}')" -n \
 			-o "winbind enum users = yes" -n \
