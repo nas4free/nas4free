@@ -115,7 +115,7 @@ setifconfig()
 		# don't set default for iSCSI booted NIC
 	elif [ -n "${_ifconfig_args}" ]; then
 		eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
-		eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "inet ${_ipaddr}/${_subnet}"
+		eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "${_ipaddr}/${_subnet}"
 	fi
 
 	# Set gateway.
@@ -174,7 +174,7 @@ setifconfig()
 			_subnet=`configxml_get "//interfaces/*[name() = 'opt${_id}']/subnet"`
 			if [ -n "${_ifconfig_args}" ]; then
 				eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
-				eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "inet ${_ipaddr}/${_subnet}"
+				eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "${_ipaddr}/${_subnet}"
 			fi
 		else
 			eval /usr/local/sbin/rconf attribute remove "ifconfig_${_ifn}"
@@ -245,7 +245,7 @@ setifconfig()
 			_bridge_args="up ${_bridge_args}"
 			_bridge_addr=`/usr/local/bin/xml sel -t -m "//interfaces/*[if = '${_bridge}']" \
 				-i "ipaddr[. = 'dhcp']" -o "syncdhcp" -b \
-				-i "ipaddr[. != 'dhcp']" -v "concat('inet ',ipaddr,'/',subnet)" -b \
+				-i "ipaddr[. != 'dhcp']" -v "concat(ipaddr,'/',subnet)" -b \
 				-b \
 				${configxml_file} | /usr/local/bin/xml unesc`
 			if [ "${_bridge_addr}" = "syncdhcp" ]; then
