@@ -60,7 +60,7 @@ case "$1" in
 
 	# Mount devices and start services
 	logger -p $log -t $name "Mounting disks and strting services."
-	/etc/rc.d.php/hastswitch cmd=start >/dev/null
+	/usr/local/sbin/hastswitch start
 
 	# iSCSI service
 	/etc/rc.d/iscsi_target start
@@ -75,7 +75,7 @@ case "$1" in
 
 	# Stop services and unmount devices
 	logger -p $log -t $name "Stopping services and unmounting disks."
-	/etc/rc.d.php/hastswitch cmd=stop >/dev/null
+	/usr/local/sbin/hastswitch stop
 
 	# Switch roles for the HAST resources
 	sleep $delay
@@ -88,5 +88,9 @@ case "$1" in
 	    fi
 	    logger -p $log -t $name "Role switched to secondary for resource ${disk}."
 	done
+    ;;
+
+    *)
+	logger -p $log -t $name "Unsupported command $1."
     ;;
 esac
