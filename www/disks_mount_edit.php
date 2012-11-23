@@ -50,6 +50,33 @@ if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
 array_sort_key($config['mounts']['mount'], "devicespecialfile");
 $a_mount = &$config['mounts']['mount'];
 
+function get_all_hast() {
+	$a = array();
+	$a[''] = gettext("Must choose one");
+	mwexec2("hastctl dump | grep resource", $rawdata);
+	foreach ($rawdata as $line) {
+		$hast = preg_split("/\s/", $line);
+		$name = $hast[1];
+		$file = "/dev/hast/$name";
+		if (file_exists($file)) {
+			$diskinfo = disks_get_diskinfo($file);
+			$size = $diskinfo[mediasize_mbytes];
+			if ($size > 1024) {
+				$size = (int) ($size / 1024);
+				$size .= "GB";
+			} else {
+				$size .= "MB";
+			}
+		} else {
+			$size = "(secondary)";
+		}
+		$a[$file] = htmlspecialchars("$name: $size");
+	}
+	return $a;
+}
+
+$a_hast = get_all_hast($a_iscsitarget_extent,$uuid);
+
 // Get list of all configured disks (physical and virtual).
 $a_disk = get_conf_all_disks_list_filtered();
 
@@ -72,6 +99,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_mount, "uuid")
 	$pconfig['group'] = $a_mount[$cnid]['accessrestrictions']['group'][0];
 	$pconfig['mode'] = $a_mount[$cnid]['accessrestrictions']['mode'];
 	$pconfig['filename'] = !empty($a_mount[$cnid]['filename']) ? $a_mount[$cnid]['filename'] : "";
+	$pconfig['hvol'] = $pconfig['mdisk'];
 } else {
 	$pconfig['uuid'] = uuid();
 	$pconfig['type'] = "disk";
@@ -101,7 +129,7 @@ if ($_POST) {
 
 	// Rebuild partition string
 	$_POST['partition'] = "";
-	if ("disk" === $_POST['type']) {
+	if ("disk" === $_POST['type'] || "hvol" === $_POST['type']) {
 		switch ($_POST['partitiontype']) {
 			case 'p':
 			case 's':
@@ -115,6 +143,20 @@ if ($_POST) {
 		case "disk":
 			$reqdfields = explode(" ", "mdisk partitiontype fstype sharename");
 			$reqdfieldsn = array(gettext("Disk"), gettext("Partition type"), gettext("File system"), gettext("Mount point name"));
+			$reqdfieldst = explode(" ", "string string string string");
+			switch ($_POST['partitiontype']) {
+				case 'p':
+				case 's':
+					$reqdfields = array_merge($reqdfields, explode(" ", "partitionnum"));
+					$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Partition number")));
+					$reqdfieldst = array_merge($reqdfieldst, explode(" ", "numeric"));
+					break;
+			}
+			break;
+
+		case "hvol":
+			$reqdfields = explode(" ", "hvol partitiontype fstype sharename");
+			$reqdfieldsn = array(gettext("HAST volume"), gettext("Partition type"), gettext("File system"), gettext("Mount point name"));
 			$reqdfieldst = explode(" ", "string string string string");
 			switch ($_POST['partitiontype']) {
 				case 'p':
@@ -184,6 +226,38 @@ if ($_POST) {
 			}
 		}
 	}
+	// HAST volume specific
+	if ("hvol" === $_POST['type']) {
+		if ($_POST['partitiontype'] != 'p') {
+			$input_errors[] = gettext("HAST volume can be use with GPT/UFS only.");
+		}
+		$device = "{$_POST['hvol']}{$_POST['partition']}";
+		if ($device === $cfdevice) {
+			$input_errors[] = gettext("Can't mount the system partition 1, the DATA partition is the 2.");
+		}
+		//Check if partition exist
+		if (!file_exists($device)) {
+			$input_errors[] = gettext("Wrong partition type or partition number.");
+		}
+
+		// get rawuuid
+		if ($_POST['partitiontype'] == "p") {
+			$rawuuid = disks_get_rawuuid($device);
+		} else {
+			$rawuuid = ""; // should be fixed
+		}
+
+		// convert to UFSID
+		if ($_POST['fstype'] == "ufs") {
+			$out = array();
+			$ufsid = disks_get_ufsid($device, $out);
+			if (empty($ufsid)) {
+				$input_errors[] = sprintf("%s: %s", $device, gettext("Can't get UFS ID."))."<br />".join('<br />', $out);
+			} else {
+				$device = "/dev/ufsid/$ufsid";
+			}
+		}
+	}
 
 	// Check if it is a valid ISO image.
 	if (("iso" === $_POST['type']) && (FALSE === util_is_iso_image($_POST['filename']))) {
@@ -196,6 +270,16 @@ if ($_POST) {
 			if (isset($uuid) && (FALSE !== $cnid) && ($mount['uuid'] === $uuid)) 
 				continue;
 			if (($mount['mdisk'] === $_POST['mdisk']) && ($mount['partition'] === $_POST['partition'])) {
+				$input_errors[] = gettext("The disk/partition is already configured.");
+				break;
+			}
+		}
+	}
+	if ("hvol" === $_POST['type']) {
+		foreach ($a_mount as $mount) {
+			if (isset($uuid) && (FALSE !== $cnid) && ($mount['uuid'] === $uuid)) 
+				continue;
+			if (($mount['mdisk'] === $_POST['hvol']) && ($mount['partition'] === $_POST['partition'])) {
 				$input_errors[] = gettext("The disk/partition is already configured.");
 				break;
 			}
@@ -221,6 +305,22 @@ if ($_POST) {
 				$mount['mdisk'] = $_POST['mdisk'];
 				$mount['partition'] = $_POST['partition'];
 				$mount['fstype'] = $_POST['fstype'];
+				$mount['gpt'] = ($_POST['partitiontype'] == "p") ? true : false;
+				$mount['rawuuid'] = $rawuuid;
+				if ($mount['fstype'] == "ufs") {
+					$mount['devicespecialfile'] = $device;
+				} else {
+					$mount['devicespecialfile'] = trim("{$mount['mdisk']}{$mount['partition']}");
+				}
+				$mount['readonly'] = isset($_POST['readonly']) ? true : false;
+				$mount['fsck'] = isset($_POST['fsck']) ? true : false;
+				break;
+
+			case "hvol":
+				$mount['mdisk'] = $_POST['hvol'];
+				$mount['partition'] = $_POST['partition'];
+				$mount['fstype'] = $_POST['fstype'];
+				$mount['voltype'] = 'hast';
 				$mount['gpt'] = ($_POST['partitiontype'] == "p") ? true : false;
 				$mount['rawuuid'] = $rawuuid;
 				if ($mount['fstype'] == "ufs") {
@@ -326,6 +426,7 @@ function type_change() {
   switch (document.iform.type.selectedIndex) {
     case 0: /* Disk */
       showElementById('mdisk_tr','show');
+      showElementById('hvol_tr','hide');
       showElementById('partitiontype_tr','show');
       showElementById('partitionnum_tr','show');
       showElementById('fstype_tr','show');
@@ -335,8 +436,21 @@ function type_change() {
       partitiontype_change();
       break;
 
-    case 1: /* ISO */
+    case 1: /* HAST volume */
       showElementById('mdisk_tr','hide');
+      showElementById('hvol_tr','show');
+      showElementById('partitiontype_tr','show');
+      showElementById('partitionnum_tr','show');
+      showElementById('fstype_tr','show');
+      showElementById('filename_tr','hide');
+      showElementById('readonly_tr','show');
+      showElementById('fsck_tr','show');
+      partitiontype_change();
+      break;
+
+    case 2: /* ISO */
+      showElementById('mdisk_tr','hide');
+      showElementById('hvol_tr','hide');
       showElementById('partitiontype_tr','hide');
       showElementById('partitionnum_tr','hide');
       showElementById('fstype_tr','hide');
@@ -369,6 +483,7 @@ function partitiontype_change() {
 function enable_change(enable_change) {
 	document.iform.type.disabled = !enable_change;
 	document.iform.mdisk.disabled = !enable_change;
+	document.iform.hvol.disabled = !enable_change;
 	document.iform.filename.disabled = !enable_change;
 }
 // -->
@@ -389,7 +504,7 @@ function enable_change(enable_change) {
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline(gettext("Settings"));?>
-					<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("disk" => gettext("Disk"), "iso" => "ISO"), "", true, false, "type_change()");?>
+					<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("disk" => gettext("Disk"), "hvol" => gettext("HAST volume"), "iso" => "ISO"), "", true, false, "type_change()");?>
 					<tr id="mdisk_tr">
 			      <td width="22%" valign="top" class="vncellreq"><?=gettext("Disk");?></td>
 			      <td class="vtable">
@@ -403,6 +518,7 @@ function enable_change(enable_change) {
 							</select>
 			      </td>
 			    </tr>
+			    <?php html_combobox("hvol", gettext("HAST volume"), $pconfig['hvol'], $a_hast, "", true);?>
 			    <tr id="partitiontype_tr">
 			      <td width="22%" valign="top" class="vncellreq"><?=gettext("Partition type");?></td>
 			      <td class="vtable">

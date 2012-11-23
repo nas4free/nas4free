@@ -157,12 +157,12 @@ function mountmanagement_process_updatenotification($mode, $data) {
         <?php if (updatenotify_exists("mountpoint")) print_config_change_box();?>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="25%" class="listhdrlr"><?=gettext("Disk");?></td>
+            <td width="30%" class="listhdrlr"><?=gettext("Disk");?></td>
             <td width="15%" class="listhdrr"><?=gettext("File system");?></td>
             <td width="15%" class="listhdrr"><?=gettext("Name");?></td>
             <td width="20%" class="listhdrr"><?=gettext("Description");?></td>
-            <td width="15%" class="listhdrr"><?=gettext("Status");?></td>
-            <td width="10%" class="list"></td>
+            <td width="13%" class="listhdrr"><?=gettext("Status");?></td>
+            <td width="7%" class="list"></td>
           </tr>
 					<?php foreach($a_mount as $mount):?>
 					<?php
@@ -188,6 +188,8 @@ function mountmanagement_process_updatenotification($mode, $data) {
 					?>
           <tr>
           	<?php if ("disk" === $mount['type']):?>
+            <td class="listlr"><?=htmlspecialchars($mount['devicespecialfile']);?>&nbsp;<?php if ($mount['fstype'] == "ufs" && preg_match('/^\/dev\/(.+)$/', $mount['mdisk'], $match)) { echo "({$match[1]}{$mount['partition']})"; } ?></td>
+            <?php elseif ("hvol" === $mount['type']):?>
             <td class="listlr"><?=htmlspecialchars($mount['devicespecialfile']);?>&nbsp;<?php if ($mount['fstype'] == "ufs" && preg_match('/^\/dev\/(.+)$/', $mount['mdisk'], $match)) { echo "({$match[1]}{$mount['partition']})"; } ?></td>
             <?php else:?>
             <td class="listlr"><?=htmlspecialchars($mount['filename']);?>&nbsp;</td>

@@ -135,6 +135,14 @@ function disks_mount($mount)
 			$devicespecialfile = $mount['devicespecialfile'];
 			break;
 
+		case "hvol":
+			$devicespecialfile = $mount['devicespecialfile'];
+			if (0 != mwexec("/sbin/fsck -p -y -t {$mount['fstype']} {$mount['devicespecialfile']}")) {
+				write_log("Error: Failed to run fsck for '{$mount['devicespecialfile']}'");
+				return 1;
+			}
+			break;
+
 		case "iso":
 			// Create memory disk. 'mdconfig' returns the ID of this disk
 			exec("/sbin/mdconfig -a -t vnode -f '{$mount['filename']}'", $mdid, $result);
