@@ -194,7 +194,9 @@ $(document).ready(function(){
 	<?php
 		$a_vipaddrs = array();
 		foreach ($a_carp as $carp) {
-			$a_vipaddrs[] = $carp['vipaddr'];
+			$ifinfo = get_carp_info($carp['if']);
+			//$a_vipaddrs[] = $carp['vipaddr']." ({$ifinfo['state']},{$ifinfo['advskew']})";
+			$a_vipaddrs[] = $carp['vipaddr']." ({$ifinfo['state']})";
 		}
 	?>
 	<?php echo html_text("vipaddr", gettext("Virtual IP address"), (!empty($a_vipaddrs) ? htmlspecialchars(join(', ', $a_vipaddrs)) : sprintf("<span class='red'>%s</span>", htmlspecialchars(gettext("No configured CARP interfaces."))))); ?>

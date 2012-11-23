@@ -104,16 +104,21 @@ function hastresource_process_updatenotification($mode, $data) {
 	<?php if (updatenotify_exists("hastresource")) print_config_change_box();?>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
-	    <td width="15%" class="listhdrlr"><?=gettext("Resource");?></td>
-	    <td width="26%" class="listhdrr"><?=gettext("Node Name");?></td>
-	    <td width="26%" class="listhdrr"><?=gettext("Path");?></td>
-	    <td width="26%" class="listhdrr"><?=gettext("IP address");?></td>
-	    <td width="7%" class="list"></td>
+	    <td width="12%" class="listhdrlr"><?=gettext("Resource");?></td>
+	    <td width="10%" class="listhdrr"><?=gettext("Role");?></td>
+	    <td width="10%" class="listhdrr"><?=gettext("Status");?></td>
+	    <td width="20%" class="listhdrr"><?=gettext("Node Name");?></td>
+	    <td width="22%" class="listhdrr"><?=gettext("Path");?></td>
+	    <td width="20%" class="listhdrr"><?=gettext("IP address");?></td>
+	    <td width="6%" class="list"></td>
 	  </tr>
 	  <?php foreach ($a_resource as $resourcev):?>
+	  <?php $hvolinfo = get_hvol_info($resourcev['name']); ?>
 	  <?php $notificationmode = updatenotify_get_mode("hastresource", $resourcev['uuid']);?>
 	  <tr>
 	    <td class="listlr"><?=htmlspecialchars($resourcev['name']);?>&nbsp;</td>
+	    <td class="listr"><?=htmlspecialchars($hvolinfo['role']);?>&nbsp;</td>
+	    <td class="listr"><?=htmlspecialchars($hvolinfo['status']);?>&nbsp;</td>
 	    <td class="listr"><?=htmlspecialchars($resourcev['aname']);?><br /><?=htmlspecialchars($resourcev['bname']);?>&nbsp;</td>
 	    <td class="listr"><?=htmlspecialchars($resourcev['apath']);?><br /><?=htmlspecialchars($resourcev['bpath']);?>&nbsp;</td>
 	    <td class="listr"><?=htmlspecialchars($resourcev['aremoteaddr']);?><br /><?=htmlspecialchars($resourcev['bremoteaddr']);?>&nbsp;</td>
@@ -131,7 +136,7 @@ function hastresource_process_updatenotification($mode, $data) {
 	  </tr>
 	  <?php endforeach;?>
 	  <tr>
-	    <td class="list" colspan="4"></td>
+	    <td class="list" colspan="6"></td>
 	    <td class="list"><a href="services_hast_resource_edit.php"><img src="plus.gif" title="<?=gettext("Add resource");?>" border="0" alt="<?=gettext("Add resource");?>" /></a></td>
 	  </tr>
 	</table>

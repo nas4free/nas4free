@@ -1756,6 +1756,40 @@ function get_interface_info_ex($iftype) {
 	return $ifinfo;
 }
 
+// Get carp interface information.
+function get_carp_info($if) {
+	$ifinfo = array();
+	$ifinfo['hwif'] = get_ifname($if);
+	$ifinfo['if'] = $ifinfo['hwif'];
+
+	exec("/sbin/ifconfig " . $ifinfo['hwif'] . " | grep carp:", $info);
+	$info = preg_split("/\s+/", $info[0]);
+	$ifinfo['state'] = $info[2];
+	$ifinfo['vhid'] = $info[4];
+	$ifinfo['advbase'] = $info[6];
+	$ifinfo['advskew'] = $info[8];
+	return $ifinfo;
+}
+
+// Get hast device information.
+function get_hvol_info($name)
+{
+	$hvolinfo = array();
+	$hvolinfo['error'] = 0;
+	$hvolinfo['status'] = 'unknown';
+
+	exec("/sbin/hastctl status {$name}",$rawdata);
+	foreach ($rawdata as $line) {
+		// skip name
+		if (preg_match('/^\S+:/', $line)) continue;
+
+		$line = trim($line);
+		list($key,$val) = preg_split('/:\s+/', $line);
+		$hvolinfo[$key] = $val;
+	}
+	return $hvolinfo;
+}
+
 /* Get the product name */
 function get_product_name() {
 	global $g;
