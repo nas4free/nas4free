@@ -113,9 +113,13 @@ setifconfig()
 	_subnet=`configxml_get "//interfaces/lan/subnet"`
 	if [ "${_ifn}" = "${_ifn_isboot}" ]; then
 		# don't set default for iSCSI booted NIC
-	elif [ -n "${_ifconfig_args}" ]; then
-		eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
-		eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "${_ipaddr}/${_subnet}"
+	else
+		if [ -n "${_ifconfig_args}" ]; then
+			eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
+		fi
+		if [ -n "${_ipaddr}" ]; then
+			eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "${_ipaddr}/${_subnet}"
+		fi
 	fi
 
 	# Set gateway.
@@ -174,6 +178,8 @@ setifconfig()
 			_subnet=`configxml_get "//interfaces/*[name() = 'opt${_id}']/subnet"`
 			if [ -n "${_ifconfig_args}" ]; then
 				eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
+			fi
+			if [ -n "${_ipaddr}" ]; then
 				eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "${_ipaddr}/${_subnet}"
 			fi
 		else
