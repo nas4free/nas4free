@@ -58,6 +58,7 @@ hastd_mkconf()
 
 hastd_stop_precmd()
 {
+	eval "/etc/rc.d.php/hastswitch cmd=shutdown"
 	${hastctl} role init all
 }
 

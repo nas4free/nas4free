@@ -57,6 +57,15 @@
 				continue;
 			disks_umount_ex($mount);
 		}
+	} else if ($_GET["cmd"] == "shutdown") {
+		if (!isset($config['vinterfaces']['carp'])
+		    || !is_array($config['vinterfaces']['carp']))
+			return -1;
+		foreach ($config['vinterfaces']['carp'] as $carp) {
+			system("/sbin/ifconfig {$carp['if']} state backup");
+			sleep(1);
+		}
+		sleep(3);
 	}
 	return 0;
 ?>
