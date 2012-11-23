@@ -58,15 +58,12 @@ case "$1" in
 
 	logger -p $log -t $name "Role for HAST resources ${resources} switched to primary."
 
+	# Mount devices and start services
+	logger -p $log -t $name "Mounting disks and strting services."
+	/etc/rc.d.php/hastswitch cmd=start 2>&/dev/null
+
 	# iSCSI service
 	/etc/rc.d/iscsi_target start
-
-#	logger -p $log -t $name "Mounting disks."
-#	for disk in ${resources}; do
-#	    mkdir -p /hast/${disk}
-#	    fsck -p -y -t ufs /dev/hast/${disk}
-#	    mount /dev/hast/${disk} /hast/${disk}
-#	done
 
     ;;
 
@@ -76,14 +73,14 @@ case "$1" in
 	# iSCSI service
 	/etc/rc.d/iscsi_target forcestop
 
+	# Stop services and unmount devices
+	logger -p $log -t $name "Stopping services and unmounting disks."
+	/etc/rc.d.php/hastswitch cmd=stop 2>&/dev/null
+
 	# Switch roles for the HAST resources
+	sleep $delay
 	for disk in ${resources}; do
-#	    if ! mount | grep -q "^/dev/hast/${disk} on "
-#	    then
-#	    else
-#		umount -f /hast/${disk}
-#	    fi
-	    sleep $delay
+	    sleep 1
 	    hastctl role secondary ${disk} 2>&1
 	    if [ $? -ne 0 ]; then
 		logger -p $log -t $name "Unable to switch role to secondary for resource ${disk}."
