@@ -66,6 +66,23 @@ if ($_POST) {
 
 	$pconfig = $_POST;
 
+	if (isset($_POST['switch_backup']) && $_POST['switch_backup']) {
+		foreach ($a_carp as $carp) {
+			system("/sbin/ifconfig {$carp['if']} state backup");
+		}
+		sleep(20);
+		header("Location: services_hast.php");
+		exit;
+	}
+	if (isset($_POST['switch_master']) && $_POST['switch_master']) {
+		foreach ($a_carp as $carp) {
+			system("/sbin/ifconfig {$carp['if']} state master");
+		}
+		sleep(20);
+		header("Location: services_hast.php");
+		exit;
+	}
+
 	// Input validation.
 /*
 	$reqdfields = explode(" ", "role");
@@ -201,6 +218,14 @@ $(document).ready(function(){
 	?>
 	<?php echo html_text("vipaddr", gettext("Virtual IP address"), (!empty($a_vipaddrs) ? htmlspecialchars(join(', ', $a_vipaddrs)) : sprintf("<span class='red'>%s</span>", htmlspecialchars(gettext("No configured CARP interfaces."))))); ?>
 	<?php //html_combobox("role", gettext("HAST role"), $pconfig['role'], array("primary" => gettext("Primary"), "secondary" => gettext("Secondary")), "", true);?>
+	<tr id="control_btn">
+	  <td colspan="2">
+	    <input id="switch_backup" name="switch_backup" type="submit" class="formbtn" value="<?php echo gettext("Switch VIP to BACKUP"); ?>" />
+	    <?php if (isset($a_carp[0]) && $a_carp[0]['advskew'] == 0) { ?>
+	    &nbsp;<input id="switch_master" name="switch_master" type="submit" class="formbtn" value="<?php echo gettext("Switch VIP to MASTER"); ?>" />
+	    <?php } ?>
+	  </td>
+	</tr>
 	<?php html_separator();?>
 	<?php html_titleline(gettext("Advanced settings"));?>
 	<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("These parameters are added to %s."), "hast.conf") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/disks-hast.html"), false, 65, 5, false, false);?>

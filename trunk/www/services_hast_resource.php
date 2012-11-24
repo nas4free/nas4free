@@ -140,10 +140,12 @@ function hastresource_process_updatenotification($mode, $data) {
 	    <td class="list"><a href="services_hast_resource_edit.php"><img src="plus.gif" title="<?=gettext("Add resource");?>" border="0" alt="<?=gettext("Add resource");?>" /></a></td>
 	  </tr>
 	</table>
+	<div id="submit">
+	  <input id="reload" name="reload" type="submit" class="formbtn" value="<?php echo gettext("Reload page"); ?>" />
+	</div>
 	<?php include("formend.inc");?>
       </form>
     </td>
   </tr>
 </table>
 <?php include("fend.inc");?>
-
