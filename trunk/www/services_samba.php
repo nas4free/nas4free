@@ -63,6 +63,7 @@ $pconfig['localmaster'] = $config['samba']['localmaster'];
 $pconfig['pwdsrv'] = !empty($config['samba']['pwdsrv']) ? $config['samba']['pwdsrv'] : "";
 $pconfig['winssrv'] = !empty($config['samba']['winssrv']) ? $config['samba']['winssrv'] : "";
 $pconfig['timesrv'] = !empty($config['samba']['timesrv']) ? $config['samba']['timesrv'] : "";
+$pconfig['trusteddomains'] = isset($config['samba']['trusteddomains']);
 $pconfig['unixcharset'] = !empty($config['samba']['unixcharset']) ? $config['samba']['unixcharset'] : "";
 $pconfig['doscharset'] = !empty($config['samba']['doscharset']) ? $config['samba']['doscharset'] : "";
 $pconfig['loglevel'] = !empty($config['samba']['loglevel']) ? $config['samba']['loglevel'] : "";
@@ -146,6 +147,7 @@ if ($_POST) {
 		$config['samba']['pwdsrv'] = $_POST['pwdsrv'];
 		$config['samba']['winssrv'] = $_POST['winssrv'];
 		$config['samba']['timesrv'] = $_POST['timesrv'];
+		$config['samba']['trusteddomains'] = isset($_POST['trusteddomains']) ? true : false;
 		$config['samba']['doscharset'] = $_POST['doscharset'];
 		$config['samba']['unixcharset'] = $_POST['unixcharset'];
 		$config['samba']['loglevel'] = $_POST['loglevel'];
@@ -213,6 +215,7 @@ function enable_change(enable_change) {
 	document.iform.pwdsrv.disabled = endis;
 	document.iform.winssrv.disabled = endis;
 	document.iform.timesrv.disabled = endis;
+	document.iform.trusteddomains.disabled = endis;
 	document.iform.serverdesc.disabled = endis;
 	document.iform.doscharset.disabled = endis;
 	document.iform.unixcharset.disabled = endis;
@@ -244,18 +247,21 @@ function authentication_change() {
 			showElementById('directorymask_tr','show');
 			showElementById('pwdsrv_tr','hide');
 			showElementById('winssrv_tr','hide');
+			showElementById('trusteddomains_tr','hide');
 			break;
 		case "ads":
 			showElementById('createmask_tr','hide');
 			showElementById('directorymask_tr','hide');
 			showElementById('pwdsrv_tr','show');
 			showElementById('winssrv_tr','show');
+			showElementById('trusteddomains_tr','show');
 			break;
 		default:
 			showElementById('createmask_tr','hide');
 			showElementById('directorymask_tr','hide');
 			showElementById('pwdsrv_tr','hide');
 			showElementById('winssrv_tr','hide');
+			showElementById('trusteddomains_tr','hide');
 			break;
 	}
 }
@@ -359,6 +365,7 @@ function aio_change() {
               <br /><?=gettext("WINS server IP address (e.g. from MS Active Directory server).");?>
             </td>
   				</tr>
+	  <?php html_checkbox("trusteddomains", gettext("Trusted domains"), !empty($pconfig['trusteddomains']) ? true : false, gettext("Allow trusted domains."), gettext("If allowed, a user of the trusted domains can access the share."), false);?>
           <tr>
 			      <td colspan="2" class="list" height="12"></td>
 			    </tr>
