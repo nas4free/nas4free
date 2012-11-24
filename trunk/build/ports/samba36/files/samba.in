@@ -15,6 +15,7 @@
 
 . /etc/rc.subr
 . /etc/configxml.subr
+. /etc/util.subr
 
 name="samba"
 rcvar=$(set_rcvar)
@@ -212,6 +213,8 @@ samba_mkconf_cmd()
 		-i "//samba/security[. = 'user']" \
 			-i "count(//ldap/enable) = 0" \
 				-o "passdb backend = tdbsam" -n \
+				-o "idmap config * : backend = tdb" -n \
+				-o "idmap config * : range = ${samba_idmap_range}" -n \
 			-b \
 			-i "count(//ldap/enable) > 0" \
 				-v "concat('passdb backend = ldapsam:\"',//ldap/hostname,'\"')" -n \
@@ -355,6 +358,14 @@ samba_rcvar_cmd() {
 
 samba_reload_cmd() {
 	local name rcvar command pidfile
+	local _enable _role
+
+	_enable=`configxml_get_count "//hast/enable"`
+	_role=`get_hast_role`
+	if [ "$_enable" != "0" -a "$_role" != "primary" -a "$_rc_prefix" != "force" ]; then
+		return 0;
+	fi
+
 	# Prevent recursive calling
 	unset "${rc_arg}_cmd" "${rc_arg}_precmd" "${rc_arg}_postcmd"
 	# Apply to all daemons
@@ -386,6 +397,14 @@ safe_shellquote()
 
 samba_cmd() {
 	local name rcvar command pidfile samba_daemons all_status
+	local _enable _role
+
+	_enable=`configxml_get_count "//hast/enable"`
+	_role=`get_hast_role`
+	if [ "${rc_arg}" != "status" -a "$_enable" != "0" -a "$_role" != "primary" -a "$_rc_prefix" != "force" ]; then
+ 		return 0;
+	fi
+
 	# Prevent recursive calling
 	unset "${rc_arg}_cmd" "${rc_arg}_precmd" "${rc_arg}_postcmd"
 	# Stop processes in the reverse to order

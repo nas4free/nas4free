@@ -32,9 +32,15 @@ start)
 		    /usr/bin/chgrp "${_group}" "${mountbase}/${_share}"
 		fi
 	done
+
+	# start services
+	/etc/rc.d/samba start
 	;;
 
 stop)
+	# stop services
+	/etc/rc.d/samba forcestop
+
 	# unmount GPT/UFS
 	/usr/local/bin/xml sel -t \
 		-m "//mounts/*[type='hvol']" \
