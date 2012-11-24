@@ -1790,6 +1790,20 @@ function get_hvol_info($name)
 	return $hvolinfo;
 }
 
+// Get hast role.
+function get_hast_role()
+{
+	$role = "unknown";
+
+	if (0 == mwexec("/bin/pgrep -q -lf 'hastd: .* \\(primary\\)'")) {
+		$role = "primary";
+	}
+	if (0 == mwexec("/bin/pgrep -q -lf 'hastd: .* \\(secondary\\)'")) {
+		$role = "secondary";
+	}
+	return $role;
+}
+
 /* Get the product name */
 function get_product_name() {
 	global $g;
