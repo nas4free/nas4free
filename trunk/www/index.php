@@ -44,11 +44,31 @@ require("zfs.inc");
 $pgtitle = array(gettext("System information"));
 $pgtitle_omit = true;
 
+if (!isset($config['vinterfaces']['carp']) || !is_array($config['vinterfaces']['carp']))
+	$config['vinterfaces']['carp'] = array();
+
 $smbios = get_smbios_info();
 $cpuinfo = system_get_cpu_info();
 
+function get_vip_status() {
+	global $config;
+
+	if (empty($config['vinterfaces']['carp']))
+		return "";
+
+	$a_vipaddrs = array();
+	foreach ($config['vinterfaces']['carp'] as $carp) {
+		$ifinfo = get_carp_info($carp['if']);
+		//$a_vipaddrs[] = $carp['vipaddr']." ({$ifinfo['state']},{$ifinfo['advskew']})";
+		$a_vipaddrs[] = $carp['vipaddr']." ({$ifinfo['state']})";
+	}
+	return join(', ', $a_vipaddrs);
+}
+
 if (is_ajax()) {
 	$sysinfo = system_get_sysinfo();
+	$vipstatus = get_vip_status();
+	$sysinfo['vipstatus'] = $vipstatus;
 	render_ajax($sysinfo);
 }
 
@@ -60,6 +80,8 @@ if(function_exists("date_default_timezone_set") and function_exists("date_defaul
 $(document).ready(function(){
 	var gui = new GUI;
 	gui.recall(5000, 5000, 'index.php', null, function(data) {
+		if ($('#vipstatus').size() > 0)
+			$('#vipstatus').text(data.vipstatus);
 		if ($('#uptime').size() > 0)
 			$('#uptime').text(data.uptime);
 		if ($('#date').size() > 0)
@@ -170,6 +192,12 @@ $(document).ready(function(){
  			  <tr>
 			    <td colspan="2" class="listtopic"><?=gettext("System information");?></td>
 			  </tr>
+			  <?php if (!empty($config['vinterfaces']['carp'])):?>
+			  <tr>
+			    <td width="25%" class="vncellt"><?=gettext("Virtual IP address");?></td>
+			    <td width="75%" class="listr"><span id="vipstatus"><?php echo htmlspecialchars(get_vip_status()); ?></vip></td>
+			  </tr>
+			  <?php endif;?>
 			  <tr>
 			    <td width="25%" class="vncellt"><?=gettext("Hostname");?></td>
 			    <td width="75%" class="listr"><?=system_get_hostname();?></td>
