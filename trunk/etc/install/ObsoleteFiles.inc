@@ -71,3 +71,11 @@ etc/rc.d/execcmd_shutdown.sh
 etc/rc.d/rcconf.sh
 etc/auth.conf
 usr/local/bin/php
+usr/local/www/javascript/gui.js
+usr/local/www/javascript/index.js
+usr/local/www/javascript/disks_zfs_zpool_io.js
+usr/local/www/javascript/disks_zfs_zpool_info.js
+usr/local/www/javascript/disks_init.js
+usr/local/www/javascript/status_process.js
+usr/local/www/sajax/sajax.php
+usr/local/www/sajax
