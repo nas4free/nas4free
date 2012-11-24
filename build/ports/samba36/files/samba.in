@@ -235,6 +235,24 @@ samba_mkconf_cmd()
 			-v "concat('aio read size = ',//samba/aiorsize)" -n \
 			-v "concat('aio write size = ',//samba/aiowsize)" -n \
 		-b \
+		-i "//samba/if[. = 'lan']" \
+			-o "bind interfaces only = yes" -n \
+	    		-v "concat('interfaces = ', //interfaces/lan/if)" -n \
+		-b \
+		-i "//samba/if[. = 'opt']" \
+			-o "bind interfaces only = yes" -n \
+	    		-o "interfaces = " \
+			-m "//interfaces/*[contains(name(),'opt')]/if" \
+				-v "concat(.,' ')" \
+			-b -n \
+		-b \
+		-i "//samba/if[. = 'carp']" \
+			-o "bind interfaces only = yes" -n \
+	    		-o "interfaces = " \
+			-m "//vinterfaces/carp/if" \
+				-v "concat(.,' ')" \
+			-b -n \
+		-b \
 		-m "//samba/auxparam" \
 			-v "." -n \
 		-b \

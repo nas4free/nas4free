@@ -58,6 +58,7 @@ $pconfig['workgroup'] = $config['samba']['workgroup'];
 $pconfig['serverdesc'] = $config['samba']['serverdesc'];
 $pconfig['security'] = $config['samba']['security'];
 $pconfig['maxprotocol'] = $config['samba']['maxprotocol'];
+$pconfig['if'] = !empty($config['samba']['if']) ? $config['samba']['if'] : "";
 $pconfig['localmaster'] = $config['samba']['localmaster'];
 $pconfig['pwdsrv'] = !empty($config['samba']['pwdsrv']) ? $config['samba']['pwdsrv'] : "";
 $pconfig['winssrv'] = !empty($config['samba']['winssrv']) ? $config['samba']['winssrv'] : "";
@@ -140,6 +141,7 @@ if ($_POST) {
 		} else {
 			$config['samba']['maxprotocol'] = $_POST['maxprotocol'];
 		}
+		$config['samba']['if'] = $_POST['if'];
 		$config['samba']['localmaster'] = $_POST['localmaster'];
 		$config['samba']['pwdsrv'] = $_POST['pwdsrv'];
 		$config['samba']['winssrv'] = $_POST['winssrv'];
@@ -219,6 +221,7 @@ function enable_change(enable_change) {
 	document.iform.rcvbuf.disabled = endis;
 	document.iform.security.disabled = endis;
 	document.iform.maxprotocol.disabled = endis;
+	document.iform.if.disabled = endis;
 	document.iform.largereadwrite.disabled = endis;
 	document.iform.usesendfile.disabled = endis;
 	document.iform.easupport.disabled = endis;
@@ -303,6 +306,7 @@ function aio_change() {
               <br /><?=gettext("Workgroup the server will appear to be in when queried by clients (maximum 15 characters).");?>
             </td>
           </tr>
+          <?php html_combobox("if", gettext("Interface"), $pconfig['if'], array("" => gettext("ALL interfaces"), "lan" => gettext("LAN only"), "opt" => gettext("OPT only"), "carp" => gettext("CARP only")), "", false);?>
           <tr>
             <td width="22%" valign="top" class="vncell"><?=gettext("Description") ;?></td>
             <td width="78%" class="vtable">
