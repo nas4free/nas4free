@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-22 02:11+0000\n"
-"PO-Revision-Date: 2012-11-19 05:00+0000\n"
+"POT-Creation-Date: 2012-11-24 09:19+0000\n"
+"PO-Revision-Date: 2012-11-22 15:28+0000\n"
 "Last-Translator: Laurentiu BUBUIANU <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-21 17:41+0000\n"
+"X-Launchpad-Export-Date: 2012-11-24 00:48+0000\n"
 "X-Generator: Launchpad (build 16293)\n"
 "X-Poedit-Country: ROMANIA\n"
 "Language: \n"
@@ -20,7 +20,7 @@ msgid " interfaces:"
 msgstr " interfeţe:"
 
 msgid " was assigned to "
-msgstr " a fost alocat "
+msgstr " a fost alocat la "
 
 #, php-format
 msgid "%d days"
@@ -28,11 +28,11 @@ msgstr "%d zile"
 
 #, php-format
 msgid "%d week"
-msgstr "%d săptămână"
+msgstr "%d săptămînă"
 
 #, php-format
 msgid "%d weeks"
-msgstr "%d săptămâni"
+msgstr "%d săptămîni"
 
 #, php-format
 msgid "%d year"
@@ -400,7 +400,7 @@ msgid "Add portal group"
 msgstr "Adăuga Portal Group"
 
 msgid "Add resource"
-msgstr ""
+msgstr "Adăugare resurse"
 
 msgid "Add rule"
 msgstr "Creaza o noua regula"
@@ -433,7 +433,7 @@ msgid "Address"
 msgstr "Adresa"
 
 msgid "Address of the remote hastd daemon. It must be a static IP address."
-msgstr ""
+msgstr "Adresa daemon-ului hastd (trebuie să fie o adresă IP statică)."
 
 msgid "Administration password"
 msgstr "Parola Administrare"
@@ -1403,7 +1403,7 @@ msgid "Delete portal group"
 msgstr "Ştergere grup portal"
 
 msgid "Delete resource"
-msgstr ""
+msgstr "Ştergere resursă"
 
 msgid "Delete rule"
 msgstr "Şterge regulă"
@@ -1564,7 +1564,7 @@ msgid "Disable File Manager"
 msgstr "Dezactivare Manager de Fişiere"
 
 msgid "Disable TCP wrapper (mod_wrap module)."
-msgstr ""
+msgstr "Dezactivare wrapper TCP (modul mod_wrap)."
 
 msgid "Disable console menu"
 msgstr "Dezactivare Meniu Consolă"
@@ -1715,7 +1715,7 @@ msgid "Do you really want to delete this portal group?"
 msgstr "Sigur doriţi să ştergeţi acest Portal Group?"
 
 msgid "Do you really want to delete this resource?"
-msgstr ""
+msgstr "Doriţi să ştergeţi această resursă?"
 
 msgid "Do you really want to delete this route?"
 msgstr "Stergeti aceasta ruta?"
@@ -1940,7 +1940,7 @@ msgid "Edit portal group"
 msgstr "Editează Portal Group"
 
 msgid "Edit resource"
-msgstr ""
+msgstr "Editare resursă"
 
 msgid "Edit rule"
 msgstr "Editează regula"
@@ -2407,7 +2407,7 @@ msgid "Filter"
 msgstr "Filtru"
 
 msgid "Finnish"
-msgstr ""
+msgstr "Finlandeză"
 
 msgid "Firewall"
 msgstr "Firewall"
@@ -2567,12 +2567,15 @@ msgid "HAST (Highly Available Storage)"
 msgstr "HAST (Highly Available Storage)"
 
 msgid "HAST resource"
-msgstr ""
+msgstr "resursă HAST"
 
 msgid "HAST status of the configured resources"
 msgstr "Starea resurselor configurate HAST"
 
 msgid "HAST volume"
+msgstr "Volum HAST"
+
+msgid "HAST volume can be use with GPT/UFS only."
 msgstr ""
 
 msgid "HTTP Proxy"
@@ -3727,16 +3730,16 @@ msgid "No pool was found."
 msgstr "Nu a fost găsit niciun grup."
 
 msgid "Node A IP address"
-msgstr ""
+msgstr "Adresă IP nod A"
 
 msgid "Node A settings"
-msgstr ""
+msgstr "Setări nod A"
 
 msgid "Node B IP address"
-msgstr ""
+msgstr "Adresă IP nod B"
 
 msgid "Node B settings"
-msgstr ""
+msgstr "Setări nod B"
 
 msgid "Node Base"
 msgstr "Nod de Bază"
@@ -4041,7 +4044,7 @@ msgstr "Calea de partajat"
 
 #, php-format
 msgid "Path to the local device. (e.g. %s)"
-msgstr ""
+msgstr "Calea către dispozitivul local (ex. %s)."
 
 msgid "Peer Secret"
 msgstr "Secret grup"
@@ -4436,13 +4439,13 @@ msgid "Resolve IP addresses to hostnames"
 msgstr "Conversie adresă IP în Nume Sistem"
 
 msgid "Resource"
-msgstr ""
+msgstr "Resursă"
 
 msgid "Resource name"
-msgstr ""
+msgstr "Nume resursă"
 
 msgid "Resources"
-msgstr ""
+msgstr "Resurse"
 
 msgid "Restore configuration"
 msgstr "Restaurare configuraţie"
@@ -4464,6 +4467,9 @@ msgstr "Cautare DNS inversă"
 
 msgid "Reverse direction"
 msgstr "Direcţie inversă"
+
+msgid "Role"
+msgstr ""
 
 msgid "Romanian"
 msgstr "Română"
@@ -5069,6 +5075,12 @@ msgstr "Utilizare swap"
 msgid "Swedish"
 msgstr "Suedeză"
 
+msgid "Switch VIP to BACKUP"
+msgstr ""
+
+msgid "Switch VIP to MASTER"
+msgstr ""
+
 msgid "Switch to"
 msgstr "Comutare la"
 
@@ -5137,7 +5149,7 @@ msgid "TCP port to bind the server to."
 msgstr "Port utilizat de server pentru legătură."
 
 msgid "TCP wrapper"
-msgstr ""
+msgstr "Wrapper TCP"
 
 msgid "TFTP"
 msgstr "TFTP"
@@ -6545,7 +6557,7 @@ msgid "Tuning"
 msgstr "Optimizări"
 
 msgid "Turkish"
-msgstr ""
+msgstr "Turcă"
 
 msgid "Turn access time on or off for this dataset."
 msgstr "Activare/dezactivare timp acces pentru acest set de date."

@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-22 02:11+0000\n"
-"PO-Revision-Date: 2012-11-21 14:56+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2012-11-24 09:19+0000\n"
+"PO-Revision-Date: 2012-11-22 07:00+0000\n"
+"Last-Translator: raul fernandez garcia <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-21 17:41+0000\n"
+"X-Launchpad-Export-Date: 2012-11-24 00:48+0000\n"
 "X-Generator: Launchpad (build 16293)\n"
 "X-Poedit-Country: SPAIN\n"
 "Language: \n"
@@ -406,7 +406,7 @@ msgid "Add portal group"
 msgstr "Añadir grupo portal"
 
 msgid "Add resource"
-msgstr ""
+msgstr "Añadir recurso"
 
 msgid "Add rule"
 msgstr "Añadir regla"
@@ -440,7 +440,7 @@ msgid "Address"
 msgstr "Dirección"
 
 msgid "Address of the remote hastd daemon. It must be a static IP address."
-msgstr ""
+msgstr "Dirección del demonio hastd remoto. Debe ser una IP estática."
 
 msgid "Administration password"
 msgstr "Contraseña del administrador"
@@ -1412,7 +1412,7 @@ msgid "Delete portal group"
 msgstr "Borrar grupo de portal"
 
 msgid "Delete resource"
-msgstr ""
+msgstr "Eliminar recurso"
 
 msgid "Delete rule"
 msgstr "Eliminar regla"
@@ -1724,7 +1724,7 @@ msgid "Do you really want to delete this portal group?"
 msgstr "¿Realmente desea eliminar este grupo del portal?"
 
 msgid "Do you really want to delete this resource?"
-msgstr ""
+msgstr "¿Seguro que desea eliminar este recurso?"
 
 msgid "Do you really want to delete this route?"
 msgstr "¿Realmente desea borrar esta ruta?"
@@ -1951,7 +1951,7 @@ msgid "Edit portal group"
 msgstr "Editar grupo de portal"
 
 msgid "Edit resource"
-msgstr ""
+msgstr "Editar recurso"
 
 msgid "Edit rule"
 msgstr "Editar regla"
@@ -2580,12 +2580,15 @@ msgid "HAST (Highly Available Storage)"
 msgstr "HAST (Highly Available Storage)"
 
 msgid "HAST resource"
-msgstr ""
+msgstr "Recurso HAST"
 
 msgid "HAST status of the configured resources"
 msgstr "Estado de los recursos HAST configurados"
 
 msgid "HAST volume"
+msgstr "Volumen HAST"
+
+msgid "HAST volume can be use with GPT/UFS only."
 msgstr ""
 
 msgid "HTTP Proxy"
@@ -3744,16 +3747,16 @@ msgid "No pool was found."
 msgstr "Ningun poll fue encontrado."
 
 msgid "Node A IP address"
-msgstr ""
+msgstr "Dirección Ip del nodo"
 
 msgid "Node A settings"
-msgstr ""
+msgstr "Propiedades del nodo"
 
 msgid "Node B IP address"
-msgstr ""
+msgstr "Dirección IP del nodo \"B\""
 
 msgid "Node B settings"
-msgstr ""
+msgstr "Opciones del nodo \"B\""
 
 msgid "Node Base"
 msgstr "Base de Nodo"
@@ -4060,7 +4063,7 @@ msgstr "Ruta a ser compartida."
 
 #, php-format
 msgid "Path to the local device. (e.g. %s)"
-msgstr ""
+msgstr "Ruta al dispositivo local. (Ej: %s)"
 
 msgid "Peer Secret"
 msgstr "Secreto del Peer"
@@ -4460,13 +4463,13 @@ msgid "Resolve IP addresses to hostnames"
 msgstr "Resolver direcciones IP a nombres de maquina"
 
 msgid "Resource"
-msgstr ""
+msgstr "Recurso"
 
 msgid "Resource name"
-msgstr ""
+msgstr "Nombre del recurso"
 
 msgid "Resources"
-msgstr ""
+msgstr "Recursos"
 
 msgid "Restore configuration"
 msgstr "Restaurar configuración"
@@ -4488,6 +4491,9 @@ msgstr "Búsqueda inversa de DNS"
 
 msgid "Reverse direction"
 msgstr "Dirección inversa"
+
+msgid "Role"
+msgstr ""
 
 msgid "Romanian"
 msgstr "Rumano"
@@ -5100,6 +5106,12 @@ msgstr "Uso del Swap"
 
 msgid "Swedish"
 msgstr "Sueco"
+
+msgid "Switch VIP to BACKUP"
+msgstr ""
+
+msgid "Switch VIP to MASTER"
+msgstr ""
 
 msgid "Switch to"
 msgstr "Cambiar a"
