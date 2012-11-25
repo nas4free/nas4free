@@ -67,18 +67,46 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	if (isset($_POST['switch_backup']) && $_POST['switch_backup']) {
+		// down all carp
 		foreach ($a_carp as $carp) {
-			system("/sbin/ifconfig {$carp['if']} state backup");
+			system("/sbin/ifconfig {$carp['if']} down");
 		}
-		sleep(20);
+		// waits for the primary disk to disappear
+		$retry = 60;
+		while ($retry > 0) {
+			$result = mwexec("pgrep -lf 'hastd: .* \(primary\)' > /dev/null 2>&1");
+			if ($result != 0)
+				break;
+			$retry--;
+			sleep(1);
+		}
+		if ($retry <= 0) {
+			write_log("error: still hasted primary exists!");
+		}
+		// up and set backup all carp
+		foreach ($a_carp as $carp) {
+			system("/sbin/ifconfig {$carp['if']} up state backup");
+		}
 		header("Location: services_hast.php");
 		exit;
 	}
 	if (isset($_POST['switch_master']) && $_POST['switch_master']) {
+		// up and set master all carp
 		foreach ($a_carp as $carp) {
-			system("/sbin/ifconfig {$carp['if']} state master");
+			system("/sbin/ifconfig {$carp['if']} up state master");
 		}
-		sleep(20);
+		// waits for the secondary disk to disappear
+		$retry = 60;
+		while ($retry > 0) {
+			$result = mwexec("pgrep -lf 'hastd: .* \(secondary\)' > /dev/null 2>&1");
+			if ($result != 0)
+				break;
+			$retry--;
+			sleep(1);
+		}
+		if ($retry <= 0) {
+			write_log("error: still hasted secondary exists!");
+		}
 		header("Location: services_hast.php");
 		exit;
 	}
