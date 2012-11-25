@@ -24,6 +24,9 @@ if [ -z "${resources}" ]; then
     exit 0
 fi
 
+# get carp interfaces
+carps=`/usr/local/bin/xml sel -t -m "//vinterfaces/carp" -v if -n -b /conf/config.xml`
+
 case "$1" in
     master)
 	logger -p $log -t $name "Switching to primary provider for ${resources}."
@@ -65,10 +68,23 @@ case "$1" in
 	# iSCSI service
 	/etc/rc.d/iscsi_target start
 
+	# make sure all carp is master
+	if [ -n "${carps}" ]; then
+		for if in ${carps}; do
+			/sbin/ifconfig ${if} up state master
+		done
+	fi
     ;;
 
     slave)
 	logger -p $log -t $name "Switching to secondary provider for ${resources}."
+
+	# make sure all carp is backup
+	if [ -n "${carps}" ]; then
+		for if in ${carps}; do
+			/sbin/ifconfig ${if} state backup
+		done
+	fi
 
 	# iSCSI service
 	/etc/rc.d/iscsi_target forcestop
