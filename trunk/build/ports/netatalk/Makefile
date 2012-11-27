@@ -1,7 +1,6 @@
 PORTNAME=		netatalk
-PORTVERSION=	2.2.3
-PORTREVISION= 1
-PORTEPOCH=	1
+PORTVERSION=	2.2.4
+PORTREVISION=	0
 CATEGORIES=		net print
 MASTER_SITES=	SF
 COMMENT=		File server for Mac OS X
@@ -44,14 +43,14 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/cnid_dbd/cnid_dbd ${NAS4FREE_ROOTFS}/usr/local/sbin
 
 	@${MKDIR} -v ${NAS4FREE_ROOTFS}/etc/uams
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_passwd.so ${NAS4FREE_ROOTFS}/etc/uams
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_dhx_pam.so ${NAS4FREE_ROOTFS}/etc/uams
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_dhx_passwd.so ${NAS4FREE_ROOTFS}/etc/uams
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_dhx2_pam.so ${NAS4FREE_ROOTFS}/etc/uams
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_dhx2_passwd.so ${NAS4FREE_ROOTFS}/etc/uams
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_guest.so ${NAS4FREE_ROOTFS}/etc/uams
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_randnum.so ${NAS4FREE_ROOTFS}/etc/uams
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_pam.so ${NAS4FREE_ROOTFS}/etc/uams
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_dhx_pam.so ${NAS4FREE_ROOTFS}/etc/uams
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_dhx2_pam.so ${NAS4FREE_ROOTFS}/etc/uams
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_passwd.so ${NAS4FREE_ROOTFS}/etc/uams
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_randnum.so ${NAS4FREE_ROOTFS}/etc/uam
 
 	@cd ${NAS4FREE_ROOTFS}/etc/uams && ${LN} -fsv uams_passwd.so uams_clrtxt.so && ${LN} -fsv uams_dhx_passwd.so uams_dhx.so && ${LN} -fsv uams_dhx2_passwd.so uams_dhx2.so
 
