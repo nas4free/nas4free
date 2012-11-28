@@ -82,14 +82,13 @@ if ($_POST) {
 					// Install configuration backup
 					if (config_install($_FILES['conffile']['tmp_name']) == 0) {
 						system_reboot();
-						$savemsg = sprintf(gettext("The configuration has been restored. The server is now rebooting."),
-							get_product_name());
+						$savemsg = sprintf(gettext("The configuration has been restored. The server is now rebooting."));
 					} else {
 						$errormsg = gettext("The configuration could not be restored.");
 					}
 				}
 			} else {
-				$errormsg = sprintf(gettext("The configuration could not be restored. %s"),
+				$errormsg = sprintf(gettext("The configuration could not be restored. No file was uploaded!"),
 					$g_file_upload_error[$_FILES['conffile']['error']]);
 			}
 		}
@@ -125,9 +124,9 @@ if ($_POST) {
 			    <tr>
 					<td width="22%" valign="baseline" class="vncell">&nbsp;</td>
 					<td width="78%" class="vtable">
-						<?php echo sprintf(gettext("Select the server configuration XML file and click the button below to restore the configuration."), get_product_name());?><br />
+						<?php echo sprintf(gettext("Select the server configuration XML file and click the button below to restore the configuration."));?><br />
 						<div id="remarks">
-							<?php html_remark("note", gettext("Note"), sprintf(gettext("%s will reboot after restoring the configuration."), get_product_name()));?>
+							<?php html_remark("note", gettext("Note"), sprintf(gettext("The server will reboot after restoring the configuration.")));?>
 						</div>
 						<div id="submit">
 						<input name="conffile" type="file" class="formfld" id="conffile" size="40" />
