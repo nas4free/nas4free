@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-24 20:27+0000\n"
-"PO-Revision-Date: 2012-11-21 17:10+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2012-11-28 10:10+0000\n"
+"PO-Revision-Date: 2012-11-25 17:19+0000\n"
+"Last-Translator: Loul <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-24 20:00+0000\n"
-"X-Generator: Launchpad (build 16293)\n"
+"X-Launchpad-Export-Date: 2012-11-28 09:42+0000\n"
+"X-Generator: Launchpad (build 16309)\n"
 "X-Poedit-Country: FRANCE\n"
 "Language: \n"
 "X-Poedit-Language: French\n"
@@ -284,7 +284,7 @@ msgid "AIO write size"
 msgstr "Taille en écriture AIO"
 
 msgid "ALL interfaces"
-msgstr ""
+msgstr "Toutes les interfaces"
 
 msgid "ARP Tables"
 msgstr "Tables ARP"
@@ -409,7 +409,7 @@ msgid "Add portal group"
 msgstr "Ajouter un groupe Portail"
 
 msgid "Add resource"
-msgstr ""
+msgstr "Ajouter une ressource"
 
 msgid "Add rule"
 msgstr "Ajouter une règle"
@@ -442,7 +442,7 @@ msgid "Address"
 msgstr "Adresse"
 
 msgid "Address of the remote hastd daemon. It must be a static IP address."
-msgstr ""
+msgstr "Adresse du daemon hastd distant. Doit être un adresse IP statique."
 
 msgid "Administration password"
 msgstr "Mot de passe administratif"
@@ -488,19 +488,12 @@ msgstr ""
 
 #, php-format
 msgid ""
-"After you click &quot;Save&quot;, you must reboot %s to make the changes "
-"take effect. You may also have to do one or more of the following steps "
-"before you can access your NAS again: <ul><li><span class='vexpl'>change the "
-"IP address of your computer</span></li><li><span class='vexpl'>access the "
-"webGUI with the new IP address</span></li></ul>"
+"After you click &quot;Save&quot;, you must reboot the server to make the "
+"changes take effect. You may also have to do one or more of the following "
+"steps before you can access your server again: <ul><li><span "
+"class='vexpl'>change the IP address of your server</span></li><li><span "
+"class='vexpl'>access the webGUI with the new IP address</span></li></ul>"
 msgstr ""
-"Après avoir cliqué sur &quot;Enregistrer&quot;, vous devez redémarrer %s "
-"afin de prendre en compte les changements. Vous devrez peut être effectuer "
-"les actions suivantes pour pouvoir vous reconnecter sur votre NAS: "
-"<ul><li><span class='vexpl'>vérifier que l'adresse IP de votre ordinateur "
-"soit dans le même réseau que la nouvelle adresse du NAS</span></li><li><span "
-"class='vexpl'>accéder à l'interface avec la nouvelle adresse "
-"IP</span></li></ul>"
 
 msgid "Aggregation protocol"
 msgstr "Protocole d'agrégation"
@@ -558,7 +551,7 @@ msgid "Allow new files to be created."
 msgstr "Autoriser la création de nouveaux fichiers."
 
 msgid "Allow trusted domains."
-msgstr ""
+msgstr "Autorise les domaines validés."
 
 msgid ""
 "Allows  certain  users and groups to have read/write access to a share. This "
@@ -782,10 +775,10 @@ msgid "Blank time"
 msgstr "Blank time moniteur"
 
 msgid "Blocksize"
-msgstr ""
+msgstr "Taille de bloc"
 
 msgid "Bridge"
-msgstr ""
+msgstr "Jonction"
 
 msgid "Browseable"
 msgstr "Navigable"
@@ -801,10 +794,10 @@ msgstr ""
 "Par défault, seuls les fichiers déjà existant peuvent être téléchargés."
 
 msgid "CARP"
-msgstr ""
+msgstr "CARP"
 
 msgid "CARP only"
-msgstr ""
+msgstr "CARP seulement"
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -861,7 +854,7 @@ msgid "CPU frequency"
 msgstr "Fréquence CPU"
 
 msgid "CPU frequency:"
-msgstr ""
+msgstr "Fréquence CPU"
 
 msgid "CPU load"
 msgstr "Charge CPU"
@@ -974,9 +967,8 @@ msgstr ""
 "puis choisissez un fichier image à charger.<br />Cliquez sur "
 "&quot;Charger&quot; pour lancer la mise à jour."
 
-msgid "Click this button to download the system configuration in XML format."
+msgid "Click this button to download the server configuration in XML format."
 msgstr ""
-"Cliquez sur ce bouton pour télécharger la configuration au format XML."
 
 msgid "Client"
 msgstr "Client"
@@ -1096,7 +1088,7 @@ msgid "Controller TCP Port"
 msgstr "Port TCP du contrôleur"
 
 msgid "Controls power consumption."
-msgstr ""
+msgstr "Contrôle la consommation de puissance."
 
 msgid "Controls the behavior of synchronous requests."
 msgstr "Contrôle le comportement des requêtes synchrones"
@@ -1244,18 +1236,12 @@ msgstr "Configuration DNS"
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. %s will reboot "
-"automatically after storing the new firmware. The configuration will be "
-"maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
+"DO NOT abort the firmware upgrade once it has started. The server will "
+"reboot automatically after storing the new firmware. The configuration will "
+"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
 "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
 "System configuration before doing a Firmware upgrade."
 msgstr ""
-"NE PAS arrêter la mise à jour du logiciel une fois qu'elle a commencé. %s va "
-"redémarrer automatiquement après avoir enregistré le nouveau logiciel. La "
-"configuration sera conservée.<br />Il vous faut un minimum de %d Mb de RAM "
-"pour effectuer la mise à jour du logiciel.<br />Il est fortement recommandé "
-"de faire une <a href='%s'>Sauvegarde</a> de la configuration du Système "
-"avant de lancer une mise à jour du logiciel."
 
 msgid "DVD"
 msgstr "DVD"
@@ -1425,7 +1411,7 @@ msgid "Delete portal group"
 msgstr "Supprimer un groupe Portail"
 
 msgid "Delete resource"
-msgstr ""
+msgstr "Supprimer la ressource"
 
 msgid "Delete rule"
 msgstr "Supprimer une règle"
@@ -1739,7 +1725,7 @@ msgid "Do you really want to delete this portal group?"
 msgstr "Voulez-vous vraiment supprimer ce groupe portail?"
 
 msgid "Do you really want to delete this resource?"
-msgstr ""
+msgstr "Voulez-vous vraiment supprimer cette ressource?"
 
 msgid "Do you really want to delete this route?"
 msgstr "Voulez-vous vraiment supprimer cette route?"
@@ -1886,7 +1872,7 @@ msgid "Dynamic DNS"
 msgstr "DNS Dynamique"
 
 msgid "Dynamic IP (DHCP) can not be used for HAST resources."
-msgstr ""
+msgstr "Les ressources HAST ne peuvent utiliser les IP dynamiques (DHCP)"
 
 msgid "EA support"
 msgstr "Support EA"
@@ -1967,7 +1953,7 @@ msgid "Edit portal group"
 msgstr "Modifier un groupe portail"
 
 msgid "Edit resource"
-msgstr ""
+msgstr "Éditer la ressource"
 
 msgid "Edit rule"
 msgstr "Editer une règle"
@@ -2003,7 +1989,7 @@ msgid "Email report"
 msgstr "Rapport par e-mail"
 
 msgid "Empty as default."
-msgstr ""
+msgstr "Vide par défaut"
 
 msgid "Enable"
 msgstr "Activer"
@@ -2157,7 +2143,7 @@ msgid "Enable web user interface."
 msgstr "Activer l'interface web utilisateur."
 
 msgid "Enable write cache mode."
-msgstr ""
+msgstr "Activer le mode cache en écriture."
 
 msgid "Enabled"
 msgstr "Activé"
@@ -2465,7 +2451,7 @@ msgid "Follow"
 msgstr "Suivre"
 
 msgid "Force use"
-msgstr ""
+msgstr "Forcer l'utilisation"
 
 msgid "Forced update period"
 msgstr "Période de mise à jour forcée"
@@ -2474,6 +2460,8 @@ msgid ""
 "Forces use of vdevs, even if they appear in use or specify different size. "
 "(This is not recommended.)"
 msgstr ""
+"Force l'utilisation des vdevs, même si ils apparaissent en cours "
+"d'utilisation ou d'une capacité différente. (non recommandé)"
 
 msgid "Format"
 msgstr "Formater"
@@ -2588,22 +2576,22 @@ msgid "Guest account"
 msgstr "Compte invité"
 
 msgid "HAST"
-msgstr ""
+msgstr "HAST"
 
 msgid "HAST (Highly Available Storage)"
-msgstr ""
+msgstr "HAST (Stockage à Haute Disponibilité)"
 
 msgid "HAST resource"
-msgstr ""
+msgstr "HAST ressource"
 
 msgid "HAST status of the configured resources"
-msgstr ""
+msgstr "HAST statuts des ressources configurées"
 
 msgid "HAST volume"
-msgstr ""
+msgstr "HAST volume"
 
 msgid "HAST volume can be use with GPT/UFS only."
-msgstr ""
+msgstr "HAST volume ne peut être utilisé qu'avec GPT/UFS"
 
 msgid "HTTP Proxy"
 msgstr "Proxy HTTP"
@@ -2791,6 +2779,8 @@ msgstr ""
 
 msgid "If allowed, a user of the trusted domains can access the share."
 msgstr ""
+"S'il est autorisé, un utilisateur des domaines validés peut accéder au "
+"partage."
 
 msgid ""
 "If default root is enabled, a chroot operation is performed immediately "
@@ -2864,13 +2854,10 @@ msgstr ""
 
 #, php-format
 msgid ""
-"If you click 'Yes', %s will be reset to factory defaults and will reboot "
-"immediately. The entire system configuration will be overwritten. The LAN IP "
-"address will be reset to %s and the password will be set to '%s'."
+"If you click 'Yes', The server will be reset to factory defaults and will "
+"reboot immediately. The entire system configuration will be overwritten. The "
+"LAN IP address will be reset to %s and the password will be set to '%s'."
 msgstr ""
-"Si vous cliquez sur 'Oui', %s sera reconfiguré avec ses paramètres par "
-"défaut et redémarrera immédiatement. La totalité de la configuration système "
-"sera écrasée. L'adresse IP LAN sera %s et le mot de passe '%s'."
 
 msgid ""
 "If you want to change the password for accessing the WebGUI, enter it here "
@@ -3024,6 +3011,8 @@ msgid ""
 "It can be changed from the client side by standard SCSI mode page at any "
 "time."
 msgstr ""
+"Peut être modifié n'importe quand côté client  par \"SCSI mode page\" "
+"standard."
 
 msgid "It cannot be used combining SMB2 and Anonymous."
 msgstr "On ne peut pas utiliser la combinaison SMB2 et Anonymous."
@@ -3089,7 +3078,7 @@ msgid "LAN net"
 msgstr "LAN net"
 
 msgid "LAN only"
-msgstr ""
+msgstr "LAN seulement"
 
 msgid "LCDproc"
 msgstr "LCDproc"
@@ -3198,10 +3187,10 @@ msgid "Link Aggregation and Failover"
 msgstr "Agrégation de lien et basculement"
 
 msgid "Link down action"
-msgstr ""
+msgstr "Stopper le lien"
 
 msgid "Link up action"
-msgstr ""
+msgstr "Démarrer le Lien"
 
 msgid "List"
 msgstr "Liste"
@@ -3444,7 +3433,7 @@ msgid "Maximum connections"
 msgstr "Maximum de connexions"
 
 msgid "Maximum frequency"
-msgstr ""
+msgstr "Fréquence maximum"
 
 msgid "Maximum idle time in seconds."
 msgstr "Temps d'inoccupation maximum en secondes."
@@ -3516,7 +3505,7 @@ msgid "Minimum free space"
 msgstr "Espace disque minimum"
 
 msgid "Minimum frequency"
-msgstr ""
+msgstr "Fréquence minimum"
 
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Performance minimale, niveau acoustique minimal"
@@ -3681,7 +3670,7 @@ msgid "No"
 msgstr "Non"
 
 msgid "No DNS setting found."
-msgstr ""
+msgstr "Pas de configuration DNS trouvée."
 
 msgid "No RSYNC Client configured"
 msgstr "Aucun client RSYNC configuré"
@@ -3697,13 +3686,15 @@ msgstr ""
 "href='%s'>Groupe Auth</a>."
 
 msgid "No configured CARP interfaces."
-msgstr ""
+msgstr "Pas d'interfaces CARP configurées."
 
 #, php-format
 msgid ""
 "No configured CARP interfaces. Please add new <a href='%s'>CARP "
 "interface</a> first."
 msgstr ""
+"Pas d'interfaces CARP configurées. Ajoutez d'abord la nouvelle <a "
+"href='%s'>interface CARP</a>"
 
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
@@ -3767,13 +3758,13 @@ msgid "No pool was found."
 msgstr "Aucun pool trouvé."
 
 msgid "Node A IP address"
-msgstr ""
+msgstr "Node A adresse ip"
 
 msgid "Node A settings"
-msgstr ""
+msgstr "Node A configuration"
 
 msgid "Node B IP address"
-msgstr ""
+msgstr "Node B adresse IP"
 
 msgid "Node B settings"
 msgstr ""
@@ -3873,7 +3864,7 @@ msgid "ONLINE"
 msgstr "CONNECTE"
 
 msgid "OPT only"
-msgstr ""
+msgstr "OPT seulement"
 
 msgid "Object name"
 msgstr "Nom de l'objet"
@@ -3914,14 +3905,6 @@ msgstr ""
 msgid "Only allow authenticated users. Anonymous logins are prohibited."
 msgstr ""
 "Autoriser les utilisateurs authentifiés seulement. Accès anonymes interdit."
-
-#, php-format
-msgid ""
-"Open a %s configuration XML file and click the button below to restore the "
-"configuration."
-msgstr ""
-"Ouvrez un fichier de configuration XML %s et cliquez sur le bouton ci-"
-"dessous pour restaurer la configuration."
 
 msgid "Option"
 msgstr "Option"
@@ -4054,11 +4037,13 @@ msgid "Password of domain administrator account."
 msgstr "Mot de passe du compte de l'administrateur du domaine."
 
 msgid "Password server"
-msgstr ""
+msgstr "Serveur de mot de passe"
 
 msgid ""
 "Password server name or IP address (e.g. Active Directory domain controller)."
 msgstr ""
+"Serveur de mot de passe ou son adresse IP (Ex.: contrôleur de domaine Active "
+"Directory)"
 
 msgid "Password suffix"
 msgstr "Suffixe mot de passe"
@@ -4083,7 +4068,7 @@ msgstr "Chemin à partager."
 
 #, php-format
 msgid "Path to the local device. (e.g. %s)"
-msgstr ""
+msgstr "Chemin vers l'unité locale. (Ex.: %s)"
 
 msgid "Peer Secret"
 msgstr "Secret du pair"
@@ -4205,7 +4190,7 @@ msgid "Power Daemon"
 msgstr "Gestion d'énergie"
 
 msgid "Power Mode"
-msgstr ""
+msgstr "Mode de gestion d'alimentation"
 
 msgid "Power mode"
 msgstr "Mode d'alimentation"
@@ -4236,7 +4221,7 @@ msgid "Preserve permissions"
 msgstr "Préserver les permissions"
 
 msgid "Primary"
-msgstr ""
+msgstr "Primaire"
 
 msgid "Primary Group"
 msgstr "Groupe primaire"
@@ -4488,7 +4473,7 @@ msgid "Resource"
 msgstr ""
 
 msgid "Resource name"
-msgstr ""
+msgstr "Nom de la ressource"
 
 msgid "Resources"
 msgstr ""
@@ -4683,7 +4668,7 @@ msgid "Scheduled shutdown"
 msgstr "Arrêt programmé"
 
 msgid "Secondary"
-msgstr ""
+msgstr "Secondaire"
 
 msgid "Secret"
 msgstr "Secret"
@@ -4708,6 +4693,12 @@ msgstr "Sélectionner le paquet FreeBSD à installer"
 
 msgid "Select the location closest to you."
 msgstr "Sélectionnez votre fuseau horaire."
+
+#, php-format
+msgid ""
+"Select the server configuration XML file and click the button below to "
+"restore the configuration."
+msgstr ""
 
 msgid "Select your read balance algorithm."
 msgstr "Sélectionnez un algorithme d'équilibrage de lecture."
@@ -4802,12 +4793,8 @@ msgstr "Réglez la vitesse de défilement du titre entre 0-10 (par défaut 10)."
 msgid ""
 "Set what user the service will run as (www by default). <br><b><font "
 "color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
-"security reasons, use it on your own risk!.</b></br>"
+"security reasons, use it on your own risk!</b></br>"
 msgstr ""
-"Défini le compte utilisateur sous lequel s'exécutera le service (www par "
-"défaut). <br><b><font color='red'>NOTE</font>: Exécuter en tant que root "
-"<u>n'est pas recommandé</u> pour des raisons de sécurité; à vos risques et "
-"périls!</b></br>"
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
@@ -5309,6 +5296,8 @@ msgstr ""
 
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
+"Les volumes HAST resteront inaccessible tant que le node HAST ne sera pas "
+"Primaire."
 
 msgid "The IP address that this hostname represents."
 msgstr "L'adresse IP que ce nom d'hôte représente."
@@ -5525,8 +5514,8 @@ msgstr ""
 "afin qu'ils prennent effet."
 
 #, php-format
-msgid "The configuration has been restored. %s is now rebooting."
-msgstr "La configuration a été restaurée. %s est en cours de redémarrage."
+msgid "The configuration has been restored. The server is now rebooting."
+msgstr ""
 
 msgid ""
 "The confimed password does not match. Please ensure the passwords match "
@@ -5634,8 +5623,9 @@ msgid "The extent name already exists."
 msgstr "Le nom d'extension existe déjà."
 
 #, php-format
-msgid "The firmware is now being installed. %s will reboot automatically."
-msgstr "Mise à jour en cours. %s redémarrera automatiquement."
+msgid ""
+"The firmware is now being installed. The server will reboot automatically."
+msgstr ""
 
 msgid "The following input errors were detected"
 msgstr "Les erreurs suivantes ont été détectées"
@@ -5752,6 +5742,9 @@ msgid ""
 "specify the size use the following human-readable suffixes (for example, "
 "'k', 'KB', 'M', 'Gb', etc.)."
 msgstr ""
+"Espace minimum garanti pour un dataset (normalement vide).  Pour en préciser "
+"la  taille utiliser les abréviations suivantes en suffixe (EX.:  'k', 'KB', "
+"'M', 'Gb', etc...)."
 
 msgid ""
 "The minimum port to allocate for PASV style data connections (0 = use any "
@@ -5881,6 +5874,11 @@ msgstr "Le numéro de règle détermine l'ordre de la règle."
 msgid "The serial or USB port where your UPS is connected."
 msgstr "Le port série ou le port USB auquel est connecté votre UPS."
 
+msgid ""
+"The server has been reset to factory defaults and is now rebooting. This may "
+"take one minute."
+msgstr ""
+
 msgid "The share name is already used."
 msgstr "Le nom de partage est déjà utilisé."
 
@@ -5888,7 +5886,7 @@ msgid "The size of the swap file in MB."
 msgstr "La taille du fichier de pagination en MB."
 
 msgid "The space-separated list of URIs for the LDAP server."
-msgstr ""
+msgstr "Liste des URL pour les serveurs LDAP séparées par un espace."
 
 #, php-format
 msgid "The storage area mapped to LUN%d."
@@ -5896,13 +5894,6 @@ msgstr "La zone de stockage attachée à LUN%d."
 
 msgid "The subject of the email."
 msgstr "Sujet de l'e-mail."
-
-msgid ""
-"The system has been reset to factory defaults and is now rebooting. This may "
-"take one minute."
-msgstr ""
-"Le système a été réinitialisé aux paramètres d'usine et redémarre "
-"maintenant. Cela devrait prendre une minute."
 
 msgid "The system is halting now. This may take one minute."
 msgstr ""
@@ -5980,6 +5971,8 @@ msgid ""
 "There is wrong ID in the disk of config. Please remove the disk and re-add "
 "it or use 'clear and import'."
 msgstr ""
+"Il y a une ID fausse dans le disque de config. Retirer le disque puis le "
+"remettre ou utiliser \"effacer et. importer\""
 
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "Un volume RAID1 doit être composé de 2 disques."
@@ -6621,7 +6614,7 @@ msgid "Trivial File Transfer Protocol"
 msgstr "Trivial File Transfer Protocol (TFTP)"
 
 msgid "Trusted domains"
-msgstr ""
+msgstr "Domaines valides"
 
 msgid "Try to force import."
 msgstr "Essayer de forcer l'import."
@@ -6761,11 +6754,11 @@ msgid "Upload bandwidth"
 msgstr "Bande passante en upload"
 
 msgid "Upload directory"
-msgstr ""
+msgstr "Répertoire distant de téléchargement"
 
 #, php-format
 msgid "Upload directory of the webserver. The default is %s."
-msgstr ""
+msgstr "Répertoire distant de téléchargement du serveur WEB. %s par défaut."
 
 msgid "Uppercases names in both directions"
 msgstr "Noms en majuscules dans les deux directions"
@@ -6910,10 +6903,10 @@ msgid "Version"
 msgstr "Version"
 
 msgid "Virtual Host ID"
-msgstr ""
+msgstr "ID de l'hôte virtuel"
 
 msgid "Virtual IP address"
-msgstr ""
+msgstr "Adresse IP virtuelle"
 
 msgid "Virtual device"
 msgstr "Périphérique virtuel"
@@ -7012,6 +7005,8 @@ msgid ""
 "When HAST is enabled, the local devices, the local services and the "
 "additional packages which do not support HAST volume cannot be used."
 msgstr ""
+"Si HAST est actif, les unités locales, les services locaux et les paquets "
+"additionnels ne supportant pas le volume HAST ne pourront pas être utilisés."
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
@@ -7056,7 +7051,7 @@ msgid "Write"
 msgstr "Écriture"
 
 msgid "Write Cache"
-msgstr ""
+msgstr "Cache d'écriture"
 
 msgid "Write only"
 msgstr "Écriture seule"
@@ -7190,10 +7185,10 @@ msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
 
 msgid "adaptive (low power consumption)"
-msgstr ""
+msgstr "adaptif (faible consommation)"
 
 msgid "all disks are imported."
-msgstr ""
+msgstr "tous les disques sont importés."
 
 msgid "all encrypted disks are imported."
 msgstr "tous les disques chiffrés ont été importés."
@@ -7236,7 +7231,7 @@ msgid "get target info failed."
 msgstr "Echec de récupération d'information sur la cible."
 
 msgid "hiadaptive (high performance)"
-msgstr ""
+msgstr "hiadaptif (haute performance)"
 
 msgid "hour(s)"
 msgstr "heure(s)"
@@ -7267,10 +7262,10 @@ msgid "load/unload failed."
 msgstr "Echec du chargement/déchargement."
 
 msgid "maximum (highest performance)"
-msgstr ""
+msgstr "maximum (très haute performance)"
 
 msgid "minimum (power saving)"
-msgstr ""
+msgstr "minimum (économie)"
 
 msgid "minute(s)"
 msgstr "minutes(s)"
@@ -7291,7 +7286,7 @@ msgid "n/a"
 msgstr "n/a"
 
 msgid "no new disk found."
-msgstr ""
+msgstr "pas de nouveau disque trouvé."
 
 msgid "no new encrypted disk found."
 msgstr "aucun nouveau disque chiffré n'a été trouvé."
@@ -7355,3 +7350,81 @@ msgstr "démontage"
 
 msgid "upriv"
 msgstr "upriv"
+
+#, php-format
+#~ msgid ""
+#~ "After you click &quot;Save&quot;, you must reboot %s to make the changes "
+#~ "take effect. You may also have to do one or more of the following steps "
+#~ "before you can access your NAS again: <ul><li><span class='vexpl'>change the "
+#~ "IP address of your computer</span></li><li><span class='vexpl'>access the "
+#~ "webGUI with the new IP address</span></li></ul>"
+#~ msgstr ""
+#~ "Après avoir cliqué sur &quot;Enregistrer&quot;, vous devez redémarrer %s "
+#~ "afin de prendre en compte les changements. Vous devrez peut être effectuer "
+#~ "les actions suivantes pour pouvoir vous reconnecter sur votre NAS: "
+#~ "<ul><li><span class='vexpl'>vérifier que l'adresse IP de votre ordinateur "
+#~ "soit dans le même réseau que la nouvelle adresse du NAS</span></li><li><span "
+#~ "class='vexpl'>accéder à l'interface avec la nouvelle adresse "
+#~ "IP</span></li></ul>"
+
+#~ msgid "Click this button to download the system configuration in XML format."
+#~ msgstr ""
+#~ "Cliquez sur ce bouton pour télécharger la configuration au format XML."
+
+#, php-format
+#~ msgid ""
+#~ "DO NOT abort the firmware upgrade once it has started. %s will reboot "
+#~ "automatically after storing the new firmware. The configuration will be "
+#~ "maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
+#~ "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
+#~ "System configuration before doing a Firmware upgrade."
+#~ msgstr ""
+#~ "NE PAS arrêter la mise à jour du logiciel une fois qu'elle a commencé. %s va "
+#~ "redémarrer automatiquement après avoir enregistré le nouveau logiciel. La "
+#~ "configuration sera conservée.<br />Il vous faut un minimum de %d Mb de RAM "
+#~ "pour effectuer la mise à jour du logiciel.<br />Il est fortement recommandé "
+#~ "de faire une <a href='%s'>Sauvegarde</a> de la configuration du Système "
+#~ "avant de lancer une mise à jour du logiciel."
+
+#, php-format
+#~ msgid ""
+#~ "If you click 'Yes', %s will be reset to factory defaults and will reboot "
+#~ "immediately. The entire system configuration will be overwritten. The LAN IP "
+#~ "address will be reset to %s and the password will be set to '%s'."
+#~ msgstr ""
+#~ "Si vous cliquez sur 'Oui', %s sera reconfiguré avec ses paramètres par "
+#~ "défaut et redémarrera immédiatement. La totalité de la configuration système "
+#~ "sera écrasée. L'adresse IP LAN sera %s et le mot de passe '%s'."
+
+#, php-format
+#~ msgid ""
+#~ "Open a %s configuration XML file and click the button below to restore the "
+#~ "configuration."
+#~ msgstr ""
+#~ "Ouvrez un fichier de configuration XML %s et cliquez sur le bouton ci-"
+#~ "dessous pour restaurer la configuration."
+
+#, php-format
+#~ msgid "The configuration has been restored. %s is now rebooting."
+#~ msgstr "La configuration a été restaurée. %s est en cours de redémarrage."
+
+#, php-format
+#~ msgid "The firmware is now being installed. %s will reboot automatically."
+#~ msgstr "Mise à jour en cours. %s redémarrera automatiquement."
+
+#~ msgid ""
+#~ "The system has been reset to factory defaults and is now rebooting. This may "
+#~ "take one minute."
+#~ msgstr ""
+#~ "Le système a été réinitialisé aux paramètres d'usine et redémarre "
+#~ "maintenant. Cela devrait prendre une minute."
+
+#~ msgid ""
+#~ "Set what user the service will run as (www by default). <br><b><font "
+#~ "color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
+#~ "security reasons, use it on your own risk!.</b></br>"
+#~ msgstr ""
+#~ "Défini le compte utilisateur sous lequel s'exécutera le service (www par "
+#~ "défaut). <br><b><font color='red'>NOTE</font>: Exécuter en tant que root "
+#~ "<u>n'est pas recommandé</u> pour des raisons de sécurité; à vos risques et "
+#~ "périls!</b></br>"

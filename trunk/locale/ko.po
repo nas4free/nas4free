@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-24 20:27+0000\n"
+"POT-Creation-Date: 2012-11-28 10:10+0000\n"
 "PO-Revision-Date: 2012-03-17 08:48+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-24 20:01+0000\n"
-"X-Generator: Launchpad (build 16293)\n"
+"X-Launchpad-Export-Date: 2012-11-28 09:43+0000\n"
+"X-Generator: Launchpad (build 16309)\n"
 "X-Poedit-Country: KOREA\n"
 "Language: \n"
 "X-Poedit-Language: Korean\n"
@@ -457,16 +457,12 @@ msgstr ""
 
 #, php-format
 msgid ""
-"After you click &quot;Save&quot;, you must reboot %s to make the changes "
-"take effect. You may also have to do one or more of the following steps "
-"before you can access your NAS again: <ul><li><span class='vexpl'>change the "
-"IP address of your computer</span></li><li><span class='vexpl'>access the "
-"webGUI with the new IP address</span></li></ul>"
+"After you click &quot;Save&quot;, you must reboot the server to make the "
+"changes take effect. You may also have to do one or more of the following "
+"steps before you can access your server again: <ul><li><span "
+"class='vexpl'>change the IP address of your server</span></li><li><span "
+"class='vexpl'>access the webGUI with the new IP address</span></li></ul>"
 msgstr ""
-"&quot;저장&quot; 버튼을 클릭 한 후 변경 내용을 반영하기 위해 %s을(를) 리붓 해야 합니다. NAS를 다시 접근하기 위해서는 "
-"아래의 과정 중 하나 이상의 작업을 해야 할 수도 있습니다: <ul><li><span class='vexpl'>당신의 컴퓨터의 IP "
-"주소를 변경</span></li><li><span class='vexpl'>새 IP 주소로 webGUI를 "
-"접근</span></li></ul>"
 
 msgid "Aggregation protocol"
 msgstr "통합 프로토콜"
@@ -913,8 +909,8 @@ msgstr ""
 "아래의 &quot;펌웨어 업로드 활성화&quot;를 클릭하고 업로드 할 이미지 파일을 선택합니다.<br />&quot;펌웨어 "
 "업그레이드&quot;를 클릭하여 업그레이드 과정을 시작하십시오."
 
-msgid "Click this button to download the system configuration in XML format."
-msgstr "XML 포맷으로 시스템 설정을 다운로드 하려면 이 버튼을 클릭하십시오."
+msgid "Click this button to download the server configuration in XML format."
+msgstr ""
 
 msgid "Client"
 msgstr "클라이언트"
@@ -1158,15 +1154,12 @@ msgstr "DNS 설정"
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. %s will reboot "
-"automatically after storing the new firmware. The configuration will be "
-"maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
+"DO NOT abort the firmware upgrade once it has started. The server will "
+"reboot automatically after storing the new firmware. The configuration will "
+"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
 "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
 "System configuration before doing a Firmware upgrade."
 msgstr ""
-"펌웨어 업그레이드가 일단 시작되면 취소하지 마십시오. 새 펌웨어를 저장한 후에 %s은(는) 리붓 할 것입니다. 설정 내용들은 그대로 "
-"유지될 것입니다.<br />펌웨어 업그레이드를 수행하려면 최소 %d Mb의 램이 필요합니다.<br />펌웨어 업그레이드를 하기 전에 설정 "
-"파일을 <a href='%s'>백업</a> 하는 것을 강력히 권장합니다."
 
 msgid "DVD"
 msgstr "DVD"
@@ -2697,12 +2690,10 @@ msgstr ""
 
 #, php-format
 msgid ""
-"If you click 'Yes', %s will be reset to factory defaults and will reboot "
-"immediately. The entire system configuration will be overwritten. The LAN IP "
-"address will be reset to %s and the password will be set to '%s'."
+"If you click 'Yes', The server will be reset to factory defaults and will "
+"reboot immediately. The entire system configuration will be overwritten. The "
+"LAN IP address will be reset to %s and the password will be set to '%s'."
 msgstr ""
-"'예'를 클릭하면 %s은(는) 공장 기본 값으로 설정된 후 바로 리붓 하게 됩니다. 전체 시스템 설정 값을 덮어쓸 것입니다. 랜 IP "
-"주소는 %s로(으로) 설정되고 비밀번호는 '%s'로(으로) 설정될 것입니다."
 
 msgid ""
 "If you want to change the password for accessing the WebGUI, enter it here "
@@ -3667,12 +3658,6 @@ msgstr "익명 사용자만 허용. 이것은 실제 계정에 대한 원격 FTP
 msgid "Only allow authenticated users. Anonymous logins are prohibited."
 msgstr "인증된 사용자만 허용. 익명 로그인이 금지됩니다."
 
-#, php-format
-msgid ""
-"Open a %s configuration XML file and click the button below to restore the "
-"configuration."
-msgstr "설정을 복원하려면 %s 설정 XML 파일을 열고 아래의 버튼을 클릭 하십시오."
-
 msgid "Option"
 msgstr "옵션"
 
@@ -4424,6 +4409,12 @@ msgstr "설치할 FreeBSD 패키지를 선택하십시오."
 msgid "Select the location closest to you."
 msgstr "가장 가까운 위치를 선택하십시오."
 
+#, php-format
+msgid ""
+"Select the server configuration XML file and click the button below to "
+"restore the configuration."
+msgstr ""
+
 msgid "Select your read balance algorithm."
 msgstr "읽기 밸런스 알고리즘을 선택하십시오."
 
@@ -4514,7 +4505,7 @@ msgstr ""
 msgid ""
 "Set what user the service will run as (www by default). <br><b><font "
 "color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
-"security reasons, use it on your own risk!.</b></br>"
+"security reasons, use it on your own risk!</b></br>"
 msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
@@ -5174,8 +5165,8 @@ msgid ""
 msgstr "설정 내용이 변경되었습니다.<br />설정 내용이 효과를 발휘하려면 변경 내용을 적용해야 합니다."
 
 #, php-format
-msgid "The configuration has been restored. %s is now rebooting."
-msgstr "설정이 복원되었습니다. 이제 %s이(가) 리붓 합니다."
+msgid "The configuration has been restored. The server is now rebooting."
+msgstr ""
 
 msgid ""
 "The confimed password does not match. Please ensure the passwords match "
@@ -5264,8 +5255,9 @@ msgid "The extent name already exists."
 msgstr "범위 명이 이미 존재합니다."
 
 #, php-format
-msgid "The firmware is now being installed. %s will reboot automatically."
-msgstr "현재 펌웨어가 설치 중입니다. %s은(는) 자동으로 리붓 할 것입니다."
+msgid ""
+"The firmware is now being installed. The server will reboot automatically."
+msgstr ""
 
 msgid "The following input errors were detected"
 msgstr "아래의 입력 에러가 탐지되었습니다"
@@ -5473,6 +5465,11 @@ msgstr "규칙 번호가 규칙의 순서를 결정합니다."
 msgid "The serial or USB port where your UPS is connected."
 msgstr "당신의 UPS가 연결된 직렬 포트나 USB 포트."
 
+msgid ""
+"The server has been reset to factory defaults and is now rebooting. This may "
+"take one minute."
+msgstr ""
+
 msgid "The share name is already used."
 msgstr "이 공유 명이 이미 이용되고 있습니다."
 
@@ -5488,11 +5485,6 @@ msgstr "저장 영역이 LUN%d로(으로) mapping 되었습니다."
 
 msgid "The subject of the email."
 msgstr "전자우편의 제목."
-
-msgid ""
-"The system has been reset to factory defaults and is now rebooting. This may "
-"take one minute."
-msgstr "시스템이 공장 기본 값으로 설정되었으며 이제 리붓을 합니다. 이것은 1분 가량 걸릴 것입니다."
 
 msgid "The system is halting now. This may take one minute."
 msgstr "시스템이 이제 정지합니다. 1분 정도 걸릴 것입니다."
@@ -6804,3 +6796,59 @@ msgstr "마운트 해제"
 
 msgid "upriv"
 msgstr "upriv"
+
+#, php-format
+#~ msgid ""
+#~ "After you click &quot;Save&quot;, you must reboot %s to make the changes "
+#~ "take effect. You may also have to do one or more of the following steps "
+#~ "before you can access your NAS again: <ul><li><span class='vexpl'>change the "
+#~ "IP address of your computer</span></li><li><span class='vexpl'>access the "
+#~ "webGUI with the new IP address</span></li></ul>"
+#~ msgstr ""
+#~ "&quot;저장&quot; 버튼을 클릭 한 후 변경 내용을 반영하기 위해 %s을(를) 리붓 해야 합니다. NAS를 다시 접근하기 위해서는 "
+#~ "아래의 과정 중 하나 이상의 작업을 해야 할 수도 있습니다: <ul><li><span class='vexpl'>당신의 컴퓨터의 IP "
+#~ "주소를 변경</span></li><li><span class='vexpl'>새 IP 주소로 webGUI를 "
+#~ "접근</span></li></ul>"
+
+#~ msgid "Click this button to download the system configuration in XML format."
+#~ msgstr "XML 포맷으로 시스템 설정을 다운로드 하려면 이 버튼을 클릭하십시오."
+
+#, php-format
+#~ msgid ""
+#~ "DO NOT abort the firmware upgrade once it has started. %s will reboot "
+#~ "automatically after storing the new firmware. The configuration will be "
+#~ "maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
+#~ "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
+#~ "System configuration before doing a Firmware upgrade."
+#~ msgstr ""
+#~ "펌웨어 업그레이드가 일단 시작되면 취소하지 마십시오. 새 펌웨어를 저장한 후에 %s은(는) 리붓 할 것입니다. 설정 내용들은 그대로 "
+#~ "유지될 것입니다.<br />펌웨어 업그레이드를 수행하려면 최소 %d Mb의 램이 필요합니다.<br />펌웨어 업그레이드를 하기 전에 설정 "
+#~ "파일을 <a href='%s'>백업</a> 하는 것을 강력히 권장합니다."
+
+#, php-format
+#~ msgid ""
+#~ "If you click 'Yes', %s will be reset to factory defaults and will reboot "
+#~ "immediately. The entire system configuration will be overwritten. The LAN IP "
+#~ "address will be reset to %s and the password will be set to '%s'."
+#~ msgstr ""
+#~ "'예'를 클릭하면 %s은(는) 공장 기본 값으로 설정된 후 바로 리붓 하게 됩니다. 전체 시스템 설정 값을 덮어쓸 것입니다. 랜 IP "
+#~ "주소는 %s로(으로) 설정되고 비밀번호는 '%s'로(으로) 설정될 것입니다."
+
+#, php-format
+#~ msgid ""
+#~ "Open a %s configuration XML file and click the button below to restore the "
+#~ "configuration."
+#~ msgstr "설정을 복원하려면 %s 설정 XML 파일을 열고 아래의 버튼을 클릭 하십시오."
+
+#, php-format
+#~ msgid "The configuration has been restored. %s is now rebooting."
+#~ msgstr "설정이 복원되었습니다. 이제 %s이(가) 리붓 합니다."
+
+#, php-format
+#~ msgid "The firmware is now being installed. %s will reboot automatically."
+#~ msgstr "현재 펌웨어가 설치 중입니다. %s은(는) 자동으로 리붓 할 것입니다."
+
+#~ msgid ""
+#~ "The system has been reset to factory defaults and is now rebooting. This may "
+#~ "take one minute."
+#~ msgstr "시스템이 공장 기본 값으로 설정되었으며 이제 리붓을 합니다. 이것은 1분 가량 걸릴 것입니다."
