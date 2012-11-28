@@ -82,7 +82,7 @@ if ($_POST) {
 					// Install configuration backup
 					if (config_install($_FILES['conffile']['tmp_name']) == 0) {
 						system_reboot();
-						$savemsg = sprintf(gettext("The configuration has been restored. %s is now rebooting."),
+						$savemsg = sprintf(gettext("The configuration has been restored. The server is now rebooting."),
 							get_product_name());
 					} else {
 						$errormsg = gettext("The configuration could not be restored.");
@@ -110,7 +110,7 @@ if ($_POST) {
 			    <tr>
 					<td width="22%" valign="baseline" class="vncell">&nbsp;</td>
 					<td width="78%" class="vtable">
-						<?=gettext("Click this button to download the system configuration in XML format.");?><br />
+						<?=gettext("Click this button to download the server configuration in XML format.");?><br />
 						<div id="submit">
 							<input name="Submit" type="submit" class="formbtn" id="download" value="<?=gettext("Download configuration");?>" />
 						</div>
@@ -125,7 +125,7 @@ if ($_POST) {
 			    <tr>
 					<td width="22%" valign="baseline" class="vncell">&nbsp;</td>
 					<td width="78%" class="vtable">
-						<?php echo sprintf(gettext("Open a %s configuration XML file and click the button below to restore the configuration."), get_product_name());?><br />
+						<?php echo sprintf(gettext("Select the server configuration XML file and click the button below to restore the configuration."), get_product_name());?><br />
 						<div id="remarks">
 							<?php html_remark("note", gettext("Note"), sprintf(gettext("%s will reboot after restoring the configuration."), get_product_name()));?>
 						</div>
