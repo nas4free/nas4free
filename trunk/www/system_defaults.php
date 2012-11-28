@@ -58,7 +58,7 @@ if ($_POST) {
 	    <td class="tabcont">
 				<p>
 					<strong>
-						<?=sprintf(gettext("If you click 'Yes', The server will be reset to factory defaults and will reboot immediately. The entire system configuration will be overwritten. The LAN IP address will be reset to %s and the password will be set to '%s'."), get_product_name(), $g['default_ip'], $g['default_passwd']);?><br /><br />
+						<?=sprintf(gettext("If you click 'Yes', The server will be reset to factory defaults and will reboot immediately. The entire system configuration will be overwritten. The LAN IP address will be reset to %s and the password will be set to '%s'."), $g['default_ip'], $g['default_passwd']);?><br /><br />
 						<?=gettext("Are you sure you want to proceed?");?>
 					</strong>
 				</p>
