@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
-"POT-Creation-Date: 2012-11-24 20:27+0000\n"
+"POT-Creation-Date: 2012-11-28 10:10+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -390,7 +390,7 @@ msgid "After you click &quot;Save&quot;, you may also have to do one or more of 
 msgstr ""
 
 #, php-format
-msgid "After you click &quot;Save&quot;, you must reboot %s to make the changes take effect. You may also have to do one or more of the following steps before you can access your NAS again: <ul><li><span class='vexpl'>change the IP address of your computer</span></li><li><span class='vexpl'>access the webGUI with the new IP address</span></li></ul>"
+msgid "After you click &quot;Save&quot;, you must reboot the server to make the changes take effect. You may also have to do one or more of the following steps before you can access your server again: <ul><li><span class='vexpl'>change the IP address of your server</span></li><li><span class='vexpl'>access the webGUI with the new IP address</span></li></ul>"
 msgstr ""
 
 msgid "Aggregation protocol"
@@ -811,7 +811,7 @@ msgstr ""
 msgid "Click &quot;Enable firmware upload&quot; below, then choose the image file to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade process."
 msgstr ""
 
-msgid "Click this button to download the system configuration in XML format."
+msgid "Click this button to download the server configuration in XML format."
 msgstr ""
 
 msgid "Client"
@@ -1024,7 +1024,7 @@ msgid "DNS settings"
 msgstr ""
 
 #, php-format
-msgid "DO NOT abort the firmware upgrade once it has started. %s will reboot automatically after storing the new firmware. The configuration will be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the System configuration before doing a Firmware upgrade."
+msgid "DO NOT abort the firmware upgrade once it has started. The server will reboot automatically after storing the new firmware. The configuration will be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the System configuration before doing a Firmware upgrade."
 msgstr ""
 
 msgid "DVD"
@@ -2446,7 +2446,7 @@ msgid "If this property is enabled, the snapshots are displayed into .zfs direct
 msgstr ""
 
 #, php-format
-msgid "If you click 'Yes', %s will be reset to factory defaults and will reboot immediately. The entire system configuration will be overwritten. The LAN IP address will be reset to %s and the password will be set to '%s'."
+msgid "If you click 'Yes', The server will be reset to factory defaults and will reboot immediately. The entire system configuration will be overwritten. The LAN IP address will be reset to %s and the password will be set to '%s'."
 msgstr ""
 
 msgid "If you want to change the password for accessing the WebGUI, enter it here twice."
@@ -3341,10 +3341,6 @@ msgstr ""
 msgid "Only allow authenticated users. Anonymous logins are prohibited."
 msgstr ""
 
-#, php-format
-msgid "Open a %s configuration XML file and click the button below to restore the configuration."
-msgstr ""
-
 msgid "Option"
 msgstr ""
 
@@ -4062,6 +4058,10 @@ msgstr ""
 msgid "Select the location closest to you."
 msgstr ""
 
+#, php-format
+msgid "Select the server configuration XML file and click the button below to restore the configuration."
+msgstr ""
+
 msgid "Select your read balance algorithm."
 msgstr ""
 
@@ -4143,7 +4143,7 @@ msgstr ""
 msgid "Set title scrolling speed between 0-10 (default 10)."
 msgstr ""
 
-msgid "Set what user the service will run as (www by default). <br><b><font color='red'>NOTE</font>: Running as root is <u>not recommended</u> for security reasons, use it on your own risk!.</b></br>"
+msgid "Set what user the service will run as (www by default). <br><b><font color='red'>NOTE</font>: Running as root is <u>not recommended</u> for security reasons, use it on your own risk!</b></br>"
 msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
@@ -4738,7 +4738,7 @@ msgid "The configuration has been changed.<br />You must apply the changes in or
 msgstr ""
 
 #, php-format
-msgid "The configuration has been restored. %s is now rebooting."
+msgid "The configuration has been restored. The server is now rebooting."
 msgstr ""
 
 msgid "The confimed password does not match. Please ensure the passwords match exactly."
@@ -4806,7 +4806,7 @@ msgid "The extent name already exists."
 msgstr ""
 
 #, php-format
-msgid "The firmware is now being installed. %s will reboot automatically."
+msgid "The firmware is now being installed. The server will reboot automatically."
 msgstr ""
 
 msgid "The following input errors were detected"
@@ -4968,6 +4968,9 @@ msgstr ""
 msgid "The serial or USB port where your UPS is connected."
 msgstr ""
 
+msgid "The server has been reset to factory defaults and is now rebooting. This may take one minute."
+msgstr ""
+
 msgid "The share name is already used."
 msgstr ""
 
@@ -4982,9 +4985,6 @@ msgid "The storage area mapped to LUN%d."
 msgstr ""
 
 msgid "The subject of the email."
-msgstr ""
-
-msgid "The system has been reset to factory defaults and is now rebooting. This may take one minute."
 msgstr ""
 
 msgid "The system is halting now. This may take one minute."

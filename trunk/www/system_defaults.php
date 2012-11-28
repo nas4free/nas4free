@@ -43,7 +43,7 @@ if ($_POST) {
 	if (0 == strcmp($_POST['Submit'], gettext("Yes"))) {
 		reset_factory_defaults();
 		system_reboot();
-		$rebootmsg = gettext("The system has been reset to factory defaults and is now rebooting. This may take one minute.");
+		$rebootmsg = gettext("The server has been reset to factory defaults and is now rebooting. This may take one minute.");
 	} else {
 		header("Location: index.php");
 		exit;
@@ -58,7 +58,7 @@ if ($_POST) {
 	    <td class="tabcont">
 				<p>
 					<strong>
-						<?=sprintf(gettext("If you click 'Yes', %s will be reset to factory defaults and will reboot immediately. The entire system configuration will be overwritten. The LAN IP address will be reset to %s and the password will be set to '%s'."), get_product_name(), $g['default_ip'], $g['default_passwd']);?><br /><br />
+						<?=sprintf(gettext("If you click 'Yes', The server will be reset to factory defaults and will reboot immediately. The entire system configuration will be overwritten. The LAN IP address will be reset to %s and the password will be set to '%s'."), get_product_name(), $g['default_ip'], $g['default_passwd']);?><br /><br />
 						<?=gettext("Are you sure you want to proceed?");?>
 					</strong>
 				</p>
