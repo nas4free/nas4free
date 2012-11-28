@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-11-24 20:27+0000\n"
+"POT-Creation-Date: 2012-11-28 10:10+0000\n"
 "PO-Revision-Date: 2012-06-25 21:24+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-24 20:01+0000\n"
-"X-Generator: Launchpad (build 16293)\n"
+"X-Launchpad-Export-Date: 2012-11-28 09:42+0000\n"
+"X-Generator: Launchpad (build 16309)\n"
 "X-Poedit-Country: FINLAND\n"
 "X-Poedit-Language: Finnish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -452,11 +452,11 @@ msgstr ""
 
 #, php-format
 msgid ""
-"After you click &quot;Save&quot;, you must reboot %s to make the changes "
-"take effect. You may also have to do one or more of the following steps "
-"before you can access your NAS again: <ul><li><span class='vexpl'>change the "
-"IP address of your computer</span></li><li><span class='vexpl'>access the "
-"webGUI with the new IP address</span></li></ul>"
+"After you click &quot;Save&quot;, you must reboot the server to make the "
+"changes take effect. You may also have to do one or more of the following "
+"steps before you can access your server again: <ul><li><span "
+"class='vexpl'>change the IP address of your server</span></li><li><span "
+"class='vexpl'>access the webGUI with the new IP address</span></li></ul>"
 msgstr ""
 
 msgid "Aggregation protocol"
@@ -901,8 +901,8 @@ msgid ""
 "process."
 msgstr ""
 
-msgid "Click this button to download the system configuration in XML format."
-msgstr "Paina painiketta ladataksesi järjestelmän asetukset XML muodossa."
+msgid "Click this button to download the server configuration in XML format."
+msgstr ""
 
 msgid "Client"
 msgstr "Asiakas"
@@ -1144,9 +1144,9 @@ msgstr "DNS asetukset"
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. %s will reboot "
-"automatically after storing the new firmware. The configuration will be "
-"maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
+"DO NOT abort the firmware upgrade once it has started. The server will "
+"reboot automatically after storing the new firmware. The configuration will "
+"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
 "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
 "System configuration before doing a Firmware upgrade."
 msgstr ""
@@ -2659,9 +2659,9 @@ msgstr ""
 
 #, php-format
 msgid ""
-"If you click 'Yes', %s will be reset to factory defaults and will reboot "
-"immediately. The entire system configuration will be overwritten. The LAN IP "
-"address will be reset to %s and the password will be set to '%s'."
+"If you click 'Yes', The server will be reset to factory defaults and will "
+"reboot immediately. The entire system configuration will be overwritten. The "
+"LAN IP address will be reset to %s and the password will be set to '%s'."
 msgstr ""
 
 msgid ""
@@ -3631,12 +3631,6 @@ msgstr ""
 msgid "Only allow authenticated users. Anonymous logins are prohibited."
 msgstr "Vain todennetut käyttäjät. Anonyymit  kirjautumiset on estetty."
 
-#, php-format
-msgid ""
-"Open a %s configuration XML file and click the button below to restore the "
-"configuration."
-msgstr ""
-
 msgid "Option"
 msgstr "Valinta"
 
@@ -4382,6 +4376,12 @@ msgstr ""
 msgid "Select the location closest to you."
 msgstr ""
 
+#, php-format
+msgid ""
+"Select the server configuration XML file and click the button below to "
+"restore the configuration."
+msgstr ""
+
 msgid "Select your read balance algorithm."
 msgstr ""
 
@@ -4470,7 +4470,7 @@ msgstr ""
 msgid ""
 "Set what user the service will run as (www by default). <br><b><font "
 "color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
-"security reasons, use it on your own risk!.</b></br>"
+"security reasons, use it on your own risk!</b></br>"
 msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
@@ -5126,7 +5126,7 @@ msgid ""
 msgstr ""
 
 #, php-format
-msgid "The configuration has been restored. %s is now rebooting."
+msgid "The configuration has been restored. The server is now rebooting."
 msgstr ""
 
 msgid ""
@@ -5213,9 +5213,9 @@ msgid "The extent name already exists."
 msgstr ""
 
 #, php-format
-msgid "The firmware is now being installed. %s will reboot automatically."
+msgid ""
+"The firmware is now being installed. The server will reboot automatically."
 msgstr ""
-"Firmwaren asennus on aloitettu. %s käynnistetään uudelleen automaattisesti."
 
 msgid "The following input errors were detected"
 msgstr ""
@@ -5417,6 +5417,11 @@ msgstr ""
 msgid "The serial or USB port where your UPS is connected."
 msgstr ""
 
+msgid ""
+"The server has been reset to factory defaults and is now rebooting. This may "
+"take one minute."
+msgstr ""
+
 msgid "The share name is already used."
 msgstr "Jako nimi on jo käytössä."
 
@@ -5432,11 +5437,6 @@ msgstr ""
 
 msgid "The subject of the email."
 msgstr "Sähköpostin aihe."
-
-msgid ""
-"The system has been reset to factory defaults and is now rebooting. This may "
-"take one minute."
-msgstr ""
 
 msgid "The system is halting now. This may take one minute."
 msgstr "Järjestelmä pysäytetään nyt. Tämä vie noin minuutin."
@@ -6691,3 +6691,11 @@ msgstr ""
 
 msgid "upriv"
 msgstr ""
+
+#~ msgid "Click this button to download the system configuration in XML format."
+#~ msgstr "Paina painiketta ladataksesi järjestelmän asetukset XML muodossa."
+
+#, php-format
+#~ msgid "The firmware is now being installed. %s will reboot automatically."
+#~ msgstr ""
+#~ "Firmwaren asennus on aloitettu. %s käynnistetään uudelleen automaattisesti."
