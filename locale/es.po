@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-28 10:10+0000\n"
+"POT-Creation-Date: 2012-11-29 00:51+0000\n"
 "PO-Revision-Date: 2012-11-25 19:22+0000\n"
 "Last-Translator: raul fernandez garcia <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-28 09:44+0000\n"
-"X-Generator: Launchpad (build 16309)\n"
+"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
+"X-Generator: Launchpad (build 16319)\n"
 "X-Poedit-Country: SPAIN\n"
 "Language: \n"
 "X-Poedit-Language: Spanish\n"
@@ -74,10 +74,6 @@ msgstr "%s de %sB"
 #, php-format
 msgid "%s on %s"
 msgstr "%s en %s"
-
-#, php-format
-msgid "%s will reboot after restoring the configuration."
-msgstr "%s se reiniciará después de restaurar la configuración."
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -5495,6 +5491,10 @@ msgstr "No se ha podido restaurar la configuracion."
 msgid "The configuration could not be restored. %s"
 msgstr "La configuración no podra ser restaurada. %s"
 
+#, php-format
+msgid "The configuration could not be restored. No file was uploaded!"
+msgstr ""
+
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
 "for them to take effect."
@@ -5868,6 +5868,10 @@ msgstr "El puerto Serie o USB donde está conectado su UPS."
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
+msgstr ""
+
+#, php-format
+msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
 msgid "The share name is already used."
@@ -7358,79 +7362,5 @@ msgid "upriv"
 msgstr "upriv"
 
 #, php-format
-#~ msgid ""
-#~ "After you click &quot;Save&quot;, you must reboot %s to make the changes "
-#~ "take effect. You may also have to do one or more of the following steps "
-#~ "before you can access your NAS again: <ul><li><span class='vexpl'>change the "
-#~ "IP address of your computer</span></li><li><span class='vexpl'>access the "
-#~ "webGUI with the new IP address</span></li></ul>"
-#~ msgstr ""
-#~ "Despues de pinchar &quot;Guardar&quot;, debe reiniciar %s para que los "
-#~ "cambios tengan efecto. Tambien es necesario que realice uno o más de los "
-#~ "siguientes pasos antes de poder acceder a su NAS nuevamente: <ul><li><span "
-#~ "class='vexpl'>Cambie la direccion IP de su PC</span></li><li><span "
-#~ "class='vexpl'>Acceda a traves del webGUI con la nueva dirección "
-#~ "IP</span></li></ul>"
-
-#~ msgid "Click this button to download the system configuration in XML format."
-#~ msgstr ""
-#~ "Pinchar este botón para salvar la configuración del sistema en formato XML."
-
-#, php-format
-#~ msgid ""
-#~ "DO NOT abort the firmware upgrade once it has started. %s will reboot "
-#~ "automatically after storing the new firmware. The configuration will be "
-#~ "maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-#~ "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-#~ "System configuration before doing a Firmware upgrade."
-#~ msgstr ""
-#~ "NO aborte la actualización del firmware una vez que haya comenzado. %s El "
-#~ "sistema se reiniciara automáticamente despues de almacenar el nuevo "
-#~ "firmware. La configuración se mantendrá.<br />Necesita un mínimo de %d Mb "
-#~ "RAM para poder realizar la actualización.<br />Se recomienda enfaticamente "
-#~ "que realice una <a href='%s'>Copia de seguridad</a> de la configuración del "
-#~ "sistema antes de realizar la actualización del firmware."
-
-#, php-format
-#~ msgid ""
-#~ "If you click 'Yes', %s will be reset to factory defaults and will reboot "
-#~ "immediately. The entire system configuration will be overwritten. The LAN IP "
-#~ "address will be reset to %s and the password will be set to '%s'."
-#~ msgstr ""
-#~ "Si selecciona 'Si', se volverá %s a los valores de fabrica y se reiniciara "
-#~ "inmediatamente el sistema. Se reescribirá toda la configuración del sistema "
-#~ "con los valores de fabrica. (La direccion IP de la LAN será devuelta a %s y "
-#~ "la contraseña a '%s')."
-
-#, php-format
-#~ msgid ""
-#~ "Open a %s configuration XML file and click the button below to restore the "
-#~ "configuration."
-#~ msgstr ""
-#~ "Abrir un archivo %s de configuración XML y pinchar el botón de abajo para "
-#~ "restaurar la configuración."
-
-#, php-format
-#~ msgid "The configuration has been restored. %s is now rebooting."
-#~ msgstr "La configuracion se ha restaurado. Ahora se reiniciara %s."
-
-#, php-format
-#~ msgid "The firmware is now being installed. %s will reboot automatically."
-#~ msgstr ""
-#~ "El Sistema Base se está instalando. %s se reiniciará automáticamente."
-
-#~ msgid ""
-#~ "The system has been reset to factory defaults and is now rebooting. This may "
-#~ "take one minute."
-#~ msgstr ""
-#~ "El sistema fue reiniciado a la configuración de fabrica y esta reiniciando "
-#~ "ahora. Esto tardará un minuto. Sea paciente"
-
-#~ msgid ""
-#~ "Set what user the service will run as (www by default). <br><b><font "
-#~ "color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
-#~ "security reasons, use it on your own risk!.</b></br>"
-#~ msgstr ""
-#~ "Define que usuario ejecutará el servicio (www por defecto).<br><b><font "
-#~ "color='red'>NOTA:</font> ejecutar como root <u> no está recomendado</u> por "
-#~ "razones de seguridad, cámbielo bajo su responsabilidad. </b></br>"
+#~ msgid "%s will reboot after restoring the configuration."
+#~ msgstr "%s se reiniciará después de restaurar la configuración."

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-28 10:10+0000\n"
+"POT-Creation-Date: 2012-11-29 00:51+0000\n"
 "PO-Revision-Date: 2012-08-02 14:51+0000\n"
 "Last-Translator: ltye <laotaoyan@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-28 09:41+0000\n"
-"X-Generator: Launchpad (build 16309)\n"
+"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
+"X-Generator: Launchpad (build 16319)\n"
 "X-Poedit-Country: CHINA\n"
 "Language: \n"
 "X-Poedit-Language: Chinese (Simplified)\n"
@@ -74,10 +74,6 @@ msgstr "%s 与 %sB"
 #, php-format
 msgid "%s on %s"
 msgstr "%2$s 上的 %1$s"
-
-#, php-format
-msgid "%s will reboot after restoring the configuration."
-msgstr "%s  还原设置以后将会自动重启。"
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -5087,6 +5083,10 @@ msgstr "无法恢复设置组态。"
 msgid "The configuration could not be restored. %s"
 msgstr ""
 
+#, php-format
+msgid "The configuration could not be restored. No file was uploaded!"
+msgstr ""
+
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
 "for them to take effect."
@@ -5386,6 +5386,10 @@ msgstr "您的UPS相连USB端口。"
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
+msgstr ""
+
+#, php-format
+msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
 msgid "The share name is already used."
@@ -6658,44 +6662,6 @@ msgstr "卸载"
 msgid "upriv"
 msgstr "upriv"
 
-#~ msgid "Click this button to download the system configuration in XML format."
-#~ msgstr "点这个按钮下载 XML 格式的系统组态"
-
 #, php-format
-#~ msgid ""
-#~ "If you click 'Yes', %s will be reset to factory defaults and will reboot "
-#~ "immediately. The entire system configuration will be overwritten. The LAN IP "
-#~ "address will be reset to %s and the password will be set to '%s'."
-#~ msgstr ""
-#~ "当你点选了'是'， %s 将会重设回原厂默认值并立刻重启。全部系统的设置将会被覆写，IP位置也将重设为 %s 。 而密码将设置为 '%s' 。"
-
-#, php-format
-#~ msgid ""
-#~ "Open a %s configuration XML file and click the button below to restore the "
-#~ "configuration."
-#~ msgstr "开启 %s XML 配置文件，然后点击下面的按钮来恢复配置。"
-
-#, php-format
-#~ msgid "The configuration has been restored. %s is now rebooting."
-#~ msgstr "设置组态恢复成功。 %s 现在正重新启动。"
-
-#, php-format
-#~ msgid "The firmware is now being installed. %s will reboot automatically."
-#~ msgstr "新的固件正在安装中，完成之后%s将会自动重新开机。"
-
-#~ msgid ""
-#~ "The system has been reset to factory defaults and is now rebooting. This may "
-#~ "take one minute."
-#~ msgstr "系统已经恢复为初始设置，现在已经自动进入重新开机程序，可能要花一分钟的时间。"
-
-#, php-format
-#~ msgid ""
-#~ "After you click &quot;Save&quot;, you must reboot %s to make the changes "
-#~ "take effect. You may also have to do one or more of the following steps "
-#~ "before you can access your NAS again: <ul><li><span class='vexpl'>change the "
-#~ "IP address of your computer</span></li><li><span class='vexpl'>access the "
-#~ "webGUI with the new IP address</span></li></ul>"
-#~ msgstr ""
-#~ "点击 &quot;保存&quot;后, 您需要重启 %s 以使改动生效。必要时请按以下步骤操作来重新访问NAS ：<ul><li><span "
-#~ "class='vexpl'>变更您计算机的IP地址</span></li><li><span "
-#~ "class='vexpl'>用新的IP地址访问管理页面(webGUI)</span></li></ul>"
+#~ msgid "%s will reboot after restoring the configuration."
+#~ msgstr "%s  还原设置以后将会自动重启。"

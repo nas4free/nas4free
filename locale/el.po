@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-28 10:10+0000\n"
+"POT-Creation-Date: 2012-11-29 00:51+0000\n"
 "PO-Revision-Date: 2012-11-27 08:34+0000\n"
 "Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-28 09:42+0000\n"
-"X-Generator: Launchpad (build 16309)\n"
+"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
+"X-Generator: Launchpad (build 16319)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
 "X-Poedit-Language: Greek\n"
@@ -74,10 +74,6 @@ msgstr "%s από %sB"
 #, php-format
 msgid "%s on %s"
 msgstr "%s σε %s"
-
-#, php-format
-msgid "%s will reboot after restoring the configuration."
-msgstr "Το %s θα επανεκκινηθεί μετά την επαναφορά των ρυθμίσεων."
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -5549,6 +5545,10 @@ msgstr "Οι ρυθμίσεις δεν ήταν δυνατό να επαναφε
 msgid "The configuration could not be restored. %s"
 msgstr "Οι ρυθμίσεις δεν ήταν δυνατό να επαναφερθούν. %s"
 
+#, php-format
+msgid "The configuration could not be restored. No file was uploaded!"
+msgstr ""
+
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
 "for them to take effect."
@@ -5927,6 +5927,10 @@ msgstr "Η σειριακη θύρα ή θύρα USB στην οποία είν�
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
+msgstr ""
+
+#, php-format
+msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
 msgid "The share name is already used."
@@ -7449,80 +7453,5 @@ msgid "upriv"
 msgstr "upriv"
 
 #, php-format
-#~ msgid "The configuration has been restored. %s is now rebooting."
-#~ msgstr "Οι ρυθμίσεις επαναφέρθηκαν. Το %s επανεκκινείται τώρα."
-
-#, php-format
-#~ msgid "The firmware is now being installed. %s will reboot automatically."
-#~ msgstr "Το firmware εγκαθίσταται τώρα. Το %s θα επανεκκινηθεί αυτόματα."
-
-#~ msgid ""
-#~ "The system has been reset to factory defaults and is now rebooting. This may "
-#~ "take one minute."
-#~ msgstr ""
-#~ "Το σύστημα επαναφέρθηκε στις εργοστασιακές ρυθμίσεις και επανεκκινείται. "
-#~ "Αυτή η διαδικασία θα διαρκέσει λίγο."
-
-#~ msgid ""
-#~ "Set what user the service will run as (www by default). <br><b><font "
-#~ "color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
-#~ "security reasons, use it on your own risk!.</b></br>"
-#~ msgstr ""
-#~ "Ορίστε με ποιόν χρήστη θα εκτελείται η υπηρεσία (www είναι ο "
-#~ "προεπιλεγμένος). <br><b><font color='red'>ΣΗΜΕΙΩΣΗ</font>: Το να εκτελείται "
-#~ "ως root <u>δεν συνιστάται</u> για λόγους ασφαλείας, χρησιμοποιήστε το με "
-#~ "δική σας ευθύνη!.</b></br>"
-
-#, php-format
-#~ msgid ""
-#~ "DO NOT abort the firmware upgrade once it has started. %s will reboot "
-#~ "automatically after storing the new firmware. The configuration will be "
-#~ "maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-#~ "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-#~ "System configuration before doing a Firmware upgrade."
-#~ msgstr ""
-#~ "ΜΗΝ ακυρώσετε την αναβάθμιση του firmware όταν αυτή έχει αρχίσει. Το %s θα "
-#~ "κάνει αυτόματη επανεκκίνηση μετά την αποθήκευση το νέου firmware. Οι "
-#~ "ρυθμίσεις θα διατηρηθούν.<br />Χρειάζεται τουλάχιστον % d Mb μνήμη RAM για "
-#~ "την εκτέλεση της αναβάθμισης του firmware.<br />Συνιστάται ανεπιφύλακτα να "
-#~ "δημιουργήσετε ένα <a href='%s'>αντίγραφο ασφαλείας</a>  των ρυθμίσεων του "
-#~ "συστήματος πριν κάνετε την αναβάθμιση του firmware."
-
-#~ msgid "Click this button to download the system configuration in XML format."
-#~ msgstr ""
-#~ "Πατήστε αυτό το κουμπί για να κάνετε λήψη των ρυθμίσεων του συστήματος σε "
-#~ "αρχείο μορφής XML."
-
-#, php-format
-#~ msgid ""
-#~ "If you click 'Yes', %s will be reset to factory defaults and will reboot "
-#~ "immediately. The entire system configuration will be overwritten. The LAN IP "
-#~ "address will be reset to %s and the password will be set to '%s'."
-#~ msgstr ""
-#~ "Αν πατήσετε το 'Ναι', το %s θα αρχικοποιηθεί στις εργοστασιακές ρυθμίσεις "
-#~ "και θα επανεκκινηθεί αμέσως. Η συνολική ρύθμιση του συστήματος θα "
-#~ "αντικατασταθεί. Η διεύθυνση IP θα αρχικοποιηθεί σε %s και ο κωδικός θα τεθεί "
-#~ "σε '%s'."
-
-#, php-format
-#~ msgid ""
-#~ "Open a %s configuration XML file and click the button below to restore the "
-#~ "configuration."
-#~ msgstr ""
-#~ "Επιλέξτε ένα αρχείο ρυθμίσεων του %s, μορφής XML, και πατήστε το κουμπί "
-#~ "παρακάτω για επαναφορά των ρυθμίσεων."
-
-#, php-format
-#~ msgid ""
-#~ "After you click &quot;Save&quot;, you must reboot %s to make the changes "
-#~ "take effect. You may also have to do one or more of the following steps "
-#~ "before you can access your NAS again: <ul><li><span class='vexpl'>change the "
-#~ "IP address of your computer</span></li><li><span class='vexpl'>access the "
-#~ "webGUI with the new IP address</span></li></ul>"
-#~ msgstr ""
-#~ "Αφού πατήσετε το κουμπί &quot;Αποθήκευση&quot;, θα πρέπει να επανεκκινήσετε "
-#~ "το %s για να εφαρμοστούν οι αλλαγές. Μπορεί επίσης να χρειαστεί να κάνετε "
-#~ "ένα ή περισσότερα από τα ακόλουθα βήματα για να μπορέσετε να αποκτήσετε "
-#~ "πρόσβαση στο NAS σας και πάλι:<ul><li><span class='vexpl'>Αλλαγή της "
-#~ "διεύθυνσης IP του υπολογιστή σας</span></li><li><span class='vexpl'>Πρόσβαση "
-#~ "στο web περιβάλλον χρήσης με τη νέα διεύθυνση IP</span></li></ul>"
+#~ msgid "%s will reboot after restoring the configuration."
+#~ msgstr "Το %s θα επανεκκινηθεί μετά την επαναφορά των ρυθμίσεων."

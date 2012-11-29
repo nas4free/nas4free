@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-28 10:10+0000\n"
+"POT-Creation-Date: 2012-11-29 00:51+0000\n"
 "PO-Revision-Date: 2012-06-02 00:13+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-28 09:44+0000\n"
-"X-Generator: Launchpad (build 16309)\n"
+"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
+"X-Generator: Launchpad (build 16319)\n"
 "X-Poedit-Country: SLOVENIA\n"
 "Language: \n"
 "X-Poedit-Language: Slovenian\n"
@@ -73,10 +73,6 @@ msgstr "%s od %sB"
 #, php-format
 msgid "%s on %s"
 msgstr "%s na %s"
-
-#, php-format
-msgid "%s will reboot after restoring the configuration."
-msgstr "%s se bo po obnovitvi nastavitev ponovno zagnal."
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -5327,6 +5323,10 @@ msgstr "Nastavitev ni bilo možno obnoviti."
 msgid "The configuration could not be restored. %s"
 msgstr ""
 
+#, php-format
+msgid "The configuration could not be restored. No file was uploaded!"
+msgstr ""
+
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
 "for them to take effect."
@@ -5634,6 +5634,10 @@ msgstr ""
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
+msgstr ""
+
+#, php-format
+msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
 msgid "The share name is already used."
@@ -6912,58 +6916,5 @@ msgid "upriv"
 msgstr "upriv"
 
 #, php-format
-#~ msgid ""
-#~ "After you click &quot;Save&quot;, you must reboot %s to make the changes "
-#~ "take effect. You may also have to do one or more of the following steps "
-#~ "before you can access your NAS again: <ul><li><span class='vexpl'>change the "
-#~ "IP address of your computer</span></li><li><span class='vexpl'>access the "
-#~ "webGUI with the new IP address</span></li></ul>"
-#~ msgstr ""
-#~ "Po kliku na &quot;Shrani&quot; morate za uveljavitev vseh sprememb ponovno "
-#~ "zagnati %s. Preden boste spet lahko dostopali do vaše NAS naprave bo morda "
-#~ "potrebno storiti še: <ul><li><span class='vexpl'>spremeniti IP naslov vašega "
-#~ "računalnika</span></li><li><span class='vexpl'>odpreti webGUI na novem IP "
-#~ "naslovu</span></li></ul>"
-
-#~ msgid "Click this button to download the system configuration in XML format."
-#~ msgstr "Kliknite za gumb za shranitev sistemsktih nastavitev v XML datoteko."
-
-#, php-format
-#~ msgid ""
-#~ "DO NOT abort the firmware upgrade once it has started. %s will reboot "
-#~ "automatically after storing the new firmware. The configuration will be "
-#~ "maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-#~ "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-#~ "System configuration before doing a Firmware upgrade."
-#~ msgstr ""
-#~ "NE prekinite posodobitve programske opreme, ko se že enkrat začne. %s se bo "
-#~ "samodejno ponovno zagnal, ko konča posodobitev programske opreme. Nastavitve "
-#~ "bodo ohranjene.<br /> Potrebujete najmanj %d Mb RAM, da se posodobitev lahko "
-#~ "izvede.<br />Priporočamo, da ustvarite <a href='%s'>varnostno kopijo</a> "
-#~ "nastavitev sistema, pred nadgradnjo programske opreme."
-
-#, php-format
-#~ msgid ""
-#~ "If you click 'Yes', %s will be reset to factory defaults and will reboot "
-#~ "immediately. The entire system configuration will be overwritten. The LAN IP "
-#~ "address will be reset to %s and the password will be set to '%s'."
-#~ msgstr ""
-#~ "Če kliknete 'Da', bo %s ponastavil privzete tovarniške nastavitve in se "
-#~ "avtomatsko ponovno zagnal. VSE sistemske nastavitve bodo prepisane. LAN IP "
-#~ "naslov bo nastavljen na %s in geslo nastavljeno na '%s'."
-
-#, php-format
-#~ msgid ""
-#~ "Open a %s configuration XML file and click the button below to restore the "
-#~ "configuration."
-#~ msgstr ""
-#~ "Za obnovitev nastavitev, odpri %s nastavitveno XML datoteko in kliknite "
-#~ "spodbnji gumb."
-
-#, php-format
-#~ msgid "The configuration has been restored. %s is now rebooting."
-#~ msgstr "Nastavitve so bile obnovljene. %s se bo ponovno zagnal."
-
-#, php-format
-#~ msgid "The firmware is now being installed. %s will reboot automatically."
-#~ msgstr "Nadgradnja je v teku. %s se bo avtomatsko ponovno zagnal."
+#~ msgid "%s will reboot after restoring the configuration."
+#~ msgstr "%s se bo po obnovitvi nastavitev ponovno zagnal."

@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-11-28 10:10+0000\n"
+"POT-Creation-Date: 2012-11-29 00:51+0000\n"
 "PO-Revision-Date: 2012-07-09 19:53+0000\n"
 "Last-Translator: Hasan Yılmaz <iletisim@hasanyilmaz.net>\n"
 "Language-Team: NAS4Free <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-28 09:44+0000\n"
-"X-Generator: Launchpad (build 16309)\n"
+"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
+"X-Generator: Launchpad (build 16319)\n"
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-Language: Turkish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -77,10 +77,6 @@ msgstr "%sB'nin %s"
 #, php-format
 msgid "%s on %s"
 msgstr "%s üzerinde %s"
-
-#, php-format
-msgid "%s will reboot after restoring the configuration."
-msgstr "Yapılandırma geri alındıktan sonra %s yeniden başlatılacaktır."
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -5150,6 +5146,10 @@ msgstr "Yapılandırma geriye alınamadı."
 msgid "The configuration could not be restored. %s"
 msgstr ""
 
+#, php-format
+msgid "The configuration could not be restored. No file was uploaded!"
+msgstr ""
+
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
 "for them to take effect."
@@ -5451,6 +5451,10 @@ msgstr ""
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
+msgstr ""
+
+#, php-format
+msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
 msgid "The share name is already used."
@@ -6718,22 +6722,6 @@ msgstr "umount"
 msgid "upriv"
 msgstr "upriv"
 
-#~ msgid "Click this button to download the system configuration in XML format."
-#~ msgstr ""
-#~ "Sistem yapılandırmasını XML formatında indirmek için bu butona tıklayınız"
-
-#~ msgid ""
-#~ "The system has been reset to factory defaults and is now rebooting. This may "
-#~ "take one minute."
-#~ msgstr ""
-#~ "Fabrika ayarları yüklendi ve yeniden başlatılıyor. Biraz zaman alabilir."
-
 #, php-format
-#~ msgid ""
-#~ "If you click 'Yes', %s will be reset to factory defaults and will reboot "
-#~ "immediately. The entire system configuration will be overwritten. The LAN IP "
-#~ "address will be reset to %s and the password will be set to '%s'."
-#~ msgstr ""
-#~ "'Evet'e tıklarsan %s fabrika ayarlarına dönecek ve hemen yeniden "
-#~ "başlatacak.Tüm sistemin kurulumunun üzerine yazılacak. LAN IP adresi %s'e "
-#~ "sıfırlanacak  ve parola '%s'e ayarlanacak."
+#~ msgid "%s will reboot after restoring the configuration."
+#~ msgstr "Yapılandırma geri alındıktan sonra %s yeniden başlatılacaktır."

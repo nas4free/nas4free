@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-28 10:10+0000\n"
+"POT-Creation-Date: 2012-11-29 00:51+0000\n"
 "PO-Revision-Date: 2012-11-24 12:10+0000\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-28 09:43+0000\n"
-"X-Generator: Launchpad (build 16309)\n"
+"X-Launchpad-Export-Date: 2012-11-29 00:17+0000\n"
+"X-Generator: Launchpad (build 16319)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
 "X-Poedit-Language: Japanese\n"
@@ -73,10 +73,6 @@ msgstr "%2$sB 中 %1$s"
 #, php-format
 msgid "%s on %s"
 msgstr "%s ＠ %s"
-
-#, php-format
-msgid "%s will reboot after restoring the configuration."
-msgstr "%s は設定をリストア後、リブートします。"
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -5180,6 +5176,10 @@ msgstr "設定情報をリストアする事が出来ませんでした。"
 msgid "The configuration could not be restored. %s"
 msgstr "設定情報をリストアする事が出来ませんでした。%s"
 
+#, php-format
+msgid "The configuration could not be restored. No file was uploaded!"
+msgstr ""
+
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
 "for them to take effect."
@@ -5496,6 +5496,10 @@ msgstr "UPS が接続されているシリアルまたは USB ポートを指定
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
+msgstr ""
+
+#, php-format
+msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
 msgid "The share name is already used."
@@ -6828,66 +6832,5 @@ msgid "upriv"
 msgstr "upriv"
 
 #, php-format
-#~ msgid ""
-#~ "After you click &quot;Save&quot;, you must reboot %s to make the changes "
-#~ "take effect. You may also have to do one or more of the following steps "
-#~ "before you can access your NAS again: <ul><li><span class='vexpl'>change the "
-#~ "IP address of your computer</span></li><li><span class='vexpl'>access the "
-#~ "webGUI with the new IP address</span></li></ul>"
-#~ msgstr ""
-#~ "&quot;保存&quot; をクリックした後、変更を適用するには %s をリブートしなければなりません。また、再度 "
-#~ "NASへアクセスする為に以下のステップを実行する必要があるかもしれません。<ul><li><span class='vexpl'>コンピュータの IP "
-#~ "アドレスを変更して下さい</span></li><li><span class='vexpl'>新しい IP アドレスで WebGUI "
-#~ "へアクセスして下さい</span></li></ul>"
-
-#~ msgid "Click this button to download the system configuration in XML format."
-#~ msgstr "システム設定ファイル(XMLフォーマット)をダウンロードするには、このボタンをクリックしてください。"
-
-#, php-format
-#~ msgid ""
-#~ "DO NOT abort the firmware upgrade once it has started. %s will reboot "
-#~ "automatically after storing the new firmware. The configuration will be "
-#~ "maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-#~ "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-#~ "System configuration before doing a Firmware upgrade."
-#~ msgstr ""
-#~ "ファームウェアのアップグレードを一旦開始したら途中で終了しないでください。 %s "
-#~ "はファームウェアのアップグレードが完了すると自動的に再起動します。<br />ファームウェアのアップグレードを行うには最低 %d Mb の RAM "
-#~ "が必要となります。<br />ファームウェアをアップグレードする前にシステム設定の <a href='%s'>バックアップ</a> "
-#~ "を行う事をお勧めします。"
-
-#, php-format
-#~ msgid ""
-#~ "If you click 'Yes', %s will be reset to factory defaults and will reboot "
-#~ "immediately. The entire system configuration will be overwritten. The LAN IP "
-#~ "address will be reset to %s and the password will be set to '%s'."
-#~ msgstr ""
-#~ "'Yes' をクリックすると %s は工場出荷設定にリセットされ、直ちにリブートされます。全てのシステム構成が上書きされます。LAN IP アドレスは "
-#~ "%s にリセットされ、パスワードは '%s' に設定されます。"
-
-#, php-format
-#~ msgid ""
-#~ "Open a %s configuration XML file and click the button below to restore the "
-#~ "configuration."
-#~ msgstr "%s の XML 設定ファイルを選択後、下のボタンをクリックすると設定が復元されます。"
-
-#, php-format
-#~ msgid "The configuration has been restored. %s is now rebooting."
-#~ msgstr "設定情報はリストアされました。%s をリブートしています。"
-
-#, php-format
-#~ msgid "The firmware is now being installed. %s will reboot automatically."
-#~ msgstr "現在、ファームウェアをインストールしています。%s は自動的にリブートされます。"
-
-#~ msgid ""
-#~ "The system has been reset to factory defaults and is now rebooting. This may "
-#~ "take one minute."
-#~ msgstr "システムを初期状態にリストアした後、リブートを実行中です。しばらくお待ちください。"
-
-#~ msgid ""
-#~ "Set what user the service will run as (www by default). <br><b><font "
-#~ "color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
-#~ "security reasons, use it on your own risk!.</b></br>"
-#~ msgstr ""
-#~ "どのユーザでサービスを実行するか設定します。 (デフォルトは www) <br><b><font color='red'>注意</font>: "
-#~ "rootユーザで実行する事はセキュリティの理由により <u>推奨されません。</u> 自己責任で使用してください！</b></br>"
+#~ msgid "%s will reboot after restoring the configuration."
+#~ msgstr "%s は設定をリストア後、リブートします。"
