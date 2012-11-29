@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-28 10:10+0000\n"
+"POT-Creation-Date: 2012-11-29 00:51+0000\n"
 "PO-Revision-Date: 2012-03-17 08:48+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-28 09:43+0000\n"
-"X-Generator: Launchpad (build 16309)\n"
+"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
+"X-Generator: Launchpad (build 16319)\n"
 "X-Poedit-Country: KOREA\n"
 "Language: \n"
 "X-Poedit-Language: Korean\n"
@@ -73,10 +73,6 @@ msgstr "%s 전체(%sB)"
 #, php-format
 msgid "%s on %s"
 msgstr "%s on %s"
-
-#, php-format
-msgid "%s will reboot after restoring the configuration."
-msgstr "설정을 복원한 후에 %s은(는) 재시작합니다."
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -5159,6 +5155,10 @@ msgstr "설정이 복원되지 못했습니다."
 msgid "The configuration could not be restored. %s"
 msgstr "설정이 복원되지 못했습니다. %s"
 
+#, php-format
+msgid "The configuration could not be restored. No file was uploaded!"
+msgstr ""
+
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
 "for them to take effect."
@@ -5468,6 +5468,10 @@ msgstr "당신의 UPS가 연결된 직렬 포트나 USB 포트."
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
+msgstr ""
+
+#, php-format
+msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
 msgid "The share name is already used."
@@ -6798,57 +6802,5 @@ msgid "upriv"
 msgstr "upriv"
 
 #, php-format
-#~ msgid ""
-#~ "After you click &quot;Save&quot;, you must reboot %s to make the changes "
-#~ "take effect. You may also have to do one or more of the following steps "
-#~ "before you can access your NAS again: <ul><li><span class='vexpl'>change the "
-#~ "IP address of your computer</span></li><li><span class='vexpl'>access the "
-#~ "webGUI with the new IP address</span></li></ul>"
-#~ msgstr ""
-#~ "&quot;저장&quot; 버튼을 클릭 한 후 변경 내용을 반영하기 위해 %s을(를) 리붓 해야 합니다. NAS를 다시 접근하기 위해서는 "
-#~ "아래의 과정 중 하나 이상의 작업을 해야 할 수도 있습니다: <ul><li><span class='vexpl'>당신의 컴퓨터의 IP "
-#~ "주소를 변경</span></li><li><span class='vexpl'>새 IP 주소로 webGUI를 "
-#~ "접근</span></li></ul>"
-
-#~ msgid "Click this button to download the system configuration in XML format."
-#~ msgstr "XML 포맷으로 시스템 설정을 다운로드 하려면 이 버튼을 클릭하십시오."
-
-#, php-format
-#~ msgid ""
-#~ "DO NOT abort the firmware upgrade once it has started. %s will reboot "
-#~ "automatically after storing the new firmware. The configuration will be "
-#~ "maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-#~ "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-#~ "System configuration before doing a Firmware upgrade."
-#~ msgstr ""
-#~ "펌웨어 업그레이드가 일단 시작되면 취소하지 마십시오. 새 펌웨어를 저장한 후에 %s은(는) 리붓 할 것입니다. 설정 내용들은 그대로 "
-#~ "유지될 것입니다.<br />펌웨어 업그레이드를 수행하려면 최소 %d Mb의 램이 필요합니다.<br />펌웨어 업그레이드를 하기 전에 설정 "
-#~ "파일을 <a href='%s'>백업</a> 하는 것을 강력히 권장합니다."
-
-#, php-format
-#~ msgid ""
-#~ "If you click 'Yes', %s will be reset to factory defaults and will reboot "
-#~ "immediately. The entire system configuration will be overwritten. The LAN IP "
-#~ "address will be reset to %s and the password will be set to '%s'."
-#~ msgstr ""
-#~ "'예'를 클릭하면 %s은(는) 공장 기본 값으로 설정된 후 바로 리붓 하게 됩니다. 전체 시스템 설정 값을 덮어쓸 것입니다. 랜 IP "
-#~ "주소는 %s로(으로) 설정되고 비밀번호는 '%s'로(으로) 설정될 것입니다."
-
-#, php-format
-#~ msgid ""
-#~ "Open a %s configuration XML file and click the button below to restore the "
-#~ "configuration."
-#~ msgstr "설정을 복원하려면 %s 설정 XML 파일을 열고 아래의 버튼을 클릭 하십시오."
-
-#, php-format
-#~ msgid "The configuration has been restored. %s is now rebooting."
-#~ msgstr "설정이 복원되었습니다. 이제 %s이(가) 리붓 합니다."
-
-#, php-format
-#~ msgid "The firmware is now being installed. %s will reboot automatically."
-#~ msgstr "현재 펌웨어가 설치 중입니다. %s은(는) 자동으로 리붓 할 것입니다."
-
-#~ msgid ""
-#~ "The system has been reset to factory defaults and is now rebooting. This may "
-#~ "take one minute."
-#~ msgstr "시스템이 공장 기본 값으로 설정되었으며 이제 리붓을 합니다. 이것은 1분 가량 걸릴 것입니다."
+#~ msgid "%s will reboot after restoring the configuration."
+#~ msgstr "설정을 복원한 후에 %s은(는) 재시작합니다."

@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-11-28 10:10+0000\n"
+"POT-Creation-Date: 2012-11-29 00:51+0000\n"
 "PO-Revision-Date: 2012-06-25 21:24+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-28 09:42+0000\n"
-"X-Generator: Launchpad (build 16309)\n"
+"X-Launchpad-Export-Date: 2012-11-29 00:17+0000\n"
+"X-Generator: Launchpad (build 16319)\n"
 "X-Poedit-Country: FINLAND\n"
 "X-Poedit-Language: Finnish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -77,10 +77,6 @@ msgstr "%s / %sB"
 #, php-format
 msgid "%s on %s"
 msgstr ""
-
-#, php-format
-msgid "%s will reboot after restoring the configuration."
-msgstr "%s käynnistyy uudelleen asetusten palautuksen jälkeen."
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -5120,6 +5116,10 @@ msgstr ""
 msgid "The configuration could not be restored. %s"
 msgstr ""
 
+#, php-format
+msgid "The configuration could not be restored. No file was uploaded!"
+msgstr ""
+
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
 "for them to take effect."
@@ -5420,6 +5420,10 @@ msgstr ""
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
+msgstr ""
+
+#, php-format
+msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
 msgid "The share name is already used."
@@ -6692,10 +6696,6 @@ msgstr ""
 msgid "upriv"
 msgstr ""
 
-#~ msgid "Click this button to download the system configuration in XML format."
-#~ msgstr "Paina painiketta ladataksesi järjestelmän asetukset XML muodossa."
-
 #, php-format
-#~ msgid "The firmware is now being installed. %s will reboot automatically."
-#~ msgstr ""
-#~ "Firmwaren asennus on aloitettu. %s käynnistetään uudelleen automaattisesti."
+#~ msgid "%s will reboot after restoring the configuration."
+#~ msgstr "%s käynnistyy uudelleen asetusten palautuksen jälkeen."

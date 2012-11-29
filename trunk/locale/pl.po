@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-28 10:10+0000\n"
+"POT-Creation-Date: 2012-11-29 00:51+0000\n"
 "PO-Revision-Date: 2012-06-02 00:23+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-28 09:43+0000\n"
-"X-Generator: Launchpad (build 16309)\n"
+"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
+"X-Generator: Launchpad (build 16319)\n"
 "X-Poedit-Country: POLAND\n"
 "Language: \n"
 "X-Poedit-Language: Polish\n"
@@ -74,10 +74,6 @@ msgstr "%s z %sB"
 #, php-format
 msgid "%s on %s"
 msgstr "%s na %s"
-
-#, php-format
-msgid "%s will reboot after restoring the configuration."
-msgstr "%s zostanie uruchomiony ponownie po przywróceniu konfiguracji."
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -5287,6 +5283,10 @@ msgstr "Konfiguracja nie może być przywrócona."
 msgid "The configuration could not be restored. %s"
 msgstr "Konfiguracja nie została przywrócona. %s"
 
+#, php-format
+msgid "The configuration could not be restored. No file was uploaded!"
+msgstr ""
+
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
 "for them to take effect."
@@ -5617,6 +5617,10 @@ msgstr "Port szeregowy lub USB, do którego jest podłączony UPS."
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
+msgstr ""
+
+#, php-format
+msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
 msgid "The share name is already used."
@@ -6979,68 +6983,5 @@ msgid "upriv"
 msgstr ""
 
 #, php-format
-#~ msgid ""
-#~ "After you click &quot;Save&quot;, you must reboot %s to make the changes "
-#~ "take effect. You may also have to do one or more of the following steps "
-#~ "before you can access your NAS again: <ul><li><span class='vexpl'>change the "
-#~ "IP address of your computer</span></li><li><span class='vexpl'>access the "
-#~ "webGUI with the new IP address</span></li></ul>"
-#~ msgstr ""
-#~ "Po kliknięciu &quot;Zapisz&quot;, musisz uruchomić ponownie %s aby zmiany "
-#~ "zostały wprowadzone. Być może będziesz musiał dokonać następujących kroków, "
-#~ "aby otrzymać ponownie dotęp do NAS: <ul><li><span class='vexpl'>zmienić "
-#~ "adres IP komputera</span></li><li><span class='vexpl'>uzyskać dostęp do "
-#~ "środowiska webGUI pod nowym adresem IP</span></li></ul>"
-
-#~ msgid "Click this button to download the system configuration in XML format."
-#~ msgstr ""
-#~ "Kliknij ten przycisk aby pobrać konfigurację systemu w postaci pliku XML."
-
-#, php-format
-#~ msgid ""
-#~ "DO NOT abort the firmware upgrade once it has started. %s will reboot "
-#~ "automatically after storing the new firmware. The configuration will be "
-#~ "maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-#~ "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-#~ "System configuration before doing a Firmware upgrade."
-#~ msgstr ""
-#~ "NIE PRZERYWAJ aktualizacji oprogramowania podczas jej trwania. %s uruchomi "
-#~ "się ponownie automatycznie po zakończeniu aktualizacji. Konfiguracja "
-#~ "pozostanie niezmieniona.<br />Potrzebujesz minimum %d Mb pamięci RAM, aby "
-#~ "przeprowadzić aktualizację oprogramowania.<br />Zalecane jest zrobienie <a "
-#~ "href='%s'>Kopii zapasowej</a> konfiguracji systemu przed dokonaniem "
-#~ "aktualizacji oprogramowania."
-
-#, php-format
-#~ msgid ""
-#~ "If you click 'Yes', %s will be reset to factory defaults and will reboot "
-#~ "immediately. The entire system configuration will be overwritten. The LAN IP "
-#~ "address will be reset to %s and the password will be set to '%s'."
-#~ msgstr ""
-#~ "Jeśli klikniesz 'Tak', %s zostanie zresetowany do wartości domyślnych i "
-#~ "uruchomiony ponownie. Konfiguracja systemu zostanie nadpisana. Adres IP "
-#~ "zostanie zresetowany do %s, a hasło ustawione na '%s'."
-
-#, php-format
-#~ msgid ""
-#~ "Open a %s configuration XML file and click the button below to restore the "
-#~ "configuration."
-#~ msgstr ""
-#~ "Otwórz plik konfiguracyjny XML %s i kliknij poniższy przycisk w celu "
-#~ "przywrócenia konfiguracji."
-
-#, php-format
-#~ msgid "The configuration has been restored. %s is now rebooting."
-#~ msgstr "Konfiguracja została przywrócona. %s jest ponownie uruchamiany."
-
-#, php-format
-#~ msgid "The firmware is now being installed. %s will reboot automatically."
-#~ msgstr ""
-#~ "Firmware jest instalowane. %s automatycznie zostanie uruchomione ponownie."
-
-#~ msgid ""
-#~ "The system has been reset to factory defaults and is now rebooting. This may "
-#~ "take one minute."
-#~ msgstr ""
-#~ "System przywrócony do ustawień domyślnych właśnie się uruchamia ponownie. "
-#~ "Może to chwilę potrwać."
+#~ msgid "%s will reboot after restoring the configuration."
+#~ msgstr "%s zostanie uruchomiony ponownie po przywróceniu konfiguracji."

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-28 10:10+0000\n"
+"POT-Creation-Date: 2012-11-29 00:51+0000\n"
 "PO-Revision-Date: 2012-06-26 22:58+0000\n"
 "Last-Translator: Martin Gundersen <martin@gundersen.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-28 09:43+0000\n"
-"X-Generator: Launchpad (build 16309)\n"
+"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
+"X-Generator: Launchpad (build 16319)\n"
 "X-Poedit-Country: NORWAY\n"
 "Language: \n"
 "X-Poedit-Language: Norwegian Bokmal\n"
@@ -73,10 +73,6 @@ msgstr "%s av %sB"
 #, php-format
 msgid "%s on %s"
 msgstr "%s på %s"
-
-#, php-format
-msgid "%s will reboot after restoring the configuration."
-msgstr "%s vil starte på nytt etter gjennopprettingen av konfigurasjonen."
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -5261,6 +5257,10 @@ msgstr "Konfigurasjon kunne ikke gjennopprettes."
 msgid "The configuration could not be restored. %s"
 msgstr ""
 
+#, php-format
+msgid "The configuration could not be restored. No file was uploaded!"
+msgstr ""
+
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
 "for them to take effect."
@@ -5562,6 +5562,10 @@ msgstr ""
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
+msgstr ""
+
+#, php-format
+msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
 msgid "The share name is already used."
@@ -6864,67 +6868,5 @@ msgid "upriv"
 msgstr "upriv"
 
 #, php-format
-#~ msgid ""
-#~ "After you click &quot;Save&quot;, you must reboot %s to make the changes "
-#~ "take effect. You may also have to do one or more of the following steps "
-#~ "before you can access your NAS again: <ul><li><span class='vexpl'>change the "
-#~ "IP address of your computer</span></li><li><span class='vexpl'>access the "
-#~ "webGUI with the new IP address</span></li></ul>"
-#~ msgstr ""
-#~ "Etter du klikker &quot;Lagre&quot; må du restarte %s for at endringene skal "
-#~ "tre i kraft. Du må muligens også gjøre ett eller flere av de følgende "
-#~ "punktene før du får tilgang til nettverkslageret ditt igjen: <ul><li><span "
-#~ "class='vexpl'>bytte IP adresse på maskinen</span></li><li><span "
-#~ "class='vexpl'>åpne nettgrensesnittet med den nye IP adressen</span></li></ul>"
-
-#~ msgid "Click this button to download the system configuration in XML format."
-#~ msgstr ""
-#~ "Klikk på denne knappen for å laste ned system konfigurasjonen i XML format."
-
-#, php-format
-#~ msgid ""
-#~ "DO NOT abort the firmware upgrade once it has started. %s will reboot "
-#~ "automatically after storing the new firmware. The configuration will be "
-#~ "maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-#~ "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-#~ "System configuration before doing a Firmware upgrade."
-#~ msgstr ""
-#~ "IKKE avbryt oppgraderingen av firmware etter at den er startet. %s starter "
-#~ "automatisk på nytt etter at oppgraderingen er fullført. "
-#~ "Systemkonfigurasjonen på systemet vil bli ivaretatt. <br /> Du trenger minst "
-#~ "%d Mb hovedminne for å gjennomføre oppdateringen av firmware. <br /> Det er "
-#~ "sterkt anbefalt at du tar en<a href='%s'>sikkerhetskopi</a> av "
-#~ "systemkonfigurasjonen før du gjennomfører en oppgradering av firmwaren."
-
-#, php-format
-#~ msgid ""
-#~ "If you click 'Yes', %s will be reset to factory defaults and will reboot "
-#~ "immediately. The entire system configuration will be overwritten. The LAN IP "
-#~ "address will be reset to %s and the password will be set to '%s'."
-#~ msgstr ""
-#~ "Hvis du trykker 'Ja', vil %s bli resatt til fabrikk instillinger og vil "
-#~ "starte på nytt umiddelbart. Hele systemkonfigurasjonen vil bli skrever over. "
-#~ "LAN IP-adressen vil bli resatt til %s og passordet vil bli satt til '%s'."
-
-#, php-format
-#~ msgid ""
-#~ "Open a %s configuration XML file and click the button below to restore the "
-#~ "configuration."
-#~ msgstr ""
-#~ "Åpne en %s konfigurasjon XML fil og klikk knappen nedenfor for å "
-#~ "gjennopprette konfigurasjonen."
-
-#, php-format
-#~ msgid "The configuration has been restored. %s is now rebooting."
-#~ msgstr "Konfigurasjonen har blitt gjenopprettet. %s starter på nytt."
-
-#, php-format
-#~ msgid "The firmware is now being installed. %s will reboot automatically."
-#~ msgstr "Fabrikkvaren blir nå installert. %s vil automatisk starte på nytt."
-
-#~ msgid ""
-#~ "The system has been reset to factory defaults and is now rebooting. This may "
-#~ "take one minute."
-#~ msgstr ""
-#~ "Systemet har blitt gjennomrettet til fabrikk-standarden og starter nå på "
-#~ "nytt. Dette kan ta et minutt."
+#~ msgid "%s will reboot after restoring the configuration."
+#~ msgstr "%s vil starte på nytt etter gjennopprettingen av konfigurasjonen."
