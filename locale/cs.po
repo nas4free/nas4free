@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-29 00:51+0000\n"
+"POT-Creation-Date: 2012-12-11 04:00+0000\n"
 "PO-Revision-Date: 2012-06-02 00:22+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
-"X-Generator: Launchpad (build 16319)\n"
+"X-Launchpad-Export-Date: 2012-12-11 03:21+0000\n"
+"X-Generator: Launchpad (build 16356)\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 "Language: \n"
 "X-Poedit-Language: Czech\n"
@@ -125,6 +125,11 @@ msgid ""
 msgstr ""
 "<div id='enumeration'><ul><li>%d - Datum</li><li>%h - "
 "Hostname</li></ul></div>"
+
+msgid ""
+"<div id='enumeration'><ul><li>The new password is also the default root "
+"password of the system!</li></ul></div>"
+msgstr ""
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -1148,6 +1153,9 @@ msgstr "Současný"
 msgid "Current Version:"
 msgstr ""
 
+msgid "Current password"
+msgstr ""
+
 msgid "Custom"
 msgstr "Volitelný"
 
@@ -2113,11 +2121,9 @@ msgid "English"
 msgstr "Angličtina"
 
 msgid ""
-"Enter a custom port number for the WebGUI above if you want to override the "
+"Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
-"Pokud si přejete přepsat implicitní číslo portu (80 pro HTTP a 443 pro "
-"HTTPS) pro WebGUI, uveďte vlastní číslo portu."
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Zadejte platný sysctl MIB."
@@ -2770,10 +2776,6 @@ msgid ""
 "twice."
 msgstr "Pokud chcete změnit heslo k WebGUI, vložte jej dvakrát."
 
-msgid ""
-"If you want to change the username for accessing the WebGUI, enter it here."
-msgstr "Sem vložte nové heslo, pokud chcete změnit heslo do WebGUI."
-
 msgid "Image upload failed (out of memory?)"
 msgstr "Nahrání image selhalo (nedostatek paměti?)"
 
@@ -2923,6 +2925,11 @@ msgstr ""
 msgid ""
 "It is not recommanded to import non healty pools nor virtual devices that "
 "are part of a non healthy pool."
+msgstr ""
+
+msgid ""
+"It's recommended to change the default username and password for accessing "
+"the WebGUI, enter the username here."
 msgstr ""
 
 msgid "Italian"
@@ -3539,6 +3546,9 @@ msgstr ""
 
 msgid "New Device"
 msgstr "Nové zařízení"
+
+msgid "New password"
+msgstr ""
 
 msgid "No"
 msgstr "Ne"
@@ -4506,6 +4516,11 @@ msgstr "Secure Shell"
 msgid "Security"
 msgstr "Zabezpečení"
 
+msgid ""
+"Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
+"Secure (HTTPS) for the WebGUI."
+msgstr ""
+
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr "Vyberte disk, který má zapnuté S.M.A.R.T. monitorování."
 
@@ -4517,6 +4532,9 @@ msgstr "Vyberte bod připojení, na němž se má vytvořit odkládací soubor"
 
 msgid "Select the FreeBSD package to be installed."
 msgstr "Zvolte FreeBSD balíček, který má být nainstalován."
+
+msgid "Select the language of the WebGUI."
+msgstr ""
 
 msgid "Select the location closest to you."
 msgstr "Vyberte umístění nejblíže vám."
@@ -5309,6 +5327,9 @@ msgstr "Údaje pro připojení."
 msgid "The cron job has been executed successfully."
 msgstr "Cron job byl úspěšně vykonán."
 
+msgid "The current password is incorrect entered."
+msgstr ""
+
 #, php-format
 msgid ""
 "The custom format of the snapshot for shadow copy service can be specified. "
@@ -5504,6 +5525,10 @@ msgstr ""
 
 #, php-format
 msgid "The network '%s' is invalid."
+msgstr ""
+
+msgid ""
+"The new password does not match. Please ensure the passwords match exactly."
 msgstr ""
 
 msgid "The number of clients must be between 1 and 50."
@@ -6919,6 +6944,13 @@ msgstr "odpojit"
 msgid "upriv"
 msgstr "upriv"
 
-#, php-format
-#~ msgid "%s will reboot after restoring the configuration."
-#~ msgstr "%s bude restartován po obnovení konfigurace."
+#~ msgid ""
+#~ "Enter a custom port number for the WebGUI above if you want to override the "
+#~ "default (80 for HTTP, 443 for HTTPS)."
+#~ msgstr ""
+#~ "Pokud si přejete přepsat implicitní číslo portu (80 pro HTTP a 443 pro "
+#~ "HTTPS) pro WebGUI, uveďte vlastní číslo portu."
+
+#~ msgid ""
+#~ "If you want to change the username for accessing the WebGUI, enter it here."
+#~ msgstr "Sem vložte nové heslo, pokud chcete změnit heslo do WebGUI."

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-29 00:51+0000\n"
+"POT-Creation-Date: 2012-12-11 04:00+0000\n"
 "PO-Revision-Date: 2012-04-16 00:17+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
-"X-Generator: Launchpad (build 16319)\n"
+"X-Launchpad-Export-Date: 2012-12-11 03:21+0000\n"
+"X-Generator: Launchpad (build 16356)\n"
 "X-Poedit-Country: ALBANIA\n"
 "Language: \n"
 "X-Poedit-Language: Albanian\n"
@@ -127,6 +127,11 @@ msgid ""
 "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
 msgstr ""
 "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
+
+msgid ""
+"<div id='enumeration'><ul><li>The new password is also the default root "
+"password of the system!</li></ul></div>"
+msgstr ""
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -1155,6 +1160,9 @@ msgstr "Tanishem"
 msgid "Current Version:"
 msgstr ""
 
+msgid "Current password"
+msgstr ""
+
 msgid "Custom"
 msgstr "E Personalizuar"
 
@@ -2102,11 +2110,9 @@ msgid "English"
 msgstr "Anglisht"
 
 msgid ""
-"Enter a custom port number for the WebGUI above if you want to override the "
+"Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
-"Futni nje numer te personalizuar per porten qe do te perdoret per WebGUI ne "
-"qofte se doni te ndryshoni ate te paracaktuar (80 per HTTP, 443 per HTTPS)."
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Vendosni nje emer sysctl MIB te vlefshem."
@@ -2749,12 +2755,6 @@ msgstr ""
 "Ne qofte se doni te ndryshoni fjalekalimin per te hyre ne WebGUI, futeni dy "
 "here ketu."
 
-msgid ""
-"If you want to change the username for accessing the WebGUI, enter it here."
-msgstr ""
-"Ne qofte se doni te ndryshoni emrin e perdoruesit per te hyre ne WebGUI, "
-"futeni ketu."
-
 msgid "Image upload failed (out of memory?)"
 msgstr "Ngarkimi i imazhit deshtoi (jashte memories?)"
 
@@ -2903,6 +2903,11 @@ msgid ""
 "It is not recommanded to import non healty pools nor virtual devices that "
 "are part of a non healthy pool."
 msgstr "Nuk eshte e keshillueshme te importoni"
+
+msgid ""
+"It's recommended to change the default username and password for accessing "
+"the WebGUI, enter the username here."
+msgstr ""
 
 msgid "Italian"
 msgstr "Italisht"
@@ -3516,6 +3521,9 @@ msgstr ""
 
 msgid "New Device"
 msgstr "Paisje e re"
+
+msgid "New password"
+msgstr ""
 
 msgid "No"
 msgstr "Jo"
@@ -4461,6 +4469,11 @@ msgstr ""
 msgid "Security"
 msgstr "Siguria"
 
+msgid ""
+"Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
+"Secure (HTTPS) for the WebGUI."
+msgstr ""
+
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr "Zgjidh nje disk qe eshte i abilituar per monitorimin S.M.A.R.T."
 
@@ -4472,6 +4485,9 @@ msgstr ""
 
 msgid "Select the FreeBSD package to be installed."
 msgstr "Zgjidh paketen FreeBSD qe do te instalohet."
+
+msgid "Select the language of the WebGUI."
+msgstr ""
 
 msgid "Select the location closest to you."
 msgstr "Seleksiono lokalitetin qe ndoshet me afer jush."
@@ -5236,6 +5252,9 @@ msgstr ""
 msgid "The cron job has been executed successfully."
 msgstr ""
 
+msgid "The current password is incorrect entered."
+msgstr ""
+
 #, php-format
 msgid ""
 "The custom format of the snapshot for shadow copy service can be specified. "
@@ -5422,6 +5441,10 @@ msgstr ""
 
 #, php-format
 msgid "The network '%s' is invalid."
+msgstr ""
+
+msgid ""
+"The new password does not match. Please ensure the passwords match exactly."
 msgstr ""
 
 msgid "The number of clients must be between 1 and 50."
@@ -6798,6 +6821,15 @@ msgstr "zmonto"
 msgid "upriv"
 msgstr "upriv"
 
-#, php-format
-#~ msgid "%s will reboot after restoring the configuration."
-#~ msgstr "%s do te rindezet pasi te kete ruajtur konfigurimin."
+#~ msgid ""
+#~ "Enter a custom port number for the WebGUI above if you want to override the "
+#~ "default (80 for HTTP, 443 for HTTPS)."
+#~ msgstr ""
+#~ "Futni nje numer te personalizuar per porten qe do te perdoret per WebGUI ne "
+#~ "qofte se doni te ndryshoni ate te paracaktuar (80 per HTTP, 443 per HTTPS)."
+
+#~ msgid ""
+#~ "If you want to change the username for accessing the WebGUI, enter it here."
+#~ msgstr ""
+#~ "Ne qofte se doni te ndryshoni emrin e perdoruesit per te hyre ne WebGUI, "
+#~ "futeni ketu."

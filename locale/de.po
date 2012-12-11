@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-29 00:51+0000\n"
-"PO-Revision-Date: 2012-11-21 17:57+0000\n"
-"Last-Translator: Christoph Bursch <chribursch@gmail.com>\n"
+"POT-Creation-Date: 2012-12-11 04:00+0000\n"
+"PO-Revision-Date: 2012-11-30 13:29+0000\n"
+"Last-Translator: Dennis Baudys <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-29 00:17+0000\n"
-"X-Generator: Launchpad (build 16319)\n"
+"X-Launchpad-Export-Date: 2012-12-11 03:20+0000\n"
+"X-Generator: Launchpad (build 16356)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
 "X-Poedit-Language: German\n"
@@ -134,6 +134,11 @@ msgid ""
 msgstr ""
 "<div id='enumeration'><ul><li>%d - Datum</li><li>%h - "
 "Hostname</li></ul></div>"
+
+msgid ""
+"<div id='enumeration'><ul><li>The new password is also the default root "
+"password of the system!</li></ul></div>"
+msgstr ""
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -283,7 +288,7 @@ msgid "AIO write size"
 msgstr "AIO schreib-größe"
 
 msgid "ALL interfaces"
-msgstr ""
+msgstr "Alle Schnittstellen"
 
 msgid "ARP Tables"
 msgstr "ARP Tabellen"
@@ -549,7 +554,7 @@ msgid "Allow new files to be created."
 msgstr "Erlaube das Erstellen neuer Dateien."
 
 msgid "Allow trusted domains."
-msgstr ""
+msgstr "Vertrauenswürdige Domänen erlauben."
 
 msgid ""
 "Allows  certain  users and groups to have read/write access to a share. This "
@@ -794,7 +799,7 @@ msgid "CARP"
 msgstr "CARP"
 
 msgid "CARP only"
-msgstr ""
+msgstr "Nur CARP"
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -969,6 +974,8 @@ msgstr ""
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr ""
+"Klicken Sie auf diesen Knopf, um die Server-Konfiguration im XML-Format "
+"herunterzuladen."
 
 msgid "Client"
 msgstr "Client"
@@ -1206,6 +1213,9 @@ msgstr "Aktuell"
 
 msgid "Current Version:"
 msgstr "Aktuelle Version:"
+
+msgid "Current password"
+msgstr ""
 
 msgid "Custom"
 msgstr "Benutzerdefiniert"
@@ -2187,11 +2197,9 @@ msgid "English"
 msgstr "Englisch"
 
 msgid ""
-"Enter a custom port number for the WebGUI above if you want to override the "
+"Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
-"Geben Sie hier eine neue Portnummer für die Web-basierte Benutzeroberfläche "
-"an, um die Standardportadresse (80 für HTTP, 443 für HTTPS) zu ändern."
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Geben Sie einen gültigen sysctl MIB Namen an."
@@ -2868,12 +2876,6 @@ msgstr ""
 "Wenn Sie das Passwort für den Zugriff auf das WebGUI ändern möchten, dann "
 "geben Sie es hier zweimal ein."
 
-msgid ""
-"If you want to change the username for accessing the WebGUI, enter it here."
-msgstr ""
-"Wenn Sie den Benutzernamen für die Web-basierte Benutzeroberfläche ändern "
-"möchten, geben Sie ihn hier ein."
-
 msgid "Image upload failed (out of memory?)"
 msgstr "Image-Upload fehlgeschlagen (zuwenig Speicher?)"
 
@@ -3032,6 +3034,11 @@ msgstr ""
 "Es wird nicht empfohlen ungesunde Pools oder virtuelle Geräte, die Teile "
 "eines ungesunden Pools sind, zu importieren."
 
+msgid ""
+"It's recommended to change the default username and password for accessing "
+"the WebGUI, enter the username here."
+msgstr ""
+
 msgid "Italian"
 msgstr "Italienisch"
 
@@ -3079,7 +3086,7 @@ msgid "LAN net"
 msgstr "LAN net"
 
 msgid "LAN only"
-msgstr ""
+msgstr "Nur LAN"
 
 msgid "LCDproc"
 msgstr "LCDproc"
@@ -3668,6 +3675,9 @@ msgstr "Niemals - Standard"
 msgid "New Device"
 msgstr "Neues Gerät"
 
+msgid "New password"
+msgstr ""
+
 msgid "No"
 msgstr "Nein"
 
@@ -3866,7 +3876,7 @@ msgid "ONLINE"
 msgstr "ONLINE"
 
 msgid "OPT only"
-msgstr ""
+msgstr "Nur OPT"
 
 msgid "Object name"
 msgstr "Objektname"
@@ -4501,7 +4511,7 @@ msgid "Reverse direction"
 msgstr "Umgekehrte Richtung"
 
 msgid "Role"
-msgstr ""
+msgstr "Rolle"
 
 msgid "Romanian"
 msgstr "Rumänisch"
@@ -4677,6 +4687,11 @@ msgstr "Secure Shell"
 msgid "Security"
 msgstr "Sicherheit"
 
+msgid ""
+"Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
+"Secure (HTTPS) for the WebGUI."
+msgstr ""
+
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr ""
 "Wähle ein Gerät welches für die S.M.A.R.T. Überwachung aktiviert wurde."
@@ -4689,6 +4704,9 @@ msgstr "Wählen Sie den Einhängpunkt wo die Swap Datei erzeugt werden soll."
 
 msgid "Select the FreeBSD package to be installed."
 msgstr "Das zu installierende FreeBSD Package auswählen."
+
+msgid "Select the language of the WebGUI."
+msgstr ""
 
 msgid "Select the location closest to you."
 msgstr "Wählen Sie den Standort, der Ihnen am nächsten liegt."
@@ -5117,10 +5135,10 @@ msgid "Swedish"
 msgstr "Schwedisch"
 
 msgid "Switch VIP to BACKUP"
-msgstr ""
+msgstr "VIP in BACKUP ändern"
 
 msgid "Switch VIP to MASTER"
-msgstr ""
+msgstr "VIP in MASTER ändern"
 
 msgid "Switch to"
 msgstr "Umschalten zu"
@@ -5510,6 +5528,8 @@ msgstr "Die Konfiguration konnte nicht wiederhergestellt werden. %s"
 #, php-format
 msgid "The configuration could not be restored. No file was uploaded!"
 msgstr ""
+"Die Konfiguration konnte nicht wiederhergestellt werden. Es wurde keine "
+"Datei hochgeladen!"
 
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
@@ -5521,6 +5541,7 @@ msgstr ""
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
 msgstr ""
+"Die Konfiguration wurde wiederhergestellt. Der Server startet jetzt neu."
 
 msgid ""
 "The confimed password does not match. Please ensure the passwords match "
@@ -5534,6 +5555,9 @@ msgstr "Die Referenzen, auf die verwiesen werden soll."
 
 msgid "The cron job has been executed successfully."
 msgstr "Der cron job wurde erfolgreich ausgeführt."
+
+msgid "The current password is incorrect entered."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -5631,6 +5655,7 @@ msgstr "Dieser Name existiert bereits"
 msgid ""
 "The firmware is now being installed. The server will reboot automatically."
 msgstr ""
+"Die Firmware wird jetzt installiert. Der Server wird automatisch neustarten."
 
 msgid "The following input errors were detected"
 msgstr "Die folgenden Eingabefehler sind aufgetreten"
@@ -5777,6 +5802,10 @@ msgstr ""
 msgid "The network '%s' is invalid."
 msgstr "Das Netzwerk '%s' ist ungültig."
 
+msgid ""
+"The new password does not match. Please ensure the passwords match exactly."
+msgstr ""
+
 msgid "The number of clients must be between 1 and 50."
 msgstr "Die Anzahl der Clients muss zwischen 1 und 50 liegen."
 
@@ -5886,6 +5915,8 @@ msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
 msgstr ""
+"Der Server wurde auf Werkseinstellungen zurückgesetzt und startet jetzt neu. "
+"Dies kann eine Minute dauern."
 
 #, php-format
 msgid "The server will reboot after restoring the configuration."
@@ -7385,7 +7416,15 @@ msgstr "Aushängen"
 msgid "upriv"
 msgstr "upriv"
 
-#, php-format
-#~ msgid "%s will reboot after restoring the configuration."
+#~ msgid ""
+#~ "Enter a custom port number for the WebGUI above if you want to override the "
+#~ "default (80 for HTTP, 443 for HTTPS)."
 #~ msgstr ""
-#~ "%s wird neu gestartet, sobald die Konfiguration wiederhergestellt ist."
+#~ "Geben Sie hier eine neue Portnummer für die Web-basierte Benutzeroberfläche "
+#~ "an, um die Standardportadresse (80 für HTTP, 443 für HTTPS) zu ändern."
+
+#~ msgid ""
+#~ "If you want to change the username for accessing the WebGUI, enter it here."
+#~ msgstr ""
+#~ "Wenn Sie den Benutzernamen für die Web-basierte Benutzeroberfläche ändern "
+#~ "möchten, geben Sie ihn hier ein."

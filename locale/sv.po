@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-29 00:51+0000\n"
+"POT-Creation-Date: 2012-12-11 04:00+0000\n"
 "PO-Revision-Date: 2012-11-21 15:57+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
-"X-Generator: Launchpad (build 16319)\n"
+"X-Launchpad-Export-Date: 2012-12-11 03:21+0000\n"
+"X-Generator: Launchpad (build 16356)\n"
 "X-Poedit-Country: SWEDEN\n"
 "Language: \n"
 "X-Poedit-Language: Swedish\n"
@@ -129,6 +129,11 @@ msgid ""
 "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
 msgstr ""
 "<div id='uppräkning'><ul><li>%d - Datum</li><li>%h - Värdnamn</li></ul></div>"
+
+msgid ""
+"<div id='enumeration'><ul><li>The new password is also the default root "
+"password of the system!</li></ul></div>"
+msgstr ""
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -1183,6 +1188,9 @@ msgstr "Aktuellt"
 msgid "Current Version:"
 msgstr "NUvarande version:"
 
+msgid "Current password"
+msgstr ""
+
 msgid "Custom"
 msgstr "Anpassad"
 
@@ -2148,11 +2156,9 @@ msgid "English"
 msgstr "Engelska"
 
 msgid ""
-"Enter a custom port number for the WebGUI above if you want to override the "
+"Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
-"Mata in ett egenvalt portnummer för webbgränssnittet ovan om du vill använda "
-"ett annat än standard porten (80 för HTTP, 443 för HTTPS)."
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Mata in ett giltigt sysctl MIB namn."
@@ -2816,12 +2822,6 @@ msgid ""
 msgstr ""
 "Om du vill ändra lösenordet för webbgränssnittet skriv in det här två gånger."
 
-msgid ""
-"If you want to change the username for accessing the WebGUI, enter it here."
-msgstr ""
-"Om du vill ändra användarnamnet för att komma åt webbgränssnittet skriv in "
-"det här."
-
 msgid "Image upload failed (out of memory?)"
 msgstr "Uppsändning av avbild misslyckades (slut på minne?)"
 
@@ -2979,6 +2979,11 @@ msgid ""
 msgstr ""
 "Det är inte rekommenderat att importera icke friska pooler samt virtuella "
 "enheter i sådana."
+
+msgid ""
+"It's recommended to change the default username and password for accessing "
+"the WebGUI, enter the username here."
+msgstr ""
 
 msgid "Italian"
 msgstr "Italienska"
@@ -3604,6 +3609,9 @@ msgstr "Aldrig - grundinställning"
 
 msgid "New Device"
 msgstr "Ny Enhet"
+
+msgid "New password"
+msgstr ""
 
 msgid "No"
 msgstr "Nej"
@@ -4601,6 +4609,11 @@ msgstr "Säkert Skal"
 msgid "Security"
 msgstr "Säkerhet"
 
+msgid ""
+"Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
+"Secure (HTTPS) for the WebGUI."
+msgstr ""
+
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr "Välj en disk som har S.M.A.R.T.-övervakning aktiverat."
 
@@ -4612,6 +4625,9 @@ msgstr "Välj monteringspunkt där växlingsfilen ska skapas."
 
 msgid "Select the FreeBSD package to be installed."
 msgstr "Välj FreeBSD-paket som ska installeras."
+
+msgid "Select the language of the WebGUI."
+msgstr ""
 
 msgid "Select the location closest to you."
 msgstr "Välj den plats som är närmast dig."
@@ -5451,6 +5467,9 @@ msgstr "Inloggningsdetaljer som används för att binda till katalogen."
 msgid "The cron job has been executed successfully."
 msgstr "Cron-jobbet har utförts med lyckat resultat."
 
+msgid "The current password is incorrect entered."
+msgstr ""
+
 #, php-format
 msgid ""
 "The custom format of the snapshot for shadow copy service can be specified. "
@@ -5679,6 +5698,10 @@ msgstr ""
 #, php-format
 msgid "The network '%s' is invalid."
 msgstr "Nätverket '%s' är ogiltigt."
+
+msgid ""
+"The new password does not match. Please ensure the passwords match exactly."
+msgstr ""
 
 msgid "The number of clients must be between 1 and 50."
 msgstr "Antalet klienter måste vara mellan 1 och 50"
@@ -7250,6 +7273,15 @@ msgstr "umount"
 msgid "upriv"
 msgstr "upriv"
 
-#, php-format
-#~ msgid "%s will reboot after restoring the configuration."
-#~ msgstr "%s kommer att starta om efter att konfigurationen återskapats"
+#~ msgid ""
+#~ "Enter a custom port number for the WebGUI above if you want to override the "
+#~ "default (80 for HTTP, 443 for HTTPS)."
+#~ msgstr ""
+#~ "Mata in ett egenvalt portnummer för webbgränssnittet ovan om du vill använda "
+#~ "ett annat än standard porten (80 för HTTP, 443 för HTTPS)."
+
+#~ msgid ""
+#~ "If you want to change the username for accessing the WebGUI, enter it here."
+#~ msgstr ""
+#~ "Om du vill ändra användarnamnet för att komma åt webbgränssnittet skriv in "
+#~ "det här."

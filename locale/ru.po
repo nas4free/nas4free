@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-29 00:51+0000\n"
-"PO-Revision-Date: 2012-10-15 14:58+0000\n"
+"POT-Creation-Date: 2012-12-11 04:00+0000\n"
+"PO-Revision-Date: 2012-11-29 12:22+0000\n"
 "Last-Translator: Eugene Marshal <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
-"X-Generator: Launchpad (build 16319)\n"
+"X-Launchpad-Export-Date: 2012-12-11 03:21+0000\n"
+"X-Generator: Launchpad (build 16356)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
 "X-Poedit-Language: Russian\n"
@@ -131,6 +131,11 @@ msgid ""
 msgstr ""
 "<div id='enumeration'><ul><li>%d - Дата</li><li>%h - Имя "
 "хоста</li></ul></div>"
+
+msgid ""
+"<div id='enumeration'><ul><li>The new password is also the default root "
+"password of the system!</li></ul></div>"
+msgstr ""
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -274,7 +279,7 @@ msgid "AIO write size"
 msgstr "AIO при записи"
 
 msgid "ALL interfaces"
-msgstr ""
+msgstr "ВСЕ интерфейсы"
 
 msgid "ARP Tables"
 msgstr "Таблицы ARP"
@@ -398,7 +403,7 @@ msgid "Add portal group"
 msgstr "Добавить группу порталов"
 
 msgid "Add resource"
-msgstr ""
+msgstr "Добавить ресурс"
 
 msgid "Add rule"
 msgstr "Добавить правило"
@@ -431,7 +436,7 @@ msgid "Address"
 msgstr "Адрес"
 
 msgid "Address of the remote hastd daemon. It must be a static IP address."
-msgstr ""
+msgstr "Адрес удалённой службы hastd. Это должен быть статический IP-адрес."
 
 msgid "Administration password"
 msgstr "Пароль администратора"
@@ -536,7 +541,7 @@ msgid "Allow new files to be created."
 msgstr "Позволять создание новых файлов"
 
 msgid "Allow trusted domains."
-msgstr ""
+msgstr "Разрешить доверенные домены."
 
 msgid ""
 "Allows  certain  users and groups to have read/write access to a share. This "
@@ -765,7 +770,7 @@ msgid "Blocksize"
 msgstr "Размер блока"
 
 msgid "Bridge"
-msgstr ""
+msgstr "Мост"
 
 msgid "Browseable"
 msgstr "Просматриваемый"
@@ -840,7 +845,7 @@ msgid "CPU frequency"
 msgstr "Частота ЦП"
 
 msgid "CPU frequency:"
-msgstr ""
+msgstr "Частота ЦПУ:"
 
 msgid "CPU load"
 msgstr "Загрузка процессора"
@@ -951,7 +956,7 @@ msgstr ""
 "прошивку&quot; чтобы начать процесс обновления."
 
 msgid "Click this button to download the server configuration in XML format."
-msgstr ""
+msgstr "Щёлкните на кнопке, чтобы сохранить настройки сервера в формате XML."
 
 msgid "Client"
 msgstr "Клиент"
@@ -979,11 +984,11 @@ msgstr "Команда"
 
 #, php-format
 msgid "Command for LINK_DOWN event (e.g. %s)."
-msgstr ""
+msgstr "Команда для события LINK_DOWN (например %s)."
 
 #, php-format
 msgid "Command for LINK_UP event (e.g. %s)."
-msgstr ""
+msgstr "Команда для события LINK_UP (например %s)."
 
 msgid "Command output:"
 msgstr "Результат выполнения:"
@@ -1178,6 +1183,9 @@ msgstr "Текущая"
 
 msgid "Current Version:"
 msgstr "Текущая Версия:"
+
+msgid "Current password"
+msgstr ""
 
 msgid "Custom"
 msgstr "Custom"
@@ -1383,7 +1391,7 @@ msgid "Delete portal group"
 msgstr "Удалить группу порталов"
 
 msgid "Delete resource"
-msgstr ""
+msgstr "Удалить ресурс"
 
 msgid "Delete rule"
 msgstr "Удалить правило"
@@ -1697,7 +1705,7 @@ msgid "Do you really want to delete this portal group?"
 msgstr "Вы действительно хотите удалить эту группу порталов?"
 
 msgid "Do you really want to delete this resource?"
-msgstr ""
+msgstr "Вы действительно хотите удалить этот ресурс?"
 
 msgid "Do you really want to delete this route?"
 msgstr "Вы действительно хотите удалить этот маршрут?"
@@ -1843,6 +1851,7 @@ msgstr "Dynamic DNS"
 
 msgid "Dynamic IP (DHCP) can not be used for HAST resources."
 msgstr ""
+"Динамический IP-адрес (DHCP) не может использоваться для ресурсов HAST."
 
 msgid "EA support"
 msgstr "Поддержка расширенных атрибутов"
@@ -1923,7 +1932,7 @@ msgid "Edit portal group"
 msgstr "Изменить группу порталов"
 
 msgid "Edit resource"
-msgstr ""
+msgstr "Изменить ресурс"
 
 msgid "Edit rule"
 msgstr "Редактировать правило"
@@ -2153,11 +2162,9 @@ msgid "English"
 msgstr "Английский"
 
 msgid ""
-"Enter a custom port number for the WebGUI above if you want to override the "
+"Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
-"Введите пользовательский номер порта для webGUI, если не хотите использовать "
-"порт по умолчанию (80 для HTTP, 443 для HTTPS)."
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Введите рабочее имя sysctl MIB."
@@ -2422,7 +2429,7 @@ msgid "Follow"
 msgstr "Следовать"
 
 msgid "Force use"
-msgstr ""
+msgstr "Приндуительное использование"
 
 msgid "Forced update period"
 msgstr "Период принудительного обновления"
@@ -2553,10 +2560,10 @@ msgid "HAST resource"
 msgstr ""
 
 msgid "HAST status of the configured resources"
-msgstr ""
+msgstr "Состояние HAST настроенных ресурсов"
 
 msgid "HAST volume"
-msgstr ""
+msgstr "Том HAST"
 
 msgid "HAST volume can be use with GPT/UFS only."
 msgstr ""
@@ -2743,6 +2750,8 @@ msgstr ""
 
 msgid "If allowed, a user of the trusted domains can access the share."
 msgstr ""
+"Если разрешено, пользователь доверенных доменов может иметь доступ к "
+"общедоступному ресурсу."
 
 msgid ""
 "If default root is enabled, a chroot operation is performed immediately "
@@ -2819,10 +2828,6 @@ msgid ""
 "If you want to change the password for accessing the WebGUI, enter it here "
 "twice."
 msgstr "Для смены пароля доступа к WebGUI дважды введите его здесь."
-
-msgid ""
-"If you want to change the username for accessing the WebGUI, enter it here."
-msgstr "Введите здесь имя пользователя для доступа к WebGUI."
 
 msgid "Image upload failed (out of memory?)"
 msgstr "Неудача при загрузке файла (возможно, мало памяти)"
@@ -2982,6 +2987,11 @@ msgstr ""
 "Не рекомендуется импортировать поврежденные пулы либо виртуальные "
 "устройства, являющиеся частью поврежденного пула."
 
+msgid ""
+"It's recommended to change the default username and password for accessing "
+"the WebGUI, enter the username here."
+msgstr ""
+
 msgid "Italian"
 msgstr "Итальянский"
 
@@ -3029,7 +3039,7 @@ msgid "LAN net"
 msgstr "Локальная сеть"
 
 msgid "LAN only"
-msgstr ""
+msgstr "Только ЛВС"
 
 msgid "LCDproc"
 msgstr "LCDproc"
@@ -3380,7 +3390,7 @@ msgid "Maximum connections"
 msgstr "Максимальное количество соединений"
 
 msgid "Maximum frequency"
-msgstr ""
+msgstr "Максимальная частота"
 
 msgid "Maximum idle time in seconds."
 msgstr "Максимальное время бездействия (в секундах)."
@@ -3454,7 +3464,7 @@ msgid "Minimum free space"
 msgstr "Минимум свободного места"
 
 msgid "Minimum frequency"
-msgstr ""
+msgstr "Минимальная частота"
 
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Минимальная производительность, минимум шума"
@@ -3617,11 +3627,14 @@ msgstr "Никогда - по умолчанию"
 msgid "New Device"
 msgstr "Новое устройство"
 
+msgid "New password"
+msgstr ""
+
 msgid "No"
 msgstr "Нет"
 
 msgid "No DNS setting found."
-msgstr ""
+msgstr "Настройка DNS не найдена."
 
 msgid "No RSYNC Client configured"
 msgstr "Нет настроенных клиентов Rsync"
@@ -4014,7 +4027,7 @@ msgstr "Путь к общему ресурсу."
 
 #, php-format
 msgid "Path to the local device. (e.g. %s)"
-msgstr ""
+msgstr "Адрес локального устройства (например %s)"
 
 msgid "Peer Secret"
 msgstr "Ключ безопасности инициатора"
@@ -4411,13 +4424,13 @@ msgid "Resolve IP addresses to hostnames"
 msgstr "Преобразовывать IP-адреса в имена хостов"
 
 msgid "Resource"
-msgstr ""
+msgstr "Ресурс"
 
 msgid "Resource name"
-msgstr ""
+msgstr "Имя ресурса"
 
 msgid "Resources"
-msgstr ""
+msgstr "Ресурсы"
 
 msgid "Restore configuration"
 msgstr "Восстановить конфигурацию"
@@ -4617,6 +4630,11 @@ msgstr "Secure Shell (SSH)"
 msgid "Security"
 msgstr "Безопасность"
 
+msgid ""
+"Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
+"Secure (HTTPS) for the WebGUI."
+msgstr ""
+
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr "Укажите диск с включенным S.M.A.R.T."
 
@@ -4629,6 +4647,9 @@ msgstr "Точка монтирования для создания файла �
 msgid "Select the FreeBSD package to be installed."
 msgstr "Выберите пакет FreeBSD для установки."
 
+msgid "Select the language of the WebGUI."
+msgstr ""
+
 msgid "Select the location closest to you."
 msgstr "Выберите часовой пояс."
 
@@ -4637,6 +4658,8 @@ msgid ""
 "Select the server configuration XML file and click the button below to "
 "restore the configuration."
 msgstr ""
+"Выберите файл настроек сервера XML и щёлкните на кнопке ниже, чтобы "
+"восстановить настройки."
 
 msgid "Select your read balance algorithm."
 msgstr "Выберите желаемый алгоритм балансировки чтения."
@@ -5423,7 +5446,7 @@ msgstr "Конфигурация %s не может быть восстанов�
 
 #, php-format
 msgid "The configuration could not be restored. No file was uploaded!"
-msgstr ""
+msgstr "Настройки не могут быть восстановлены. Файл не выгружен!"
 
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
@@ -5434,7 +5457,7 @@ msgstr ""
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
-msgstr ""
+msgstr "Настройки были восстановлены. Сервер выполнит перезагрузку."
 
 msgid ""
 "The confimed password does not match. Please ensure the passwords match "
@@ -5448,6 +5471,9 @@ msgstr "Пароль DN для связи с сервером каталогов
 
 msgid "The cron job has been executed successfully."
 msgstr "Задание Сron'а было выполнено успешно."
+
+msgid "The current password is incorrect entered."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -5543,6 +5569,8 @@ msgstr "Такое имя экстента уже существует."
 msgid ""
 "The firmware is now being installed. The server will reboot automatically."
 msgstr ""
+"Выполняется установка микропрограммы. Сервер выполнит перезагрузку "
+"автоматически."
 
 msgid "The following input errors were detected"
 msgstr "Были обнаружены следующие ошибки ввода"
@@ -5681,6 +5709,10 @@ msgstr ""
 msgid "The network '%s' is invalid."
 msgstr "Сеть '%s' задана некорректно."
 
+msgid ""
+"The new password does not match. Please ensure the passwords match exactly."
+msgstr ""
+
 msgid "The number of clients must be between 1 and 50."
 msgstr "Количество клиентов должно быть от 1 до 50."
 
@@ -5771,6 +5803,8 @@ msgid ""
 "The reloading request has been sent to the daemon. You can see the result by "
 "<a href=\"%s\">Log</a>."
 msgstr ""
+"Запрос перезагрузки был отправлен службе. Вы можете посмотреть результаты в "
+"<a href=\"%s\">журнале событий</a>."
 
 #, php-format
 msgid "The removable area mapped to LUN%d."
@@ -5786,10 +5820,12 @@ msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
 msgstr ""
+"Восстановлены стандартные настройки сервера, далее будет выполнена "
+"перезагрузка. Это может занять около минуты времени."
 
 #, php-format
 msgid "The server will reboot after restoring the configuration."
-msgstr ""
+msgstr "Перезагрузка сервера будет выполнена после восстановления настроек."
 
 msgid "The share name is already used."
 msgstr "Имя общего ресурса уже используется."
@@ -5972,6 +6008,7 @@ msgstr "Эти параметры будут добавлены к настро�
 msgid ""
 "This Bridge cannot be deleted because it is still being used as an interface."
 msgstr ""
+"Этот мост не может быть удалён, так как используется в качестве интерфейса."
 
 msgid ""
 "This CARP cannot be deleted because it is still being used as an interface."
@@ -6514,7 +6551,7 @@ msgid "Trivial File Transfer Protocol"
 msgstr "Trivial File Transfer Protocol (TFTP)"
 
 msgid "Trusted domains"
-msgstr ""
+msgstr "Доверенные домены"
 
 msgid "Try to force import."
 msgstr "Попытаться импортировать принудительно"
@@ -6801,10 +6838,10 @@ msgid "Version"
 msgstr "Версия"
 
 msgid "Virtual Host ID"
-msgstr ""
+msgstr "Идентификатор виртуального узла"
 
 msgid "Virtual IP address"
-msgstr ""
+msgstr "Виртуальный IP-адрес"
 
 msgid "Virtual device"
 msgstr "Виртуальные устройства"
@@ -7246,6 +7283,13 @@ msgstr "размонтировать"
 msgid "upriv"
 msgstr "upriv"
 
-#, php-format
-#~ msgid "%s will reboot after restoring the configuration."
-#~ msgstr "%s будет перезагружен после восстановления конфигурации."
+#~ msgid ""
+#~ "Enter a custom port number for the WebGUI above if you want to override the "
+#~ "default (80 for HTTP, 443 for HTTPS)."
+#~ msgstr ""
+#~ "Введите пользовательский номер порта для webGUI, если не хотите использовать "
+#~ "порт по умолчанию (80 для HTTP, 443 для HTTPS)."
+
+#~ msgid ""
+#~ "If you want to change the username for accessing the WebGUI, enter it here."
+#~ msgstr "Введите здесь имя пользователя для доступа к WebGUI."
