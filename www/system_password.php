@@ -104,7 +104,7 @@ if ($_POST) {
 			    <?php html_separator();?>
 			    <?php html_titleline(gettext("WebGUI"));?>
 					<?php html_passwordbox("password_old", gettext("Current password"), "", "", true);?>
-					<?php html_passwordconfbox("password_new", "password_confirm", gettext(" New password"), "", "", gettext("If you want to change the password for accessing the WebGUI, enter it here twice."), true);?>
+					<?php html_passwordconfbox("password_new", "password_confirm", gettext("New password"), "", "", gettext("If you want to change the password for accessing the WebGUI, enter it here twice."), true);?>
 			  </table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save");?>" />
