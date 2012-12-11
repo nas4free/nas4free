@@ -51,12 +51,12 @@ if ($_POST) {
 
 	// Validate old password.
 	if ($_POST['password_old'] !== $config['system']['password']) {
-		$input_errors[] = gettext("The old password is not correct.");
+		$input_errors[] = gettext("The current password is incorrect entered.");
 	}
 
 	// Validate new password.
 	if ($_POST['password_new'] !== $_POST['password_confirm']) {
-		$input_errors[] = gettext("The confimed password does not match. Please ensure the passwords match exactly.");
+		$input_errors[] = gettext("The new password does not match. Please ensure the passwords match exactly.");
 	}
 
 	// Check Webserver document root if auth is required
@@ -101,12 +101,19 @@ if ($_POST) {
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_passwordbox("password_old", gettext("Old password"), "", "", true);?>
-					<?php html_passwordconfbox("password_new", "password_confirm", gettext("Password"), "", "", gettext("If you want to change the password for accessing the WebGUI, enter it here twice."), true);?>
+			    <?php html_separator();?>
+			    <?php html_titleline(gettext("WebGUI"));?>
+					<?php html_passwordbox("password_old", gettext("Current password"), "", "", true);?>
+					<?php html_passwordconfbox("password_new", "password_confirm", gettext(" New password"), "", "", gettext("If you want to change the password for accessing the WebGUI, enter it here twice."), true);?>
 			  </table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save");?>" />
 				</div>
+				<br>
+				<div id="remarks">
+			  	<?php html_remark("note", gettext("Note"), gettext("<div id='enumeration'><ul><li>The new password is also the default root password of the system!</li></ul></div>"));?>
+				</div>
+				</br>
 				<?php include("formend.inc");?>
 			</form>
 		</td>

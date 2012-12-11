@@ -294,6 +294,15 @@ function webguiproto_change() {
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
+			    <?php html_separator();?>
+			    <?php html_titleline(gettext("WebGUI"));?>
+					<?php html_inputbox("username", gettext("Username"), $pconfig['username'], gettext("It's recommended to change the default username and password for accessing the WebGUI, enter the username here."), false, 21);?>
+					<?php html_combobox("webguiproto", gettext("Protocol"), $pconfig['webguiproto'], array("http" => "HTTP", "https" => "HTTPS"), gettext("Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol Secure (HTTPS) for the WebGUI."), false, false, "webguiproto_change()");?>
+					<?php html_inputbox("webguiport", gettext("Port"), $pconfig['webguiport'], gettext("Enter a custom port number for the WebGUI if you want to override the default (80 for HTTP, 443 for HTTPS)."), false, 6);?>
+					<?php html_textarea("certificate", gettext("Certificate"), $pconfig['certificate'], gettext("Paste a signed certificate in X.509 PEM format here."), true, 65, 7, false, false);?>
+					<?php html_textarea("privatekey", gettext("Private key"), $pconfig['privatekey'], gettext("Paste an private key in PEM format here."), true, 65, 7, false, false);?>
+					<?php html_languagecombobox("language", gettext("Language"), $pconfig['language'], gettext("Select the language of the WebGUI."), "", false);?>
+					<?php html_separator();?>
 			  	<tr>
 						<td colspan="2" valign="top" class="listtopic"><?=gettext("Hostname");?></td>
 					</tr>
@@ -320,14 +329,6 @@ function webguiproto_change() {
 			      </td>
 			    </tr>
 			    <?php html_separator();?>
-			    <?php html_titleline(gettext("WebGUI"));?>
-					<?php html_inputbox("username", gettext("Username"), $pconfig['username'], gettext("If you want to change the username for accessing the WebGUI, enter it here."), false, 20);?>
-					<?php html_combobox("webguiproto", gettext("Protocol"), $pconfig['webguiproto'], array("http" => "HTTP", "https" => "HTTPS"), "", false, false, "webguiproto_change()");?>
-					<?php html_inputbox("webguiport", gettext("Port"), $pconfig['webguiport'], gettext("Enter a custom port number for the WebGUI above if you want to override the default (80 for HTTP, 443 for HTTPS)."), false, 5);?>
-					<?php html_textarea("certificate", gettext("Certificate"), $pconfig['certificate'], gettext("Paste a signed certificate in X.509 PEM format here."), true, 65, 7, false, false);?>
-					<?php html_textarea("privatekey", gettext("Private key"), $pconfig['privatekey'], gettext("Paste an private key in PEM format here."), true, 65, 7, false, false);?>
-					<?php html_languagecombobox("language", gettext("Language"), $pconfig['language'], "", false);?>
-					<?php html_separator();?>
 					<?php html_titleline(gettext("Time"));?>
 					<?php html_timezonecombobox("timezone", gettext("Time zone"), $pconfig['timezone'], gettext("Select the location closest to you."), false);?>
 			    <tr>

@@ -1,13 +1,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
-"POT-Creation-Date: 2012-11-29 00:51+0000\n"
+"POT-Creation-Date: 2012-12-11 03:54+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+msgid " New password"
+msgstr ""
 
 msgid " interfaces:"
 msgstr ""
@@ -102,6 +105,9 @@ msgid "<b>EFI GPT partition</b> if you want to mount a GPT formatted drive (<b>d
 msgstr ""
 
 msgid "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
+msgstr ""
+
+msgid "<div id='enumeration'><ul><li>The new password is also the default root password of the system!</li></ul></div>"
 msgstr ""
 
 msgid "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync 3.0.0 or newer, and the 'before' algorithm when talking to an older rsync.</li><li>Before - File-deletions will be done before the transfer starts.</li><li>During - File-deletions will be done incrementally as the transfer happens.</li><li>Delay - File-deletions will be computed during the transfer, and then removed after the transfer completes.</li><li>After - File-deletions will be done after the transfer has completed.</li>"
@@ -990,6 +996,9 @@ msgid "Current"
 msgstr ""
 
 msgid "Current Version:"
+msgstr ""
+
+msgid "Current password"
 msgstr ""
 
 msgid "Custom"
@@ -1886,7 +1895,7 @@ msgstr ""
 msgid "English"
 msgstr ""
 
-msgid "Enter a custom port number for the WebGUI above if you want to override the default (80 for HTTP, 443 for HTTPS)."
+msgid "Enter a custom port number for the WebGUI if you want to override the default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
 
 msgid "Enter a valid sysctl MIB name."
@@ -2448,9 +2457,6 @@ msgstr ""
 msgid "If you want to change the password for accessing the WebGUI, enter it here twice."
 msgstr ""
 
-msgid "If you want to change the username for accessing the WebGUI, enter it here."
-msgstr ""
-
 msgid "Image upload failed (out of memory?)"
 msgstr ""
 
@@ -2588,6 +2594,9 @@ msgid "It is impossible to enable 'Anonymous users only' and 'Local users only' 
 msgstr ""
 
 msgid "It is not recommanded to import non healty pools nor virtual devices that are part of a non healthy pool."
+msgstr ""
+
+msgid "It's recommended to change the default username and password for accessing the WebGUI, enter the username here."
 msgstr ""
 
 msgid "Italian"
@@ -4039,6 +4048,9 @@ msgstr ""
 msgid "Security"
 msgstr ""
 
+msgid "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol Secure (HTTPS) for the WebGUI."
+msgstr ""
+
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr ""
 
@@ -4049,6 +4061,9 @@ msgid "Select mount point where to create the swap file."
 msgstr ""
 
 msgid "Select the FreeBSD package to be installed."
+msgstr ""
+
+msgid "Select the language of the WebGUI."
 msgstr ""
 
 msgid "Select the location closest to you."
@@ -4750,6 +4765,9 @@ msgstr ""
 msgid "The cron job has been executed successfully."
 msgstr ""
 
+msgid "The current password is incorrect entered."
+msgstr ""
+
 #, php-format
 msgid "The custom format of the snapshot for shadow copy service can be specified. The default format is %s used for ZFS auto snapshot."
 msgstr ""
@@ -4892,6 +4910,9 @@ msgstr ""
 
 #, php-format
 msgid "The network '%s' is invalid."
+msgstr ""
+
+msgid "The new password does not match. Please ensure the passwords match exactly."
 msgstr ""
 
 msgid "The number of clients must be between 1 and 50."
