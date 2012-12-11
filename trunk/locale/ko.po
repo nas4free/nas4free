@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-29 00:51+0000\n"
+"POT-Creation-Date: 2012-12-11 04:00+0000\n"
 "PO-Revision-Date: 2012-03-17 08:48+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
-"X-Generator: Launchpad (build 16319)\n"
+"X-Launchpad-Export-Date: 2012-12-11 03:21+0000\n"
+"X-Generator: Launchpad (build 16356)\n"
 "X-Poedit-Country: KOREA\n"
 "Language: \n"
 "X-Poedit-Language: Korean\n"
@@ -124,6 +124,11 @@ msgid ""
 "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
 msgstr ""
 "<div id='enumeration'><ul><li>%d - 날짜</li><li>%h - 호스트 명</li></ul></div>"
+
+msgid ""
+"<div id='enumeration'><ul><li>The new password is also the default root "
+"password of the system!</li></ul></div>"
+msgstr ""
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -1121,6 +1126,9 @@ msgstr "현 설정"
 msgid "Current Version:"
 msgstr ""
 
+msgid "Current password"
+msgstr ""
+
 msgid "Custom"
 msgstr "사용자 정의"
 
@@ -2063,9 +2071,9 @@ msgid "English"
 msgstr "영어"
 
 msgid ""
-"Enter a custom port number for the WebGUI above if you want to override the "
+"Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
-msgstr "기본 값(HTTP는 80, HTTPS는 443)을 변경하고 싶으시면 웹 화면을 위한 사용자 포트 번호를 입력하십시오."
+msgstr ""
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "유효한 sysctl MIB 이름을 입력하십시오."
@@ -2696,10 +2704,6 @@ msgid ""
 "twice."
 msgstr "WebGUI를 접근하기 위한 비밀번호를 변경하려면 여기에 두 번 입력하십시오."
 
-msgid ""
-"If you want to change the username for accessing the WebGUI, enter it here."
-msgstr "WebGUI를 접근하기 위한 사용자 명을 변경하려면 여기에 입력하십시오."
-
 msgid "Image upload failed (out of memory?)"
 msgstr "이미지 업로드 실패함(메모리 부족?)"
 
@@ -2846,6 +2850,11 @@ msgid ""
 "It is not recommanded to import non healty pools nor virtual devices that "
 "are part of a non healthy pool."
 msgstr "건강하지 않은 풀이나 건강하지 않은 풀의 일부인 가상 장치에서 import 하는 것은 권장되지 않습니다."
+
+msgid ""
+"It's recommended to change the default username and password for accessing "
+"the WebGUI, enter the username here."
+msgstr ""
 
 msgid "Italian"
 msgstr "이탈리아어"
@@ -3447,6 +3456,9 @@ msgstr ""
 
 msgid "New Device"
 msgstr "새 장치"
+
+msgid "New password"
+msgstr ""
 
 msgid "No"
 msgstr "아니오"
@@ -4390,6 +4402,11 @@ msgstr "보안 셸"
 msgid "Security"
 msgstr "보안"
 
+msgid ""
+"Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
+"Secure (HTTPS) for the WebGUI."
+msgstr ""
+
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr "S.M.A.R.T. 모니터링이 활성화된 디스크를 선택하십시오."
 
@@ -4401,6 +4418,9 @@ msgstr "스왑 파일을 생성할 마운트 지점을 선택하십시오."
 
 msgid "Select the FreeBSD package to be installed."
 msgstr "설치할 FreeBSD 패키지를 선택하십시오."
+
+msgid "Select the language of the WebGUI."
+msgstr ""
 
 msgid "Select the location closest to you."
 msgstr "가장 가까운 위치를 선택하십시오."
@@ -5179,6 +5199,9 @@ msgstr "bind 할 때 이용할 자격 증명서."
 msgid "The cron job has been executed successfully."
 msgstr "cron 작업이 성공적으로 실행되었습니다."
 
+msgid "The current password is incorrect entered."
+msgstr ""
+
 #, php-format
 msgid ""
 "The custom format of the snapshot for shadow copy service can be specified. "
@@ -5371,6 +5394,10 @@ msgstr ""
 #, php-format
 msgid "The network '%s' is invalid."
 msgstr "네트워크 '%s'은(는) 무효합니다."
+
+msgid ""
+"The new password does not match. Please ensure the passwords match exactly."
+msgstr ""
 
 msgid "The number of clients must be between 1 and 50."
 msgstr "클라이언트의 수는 1에서 50까지의 사이여야 합니다."
@@ -6801,6 +6828,11 @@ msgstr "마운트 해제"
 msgid "upriv"
 msgstr "upriv"
 
-#, php-format
-#~ msgid "%s will reboot after restoring the configuration."
-#~ msgstr "설정을 복원한 후에 %s은(는) 재시작합니다."
+#~ msgid ""
+#~ "Enter a custom port number for the WebGUI above if you want to override the "
+#~ "default (80 for HTTP, 443 for HTTPS)."
+#~ msgstr "기본 값(HTTP는 80, HTTPS는 443)을 변경하고 싶으시면 웹 화면을 위한 사용자 포트 번호를 입력하십시오."
+
+#~ msgid ""
+#~ "If you want to change the username for accessing the WebGUI, enter it here."
+#~ msgstr "WebGUI를 접근하기 위한 사용자 명을 변경하려면 여기에 입력하십시오."

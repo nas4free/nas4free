@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-29 00:51+0000\n"
+"POT-Creation-Date: 2012-12-11 04:00+0000\n"
 "PO-Revision-Date: 2012-10-14 07:46+0000\n"
 "Last-Translator: Luís Vilhena Santos <LuisVilhenaSantos@Hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-29 00:17+0000\n"
-"X-Generator: Launchpad (build 16319)\n"
+"X-Launchpad-Export-Date: 2012-12-11 03:21+0000\n"
+"X-Generator: Launchpad (build 16356)\n"
 "X-Poedit-Country: PORTUGAL\n"
 "Language: \n"
 "X-Poedit-Language: Portuguese\n"
@@ -127,6 +127,11 @@ msgid ""
 msgstr ""
 "<div id='enumeração'><ul><li>%d - Data</li><li>%h - Nome do "
 "servidor</li></ul></div>"
+
+msgid ""
+"<div id='enumeration'><ul><li>The new password is also the default root "
+"password of the system!</li></ul></div>"
+msgstr ""
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -1181,6 +1186,9 @@ msgstr "Currente"
 msgid "Current Version:"
 msgstr "Versão actual:"
 
+msgid "Current password"
+msgstr ""
+
 msgid "Custom"
 msgstr "Personalizado"
 
@@ -2153,11 +2161,9 @@ msgid "English"
 msgstr "Inglês"
 
 msgid ""
-"Enter a custom port number for the WebGUI above if you want to override the "
+"Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
-"Introduza um número de porta para o painel de administração se não desejar "
-"usar a porta predefinida (predefinição: 80 para HTTP, 443 para HTTPS)"
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Introduza um nome sysctl MIB válido."
@@ -2833,12 +2839,6 @@ msgstr ""
 "Se desejar alterar a palavra-passe de acesso ao painel de administração "
 "introduza-a aqui (duas vezes)"
 
-msgid ""
-"If you want to change the username for accessing the WebGUI, enter it here."
-msgstr ""
-"Se desejar alterar o nome de utilizador do painel de administração introduza-"
-"o aqui."
-
 msgid "Image upload failed (out of memory?)"
 msgstr "A actualização falhou (falta de memória?)"
 
@@ -2995,6 +2995,11 @@ msgstr ""
 "Não é recomendo importar um conjunto de volumes em mau estado nem "
 "dispositivos virtuais que sejam parte de um conjunto de volumes em mau "
 "estado."
+
+msgid ""
+"It's recommended to change the default username and password for accessing "
+"the WebGUI, enter the username here."
+msgstr ""
 
 msgid "Italian"
 msgstr "Italiano"
@@ -3620,6 +3625,9 @@ msgstr "Nunca - predefinido"
 
 msgid "New Device"
 msgstr "Novo Dispositivo"
+
+msgid "New password"
+msgstr ""
 
 msgid "No"
 msgstr "Não"
@@ -4621,6 +4629,11 @@ msgstr "Consola segura"
 msgid "Security"
 msgstr "Segurança"
 
+msgid ""
+"Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
+"Secure (HTTPS) for the WebGUI."
+msgstr ""
+
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr "Seleccione disco com capacidade de monitorização S.M.A.R.T."
 
@@ -4633,6 +4646,9 @@ msgstr ""
 
 msgid "Select the FreeBSD package to be installed."
 msgstr "Escolha o pacote do FreeBSD a instalar."
+
+msgid "Select the language of the WebGUI."
+msgstr ""
 
 msgid "Select the location closest to you."
 msgstr "Escolha o local mais próximo de si."
@@ -5474,6 +5490,9 @@ msgstr "As credenciais com as quais vai ligar."
 msgid "The cron job has been executed successfully."
 msgstr "A tarefa programa foi executada com sucesso."
 
+msgid "The current password is incorrect entered."
+msgstr ""
+
 #, php-format
 msgid ""
 "The custom format of the snapshot for shadow copy service can be specified. "
@@ -5701,6 +5720,10 @@ msgstr ""
 #, php-format
 msgid "The network '%s' is invalid."
 msgstr "A rede '%s' é inválida."
+
+msgid ""
+"The new password does not match. Please ensure the passwords match exactly."
+msgstr ""
 
 msgid "The number of clients must be between 1 and 50."
 msgstr "O número de cliente deve ser entre 1 e 50."
@@ -7269,6 +7292,15 @@ msgstr "umount"
 msgid "upriv"
 msgstr "upriv"
 
-#, php-format
-#~ msgid "%s will reboot after restoring the configuration."
-#~ msgstr "%s vai reiniciar depois de completar a reposição da configuração."
+#~ msgid ""
+#~ "Enter a custom port number for the WebGUI above if you want to override the "
+#~ "default (80 for HTTP, 443 for HTTPS)."
+#~ msgstr ""
+#~ "Introduza um número de porta para o painel de administração se não desejar "
+#~ "usar a porta predefinida (predefinição: 80 para HTTP, 443 para HTTPS)"
+
+#~ msgid ""
+#~ "If you want to change the username for accessing the WebGUI, enter it here."
+#~ msgstr ""
+#~ "Se desejar alterar o nome de utilizador do painel de administração introduza-"
+#~ "o aqui."

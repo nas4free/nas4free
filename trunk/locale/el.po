@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-29 00:51+0000\n"
+"POT-Creation-Date: 2012-12-11 04:00+0000\n"
 "PO-Revision-Date: 2012-11-29 09:01+0000\n"
 "Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-02 13:32+0000\n"
-"X-Generator: Launchpad (build 16319)\n"
+"X-Launchpad-Export-Date: 2012-12-11 03:21+0000\n"
+"X-Generator: Launchpad (build 16356)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
 "X-Poedit-Language: Greek\n"
@@ -132,6 +132,11 @@ msgid ""
 msgstr ""
 "<div id='enumeration'><ul><li>%d - Ημερομηνία</li><li>%h - Όνομα "
 "Υπολογιστή</li></ul></div>"
+
+msgid ""
+"<div id='enumeration'><ul><li>The new password is also the default root "
+"password of the system!</li></ul></div>"
+msgstr ""
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -1220,6 +1225,9 @@ msgstr "Τρέχον"
 msgid "Current Version:"
 msgstr "Τρέχουσα έκδοση:"
 
+msgid "Current password"
+msgstr ""
+
 msgid "Custom"
 msgstr "Προσαρμοσμένο"
 
@@ -2209,11 +2217,9 @@ msgid "English"
 msgstr "Αγγλικά"
 
 msgid ""
-"Enter a custom port number for the WebGUI above if you want to override the "
+"Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
-"Εισάγετε θύρα για το παραπάνω Web περιβάλλον εργασίας,  αν θέλετε να "
-"παρακάμψετε την προεπιλεγμένη (80 για HTTP, 443 για HTTPS)."
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Εισάγετε ένα έγκυρο όνομα sysctl MIB."
@@ -2905,12 +2911,6 @@ msgstr ""
 "Εάν θέλετε να αλλάξετε τον κωδικό πρόσβασης του web περιβάλλοντος χρήσης, "
 "εισάγετέ τον εδώ δύο φορές."
 
-msgid ""
-"If you want to change the username for accessing the WebGUI, enter it here."
-msgstr ""
-"Εάν θέλετε να αλλάξετε το όνομα χρήστη για πρόσβαση στο Web περιβάλλον "
-"χρήσης, εισάγετέ το εδώ."
-
 msgid "Image upload failed (out of memory?)"
 msgstr "Αποτυχία αποστολής αρχείου image (δεν επαρκεί η μνήμη;)"
 
@@ -3070,6 +3070,11 @@ msgid ""
 msgstr ""
 "Δεν συστήνεται η εισαγωγή μη υγιεινών pools, ούτε εικονικών συσκευών που να "
 "αποτελούν μέρος ενός μη υγιούς pool."
+
+msgid ""
+"It's recommended to change the default username and password for accessing "
+"the WebGUI, enter the username here."
+msgstr ""
 
 msgid "Italian"
 msgstr "Ιταλικά"
@@ -3705,6 +3710,9 @@ msgstr "Ποτέ - προεπιλογή"
 
 msgid "New Device"
 msgstr "Νέα συσκευή"
+
+msgid "New password"
+msgstr ""
 
 msgid "No"
 msgstr "Όχι"
@@ -4721,6 +4729,11 @@ msgstr "Ασφαλές κέλυφος (SSH)"
 msgid "Security"
 msgstr "Ασφάλεια"
 
+msgid ""
+"Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
+"Secure (HTTPS) for the WebGUI."
+msgstr ""
+
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr ""
 "Επιλέξτε δίσκο ο οποίος είναι ενεργοποιημένος για επίβλεψη S.M.A.R.T."
@@ -4734,6 +4747,9 @@ msgstr ""
 
 msgid "Select the FreeBSD package to be installed."
 msgstr "Επιλέξτε το πακέτο FreeBSD που θα εγκατασταθεί."
+
+msgid "Select the language of the WebGUI."
+msgstr ""
 
 msgid "Select the location closest to you."
 msgstr "Επιλογή κοντινότερης σε εσάς τοποθεσίας."
@@ -5597,6 +5613,9 @@ msgstr "Τα διαπιστευτήρια με την οποία να δεσμε
 msgid "The cron job has been executed successfully."
 msgstr "Η προγραμματισμένη εργασία εκτελέστηκε με επιτυχία."
 
+msgid "The current password is incorrect entered."
+msgstr ""
+
 #, php-format
 msgid ""
 "The custom format of the snapshot for shadow copy service can be specified. "
@@ -5844,6 +5863,10 @@ msgstr ""
 #, php-format
 msgid "The network '%s' is invalid."
 msgstr "Το δίκτυο '%s' δεν είναι έγκυρο."
+
+msgid ""
+"The new password does not match. Please ensure the passwords match exactly."
+msgstr ""
 
 msgid "The number of clients must be between 1 and 50."
 msgstr "Ο αριθμός των πελατών πρέπει να είναι ανάμεσα σε 1 και 50."
@@ -7479,3 +7502,16 @@ msgstr "αποπροσάρτηση"
 
 msgid "upriv"
 msgstr "upriv"
+
+#~ msgid ""
+#~ "Enter a custom port number for the WebGUI above if you want to override the "
+#~ "default (80 for HTTP, 443 for HTTPS)."
+#~ msgstr ""
+#~ "Εισάγετε θύρα για το παραπάνω Web περιβάλλον εργασίας,  αν θέλετε να "
+#~ "παρακάμψετε την προεπιλεγμένη (80 για HTTP, 443 για HTTPS)."
+
+#~ msgid ""
+#~ "If you want to change the username for accessing the WebGUI, enter it here."
+#~ msgstr ""
+#~ "Εάν θέλετε να αλλάξετε το όνομα χρήστη για πρόσβαση στο Web περιβάλλον "
+#~ "χρήσης, εισάγετέ το εδώ."

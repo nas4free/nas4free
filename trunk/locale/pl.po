@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-11-29 00:51+0000\n"
+"POT-Creation-Date: 2012-12-11 04:00+0000\n"
 "PO-Revision-Date: 2012-06-02 00:23+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-11-29 00:16+0000\n"
-"X-Generator: Launchpad (build 16319)\n"
+"X-Launchpad-Export-Date: 2012-12-11 03:21+0000\n"
+"X-Generator: Launchpad (build 16356)\n"
 "X-Poedit-Country: POLAND\n"
 "Language: \n"
 "X-Poedit-Language: Polish\n"
@@ -124,6 +124,11 @@ msgstr ""
 
 msgid ""
 "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
+msgstr ""
+
+msgid ""
+"<div id='enumeration'><ul><li>The new password is also the default root "
+"password of the system!</li></ul></div>"
 msgstr ""
 
 msgid ""
@@ -1153,6 +1158,9 @@ msgstr "Bieżący"
 msgid "Current Version:"
 msgstr ""
 
+msgid "Current password"
+msgstr ""
+
 msgid "Custom"
 msgstr "Własny"
 
@@ -2107,11 +2115,9 @@ msgid "English"
 msgstr "Angielski"
 
 msgid ""
-"Enter a custom port number for the WebGUI above if you want to override the "
+"Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
-"Podaj numer portu dla WebGUI jeśli ma być inny niż domyślny (80 dla HTTP, "
-"443 dla HTTPS)."
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Wpisz prawidłową nazwę MIB dla sysctl"
@@ -2763,11 +2769,6 @@ msgid ""
 "twice."
 msgstr "Jeśli chcesz zmienić hasło dostępu do WebGUI, wprowadź je podwójnie."
 
-msgid ""
-"If you want to change the username for accessing the WebGUI, enter it here."
-msgstr ""
-"Jeśli chcesz zmienić nazwę użytkownika dla dostępu do WebGUI, wprowadź ją tu."
-
 msgid "Image upload failed (out of memory?)"
 msgstr "Wysyłanie obrazu nieudane (brak pamięci ?)"
 
@@ -2923,6 +2924,11 @@ msgid ""
 msgstr ""
 "Jest niezalecane importowanie niesprawnych pul ani urządzeń wirtualnych "
 "będących częścią niesprawnej puli."
+
+msgid ""
+"It's recommended to change the default username and password for accessing "
+"the WebGUI, enter the username here."
+msgstr ""
 
 msgid "Italian"
 msgstr "Włoski"
@@ -3534,6 +3540,9 @@ msgstr "Nigdy - domyślnie"
 
 msgid "New Device"
 msgstr "Nowe urządzenie"
+
+msgid "New password"
+msgstr ""
 
 msgid "No"
 msgstr "Nie"
@@ -4500,6 +4509,11 @@ msgstr "Secure Shell"
 msgid "Security"
 msgstr "Bezpieczeństwo"
 
+msgid ""
+"Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
+"Secure (HTTPS) for the WebGUI."
+msgstr ""
+
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr "Wybierz dysk, który ma włączone monitorowanie S.M.A.R.T."
 
@@ -4511,6 +4525,9 @@ msgstr "Wskaż punkt montowania dla pliku wymiany"
 
 msgid "Select the FreeBSD package to be installed."
 msgstr "Wskaż pakiet FreeBSD do zainstalowania."
+
+msgid "Select the language of the WebGUI."
+msgstr ""
 
 msgid "Select the location closest to you."
 msgstr "Wybierz lokalizację najbliższą do twojej."
@@ -5309,6 +5326,9 @@ msgstr ""
 msgid "The cron job has been executed successfully."
 msgstr "Wykonanie zadania cron-a zakończone powodzeniem."
 
+msgid "The current password is incorrect entered."
+msgstr ""
+
 #, php-format
 msgid ""
 "The custom format of the snapshot for shadow copy service can be specified. "
@@ -5517,6 +5537,10 @@ msgstr ""
 #, php-format
 msgid "The network '%s' is invalid."
 msgstr "Sieć '%s' jest nieprawidłowa."
+
+msgid ""
+"The new password does not match. Please ensure the passwords match exactly."
+msgstr ""
 
 msgid "The number of clients must be between 1 and 50."
 msgstr "Liczba klientów musić zawierać się między 1 a 50."
@@ -6982,6 +7006,14 @@ msgstr "odmontuj"
 msgid "upriv"
 msgstr ""
 
-#, php-format
-#~ msgid "%s will reboot after restoring the configuration."
-#~ msgstr "%s zostanie uruchomiony ponownie po przywróceniu konfiguracji."
+#~ msgid ""
+#~ "Enter a custom port number for the WebGUI above if you want to override the "
+#~ "default (80 for HTTP, 443 for HTTPS)."
+#~ msgstr ""
+#~ "Podaj numer portu dla WebGUI jeśli ma być inny niż domyślny (80 dla HTTP, "
+#~ "443 dla HTTPS)."
+
+#~ msgid ""
+#~ "If you want to change the username for accessing the WebGUI, enter it here."
+#~ msgstr ""
+#~ "Jeśli chcesz zmienić nazwę użytkownika dla dostępu do WebGUI, wprowadź ją tu."
