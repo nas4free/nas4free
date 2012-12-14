@@ -1,6 +1,6 @@
 PORTNAME=		fuppes
 PORTVERSION=	0.692
-PORTEPOCH=	0
+PORTREVISION= 1
 CATEGORIES=		net
 COMMENT=		Free UPnP Entertainment Service
 MAINTAINER=		zoon01@nas4free.org
@@ -11,7 +11,7 @@ DISTNAME=		${PORTNAME}-${PORTVERSION}
 LIB_DEPENDS+=		sqlite3:${PORTSDIR}/databases/sqlite3 \
 			tag:${PORTSDIR}/audio/taglib \
 			curl:${PORTSDIR}/ftp/curl \
-			pcre.1:${PORTSDIR}/devel/pcre \
+			pcre:${PORTSDIR}/devel/pcre \
 			uuid.1:${PORTSDIR}/misc/e2fsprogs-libuuid \
 			mp3lame.0:${PORTSDIR}/audio/lame \
 			twolame.0:${PORTSDIR}/audio/twolame \
