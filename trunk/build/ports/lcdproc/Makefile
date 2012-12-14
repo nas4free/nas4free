@@ -1,5 +1,6 @@
 PORTNAME=		lcdproc
 PORTVERSION=	0.5.6
+PORTREVISION= 1
 CATEGORIES=		sysutils
 MASTER_SITES=	SF
 COMMENT=		A client/server suite for LCD devices
@@ -17,11 +18,13 @@ CONFIGURE_ARGS=	--enable-drivers="${LCDPROC_DRIVERS}" \
 							--disable-dependency-tracking \
 							--disable-doxygen
 
-OPTIONS_DEFINE=	USB FTDI HID
-USB_DESC=	Enable USB support
-FTDI_DESC=	Enable libftdi support (requires USB)
-HID_DESC=	Enable libhid support (requires USB)
-OPTIONS_DEFAULT=USB
+OPTIONS_DEFINE=  USB FTDI HID FREETYPE PNG SERDISP
+USB_DESC=     USB support
+FTDI_DESC=    Build drivers using libftdi (requires USB)
+HID_DESC=     Build drivers using libhid (requires USB)
+SERDISP_DESC=   Build drivers using serdisplib
+
+OPTIONS_DEFAULT=USB FREETYPE
 NO_OPTIONS_SORT=yes
 
 # Empty args to aclocal required!
@@ -34,6 +37,7 @@ LCDPROC_DRIVERS=	bayrad \
 					curses \
 					ea65 \
 					EyeboxOne \
+					glcd \
 					glk \
 					hd44780 \
 					icp_a106 \
@@ -47,6 +51,7 @@ LCDPROC_DRIVERS=	bayrad \
 					NoritakeVFD \
 					pyramid \
 					SureElec \
+					sdeclcd \
 					sed1330 \
 					sed1520 \
 					serialPOS \
@@ -55,7 +60,8 @@ LCDPROC_DRIVERS=	bayrad \
 					stv5730 \
 					t6963 \
 					text \
-					tyan
+					tyan \
+					vlsys_m428
 LCDPROC_DRIVERS+=	IOWarrior \
 					picolcd \
 					shuttleVFD
@@ -68,7 +74,7 @@ LCDPROC_DRIVERS+=	mdm166a
 
 .if ${PORT_OPTIONS:MUSB}
 . if ${OSVERSION} < 800069
-LIB_DEPENDS+=		usb-0.1.8:${PORTSDIR}/devel/libusb
+LIB_DEPENDS+=		usb-0.1:${PORTSDIR}/devel/libusb
 CONFIGURE_ARGS+=	--with-libusb
 . else
 CONFIGURE_ARGS+=	--with-libusb=/usr
@@ -79,7 +85,7 @@ LCDPROC_DRIVERS+=IOWarrior \
 		shuttleVFD
 
 . if ${PORT_OPTIONS:MFTDI}
-LIB_DEPENDS+=		ftdi.19:${PORTSDIR}/devel/libftdi
+LIB_DEPENDS+=           ftdi:${PORTSDIR}/devel/libftdi
 CONFIGURE_ARGS+=	--enable-libftdi
 PLIST_SUB+=		FTDI=""
 LCDPROC_DRIVERS+=i2500vfd \
@@ -104,6 +110,26 @@ PLIST_SUB+=		HID="@comment "
 CONFIGURE_ARGS+=	--without-libusb --disable-libftdi --disable-libhid
 PLIST_SUB+=		USB="@comment " FTDI="@comment " HID="@comment "
 .endif
+
+.if ${PORT_OPTIONS:MFREETYPE}
+LIB_DEPENDS+=           freetype:${PORTSDIR}/print/freetype2
+.else
+CONFIGURE_ARGS+=        --disable-freetype
+.endif
+
+.if ${PORT_OPTIONS:MPNG}
+LIB_DEPENDS+=           png15:${PORTSDIR}/graphics/png
+.else
+CONFIGURE_ARGS+=        --disable-libpng
+.endif
+
+.if ${PORT_OPTIONS:MSERDISP}
+LIB_DEPENDS+=           serdisp:${PORTSDIR}/devel/serdisplib
+CFLAGS+=                -I${LOCALBASE}/include
+LDFLAGS+=               -L${LOCALBASE}/lib
+CPPFLAGS+=              -I${LOCALBASE}/include
+.endif
+ 
 
 
 do-install:
