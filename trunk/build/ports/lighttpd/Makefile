@@ -1,6 +1,6 @@
 PORTNAME=		lighttpd
 PORTVERSION=	1.4.32
-PORTREVISION= 0
+PORTREVISION= 1
 CATEGORIES=		www
 COMMENT=		A secure, fast, compliant, and very flexible Web Server
 MAINTAINER=		zoon01@nas4free.org
@@ -10,7 +10,7 @@ MASTER_SITES=	http://download.lighttpd.net/lighttpd/releases-1.4.x/ \
 
 LIB_DEPENDS+=		uuid.1:${PORTSDIR}/misc/e2fsprogs-libuuid \
 							sqlite3.8:${PORTSDIR}/databases/sqlite3 \
-							pcre.1:${PORTSDIR}/devel/pcre
+							pcre:${PORTSDIR}/devel/pcre
 
 USE_BZIP2=	  yes
 #USE_AUTOTOOLS= libtool
