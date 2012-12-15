@@ -39,6 +39,9 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Status"), gettext("Disks"));
 
+// Get all physical disks.
+$a_phy_disk = array_merge((array)get_physical_disks_list());
+
 if (!isset($config['disks']['disk']) || !is_array($config['disks']['disk']))
 	$config['disks']['disk'] = array();
 
@@ -66,6 +69,15 @@ $raidstatus = get_sraid_disks_list();
 				<?php foreach ($a_disk_conf as $disk):?>
 				<?php (($iostat = system_get_device_iostat($disk['name'])) === FALSE) ? $iostat = gettext("n/a") : $iostat = sprintf("%s KiB/t, %s tps, %s MiB/s", $iostat['kpt'], $iostat['tps'], $iostat['mps']);?>
 				<?php (($temp = system_get_device_temp($disk['name'])) === FALSE) ? $temp = htmlspecialchars(gettext("n/a")) : $temp = sprintf("%s &deg;C", htmlspecialchars($temp));?>
+				<?php
+					if ($disk['type'] == 'HAST') {
+						$role = $a_phy_disk[$disk['name']]['role'];
+						$status = sprintf("%s (%s)", (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING"), $role);
+						$disk['size'] = $a_phy_disk[$disk['name']]['size'];
+					} else {
+						$status = (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING");
+					}
+				?>
 				<tr>
 					<td class="listlr"><?=htmlspecialchars($disk['name']);?></td>
 					<td class="listr"><?=htmlspecialchars($disk['size']);?></td>
@@ -75,7 +87,7 @@ $raidstatus = get_sraid_disks_list();
 					<td class="listr"><?=($disk['fstype']) ? htmlspecialchars(get_fstype_shortdesc($disk['fstype'])) : htmlspecialchars(gettext("Unknown or unformatted"))?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars($iostat);?>&nbsp;</td>
 					<td class="listr"><?=$temp;?>&nbsp;</td>
-					<td class="listbg"><?=(0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING");?>&nbsp;</td>
+					<td class="listbg"><?=$status;?>&nbsp;</td>
 				</tr>
 				<?php endforeach; ?>
 				<?php if (isset($raidstatus)):?>

@@ -835,6 +835,57 @@ function get_graid5_disks_list()
 	return $disklist;
 }
 
+// Get list of HAST disks.
+//[volumename] => Array
+//    (
+//        [type] => HAST
+//        [name] => volumename
+//        [role] => primary
+//        [status] => complete
+//        [size] => 6149MB
+//        [devicespecialfile] => /dev/hast/volumename
+//        [localpath] => /dev/da1
+//        [desc] => HAST device
+//    )
+function get_hast_disks_list()
+{
+	$disklist = array();
+
+	/* Send the shell cmd and get the result */
+	exec("/sbin/hastctl status",$rawdata);
+
+	foreach ($rawdata as $line) {
+		if (preg_match("/^(\S+):$/",$line,$match)) {
+			$diskname = trim($match[1]);
+			$disklist[$diskname] = array();
+			$disklist[$diskname]['name'] = $diskname;
+			$disklist[$diskname]['devicespecialfile'] = "/dev/hast/" . $diskname;
+			$disklist[$diskname]['type'] = "HAST";
+			$disklist[$diskname]['desc'] = "HAST device";
+			$disklist[$diskname]['role'] = gettext("Unknown");
+			$disklist[$diskname]['status'] = gettext("Unknown");
+			$disklist[$diskname]['localpath'] = '';
+		} else if (preg_match("/^\s+role:\s+(.+)$/",$line,$match)) {
+			$role = trim($match[1]);
+			$disklist[$diskname]['role'] = $role;
+			if ($role == 'primary') {
+				$diskinfo = disks_get_diskinfo($disklist[$diskname]['devicespecialfile']);
+				$disklist[$diskname]['size'] = $diskinfo['mediasize_mbytes'] . "MB";
+			} else {
+				$disklist[$diskname]['size'] = 'N/A';
+			}
+		} else if (preg_match("/^\s+localpath:\s+(.+)$/",$line,$match)) {
+			$localpath = trim($match[1]);
+			$disklist[$diskname]['localpath'] = $localpath;
+		} else if (preg_match("/^\s+status:\s+(.+)$/",$line,$match)) {
+			$state = trim($match[1]);
+			$disklist[$diskname]['status'] = $state;
+		}
+	}
+
+	return $disklist;
+}
+
 // Get list of ATA disks.
 //[ad0] => Array
 //    (
@@ -1160,10 +1211,10 @@ function get_cdrom_list()
 	return $disklist;
 }
 
-/* Return list of ALL disk: physical, hardware RAID and Software RAID disk */
+/* Return list of ALL disk: physical, hardware RAID, Software RAID disk and HAST disk */
 function get_physical_disks_list()
 {
-	$disklist = array_merge((array)get_ata_disks_list(),(array)get_scsi_disks_list(),(array)get_hraid_disks_list());
+	$disklist = array_merge((array)get_ata_disks_list(),(array)get_scsi_disks_list(),(array)get_hraid_disks_list(),(array)get_hast_disks_list());
 	return $disklist;
 }
 

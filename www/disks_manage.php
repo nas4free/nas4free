@@ -104,6 +104,9 @@ if (!isset($do_action)) {
 	$do_action = false;
 }
 
+// Get all physical disks including CDROM.
+$a_phy_disk = array_merge((array)get_physical_disks_list(), (array)get_cdrom_list());
+
 if (!isset($config['disks']['disk']) || !is_array($config['disks']['disk']))
 	$config['disks']['disk'] = array();
 
@@ -191,7 +194,13 @@ function diskmanagement_process_updatenotification($mode, $data) {
 							$status = gettext("Deleting");
 							break;
 						default:
-							$status = (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING");
+							if ($disk['type'] == 'HAST') {
+								$role = $a_phy_disk[$disk['name']]['role'];
+								$status = sprintf("%s (%s)", (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING"), $role);
+								$disk['size'] = $a_phy_disk[$disk['name']]['size'];
+							} else {
+								$status = (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : sprintf("%s (%s)", gettext("MISSING"), $disk['devicespecialfile']);
+							}
 							break;
 					}
 					$verify_error = !empty($verify_errors[$disk['devicespecialfile']]) ? true : false;
