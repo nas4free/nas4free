@@ -105,7 +105,7 @@ if ($_POST) {
 		$disks = array();
 		$disks['uuid'] = $_POST['uuid'];
 		$disks['name'] = $devname;
-		$disks['devicespecialfile'] = "/dev/{$devname}";
+		$disks['devicespecialfile'] = $a_phy_disk[$devname]['devicespecialfile'];
 		$disks['harddiskstandby'] = $_POST['harddiskstandby'];
 		$disks['acoustic'] = $_POST['acoustic'];
 		if ($_POST['fstype']) $disks['fstype'] = $_POST['fstype'];

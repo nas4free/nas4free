@@ -81,12 +81,21 @@ $a_phy_disk = array_merge((array)get_physical_disks_list());
 					<td width="6%" class="listhdrr"><?=gettext("Status");?></td>
 				</tr>
 				<?php foreach ($a_phy_disk as $disk):?>
+				<?php
+					if ($disk['type'] == 'HAST') {
+						$role = $a_phy_disk[$disk['name']]['role'];
+						$status = sprintf("%s (%s)", (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING"), $role);
+						$disk['size'] = $a_phy_disk[$disk['name']]['size'];
+					} else {
+						$status = (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING");
+					}
+				?>
 				<tr>
 					<td class="listlr"><?=htmlspecialchars($disk['name']);?></td>
 					<td class="listr"><?=htmlspecialchars($disk['size']);?></td>
 					<td class="listr"><?=htmlspecialchars(system_get_volume_model($disk['devicespecialfile']));?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars(system_get_volume_serial($disk['devicespecialfile']));?>&nbsp;</td>
-					<td class="listbg"><?=(0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING");?>&nbsp;</td>
+					<td class="listbg"><?=$status;?>&nbsp;</td>
 				</tr>
 				<?php endforeach;?>
 				</table>
