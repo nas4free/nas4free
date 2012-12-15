@@ -12,6 +12,20 @@ name="hastswitch"
 
 case "$1" in
 start)
+	# import ZFS pool
+	/usr/local/bin/xml sel -t \
+		-m "//zfs/pools/*[hastpool]" \
+			-v "name" \
+			-n \
+		-b \
+	    ${configxml_file} | /usr/local/bin/xml unesc | \
+	while read _name; do
+		if [ -n "$_name" ]; then
+		    /usr/bin/logger -p $log -t $name "Import ZFS pool ${_name}."
+		    /sbin/zpool import -f "${_name}"
+		fi
+	done
+
 	# mount GPT/UFS
 	/usr/local/bin/xml sel -t \
 		-m "//mounts/*[type='hvol']" \
@@ -52,6 +66,20 @@ stop)
 		if [ -n "$_device" ]; then
 		    /usr/bin/logger -p $log -t $name "Unmount ${_device} (${_mdisk}${_partition}) from ${mountbase}/${_share}."
 		    /sbin/umount "${mountbase}/${_share}" 2>/dev/null
+		fi
+	done
+
+	# export ZFS pool
+	/usr/local/bin/xml sel -t \
+		-m "//zfs/pools/*[hastpool]" \
+			-v "name" \
+			-n \
+		-b \
+	    ${configxml_file} | /usr/local/bin/xml unesc | \
+	while read _name; do
+		if [ -n "$_name" ]; then
+		    /usr/bin/logger -p $log -t $name "Export ZFS pool ${_name}."
+		    /sbin/zpool export -f "${_name}"
 		fi
 	done
 	;;
