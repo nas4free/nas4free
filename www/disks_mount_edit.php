@@ -511,6 +511,7 @@ function enable_change(enable_change) {
 							<select name="mdisk" class="formfld" id="mdisk">
 								<option value=""><?=gettext("Must choose one");?></option>
 								<?php foreach ($a_disk as $diskv):?>
+								<?php if ($diskv['type'] == 'HAST') continue; ?>
 								<option value="<?=$diskv['devicespecialfile'];?>" <?php if ($pconfig['mdisk'] === $diskv['devicespecialfile']) echo "selected=\"selected\"";?>>
 								<?php $diskinfo = disks_get_diskinfo($diskv['devicespecialfile']); echo htmlspecialchars("{$diskv['name']}: {$diskinfo['mediasize_mbytes']}MB ({$diskv['desc']})");?>
 								</option>
