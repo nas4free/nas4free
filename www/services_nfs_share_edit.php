@@ -185,7 +185,8 @@ if ($_POST) {
 			      <td width="22%" valign="top" class="vncell"><?=gettext("All dirs");?></td>
 			      <td width="78%" class="vtable">
 			      	<input name="alldirs" type="checkbox" id="alldirs" value="yes" <?php if (!empty($pconfig['alldirs'])) echo "checked=\"checked\"";?> />
-			      	<span class="vexpl"><?=gettext("Share all sub directories.");?></span>
+			      	<span class="vexpl"><?=gettext("Export all directories in specified path.");?></span><br />
+				<?=sprintf(gettext("To use sub directories, you must mount each directories. (e.g. %s)"), "mount -t nfs host:/mnt/path/subdir /path/to/mount");?>
 			      </td>
 			    </tr>
 			    <tr>
