@@ -342,14 +342,21 @@ if (isset($_POST['import_config']))
 	foreach ($_POST['pool'] as $pool)
 	{
 		$import |= true;
-		$cfg['zfs']['pools']['pool'][] = $zfs['pools']['pool'][$pool];
+		$hastpool = false;
 		foreach ($zfs['pools']['pool'][$pool]['vdevice'] as $vdev)
 		{
 			if (!in_array($vdev, $_POST['vdev']))
 			{
 				$_POST['vdev'][] = $vdev;
 			}
+			foreach ($zfs['vdevices']['vdevice'][$vdev]['device'] as $device) {
+				if (preg_match('/^\/dev\/hast\//', $device)) {
+					$hastpool = true;
+				}
+			}
 		}
+		$zfs['pools']['pool'][$pool]['hastpool'] = $hastpool;
+		$cfg['zfs']['pools']['pool'][] = $zfs['pools']['pool'][$pool];
 	}
 	foreach ($_POST['vdev'] as $vdev)
 	{

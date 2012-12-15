@@ -106,12 +106,18 @@ if ($_POST) {
 	}
 
 	// Check vdevices
+	$hastpool = false;
 	if (isset($_POST['vdevice']) && is_array($_POST['vdevice'])) {
 		$n = 0;
 		foreach ($_POST['vdevice'] as $vdev) {
 			$index = array_search_ex($vdev, $a_vdevice, "name");
 			if ($index !== false) {
 				$vdevice = $a_vdevice[$index];
+				foreach ($vdevice['device'] as $device) {
+					if (preg_match('/^\/dev\/hast\//', $device)) {
+						$hastpool = true;
+					}
+				}
 				if ($vdevice['type'] == 'spare'
 				    || $vdevice['type'] == 'cache'
 				    || $vdevice['type'] == 'log') {
@@ -139,6 +145,7 @@ if ($_POST) {
 		$pooldata['root'] = $_POST['root'];
 		$pooldata['mountpoint'] = $_POST['mountpoint'];
 		$pooldata['force'] = isset($_POST['force']) ? true : false;
+		$pooldata['hastpool'] = !empty($hastpool) ? true : false;
 		$pooldata['desc'] = $_POST['desc'];
 
 		if (isset($uuid) && (FALSE !== $cnid)) {
