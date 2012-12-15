@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-12-11 04:00+0000\n"
+"POT-Creation-Date: 2012-12-16 05:25+0000\n"
 "PO-Revision-Date: 2012-07-09 19:53+0000\n"
 "Last-Translator: Hasan Yılmaz <iletisim@hasanyilmaz.net>\n"
 "Language-Team: NAS4Free <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-11 03:21+0000\n"
-"X-Generator: Launchpad (build 16356)\n"
+"X-Launchpad-Export-Date: 2012-12-15 22:01+0000\n"
+"X-Generator: Launchpad (build 16372)\n"
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-Language: Turkish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -2132,6 +2132,9 @@ msgstr ""
 
 msgid "Export"
 msgstr "Dışa aktar"
+
+msgid "Export all the directories in the specified path."
+msgstr ""
 
 msgid "Extended attributes"
 msgstr ""
@@ -4552,9 +4555,6 @@ msgstr ""
 msgid "Share Password"
 msgstr "Ortak Parola"
 
-msgid "Share all sub directories."
-msgstr ""
-
 msgid "Share passwords can not be more than 8 characters."
 msgstr ""
 
@@ -6016,6 +6016,10 @@ msgid ""
 ">System</li></ul></div>"
 msgstr ""
 
+#, php-format
+msgid "To use subdirectories, you must mount each directories. (e.g. %s)"
+msgstr ""
+
 msgid "Tolerated"
 msgstr ""
 
@@ -6745,15 +6749,3 @@ msgstr "umount"
 
 msgid "upriv"
 msgstr "upriv"
-
-#~ msgid ""
-#~ "Enter a custom port number for the WebGUI above if you want to override the "
-#~ "default (80 for HTTP, 443 for HTTPS)."
-#~ msgstr ""
-#~ "Varsayılan portun (80 HTTP, 443 HTTPS)üstüne yukarıdaki WebGUI'ye yazılması "
-#~ "için bir port numarası girin."
-
-#~ msgid ""
-#~ "If you want to change the username for accessing the WebGUI, enter it here."
-#~ msgstr ""
-#~ "WebGUI'ye erişmek için kullanıcı ismi değiştirmek istiyorsanız buraya girin."
