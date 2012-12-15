@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-11 04:00+0000\n"
-"PO-Revision-Date: 2012-10-31 05:49+0000\n"
-"Last-Translator: Andrea Bernini <andrea.bernini@gmail.com>\n"
+"POT-Creation-Date: 2012-12-16 05:25+0000\n"
+"PO-Revision-Date: 2012-12-13 22:36+0000\n"
+"Last-Translator: misterredman <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-11 03:21+0000\n"
-"X-Generator: Launchpad (build 16356)\n"
+"X-Launchpad-Export-Date: 2012-12-15 22:01+0000\n"
+"X-Generator: Launchpad (build 16372)\n"
 "X-Poedit-Country: ITALY\n"
 "Language: \n"
 "X-Poedit-Language: Italian\n"
@@ -137,6 +137,8 @@ msgid ""
 "<div id='enumeration'><ul><li>The new password is also the default root "
 "password of the system!</li></ul></div>"
 msgstr ""
+"<div id='enumeration'><ul><li>La nuova password è anche la password root di "
+"default del sistema!</li></ul></div>"
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -279,7 +281,7 @@ msgid "AIO write size"
 msgstr "Dimensione scrittura AIO"
 
 msgid "ALL interfaces"
-msgstr ""
+msgstr "TUTTE le interfacce"
 
 msgid "ARP Tables"
 msgstr "Tabelle ARP"
@@ -403,7 +405,7 @@ msgid "Add portal group"
 msgstr "Aggiungi \"Portal group\""
 
 msgid "Add resource"
-msgstr ""
+msgstr "Aggiungi risorsa"
 
 msgid "Add rule"
 msgstr "Aggiungi regola"
@@ -437,6 +439,7 @@ msgstr "Indirizzo"
 
 msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr ""
+"Indirizzo del daemon remoto hastd. Deve essere un indirizzo IP statico."
 
 msgid "Administration password"
 msgstr "Password di amministrazione"
@@ -466,7 +469,7 @@ msgid "Advanced settings"
 msgstr "Impostazioni avanzate"
 
 msgid "Advertisement skew"
-msgstr ""
+msgstr "Advertisement skew"
 
 #, php-format
 msgid ""
@@ -488,6 +491,11 @@ msgid ""
 "class='vexpl'>change the IP address of your server</span></li><li><span "
 "class='vexpl'>access the webGUI with the new IP address</span></li></ul>"
 msgstr ""
+"Dopo aver cliccato &quot;Save&quot;, dovrai riavviare il server per rendere "
+"effettive le modifiche. Potresti anche dover eseguire una delle seguenti "
+"operazioni prima di poter accedere di nuovo al server: <ul><li><span "
+"class='vexpl'>modificare l'indirizzo IP del tuo server</span></li><li><span "
+"class='vexpl'>accedere alla webGUI con il nuovo indirizzo IP</span></li></ul>"
 
 msgid "Aggregation protocol"
 msgstr "Protocollo di aggregazione"
@@ -546,7 +554,7 @@ msgid "Allow new files to be created."
 msgstr "Consenti di creare nuovi files."
 
 msgid "Allow trusted domains."
-msgstr ""
+msgstr "Permetti domini affidabili."
 
 msgid ""
 "Allows  certain  users and groups to have read/write access to a share. This "
@@ -771,7 +779,7 @@ msgid "Blocksize"
 msgstr "Dimensione blocchi"
 
 msgid "Bridge"
-msgstr ""
+msgstr "Bridge"
 
 msgid "Browseable"
 msgstr "Esplorabile"
@@ -788,10 +796,10 @@ msgstr ""
 "caricati."
 
 msgid "CARP"
-msgstr ""
+msgstr "CARP"
 
 msgid "CARP only"
-msgstr ""
+msgstr "Solo CARP"
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -960,6 +968,8 @@ msgstr ""
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr ""
+"Clicca su questo bottone per scaricare la configurazione del server in "
+"formato XML."
 
 msgid "Client"
 msgstr "Client"
@@ -987,11 +997,11 @@ msgstr "Comando"
 
 #, php-format
 msgid "Command for LINK_DOWN event (e.g. %s)."
-msgstr ""
+msgstr "Comando per l'evento LINK_DOWN (ad esempio %s)."
 
 #, php-format
 msgid "Command for LINK_UP event (e.g. %s)."
-msgstr ""
+msgstr "Comando per l'evento LINK_UP (ad esempio %s)."
 
 msgid "Command output:"
 msgstr "Output del comando:"
@@ -1199,7 +1209,7 @@ msgid "Current Version:"
 msgstr "Versione Corrente:"
 
 msgid "Current password"
-msgstr ""
+msgstr "Password corrente"
 
 msgid "Custom"
 msgstr "Personalizzato"
@@ -1236,6 +1246,12 @@ msgid ""
 "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
 "System configuration before doing a Firmware upgrade."
 msgstr ""
+"NON annullare l'aggiornamento del firmware una volta che questo è iniziato. "
+"Il server si riavvierà automaticamente dopo la memorizzazione del nuovo "
+"firmware. La configurazione sarà mantenuta.<br />L'aggiornamento richiede un "
+"minimo di %d Mb di RAM per effettuare l'aggiornamento del firmware.<br />Si "
+"raccomanda fortemente di effettuare un <a href='%s'>Backup</a> della "
+"configurazione del sistema prima di aggiornare il firmware."
 
 msgid "DVD"
 msgstr "DVD"
@@ -1406,7 +1422,7 @@ msgid "Delete portal group"
 msgstr "elimina un gruppo portale"
 
 msgid "Delete resource"
-msgstr ""
+msgstr "Elimina risorsa"
 
 msgid "Delete rule"
 msgstr "Rimuovi regola"
@@ -1566,7 +1582,7 @@ msgid "Disable File Manager"
 msgstr "Disabilita il gestore dei file"
 
 msgid "Disable TCP wrapper (mod_wrap module)."
-msgstr ""
+msgstr "DIsabilita il wrapper TCP (modulo mod_wrap)."
 
 msgid "Disable console menu"
 msgstr "Disabilita console menu"
@@ -1719,7 +1735,7 @@ msgid "Do you really want to delete this portal group?"
 msgstr "Vuoi davvero cancellare questo portal group?"
 
 msgid "Do you really want to delete this resource?"
-msgstr ""
+msgstr "Vuoi davvero eliminare questa risorsa?"
 
 msgid "Do you really want to delete this route?"
 msgstr "Si vuole realmente cancellare questa route?"
@@ -1867,7 +1883,7 @@ msgid "Dynamic DNS"
 msgstr "DNS dinamico"
 
 msgid "Dynamic IP (DHCP) can not be used for HAST resources."
-msgstr ""
+msgstr "IP Dinamico (DHCP) non utilizzabile per risorse HAST."
 
 msgid "EA support"
 msgstr "Supporto EA"
@@ -1948,7 +1964,7 @@ msgid "Edit portal group"
 msgstr "Modifica portal group"
 
 msgid "Edit resource"
-msgstr ""
+msgstr "Modifica risorsa"
 
 msgid "Edit rule"
 msgstr "Editare regola"
@@ -2181,6 +2197,8 @@ msgid ""
 "Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
+"Inserisci una numero di porta personalizzato per la webGUI se vuoi "
+"modificare quella di default (80 per HTTP, 443 per HTTPS)."
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Inserire un nome sysctl MIB valido."
@@ -2244,6 +2262,9 @@ msgstr "Scadenza"
 
 msgid "Export"
 msgstr "Esporta"
+
+msgid "Export all the directories in the specified path."
+msgstr ""
 
 msgid "Extended attributes"
 msgstr "Attributi estesi"
@@ -2413,7 +2434,7 @@ msgid "Filter"
 msgstr "Filtro"
 
 msgid "Finnish"
-msgstr ""
+msgstr "Finlandese"
 
 msgid "Firewall"
 msgstr "Firewall"
@@ -2568,22 +2589,22 @@ msgid "Guest account"
 msgstr "Account ospite"
 
 msgid "HAST"
-msgstr ""
+msgstr "HAST"
 
 msgid "HAST (Highly Available Storage)"
-msgstr ""
+msgstr "HAST (Highly Available Storage)"
 
 msgid "HAST resource"
-msgstr ""
+msgstr "Risorsa HAST"
 
 msgid "HAST status of the configured resources"
-msgstr ""
+msgstr "Stato HAST per le risorse configurate"
 
 msgid "HAST volume"
-msgstr ""
+msgstr "Volume HAST"
 
 msgid "HAST volume can be use with GPT/UFS only."
-msgstr ""
+msgstr "Un volume HAS può essere utilizzato solo con GPT/UFS."
 
 msgid "HTTP Proxy"
 msgstr "Proxy HTTP"
@@ -2770,6 +2791,8 @@ msgstr ""
 
 msgid "If allowed, a user of the trusted domains can access the share."
 msgstr ""
+"Se permesso, un utente di un dominio affidabile potrà accedere alla "
+"condivisione"
 
 msgid ""
 "If default root is enabled, a chroot operation is performed immediately "
@@ -2845,6 +2868,10 @@ msgid ""
 "reboot immediately. The entire system configuration will be overwritten. The "
 "LAN IP address will be reset to %s and the password will be set to '%s'."
 msgstr ""
+"se clicchi 'Si', Il server verrà riportato alle impostazioni di fabbrica e "
+"si riavvierà immediatamente. L'intera configurazione di sistema sarà "
+"sovrascritta. L'indirizzo IP LAN sarà resettato in %s e la password "
+"reimpostata a '%s'."
 
 msgid ""
 "If you want to change the password for accessing the WebGUI, enter it here "
@@ -3015,6 +3042,8 @@ msgid ""
 "It's recommended to change the default username and password for accessing "
 "the WebGUI, enter the username here."
 msgstr ""
+"Si raccomanda di modificare il nome utente e la password di default per "
+"l'accesso alla WebGUI, inserire il nome utente qui."
 
 msgid "Italian"
 msgstr "Italiano"
@@ -3064,7 +3093,7 @@ msgid "LAN net"
 msgstr "LAN net"
 
 msgid "LAN only"
-msgstr ""
+msgstr "Solo LAN"
 
 msgid "LCDproc"
 msgstr "LCDproc"
@@ -3169,10 +3198,10 @@ msgid "Link Aggregation and Failover"
 msgstr "Aggregazione di link e failover"
 
 msgid "Link down action"
-msgstr ""
+msgstr "Link down (azione)"
 
 msgid "Link up action"
-msgstr ""
+msgstr "Link up (azione)"
 
 msgid "List"
 msgstr "Elenco"
@@ -3460,7 +3489,7 @@ msgid "Medium acoustic output"
 msgstr "Medio livello acustico"
 
 msgid "Member Interface"
-msgstr ""
+msgstr "Membro dell'interfaccia"
 
 msgid "Memory usage"
 msgstr "Utilizzo della memoria"
@@ -3645,7 +3674,7 @@ msgid "New Device"
 msgstr "Nuova periferica"
 
 msgid "New password"
-msgstr ""
+msgstr "Nuova password"
 
 msgid "No"
 msgstr "No"
@@ -3667,13 +3696,15 @@ msgstr ""
 "<a href='%s'>Gruppo autenticazione</a>."
 
 msgid "No configured CARP interfaces."
-msgstr ""
+msgstr "Nessuna interfaccia CARP configurata."
 
 #, php-format
 msgid ""
 "No configured CARP interfaces. Please add new <a href='%s'>CARP "
 "interface</a> first."
 msgstr ""
+"Nessuna interfaccia CARP configurata. Per favore aggiungere prima una nuova "
+"<a href='%s'>interfaccia CARP</a>."
 
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
@@ -3737,25 +3768,25 @@ msgid "No pool was found."
 msgstr "Nessun pool trovato"
 
 msgid "Node A IP address"
-msgstr ""
+msgstr "Indirizzo IP del Nodo A"
 
 msgid "Node A settings"
-msgstr ""
+msgstr "Impostazioni del Nodo A"
 
 msgid "Node B IP address"
-msgstr ""
+msgstr "Indirizzo IP del Nodo B"
 
 msgid "Node B settings"
-msgstr ""
+msgstr "Impostazioni del Nodo B"
 
 msgid "Node Base"
 msgstr "Node Base"
 
 msgid "Node ID"
-msgstr ""
+msgstr "ID Nodo"
 
 msgid "Node Name"
-msgstr ""
+msgstr "Nome del nodo"
 
 msgid "None"
 msgstr "Nessuno"
@@ -3841,7 +3872,7 @@ msgid "ONLINE"
 msgstr "ONLINE"
 
 msgid "OPT only"
-msgstr ""
+msgstr "Solo OPT"
 
 msgid "Object name"
 msgstr "Nome Oggetto"
@@ -4014,11 +4045,13 @@ msgid "Password of domain administrator account."
 msgstr "Password dell'account dell'amministratore di dominio."
 
 msgid "Password server"
-msgstr ""
+msgstr "Server delle password"
 
 msgid ""
 "Password server name or IP address (e.g. Active Directory domain controller)."
 msgstr ""
+"Nome server delle password o indirizzo IP (ad esempio controller di dominio "
+"di Active Directory)"
 
 msgid "Password suffix"
 msgstr "Suffisso password"
@@ -4043,7 +4076,7 @@ msgstr "Percorso da condividere"
 
 #, php-format
 msgid "Path to the local device. (e.g. %s)"
-msgstr ""
+msgstr "Percorso alla periferica locale. (ad esempio %s)"
 
 msgid "Peer Secret"
 msgstr "Secret du pair"
@@ -4195,7 +4228,7 @@ msgid "Preserve permissions"
 msgstr "Mantenere i permessi"
 
 msgid "Primary"
-msgstr ""
+msgstr "Primario"
 
 msgid "Primary Group"
 msgstr "Gruppo Primario"
@@ -4442,13 +4475,13 @@ msgid "Resolve IP addresses to hostnames"
 msgstr "Risolvere gli indirizzi IP in nomi di host"
 
 msgid "Resource"
-msgstr ""
+msgstr "Risorsa"
 
 msgid "Resource name"
-msgstr ""
+msgstr "Nome della risorsa"
 
 msgid "Resources"
-msgstr ""
+msgstr "Risorse"
 
 msgid "Restore configuration"
 msgstr "Ripristina configurazione"
@@ -4472,7 +4505,7 @@ msgid "Reverse direction"
 msgstr "Inverti la direzione"
 
 msgid "Role"
-msgstr ""
+msgstr "Ruolo"
 
 msgid "Romanian"
 msgstr "Romeno"
@@ -4638,7 +4671,7 @@ msgid "Scheduled shutdown"
 msgstr "Spegnimento Programmato"
 
 msgid "Secondary"
-msgstr ""
+msgstr "Secondario"
 
 msgid "Secret"
 msgstr "Segreto"
@@ -4653,6 +4686,8 @@ msgid ""
 "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
 "Secure (HTTPS) for the WebGUI."
 msgstr ""
+"Selezione Hypertext Transfer Protocol (HTTP) o Hypertext Transfer Protocol "
+"Secure (HTTPS) per la WebGUI."
 
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr ""
@@ -4668,7 +4703,7 @@ msgid "Select the FreeBSD package to be installed."
 msgstr "Selezione il pacchetto FreeBSD da installare."
 
 msgid "Select the language of the WebGUI."
-msgstr ""
+msgstr "Seleziona la lingua per la WebGUI."
 
 msgid "Select the location closest to you."
 msgstr "Selezionare la localita' piu' vicina."
@@ -4678,6 +4713,8 @@ msgid ""
 "Select the server configuration XML file and click the button below to "
 "restore the configuration."
 msgstr ""
+"Seleziona il file di configurazione XML e premi il bottone qui sotto per "
+"ripristinare la configurazione."
 
 msgid "Select your read balance algorithm."
 msgstr "Selezionare un algoritmo di bilanciamento."
@@ -4776,6 +4813,10 @@ msgid ""
 "color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
 "security reasons, use it on your own risk!</b></br>"
 msgstr ""
+"Imposta da quale utente verrà fatto funzionare il servizio (per default "
+"www). <br><b><font color='red'>NOTE</font>: Far funzionare il servizio come "
+"root<u>non è raccomandato</u> per ragioni di sicurezza. Utilizzalo a tuo "
+"rischio e pericolo!</b></br>"
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
@@ -4820,9 +4861,6 @@ msgstr "Set di caratteri della condivisione."
 
 msgid "Share Password"
 msgstr "Password della Condivisione."
-
-msgid "Share all sub directories."
-msgstr "Condividi tutte le sottocartelle."
 
 msgid "Share passwords can not be more than 8 characters."
 msgstr "Le password delle condivisioni non possono avere piu' di 8 caratteri"
@@ -4873,7 +4911,7 @@ msgstr ""
 "reale dipende dai vostri dischi)."
 
 msgid "Skew"
-msgstr ""
+msgstr "Skew"
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr ""
@@ -5096,10 +5134,10 @@ msgid "Swedish"
 msgstr "Svedese"
 
 msgid "Switch VIP to BACKUP"
-msgstr ""
+msgstr "Cambia VIP su BACKUP"
 
 msgid "Switch VIP to MASTER"
-msgstr ""
+msgstr "Cambia VIP su MASTER"
 
 msgid "Switch to"
 msgstr "Passa a"
@@ -5170,7 +5208,7 @@ msgid "TCP port to bind the server to."
 msgstr "Porta TCP a cui collegare il server."
 
 msgid "TCP wrapper"
-msgstr ""
+msgstr "Wrapper TCP"
 
 msgid "TFTP"
 msgstr "TFTP"
@@ -5274,6 +5312,8 @@ msgstr ""
 
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
+"Non è possibile accedere ai volumi HAST fino a quando il nodo HAST non è "
+"diventato Primario."
 
 msgid "The IP address that this hostname represents."
 msgstr "L'indirizzo IP che questo nome di host rappresenta."
@@ -5484,6 +5524,8 @@ msgstr "La configurazione non ha potuto essere ripristinata. %s"
 #, php-format
 msgid "The configuration could not be restored. No file was uploaded!"
 msgstr ""
+"La configurazione non ha potuto essere ripristinata. Nessun file è stato "
+"caricato!"
 
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
@@ -5494,7 +5536,7 @@ msgstr ""
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
-msgstr ""
+msgstr "La configurazione è stata ripristinata. Il server si sta riavviando."
 
 msgid ""
 "The confimed password does not match. Please ensure the passwords match "
@@ -5510,7 +5552,7 @@ msgid "The cron job has been executed successfully."
 msgstr "Il cron job è stato eseguito con successo."
 
 msgid "The current password is incorrect entered."
-msgstr ""
+msgstr "La password corrente non è stata inserita correttamente."
 
 #, php-format
 msgid ""
@@ -5609,6 +5651,7 @@ msgstr "Il nome dell'estensione esiste già."
 msgid ""
 "The firmware is now being installed. The server will reboot automatically."
 msgstr ""
+"Il firmware viene installato. Il server si riavvierà automaticamente."
 
 msgid "The following input errors were detected"
 msgstr "Sono stati trovati i seguenti errori di input"
@@ -5755,6 +5798,8 @@ msgstr "La rete '%s' non è valida."
 msgid ""
 "The new password does not match. Please ensure the passwords match exactly."
 msgstr ""
+"La nuova password non corrisponde. Per favore assicurarsi che le password "
+"corrispondano esattamente."
 
 msgid "The number of clients must be between 1 and 50."
 msgstr "Il numero di clients deve essere compreso tra 1 e 50."
@@ -5864,10 +5909,12 @@ msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
 msgstr ""
+"Il server è stato riportato alle impostazioni di fabbrica e si sta "
+"riavviando. Potrebbe volerci qualche minuto."
 
 #, php-format
 msgid "The server will reboot after restoring the configuration."
-msgstr ""
+msgstr "Il server si riavvierà dopo il ripristino della configurazione."
 
 msgid "The share name is already used."
 msgstr "Il nome della condivisione è già in uso."
@@ -5876,7 +5923,7 @@ msgid "The size of the swap file in MB."
 msgstr "Dimensioni del file di scambio in MB."
 
 msgid "The space-separated list of URIs for the LDAP server."
-msgstr ""
+msgstr "La lista (separata da spazi) degli URI per il server LDAP"
 
 #, php-format
 msgid "The storage area mapped to LUN%d."
@@ -6052,10 +6099,13 @@ msgstr ""
 msgid ""
 "This Bridge cannot be deleted because it is still being used as an interface."
 msgstr ""
+"Il Bridge non può essere cancellato perché è ancora in uso come interfaccia."
 
 msgid ""
 "This CARP cannot be deleted because it is still being used as an interface."
 msgstr ""
+"Questa interfaccia  CARP non può essere cancellata perché è ancora in uso "
+"come interfaccia."
 
 msgid ""
 "This LAGG cannot be deleted because it is still being used as an interface."
@@ -6554,6 +6604,10 @@ msgstr ""
 "id='enumeration'><ul><li>CIFS/SMB</li><li>SSH</li><li>FTP</li><li>AFP</li><li"
 ">System</li></ul></div>"
 
+#, php-format
+msgid "To use subdirectories, you must mount each directories. (e.g. %s)"
+msgstr ""
+
 msgid "Tolerated"
 msgstr "Tollerato"
 
@@ -6610,7 +6664,7 @@ msgid "Trivial File Transfer Protocol"
 msgstr "Trivial File Transfer Protocol (TFTP)"
 
 msgid "Trusted domains"
-msgstr ""
+msgstr "Domini affidabili"
 
 msgid "Try to force import."
 msgstr "Prova a forzare l'importazione."
@@ -6622,7 +6676,7 @@ msgid "Tuning"
 msgstr "Ottimizzazione"
 
 msgid "Turkish"
-msgstr ""
+msgstr "Turco"
 
 msgid "Turn access time on or off for this dataset."
 msgstr "Attiva access time per questo dataset."
@@ -6689,7 +6743,7 @@ msgid "UPnP friendly name."
 msgstr "Nome per il server UPnP."
 
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 msgid "URL"
 msgstr "URL"
@@ -6749,11 +6803,11 @@ msgid "Upload bandwidth"
 msgstr "Ampiezza di banda in trasmissione"
 
 msgid "Upload directory"
-msgstr ""
+msgstr "Directory di upload"
 
 #, php-format
 msgid "Upload directory of the webserver. The default is %s."
-msgstr ""
+msgstr "Directory di upload del webserver. Di default è %s."
 
 msgid "Uppercases names in both directions"
 msgstr "Nomi in maiuscolo in entrambe le direzioni"
@@ -6882,7 +6936,7 @@ msgid "Using %s bytes fragment size."
 msgstr "Dimensione frammenti in uso %s."
 
 msgid "VHID"
-msgstr ""
+msgstr "VHID"
 
 msgid "VLAN"
 msgstr "VLAN"
@@ -6900,10 +6954,10 @@ msgid "Version"
 msgstr "Versione"
 
 msgid "Virtual Host ID"
-msgstr ""
+msgstr "ID Host Virtuale"
 
 msgid "Virtual IP address"
-msgstr ""
+msgstr "Indirizzo IP Virtuale"
 
 msgid "Virtual device"
 msgstr "Periferica virtuale"
@@ -7002,6 +7056,9 @@ msgid ""
 "When HAST is enabled, the local devices, the local services and the "
 "additional packages which do not support HAST volume cannot be used."
 msgstr ""
+"Quando HAST è attivato, le periferiche locali, i servizi locali e i "
+"pacchetti addizionali che non supportano un volume HAST non possono essere "
+"utilizzati."
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
@@ -7345,15 +7402,5 @@ msgstr "smonta"
 msgid "upriv"
 msgstr "upriv"
 
-#~ msgid ""
-#~ "Enter a custom port number for the WebGUI above if you want to override the "
-#~ "default (80 for HTTP, 443 for HTTPS)."
-#~ msgstr ""
-#~ "Inserire qui sopra un numero di porta personalizzato per la WebGUI se si "
-#~ "vuole cambiare il default (80 per HTTP, 443 per HTTPS)."
-
-#~ msgid ""
-#~ "If you want to change the username for accessing the WebGUI, enter it here."
-#~ msgstr ""
-#~ "Se si desidera cambiare lo username per accedere alla WebGUI, inserirlo qui "
-#~ "due volte."
+#~ msgid "Share all sub directories."
+#~ msgstr "Condividi tutte le sottocartelle."

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
-"POT-Creation-Date: 2012-12-11 04:00+0000\n"
+"POT-Creation-Date: 2012-12-16 05:25+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1939,6 +1939,9 @@ msgid "Expire"
 msgstr ""
 
 msgid "Export"
+msgstr ""
+
+msgid "Export all the directories in the specified path."
 msgstr ""
 
 msgid "Extended attributes"
@@ -4187,9 +4190,6 @@ msgstr ""
 msgid "Share Password"
 msgstr ""
 
-msgid "Share all sub directories."
-msgstr ""
-
 msgid "Share passwords can not be more than 8 characters."
 msgstr ""
 
@@ -5406,6 +5406,10 @@ msgid "To match any IP address leave this field empty."
 msgstr ""
 
 msgid "To use Active Directory the CIFS/SMB service will enabled, too. The following services will use AD authentication:<div id='enumeration'><ul><li>CIFS/SMB</li><li>SSH</li><li>FTP</li><li>AFP</li><li>System</li></ul></div>"
+msgstr ""
+
+#, php-format
+msgid "To use subdirectories, you must mount each directories. (e.g. %s)"
 msgstr ""
 
 msgid "Tolerated"
