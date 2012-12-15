@@ -50,6 +50,23 @@ if (!isset($config['nfsd']['share']) || !is_array($config['nfsd']['share']))
 array_sort_key($config['nfsd']['share'], "path");
 $a_share = &$config['nfsd']['share'];
 
+function ismounted_or_dataset($path)
+{
+	if (disks_ismounted_ex($path, "mp"))
+		return true;
+
+	mwexec2("/sbin/zfs list -H -o mountpoint", $rawdata);
+	foreach ($rawdata as $line) {
+		$mp = trim($line);
+		if ($mp == "-")
+			conitnue;
+		if ($path == $mp)
+			return true;
+	}
+
+	return false;
+}
+
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_share, "uuid")))) {
 	$pconfig['uuid'] = $a_share[$cnid]['uuid'];
 	$pconfig['path'] = $a_share[$cnid]['path'];
@@ -94,7 +111,7 @@ if ($_POST) {
 		// allow alldirs
 	} else if (isset($_POST['quiet'])) {
 		// might be delayed mount
-	} else if (isset($_POST['alldirs']) && !disks_ismounted_ex($path, "mp")) {
+	} else if (isset($_POST['alldirs']) && !ismounted_or_dataset($path)) {
 	   $input_errors[] = sprintf(gettext("All dirs requires mounted path, but Path %s is not mounted."), $path);
 	}
 
@@ -185,8 +202,8 @@ if ($_POST) {
 			      <td width="22%" valign="top" class="vncell"><?=gettext("All dirs");?></td>
 			      <td width="78%" class="vtable">
 			      	<input name="alldirs" type="checkbox" id="alldirs" value="yes" <?php if (!empty($pconfig['alldirs'])) echo "checked=\"checked\"";?> />
-			      	<span class="vexpl"><?=gettext("Export all directories in specified path.");?></span><br />
-				<?=sprintf(gettext("To use sub directories, you must mount each directories. (e.g. %s)"), "mount -t nfs host:/mnt/path/subdir /path/to/mount");?>
+			      	<span class="vexpl"><?=gettext("Export all the directories in the specified path.");?></span><br />
+				<?=sprintf(gettext("To use subdirectories, you must mount each directories. (e.g. %s)"), "mount -t nfs host:/mnt/path/subdir /path/to/mount");?>
 			      </td>
 			    </tr>
 			    <tr>
