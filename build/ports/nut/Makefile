@@ -1,6 +1,6 @@
 PORTNAME=		nut
 PORTVERSION=	2.6.5
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=		sysutils
 COMMENT=		Network UPS tools
 MAINTAINER=		zoon01@nas4free.org
@@ -51,13 +51,13 @@ CONFIGURE_ARGS=	--sysconfdir=${NUT_SYSCONFDIR} \
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} < 800069
-LIB_DEPENDS+=	usb-0.1.8:${PORTSDIR}/devel/libusb
+LIB_DEPENDS+=	usb-0.1:${PORTSDIR}/devel/libusb
 .endif
 LIB_DEPENDS+=	netsnmp.30:${PORTSDIR}/net-mgmt/net-snmp
 LIB_DEPENDS+=	neon.27:${PORTSDIR}/www/neon29
 LIB_DEPENDS+=	powerman.0:${PORTSDIR}/sysutils/powerman
 LIB_DEPENDS+=	freeipmi:${PORTSDIR}/sysutils/freeipmi
-
+CONFIGURE_ARGS+=	--with-freeipmi
 
 do-install:
 	@${MKDIR} -pv ${NAS4FREE_ROOTFS}/${NUT_DATADIR}
