@@ -6,6 +6,7 @@ MAINTAINER=		aoyama@nas4free.org
 
 MASTER_SITES=		http://www.peach.ne.jp/archives/istgt/
 
+CC=clang
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+= --with-logfacility="daemon" --with-logpriority="info"
 
