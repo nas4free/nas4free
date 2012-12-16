@@ -79,3 +79,5 @@ usr/local/www/javascript/disks_init.js
 usr/local/www/javascript/status_process.js
 usr/local/www/sajax/sajax.php
 usr/local/www/sajax
+usr/local/www/javascript/navbar.js
+usr/local/www/javascript

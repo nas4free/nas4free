@@ -50,6 +50,68 @@ jQuery(document).keypress(function(e){
 	}
 });
 
+// backward compatibility - navigation
+var navi = null;
+$(document).ready(function(){
+	navi = new NAVI;
+});
+function mopen(id) {
+	if (navi) navi.mopen(id);
+}
+function mclose() {
+	if (navi) navi.mclose();
+}
+function mclosetime() {
+	if (navi) navi.mclosetime();
+}
+function mcancelclosetime() {
+	if (navi) navi.mcancelclosetime();
+}
+
+// navi constructor and methods
+var NAVI = function(){
+	this.timeout = 500;
+    	this.closetimer = null;
+	this.ddmenuitem = null;
+	this.setup();
+};
+NAVI.prototype = {
+	setup: function() {
+		var self = this;
+		jQuery(document).click(function() {
+			self.mclose();
+		});
+		// other setup...
+	},
+	mopen: function(id) {
+		var self = this;
+		this.mcancelclosetime();
+		if (this.ddmenuitem) this.ddmenuitem.css('visibility', 'hidden');
+		this.ddmenuitem = jQuery('#'+id).css('visibility', 'visible');
+		return self;
+	},
+	mclose: function() {
+		var self = this;
+		if (this.ddmenuitem) this.ddmenuitem.css('visibility', 'hidden');
+		return self;
+	},
+	mclosetime: function() {
+		var self = this;
+		this.closetimer = setTimeout(function() {
+			self.mclose();
+		}, this.timeout);
+		return self;
+	},
+	mcancelclosetime: function() {
+		var self = this;
+		if (this.closetimer) {
+			clearTimeout(this.closetimer);
+			this.closetimer = null;
+		}
+		return self;
+	},
+};
+
 // gui constructor and methods
 var GUI = function(){
 	this.timer = null;

@@ -254,7 +254,6 @@ function show_header($title) {			// header for html-page
 	echo "<link href=\"../tabs.css\" rel=\"stylesheet\" type=\"text/css\">\n";	
 	echo "<script type=\"text/javascript\" src=\"../js/jquery.min.js\"></script>\n";
 	echo "<script type=\"text/javascript\" src=\"../js/gui.js\"></script>\n";
-	echo "<script type=\"text/javascript\" src=\"../javascript/navbar.js\"></script>";
 	if (isset($pglocalheader) && !empty($pglocalheader)) {
 		if (is_array($pglocalheader)) {
 			foreach ($pglocalheader as $pglocalheaderv) {
