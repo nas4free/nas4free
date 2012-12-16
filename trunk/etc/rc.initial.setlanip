@@ -91,7 +91,13 @@ if (0 == $result) {
 		if ("" === $dnsserverip) {
 			break;
 		}
-	} while (!is_ipv4addr($dnsserverip));
+		$a_dnsserverip = explode(" ", $dnsserverip);
+		$valid_dns = true;
+		foreach ($a_dnsserverip as $tmp) {
+			if (!is_ipv4addr($tmp))
+				$valid_dns = false;
+		}
+	} while (!$valid_dns);
 
 	$config['interfaces']['lan']['ipaddr'] = $lanip;
 	$config['interfaces']['lan']['subnet'] = $lanbits;
@@ -148,7 +154,13 @@ if (0 == $result) {
 			if ("" === $dnsserverip) {
 				break;
 			}
-		} while (!is_ipv6addr($dnsserverip));
+			$a_dnsserverip = explode(" ", $dnsserverip);
+			$valid_dns = true;
+			foreach ($a_dnsserverip as $tmp) {
+				if (!is_ipv6addr($tmp))
+					$valid_dns = false;
+			}
+		} while (!$valid_dns);
 
 		$config['interfaces']['lan']['ipv6addr'] = $lanip;
 		$config['interfaces']['lan']['ipv6subnet'] = $lanbits;
