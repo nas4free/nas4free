@@ -441,7 +441,7 @@ function delete_change() {
 					<?php html_checkbox("perms", gettext("Preserve permissions"), !empty($pconfig['perms']) ? true : false, gettext("This option causes the receiving rsync to set the destination permissions to be the same as the source permissions."), "", false);?>
 					<?php html_checkbox("xattrs", gettext("Preserve extended attributes"), !empty($pconfig['xattrs']) ? true : false, gettext("This option causes rsync to update the remote extended attributes to be the same as the local ones."), "", false);?>
 					<?php html_checkbox("reversedirection", gettext("Reverse direction"), !empty($pconfig['reversedirection']) ? true : false, gettext("This option causes rsync to copy the local data to the remote server."), "", false);?>
-					<?php html_inputbox("extraoptions", gettext("Extra options"), !empty($pconfig['extraoptions']), gettext("Extra options to rsync (usually empty).") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://rsync.samba.org/ftp/rsync/rsync.html"), false, 40);?>
+					<?php html_inputbox("extraoptions", gettext("Extra options"), !empty($pconfig['extraoptions']) ? $pconfig['extraoptions'] : "", gettext("Extra options to rsync (usually empty).") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://rsync.samba.org/ftp/rsync/rsync.html"), false, 40);?>
 	      </table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
