@@ -65,7 +65,7 @@ afpd_mkconf()
 		-i "string-length(volpasswd) > 0" -v "concat('password:',volpasswd,' ')" -b \
 		-i "not(casefold[. = 'none'])" -v "concat('casefold:',casefold,' ')" -b \
 		-i "string-length(volcharset) > 0" -v "concat('volcharset:',volcharset,' ')" -b \
-		-o "options:usedots" \
+		-o "ea:ad options:usedots" \
 		-m "options/*" \
 			-v "concat(',',local-name())" \
 		-b \
