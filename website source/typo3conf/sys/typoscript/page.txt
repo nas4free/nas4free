@@ -1,0 +1,280 @@
+# show normal and border column only
+mod.SHARED.colPos_list = 3,0
+
+[globalVar = TSFE:id = 14]
+ mod.SHARED.colPos_list = 3,0,1
+[GLOBAL]
+
+TCEMAIN {
+ clearCacheCmd = all
+ table.pages { 
+  disablePrependAtCopy = 1
+  disableHideAtCopy = 1
+ }
+ table.tt_content {
+  disablePrependAtCopy = 1
+  disableHideAtCopy = 1
+ }
+}
+
+TCEFORM {
+ pages {
+  layout {
+   altLabels.0 = Normal
+   removeItems = 1,2,3
+  }
+ }
+ tt_content {
+  section_frame {
+   removeItems = 1,5,6,10,11,12,20,21,66
+   addItems {
+    40 = Boxed gray
+   }
+  }
+  header_layout {
+   altLabels.1 = Headline 1 <h1>
+   altLabels.2 = Headline 2 <h2>
+   altLabels.3 = Headline 3 <h3>
+   altLabels.4 = Headline 4 <h4>
+   altLabels.5 = Headline 5 <h5>
+   altLabels.6 = Headline 6 <h6>
+   #removeItems = 4,5,6
+  }
+  layout.types.table {
+   #altLabels.1 = TableHeader 1
+   altLabels.2 = Letzte Zelle rechtsbündig
+   #altLabels.3 = TableHeader 3
+  }
+  menu_type {
+   addItems.8 = Headline Menu
+  }
+ }
+}
+
+### RTE Classe des Interface (Ausrichtung) ###
+RTE.classes {
+ left {
+  name = LLL:EXT:rtehtmlarea/htmlarea/locallang_tooltips.xml:justifyleft
+  value = text-align: left;
+ }
+ center {
+  name = center
+  value = text-align: center;
+ }
+ right {
+  name = right
+  value = text-align: right;
+ }
+ button {
+   name = Button
+   value = color: #FFFFFF; background-color: #AFAFAF;
+ }
+ csc-frame-frame1 >
+ csc-frame-frame2 >
+ #author {}
+ #quote {}
+}
+
+# removes anchor image
+RTE.classesAnchor {
+ externalLink {
+  class = external-link
+  type = url
+  image >
+ }
+ externalLinkInNewWindow {
+  #class = external-link-new-window
+  class = external-link
+  type = url
+  image >
+ }
+ internalLink {
+  class = internal-link
+  type = page
+  image >
+ }
+ internalLinkInNewWindow {
+  #class = internal-link-new-window
+  class = internal-link
+  type = page
+  image >
+ }
+ download {
+  class = download
+  type = file
+  image >
+ }
+ mail {
+  class = mail
+  type = mail
+  image >
+ }
+}
+
+# RTE configuration
+RTE.default {
+ # read CSS file
+ contentCSS = typo3conf/sys/css/styles_rte.css
+ #contentCSS = /typo3conf/sys/css/styles_rte.css       
+
+ # Markup options
+ enableWordClean = 1
+ removeTrailingBR = 1
+ removeComments = 1
+ removeTags = center, font, strike, u, o:p, sdfield
+ removeTagsAndContents = link, meta, script, style, title
+
+ # Buttons show/hide
+ showButtons = textstyle, textstylelabel, blockstyle, blockstylelabel, bold, italic, underline, orderedlist, unorderedlist, insertcharacter, link, removeformat, findreplace, insertcharacter, undo, redo, showhelp, about
+ hideButtons = formatblock, left, center, right, fontstyle, fontsize, strikethrough,lefttoright, righttoleft, textcolor, bgcolor, textindicator, emoticon, image, user, spellcheck, chMode, inserttag, outdent, indent, line, justifyfull, subscript, superscript, acronym, copy, cut, paste, table, toggleborders, tableproperties, rowproperties, rowinsertabove, rowinsertunder, rowdelete, rowsplit, columninsertbefore, columninsertafter, columndelete, columnsplit, cellproperties, cellinsertbefore, cellinsertafter, celldelete, cellsplit, cellmerge
+
+ # group buttons
+ keepButtonGroupTogether = 1
+
+ # blendet Statusbar in htmlarea aus
+ showStatusBar =  0
+
+ # Add styles Left, center and right alignment of text in paragraphs and cells.
+ inlineStyle.text-alignment (
+  p.align-left, h1.align-left, h2.align-left, h3.align-left, h4.align-left, h5.align-left, h6.align-left, td.align-left { text-align: left; }
+  p.align-center, h1.align-center, h2.align-center, h3.align-center, h4.align-center, h5.align-center, h6.align-center, td.align-center { text-align: center; }
+  p.align-right, h1.align-right, h2.align-right, h3.align-right, h4.align-right, h5.align-right, h6.align-right, td.align-right { text-align: right; }
+ )
+
+ # frame styles, unused
+ inlineStyle.frames (
+  p.csc-frame-frame1, table.csc-frame-frame1 { background-color: transparent; border: 1px solid #D4E3F5; }
+  p.csc-frame-frame2, table.csc-frame-frame2 { background-color: transparent; border-bottom: 1px solid #D4E3F5; }
+ )
+
+ # Bullet styles for unordered lists.
+ inlineStyle.ul (
+  ul.component-items { color: #186900; list-style-type: circle; }
+  ul.action-items { color: #8A0020; list-style-image: url(img/red_arrow_bullet.gif); }
+ )
+
+ # Use stylesheet file rather than the above mainStyleOverride and inlineStyle properties to style the contents (htmlArea RTE only)
+ ignoreMainStyleOverride = 1
+
+ proc {
+  # allow image in rte... hm, hm... what for?
+  #entryHTMLparser_db.tags.img >
+  
+  allowTags = table, tbody, tr, th, td, h1, h2, h3, h4, h5, h6, div, p, br, span, ul, ol, li, re, blockquote, strong, em, b, i, u, sub, sup, strike, a, img, nobr, hr, tt, q, cite, abbr, acronym, center
+  denyTags = font
+
+  dontConvBRtoParagraph = 1
+
+  # allowed tags outside p, div
+  allowTagsOutside = img,hr
+
+  # allowed attributes for p, div tags
+  keepPDIVattribs = align,class,id
+
+  # List all class selectors that are allowed on the way to the database
+  allowedClasses (
+   center,right,
+   external-link, external-link-new-window, internal-link, internal-link-new-window, download, mail,
+   align-left, align-center, align-right,
+   button
+  )
+
+  # html parser settings
+  HTMLparser_rte {
+   # allow/deny tags
+   allowTags < RTE.default.proc.allowTags
+   denyTags < RTE.default.proc.denyTags
+
+   # remove tags
+   removeTags = font
+
+   # remove html-comments
+   removeComments = 1
+
+   # remove non matching tags (protect / 1 / 0)
+   keepNonMatchedTags = 0
+  }
+
+  # Content to database
+  entryHTMLparser_db = 1
+  entryHTMLparser_db {
+   # allow/deny tags
+   allowTags < RTE.default.proc.allowTags
+   denyTags < RTE.default.proc.denyTags
+   removeTags = center, sdfield, font
+   # clean tags
+   noAttrib = b, i, u, strike, sub, sup, strong, em, quote, blockquote, cite, tt, br, center
+   rmTagIfNoAttrib = span,div,font
+   # htmlSpecialChars = 1
+   # allow align attributes
+   tags {
+    p.fixAttrib.align.unset >
+#qwe
+    #p.fixAttrib.class.list < RTE.default.proc.allowedClasses
+    #p.fixAttrib.class.list =
+
+    p.allowedAttribs = class,style,align
+    div < .p
+    hr.allowedAttribs = class
+    # remap tags - seems not to work via entryHTMLparser_db only via exitHTMLparser_db
+    b.remap = strong
+    i.remap = em
+    # allow img tags
+    img >
+    # remove target for XHTML strict
+    a.fixAttrib.target.unset = 1 
+   }
+  }
+
+  exitHTMLparser_db = 1
+  exitHTMLparser_db {				
+   tags.b.remap = strong
+   tags.i.remap = em
+   keepNonMatchedTags = 1
+   htmlSpecialChars = 0
+  }
+ }
+
+ # classes alignment
+ classesParagraph (
+  align-left, align-center, align-right
+ )
+
+ # classes: own styles
+ classesCharacter = best,zitat,eya,collection
+ classesImage = rte_image
+
+ # classes for links (These classes should also be in the list of allowedClasses)
+ classesAnchor = external-link, external-link-new-window, internal-link, internal-link-new-window, download, mail, button
+ classesAnchor.default {
+  page = internal-link
+  url = external-link-new-window
+  file = download
+  mail = mail
+ }
+
+ # Show all applicable class selectors available in the style sheet file
+ showTagFreeClasses = 1
+
+ # Do not allow insertion of the following tags
+ hideTags = font
+
+ # table options in toolbar
+ hideTableOperationsInToolbar = 0
+ keepToggleBordersInToolbar = 1
+
+ # deny table properties (cellspacing/cellpadding/border)
+ disableSpacingFieldsetInTableOperations = 1
+ disableAlignmentFieldsetInTableOperations = 1
+ disableColorFieldsetInTableOperations = 1
+ disableLayoutFieldsetInTableOperations = 1
+ disableBordersFieldsetInTableOperations = 0
+}
+
+# Use same processing as on entry to database to clean content pasted into the editor
+RTE.default.enableWordClean.HTMLparser < RTE.default.proc.entryHTMLparser_db
+
+# FE RTE configuration (htmlArea RTE only)
+RTE.default.FE < RTE.default
+RTE.default.FE.userElements >
+RTE.default.FE.userLinks >
