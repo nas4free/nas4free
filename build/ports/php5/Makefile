@@ -1,6 +1,6 @@
 PORTNAME=		php5
-PORTVERSION=	5.4.9
-PORTREVISION?= 1
+PORTVERSION=	5.4.10
+PORTREVISION?=  0
 CATEGORIES=		lang
 COMMENT=		PHP5 Scripting Language
 MAINTAINER=		zoon01@nas4free.org
@@ -12,7 +12,7 @@ DISTFILES=		${DISTNAME}${EXTRACT_SUFX}:release
 USE_BZIP2=		yes
 
 BUILD_DEPENDS=	sqlite3>=3.0:${PORTSDIR}/databases/sqlite3
-LIB_DEPENDS=	pcre.3:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
 LIB_DEPENDS+=	curl.6:${PORTSDIR}/ftp/curl
 LIB_DEPENDS+=	mcrypt.8:${PORTSDIR}/security/libmcrypt
 LIB_DEPENDS+=	onig.1:${PORTSDIR}/devel/oniguruma4
@@ -20,14 +20,14 @@ LIB_DEPENDS+=	freetype.9:${PORTSDIR}/print/freetype2
 LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
 LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
 
-USE_AUTOTOOLS=	autoconf
-AUTOTOOLSFILES=	scripts/phpize.in
-USE_BZIP2=	yes
-USE_GETOPT_LONG=yes
-USE_GNOME=	libxml2
-USE_OPENLDAP=	yes
-USE_OPENSSL=	yes
-GNU_CONFIGURE=	yes
+USE_AUTOTOOLS=	 autoconf
+AUTOTOOLSFILES=	 scripts/phpize.in
+USE_BZIP2=	 yes
+USE_GETOPT_LONG= yes
+USE_GNOME=	 libxml2
+USE_OPENLDAP=	 yes
+USE_OPENSSL=	 yes
+GNU_CONFIGURE=	 yes
 
 CONFIGURE_ARGS+=	\
 		--without-mysql \
