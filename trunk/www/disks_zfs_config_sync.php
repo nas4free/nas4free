@@ -463,7 +463,7 @@ if (!$health)
 	$message_box_type = 'warning';
 	$message_box_text = gettext('Your ZFS system is not healthy.');
 	$message_box_text .= ' ';
-	$message_box_text .= gettext('It is not recommanded to import non healty pools nor virtual devices that are part of a non healthy pool.');
+	$message_box_text .= gettext('It is not recommanded to import non healthy pools nor virtual devices that are part of a non healthy pool.');
 }
 
 ?>
