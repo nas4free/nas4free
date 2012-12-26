@@ -230,7 +230,12 @@ $(document).ready(function(){
 			  </tr>
 			  <tr>
 			    <td width="25%" class="vncellt"><?=gettext("System");?></td>
-			    <td width="75%" class="listr"><?=htmlspecialchars($smbios['planar']['maker']);?> <?=htmlspecialchars($smbios['planar']['product']);?> <?=sprintf(gettext("Bios:"));?> <?=htmlspecialchars($smbios['bios']['version']);?> <?=htmlspecialchars($smbios['bios']['reldate']);?></td>
+			    <td width="75%" class="listr"><?=htmlspecialchars($smbios['planar']['maker']);?> <?=htmlspecialchars($smbios['planar']['product']);?></td>
+			    </td>
+			  </tr>
+			  <tr>
+			    <td width="25%" class="vncellt"><?=gettext("System bios");?></td>
+			    <td width="75%" class="listr"><?=htmlspecialchars($smbios['bios']['vendor']);?> <?=sprintf(gettext("version:"));?> <?=htmlspecialchars($smbios['bios']['version']);?> <?=htmlspecialchars($smbios['bios']['reldate']);?></td>
 			    </td>
 			  </tr>
 			  <tr>
