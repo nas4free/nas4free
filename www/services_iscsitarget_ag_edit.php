@@ -338,7 +338,7 @@ function normalize_ipv6addr($v6addr) {
 	        <td width="78%" class="vtable">
 	          <input name="<?=$lmsecret;?>" type="password" class="formfld" id="<?=$lmsecret;?>" size="30" value="<?=htmlspecialchars($pconfig[$lmsecret]);?>" /><br />
 	          <input name="<?=$lmsecret2;?>" type="password" class="formfld" id="<?=$lmsecret2;?>" size="30" value="<?=htmlspecialchars($pconfig[$lmsecret2]);?>" />&nbsp;(<?=gettext("Confirmation");?>)<br />
-	          <span class="vexpl"><?=gettext("Initiator side secret. (for mutual CHAP autentication)");?></span>
+	          <span class="vexpl"><?=gettext("Initiator side secret. (for mutual CHAP authentication)");?></span>
 	        </td>
 	      </tr>
 	      <?php endfor;?>
