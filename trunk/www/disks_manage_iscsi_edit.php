@@ -146,7 +146,7 @@ if ($_POST) {
 			<form action="disks_manage_iscsi_edit.php" method="post" name="iform" id="iform">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-			  	<?php html_inputbox("name", gettext("Name"), $pconfig['name'], gettext("This is for information only (not using during iSCSI negociation)."), true, 20);?>
+			  	<?php html_inputbox("name", gettext("Name"), $pconfig['name'], gettext("This is for information only (not using during iSCSI negotiation)."), true, 20);?>
 					<?php html_inputbox("initiatorname", gettext("Initiator name"), $pconfig['initiatorname'], gettext("This name is for example: iqn.2005-01.il.ac.huji.cs:somebody."), true, 60);?>			
 					<?php html_inputbox("targetname", gettext("Target name"), $pconfig['targetname'], sprintf(gettext("This name is for example: %s."), $ex_iscsitarget), true, 60);?>
 					<?php html_inputbox("targetaddress", gettext("Target address"), $pconfig['targetaddress'], gettext("This the IP address or DNS name of the iSCSI target."), true, 20);?>
