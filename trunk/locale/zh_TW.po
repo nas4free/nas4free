@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-27 00:30+0000\n"
-"PO-Revision-Date: 2012-12-26 23:43+0000\n"
+"POT-Creation-Date: 2012-12-28 05:12+0000\n"
+"PO-Revision-Date: 2012-12-28 04:33+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-26 23:48+0000\n"
+"X-Launchpad-Export-Date: 2012-12-28 04:37+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: CHINA\n"
 "Language: \n"
@@ -2864,43 +2864,43 @@ msgid "Japanese"
 msgstr "日語"
 
 msgid "Key"
-msgstr "金鑰"
+msgstr "密鑰"
 
 msgid "Key Management Protocol"
-msgstr "金鑰管理協定"
+msgstr "密鑰管理協議"
 
 msgid "Key length"
-msgstr "金鑰長度"
+msgstr "密鑰長度"
 
 msgid "Key length to use with the given cryptographic algorithm."
-msgstr ""
+msgstr "加密算法用的密鑰長度。"
 
 msgid "Kill encrypted volume"
 msgstr "刪除加密磁碟"
 
 msgid "Korean"
-msgstr ""
+msgstr "韓文"
 
 msgid "LACP (Link Aggregation Control Protocol)"
-msgstr ""
+msgstr "LACP （鏈路匯聚控制協議）"
 
 msgid "LAGG"
 msgstr "LAGG"
 
 msgid "LAN Management"
-msgstr ""
+msgstr "局域網管理"
 
 msgid "LAN net"
 msgstr "區域網路"
 
 msgid "LAN only"
-msgstr ""
+msgstr "LAN 而已"
 
 msgid "LCDproc"
 msgstr ""
 
 msgid "LCDproc (client)"
-msgstr ""
+msgstr "LCDproc （客戶端）"
 
 msgid "LDAP"
 msgstr "LDAP"
@@ -2918,7 +2918,7 @@ msgid "Large read/write"
 msgstr "大筆資料 讀／寫"
 
 msgid "Last config change"
-msgstr "上次設定時間"
+msgstr "之前的配置更改"
 
 #, php-format
 msgid "Latest Beta Build: %s"
@@ -2926,7 +2926,7 @@ msgstr ""
 
 #, php-format
 msgid "Latest Release: %s"
-msgstr ""
+msgstr "最新的 Beta 版： %s"
 
 msgid "Latvian"
 msgstr "拉脫維亞語"
@@ -2935,50 +2935,50 @@ msgstr "拉脫維亞語"
 msgid ""
 "Leave '%s' for unformated disks and format them using <a "
 "href='%s'>format</a> menu."
-msgstr ""
+msgstr "使用 <a href='%s'>格式化</a> 菜單來保留 '%s' 的未格式化空間和格式化磁盤。"
 
 msgid "Leave already configured auto snapshots."
-msgstr ""
+msgstr "離開已經配置的自動快照。"
 
 msgid "Leave auto snapshot configuration"
-msgstr ""
+msgstr "離開已經自動快照的配置"
 
 msgid "Leave this field empty to use default settings."
-msgstr ""
+msgstr "將此字段留空以使用默認的設置。"
 
 msgid "Level 1 - Minimum power usage with Standby (spindown)"
-msgstr ""
+msgstr "Level 1 - 最低用電量，待機（硬盤降速）"
 
 msgid "Level 127 - Intermediate power usage with Standby"
-msgstr ""
+msgstr "Level 127 - 中級用電量，待機"
 
 msgid "Level 128 - Minimum power usage without Standby (no spindown)"
-msgstr ""
+msgstr "128 - 最低用電量，不待機（無降速）"
 
 msgid "Level 192 - Intermediate power usage without Standby"
-msgstr ""
+msgstr "Level 192 - 中級用電量，不待機"
 
 msgid "Level 254 - Maximum performance, maximum power usage"
-msgstr ""
+msgstr "Level 254 - 最高性能，最高用電量"
 
 msgid "Level 64 - Intermediate power usage with Standby"
-msgstr ""
+msgstr "Level 64 - 中級用電量，待機"
 
 #, php-format
 msgid "Levels (MHz/mW): %s"
-msgstr ""
+msgstr "水平 (MHz/mW): %s"
 
 msgid "License"
-msgstr "License"
+msgstr "許可證"
 
 msgid "License & Credits"
-msgstr ""
+msgstr "許可證與貢獻"
 
 msgid "Life time"
 msgstr ""
 
 msgid "Lightweight Directory Access Protocol"
-msgstr ""
+msgstr "輕型目錄訪問協議"
 
 msgid ""
 "Limits the amount of space a dataset and its descendants can consume. This "
@@ -2987,15 +2987,17 @@ msgid ""
 "specify the size use the following human-readable suffixes (for example, "
 "'k', 'KB', 'M', 'Gb', etc.)."
 msgstr ""
+"限制數據集與其所有後代的可用空間。此屬性強硬限制可用空間量。這包括其所有後代，文件系統和快照佔用的空間。請使用以下的後綴來指定大小（例如 "
+"'k'，'KB'，'M'，'Gb' 等）。"
 
 msgid "Link Aggregation and Failover"
-msgstr ""
+msgstr "鏈路聚合和故障切換"
 
 msgid "Link down action"
-msgstr ""
+msgstr "未連接動作"
 
 msgid "Link up action"
-msgstr ""
+msgstr "連接動作"
 
 msgid "List"
 msgstr "列表"
@@ -3005,57 +3007,59 @@ msgid ""
 "(AES in Counter mode with CBC-MAC, RFC 3610, IEEE 802.11i/D7.0), TKIP "
 "(Temporal Key Integrity Protocol, IEEE 802.11i/D7.0)."
 msgstr ""
+"可接受的成對（單播）為WPA密碼的列表。一個或多個：CCMP（AES計數器模式CBC-"
+"MAC，RFC3610，IEEE802.11i/D7.0），TKIP（臨時密鑰完整性協議，IEEE802.11i/D7.0）。"
 
 msgid "List of available target name on all configured iSCSI targets"
-msgstr "列出 iSCSI 內可用的目標名稱"
+msgstr "所有已配置和可用的 iSCSI 目標名稱列表"
 
 msgid "List of detected disks"
-msgstr ""
+msgstr "檢測到的磁盤列表"
 
 msgid "List of imported users"
-msgstr "已匯入之使用者"
+msgstr "已導入用戶列表"
 
 msgid "List of mount points"
-msgstr "掛載點一覽"
+msgstr "掛載點列表"
 
 msgid "List of open files"
-msgstr "已開啟檔案"
+msgstr "已開啟檔案列表"
 
 msgid "Load"
 msgstr "載入"
 
 msgid "Load averages"
-msgstr "系統負載"
+msgstr "平均負載"
 
 msgid "Loadbalance"
 msgstr "負載平衡"
 
 msgid "Local"
-msgstr "本地端"
+msgstr "區域"
 
 msgid "Local Master Browser"
 msgstr "Local Master Browser"
 
 msgid "Local User"
-msgstr "本機使用者"
+msgstr "局域用戶"
 
 msgid "Local share (destination)"
-msgstr "本地端分享(目標)"
+msgstr "局域分享(目標)"
 
 msgid "Local shares to be synchronized"
-msgstr "欲同步的本機分享區"
+msgstr "欲同步的局域分享區"
 
 msgid "Local user bandwidth"
-msgstr "本機使用者頻寬"
+msgstr "局域用戶頻寬"
 
 msgid "Local user download bandwith in KB/s. An empty field means infinity."
-msgstr ""
+msgstr "局域用戶下載頻寬 (KB/s 單位)。空白表示無限制。"
 
 msgid "Local user upload bandwith in KB/s. An empty field means infinity."
-msgstr ""
+msgstr "局域用戶上載頻寬 (KB/s 單位)。空白表示無限制。"
 
 msgid "Local users only"
-msgstr "只允許本機使用者存取"
+msgstr "只允許局域用戶"
 
 msgid "Location"
 msgstr "位置"
@@ -3066,63 +3070,63 @@ msgid ""
 msgstr "位置資訊，例：這台機器實際存放的地點：'哪棟大樓的幾樓幾室'。"
 
 msgid "Location of the files to share."
-msgstr "要分享檔案的位置。"
+msgstr "檔案分享的位置。"
 
 msgid "Location where the content database file will be stored."
-msgstr "用來儲存內容資料庫檔案的位置。"
+msgstr "儲存內容資料庫檔案的位置。"
 
 #, php-format
 msgid ""
 "Location where the working files will be stored, e.g. %s/backup/.unison"
-msgstr ""
+msgstr "存儲使用文件的位置，例如：%s/backup/.unison"
 
 msgid "Log"
-msgstr "日誌"
+msgstr "記錄檔"
 
 msgid "Log (mirror)"
-msgstr ""
+msgstr "記錄檔（鏡像）"
 
 msgid "Log Level"
 msgstr "記錄檔層級"
 
 msgid "Log packets that are handled by this rule to syslog."
-msgstr ""
+msgstr "這條規則所處理的記錄檔到syslog。"
 
 msgid "Logical Block Length"
-msgstr ""
+msgstr "邏輯塊長度"
 
 #, php-format
 msgid "Logical Unit Controller Authorised network (%s by default)"
-msgstr ""
+msgstr "邏輯單元控制器授權網絡（默認 %s）"
 
 #, php-format
 msgid "Logical Unit Controller IP address (%s by default)"
-msgstr ""
+msgstr "邏輯單元控制器 IP 位址（默認 %s）"
 
 #, php-format
 msgid "Logical Unit Controller TCP port (%d by default)"
-msgstr ""
+msgstr "邏輯單元控制器 TCP 埠（默認 %d）"
 
 msgid "Logical Unit Controller login information"
-msgstr ""
+msgstr "邏輯單元控制器登錄信息"
 
 msgid "Logical Unit Type mapped to LUN."
-msgstr ""
+msgstr "邏輯單元類型映射到 LUN。"
 
 msgid "Login"
-msgstr "登入"
+msgstr "登錄"
 
 msgid "Login name of user."
-msgstr "使用者登入的帳號"
+msgstr "登錄用戶名。"
 
 msgid "Logout"
-msgstr "登出"
+msgstr "退出"
 
 msgid "Lowercases names in both directions"
-msgstr "雙向小寫名稱"
+msgstr ""
 
 msgid "MAC address"
-msgstr "MAC位置"
+msgstr "MAC 位址"
 
 msgid "MBR partition"
 msgstr "MBR 磁碟分區"
@@ -3134,7 +3138,7 @@ msgid "MISSING"
 msgstr "遺失"
 
 msgid "MOTD"
-msgstr "MOTD"
+msgstr "每日消息"
 
 msgid "MS Active Directory"
 msgstr "MS Active Directory"
@@ -3143,13 +3147,13 @@ msgid "MS Active Directory informations"
 msgstr "MS Active Directory 資訊"
 
 msgid "MS Domain"
-msgstr "MS網域"
+msgstr "MS 網域"
 
 msgid "MTU"
 msgstr "MTU (最大傳輸單元)"
 
 msgid "Machine suffix"
-msgstr ""
+msgstr "電腦後綴"
 
 msgid "Make sure you have activated S.M.A.R.T. for your devices."
 msgstr "請確定您已經啟用裝置的 S.M.A.R.T.。"
@@ -3157,7 +3161,7 @@ msgstr "請確定您已經啟用裝置的 S.M.A.R.T.。"
 #, php-format
 msgid ""
 "Make sure you have already configured your <a href='%s'>Email</a> settings."
-msgstr "確認你的<a href='%s'>Email</a>資訊是否設定好了。"
+msgstr "請確認您是否已經設定好<a href='%s'>電郵</a>資訊了。"
 
 msgid "Management"
 msgstr "管理"
@@ -3166,97 +3170,97 @@ msgid "Manufacturer"
 msgstr "製造商"
 
 msgid "Map all users to root"
-msgstr "所有人視為root"
+msgstr "對應所有人為root"
 
 msgid "Map to guest"
-msgstr ""
+msgstr "對應所有人為訪客（guest）"
 
 msgid "Map to user"
-msgstr "對應到本地使用者"
+msgstr "對應為用戶"
 
 msgid "Masquerade address"
 msgstr "偽裝位址"
 
 msgid "Max Protocol"
-msgstr ""
+msgstr "最大協議"
 
 msgid "Max. TTL"
-msgstr "Max. TTL"
+msgstr "最大TTL (生存時間)值"
 
 msgid "Max. block size"
-msgstr "Max. block size"
+msgstr "最大數據塊值"
 
 msgid "Max. conn. per IP"
-msgstr "相同IP的連線數目"
+msgstr "每個IP的最大連接值"
 
 msgid "Max. connections"
-msgstr "Max. connections"
+msgstr "最大連接值"
 
 msgid "Max. login attempts"
-msgstr "Max. login attempts"
+msgstr "最大登錄嘗試次數"
 
 msgid "Max. passive port"
-msgstr "Max. passive port"
+msgstr "最大被動埠"
 
 msgid "Max. pre-send R2T"
-msgstr ""
+msgstr "最大發送前 R2T"
 
 msgid "Max. sessions"
-msgstr "Max. sessions"
+msgstr "最大會話（sessions）"
 
 msgid ""
 "Max. time-to-live (max. number of hops) used in outgoing probe packets."
-msgstr ""
+msgstr "最大TTL 值（最大跳數），用於發送探測數據包。"
 
 msgid "MaxBurstLength"
 msgstr ""
 
 msgid "MaxOutstandingR2T"
-msgstr ""
+msgstr "MaxOutstandingR2T"
 
 msgid "MaxRecvDataSegmentLength"
-msgstr ""
+msgstr "MaxRecvDataSegmentLength"
 
 msgid "Maximum connections"
 msgstr "連線數目上限"
 
 msgid "Maximum frequency"
-msgstr ""
+msgstr "最大頻率"
 
 msgid "Maximum idle time in seconds."
-msgstr "最大閒置時間秒"
+msgstr "最大閒置時間（秒）"
 
 msgid "Maximum number of allowed password attempts before disconnection."
-msgstr ""
+msgstr "斷線前允許的最多密碼嘗試次數。"
 
 #, php-format
 msgid "Maximum number of connections in each session (%d by default)."
-msgstr ""
+msgstr "每個會話（session）的最多連接數（默認值為 %d）。"
 
 msgid "Maximum number of connections per IP address (0 = unlimited)."
-msgstr "來自相同IP的連線數目上限(0 = 不限制)."
+msgstr "來自相同 IP 的連線數目上限(0 = 無限制)."
 
 #, php-format
 msgid ""
 "Maximum number of pre-send R2T in each connection (%d by default). The "
 "actual number is limited to QueueDepth of the target."
-msgstr ""
+msgstr "每個連接的前發送R2T最大數量（默認值為 %d）。實際數量是有限於目標的 QueueDepth。"
 
 #, php-format
 msgid "Maximum number of sessions holding at same time (%d by default)."
-msgstr ""
+msgstr "在同一時間舉行的最大會話（session）數（默認值為 %d）。"
 
 msgid "Maximum number of simultaneous clients."
-msgstr "連線數目上限。"
+msgstr "客戶端同時連線最高數目。"
 
 msgid "Maximum number of simultaneous connections. Default is 0 (unlimited)."
-msgstr "同時最高連線數目。預設為0(不限制)。"
+msgstr "同時連線最高數目。預設為 0 (不限制)。"
 
 msgid "Maximum performance, maximum acoustic output"
-msgstr "最大效能/噪音"
+msgstr "最大效能，最大噪音輸出"
 
 msgid "Media"
-msgstr "Media"
+msgstr "媒體"
 
 msgid "Media Directory"
 msgstr "媒體目錄"
@@ -3280,7 +3284,7 @@ msgid "MibII"
 msgstr "MibII"
 
 msgid "Min. passive port"
-msgstr "Min. passive port"
+msgstr "最小被動端口"
 
 msgid "Minimum"
 msgstr "最小值"
@@ -3289,19 +3293,19 @@ msgid "Minimum free space"
 msgstr "最少需求空間"
 
 msgid "Minimum frequency"
-msgstr ""
+msgstr "最小頻率"
 
 msgid "Minimum performance, Minimum acoustic output"
-msgstr "最小效能/噪音"
+msgstr "最低的效能，最低噪音輸出"
 
 msgid "Minutes"
 msgstr "分鐘"
 
 msgid "Minutes between network time sync."
-msgstr "多少分鐘進行一次校時。"
+msgstr "多久（分鐘）進行一次網絡時間同步。"
 
 msgid "Mirror"
-msgstr "鏡象"
+msgstr "鏡像"
 
 msgid "Missing a temporary folder."
 msgstr "遺失了一個暫存檔案夾。"
@@ -3313,7 +3317,7 @@ msgid "Model extra"
 msgstr "額外模組"
 
 msgid "Model name"
-msgstr "模組名稱"
+msgstr "型號名稱"
 
 msgid "Modifying"
 msgstr "正在修改"
@@ -3350,16 +3354,16 @@ msgid "Mounts"
 msgstr "掛載點"
 
 msgid "Must choose one"
-msgstr "必選欄位。"
+msgstr "必須選一"
 
 msgid "Mutual CHAP"
-msgstr ""
+msgstr "相互（Mutual）CHAP 驗證"
 
 msgid "Mutual CHAP Users"
-msgstr ""
+msgstr "相互（Mutual）CHAP 驗證用戶"
 
 msgid "NAS4Free WebGUI Login"
-msgstr ""
+msgstr "NAS4Free WebGUI 登錄"
 
 msgid "NFS"
 msgstr "NFS"
@@ -3368,17 +3372,17 @@ msgid "NIS"
 msgstr "NIS"
 
 msgid "NOPIN Interval"
-msgstr ""
+msgstr "NOPIN 間隔"
 
 #, php-format
 msgid "NOPIN sending interval in seconds (%d by default)."
-msgstr ""
+msgstr "NOPIN 的發送時間間隔（秒）（默認值為 %d）。"
 
 msgid "NOT YET AVAILABLE"
-msgstr ""
+msgstr "尚未公佈"
 
 msgid "NT1"
-msgstr ""
+msgstr "NT1"
 
 msgid "NTP time server"
 msgstr "NTP時間伺服器"
@@ -3388,19 +3392,19 @@ msgstr "名稱"
 
 #, php-format
 msgid "Name of the NAS host, without domain part e.g. %s."
-msgstr "NAS 主機的名稱，不包含網域的名稱。例：%s。"
+msgstr "NAS主機的名稱，不包括網域的部分，例：%s。"
 
 #, php-format
 msgid "Name of the device to use as swap device, e.g. %s."
-msgstr ""
+msgstr "交換（swap）裝置名稱，例：%s。"
 
 msgid ""
 "Name of the server. If this field is left empty the default server is "
 "specified."
-msgstr "這台伺服器的名稱。如果留白則會使用預設的伺服器名稱。"
+msgstr "伺服器名稱。如果空白則會使用預設的伺服器名稱。"
 
 msgid "Name of the variable."
-msgstr "變數的名稱。"
+msgstr "變量（variable）名稱。"
 
 msgid "NetBIOS name"
 msgstr "NetBIOS 名稱"
@@ -3409,50 +3413,52 @@ msgid "Netgraph"
 msgstr "網路圖表"
 
 msgid "Network"
-msgstr "目標網段"
+msgstr "网络"
 
 msgid "Network File System"
-msgstr "網路檔案系統"
+msgstr "网络檔案系統"
 
 msgid ""
 "Network authorised to access to the iSCSI target. It takes IP or CIDR "
 "addresses or 'ALL' for any IPs."
 msgstr ""
+"網絡授權可訪問 iSCSI 目標。\r\n"
+"它需要 IP 位址或 CIDR 位址或“ALL” （任何 IP 位址）。"
 
 msgid "Network mask"
-msgstr "網路遮罩"
+msgstr "網絡掩碼"
 
 msgid "Network port"
-msgstr "網路卡通訊埠"
+msgstr "網路卡通訊端口"
 
 msgid "Network that is authorised to access the NFS share."
-msgstr "授權可以存取 NFS 分享區的網域。"
+msgstr "授權可使用 NFS 分享區的網域。"
 
 msgid "Networks"
-msgstr "網路"
+msgstr "网络"
 
 msgid ""
 "Never - Poll (check) the device regardless of its power mode. This may cause "
 "a disk which is spun-down to be spun-up when it is checked."
-msgstr "永不 - 永遠不管目標磁碟的電源模式而進行檢查。"
+msgstr "永不 - 任何功耗模式都輪詢（檢查）裝置。這可能會導致降速中的磁盤增速。"
 
 msgid "Never - default"
-msgstr ""
+msgstr "從不 - 默認"
 
 msgid "New Device"
 msgstr "新裝置"
 
 msgid "New password"
-msgstr ""
+msgstr "新密碼"
 
 msgid "No"
 msgstr "否"
 
 msgid "No DNS setting found."
-msgstr ""
+msgstr "找不到DNS配置。"
 
 msgid "No RSYNC Client configured"
-msgstr "尚無RSYNC客戶端設定"
+msgstr "尚未配置RSYNC客戶端配置"
 
 msgid "No case folding"
 msgstr "大小寫視為相異"
@@ -3460,84 +3466,84 @@ msgstr "大小寫視為相異"
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
-msgstr ""
+msgstr "尚未配置認證（Auth）群組。請先添加新的<a href='%s'>認證（Auth）群組</a>。"
 
 msgid "No configured CARP interfaces."
-msgstr ""
+msgstr "沒有CARP介面配置。"
 
 #, php-format
 msgid ""
 "No configured CARP interfaces. Please add new <a href='%s'>CARP "
 "interface</a> first."
-msgstr ""
+msgstr "尚未配置 CARP 介面。請先添加新的<a href='%s'>CARP介面</a>。"
 
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
-msgstr ""
+msgstr "尚未配置 Extent 。請先添加新的<a href='%s'>Extent</a>。"
 
 #, php-format
 msgid ""
 "No configured Initiator Group. Please add new <a href='%s'>Initiator "
 "Group</a> first."
-msgstr ""
+msgstr "尚未配置启动器（Initiator）群組。請先添加新的<a href='%s'>启动器（Initiator）群組</a>。"
 
 #, php-format
 msgid ""
 "No configured Portal Group. Please add new <a href='%s'>Portal Group</a> "
 "first."
-msgstr ""
+msgstr "尚未配置（Portal Group）。請先添加新的<a href='%s'>Portal Group</a>。"
 
 #, php-format
 msgid "No configured pools. Please add new <a href='%s'>pools</a> first."
-msgstr ""
+msgstr "尚未配置存儲池。請先添加新的<a href='%s'>存儲池</a>。"
 
 #, php-format
 msgid ""
 "No configured virtual devices. Please add new <a href='%s'>virtual "
 "device</a> first."
-msgstr ""
+msgstr "尚未配置虛擬設備。請先添加新的<a href='%s'>虛擬設備</a>。"
 
 msgid "No device selected."
 msgstr "沒有選擇裝置。"
 
 msgid "No disk configured"
-msgstr "尚未加入磁碟"
+msgstr "尚未配置磁盤"
 
 #, php-format
 msgid "No disks available. Please add new <a href='%s'>disk</a> first."
-msgstr ""
+msgstr "沒有可用磁盤。請先添加新的<a href='%s'>磁盤</a>。"
 
 msgid ""
 "No disks configured, please add disks to see the diagnostic information of "
 "disks!"
-msgstr ""
+msgstr "尚未配置磁盤。請先添加新的磁盤再看磁盤的診斷信息！"
 
 msgid "No file was uploaded."
 msgstr "沒有檔案被上傳。"
 
 msgid "No pool was found."
-msgstr ""
+msgstr "找不到池。"
 
 msgid "Node A IP address"
-msgstr ""
+msgstr "A 節點的 IP 位址"
 
 msgid "Node A settings"
-msgstr ""
+msgstr "A 節點的設置"
 
 msgid "Node B IP address"
-msgstr ""
+msgstr "B 節點的 IP 位址"
 
 msgid "Node B settings"
-msgstr ""
+msgstr "B 節點的設置"
 
 msgid "Node Base"
 msgstr ""
 
 msgid "Node ID"
-msgstr ""
+msgstr "節點（Node）ID"
 
 msgid "Node Name"
-msgstr ""
+msgstr "節點（Node）名稱"
 
 msgid "None"
 msgstr "無"
@@ -3553,6 +3559,8 @@ msgid ""
 "not explicitly support it, VLAN tagging will still work, but the reduced MTU "
 "may cause problems."
 msgstr ""
+"並非所有的驅動器/網卡支持都正確支援 802.1Q VLAN 標籤（tagging）。不明確支持的卡，VLAN 標籤仍可使用，但減少的 MTU "
+"可能會造成問題。"
 
 msgid "Not attached"
 msgstr "尚未連結"
@@ -3563,27 +3571,27 @@ msgstr "提示"
 msgid ""
 "Note! Selecting 'Time Machine' on multiple shares will may cause "
 "unpredictable behavior in MacOS."
-msgstr ""
+msgstr "注意！在MacOS 多個共享區選擇 'Time Machine' 將可能導致不可預知的行為。"
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
 "minutes, hours, days and months."
-msgstr "提示：使用Ctrl+滑鼠左鍵(Mac：command+滑鼠主鍵)就可以複選項目。"
+msgstr "注意：按住Ctrl鍵（或在Mac上單擊命令）可以選擇和取消選擇幾分鐘，幾小時，幾天或幾個月。"
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and deselect groups."
-msgstr "備註：按著 Ctrl 配合滑鼠左鍵（Mac 請按 Cmd）以選擇多重群組。"
+msgstr "注意：按住Ctrl鍵（或在Mac上單擊命令）可以選擇和取消選擇多個群組。"
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select multiple entries."
-msgstr "注意：使用 Ctrl-點選 (在 Mac 上為 command-點選)來選取多個項目。"
+msgstr "注意：按住Ctrl鍵（或在Mac上單擊命令）可以選擇和取消選擇多個選項。"
 
 msgid "Nothing to synchronize"
 msgstr "沒有同步"
 
 #, php-format
 msgid "Notification email from host: %s"
-msgstr ""
+msgstr "主機的電子郵件通知：%s"
 
 msgid "Now"
 msgstr "現在"
@@ -3595,16 +3603,16 @@ msgid "Number of clients"
 msgstr "連線數目"
 
 msgid "Number of log entries to show"
-msgstr "顯示的記錄數量"
+msgstr "記錄數量的顯示"
 
 msgid "Number of log entries to show must be between 5 and 1000."
-msgstr "一次要檢視多少筆記錄（5-100）"
+msgstr "一次要顯示多少記錄（5-100）"
 
 msgid "Number of servers"
 msgstr "伺服器數量"
 
 msgid "Numeric identifier of the group."
-msgstr ""
+msgstr "群組的數字識別碼。"
 
 msgid "OK"
 msgstr "OK"
@@ -3613,10 +3621,10 @@ msgid "ONLINE"
 msgstr "ONLINE"
 
 msgid "OPT only"
-msgstr ""
+msgstr "只有 OPT"
 
 msgid "Object name"
-msgstr "物件名稱"
+msgstr ""
 
 msgid "Occurrence"
 msgstr "出現"
@@ -3625,7 +3633,7 @@ msgid "Off"
 msgstr "關閉"
 
 msgid "Old passphrase"
-msgstr "舊金鑰"
+msgstr "舊通關密語"
 
 msgid "Old password"
 msgstr "舊密碼"
@@ -3636,30 +3644,30 @@ msgstr "開啟"
 msgid ""
 "Once you add the virtual device, it becomes impossible to delete again. It "
 "recommends adding the same number of drives as the existing virtual device."
-msgstr ""
+msgstr "您一旦添加虛擬設備，就不可能再刪除。建議您添加與現有的虛擬設備相同數量的驅動器​​。"
 
 msgid "Online version check"
-msgstr ""
+msgstr "在線版本檢查"
 
 msgid ""
 "Only allow anonymous users. Use this on a public FTP site with no remote FTP "
 "access to real accounts."
-msgstr "只允許匿名使用者。使用在公共而且拒絕遠端帳號連線的 FTP 站"
+msgstr "只允許匿名用戶。在沒有可以FTP遠程訪問的真實戶口的公開 FTP 站使用此選項\t。"
 
 msgid "Only allow authenticated users. Anonymous logins are prohibited."
-msgstr "只允許授權的使用者，匿名使用者無法連線。"
+msgstr "只允許授權用戶，匿名用戶無法連線。"
 
 msgid "Option"
 msgstr "選項"
 
 msgid "Optional user-friendly string of the target."
-msgstr ""
+msgstr "自選易用的目標字符串。"
 
 msgid "Options"
 msgstr "選項"
 
 msgid "Origin"
-msgstr ""
+msgstr "來源"
 
 msgid "Others"
 msgstr "其他"
@@ -3668,25 +3676,25 @@ msgid "Out"
 msgstr "外送"
 
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
-msgstr "外送 SMTP 郵件伺服器位置，例：smtp.mycorp.com"
+msgstr "外寄電郵伺服器位址，例：smtp.mycorp.com"
 
 msgid "Outgoing mail server"
-msgstr "外送郵件伺服器"
+msgstr "外寄電郵伺服器"
 
 msgid "Overwrite already configured disks (only affects filesystem value)."
-msgstr ""
+msgstr "覆蓋已配置磁盤（僅影響檔案系統值）。"
 
 msgid "Overwrite disks configuration"
 msgstr "覆蓋磁碟配置"
 
 msgid "Owner"
-msgstr "擁有者"
+msgstr "主人"
 
 msgid "PG"
-msgstr ""
+msgstr "PG"
 
 msgid "PHP Command"
-msgstr "PHP 命令列"
+msgstr "PHP 指令"
 
 msgid "PPPoE"
 msgstr "PPPoE"
@@ -3707,7 +3715,7 @@ msgid "Package file"
 msgstr "套件檔案"
 
 msgid "Package is already installed."
-msgstr "套件已經安裝"
+msgstr "套件已安裝。"
 
 msgid "Package upload failed (out of memory?)"
 msgstr "套件上傳失敗（記憶體不足？）"
@@ -3719,19 +3727,19 @@ msgid "Painfully aggressive"
 msgstr ""
 
 msgid "Pairwise"
-msgstr ""
+msgstr "成對（Pairwise）"
 
 msgid "Partition number"
-msgstr "磁碟分區數量"
+msgstr "分割區編號"
 
 msgid "Partition type"
-msgstr "磁碟分區型態"
+msgstr "分割區類型"
 
 msgid "Partitions"
-msgstr "磁區"
+msgstr "分割區"
 
 msgid "Passive ports"
-msgstr ""
+msgstr "被動端口"
 
 msgid ""
 "Passive ports restricts the range of ports from which the server will select "
@@ -3742,12 +3750,14 @@ msgid ""
 "enough to handle many simultaneous passive connections (for example, 49152-"
 "65534, the IANA-registered ephemeral port range)."
 msgstr ""
+"被動端口限制由客戶端發送PASV命令給伺服器時的端口範圍。該服務器將在指定端口範圍內隨機選擇一個端口編號，直到找到一個開放的端口。所選的端口範圍必須是在非"
+"特權的範圍內（例如，大於或等於1024）。強烈建議選擇足以處理同時連接的被動端口範圍（例如 49152 - 65534，IANA 註冊的短暫端口範圍）。"
 
 msgid "Passphrase"
-msgstr "加密金鑰"
+msgstr "通關密語"
 
 msgid "Passphrase don't match."
-msgstr "加密金鑰並不相同。"
+msgstr "通關密語不相符。"
 
 msgid "Password"
 msgstr "密碼"
@@ -3759,66 +3769,66 @@ msgid "Password authentication"
 msgstr "密碼認證"
 
 msgid "Password don't match."
-msgstr "密碼不相同"
+msgstr "密碼不相符。"
 
 msgid "Password encryption"
-msgstr "密碼文本"
+msgstr "密碼加密"
 
 msgid "Password for the administrative pages."
-msgstr "管理用網頁密碼。"
+msgstr "管理頁面的密碼。"
 
 msgid "Password of domain administrator account."
-msgstr "請在此設定網域管理者的帳號。"
+msgstr "網域管理員戶口的密碼。"
 
 msgid "Password server"
-msgstr ""
+msgstr "密碼伺服器"
 
 msgid ""
 "Password server name or IP address (e.g. Active Directory domain controller)."
-msgstr ""
+msgstr "密碼伺服器的名稱或 IP 位址（例如Active Directory域控制器）。"
 
 msgid "Password suffix"
-msgstr "密碼詞綴"
+msgstr "密碼後綴"
 
 msgid "Paste a DSA PRIVATE KEY in PEM format here."
-msgstr "在此貼上PEM格式的私鑰。"
+msgstr "在此貼上 PEM 格式的DSA私鑰。"
 
 msgid "Paste a signed certificate in X.509 PEM format here."
-msgstr "請在此貼上X.509 PEM格式的驗證碼。"
+msgstr "請在此貼上 X.509 PEM 格式的簽署憑證。"
 
 msgid "Paste an private key in PEM format here."
-msgstr "將 PEM 密鑰貼上於此"
+msgstr "請在此貼上PEM 格式的密鑰。"
 
 msgid "Path"
 msgstr "路徑"
 
 msgid "Path of the URL relative to document root."
-msgstr "URL 相對路徑（以根目錄為底）"
+msgstr "相對於root文檔目錄的URL路徑。"
 
 msgid "Path to be shared."
 msgstr "欲分享的路徑"
 
 #, php-format
 msgid "Path to the local device. (e.g. %s)"
-msgstr ""
+msgstr "本地裝置的路徑。（例如 %s ）"
 
 msgid "Peer Secret"
-msgstr ""
+msgstr "同等秘密"
 
 msgid "Peer User"
-msgstr ""
+msgstr "同等用戶"
 
 msgid "Peer exchange"
-msgstr ""
+msgstr "對等交流（Peer exchange）"
 
 msgid "Peer port"
-msgstr ""
+msgstr "對等端口（Peer port）"
 
 msgid "Permit root login"
-msgstr "root准許登入"
+msgstr "允許root登錄"
 
 msgid "Permit to do SSH Tunneling."
-msgstr "可用 SSH Tunneling"
+msgstr "允許 SSH Tunneling"
 
 msgid "Physical interface"
 msgstr "實體介面"
@@ -3827,7 +3837,7 @@ msgid "Ping"
 msgstr "Ping"
 
 msgid "Ping winbindd to see if it is alive:"
-msgstr "Ping winbindd 看看:"
+msgstr "Ping winbindd 看看是否 alive :"
 
 msgid "Ping/Traceroute"
 msgstr "Ping/Traceroute"
@@ -3836,11 +3846,11 @@ msgid "Platform"
 msgstr "硬體平台"
 
 msgid "Platform OS"
-msgstr ""
+msgstr "操作系統平台"
 
 #, php-format
 msgid "Please check the <a href='%s' target='_blank'>documentation</a>."
-msgstr ""
+msgstr "請檢查 <a href='%s' target='_blank'>文件</a>。"
 
 msgid "Please note that blanks in path names are not allowed."
 msgstr "請注意在路徑中不可以有空白字元。"
@@ -3849,46 +3859,46 @@ msgid "Polish"
 msgstr "波蘭語"
 
 msgid "Polling time"
-msgstr "Polling 時間"
+msgstr "輪詢時間"
 
 msgid "Pool"
-msgstr ""
+msgstr "存儲池"
 
 msgid "Pool information and status"
-msgstr ""
+msgstr "存儲池的信息和狀態"
 
 msgid "Pools"
 msgstr ""
 
 msgid "Port"
-msgstr "Port"
+msgstr "端口"
 
 msgid "Port "
-msgstr "通訊埠 "
+msgstr "端口 "
 
 #, php-format
 msgid "Port %ld is already used by another service."
-msgstr "通訊埠 %ld 已經被其他服務使用。"
+msgstr "端口 %ld 已被其他服務使用。"
 
 msgid "Port forwarding"
-msgstr "Port forwarding"
+msgstr "端口轉發"
 
 #, php-format
 msgid "Port to listen for incoming peer connections. Default port is %d."
-msgstr ""
+msgstr "用來偵聽接收對等連接的端口。默認端口是 %d。"
 
 msgid "Port to listen on. Default iTunes port is 3689."
-msgstr "要監聽的連接埠。預設的 iTunes 連接埠為 3689。"
+msgstr "用來偵聽的端口。默認 iTunes 端口是 3689。"
 
 #, php-format
 msgid "Port to listen on. Default port is %d."
-msgstr "要監聽的連接埠。預設的連接埠為 %d。"
+msgstr "用來偵聽的端口。默認端口是 %d。"
 
 #, php-format
 msgid ""
 "Port to listen on. Only dynamic or private ports can be used (from %d "
 "through %d). Default port is %d."
-msgstr "要監聽的連接埠。只有動態的或私人的連接埠可以使用(從 %d 到 %d)。預設的連接埠為 %d。"
+msgstr "用來偵聽的端口。只有動態的或私人的端口可以使用(從 %d 到 %d)。預設端口是 %d。"
 
 msgid "Portal Group"
 msgstr ""
@@ -3900,53 +3910,53 @@ msgid "Portals"
 msgstr ""
 
 msgid "Ports"
-msgstr "連接埠"
+msgstr "端口"
 
 msgid "Portuguese (Brazil)"
-msgstr ""
+msgstr "葡萄牙語 (巴西)"
 
 msgid "Portuguese (Portugal)"
-msgstr ""
+msgstr "葡萄牙文 (葡萄牙)"
 
 msgid "PostInit"
-msgstr "後置初始動作"
+msgstr "後置初始動作（PostInit）"
 
 msgid "Power Daemon"
-msgstr "電源監控"
+msgstr "電源監控守护进程"
 
 msgid "Power Mode"
-msgstr ""
+msgstr "電源模式"
 
 msgid "Power mode"
 msgstr "電源模式"
 
 msgid "PreInit"
-msgstr "前置初始動作"
+msgstr "前置初始動作（PreInit）"
 
 #, php-format
 msgid "Predefined system groups"
-msgstr ""
+msgstr "預設的系統群組"
 
 msgid "Preferred"
-msgstr "優先"
+msgstr "首選"
 
 msgid "Prefix"
-msgstr "前置字元"
+msgstr "前綴"
 
 msgid "Preformatted file system"
 msgstr "已格式化之檔案系統"
 
 msgid "Preserve extended attributes"
-msgstr "保留擴充的屬性"
+msgstr "保留擴展屬性"
 
 msgid "Preserve modification times."
-msgstr "保留修改時刻。"
+msgstr "保留修改時間。"
 
 msgid "Preserve permissions"
 msgstr "保留權限"
 
 msgid "Primary"
-msgstr ""
+msgstr "主要"
 
 msgid "Primary Group"
 msgstr "主要群組"
@@ -3964,10 +3974,10 @@ msgid "Private key"
 msgstr "私鑰"
 
 msgid "Process"
-msgstr "處理程序"
+msgstr "程序"
 
 msgid "Processes"
-msgstr "程序列表"
+msgstr "程序"
 
 msgid "Processes information"
 msgstr "程序資訊"
@@ -3993,10 +4003,10 @@ msgstr "Proxy 代理伺服器"
 msgid ""
 "Puts the hard disk into standby mode when the selected amount of time after "
 "the last hard disk access has been elapsed."
-msgstr "設定當硬碟沒有作動多久之後將其設為待命模式。"
+msgstr "設定當硬碟待命了指定的时间後設為待命模式。"
 
 msgid "Queue Depth"
-msgstr ""
+msgstr "佇列深度"
 
 msgid "Quiet"
 msgstr "靜音"
@@ -4041,7 +4051,7 @@ msgid "RSYNC Client"
 msgstr "RSYNC 客戶端"
 
 msgid "RSYNC Client informations"
-msgstr "RSYNC Client 資訊"
+msgstr "RSYNC 客戶端資訊"
 
 msgid "RSYNC events"
 msgstr "RSYNC 事件"
@@ -4062,10 +4072,10 @@ msgid "Read Only Access"
 msgstr "唯讀存取"
 
 msgid "Read from biggest priority"
-msgstr ""
+msgstr "從最優先起開始閱讀"
 
 msgid "Read from lowest load"
-msgstr ""
+msgstr "從最低負荷起開始閱讀"
 
 msgid "Read only"
 msgstr "唯讀"
@@ -4079,14 +4089,14 @@ msgstr "讀/寫 (rw)"
 msgid ""
 "Read/Write (rw,dynamic) for removable types file size grow and shrink "
 "automatically by EOF (ignore specified size)"
-msgstr ""
+msgstr "讀/寫（rw，dynamic），可移動類文件的大小會以EOF自動增長和收縮（忽略指定大小）"
 
 msgid ""
 "Read/Write (rw,extend) for removable types extend file size if EOM reached"
-msgstr ""
+msgstr "讀/寫（rw，dynamic）的可移動類文件如果達到 EOM 將會擴展文件"
 
 msgid "Read/Write Access"
-msgstr "讀/寫 連線"
+msgstr "讀/寫 權限"
 
 msgid "Readonly"
 msgstr "唯讀"
@@ -4095,34 +4105,34 @@ msgid "Realm"
 msgstr "Realm"
 
 msgid "Reboot"
-msgstr "重新開機"
+msgstr "重新啟動"
 
 msgid "Receive Buffer Size"
 msgstr "接收緩衝區大小"
 
 msgid "Recurse into directories."
-msgstr "包含所有子目錄。"
+msgstr "遞歸入目錄。"
 
 msgid "Recursive"
-msgstr "包含子目錄"
+msgstr "遞歸"
 
 msgid "Recycle bin"
-msgstr "垃圾桶"
+msgstr "回收垃圾桶"
 
 msgid "Refresh"
-msgstr "恢復"
+msgstr "更新"
 
 msgid "Reject"
 msgstr "拒絕"
 
 msgid "Release Notes"
-msgstr ""
+msgstr "發行說明"
 
 msgid "Reload page"
 msgstr "重新載入頁面"
 
 msgid "Remote Rsync Server"
-msgstr "遠端 Rsync 服務"
+msgstr "遠端 Rsync 伺服器"
 
 msgid "Remote address"
 msgstr "遠端位置"
@@ -4140,18 +4150,18 @@ msgid "Remote syslog server"
 msgstr "遠端 syslog 伺服器"
 
 msgid "Removable"
-msgstr "可攜式"
+msgstr "可移除"
 
 msgid "Remove all entries from ARP table"
 msgstr "移除所有ARP table內的項目"
 
 msgid "Report Generator"
-msgstr "報告產生"
+msgstr "報告生成"
 
 msgid ""
 "Report if the temperature had changed by at least N degrees Celsius since "
 "last report. Set to 0 to disable this report."
-msgstr "設定自上次回報之後最少變異了攝氏多少度才會再次回報，設為 0 則可以取消這個功能。"
+msgstr "設定溫度差異報告（攝氏）。設為 0 則可以取消這個功能。"
 
 msgid ""
 "Report if the temperature is greater or equal than N degrees Celsius. Set to "
@@ -5739,8 +5749,8 @@ msgid ""
 "Zeroconf/Bonjour/Rendezvous, and the name of the database exported via DAAP."
 msgstr ""
 
-msgid "This is for information only (not using during iSCSI negociation)."
-msgstr "只是提供資料之用（並非給 iSCSI 溝通的資料）"
+msgid "This is for information only (not using during iSCSI negotiation)."
+msgstr ""
 
 msgid ""
 "This may make more efficient use of the system CPU's and cause Samba to be "
@@ -6790,7 +6800,5 @@ msgstr "upriv"
 msgid "version:"
 msgstr ""
 
-#~ msgid ""
-#~ "It is not recommanded to import non healty pools nor virtual devices that "
-#~ "are part of a non healthy pool."
-#~ msgstr "不建議導入運行狀況不良的存儲池或是屬於運行不良的存儲池的虛擬設備。"
+#~ msgid "This is for information only (not using during iSCSI negociation)."
+#~ msgstr "只是提供資料之用（並非給 iSCSI 溝通的資料）"
