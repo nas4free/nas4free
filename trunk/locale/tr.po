@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-12-28 23:52+0000\n"
+"POT-Creation-Date: 2012-12-29 17:48+0000\n"
 "PO-Revision-Date: 2012-07-09 19:53+0000\n"
 "Last-Translator: Hasan Yılmaz <iletisim@hasanyilmaz.net>\n"
 "Language-Team: NAS4Free <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-29 01:24+0000\n"
+"X-Launchpad-Export-Date: 2012-12-29 17:52+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-Language: Turkish\n"
@@ -5183,7 +5183,7 @@ msgstr ""
 msgid "The cron job has been executed successfully."
 msgstr ""
 
-msgid "The current password is incorrect entered."
+msgid "The current password is incorrectly entered."
 msgstr ""
 
 #, php-format
@@ -5232,6 +5232,10 @@ msgid ""
 msgstr ""
 
 msgid "The disk/partition is already configured."
+msgstr ""
+
+#, php-format
+msgid "The distinguished name to bind to the directory server, e.g. %s"
 msgstr ""
 
 #, php-format
@@ -5556,8 +5560,8 @@ msgid "There is no error, the file uploaded with success."
 msgstr "Herhangi bir hata olmadı, dosya başarıyla yüklendi."
 
 msgid ""
-"There is wrong ID in the disk of config. Please remove the disk and re-add "
-"it or use 'clear and import'."
+"There is wrong disk ID in the config. Please remove the disk and re-add it "
+"or use 'clear and import'."
 msgstr ""
 
 msgid "There must be 2 disks in a RAID 1 volume."
@@ -5568,9 +5572,6 @@ msgstr "JBOD en az iki disk bulunmalı."
 
 msgid "There must be a minimum of 2 disks in a RAID 0 volume."
 msgstr "RAID 0 biriminde en az iki disk olmalı."
-
-msgid "There must be a minimum of 2 disks in a RAID 5 volume."
-msgstr "RAID 5 biriminde en az 2 disk olmalı."
 
 msgid "There must be a minimum of 3 disks in a RAID 5 volume."
 msgstr "RAID 5 biriminde en az 3 disk olmalı."
@@ -5716,7 +5717,7 @@ msgstr "Bu aygıt raid birimleri listesinde zaten var."
 msgid "This disk already exists in the disk list."
 msgstr "Bu disk zaten var."
 
-msgid "This email has been send to validate your email configuration."
+msgid "This email has been sent to validate your email configuration."
 msgstr ""
 
 msgid "This extent is used."
@@ -6801,3 +6802,6 @@ msgstr ""
 #, c-format
 #~ msgid "The attribute '%s' is no valid time."
 #~ msgstr "'%s' özniteliğinin geçerili bir süresi yok."
+
+#~ msgid "There must be a minimum of 2 disks in a RAID 5 volume."
+#~ msgstr "RAID 5 biriminde en az 2 disk olmalı."

@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-28 23:52+0000\n"
+"POT-Creation-Date: 2012-12-29 17:48+0000\n"
 "PO-Revision-Date: 2012-11-21 15:57+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-29 01:24+0000\n"
+"X-Launchpad-Export-Date: 2012-12-29 17:52+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: SWEDEN\n"
 "Language: \n"
@@ -5456,7 +5456,7 @@ msgstr "Inloggningsdetaljer som används för att binda till katalogen."
 msgid "The cron job has been executed successfully."
 msgstr "Cron-jobbet har utförts med lyckat resultat."
 
-msgid "The current password is incorrect entered."
+msgid "The current password is incorrectly entered."
 msgstr ""
 
 #, php-format
@@ -5516,6 +5516,10 @@ msgstr ""
 
 msgid "The disk/partition is already configured."
 msgstr "Disken/partitionen är redan konfigurerad."
+
+#, php-format
+msgid "The distinguished name to bind to the directory server, e.g. %s"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -5888,8 +5892,8 @@ msgid "There is no error, the file uploaded with success."
 msgstr "Inget fel inträffade, filen laddades upp med lyckat resultat."
 
 msgid ""
-"There is wrong ID in the disk of config. Please remove the disk and re-add "
-"it or use 'clear and import'."
+"There is wrong disk ID in the config. Please remove the disk and re-add it "
+"or use 'clear and import'."
 msgstr ""
 
 msgid "There must be 2 disks in a RAID 1 volume."
@@ -5900,9 +5904,6 @@ msgstr "Åtminstone 2 diskar krävs för JBOD."
 
 msgid "There must be a minimum of 2 disks in a RAID 0 volume."
 msgstr "Det måste minst finnas 2 diskar i en RAID 0-volym."
-
-msgid "There must be a minimum of 2 disks in a RAID 5 volume."
-msgstr "Det måste minst finnas 2 diskar i en RAID 5-volym."
 
 msgid "There must be a minimum of 3 disks in a RAID 5 volume."
 msgstr "Åtminstone 3 diskar krävs för en RAID5-volym."
@@ -6078,8 +6079,8 @@ msgstr "Den här enheten finns redan i listan över RAID-volymer."
 msgid "This disk already exists in the disk list."
 msgstr "Den här disken finns redan i disklistan."
 
-msgid "This email has been send to validate your email configuration."
-msgstr "Detta e-brev har sänts för att validera din e-postkonfiguration."
+msgid "This email has been sent to validate your email configuration."
+msgstr ""
 
 msgid "This extent is used."
 msgstr "Detta område är använt."
@@ -7325,6 +7326,12 @@ msgstr ""
 #, c-format
 #~ msgid "The attribute '%s' is no valid time."
 #~ msgstr "Attributet '%s' verkar inte vara ett giltigt tidsvärde."
+
+#~ msgid "There must be a minimum of 2 disks in a RAID 5 volume."
+#~ msgstr "Det måste minst finnas 2 diskar i en RAID 5-volym."
+
+#~ msgid "This email has been send to validate your email configuration."
+#~ msgstr "Detta e-brev har sänts för att validera din e-postkonfiguration."
 
 #~ msgid "This is for information only (not using during iSCSI negociation)."
 #~ msgstr ""
