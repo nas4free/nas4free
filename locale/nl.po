@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-28 05:12+0000\n"
-"PO-Revision-Date: 2012-12-28 04:20+0000\n"
+"POT-Creation-Date: 2012-12-28 23:52+0000\n"
+"PO-Revision-Date: 2012-12-28 23:07+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-28 04:37+0000\n"
+"X-Launchpad-Export-Date: 2012-12-29 01:25+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: Netherlands\n"
 "Language: \n"
@@ -5401,25 +5401,27 @@ msgstr "De geassocieerde MIB bestanden kunnen gevonden worden op %s."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+"The attribute '%s' contains invalid characters and is not a valid NetBIOS "
+"name."
 msgstr ""
 "Het attribuut '%s' bevat ongeldige karakters en is geen geldig Netbios naam."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains invalid characters and is no valid domain name."
+"The attribute '%s' contains invalid characters and is not a valid domain "
+"name."
 msgstr ""
 "Het attribuut '%s' bevat ongeldige karakters en is geen geldig domeinnaam."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains invalid characters and is no valid host name."
+"The attribute '%s' contains invalid characters and is not a valid host name."
 msgstr ""
-"Het attribuut '%s' bevat ongeldige karakters en is geen geldig host naam."
+"Het attribuut '%s' bevat ongeldige karakters en is geen geldig hostnaam."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains invalid characters and is no valid workgroup "
+"The attribute '%s' contains invalid characters and is not a valid workgroup "
 "name."
 msgstr ""
 "Het attribuut '%s' bevat ongeldige karakters en is geen geldig werkgroepnaam."
@@ -5430,7 +5432,7 @@ msgstr "Het atrubuut bevat '%s' ongeldige karakters."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains the illegal character ':' and is no valid "
+"The attribute '%s' contains the illegal character ':' and is not a valid "
 "password."
 msgstr ""
 "Het attribuut '%s' bevat het ongeldige karakter ':' en is geen geldig "
@@ -5457,23 +5459,23 @@ msgid "The attribute '%s' is invalid."
 msgstr "Het attribuut '%s' is ongeldig."
 
 #, c-format
-msgid "The attribute '%s' is no valid IP address."
+msgid "The attribute '%s' is not a valid IP address."
 msgstr "Het attribuut '%s' is geen geldig IP-adres."
 
 #, c-format
-msgid "The attribute '%s' is no valid MAC address."
+msgid "The attribute '%s' is not a valid MAC address."
 msgstr "Het attribuut '%s' is geen geldig MAC-adres."
 
 #, c-format
-msgid "The attribute '%s' is no valid file mode mask."
+msgid "The attribute '%s' is not a valid file mode mask."
 msgstr "Het attribuut '%s' is geen geldig bestandmode masker."
 
 #, c-format
-msgid "The attribute '%s' is no valid subnet mask."
+msgid "The attribute '%s' is not a valid subnet mask."
 msgstr "Het attribuut '%s' is geen geldig subnetmasker."
 
 #, c-format
-msgid "The attribute '%s' is no valid time."
+msgid "The attribute '%s' is not a valid time value."
 msgstr "De attribuut '%s' is geen geldige tijd."
 
 #, c-format, php-format
@@ -7453,6 +7455,59 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr "versie:"
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+#~ msgstr ""
+#~ "Het attribuut '%s' bevat ongeldige karakters en is geen geldig Netbios naam."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid domain name."
+#~ msgstr ""
+#~ "Het attribuut '%s' bevat ongeldige karakters en is geen geldig domeinnaam."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid host name."
+#~ msgstr ""
+#~ "Het attribuut '%s' bevat ongeldige karakters en is geen geldig host naam."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
+#~ "name."
+#~ msgstr ""
+#~ "Het attribuut '%s' bevat ongeldige karakters en is geen geldig werkgroepnaam."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains the illegal character ':' and is no valid "
+#~ "password."
+#~ msgstr ""
+#~ "Het attribuut '%s' bevat het ongeldige karakter ':' en is geen geldig "
+#~ "wachtwoord."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid IP address."
+#~ msgstr "Het attribuut '%s' is geen geldig IP-adres."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid MAC address."
+#~ msgstr "Het attribuut '%s' is geen geldig MAC-adres."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid file mode mask."
+#~ msgstr "Het attribuut '%s' is geen geldig bestandmode masker."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid subnet mask."
+#~ msgstr "Het attribuut '%s' is geen geldig subnetmasker."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid time."
+#~ msgstr "De attribuut '%s' is geen geldige tijd."
 
 #~ msgid "This is for information only (not using during iSCSI negociation)."
 #~ msgstr ""

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-12-28 05:12+0000\n"
+"POT-Creation-Date: 2012-12-28 23:52+0000\n"
 "PO-Revision-Date: 2012-06-25 21:24+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-28 04:37+0000\n"
+"X-Launchpad-Export-Date: 2012-12-29 01:24+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: FINLAND\n"
 "X-Poedit-Language: Finnish\n"
@@ -4987,31 +4987,26 @@ msgstr ""
 
 #, c-format
 msgid ""
-"The attribute '%s' contains invalid characters and is no valid NetBIOS name."
-msgstr ""
-"Määrite '%s' sisältää epäkelpoja merkkejä ja ei ole kelvollinen NetBIOS nimi."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid domain name."
-msgstr ""
-"Määrite '%s' sisältää epäkelpoja merkkejä ja ei ole kelvollinen toimialueen "
-"nimi."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid host name."
-msgstr ""
-"Määrite '%s' sisältää epäkelpoja merkkejä ja ei ole kelvollinen palvelimen "
-"nimi."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid workgroup "
+"The attribute '%s' contains invalid characters and is not a valid NetBIOS "
 "name."
 msgstr ""
-"Määrite '%s' sisältää epäkelpoja merkkejä ja ei ole kelvollinen "
-"työryhmännimi."
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid domain "
+"name."
+msgstr ""
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid host name."
+msgstr ""
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid workgroup "
+"name."
+msgstr ""
 
 #, c-format, php-format
 msgid "The attribute '%s' contains invalid characters."
@@ -5019,10 +5014,9 @@ msgstr "Määrite '%s' sisältää sopimattomia merkkejä."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains the illegal character ':' and is no valid "
+"The attribute '%s' contains the illegal character ':' and is not a valid "
 "password."
 msgstr ""
-"Määrite '%s' sisältää sopimattoman merkin ':' ja ei ole kelvollinen salasana."
 
 #, c-format
 msgid "The attribute '%s' does not appear to be a valid certificate."
@@ -5045,23 +5039,23 @@ msgid "The attribute '%s' is invalid."
 msgstr "Määrite '%s' on sopimaton."
 
 #, c-format
-msgid "The attribute '%s' is no valid IP address."
-msgstr "Määrite '%s' ei sisällä kelvollista IP-osoitetta."
-
-#, c-format
-msgid "The attribute '%s' is no valid MAC address."
-msgstr "Määrite '%s' ei sisällä kelvollista MAC-osoitetta."
-
-#, c-format
-msgid "The attribute '%s' is no valid file mode mask."
-msgstr "Määrite '%s' on sopimaton tiedostomuodon maskiksi."
-
-#, c-format
-msgid "The attribute '%s' is no valid subnet mask."
+msgid "The attribute '%s' is not a valid IP address."
 msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid time."
+msgid "The attribute '%s' is not a valid MAC address."
+msgstr ""
+
+#, c-format
+msgid "The attribute '%s' is not a valid file mode mask."
+msgstr ""
+
+#, c-format
+msgid "The attribute '%s' is not a valid subnet mask."
+msgstr ""
+
+#, c-format
+msgid "The attribute '%s' is not a valid time value."
 msgstr ""
 
 #, c-format, php-format
@@ -6729,3 +6723,50 @@ msgstr ""
 #, php-format
 msgid "version:"
 msgstr ""
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+#~ msgstr ""
+#~ "Määrite '%s' sisältää epäkelpoja merkkejä ja ei ole kelvollinen NetBIOS nimi."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid domain name."
+#~ msgstr ""
+#~ "Määrite '%s' sisältää epäkelpoja merkkejä ja ei ole kelvollinen toimialueen "
+#~ "nimi."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid host name."
+#~ msgstr ""
+#~ "Määrite '%s' sisältää epäkelpoja merkkejä ja ei ole kelvollinen palvelimen "
+#~ "nimi."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
+#~ "name."
+#~ msgstr ""
+#~ "Määrite '%s' sisältää epäkelpoja merkkejä ja ei ole kelvollinen "
+#~ "työryhmännimi."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains the illegal character ':' and is no valid "
+#~ "password."
+#~ msgstr ""
+#~ "Määrite '%s' sisältää sopimattoman merkin ':' ja ei ole kelvollinen salasana."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid IP address."
+#~ msgstr "Määrite '%s' ei sisällä kelvollista IP-osoitetta."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid MAC address."
+#~ msgstr "Määrite '%s' ei sisällä kelvollista MAC-osoitetta."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid file mode mask."
+#~ msgstr "Määrite '%s' on sopimaton tiedostomuodon maskiksi."

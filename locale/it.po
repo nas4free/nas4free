@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-28 05:12+0000\n"
+"POT-Creation-Date: 2012-12-28 23:52+0000\n"
 "PO-Revision-Date: 2012-12-17 16:51+0000\n"
 "Last-Translator: misterredman <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-28 04:37+0000\n"
+"X-Launchpad-Export-Date: 2012-12-29 01:24+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: ITALY\n"
 "Language: \n"
@@ -5354,31 +5354,26 @@ msgstr "I files MIB associati si trovano su %s."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains invalid characters and is no valid NetBIOS name."
-msgstr ""
-"L'attributo '%s' contiene caratteri non validi e non è un nome NetBIOS "
-"valido."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid domain name."
-msgstr ""
-"L'attributo '%s' contiene caratteri non valido ed è un nome domino non "
-"valido."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid host name."
-msgstr ""
-"L'attributo '%s' contiene caratteri non valido ed è un nome host non valido."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid workgroup "
+"The attribute '%s' contains invalid characters and is not a valid NetBIOS "
 "name."
 msgstr ""
-"L'attributo '%s' contiene caratteri non valido ed è un nome workgroup non "
-"valido."
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid domain "
+"name."
+msgstr ""
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid host name."
+msgstr ""
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid workgroup "
+"name."
+msgstr ""
 
 #, c-format, php-format
 msgid "The attribute '%s' contains invalid characters."
@@ -5386,11 +5381,9 @@ msgstr "L'attributo '%s' contiene caratteri non validi."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains the illegal character ':' and is no valid "
+"The attribute '%s' contains the illegal character ':' and is not a valid "
 "password."
 msgstr ""
-"L'attributo '%s' contiente il carattere illegale ':' e non è una password "
-"valida."
 
 #, c-format
 msgid "The attribute '%s' does not appear to be a valid certificate."
@@ -5413,24 +5406,24 @@ msgid "The attribute '%s' is invalid."
 msgstr "L' attributo '%s' non è valido."
 
 #, c-format
-msgid "The attribute '%s' is no valid IP address."
-msgstr "L'attributo '%s' è un indirizzo IP non valido."
+msgid "The attribute '%s' is not a valid IP address."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid MAC address."
-msgstr "L'attributo '%s' è un indirizzo MAC non valido."
+msgid "The attribute '%s' is not a valid MAC address."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid file mode mask."
-msgstr "L' attributo '%s' non è una valida maschera di accesso al file."
+msgid "The attribute '%s' is not a valid file mode mask."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid subnet mask."
-msgstr "L' attributo '%s' non è una valida maschera di sottorete."
+msgid "The attribute '%s' is not a valid subnet mask."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid time."
-msgstr "L'attributo '%s' non indica un orario valido."
+msgid "The attribute '%s' is not a valid time value."
+msgstr ""
 
 #, c-format, php-format
 msgid "The attribute '%s' is required."
@@ -7402,6 +7395,62 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr ""
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+#~ msgstr ""
+#~ "L'attributo '%s' contiene caratteri non validi e non è un nome NetBIOS "
+#~ "valido."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid domain name."
+#~ msgstr ""
+#~ "L'attributo '%s' contiene caratteri non valido ed è un nome domino non "
+#~ "valido."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid host name."
+#~ msgstr ""
+#~ "L'attributo '%s' contiene caratteri non valido ed è un nome host non valido."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
+#~ "name."
+#~ msgstr ""
+#~ "L'attributo '%s' contiene caratteri non valido ed è un nome workgroup non "
+#~ "valido."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains the illegal character ':' and is no valid "
+#~ "password."
+#~ msgstr ""
+#~ "L'attributo '%s' contiente il carattere illegale ':' e non è una password "
+#~ "valida."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid IP address."
+#~ msgstr "L'attributo '%s' è un indirizzo IP non valido."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid MAC address."
+#~ msgstr "L'attributo '%s' è un indirizzo MAC non valido."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid file mode mask."
+#~ msgstr "L' attributo '%s' non è una valida maschera di accesso al file."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid subnet mask."
+#~ msgstr "L' attributo '%s' non è una valida maschera di sottorete."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid time."
+#~ msgstr "L'attributo '%s' non indica un orario valido."
 
 #~ msgid "This is for information only (not using during iSCSI negociation)."
 #~ msgstr ""
