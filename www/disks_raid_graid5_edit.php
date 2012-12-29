@@ -100,7 +100,7 @@ if ($_POST) {
 
 	/* check the number of RAID disk for volume */
 	if (empty($_POST['device']) || count($_POST['device']) < 2)
-		$input_errors[] = gettext("There must be a minimum of 2 disks in a RAID 5 volume.");
+		$input_errors[] = gettext("There must be a minimum of 3 disks in a RAID 5 volume.");
 
 	if (empty($input_errors)) {
 		$raid = array();

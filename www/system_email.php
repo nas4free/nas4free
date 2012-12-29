@@ -97,7 +97,7 @@ if ($_POST) {
 		// Send test email.
 		if (stristr($_POST['Submit'], gettext("Send test email"))) {
 			$subject = sprintf(gettext("Test email from host: %s"), system_get_hostname());
-			$message = gettext("This email has been send to validate your email configuration.");
+			$message = gettext("This email has been sent to validate your email configuration.");
 
 			$retval = @email_send($config['system']['email']['from'], $subject, $message, $error);
 			if (0 == $retval) {

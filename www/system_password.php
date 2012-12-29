@@ -51,7 +51,7 @@ if ($_POST) {
 
 	// Validate old password.
 	if ($_POST['password_old'] !== $config['system']['password']) {
-		$input_errors[] = gettext("The current password is incorrect entered.");
+		$input_errors[] = gettext("The current password is incorrectly entered.");
 	}
 
 	// Validate new password.

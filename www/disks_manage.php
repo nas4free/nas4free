@@ -147,7 +147,7 @@ function diskmanagement_process_updatenotification($mode, $data) {
 	// make sure detected disks have same ID in config.
 	$verify_errors = disks_verify_all_disks();
 	if (!empty($verify_errors)) {
-		$errormsg .= gettext("There is wrong ID in the disk of config. Please remove the disk and re-add it or use 'clear and import'.");
+		$errormsg .= gettext("There is wrong disk ID in the config. Please remove the disk and re-add it or use 'clear and import'.");
 		$errormsg .= "<br />\n";
 	}
 ?>

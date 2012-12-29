@@ -187,7 +187,7 @@ function anonymousbind_change() {
 					<?php html_inputbox("hostname", gettext("URI"), $pconfig['hostname'], gettext("The space-separated list of URIs for the LDAP server."), true, 60);?>
 					<?php html_inputbox("base", gettext("Base DN"), $pconfig['base'], sprintf(gettext("The default base distinguished name (DN) to use for searches, e.g. %s"), "dc=test,dc=org"), true, 40);?>
 					<?php html_checkbox("anonymousbind", gettext("Anonymous bind"), !empty($pconfig['anonymousbind']) ? true : false, gettext("Enable anonymous bind."), "", true, "anonymousbind_change()");?>
-					<?php html_inputbox("binddn", gettext("Bind DN"), $pconfig['binddn'], sprintf(gettext("The distinguished name with which to bind to the directory server, e.g. %s"), "cn=admin,dc=test,dc=org"), true, 40);?>
+					<?php html_inputbox("binddn", gettext("Bind DN"), $pconfig['binddn'], sprintf(gettext("The distinguished name to bind to the directory server, e.g. %s"), "cn=admin,dc=test,dc=org"), true, 40);?>
 					<?php html_passwordconfbox("bindpw", "bindpw2", gettext("Bind password"), $pconfig['bindpw'], $pconfig['bindpw2'], gettext("The cleartext credentials with which to bind."), true);?>
 					<?php html_inputbox("rootbinddn", gettext("Root bind DN"), $pconfig['rootbinddn'], sprintf(gettext("The distinguished name with which to bind to the directory server, e.g. %s"), "cn=admin,dc=test,dc=org"), true, 40);?>
 					<?php html_passwordconfbox("rootbindpw", "rootbindpw2", gettext("Root bind password"), $pconfig['rootbindpw'], $pconfig['rootbindpw2'], gettext("The credentials with which to bind."), true);?>
