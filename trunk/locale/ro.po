@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-28 05:12+0000\n"
-"PO-Revision-Date: 2012-12-27 07:58+0000\n"
+"POT-Creation-Date: 2012-12-28 23:52+0000\n"
+"PO-Revision-Date: 2012-12-28 14:50+0000\n"
 "Last-Translator: Laurentiu BUBUIANU <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-28 04:36+0000\n"
+"X-Launchpad-Export-Date: 2012-12-29 01:24+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: ROMANIA\n"
 "Language: \n"
@@ -5345,26 +5345,26 @@ msgstr "Fişierele MIB asociate pot fi găsite la %s."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains invalid characters and is no valid NetBIOS name."
-msgstr ""
-"Atributul '%s' specificat conţine caractere invalide şi nu reprezintă niciun "
-"nume NetBIOS valid."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid domain name."
-msgstr "Atributul '%s' contine caractere invalide (domeniu invalid)."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid host name."
-msgstr "Atributul '%s' contine caractere invalide (nume sistem invalid)."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid workgroup "
+"The attribute '%s' contains invalid characters and is not a valid NetBIOS "
 "name."
-msgstr "Atributul '%s' contine caractere invalide (grup invalid)."
+msgstr ""
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid domain "
+"name."
+msgstr ""
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid host name."
+msgstr ""
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid workgroup "
+"name."
+msgstr ""
 
 #, c-format, php-format
 msgid "The attribute '%s' contains invalid characters."
@@ -5372,10 +5372,9 @@ msgstr "Atributul '%s' contine caractere invalide"
 
 #, c-format
 msgid ""
-"The attribute '%s' contains the illegal character ':' and is no valid "
+"The attribute '%s' contains the illegal character ':' and is not a valid "
 "password."
 msgstr ""
-"Atributul '%s' contine caracterul ilegal ':' si nu este o parola valida."
 
 #, c-format
 msgid "The attribute '%s' does not appear to be a valid certificate."
@@ -5398,24 +5397,24 @@ msgid "The attribute '%s' is invalid."
 msgstr "Atributul '%s' este invalid."
 
 #, c-format
-msgid "The attribute '%s' is no valid IP address."
-msgstr "Atributul '%s' nu reprezinta o adresa IP valida."
+msgid "The attribute '%s' is not a valid IP address."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid MAC address."
-msgstr "Atributul '%s' nu reprezinta o adresa MAC valida."
+msgid "The attribute '%s' is not a valid MAC address."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid file mode mask."
-msgstr "Atributul '%s' pentru masca rețea este invalid."
+msgid "The attribute '%s' is not a valid file mode mask."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid subnet mask."
-msgstr "Atributul '%s' nu reprezintă o mască de rețea validă."
+msgid "The attribute '%s' is not a valid subnet mask."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid time."
-msgstr "Atributul '%s' specificat nu reprezintă un timp valid."
+msgid "The attribute '%s' is not a valid time value."
+msgstr ""
 
 #, c-format, php-format
 msgid "The attribute '%s' is required."
@@ -6188,6 +6187,7 @@ msgstr ""
 
 msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr ""
+"Doar pentru informare (nu va fi utilizat în timpul negocierii iSCSI)."
 
 msgid ""
 "This may make more efficient use of the system CPU's and cause Samba to be "
@@ -7359,5 +7359,55 @@ msgstr "upriv"
 msgid "version:"
 msgstr "versiune:"
 
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid domain name."
+#~ msgstr "Atributul '%s' contine caractere invalide (domeniu invalid)."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid host name."
+#~ msgstr "Atributul '%s' contine caractere invalide (nume sistem invalid)."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
+#~ "name."
+#~ msgstr "Atributul '%s' contine caractere invalide (grup invalid)."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains the illegal character ':' and is no valid "
+#~ "password."
+#~ msgstr ""
+#~ "Atributul '%s' contine caracterul ilegal ':' si nu este o parola valida."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid IP address."
+#~ msgstr "Atributul '%s' nu reprezinta o adresa IP valida."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid MAC address."
+#~ msgstr "Atributul '%s' nu reprezinta o adresa MAC valida."
+
 #~ msgid "This is for information only (not using during iSCSI negociation)."
 #~ msgstr "Doar pentru informare (nu este folosit pentru negocierea iSCSI)"
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+#~ msgstr ""
+#~ "Atributul '%s' specificat conţine caractere invalide şi nu reprezintă niciun "
+#~ "nume NetBIOS valid."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid time."
+#~ msgstr "Atributul '%s' specificat nu reprezintă un timp valid."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid file mode mask."
+#~ msgstr "Atributul '%s' pentru masca rețea este invalid."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid subnet mask."
+#~ msgstr "Atributul '%s' nu reprezintă o mască de rețea validă."

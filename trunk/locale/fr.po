@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-28 05:12+0000\n"
-"PO-Revision-Date: 2012-11-25 17:19+0000\n"
-"Last-Translator: Loul <Unknown>\n"
+"POT-Creation-Date: 2012-12-28 23:52+0000\n"
+"PO-Revision-Date: 2012-12-29 00:15+0000\n"
+"Last-Translator: pierouelle <pierouelle@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-28 04:37+0000\n"
+"X-Launchpad-Export-Date: 2012-12-29 01:25+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: FRANCE\n"
 "Language: \n"
@@ -41,11 +41,11 @@ msgstr "%d an"
 
 #, php-format
 msgid "%d years"
-msgstr "%d années"
+msgstr "%d ans"
 
 #, c-format, php-format
 msgid "%d%% of %dMiB"
-msgstr "%d%% de %dMO"
+msgstr "%d%% de %dMo"
 
 #, php-format
 msgid "%dB / block"
@@ -137,6 +137,8 @@ msgid ""
 "<div id='enumeration'><ul><li>The new password is also the default root "
 "password of the system!</li></ul></div>"
 msgstr ""
+"<div id='enumeration'><ul><li>Le nouveau mot de passe est bien le mot de "
+"passe root par défaut du système!</li></ul></div>"
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -473,7 +475,7 @@ msgid "Advanced settings"
 msgstr "Paramètres avancés"
 
 msgid "Advertisement skew"
-msgstr ""
+msgstr "mauvais avertissement"
 
 #, php-format
 msgid ""
@@ -495,6 +497,12 @@ msgid ""
 "class='vexpl'>change the IP address of your server</span></li><li><span "
 "class='vexpl'>access the webGUI with the new IP address</span></li></ul>"
 msgstr ""
+"Après avoir cliquer sur &quot;Sauvegarder&quot;, vous devez rebooter le "
+"serveur pour rendre les changements effectifs. Vous devez également faire "
+"une ou plusieurs des étapes suivantes avant de pouvoir accéder de nouveau "
+"&agrave; votre serveur: <ul><li><span class='vexpl'>changer l'adresse IP de "
+"votre serveur</span></li><li><span class='vexpl'>accéder à l'interface Web "
+"avec la nouvelle adresse IP</span></li></ul>"
 
 msgid "Aggregation protocol"
 msgstr "Protocole d'agrégation"
@@ -966,6 +974,8 @@ msgstr ""
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr ""
+"Cliquez sur ce bouton pour t&eacute;l&eacute;charger la configuration du "
+"serveur au format XML."
 
 msgid "Client"
 msgstr "Client"
@@ -993,11 +1003,11 @@ msgstr "Commande"
 
 #, php-format
 msgid "Command for LINK_DOWN event (e.g. %s)."
-msgstr ""
+msgstr "Commande pour l'&eacute;v&egrave;nement LINK_DOWN (par ex. %s)."
 
 #, php-format
 msgid "Command for LINK_UP event (e.g. %s)."
-msgstr ""
+msgstr "Commande pour l'&eacute;v&egrave;nement LINK_UP (par ex. %s)."
 
 msgid "Command output:"
 msgstr "Résultat de la commande:"
@@ -1205,7 +1215,7 @@ msgid "Current Version:"
 msgstr "Version actuelle:"
 
 msgid "Current password"
-msgstr ""
+msgstr "Mot de passe actuel"
 
 msgid "Custom"
 msgstr "Personnaliser"
@@ -1242,6 +1252,13 @@ msgid ""
 "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
 "System configuration before doing a Firmware upgrade."
 msgstr ""
+"NE PAS arr&ecirc;ter la mise &agrave; jour du firmware une fois celle-ci "
+"d&eacute;marr&eacute;e. Le serveur rebootera automatiquement apr&egrave;s le "
+"chargement du nouveau firmware. La configuration sera maintenue.<br />Vous "
+"avez besoin d'un minimum de %d Mo de RAM pour r&eacute;aliser la mise "
+"&agrave; jour du firmware.<br />Il est fortement recommand&eacute; que vous "
+"<a href='%s'>Sauvegardiez</a> la configuration du Syst&egrave;me avant de "
+"proc&eacute;der &agrave; la mise à jour du firmware."
 
 msgid "DVD"
 msgstr "DVD"
@@ -1572,7 +1589,7 @@ msgid "Disable File Manager"
 msgstr "Désactiver le gestionnaire de fichiers"
 
 msgid "Disable TCP wrapper (mod_wrap module)."
-msgstr ""
+msgstr "D&eacute;sactiver le wrapper TCP (module mod_wrap)."
 
 msgid "Disable console menu"
 msgstr "Désactiver le menu de la console"
@@ -2187,6 +2204,9 @@ msgid ""
 "Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
+"Saisissez un autre num&eacute;ro de port pour l'interface Web si vous voulez "
+"remplacer le num&eacute;ro de port par d&eacute;faut (80 pour HTTP, 443 pour "
+"HTTPS)."
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Entrer un nom sysctl MIB valide"
@@ -2251,7 +2271,7 @@ msgid "Export"
 msgstr "Exporter"
 
 msgid "Export all the directories in the specified path."
-msgstr ""
+msgstr "Exporter tous les répertoires dans le chemin spécifié."
 
 msgid "Extended attributes"
 msgstr "Attributs étendus"
@@ -2859,6 +2879,10 @@ msgid ""
 "reboot immediately. The entire system configuration will be overwritten. The "
 "LAN IP address will be reset to %s and the password will be set to '%s'."
 msgstr ""
+"Si vous cliquez 'Oui', le serveur reprendra sa configuration d'origine et "
+"rebootera imm&eacute;diatement. L'ensemble de la configuration actuelle sera "
+"supprim&eacute;e. L'adresse IP du r&eacute;seau LAN sera remise &agrave; %s "
+"et le mot de passe prendra la valeur '%s'."
 
 msgid ""
 "If you want to change the password for accessing the WebGUI, enter it here "
@@ -3023,11 +3047,16 @@ msgid ""
 "It is not recommanded to import non healthy pools nor virtual devices that "
 "are part of a non healthy pool."
 msgstr ""
+"Il n'est pas recommand&eacute; d'importer ni des pools d&eacute;fectueux ni "
+"des supports virtuels de pools d&eacute;fectueux."
 
 msgid ""
 "It's recommended to change the default username and password for accessing "
 "the WebGUI, enter the username here."
 msgstr ""
+"Il est recommand&eacute; de changer le nom de l'utilisateur et le mot de "
+"passe par d&eacute;faut avant d'acc&eacute;der &agrave; l'interface Web, "
+"saisissez le nom de l'utilisateur ici."
 
 msgid "Italian"
 msgstr "Italien"
@@ -3479,7 +3508,7 @@ msgid "Medium acoustic output"
 msgstr "Niveau acoustique moyen"
 
 msgid "Member Interface"
-msgstr ""
+msgstr "L'interface du membre inscrit"
 
 msgid "Memory usage"
 msgstr "Utilisation de la mémoire"
@@ -3665,7 +3694,7 @@ msgid "New Device"
 msgstr "Nouveau périphérique"
 
 msgid "New password"
-msgstr ""
+msgstr "Nouveau mot de passe"
 
 msgid "No"
 msgstr "Non"
@@ -3768,16 +3797,16 @@ msgid "Node B IP address"
 msgstr "Node B adresse IP"
 
 msgid "Node B settings"
-msgstr ""
+msgstr "valeurs du noeud B"
 
 msgid "Node Base"
 msgstr "Node Base"
 
 msgid "Node ID"
-msgstr ""
+msgstr "ID du nœud"
 
 msgid "Node Name"
-msgstr ""
+msgstr "Nom du noeud"
 
 msgid "None"
 msgstr "Aucun"
@@ -4462,7 +4491,7 @@ msgid "Rescan interval"
 msgstr "Intervalle de balayage"
 
 msgid "Reservation"
-msgstr ""
+msgstr "Réservation"
 
 msgid "Resolve"
 msgstr "Résoudre"
@@ -4471,13 +4500,13 @@ msgid "Resolve IP addresses to hostnames"
 msgstr "Résoudre les adresses IP en noms d'hôtes"
 
 msgid "Resource"
-msgstr ""
+msgstr "Ressource"
 
 msgid "Resource name"
 msgstr "Nom de la ressource"
 
 msgid "Resources"
-msgstr ""
+msgstr "Ressources"
 
 msgid "Restore configuration"
 msgstr "Restaurer la configuration"
@@ -4502,7 +4531,7 @@ msgid "Reverse direction"
 msgstr "Direction inverse"
 
 msgid "Role"
-msgstr ""
+msgstr "Rôle"
 
 msgid "Romanian"
 msgstr "Roumain"
@@ -4684,6 +4713,8 @@ msgid ""
 "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
 "Secure (HTTPS) for the WebGUI."
 msgstr ""
+"Choisissez le Protocole de Transfert Hypertexte (HTTP) ou le Protocole de "
+"Transfert Hypertexte S&eacute;curis&eacute; (HTTPS) pour l'interface Web."
 
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr "Sélectionnez un disque configuré pour le pilotage S.M.A.R.T."
@@ -4698,7 +4729,7 @@ msgid "Select the FreeBSD package to be installed."
 msgstr "Sélectionner le paquet FreeBSD à installer"
 
 msgid "Select the language of the WebGUI."
-msgstr ""
+msgstr "Sélectionner la langue de l'interface Web."
 
 msgid "Select the location closest to you."
 msgstr "Sélectionnez votre fuseau horaire."
@@ -4708,6 +4739,8 @@ msgid ""
 "Select the server configuration XML file and click the button below to "
 "restore the configuration."
 msgstr ""
+"S&eacute;lectionnez le fichier de configuration XML du serveur et cliquer "
+"sur le bouton suivant pour restaurer la configuration."
 
 msgid "Select your read balance algorithm."
 msgstr "Sélectionnez un algorithme d'équilibrage de lecture."
@@ -4804,6 +4837,11 @@ msgid ""
 "color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
 "security reasons, use it on your own risk!</b></br>"
 msgstr ""
+"Indiquez le propri&eacute;taire du service qui s'ex&eacute;cutera (www par "
+"défaut). <br><b><font color='red'>NOTE</font>: le choix de l'utilisateur "
+"root n'est <u>pas recommand&eacute;</u> pour des raisons de "
+"s&eacute;curit&eacute;, &agrave; utiliser &agrave; vos risques et "
+"p&eacute;rils!</b></br>"
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
@@ -4900,7 +4938,7 @@ msgstr ""
 "vos disques)."
 
 msgid "Skew"
-msgstr ""
+msgstr "de travers"
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "Sleep - Contrôler le disque sauf s'il est dans le mode SLEEP."
@@ -4954,10 +4992,10 @@ msgid "Spanish"
 msgstr "Espagnol"
 
 msgid "Sparse"
-msgstr ""
+msgstr "Creux ou Creuse"
 
 msgid "Sparse Volume"
-msgstr ""
+msgstr "Volume vide."
 
 msgid "Specifies how many servers to create."
 msgstr "Indique le nombre de serveurs à créer."
@@ -5122,10 +5160,10 @@ msgid "Swedish"
 msgstr "Suédois"
 
 msgid "Switch VIP to BACKUP"
-msgstr ""
+msgstr "S&eacute;lectionnez VIP sur BACKUP"
 
 msgid "Switch VIP to MASTER"
-msgstr ""
+msgstr "S&eacute;lectionnez VIP sur MASTER"
 
 msgid "Switch to"
 msgstr "Basculer en"
@@ -5160,7 +5198,7 @@ msgid "System Beep"
 msgstr "Bip système"
 
 msgid "System bios"
-msgstr ""
+msgstr "Le syst&egrave;me BIOS"
 
 msgid "System events"
 msgstr "Evénements système"
@@ -5199,7 +5237,7 @@ msgid "TCP port to bind the server to."
 msgstr "Port TCP d'écoute du serveur."
 
 msgid "TCP wrapper"
-msgstr ""
+msgstr "le wrapper TCP"
 
 msgid "TFTP"
 msgstr "TFTP"
@@ -5349,32 +5387,34 @@ msgstr "Les fichiers de MIB associés sont disponibles sur %s."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+"The attribute '%s' contains invalid characters and is not a valid NetBIOS "
+"name."
 msgstr ""
-"L'attribut '%s' contient des caractères invalides et n'est pas un nom "
+"L'attribut '% s' contient des caractères non valides et n'est pas un nom "
 "NetBIOS valide."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains invalid characters and is no valid domain name."
+"The attribute '%s' contains invalid characters and is not a valid domain "
+"name."
 msgstr ""
-"L'attribut '%s' contient des caractères invalides et n'est pas un nom de "
+"L'attribut '% s' contient des caractères non valides et n'est pas un nom de "
 "domaine valide."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains invalid characters and is no valid host name."
+"The attribute '%s' contains invalid characters and is not a valid host name."
 msgstr ""
-"L'attribut '%s' contient des caractères invalides et n'est pas un nom d'hôte "
-"valide."
+"L'attribut '% s' contient des caractères non valides et n'est pas un nom "
+"d'hôte valide."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains invalid characters and is no valid workgroup "
+"The attribute '%s' contains invalid characters and is not a valid workgroup "
 "name."
 msgstr ""
-"L'attribut '%s' contient des caractères invalides et n'est pas un groupe de "
-"travail valide."
+"L'attribut '% s' contient des caractères non valides et n'est pas un nom de "
+"groupe de travail valide."
 
 #, c-format, php-format
 msgid "The attribute '%s' contains invalid characters."
@@ -5382,10 +5422,10 @@ msgstr "L'attribut '%s' contient des caractères invalides."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains the illegal character ':' and is no valid "
+"The attribute '%s' contains the illegal character ':' and is not a valid "
 "password."
 msgstr ""
-"L'attribut '%s' contient le caractère invalide ':' et n'est pas un mot de "
+"L'attribut '% s' contient le caractère illégal ':' et n'est pas un mot de "
 "passe valide."
 
 #, c-format
@@ -5409,24 +5449,24 @@ msgid "The attribute '%s' is invalid."
 msgstr "L'attribut '%s' est invalide."
 
 #, c-format
-msgid "The attribute '%s' is no valid IP address."
-msgstr "L'attribut '%s' n'est pas une adresse IP valide."
+msgid "The attribute '%s' is not a valid IP address."
+msgstr "L'attribut '% s' n'est pas une adresse IP valide."
 
 #, c-format
-msgid "The attribute '%s' is no valid MAC address."
-msgstr "L'attribut '%s' n'est pas une adresse MAC valide."
+msgid "The attribute '%s' is not a valid MAC address."
+msgstr "L'attribut '% s' n'est pas une adresse MAC valide."
 
 #, c-format
-msgid "The attribute '%s' is no valid file mode mask."
-msgstr "L'attribut '%s' n'est pas un masque de mode de fichier valide."
+msgid "The attribute '%s' is not a valid file mode mask."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid subnet mask."
-msgstr "L'attribut '%s' n'est pas un masque de  sous réseau valide."
+msgid "The attribute '%s' is not a valid subnet mask."
+msgstr "L'attribut '% s' n'est pas un masque de sous-réseau valide."
 
 #, c-format
-msgid "The attribute '%s' is no valid time."
-msgstr "L'attribut '%s' n'est pas une durée valide."
+msgid "The attribute '%s' is not a valid time value."
+msgstr ""
 
 #, c-format, php-format
 msgid "The attribute '%s' is required."
@@ -5518,6 +5558,7 @@ msgstr "La configuration n'a pu être restaurée. %s"
 #, php-format
 msgid "The configuration could not be restored. No file was uploaded!"
 msgstr ""
+"La configuration n'a pas pu être restauré. Aucun fichier n'a été téléchargé!"
 
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
@@ -5529,6 +5570,7 @@ msgstr ""
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
 msgstr ""
+"La configuration a &eacute;t&eacute; restaur&eacute;e. Le serveur reboote."
 
 msgid ""
 "The confimed password does not match. Please ensure the passwords match "
@@ -5544,7 +5586,7 @@ msgid "The cron job has been executed successfully."
 msgstr "La tâche cron a été éxécutée avec succès."
 
 msgid "The current password is incorrect entered."
-msgstr ""
+msgstr "Le mot de passe actuel a &eacute;t&eacute; mal saisi."
 
 #, php-format
 msgid ""
@@ -5642,6 +5684,8 @@ msgstr "Le nom d'extension existe déjà."
 msgid ""
 "The firmware is now being installed. The server will reboot automatically."
 msgstr ""
+"Le firmware est en cours d'installation. Le serveur va redémarrer "
+"automatiquement"
 
 msgid "The following input errors were detected"
 msgstr "Les erreurs suivantes ont été détectées"
@@ -5788,6 +5832,8 @@ msgstr "Le réseau '%s' est invalide."
 msgid ""
 "The new password does not match. Please ensure the passwords match exactly."
 msgstr ""
+"Le nouveau mot de passe n'est pas correct. S'il vous pla&icirc;t, assurez-"
+"vous de l'exactitude du mot de passe."
 
 msgid "The number of clients must be between 1 and 50."
 msgstr "Le nombre de clients doit être contenu entre 1 et 50."
@@ -5898,10 +5944,12 @@ msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
 msgstr ""
+"Le serveur a &eacute;t&eacute; restaur&eacute; avec ses param&egrave;tres "
+"d'origine et est en train de rebooter. Cela devrait prendre quelques minutes."
 
 #, php-format
 msgid "The server will reboot after restoring the configuration."
-msgstr ""
+msgstr "Le serveur va redémarrer après la restauration de la configuration."
 
 msgid "The share name is already used."
 msgstr "Le nom de partage est déjà utilisé."
@@ -6091,10 +6139,14 @@ msgstr ""
 msgid ""
 "This Bridge cannot be deleted because it is still being used as an interface."
 msgstr ""
+"La passerelle ne peut pas &ecirc;tre supprim&eacute;e car elle est encore en "
+"cours d'utilisation dans une interface."
 
 msgid ""
 "This CARP cannot be deleted because it is still being used as an interface."
 msgstr ""
+"Ce Protocole Commun De Redondance d'Adresse (CARP) ne peut pas &ecirc;tre "
+"supprim&eacute; car il est encore en cours d'utilisation dans une interface."
 
 msgid ""
 "This LAGG cannot be deleted because it is still being used as an interface."
@@ -6215,6 +6267,8 @@ msgstr ""
 
 msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr ""
+"Seulement pour information (&agrave; ne pas utiliser dans une négociation "
+"SCSI)."
 
 msgid ""
 "This may make more efficient use of the system CPU's and cause Samba to be "
@@ -6585,6 +6639,8 @@ msgstr ""
 #, php-format
 msgid "To use subdirectories, you must mount each directories. (e.g. %s)"
 msgstr ""
+"Pour utiliser les sous-répertoires, vous devez monter chacun des "
+"répertoires. (par ex. %s)"
 
 msgid "Tolerated"
 msgstr "Toléré"
@@ -6721,7 +6777,7 @@ msgid "UPnP friendly name."
 msgstr "Nom UPnP."
 
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 msgid "URL"
 msgstr "URL"
@@ -6912,7 +6968,7 @@ msgid "Using %s bytes fragment size."
 msgstr "Utiliser %s  la taille du fragment octets."
 
 msgid "VHID"
-msgstr ""
+msgstr "Identifiant de l'Hôte Virtuel (Virtual Host ID)"
 
 msgid "VLAN"
 msgstr "VLAN"
@@ -7380,7 +7436,64 @@ msgstr "upriv"
 
 #, php-format
 msgid "version:"
-msgstr ""
+msgstr "version:"
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+#~ msgstr ""
+#~ "L'attribut '%s' contient des caractères invalides et n'est pas un nom "
+#~ "NetBIOS valide."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid domain name."
+#~ msgstr ""
+#~ "L'attribut '%s' contient des caractères invalides et n'est pas un nom de "
+#~ "domaine valide."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid host name."
+#~ msgstr ""
+#~ "L'attribut '%s' contient des caractères invalides et n'est pas un nom d'hôte "
+#~ "valide."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
+#~ "name."
+#~ msgstr ""
+#~ "L'attribut '%s' contient des caractères invalides et n'est pas un groupe de "
+#~ "travail valide."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains the illegal character ':' and is no valid "
+#~ "password."
+#~ msgstr ""
+#~ "L'attribut '%s' contient le caractère invalide ':' et n'est pas un mot de "
+#~ "passe valide."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid IP address."
+#~ msgstr "L'attribut '%s' n'est pas une adresse IP valide."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid MAC address."
+#~ msgstr "L'attribut '%s' n'est pas une adresse MAC valide."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid file mode mask."
+#~ msgstr "L'attribut '%s' n'est pas un masque de mode de fichier valide."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid subnet mask."
+#~ msgstr "L'attribut '%s' n'est pas un masque de  sous réseau valide."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid time."
+#~ msgstr "L'attribut '%s' n'est pas une durée valide."
 
 #~ msgid "This is for information only (not using during iSCSI negociation)."
 #~ msgstr ""

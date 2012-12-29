@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-28 05:12+0000\n"
+"POT-Creation-Date: 2012-12-28 23:52+0000\n"
 "PO-Revision-Date: 2012-06-02 00:13+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-28 04:36+0000\n"
+"X-Launchpad-Export-Date: 2012-12-29 01:24+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: SLOVENIA\n"
 "Language: \n"
@@ -5189,26 +5189,26 @@ msgstr "MIB datoteke se nahajajo v %s."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains invalid characters and is no valid NetBIOS name."
-msgstr "Atribut '%s' vsebuje neveljavne znake, ter ni veljavno NetBIOS ime."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid domain name."
-msgstr "Atribut '%s' vsebuje neveljavne znake, ter ni veljavno ime domene."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid host name."
-msgstr ""
-"Atribut '%s' vsebuje neveljavne znake, ter ni veljavno ime računalnika."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid workgroup "
+"The attribute '%s' contains invalid characters and is not a valid NetBIOS "
 "name."
 msgstr ""
-"Atribut '%s' vsebuje neveljavne znake, ter ni veljavno ime delovne skupine."
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid domain "
+"name."
+msgstr ""
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid host name."
+msgstr ""
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid workgroup "
+"name."
+msgstr ""
 
 #, c-format, php-format
 msgid "The attribute '%s' contains invalid characters."
@@ -5216,9 +5216,9 @@ msgstr "Oznaka '%s' vsebuje neveljavne znake."
 
 #, c-format
 msgid ""
-"The attribute '%s' contains the illegal character ':' and is no valid "
+"The attribute '%s' contains the illegal character ':' and is not a valid "
 "password."
-msgstr "Atribut '%s' vsebuje neveljaven znak ':', ter ni veljavno geslo."
+msgstr ""
 
 #, c-format
 msgid "The attribute '%s' does not appear to be a valid certificate."
@@ -5241,24 +5241,24 @@ msgid "The attribute '%s' is invalid."
 msgstr "Atribut '%s' ni veljaven."
 
 #, c-format
-msgid "The attribute '%s' is no valid IP address."
-msgstr "Atribut '%s' ni veljaven IP naslov."
+msgid "The attribute '%s' is not a valid IP address."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid MAC address."
-msgstr "Atribut '%s' ni veljaven MAC naslov."
+msgid "The attribute '%s' is not a valid MAC address."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid file mode mask."
-msgstr "Atribut '%s' ni veljavna maska dovoljenj."
+msgid "The attribute '%s' is not a valid file mode mask."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid subnet mask."
-msgstr "Atribut '%s' ni veljavna številka omrežja,"
+msgid "The attribute '%s' is not a valid subnet mask."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid time."
-msgstr "Atribut '%s' ni veljaven čas."
+msgid "The attribute '%s' is not a valid time value."
+msgstr ""
 
 #, c-format, php-format
 msgid "The attribute '%s' is required."
@@ -6942,6 +6942,55 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr ""
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+#~ msgstr "Atribut '%s' vsebuje neveljavne znake, ter ni veljavno NetBIOS ime."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid domain name."
+#~ msgstr "Atribut '%s' vsebuje neveljavne znake, ter ni veljavno ime domene."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid host name."
+#~ msgstr ""
+#~ "Atribut '%s' vsebuje neveljavne znake, ter ni veljavno ime računalnika."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
+#~ "name."
+#~ msgstr ""
+#~ "Atribut '%s' vsebuje neveljavne znake, ter ni veljavno ime delovne skupine."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains the illegal character ':' and is no valid "
+#~ "password."
+#~ msgstr "Atribut '%s' vsebuje neveljaven znak ':', ter ni veljavno geslo."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid IP address."
+#~ msgstr "Atribut '%s' ni veljaven IP naslov."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid MAC address."
+#~ msgstr "Atribut '%s' ni veljaven MAC naslov."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid file mode mask."
+#~ msgstr "Atribut '%s' ni veljavna maska dovoljenj."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid subnet mask."
+#~ msgstr "Atribut '%s' ni veljavna številka omrežja,"
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid time."
+#~ msgstr "Atribut '%s' ni veljaven čas."
 
 #~ msgid "This is for information only (not using during iSCSI negociation)."
 #~ msgstr "to je samo za informacijo (ni uporabljeno med iSCSI prenosi)."

@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-28 05:12+0000\n"
-"PO-Revision-Date: 2012-12-17 10:31+0000\n"
+"POT-Creation-Date: 2012-12-28 23:52+0000\n"
+"PO-Revision-Date: 2012-12-28 17:27+0000\n"
 "Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-28 04:36+0000\n"
+"X-Launchpad-Export-Date: 2012-12-29 01:25+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
@@ -2999,7 +2999,7 @@ msgid "Initiator name"
 msgstr "Όνομα εκκινητή"
 
 msgid "Initiator side secret. (for mutual CHAP authentication)"
-msgstr ""
+msgstr "Μυστικό από την πλευρά του εκκινητή. (Για αμοιβαία πιστοποίηση CHAP)"
 
 msgid "Initiator side user name. (for mutual CHAP authentication)"
 msgstr ""
@@ -3070,6 +3070,8 @@ msgid ""
 "It is not recommanded to import non healthy pools nor virtual devices that "
 "are part of a non healthy pool."
 msgstr ""
+"Δεν συστήνεται η εισαγωγή pools που δεν είναι υγιείς, ούτε εικονικών "
+"συσκευών που να αποτελούν μέρος pool που δεν είναι υγιές."
 
 msgid ""
 "It's recommended to change the default username and password for accessing "
@@ -5228,7 +5230,7 @@ msgid "System Beep"
 msgstr "Κουδούνι Συστήματος"
 
 msgid "System bios"
-msgstr ""
+msgstr "BIOS συστήματος"
 
 msgid "System events"
 msgstr "Συμβάντα συστήματος"
@@ -5372,8 +5374,8 @@ msgstr ""
 
 msgid "The COM port in BIOS has to be enabled before enabling this option."
 msgstr ""
-"Πρέπει να είναι ενεργοποιημένη, από το BIOS, η θύρα COM προτού "
-"ενεργοποιήσετε αυτή την επιλογή."
+"Πριν ενεργοποιήσετε αυτή την επιλογή θα πρέπει να είναι ενεργοποιημένη από "
+"το BIOS η θύρα COM."
 
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
@@ -5421,32 +5423,26 @@ msgstr "Τα συσχετιζόμενα αρχεία MIB, μπορούν να β
 
 #, c-format
 msgid ""
-"The attribute '%s' contains invalid characters and is no valid NetBIOS name."
-msgstr ""
-"Η ιδιότητα '%s' περιέχει μη έγκυρους χαρακτήρες και δεν αποτελεί ένα έγκυρο "
-"NetBIOS όνομα."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid domain name."
-msgstr ""
-"Η ιδιότητα '%s' περιέχει μη έγκυρους χαρακτήρες και δεν αποτελεί ένα έγκυρο "
-"όνομα τομέα."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid host name."
-msgstr ""
-"Η ιδιότητα '%s' περιέχει μη έγκυρους χαρακτήρες και δεν αποτελεί ένα έγκυρο "
-"όνομα υπολογιστή."
-
-#, c-format
-msgid ""
-"The attribute '%s' contains invalid characters and is no valid workgroup "
+"The attribute '%s' contains invalid characters and is not a valid NetBIOS "
 "name."
 msgstr ""
-"Η ιδιότητα '%s' περιέχει μη έγκυρους χαρακτήρες και δεν αποτελεί ένα έγκυρο "
-"όνομα ομάδας εργασίας."
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid domain "
+"name."
+msgstr ""
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid host name."
+msgstr ""
+
+#, c-format
+msgid ""
+"The attribute '%s' contains invalid characters and is not a valid workgroup "
+"name."
+msgstr ""
 
 #, c-format, php-format
 msgid "The attribute '%s' contains invalid characters."
@@ -5454,11 +5450,9 @@ msgstr "Το χαρακτηριστικό '%s' περιέχει μη έγκυρ�
 
 #, c-format
 msgid ""
-"The attribute '%s' contains the illegal character ':' and is no valid "
+"The attribute '%s' contains the illegal character ':' and is not a valid "
 "password."
 msgstr ""
-"Η ιδιότητα '%s' περιέχει τον απαγορευμένο χαρακτήρα ':' και δεν αποτελεί "
-"έναν έγκυρο κωδικό πρόσβασης."
 
 #, c-format
 msgid "The attribute '%s' does not appear to be a valid certificate."
@@ -5482,24 +5476,24 @@ msgid "The attribute '%s' is invalid."
 msgstr "Η ιδιότητα '%s' δεν είναι έγκυρη."
 
 #, c-format
-msgid "The attribute '%s' is no valid IP address."
-msgstr "Η ιδιότητα '%s' δεν είναι μια έγκυρη διεύθυνση IP."
+msgid "The attribute '%s' is not a valid IP address."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid MAC address."
-msgstr "Η ιδιότητα '%s' δεν είναι μια έγκυρη διεύθυνση MAC."
+msgid "The attribute '%s' is not a valid MAC address."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid file mode mask."
-msgstr "Η ιδιότητα '%s' δεν είναι μια έγκυρη μάσκα κατάστασης αρχείου."
+msgid "The attribute '%s' is not a valid file mode mask."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid subnet mask."
-msgstr "Η ιδιότητα '%s' δεν είναι μια έγκυρη μάσκα υποδικτύου."
+msgid "The attribute '%s' is not a valid subnet mask."
+msgstr ""
 
 #, c-format
-msgid "The attribute '%s' is no valid time."
-msgstr "Η ιδιότητα '%s' δεν είναι μια έγκυρη ημερομηνία."
+msgid "The attribute '%s' is not a valid time value."
+msgstr ""
 
 #, c-format, php-format
 msgid "The attribute '%s' is required."
@@ -6319,6 +6313,8 @@ msgstr ""
 
 msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr ""
+"Αυτό είναι μόνο για πληροφορίες (δε χρησιμοποιείται κατά τη διάρκεια της "
+"διαπραγμάτευσης iSCSI)"
 
 msgid ""
 "This may make more efficient use of the system CPU's and cause Samba to be "
@@ -7516,9 +7512,66 @@ msgstr "upriv"
 
 #, php-format
 msgid "version:"
-msgstr ""
+msgstr "έκδοση:"
 
 #~ msgid "This is for information only (not using during iSCSI negociation)."
 #~ msgstr ""
 #~ "Αυτό είναι μόνο για πληροφορίες (δε χρησιμοποιείται κατά τη διάρκεια της "
 #~ "διαπραγμάτευσης iSCSI)."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid domain name."
+#~ msgstr ""
+#~ "Η ιδιότητα '%s' περιέχει μη έγκυρους χαρακτήρες και δεν αποτελεί ένα έγκυρο "
+#~ "όνομα τομέα."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains the illegal character ':' and is no valid "
+#~ "password."
+#~ msgstr ""
+#~ "Η ιδιότητα '%s' περιέχει τον απαγορευμένο χαρακτήρα ':' και δεν αποτελεί "
+#~ "έναν έγκυρο κωδικό πρόσβασης."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid IP address."
+#~ msgstr "Η ιδιότητα '%s' δεν είναι μια έγκυρη διεύθυνση IP."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid MAC address."
+#~ msgstr "Η ιδιότητα '%s' δεν είναι μια έγκυρη διεύθυνση MAC."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid file mode mask."
+#~ msgstr "Η ιδιότητα '%s' δεν είναι μια έγκυρη μάσκα κατάστασης αρχείου."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid subnet mask."
+#~ msgstr "Η ιδιότητα '%s' δεν είναι μια έγκυρη μάσκα υποδικτύου."
+
+#, c-format
+#~ msgid "The attribute '%s' is no valid time."
+#~ msgstr "Η ιδιότητα '%s' δεν είναι μια έγκυρη ημερομηνία."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid host name."
+#~ msgstr ""
+#~ "Η ιδιότητα '%s' περιέχει μη έγκυρους χαρακτήρες και δεν αποτελεί ένα έγκυρο "
+#~ "όνομα υπολογιστή."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
+#~ "name."
+#~ msgstr ""
+#~ "Η ιδιότητα '%s' περιέχει μη έγκυρους χαρακτήρες και δεν αποτελεί ένα έγκυρο "
+#~ "όνομα ομάδας εργασίας."
+
+#, c-format
+#~ msgid ""
+#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+#~ msgstr ""
+#~ "Η ιδιότητα '%s' περιέχει μη έγκυρους χαρακτήρες και δεν αποτελεί έγκυρο "
+#~ "όνομα NetBIOS."
