@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-28 23:52+0000\n"
+"POT-Creation-Date: 2012-12-29 17:48+0000\n"
 "PO-Revision-Date: 2012-12-15 21:47+0000\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-29 01:25+0000\n"
+"X-Launchpad-Export-Date: 2012-12-29 17:52+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
@@ -5235,8 +5235,8 @@ msgstr "バインドする際に使用するパスワードを入力して下さ
 msgid "The cron job has been executed successfully."
 msgstr "Cron ジョブは正常に実行されました。"
 
-msgid "The current password is incorrect entered."
-msgstr "現在のパスワードが正しくありません。"
+msgid "The current password is incorrectly entered."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -5284,6 +5284,10 @@ msgstr "ディスクは既にマウントされています! マウントポイ�
 
 msgid "The disk/partition is already configured."
 msgstr "ディスク/パーティションは既に設定されています。"
+
+#, php-format
+msgid "The distinguished name to bind to the directory server, e.g. %s"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -5624,9 +5628,9 @@ msgid "There is no error, the file uploaded with success."
 msgstr "ファイルのアップロードに成功しました。"
 
 msgid ""
-"There is wrong ID in the disk of config. Please remove the disk and re-add "
-"it or use 'clear and import'."
-msgstr "設定のディスクに間違ったIDがあります。ディスクを削除して、再度追加してください。または「消去とインポート」を利用してください。"
+"There is wrong disk ID in the config. Please remove the disk and re-add it "
+"or use 'clear and import'."
+msgstr ""
 
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "RAID1 ボリュームは 2つのディスクが必要です。"
@@ -5636,9 +5640,6 @@ msgstr "JBOD ボリュームは最低 2つのディスクが必要です。"
 
 msgid "There must be a minimum of 2 disks in a RAID 0 volume."
 msgstr "RAID0 ボリュームは最低でも 2つのディスクが必要です。"
-
-msgid "There must be a minimum of 2 disks in a RAID 5 volume."
-msgstr "RAID5 ボリュームは最低でも 2つのディスクが必要です。"
 
 msgid "There must be a minimum of 3 disks in a RAID 5 volume."
 msgstr "RAID5 ボリュームは最低でも 3つのディスクが必要です。"
@@ -5790,8 +5791,8 @@ msgstr "指定されたデバイスは既に RAID ボリュームリストに存
 msgid "This disk already exists in the disk list."
 msgstr "このディスクは既にディスクリストに存在しています。"
 
-msgid "This email has been send to validate your email configuration."
-msgstr "このメールは、メール設定が正しいかをチェックする為のテスト送信です。"
+msgid "This email has been sent to validate your email configuration."
+msgstr ""
 
 msgid "This extent is used."
 msgstr "このエクステントは使用されています。"
@@ -6928,5 +6929,19 @@ msgstr ""
 #~ msgid "The attribute '%s' is no valid time."
 #~ msgstr "属性 '%s' は有効な時間ではありません。"
 
+#~ msgid "There must be a minimum of 2 disks in a RAID 5 volume."
+#~ msgstr "RAID5 ボリュームは最低でも 2つのディスクが必要です。"
+
+#~ msgid "This email has been send to validate your email configuration."
+#~ msgstr "このメールは、メール設定が正しいかをチェックする為のテスト送信です。"
+
 #~ msgid "This is for information only (not using during iSCSI negociation)."
 #~ msgstr "この内容は iSCSI ネゴシエーションには使用されません。"
+
+#~ msgid ""
+#~ "There is wrong ID in the disk of config. Please remove the disk and re-add "
+#~ "it or use 'clear and import'."
+#~ msgstr "設定のディスクに間違ったIDがあります。ディスクを削除して、再度追加してください。または「消去とインポート」を利用してください。"
+
+#~ msgid "The current password is incorrect entered."
+#~ msgstr "現在のパスワードが正しくありません。"
