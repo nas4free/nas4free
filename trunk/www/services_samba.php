@@ -309,7 +309,7 @@ function aio_change() {
             <td width="22%" valign="top" class="vncellreq"><?=gettext("Workgroup") ; ?></td>
             <td width="78%" class="vtable">
               <input name="workgroup" type="text" class="formfld" id="workgroup" size="30" value="<?=htmlspecialchars($pconfig['workgroup']);?>" />
-              <br /><?=gettext("Workgroup the server will appear to be in when queried by clients (maximum 15 characters).");?>
+              <br /><?=gettext("The workgroup in which the server will appear when queried by Windows or SMB clients (maximum 15 characters).");?>
             </td>
           </tr>
           <?php html_combobox("if", gettext("Interface"), $pconfig['if'], array("" => gettext("ALL interfaces"), "lan" => gettext("LAN only"), "opt" => gettext("OPT only"), "carp" => gettext("CARP only")), "", false);?>
@@ -334,7 +334,7 @@ function aio_change() {
                 </option>
               <?php endfor; ?>
               </select>
-              <br /><?php echo sprintf(gettext("Allows %s to try and become a local master browser."), get_product_name());?>
+              <br /><?php echo sprintf(gettext("Allows the server to try and become a local master browser."));?>
             </td>
           </tr>
           <tr>
@@ -348,7 +348,7 @@ function aio_change() {
                 </option>
               <?php endfor; ?>
               </select>
-              <br /><?php echo sprintf(gettext("%s advertises itself as a time server to Windows clients."), get_product_name());?>
+              <br /><?php echo sprintf(gettext("The server advertises itself as a time server to Windows clients."));?>
             </td>
           </tr>
           <tr id="pwdsrv_tr">
