@@ -207,7 +207,7 @@ $(document).ready(function(){
 			    <td width="75%" class="listr"><strong><?=get_product_version();?> <?=get_product_versionname();?></strong> (<?=gettext("revision");?> <?=get_product_revision();?>)</td>
 			  </tr>
 			  <tr>
-			    <td width="25%" valign="top" class="vncellt"><?=gettext("Built date");?></td>
+			    <td width="25%" valign="top" class="vncellt"><?=gettext("Build date");?></td>
 			    <td width="75%" class="listr"><?=get_product_buildtime();?>
 			    </td>
 			  </tr>

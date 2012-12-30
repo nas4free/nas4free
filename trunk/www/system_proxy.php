@@ -222,7 +222,7 @@ function proxy_auth_change() {
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save");?>" onclick="enable_change(true)" />
 			  </div>
 			  <div id="remarks">
-			  	<?php html_remark("note", gettext("Note"), gettext("If the server is behind a proxy set this parameters to give local services access to the internet via proxy."));?>
+			  	<?php html_remark("note", gettext("Note"), gettext("If the server is behind a proxy set these parameters to give local services access to the internet via proxy."));?>
 			  </div>
 			  <?php include("formend.inc");?>
 			</form>

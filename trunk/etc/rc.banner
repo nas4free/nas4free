@@ -73,7 +73,7 @@
 
 	echo <<<EOD
     {$productname} server version: {$version} (revision {$revision})
-    Built on {$buildtime} for {$g['fullplatform']}
+    Build on {$buildtime} for {$g['fullplatform']}
     Copyright (c) 2012 The NAS4Free Project. All Rights Reserved.
     \33[1;34mVisit: http://www.{$producturl} for system updates!\33[0;37m\n
 
