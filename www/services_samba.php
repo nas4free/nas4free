@@ -413,7 +413,7 @@ function aio_change() {
             <td width="78%" class="vtable">
               <input name="largereadwrite" type="checkbox" id="largereadwrite" value="yes" <?php if (isset($pconfig['largereadwrite']) && $pconfig['largereadwrite']) echo "checked=\"checked\""; ?> />
               <?=gettext("Enable large read/write");?><span class="vexpl"><br />
-              <?=gettext("Use the new 64k streaming read and write varient SMB requests introduced with Windows 2000.");?></span>
+              <?=gettext("Use the new 64k streaming read and write variant SMB requests introduced with Windows 2000.");?></span>
             </td>
           </tr>
 					<?php html_checkbox("usesendfile", gettext("Use sendfile"), !empty($pconfig['usesendfile']) ? true : false, gettext("Enable use sendfile."), gettext("This may make more efficient use of the system CPU's and cause Samba to be faster. Samba automatically turns this off for clients that use protocol levels lower than NT LM 0.12 and when it detects a client is Windows 9x."), false);?>
