@@ -200,7 +200,7 @@ function authrequired_change() {
 					<?php html_inputbox("uplimit", gettext("Upload bandwidth"), $pconfig['uplimit'], gettext("The maximum upload bandwith in KB/s. An empty field means infinity."), false, 5);?>
 					<?php html_inputbox("downlimit", gettext("Download bandwidth"), $pconfig['downlimit'], gettext("The maximum download bandwith in KiB/s. An empty field means infinity."), false, 5);?>
 					<?php html_filechooser("watchdir", gettext("Watch directory"), $pconfig['watchdir'], gettext("Directory to watch for new .torrent files."), $g['media_path'], false, 60);?>
-					<?php html_filechooser("incompletedir", gettext("Incomplete directory"), $pconfig['incompletedir'], gettext("Directory to incomplete files. An empty field means disable."), $g['media_path'], false, 60);?>
+					<?php html_filechooser("incompletedir", gettext("Incomplete directory"), $pconfig['incompletedir'], gettext("Directory for incomplete files. An empty field means disable."), $g['media_path'], false, 60);?>
 					<?php html_inputbox("umask", gettext("User mask"), $pconfig['umask'], sprintf(gettext("Use this option to override the default permission modes for newly created files (%s by default)."), "0002"), false, 3);?>
 					<?php html_inputbox("extraoptions", gettext("Extra options"), $pconfig['extraoptions'], gettext("Extra options (usually empty).") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "https://trac.transmissionbt.com/wiki/ConfigurationParameters"), false, 40);?>
 					<?php html_separator();?>
