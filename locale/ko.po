@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-29 17:48+0000\n"
+"POT-Creation-Date: 2012-12-31 17:43+0000\n"
 "PO-Revision-Date: 2012-03-17 08:48+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-29 17:52+0000\n"
+"X-Launchpad-Export-Date: 2012-12-31 17:44+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: KOREA\n"
 "Language: \n"
@@ -49,10 +49,6 @@ msgstr "%d%% 전체(%dMiB)"
 #, php-format
 msgid "%dB / block"
 msgstr "%dB / 블록"
-
-#, php-format
-msgid "%s advertises itself as a time server to Windows clients."
-msgstr "%s을(를) 윈도 계열 컴퓨터에서 타임 서버로 사용할 수 있게 합니다."
 
 #, php-format
 msgid "%s interface"
@@ -449,12 +445,10 @@ msgstr ""
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
-"following steps before you can access %s again: <ul><li>change the IP "
-"address of your computer</li><li>access the webGUI with the new IP "
+"following steps before you can access this server again: <ul><li>change the "
+"IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
-"&quot;저장&quot;을 클릭 한 후에 %s을(를) 다시 접근하기 위해서는 아래의 과정 중 몇 가지를 수행해야 할 수도 있습니다: "
-"<ul><li>컴퓨터의 IP 주소를 변경합니다</li><li>새 IP 주소로 webGUI를 접근합니다</li></ul>"
 
 #, php-format
 msgid ""
@@ -524,14 +518,14 @@ msgid ""
 "follows the allow option format."
 msgstr "특정 사용자가 공유에 대한 읽기/쓰기 접근 권한을 가지는 것 허용. 이것은 허용 옵션 포맷을 따릅니다."
 
-#, php-format
-msgid "Allows %s to try and become a local master browser."
-msgstr "%s이(가) 로컬 마스터 브라우저가 되려고 하는 것을 허용합니다."
-
 msgid ""
 "Allows certain users and groups to have read-only  access  to  a share. This "
 "follows the allow option format."
 msgstr "특정 사용자와 그룹이 공유에 대한 읽기 전용 권한을 가지도록 합니다. 이것은 허용 옵션 포맷을 따릅니다."
+
+#, php-format
+msgid "Allows the server to try and become a local master browser."
+msgstr ""
 
 msgid "AltRoot"
 msgstr "대체 루트"
@@ -730,7 +724,7 @@ msgstr ""
 msgid "Browseable"
 msgstr "검색 가능 여부"
 
-msgid "Built date"
+msgid "Build date"
 msgstr ""
 
 msgid "Bulgarian"
@@ -1460,6 +1454,9 @@ msgstr "방향"
 msgid "Directory"
 msgstr "디렉터리"
 
+msgid "Directory for incomplete files. An empty field means disable."
+msgstr ""
+
 msgid "Directory listing"
 msgstr "디렉터리 리스트"
 
@@ -1468,9 +1465,6 @@ msgstr "디렉터리 마스크"
 
 msgid "Directory that contains removable media. (e.g /mnt/iscsi/)"
 msgstr "이동식 미디어를 포함하는 디렉터리.(예 /mnt/iscsi/)"
-
-msgid "Directory to incomplete files. An empty field means disable."
-msgstr "불완전한 파일들을 위한 디렉터리. 비어 있으면 비활성화 됩니다."
 
 msgid "Directory to watch for new .torrent files."
 msgstr "새 .torrent 파일들을 감시할 디렉터리"
@@ -2664,9 +2658,9 @@ msgstr ""
 "모드에서 작동할 것입니다.<br />이 과정에 이 마운트를 접근하는 사용자에 대한 서비스가 중단될 것입니다."
 
 msgid ""
-"If the server is behind a proxy set this parameters to give local services "
+"If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
-msgstr "서버가 프록시 후방에 있다면 이 인자를 설정하여 로컬 서비스가 프록시를 통해 인터넷에 접근하도록 하십시오."
+msgstr ""
 
 msgid ""
 "If this parameter is set, Samba attempts to first read DOS attributes "
@@ -5410,11 +5404,11 @@ msgstr "클라이언트의 수는 1에서 50까지의 사이여야 합니다."
 msgid "The old password is not correct."
 msgstr "기존 비밀번호가 올바르지 않습니다."
 
-msgid "The password change protocol to use."
-msgstr "이용할 비밀번호 변경 프로토콜."
-
 msgid "The password contains the illegal character ':'."
 msgstr "비밀번호가 부적절한 문자 ':'를 포함하고 있습니다."
+
+msgid "The password encryption protocol to use."
+msgstr ""
 
 msgid "The passwords do not match."
 msgstr "비밀번호가 일치하지 않습니다."
@@ -5497,6 +5491,10 @@ msgstr "규칙 번호가 규칙의 순서를 결정합니다."
 msgid "The serial or USB port where your UPS is connected."
 msgstr "당신의 UPS가 연결된 직렬 포트나 USB 포트."
 
+#, php-format
+msgid "The server advertises itself as a time server to Windows clients."
+msgstr ""
+
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
@@ -5574,6 +5572,11 @@ msgstr "변수의 값."
 
 msgid "The volume must be detached before it can be deleted."
 msgstr "볼륨이 먼저 분리되어야 삭제될 수 있습니다."
+
+msgid ""
+"The workgroup in which the server will appear when queried by Windows or SMB "
+"clients (maximum 15 characters)."
+msgstr ""
 
 msgid "The working directory does not exist."
 msgstr "작업 디렉터리가 존재하지 않습니다."
@@ -6313,9 +6316,9 @@ msgid ""
 msgstr "아래의 IP 주소를 나가는 패킷의 소스 주소로 이용합니다."
 
 msgid ""
-"Use the new 64k streaming read and write varient SMB requests introduced "
+"Use the new 64k streaming read and write variant SMB requests introduced "
 "with Windows 2000."
-msgstr "윈도우즈 2000에서 소개된 새 64k 스트리밍 읽기/쓰기 변종 SMB 요청을 이용합니다."
+msgstr ""
 
 msgid "Use the specified NTP server."
 msgstr "명세 된 NTP 서버를 이용합니다."
@@ -6538,11 +6541,6 @@ msgstr "무선 설정"
 
 msgid "Workgroup"
 msgstr "작업 그룹"
-
-msgid ""
-"Workgroup the server will appear to be in when queried by clients (maximum "
-"15 characters)."
-msgstr "클라이언트가 질의할 때 이 서버가 소속되어 있다고 나타날 작업 그룹(최대 15자)."
 
 msgid "Working directory"
 msgstr "작업 디렉터리"
@@ -6838,58 +6836,41 @@ msgstr "upriv"
 msgid "version:"
 msgstr ""
 
-#, c-format
+#, php-format
+#~ msgid "%s advertises itself as a time server to Windows clients."
+#~ msgstr "%s을(를) 윈도 계열 컴퓨터에서 타임 서버로 사용할 수 있게 합니다."
+
+#, php-format
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
-#~ msgstr "속성 '%s'은(는) 무효한 문자를 포함하고 있어 유효한 NetBIOS 명이 아닙니다."
+#~ "After you click &quot;Save&quot;, you may also have to do one or more of the "
+#~ "following steps before you can access %s again: <ul><li>change the IP "
+#~ "address of your computer</li><li>access the webGUI with the new IP "
+#~ "address</li></ul>"
+#~ msgstr ""
+#~ "&quot;저장&quot;을 클릭 한 후에 %s을(를) 다시 접근하기 위해서는 아래의 과정 중 몇 가지를 수행해야 할 수도 있습니다: "
+#~ "<ul><li>컴퓨터의 IP 주소를 변경합니다</li><li>새 IP 주소로 webGUI를 접근합니다</li></ul>"
 
-#, c-format
+#, php-format
+#~ msgid "Allows %s to try and become a local master browser."
+#~ msgstr "%s이(가) 로컬 마스터 브라우저가 되려고 하는 것을 허용합니다."
+
+#~ msgid "Directory to incomplete files. An empty field means disable."
+#~ msgstr "불완전한 파일들을 위한 디렉터리. 비어 있으면 비활성화 됩니다."
+
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid domain name."
-#~ msgstr "속성 '%s'은(는) 무효한 문자를 포함하고 있어 유효한 도메인 명이 아닙니다."
+#~ "If the server is behind a proxy set this parameters to give local services "
+#~ "access to the internet via proxy."
+#~ msgstr "서버가 프록시 후방에 있다면 이 인자를 설정하여 로컬 서비스가 프록시를 통해 인터넷에 접근하도록 하십시오."
 
-#, c-format
+#~ msgid "The password change protocol to use."
+#~ msgstr "이용할 비밀번호 변경 프로토콜."
+
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid host name."
-#~ msgstr "속성 '%s'은(는) 무효한 문자를 포함하고 있어 유효한 호스트 명이 아닙니다."
+#~ "Use the new 64k streaming read and write varient SMB requests introduced "
+#~ "with Windows 2000."
+#~ msgstr "윈도우즈 2000에서 소개된 새 64k 스트리밍 읽기/쓰기 변종 SMB 요청을 이용합니다."
 
-#, c-format
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
-#~ "name."
-#~ msgstr "속성 '%s'은(는) 무효한 문자를 포함하고 있어 유효한 작업 그룹 명이 아닙니다."
-
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains the illegal character ':' and is no valid "
-#~ "password."
-#~ msgstr "속성 '%s'은(는) 부적절한 문자 ':'를 포함하고 있어 유효한 비밀번호가 아닙니다."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid IP address."
-#~ msgstr "속성 '%s'은(는) 유효한 IP 주소가 아닙니다."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid MAC address."
-#~ msgstr "속성 '%s'은(는) 유효한 MAC 주소가 아닙니다."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid file mode mask."
-#~ msgstr "속성 '%s'은(는) 유효한 파일 모드 마스크가 아닙니다."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid subnet mask."
-#~ msgstr "속성 '%s'은(는) 유효한 서브넷 마스크가 아닙니다."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid time."
-#~ msgstr "속성 '%s'은(는) 유효한 시간이 아닙니다."
-
-#~ msgid "There must be a minimum of 2 disks in a RAID 5 volume."
-#~ msgstr "RAID 5 볼륨에는 최소 2개의 디스크가 존재해야 합니다."
-
-#~ msgid "This email has been send to validate your email configuration."
-#~ msgstr "당신의 전자우편 설정을 검증하기 위해 전자우편이 전송되었습니다."
-
-#~ msgid "This is for information only (not using during iSCSI negociation)."
-#~ msgstr "이것은 정보 목적일 뿐입니다(iSCSI 교섭 중에는 이용되지 않음)."
+#~ "Workgroup the server will appear to be in when queried by clients (maximum "
+#~ "15 characters)."
+#~ msgstr "클라이언트가 질의할 때 이 서버가 소속되어 있다고 나타날 작업 그룹(최대 15자)."

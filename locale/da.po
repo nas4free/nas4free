@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-29 17:48+0000\n"
+"POT-Creation-Date: 2012-12-31 17:43+0000\n"
 "PO-Revision-Date: 2012-09-05 08:21+0000\n"
 "Last-Translator: Carsten Matzon <carsten@matzon.dk>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-29 17:52+0000\n"
+"X-Launchpad-Export-Date: 2012-12-31 17:44+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: DENMARK\n"
 "Language: \n"
@@ -49,10 +49,6 @@ msgstr "%d%% af %dMiB"
 #, php-format
 msgid "%dB / block"
 msgstr "%dB / blok"
-
-#, php-format
-msgid "%s advertises itself as a time server to Windows clients."
-msgstr "%s proklamerer sig som en tids-server til Windows klienter"
 
 #, php-format
 msgid "%s interface"
@@ -465,14 +461,10 @@ msgstr ""
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
-"following steps before you can access %s again: <ul><li>change the IP "
-"address of your computer</li><li>access the webGUI with the new IP "
+"following steps before you can access this server again: <ul><li>change the "
+"IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
-"Når du har trykket på &quot;Gem&quot;, skal du muligvis også udføre et eller "
-"flere af de følgende skridt, inden du kan få adgang til %s igen: "
-"<ul><li>Skift IP-adressen på din computer.</li><li>Gå ind på WebGUI med den "
-"nye IP-adresse.</li></ul>"
 
 #, php-format
 msgid ""
@@ -545,16 +537,16 @@ msgstr ""
 "Tillader at visse brugere og grupper har læse/skrivve adgang til et share. "
 "Dette følger allow valgmulighedens format."
 
-#, php-format
-msgid "Allows %s to try and become a local master browser."
-msgstr "Tillader at %s prøver at blive lokal master browser."
-
 msgid ""
 "Allows certain users and groups to have read-only  access  to  a share. This "
 "follows the allow option format."
 msgstr ""
 "Tillader at visse brugeren og grupper kun har skrivebeskyttet adgang til et "
 "share. Dette følger allow walgmulighedens format."
+
+#, php-format
+msgid "Allows the server to try and become a local master browser."
+msgstr ""
 
 msgid "AltRoot"
 msgstr "AltRoot"
@@ -759,8 +751,8 @@ msgstr ""
 msgid "Browseable"
 msgstr "Kan gennemses"
 
-msgid "Built date"
-msgstr "Built dato"
+msgid "Build date"
+msgstr ""
 
 msgid "Bulgarian"
 msgstr "Bulgarsk"
@@ -1510,6 +1502,9 @@ msgstr "Retning"
 msgid "Directory"
 msgstr "Mappe"
 
+msgid "Directory for incomplete files. An empty field means disable."
+msgstr ""
+
 msgid "Directory listing"
 msgstr "Indholdsliste"
 
@@ -1518,10 +1513,6 @@ msgstr "Mappe maske"
 
 msgid "Directory that contains removable media. (e.g /mnt/iscsi/)"
 msgstr "Mappe der indeholder flytbare medier. (F.eks. /mnt/iscsi/)"
-
-msgid "Directory to incomplete files. An empty field means disable."
-msgstr ""
-"Mappen indeholdende ikke-færdige filer. Et tomt felt betyder deaktiver."
 
 msgid "Directory to watch for new .torrent files."
 msgstr "Mappe der skal overvåges for nye .torrent-filer."
@@ -2757,11 +2748,9 @@ msgstr ""
 "af tjenester for brugere der tilgår dette monterings punkt."
 
 msgid ""
-"If the server is behind a proxy set this parameters to give local services "
+"If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
 msgstr ""
-"Hvis serveren er bag en proxy, vil denne parameter give lokale tjenester "
-"adgang til internettet via proxy."
 
 msgid ""
 "If this parameter is set, Samba attempts to first read DOS attributes "
@@ -5660,11 +5649,11 @@ msgstr "Antallet af klienter skal være mellem 1 og 50."
 msgid "The old password is not correct."
 msgstr "Det gamle kodeord er ikke korrekt."
 
-msgid "The password change protocol to use."
-msgstr "Kodeordsskift protokollen der skal bruges."
-
 msgid "The password contains the illegal character ':'."
 msgstr "Kodeordet indeholder det ugyldige tegn '.'."
+
+msgid "The password encryption protocol to use."
+msgstr ""
 
 msgid "The passwords do not match."
 msgstr "Kodeordene er ikke ens."
@@ -5756,6 +5745,10 @@ msgstr "Regel nummeret bestemmer reglens rækkefølge."
 msgid "The serial or USB port where your UPS is connected."
 msgstr "Seriel eller USB porten din UPS er koblet til."
 
+#, php-format
+msgid "The server advertises itself as a time server to Windows clients."
+msgstr ""
+
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
@@ -5838,6 +5831,11 @@ msgstr "Variablens værdi."
 
 msgid "The volume must be detached before it can be deleted."
 msgstr "Volumen skal frakobles inden den kan slettes."
+
+msgid ""
+"The workgroup in which the server will appear when queried by Windows or SMB "
+"clients (maximum 15 characters)."
+msgstr ""
 
 msgid "The working directory does not exist."
 msgstr "Arbejdsmappen eksisterer ikke."
@@ -6661,11 +6659,9 @@ msgid ""
 msgstr "Brug den følgende IP-adresse som kilde adressen i udgående pakker."
 
 msgid ""
-"Use the new 64k streaming read and write varient SMB requests introduced "
+"Use the new 64k streaming read and write variant SMB requests introduced "
 "with Windows 2000."
 msgstr ""
-"Brug den nye 64k streaming læse og skrive variant af SMB forespørgsler, der "
-"blev introduceret med Windows 2000."
 
 msgid "Use the specified NTP server."
 msgstr "Brug den angivne NTP server."
@@ -6910,13 +6906,6 @@ msgstr "Trådløs opsætning"
 
 msgid "Workgroup"
 msgstr "Arbejdsgruppe"
-
-msgid ""
-"Workgroup the server will appear to be in when queried by clients (maximum "
-"15 characters)."
-msgstr ""
-"Arbejdsgruppe serveren skal vises i, når den bliver forespurgt af klienter "
-"(højst 15 tegn)."
 
 msgid "Working directory"
 msgstr "Arbejdsmappe"
@@ -7222,69 +7211,53 @@ msgstr "upriv"
 msgid "version:"
 msgstr ""
 
-#, c-format
+#, php-format
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+#~ "After you click &quot;Save&quot;, you may also have to do one or more of the "
+#~ "following steps before you can access %s again: <ul><li>change the IP "
+#~ "address of your computer</li><li>access the webGUI with the new IP "
+#~ "address</li></ul>"
 #~ msgstr ""
-#~ "Attributten '%s' indeholder ugyldige tegn, og er ikke et gyldigt NetBIOS "
-#~ "navn."
+#~ "Når du har trykket på &quot;Gem&quot;, skal du muligvis også udføre et eller "
+#~ "flere af de følgende skridt, inden du kan få adgang til %s igen: "
+#~ "<ul><li>Skift IP-adressen på din computer.</li><li>Gå ind på WebGUI med den "
+#~ "nye IP-adresse.</li></ul>"
 
-#, c-format
+#, php-format
+#~ msgid "Allows %s to try and become a local master browser."
+#~ msgstr "Tillader at %s prøver at blive lokal master browser."
+
+#~ msgid "Directory to incomplete files. An empty field means disable."
+#~ msgstr ""
+#~ "Mappen indeholdende ikke-færdige filer. Et tomt felt betyder deaktiver."
+
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid domain name."
+#~ "If the server is behind a proxy set this parameters to give local services "
+#~ "access to the internet via proxy."
 #~ msgstr ""
-#~ "Attributten '%s' indeholder ugyldige tegn, og er ikke et gyldigt domæne navn."
+#~ "Hvis serveren er bag en proxy, vil denne parameter give lokale tjenester "
+#~ "adgang til internettet via proxy."
 
-#, c-format
+#~ msgid "The password change protocol to use."
+#~ msgstr "Kodeordsskift protokollen der skal bruges."
+
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid host name."
+#~ "Use the new 64k streaming read and write varient SMB requests introduced "
+#~ "with Windows 2000."
 #~ msgstr ""
-#~ "Attributten '%s' indeholder ugyldige tegn, og er ikke et gyldigt værtsnavn."
+#~ "Brug den nye 64k streaming læse og skrive variant af SMB forespørgsler, der "
+#~ "blev introduceret med Windows 2000."
 
-#, c-format
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
-#~ "name."
+#~ "Workgroup the server will appear to be in when queried by clients (maximum "
+#~ "15 characters)."
 #~ msgstr ""
-#~ "Attributten '%s' indeholder ugyldige tegn, og er ikke et gyldigt "
-#~ "arbejdsgruppe navn."
+#~ "Arbejdsgruppe serveren skal vises i, når den bliver forespurgt af klienter "
+#~ "(højst 15 tegn)."
 
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains the illegal character ':' and is no valid "
-#~ "password."
-#~ msgstr ""
-#~ "Attributten '%s' indeholder det ugyldige tegn '.', og er ikke et gyldigt "
-#~ "kodeord."
+#, php-format
+#~ msgid "%s advertises itself as a time server to Windows clients."
+#~ msgstr "%s proklamerer sig som en tids-server til Windows klienter"
 
-#, c-format
-#~ msgid "The attribute '%s' is no valid IP address."
-#~ msgstr "Attributten '%s' er ikke en gyldig IP-adresse."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid MAC address."
-#~ msgstr "Attributten '%s' er ikke en gyldig MAC-adresse."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid file mode mask."
-#~ msgstr "Attributten '%s' er ikke en gyldig fil tilstands maske."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid subnet mask."
-#~ msgstr "Attributten '%s' er ikke en gyldig undernetmaske."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid time."
-#~ msgstr "Attributten '%s' er ikke et gyldigt tidspunkt."
-
-#~ msgid "There must be a minimum of 2 disks in a RAID 5 volume."
-#~ msgstr "Der skal være mindst 2 diske i et RAID 5 volume."
-
-#~ msgid "This email has been send to validate your email configuration."
-#~ msgstr ""
-#~ "Denne email er blevet sendt til dig for at kontrollere din email "
-#~ "konfiguration."
-
-#~ msgid "This is for information only (not using during iSCSI negociation)."
-#~ msgstr ""
-#~ "Dette er kun til information (bruges ikke under iSCSI forhandlinger)."
+#~ msgid "Built date"
+#~ msgstr "Built dato"

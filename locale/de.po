@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-29 17:48+0000\n"
+"POT-Creation-Date: 2012-12-31 17:43+0000\n"
 "PO-Revision-Date: 2012-12-29 17:41+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-29 17:52+0000\n"
+"X-Launchpad-Export-Date: 2012-12-31 17:44+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
@@ -49,10 +49,6 @@ msgstr "%d%% von %dMiB"
 #, php-format
 msgid "%dB / block"
 msgstr "%dB / block"
-
-#, php-format
-msgid "%s advertises itself as a time server to Windows clients."
-msgstr "%s meldet sich selbst als Zeitserver gegenüber Windows Clients."
 
 #, php-format
 msgid "%s interface"
@@ -482,14 +478,10 @@ msgstr "Advertisement skew"
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
-"following steps before you can access %s again: <ul><li>change the IP "
-"address of your computer</li><li>access the webGUI with the new IP "
+"following steps before you can access this server again: <ul><li>change the "
+"IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
-"Nach dem Klick auf &quot;Sichern&quot;, könnten einige Arbeitsschritte "
-"notwendig werden, bevor wieder ein Zugriff auf %s möglich ist: "
-"<ul><li>Änderung der IP-Adresse des Systems</li><li>Zugriff auf die WebGUI "
-"via neuer IP-Adresse</li></ul>"
 
 #, php-format
 msgid ""
@@ -563,16 +555,16 @@ msgstr ""
 "Gibt bestimmten Benutzern und Benutzergruppen lese/schreib-Zugriff auf eine "
 "Freigabe. Diese Zuordnung folgt dem Erlaubt-Optionsformat."
 
-#, php-format
-msgid "Allows %s to try and become a local master browser."
-msgstr "Versucht %s als 'Local Master Browser' einzurichten."
-
 msgid ""
 "Allows certain users and groups to have read-only  access  to  a share. This "
 "follows the allow option format."
 msgstr ""
 "Gibt bestimmten Benutzern und Benutzergruppen ein Nur-lese-Recht an einer "
 "Freigabe. Diese Zuordnung folgt dem Erlaubt-Optionsformat."
+
+#, php-format
+msgid "Allows the server to try and become a local master browser."
+msgstr ""
 
 msgid "AltRoot"
 msgstr "AltRoot"
@@ -781,8 +773,8 @@ msgstr "Netzwerkbrücke"
 msgid "Browseable"
 msgstr "Sichtbar"
 
-msgid "Built date"
-msgstr "Erstellt am"
+msgid "Build date"
+msgstr ""
 
 msgid "Bulgarian"
 msgstr "Bulgarisch"
@@ -1553,6 +1545,9 @@ msgstr "Richtung"
 msgid "Directory"
 msgstr "Verzeichnis"
 
+msgid "Directory for incomplete files. An empty field means disable."
+msgstr ""
+
 msgid "Directory listing"
 msgstr "Verzeichnisauflistung"
 
@@ -1561,11 +1556,6 @@ msgstr "Verzeichnismaske"
 
 msgid "Directory that contains removable media. (e.g /mnt/iscsi/)"
 msgstr "Verzeichnis, welches wechselbare Medien enthält (bspw. /mnt/iscsi/)"
-
-msgid "Directory to incomplete files. An empty field means disable."
-msgstr ""
-"Verzeichnis in dem unfertige Dateien gespeichert werden. Ein leerer Pfad "
-"deaktiviert diese Funktion."
 
 msgid "Directory to watch for new .torrent files."
 msgstr "Zu beobachtendes Verzeichnis für neue .torrent Dateien."
@@ -2823,11 +2813,9 @@ msgstr ""
 "Daten zugreifen."
 
 msgid ""
-"If the server is behind a proxy set this parameters to give local services "
+"If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
 msgstr ""
-"Wenn der Server hinter einem Proxy sitzt, dann setzen Sie diese Parameter um "
-"lokalen Diensten den Zugang zum Internet über den Proxy zu gewähren."
 
 msgid ""
 "If this parameter is set, Samba attempts to first read DOS attributes "
@@ -5805,12 +5793,11 @@ msgstr "Die Anzahl der Clients muss zwischen 1 und 50 liegen."
 msgid "The old password is not correct."
 msgstr "Das alte Passwort ist nicht korrekt."
 
-msgid "The password change protocol to use."
-msgstr ""
-"Mit dem Kennwort das Protokoll, welches verwendet werden soll, ändern."
-
 msgid "The password contains the illegal character ':'."
 msgstr "Das Passwort enthält das ungültige Zeichen ':'."
+
+msgid "The password encryption protocol to use."
+msgstr ""
 
 msgid "The passwords do not match."
 msgstr "Die Passwörter stimmen nicht überein."
@@ -5904,6 +5891,10 @@ msgstr "Die Regelnummer bestimmt die Reihenfolge der Regel."
 msgid "The serial or USB port where your UPS is connected."
 msgstr "Serieller oder USB-Port an dem die USV angeschlossen ist."
 
+#, php-format
+msgid "The server advertises itself as a time server to Windows clients."
+msgstr ""
+
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
@@ -5993,6 +5984,11 @@ msgstr "Der Wert der Variable."
 
 msgid "The volume must be detached before it can be deleted."
 msgstr "Das Volume muss vor dem Löschen ausgeworfen werden."
+
+msgid ""
+"The workgroup in which the server will appear when queried by Windows or SMB "
+"clients (maximum 15 characters)."
+msgstr ""
 
 msgid "The working directory does not exist."
 msgstr "Das Arbeitsverzeichnis existiert nicht."
@@ -6842,11 +6838,9 @@ msgid ""
 msgstr "Benutze folgende IP als Quelladresse für ausgehende Pakete."
 
 msgid ""
-"Use the new 64k streaming read and write varient SMB requests introduced "
+"Use the new 64k streaming read and write variant SMB requests introduced "
 "with Windows 2000."
 msgstr ""
-"Die neue 64k Lese-/Schreibtechnologie für SMB-Anfragen verwenden. "
-"(Eingeführt mit Windows 2000)"
 
 msgid "Use the specified NTP server."
 msgstr "Verwendet den angegebenen NTP Server."
@@ -7093,13 +7087,6 @@ msgstr "WLAN Einstellungen"
 
 msgid "Workgroup"
 msgstr "Arbeitsgruppe"
-
-msgid ""
-"Workgroup the server will appear to be in when queried by clients (maximum "
-"15 characters)."
-msgstr ""
-"Arbeitsgruppe in welcher der Server bei Anfragen erscheinen wird (maximal 15 "
-"Zeichen)."
 
 msgid "Working directory"
 msgstr "Arbeitsverzeichnis"
@@ -7411,76 +7398,55 @@ msgstr "upriv"
 msgid "version:"
 msgstr ""
 
-#, c-format
+#, php-format
+#~ msgid "%s advertises itself as a time server to Windows clients."
+#~ msgstr "%s meldet sich selbst als Zeitserver gegenüber Windows Clients."
+
+#, php-format
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+#~ "After you click &quot;Save&quot;, you may also have to do one or more of the "
+#~ "following steps before you can access %s again: <ul><li>change the IP "
+#~ "address of your computer</li><li>access the webGUI with the new IP "
+#~ "address</li></ul>"
 #~ msgstr ""
-#~ "Das Attribut '%s' enthält ungültige Zeichen und ist kein gültiger NetBIOS "
-#~ "Name."
+#~ "Nach dem Klick auf &quot;Sichern&quot;, könnten einige Arbeitsschritte "
+#~ "notwendig werden, bevor wieder ein Zugriff auf %s möglich ist: "
+#~ "<ul><li>Änderung der IP-Adresse des Systems</li><li>Zugriff auf die WebGUI "
+#~ "via neuer IP-Adresse</li></ul>"
 
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid domain name."
+#, php-format
+#~ msgid "Allows %s to try and become a local master browser."
+#~ msgstr "Versucht %s als 'Local Master Browser' einzurichten."
+
+#~ msgid "Directory to incomplete files. An empty field means disable."
 #~ msgstr ""
-#~ "Der Wert '%s' beinhaltet ungültige Zeichen und ist kein gültiger Domänen-"
-#~ "Name."
-
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid host name."
-#~ msgstr ""
-#~ "Der Wert '%s' beinhaltet ungültige Zeichen und ist kein gültiger Hostname."
-
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
-#~ "name."
-#~ msgstr ""
-#~ "Der Wert '%s' beinhaltet ungültige Zeichen und ist kein gültiger Name für "
-#~ "eine Arbeitsgruppe."
-
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains the illegal character ':' and is no valid "
-#~ "password."
-#~ msgstr ""
-#~ "Das Attribut '%s' enthält das ungültige Zeichen ':' und ist kein kültiges "
-#~ "Passwort."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid IP address."
-#~ msgstr "Das Attribut '%s' ist keine gültige IP Adresse."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid MAC address."
-#~ msgstr "Das Attribut '%s' ist keine gültige MAC Adresse."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid file mode mask."
-#~ msgstr "Das Attribut '%s' ist keine gültige Dateimodusmaske."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid subnet mask."
-#~ msgstr "Das Attribut '%s' ist keine gültige Subnetzmaske."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid time."
-#~ msgstr "Das Attribut '%s' hat keine gültige Zeit."
-
-#~ msgid "There must be a minimum of 2 disks in a RAID 5 volume."
-#~ msgstr "Mindestens 2 Festplatten sind für ein RAID 5 notwendig."
-
-#~ msgid "This email has been send to validate your email configuration."
-#~ msgstr ""
-#~ "Diese E-Mail wurde verschickt um Ihre E-Mail-Einstellungen zu validieren."
-
-#~ msgid "This is for information only (not using during iSCSI negociation)."
-#~ msgstr ""
-#~ "Nur zur Information (wird während der iSCSI Negociation nicht verwendet)."
+#~ "Verzeichnis in dem unfertige Dateien gespeichert werden. Ein leerer Pfad "
+#~ "deaktiviert diese Funktion."
 
 #~ msgid ""
-#~ "There is wrong ID in the disk of config. Please remove the disk and re-add "
-#~ "it or use 'clear and import'."
+#~ "If the server is behind a proxy set this parameters to give local services "
+#~ "access to the internet via proxy."
 #~ msgstr ""
-#~ "Falsche ID in der Konfigurations-Platte. Bitte die Platte entfernen und "
-#~ "wieder hinzuf&uuml;gen oder 'L&ouml;schen und Importieren' nutzen."
+#~ "Wenn der Server hinter einem Proxy sitzt, dann setzen Sie diese Parameter um "
+#~ "lokalen Diensten den Zugang zum Internet über den Proxy zu gewähren."
+
+#~ msgid "The password change protocol to use."
+#~ msgstr ""
+#~ "Mit dem Kennwort das Protokoll, welches verwendet werden soll, ändern."
+
+#~ msgid ""
+#~ "Use the new 64k streaming read and write varient SMB requests introduced "
+#~ "with Windows 2000."
+#~ msgstr ""
+#~ "Die neue 64k Lese-/Schreibtechnologie für SMB-Anfragen verwenden. "
+#~ "(Eingeführt mit Windows 2000)"
+
+#~ msgid ""
+#~ "Workgroup the server will appear to be in when queried by clients (maximum "
+#~ "15 characters)."
+#~ msgstr ""
+#~ "Arbeitsgruppe in welcher der Server bei Anfragen erscheinen wird (maximal 15 "
+#~ "Zeichen)."
+
+#~ msgid "Built date"
+#~ msgstr "Erstellt am"

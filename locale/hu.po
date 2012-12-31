@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-29 17:48+0000\n"
+"POT-Creation-Date: 2012-12-31 17:43+0000\n"
 "PO-Revision-Date: 2012-08-10 17:26+0000\n"
 "Last-Translator: Péter Kovács <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-29 17:52+0000\n"
+"X-Launchpad-Export-Date: 2012-12-31 17:44+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: HUNGARY\n"
 "Language: \n"
@@ -49,10 +49,6 @@ msgstr "%d%% a(z) %dMB-ból"
 #, php-format
 msgid "%dB / block"
 msgstr ""
-
-#, php-format
-msgid "%s advertises itself as a time server to Windows clients."
-msgstr "%s hirdesse magát idő szerverként a Windows klienseknek."
 
 #, php-format
 msgid "%s interface"
@@ -440,8 +436,8 @@ msgstr ""
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
-"following steps before you can access %s again: <ul><li>change the IP "
-"address of your computer</li><li>access the webGUI with the new IP "
+"following steps before you can access this server again: <ul><li>change the "
+"IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
 
@@ -511,13 +507,13 @@ msgid ""
 "follows the allow option format."
 msgstr ""
 
-#, php-format
-msgid "Allows %s to try and become a local master browser."
-msgstr "Engedélyezi %s számára, hogy helyi főtallózóként működjön."
-
 msgid ""
 "Allows certain users and groups to have read-only  access  to  a share. This "
 "follows the allow option format."
+msgstr ""
+
+#, php-format
+msgid "Allows the server to try and become a local master browser."
 msgstr ""
 
 msgid "AltRoot"
@@ -721,7 +717,7 @@ msgstr ""
 msgid "Browseable"
 msgstr "Böngészhető"
 
-msgid "Built date"
+msgid "Build date"
 msgstr ""
 
 msgid "Bulgarian"
@@ -1445,6 +1441,9 @@ msgstr "Irány"
 msgid "Directory"
 msgstr "Könyvtár"
 
+msgid "Directory for incomplete files. An empty field means disable."
+msgstr ""
+
 msgid "Directory listing"
 msgstr "Könyvtár listázása"
 
@@ -1453,9 +1452,6 @@ msgstr "Könyvtár maszk"
 
 msgid "Directory that contains removable media. (e.g /mnt/iscsi/)"
 msgstr "Cserélhető médiát tartalmazó könyvtár. (pl.: /mnt/iscsi/)"
-
-msgid "Directory to incomplete files. An empty field means disable."
-msgstr ""
 
 msgid "Directory to watch for new .torrent files."
 msgstr "Könyvtár a .torrent fájlok figyelésére."
@@ -2658,11 +2654,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"If the server is behind a proxy set this parameters to give local services "
+"If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
 msgstr ""
-"Ha a kiszolgáló proxy mögött van, akkor állítsa be ezt a paramétert, hogy a "
-"helyi szolgáltatások proxy-n keresztül érjék el az internetet."
 
 msgid ""
 "If this parameter is set, Samba attempts to first read DOS attributes "
@@ -5415,10 +5409,10 @@ msgstr "A kliensek száma 1 és 50 közé kell, hogy essen."
 msgid "The old password is not correct."
 msgstr "A régi jelszó nem megfelelő."
 
-msgid "The password change protocol to use."
+msgid "The password contains the illegal character ':'."
 msgstr ""
 
-msgid "The password contains the illegal character ':'."
+msgid "The password encryption protocol to use."
 msgstr ""
 
 msgid "The passwords do not match."
@@ -5499,6 +5493,10 @@ msgstr ""
 msgid "The serial or USB port where your UPS is connected."
 msgstr ""
 
+#, php-format
+msgid "The server advertises itself as a time server to Windows clients."
+msgstr ""
+
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
@@ -5576,6 +5574,11 @@ msgstr "A változó értéke."
 
 msgid "The volume must be detached before it can be deleted."
 msgstr "A meghajtót törlés előtt le kell csatolnia."
+
+msgid ""
+"The workgroup in which the server will appear when queried by Windows or SMB "
+"clients (maximum 15 characters)."
+msgstr ""
 
 msgid "The working directory does not exist."
 msgstr "A munkakönyvtár nem létezik."
@@ -6269,7 +6272,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Use the new 64k streaming read and write varient SMB requests introduced "
+"Use the new 64k streaming read and write variant SMB requests introduced "
 "with Windows 2000."
 msgstr ""
 
@@ -6500,11 +6503,6 @@ msgstr "Vezetéknélküli beállítások"
 
 msgid "Workgroup"
 msgstr "Munkacsoport"
-
-msgid ""
-"Workgroup the server will appear to be in when queried by clients (maximum "
-"15 characters)."
-msgstr ""
 
 msgid "Working directory"
 msgstr "Munka könyvtár"
@@ -6800,13 +6798,17 @@ msgstr ""
 msgid "version:"
 msgstr ""
 
-#, c-format
-#~ msgid "The attribute '%s' is no valid IP address."
-#~ msgstr "A(z) '%s' attribútum nem érvényes IP cím."
+#, php-format
+#~ msgid "%s advertises itself as a time server to Windows clients."
+#~ msgstr "%s hirdesse magát idő szerverként a Windows klienseknek."
 
-#, c-format
-#~ msgid "The attribute '%s' is no valid MAC address."
-#~ msgstr "A(z) '%s' attribútum nem érvényes MAC cím."
+#, php-format
+#~ msgid "Allows %s to try and become a local master browser."
+#~ msgstr "Engedélyezi %s számára, hogy helyi főtallózóként működjön."
 
-#~ msgid "There must be a minimum of 2 disks in a RAID 5 volume."
-#~ msgstr "A RAID 5 kötetben minimum 2 lemeznek kell lennie."
+#~ msgid ""
+#~ "If the server is behind a proxy set this parameters to give local services "
+#~ "access to the internet via proxy."
+#~ msgstr ""
+#~ "Ha a kiszolgáló proxy mögött van, akkor állítsa be ezt a paramétert, hogy a "
+#~ "helyi szolgáltatások proxy-n keresztül érjék el az internetet."

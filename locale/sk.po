@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-29 17:48+0000\n"
+"POT-Creation-Date: 2012-12-31 17:43+0000\n"
 "PO-Revision-Date: 2012-06-02 00:13+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-29 17:52+0000\n"
+"X-Launchpad-Export-Date: 2012-12-31 17:44+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: SLOVAKIA\n"
 "Language: \n"
@@ -49,10 +49,6 @@ msgstr "%d%% z %dMiB"
 #, php-format
 msgid "%dB / block"
 msgstr ""
-
-#, php-format
-msgid "%s advertises itself as a time server to Windows clients."
-msgstr "%s sa ohlasuje klientom Windows ako časový server."
 
 #, php-format
 msgid "%s interface"
@@ -458,14 +454,10 @@ msgstr ""
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
-"following steps before you can access %s again: <ul><li>change the IP "
-"address of your computer</li><li>access the webGUI with the new IP "
+"following steps before you can access this server again: <ul><li>change the "
+"IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
-"Po kliknutí na &quot;Uložiť&quot;, tiež mmožno budete musieť urobiť jeden "
-"alebo viac z nasledujúcich krokov predtým, než znova budete môcť pristupovať "
-"k %s: <ul><li>zmeniť IP adresu vášho počítača</li><li>pripojiť sa na webGUI "
-"s novou IP adresou</li></ul>"
 
 #, php-format
 msgid ""
@@ -539,16 +531,16 @@ msgstr ""
 "Umožní niektorým používateľom a skupinám prístup k zdieľanému priečinku na "
 "čítanie a zápis. Formát voľby je rovnaký ako pri Povoliť."
 
-#, php-format
-msgid "Allows %s to try and become a local master browser."
-msgstr "Umožní %s skúsiť stať sa local master browser."
-
 msgid ""
 "Allows certain users and groups to have read-only  access  to  a share. This "
 "follows the allow option format."
 msgstr ""
 "Umožní niektorým používateľom a skupinám prístup k zdieľanému priečinku iba "
 "na čítanie. Formát voľby je rovnaký ako pri Povoliť."
+
+#, php-format
+msgid "Allows the server to try and become a local master browser."
+msgstr ""
 
 msgid "AltRoot"
 msgstr "AltKoreň"
@@ -755,7 +747,7 @@ msgstr ""
 msgid "Browseable"
 msgstr "Prehliadateľný"
 
-msgid "Built date"
+msgid "Build date"
 msgstr ""
 
 msgid "Bulgarian"
@@ -1497,6 +1489,9 @@ msgstr "Smer"
 msgid "Directory"
 msgstr "Adresár"
 
+msgid "Directory for incomplete files. An empty field means disable."
+msgstr ""
+
 msgid "Directory listing"
 msgstr "Výpis adresára"
 
@@ -1504,9 +1499,6 @@ msgid "Directory mask"
 msgstr "Maska adresára"
 
 msgid "Directory that contains removable media. (e.g /mnt/iscsi/)"
-msgstr ""
-
-msgid "Directory to incomplete files. An empty field means disable."
 msgstr ""
 
 msgid "Directory to watch for new .torrent files."
@@ -2737,11 +2729,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"If the server is behind a proxy set this parameters to give local services "
+"If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
 msgstr ""
-"Ak sa server nachádza za proxy, nastavte tieto parametre tak, aby mali "
-"lokálne služby prístup na internet cez proxy."
 
 msgid ""
 "If this parameter is set, Samba attempts to first read DOS attributes "
@@ -5568,11 +5558,11 @@ msgstr "Počet klientov musí byť medzi 1 a 50."
 msgid "The old password is not correct."
 msgstr "Staré heslo nie je správne."
 
-msgid "The password change protocol to use."
-msgstr "Ktorý protokol na zmenu hesla použiť."
-
 msgid "The password contains the illegal character ':'."
 msgstr "Atribút „%s“ obsahuje neplatný znak „:“."
+
+msgid "The password encryption protocol to use."
+msgstr ""
 
 msgid "The passwords do not match."
 msgstr "Heslá sa nezhodujú."
@@ -5658,6 +5648,10 @@ msgstr "Číslo pravidla určuje poradie pravidla."
 msgid "The serial or USB port where your UPS is connected."
 msgstr "Sériový alebo USB port, kde je pripojené vaše UPS."
 
+#, php-format
+msgid "The server advertises itself as a time server to Windows clients."
+msgstr ""
+
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
@@ -5737,6 +5731,11 @@ msgstr "Hodnota premennej."
 
 msgid "The volume must be detached before it can be deleted."
 msgstr "Jednotku je potrebné pred zmazaním odobrať."
+
+msgid ""
+"The workgroup in which the server will appear when queried by Windows or SMB "
+"clients (maximum 15 characters)."
+msgstr ""
 
 msgid "The working directory does not exist."
 msgstr ""
@@ -6528,11 +6527,9 @@ msgstr ""
 "Použiť ako zdrojovú adresu v odchádzajúcich paketoch nasledovnú IP adresu:"
 
 msgid ""
-"Use the new 64k streaming read and write varient SMB requests introduced "
+"Use the new 64k streaming read and write variant SMB requests introduced "
 "with Windows 2000."
 msgstr ""
-"Používať nový 64k variant SMB požiadaviek pre streamované čítanie a zápis, "
-"ktorý bol predstavený s Windows 2000."
 
 msgid "Use the specified NTP server."
 msgstr "Použiť uvedený NTP server."
@@ -6770,13 +6767,6 @@ msgstr "Konfigurácia bezdrôtových sietí"
 
 msgid "Workgroup"
 msgstr "Pracovná skupina"
-
-msgid ""
-"Workgroup the server will appear to be in when queried by clients (maximum "
-"15 characters)."
-msgstr ""
-"Do ktorej pracovnej skupiny server patrí, keď sa ho opýtajú klienti (najviac "
-"15 znakov)."
 
 msgid "Working directory"
 msgstr ""
@@ -7074,61 +7064,46 @@ msgstr "upriv"
 msgid "version:"
 msgstr ""
 
-#, c-format
+#, php-format
+#~ msgid "%s advertises itself as a time server to Windows clients."
+#~ msgstr "%s sa ohlasuje klientom Windows ako časový server."
+
+#, php-format
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+#~ "After you click &quot;Save&quot;, you may also have to do one or more of the "
+#~ "following steps before you can access %s again: <ul><li>change the IP "
+#~ "address of your computer</li><li>access the webGUI with the new IP "
+#~ "address</li></ul>"
 #~ msgstr ""
-#~ "Atribút „%s“ obsahuje neplatné znaky a nie je to platný názov NetBIOS."
+#~ "Po kliknutí na &quot;Uložiť&quot;, tiež mmožno budete musieť urobiť jeden "
+#~ "alebo viac z nasledujúcich krokov predtým, než znova budete môcť pristupovať "
+#~ "k %s: <ul><li>zmeniť IP adresu vášho počítača</li><li>pripojiť sa na webGUI "
+#~ "s novou IP adresou</li></ul>"
 
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid domain name."
-#~ msgstr "Atribút „%s“ obsahuje neplatné znaky a nie je platným názvom domény."
+#, php-format
+#~ msgid "Allows %s to try and become a local master browser."
+#~ msgstr "Umožní %s skúsiť stať sa local master browser."
 
-#, c-format
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid host name."
-#~ msgstr "Atribút „%s“ obsahuje neplatné znaky a nie je platným názvom stroja."
-
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
-#~ "name."
+#~ "If the server is behind a proxy set this parameters to give local services "
+#~ "access to the internet via proxy."
 #~ msgstr ""
-#~ "Atribút „%s“ obsahuje neplatné znaky a nie je platným názvom skupiny."
+#~ "Ak sa server nachádza za proxy, nastavte tieto parametre tak, aby mali "
+#~ "lokálne služby prístup na internet cez proxy."
 
-#, c-format
+#~ msgid "The password change protocol to use."
+#~ msgstr "Ktorý protokol na zmenu hesla použiť."
+
 #~ msgid ""
-#~ "The attribute '%s' contains the illegal character ':' and is no valid "
-#~ "password."
-#~ msgstr "Atribút „%s“ obsahuje neplatný znak „:“ a nie je platné heslo."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid IP address."
-#~ msgstr "Atribút „%s“ nie je platnou IP adresou."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid MAC address."
-#~ msgstr "Atribút „%s“ nie je platná MAC adresa."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid file mode mask."
-#~ msgstr "Atribút „%s“ nie je platná maska režimu."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid subnet mask."
-#~ msgstr "Atribút „%s“ nie je platná maska podsiete."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid time."
-#~ msgstr "Atribút „%s“ nie je platný čas."
-
-#~ msgid "There must be a minimum of 2 disks in a RAID 5 volume."
-#~ msgstr "V zväzku RAID 5 musia byť minimálne 2 disky."
-
-#~ msgid "This email has been send to validate your email configuration."
-#~ msgstr "Tento email bol poslaný na overenie vašej emailovej konfigurácie."
-
-#~ msgid "This is for information only (not using during iSCSI negociation)."
+#~ "Use the new 64k streaming read and write varient SMB requests introduced "
+#~ "with Windows 2000."
 #~ msgstr ""
-#~ "Toto je len informatívna hodnota (nepoužíva sa pri vyjednávaní iSCSI)."
+#~ "Používať nový 64k variant SMB požiadaviek pre streamované čítanie a zápis, "
+#~ "ktorý bol predstavený s Windows 2000."
+
+#~ msgid ""
+#~ "Workgroup the server will appear to be in when queried by clients (maximum "
+#~ "15 characters)."
+#~ msgstr ""
+#~ "Do ktorej pracovnej skupiny server patrí, keď sa ho opýtajú klienti (najviac "
+#~ "15 znakov)."
