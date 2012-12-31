@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-29 17:48+0000\n"
+"POT-Creation-Date: 2012-12-31 17:43+0000\n"
 "PO-Revision-Date: 2012-06-02 00:13+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-29 17:52+0000\n"
+"X-Launchpad-Export-Date: 2012-12-31 17:44+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: SLOVENIA\n"
 "Language: \n"
@@ -49,10 +49,6 @@ msgstr "%d%% od %dMiB"
 #, php-format
 msgid "%dB / block"
 msgstr "%dB / blok"
-
-#, php-format
-msgid "%s advertises itself as a time server to Windows clients."
-msgstr "%s se predstavlja Windows klientom kot časovni strežnik."
 
 #, php-format
 msgid "%s interface"
@@ -458,13 +454,10 @@ msgstr ""
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
-"following steps before you can access %s again: <ul><li>change the IP "
-"address of your computer</li><li>access the webGUI with the new IP "
+"following steps before you can access this server again: <ul><li>change the "
+"IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
-"Po kliku na &quot;Shrani&quot;, boste, preden boste spet lahko dostopali do "
-"%s, verjetno morali opraviti naslednje korake: <ul><li>spremeniti IP naslov "
-"računalnika</li><li>dostopati do WebGUI-a z novim IP naslovom.</li></ul>"
 
 #, php-format
 msgid ""
@@ -534,14 +527,14 @@ msgid ""
 "follows the allow option format."
 msgstr "Dovoli določenim uporabnikom in skupinam pisanje v deljeno mapo."
 
-#, php-format
-msgid "Allows %s to try and become a local master browser."
-msgstr "Dovoli %s, da poizkuša postati glavni lokalni brskalnik."
-
 msgid ""
 "Allows certain users and groups to have read-only  access  to  a share. This "
 "follows the allow option format."
 msgstr "Dovoli določenim uporabnikom in skupinam le branje deljene mape."
+
+#, php-format
+msgid "Allows the server to try and become a local master browser."
+msgstr ""
 
 msgid "AltRoot"
 msgstr "AltRoot"
@@ -748,7 +741,7 @@ msgstr ""
 msgid "Browseable"
 msgstr "Brskalno"
 
-msgid "Built date"
+msgid "Build date"
 msgstr ""
 
 msgid "Bulgarian"
@@ -1490,6 +1483,9 @@ msgstr "Smer"
 msgid "Directory"
 msgstr "Mapa"
 
+msgid "Directory for incomplete files. An empty field means disable."
+msgstr ""
+
 msgid "Directory listing"
 msgstr "Seznam map"
 
@@ -1498,11 +1494,6 @@ msgstr "Maska map"
 
 msgid "Directory that contains removable media. (e.g /mnt/iscsi/)"
 msgstr "Mapa, ki vsebuje odstranljiv medij. (npr. /mnt/iscsi/)"
-
-msgid "Directory to incomplete files. An empty field means disable."
-msgstr ""
-"Direktorij z nedokončanimi datotekami. Prazno polje pomeni, da je ta "
-"direktorij onemogočen."
 
 msgid "Directory to watch for new .torrent files."
 msgstr "Direktorij za spremljanje za novimi .torrent datotekami."
@@ -2732,11 +2723,9 @@ msgstr ""
 "dostop."
 
 msgid ""
-"If the server is behind a proxy set this parameters to give local services "
+"If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
 msgstr ""
-"Če je server za proxy strežnikov, nastavite te parametre, da dovolite "
-"lokalnim servisom dostop do spleta."
 
 msgid ""
 "If this parameter is set, Samba attempts to first read DOS attributes "
@@ -5571,10 +5560,10 @@ msgstr ""
 msgid "The old password is not correct."
 msgstr ""
 
-msgid "The password change protocol to use."
+msgid "The password contains the illegal character ':'."
 msgstr ""
 
-msgid "The password contains the illegal character ':'."
+msgid "The password encryption protocol to use."
 msgstr ""
 
 msgid "The passwords do not match."
@@ -5655,6 +5644,10 @@ msgstr ""
 msgid "The serial or USB port where your UPS is connected."
 msgstr ""
 
+#, php-format
+msgid "The server advertises itself as a time server to Windows clients."
+msgstr ""
+
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
@@ -5731,6 +5724,11 @@ msgid "The value of the variable."
 msgstr ""
 
 msgid "The volume must be detached before it can be deleted."
+msgstr ""
+
+msgid ""
+"The workgroup in which the server will appear when queried by Windows or SMB "
+"clients (maximum 15 characters)."
 msgstr ""
 
 msgid "The working directory does not exist."
@@ -6422,7 +6420,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Use the new 64k streaming read and write varient SMB requests introduced "
+"Use the new 64k streaming read and write variant SMB requests introduced "
 "with Windows 2000."
 msgstr ""
 
@@ -6643,11 +6641,6 @@ msgstr ""
 
 msgid "Workgroup"
 msgstr "Delovna skupina"
-
-msgid ""
-"Workgroup the server will appear to be in when queried by clients (maximum "
-"15 characters)."
-msgstr ""
 
 msgid "Working directory"
 msgstr ""
@@ -6944,57 +6937,33 @@ msgstr "upriv"
 msgid "version:"
 msgstr ""
 
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
-#~ msgstr "Atribut '%s' vsebuje neveljavne znake, ter ni veljavno NetBIOS ime."
+#, php-format
+#~ msgid "%s advertises itself as a time server to Windows clients."
+#~ msgstr "%s se predstavlja Windows klientom kot časovni strežnik."
 
-#, c-format
+#, php-format
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid domain name."
-#~ msgstr "Atribut '%s' vsebuje neveljavne znake, ter ni veljavno ime domene."
-
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid host name."
+#~ "After you click &quot;Save&quot;, you may also have to do one or more of the "
+#~ "following steps before you can access %s again: <ul><li>change the IP "
+#~ "address of your computer</li><li>access the webGUI with the new IP "
+#~ "address</li></ul>"
 #~ msgstr ""
-#~ "Atribut '%s' vsebuje neveljavne znake, ter ni veljavno ime računalnika."
+#~ "Po kliku na &quot;Shrani&quot;, boste, preden boste spet lahko dostopali do "
+#~ "%s, verjetno morali opraviti naslednje korake: <ul><li>spremeniti IP naslov "
+#~ "računalnika</li><li>dostopati do WebGUI-a z novim IP naslovom.</li></ul>"
 
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
-#~ "name."
+#, php-format
+#~ msgid "Allows %s to try and become a local master browser."
+#~ msgstr "Dovoli %s, da poizkuša postati glavni lokalni brskalnik."
+
+#~ msgid "Directory to incomplete files. An empty field means disable."
 #~ msgstr ""
-#~ "Atribut '%s' vsebuje neveljavne znake, ter ni veljavno ime delovne skupine."
+#~ "Direktorij z nedokončanimi datotekami. Prazno polje pomeni, da je ta "
+#~ "direktorij onemogočen."
 
-#, c-format
 #~ msgid ""
-#~ "The attribute '%s' contains the illegal character ':' and is no valid "
-#~ "password."
-#~ msgstr "Atribut '%s' vsebuje neveljaven znak ':', ter ni veljavno geslo."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid IP address."
-#~ msgstr "Atribut '%s' ni veljaven IP naslov."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid MAC address."
-#~ msgstr "Atribut '%s' ni veljaven MAC naslov."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid file mode mask."
-#~ msgstr "Atribut '%s' ni veljavna maska dovoljenj."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid subnet mask."
-#~ msgstr "Atribut '%s' ni veljavna številka omrežja,"
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid time."
-#~ msgstr "Atribut '%s' ni veljaven čas."
-
-#~ msgid "There must be a minimum of 2 disks in a RAID 5 volume."
-#~ msgstr "Za RAID 5 polje, morata biti na voljo vsaj 2 pogona."
-
-#~ msgid "This is for information only (not using during iSCSI negociation)."
-#~ msgstr "to je samo za informacijo (ni uporabljeno med iSCSI prenosi)."
+#~ "If the server is behind a proxy set this parameters to give local services "
+#~ "access to the internet via proxy."
+#~ msgstr ""
+#~ "Če je server za proxy strežnikov, nastavite te parametre, da dovolite "
+#~ "lokalnim servisom dostop do spleta."

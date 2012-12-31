@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-29 17:48+0000\n"
+"POT-Creation-Date: 2012-12-31 17:43+0000\n"
 "PO-Revision-Date: 2012-08-02 14:51+0000\n"
 "Last-Translator: ltye <laotaoyan@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-29 17:52+0000\n"
+"X-Launchpad-Export-Date: 2012-12-31 17:44+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: CHINA\n"
 "Language: \n"
@@ -50,10 +50,6 @@ msgstr "已用百分之 %d ，共 %dMB"
 #, php-format
 msgid "%dB / block"
 msgstr "%dB / 块"
-
-#, php-format
-msgid "%s advertises itself as a time server to Windows clients."
-msgstr "设置%s成为一个Windows客户端的时间服务器。"
 
 #, php-format
 msgid "%s interface"
@@ -438,12 +434,10 @@ msgstr ""
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
-"following steps before you can access %s again: <ul><li>change the IP "
-"address of your computer</li><li>access the webGUI with the new IP "
+"following steps before you can access this server again: <ul><li>change the "
+"IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
-"点击&quot;&quot;之后，可能需要执行下列的步骤，才能再次连接至%s：<ul><li>变更电脑上的IP位置</li><li>使用新的IP位置来连接"
-"网页管理介面</li></ul>"
 
 #, php-format
 msgid ""
@@ -511,14 +505,14 @@ msgid ""
 "follows the allow option format."
 msgstr "允许特定用户与群组可以读写某个共享区。这将使用允许选项的格式。"
 
-#, php-format
-msgid "Allows %s to try and become a local master browser."
-msgstr "让 %s 尝试成为 local master browser。"
-
 msgid ""
 "Allows certain users and groups to have read-only  access  to  a share. This "
 "follows the allow option format."
 msgstr "允许特定用户与群组只能对某个共享区唯读。这将使用允许选项的格式。"
+
+#, php-format
+msgid "Allows the server to try and become a local master browser."
+msgstr ""
 
 msgid "AltRoot"
 msgstr ""
@@ -717,8 +711,8 @@ msgstr ""
 msgid "Browseable"
 msgstr "提供浏览"
 
-msgid "Built date"
-msgstr "建立时间"
+msgid "Build date"
+msgstr ""
 
 msgid "Bulgarian"
 msgstr "保加利亚"
@@ -1437,6 +1431,9 @@ msgstr "方向"
 msgid "Directory"
 msgstr "目录"
 
+msgid "Directory for incomplete files. An empty field means disable."
+msgstr ""
+
 msgid "Directory listing"
 msgstr "目录清单"
 
@@ -1444,9 +1441,6 @@ msgid "Directory mask"
 msgstr "目录遮罩"
 
 msgid "Directory that contains removable media. (e.g /mnt/iscsi/)"
-msgstr ""
-
-msgid "Directory to incomplete files. An empty field means disable."
 msgstr ""
 
 msgid "Directory to watch for new .torrent files."
@@ -2621,7 +2615,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"If the server is behind a proxy set this parameters to give local services "
+"If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
 msgstr ""
 
@@ -5333,11 +5327,11 @@ msgstr "用户上限必须介于 1 至 50。"
 msgid "The old password is not correct."
 msgstr "旧的密码错误。"
 
-msgid "The password change protocol to use."
-msgstr ""
-
 msgid "The password contains the illegal character ':'."
 msgstr "密码包含了无效的字符 ':'。"
+
+msgid "The password encryption protocol to use."
+msgstr ""
 
 msgid "The passwords do not match."
 msgstr "您输入的密码不相符。"
@@ -5414,6 +5408,10 @@ msgstr ""
 
 msgid "The serial or USB port where your UPS is connected."
 msgstr "您的UPS相连USB端口。"
+
+#, php-format
+msgid "The server advertises itself as a time server to Windows clients."
+msgstr ""
 
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
@@ -5492,6 +5490,11 @@ msgstr ""
 
 msgid "The volume must be detached before it can be deleted."
 msgstr "硬盘必需先移除才可以删除。"
+
+msgid ""
+"The workgroup in which the server will appear when queried by Windows or SMB "
+"clients (maximum 15 characters)."
+msgstr ""
 
 msgid "The working directory does not exist."
 msgstr ""
@@ -6177,9 +6180,9 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Use the new 64k streaming read and write varient SMB requests introduced "
+"Use the new 64k streaming read and write variant SMB requests introduced "
 "with Windows 2000."
-msgstr "使用 Windows 2000 之后新增的 64K 串流选项。"
+msgstr ""
 
 msgid "Use the specified NTP server."
 msgstr "使用指定的 NTP 服务器。"
@@ -6399,11 +6402,6 @@ msgstr "无线网络配置"
 
 msgid "Workgroup"
 msgstr "工作组"
-
-msgid ""
-"Workgroup the server will appear to be in when queried by clients (maximum "
-"15 characters)."
-msgstr ""
 
 msgid "Working directory"
 msgstr ""
@@ -6699,46 +6697,28 @@ msgstr "upriv"
 msgid "version:"
 msgstr ""
 
-#, c-format
+#, php-format
+#~ msgid "%s advertises itself as a time server to Windows clients."
+#~ msgstr "设置%s成为一个Windows客户端的时间服务器。"
+
+#, php-format
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid domain name."
-#~ msgstr "属性 '%s' 包含了无效字符，请输入有效的网域名称。"
+#~ "After you click &quot;Save&quot;, you may also have to do one or more of the "
+#~ "following steps before you can access %s again: <ul><li>change the IP "
+#~ "address of your computer</li><li>access the webGUI with the new IP "
+#~ "address</li></ul>"
+#~ msgstr ""
+#~ "点击&quot;&quot;之后，可能需要执行下列的步骤，才能再次连接至%s：<ul><li>变更电脑上的IP位置</li><li>使用新的IP位置来连接"
+#~ "网页管理介面</li></ul>"
 
-#, c-format
+#, php-format
+#~ msgid "Allows %s to try and become a local master browser."
+#~ msgstr "让 %s 尝试成为 local master browser。"
+
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid host name."
-#~ msgstr "属性 '%s' 包含了无效字符，请输入有效的主机名称。"
+#~ "Use the new 64k streaming read and write varient SMB requests introduced "
+#~ "with Windows 2000."
+#~ msgstr "使用 Windows 2000 之后新增的 64K 串流选项。"
 
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
-#~ "name."
-#~ msgstr "属性 '%s' 包含了无效字符，请输入有效的工作群组名称。"
-
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains the illegal character ':' and is no valid "
-#~ "password."
-#~ msgstr "属性 '%s' 包含了无效字符 ':'，请输入有效的密码。"
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid IP address."
-#~ msgstr "属性 '%s' 是无效的 IP 位置。"
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid MAC address."
-#~ msgstr "属性 '%s' 是无效的 MAC 位置。"
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid file mode mask."
-#~ msgstr "属性 '%s' 是无效的文件权限码。"
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid subnet mask."
-#~ msgstr "属性 '%s' 是无效的子网掩码。"
-
-#~ msgid "There must be a minimum of 2 disks in a RAID 5 volume."
-#~ msgstr "要使用 RAID 5 最少要有两个硬盘。"
-
-#~ msgid "This is for information only (not using during iSCSI negociation)."
-#~ msgstr "只是提供资料之用（并非给 iSCSI 沟通的资料）"
+#~ msgid "Built date"
+#~ msgstr "建立时间"

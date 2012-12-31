@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-29 17:48+0000\n"
+"POT-Creation-Date: 2012-12-31 17:43+0000\n"
 "PO-Revision-Date: 2012-10-14 07:46+0000\n"
 "Last-Translator: Luís Vilhena Santos <LuisVilhenaSantos@Hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-29 17:52+0000\n"
+"X-Launchpad-Export-Date: 2012-12-31 17:44+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: PORTUGAL\n"
 "Language: \n"
@@ -49,10 +49,6 @@ msgstr "%d%% de %dMiB"
 #, php-format
 msgid "%dB / block"
 msgstr "%dB / bloqueado"
-
-#, php-format
-msgid "%s advertises itself as a time server to Windows clients."
-msgstr "%s anunciar-se como servidor de horário para clientes Windows."
 
 #, php-format
 msgid "%s interface"
@@ -472,14 +468,10 @@ msgstr ""
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
-"following steps before you can access %s again: <ul><li>change the IP "
-"address of your computer</li><li>access the webGUI with the new IP "
+"following steps before you can access this server again: <ul><li>change the "
+"IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
-"Depois de clicar em &quot;Save&quot; poderá ter de executar um ou mais dos "
-"passos seguintes antes de conseguir aceder a %s novamente: <ul><li>mudar o "
-"endereço IP do seu computador</li><li>aceder ao painel de administração "
-"através do novo endereço IP</li></ul>"
 
 #, php-format
 msgid ""
@@ -554,16 +546,16 @@ msgstr ""
 "Permitir certos utilizadores e grupos ter acesso escrita/leitura numa "
 "partilha. Isto segue o formato das regras de permissão."
 
-#, php-format
-msgid "Allows %s to try and become a local master browser."
-msgstr "Permitir que  %s tente tornar-se o master browser local."
-
 msgid ""
 "Allows certain users and groups to have read-only  access  to  a share. This "
 "follows the allow option format."
 msgstr ""
 "Permitir certos utilizadores ter acesso a partilhas de rede com premissões "
 "de leitura. Esta opção segue o formato permissivo."
+
+#, php-format
+msgid "Allows the server to try and become a local master browser."
+msgstr ""
 
 msgid "AltRoot"
 msgstr "AltRoot"
@@ -770,8 +762,8 @@ msgstr ""
 msgid "Browseable"
 msgstr "Navegável"
 
-msgid "Built date"
-msgstr "Construído data"
+msgid "Build date"
+msgstr ""
 
 msgid "Bulgarian"
 msgstr "Búlgaro"
@@ -1526,6 +1518,9 @@ msgstr "Direcção"
 msgid "Directory"
 msgstr "Directório"
 
+msgid "Directory for incomplete files. An empty field means disable."
+msgstr ""
+
 msgid "Directory listing"
 msgstr "Listagem de directório"
 
@@ -1534,10 +1529,6 @@ msgstr "Máscara de directório"
 
 msgid "Directory that contains removable media. (e.g /mnt/iscsi/)"
 msgstr "Directoria que contém os media removíveis. (e.g /mnt/iscsi/)"
-
-msgid "Directory to incomplete files. An empty field means disable."
-msgstr ""
-"Directoria para ficheiros incompletos. Um campo vazio significa desactivado."
 
 msgid "Directory to watch for new .torrent files."
 msgstr "Directorio onde procurar novos ficheiros .torrent."
@@ -2786,11 +2777,9 @@ msgstr ""
 "esta partição ocorrerá durante este processo."
 
 msgid ""
-"If the server is behind a proxy set this parameters to give local services "
+"If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
 msgstr ""
-"Se o servidor estiver antes de um proxy utilize estes parâmetros para dar "
-"acesso à internet via proxy aos serviços locais."
 
 msgid ""
 "If this parameter is set, Samba attempts to first read DOS attributes "
@@ -5724,11 +5713,11 @@ msgstr "O número de cliente deve ser entre 1 e 50."
 msgid "The old password is not correct."
 msgstr "A palavra-passe antiga não está correcta."
 
-msgid "The password change protocol to use."
-msgstr "A palavra-passe altera o protocolo a usar."
-
 msgid "The password contains the illegal character ':'."
 msgstr "A palavra-passe contém o caracter ilegal ':'."
+
+msgid "The password encryption protocol to use."
+msgstr ""
 
 msgid "The passwords do not match."
 msgstr "As palavras-passe não coincídem."
@@ -5820,6 +5809,10 @@ msgstr "O número da regra determina a ordem da regra."
 msgid "The serial or USB port where your UPS is connected."
 msgstr "A porta série ou a porta USB onde a sua UPS está ligada."
 
+#, php-format
+msgid "The server advertises itself as a time server to Windows clients."
+msgstr ""
+
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
@@ -5902,6 +5895,11 @@ msgstr "O valor da variável."
 
 msgid "The volume must be detached before it can be deleted."
 msgstr "O volume deve ser desmontado antes de poder ser removido."
+
+msgid ""
+"The workgroup in which the server will appear when queried by Windows or SMB "
+"clients (maximum 15 characters)."
+msgstr ""
 
 msgid "The working directory does not exist."
 msgstr "A directoria de trabalho não existe."
@@ -6724,11 +6722,9 @@ msgid ""
 msgstr "Usar este endereço IP como endereço de origem dos pacotes enviados."
 
 msgid ""
-"Use the new 64k streaming read and write varient SMB requests introduced "
+"Use the new 64k streaming read and write variant SMB requests introduced "
 "with Windows 2000."
 msgstr ""
-"Usar os requisitos para a nova variante SMB de streaming 64k de leitura e "
-"escrita com Windows 2000."
 
 msgid "Use the specified NTP server."
 msgstr "Usar servidor de horas NTP"
@@ -6976,13 +6972,6 @@ msgstr "Configuração da rede sem fios"
 
 msgid "Workgroup"
 msgstr "Grupo de Trabalho"
-
-msgid ""
-"Workgroup the server will appear to be in when queried by clients (maximum "
-"15 characters)."
-msgstr ""
-"Nome do grupo de trabalho a que o servidor pertence. (máximo de 15 "
-"caracteres)."
 
 msgid "Working directory"
 msgstr "Directório de trabalho"
@@ -7290,67 +7279,53 @@ msgstr "upriv"
 msgid "version:"
 msgstr ""
 
-#, c-format
+#, php-format
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+#~ "After you click &quot;Save&quot;, you may also have to do one or more of the "
+#~ "following steps before you can access %s again: <ul><li>change the IP "
+#~ "address of your computer</li><li>access the webGUI with the new IP "
+#~ "address</li></ul>"
 #~ msgstr ""
-#~ "O atributo '%s' contém caracteres inváldios e não é um nome NetBIOS válido."
+#~ "Depois de clicar em &quot;Save&quot; poderá ter de executar um ou mais dos "
+#~ "passos seguintes antes de conseguir aceder a %s novamente: <ul><li>mudar o "
+#~ "endereço IP do seu computador</li><li>aceder ao painel de administração "
+#~ "através do novo endereço IP</li></ul>"
 
-#, c-format
+#, php-format
+#~ msgid "Allows %s to try and become a local master browser."
+#~ msgstr "Permitir que  %s tente tornar-se o master browser local."
+
+#~ msgid "Directory to incomplete files. An empty field means disable."
+#~ msgstr ""
+#~ "Directoria para ficheiros incompletos. Um campo vazio significa desactivado."
+
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid domain name."
+#~ "If the server is behind a proxy set this parameters to give local services "
+#~ "access to the internet via proxy."
 #~ msgstr ""
-#~ "O atributo '%s' contém caracteres inváldios e não é um nome de domínio "
-#~ "válido."
+#~ "Se o servidor estiver antes de um proxy utilize estes parâmetros para dar "
+#~ "acesso à internet via proxy aos serviços locais."
 
-#, c-format
+#~ msgid "The password change protocol to use."
+#~ msgstr "A palavra-passe altera o protocolo a usar."
+
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid host name."
+#~ "Use the new 64k streaming read and write varient SMB requests introduced "
+#~ "with Windows 2000."
 #~ msgstr ""
-#~ "O atributo '%s' contém caracteres inváldios e não é um nome de anfitrião "
-#~ "válido."
+#~ "Usar os requisitos para a nova variante SMB de streaming 64k de leitura e "
+#~ "escrita com Windows 2000."
 
-#, c-format
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
-#~ "name."
+#~ "Workgroup the server will appear to be in when queried by clients (maximum "
+#~ "15 characters)."
 #~ msgstr ""
-#~ "O atributo '%s' contém caracteres inváldios e não é um nome de grupo de "
-#~ "trabalho válido."
+#~ "Nome do grupo de trabalho a que o servidor pertence. (máximo de 15 "
+#~ "caracteres)."
 
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains the illegal character ':' and is no valid "
-#~ "password."
-#~ msgstr ""
-#~ "O atributo '%s' contém o caracter ilegal ':' e não é uma palavra-passe "
-#~ "válida."
+#~ msgid "Built date"
+#~ msgstr "Construído data"
 
-#, c-format
-#~ msgid "The attribute '%s' is no valid IP address."
-#~ msgstr "O atributo '%s' não é um endereço IP válido."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid MAC address."
-#~ msgstr "O atributo '%s' não é um endereço MAC válido."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid file mode mask."
-#~ msgstr "O atributo '%s' não é um valor de máscara válido"
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid subnet mask."
-#~ msgstr "O atributo '%s' não é uma máscara de subnet válida."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid time."
-#~ msgstr "O atributo '%s' não é um tempo válido."
-
-#~ msgid "There must be a minimum of 2 disks in a RAID 5 volume."
-#~ msgstr "É obrigatório um mínimo de 2 discos num volume RAID 5."
-
-#~ msgid "This email has been send to validate your email configuration."
-#~ msgstr "Este e-mail foi enviado para validar a sua configuração de e-mail."
-
-#~ msgid "This is for information only (not using during iSCSI negociation)."
-#~ msgstr "Isto é apenas para informação (não usar durante a negociação iSCSI)."
+#, php-format
+#~ msgid "%s advertises itself as a time server to Windows clients."
+#~ msgstr "%s anunciar-se como servidor de horário para clientes Windows."

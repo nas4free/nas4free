@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-29 17:48+0000\n"
-"PO-Revision-Date: 2012-12-29 17:05+0000\n"
+"POT-Creation-Date: 2012-12-31 17:43+0000\n"
+"PO-Revision-Date: 2012-12-31 17:01+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-29 17:52+0000\n"
+"X-Launchpad-Export-Date: 2012-12-31 17:44+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: Netherlands\n"
 "Language: \n"
@@ -49,10 +49,6 @@ msgstr "%d%% van %dMiB"
 #, php-format
 msgid "%dB / block"
 msgstr "%dB / blok"
-
-#, php-format
-msgid "%s advertises itself as a time server to Windows clients."
-msgstr "%s maakt zich kenbaar als tijdserver voor windows clienten"
 
 #, php-format
 msgid "%s interface"
@@ -483,12 +479,12 @@ msgstr "Advertisement skew"
 #, php-format
 msgid ""
 "After you click &quot;Save&quot;, you may also have to do one or more of the "
-"following steps before you can access %s again: <ul><li>change the IP "
-"address of your computer</li><li>access the webGUI with the new IP "
+"following steps before you can access this server again: <ul><li>change the "
+"IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
 "Na gebruik van de knop &quot;Opslaan&quot;, moet u mogelijk ook één van de "
-"volgende stappen uitvoeren om opnieuw toegang tot %s te krijgen: "
+"volgende stappen uitvoeren om opnieuw toegang tot deze server te krijgen: "
 "<ul><li>Verander het IP-adres van uw computer</li><li>Open de webGUI met het "
 "nieuwe IP-adres</li></ul>"
 
@@ -572,16 +568,16 @@ msgstr ""
 "Sta toe dat bepaalde gebruikers en groepen lees en schrijf rechten hebben op "
 "een gedeelde map. Dit werkt volgens de toegangs opties procedure."
 
-#, php-format
-msgid "Allows %s to try and become a local master browser."
-msgstr "Sta toe dat %s lokale hoofd browser wordt."
-
 msgid ""
 "Allows certain users and groups to have read-only  access  to  a share. This "
 "follows the allow option format."
 msgstr ""
 "Sta toe dat bepaalde gebruikers en groepen alleen lees rechten hebben op een "
 "gedeelde map. Dit werkt volgens het toegangs opties procede."
+
+#, php-format
+msgid "Allows the server to try and become a local master browser."
+msgstr "Sta toe dat de server de lokale hoofd browser wordt."
 
 msgid "AltRoot"
 msgstr "AltRoot"
@@ -789,7 +785,7 @@ msgstr "Brug"
 msgid "Browseable"
 msgstr "Verkenbaar"
 
-msgid "Built date"
+msgid "Build date"
 msgstr "Gecompileerd"
 
 msgid "Bulgarian"
@@ -1564,6 +1560,11 @@ msgstr "Richting"
 msgid "Directory"
 msgstr "Map"
 
+msgid "Directory for incomplete files. An empty field means disable."
+msgstr ""
+"De map voor incomplete bestanden. Een leeg gelaten veld betekend "
+"uitgeschakeld."
+
 msgid "Directory listing"
 msgstr "Mappenlijst"
 
@@ -1572,11 +1573,6 @@ msgstr "Mapmachtigingen"
 
 msgid "Directory that contains removable media. (e.g /mnt/iscsi/)"
 msgstr "De locatie die de verwijderbare media bevat . (bijv. /mnt/iscsi/)"
-
-msgid "Directory to incomplete files. An empty field means disable."
-msgstr ""
-"De map met incomplete bestanden. Een leeg gelaten veld betekend "
-"uitgeschakeld."
 
 msgid "Directory to watch for new .torrent files."
 msgstr "Map om in te kijken voor nieuwe .torrent bestanden."
@@ -2844,7 +2840,7 @@ msgstr ""
 "gedurende dit proces."
 
 msgid ""
-"If the server is behind a proxy set this parameters to give local services "
+"If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
 msgstr ""
 "Als de server zich achter een proxy bevindt, vul dan hier deze gegevens in "
@@ -5850,11 +5846,11 @@ msgstr "Het aantal werkstations dient tussen de 1 en 50 te zijn."
 msgid "The old password is not correct."
 msgstr "Het oude wachtwoord is niet juist."
 
-msgid "The password change protocol to use."
-msgstr "Het te gebruiken protocol voor wachtwoord veranderingen."
-
 msgid "The password contains the illegal character ':'."
 msgstr "Het wachtwoord bevat het ongeldige karakter ':'."
+
+msgid "The password encryption protocol to use."
+msgstr "Het te gebruiken encryptie protocol voor wachtwoorden."
 
 msgid "The passwords do not match."
 msgstr "De wachtwoorden komen niet overeen."
@@ -5948,6 +5944,10 @@ msgstr "Het regelnummer bepaald de volgorde van de regel."
 msgid "The serial or USB port where your UPS is connected."
 msgstr "De seriele of USB poort waar de UPS aan verbonden is."
 
+#, php-format
+msgid "The server advertises itself as a time server to Windows clients."
+msgstr "De server maakt zich kenbaar als tijdserver voor Windows clienten."
+
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
 "take one minute."
@@ -6038,6 +6038,13 @@ msgstr "De waarde van de variabele."
 msgid "The volume must be detached before it can be deleted."
 msgstr ""
 "Het volume moet eerst losgekoppeld worden voordat het kan worden verwijderd."
+
+msgid ""
+"The workgroup in which the server will appear when queried by Windows or SMB "
+"clients (maximum 15 characters)."
+msgstr ""
+"De werkgroep waarin de server verschijnt voor de Windows werkstations of SMB "
+"clienten (maximaal 15 tekens)."
 
 msgid "The working directory does not exist."
 msgstr "De werkmap bestaat niet."
@@ -6887,11 +6894,11 @@ msgstr ""
 "Gebruik het volgende IP-adres als bronadres in de uitgaande pakketten."
 
 msgid ""
-"Use the new 64k streaming read and write varient SMB requests introduced "
+"Use the new 64k streaming read and write variant SMB requests introduced "
 "with Windows 2000."
 msgstr ""
-"Gebruik de nieuwe 64k lees/schrijf variant voor SMB aanvragen, "
-"geïntroduceerd met Windows 2000."
+"Gebruik voor SMB aanvragen de nieuwe 64k lees/schrijf variant, "
+"geïntroduceerd in Windows 2000."
 
 msgid "Use the specified NTP server."
 msgstr "Na inschakeling kunt u gemachtigde NTP tijdservers configureren."
@@ -7138,13 +7145,6 @@ msgstr "Draadloos cofiguratie"
 
 msgid "Workgroup"
 msgstr "Werkgroep"
-
-msgid ""
-"Workgroup the server will appear to be in when queried by clients (maximum "
-"15 characters)."
-msgstr ""
-"De werkgroep waarin de server verschijnt voor de werkstations (maximaal 15 "
-"tekens)."
 
 msgid "Working directory"
 msgstr "Werkmap"
@@ -7458,77 +7458,55 @@ msgstr "upriv"
 msgid "version:"
 msgstr "versie:"
 
-#, c-format
+#, php-format
+#~ msgid "%s advertises itself as a time server to Windows clients."
+#~ msgstr "%s maakt zich kenbaar als tijdserver voor windows clienten"
+
+#, php-format
 #~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid NetBIOS name."
+#~ "After you click &quot;Save&quot;, you may also have to do one or more of the "
+#~ "following steps before you can access %s again: <ul><li>change the IP "
+#~ "address of your computer</li><li>access the webGUI with the new IP "
+#~ "address</li></ul>"
 #~ msgstr ""
-#~ "Het attribuut '%s' bevat ongeldige karakters en is geen geldig Netbios naam."
+#~ "Na gebruik van de knop &quot;Opslaan&quot;, moet u mogelijk ook één van de "
+#~ "volgende stappen uitvoeren om opnieuw toegang tot %s te krijgen: "
+#~ "<ul><li>Verander het IP-adres van uw computer</li><li>Open de webGUI met het "
+#~ "nieuwe IP-adres</li></ul>"
 
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid domain name."
+#, php-format
+#~ msgid "Allows %s to try and become a local master browser."
+#~ msgstr "Sta toe dat %s lokale hoofd browser wordt."
+
+#~ msgid "Directory to incomplete files. An empty field means disable."
 #~ msgstr ""
-#~ "Het attribuut '%s' bevat ongeldige karakters en is geen geldig domeinnaam."
-
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid host name."
-#~ msgstr ""
-#~ "Het attribuut '%s' bevat ongeldige karakters en is geen geldig host naam."
-
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains invalid characters and is no valid workgroup "
-#~ "name."
-#~ msgstr ""
-#~ "Het attribuut '%s' bevat ongeldige karakters en is geen geldig werkgroepnaam."
-
-#, c-format
-#~ msgid ""
-#~ "The attribute '%s' contains the illegal character ':' and is no valid "
-#~ "password."
-#~ msgstr ""
-#~ "Het attribuut '%s' bevat het ongeldige karakter ':' en is geen geldig "
-#~ "wachtwoord."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid IP address."
-#~ msgstr "Het attribuut '%s' is geen geldig IP-adres."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid MAC address."
-#~ msgstr "Het attribuut '%s' is geen geldig MAC-adres."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid file mode mask."
-#~ msgstr "Het attribuut '%s' is geen geldig bestandmode masker."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid subnet mask."
-#~ msgstr "Het attribuut '%s' is geen geldig subnetmasker."
-
-#, c-format
-#~ msgid "The attribute '%s' is no valid time."
-#~ msgstr "De attribuut '%s' is geen geldige tijd."
-
-#~ msgid "There must be a minimum of 2 disks in a RAID 5 volume."
-#~ msgstr "Er moeten minimaal 2 schijven zijn in een RAID 5 volume."
-
-#~ msgid "This email has been send to validate your email configuration."
-#~ msgstr ""
-#~ "Dit e-mail bericht is verzonden om uw email configuratie te valideren."
-
-#~ msgid "This is for information only (not using during iSCSI negociation)."
-#~ msgstr ""
-#~ "Dit is alleen ter informatie (wordt niet gebruikt tijdens iSCSI "
-#~ "onderhandelingen)."
+#~ "De map met incomplete bestanden. Een leeg gelaten veld betekend "
+#~ "uitgeschakeld."
 
 #~ msgid ""
-#~ "There is wrong ID in the disk of config. Please remove the disk and re-add "
-#~ "it or use 'clear and import'."
+#~ "If the server is behind a proxy set this parameters to give local services "
+#~ "access to the internet via proxy."
 #~ msgstr ""
-#~ "Er is verkeerde ID in de schijf van config . Verwijder de schijf en voeg "
-#~ "deze opnieuw toe voor deze te gebruiken 'leegmaken en importeren'."
+#~ "Als de server zich achter een proxy bevindt, vul dan hier deze gegevens in "
+#~ "om de lokale services internet toegang te verlenen door middel van een proxy "
+#~ "server."
 
-#~ msgid "The current password is incorrect entered."
-#~ msgstr "Het huidige wachtwoord is onjuist ingevoerd."
+#~ msgid "The password change protocol to use."
+#~ msgstr "Het te gebruiken protocol voor wachtwoord veranderingen."
+
+#~ msgid ""
+#~ "Use the new 64k streaming read and write varient SMB requests introduced "
+#~ "with Windows 2000."
+#~ msgstr ""
+#~ "Gebruik de nieuwe 64k lees/schrijf variant voor SMB aanvragen, "
+#~ "geïntroduceerd met Windows 2000."
+
+#~ msgid "Built date"
+#~ msgstr "Gecompileerd"
+
+#~ msgid ""
+#~ "Workgroup the server will appear to be in when queried by clients (maximum "
+#~ "15 characters)."
+#~ msgstr ""
+#~ "De werkgroep waarin de server verschijnt voor de werkstations (maximaal 15 "
+#~ "tekens)."
