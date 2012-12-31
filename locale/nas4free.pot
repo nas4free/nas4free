@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
-"POT-Creation-Date: 2012-12-29 17:48+0000\n"
+"POT-Creation-Date: 2012-12-31 17:43+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -41,10 +41,6 @@ msgstr ""
 
 #, php-format
 msgid "%dB / block"
-msgstr ""
-
-#, php-format
-msgid "%s advertises itself as a time server to Windows clients."
 msgstr ""
 
 #, php-format
@@ -385,7 +381,7 @@ msgid "Advertisement skew"
 msgstr ""
 
 #, php-format
-msgid "After you click &quot;Save&quot;, you may also have to do one or more of the following steps before you can access %s again: <ul><li>change the IP address of your computer</li><li>access the webGUI with the new IP address</li></ul>"
+msgid "After you click &quot;Save&quot;, you may also have to do one or more of the following steps before you can access this server again: <ul><li>change the IP address of your computer</li><li>access the webGUI with the new IP address</li></ul>"
 msgstr ""
 
 #, php-format
@@ -444,11 +440,11 @@ msgstr ""
 msgid "Allows  certain  users and groups to have read/write access to a share. This follows the allow option format."
 msgstr ""
 
-#, php-format
-msgid "Allows %s to try and become a local master browser."
+msgid "Allows certain users and groups to have read-only  access  to  a share. This follows the allow option format."
 msgstr ""
 
-msgid "Allows certain users and groups to have read-only  access  to  a share. This follows the allow option format."
+#, php-format
+msgid "Allows the server to try and become a local master browser."
 msgstr ""
 
 msgid "AltRoot"
@@ -641,7 +637,7 @@ msgstr ""
 msgid "Browseable"
 msgstr ""
 
-msgid "Built date"
+msgid "Build date"
 msgstr ""
 
 msgid "Bulgarian"
@@ -1313,6 +1309,9 @@ msgstr ""
 msgid "Directory"
 msgstr ""
 
+msgid "Directory for incomplete files. An empty field means disable."
+msgstr ""
+
 msgid "Directory listing"
 msgstr ""
 
@@ -1320,9 +1319,6 @@ msgid "Directory mask"
 msgstr ""
 
 msgid "Directory that contains removable media. (e.g /mnt/iscsi/)"
-msgstr ""
-
-msgid "Directory to incomplete files. An empty field means disable."
 msgstr ""
 
 msgid "Directory to watch for new .torrent files."
@@ -2431,7 +2427,7 @@ msgstr ""
 msgid "If the selected disk/partition is mounted it will be unmounted temporarily to perform selected command, otherwise the commands work in read-only mode.<br />Service disruption to users accessing this mount will occur during this process."
 msgstr ""
 
-msgid "If the server is behind a proxy set this parameters to give local services access to the internet via proxy."
+msgid "If the server is behind a proxy set these parameters to give local services access to the internet via proxy."
 msgstr ""
 
 msgid "If this parameter is set, Samba attempts to first read DOS attributes (SYSTEM, HIDDEN, ARCHIVE or READ-ONLY) from a filesystem extended attribute, before mapping DOS attributes to UNIX permission bits. When set, DOS attributes will be stored onto an extended attribute in the UNIX filesystem, associated with the file or directory."
@@ -4924,10 +4920,10 @@ msgstr ""
 msgid "The old password is not correct."
 msgstr ""
 
-msgid "The password change protocol to use."
+msgid "The password contains the illegal character ':'."
 msgstr ""
 
-msgid "The password contains the illegal character ':'."
+msgid "The password encryption protocol to use."
 msgstr ""
 
 msgid "The passwords do not match."
@@ -4990,6 +4986,10 @@ msgid "The rule number determines the order of the rule."
 msgstr ""
 
 msgid "The serial or USB port where your UPS is connected."
+msgstr ""
+
+#, php-format
+msgid "The server advertises itself as a time server to Windows clients."
 msgstr ""
 
 msgid "The server has been reset to factory defaults and is now rebooting. This may take one minute."
@@ -5061,6 +5061,9 @@ msgid "The value of the variable."
 msgstr ""
 
 msgid "The volume must be detached before it can be deleted."
+msgstr ""
+
+msgid "The workgroup in which the server will appear when queried by Windows or SMB clients (maximum 15 characters)."
 msgstr ""
 
 msgid "The working directory does not exist."
@@ -5612,7 +5615,7 @@ msgstr ""
 msgid "Use the following IP address as the source address in outgoing packets."
 msgstr ""
 
-msgid "Use the new 64k streaming read and write varient SMB requests introduced with Windows 2000."
+msgid "Use the new 64k streaming read and write variant SMB requests introduced with Windows 2000."
 msgstr ""
 
 msgid "Use the specified NTP server."
@@ -5812,9 +5815,6 @@ msgid "Wireless configuration"
 msgstr ""
 
 msgid "Workgroup"
-msgstr ""
-
-msgid "Workgroup the server will appear to be in when queried by clients (maximum 15 characters)."
 msgstr ""
 
 msgid "Working directory"
