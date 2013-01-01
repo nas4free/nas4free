@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2012-12-31 17:43+0000\n"
-"PO-Revision-Date: 2012-12-29 17:36+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"PO-Revision-Date: 2012-12-31 21:27+0000\n"
+"Last-Translator: m <galant-rostov@yandex.ru>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-31 17:44+0000\n"
+"X-Launchpad-Export-Date: 2013-01-01 12:36+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
@@ -2789,6 +2789,8 @@ msgid ""
 "If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
 msgstr ""
+"Если сервер расположен за прокси, то настройте эти параметры, чтобы "
+"локальные службы получили доступ к интернету через прокси."
 
 msgid ""
 "If this parameter is set, Samba attempts to first read DOS attributes "
@@ -2852,7 +2854,7 @@ msgid "Import on-disk ZFS config"
 msgstr "Импортировать конфигурацию с дисков ZFS"
 
 msgid "Import software raid disks"
-msgstr ""
+msgstr "Импортировать диски программного RAID"
 
 msgid "In"
 msgstr "Входящий"
@@ -4459,7 +4461,7 @@ msgid "Reverse direction"
 msgstr "Обратное направление"
 
 msgid "Role"
-msgstr ""
+msgstr "Роль"
 
 msgid "Romanian"
 msgstr "Румынский"
@@ -4638,7 +4640,7 @@ msgstr "Безопасность"
 msgid ""
 "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
 "Secure (HTTPS) for the WebGUI."
-msgstr ""
+msgstr "Укажите протокол доступа к веб-интерфейсу: HTTP или HTTPS"
 
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr "Укажите диск с включенным S.M.A.R.T."
@@ -4653,7 +4655,7 @@ msgid "Select the FreeBSD package to be installed."
 msgstr "Выберите пакет FreeBSD для установки."
 
 msgid "Select the language of the WebGUI."
-msgstr ""
+msgstr "Укажите язык веб-интерфейса"
 
 msgid "Select the location closest to you."
 msgstr "Выберите часовой пояс."
@@ -4756,12 +4758,16 @@ msgstr ""
 
 msgid "Set title scrolling speed between 0-10 (default 10)."
 msgstr ""
+"Выберите скорость прокручивания заголовка от 0 до 10 (по умолчанию: 10)"
 
 msgid ""
 "Set what user the service will run as (www by default). <br><b><font "
 "color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
 "security reasons, use it on your own risk!</b></br>"
 msgstr ""
+"Укажите, от имени какого пользователя запускать службу (по умолчанию: www). "
+"<br><b><font color='red'>ВНИМАНИЕ</font>: Запуск от имени пользователя root  "
+"<u>не рекомендуется</u> из соображений безопасности!</b></br>"
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
@@ -5299,23 +5305,31 @@ msgid ""
 "The attribute '%s' contains invalid characters and is not a valid NetBIOS "
 "name."
 msgstr ""
+"Значение '%s' содержит недопустимые символы и не является допустимым именем "
+"NetBIOS."
 
 #, c-format
 msgid ""
 "The attribute '%s' contains invalid characters and is not a valid domain "
 "name."
 msgstr ""
+"Значение '%s' содержит недопустимые символы и не является допустимым "
+"доменным именем."
 
 #, c-format
 msgid ""
 "The attribute '%s' contains invalid characters and is not a valid host name."
 msgstr ""
+"Значение '%s' содержит недопустимые символы и не является допустимым именем "
+"хоста."
 
 #, c-format
 msgid ""
 "The attribute '%s' contains invalid characters and is not a valid workgroup "
 "name."
 msgstr ""
+"Значение '%s' содержит недопустимые символы и не является допустимым "
+"названием рабочей группы."
 
 #, c-format, php-format
 msgid "The attribute '%s' contains invalid characters."
@@ -5326,6 +5340,8 @@ msgid ""
 "The attribute '%s' contains the illegal character ':' and is not a valid "
 "password."
 msgstr ""
+"Значение '%s' содержит недопустимый символ ':'  и не является допустимым "
+"паролем."
 
 #, c-format
 msgid "The attribute '%s' does not appear to be a valid certificate."
@@ -5349,11 +5365,11 @@ msgstr "Атрибут '%s' неверен."
 
 #, c-format
 msgid "The attribute '%s' is not a valid IP address."
-msgstr ""
+msgstr "Значение '%s' не является допустимым IP адресом."
 
 #, c-format
 msgid "The attribute '%s' is not a valid MAC address."
-msgstr ""
+msgstr "Значение '%s' не является допустимым MAC адресом."
 
 #, c-format
 msgid "The attribute '%s' is not a valid file mode mask."
@@ -5361,7 +5377,7 @@ msgstr ""
 
 #, c-format
 msgid "The attribute '%s' is not a valid subnet mask."
-msgstr ""
+msgstr "Значение '%s' не является допустимой маской подсети."
 
 #, c-format
 msgid "The attribute '%s' is not a valid time value."
@@ -7299,55 +7315,3 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr ""
-
-#, php-format
-#~ msgid "%s advertises itself as a time server to Windows clients."
-#~ msgstr "Предлагать %s в качестве сервера времени для клиентов Windows."
-
-#, php-format
-#~ msgid ""
-#~ "After you click &quot;Save&quot;, you may also have to do one or more of the "
-#~ "following steps before you can access %s again: <ul><li>change the IP "
-#~ "address of your computer</li><li>access the webGUI with the new IP "
-#~ "address</li></ul>"
-#~ msgstr ""
-#~ "После нажатия &quot;Сохранить&quot; для последующего доступа к %s может "
-#~ "потребоваться: <ul><li>сменить IP-адрес вашего компьютера;</li><li>войти в "
-#~ "web-интерфейс управления с новым IP-адресом.</li></ul>"
-
-#, php-format
-#~ msgid "Allows %s to try and become a local master browser."
-#~ msgstr ""
-#~ "Позволять %s участвовать в выборах и стать основным локальным обозревателем "
-#~ "сети."
-
-#~ msgid "Directory to incomplete files. An empty field means disable."
-#~ msgstr ""
-#~ "Каталог для файлов, загруженных не полностью. Пустое поле отключает эту "
-#~ "настройку."
-
-#~ msgid ""
-#~ "If the server is behind a proxy set this parameters to give local services "
-#~ "access to the internet via proxy."
-#~ msgstr ""
-#~ "Если доступ в Интернет осуществляется через прокси-сервер, установите этот "
-#~ "параметр для использования Интернета локальными службами."
-
-#~ msgid "The password change protocol to use."
-#~ msgstr "Используемый протокол шифрования пароля."
-
-#~ msgid ""
-#~ "Use the new 64k streaming read and write varient SMB requests introduced "
-#~ "with Windows 2000."
-#~ msgstr ""
-#~ "Использовать потоковые SMB-запросы размером 64к, введенные в Windows 2000."
-
-#~ msgid ""
-#~ "Workgroup the server will appear to be in when queried by clients (maximum "
-#~ "15 characters)."
-#~ msgstr ""
-#~ "Сервер рабочей группы появится тогда, когда он будет запрошен клиентами (не "
-#~ "более 15 символов)."
-
-#~ msgid "Built date"
-#~ msgstr "Дата сборки"
