@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2012-12-31 17:43+0000\n"
-"PO-Revision-Date: 2012-12-31 13:26+0000\n"
+"PO-Revision-Date: 2013-01-01 11:02+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-31 17:44+0000\n"
+"X-Launchpad-Export-Date: 2013-01-01 12:32+0000\n"
 "X-Generator: Launchpad (build 16378)\n"
 "X-Poedit-Country: CHINA\n"
 "Language: \n"
@@ -444,6 +444,8 @@ msgid ""
 "IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
+"當您單擊&quot;儲存&quot;後，您可能得執行以下步驟才能再訪問伺服器：<ul><li>更改您的電腦的 IP 位址</li><li>使用新的IP "
+"位址訪問WebGUI。</li></ul>"
 
 #, php-format
 msgid ""
@@ -523,7 +525,7 @@ msgstr "允許特定用戶與群組可唯讀某個分享區。此選項使用允
 
 #, php-format
 msgid "Allows the server to try and become a local master browser."
-msgstr ""
+msgstr "允許服務器嘗試成為本局域網主瀏覽器（local master browser）。"
 
 msgid "AltRoot"
 msgstr "標識備用根目錄"
@@ -723,7 +725,7 @@ msgid "Browseable"
 msgstr "可瀏覽"
 
 msgid "Build date"
-msgstr ""
+msgstr "創建日期"
 
 msgid "Bulgarian"
 msgstr "保加利亞文"
@@ -1459,7 +1461,7 @@ msgid "Directory"
 msgstr "目錄"
 
 msgid "Directory for incomplete files. An empty field means disable."
-msgstr ""
+msgstr "未完畢檔案的目錄。空白表示表示關閉。"
 
 msgid "Directory listing"
 msgstr "目錄列表"
@@ -2462,10 +2464,10 @@ msgid "Hardware"
 msgstr "硬體"
 
 msgid "Header and Data digest"
-msgstr ""
+msgstr "頭摘要和數據摘要"
 
 msgid "Header digest"
-msgstr ""
+msgstr "頭摘要"
 
 msgid "Health"
 msgstr "健康度"
@@ -2652,7 +2654,7 @@ msgstr "如果所選磁盤/分區已經掛載，它會被暫時卸載以執行�
 msgid ""
 "If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
-msgstr ""
+msgstr "如果伺服器是在代理伺服器後，設置此以讓本地服務通過代理伺服器連接到互聯網。"
 
 msgid ""
 "If this parameter is set, Samba attempts to first read DOS attributes "
@@ -3032,7 +3034,7 @@ msgid "Local"
 msgstr "區域"
 
 msgid "Local Master Browser"
-msgstr "Local Master Browser"
+msgstr "局域網主瀏覽器（Local Master Browser）。"
 
 msgid "Local User"
 msgstr "局域用戶"
@@ -5283,7 +5285,7 @@ msgid "The image file is corrupt"
 msgstr "映像檔已損毀"
 
 msgid "The initial digest mode negotiated with the initiator."
-msgstr ""
+msgstr "最初的摘要模式談判的發起者。"
 
 msgid ""
 "The initiator can access to the target via the portals by authorised "
@@ -5386,7 +5388,7 @@ msgid "The password contains the illegal character ':'."
 msgstr "密碼包含了無效的字元 ':'。"
 
 msgid "The password encryption protocol to use."
-msgstr ""
+msgstr "此參數指定密碼加密協議。"
 
 msgid "The passwords do not match."
 msgstr "您輸入的密碼不符合。"
@@ -5471,7 +5473,7 @@ msgstr "您的 UPS 連接的串行端口或 USB 端口。"
 
 #, php-format
 msgid "The server advertises itself as a time server to Windows clients."
-msgstr ""
+msgstr "向Windows客戶端廣播本時間伺服器。"
 
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
@@ -5554,7 +5556,7 @@ msgstr "磁碟必需先移除才可以刪除。"
 msgid ""
 "The workgroup in which the server will appear when queried by Windows or SMB "
 "clients (maximum 15 characters)."
-msgstr ""
+msgstr "伺服器的 Workgroup 名稱（最多15個字符）。"
 
 msgid "The working directory does not exist."
 msgstr "工作目錄不存在。"
@@ -6754,7 +6756,7 @@ msgid "revision"
 msgstr "修訂版本"
 
 msgid "rotated block-interleaved parity"
-msgstr ""
+msgstr "單奇偶校驗"
 
 msgid "scan target failed."
 msgstr "掃描目標失敗。"
@@ -6783,40 +6785,3 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr "版本："
-
-#, php-format
-#~ msgid "%s advertises itself as a time server to Windows clients."
-#~ msgstr "設定%s成為Windows客戶端的時間伺服器。"
-
-#, php-format
-#~ msgid "Allows %s to try and become a local master browser."
-#~ msgstr "讓 %s 嘗試成為 local master browser。"
-
-#~ msgid ""
-#~ "Use the new 64k streaming read and write varient SMB requests introduced "
-#~ "with Windows 2000."
-#~ msgstr "使用 Windows 2000 之後新增的 64K 串流選項。"
-
-#, php-format
-#~ msgid ""
-#~ "After you click &quot;Save&quot;, you may also have to do one or more of the "
-#~ "following steps before you can access %s again: <ul><li>change the IP "
-#~ "address of your computer</li><li>access the webGUI with the new IP "
-#~ "address</li></ul>"
-#~ msgstr ""
-#~ "當您單擊 &quot;儲存&quot; 之後，請繼續執行一個或多個以下步驟，才能再次連線至 "
-#~ "%s：<ul><li>變更電腦上的IP位址</li><li>使用新的IP位址來連接網頁管理介面</li></ul>"
-
-#~ msgid "Directory to incomplete files. An empty field means disable."
-#~ msgstr "未完畢檔案的目錄。空白值表示關閉。"
-
-#~ msgid ""
-#~ "If the server is behind a proxy set this parameters to give local services "
-#~ "access to the internet via proxy."
-#~ msgstr "如果此伺服器位於代理伺服器後面，設定這個參數會讓本地端服務能透過代理伺服器連接網際網路。"
-
-#~ msgid "The password change protocol to use."
-#~ msgstr "密碼變更的協議。"
-
-#~ msgid "Built date"
-#~ msgstr "發布日期"
