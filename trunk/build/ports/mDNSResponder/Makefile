@@ -1,8 +1,8 @@
 PORTNAME=		mDNSResponder
-PORTVERSION=	379.32.1
+PORTVERSION=	333.10
 CATEGORIES=		net dns
 COMMENT=		Apple's mDNSResponder
-MAINTAINER=		zoon01@nas4free.org
+MAINTAINER=		aoyama@peach.ne.jp
 
 MASTER_SITES=	http://www.opensource.apple.com/tarballs/mDNSResponder/
 DISTNAME=		${PORTNAME}-${PORTVERSION}
