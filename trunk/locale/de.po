@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2012-12-31 17:43+0000\n"
-"PO-Revision-Date: 2012-12-29 17:41+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"PO-Revision-Date: 2013-01-07 01:24+0000\n"
+"Last-Translator: apollo567 <apollo567@hotmail.de>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-12-31 17:44+0000\n"
-"X-Generator: Launchpad (build 16378)\n"
+"X-Launchpad-Export-Date: 2013-01-28 12:48+0000\n"
+"X-Generator: Launchpad (build 16451)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
 "X-Poedit-Language: German\n"
@@ -135,6 +135,8 @@ msgid ""
 "<div id='enumeration'><ul><li>The new password is also the default root "
 "password of the system!</li></ul></div>"
 msgstr ""
+"<div id='enumeration'><ul><li>Das neue Passwort ist auch das vorgegebene "
+"Systemverwalterpasswort des Systems!</li></ul></div>"
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -774,7 +776,7 @@ msgid "Browseable"
 msgstr "Sichtbar"
 
 msgid "Build date"
-msgstr ""
+msgstr "Build-Datum"
 
 msgid "Bulgarian"
 msgstr "Bulgarisch"
@@ -1203,7 +1205,7 @@ msgid "Current Version:"
 msgstr "Aktuelle Version:"
 
 msgid "Current password"
-msgstr ""
+msgstr "Aktuelles Passwort"
 
 msgid "Custom"
 msgstr "Benutzerdefiniert"
@@ -1547,6 +1549,7 @@ msgstr "Verzeichnis"
 
 msgid "Directory for incomplete files. An empty field means disable."
 msgstr ""
+"Ordner für unvollständige Dateien. Ein leeres Feld bedeutet deaktivieren."
 
 msgid "Directory listing"
 msgstr "Verzeichnisauflistung"
@@ -2186,6 +2189,9 @@ msgid ""
 "Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
+"Geben Sie eine individuelle Port-Nr. für den Zugriff auf die Web-Oberfläche "
+"von NAS4Free nur ein, wenn Sie den Standardwert überschreiben wollen (80 für "
+"HTTP, 443 für HTTPS)"
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Geben Sie einen gültigen sysctl MIB Namen an."
@@ -2253,7 +2259,7 @@ msgid "Export"
 msgstr "Exportieren"
 
 msgid "Export all the directories in the specified path."
-msgstr ""
+msgstr "Alle Ordner im angegebenen Pfad exportieren."
 
 msgid "Extended attributes"
 msgstr "Erweiterte Attribute"
@@ -2593,6 +2599,8 @@ msgstr "HAST Volumen"
 
 msgid "HAST volume can be use with GPT/UFS only."
 msgstr ""
+"Die HAST -Funktionalität ist nur für GPT/UFS formatierte Festplatten "
+"verfügbar"
 
 msgid "HTTP Proxy"
 msgstr "HTTP-Proxy"
@@ -2779,6 +2787,8 @@ msgstr ""
 
 msgid "If allowed, a user of the trusted domains can access the share."
 msgstr ""
+"Wenn erlaubt, kann ein Benutzer der vertrauenswürdigen Domäne auf die "
+"Freigabe zugreifen."
 
 msgid ""
 "If default root is enabled, a chroot operation is performed immediately "
@@ -2816,6 +2826,9 @@ msgid ""
 "If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
 msgstr ""
+"Legen Sie diese Parameter fest, wenn sich der Server hinter einem Proxy "
+"befindet, um lokalen Diensten den Zugriff auf das Internet via Proxy zu "
+"ermöglichen."
 
 msgid ""
 "If this parameter is set, Samba attempts to first read DOS attributes "
@@ -2855,6 +2868,9 @@ msgid ""
 "reboot immediately. The entire system configuration will be overwritten. The "
 "LAN IP address will be reset to %s and the password will be set to '%s'."
 msgstr ""
+"Wenn Sie mit 'Ja' bestätigen, wird die Serverkonfiguration auf die "
+"Standardwerte zurückgesetzt. Die aktuelle Konfiguration geht verloren. Die "
+"LAN IP Adresse wird auf %s und das Passwort auf '%s' geändert."
 
 msgid ""
 "If you want to change the password for accessing the WebGUI, enter it here "
@@ -3017,11 +3033,15 @@ msgid ""
 "It is not recommanded to import non healthy pools nor virtual devices that "
 "are part of a non healthy pool."
 msgstr ""
+"Es wird empfohlen keine ZFS-Pools mit mangelhafter Integrität zu importieren "
+"!"
 
 msgid ""
 "It's recommended to change the default username and password for accessing "
 "the WebGUI, enter the username here."
 msgstr ""
+"Es wird dringend empfohlen zur Sicherheit den Standard-Usernamen und das "
+"Standard-Passwort zu ändern und individuell neu festzulegen"
 
 msgid "Italian"
 msgstr "Italienisch"
@@ -3660,7 +3680,7 @@ msgid "New Device"
 msgstr "Neues Gerät"
 
 msgid "New password"
-msgstr ""
+msgstr "Neues Passwort"
 
 msgid "No"
 msgstr "Nein"
@@ -4675,6 +4695,8 @@ msgid ""
 "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
 "Secure (HTTPS) for the WebGUI."
 msgstr ""
+"Wahlen sie die Zugriffsmethode auf die NAS4Free Weboberfläche aus (HTTP oder "
+"HTTPS)."
 
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr ""
@@ -4690,7 +4712,7 @@ msgid "Select the FreeBSD package to be installed."
 msgstr "Das zu installierende FreeBSD Package auswählen."
 
 msgid "Select the language of the WebGUI."
-msgstr ""
+msgstr "Wählen Sie die Sprache der NAS4Free Weboberfläche"
 
 msgid "Select the location closest to you."
 msgstr "Wählen Sie den Standort, der Ihnen am nächsten liegt."
@@ -4700,6 +4722,8 @@ msgid ""
 "Select the server configuration XML file and click the button below to "
 "restore the configuration."
 msgstr ""
+"Wählen Sie die XML-Datei mit der Server-Konfiguration aus und klicken Sie "
+"auf den unten stehenden Knopf, um die Konfiguration wiederherzustellen."
 
 msgid "Select your read balance algorithm."
 msgstr "Auswahl des 'Read Balance Algorithmus'."
@@ -5154,7 +5178,7 @@ msgid "System Beep"
 msgstr "Systemlautsprecher piept"
 
 msgid "System bios"
-msgstr ""
+msgstr "System-Bios"
 
 msgid "System events"
 msgstr "Systemereignisse"
@@ -5346,23 +5370,31 @@ msgid ""
 "The attribute '%s' contains invalid characters and is not a valid NetBIOS "
 "name."
 msgstr ""
+"Das Eingabefeld '%s' enthält ungültige Buchstaben und ist kein gültiger "
+"NETBIOS Name."
 
 #, c-format
 msgid ""
 "The attribute '%s' contains invalid characters and is not a valid domain "
 "name."
 msgstr ""
+"Das Eingabefeld '%s' enthält ungültige Buchstaben und ist kein gültiger "
+"Domain Name eines Netzwerks"
 
 #, c-format
 msgid ""
 "The attribute '%s' contains invalid characters and is not a valid host name."
 msgstr ""
+"Das Eingabefeld '%s' enthält ungültige Buchstaben und ist kein gültiger Host "
+"Name ."
 
 #, c-format
 msgid ""
 "The attribute '%s' contains invalid characters and is not a valid workgroup "
 "name."
 msgstr ""
+"Das Eingabefeld '%s' enthält ungültige Buchstaben und ist kein gültiger Name "
+"einer Arbeitsgruppe ."
 
 #, c-format, php-format
 msgid "The attribute '%s' contains invalid characters."
@@ -5373,6 +5405,8 @@ msgid ""
 "The attribute '%s' contains the illegal character ':' and is not a valid "
 "password."
 msgstr ""
+"Das Eingabefeld '%s' enthält ungültige Buchstaben und ist kein gültiges "
+"Passwort."
 
 #, c-format
 msgid "The attribute '%s' does not appear to be a valid certificate."
@@ -5396,11 +5430,12 @@ msgstr "Das Attribut '%s' ist ungültig."
 
 #, c-format
 msgid "The attribute '%s' is not a valid IP address."
-msgstr ""
+msgstr "Das Eingabefeld '%s' enthält keine gültige IP Adresse."
 
 #, c-format
 msgid "The attribute '%s' is not a valid MAC address."
 msgstr ""
+"Das Eingabefeld '%s' enthält keine gültige MAC Adresse eine Netzwerkkarte."
 
 #, c-format
 msgid "The attribute '%s' is not a valid file mode mask."
@@ -5412,7 +5447,7 @@ msgstr ""
 
 #, c-format
 msgid "The attribute '%s' is not a valid time value."
-msgstr ""
+msgstr "Das Eingabefeld '%s' enthält eine ungültige Zeitangabe"
 
 #, c-format, php-format
 msgid "The attribute '%s' is required."
@@ -5534,7 +5569,7 @@ msgid "The cron job has been executed successfully."
 msgstr "Der cron job wurde erfolgreich ausgeführt."
 
 msgid "The current password is incorrectly entered."
-msgstr ""
+msgstr "Das aktuelle Passwort wurde falsch eingegeben."
 
 #, php-format
 msgid ""
@@ -5786,6 +5821,8 @@ msgstr "Das Netzwerk '%s' ist ungültig."
 msgid ""
 "The new password does not match. Please ensure the passwords match exactly."
 msgstr ""
+"Das neue Passwort stimmt nicht überein. Bitte stellen Sie sicher, dass die "
+"Passwörter einander exakt entsprechen."
 
 msgid "The number of clients must be between 1 and 50."
 msgstr "Die Anzahl der Clients muss zwischen 1 und 50 liegen."
@@ -5797,7 +5834,7 @@ msgid "The password contains the illegal character ':'."
 msgstr "Das Passwort enthält das ungültige Zeichen ':'."
 
 msgid "The password encryption protocol to use."
-msgstr ""
+msgstr "Das zu verwendende Protokoll für die Passwortverschlüsselung."
 
 msgid "The passwords do not match."
 msgstr "Die Passwörter stimmen nicht überein."
@@ -5894,6 +5931,7 @@ msgstr "Serieller oder USB-Port an dem die USV angeschlossen ist."
 #, php-format
 msgid "The server advertises itself as a time server to Windows clients."
 msgstr ""
+"Der Server deklariert sich gegenüber dem Windowsclient als Zeitserver"
 
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
@@ -5905,6 +5943,7 @@ msgstr ""
 #, php-format
 msgid "The server will reboot after restoring the configuration."
 msgstr ""
+"Der Server wird nach dem Wiederherstellen der Konfiguration neu starten."
 
 msgid "The share name is already used."
 msgstr "Der Freigabenamen ist bereits vergeben."
@@ -5989,6 +6028,8 @@ msgid ""
 "The workgroup in which the server will appear when queried by Windows or SMB "
 "clients (maximum 15 characters)."
 msgstr ""
+"Die Arbeitsgruppe unter der eine Windows- oder Samba-Client den Server "
+"ansprechen kann  (maximal 15 Zeichen möglich)"
 
 msgid "The working directory does not exist."
 msgstr "Das Arbeitsverzeichnis existiert nicht."
@@ -6004,6 +6045,9 @@ msgid ""
 "There is wrong disk ID in the config. Please remove the disk and re-add it "
 "or use 'clear and import'."
 msgstr ""
+"In der Konfigurationsdatei ist eine ungültige Disk-ID enthalten. Entfernen "
+"Sie diesen Eintrag (Disk-ID) aus der Konfigurationsdatei und fügen Sie diese "
+"mit dem Befehl 'clear and import' wieder hinzu."
 
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "Zwei Festplatten sind für ein RAID 1 notwendig."
@@ -6609,6 +6653,8 @@ msgstr ""
 #, php-format
 msgid "To use subdirectories, you must mount each directories. (e.g. %s)"
 msgstr ""
+"Um Unterverzeichnisse zu nutzen,  müssen diese einzeln verbunden (mounted) "
+"werden (z.B. %s)"
 
 msgid "Tolerated"
 msgstr "Toleriert"
@@ -6666,7 +6712,7 @@ msgid "Trivial File Transfer Protocol"
 msgstr "Trivial File Transfer Protocol"
 
 msgid "Trusted domains"
-msgstr ""
+msgstr "authorisierte Netzwerkdomänen"
 
 msgid "Try to force import."
 msgstr "Versuche die Importierung zu erzwingen."
@@ -6841,6 +6887,8 @@ msgid ""
 "Use the new 64k streaming read and write variant SMB requests introduced "
 "with Windows 2000."
 msgstr ""
+"Nutzung der 64K Streaming Lese- und Schreibzugriffe über Samba/SMB "
+"(eingeführt mit Windows 2000')"
 
 msgid "Use the specified NTP server."
 msgstr "Verwendet den angegebenen NTP Server."
@@ -7397,56 +7445,3 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr ""
-
-#, php-format
-#~ msgid "%s advertises itself as a time server to Windows clients."
-#~ msgstr "%s meldet sich selbst als Zeitserver gegenüber Windows Clients."
-
-#, php-format
-#~ msgid ""
-#~ "After you click &quot;Save&quot;, you may also have to do one or more of the "
-#~ "following steps before you can access %s again: <ul><li>change the IP "
-#~ "address of your computer</li><li>access the webGUI with the new IP "
-#~ "address</li></ul>"
-#~ msgstr ""
-#~ "Nach dem Klick auf &quot;Sichern&quot;, könnten einige Arbeitsschritte "
-#~ "notwendig werden, bevor wieder ein Zugriff auf %s möglich ist: "
-#~ "<ul><li>Änderung der IP-Adresse des Systems</li><li>Zugriff auf die WebGUI "
-#~ "via neuer IP-Adresse</li></ul>"
-
-#, php-format
-#~ msgid "Allows %s to try and become a local master browser."
-#~ msgstr "Versucht %s als 'Local Master Browser' einzurichten."
-
-#~ msgid "Directory to incomplete files. An empty field means disable."
-#~ msgstr ""
-#~ "Verzeichnis in dem unfertige Dateien gespeichert werden. Ein leerer Pfad "
-#~ "deaktiviert diese Funktion."
-
-#~ msgid ""
-#~ "If the server is behind a proxy set this parameters to give local services "
-#~ "access to the internet via proxy."
-#~ msgstr ""
-#~ "Wenn der Server hinter einem Proxy sitzt, dann setzen Sie diese Parameter um "
-#~ "lokalen Diensten den Zugang zum Internet über den Proxy zu gewähren."
-
-#~ msgid "The password change protocol to use."
-#~ msgstr ""
-#~ "Mit dem Kennwort das Protokoll, welches verwendet werden soll, ändern."
-
-#~ msgid ""
-#~ "Use the new 64k streaming read and write varient SMB requests introduced "
-#~ "with Windows 2000."
-#~ msgstr ""
-#~ "Die neue 64k Lese-/Schreibtechnologie für SMB-Anfragen verwenden. "
-#~ "(Eingeführt mit Windows 2000)"
-
-#~ msgid ""
-#~ "Workgroup the server will appear to be in when queried by clients (maximum "
-#~ "15 characters)."
-#~ msgstr ""
-#~ "Arbeitsgruppe in welcher der Server bei Anfragen erscheinen wird (maximal 15 "
-#~ "Zeichen)."
-
-#~ msgid "Built date"
-#~ msgstr "Erstellt am"

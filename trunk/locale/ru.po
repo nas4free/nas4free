@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2012-12-31 17:43+0000\n"
-"PO-Revision-Date: 2012-12-31 21:27+0000\n"
-"Last-Translator: m <galant-rostov@yandex.ru>\n"
+"PO-Revision-Date: 2013-01-28 10:22+0000\n"
+"Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-01-01 12:36+0000\n"
-"X-Generator: Launchpad (build 16378)\n"
+"X-Launchpad-Export-Date: 2013-01-28 12:48+0000\n"
+"X-Generator: Launchpad (build 16451)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
 "X-Poedit-Language: Russian\n"
@@ -80,10 +80,10 @@ msgstr "%s байт доступно из %s байт"
 
 #, c-format, php-format
 msgid "%sB used of %sB"
-msgstr "занято %s из %s байт"
+msgstr "занято %s байт из %s байт"
 
 msgid "*** Imported duplicate ***"
-msgstr "***ВНИМАНИЕ!*** Правило аналогично"
+msgstr "*** Импортирован дубликат ***"
 
 msgid "0=disabled, 1-255=enabled command queuing with specified depth."
 msgstr ""
@@ -464,7 +464,7 @@ msgid "Advanced settings"
 msgstr "Расширенные настройки"
 
 msgid "Advertisement skew"
-msgstr ""
+msgstr "Задержка обьявления"
 
 #, php-format
 msgid ""
@@ -473,6 +473,11 @@ msgid ""
 "IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
+"После нажатия кнопки &quot;Сохранить&quot;, вам, возможно, придется "
+"выполнить одно или несколько из следующих действий, прежде чем вы cможете "
+"получить доступ к этому серверу еще раз: <ul><li>изменить IP-адрес вашего "
+"компьютера</li><li>получить доступ к Web-интерфейсу с новым IP-"
+"адресом</li></ul>"
 
 #, php-format
 msgid ""
@@ -561,6 +566,7 @@ msgstr ""
 #, php-format
 msgid "Allows the server to try and become a local master browser."
 msgstr ""
+"Позволяет серверу пытаться стать локальным основным обозревателем сети"
 
 msgid "AltRoot"
 msgstr "Альтернативный корневой каталог"
@@ -771,7 +777,7 @@ msgid "Browseable"
 msgstr "Просматриваемый"
 
 msgid "Build date"
-msgstr ""
+msgstr "Дата сборки"
 
 msgid "Bulgarian"
 msgstr "Болгарский"
@@ -780,10 +786,10 @@ msgid "By default, only already existing files can be uploaded."
 msgstr "По умолчанию могут быть загружены только уже существующие файлы."
 
 msgid "CARP"
-msgstr ""
+msgstr "CARP"
 
 msgid "CARP only"
-msgstr ""
+msgstr "Только CARP"
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -1071,7 +1077,7 @@ msgid "Controller TCP Port"
 msgstr "TCP-порт контроллера"
 
 msgid "Controls power consumption."
-msgstr ""
+msgstr "Управление энергопотреблением"
 
 msgid "Controls the behavior of synchronous requests."
 msgstr "Управляет поведение синхронных запросов."
@@ -1113,6 +1119,11 @@ msgid ""
 ":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
 "wiki article BEFORE using this feature.</b></br>"
 msgstr ""
+"Управляет методом дедупликации. <br><b><font "
+"color='red'>ЗАМЕЧАНИЕ/ПРЕДУПРЕЖДЕНИЕ</font>: Ознакомьтесь с <a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
+"wiki статьёй ПЕРЕД использованием этой функции.</b></br>"
 
 msgid ""
 "Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
@@ -1121,6 +1132,11 @@ msgid ""
 ":disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & "
 "deduplication</a> wiki article BEFORE using this feature.</b></br>"
 msgstr ""
+"Управляет методом дедупликации. <br><b><font "
+"color='red'>ЗАМЕЧАНИЕ/ПРЕДУПРЕЖДЕНИЕ</font>: Ознакомьтесь с <a "
+"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
+":disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & "
+"deduplication</a> wiki статьёй ПЕРЕД использованием этой функции.</b></br>"
 
 msgid "Controls whether this dataset can be modified."
 msgstr "Запретить модификацию текущего dataset'а"
@@ -1529,6 +1545,8 @@ msgstr "Каталог"
 
 msgid "Directory for incomplete files. An empty field means disable."
 msgstr ""
+"Каталог для незавершенных файлов. Пустое поле означает, что функция будет "
+"отключена"
 
 msgid "Directory listing"
 msgstr "Список файлов каталога"
@@ -1549,7 +1567,7 @@ msgid "Disable File Manager"
 msgstr "Отключить файловый менеджер"
 
 msgid "Disable TCP wrapper (mod_wrap module)."
-msgstr ""
+msgstr "Отключить TCP wrapper (mod_wrap module)."
 
 msgid "Disable console menu"
 msgstr "Запретить консольное меню"
@@ -1966,7 +1984,7 @@ msgid "Email report"
 msgstr "Отправить отчет по e-mail"
 
 msgid "Empty as default."
-msgstr ""
+msgstr "Пустое по умолчанию"
 
 msgid "Enable"
 msgstr "Включить"
@@ -2229,7 +2247,7 @@ msgid "Export"
 msgstr "Экспортировать"
 
 msgid "Export all the directories in the specified path."
-msgstr ""
+msgstr "Экспорт всех каталогов по указанному пути"
 
 msgid "Extended attributes"
 msgstr "Расширенные атрибуты"
@@ -2441,6 +2459,8 @@ msgid ""
 "Forces use of vdevs, even if they appear in use or specify different size. "
 "(This is not recommended.)"
 msgstr ""
+"Принудительно использовать vdev устройства, даже если они используются или "
+"отличаются по размеру. (Не рекомендуется)"
 
 msgid "Format"
 msgstr "Форматирование"
@@ -2554,13 +2574,13 @@ msgid "Guest account"
 msgstr "Гостевая учетная запись"
 
 msgid "HAST"
-msgstr ""
+msgstr "HAST"
 
 msgid "HAST (Highly Available Storage)"
-msgstr ""
+msgstr "HAST (хранилище высокой доступности)"
 
 msgid "HAST resource"
-msgstr ""
+msgstr "Ресурс HAST"
 
 msgid "HAST status of the configured resources"
 msgstr "Состояние HAST настроенных ресурсов"
@@ -2569,7 +2589,7 @@ msgid "HAST volume"
 msgstr "Том HAST"
 
 msgid "HAST volume can be use with GPT/UFS only."
-msgstr ""
+msgstr "том HASTа может использоваться только с GPT/UFS."
 
 msgid "HTTP Proxy"
 msgstr "HTTP Proxy"
@@ -2920,6 +2940,7 @@ msgstr "Имя инициатора"
 
 msgid "Initiator side secret. (for mutual CHAP authentication)"
 msgstr ""
+"Пароль пользователя на стороне инициатора (для взаимной CHAP-аутентификации)"
 
 msgid "Initiator side user name. (for mutual CHAP authentication)"
 msgstr ""
@@ -2974,6 +2995,8 @@ msgid ""
 "It can be changed from the client side by standard SCSI mode page at any "
 "time."
 msgstr ""
+"В любое время может быть изменено на клиентской стороне со стандартной "
+"страницы настройки параметров SCSI"
 
 msgid "It cannot be used combining SMB2 and Anonymous."
 msgstr "Невозможно использовать в комбинации SMB2 и Anonymous."
@@ -2989,6 +3012,8 @@ msgid ""
 "It is not recommanded to import non healthy pools nor virtual devices that "
 "are part of a non healthy pool."
 msgstr ""
+"Не рекомендуется импорт как поврежденных пулов(pools) , так и виртуальных "
+"устройств(virtual devices), которые являются частью поврежденного пула."
 
 msgid ""
 "It's recommended to change the default username and password for accessing "
@@ -3154,10 +3179,10 @@ msgid "Link Aggregation and Failover"
 msgstr "Агрегация каналов и резервирование от сбоев"
 
 msgid "Link down action"
-msgstr ""
+msgstr "Действие по окончании соединения"
 
 msgid "Link up action"
-msgstr ""
+msgstr "Действие при начале соединения"
 
 msgid "List"
 msgstr "Список"
@@ -3445,7 +3470,7 @@ msgid "Medium acoustic output"
 msgstr "Средний уровень шума"
 
 msgid "Member Interface"
-msgstr ""
+msgstr "Физический интерфейс"
 
 msgid "Memory usage"
 msgstr "Использование памяти"
@@ -3655,13 +3680,15 @@ msgstr ""
 "<a href='%s'>группу порталов</a>."
 
 msgid "No configured CARP interfaces."
-msgstr ""
+msgstr "Не настроены CARP интерфейсы"
 
 #, php-format
 msgid ""
 "No configured CARP interfaces. Please add new <a href='%s'>CARP "
 "interface</a> first."
 msgstr ""
+"Не настроены CARP интерфейсы. Сперва добавьте новый <a href='%s'>CARP "
+"интерфейс</a>."
 
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
@@ -3725,25 +3752,25 @@ msgid "No pool was found."
 msgstr "Пул не обнаружен."
 
 msgid "Node A IP address"
-msgstr ""
+msgstr "IP-адрес узла(ноды) А"
 
 msgid "Node A settings"
-msgstr ""
+msgstr "Настройки узла(ноды) А"
 
 msgid "Node B IP address"
-msgstr ""
+msgstr "IP-адрес узла(ноды) Б"
 
 msgid "Node B settings"
-msgstr ""
+msgstr "Настройки узла(ноды) Б"
 
 msgid "Node Base"
 msgstr "База узла"
 
 msgid "Node ID"
-msgstr ""
+msgstr "ID узла(Node ID)"
 
 msgid "Node Name"
-msgstr ""
+msgstr "Имя узла"
 
 msgid "None"
 msgstr "Нет"
@@ -3830,7 +3857,7 @@ msgid "ONLINE"
 msgstr "ONLINE"
 
 msgid "OPT only"
-msgstr ""
+msgstr "Только OPT"
 
 msgid "Object name"
 msgstr "Имя объекта"
@@ -4003,7 +4030,7 @@ msgid "Password of domain administrator account."
 msgstr "Пароль администратора домена."
 
 msgid "Password server"
-msgstr ""
+msgstr "Сервер паролей"
 
 msgid ""
 "Password server name or IP address (e.g. Active Directory domain controller)."
@@ -4153,7 +4180,7 @@ msgid "Power Daemon"
 msgstr "Процесс управления электропитанием"
 
 msgid "Power Mode"
-msgstr ""
+msgstr "Режим электропитания"
 
 msgid "Power mode"
 msgstr "Режим электропитания"
@@ -4184,7 +4211,7 @@ msgid "Preserve permissions"
 msgstr "Сохранять права доступа"
 
 msgid "Primary"
-msgstr ""
+msgstr "Первичный (Primary)"
 
 msgid "Primary Group"
 msgstr "Основная группа"
@@ -4422,7 +4449,7 @@ msgid "Rescan interval"
 msgstr "Интервал обновления"
 
 msgid "Reservation"
-msgstr ""
+msgstr "Резервируемое пространство"
 
 msgid "Resolve"
 msgstr "Преобразование"
@@ -4626,7 +4653,7 @@ msgid "Scheduled shutdown"
 msgstr "Запланированное выключение"
 
 msgid "Secondary"
-msgstr ""
+msgstr "Вторичный (Secondary)"
 
 msgid "Secret"
 msgstr "Ключ безопасности"
@@ -4862,7 +4889,7 @@ msgstr ""
 "Действительный размер зависит от ваших дисков."
 
 msgid "Skew"
-msgstr ""
+msgstr "Задержка"
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "Sleep - проверять устройство, пока оно не в режиме сна (SLEEP)."
@@ -4916,10 +4943,10 @@ msgid "Spanish"
 msgstr "Испанский"
 
 msgid "Sparse"
-msgstr ""
+msgstr "Разряженный том"
 
 msgid "Sparse Volume"
-msgstr ""
+msgstr "Разреженный том(Sparse Volume)"
 
 msgid "Specifies how many servers to create."
 msgstr "Укажите число создаваемых серверов."
@@ -5080,10 +5107,10 @@ msgid "Swedish"
 msgstr "Шведский"
 
 msgid "Switch VIP to BACKUP"
-msgstr ""
+msgstr "Переключить VIP на BACKUP"
 
 msgid "Switch VIP to MASTER"
-msgstr ""
+msgstr "Переключить VIP на MASTER"
 
 msgid "Switch to"
 msgstr "Переключить на"
@@ -5093,7 +5120,7 @@ msgid "Switch to %s/s"
 msgstr "Переключить на %s/s"
 
 msgid "Sync"
-msgstr ""
+msgstr "Cинхронные запросы"
 
 msgid "Synchronization time"
 msgstr "Время синхронизации"
@@ -5118,7 +5145,7 @@ msgid "System Beep"
 msgstr "Звуковой сигнал"
 
 msgid "System bios"
-msgstr ""
+msgstr "BIOS системы"
 
 msgid "System events"
 msgstr "События системы"
@@ -5157,7 +5184,7 @@ msgid "TCP port to bind the server to."
 msgstr "Порт TCP, закрепленный за сервером."
 
 msgid "TCP wrapper"
-msgstr ""
+msgstr "TCP wrapper(оболочка)"
 
 msgid "TFTP"
 msgstr "TFTP"
@@ -5260,6 +5287,8 @@ msgstr "COM-порт должен быть включен в BIOS до разр�
 
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
+"Тома HASTa будут недоступны пока узел (node) HASTa становится первичным "
+"(Primary)"
 
 msgid "The IP address that this hostname represents."
 msgstr "IP-адрес, представленный этим именем хоста"
@@ -5373,7 +5402,7 @@ msgstr "Значение '%s' не является допустимым MAC а�
 
 #, c-format
 msgid "The attribute '%s' is not a valid file mode mask."
-msgstr ""
+msgstr "Атрибут '%s' не является допустимой маской режима файлов."
 
 #, c-format
 msgid "The attribute '%s' is not a valid subnet mask."
@@ -5381,7 +5410,7 @@ msgstr "Значение '%s' не является допустимой мас�
 
 #, c-format
 msgid "The attribute '%s' is not a valid time value."
-msgstr ""
+msgstr "Атрибут '%s' не является допустимым значением времени."
 
 #, c-format, php-format
 msgid "The attribute '%s' is required."
@@ -5713,6 +5742,10 @@ msgid ""
 "specify the size use the following human-readable suffixes (for example, "
 "'k', 'KB', 'M', 'Gb', etc.)."
 msgstr ""
+"Минимальный объем пространства, гарантированный для набора данных(dataset) "
+"(обычно это значение не заполняют). Чтобы указать размер пространства, "
+"используйте следующие общепринятые суффиксы (например, 'k', 'KB', 'M', 'Gb', "
+"и т.д.)."
 
 msgid ""
 "The minimum port to allocate for PASV style data connections (0 = use any "
@@ -5739,6 +5772,7 @@ msgstr "Сеть '%s' задана некорректно."
 msgid ""
 "The new password does not match. Please ensure the passwords match exactly."
 msgstr ""
+"Новый пароль не совпадает. Пожалуйста, убедитесь, что пароли точно совпадают."
 
 msgid "The number of clients must be between 1 and 50."
 msgstr "Количество клиентов должно быть от 1 до 50."
@@ -5750,7 +5784,7 @@ msgid "The password contains the illegal character ':'."
 msgstr "Пароль содержит недопустимый символ  ':'."
 
 msgid "The password encryption protocol to use."
-msgstr ""
+msgstr "Использовать протокол шифрования пароля."
 
 msgid "The passwords do not match."
 msgstr "Пароли не совпадают"
@@ -5845,7 +5879,7 @@ msgstr "Serial- или USB-порт, к которому подключен ва
 
 #, php-format
 msgid "The server advertises itself as a time server to Windows clients."
-msgstr ""
+msgstr "Представляться сервером точного времени для Windows клиентов"
 
 msgid ""
 "The server has been reset to factory defaults and is now rebooting. This may "
@@ -5865,7 +5899,7 @@ msgid "The size of the swap file in MB."
 msgstr "Размер файла подкачки, Мбайт."
 
 msgid "The space-separated list of URIs for the LDAP server."
-msgstr ""
+msgstr "Разделенный пробелами список URI для LDAP-сервера."
 
 #, php-format
 msgid "The storage area mapped to LUN%d."
@@ -5937,6 +5971,8 @@ msgid ""
 "The workgroup in which the server will appear when queried by Windows or SMB "
 "clients (maximum 15 characters)."
 msgstr ""
+"Рабочая группа, в которой сервер будет виден для Windows или SMB клиентов "
+"(максимум 15 символов)"
 
 msgid "The working directory does not exist."
 msgstr "Рабочий каталог не существует."
@@ -5951,6 +5987,9 @@ msgid ""
 "There is wrong disk ID in the config. Please remove the disk and re-add it "
 "or use 'clear and import'."
 msgstr ""
+"В конфигурации присутствует неправильный ID диска. Пожалуйста, удалите диск "
+"и повторно добавьте его или используйте \"Очистить конфигурацию и "
+"импортировать диски\"."
 
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "В массиве типа RAID1 должно быть 2 диска."
@@ -6046,6 +6085,8 @@ msgstr ""
 msgid ""
 "This CARP cannot be deleted because it is still being used as an interface."
 msgstr ""
+"Этот CARP не может быть удален, потому что он всё ещё используется в "
+"качестве интерфейса."
 
 msgid ""
 "This LAGG cannot be deleted because it is still being used as an interface."
@@ -6160,7 +6201,7 @@ msgstr ""
 "Это одновременно и имя сервера Zeroconf/Bonjour/Rendezvous, и имя в DAAP."
 
 msgid "This is for information only (not using during iSCSI negotiation)."
-msgstr ""
+msgstr "Только для информации (не используется при согласовании iSCSI)."
 
 msgid ""
 "This may make more efficient use of the system CPU's and cause Samba to be "
@@ -6452,7 +6493,7 @@ msgid "Times"
 msgstr "Время"
 
 msgid "TitleSpeed"
-msgstr ""
+msgstr "TitleSpeed (скорость длинных заголовков)"
 
 msgid ""
 "To configure the target, you must add at least Portal Group and Initiator "
@@ -6531,6 +6572,8 @@ msgstr ""
 #, php-format
 msgid "To use subdirectories, you must mount each directories. (e.g. %s)"
 msgstr ""
+"Чтобы использовать подкаталоги, вы должны монтировать каждый каталог. "
+"(например, %s)"
 
 msgid "Tolerated"
 msgstr "Допускается"
@@ -6600,10 +6643,12 @@ msgid "Tuning"
 msgstr "Настройка"
 
 msgid "Turkish"
-msgstr ""
+msgstr "Турецкий"
 
 msgid "Turn access time on or off for this dataset."
 msgstr ""
+"Обновлять или нет атрибут времени последнего доступа для файлов этого набора "
+"данных (dataset)"
 
 msgid "Turn the monitor to standby after N seconds."
 msgstr "Переводить монитор в режим энергопотребления через N секунд."
@@ -6668,7 +6713,7 @@ msgid "UPnP friendly name."
 msgstr "Дружественное UPnP-имя."
 
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 msgid "URL"
 msgstr "URL"
@@ -6728,11 +6773,11 @@ msgid "Upload bandwidth"
 msgstr "Скорость раздачи"
 
 msgid "Upload directory"
-msgstr ""
+msgstr "Папка для загрузок"
 
 #, php-format
 msgid "Upload directory of the webserver. The default is %s."
-msgstr ""
+msgstr "Папка для загрузок на сервер. Путь по умолчанию %s"
 
 msgid "Uppercases names in both directions"
 msgstr "Верхний регистр в обоих направлениях"
@@ -6750,6 +6795,8 @@ msgstr ""
 
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr ""
+"Использовать, как разреженный том(sparse volume) - тонкое "
+"резервирование(thin provisioning)"
 
 msgid "Use sendfile"
 msgstr "Использовать параметр 'sendfile'"
@@ -6762,6 +6809,8 @@ msgid ""
 "Use the new 64k streaming read and write variant SMB requests introduced "
 "with Windows 2000."
 msgstr ""
+"Использовать новый вариант SMB запросов для чтения и записи потоками по 64k, "
+"который поддерживается начиная с Windows 2000"
 
 msgid "Use the specified NTP server."
 msgstr "Использовать указанный NTP-сервер"
@@ -6856,7 +6905,7 @@ msgid "Using %s bytes fragment size."
 msgstr "Использовать резмер фрагмента в %s байт."
 
 msgid "VHID"
-msgstr ""
+msgstr "VHID"
 
 msgid "VLAN"
 msgstr "VLAN"
@@ -6976,6 +7025,9 @@ msgid ""
 "When HAST is enabled, the local devices, the local services and the "
 "additional packages which do not support HAST volume cannot be used."
 msgstr ""
+"Когда режим HAST включен, локальные устройства, локальные сервисы и "
+"дополнительные пакеты, которые не поддерживают том(volume) HAST, не могут "
+"быть использованы."
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
@@ -7014,7 +7066,7 @@ msgid "Write"
 msgstr "Записать"
 
 msgid "Write Cache"
-msgstr ""
+msgstr "Кэширование записи"
 
 msgid "Write only"
 msgstr "Только запись"
@@ -7146,7 +7198,7 @@ msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
 
 msgid "adaptive (low power consumption)"
-msgstr ""
+msgstr "адаптивный (низкое энергопотребление)"
 
 msgid "all disks are imported."
 msgstr "все диски импортированы."
@@ -7155,7 +7207,7 @@ msgid "all encrypted disks are imported."
 msgstr "все диски использующие шифрование импортированы."
 
 msgid "all software raid disks are imported."
-msgstr ""
+msgstr "все software raid диски импортированы."
 
 msgid "cachecnid"
 msgstr "cachecnid"
@@ -7192,7 +7244,7 @@ msgid "get target info failed."
 msgstr "неудачное получение информации о цели."
 
 msgid "hiadaptive (high performance)"
-msgstr ""
+msgstr "hiadaptive (высокая производительность)"
 
 msgid "hour(s)"
 msgstr "час."
@@ -7223,10 +7275,10 @@ msgid "load/unload failed."
 msgstr "неудачная загрузка/выгрузка."
 
 msgid "maximum (highest performance)"
-msgstr ""
+msgstr "максимум (высочайшая производительность)"
 
 msgid "minimum (power saving)"
-msgstr ""
+msgstr "минимум (энергосбережение)"
 
 msgid "minute(s)"
 msgstr "мин."
@@ -7253,7 +7305,7 @@ msgid "no new encrypted disk found."
 msgstr "новый диск использующий шифрование не найден."
 
 msgid "no new software raid disk found."
-msgstr ""
+msgstr "не найдено новых software raid дисков"
 
 msgid "noadouble"
 msgstr "noadouble"
@@ -7314,4 +7366,4 @@ msgstr "upriv"
 
 #, php-format
 msgid "version:"
-msgstr ""
+msgstr "версия:"
