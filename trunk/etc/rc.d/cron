@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: src/etc/rc.d/cron,v 1.8.4.1.2.1 2011/11/11 04:20:22 kensmith Exp $
+# $FreeBSD: release/9.1.0/etc/rc.d/cron 231653 2012-02-14 10:16:56Z dougb $
 #
 # Part of NAS4Free (http://www.nas4free.org).
 # Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
@@ -224,8 +224,8 @@ HOME=/var/log
 			-i "all_weekdays[. = "0"]" -m weekday -i "position() > 1" -o "," -b -v "." -b -b \
 			-i "all_weekdays[. != "0"]" -o "*" -b \
 			-o " " \
-			-o "root /sbin/shutdown -p now" \
-			${configxml_file} | /usr/local/bin/xml unesc >> ${cron_config}
+			-o "root /sbin/shutdown -p now
+" ${configxml_file} | /usr/local/bin/xml unesc >> ${cron_config}
 	fi
 
 	# Scheduled reboot
@@ -247,8 +247,8 @@ HOME=/var/log
 			-i "all_weekdays[. = "0"]" -m weekday -i "position() > 1" -o "," -b -v "." -b -b \
 			-i "all_weekdays[. != "0"]" -o "*" -b \
 			-o " " \
-			-o "root /sbin/shutdown -r now" \
-			${configxml_file} | /usr/local/bin/xml unesc >> ${cron_config}
+			-o "root /sbin/shutdown -r now
+" ${configxml_file} | /usr/local/bin/xml unesc >> ${cron_config}
 	fi
 
 	# Email status notification
@@ -270,8 +270,8 @@ HOME=/var/log
 			-i "all_weekdays[. = "0"]" -m weekday -i "position() > 1" -o "," -b -v "." -b -b \
 			-i "all_weekdays[. != "0"]" -o "*" -b \
 			-o " " \
-			-o "root /etc/mail/sendreport" \
-			${configxml_file} | /usr/local/bin/xml unesc >> ${cron_config}
+			-o "root /etc/mail/sendreport
+" ${configxml_file} | /usr/local/bin/xml unesc >> ${cron_config}
 	fi
 
 	# Additional cron jobs
