@@ -1,5 +1,5 @@
 PORTNAME=		samba36
-PORTVERSION=	  3.6.10
+PORTVERSION=	  3.6.12
 #PORTREVISION?= 0
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -44,8 +44,8 @@ CONFIGURE_ARGS+=	--exec-prefix="${PREFIX}" \
 			--includedir="${SAMBA_INCLUDEDIR}" \
 			--datadir="${DATADIR}" \
 			--libdir="${SAMBA_LIBDIR}" \
-			--with-modulesdir="${SAMBA_MODULEDIR}" \
 			--with-pammodulesdir="${SAMBA_LIBDIR}" \
+			--with-modulesdir="${SAMBA_MODULEDIR}" \
 			--localstatedir="${VARDIR}" \
 			--with-piddir="${SAMBA_RUNDIR}" \
 			--with-ncalrpcdir="${SAMBA_RUNDIR}/ncalrpc" \
@@ -107,7 +107,7 @@ CONFIGURE_ARGS+=	--without-libtalloc \
 			--with-acl-support \
 			--without-dnsupdate \
 			--disable-avahi \
-			--disable-pthreadpool \
+			--enable-pthreadpool \
 			--with-included-popt
 
 CONFIGURE_ARGS+=	--with-ads

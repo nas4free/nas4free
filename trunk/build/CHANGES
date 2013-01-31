@@ -96,7 +96,6 @@ Changes:
 - Upgrade lcdproc to 0.5.6.
 - Upgrade lighttpd to 1.4.32.
 - Upgrade netatalk to 2.2.4.
-- Upgrade samba to 3.6.10.
 - Upgrade msmtp to 1.4.30.
 - Upgrade mDNSResponder to 333.10.
 - Upgrade xmlstarlet to 1.4.2.
@@ -104,6 +103,7 @@ Changes:
 - Upgrade php to 5.4.11.
 - Upgrade transmission to 2.76.
 - Upgrade e2fsprogs to 1.42.7.
+- Upgrade samba to 3.6.12.
 
 Bug fixes:
 
@@ -141,6 +141,9 @@ Bug fixes:
 - Fix nfs share error with ZFS dataset.
 - Fix multiple DNS server in setlanip.
 - Fix rsync client extra options is broken since r282.
+- Fix afp working.
+- Fix broken cron polling time jobs.
+- Fix AIO with SMB2.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
