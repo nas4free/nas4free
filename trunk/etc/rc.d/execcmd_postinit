@@ -9,21 +9,22 @@
 # All rights reserved.
 #
 
-# PROVIDE: execcmd_postinit
-# REQUIRE: LOGIN
+# PROVIDE: execcmd_preinit
+# BEFORE: CONFIG
+# REQUIRE: SYSTEMINIT rcconf
 
 . /etc/rc.subr
 . /etc/configxml.subr
 
-if [ -x /etc/rc.d.php/postinit ]; then
-	eval /etc/rc.d.php/postinit
+if [ -x /etc/rc.d.php/preinit ]; then
+	eval /etc/rc.d.php/preinit
 fi
 
 # Execute all commands.
-/usr/local/bin/xml sel -t -m "//rc/postinit/cmd" \
+/usr/local/bin/xml sel -t -m "//rc/preinit/cmd" \
 	-v "." \
 	-i "position() <= last()" -n -b \
-	${configxml_file} | /usr/local/bin/xml unesc`
+	${configxml_file} | /usr/local/bin/xml unesc | \
 	while read _cmd; do
 		eval ${_cmd}
 	done
