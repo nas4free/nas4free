@@ -8,16 +8,16 @@
 
 	Portions of freenas (http://www.freenas.org).
 	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.	
+	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer. 
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -31,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 // Configure page permission
@@ -70,6 +70,102 @@ if (is_ajax()) {
 	$vipstatus = get_vip_status();
 	$sysinfo['vipstatus'] = $vipstatus;
 	render_ajax($sysinfo);
+}
+
+function tblrow ($name, $value, $symbol = null, $id = null) {
+	if(!$value) return;
+
+	if($symbol == '&deg;')
+		$value = sprintf("%.1f", $value);
+
+	if($symbol == 'Hz')
+		$value = sprintf("%d", $value);
+		
+	if ($symbol == ' seconds'
+			&& $value > 60) {
+		$minutes = (int) ($value / 60);
+		$seconds = $value % 60;
+		
+		if ($minutes > 60) {
+			$hours = (int) ($minutes / 60);
+			$minutes = $minutes % 60;
+			$value = $hours;
+			$symbol = ' hours '.$minutes.' minutes '.$seconds.$symbol;
+		} else {
+			$value = $minutes;
+			$symbol = ' minutes '.$seconds.$symbol;
+		}
+	}
+	
+	if ($symbol == 'pre') {
+		$value = '<pre>'.$value;
+		$symbol = '</pre>';
+	}
+
+	print(<<<EOD
+<tr id='{$id}'>
+	<td>
+		<div id='ups_status'>
+			<span name='ups_status_name' id='ups_status_name' class='name'><b>{$name}</b></span><br />
+			{$value}{$symbol}
+		</div>
+	</td>
+</tr>
+EOD
+	."\n");
+}
+
+function tblrowbar ($name, $value, $symbol, $red, $yellow, $green) {
+	if(!$value) return;
+
+	$value = sprintf("%.1f", $value);
+
+	$red = explode('-', $red);
+	$yellow = explode('-', $yellow);
+	$green = explode('-', $green);
+
+	sort($red);
+	sort($yellow);
+	sort($green);
+
+	if($value >= $red[0] && $value <= ($red[0]+9)) {
+		$color = 'black';
+		$bgcolor = 'red';
+	}
+	if($value >= ($red[0]+10) && $value <= $red[1]) {
+		$color = 'white';
+		$bgcolor = 'red';
+	}
+	if($value >= $yellow[0] && $value <= $yellow[1]) {
+		$color = 'black';
+		$bgcolor = 'yellow';
+	}
+	if($value >= $green[0] && $value <= ($green[0]+9)) {
+		$color = 'black';
+		$bgcolor = 'green';
+	}	
+	if($value >= ($green[0]+10) && $value <= $green[1]) {
+		$color = 'white';
+		$bgcolor = 'green';
+	}
+
+	$available = 100 - $value;
+	$tooltip_used = sprintf(gettext("%s%%"), $value);
+	$tooltip_available = sprintf(gettext("%s%% available"), $available);
+	$span_used = sprintf(gettext("%s%%"), "<span name='ups_status_used' id='ups_status_used' class='capacity'>".$value."</span>");
+	
+	print(<<<EOD
+<tr>
+  <td>
+	<div id='ups_status'>
+		<span name='ups_status_name' id='ups_status_name' class='name'><b>{$name}</b></span><br />
+		<img src="bar_left.gif" class="progbarl" alt="" /><img src="bar_blue.gif" name="ups_status_bar_used" id="ups_status_bar_used" width="{$value}" class="progbarcf" title="{$tooltip_used}" alt="" /><img src="bar_gray.gif" name="ups_status_bar_free" id="ups_status_bar_free" width="{$available}" class="progbarc" title="{$tooltip_available}" alt="" /><img src="bar_right.gif" class="progbarr" alt="" />
+		{$span_used}
+	</div>
+  </td>
+</tr>
+EOD
+	."\n");
 }
 
 if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
@@ -463,6 +559,97 @@ $(document).ready(function(){
 								echo "</td></tr>";
 							}
 							?>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td width="25%" class="vncellt"><?=gettext("UPS Status");?></td>
+					<td width="75%" class="listr">
+						<table width="100%" border="0" cellspacing="0" cellpadding="2">
+							<?php if (!isset($config['ups']['enable'])):?>
+								<tr>
+									<td>
+										<pre><?=gettext("UPS disabled");?><?=" <small> [<a href='diag_infos_ups.php'>".gettext("Show ups information")."</a></small>]";?></pre>
+									</td>
+								</tr>
+							<?php else:?>
+								<?php
+								$cmd = "/usr/local/bin/upsc {$config['ups']['upsname']}@localhost";
+								$handle = popen($cmd, 'r');
+								
+								if($handle) {
+									$read = fread($handle, 4096);
+									pclose($handle);
+
+									$lines = explode("\n", $read);
+									$ups = array();
+									foreach($lines as $line) {
+										$line = explode(':', $line);
+										$ups[$line[0]] = trim($line[1]);
+									}
+
+									if(count($lines) == 1)
+										tblrow('ERROR:', 'Data stale!');
+
+									$status = explode(' ', $ups['ups.status']);
+									foreach($status as $condition) {
+										if($disp_status) $disp_status .= ', ';
+										switch ($condition) {
+											case 'WAIT':
+												$disp_status .= gettext('Waiting');
+												break;
+											case 'OFF':
+												$disp_status .= gettext('Off Line');
+												break;
+											case 'OL':
+												$disp_status .= gettext('UPS On Line');
+												break;
+											case 'OB':
+												$disp_status .= gettext('On Battery');
+												break;
+											case 'TRIM':
+												$disp_status .= gettext('SmartTrim');
+												break;
+											case 'BOOST':
+												$disp_status .= gettext('SmartBoost');
+												break;
+											case 'OVER':
+												$disp_status .= gettext('Overload');
+												break;
+											case 'LB':
+												$disp_status .= gettext('Battery Low');
+												break;
+											case 'RB':
+												$disp_status .= gettext('Replace Battery');
+												break;
+											case 'CAL':
+												$disp_status .= gettext('Calibration');
+												break;
+											case 'CHRG':
+												$disp_status .= gettext('Charging');
+												break;
+											default:
+												$disp_status .= $condition;
+												break;
+										}
+									}
+									tblrow(gettext('Status'), $disp_status. " <small>[<a href='diag_infos_ups.php'>".gettext("Show ups information")."</a></small>]");
+									tblrowbar(gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
+									tblrowbar(gettext('Battery Charge'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
+
+									// status
+									tblrow(gettext('Battery Remain Time'), $ups['battery.runtime'], ' seconds');
+								}
+								
+								unset($handle);
+								unset($read);
+								unset($lines);
+								unset($status);
+								unset($disp_status);
+								unset($ups);
+								unset($cmd);
+								?>
+							<?php endif;?>
 						</table>
 					</td>
 				</tr>
