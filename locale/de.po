@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2012-12-31 17:43+0000\n"
-"PO-Revision-Date: 2013-01-07 01:24+0000\n"
-"Last-Translator: apollo567 <apollo567@hotmail.de>\n"
+"POT-Creation-Date: 2013-02-03 08:16+0000\n"
+"PO-Revision-Date: 2013-02-01 07:43+0000\n"
+"Last-Translator: crest <a.schmidhuber@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-01-28 12:48+0000\n"
-"X-Generator: Launchpad (build 16451)\n"
+"X-Launchpad-Export-Date: 2013-02-03 07:32+0000\n"
+"X-Generator: Launchpad (build 16462)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
 "X-Poedit-Language: German\n"
@@ -69,6 +69,10 @@ msgstr "%s von %s B"
 #, php-format
 msgid "%s on %s"
 msgstr "%s auf %s"
+
+#, php-format
+msgid "%s%% available"
+msgstr ""
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -484,6 +488,10 @@ msgid ""
 "IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
+"Nach dem Klick auf &quot;Speichern&quot; könnten einige Schritte notwendig "
+"werden, damit ein Zugriff auf den Server wieder möglich wird: <ul><li>Ändern "
+"der IP-Adresse des Servers</li><li>Zugriff auf die WebGUI via neuer IP-"
+"Adresse</li></ul>"
 
 #, php-format
 msgid ""
@@ -493,6 +501,12 @@ msgid ""
 "class='vexpl'>change the IP address of your server</span></li><li><span "
 "class='vexpl'>access the webGUI with the new IP address</span></li></ul>"
 msgstr ""
+"Nach dem Klick auf &quot;Speichern&quot; müssen sie den Server neu starten, "
+"damit die Änderungen wirksam werden. Danach könnten einige Schritte "
+"notwendig werden, damit ein Zugriff auf den Server wieder möglich wird: "
+"<ul><li><span class='vexpl'>Ändern der IP-Adresse des "
+"Servers</span></li><li><span class='vexpl'>Zugriff auf die WebGUI via neuer "
+"IP-Adresse</span></li></ul>"
 
 msgid "Aggregation protocol"
 msgstr "Aggregation Protokoll"
@@ -566,7 +580,7 @@ msgstr ""
 
 #, php-format
 msgid "Allows the server to try and become a local master browser."
-msgstr ""
+msgstr "Erlaubt dem Server zu versuchen, Local Master Browser zu werden."
 
 msgid "AltRoot"
 msgstr "AltRoot"
@@ -751,6 +765,15 @@ msgid ""
 msgstr ""
 "Ist der Anfang nicht 'iqn.', wird der Base Name automatisch mit angehängt."
 
+msgid "Battery Charge"
+msgstr ""
+
+msgid "Battery Low"
+msgstr ""
+
+msgid "Battery Remain Time"
+msgstr ""
+
 msgid "Best available"
 msgstr "Bester verfügbarer"
 
@@ -863,6 +886,9 @@ msgstr "Cache"
 msgid "Cache Device"
 msgstr "Puffer"
 
+msgid "Calibration"
+msgstr ""
+
 msgid "Can't format the OS origin disk!"
 msgstr ""
 "Die Festplatte die das Betriebssystem beinhaltet kann nicht formatiert "
@@ -920,6 +946,9 @@ msgstr ""
 
 msgid "Channel"
 msgstr "Kanal"
+
+msgid "Charging"
+msgstr ""
 
 msgid "Check interval"
 msgstr "Überprüfungsintervall"
@@ -1242,6 +1271,12 @@ msgid ""
 "update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
 "System configuration before doing a Firmware upgrade."
 msgstr ""
+"Unterbrechen sie den Firmware-Upgrade NICHT, sobald er gestartet wurde. Nach "
+"dem Speichern der neuen Firmware wird der Server automatisch neu gestartet. "
+"Ihre Konfiguration wird dabei berücksichtigt. <br />Sie benötigen als "
+"Minimum %d MB RAM, um ein Firmware-Upgrade durchzuführen.<br />Es wird "
+"dringend empfohlen, vor dem Firmware-Upgrade ein <a href='%s'>Backup </a> "
+"der System-Konfiguration durchzuführen."
 
 msgid "DVD"
 msgstr "DVD"
@@ -2963,7 +2998,7 @@ msgid "Initiator name"
 msgstr "Name des Initiators"
 
 msgid "Initiator side secret. (for mutual CHAP authentication)"
-msgstr ""
+msgstr "Initiator Seite versteckt (für gegenseitige CHAP-Authentifizierung)."
 
 msgid "Initiator side user name. (for mutual CHAP authentication)"
 msgstr ""
@@ -3891,6 +3926,9 @@ msgstr "Ereignis"
 msgid "Off"
 msgstr "Deaktiviert"
 
+msgid "Off Line"
+msgstr ""
+
 msgid "Old passphrase"
 msgstr "Alte Passphrase"
 
@@ -3899,6 +3937,9 @@ msgstr "Altes Passwort"
 
 msgid "On"
 msgstr "Aktiviert"
+
+msgid "On Battery"
+msgstr ""
 
 msgid ""
 "Once you add the virtual device, it becomes impossible to delete again. It "
@@ -3946,6 +3987,9 @@ msgstr "Ausgehender SMTP Mailserver; z.B. smtp.meinefirma.com."
 
 msgid "Outgoing mail server"
 msgstr "Ausgehender Mailserver"
+
+msgid "Overload"
+msgstr ""
 
 msgid "Overwrite already configured disks (only affects filesystem value)."
 msgstr ""
@@ -4440,6 +4484,9 @@ msgstr "Wechselbar"
 msgid "Remove all entries from ARP table"
 msgstr "Lösch alle Einträge aus ARP Tabelle"
 
+msgid "Replace Battery"
+msgstr ""
+
 msgid "Report Generator"
 msgstr "Bericht generieren"
 
@@ -4821,6 +4868,10 @@ msgid ""
 "color='red'>NOTE</font>: Running as root is <u>not recommended</u> for "
 "security reasons, use it on your own risk!</b></br>"
 msgstr ""
+"Einstellen des Benutzers, der den Dienst ausführen soll (Default: www). "
+"<br><b><font color='red'>ACHTUNG</font>: Ausführung als root wird aus "
+"Sicherheitsgründen <u>nicht empfohlen</u>, verwenden Sie diesen auf eigene "
+"Gefahr!</b></br>"
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
@@ -4883,6 +4934,9 @@ msgstr ""
 msgid "Show process information"
 msgstr "Zeige Prozessinformationen"
 
+msgid "Show ups information"
+msgstr ""
+
 msgid "Shutdown"
 msgstr "Herunterfahren"
 
@@ -4928,6 +4982,12 @@ msgstr "Slowakisch"
 
 msgid "Slovenian"
 msgstr "Slowenisch"
+
+msgid "SmartBoost"
+msgstr ""
+
+msgid "SmartTrim"
+msgstr ""
 
 msgid "Snapshot"
 msgstr "Schnappschuss"
@@ -5439,11 +5499,11 @@ msgstr ""
 
 #, c-format
 msgid "The attribute '%s' is not a valid file mode mask."
-msgstr ""
+msgstr "Das Attribut '%s' ist keine gültige File-Mode Maske."
 
 #, c-format
 msgid "The attribute '%s' is not a valid subnet mask."
-msgstr ""
+msgstr "Das Attribut '%s' ist keine gültige Subnet Maske."
 
 #, c-format
 msgid "The attribute '%s' is not a valid time value."
@@ -5631,7 +5691,7 @@ msgstr "Diese Festplatte/Partition ist bereits konfiguriert."
 
 #, php-format
 msgid "The distinguished name to bind to the directory server, e.g. %s"
-msgstr ""
+msgstr "Der kennzeichnende Name zur Bindung an den Directory Server, z.B. %s"
 
 #, php-format
 msgid ""
@@ -6276,7 +6336,7 @@ msgstr ""
 "wird."
 
 msgid "This is for information only (not using during iSCSI negotiation)."
-msgstr ""
+msgstr "Nur als Info (wird nicht für iSCSI Kommunikation verwendet)."
 
 msgid ""
 "This may make more efficient use of the system CPU's and cause Samba to be "
@@ -6770,6 +6830,12 @@ msgstr "UID"
 msgid "UPS"
 msgstr "USV"
 
+msgid "UPS On Line"
+msgstr ""
+
+msgid "UPS Status"
+msgstr ""
+
 msgid "UPS disabled"
 msgstr "USV abgeschaltet"
 
@@ -7056,6 +7122,9 @@ msgstr "WPA-PSK WPA-EAP"
 
 msgid "Wait time"
 msgstr "Wartezeit"
+
+msgid "Waiting"
+msgstr ""
 
 msgid "Wake On LAN"
 msgstr "Wake On LAN"
@@ -7444,4 +7513,4 @@ msgstr "upriv"
 
 #, php-format
 msgid "version:"
-msgstr ""
+msgstr "Version:"
