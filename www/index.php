@@ -596,43 +596,43 @@ $(document).ready(function(){
 										if($disp_status) $disp_status .= ', ';
 										switch ($condition) {
 											case 'WAIT':
-												$disp_status .= gettext('Waiting');
+												$disp_status .= gettext('UPS Waiting');
 												break;
-											case 'OFF':
-												$disp_status .= gettext('Off Line');
+										case 'OFF':
+												$disp_status .= gettext('UPS Off Line');
 												break;
-											case 'OL':
+										case 'OL':
 												$disp_status .= gettext('UPS On Line');
 												break;
-											case 'OB':
-												$disp_status .= gettext('On Battery');
+										case 'OB':
+												$disp_status .= gettext('UPS On Battery');
 												break;
-											case 'TRIM':
+										case 'TRIM':
 												$disp_status .= gettext('SmartTrim');
 												break;
-											case 'BOOST':
+										case 'BOOST':
 												$disp_status .= gettext('SmartBoost');
 												break;
-											case 'OVER':
+										case 'OVER':
 												$disp_status .= gettext('Overload');
 												break;
-											case 'LB':
+										case 'LB':
 												$disp_status .= gettext('Battery Low');
 												break;
-											case 'RB':
-												$disp_status .= gettext('Replace Battery');
+										case 'RB':
+												$disp_status .= gettext('Replace Battery UPS');
 												break;
-											case 'CAL':
-												$disp_status .= gettext('Calibration');
+										case 'CAL':
+												$disp_status .= gettext('Calibration Battery');
 												break;
-											case 'CHRG':
-												$disp_status .= gettext('Charging');
+										case 'CHRG':
+												$disp_status .= gettext('Charging Battery');
 												break;
-											default:
+										default:
 												$disp_status .= $condition;
 												break;
-										}
 									}
+								}
 									tblrow(gettext('Status'), $disp_status. " <small>[<a href='diag_infos_ups.php'>".gettext("Show ups information")."</a></small>]");
 									tblrowbar(gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
 									tblrowbar(gettext('Battery Charge'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
