@@ -1,5 +1,5 @@
 PORTNAME=		pam_mkhomedir
-PORTVERSION=	0.1
+PORTVERSION=	1.0
 CATEGORIES=		security
 COMMENT=		Create HOME with a PAM module on demand
 MAINTAINER=		zoon01@nas4free.org
