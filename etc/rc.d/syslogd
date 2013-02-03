@@ -10,14 +10,14 @@
 #
 
 # PROVIDE: syslogd
-# REQUIRE: clog mountcritremote cleanvar NETWORKING
+# REQUIRE: clog mountcritremote FILESYSTEMS NETWORKING
 # BEFORE: SERVERS
 
 . /etc/rc.subr
 . /etc/configxml.subr
 
 name="syslogd"
-rcvar=`set_rcvar`
+rcvar="syslogd_enable"
 
 load_rc_config "$name"
 

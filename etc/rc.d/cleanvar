@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: src/etc/rc.d/cleanvar,v 1.15.2.1.2.1 2011/11/11 04:20:22 kensmith Exp $
+# $FreeBSD: release/9.1.0/etc/rc.d/cleanvar 231653 2012-02-14 10:16:56Z dougb $
 #
 # Part of NAS4Free (http://www.nas4free.org).
 # Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
@@ -14,12 +14,12 @@
 #
 
 # PROVIDE: cleanvar
-# REQUIRE: FILESYSTEMS var
+# REQUIRE: var
 
 . /etc/rc.subr
 
 name="cleanvar"
-rcvar=`set_rcvar`
+rcvar="cleanvar_enable"
 
 start_precmd="${name}_prestart"
 start_cmd="${name}_start"
@@ -66,12 +66,12 @@ cleanvar_prestart()
 	rm -f /var/run/clean_var /var/spool/lock/clean_var
 }
 
-cleanvar_start () 
+cleanvar_start ()
 {
 	if [ -d /var/run -a ! -f /var/run/clean_var ]; then
 		purgedir /var/run
-		# And an initial utmp file
-		(cd /var/run && cp /dev/null utmp && chmod 644 utmp)
+		# And an initial utmpx active session file
+		(cd /var/run && cp /dev/null utx.active && chmod 644 utx.active)
 		>/var/run/clean_var
 	fi
 	if [ -d /var/spool/lock -a ! -f /var/spool/lock/clean_var ]; then
