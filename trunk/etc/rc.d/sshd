@@ -10,7 +10,7 @@
 #
 
 # PROVIDE: sshd
-# REQUIRE: LOGIN cleanvar
+# REQUIRE: LOGIN FILESYSTEMS
 # XQUERY: -i "count(//sshd/enable) > 0" -o "0" -b
 # RCVAR: sshd
 
@@ -18,7 +18,7 @@
 . /etc/configxml.subr
 
 name="sshd"
-rcvar=`set_rcvar`
+rcvar="sshd_enable"
 
 load_rc_config "$name"
 

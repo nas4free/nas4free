@@ -12,7 +12,7 @@
 #
 
 # PROVIDE: cron
-# REQUIRE: LOGIN cleanvar
+# REQUIRE: LOGIN FILESYSTEMS
 # BEFORE: securelevel
 # KEYWORD: shutdown
 
@@ -20,7 +20,7 @@
 . /etc/configxml.subr
 
 name="cron"
-rcvar="`set_rcvar`"
+rcvar="cron_enable"
 
 load_rc_config "$name"
 

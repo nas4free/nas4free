@@ -14,7 +14,7 @@
 #
 
 # PROVIDE: mountcritremote
-# REQUIRE: NETWORKING FILESYSTEMS cleanvar
+# REQUIRE: NETWORKING FILESYSTEMS ipsec netwait
 # KEYWORD: nojail shutdown
 
 . /etc/rc.subr

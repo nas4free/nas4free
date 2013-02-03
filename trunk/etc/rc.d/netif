@@ -36,7 +36,7 @@
 #
 
 # PROVIDE: netif
-# REQUIRE: cleanvar FILESYSTEMS sysctl
+# REQUIRE: atm1 FILESYSTEMS serial sppp sysctl
 # KEYWORD: nojail
 
 . /etc/rc.subr
@@ -49,6 +49,9 @@ cloneup_cmd="clone_up"
 clonedown_cmd="clone_down"
 extra_commands="cloneup clonedown"
 cmdifn=
+
+set_rcvar_obsolete ipv6_enable ipv6_activate_all_interfaces
+set_rcvar_obsolete ipv6_prefer
 
 network_start()
 {
