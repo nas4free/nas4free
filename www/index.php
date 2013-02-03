@@ -150,7 +150,7 @@ function tblrowbar ($name, $value, $symbol, $red, $yellow, $green) {
 	}
 
 	$available = 100 - $value;
-	$tooltip_used = sprintf(gettext("%s%%"), $value);
+	$tooltip_used = sprintf("%s%%", $value);
 	$tooltip_available = sprintf(gettext("%s%% available"), $available);
 	$span_used = sprintf(gettext("%s%%"), "<span name='ups_status_used' id='ups_status_used' class='capacity'>".$value."</span>");
 	
