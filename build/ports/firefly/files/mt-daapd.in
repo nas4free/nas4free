@@ -78,7 +78,7 @@ mtdaapd_mkconf()
 	_dbparms=`configxml_get "//daap/dbdir"`
 	_mp3dir=`/usr/local/bin/xml sel -t -m "//daap/content" \
 		-v . \
-		-i "position() != last()" -o "," -b \
+		-i "position() <= last()" -o "," -b \
 		${configxml_file} | /usr/local/bin/xml unesc`
 	_rescaninterval=`configxml_get "//daap/rescaninterval"`
 	_alwaysscan=0

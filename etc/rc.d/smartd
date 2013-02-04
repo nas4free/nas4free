@@ -65,7 +65,7 @@ smartd_mkconf()
 	# Create configuration file
 	/usr/local/bin/xml sel -t -m "//disks/disk/smart[enable]" \
 		-v "concat(../devicespecialfile,' ',../type,' ',extraoptions)" \
-		-i "position() != last()" -n -b \
+		-i "position() <= last()" -n -b \
 		${configxml_file} | /usr/local/bin/xml unesc | \
 		while read _devicespecialfile _type _smartextraoptions; do
 			_param="-a"
