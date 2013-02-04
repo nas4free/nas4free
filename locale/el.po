@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-02-03 08:16+0000\n"
-"PO-Revision-Date: 2013-01-01 12:20+0000\n"
+"POT-Creation-Date: 2013-02-04 00:07+0000\n"
+"PO-Revision-Date: 2013-02-04 09:29+0000\n"
 "Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-02-03 07:32+0000\n"
-"X-Generator: Launchpad (build 16462)\n"
+"X-Launchpad-Export-Date: 2013-02-04 23:12+0000\n"
+"X-Generator: Launchpad (build 16468)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
 "X-Poedit-Language: Greek\n"
@@ -72,7 +72,7 @@ msgstr "%s σε %s"
 
 #, php-format
 msgid "%s%% available"
-msgstr ""
+msgstr "%s%% διαθέσιμο"
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -773,13 +773,13 @@ msgstr ""
 "Το όνομα της βάσης θα προσαρτηθεί αυτόματα αν ξεκινά δίχως το 'iqn.'."
 
 msgid "Battery Charge"
-msgstr ""
+msgstr "Επίπεδο φόρτισης μπαταρίας"
 
 msgid "Battery Low"
-msgstr ""
+msgstr "Στάθμη μπαταρίας χαμηλή"
 
 msgid "Battery Remain Time"
-msgstr ""
+msgstr "Υπολειπόμενος χρόνος με μπαταρία"
 
 msgid "Best available"
 msgstr "Οι βέλτιστες διαθέσιμες"
@@ -892,8 +892,8 @@ msgstr "Προσωρινή μνήμη"
 msgid "Cache Device"
 msgstr "Συσκευή προσωρινής μνήμης"
 
-msgid "Calibration"
-msgstr ""
+msgid "Calibration Battery"
+msgstr "Βαθμονόμηση μπαταρίας"
 
 msgid "Can't format the OS origin disk!"
 msgstr "Δεν μπορεί να διαμορφωθεί ο δίσκος που περιέχει το λειτουργικό!"
@@ -949,8 +949,8 @@ msgstr "Οι αλλαγές σε αυτή την επιλογή θα ισχύσ�
 msgid "Channel"
 msgstr "Κανάλι"
 
-msgid "Charging"
-msgstr ""
+msgid "Charging Battery"
+msgstr "Μπαταρία σε φόρτιση"
 
 msgid "Check interval"
 msgstr "Διαστήματα ελέγχου"
@@ -3947,9 +3947,6 @@ msgstr "Εμφάνιση"
 msgid "Off"
 msgstr "Ανενεργό"
 
-msgid "Off Line"
-msgstr ""
-
 msgid "Old passphrase"
 msgstr "Παλιά συνθηματική φράση"
 
@@ -3958,9 +3955,6 @@ msgstr "Παλαιός κωδικός"
 
 msgid "On"
 msgstr "Ενεργό"
-
-msgid "On Battery"
-msgstr ""
 
 msgid ""
 "Once you add the virtual device, it becomes impossible to delete again. It "
@@ -4012,7 +4006,7 @@ msgid "Outgoing mail server"
 msgstr "Διακομιστής εξερχόμενης αλληλογραφίας"
 
 msgid "Overload"
-msgstr ""
+msgstr "Υπερφόρτωση"
 
 msgid "Overwrite already configured disks (only affects filesystem value)."
 msgstr ""
@@ -4510,8 +4504,8 @@ msgstr "Αφαιρούμενο μέσο"
 msgid "Remove all entries from ARP table"
 msgstr "Αφαίρεση όλων των καταχωρήσεων από τον πίνακα ARP"
 
-msgid "Replace Battery"
-msgstr ""
+msgid "Replace Battery UPS"
+msgstr "Αντικαταστήστε τη μπαταρία του UPS"
 
 msgid "Report Generator"
 msgstr "Γεννήτρια Αναφορών"
@@ -4965,7 +4959,7 @@ msgid "Show process information"
 msgstr "Προβολή πληροφοριών των εκτελούμενων διεργασιών"
 
 msgid "Show ups information"
-msgstr ""
+msgstr "Προβολή πληροφοριών UPS"
 
 msgid "Shutdown"
 msgstr "Τερματισμός"
@@ -5014,10 +5008,10 @@ msgid "Slovenian"
 msgstr "Σλοβενικά"
 
 msgid "SmartBoost"
-msgstr ""
+msgstr "SmartBoost"
 
 msgid "SmartTrim"
-msgstr ""
+msgstr "SmartTrim"
 
 msgid "Snapshot"
 msgstr "Στιγμιότυπο"
@@ -6880,11 +6874,20 @@ msgstr "UID"
 msgid "UPS"
 msgstr "UPS"
 
+msgid "UPS Off Line"
+msgstr "To UPS είναι εκτός σύνδεσης"
+
+msgid "UPS On Battery"
+msgstr "Το UPS χρησιμοποιεί τη μπαταρία"
+
 msgid "UPS On Line"
-msgstr ""
+msgstr "Το UPS είναι σε σύνδεση"
 
 msgid "UPS Status"
-msgstr ""
+msgstr "Κατάσταση UPS"
+
+msgid "UPS Waiting"
+msgstr "To UPS είναι σε αναμονή"
 
 msgid "UPS disabled"
 msgstr "Απενεργοποιημένο UPS"
@@ -7179,9 +7182,6 @@ msgstr "WPA-PSK WPA-EAP"
 
 msgid "Wait time"
 msgstr "Χρόνος αναμονής"
-
-msgid "Waiting"
-msgstr ""
 
 msgid "Wake On LAN"
 msgstr "Αφύπνιση μέσω τοπικού δικτύου (Wake On Lan)"
