@@ -52,7 +52,7 @@ inadyn_prestart()
 		-i "count(wildcard) > 0" -o "--wildcard" -n -b \
 		-m "auxparam" \
 			-v "." \
-			-i "position() != last()" -n -b \
+			-i "position() <= last()" -n -b \
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc > ${inadyn_config}
 

@@ -113,7 +113,7 @@ _geom_start_vinum()
 
 	/usr/local/bin/xml sel -t -m "//gvinum/vdisk" \
 		-v "name" \
-		-i "position() != last()" -n -b \
+		-i "position() <= last()" -n -b \
 		${configxml_file} | /usr/local/bin/xml unesc | \
 		while read _name; do
 			/sbin/gvinum start "${_name}"
@@ -129,7 +129,7 @@ _geom_stop()
 	# Stop devices.
 	/usr/local/bin/xml sel -t -m "//g${_class}/vdisk" \
 		-v "name" \
-		-i "position() != last()" -n -b \
+		-i "position() <= last()" -n -b \
 		${configxml_file} | /usr/local/bin/xml unesc | \
 		while read _name; do
 			/sbin/geom ${_class} status "${_name}" 1>/dev/null 2>&1 && /sbin/g${_class} stop ${geom_stop_param} "${_name}"
@@ -143,7 +143,7 @@ _geom_stop_raid5()
 	# Stop devices.
 	/usr/local/bin/xml sel -t -m "//graid5/vdisk" \
 		-v "name" \
-		-i "position() != last()" -n -b \
+		-i "position() <= last()" -n -b \
 		${configxml_file} | /usr/local/bin/xml unesc | \
 		while read _name; do
 			/sbin/geom raid5 status "${_name}" 1>/dev/null 2>&1 && /sbin/graid5 destroy -y "${_name}"

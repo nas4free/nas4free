@@ -51,7 +51,7 @@ iscsi_initiator_start()
 	# Iterate over all configured disks
 	/usr/local/bin/xml sel -t -m "//iscsiinit/vdisk" \
 		-v "concat('targetaddress=',targetaddress,' targetname=',targetname,' initiatorname=',initiatorname)" \
-		-i "position() != last()" -n -b \
+		-i "position() <= last()" -n -b \
 		${configxml_file} | /usr/local/bin/xml unesc | \
 		while read _command_args; do
 			eval ${command} ${_command_args}

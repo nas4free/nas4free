@@ -46,7 +46,7 @@ fsck_start()
 			-v "concat(fstype,' ',devicespecialfile,' ',mdisk)" \
 			-i "count(fsck) > 0" -o " 1" -b \
 			-i "count(fsck) = 0" -o " 0" -b \
-			-i "position() != last()" -n -b \
+			-i "position() <= last()" -n -b \
 			${configxml_file} | /usr/local/bin/xml unesc | \
 		while read _fstype _devicespecialfile _mdisk _fsck; do
 			# Check if fsck is enabled
