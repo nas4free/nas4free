@@ -1,5 +1,5 @@
 PORTNAME=		inadyn-mt
-PORTVERSION=	02.24.36
+PORTVERSION=	02.24.38
 CATEGORIES=		dns
 COMMENT=		A simple DYNAMIC DNS client
 MAINTAINER=		zoon01@nas4free.org

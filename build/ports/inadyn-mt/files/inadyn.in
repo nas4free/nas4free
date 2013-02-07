@@ -43,6 +43,7 @@ inadyn_prestart()
 		-i "provider[. = 'no-ip.com']" -o "--dyndns_system default@no-ip.com" -n -b \
 		-i "provider[. = 'easydns.com']" -o "--dyndns_system default@easydns.com" -n -b \
 		-i "provider[. = '3322.org']" -o "--dyndns_system dyndns@3322.org" -n -b \
+		-i "provider[. = 'dhis.org']" -o "--dyndns_system default@dhis.org" -n -b \
 		-o "--background" -n \
 		-o "--syslog" -n \
 		-v "concat('--username ',username)" -n \
