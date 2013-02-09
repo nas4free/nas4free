@@ -77,10 +77,12 @@ $a_phy_disk = array_merge((array)get_physical_disks_list());
 					<td width="4%" class="listhdrlr"><?=gettext("Disk");?></td>
 					<td width="10%" class="listhdrr"><?=gettext("Size");?></td>
 					<td width="40%" class="listhdrr"><?=gettext("Device model"); ?></td>
-					<td width="40%" class="listhdrr"><?=gettext("Serial number"); ?></td>
+					<td width="32%" class="listhdrr"><?=gettext("Serial number"); ?></td>
+					<td width="8%" class="listhdrr"><?=gettext("Temperature");?></td>
 					<td width="6%" class="listhdrr"><?=gettext("Status");?></td>
 				</tr>
 				<?php foreach ($a_phy_disk as $disk):?>
+				<?php (($temp = system_get_device_temp($disk['name'])) === FALSE) ? $temp = htmlspecialchars(gettext("n/a")) : $temp = sprintf("%s &deg;C", htmlspecialchars($temp));?>
 				<?php
 					if ($disk['type'] == 'HAST') {
 						$role = $a_phy_disk[$disk['name']]['role'];
@@ -95,6 +97,7 @@ $a_phy_disk = array_merge((array)get_physical_disks_list());
 					<td class="listr"><?=htmlspecialchars($disk['size']);?></td>
 					<td class="listr"><?=htmlspecialchars(system_get_volume_model($disk['devicespecialfile']));?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars(system_get_volume_serial($disk['devicespecialfile']));?>&nbsp;</td>
+					<td class="listr"><?=$temp;?>&nbsp;</td>
 					<td class="listbg"><?=$status;?>&nbsp;</td>
 				</tr>
 				<?php endforeach;?>
