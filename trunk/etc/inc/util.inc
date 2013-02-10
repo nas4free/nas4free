@@ -886,108 +886,145 @@ function get_hast_disks_list()
 	return $disklist;
 }
 
-// Get list of ATA disks.
-//[ad0] => Array
-//    (
-//        [type] => IDE
-//        [desc] => QUANTUM FIREBALL EX6.4A/A0A.0D00
-//        [size] => 6149MB
-//        [name] => ad0
-//        [devicespecialfile] => /dev/ad0
-//        [serial] => XX123456
-//    )
-function get_ata_disks_list()
-{
+// Get list of disks.
+// Parameter example : scsi, ata, cdrom, mpt
+// Note				 :- 'cdrom' returns both SCSI and IDE cdroms
+//    [ada0] => Array
+//        (
+//            [name] => ada0
+//            [devicespecialfile] => /dev/ada0
+//            [type] => IDE
+//            [desc] => VMware Virtual IDE Hard Drive 00000001
+//            [size] => 1024MB
+//            [serial] => 00000000000000000001
+//            [devicetype] => ata
+//        )
+function parse_devlist($devicetype){
 	$disklist = array();
+	
+	exec("/sbin/camcontrol devlist -v 2> /dev/null", $rawdata);
 
-	/******* Getting IDE disk information *******/
-	exec("/sbin/atacontrol list 2>/dev/null",$rawdata);
-
-	foreach ($rawdata as $line) {
-		/* Separe la ligne par les espace */
-		$aline = preg_split("/\s+/", $line);
-
-		/* Si ATA alors NEXT */
-		if ($aline[0] === "ATA")
+	foreach($rawdata as $line) {
+	
+	
+		// Check for disk type
+		if( preg_match("/(?<= on )[A-z]*(?=[0-9]* bus )+/", $line, $matches)){
+			$type = $matches[0];
 			continue ;
+		}
+		
+		// Get information include between parenthese: (pass0,da0) or (da0,pass0)
+		preg_match("/.*\(([^>]*)\).*/",$line,$match);
 
-		$diskname = chop($aline[2]);
+		// Split result by comma
+		$temp = preg_split("/,/", $match[1]);
 
-		/* Exlude CDROM (acdX) and Empty (no) */
-		if (!preg_match("/^(acd)/", $diskname ) & $diskname != "no") {
-			$disklist[$diskname] = array();
-			$disklist[$diskname]['name'] = $diskname;
-			$disklist[$diskname]['devicespecialfile'] = "/dev/" . $diskname;
-			$disklist[$diskname]['type'] = "IDE";
+		// Get device name
+		// Check if diskname is the first (da0,pass0) or the second (pass0,da0) arguement
+		$diskname = $temp[1];
+		if ($diskname[0] === "p"){
+			$diskname = $temp[0];
+		}
 
-			/* Match the description witch is include between < and > */
-			preg_match("/.*\<([^>]*)>.*/",$line,$match);
-			$disklist[$diskname]['desc'] = $match[1];
+		// for scsi option, do not include ata drives, for ata option, do not include scsi drives
+		if(($devicetype!="scsi" & $type == $devicetype) | ($devicetype=="scsi" & $type!="ata") ){
+			// Ignore CD-ROMs
+			if($diskname != "" & !preg_match("/^(cd|acd)/", $diskname )){
+				$disklist[$diskname] = array();
+				$disklist[$diskname]['name'] = $diskname;
+				$disklist[$diskname]['devicespecialfile'] = "/dev/" . $diskname;
 
-			/* Get diskinfo to get disk size */
-			$diskinfo = disks_get_diskinfo($diskname);
-			$disklist[$diskname]['size'] = $diskinfo['mediasize_mbytes'] . "MB";
+				// for backward compatibility
+				switch($type){
+				case 'ata':
+						$disklist[$diskname]['type'] = "IDE";
+						break;
+				case 'iscsi':
+						$disklist[$diskname]['type'] = "iSCSI";
+						break;
+				// scsi-controller list from /etc/devd.conf		
+				case 'aac' || 'adv' || 'adw' || 'aha' || 'ahb' || 'ahc' || 'ahd' || 'aic' || 'amd' || 'amr' || 'asr' || 'bt' || 'ciss' || 'ct' || 'dpt' || 'esp' || 'ida' || 'iir' || 'ips' || 'isp'|| 'mlx' || 'mly' || 'mpt' || 'ncr' ||'ncv' || 'nsp' || 'stg' || 'sym' || 'trm' || 'wds':
+				case "mpt": // LSI Fusion-MPT SCSI/Fibre Channel driver
+						$disklist[$diskname]['type'] = "SCSI";
+						break;
+				}		
 
-			/* Get serial number */
-			$serial = system_get_volume_serial("/dev/" . $diskname);
-			$disklist[$diskname]['serial'] = $serial;
+				// Get description between < and >
+				preg_match("/(?<=^\<).*(?=\>)+/",$line,$match);
+				$disklist[$diskname]['desc'] = $match[0];
+				
+				// Get diskinfo to get disk size
+				$diskinfo = disks_get_diskinfo($diskname);
+				$disklist[$diskname]['size'] = $diskinfo['mediasize_mbytes'] . "MB";
+
+				// Get serial number
+				$serial = system_get_volume_serial("/dev/" . $diskname);
+				$disklist[$diskname]['serial'] = $serial;
+				
+				// Get device type
+				$disklist[$diskname]['devicetype'] = $type;
+				}
+		}
+		// display both SCSI and IDE cdroms
+		elseif( $devicetype == "cdrom"){
+			if($diskname != "" & preg_match("/^(cd|acd)/", $diskname )){
+				$disklist[$diskname] = array();
+				$disklist[$diskname]['name'] = $diskname;
+				$disklist[$diskname]['devicespecialfile'] = "/dev/" . $diskname;
+
+				// for backward compatibility
+				switch($type){
+				case 'ata':
+						$disklist[$diskname]['type'] = "IDE";
+						break;
+				case 'iscsi':
+						$disklist[$diskname]['type'] = "iSCSI";
+						break;
+				// scsi-controller list from /etc/devd.conf		
+				case 'aac' || 'adv' || 'adw' || 'aha' || 'ahb' || 'ahc' || 'ahd' || 'aic' || 'amd' || 'amr' || 'asr' || 'bt' || 'ciss' || 'ct' || 'dpt' || 'esp' || 'ida' || 'iir' || 'ips' || 'isp'|| 'mlx' || 'mly' || 'mpt' || 'ncr' ||'ncv' || 'nsp' || 'stg' || 'sym' || 'trm' || 'wds':
+				case "mpt": // LSI Fusion-MPT SCSI/Fibre Channel driver
+						$disklist[$diskname]['type'] = "SCSI";
+						break;
+				}		
+
+				// Get description between < and >
+				preg_match("/(?<=^\<).*(?=\>)+/",$line,$match);
+				$disklist[$diskname]['desc'] = $match[0];
+				
+				// Get diskinfo to get disk size
+				$diskinfo = disks_get_diskinfo($diskname);
+				$disklist[$diskname]['size'] = $diskinfo['mediasize_mbytes'] . "MB";
+
+				// Get serial number
+				$serial = system_get_volume_serial("/dev/" . $diskname);
+				$disklist[$diskname]['serial'] = $serial;
+				
+				// Get device type
+				$disklist[$diskname]['devicetype'] = $type;
+				}		
+		
 		}
 	}
-
 	return $disklist;
+
+}
+
+// Get list of ATA disks.
+function get_ata_disks_list()
+{
+	return parse_devlist("ata");
+}
+
+// Get list of IDE AND SCSI CDROM.
+function get_cdrom_list()
+{
+	return parse_devlist("cdrom");
 }
 
 // Get list of SCSI disks.
-//[ad0] => Array
-//    (
-//        [type] => IDE
-//        [desc] => QUANTUM FIREBALL EX6.4A/A0A.0D00
-//        [size] => 6149MB
-//        [name] => ad0
-//        [devicespecialfile] => /dev/ad0
-//        [serial] => XX123456
-//    )
 function get_scsi_disks_list()
 {
-	$disklist = array();
-
-	/* on envoie la commande d'affichage de la liste des disques*/
-	exec("/sbin/camcontrol devlist",$rawdata);
-
-	foreach ($rawdata as $line) {
-		/* Get information include between parenthese: (pass0,da0) or (da0,pass0)*/
-		preg_match("/.*\(([^>]*)\).*/",$line,$match);
-
-		/* Spare le resultat par la virgule  */
-		$temp = preg_split("/,/", $match[1]);
-
-		// Check if diskname is the first (da0,pass0) or the second (pass0,da0) arguement
-		$diskname = $temp[1];
-		if ($diskname[0] === "p")
-			$diskname = $temp[0];
-
-		/* On exlus les lecteurs cd */
-		if (!preg_match("/^(cd)/", $diskname  )) 	{
-			$disklist[$diskname] = array();
-			$disklist[$diskname]['name'] = $diskname;
-			$disklist[$diskname]['devicespecialfile'] = "/dev/" . $diskname;
-			$disklist[$diskname]['type'] = "SCSI";
-
-			/* Match the description witch is include between < and > */
-			preg_match("/.*\<([^>]*)>.*/",$line,$match);
-			$disklist[$diskname]['desc'] = $match[1];
-
-			/* Get diskinfo to get disk size */
-			$diskinfo = disks_get_diskinfo($diskname);
-			$disklist[$diskname]['size'] = $diskinfo['mediasize_mbytes'] . "MB";
-
-			/* Get serial number */
-			$serial = system_get_volume_serial("/dev/" . $diskname);
-			$disklist[$diskname]['serial'] = $serial;
-		}
-	}
-
-	return $disklist;
+	return parse_devlist("scsi");
 }
 
 function get_iscsi_disks_list()
@@ -1119,97 +1156,6 @@ function get_hraid_disks_list()
 	return $disklist;
 }
 
-// Get list of IDE AND SCSI CDROM.
-// exemple: Array
-// [acd0] => Array
-//    (
-//        [type] => IDE
-//        [desc] => TDK CDRW241040B/57S2
-//        [name] => acd0
-//        [size] => NA
-//        [devicespecialfile] => /dev/acd0
-//        [serial] => XX123456
-//    )
-function get_cdrom_list()
-{
-	$disklist = array();
-
-	/* Recupere la liste des disques IDE */
-	exec("/sbin/atacontrol list 2>/dev/null",$rawdata);
-
-	/* Variable $i utilis pour l'index du tableau */
-	$i=0;
-	foreach ($rawdata as $line) 	{
-		/* Separe la ligne par les espace */
-		$aline = preg_split("/\s+/", $line);
-
-		/* Si ATA alors NEXT */
-		if ($aline[0] === "ATA")
-			continue ;
-
-		$diskname = chop($aline[2]);
-
-		/* Exlude disk (adX) and Empty (no) */
-		if (!preg_match("/^(ad)/", $diskname ) & $diskname != "no") 	{
-			$disklist[$diskname] = array();
-			$disklist[$diskname]['name'] = $diskname;
-			$disklist[$diskname]['devicespecialfile'] = "/dev/" . $diskname;
-			$disklist[$diskname]['type'] = "IDE";
-			$disklist[$diskname]['size'] = "NA";
-
-			/* Match the description witch is include between < and > */
-			preg_match("/.*\<([^>]*)>.*/",$line,$match);
-			$disklist[$diskname]['desc'] = $match[1];
-
-			/* Get serial number */
-			$serial = system_get_volume_serial("/dev/" . $diskname);
-			$disklist[$diskname]['serial'] = $serial;
-
-			$i++;
-		}
-	}
-
-	/* Cleaning used variable and initialize array */
-	unset($rawdata);
-
-	/* Get the SCSI disk list */
-	/* Get the result of the command camcontrol*/
-	exec("/sbin/camcontrol devlist",$rawdata);
-
-	foreach ($rawdata as $line) 	{
-		/* Get information include between parenthese: (pass0,da0) or (da0,pass0)*/
-		preg_match("/.*\(([^>]*)\).*/",$line,$match);
-
-		/* Spare le resultat par la virgule  */
-		$temp = preg_split("/,/", $match[1]);
-
-		// Check if diskname is the first (da0,pass0) or the second (pass0,da0) arguement
-		$diskname = $temp[1];
-		if ($diskname[0] === "p")
-			$diskname = $temp[0];
-
-		/* On exlus les lecteurs disque dur da */
-		if (!preg_match("/^(da|ada)/", $diskname  )) 	{
-			$disklist[$diskname] = array();
-			$disklist[$diskname]['name'] = $diskname;
-			$disklist[$diskname]['devicespecialfile'] = "/dev/" . $diskname;
-			$disklist[$diskname]['type'] = "SCSI";
-			$disklist[$diskname]['size'] = "NA";
-
-			/* Match the description witch is include between < and > */
-			preg_match("/.*\<([^>]*)>.*/",$line,$match);
-			$disklist[$diskname]['desc'] = $match[1];
-
-			/* Get serial number */
-			$serial = system_get_volume_serial("/dev/" . $diskname);
-			$disklist[$diskname]['serial'] = $serial;
-
-			$i++;
-		}
-	}
-
-	return $disklist;
-}
 
 /* Return list of ALL disk: physical, hardware RAID, Software RAID disk and HAST disk */
 function get_physical_disks_list()
