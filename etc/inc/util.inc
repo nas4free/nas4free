@@ -108,6 +108,7 @@ function long2ip6($long) {
         if ($i>0) $ipv6 .= ":";
     }
     return $ipv6;
+
 }
 
 /* return the highest (broadcast) address in the subnet given a host address and a subnet bit count */
@@ -908,7 +909,7 @@ function parse_devlist($devicetype){
 	
 	
 		// Check for disk type
-		if( preg_match("/(?<= on )[A-z]*(?=[0-9]* bus )+/", $line, $matches)){
+		if( preg_match("/(?<= on )[-A-z]*(?=[0-9]* bus )+/", $line, $matches)){
 			$type = $matches[0];
 			continue ;
 		}
