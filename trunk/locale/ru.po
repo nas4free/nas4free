@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-02-03 08:16+0000\n"
-"PO-Revision-Date: 2013-01-28 10:22+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2013-02-04 00:07+0000\n"
+"PO-Revision-Date: 2013-02-15 15:42+0000\n"
+"Last-Translator: Lintruder <dmitry-confidential@ya.ru>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-02-03 07:32+0000\n"
-"X-Generator: Launchpad (build 16462)\n"
+"X-Launchpad-Export-Date: 2013-02-28 00:33+0000\n"
+"X-Generator: Launchpad (build 16506)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
 "X-Poedit-Language: Russian\n"
@@ -72,7 +72,7 @@ msgstr "%s на %s"
 
 #, php-format
 msgid "%s%% available"
-msgstr ""
+msgstr "%s%% доступного"
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -757,13 +757,13 @@ msgstr ""
 "'iqn.'."
 
 msgid "Battery Charge"
-msgstr ""
+msgstr "Заряд батареи"
 
 msgid "Battery Low"
-msgstr ""
+msgstr "Низкий заряд батареи"
 
 msgid "Battery Remain Time"
-msgstr ""
+msgstr "Оставшееся время аккумулятора"
 
 msgid "Best available"
 msgstr "Наилучший доступный"
@@ -876,8 +876,8 @@ msgstr "Кэш"
 msgid "Cache Device"
 msgstr "Кэш-устройство"
 
-msgid "Calibration"
-msgstr ""
+msgid "Calibration Battery"
+msgstr "Калибровка батареи"
 
 msgid "Can't format the OS origin disk!"
 msgstr "Диск с операционной системой не может быть отформатирован!"
@@ -931,8 +931,8 @@ msgstr "Изменения этого параметра подействуют 
 msgid "Channel"
 msgstr "Канал"
 
-msgid "Charging"
-msgstr ""
+msgid "Charging Battery"
+msgstr "Зарядка батареи"
 
 msgid "Check interval"
 msgstr "Интервал проверки"
@@ -3887,9 +3887,6 @@ msgstr "Число событий"
 msgid "Off"
 msgstr "Выкл."
 
-msgid "Off Line"
-msgstr ""
-
 msgid "Old passphrase"
 msgstr "Старая парольная фраза"
 
@@ -3898,9 +3895,6 @@ msgstr "Старый пароль"
 
 msgid "On"
 msgstr "Вкл."
-
-msgid "On Battery"
-msgstr ""
 
 msgid ""
 "Once you add the virtual device, it becomes impossible to delete again. It "
@@ -3949,7 +3943,7 @@ msgid "Outgoing mail server"
 msgstr "Сервер исходящей почты"
 
 msgid "Overload"
-msgstr ""
+msgstr "Перегрузка"
 
 msgid "Overwrite already configured disks (only affects filesystem value)."
 msgstr ""
@@ -4444,8 +4438,8 @@ msgstr "Сменный носитель"
 msgid "Remove all entries from ARP table"
 msgstr "Удалить все записи из ARP-таблицы"
 
-msgid "Replace Battery"
-msgstr ""
+msgid "Replace Battery UPS"
+msgstr "Замените батарею ИБП (UPS)"
 
 msgid "Report Generator"
 msgstr "Генератор отчетов"
@@ -4887,7 +4881,7 @@ msgid "Show process information"
 msgstr "Показать информацию о процессах"
 
 msgid "Show ups information"
-msgstr ""
+msgstr "Показать информацию об ИБП (UPS)"
 
 msgid "Shutdown"
 msgstr "Выключение"
@@ -4935,10 +4929,10 @@ msgid "Slovenian"
 msgstr "Словенский"
 
 msgid "SmartBoost"
-msgstr ""
+msgstr "SmartBoost (повышение входного напряжения)"
 
 msgid "SmartTrim"
-msgstr ""
+msgstr "SmartTrim (снижение входного напряжения)"
 
 msgid "Snapshot"
 msgstr "Слепок"
@@ -6731,11 +6725,20 @@ msgstr "UID"
 msgid "UPS"
 msgstr "UPS"
 
+msgid "UPS Off Line"
+msgstr "ИБП в автономном режиме"
+
+msgid "UPS On Battery"
+msgstr "ИБП работает от батареи"
+
 msgid "UPS On Line"
-msgstr ""
+msgstr "ИБП работает от сети"
 
 msgid "UPS Status"
-msgstr ""
+msgstr "Состояние ИБП"
+
+msgid "UPS Waiting"
+msgstr "ИБП в состоянии ожидания"
 
 msgid "UPS disabled"
 msgstr "Служба UPS отключена"
@@ -7025,9 +7028,6 @@ msgstr "WPA-PSK WPA-EAP"
 
 msgid "Wait time"
 msgstr "Время ожидания"
-
-msgid "Waiting"
-msgstr ""
 
 msgid "Wake On LAN"
 msgstr "Wake On LAN"
