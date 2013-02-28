@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-02-03 08:16+0000\n"
-"PO-Revision-Date: 2013-02-01 07:43+0000\n"
-"Last-Translator: crest <a.schmidhuber@gmail.com>\n"
+"POT-Creation-Date: 2013-02-04 00:07+0000\n"
+"PO-Revision-Date: 2013-02-05 10:18+0000\n"
+"Last-Translator: jasch <jasch@gmx.co.uk>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-02-03 07:32+0000\n"
-"X-Generator: Launchpad (build 16462)\n"
+"X-Launchpad-Export-Date: 2013-02-28 00:32+0000\n"
+"X-Generator: Launchpad (build 16506)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
 "X-Poedit-Language: German\n"
@@ -72,7 +72,7 @@ msgstr "%s auf %s"
 
 #, php-format
 msgid "%s%% available"
-msgstr ""
+msgstr "%s%% verfügbar"
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -766,13 +766,13 @@ msgstr ""
 "Ist der Anfang nicht 'iqn.', wird der Base Name automatisch mit angehängt."
 
 msgid "Battery Charge"
-msgstr ""
+msgstr "Ladestand des Akkus"
 
 msgid "Battery Low"
-msgstr ""
+msgstr "Schwacher Akku"
 
 msgid "Battery Remain Time"
-msgstr ""
+msgstr "Akku Restlaufzeit"
 
 msgid "Best available"
 msgstr "Bester verfügbarer"
@@ -886,8 +886,8 @@ msgstr "Cache"
 msgid "Cache Device"
 msgstr "Puffer"
 
-msgid "Calibration"
-msgstr ""
+msgid "Calibration Battery"
+msgstr "Akku Calibration"
 
 msgid "Can't format the OS origin disk!"
 msgstr ""
@@ -947,8 +947,8 @@ msgstr ""
 msgid "Channel"
 msgstr "Kanal"
 
-msgid "Charging"
-msgstr ""
+msgid "Charging Battery"
+msgstr "Akku wird geladen"
 
 msgid "Check interval"
 msgstr "Überprüfungsintervall"
@@ -3926,9 +3926,6 @@ msgstr "Ereignis"
 msgid "Off"
 msgstr "Deaktiviert"
 
-msgid "Off Line"
-msgstr ""
-
 msgid "Old passphrase"
 msgstr "Alte Passphrase"
 
@@ -3937,9 +3934,6 @@ msgstr "Altes Passwort"
 
 msgid "On"
 msgstr "Aktiviert"
-
-msgid "On Battery"
-msgstr ""
 
 msgid ""
 "Once you add the virtual device, it becomes impossible to delete again. It "
@@ -3989,7 +3983,7 @@ msgid "Outgoing mail server"
 msgstr "Ausgehender Mailserver"
 
 msgid "Overload"
-msgstr ""
+msgstr "Überlast"
 
 msgid "Overwrite already configured disks (only affects filesystem value)."
 msgstr ""
@@ -4484,8 +4478,8 @@ msgstr "Wechselbar"
 msgid "Remove all entries from ARP table"
 msgstr "Lösch alle Einträge aus ARP Tabelle"
 
-msgid "Replace Battery"
-msgstr ""
+msgid "Replace Battery UPS"
+msgstr "Akku tauschen"
 
 msgid "Report Generator"
 msgstr "Bericht generieren"
@@ -4935,7 +4929,7 @@ msgid "Show process information"
 msgstr "Zeige Prozessinformationen"
 
 msgid "Show ups information"
-msgstr ""
+msgstr "zeige UPS Informationen"
 
 msgid "Shutdown"
 msgstr "Herunterfahren"
@@ -4984,10 +4978,10 @@ msgid "Slovenian"
 msgstr "Slowenisch"
 
 msgid "SmartBoost"
-msgstr ""
+msgstr "SmartBoost"
 
 msgid "SmartTrim"
-msgstr ""
+msgstr "SmartTrim"
 
 msgid "Snapshot"
 msgstr "Schnappschuss"
@@ -6830,11 +6824,20 @@ msgstr "UID"
 msgid "UPS"
 msgstr "USV"
 
+msgid "UPS Off Line"
+msgstr "UPS Off Line"
+
+msgid "UPS On Battery"
+msgstr "Akku Betrieb"
+
 msgid "UPS On Line"
-msgstr ""
+msgstr "UPS On Line"
 
 msgid "UPS Status"
-msgstr ""
+msgstr "UPS Status"
+
+msgid "UPS Waiting"
+msgstr "UPS wartet"
 
 msgid "UPS disabled"
 msgstr "USV abgeschaltet"
@@ -7122,9 +7125,6 @@ msgstr "WPA-PSK WPA-EAP"
 
 msgid "Wait time"
 msgstr "Wartezeit"
-
-msgid "Waiting"
-msgstr ""
 
 msgid "Wake On LAN"
 msgstr "Wake On LAN"

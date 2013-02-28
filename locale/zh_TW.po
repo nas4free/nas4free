@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-02-03 08:16+0000\n"
-"PO-Revision-Date: 2013-01-23 20:59+0000\n"
+"POT-Creation-Date: 2013-02-04 00:07+0000\n"
+"PO-Revision-Date: 2013-02-05 11:38+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-02-03 07:32+0000\n"
-"X-Generator: Launchpad (build 16462)\n"
+"X-Launchpad-Export-Date: 2013-02-28 00:32+0000\n"
+"X-Generator: Launchpad (build 16506)\n"
 "X-Poedit-Country: CHINA\n"
 "Language: \n"
 "X-Poedit-Language: Chinese (Traditional)\n"
@@ -128,7 +128,7 @@ msgstr ""
 msgid ""
 "<div id='enumeration'><ul><li>The new password is also the default root "
 "password of the system!</li></ul></div>"
-msgstr "<div id='enumeration'><ul><li>新密碼也是 root 的默認系統密碼！</li></ul></div>"
+msgstr "<div id='enumeration'><ul><li>新密碼也是系統 root 的默認密碼！</li></ul></div>"
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -413,13 +413,13 @@ msgid "Administration password"
 msgstr "管理員密碼"
 
 msgid "Administrative WebGUI"
-msgstr "WebGUI 管理界面"
+msgstr "網頁管理界面"
 
 msgid "Administrator name"
 msgstr "管理员帳號"
 
 msgid "Advanced"
-msgstr "進階"
+msgstr "高級設定"
 
 msgid "Advanced Configuration"
 msgstr "進階配置"
@@ -447,7 +447,7 @@ msgid ""
 "address</li></ul>"
 msgstr ""
 "當您單擊&quot;儲存&quot;後，您可能得執行以下步驟才能再訪問伺服器：<ul><li>更改您的電腦的 IP 位址</li><li>使用新的IP "
-"位址訪問WebGUI。</li></ul>"
+"位址訪問網頁界面。</li></ul>"
 
 #, php-format
 msgid ""
@@ -459,7 +459,7 @@ msgid ""
 msgstr ""
 "當您單擊 &quot;儲存&quot;之後，您必須重新啟動伺服器才能使更改生效。您可能還需要做以下一個或多個步驟才能再次訪問您的伺服器： "
 "<ul><li><span class='vexpl'>變更伺服器的IP位址</span></li><li><span "
-"class='vexpl'>使用新的IP位址來連接網頁管理介面</span></li></ul>"
+"class='vexpl'>使用新的IP位址來連接網頁管理界面</span></li></ul>"
 
 msgid "Aggregation protocol"
 msgstr "聚合協議"
@@ -528,7 +528,7 @@ msgid "Allows the server to try and become a local master browser."
 msgstr "允許服務器嘗試成為本局域網主瀏覽器（local master browser）。"
 
 msgid "AltRoot"
-msgstr "標識備用根目錄（AltRoot）"
+msgstr "AltRoot"
 
 msgid "Alternate TCP port. Default is 22"
 msgstr "備用TCP端口。默認為 22"
@@ -820,7 +820,7 @@ msgstr "緩存"
 msgid "Cache Device"
 msgstr "緩存設備"
 
-msgid "Calibration"
+msgid "Calibration Battery"
 msgstr ""
 
 msgid "Can't format the OS origin disk!"
@@ -872,7 +872,7 @@ msgstr "重新啟動系統之後，更改的設置才會生效。"
 msgid "Channel"
 msgstr "頻道"
 
-msgid "Charging"
+msgid "Charging Battery"
 msgstr ""
 
 msgid "Check interval"
@@ -1138,7 +1138,7 @@ msgid "Current Version:"
 msgstr "目前版本："
 
 msgid "Current password"
-msgstr "現時密碼"
+msgstr "當前密碼"
 
 msgid "Custom"
 msgstr "自訂"
@@ -1390,7 +1390,7 @@ msgid "Destination"
 msgstr "目的端"
 
 msgid "Destination email address."
-msgstr "電郵目的端"
+msgstr "電郵目的端。"
 
 msgid "Destination host name or IP number."
 msgstr "目的端主機名稱或 IP 位址。"
@@ -1740,7 +1740,7 @@ msgid "Dos charset"
 msgstr "DOS 字符集"
 
 msgid "Double-parity RAID-Z"
-msgstr "雙奇偶校驗 (RAID-Z2)"
+msgstr "雙奇偶校驗容錯性（RAID-Z2）"
 
 msgid "Download"
 msgstr "下載"
@@ -2083,7 +2083,7 @@ msgstr "英文"
 msgid ""
 "Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
-msgstr "如果您想覆蓋默認值的話，請輸入自定的 WebGUI 的端口編號（80為HTTP，HTTPS為443）。"
+msgstr "如果您想覆蓋默認值的話，請輸入自定的網頁界面的端口編號（80為HTTP，HTTPS為443）。"
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "請輸入有效的 sysctl MIB 名稱。"
@@ -2091,7 +2091,7 @@ msgstr "請輸入有效的 sysctl MIB 名稱。"
 msgid ""
 "Enter desired system time directly (format mm/dd/yyyy hh:mm) or use icon to "
 "select it."
-msgstr "請輸入系統時間（格式為 mm/dd/yyyy hh:mm），或點選圖標來選擇時間。"
+msgstr "請輸入系統時間（格式為 MM/DD/YYYY hh:mm），或點選圖標來選擇時間。"
 
 msgid ""
 "Enter the passphrase that will be used in WPA-PSK mode. This must be between "
@@ -2443,7 +2443,7 @@ msgid "Group suffix"
 msgstr "群組後綴"
 
 msgid "Groups"
-msgstr "群組（Groups）"
+msgstr "群組"
 
 msgid "Guest"
 msgstr "訪客（ Guest ）"
@@ -2563,7 +2563,7 @@ msgid "I/O packets"
 msgstr "I/O 封包"
 
 msgid "I/O statistics"
-msgstr "I/O 平均值"
+msgstr "I/O 統計資料"
 
 #, php-format
 msgid "I/O timeout in seconds (%d by default)."
@@ -2706,7 +2706,7 @@ msgstr ""
 msgid ""
 "If you want to change the password for accessing the WebGUI, enter it here "
 "twice."
-msgstr "如果您想更改訪問WebGUI的密碼，請在這裡輸入兩次。"
+msgstr "如果您想更改訪問網頁界面的密碼，請在這裡輸入兩次。"
 
 msgid "Image upload failed (out of memory?)"
 msgstr "韌體映像檔上傳失敗（記憶體不足？）"
@@ -2819,7 +2819,7 @@ msgid "Interface"
 msgstr "介面"
 
 msgid "Interface Management"
-msgstr "網路介面管理"
+msgstr "網絡介面管理"
 
 msgid "Interface to listen to."
 msgstr "要偵聽的網路介面。"
@@ -2858,7 +2858,7 @@ msgstr "不建議導入運行狀況不良的存儲池或是屬於運行不良的
 msgid ""
 "It's recommended to change the default username and password for accessing "
 "the WebGUI, enter the username here."
-msgstr "建議更改訪問 WebGUI 的預設用戶名和密碼，請在此輸入用戶名。"
+msgstr "建議更改訪問網頁界面的預設用戶名和密碼，請在此輸入用戶名。"
 
 msgid "Italian"
 msgstr "義大利文"
@@ -3143,7 +3143,7 @@ msgid "MBR partition"
 msgstr "MBR 分區"
 
 msgid "MIB"
-msgstr "MIB"
+msgstr "管理信息庫（MIB）"
 
 msgid "MISSING"
 msgstr "遺失"
@@ -3286,7 +3286,7 @@ msgid "Memory usage"
 msgstr "記憶體使用率"
 
 msgid "Message of the day."
-msgstr "每日訊息(每次登入時顯示)。"
+msgstr "每日訊息（每次登入時顯示）。"
 
 msgid "MiB"
 msgstr "MiB"
@@ -3374,7 +3374,7 @@ msgid "Mutual CHAP Users"
 msgstr "CHAP 相互驗證用戶"
 
 msgid "NAS4Free WebGUI Login"
-msgstr "NAS4Free WebGUI 登入"
+msgstr "NAS4Free 網頁界面登入"
 
 msgid "NFS"
 msgstr "NFS"
@@ -3641,9 +3641,6 @@ msgstr "出現"
 msgid "Off"
 msgstr "關閉"
 
-msgid "Off Line"
-msgstr ""
-
 msgid "Old passphrase"
 msgstr "舊密碼短語"
 
@@ -3652,9 +3649,6 @@ msgstr "舊密碼"
 
 msgid "On"
 msgstr "開"
-
-msgid "On Battery"
-msgstr ""
 
 msgid ""
 "Once you add the virtual device, it becomes impossible to delete again. It "
@@ -3691,10 +3685,10 @@ msgid "Out"
 msgstr "出"
 
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
-msgstr "外寄電郵伺服器位址，例：smtp.mycorp.com"
+msgstr "郵件發送（SMTP）伺服器的地址，例如：smtp.mycorp.com"
 
 msgid "Outgoing mail server"
-msgstr "外寄電郵伺服器"
+msgstr "郵件發送伺服器"
 
 msgid "Overload"
 msgstr ""
@@ -4173,7 +4167,7 @@ msgstr "可移除"
 msgid "Remove all entries from ARP table"
 msgstr "移除所有ARP table內的項目"
 
-msgid "Replace Battery"
+msgid "Replace Battery UPS"
 msgstr ""
 
 msgid "Report Generator"
@@ -4414,7 +4408,7 @@ msgstr "安全選項"
 msgid ""
 "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
 "Secure (HTTPS) for the WebGUI."
-msgstr "請在WebGUI中選擇超文本傳輸協議（HTTP）或安全超文本傳輸協議（HTTPS）。"
+msgstr "請在網頁界面中選擇超文本傳輸協議（HTTP）或安全超文本傳輸協議（HTTPS）。"
 
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr "請選擇已開啟 S.M.A.R.T. 監測的磁碟。"
@@ -4429,7 +4423,7 @@ msgid "Select the FreeBSD package to be installed."
 msgstr "請選擇要安裝的 FreeBSD 套件。"
 
 msgid "Select the language of the WebGUI."
-msgstr "請選擇 WebGUI 的語言。"
+msgstr "請選擇網頁界面的語言。"
 
 msgid "Select the location closest to you."
 msgstr "請選擇最鄰近的區域。"
@@ -4586,7 +4580,7 @@ msgid "Show process information"
 msgstr "顯示程序資訊"
 
 msgid "Show ups information"
-msgstr ""
+msgstr "顯示 UPS 信息"
 
 msgid "Shutdown"
 msgstr "關機"
@@ -4632,10 +4626,10 @@ msgid "Slovenian"
 msgstr "斯洛維尼亞文"
 
 msgid "SmartBoost"
-msgstr ""
+msgstr "SmartBoost"
 
 msgid "SmartTrim"
-msgstr ""
+msgstr "SmartTrim"
 
 msgid "Snapshot"
 msgstr "快照"
@@ -4813,7 +4807,7 @@ msgid "Suppress non-error messages."
 msgstr "只顯示錯誤訊息。"
 
 msgid "Swap"
-msgstr "置換分割區（Swap）"
+msgstr "交換分區（Swap）"
 
 msgid "Swap disabled"
 msgstr "關閉 Swap"
@@ -5524,7 +5518,7 @@ msgid "The share name is already used."
 msgstr "此分享區名稱已被使用。"
 
 msgid "The size of the swap file in MB."
-msgstr "置換檔（swap file）的大小（MB）。"
+msgstr "Swap 檔的大小（MB）。"
 
 msgid "The space-separated list of URIs for the LDAP server."
 msgstr "LDAP 伺服器以空格分隔（space-separated）的 URI 列表。"
@@ -5897,13 +5891,13 @@ msgstr "此選項指定本模塊傳輸文件時應採用的用戶名或用戶ID�
 
 msgid ""
 "This page reflects the configuration that has been created with the WebGUI."
-msgstr "本頁反映在 WebGUI 創建的配置。"
+msgstr "本頁反映在網頁界面創建的配置。"
 
 msgid ""
 "This page reflects the current system configuration. It may be different to "
 "the configuration which has been created with the WebGUI if changes has been "
 "done via command line."
-msgstr "本頁面反映了當前的系統配置。如果通过 command line 更改配置则会与通过WebGUI 創建的设置不同。"
+msgstr "本頁面反映了當前的系統配置。如果通过 command line 更改配置则会与通过網頁界面創建的设置不同。"
 
 msgid ""
 "This parameter controls whether files starting with a dot appear as hidden "
@@ -6133,7 +6127,7 @@ msgid "Traps"
 msgstr "Traps"
 
 msgid "Triple-parity RAID-Z"
-msgstr "三奇偶校验容错性 RAID-Z（RAID-Z3）"
+msgstr "三奇偶校驗容錯性（RAID-Z3）"
 
 msgid "Trivial File Transfer Protocol"
 msgstr "簡單文件傳輸傳輸協議（TFTP）"
@@ -6193,10 +6187,19 @@ msgstr "UID"
 msgid "UPS"
 msgstr "UPS"
 
+msgid "UPS Off Line"
+msgstr ""
+
+msgid "UPS On Battery"
+msgstr ""
+
 msgid "UPS On Line"
 msgstr ""
 
 msgid "UPS Status"
+msgstr "UPS 狀態"
+
+msgid "UPS Waiting"
 msgstr ""
 
 msgid "UPS disabled"
@@ -6418,7 +6421,7 @@ msgid "Virtual IP address"
 msgstr "虛擬 IP 地址"
 
 msgid "Virtual device"
-msgstr "虛擬裝置"
+msgstr "虛擬裝置（Virtual device）"
 
 msgid "Virtual devices"
 msgstr "虛擬裝置"
@@ -6468,9 +6471,6 @@ msgstr "WPA-PSK WPA-EAP"
 msgid "Wait time"
 msgstr "等待時間"
 
-msgid "Waiting"
-msgstr ""
-
 msgid "Wake On LAN"
 msgstr "Wake On LAN 網路喚醒"
 
@@ -6495,7 +6495,7 @@ msgid "Watch directory"
 msgstr "關注目錄"
 
 msgid "WebGUI"
-msgstr "網頁介面"
+msgstr "網頁網頁界面"
 
 msgid "Webserver"
 msgstr "網頁伺服器"
@@ -6525,7 +6525,7 @@ msgid ""
 msgstr "如果沒有用戶連線的話，是否該略過掃描。這樣會讓磁盤在沒有用戶連線的時候降速運轉。"
 
 msgid "Who"
-msgstr "執行用戶 （Who）"
+msgstr "執行用戶"
 
 msgid "Wildcard"
 msgstr "通配符"
@@ -6562,7 +6562,7 @@ msgid ""
 "You can also install a package via SSH or console using the the pkg_add "
 "command.<br />Example: pkg_add -r packagename"
 msgstr ""
-"您也可以通過 SSH 或 console 使用 pkg_add 命令來安裝套件。<br />（例如：pkg_add -r packagename）"
+"您也可以通過 SSH 或在 console 使用 pkg_add 命令來安裝套件。<br />（例如：pkg_add -r packagename）"
 
 msgid "You can use the following parameters for substitution:"
 msgstr "您可以使用以下的參數替代："
@@ -6617,7 +6617,7 @@ msgid "You must select at least one authentication method."
 msgstr "請至少選擇一種認證方式。"
 
 msgid "You should use HTTPS as WebGUI protocol for sending passphrase."
-msgstr "建議您使用 HTTPS 作為 WebGUI 協議來傳送密碼短語。"
+msgstr "建議您使用 HTTPS 作為網頁界面協議來傳送密碼短語。"
 
 msgid "Your ZFS system is not healthy."
 msgstr "您的ZFS系統有問題。"
