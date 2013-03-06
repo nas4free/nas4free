@@ -211,6 +211,7 @@ samba_mkconf_cmd()
 			-o "idmap config * : range = ${samba_idmap_range}" -n \
 			-v "concat('idmap config ',//ad/domainname_netbios,' : backend = rid')" -n \
 			-v "concat('idmap config ',//ad/domainname_netbios,' : range = ${samba_idmap_range}')" -n \
+			-v "concat('realm = ',//ad/domainname_dns)" -n \
 			-o "winbind enum users = yes" -n \
 			-o "winbind enum groups = yes" -n \
 			-o "winbind use default domain = yes" -n \
