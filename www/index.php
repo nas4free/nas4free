@@ -314,7 +314,7 @@ $(document).ready(function(){
 			        exec("/sbin/sysctl -n kern.ostype", $ostype);
 			        exec("/sbin/sysctl -n kern.osrelease", $osrelease);
 			        exec("/sbin/sysctl -n kern.osreldate", $osreldate);
-			        echo("$ostype[0] $osrelease[0] (reldate $osreldate[0])");
+			        echo("$ostype[0] $osrelease[0] (kern.osreldate: $osreldate[0])");
 			      ?>
 			    </td>
 			  </tr>
