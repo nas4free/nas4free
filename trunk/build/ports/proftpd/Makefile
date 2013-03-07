@@ -1,5 +1,5 @@
 PORTNAME=		proftpd
-PORTVERSION=	1.3.4b
+PORTVERSION=	1.3.4c
 CATEGORIES=		ftp
 COMMENT=		Highly configurable FTP daemon
 MAINTAINER=		zoon01@nas4free.org
