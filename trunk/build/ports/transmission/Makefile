@@ -11,6 +11,7 @@ MASTER_SITES=   	http://download-origin.transmissionbt.com/files/ \
 LIB_DEPENDS=		curl.6:${PORTSDIR}/ftp/curl \
 	    		event-2.0.6:${PORTSDIR}/devel/libevent2
 GEN_RUN_DEPENDS=${LOCALBASE}/share/transmission/web/index.html:${PORTSDIR}/www/transmission-web
+
 USE_GMAKE=	yes
 USE_GNOME?=	pkgconfig
 USE_OPENSSL=	yes
@@ -25,7 +26,7 @@ CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE} \
 									--disable-libappindicator \
 									--enable-largefile \
 									--enable-daemon \
-									--disable-gtk \
+									--without-gtk \
 									--disable-libnotify \
 		 							--disable-mac \
 		 							--disable-nls
