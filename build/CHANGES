@@ -73,6 +73,8 @@ Changes:
 - Change bind WebGUI to LAN only.
 - Change default ZFS arc size.
 - Change LDAP host to URIs.
+- Change default password hash to sha512.
+- Set memorylocked limit to 64Kb for default login class.
 - Update SSL certificate and privatekey.
 - Add iscsi default values to default config.
 - Remove unused hw.ata.to from sysctl.
