@@ -231,7 +231,7 @@ if ($_POST) {
 		if ($_POST['partitiontype'] != 'p') {
 			$input_errors[] = gettext("HAST volume can be use with GPT/UFS only.");
 		}
-		$device = "{$_POST['hvol']}";
+		$device = "{$_POST['hvol']}{$_POST['partition']}";
 		if ($device === $cfdevice) {
 			$input_errors[] = gettext("Can't mount the system partition 1, the DATA partition is the 2.");
 		}
