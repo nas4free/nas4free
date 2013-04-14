@@ -31,6 +31,11 @@ command="/sbin/${name}"
 hastctl="/sbin/hastctl"
 required_modules="geom_gate:g_gate"
 
+# Add dummy hast.conf
+if [ ! -f ${hastd_config} ]; then
+	touch ${hastd_config}
+fi
+
 hastd_mkconf()
 {
 	# Create hastd.conf file
