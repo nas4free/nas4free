@@ -43,6 +43,10 @@ if (!isset($config['hast']['auxparam']) || !is_array($config['hast']['auxparam']
 function hast_get_status() {
 	global $config;
 
+	if (!isset($config['hast']['enable'])) {
+		return gettext("HAST disabled");
+	}
+
 	$cmd = "/sbin/hastctl status";
 	if (isset($_GET['name'])) {
 		$cmd .= " {$_GET['name']}";
