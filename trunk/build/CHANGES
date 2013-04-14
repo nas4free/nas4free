@@ -85,7 +85,8 @@ Changes:
 - Add php wrapper for webserver.
 - Add sockstat to Diagnostics|Information|Sockets.
 - Add missing NUT drivers.
-- Add firefly pacth.
+- Add firefly patch.
+- Add gbe patch.
 - Use SCSI inquiry for model and serial.
 - Upgrade istgt to 20121123.
 - Upgrade isboot to 0.2.6.
@@ -146,7 +147,8 @@ Bug fixes:
 - Fix afp working.
 - Fix broken cron polling time jobs.
 - Fix AIO with SMB2.
-- fix AD domain authentication.
+- Fix AD domain authentication.
+- Fix wol gbe driver.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
