@@ -9,19 +9,14 @@ MASTER_SITES=	http://www.nano-editor.org/dist/v2.2/ \
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
 GNU_CONFIGURE=	yes
-USE_GETTEXT=		yes
+USE_GETTEXT=    	yes
 CONFIGURE_ARGS=	--enable-all
 CONFIGURE_ENV=	CPPFLAGS="-I${LOCALBASE}/include" \
 							LDFLAGS="-L${LOCALBASE}/lib"
 
 .include <bsd.port.pre.mk>
 
-# requires wide character curses
-.if (${OSVERSION} < 602107) || (${OSVERSION} >= 700000 && ${OSVERSION} < 700033)
-CONFIGURE_ARGS+=--disable-utf8
-.else
 CONFIGURE_ARGS+=--enable-utf8
-.endif
 
 do-install:
 	${INSTALL_PROGRAM} -v ${WRKSRC}/src/nano ${NAS4FREE_ROOTFS}/usr/local/bin;
