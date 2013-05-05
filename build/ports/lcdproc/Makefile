@@ -1,22 +1,22 @@
 PORTNAME=		lcdproc
 PORTVERSION=	0.5.6
-PORTREVISION= 1
+PORTREVISION= 2
 CATEGORIES=		sysutils
-MASTER_SITES=	SF
+MASTER_SITES=		SF
 COMMENT=		A client/server suite for LCD devices
 MAINTAINER=		zoon01@nas4free.org
 
 USE_AUTOTOOLS=	autoconf automake aclocal
 GNU_CONFIGURE=	yes
-USE_GNOME=	pkgconfig
+USE_GNOME=		pkgconfig
 
-LIB_DEPENDS+=	ftdi.19:${PORTSDIR}/devel/libftdi
-LIB_DEPENDS+=	hid:${PORTSDIR}/devel/libhid
+LIB_DEPENDS+=		ftdi.21:${PORTSDIR}/devel/libftdi
+LIB_DEPENDS+=		hid:${PORTSDIR}/devel/libhid
 
 CONFIGURE_ARGS=	--enable-drivers="${LCDPROC_DRIVERS}" \
-							--with-libusb=/usr \
-							--disable-dependency-tracking \
-							--disable-doxygen
+						--with-libusb=/usr \
+						--disable-dependency-tracking \
+						--disable-doxygen
 
 OPTIONS_DEFINE=  USB FTDI HID FREETYPE PNG SERDISP
 USB_DESC=     USB support
@@ -85,7 +85,7 @@ LCDPROC_DRIVERS+=IOWarrior \
 		shuttleVFD
 
 . if ${PORT_OPTIONS:MFTDI}
-LIB_DEPENDS+=           ftdi:${PORTSDIR}/devel/libftdi
+LIB_DEPENDS+=        ftdi:${PORTSDIR}/devel/libftdi
 CONFIGURE_ARGS+=	--enable-libftdi
 PLIST_SUB+=		FTDI=""
 LCDPROC_DRIVERS+=i2500vfd \
@@ -112,22 +112,22 @@ PLIST_SUB+=		USB="@comment " FTDI="@comment " HID="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MFREETYPE}
-LIB_DEPENDS+=           freetype:${PORTSDIR}/print/freetype2
+LIB_DEPENDS+=        freetype:${PORTSDIR}/print/freetype2
 .else
-CONFIGURE_ARGS+=        --disable-freetype
+CONFIGURE_ARGS+=     --disable-freetype
 .endif
 
 .if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=           png15:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=        png15:${PORTSDIR}/graphics/png
 .else
-CONFIGURE_ARGS+=        --disable-libpng
+CONFIGURE_ARGS+=     --disable-libpng
 .endif
 
 .if ${PORT_OPTIONS:MSERDISP}
-LIB_DEPENDS+=           serdisp:${PORTSDIR}/devel/serdisplib
-CFLAGS+=                -I${LOCALBASE}/include
-LDFLAGS+=               -L${LOCALBASE}/lib
-CPPFLAGS+=              -I${LOCALBASE}/include
+LIB_DEPENDS+=        serdisp:${PORTSDIR}/devel/serdisplib
+CFLAGS+=             -I${LOCALBASE}/include
+LDFLAGS+=            -L${LOCALBASE}/lib
+CPPFLAGS+=           -I${LOCALBASE}/include
 .endif
  
 
