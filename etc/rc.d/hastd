@@ -25,7 +25,7 @@ stop_precmd="hastd_stop_precmd"
 mkconf_cmd="hastd_mkconf"
 extra_commands="reload mkconf"
 
-hastd_config=${hastd_config:-"/var/etc/hast.conf"}
+hastd_config=${hastd_config:-"/etc/hast.conf"}
 pidfile="/var/run/${name}.pid"
 command="/sbin/${name}"
 hastctl="/sbin/hastctl"
@@ -59,12 +59,15 @@ hastd_mkconf()
 		-o "}" -n \
 	    -b \
 	    ${configxml_file} | /usr/local/bin/xml unesc > ${hastd_config}
+
 }
 
 hastd_stop_precmd()
 {
 	/usr/local/sbin/hastswitch shutdown
 	${hastctl} role init all
+       # Remove hast.conf at shutdown!
+	rm -f /etc/hast.conf
 }
 
 load_rc_config $name
