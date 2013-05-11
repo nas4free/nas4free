@@ -43,7 +43,7 @@ $savetopath = "";
 if (isset($_POST['savetopath']))
 	$savetopath = htmlspecialchars($_POST['savetopath']);
 
-if ((isset($_POST['submit']) && $_POST['submit'] === gettext("Load")) && file_exists($savetopath) && is_file($savetopath)) {
+if ((isset($_POST['submit']) && $_POST['submit'] === gettext("Load file")) && file_exists($savetopath) && is_file($savetopath)) {
 	$content = file_get_contents($savetopath);
 	$edit_area = "";
 	if (stristr($savetopath, ".php") == true)
@@ -58,7 +58,7 @@ if ((isset($_POST['submit']) && $_POST['submit'] === gettext("Load")) && file_ex
 		$language = "js";
 	else if (stristr($savetopath, ".css") == true)
 		$language = "css";
-} else if ((isset($_POST['submit']) && $_POST['submit'] === gettext("Save"))) {
+} else if ((isset($_POST['submit']) && $_POST['submit'] === gettext("Save file"))) {
 	conf_mount_rw();
 	$content = preg_replace("/\r/","",$_POST['code']) ;
 	file_put_contents($savetopath, $content);
