@@ -8,16 +8,16 @@
 
 	Portions of freenas (http://www.freenas.org).
 	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.	
+	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -31,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 require("auth.inc");
@@ -76,33 +76,19 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("CIFS/S
 				<?php html_titleline(gettext("Active shares"));?>
 				<tr>
 					<td>
-						<pre><?php
-						exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -S", $rawdata);
-						echo htmlspecialchars(implode("\n", $rawdata));
-						unset($rawdata);
-						?></pre>
+						<pre><?php system("/usr/bin/smbstatus -S");?></pre>
 					</td>
 				</tr>
 				<?php html_titleline(gettext("List of open files"));?>
 				<tr>
 					<td>
-						<pre><?php
-						exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -L", $rawdata);
-						$rawdata = array_slice($rawdata, 4);
-						echo htmlspecialchars(implode("\n", $rawdata));
-						unset($rawdata);
-						?></pre>
+						<pre><?php system("/usr/bin/smbstatus -L | grep -v 'Locked files'");?></pre>
 					</td>
 				</tr>
 				<?php html_titleline(gettext("Active Users"));?>
 				<tr>
 					<td>
-						<pre><?php
-						exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -u", $rawdata);
-						$rawdata = array_slice($rawdata, 4);
-						echo htmlspecialchars(implode("\n", $rawdata));
-						unset($rawdata);
-						?></pre>
+						<pre><?php system("/usr/bin/smbstatus -b | grep -v 'Samba version'");?></pre>
 					</td>
 				</tr>
 				<?php endif;?>
