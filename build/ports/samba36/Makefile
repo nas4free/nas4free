@@ -1,5 +1,5 @@
 PORTNAME=		samba36
-PORTVERSION=	  3.6.14
+PORTVERSION=	  3.6.15
 #PORTREVISION?= 0
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -22,8 +22,8 @@ AUTOHEADER_ARGS=	${IPATHS}
 AUTOCONF_ARGS=		${IPATHS}
 
 USE_GMAKE=		yes
-USE_ICONV=		yes
 GNU_CONFIGURE=	yes
+USES=                pkgconfig iconv
 USE_AUTOTOOLS=	autoconf autoheader
 # directories
 VARDIR?=		/var
