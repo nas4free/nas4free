@@ -14,10 +14,6 @@
 	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
 	All rights reserved.
 
-	Based on pfSense (http://www.pfsense.org)
-	Copyright (c) 2006-2007 Daniel S. Haischt <me@daniel.stefan.haischt.name>.
-	All rights reserved.
-
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met: 
 
@@ -67,7 +63,7 @@ $g = array(
 );
 
 $g_install = array(
-	"part1size_embedded" => "120",
+	"part1size_embedded" => "122",
 	"part1size_full" => "380"
 );
 
