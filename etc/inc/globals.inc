@@ -75,7 +75,7 @@ $g_languages = array (
 	"zh_TW" => array("codeset" => "UTF-8", "desc" => gettext("Chinese (Traditional)")),
 	"nl"    => array("codeset" => "UTF-8", "desc" => gettext("Dutch")),
 	"da"    => array("codeset" => "UTF-8", "desc" => gettext("Danish")),
-	"en_US" => array("codeset" => "ISO-8859-1", "desc" => gettext("English")),
+	"en_US" => array("codeset" => "UTF-8", "desc" => gettext("English")),
 	"fi"    => array("codeset" => "UTF-8", "desc" => gettext("Finnish")),
 	"fr"    => array("codeset" => "UTF-8", "desc" => gettext("French")),
 	"de"    => array("codeset" => "UTF-8", "desc" => gettext("German")),
