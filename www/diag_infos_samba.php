@@ -73,22 +73,34 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("CIFS/S
 					</td>
 				</tr>
 				<?php else:?>
+				</tr>
+				<?php html_titleline(gettext("Active Users"));?>
+				<tr>
+					<td>
+						<pre><?php
+						exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -b | grep -v 'Samba version'", $rawdata);
+						echo htmlspecialchars(implode("\n", $rawdata));
+						unset($rawdata);
+						?></pre>
+					</td>
 				<?php html_titleline(gettext("Active shares"));?>
 				<tr>
 					<td>
-						<pre><?php system("/usr/bin/smbstatus -S");?></pre>
+						<pre><?php
+						exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -S", $rawdata);
+						echo htmlspecialchars(implode("\n", $rawdata));
+						unset($rawdata);
+						?></pre>
 					</td>
 				</tr>
 				<?php html_titleline(gettext("List of open files"));?>
 				<tr>
 					<td>
-						<pre><?php system("/usr/bin/smbstatus -L | grep -v 'Locked files'");?></pre>
-					</td>
-				</tr>
-				<?php html_titleline(gettext("Active Users"));?>
-				<tr>
-					<td>
-						<pre><?php system("/usr/bin/smbstatus -b | grep -v 'Samba version'");?></pre>
+						<pre><?php exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -L | grep -v 'Locked files'", $rawdata);
+						 echo htmlspecialchars(implode("\n", $rawdata));
+						 unset($rawdata);
+						?></pre>
+
 					</td>
 				</tr>
 				<?php endif;?>
