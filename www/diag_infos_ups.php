@@ -1,7 +1,7 @@
 <?php
 /*
 	diag_infos_ups.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
@@ -167,6 +167,12 @@ function upsc_enable_change() {
 				<li class="tabinact"><a href="diag_infos_space.php"><span><?=gettext("Space Used");?></span></a></li>
 				<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gettext("Mounts");?></span></a></li>
 				<li class="tabinact"><a href="diag_infos_raid.php"><span><?=gettext("Software RAID");?></span></a></li>
+		  </ul>
+	  </td>
+	</tr>
+  <tr>
+		<td class="tabnavtbl">
+		  <ul id="tabnav2">
 				<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gettext("iSCSI Initiator");?></span></a></li>
 				<li class="tabinact"><a href="diag_infos_ad.php"><span><?=gettext("MS Domain");?></span></a></li>
 				<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gettext("CIFS/SMB");?></span></a></li>
@@ -176,7 +182,7 @@ function upsc_enable_change() {
 				<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gettext("Sockets");?></span></a></li>
 				<li class="tabact"><a href="diag_infos_ups.php" title="<?=gettext("Reload page");?>"><span><?=gettext("UPS");?></span></a></li>
 			</ul>
-  	</td>
+		</td>
 	</tr>
   <tr>
     <td class="tabcont">
