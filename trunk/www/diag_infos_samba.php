@@ -1,7 +1,7 @@
 <?php
 /*
 	diag_infos_samba.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
@@ -51,6 +51,12 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("CIFS/S
 				<li class="tabinact"><a href="diag_infos_space.php"><span><?=gettext("Space Used");?></span></a></li>
 				<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gettext("Mounts");?></span></a></li>
 				<li class="tabinact"><a href="diag_infos_raid.php"><span><?=gettext("Software RAID");?></span></a></li>
+		  </ul>
+	  </td>
+	</tr>
+  <tr>
+		<td class="tabnavtbl">
+		  <ul id="tabnav2">
 				<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gettext("iSCSI Initiator");?></span></a></li>
 				<li class="tabinact"><a href="diag_infos_ad.php"><span><?=gettext("MS Domain");?></span></a></li>
 				<li class="tabact"><a href="diag_infos_samba.php" title="<?=gettext("Reload page");?>"><span><?=gettext("CIFS/SMB");?></span></a></li>
@@ -96,7 +102,8 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("CIFS/S
 				<?php html_titleline(gettext("List of open files"));?>
 				<tr>
 					<td>
-						<pre><?php exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -L | grep -v 'Locked files'", $rawdata);
+						<pre><?php 
+						 exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -L | grep -v 'Locked files'", $rawdata);
 						 echo htmlspecialchars(implode("\n", $rawdata));
 						 unset($rawdata);
 						?></pre>
