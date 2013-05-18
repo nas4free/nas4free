@@ -107,6 +107,7 @@ $GLOBALS["messages"] = array(
       "permlink"		=> "ПРОМЕНИ ПРАВА НА ДОСТЪП",
       "editlink"		=> "РЕДАКТИРАЙ",
       "downlink"		=> "ИЗТЕГЛИ",
+	"download_selected"	=> "DOWNLOAD SELECTED FILES",
       "uplink"		=> "НАГОРЕ",
       "homelink"		=> "НАЧАЛО",
       "reloadlink"		=> "ОБНОВИ",
@@ -118,6 +119,7 @@ $GLOBALS["messages"] = array(
       "logoutlink"		=> "ИЗХОД",
       "uploadlink"		=> "ПРИКАЧИ",
       "searchlink"		=> "ТЪРСИ",
+	"unziplink"		=> "UNZIP",
       
       // list
       "nameheader"		=> "Файл",
@@ -144,6 +146,7 @@ $GLOBALS["messages"] = array(
       "btnadd"		=> "Добави",
       "btnedit"		=> "Редактирай",
       "btnremove"		=> "Изтрий",
+      "btnunzip"		=> "Unzip",
       
       // actions
       "actdir"		=> "Папка",
@@ -160,6 +163,7 @@ $GLOBALS["messages"] = array(
       "actchpwd"		=> "Смени парола",
       "actusers"		=> "Потребители",
       "actarchive"		=> "Архивирай объект(и)",
+      "actunzipitem"		=> "Extracting",
       "actupload"		=> "Прикачи файл(ове)",
       
       // misc
@@ -184,7 +188,14 @@ $GLOBALS["messages"] = array(
       "misclang"		=> "Език",
       "miscnoresult"		=> "Няма резултати",
       "miscsubdirs"		=> "Търси в поддиректории",
-      "miscpermnames"	=> array("Само да разглежда","Редактиране","Смяна на парола","Права и смяна на парола", "Администратор"),
+	"miscpermissions"	=> array(
+					"read"		=> array("Read", "User may read and download a file"),
+					"create" 	=> array("Write", "User may create a new file"),
+					"change"	=> array("Change", "User may change (upload, modify) an existing file"),
+					"delete"	=> array("Delete", "User may delete an existing file"),
+					"password"	=> array("Change password", "User may change the password"),
+					"admin"		=> array("Administrator", "Full access"),
+			),
       "miscyesno"		=> array("Да","Не","Д","Н"),
       "miscchmod"		=> array("Притежател", "Група", "Общодостъпен"),
 );

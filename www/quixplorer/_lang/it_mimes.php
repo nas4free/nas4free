@@ -44,7 +44,7 @@ $GLOBALS["mimes"]=array(
 
 	// text
 	"text"		=> "File di testo",
-	
+
 	// programming
 	"php"		=> "Script PHP",
 	"sql"		=> "File SQL",
@@ -64,35 +64,43 @@ $GLOBALS["mimes"]=array(
 
 	// Pascal
 	"pas"	=> "File Pascal",
-	
+
 	// images
 	"gif"		=> "Immagine GIF",
 	"jpg"		=> "Immagine JPG",
 	"bmp"		=> "Immagine BMP",
 	"png"		=> "Immagine PNG",
-	
+
 	// compressed
 	"zip"		=> "Archivio ZIP",
 	"tar"		=> "Archivio TAR",
 	"gzip"		=> "Archivio GZIP",
 	"bzip2"	=> "Archivio BZIP2",
 	"rar"		=> "Archivio RAR",
-	
+	"iso"		=> "File ISO",
+	"mds"		=> "File MDS",
+
 	// music
 	"mp3"		=> "File audio MP3",
 	"wav"		=> "File audio WAV",
 	"midi"		=> "File audio MIDI",
 	"real"		=> "File RealAudio",
 	"flac"		=> "File audio FLAC",
-	
+
 	// movie
 	"mpg"		=> "File video MPG",
 	"mov"		=> "File Movie",
 	"avi"		=> "File video AVI",
 	"flash"	=> "File Flash Movie",
-	
+	"mkv"		=> "File video MKV",
+	"vob"		=> "File video VOB",
+
 	// Micosoft / Adobe
 	"word"		=> "Documento Word",
 	"excel"	=> "Documento Excel",
-	"pdf"		=> "File PDF"
+	"pdf"		=> "File PDF",
+	"xml"		=> "File XML",
+	"c"		=> "File C",
+	"psd"		=> "File Photoshop",
+	"point"	=> "File PowerPoint"
 ); ?>

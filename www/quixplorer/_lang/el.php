@@ -1,22 +1,23 @@
 <?php
 /*
 	el.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
-	Author: The QuiX project.
+	Authors: quix@free.fr, ck@realtime-projects.com.
+	The Initial Developer of the Original Code is The QuiX project.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -30,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 // Greek Language Module
@@ -108,6 +109,7 @@ $GLOBALS["messages"] = array(
 	"permlink"		=> "ΑΛΛΑΓΗ ΔΙΚΑΙΩΜΑΤΩΝ",
 	"editlink"		=> "ΕΠΕΞΕΡΓΑΣΙΑ",
 	"downlink"		=> "ΜΕΤΑΦΟΡΤΩΣΗ",
+	"download_selected"	=> "DOWNLOAD SELECTED FILES",
 	"uplink"		=> "ΠΑΝΩ",
 	"homelink"		=> "ΑΡΧΗ",
 	"reloadlink"		=> "ΑΝΑΝΕΩΣΗ",
@@ -119,6 +121,7 @@ $GLOBALS["messages"] = array(
 	"logoutlink"		=> "ΑΠΟΣΥΝΔΕΣΗ",
 	"uploadlink"		=> "ΑΝΕΒΑΣΜΑ",
 	"searchlink"		=> "ΑΝΑΖΗΤΗΣΗ",
+	"unziplink"		=> "UNZIP",
 	
 	// list
 	"nameheader"		=> "Όνομα",
@@ -145,6 +148,7 @@ $GLOBALS["messages"] = array(
 	"btnadd"		=> "Προσθήκη",
 	"btnedit"		=> "Επεξεργασία",
 	"btnremove"		=> "Αφαίρεση",
+	"btnunzip"		=> "Unzip",
 	
 	// actions
 	"actdir"		=> "Φάκελος",
@@ -161,6 +165,7 @@ $GLOBALS["messages"] = array(
 	"actchpwd"		=> "Αλλαγή κωδικού",
 	"actusers"		=> "Χρήστες",
 	"actarchive"		=> "Aντικείμενα σε συμπιεσμένο αρχείο",
+	"actunzipitem"	=> "Extracting",
 	"actupload"		=> "Ανέβασμα αρχείων",
 	
 	// misc
@@ -185,8 +190,14 @@ $GLOBALS["messages"] = array(
 	"misclang"		=> "Γλώσσα",
 	"miscnoresult"		=> "Δεν υπάρχουν αποτελέσματα.",
 	"miscsubdirs"		=> "Αναζήτηση σε υποφακέλους",
-	"miscpermnames"		=> array("Μόνο ανάγνωση","Τροποποίηση","Αλλαγή κωδικού","Τροποποίηση & Αλλαγή κωδικού",
-					"Διαχειριστής"),
+	"miscpermissions"	=> array(
+					"read"		=> array("Read", "User may read and download a file"),
+					"create" 	=> array("Write", "User may create a new file"),
+					"change"	=> array("Change", "User may change (upload, modify) an existing file"),
+					"delete"	=> array("Delete", "User may delete an existing file"),
+					"password"	=> array("Change password", "User may change the password"),
+					"admin"	=> array("Administrator", "Full access"),
+			),
 	"miscyesno"		=> array("Ναι","Όχι","Ν","Ο"),
 	"miscchmod"		=> array("Κάτοχος", "Ομάδα", "Κοινόχρηστο"),
 );

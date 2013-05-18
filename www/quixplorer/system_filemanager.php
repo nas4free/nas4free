@@ -1,22 +1,23 @@
 <?php
 /*
 	system_filemanager.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
-	Author: The QuiX project.
+	Authors: quix@free.fr, ck@realtime-projects.com.
+	The Initial Developer of the Original Code is The QuiX project.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -30,81 +31,116 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 /*------------------------------------------------------------------------------
-Author: The QuiX project
-	http://quixplorer.sourceforge.net
-
-Comment:
-	QuiXplorer Version 2.3.2
-	Main File
+                  This is QuiXplorer v2.5.4 Modified for NAS4Free
 ------------------------------------------------------------------------------*/
-//------------------------------------------------------------------------------
+
 umask(002); // Added to make created files/dirs group writable
-//------------------------------------------------------------------------------
-require "./.include/init.php";	// Init
-//------------------------------------------------------------------------------
-switch($GLOBALS["action"]) {		// Execute action
-//------------------------------------------------------------------------------
+
+require_once "qx.php";
+require "./_include/init.php";	// Init
+
+global $action;
+
+_debug( "system_filemanager.php: checking action $action" );
+
+$current_dir = qx_request("dir", "");
+
+switch($action)
+{		// Execute action
+
 // EDIT FILE
 case "edit":
-	require "./.include/edit.php";
-	edit_file($GLOBALS["dir"], $GLOBALS["item"]);
+	require "./_include/edit_editarea.php";
+	edit_file($current_dir, $GLOBALS["item"]);
 break;
 //------------------------------------------------------------------------------
 // DELETE FILE(S)/DIR(S)
 case "delete":
-	require "./.include/del.php";
-	del_items($GLOBALS["dir"]);
+	require "./_include/del.php";
+	del_items($current_dir);
 break;
 //------------------------------------------------------------------------------
 // COPY/MOVE FILE(S)/DIR(S)
 case "copy":	case "move":
-	require "./.include/copy_move.php";
-	copy_move_items($GLOBALS["dir"]);
+	require "./_include/copy_move.php";
+	copy_move_items($current_dir);
+break;
+//------------------------------------------------------------------------------
+// DOWNLOAD FILE
+case "download":
+	ob_start(); // prevent unwanted output
+	require "./_include/down.php";
+	ob_end_clean(); // get rid of cached unwanted output
+	download_item($current_dir, $GLOBALS["item"]);
+	ob_start(false); // prevent unwanted output
+	exit;
+break;
+case "download_selected":
+	ob_start(); // prevent unwanted output
+	require "./_include/down.php";
+	ob_end_clean(); // get rid of cached unwanted output
+	download_selected($current_dir);
+	ob_start(false); // prevent unwanted output
+	exit;
+break;
+//------------------------------------------------------------------------------
+// UNZIP ZIP FILE added by laurenceHR
+case "unzip":
+	require "./_include/unzip.php";
+	unzip_item($current_dir);
 break;
 //------------------------------------------------------------------------------
 // CREATE DIR/FILE
 case "mkitem":
-	require "./.include/mkitem.php";
-	make_item($GLOBALS["dir"]);
+	require "./_include/mkitem.php";
+	make_item($current_dir);
 break;
 //------------------------------------------------------------------------------
 // CHMOD FILE/DIR
 case "chmod":
-	require "./.include/chmod.php";
-	chmod_item($GLOBALS["dir"], $GLOBALS["item"]);
+	require "./_include/chmod.php";
+	chmod_item($current_dir, $GLOBALS["item"]);
 break;
 //------------------------------------------------------------------------------
 // SEARCH FOR FILE(S)/DIR(S)
 case "search":
-	require "./.include/search.php";
-	search_items($GLOBALS["dir"]);
+	require "./_include/search.php";
+	search_items($current_dir);
 break;
 //------------------------------------------------------------------------------
 // CREATE ARCHIVE
 case "arch":
-	require "./.include/archive.php";
-	archive_items($GLOBALS["dir"]);
+	require "./_include/archive.php";
+	archive_items($current_dir);
 break;
 //------------------------------------------------------------------------------
 // USER-ADMINISTRATION
 case "admin":
-	require "./.include/admin.php";
-	show_admin($GLOBALS["dir"]);
+	require "./_include/admin.php";
+	show_admin($current_dir);
 break;
-//------------------------------------------------------------------------------
+case "login":
+    _debug("doing login");
+    login();
+    require "./_include/list.php";
+    list_dir($current_dir);
+    break;
+case "logout":
+    _debug("doing logout");
+    logout();
+
 // DEFAULT: LIST FILES & DIRS
 case "list":
 default:
-	require "./.include/list.php";
-	list_dir($GLOBALS["dir"]);
+	require "./_include/list.php";
+	list_dir($current_dir);
 //------------------------------------------------------------------------------
 }				// end switch-statement
 //------------------------------------------------------------------------------
-echo "<br /><br /><br /><br />\n";
 show_footer();
 //------------------------------------------------------------------------------
 ?>

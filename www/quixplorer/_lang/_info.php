@@ -1,13 +1,10 @@
 <?php
 /*
 	_info.php
-
+	
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
-
-	Portions of Quixplorer (http://quixplorer.sourceforge.net).
-	Author: The QuiX project.
 
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
@@ -40,15 +37,15 @@
 		'cs'		=> 'Czech',
 		'da'		=> 'Dansk',
 		'de'		=> 'Deutsch',
-		'es'		=> 'Español',
-		'fr'		=> 'Français',
+		'es'		=> 'EspaÃ±ol',
+		'fr'		=> 'FranÃ§ais',
 		'el'		=> 'Greek',
 		'it'		=> 'Italiano',
 		'ja'		=> 'Japanese',
 		'nl'		=> 'Nederlands',
 		'pl'		=> 'Polski',
-		'ptbr'		=> 'Português - Brasil',
-		'ro'		=> 'Românã',
+		'ptbr'		=> 'PortuguÃªs - Brasil',
+		'ro'		=> 'RomÃ¢nÃ£',
 		'ru'		=> 'Russian'
 	);
 

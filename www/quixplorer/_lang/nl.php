@@ -1,22 +1,23 @@
 <?php
 /*
 	nl.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
-	Author: The QuiX project.
+	Authors: quix@free.fr, ck@realtime-projects.com.
+	The Initial Developer of the Original Code is The QuiX project.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -30,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 // Dutch Language Module
@@ -45,17 +46,16 @@ $GLOBALS["error_msg"] = array(
 	"back"			=> "Ga Terug",
 	
 	// root
-	"home"			=> "De hoofdmap bestaat niet, controleer uw instellingen.",
-	"abovehome"		=> "De huidige map mag niet hoger liggen dan de hoofdmap.",
-	"targetabovehome"	=> "De doelmap mag niet hoger liggen dan de hoofdmap.",
+	"home"			=> "De hoofdfolder bestaat niet, controleer uw instellingen.",
+	"abovehome"		=> "De huidige map mag niet hoger liggen dan de hoofdfolder.",
+	"targetabovehome"	=> "De doelmap mag niet hoger liggen dan de hoofdfolder.",
 	
 	// exist
 	"direxist"		=> "Deze map bestaat niet.",
-	//"filedoesexist"	=> "Dit bestand bestaat reeds.",
 	"fileexist"		=> "Dit bestand bestaat niet.",
 	"itemdoesexist"	=> "Dit item bestaat reeds.",
 	"itemexist"		=> "Dit item bestaat niet.",
-	"targetexist"		=> "De hoofdmap bestaat niet.",
+	"targetexist"		=> "De doel item bestaat niet.",
 	"targetdoesexist"	=> "Het doel item bestaat reeds.",
 	
 	// open
@@ -70,17 +70,17 @@ $GLOBALS["error_msg"] = array(
 	"accesstarget"	=> "U heeft geen toegang tot de doel.",
 	
 	// actions
-	"chmod_not_allowed"  => 'Rechten veranderen naar GEEN is niet toegestaan!',
-	"permread"		=> "Rechten opvragen is mislukt.",
-	"permchange"		=> "Het wijzigen van rechten is mislukt.",
-	"openfile"		=> "Het Bestand openen is mislukt.",
-	"savefile"		=> "Bestand opslaan is mislukt.",
-	"createfile"		=> "Bestand aanmaken is mislukt.",
-	"createdir"		=> "Aanmaken map is mislukt.",
-	"uploadfile"		=> "Uploaden van het bestand is mislukt.",
+	//"chmod_not_allowed"  => 'Rechten veranderen naar GEEN is niet toegestaan!',
+	"permread"		=> "Rechten opvragen mislukt.",
+	"permchange"		=> "Het wijzigen van rechten mislukt.",
+	"openfile"		=> "Het Bestand openen mislukt.",
+	"savefile"		=> "Bestand opslaan mislukt.",
+	"createfile"		=> "Bestand aanmaken mislukt.",
+	"createdir"		=> "Aanmaken folder mislukt.",
+	"uploadfile"		=> "Item uploaden is mislukt.",
 	"copyitem"		=> "Kopie maken mislukt.",
-	"moveitem"		=> "Verplaatsen is mislukt.",
-	"delitem"		=> "Verwijderen is mislukt.",
+	"moveitem"		=> "Items(s) verplaatsen mislukt.",
+	"delitem"		=> "item(s) verwijderen mislukt.",
 	"chpass"		=> "Het wachtwoord wijzigen is mislukt.",
 	"deluser"		=> "Gebruiker verwijderen is mislukt.",
 	"adduser"		=> "Toevoegen gebruiker is mislukt.",
@@ -89,25 +89,26 @@ $GLOBALS["error_msg"] = array(
 	
 	// misc
 	"miscnofunc"		=> "Deze functie is niet beschikbaar.",
-	"miscfilesize"	=> "Het bestand is groter dan de maximale grootte.",
+	"miscfilesize"	=> "Het bestand is groter dan de maximum grootte.",
 	"miscfilepart"	=> "Het bestand is maar gedeeltelijk geupload.",
 	"miscnoname"		=> "U moet een naam opgeven.",
 	"miscselitems"	=> "U heeft geen item(s) geselecteerd.",
-	"miscdelitems"	=> "Weet u zeker dat u deze \"+num+\" item(s) wilt verwijderen?",
+	"miscdelitems"	=> "Weet u zeker dat u \"+num+\" item(s) wilt verwijderen?",
 	"miscdeluser"		=> "Weet u zeker dat u gebruiker '\"+user+\"' wilt verwijderen?",
 	"miscnopassdiff"	=> "Het nieuwe wachtwoord verschilt niet van het huidige.",
 	"miscnopassmatch"	=> "De opgegeven wachtwoorden komen niet overeen.",
 	"miscfieldmissed"	=> "U heeft een belangrijk veld vergeten in te vullen.",
 	"miscnouserpass"	=> "Gebruiker/wachtwoord is onjuist.",
 	"miscselfremove"	=> "U kunt zichzelf niet verwijderen.",
-	"miscuserexist"	=> "Deze gebruiker is reeds toegevoegd.",
-	"miscnofinduser"	=> "Deze gebruiker is onvindbaar.",
+	"miscuserexist"	=> "Deze gebruiker bestaat reeds.",
+	"miscnofinduser"	=> "Kan deze gebruiker niet vinden.",
 );
 $GLOBALS["messages"] = array(
 	// links
 	"permlink"		=> "RECHTEN WIJZIGEN",
 	"editlink"		=> "BEWERKEN",
 	"downlink"		=> "DOWNLOADEN",
+	"download_selected"	=> "DOWNLOAD GESELECTEERDE BESTANDEN",
 	"uplink"		=> "TERUG",
 	"homelink"		=> "HOOFDFOLDER",
 	"reloadlink"		=> "VERNIEUWEN",
@@ -119,6 +120,7 @@ $GLOBALS["messages"] = array(
 	"logoutlink"		=> "AFMELDEN",
 	"uploadlink"		=> "UPLOADEN",
 	"searchlink"		=> "ZOEKEN",
+	"unziplink"		=> "Uitpakken",
 	
 	// list
 	"nameheader"		=> "Naam",
@@ -141,11 +143,11 @@ $GLOBALS["messages"] = array(
 	"btncopy"		=> "Kopie maken",
 	"btnmove"		=> "Verplaatsen",
 	"btnlogin"		=> "Aanmelden",
-
 	"btnlogout"		=> "Afmelden",
 	"btnadd"		=> "Toevoegen",
 	"btnedit"		=> "Bewerken",
 	"btnremove"		=> "Verwijderen",
+	"btnunzip"		=> "Uitpakken",
 	
 	// actions
 
@@ -153,16 +155,17 @@ $GLOBALS["messages"] = array(
 	"actperms"		=> "Rechten wijzigen",
 	"actedit"		=> "Bestand bewerken",
 	"actsearchresults"	=> "Zoek resultaten",
-	"actcopyitems"	=> "Kopie Item(s)",
+	"actcopyitems"	=> "Item(s)Kopiëren",
 	"actcopyfrom"		=> "Kopie maken van /%s naar /%s ",
 	"actmoveitems"	=> "Verplaats item(s)",
 	"actmovefrom"		=> "Verplaats van /%s naar /%s ",
 	"actlogin"		=> "Aanmelden",
-	"actloginheader"	=> "Aanmelden om de QuiXplorer te gebruiken",
+	"actloginheader"	=> "Aanmelden om Bestands Manager te gebruiken",
 	"actadmin"		=> "Beheer",
 	"actchpwd"		=> "Wachtwoord wijzigen",
 	"actusers"		=> "Gebruikers",
 	"actarchive"		=> "Archiveren item(s)",
+	"actunzipitem"	=> "Uitpakken",
 	"actupload"		=> "Bestand(en) uploaden",
 	
 	// misc
@@ -187,7 +190,14 @@ $GLOBALS["messages"] = array(
 	"misclang"		=> "Taal",
 	"miscnoresult"	=> "Er zijn geen resultaten beschikbaar.",
 	"miscsubdirs"		=> "Zoek in subdirectories",
-	"miscpermnames"	=> array("Alleen kijken","Wijzigen","Wachtwoord wijzigen","Wijzigen & Wachtwoord wijzigen","Beheerder"),
+	"miscpermissions"	=> array(
+					"read"		=> array("Lezen", "Gebruiker mag lezen en bestanden downloaden"),
+					"create" 	=> array("Schrijven", "Gebruiker mag nieuwe bestanden aanmaken"),
+					"change"	=> array("Bewerken", "Gebruiker mag bewerken van bestaande bestanden (upload, aanpassen)"),
+					"delete"	=> array("Verwijderen", "Gebruiker mag een bestaand bestand verwijderen"),
+					"password"	=> array("Wachtwoord veranderen", "Gebruiker kan het wachtwoord veranderen"),
+					"admin"		=> array("Administrator", "Volledige toegang"),
+			),
 	"miscyesno"		=> array("Ja","Nee","J","N"),
 	"miscchmod"		=> array("Eigenaar", "Groep", "Publiek"),
 );

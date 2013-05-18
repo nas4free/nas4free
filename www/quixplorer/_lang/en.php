@@ -7,7 +7,8 @@
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
-	Author: The QuiX project.
+	Authors: quix@free.fr, ck@realtime-projects.com.
+	The Initial Developer of the Original Code is The QuiX project.
 
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
@@ -51,7 +52,6 @@ $GLOBALS["error_msg"] = array(
 	
 	// exist
 	"direxist"		=> "This directory doesn't exist.",
-	//"filedoesexist"	=> "This file already exists.",
 	"fileexist"		=> "This file doesn't exist.",
 	"itemdoesexist"	=> "This item already exists.",
 	"itemexist"		=> "This item doesn't exist.",
@@ -108,6 +108,7 @@ $GLOBALS["messages"] = array(
 	"permlink"		=> "CHANGE PERMISSIONS",
 	"editlink"		=> "EDIT",
 	"downlink"		=> "DOWNLOAD",
+	"download_selected"	=> "DOWNLOAD SELECTED FILES",
 	"uplink"		=> "UP",
 	"homelink"		=> "HOME",
 	"reloadlink"		=> "RELOAD",
@@ -119,6 +120,7 @@ $GLOBALS["messages"] = array(
 	"logoutlink"		=> "LOGOUT",
 	"uploadlink"		=> "UPLOAD",
 	"searchlink"		=> "SEARCH",
+	"unziplink"		=> "UNZIP",
 	
 	// list
 	"nameheader"		=> "Name",
@@ -145,6 +147,7 @@ $GLOBALS["messages"] = array(
 	"btnadd"		=> "Add",
 	"btnedit"		=> "Edit",
 	"btnremove"		=> "Remove",
+	"btnunzip"		=> "Unzip",
 	
 	// actions
 	"actdir"		=> "Directory",
@@ -156,11 +159,12 @@ $GLOBALS["messages"] = array(
 	"actmoveitems"	=> "Move item(s)",
 	"actmovefrom"		=> "Move from /%s to /%s ",
 	"actlogin"		=> "Login",
-	"actloginheader"	=> "Login to use QuiXplorer",
+	"actloginheader"	=> "Login to use File Manager",
 	"actadmin"		=> "Administration",
 	"actchpwd"		=> "Change password",
 	"actusers"		=> "Users",
 	"actarchive"		=> "Archive item(s)",
+    "actunzipitem"	=> "Extracting",
 	"actupload"		=> "Upload file(s)",
 	
 	// misc
@@ -185,7 +189,14 @@ $GLOBALS["messages"] = array(
 	"misclang"		=> "Language",
 	"miscnoresult"	=> "No results available.",
 	"miscsubdirs"		=> "Search subdirectories",
-	"miscpermnames"	=> array("View only","Modify","Change password","Modify & Change password", "Administrator"),
+	"miscpermissions"	=> array(
+					"read"		=> array("Read", "User may read and download a file"),
+					"create" 	=> array("Write", "User may create a new file"),
+					"change"	=> array("Change", "User may change (upload, modify) an existing file"),
+					"delete"	=> array("Delete", "User may delete an existing file"),
+					"password"	=> array("Change password", "User may change the password"),
+					"admin"		=> array("Administrator", "Full access"),
+			),
 	"miscyesno"		=> array("Yes","No","Y","N"),
 	"miscchmod"		=> array("Owner", "Group", "Public"),
 );

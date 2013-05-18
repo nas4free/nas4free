@@ -1,22 +1,23 @@
 <?php
 /*
 	ro_mimes.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
-	Author: The QuiX project.
+	Authors: quix@free.fr, ck@realtime-projects.com.
+	The Initial Developer of the Original Code is The QuiX project.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -30,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 // Romanian Mimes Module
@@ -44,7 +45,7 @@ $GLOBALS["mimes"]=array(
 
 	// text
 	"text"		=> "Fiºier Text",
-	
+
 	// programming
 	"php"		=> "Script PHP",
 	"sql"		=> "Fiºier SQL",
@@ -64,35 +65,44 @@ $GLOBALS["mimes"]=array(
 
 	// Pascal
 	"pas"		=> "Fiºier Pascal",
-	
+
 	// images
 	"gif"		=> "Imagine GIF",
 	"jpg"		=> "Imagine JPG",
 	"bmp"		=> "Imagine BMP",
 	"png"		=> "Imagine PNG",
-	
+
 	// compressed
 	"zip"		=> "Arhivã ZIP",
 	"tar"		=> "Arhivã TAR",
 	"gzip"		=> "Arhivã GZIP",
 	"bzip2"	=> "Arhivã BZIP2",
 	"rar"		=> "Arhivã RAR",
-	
+	"iso"		=> "Arhivã ISO",
+	"mds"		=> "Arhivã MDS",
+
 	// music
 	"mp3"		=> "Fiºier Audio MP3",
 	"wav"		=> "Fiºier Audio WAV",
 	"midi"		=> "Fiºier Audio MIDI",
 	"real"		=> "Fiºier RealAudio",
 	"flac"		=> "Fiºier Audio FLAC",
-	
+
 	// movie
 	"mpg"		=> "Fiºier Video MPG",
 	"mov"		=> "Fiºier Video",
 	"avi"		=> "Fiºier Video AVI",
 	"flash"	=> "Fiºier Animaþie Flash",
-	
+	"mkv"		=> "Fiºier Video MKV",
+	"vob"		=> "Fiºier Video VOB",
+
+
 	// Micosoft / Adobe
 	"word"		=> "Document Word",
 	"excel"	=> "Document Excel",
-	"pdf"		=> "Fiºier PDF"
+	"pdf"		=> "PDF File",
+	"xml"		=> "XML File",
+	"c"		=> "Fiºier C",
+	"psd"		=> "Fiºier Photoshop",
+	"point"	=> "Fiºier PowerPoint"
 ); ?>
