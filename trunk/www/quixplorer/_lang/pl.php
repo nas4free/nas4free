@@ -1,22 +1,23 @@
 <?php
 /*
 	pl.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
-	Author: The QuiX project.
+	Authors: quix@free.fr, ck@realtime-projects.com.
+	The Initial Developer of the Original Code is The QuiX project.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -30,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 // Polish Language Module
@@ -43,12 +44,12 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"		=> "B£¡D(ÊDY)",
 	"back"			=> "Z Powrotem",
-	
+
 	// root
 	"home"			=> "Katalog domowy nie istnieje. Sprawd¼ swoje ustawienia.",
 	"abovehome"		=> "Obecny katalog nie mo¿e byæ powy¿ej katalogu domowego.",
 	"targetabovehome"	=> "Katalog docelowy nie mo¿e byæ powy¿ej katalogu domowego.",
-	
+
 	// exist
 	"direxist"		=> "Ten katalog nie istnieje.",
 	//"filedoesexist"	=> "This file already exists.",
@@ -57,18 +58,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "Ta pozycja nie istnieje.",
 	"targetexist"		=> "Katalog docelowy nie istnieje.",
 	"targetdoesexist"	=> "Pozycja docelowa ju¿ istnieje.",
-	
+
 	// open
 	"opendir"		=> "Nie mogê otworzyæ katalogu.",
 	"readdir"		=> "Nie mogê odczytaæ katalogu.",
-	
+
 	// access
 	"accessdir"		=> "Nie masz dostêpu do tego katalogu.",
 	"accessfile"		=> "Nie masz dostêpu do tego pliku.",
 	"accessitem"		=> "Nie masz dostêpu do tej pozycji.",
 	"accessfunc"		=> "Nie masz dostêpu do tej funkcji.",
 	"accesstarget"	=> "Nie masz dostêpu do katalogu docelowego.",
-	
+
 	// actions
 	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
 	"permread"		=> "Pobranie uprawnieñ nie uda³o siê.",
@@ -86,7 +87,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "Dodanie u¿ytkownika siê nie powiod³o.",
 	"saveuser"		=> "Zapis u¿ytkownika siê nie powiod³o.",
 	"searchnothing"	=> "Musisz dostarczyæ czego¶ do szukania.",
-	
+
 	// misc
 	"miscnofunc"		=> "Funkcja niedostêpna.",
 	"miscfilesize"	=> "Rozmiar pliku przekroczy³ maksymaln± warto¶æ.",
@@ -108,6 +109,7 @@ $GLOBALS["messages"] = array(
 	"permlink"		=> "ZMIANA UPRAWNIEÑ",
 	"editlink"		=> "EDYCJA",
 	"downlink"		=> "DOWNLOAD",
+	"download_selected"	=> "DOWNLOAD SELECTED FILES",
 	"uplink"		=> "KATALOG WY¯EJ",
 	"homelink"		=> "KATALOG DOMOWY",
 	"reloadlink"		=> "OD¦WIE¯",
@@ -119,7 +121,8 @@ $GLOBALS["messages"] = array(
 	"logoutlink"		=> "WYLOGUJ",
 	"uploadlink"		=> "WRZUÆ PLIK NA SERWER - UPLOAD",
 	"searchlink"		=> "SZUKAJ",
-	
+	"unziplink"		=> "UNZIP",
+
 	// list
 	"nameheader"		=> "Nazwa",
 	"sizeheader"		=> "Rozmiar",
@@ -128,7 +131,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "Prawa dostêpu",
 	"actionheader"	=> "Akcje",
 	"pathheader"		=> "¦cie¿ka",
-	
+
 	// buttons
 	"btncancel"		=> "Zrezygnuj",
 	"btnsave"		=> "Zapisz",
@@ -145,7 +148,8 @@ $GLOBALS["messages"] = array(
 	"btnadd"		=> "Dodaj",
 	"btnedit"		=> "Edycja",
 	"btnremove"		=> "Usuñ",
-	
+	"btnunzip"		=> "Unzip",
+
 	// actions
 	"actdir"		=> "Katalog",
 	"actperms"		=> "Zmiana uprawnieñ",
@@ -161,8 +165,9 @@ $GLOBALS["messages"] = array(
 	"actchpwd"		=> "Zmieñ has³o",
 	"actusers"		=> "U¿ytkownicy",
 	"actarchive"		=> "Pozycje zarchiwizowane",
+	"actunzipitem"	=> "Extracting",
 	"actupload"		=> "Wrzucanie na serwer- Upload",
-	
+
 	// misc
 	"miscitems"		=> " -Ilo¶c elementów",
 	"miscfree"		=> "Wolnego miejsca",
@@ -185,7 +190,14 @@ $GLOBALS["messages"] = array(
 	"misclang"		=> "Jêzyk",
 	"miscnoresult"	=> "Bez rezultatu.",
 	"miscsubdirs"		=> "Szukaj w podkatalogach",
-	"miscpermnames"	=> array("Tylko przegl±danie","Modyfikacja","Zmiana has³a","Modyfikacja i zmiana has³a","Administrator"),
+	"miscpermissions"	=> array(
+					"read"		=> array("Read", "User may read and download a file"),
+					"create" 	=> array("Write", "User may create a new file"),
+					"change"	=> array("Change", "User may change (upload, modify) an existing file"),
+					"delete"	=> array("Delete", "User may delete an existing file"),
+					"password"	=> array("Change password", "User may change the password"),
+					"admin"	=> array("Administrator", "Full access"),
+			),
 	"miscyesno"		=> array("Tak","Nie","T","N"),
 	"miscchmod"		=> array("W³a¶ciciel", "Grupa", "Publiczny"),
 );

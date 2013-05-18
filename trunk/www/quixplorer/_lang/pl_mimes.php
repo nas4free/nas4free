@@ -1,22 +1,23 @@
 <?php
 /*
 	pl_mimes.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
-	Author: The QuiX project.
+	Authors: quix@free.fr, ck@realtime-projects.com.
+	The Initial Developer of the Original Code is The QuiX project.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -30,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 // Polish Mimes Module for v2.3.2
@@ -76,6 +77,9 @@ $GLOBALS["mimes"]=array(
 	"gzip"		=> "Archiwum GZIP",
 	"bzip2"	=> "Archiwum BZIP2",
 	"rar"		=> "Archiwum RAR",
+	"iso"		=> "Plik ISO",
+	"mds"		=> "Plik MDS",
+
 	
 	// music
 	"mp3"		=> "Plik MP3 Audio ",
@@ -89,9 +93,20 @@ $GLOBALS["mimes"]=array(
 	"mov"		=> "Plik Movie",
 	"avi"		=> "Plik AVI Video",
 	"flash"	=> "Plik Flash Movie",
+	"mkv"		=> "Plik MKV Video",
+	"vob"		=> "Plik VOB Video",
+
 	
 	// Micosoft / Adobe
 	"word"		=> "Dokument Word",
 	"excel"	=> "Document Excel",
 	"pdf"		=> "Plik PDF"
+	// Micosoft / Adobe
+	"word"		=> "Dokument Word",
+	"excel"	=> "Dokument Word",
+	"pdf"		=> "Plik PDF",
+	"xml"		=> "Plik XML",
+	"c"		=> "Plik C",
+	"psd"		=> "Plik Photoshop",
+	"point"	=> "PowerPoint Presentation"
 ); ?>

@@ -1,22 +1,23 @@
 <?php
 /*
 	de.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
-	Author: The QuiX project.
+	Authors: quix@free.fr, ck@realtime-projects.com.
+	The Initial Developer of the Original Code is The QuiX project.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -30,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 // German Language Module
@@ -107,6 +108,7 @@ $GLOBALS["messages"] = array(
 	"permlink"		=> "RECHTE ÄNDERN",
 	"editlink"		=> "BEARBEITEN",
 	"downlink"		=> "HERUNTERLADEN",
+	"download_selected"	=> "DOWNLOAD SELECTED FILES",
 	"uplink"		=> "HÖHER",
 	"homelink"		=> "HOME",
 	"reloadlink"		=> "ERNEUERN",
@@ -118,6 +120,7 @@ $GLOBALS["messages"] = array(
 	"logoutlink"		=> "ABMELDEN",
 	"uploadlink"		=> "HOCHLADEN",
 	"searchlink"		=> "SUCHEN",
+	"unziplink"		=> "UNZIP",
 	
 	// list
 	"nameheader"		=> "Name",
@@ -144,6 +147,7 @@ $GLOBALS["messages"] = array(
 	"btnadd"		=> "Hinzufügen",
 	"btnedit"		=> "Ändern",
 	"btnremove"		=> "Löschen",
+       "btnunzip"		=> "Unzip",
 	
 	// actions
 	"actdir"		=> "Verzeichnis",
@@ -160,6 +164,7 @@ $GLOBALS["messages"] = array(
 	"actchpwd"		=> "Passwort ändern",
 	"actusers"		=> "Benutzer",
 	"actarchive"		=> "Objekt(e) archivieren",
+	"actunzipitem"	=> "Extracting",
 	"actupload"		=> "Datei(en) hochladen",
 	
 	// misc
@@ -184,7 +189,14 @@ $GLOBALS["messages"] = array(
 	"misclang"		=> "Sprache",
 	"miscnoresult"	=> "Suche ergebnislos.",
 	"miscsubdirs"		=> "Suche in Unterverzeichnisse",
-	"miscpermnames"	=> array("Nur ansehen","Ändern","Passwort ändern","Ändern & Passwort ändern","Administrator"),
+	"miscpermissions"	=> array(
+					"read"		=> array("Read", "User may read and download a file"),
+					"create" 	=> array("Write", "User may create a new file"),
+					"change"	=> array("Change", "User may change (upload, modify) an existing file"),
+					"delete"	=> array("Delete", "User may delete an existing file"),
+					"password"	=> array("Change password", "User may change the password"),
+					"admin"	=> array("Administrator", "Full access"),
+			),
 	"miscyesno"		=> array("Ja","Nein","J","N"),
 	"miscchmod"		=> array("Besitzer", "Gruppe", "Publik"),
 );

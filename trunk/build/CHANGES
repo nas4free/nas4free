@@ -19,7 +19,7 @@ Changes:
 - Add HAST + GPT/UFS mount.
 - Add HAST + ZFS import/export.
 - Add HAST service WebGUI.
-- Add upgrade method from old system.
+- Add upgrade method from old freenas systems.
 - Add reload iSCSI target.
 - Add graid geom utility.
 - Add kern.geom.debugflags when installing.
@@ -48,6 +48,8 @@ Changes:
 - Add ability to edit write cache mode on iSCSI target.
 - Add ability to edit upload directory of webserver.
 - Add ability to edit password server of CIFS/SMB.
+- Add ability to download files by File Manager.
+- Add ability to extract files by File Manager.
 - Update mount points after importing disks. (GPT UFS/MBR UFS/GPT NTFS only)
 - Add bridge/carp interface support.
 - Add ZFS sparse volume support.
@@ -80,7 +82,7 @@ Changes:
 - Add iscsi default values to default config.
 - Remove unused hw.ata.to from sysctl.
 - Remove AIO disable at boot.
-- Add 60days lifetime on ZFS auto snapshot.
+- Add 60 days lifetime on ZFS auto snapshot.
 - Add ata chipset patch. (VT6420/VT6421)
 - Add amdtemp patch.
 - Add VM timer workaround.
@@ -109,6 +111,7 @@ Changes:
 - Upgrade msmtp to 1.4.31.
 - Upgrade samba to 3.6.15.
 - Upgrade php to 5.4.15.
+- Upgrade quixplorer to 2.5.4.
 
 Bug fixes:
 
