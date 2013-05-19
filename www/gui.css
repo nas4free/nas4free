@@ -273,7 +273,7 @@ div#infobox, div#errorbox, div#warningbox, div#applybox input {
 	margin-bottom: 10px;
 }
 div#infobox table tr td.icon {
-	background-color: #687BA4;
+	background-color: #577099;
 	width: 36px;
 }
 div#infobox table tr td.message {
@@ -281,18 +281,17 @@ div#infobox table tr td.message {
 	padding-left: 8px
 }
 div#errorbox table tr td.icon, div#warningbox table tr td.icon {
-	background-color: #A12A2A;
+	background-color: #950016;
 	width: 36px;
 }
 div#errorbox table tr td.message, div#warningbox table tr td.message {
 	color: #CC0000;
 	background-color: #FFD9D1;
 	padding-left: 8px;
-	padding-top: 50px;
+	padding-top: 40px;
 	font-weight: bold;
 }
 div#header {
-	min-width: 768px;
 	height: 80px;
 	width: 100%;
 	background: #171717 url("header_bg.png") top left no-repeat;
@@ -349,14 +348,12 @@ div#loginfooter {
 	text-align: center;
 }
 div#headernavbar {
-	min-width: 768px;
 	width: 100%;
 	background: black url(navbar_default.gif) center center repeat-x;
 	position: fixed;
 	top: 78px;
 }
 div#pagecontent {
-	min-width: 800px;
 	margin: 20px 25px 10px 25px;
 	padding: 110px 15px 15px 15px;
 }
