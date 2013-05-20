@@ -121,7 +121,7 @@ $menu['services']['menuitem'][] = array("desc" => gettext("AFP"), "link" => "../
 $menu['services']['menuitem'][] = array("desc" => gettext("Rsync"), "link" => "../services_rsyncd.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("Unison"), "link" => "../services_unison.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("iSCSI Target"), "link" => "../services_iscsitarget.php", "visible" => TRUE);
-$menu['services']['menuitem'][] = array("desc" => gettext("UPnP"), "link" => "../services_upnp.php", "visible" => TRUE);
+$menu['services']['menuitem'][] = array("desc" => gettext("DNLA/UPnP"), "link" => "../services_upnp.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("iTunes/DAAP"), "link" => "../services_daap.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("Dynamic DNS"), "link" => "../services_dynamicdns.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("SNMP"), "link" => "../services_snmp.php", "visible" => TRUE);
