@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-04-15 03:51+0000\n"
+"POT-Creation-Date: 2013-05-20 04:39+0000\n"
 "PO-Revision-Date: 2012-06-02 00:13+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-04 23:22+0000\n"
-"X-Generator: Launchpad (build 16598)\n"
+"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 "X-Poedit-Country: SLOVENIA\n"
 "Language: \n"
 "X-Poedit-Language: Slovenian\n"
@@ -523,6 +523,9 @@ msgstr "Dovoli nove datoteke"
 msgid "Allow new files to be created."
 msgstr "Dovoli ustvarjanje novih datotek"
 
+msgid "Allow to start UPS from battery"
+msgstr ""
+
 msgid "Allow trusted domains."
 msgstr ""
 
@@ -564,6 +567,15 @@ msgid ""
 msgstr ""
 "Vedno uporabi 0 za številko naprave. Uporabno, če se številka naprave "
 "spreminja ob ponovnih zagonih, oblakih, ..."
+
+msgid "Ambient Conditions From External Probe Equipment"
+msgstr ""
+
+msgid "Ambient relative humidity (percent)"
+msgstr ""
+
+msgid "Ambient temperature (degrees C)"
+msgstr ""
 
 msgid "An host with this name already exists."
 msgstr "Gostitelj s tem imenom že obstaja."
@@ -684,6 +696,9 @@ msgstr "Možnost samodejne prepoznave diska"
 msgid "Autoselect"
 msgstr "Samodejna izbira"
 
+msgid "Auxiliary device firmware"
+msgstr ""
+
 msgid "Auxiliary parameters"
 msgstr "Dodatni parametri"
 
@@ -724,10 +739,47 @@ msgstr "Glavno ime bo pripeto samodejno, če se ime ne začne z 'iqn.'."
 msgid "Battery Charge"
 msgstr ""
 
+msgid "Battery Details"
+msgstr ""
+
 msgid "Battery Low"
 msgstr ""
 
 msgid "Battery Remain Time"
+msgstr ""
+
+msgid ""
+"Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
+msgstr ""
+
+msgid "Battery alarm threshold"
+msgstr ""
+
+msgid "Battery capacity"
+msgstr ""
+
+msgid "Battery change date"
+msgstr ""
+
+msgid "Battery charge"
+msgstr ""
+
+msgid "Battery chemistry"
+msgstr ""
+
+msgid "Battery current"
+msgstr ""
+
+msgid "Battery level when UPS switches to \"Warning\" state"
+msgstr ""
+
+msgid "Battery manufacturing date"
+msgstr ""
+
+msgid "Battery temperature"
+msgstr ""
+
+msgid "Battery voltage"
 msgstr ""
 
 msgid "Best available"
@@ -1164,6 +1216,12 @@ msgstr ""
 msgid "Current password"
 msgstr ""
 
+msgid "Current value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Current value of real power (Watts)"
+msgstr ""
+
 msgid "Custom"
 msgstr "Po meri"
 
@@ -1187,6 +1245,12 @@ msgstr "DDP"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DNLA/UPnP"
+msgstr ""
+
+msgid "DNLA/UPnP Media Server"
+msgstr ""
 
 msgid "DNS settings"
 msgstr "DNS nastavitve"
@@ -1434,9 +1498,6 @@ msgstr "Ciljni deljeni vir"
 
 msgid "Detected"
 msgstr "Zaznano"
-
-msgid "Detected Language:<br />(Change if needed)"
-msgstr ""
 
 msgid "Detected RSYNC remote shares"
 msgstr "Najdeni oddaljeni RSYNC deljeni viri"
@@ -1803,6 +1864,15 @@ msgstr "Seznam gonilnikov"
 msgid "Driver parameters"
 msgstr ""
 
+msgid "Driver used"
+msgstr ""
+
+msgid "Driver version"
+msgstr ""
+
+msgid "Driver version internal"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -1920,6 +1990,10 @@ msgstr "Uredi uporabnika"
 msgid "Edit volume"
 msgstr ""
 
+msgid ""
+"Efficiency of the UPS (Ratio of the output current on the input current)"
+msgstr ""
+
 msgid "Email"
 msgstr "E-pošta"
 
@@ -1961,6 +2035,9 @@ msgstr ""
 
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "Omogoči Zeroconf/Bonjour za oglaševanje te naprave"
+
+msgid "Enable administrative DNLA/UPnP WebGUI."
+msgstr ""
 
 msgid "Enable anonymous bind."
 msgstr "Omogoči anonimen priklop."
@@ -2080,9 +2157,6 @@ msgstr "Omogoči uravnavanje nekaterih spremenljivk jedra."
 msgid "Enable use sendfile."
 msgstr "Omogoči uporabo pošiljanja datotek."
 
-msgid "Enable web user interface."
-msgstr "Omogoči spletni uporabniški vmesnik"
-
 msgid "Enable write cache mode."
 msgstr ""
 
@@ -2193,6 +2267,12 @@ msgstr ""
 
 msgid "Extended attributes"
 msgstr "Dodatni atributi"
+
+msgid "Extended input frequency range"
+msgstr ""
+
+msgid "Extended input voltage range"
+msgstr ""
 
 msgid "Extensions"
 msgstr "Razširitve"
@@ -2380,6 +2460,9 @@ msgstr "Preverjanje Firmware verzije"
 msgid "FirstBurstLength"
 msgstr "FirstBurstLength"
 
+msgid "Flag xxx (ups.conf or cmdline -x) status"
+msgstr ""
+
 msgid "Flags"
 msgstr "Zastavice"
 
@@ -2448,6 +2531,9 @@ msgstr "Prehod, ki se naj uporabi, za doseg ciljnega omrežja"
 msgid "General"
 msgstr "Splošno"
 
+msgid "General Information UPS Unit"
+msgstr ""
+
 msgid "General Setup"
 msgstr "Splošne nastavitve"
 
@@ -2465,6 +2551,9 @@ msgstr "GiB"
 
 msgid "Give only local users access to the web page."
 msgstr "Dovoli samo lokalnim uporabnikom dostop do spletne strani."
+
+msgid "Give your media library a friendly name."
+msgstr ""
 
 msgid "Grant access to the user portal."
 msgstr "Dovoli dostop do uporabniškega portala."
@@ -2553,6 +2642,15 @@ msgstr "Pomoč"
 
 msgid "Hide dot files"
 msgstr "Skrij datoteke s piko"
+
+msgid "High voltage boosting transfer point"
+msgstr ""
+
+msgid "High voltage transfer point"
+msgstr ""
+
+msgid "High voltage trimming transfer point"
+msgstr ""
 
 msgid "Highlighting"
 msgstr "Poudarjanje"
@@ -2819,6 +2917,9 @@ msgstr "V večini primerov je tukaj uporabljen 'javno'"
 msgid "Include basic hardware information."
 msgstr "Vsebuje glavne informacije strojne opreme"
 
+msgid "Incoming Line/Power Information"
+msgstr ""
+
 msgid "Incomplete directory"
 msgstr "Nepopoln direktorij"
 
@@ -2880,6 +2981,30 @@ msgstr "Uporabniško ime na strani initiatorja. (za skupno CHAP prijavo)"
 msgid "Initiators"
 msgstr "Initiators"
 
+msgid "Input current (A)"
+msgstr ""
+
+msgid "Input frequency"
+msgstr ""
+
+msgid "Input line frequency (Hz)"
+msgstr ""
+
+msgid "Input line frequency high (Hz)"
+msgstr ""
+
+msgid "Input line frequency low (Hz)"
+msgstr ""
+
+msgid "Input power quality (* opaque)"
+msgstr ""
+
+msgid "Input power sensitivity"
+msgstr ""
+
+msgid "Input voltage"
+msgstr ""
+
 msgid "Inquiry Product"
 msgstr "Poizvedba produkta"
 
@@ -2904,14 +3029,35 @@ msgstr "Vmesnik"
 msgid "Interface Management"
 msgstr "Upravljanje mrežnih kartic"
 
-msgid "Interface to listen to."
-msgstr "Naprava za poslušanje."
+msgid "Interface selection"
+msgstr ""
 
 msgid "Interfaces"
 msgstr "Vmesniki"
 
+msgid "Internal Server Information"
+msgstr ""
+
+msgid "Internal UPS clock date"
+msgstr ""
+
+msgid "Internal UPS clock time"
+msgstr ""
+
+msgid "Interval between self tests"
+msgstr ""
+
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "Interval more biti večji kot 10 sekund."
+
+msgid "Interval to wait after shutdown with delay command"
+msgstr ""
+
+msgid "Interval to wait before rebooting the UPS)"
+msgstr ""
+
+msgid "Interval to wait before restarting the load"
+msgstr ""
 
 msgid "Invalid file format."
 msgstr "Napačen format datoteke."
@@ -3011,6 +3157,9 @@ msgstr "LUN-i"
 
 msgid "Language"
 msgstr "Jezik"
+
+msgid "Language to use on front panel"
+msgstr ""
 
 msgid "Large read/write"
 msgstr "Veliko branje/pisanje"
@@ -3139,6 +3288,12 @@ msgstr "Povprečne obremenitve"
 msgid "Load file"
 msgstr ""
 
+msgid "Load on UPS"
+msgstr ""
+
+msgid "Load when UPS switches to overload condition (\"OVER\")"
+msgstr ""
+
 msgid "Loadbalance"
 msgstr "Loadbalance"
 
@@ -3189,6 +3344,9 @@ msgstr "Mesto datotek, ki jih želite deliti."
 msgid "Location where the content database file will be stored."
 msgstr "Mesto, kjer bo shranjena podatkovna baza."
 
+msgid "Location where the database with media contents will be stored."
+msgstr ""
+
 #, php-format
 msgid ""
 "Location where the working files will be stored, e.g. %s/backup/.unison"
@@ -3235,6 +3393,15 @@ msgstr "Uporabniško ime."
 
 msgid "Logout"
 msgstr "Odjava"
+
+msgid "Low voltage boosting transfer point"
+msgstr ""
+
+msgid "Low voltage transfer point"
+msgstr ""
+
+msgid "Low voltage trimming transfer point"
+msgstr ""
 
 msgid "Lowercases names in both directions"
 msgstr "Majhne črke imen"
@@ -3284,6 +3451,9 @@ msgstr "Upravljanje"
 
 msgid "Manufacturer"
 msgstr "Proizvajalec"
+
+msgid "Manufacturing date"
+msgstr ""
 
 msgid "Map all users to root"
 msgstr "Dodaj vse uporabnike k root-u"
@@ -3347,6 +3517,9 @@ msgstr ""
 msgid "Maximum idle time in seconds."
 msgstr "Najvišji čas nekativnosti v sekundah."
 
+msgid "Maximum incoming voltage seen"
+msgstr ""
+
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr "Največ dovoljenih poizkusov prijave, pred prekinitvijo."
 
@@ -3378,11 +3551,20 @@ msgstr "Največje število hkratnih povezav. Privzeto je 0 (neomejeno)."
 msgid "Maximum performance, maximum acoustic output"
 msgstr "Najboljše delovanje, največji nivo glasnosti"
 
+msgid "Maximum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Maximum temperature seen (degrees C)"
+msgstr ""
+
 msgid "Media"
 msgstr "Medija"
 
 msgid "Media Directory"
 msgstr "Media direktorij"
+
+msgid "Media library"
+msgstr ""
 
 msgid "Medium acoustic output"
 msgstr "Srednji nivo glasnosti"
@@ -3408,14 +3590,26 @@ msgstr "Najnižji pasiv port"
 msgid "Minimum"
 msgstr "Najmanj"
 
+msgid "Minimum battery level for UPS restart after power-off"
+msgstr ""
+
 msgid "Minimum free space"
 msgstr "Najmanj prostega prostora"
 
 msgid "Minimum frequency"
 msgstr ""
 
+msgid "Minimum incoming voltage seen"
+msgstr ""
+
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Najslabše delovanje, najmanjši nivo glasnosti"
+
+msgid "Minimum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Minimum temperature seen (degrees C)"
+msgstr ""
 
 msgid "Minutes"
 msgstr "Minute"
@@ -3431,6 +3625,9 @@ msgstr "Ni začasne mape"
 
 msgid "Mode"
 msgstr "Način"
+
+msgid "Model"
+msgstr ""
 
 msgid "Model extra"
 msgstr "Model extra"
@@ -3507,6 +3704,9 @@ msgstr ""
 
 msgid "NTP time server"
 msgstr "NTP časovni strežnik"
+
+msgid "NUT Internal Driver Information"
+msgstr ""
 
 msgid "Name"
 msgstr "Ime"
@@ -3676,6 +3876,33 @@ msgstr ""
 msgid "Node Name"
 msgstr ""
 
+msgid "Nominal battery voltage"
+msgstr ""
+
+msgid "Nominal input current (A)"
+msgstr ""
+
+msgid "Nominal input line frequency (Hz)"
+msgstr ""
+
+msgid "Nominal input voltage"
+msgstr ""
+
+msgid "Nominal output current (A)"
+msgstr ""
+
+msgid "Nominal output frequency (Hz)"
+msgstr ""
+
+msgid "Nominal output voltage (V)"
+msgstr ""
+
+msgid "Nominal value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Nominal value of real power (Watts)"
+msgstr ""
+
 msgid "None"
 msgstr "Nič"
 
@@ -3736,6 +3963,12 @@ msgstr "Zdaj"
 
 msgid "Null passwords"
 msgstr "Prazna gesla"
+
+msgid "Number of bad battery packs"
+msgstr ""
+
+msgid "Number of battery packs"
+msgstr ""
 
 msgid "Number of clients"
 msgstr "Število klientov"
@@ -3815,11 +4048,26 @@ msgstr "Ostali"
 msgid "Out"
 msgstr "Ven"
 
+msgid "Outgoing Power/Inverter Information"
+msgstr ""
+
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr "Naslov odhodnega SMTP strežnika"
 
 msgid "Outgoing mail server"
 msgstr "Odhodni SMTP strežnik"
+
+msgid "Output current (A)"
+msgstr ""
+
+msgid "Output frequency (Hz)"
+msgstr ""
+
+msgid "Output voltage"
+msgstr ""
+
+msgid "Output voltage (V)"
+msgstr ""
 
 msgid "Overload"
 msgstr ""
@@ -3871,6 +4119,9 @@ msgstr "Zelo agresiven"
 
 msgid "Pairwise"
 msgstr "Pairwise"
+
+msgid "Parameter xxx (ups.conf or cmdline -x) setting"
+msgstr ""
 
 msgid "Partition number"
 msgstr "Številka razdelka"
@@ -4103,6 +4354,9 @@ msgstr "Obdrži čase datotek."
 msgid "Preserve permissions"
 msgstr "Ohrani dovoljenja"
 
+msgid "Prevent deep discharge of battery"
+msgstr ""
+
 msgid "Primary"
 msgstr ""
 
@@ -4129,6 +4383,9 @@ msgstr "Procesi"
 
 msgid "Processes information"
 msgstr "Informacije o procesih"
+
+msgid "Product ID"
+msgstr ""
 
 msgid "Profile"
 msgstr "Profil"
@@ -4258,6 +4515,9 @@ msgstr "Samo za branje"
 msgid "Realm"
 msgstr "Realm"
 
+msgid "Reason for last transfer to battery (* opaque)"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Ponovni zagon"
 
@@ -4279,11 +4539,20 @@ msgstr "Osveži"
 msgid "Reject"
 msgstr "Zavrni"
 
+msgid "Relative humidity alarm (enabled/disabled)"
+msgstr ""
+
+msgid "Relative humidity threshold high (percent)"
+msgstr ""
+
 msgid "Release Notes"
 msgstr "Opombe ob izdaji"
 
 msgid "Reload page"
 msgstr "Ponovno naloži stran"
+
+msgid "Remaining battery runtime"
+msgstr ""
 
 msgid "Remote Rsync Server"
 msgstr "Oddaljen Rsync strežnik"
@@ -4370,6 +4639,9 @@ msgstr "Obnovi meta podatke iz dane datoteke, podanemu ponudniku."
 
 msgid "Results for net rpc testjoin:"
 msgstr "Rezultati net rpc testnega priklopa:"
+
+msgid "Results of last self test"
+msgstr ""
 
 msgid "Resume"
 msgstr "Povrni"
@@ -4591,6 +4863,11 @@ msgid ""
 "restore the configuration."
 msgstr ""
 
+msgid ""
+"Select which interface to use. (only selectable if your server has more than "
+"one)"
+msgstr ""
+
 msgid "Select your read balance algorithm."
 msgstr "Izberite bralni algrotem."
 
@@ -4621,6 +4898,9 @@ msgstr "Pošlji testno e-pošto"
 msgid "Separate email addresses by semi-colon."
 msgstr "Ločite e-poštne naslove s podpičjem"
 
+msgid "Serial"
+msgstr ""
+
 msgid "Serial Console"
 msgstr "Serijska konzola"
 
@@ -4636,8 +4916,14 @@ msgstr "Ime strežnika"
 msgid "Server description. This can usually be left blank."
 msgstr "Opis strežnika. Ponavadi lahko pustite prazno."
 
+msgid "Server information"
+msgstr ""
+
 msgid "Server name"
 msgstr "Ime strežnika"
+
+msgid "Server version"
+msgstr ""
 
 msgid "Service"
 msgstr "Storitve"
@@ -4662,6 +4948,9 @@ msgstr "Nastavi, da se uporablja CNID, za ta disk"
 
 msgid "Set the account's primary group to the given group."
 msgstr "Uporabniku nastavi to primarno skupino"
+
+msgid "Set the content location(s) to or from the media library."
+msgstr ""
 
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr "Nastavi željeno identifikacijo servisa (omrežno ime)."
@@ -4736,6 +5025,9 @@ msgstr "Mape v skupni rabi"
 
 msgid "Shell"
 msgstr "Lupina"
+
+msgid "Show RAW UPS Info"
+msgstr ""
 
 msgid "Show log entries in reverse order (newest entries on top)"
 msgstr "Prikaži dnevniške vnose v obratnem vrstnem redu (novejši na vrhu)"
@@ -5006,6 +5298,9 @@ msgstr ""
 msgid "Switch VIP to MASTER"
 msgstr ""
 
+msgid "Switch off when running on battery and no/low load"
+msgstr ""
+
 msgid "Switch to"
 msgstr "Preklop na"
 
@@ -5142,8 +5437,17 @@ msgstr "Cilji"
 msgid "Temperature"
 msgstr "Temperatura"
 
+msgid "Temperature alarm (enabled/disabled)"
+msgstr ""
+
 msgid "Temperature monitoring"
 msgstr "Nadzor temperature"
+
+msgid "Temperature threshold high (degrees C)"
+msgstr ""
+
+msgid "Temperature threshold low (degrees C)"
+msgstr ""
 
 msgid "Temporary Device"
 msgstr "Začasna naprava"
@@ -5325,6 +5629,14 @@ msgstr "Atribut '%s' more biti manjši od '%s'."
 #, c-format
 msgid "The attribute '%s' must contain at least one entry."
 msgstr "Atribut '%s' more biti more vsebovati vsaj en vnos."
+
+#, php-format
+msgid "The attribute '%s': use a port in the range from %d to %d."
+msgstr ""
+
+#, php-format
+msgid "The attribute 'Port': port '%ld' is already taken by another service."
+msgstr ""
 
 msgid ""
 "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
@@ -6168,6 +6480,15 @@ msgstr "Čas"
 msgid "Time Machine"
 msgstr ""
 
+msgid "Time before the load will be rebooted"
+msgstr ""
+
+msgid "Time before the load will be shutdown"
+msgstr ""
+
+msgid "Time before the load will be started"
+msgstr ""
+
 msgid "Time interval"
 msgstr ""
 
@@ -6369,26 +6690,53 @@ msgstr ""
 msgid "UPS Waiting"
 msgstr ""
 
+msgid "UPS alarms"
+msgstr ""
+
+msgid "UPS beeper status"
+msgstr ""
+
+msgid "UPS coldstarts from battery"
+msgstr ""
+
 msgid "UPS disabled"
+msgstr ""
+
+msgid "UPS external contact sensors"
+msgstr ""
+
+msgid "UPS firmware"
 msgstr ""
 
 msgid "UPS goes on battery"
 msgstr ""
 
+msgid "UPS model"
+msgstr ""
+
 msgid "UPS reaches low battery"
+msgstr ""
+
+msgid "UPS starts when mains is (re)applied"
 msgstr ""
 
 msgid "UPS status"
 msgstr ""
 
+msgid "UPS system identifier"
+msgstr ""
+
+msgid "UPS temperature"
+msgstr ""
+
+msgid "UPS type"
+msgstr ""
+
+msgid "UPS watchdog status"
+msgstr ""
+
 msgid "UPnP"
 msgstr "UPnP"
-
-msgid "UPnP A/V Media Server"
-msgstr "UPnP A/V Medija strežnik"
-
-msgid "UPnP friendly name."
-msgstr "UPnp prijazno ime."
 
 msgid "URI"
 msgstr ""
@@ -6578,6 +6926,9 @@ msgstr ""
 msgid "Variable"
 msgstr ""
 
+msgid "Vendor ID"
+msgstr ""
+
 msgid "Version"
 msgstr "Različica"
 
@@ -6676,6 +7027,9 @@ msgstr ""
 msgid ""
 "When HAST is enabled, the local devices, the local services and the "
 "additional packages which do not support HAST volume cannot be used."
+msgstr ""
+
+msgid "When UPS switches to Low Battery"
 msgstr ""
 
 msgid ""
@@ -6873,6 +7227,12 @@ msgstr ""
 msgid "get target info failed."
 msgstr ""
 
+msgid "greatest settable high voltage transfer point"
+msgstr ""
+
+msgid "greatest settable low voltage transfer point"
+msgstr ""
+
 msgid "hiadaptive (high performance)"
 msgstr ""
 
@@ -6974,6 +7334,12 @@ msgid "scan target failed."
 msgstr ""
 
 msgid "second(s)"
+msgstr ""
+
+msgid "smallest settable high voltage transfer point"
+msgstr ""
+
+msgid "smallest settable low voltage transfer point"
 msgstr ""
 
 msgid "striping"

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-04-15 03:51+0000\n"
+"POT-Creation-Date: 2013-05-20 04:39+0000\n"
 "PO-Revision-Date: 2013-04-15 10:41+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-04 23:21+0000\n"
-"X-Generator: Launchpad (build 16598)\n"
+"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 "X-Poedit-Country: CHINA\n"
 "Language: \n"
 "X-Poedit-Language: Chinese (Traditional)\n"
@@ -510,6 +510,9 @@ msgstr "允許新檔案"
 msgid "Allow new files to be created."
 msgstr "允許建立新檔案"
 
+msgid "Allow to start UPS from battery"
+msgstr ""
+
 msgid "Allow trusted domains."
 msgstr "允許受信任的網域。"
 
@@ -549,6 +552,15 @@ msgid ""
 "Always use 0 for device number, helps when the device number is not constant "
 "across a reboot, cluster, ..."
 msgstr "請務必使用0 為裝置編號，有助於裝置編號在重新啟動，集群時的易變..."
+
+msgid "Ambient Conditions From External Probe Equipment"
+msgstr ""
+
+msgid "Ambient relative humidity (percent)"
+msgstr ""
+
+msgid "Ambient temperature (degrees C)"
+msgstr ""
 
 msgid "An host with this name already exists."
 msgstr "已經有一個相同的主機名稱存在了。"
@@ -663,6 +675,9 @@ msgstr "自動搜索磁盤模式"
 msgid "Autoselect"
 msgstr "自動選擇"
 
+msgid "Auxiliary device firmware"
+msgstr ""
+
 msgid "Auxiliary parameters"
 msgstr "輔助參數"
 
@@ -703,11 +718,48 @@ msgstr "當啟動時沒有 'iqn.'  ，會自動添加基本名稱。"
 msgid "Battery Charge"
 msgstr "電池電力"
 
+msgid "Battery Details"
+msgstr ""
+
 msgid "Battery Low"
 msgstr "電力不足"
 
 msgid "Battery Remain Time"
 msgstr "電池剩餘時間"
+
+msgid ""
+"Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
+msgstr ""
+
+msgid "Battery alarm threshold"
+msgstr ""
+
+msgid "Battery capacity"
+msgstr ""
+
+msgid "Battery change date"
+msgstr ""
+
+msgid "Battery charge"
+msgstr ""
+
+msgid "Battery chemistry"
+msgstr ""
+
+msgid "Battery current"
+msgstr ""
+
+msgid "Battery level when UPS switches to \"Warning\" state"
+msgstr ""
+
+msgid "Battery manufacturing date"
+msgstr ""
+
+msgid "Battery temperature"
+msgstr ""
+
+msgid "Battery voltage"
+msgstr ""
 
 msgid "Best available"
 msgstr "現有最佳"
@@ -1140,6 +1192,12 @@ msgstr "目前版本："
 msgid "Current password"
 msgstr "當前密碼"
 
+msgid "Current value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Current value of real power (Watts)"
+msgstr ""
+
 msgid "Custom"
 msgstr "自訂"
 
@@ -1163,6 +1221,12 @@ msgstr "DDP"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DNLA/UPnP"
+msgstr ""
+
+msgid "DNLA/UPnP Media Server"
+msgstr ""
 
 msgid "DNS settings"
 msgstr "DNS 设置"
@@ -1412,9 +1476,6 @@ msgstr "共享目的端"
 
 msgid "Detected"
 msgstr "已偵測"
-
-msgid "Detected Language:<br />(Change if needed)"
-msgstr "檢測到的語言：<br/>（如果需要的話可更改）"
 
 msgid "Detected RSYNC remote shares"
 msgstr "刪除 RSYNC 遠端分享"
@@ -1766,6 +1827,15 @@ msgstr "驅動程式列表"
 msgid "Driver parameters"
 msgstr "驅動程式參數"
 
+msgid "Driver used"
+msgstr ""
+
+msgid "Driver version"
+msgstr ""
+
+msgid "Driver version internal"
+msgstr ""
+
 msgid "Duplex"
 msgstr "雙工模式"
 
@@ -1883,6 +1953,10 @@ msgstr "編輯用戶"
 msgid "Edit volume"
 msgstr "編輯卷"
 
+msgid ""
+"Efficiency of the UPS (Ratio of the output current on the input current)"
+msgstr ""
+
 msgid "Email"
 msgstr "電子郵件"
 
@@ -1924,6 +1998,9 @@ msgstr "啟用 ZFS 存取控制清單 (ACL)"
 
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "啟用 Zeroconf/ Bonjour 來宣傳這個裝置的服務"
+
+msgid "Enable administrative DNLA/UPnP WebGUI."
+msgstr ""
 
 msgid "Enable anonymous bind."
 msgstr "啟用匿名綁定。"
@@ -2041,9 +2118,6 @@ msgstr "開啟系統核心的參數微調"
 msgid "Enable use sendfile."
 msgstr "啟用 sendfile。"
 
-msgid "Enable web user interface."
-msgstr "開啟 Web 控制介面。"
-
 msgid "Enable write cache mode."
 msgstr "開啟寫入緩存模式。"
 
@@ -2144,6 +2218,12 @@ msgstr "導出指定的路徑中的所有目錄。"
 
 msgid "Extended attributes"
 msgstr "擴展屬性"
+
+msgid "Extended input frequency range"
+msgstr ""
+
+msgid "Extended input voltage range"
+msgstr ""
 
 msgid "Extensions"
 msgstr "擴充"
@@ -2323,6 +2403,9 @@ msgstr "韌體版本檢查"
 msgid "FirstBurstLength"
 msgstr "FirstBurstLength"
 
+msgid "Flag xxx (ups.conf or cmdline -x) status"
+msgstr ""
+
 msgid "Flags"
 msgstr "標示符"
 
@@ -2391,6 +2474,9 @@ msgstr "用閘道器到達目的地網絡。"
 msgid "General"
 msgstr "一般設定"
 
+msgid "General Information UPS Unit"
+msgstr ""
+
 msgid "General Setup"
 msgstr "一般設定"
 
@@ -2408,6 +2494,9 @@ msgstr "GiB"
 
 msgid "Give only local users access to the web page."
 msgstr "只有本機用戶可以使用網頁伺服器。"
+
+msgid "Give your media library a friendly name."
+msgstr ""
 
 msgid "Grant access to the user portal."
 msgstr "授予用戶門戶網站的訪問權。"
@@ -2495,6 +2584,15 @@ msgstr "說明"
 
 msgid "Hide dot files"
 msgstr "隱藏以點開頭的檔案"
+
+msgid "High voltage boosting transfer point"
+msgstr ""
+
+msgid "High voltage transfer point"
+msgstr ""
+
+msgid "High voltage trimming transfer point"
+msgstr ""
 
 msgid "Highlighting"
 msgstr "語法高亮度顯示"
@@ -2741,6 +2839,9 @@ msgstr "大多數的情況下，這裡會設定'public'"
 msgid "Include basic hardware information."
 msgstr "包括基本的硬件資訊。"
 
+msgid "Incoming Line/Power Information"
+msgstr ""
+
 msgid "Incomplete directory"
 msgstr "未完畢檔案的目錄"
 
@@ -2800,6 +2901,30 @@ msgstr "啟動器端用戶名（CHAP 相互認證）"
 msgid "Initiators"
 msgstr "啟動器（Initiators）"
 
+msgid "Input current (A)"
+msgstr ""
+
+msgid "Input frequency"
+msgstr ""
+
+msgid "Input line frequency (Hz)"
+msgstr ""
+
+msgid "Input line frequency high (Hz)"
+msgstr ""
+
+msgid "Input line frequency low (Hz)"
+msgstr ""
+
+msgid "Input power quality (* opaque)"
+msgstr ""
+
+msgid "Input power sensitivity"
+msgstr ""
+
+msgid "Input voltage"
+msgstr ""
+
 msgid "Inquiry Product"
 msgstr "詢問產品"
 
@@ -2824,14 +2949,35 @@ msgstr "介面"
 msgid "Interface Management"
 msgstr "網絡介面管理"
 
-msgid "Interface to listen to."
-msgstr "要偵聽的網路介面。"
+msgid "Interface selection"
+msgstr ""
 
 msgid "Interfaces"
 msgstr "網路介面"
 
+msgid "Internal Server Information"
+msgstr ""
+
+msgid "Internal UPS clock date"
+msgstr ""
+
+msgid "Internal UPS clock time"
+msgstr ""
+
+msgid "Interval between self tests"
+msgstr ""
+
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "間隔值必須大於或等於10秒。"
+
+msgid "Interval to wait after shutdown with delay command"
+msgstr ""
+
+msgid "Interval to wait before rebooting the UPS)"
+msgstr ""
+
+msgid "Interval to wait before restarting the load"
+msgstr ""
 
 msgid "Invalid file format."
 msgstr "檔案格式無效。"
@@ -2927,6 +3073,9 @@ msgstr "LUNs"
 
 msgid "Language"
 msgstr "語言設定"
+
+msgid "Language to use on front panel"
+msgstr ""
 
 msgid "Large read/write"
 msgstr "大筆資料讀／寫"
@@ -3048,6 +3197,12 @@ msgstr "系統負載"
 msgid "Load file"
 msgstr "載入檔案"
 
+msgid "Load on UPS"
+msgstr ""
+
+msgid "Load when UPS switches to overload condition (\"OVER\")"
+msgstr ""
+
 msgid "Loadbalance"
 msgstr "負載平衡"
 
@@ -3091,6 +3246,9 @@ msgstr "檔案的分享位置。"
 
 msgid "Location where the content database file will be stored."
 msgstr "儲存內容資料庫檔案的位置。"
+
+msgid "Location where the database with media contents will be stored."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -3139,6 +3297,15 @@ msgstr "登入用戶名。"
 msgid "Logout"
 msgstr "登出"
 
+msgid "Low voltage boosting transfer point"
+msgstr ""
+
+msgid "Low voltage transfer point"
+msgstr ""
+
+msgid "Low voltage trimming transfer point"
+msgstr ""
+
 msgid "Lowercases names in both directions"
 msgstr "雙向字母小寫名稱"
 
@@ -3185,6 +3352,9 @@ msgstr "管理"
 
 msgid "Manufacturer"
 msgstr "製造商"
+
+msgid "Manufacturing date"
+msgstr ""
 
 msgid "Map all users to root"
 msgstr "對應所有用戶為root"
@@ -3247,6 +3417,9 @@ msgstr "最大頻率"
 msgid "Maximum idle time in seconds."
 msgstr "最大閒置時間（秒）"
 
+msgid "Maximum incoming voltage seen"
+msgstr ""
+
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr "斷線前允許的最多密碼嘗試次數。"
 
@@ -3276,11 +3449,20 @@ msgstr "同時連線最高數目。預設為 0 (不限制)。"
 msgid "Maximum performance, maximum acoustic output"
 msgstr "最高效能，最高噪音輸出"
 
+msgid "Maximum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Maximum temperature seen (degrees C)"
+msgstr ""
+
 msgid "Media"
 msgstr "介质（Media）"
 
 msgid "Media Directory"
 msgstr "媒體目錄"
+
+msgid "Media library"
+msgstr ""
 
 msgid "Medium acoustic output"
 msgstr "中等效能/噪音"
@@ -3306,14 +3488,26 @@ msgstr "最小被動端口"
 msgid "Minimum"
 msgstr "最小值"
 
+msgid "Minimum battery level for UPS restart after power-off"
+msgstr ""
+
 msgid "Minimum free space"
 msgstr "最少需求空間"
 
 msgid "Minimum frequency"
 msgstr "最小頻率"
 
+msgid "Minimum incoming voltage seen"
+msgstr ""
+
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "最低的效能，最低噪音輸出"
+
+msgid "Minimum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Minimum temperature seen (degrees C)"
+msgstr ""
 
 msgid "Minutes"
 msgstr "分鐘"
@@ -3329,6 +3523,9 @@ msgstr "遺失了一個暫存檔案夾。"
 
 msgid "Mode"
 msgstr "模式"
+
+msgid "Model"
+msgstr ""
 
 msgid "Model extra"
 msgstr "額外模組"
@@ -3403,6 +3600,9 @@ msgstr "NT1"
 
 msgid "NTP time server"
 msgstr "NTP 時間伺服器"
+
+msgid "NUT Internal Driver Information"
+msgstr ""
 
 msgid "Name"
 msgstr "名稱"
@@ -3560,6 +3760,33 @@ msgstr "節點ID（Node ID）"
 msgid "Node Name"
 msgstr "節點名稱（Node）"
 
+msgid "Nominal battery voltage"
+msgstr ""
+
+msgid "Nominal input current (A)"
+msgstr ""
+
+msgid "Nominal input line frequency (Hz)"
+msgstr ""
+
+msgid "Nominal input voltage"
+msgstr ""
+
+msgid "Nominal output current (A)"
+msgstr ""
+
+msgid "Nominal output frequency (Hz)"
+msgstr ""
+
+msgid "Nominal output voltage (V)"
+msgstr ""
+
+msgid "Nominal value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Nominal value of real power (Watts)"
+msgstr ""
+
 msgid "None"
 msgstr "無"
 
@@ -3613,6 +3840,12 @@ msgstr "現在"
 
 msgid "Null passwords"
 msgstr "密碼空白"
+
+msgid "Number of bad battery packs"
+msgstr ""
+
+msgid "Number of battery packs"
+msgstr ""
 
 msgid "Number of clients"
 msgstr "連線數目"
@@ -3690,11 +3923,26 @@ msgstr "其他"
 msgid "Out"
 msgstr "出"
 
+msgid "Outgoing Power/Inverter Information"
+msgstr ""
+
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr "郵件發送（SMTP）伺服器的地址，例如：smtp.mycorp.com"
 
 msgid "Outgoing mail server"
 msgstr "郵件發送伺服器"
+
+msgid "Output current (A)"
+msgstr ""
+
+msgid "Output frequency (Hz)"
+msgstr ""
+
+msgid "Output voltage"
+msgstr ""
+
+msgid "Output voltage (V)"
+msgstr ""
 
 msgid "Overload"
 msgstr "負載"
@@ -3746,6 +3994,9 @@ msgstr "Painfully aggressive"
 
 msgid "Pairwise"
 msgstr "成對（Pairwise）"
+
+msgid "Parameter xxx (ups.conf or cmdline -x) setting"
+msgstr ""
 
 msgid "Partition number"
 msgstr "分割區編號"
@@ -3973,6 +4224,9 @@ msgstr "保留更改次數。"
 msgid "Preserve permissions"
 msgstr "保留權限"
 
+msgid "Prevent deep discharge of battery"
+msgstr ""
+
 msgid "Primary"
 msgstr "主要"
 
@@ -3999,6 +4253,9 @@ msgstr "程序"
 
 msgid "Processes information"
 msgstr "程序資訊"
+
+msgid "Product ID"
+msgstr ""
 
 msgid "Profile"
 msgstr "設定檔"
@@ -4122,6 +4379,9 @@ msgstr "唯讀"
 msgid "Realm"
 msgstr "Realm"
 
+msgid "Reason for last transfer to battery (* opaque)"
+msgstr ""
+
 msgid "Reboot"
 msgstr "重新啟動"
 
@@ -4143,11 +4403,20 @@ msgstr "更新"
 msgid "Reject"
 msgstr "拒絕"
 
+msgid "Relative humidity alarm (enabled/disabled)"
+msgstr ""
+
+msgid "Relative humidity threshold high (percent)"
+msgstr ""
+
 msgid "Release Notes"
 msgstr "發行說明"
 
 msgid "Reload page"
 msgstr "重新載入頁面"
+
+msgid "Remaining battery runtime"
+msgstr ""
 
 msgid "Remote Rsync Server"
 msgstr "遠端 Rsync 伺服器"
@@ -4230,6 +4499,9 @@ msgstr "從文件還原元數據給指定提供者。"
 
 msgid "Results for net rpc testjoin:"
 msgstr "Net rpc testjoin 結果："
+
+msgid "Results of last self test"
+msgstr ""
 
 msgid "Resume"
 msgstr "繼續"
@@ -4443,6 +4715,11 @@ msgid ""
 "restore the configuration."
 msgstr "請選擇服務器XML配置文件，然後點擊下面的按鈕來還原配置。"
 
+msgid ""
+"Select which interface to use. (only selectable if your server has more than "
+"one)"
+msgstr ""
+
 msgid "Select your read balance algorithm."
 msgstr "請選擇您的閱覽平衡演算法。"
 
@@ -4473,6 +4750,9 @@ msgstr "傳送測試電郵"
 msgid "Separate email addresses by semi-colon."
 msgstr "以 \";\" 分號隔開電郵位址。"
 
+msgid "Serial"
+msgstr ""
+
 msgid "Serial Console"
 msgstr "串行控制台（Serial Console）"
 
@@ -4488,8 +4768,14 @@ msgstr "伺服器名稱"
 msgid "Server description. This can usually be left blank."
 msgstr "伺服器說明。通常可以留空白。"
 
+msgid "Server information"
+msgstr ""
+
 msgid "Server name"
 msgstr "伺服器名稱"
+
+msgid "Server version"
+msgstr ""
 
 msgid "Service"
 msgstr "服務"
@@ -4514,6 +4800,9 @@ msgstr "設置卷用的 CNID 後端。"
 
 msgid "Set the account's primary group to the given group."
 msgstr "設定帳號的主要群組。"
+
+msgid "Set the content location(s) to or from the media library."
+msgstr ""
 
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr "設置所需的服務集標識符（Service Set Identifier）（也稱為網絡名稱）。"
@@ -4581,6 +4870,9 @@ msgstr "分享區（Shares）"
 
 msgid "Shell"
 msgstr "命令殼 (shell)"
+
+msgid "Show RAW UPS Info"
+msgstr ""
 
 msgid "Show log entries in reverse order (newest entries on top)"
 msgstr "以相反的次序顯示記錄（先顯示最新記錄）"
@@ -4839,6 +5131,9 @@ msgstr "VIP 切換到 BACKUP"
 msgid "Switch VIP to MASTER"
 msgstr "VIP 切換到 MASTER"
 
+msgid "Switch off when running on battery and no/low load"
+msgstr ""
+
 msgid "Switch to"
 msgstr "切換到"
 
@@ -4973,8 +5268,17 @@ msgstr "目標器（Targets）"
 msgid "Temperature"
 msgstr "溫度"
 
+msgid "Temperature alarm (enabled/disabled)"
+msgstr ""
+
 msgid "Temperature monitoring"
 msgstr "溫度監測"
+
+msgid "Temperature threshold high (degrees C)"
+msgstr ""
+
+msgid "Temperature threshold low (degrees C)"
+msgstr ""
 
 msgid "Temporary Device"
 msgstr "臨時裝置"
@@ -5150,6 +5454,14 @@ msgstr "'%s' 必須小於 '%s'。"
 #, c-format
 msgid "The attribute '%s' must contain at least one entry."
 msgstr "'%s' 必須有至少一個項目。"
+
+#, php-format
+msgid "The attribute '%s': use a port in the range from %d to %d."
+msgstr ""
+
+#, php-format
+msgid "The attribute 'Port': port '%ld' is already taken by another service."
+msgstr ""
 
 msgid ""
 "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
@@ -6003,6 +6315,15 @@ msgstr "時間"
 msgid "Time Machine"
 msgstr "Time Machine"
 
+msgid "Time before the load will be rebooted"
+msgstr ""
+
+msgid "Time before the load will be shutdown"
+msgstr ""
+
+msgid "Time before the load will be started"
+msgstr ""
+
 msgid "Time interval"
 msgstr "時間間隔"
 
@@ -6214,26 +6535,53 @@ msgstr "UPS 狀態"
 msgid "UPS Waiting"
 msgstr "UPS 等待中"
 
+msgid "UPS alarms"
+msgstr ""
+
+msgid "UPS beeper status"
+msgstr ""
+
+msgid "UPS coldstarts from battery"
+msgstr ""
+
 msgid "UPS disabled"
 msgstr "UPS 已停用"
+
+msgid "UPS external contact sensors"
+msgstr ""
+
+msgid "UPS firmware"
+msgstr ""
 
 msgid "UPS goes on battery"
 msgstr "UPS 轉用電池"
 
+msgid "UPS model"
+msgstr ""
+
 msgid "UPS reaches low battery"
 msgstr "UPS 電池電量不足"
+
+msgid "UPS starts when mains is (re)applied"
+msgstr ""
 
 msgid "UPS status"
 msgstr "UPS 狀態"
 
+msgid "UPS system identifier"
+msgstr ""
+
+msgid "UPS temperature"
+msgstr ""
+
+msgid "UPS type"
+msgstr ""
+
+msgid "UPS watchdog status"
+msgstr ""
+
 msgid "UPnP"
 msgstr "UPnP"
-
-msgid "UPnP A/V Media Server"
-msgstr "UPnP影音多媒體伺服器"
-
-msgid "UPnP friendly name."
-msgstr "UPnP 兼容的名稱"
 
 msgid "URI"
 msgstr "URI"
@@ -6423,6 +6771,9 @@ msgstr "數值"
 msgid "Variable"
 msgstr "變數"
 
+msgid "Vendor ID"
+msgstr ""
+
 msgid "Version"
 msgstr "版本"
 
@@ -6522,6 +6873,9 @@ msgid ""
 "When HAST is enabled, the local devices, the local services and the "
 "additional packages which do not support HAST volume cannot be used."
 msgstr "當 HAST 啟用時，不支援HAST 卷的本地裝置 、本地服務和附加套件將不能使用。"
+
+msgid "When UPS switches to Low Battery"
+msgstr ""
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
@@ -6718,6 +7072,12 @@ msgstr "filechooser"
 msgid "get target info failed."
 msgstr "獲取目標信息失敗。"
 
+msgid "greatest settable high voltage transfer point"
+msgstr ""
+
+msgid "greatest settable low voltage transfer point"
+msgstr ""
+
 msgid "hiadaptive (high performance)"
 msgstr "高自適應（hiadaptive）（高性能）"
 
@@ -6820,6 +7180,12 @@ msgstr "掃描目標失敗。"
 
 msgid "second(s)"
 msgstr "秒"
+
+msgid "smallest settable high voltage transfer point"
+msgstr ""
+
+msgid "smallest settable low voltage transfer point"
+msgstr ""
 
 msgid "striping"
 msgstr "條帶化（striping）"

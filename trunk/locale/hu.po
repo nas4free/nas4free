@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-04-15 03:51+0000\n"
-"PO-Revision-Date: 2012-08-10 17:26+0000\n"
-"Last-Translator: Péter Kovács <Unknown>\n"
+"POT-Creation-Date: 2013-05-20 04:39+0000\n"
+"PO-Revision-Date: 2013-05-15 09:23+0000\n"
+"Last-Translator: Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-04 23:21+0000\n"
-"X-Generator: Launchpad (build 16598)\n"
+"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 "X-Poedit-Country: HUNGARY\n"
 "Language: \n"
 "X-Poedit-Language: Hungarian\n"
@@ -48,7 +48,7 @@ msgstr "%d%% a(z) %dMB-ból"
 
 #, php-format
 msgid "%dB / block"
-msgstr ""
+msgstr "%dB / blokk"
 
 #, php-format
 msgid "%s interface"
@@ -64,7 +64,7 @@ msgstr ""
 
 #, php-format
 msgid "%s of %sB"
-msgstr ""
+msgstr "%s a(z) %sB-ból"
 
 #, php-format
 msgid "%s on %s"
@@ -248,7 +248,7 @@ msgid "AIO write size"
 msgstr "AIO írási méret"
 
 msgid "ALL interfaces"
-msgstr ""
+msgstr "ÖSSZES interfész"
 
 msgid "ARP Tables"
 msgstr "ARP (címfeloldási protokoll) táblák"
@@ -345,10 +345,10 @@ msgid "Add group"
 msgstr "Csoport hozzáadása"
 
 msgid "Add initiator"
-msgstr ""
+msgstr "FKezdeményező hozzáadása"
 
 msgid "Add initiator group"
-msgstr ""
+msgstr "Kezdeményező csoport hozzáadása"
 
 msgid "Add interface"
 msgstr "Interfész hozzáadása"
@@ -366,13 +366,13 @@ msgid "Add option"
 msgstr "Opció hozzáadása"
 
 msgid "Add pool"
-msgstr ""
+msgstr "Pool hozzáadása"
 
 msgid "Add portal group"
-msgstr ""
+msgstr "Portal csoport hozzáadása"
 
 msgid "Add resource"
-msgstr ""
+msgstr "Forrás hozzáadása"
 
 msgid "Add rule"
 msgstr "Szabály hozzáadása"
@@ -503,13 +503,18 @@ msgstr "Új állományok engedélyezése."
 msgid "Allow new files to be created."
 msgstr "Új állományok létrehozásának engedélyezése."
 
-msgid "Allow trusted domains."
+msgid "Allow to start UPS from battery"
 msgstr ""
+
+msgid "Allow trusted domains."
+msgstr "Megbízható domain engedélyezése"
 
 msgid ""
 "Allows  certain  users and groups to have read/write access to a share. This "
 "follows the allow option format."
 msgstr ""
+"Több felhasználónak és csoportnak megengedi, hogy olvasás/írás hozzáférése "
+"legyen egy megosztáshoz. Az megengedő formulát követi."
 
 msgid ""
 "Allows certain users and groups to have read-only  access  to  a share. This "
@@ -541,6 +546,15 @@ msgstr "Mindig keres"
 msgid ""
 "Always use 0 for device number, helps when the device number is not constant "
 "across a reboot, cluster, ..."
+msgstr ""
+
+msgid "Ambient Conditions From External Probe Equipment"
+msgstr ""
+
+msgid "Ambient relative humidity (percent)"
+msgstr ""
+
+msgid "Ambient temperature (degrees C)"
 msgstr ""
 
 msgid "An host with this name already exists."
@@ -616,16 +630,16 @@ msgid "Attaching provider '%s'."
 msgstr ""
 
 msgid "Auth Group"
-msgstr ""
+msgstr "Auth csoport"
 
 msgid "Auth Groups"
-msgstr ""
+msgstr "Auth csoportok"
 
 msgid "Auth Method"
-msgstr ""
+msgstr "Auth eljárás"
 
 msgid "Authenticate URL"
-msgstr ""
+msgstr "Autentikációs URL"
 
 msgid "Authentication"
 msgstr "Hitelesítés"
@@ -637,13 +651,13 @@ msgid "Authorised network"
 msgstr "Hitelesített hálózat"
 
 msgid "Auths"
-msgstr ""
+msgstr "Autentikációk"
 
 msgid "Auto"
 msgstr "Automatikus"
 
 msgid "Auto Snapshot"
-msgstr ""
+msgstr "Auto snapshot"
 
 msgid "Auto size"
 msgstr "Automatikus méret"
@@ -660,6 +674,9 @@ msgstr "Automatikus lemez-helyreállító mód"
 msgid "Autoselect"
 msgstr "Automatikus választás"
 
+msgid "Auxiliary device firmware"
+msgstr ""
+
 msgid "Auxiliary parameters"
 msgstr "Kiegészítő paraméterek"
 
@@ -673,7 +690,7 @@ msgid "Backup/Restore"
 msgstr "Mentés/Visszaállítás"
 
 msgid "Bad User - non existing users"
-msgstr ""
+msgstr "Hibás felhasználó - nem létező felhasználó"
 
 msgid "Balance algorithm"
 msgstr "Kiegyensúlyozó algoritmus"
@@ -691,19 +708,56 @@ msgid "Base DN"
 msgstr "Alap DN"
 
 msgid "Base Name"
-msgstr ""
+msgstr "Alap név"
 
 msgid ""
 "Base Name will be appended automatically when starting without 'iqn.'."
 msgstr ""
 
 msgid "Battery Charge"
+msgstr "A telepek töltési állapota"
+
+msgid "Battery Details"
 msgstr ""
 
 msgid "Battery Low"
-msgstr ""
+msgstr "Alacsony töltöttségi szint"
 
 msgid "Battery Remain Time"
+msgstr "Elem idő"
+
+msgid ""
+"Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
+msgstr ""
+
+msgid "Battery alarm threshold"
+msgstr ""
+
+msgid "Battery capacity"
+msgstr ""
+
+msgid "Battery change date"
+msgstr ""
+
+msgid "Battery charge"
+msgstr ""
+
+msgid "Battery chemistry"
+msgstr ""
+
+msgid "Battery current"
+msgstr ""
+
+msgid "Battery level when UPS switches to \"Warning\" state"
+msgstr ""
+
+msgid "Battery manufacturing date"
+msgstr ""
+
+msgid "Battery temperature"
+msgstr ""
+
+msgid "Battery voltage"
 msgstr ""
 
 msgid "Best available"
@@ -719,19 +773,19 @@ msgid "BitTorrent"
 msgstr "BitTorrent"
 
 msgid "Blank time"
-msgstr ""
+msgstr "Üres idő"
 
 msgid "Blocksize"
-msgstr ""
+msgstr "Blokkméret"
 
 msgid "Bridge"
-msgstr ""
+msgstr "Híd"
 
 msgid "Browseable"
 msgstr "Böngészhető"
 
 msgid "Build date"
-msgstr ""
+msgstr "Fordítás ideje"
 
 msgid "Bulgarian"
 msgstr "Bulgár"
@@ -740,10 +794,10 @@ msgid "By default, only already existing files can be uploaded."
 msgstr "Alapértelmezetten csak létező fájlok feltőlthetőek."
 
 msgid "CARP"
-msgstr ""
+msgstr "CARP"
 
 msgid "CARP only"
-msgstr ""
+msgstr "Csak CARP"
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -773,34 +827,34 @@ msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (cirill)"
 
 msgid "CP437 (Latin US)"
-msgstr ""
+msgstr "CP437 (Latin US)"
 
 msgid "CP850 (Latin 1)"
-msgstr ""
+msgstr "CP850 (Latin 1)"
 
 msgid "CP852 (Latin 2)"
-msgstr ""
+msgstr "CP852 (Latin 2)"
 
 msgid "CP866 (Cyrillic CIS 1)"
-msgstr ""
+msgstr "CP866 (Cyrillic CIS 1)"
 
 msgid "CP932 (Japanese Shift-JIS)"
-msgstr ""
+msgstr "CP932 (Japanese Shift-JIS)"
 
 msgid "CP936 (Simplified Chinese GBK)"
-msgstr ""
+msgstr "CP936 (Simplified Chinese GBK)"
 
 msgid "CP949 (Korean)"
 msgstr "CP949 (koreai)"
 
 msgid "CP950 (Traditional Chinese Big5)"
-msgstr ""
+msgstr "CP950 (Traditional Chinese Big5)"
 
 msgid "CPU frequency"
 msgstr "CPU (processzor) frekvencia"
 
 msgid "CPU frequency:"
-msgstr ""
+msgstr "Processzor-frekvencia:"
 
 msgid "CPU load"
 msgstr "CPU használat"
@@ -815,10 +869,10 @@ msgid "Cache"
 msgstr "Gyorsítótár"
 
 msgid "Cache Device"
-msgstr ""
+msgstr "Cache eszköz"
 
 msgid "Calibration Battery"
-msgstr ""
+msgstr "Elem kalibrálása"
 
 msgid "Can't format the OS origin disk!"
 msgstr "Nem formázhatja az operációs rendszert tartalmazó partíciót!"
@@ -833,7 +887,7 @@ msgid "Cancel"
 msgstr "Mégse"
 
 msgid "Canmount"
-msgstr ""
+msgstr "Mountolható"
 
 msgid "Cannot get data about interface"
 msgstr "Nem lehet adatot venni az interfészről"
@@ -938,11 +992,11 @@ msgstr "Parancs"
 
 #, php-format
 msgid "Command for LINK_DOWN event (e.g. %s)."
-msgstr ""
+msgstr "LINK_DOWN esemény utasítása (pl. %s)."
 
 #, php-format
 msgid "Command for LINK_UP event (e.g. %s)."
-msgstr ""
+msgstr "LINK_UP esemény utasítása (pl. %s)."
 
 msgid "Command output:"
 msgstr "Parancs kimenet:"
@@ -954,7 +1008,7 @@ msgid "Comment"
 msgstr "Komponensek:"
 
 msgid "Common Internet File System"
-msgstr ""
+msgstr "Common Internet File System"
 
 msgid "Community"
 msgstr "Közösség"
@@ -1127,6 +1181,12 @@ msgid "Current Version:"
 msgstr ""
 
 msgid "Current password"
+msgstr "Jelenlegi jelszó"
+
+msgid "Current value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Current value of real power (Watts)"
 msgstr ""
 
 msgid "Custom"
@@ -1152,6 +1212,12 @@ msgstr "DDP"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DNLA/UPnP"
+msgstr ""
+
+msgid "DNLA/UPnP Media Server"
+msgstr ""
 
 msgid "DNS settings"
 msgstr "DNS beállítások"
@@ -1399,9 +1465,6 @@ msgstr "Cél megosztás"
 
 msgid "Detected"
 msgstr "Észlelt"
-
-msgid "Detected Language:<br />(Change if needed)"
-msgstr ""
 
 msgid "Detected RSYNC remote shares"
 msgstr "Felismert rsync távoli megosztások"
@@ -1756,6 +1819,15 @@ msgstr "Illesztőprogram lista"
 msgid "Driver parameters"
 msgstr ""
 
+msgid "Driver used"
+msgstr ""
+
+msgid "Driver version"
+msgstr ""
+
+msgid "Driver version internal"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -1873,6 +1945,10 @@ msgstr "Felhasználó szerkesztése"
 msgid "Edit volume"
 msgstr ""
 
+msgid ""
+"Efficiency of the UPS (Ratio of the output current on the input current)"
+msgstr ""
+
 msgid "Email"
 msgstr "E-mail"
 
@@ -1913,6 +1989,9 @@ msgid "Enable ZFS ACL"
 msgstr ""
 
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
+msgstr ""
+
+msgid "Enable administrative DNLA/UPnP WebGUI."
 msgstr ""
 
 msgid "Enable anonymous bind."
@@ -2031,9 +2110,6 @@ msgstr "Néhány kernel változó finomhangolásánek engedélyezése."
 msgid "Enable use sendfile."
 msgstr ""
 
-msgid "Enable web user interface."
-msgstr "Webes felhasználói felület engedélyezése"
-
 msgid "Enable write cache mode."
 msgstr ""
 
@@ -2135,6 +2211,12 @@ msgstr ""
 
 msgid "Extended attributes"
 msgstr "Részletes tulajdonságok"
+
+msgid "Extended input frequency range"
+msgstr ""
+
+msgid "Extended input voltage range"
+msgstr ""
 
 msgid "Extensions"
 msgstr "Bővítmények"
@@ -2323,6 +2405,9 @@ msgstr "Firmware verzió ellenörzés"
 msgid "FirstBurstLength"
 msgstr ""
 
+msgid "Flag xxx (ups.conf or cmdline -x) status"
+msgstr ""
+
 msgid "Flags"
 msgstr "Jelzők"
 
@@ -2391,6 +2476,9 @@ msgstr "Az átjárót távoli hálózatok eléréshez használják."
 msgid "General"
 msgstr "Általános"
 
+msgid "General Information UPS Unit"
+msgstr ""
+
 msgid "General Setup"
 msgstr "Általános beállítások"
 
@@ -2408,6 +2496,9 @@ msgstr "GiB"
 
 msgid "Give only local users access to the web page."
 msgstr "Csak helyi felhasználóknak érhetik el a weblapot."
+
+msgid "Give your media library a friendly name."
+msgstr ""
 
 msgid "Grant access to the user portal."
 msgstr ""
@@ -2494,6 +2585,15 @@ msgid "Help"
 msgstr "Súgó"
 
 msgid "Hide dot files"
+msgstr ""
+
+msgid "High voltage boosting transfer point"
+msgstr ""
+
+msgid "High voltage transfer point"
+msgstr ""
+
+msgid "High voltage trimming transfer point"
 msgstr ""
 
 msgid "Highlighting"
@@ -2746,6 +2846,9 @@ msgstr "A legtöbb esetben a 'publikus' használandó."
 msgid "Include basic hardware information."
 msgstr "Alap hardverinfromációk tartalmazása."
 
+msgid "Incoming Line/Power Information"
+msgstr ""
+
 msgid "Incomplete directory"
 msgstr ""
 
@@ -2805,6 +2908,30 @@ msgstr ""
 msgid "Initiators"
 msgstr ""
 
+msgid "Input current (A)"
+msgstr ""
+
+msgid "Input frequency"
+msgstr ""
+
+msgid "Input line frequency (Hz)"
+msgstr ""
+
+msgid "Input line frequency high (Hz)"
+msgstr ""
+
+msgid "Input line frequency low (Hz)"
+msgstr ""
+
+msgid "Input power quality (* opaque)"
+msgstr ""
+
+msgid "Input power sensitivity"
+msgstr ""
+
+msgid "Input voltage"
+msgstr ""
+
 msgid "Inquiry Product"
 msgstr ""
 
@@ -2829,14 +2956,35 @@ msgstr "Interfész"
 msgid "Interface Management"
 msgstr "Interfész kezelő"
 
-msgid "Interface to listen to."
-msgstr "Figyelendő interfész"
+msgid "Interface selection"
+msgstr ""
 
 msgid "Interfaces"
 msgstr "Interfészek"
 
+msgid "Internal Server Information"
+msgstr ""
+
+msgid "Internal UPS clock date"
+msgstr ""
+
+msgid "Internal UPS clock time"
+msgstr ""
+
+msgid "Interval between self tests"
+msgstr ""
+
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "A beírt időtartamnak nagyobb vagy egyenlőnek kell lennie 10 mp-nél."
+
+msgid "Interval to wait after shutdown with delay command"
+msgstr ""
+
+msgid "Interval to wait before rebooting the UPS)"
+msgstr ""
+
+msgid "Interval to wait before restarting the load"
+msgstr ""
 
 msgid "Invalid file format."
 msgstr "Érvénytelen fájlformátum."
@@ -2936,6 +3084,9 @@ msgstr "LUN-ok"
 
 msgid "Language"
 msgstr "Nyelv"
+
+msgid "Language to use on front panel"
+msgstr ""
 
 msgid "Large read/write"
 msgstr ""
@@ -3055,6 +3206,12 @@ msgstr "Betöltési átlagok"
 msgid "Load file"
 msgstr ""
 
+msgid "Load on UPS"
+msgstr ""
+
+msgid "Load when UPS switches to overload condition (\"OVER\")"
+msgstr ""
+
 msgid "Loadbalance"
 msgstr "Terhelés-kiegyensúlyozás"
 
@@ -3101,6 +3258,9 @@ msgid "Location of the files to share."
 msgstr "Megosztandó fájlok helye"
 
 msgid "Location where the content database file will be stored."
+msgstr ""
+
+msgid "Location where the database with media contents will be stored."
 msgstr ""
 
 #, php-format
@@ -3150,6 +3310,15 @@ msgstr "Bejelentkezési név"
 msgid "Logout"
 msgstr "Kijelentkezés"
 
+msgid "Low voltage boosting transfer point"
+msgstr ""
+
+msgid "Low voltage transfer point"
+msgstr ""
+
+msgid "Low voltage trimming transfer point"
+msgstr ""
+
 msgid "Lowercases names in both directions"
 msgstr ""
 
@@ -3198,6 +3367,9 @@ msgstr "Menedzsment"
 
 msgid "Manufacturer"
 msgstr "Gyártó"
+
+msgid "Manufacturing date"
+msgstr ""
 
 msgid "Map all users to root"
 msgstr ""
@@ -3260,6 +3432,9 @@ msgstr ""
 msgid "Maximum idle time in seconds."
 msgstr "Maximális várakozási idő mp-ben."
 
+msgid "Maximum incoming voltage seen"
+msgstr ""
+
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr "Max. jelszó próbálkozások ledobás előtt"
 
@@ -3289,10 +3464,19 @@ msgstr ""
 msgid "Maximum performance, maximum acoustic output"
 msgstr "Maximális teljesítmény, maximális zajszint"
 
+msgid "Maximum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Maximum temperature seen (degrees C)"
+msgstr ""
+
 msgid "Media"
 msgstr "Adathordozó"
 
 msgid "Media Directory"
+msgstr ""
+
+msgid "Media library"
 msgstr ""
 
 msgid "Medium acoustic output"
@@ -3319,14 +3503,26 @@ msgstr ""
 msgid "Minimum"
 msgstr "Minimum"
 
+msgid "Minimum battery level for UPS restart after power-off"
+msgstr ""
+
 msgid "Minimum free space"
 msgstr "Minimális szabad hely"
 
 msgid "Minimum frequency"
 msgstr ""
 
+msgid "Minimum incoming voltage seen"
+msgstr ""
+
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Minimális teljesítmény, minimális zajszint"
+
+msgid "Minimum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Minimum temperature seen (degrees C)"
+msgstr ""
 
 msgid "Minutes"
 msgstr "Perc"
@@ -3342,6 +3538,9 @@ msgstr "Hiányzik az átmeneti könyvtár."
 
 msgid "Mode"
 msgstr "Mód"
+
+msgid "Model"
+msgstr ""
 
 msgid "Model extra"
 msgstr ""
@@ -3417,6 +3616,9 @@ msgstr "NT1"
 
 msgid "NTP time server"
 msgstr "NTP idő szerver"
+
+msgid "NUT Internal Driver Information"
+msgstr ""
 
 msgid "Name"
 msgstr "Név"
@@ -3575,6 +3777,33 @@ msgstr ""
 msgid "Node Name"
 msgstr ""
 
+msgid "Nominal battery voltage"
+msgstr ""
+
+msgid "Nominal input current (A)"
+msgstr ""
+
+msgid "Nominal input line frequency (Hz)"
+msgstr ""
+
+msgid "Nominal input voltage"
+msgstr ""
+
+msgid "Nominal output current (A)"
+msgstr ""
+
+msgid "Nominal output frequency (Hz)"
+msgstr ""
+
+msgid "Nominal output voltage (V)"
+msgstr ""
+
+msgid "Nominal value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Nominal value of real power (Watts)"
+msgstr ""
+
 msgid "None"
 msgstr "Nincs"
 
@@ -3632,6 +3861,12 @@ msgstr "Most"
 
 msgid "Null passwords"
 msgstr "Üres jelszavak"
+
+msgid "Number of bad battery packs"
+msgstr ""
+
+msgid "Number of battery packs"
+msgstr ""
 
 msgid "Number of clients"
 msgstr "Kliensek száma"
@@ -3714,11 +3949,26 @@ msgstr "Egyebek"
 msgid "Out"
 msgstr "Ki"
 
+msgid "Outgoing Power/Inverter Information"
+msgstr ""
+
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr "Kimenő SMTP levelező szerver címe, pl.: smtp.azencegem.hu"
 
 msgid "Outgoing mail server"
 msgstr "Kimenő levelező szerver"
+
+msgid "Output current (A)"
+msgstr ""
+
+msgid "Output frequency (Hz)"
+msgstr ""
+
+msgid "Output voltage"
+msgstr ""
+
+msgid "Output voltage (V)"
+msgstr ""
 
 msgid "Overload"
 msgstr ""
@@ -3770,6 +4020,9 @@ msgstr "Sajnálatosan aggresszív"
 
 msgid "Pairwise"
 msgstr "Páros"
+
+msgid "Parameter xxx (ups.conf or cmdline -x) setting"
+msgstr ""
 
 msgid "Partition number"
 msgstr "Partíciószám"
@@ -3999,6 +4252,9 @@ msgstr "Módosítások időpontjának megőrzése."
 msgid "Preserve permissions"
 msgstr "A jogosultságok megőrzése"
 
+msgid "Prevent deep discharge of battery"
+msgstr ""
+
 msgid "Primary"
 msgstr ""
 
@@ -4025,6 +4281,9 @@ msgstr "Folyamatok"
 
 msgid "Processes information"
 msgstr "Folyamat információ"
+
+msgid "Product ID"
+msgstr ""
 
 msgid "Profile"
 msgstr "Profil"
@@ -4148,6 +4407,9 @@ msgstr "Csak olvasható"
 msgid "Realm"
 msgstr "Terület"
 
+msgid "Reason for last transfer to battery (* opaque)"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Újraindítás"
 
@@ -4169,11 +4431,20 @@ msgstr "Frissítés"
 msgid "Reject"
 msgstr "Elvetés"
 
+msgid "Relative humidity alarm (enabled/disabled)"
+msgstr ""
+
+msgid "Relative humidity threshold high (percent)"
+msgstr ""
+
 msgid "Release Notes"
 msgstr ""
 
 msgid "Reload page"
 msgstr "Oldal újratöltése"
+
+msgid "Remaining battery runtime"
+msgstr ""
 
 msgid "Remote Rsync Server"
 msgstr "Távoli Rsync Kiszolgáló"
@@ -4259,6 +4530,9 @@ msgid "Restore metadata from the given file to the given provider."
 msgstr ""
 
 msgid "Results for net rpc testjoin:"
+msgstr ""
+
+msgid "Results of last self test"
 msgstr ""
 
 msgid "Resume"
@@ -4472,6 +4746,11 @@ msgid ""
 "restore the configuration."
 msgstr ""
 
+msgid ""
+"Select which interface to use. (only selectable if your server has more than "
+"one)"
+msgstr ""
+
 msgid "Select your read balance algorithm."
 msgstr ""
 
@@ -4502,6 +4781,9 @@ msgstr "Próba e-mail küldése"
 msgid "Separate email addresses by semi-colon."
 msgstr "Az e-mail címeket pontosvesszővel válassza el."
 
+msgid "Serial"
+msgstr ""
+
 msgid "Serial Console"
 msgstr ""
 
@@ -4517,8 +4799,14 @@ msgstr "Kiszolgálónév"
 msgid "Server description. This can usually be left blank."
 msgstr "Szerver leírás. Üresen maradhat."
 
+msgid "Server information"
+msgstr ""
+
 msgid "Server name"
 msgstr "Kiszolgáló neve"
+
+msgid "Server version"
+msgstr ""
 
 msgid "Service"
 msgstr "Szolgáltatás"
@@ -4542,6 +4830,9 @@ msgid "Set the CNID backend to be used for the volume."
 msgstr ""
 
 msgid "Set the account's primary group to the given group."
+msgstr ""
+
+msgid "Set the content location(s) to or from the media library."
 msgstr ""
 
 msgid "Set the desired Service Set Identifier (aka network name)."
@@ -4607,6 +4898,9 @@ msgstr "Megosztások"
 
 msgid "Shell"
 msgstr "Parancsértelmező"
+
+msgid "Show RAW UPS Info"
+msgstr ""
 
 msgid "Show log entries in reverse order (newest entries on top)"
 msgstr ""
@@ -4868,6 +5162,9 @@ msgstr ""
 msgid "Switch VIP to MASTER"
 msgstr ""
 
+msgid "Switch off when running on battery and no/low load"
+msgstr ""
+
 msgid "Switch to"
 msgstr "Váltás"
 
@@ -5001,8 +5298,17 @@ msgstr "Célok"
 msgid "Temperature"
 msgstr "Hőmérséklet"
 
+msgid "Temperature alarm (enabled/disabled)"
+msgstr ""
+
 msgid "Temperature monitoring"
 msgstr "Hőmérsékletfigyelés"
+
+msgid "Temperature threshold high (degrees C)"
+msgstr ""
+
+msgid "Temperature threshold low (degrees C)"
+msgstr ""
 
 msgid "Temporary Device"
 msgstr "Átmeneti eszköz"
@@ -5178,6 +5484,14 @@ msgstr ""
 
 #, c-format
 msgid "The attribute '%s' must contain at least one entry."
+msgstr ""
+
+#, php-format
+msgid "The attribute '%s': use a port in the range from %d to %d."
+msgstr ""
+
+#, php-format
+msgid "The attribute 'Port': port '%ld' is already taken by another service."
 msgstr ""
 
 msgid ""
@@ -6020,6 +6334,15 @@ msgstr "Idő"
 msgid "Time Machine"
 msgstr ""
 
+msgid "Time before the load will be rebooted"
+msgstr ""
+
+msgid "Time before the load will be shutdown"
+msgstr ""
+
+msgid "Time before the load will be started"
+msgstr ""
+
 msgid "Time interval"
 msgstr "Időintervallum"
 
@@ -6221,26 +6544,53 @@ msgstr ""
 msgid "UPS Waiting"
 msgstr ""
 
+msgid "UPS alarms"
+msgstr ""
+
+msgid "UPS beeper status"
+msgstr ""
+
+msgid "UPS coldstarts from battery"
+msgstr ""
+
 msgid "UPS disabled"
 msgstr "Szünetmentes táp kikapcsolva"
+
+msgid "UPS external contact sensors"
+msgstr ""
+
+msgid "UPS firmware"
+msgstr ""
 
 msgid "UPS goes on battery"
 msgstr "Szünetmentes táp akkumulátorról megy"
 
+msgid "UPS model"
+msgstr ""
+
 msgid "UPS reaches low battery"
 msgstr "Szünetmentes táp hamarosan lemerül"
+
+msgid "UPS starts when mains is (re)applied"
+msgstr ""
 
 msgid "UPS status"
 msgstr "Szünetmentes táp állapota"
 
+msgid "UPS system identifier"
+msgstr ""
+
+msgid "UPS temperature"
+msgstr ""
+
+msgid "UPS type"
+msgstr ""
+
+msgid "UPS watchdog status"
+msgstr ""
+
 msgid "UPnP"
 msgstr "UPnP"
-
-msgid "UPnP A/V Media Server"
-msgstr "UPnP A/V Media szerver"
-
-msgid "UPnP friendly name."
-msgstr ""
 
 msgid "URI"
 msgstr ""
@@ -6434,6 +6784,9 @@ msgstr "Érték"
 msgid "Variable"
 msgstr "Változó"
 
+msgid "Vendor ID"
+msgstr ""
+
 msgid "Version"
 msgstr "Verzió"
 
@@ -6538,6 +6891,9 @@ msgstr ""
 msgid ""
 "When HAST is enabled, the local devices, the local services and the "
 "additional packages which do not support HAST volume cannot be used."
+msgstr ""
+
+msgid "When UPS switches to Low Battery"
 msgstr ""
 
 msgid ""
@@ -6734,6 +7090,12 @@ msgstr ""
 msgid "get target info failed."
 msgstr ""
 
+msgid "greatest settable high voltage transfer point"
+msgstr ""
+
+msgid "greatest settable low voltage transfer point"
+msgstr ""
+
 msgid "hiadaptive (high performance)"
 msgstr ""
 
@@ -6836,6 +7198,12 @@ msgstr ""
 
 msgid "second(s)"
 msgstr "másodperc"
+
+msgid "smallest settable high voltage transfer point"
+msgstr ""
+
+msgid "smallest settable low voltage transfer point"
+msgstr ""
 
 msgid "striping"
 msgstr ""

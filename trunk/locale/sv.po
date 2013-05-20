@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-04-15 03:51+0000\n"
+"POT-Creation-Date: 2013-05-20 04:39+0000\n"
 "PO-Revision-Date: 2012-11-21 15:57+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-04 23:22+0000\n"
-"X-Generator: Launchpad (build 16598)\n"
+"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 "X-Poedit-Country: SWEDEN\n"
 "Language: \n"
 "X-Poedit-Language: Swedish\n"
@@ -539,6 +539,9 @@ msgstr "Tillåt nya filer"
 msgid "Allow new files to be created."
 msgstr "Tillåt nya filer att skapas."
 
+msgid "Allow to start UPS from battery"
+msgstr ""
+
 msgid "Allow trusted domains."
 msgstr ""
 
@@ -584,6 +587,15 @@ msgid ""
 msgstr ""
 "Ange alltid 0 som enhetsnummer, det hjälper när numret inte är konstant "
 "mellan omstart, kluster, ..."
+
+msgid "Ambient Conditions From External Probe Equipment"
+msgstr ""
+
+msgid "Ambient relative humidity (percent)"
+msgstr ""
+
+msgid "Ambient temperature (degrees C)"
+msgstr ""
 
 msgid "An host with this name already exists."
 msgstr "En värd med det här namnet finns redan."
@@ -704,6 +716,9 @@ msgstr "Automatisk disk avkänningsläge"
 msgid "Autoselect"
 msgstr "Välj automatiskt"
 
+msgid "Auxiliary device firmware"
+msgstr ""
+
 msgid "Auxiliary parameters"
 msgstr "Yttre parametrar"
 
@@ -744,10 +759,47 @@ msgstr "Basnamnet kommer bifogas automatiskt när det startas utan 'iqn.'."
 msgid "Battery Charge"
 msgstr ""
 
+msgid "Battery Details"
+msgstr ""
+
 msgid "Battery Low"
 msgstr ""
 
 msgid "Battery Remain Time"
+msgstr ""
+
+msgid ""
+"Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
+msgstr ""
+
+msgid "Battery alarm threshold"
+msgstr ""
+
+msgid "Battery capacity"
+msgstr ""
+
+msgid "Battery change date"
+msgstr ""
+
+msgid "Battery charge"
+msgstr ""
+
+msgid "Battery chemistry"
+msgstr ""
+
+msgid "Battery current"
+msgstr ""
+
+msgid "Battery level when UPS switches to \"Warning\" state"
+msgstr ""
+
+msgid "Battery manufacturing date"
+msgstr ""
+
+msgid "Battery temperature"
+msgstr ""
+
+msgid "Battery voltage"
 msgstr ""
 
 msgid "Best available"
@@ -1199,6 +1251,12 @@ msgstr "NUvarande version:"
 msgid "Current password"
 msgstr ""
 
+msgid "Current value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Current value of real power (Watts)"
+msgstr ""
+
 msgid "Custom"
 msgstr "Anpassad"
 
@@ -1222,6 +1280,12 @@ msgstr "DDP"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DNLA/UPnP"
+msgstr ""
+
+msgid "DNLA/UPnP Media Server"
+msgstr ""
 
 msgid "DNS settings"
 msgstr "DNS inställningar"
@@ -1469,9 +1533,6 @@ msgstr "Destination utdelning"
 
 msgid "Detected"
 msgstr "Identifierad"
-
-msgid "Detected Language:<br />(Change if needed)"
-msgstr "Identifierade språk:<br />(Ändra vid behov)"
 
 msgid "Detected RSYNC remote shares"
 msgstr "Upptäckte fjärranslutna RSYNC utdelningar"
@@ -1841,6 +1902,15 @@ msgstr "Drivrutinslista"
 msgid "Driver parameters"
 msgstr "Drivrutinparametrar"
 
+msgid "Driver used"
+msgstr ""
+
+msgid "Driver version"
+msgstr ""
+
+msgid "Driver version internal"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -1958,6 +2028,10 @@ msgstr "Redigera användare"
 msgid "Edit volume"
 msgstr "Redigera volym"
 
+msgid ""
+"Efficiency of the UPS (Ratio of the output current on the input current)"
+msgstr ""
+
 msgid "Email"
 msgstr "E-post"
 
@@ -2000,6 +2074,9 @@ msgstr "Aktivera ZFS ACL"
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr ""
 "Aktivera Zeroconf/Bonjour för att tillkännage tjänsterna för denna enhet."
+
+msgid "Enable administrative DNLA/UPnP WebGUI."
+msgstr ""
 
 msgid "Enable anonymous bind."
 msgstr "Aktivera anonym bindning."
@@ -2121,9 +2198,6 @@ msgstr "Aktivera justering av vissa kärnvariabler"
 msgid "Enable use sendfile."
 msgstr "Tillåt användning av \"sendfile\""
 
-msgid "Enable web user interface."
-msgstr "Aktivera webbanvändargränssnitt."
-
 msgid "Enable write cache mode."
 msgstr ""
 
@@ -2235,6 +2309,12 @@ msgstr ""
 
 msgid "Extended attributes"
 msgstr "Utökade attribut"
+
+msgid "Extended input frequency range"
+msgstr ""
+
+msgid "Extended input voltage range"
+msgstr ""
 
 msgid "Extensions"
 msgstr "Utökningar"
@@ -2423,6 +2503,9 @@ msgstr "Kontroll av fast programvaruversion"
 msgid "FirstBurstLength"
 msgstr "FirstBurstLength"
 
+msgid "Flag xxx (ups.conf or cmdline -x) status"
+msgstr ""
+
 msgid "Flags"
 msgstr "Flaggor"
 
@@ -2491,6 +2574,9 @@ msgstr "Gateway som används för att nå destinationsnätverk."
 msgid "General"
 msgstr "Allmänt"
 
+msgid "General Information UPS Unit"
+msgstr ""
+
 msgid "General Setup"
 msgstr "Allmän Inställning"
 
@@ -2508,6 +2594,9 @@ msgstr "GiB"
 
 msgid "Give only local users access to the web page."
 msgstr "Ge enbart lokala användare tillgång till webbsidan."
+
+msgid "Give your media library a friendly name."
+msgstr ""
 
 msgid "Grant access to the user portal."
 msgstr "Tilldela åtkomst till användarportalen."
@@ -2596,6 +2685,15 @@ msgstr "Hjälp"
 
 msgid "Hide dot files"
 msgstr "Dölj punktfiler"
+
+msgid "High voltage boosting transfer point"
+msgstr ""
+
+msgid "High voltage transfer point"
+msgstr ""
+
+msgid "High voltage trimming transfer point"
+msgstr ""
 
 msgid "Highlighting"
 msgstr "Markering"
@@ -2864,6 +2962,9 @@ msgstr "I dom flesta fallen så används 'public' här."
 msgid "Include basic hardware information."
 msgstr "Inkludera grundläggande hårdvaruinformation."
 
+msgid "Incoming Line/Power Information"
+msgstr ""
+
 msgid "Incomplete directory"
 msgstr "Ofullständig katalog"
 
@@ -2927,6 +3028,30 @@ msgstr "Initierarens sidoanvändarnamn. (för gemensam CHAP auktorisation)"
 msgid "Initiators"
 msgstr "Initierare"
 
+msgid "Input current (A)"
+msgstr ""
+
+msgid "Input frequency"
+msgstr ""
+
+msgid "Input line frequency (Hz)"
+msgstr ""
+
+msgid "Input line frequency high (Hz)"
+msgstr ""
+
+msgid "Input line frequency low (Hz)"
+msgstr ""
+
+msgid "Input power quality (* opaque)"
+msgstr ""
+
+msgid "Input power sensitivity"
+msgstr ""
+
+msgid "Input voltage"
+msgstr ""
+
 msgid "Inquiry Product"
 msgstr "Frågeställningsprodukten"
 
@@ -2951,14 +3076,35 @@ msgstr "Gränssnitt"
 msgid "Interface Management"
 msgstr "Gränssnittshantering"
 
-msgid "Interface to listen to."
-msgstr "Gränssnitt att lyssna på."
+msgid "Interface selection"
+msgstr ""
 
 msgid "Interfaces"
 msgstr "Gränssnitt"
 
+msgid "Internal Server Information"
+msgstr ""
+
+msgid "Internal UPS clock date"
+msgstr ""
+
+msgid "Internal UPS clock time"
+msgstr ""
+
+msgid "Interval between self tests"
+msgstr ""
+
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "Intervall måste vara minst 10 sekunder."
+
+msgid "Interval to wait after shutdown with delay command"
+msgstr ""
+
+msgid "Interval to wait before rebooting the UPS)"
+msgstr ""
+
+msgid "Interval to wait before restarting the load"
+msgstr ""
 
 msgid "Invalid file format."
 msgstr "Ogiltigt filformat."
@@ -3061,6 +3207,9 @@ msgstr "LUNs"
 
 msgid "Language"
 msgstr "Språk"
+
+msgid "Language to use on front panel"
+msgstr ""
 
 msgid "Large read/write"
 msgstr "Stor läs/skriv (read/write)"
@@ -3189,6 +3338,12 @@ msgstr "Genomsnittlig belastning"
 msgid "Load file"
 msgstr ""
 
+msgid "Load on UPS"
+msgstr ""
+
+msgid "Load when UPS switches to overload condition (\"OVER\")"
+msgstr ""
+
 msgid "Loadbalance"
 msgstr "Lastbalans"
 
@@ -3237,6 +3392,9 @@ msgstr "Sökväg till filerna som skall delas."
 msgid "Location where the content database file will be stored."
 msgstr "Platsen där filen för innhållsdatabasen ska lagras."
 
+msgid "Location where the database with media contents will be stored."
+msgstr ""
+
 #, php-format
 msgid ""
 "Location where the working files will be stored, e.g. %s/backup/.unison"
@@ -3283,6 +3441,15 @@ msgstr "Inloggningsnamn för användare."
 
 msgid "Logout"
 msgstr "Logga ut"
+
+msgid "Low voltage boosting transfer point"
+msgstr ""
+
+msgid "Low voltage transfer point"
+msgstr ""
+
+msgid "Low voltage trimming transfer point"
+msgstr ""
 
 msgid "Lowercases names in both directions"
 msgstr "Namn med små bokstäver, i båda riktningarna"
@@ -3332,6 +3499,9 @@ msgstr "Hantering"
 
 msgid "Manufacturer"
 msgstr "Tillverkare"
+
+msgid "Manufacturing date"
+msgstr ""
 
 msgid "Map all users to root"
 msgstr "Mappa alla användare till root"
@@ -3396,6 +3566,9 @@ msgstr ""
 msgid "Maximum idle time in seconds."
 msgstr "Maximal vilotid i sekunder"
 
+msgid "Maximum incoming voltage seen"
+msgstr ""
+
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr "Maximalt antal tillåtna lösenordsförsök innan nedkoppling."
 
@@ -3427,11 +3600,20 @@ msgstr "Maximalt antal simultana anslutningar. Standard är 0 (obegränsat)."
 msgid "Maximum performance, maximum acoustic output"
 msgstr "Maximal prestanda, Maximal akustisk nivå."
 
+msgid "Maximum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Maximum temperature seen (degrees C)"
+msgstr ""
+
 msgid "Media"
 msgstr "Media"
 
 msgid "Media Directory"
 msgstr "Media Katalog"
+
+msgid "Media library"
+msgstr ""
 
 msgid "Medium acoustic output"
 msgstr "Medelnivå av det akustiska ljudläget"
@@ -3457,14 +3639,26 @@ msgstr "Min. passiv port"
 msgid "Minimum"
 msgstr "Minimum"
 
+msgid "Minimum battery level for UPS restart after power-off"
+msgstr ""
+
 msgid "Minimum free space"
 msgstr "Minsta lediga utrymme"
 
 msgid "Minimum frequency"
 msgstr ""
 
+msgid "Minimum incoming voltage seen"
+msgstr ""
+
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Minimal prestanda, Minimal akustisk nivå"
+
+msgid "Minimum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Minimum temperature seen (degrees C)"
+msgstr ""
 
 msgid "Minutes"
 msgstr "Minuter"
@@ -3480,6 +3674,9 @@ msgstr "Saknar en temporär mapp."
 
 msgid "Mode"
 msgstr "Läge"
+
+msgid "Model"
+msgstr ""
 
 msgid "Model extra"
 msgstr "Extramodell"
@@ -3556,6 +3753,9 @@ msgstr "NT1"
 
 msgid "NTP time server"
 msgstr "NTP-tidsserver"
+
+msgid "NUT Internal Driver Information"
+msgstr ""
 
 msgid "Name"
 msgstr "Namn"
@@ -3734,6 +3934,33 @@ msgstr ""
 msgid "Node Name"
 msgstr ""
 
+msgid "Nominal battery voltage"
+msgstr ""
+
+msgid "Nominal input current (A)"
+msgstr ""
+
+msgid "Nominal input line frequency (Hz)"
+msgstr ""
+
+msgid "Nominal input voltage"
+msgstr ""
+
+msgid "Nominal output current (A)"
+msgstr ""
+
+msgid "Nominal output frequency (Hz)"
+msgstr ""
+
+msgid "Nominal output voltage (V)"
+msgstr ""
+
+msgid "Nominal value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Nominal value of real power (Watts)"
+msgstr ""
+
 msgid "None"
 msgstr "Inget"
 
@@ -3795,6 +4022,12 @@ msgstr "Nu"
 
 msgid "Null passwords"
 msgstr "Tomma lösenord"
+
+msgid "Number of bad battery packs"
+msgstr ""
+
+msgid "Number of battery packs"
+msgstr ""
 
 msgid "Number of clients"
 msgstr "Antal klienter"
@@ -3878,11 +4111,26 @@ msgstr "Övriga"
 msgid "Out"
 msgstr "Ut"
 
+msgid "Outgoing Power/Inverter Information"
+msgstr ""
+
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr "Utgående SMTP e-postserveradress, t.ex. smtp.mycorp.com."
 
 msgid "Outgoing mail server"
 msgstr "Utgående mailserver"
+
+msgid "Output current (A)"
+msgstr ""
+
+msgid "Output frequency (Hz)"
+msgstr ""
+
+msgid "Output voltage"
+msgstr ""
+
+msgid "Output voltage (V)"
+msgstr ""
 
 msgid "Overload"
 msgstr ""
@@ -3935,6 +4183,9 @@ msgstr "Onödigt aggressiv"
 
 msgid "Pairwise"
 msgstr "Parvis"
+
+msgid "Parameter xxx (ups.conf or cmdline -x) setting"
+msgstr ""
 
 msgid "Partition number"
 msgstr "Partitionsnummer"
@@ -4171,6 +4422,9 @@ msgstr "Bevara modifieringstidsstämplar."
 msgid "Preserve permissions"
 msgstr "Bevara rättigheter"
 
+msgid "Prevent deep discharge of battery"
+msgstr ""
+
 msgid "Primary"
 msgstr ""
 
@@ -4197,6 +4451,9 @@ msgstr "Processer"
 
 msgid "Processes information"
 msgstr "Processinformation"
+
+msgid "Product ID"
+msgstr ""
 
 msgid "Profile"
 msgstr "Profil"
@@ -4326,6 +4583,9 @@ msgstr "Skrivskyddad"
 msgid "Realm"
 msgstr "Rike"
 
+msgid "Reason for last transfer to battery (* opaque)"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Starta om"
 
@@ -4347,11 +4607,20 @@ msgstr "Uppdatera"
 msgid "Reject"
 msgstr "Avböj"
 
+msgid "Relative humidity alarm (enabled/disabled)"
+msgstr ""
+
+msgid "Relative humidity threshold high (percent)"
+msgstr ""
+
 msgid "Release Notes"
 msgstr "Versionsinformation"
 
 msgid "Reload page"
 msgstr "Ladda om sidan"
+
+msgid "Remaining battery runtime"
+msgstr ""
 
 msgid "Remote Rsync Server"
 msgstr "Fjärr-server för Rsync"
@@ -4438,6 +4707,9 @@ msgstr "Återställ metadata från en given fil till en given leverantör"
 
 msgid "Results for net rpc testjoin:"
 msgstr "Resultat för 'net rpc' testanslutning:"
+
+msgid "Results of last self test"
+msgstr ""
 
 msgid "Resume"
 msgstr "Återuppta"
@@ -4660,6 +4932,11 @@ msgid ""
 "restore the configuration."
 msgstr ""
 
+msgid ""
+"Select which interface to use. (only selectable if your server has more than "
+"one)"
+msgstr ""
+
 msgid "Select your read balance algorithm."
 msgstr "Välj balanseringsalgoritm för läsning."
 
@@ -4690,6 +4967,9 @@ msgstr "Sänd test-epost."
 msgid "Separate email addresses by semi-colon."
 msgstr "Separerar e-postadresser med semikolon."
 
+msgid "Serial"
+msgstr ""
+
 msgid "Serial Console"
 msgstr "Seriell Konsol"
 
@@ -4705,8 +4985,14 @@ msgstr "Servernamn"
 msgid "Server description. This can usually be left blank."
 msgstr "Serverbeskrivning. Det här kan vanligtvis lämnas tomt."
 
+msgid "Server information"
+msgstr ""
+
 msgid "Server name"
 msgstr "Servernamn"
+
+msgid "Server version"
+msgstr ""
 
 msgid "Service"
 msgstr "Tjänst"
@@ -4731,6 +5017,9 @@ msgstr "Välj CNID-backend som skall användas för denna volym."
 
 msgid "Set the account's primary group to the given group."
 msgstr "Sätter kontots huvudgrupp till den angivna gruppen."
+
+msgid "Set the content location(s) to or from the media library."
+msgstr ""
 
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr "Välj önskat SSID (Nätverksnamn)"
@@ -4807,6 +5096,9 @@ msgstr "Utdelningar"
 
 msgid "Shell"
 msgstr "Skal"
+
+msgid "Show RAW UPS Info"
+msgstr ""
 
 msgid "Show log entries in reverse order (newest entries on top)"
 msgstr "Visa loggposter i omvänd ordning (senaste posterna överst)"
@@ -5087,6 +5379,9 @@ msgstr ""
 msgid "Switch VIP to MASTER"
 msgstr ""
 
+msgid "Switch off when running on battery and no/low load"
+msgstr ""
+
 msgid "Switch to"
 msgstr "Växla till"
 
@@ -5224,8 +5519,17 @@ msgstr "Mål"
 msgid "Temperature"
 msgstr "Temperatur"
 
+msgid "Temperature alarm (enabled/disabled)"
+msgstr ""
+
 msgid "Temperature monitoring"
 msgstr "Temperaturövervakning"
+
+msgid "Temperature threshold high (degrees C)"
+msgstr ""
+
+msgid "Temperature threshold low (degrees C)"
+msgstr ""
 
 msgid "Temporary Device"
 msgstr "Temporär Enhet"
@@ -5409,6 +5713,14 @@ msgstr "Attributet '%s' måste vara mindre än '%s'."
 #, c-format
 msgid "The attribute '%s' must contain at least one entry."
 msgstr "Attributet '%s' måste innehålla minst ett värde."
+
+#, php-format
+msgid "The attribute '%s': use a port in the range from %d to %d."
+msgstr ""
+
+#, php-format
+msgid "The attribute 'Port': port '%ld' is already taken by another service."
+msgstr ""
 
 msgid ""
 "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
@@ -6427,6 +6739,15 @@ msgstr "Tid"
 msgid "Time Machine"
 msgstr "Time Machine"
 
+msgid "Time before the load will be rebooted"
+msgstr ""
+
+msgid "Time before the load will be shutdown"
+msgstr ""
+
+msgid "Time before the load will be started"
+msgstr ""
+
 msgid "Time interval"
 msgstr "Tidsintervall"
 
@@ -6654,26 +6975,53 @@ msgstr ""
 msgid "UPS Waiting"
 msgstr ""
 
+msgid "UPS alarms"
+msgstr ""
+
+msgid "UPS beeper status"
+msgstr ""
+
+msgid "UPS coldstarts from battery"
+msgstr ""
+
 msgid "UPS disabled"
 msgstr "UPS-enhet avaktiverad"
+
+msgid "UPS external contact sensors"
+msgstr ""
+
+msgid "UPS firmware"
+msgstr ""
 
 msgid "UPS goes on battery"
 msgstr "UPS-enhet på batteridrift"
 
+msgid "UPS model"
+msgstr ""
+
 msgid "UPS reaches low battery"
 msgstr "UPS-enhet når låg batterinivå"
+
+msgid "UPS starts when mains is (re)applied"
+msgstr ""
 
 msgid "UPS status"
 msgstr "Status för UPS-enhet"
 
+msgid "UPS system identifier"
+msgstr ""
+
+msgid "UPS temperature"
+msgstr ""
+
+msgid "UPS type"
+msgstr ""
+
+msgid "UPS watchdog status"
+msgstr ""
+
 msgid "UPnP"
 msgstr "UPnP"
-
-msgid "UPnP A/V Media Server"
-msgstr "UPnP A/V Media Server"
-
-msgid "UPnP friendly name."
-msgstr "UPnP vänligt namn."
 
 msgid "URI"
 msgstr "URI"
@@ -6879,6 +7227,9 @@ msgstr "Värde"
 msgid "Variable"
 msgstr "Variabel"
 
+msgid "Vendor ID"
+msgstr ""
+
 msgid "Version"
 msgstr "Version"
 
@@ -6982,6 +7333,9 @@ msgstr "Veckodagar"
 msgid ""
 "When HAST is enabled, the local devices, the local services and the "
 "additional packages which do not support HAST volume cannot be used."
+msgstr ""
+
+msgid "When UPS switches to Low Battery"
 msgstr ""
 
 msgid ""
@@ -7197,6 +7551,12 @@ msgstr "filväljare"
 msgid "get target info failed."
 msgstr "hämta målinfo misslyckades."
 
+msgid "greatest settable high voltage transfer point"
+msgstr ""
+
+msgid "greatest settable low voltage transfer point"
+msgstr ""
+
 msgid "hiadaptive (high performance)"
 msgstr ""
 
@@ -7299,6 +7659,12 @@ msgstr "skanning av målet misslyckades."
 
 msgid "second(s)"
 msgstr "sekund(er)"
+
+msgid "smallest settable high voltage transfer point"
+msgstr ""
+
+msgid "smallest settable low voltage transfer point"
+msgstr ""
 
 msgid "striping"
 msgstr "skalning"

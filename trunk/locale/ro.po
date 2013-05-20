@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-15 03:51+0000\n"
+"POT-Creation-Date: 2013-05-20 04:39+0000\n"
 "PO-Revision-Date: 2013-04-15 03:57+0000\n"
 "Last-Translator: Laurentiu Bubuianu <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-04 23:21+0000\n"
-"X-Generator: Launchpad (build 16598)\n"
+"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 "Language: ro_RO\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -552,6 +552,9 @@ msgstr "Permite fișiere noi"
 msgid "Allow new files to be created."
 msgstr "Permite crearea de fișiere noi."
 
+msgid "Allow to start UPS from battery"
+msgstr ""
+
 msgid "Allow trusted domains."
 msgstr "Permite domenii de încredere."
 
@@ -598,6 +601,15 @@ msgid ""
 msgstr ""
 "Folosiţi întotdeauna 0 pentru numărul de dispozitiv, ajută întotdeauna cînd "
 "numărul nu este constant de-a lungul repornirii, creării unui cluster,..."
+
+msgid "Ambient Conditions From External Probe Equipment"
+msgstr ""
+
+msgid "Ambient relative humidity (percent)"
+msgstr ""
+
+msgid "Ambient temperature (degrees C)"
+msgstr ""
 
 msgid "An host with this name already exists."
 msgstr "Un sistem cu acest nume există deja."
@@ -718,6 +730,9 @@ msgstr "Mod descoperire automată disc"
 msgid "Autoselect"
 msgstr "Selectare automată"
 
+msgid "Auxiliary device firmware"
+msgstr ""
+
 msgid "Auxiliary parameters"
 msgstr "Parametri auxiliari"
 
@@ -760,11 +775,48 @@ msgstr ""
 msgid "Battery Charge"
 msgstr "Încărcare acumulator"
 
+msgid "Battery Details"
+msgstr ""
+
 msgid "Battery Low"
 msgstr "Acumulator descărcat"
 
 msgid "Battery Remain Time"
 msgstr "Timp rămas acumulator"
+
+msgid ""
+"Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
+msgstr ""
+
+msgid "Battery alarm threshold"
+msgstr ""
+
+msgid "Battery capacity"
+msgstr ""
+
+msgid "Battery change date"
+msgstr ""
+
+msgid "Battery charge"
+msgstr ""
+
+msgid "Battery chemistry"
+msgstr ""
+
+msgid "Battery current"
+msgstr ""
+
+msgid "Battery level when UPS switches to \"Warning\" state"
+msgstr ""
+
+msgid "Battery manufacturing date"
+msgstr ""
+
+msgid "Battery temperature"
+msgstr ""
+
+msgid "Battery voltage"
+msgstr ""
 
 msgid "Best available"
 msgstr "Cel mai bun disponibil"
@@ -1225,6 +1277,12 @@ msgstr "Versiune Curentă:"
 msgid "Current password"
 msgstr "Parola curentă"
 
+msgid "Current value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Current value of real power (Watts)"
+msgstr ""
+
 msgid "Custom"
 msgstr "Personalizat"
 
@@ -1248,6 +1306,12 @@ msgstr "DDP"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DNLA/UPnP"
+msgstr ""
+
+msgid "DNLA/UPnP Media Server"
+msgstr ""
 
 msgid "DNS settings"
 msgstr "Setări DNS"
@@ -1500,9 +1564,6 @@ msgstr "Partajare Destinație"
 
 msgid "Detected"
 msgstr "Detectat"
-
-msgid "Detected Language:<br />(Change if needed)"
-msgstr "Limbă detectată::<br />(Schimbați-o dacă este necesar)"
 
 msgid "Detected RSYNC remote shares"
 msgstr "Partajări RSYNC la distanță detectate"
@@ -1877,6 +1938,15 @@ msgstr "Listă dispozitive"
 msgid "Driver parameters"
 msgstr "Parametri dispozitiv"
 
+msgid "Driver used"
+msgstr ""
+
+msgid "Driver version"
+msgstr ""
+
+msgid "Driver version internal"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -1994,6 +2064,10 @@ msgstr "Editare utilizator"
 msgid "Edit volume"
 msgstr "Editare volum"
 
+msgid ""
+"Efficiency of the UPS (Ratio of the output current on the input current)"
+msgstr ""
+
 msgid "Email"
 msgstr "Email"
 
@@ -2037,6 +2111,9 @@ msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr ""
 "Activare Zeroconf/Bonjour pentru anunțarea serviciilor oferite de acest "
 "dispozitiv"
+
+msgid "Enable administrative DNLA/UPnP WebGUI."
+msgstr ""
 
 msgid "Enable anonymous bind."
 msgstr "Activare legătură anonimă."
@@ -2159,9 +2236,6 @@ msgstr "Activare optimizare pentru unele variabile kernel"
 msgid "Enable use sendfile."
 msgstr "Activare sendfile"
 
-msgid "Enable web user interface."
-msgstr "Activare Interfață Web pentru utilizatori."
-
 msgid "Enable write cache mode."
 msgstr "Activare mod cache la scriere."
 
@@ -2276,6 +2350,12 @@ msgstr "Exportă toate directoarele din calea specificată."
 
 msgid "Extended attributes"
 msgstr "Atribute extinse"
+
+msgid "Extended input frequency range"
+msgstr ""
+
+msgid "Extended input voltage range"
+msgstr ""
 
 msgid "Extensions"
 msgstr "Extensii"
@@ -2466,6 +2546,9 @@ msgstr "Verificare versiune firmware"
 msgid "FirstBurstLength"
 msgstr "FirstBurstLength"
 
+msgid "Flag xxx (ups.conf or cmdline -x) status"
+msgstr ""
+
 msgid "Flags"
 msgstr "Indicatori"
 
@@ -2537,6 +2620,9 @@ msgstr ""
 msgid "General"
 msgstr "Generale"
 
+msgid "General Information UPS Unit"
+msgstr ""
+
 msgid "General Setup"
 msgstr "Setări Generale"
 
@@ -2554,6 +2640,9 @@ msgstr "GiB"
 
 msgid "Give only local users access to the web page."
 msgstr "Permite doar utilizatorilor locali să acceseze pagina web."
+
+msgid "Give your media library a friendly name."
+msgstr ""
 
 msgid "Grant access to the user portal."
 msgstr "Permite accesul utilizatorilor locali la portal."
@@ -2642,6 +2731,15 @@ msgstr "Asistență"
 
 msgid "Hide dot files"
 msgstr "Ascundere fișiere cu punct (dot files)"
+
+msgid "High voltage boosting transfer point"
+msgstr ""
+
+msgid "High voltage transfer point"
+msgstr ""
+
+msgid "High voltage trimming transfer point"
+msgstr ""
 
 msgid "Highlighting"
 msgstr "Evidențiere"
@@ -2924,6 +3022,9 @@ msgstr "În cele mai multe cazuri aici se utilizează 'public'."
 msgid "Include basic hardware information."
 msgstr "Include informații de bază hardware."
 
+msgid "Incoming Line/Power Information"
+msgstr ""
+
 msgid "Incomplete directory"
 msgstr "Folder incomplet"
 
@@ -2987,6 +3088,30 @@ msgstr ""
 msgid "Initiators"
 msgstr "Inițiatori"
 
+msgid "Input current (A)"
+msgstr ""
+
+msgid "Input frequency"
+msgstr ""
+
+msgid "Input line frequency (Hz)"
+msgstr ""
+
+msgid "Input line frequency high (Hz)"
+msgstr ""
+
+msgid "Input line frequency low (Hz)"
+msgstr ""
+
+msgid "Input power quality (* opaque)"
+msgstr ""
+
+msgid "Input power sensitivity"
+msgstr ""
+
+msgid "Input voltage"
+msgstr ""
+
 msgid "Inquiry Product"
 msgstr "Informații Produs"
 
@@ -3011,14 +3136,35 @@ msgstr "Interfața"
 msgid "Interface Management"
 msgstr "Management Interfață"
 
-msgid "Interface to listen to."
-msgstr "Interfața de utilizat."
+msgid "Interface selection"
+msgstr ""
 
 msgid "Interfaces"
 msgstr "Interfețe"
 
+msgid "Internal Server Information"
+msgstr ""
+
+msgid "Internal UPS clock date"
+msgstr ""
+
+msgid "Internal UPS clock time"
+msgstr ""
+
+msgid "Interval between self tests"
+msgstr ""
+
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "Intervalul trebuie să fie mai mare sau egal cu 10 secunde."
+
+msgid "Interval to wait after shutdown with delay command"
+msgstr ""
+
+msgid "Interval to wait before rebooting the UPS)"
+msgstr ""
+
+msgid "Interval to wait before restarting the load"
+msgstr ""
 
 msgid "Invalid file format."
 msgstr "Format invalid fișier."
@@ -3128,6 +3274,9 @@ msgstr "Numere Unităţi Logice (LUNs)"
 
 msgid "Language"
 msgstr "Limba"
+
+msgid "Language to use on front panel"
+msgstr ""
 
 msgid "Large read/write"
 msgstr "Citire/Scriere în pachete"
@@ -3259,6 +3408,12 @@ msgstr "Încărcare medie"
 msgid "Load file"
 msgstr "Încărcare fişier"
 
+msgid "Load on UPS"
+msgstr ""
+
+msgid "Load when UPS switches to overload condition (\"OVER\")"
+msgstr ""
+
 msgid "Loadbalance"
 msgstr "Echilibrare Încărcare"
 
@@ -3309,6 +3464,9 @@ msgstr "Locația fișierelor de partajat."
 msgid "Location where the content database file will be stored."
 msgstr "Locația unde va fi stocată baza de date."
 
+msgid "Location where the database with media contents will be stored."
+msgstr ""
+
 #, php-format
 msgid ""
 "Location where the working files will be stored, e.g. %s/backup/.unison"
@@ -3357,6 +3515,15 @@ msgstr "Numele de autentificare al utilizatorului."
 msgid "Logout"
 msgstr "Deautentificare"
 
+msgid "Low voltage boosting transfer point"
+msgstr ""
+
+msgid "Low voltage transfer point"
+msgstr ""
+
+msgid "Low voltage trimming transfer point"
+msgstr ""
+
 msgid "Lowercases names in both directions"
 msgstr "Minuscule în ambele direcții"
 
@@ -3404,6 +3571,9 @@ msgstr "Configurare"
 
 msgid "Manufacturer"
 msgstr "Producător"
+
+msgid "Manufacturing date"
+msgstr ""
 
 msgid "Map all users to root"
 msgstr "Maparea tuturor utilizatorilor în root"
@@ -3468,6 +3638,9 @@ msgstr "Frecvență maximă"
 msgid "Maximum idle time in seconds."
 msgstr "Timp maxim mod idle în secunde."
 
+msgid "Maximum incoming voltage seen"
+msgstr ""
+
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr ""
 "Numărul maxim de încercări pentru introducere parolă înainte de deconectare."
@@ -3500,11 +3673,20 @@ msgstr "Numărul maxim de conexiuni simultane. Implicit 0 (nelimitat)."
 msgid "Maximum performance, maximum acoustic output"
 msgstr "Performanță maximă, nivel maxim acustic"
 
+msgid "Maximum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Maximum temperature seen (degrees C)"
+msgstr ""
+
 msgid "Media"
 msgstr "Media"
 
 msgid "Media Directory"
 msgstr "Folder Media"
+
+msgid "Media library"
+msgstr ""
 
 msgid "Medium acoustic output"
 msgstr "Nivel mediu acustic"
@@ -3530,14 +3712,26 @@ msgstr "Valoare minimă port pasiv"
 msgid "Minimum"
 msgstr "Minim"
 
+msgid "Minimum battery level for UPS restart after power-off"
+msgstr ""
+
 msgid "Minimum free space"
 msgstr "Spațiu minim liber"
 
 msgid "Minimum frequency"
 msgstr "Frecvență minimă"
 
+msgid "Minimum incoming voltage seen"
+msgstr ""
+
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Performanță minimă, nivel minim acustic"
+
+msgid "Minimum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Minimum temperature seen (degrees C)"
+msgstr ""
 
 msgid "Minutes"
 msgstr "Minute"
@@ -3553,6 +3747,9 @@ msgstr "Lipsește un folder temporar."
 
 msgid "Mode"
 msgstr "Mod"
+
+msgid "Model"
+msgstr ""
 
 msgid "Model extra"
 msgstr "Extra Model"
@@ -3628,6 +3825,9 @@ msgstr "NT1"
 
 msgid "NTP time server"
 msgstr "Server NTP"
+
+msgid "NUT Internal Driver Information"
+msgstr ""
 
 msgid "Name"
 msgstr "Nume"
@@ -3807,6 +4007,33 @@ msgstr "ID Nod"
 msgid "Node Name"
 msgstr "Nume Nod"
 
+msgid "Nominal battery voltage"
+msgstr ""
+
+msgid "Nominal input current (A)"
+msgstr ""
+
+msgid "Nominal input line frequency (Hz)"
+msgstr ""
+
+msgid "Nominal input voltage"
+msgstr ""
+
+msgid "Nominal output current (A)"
+msgstr ""
+
+msgid "Nominal output frequency (Hz)"
+msgstr ""
+
+msgid "Nominal output voltage (V)"
+msgstr ""
+
+msgid "Nominal value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Nominal value of real power (Watts)"
+msgstr ""
+
 msgid "None"
 msgstr "Niciunul (niciuna)"
 
@@ -3869,6 +4096,12 @@ msgstr "Acum"
 
 msgid "Null passwords"
 msgstr "Parolă nulă"
+
+msgid "Number of bad battery packs"
+msgstr ""
+
+msgid "Number of battery packs"
+msgstr ""
 
 msgid "Number of clients"
 msgstr "Numărul de clienți"
@@ -3953,6 +4186,9 @@ msgstr "Altele"
 msgid "Out"
 msgstr "Out"
 
+msgid "Outgoing Power/Inverter Information"
+msgstr ""
+
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr ""
 "Adresa serverului SMTP folosit pentru trimitere de emailuri, ex. "
@@ -3960,6 +4196,18 @@ msgstr ""
 
 msgid "Outgoing mail server"
 msgstr "Serverul de email folosit"
+
+msgid "Output current (A)"
+msgstr ""
+
+msgid "Output frequency (Hz)"
+msgstr ""
+
+msgid "Output voltage"
+msgstr ""
+
+msgid "Output voltage (V)"
+msgstr ""
 
 msgid "Overload"
 msgstr "Supraîncărcare"
@@ -4012,6 +4260,9 @@ msgstr "Agresiv extrem"
 
 msgid "Pairwise"
 msgstr "Pereche"
+
+msgid "Parameter xxx (ups.conf or cmdline -x) setting"
+msgstr ""
 
 msgid "Partition number"
 msgstr "Numărul partiției"
@@ -4249,6 +4500,9 @@ msgstr "Păstrare timpi modificări."
 msgid "Preserve permissions"
 msgstr "Păstrează permisiunile"
 
+msgid "Prevent deep discharge of battery"
+msgstr ""
+
 msgid "Primary"
 msgstr "Primar"
 
@@ -4275,6 +4529,9 @@ msgstr "Procese"
 
 msgid "Processes information"
 msgstr "Informații procese"
+
+msgid "Product ID"
+msgstr ""
 
 msgid "Profile"
 msgstr "Profil"
@@ -4402,6 +4659,9 @@ msgstr "Doar citire"
 msgid "Realm"
 msgstr "Domeniu"
 
+msgid "Reason for last transfer to battery (* opaque)"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Repornire"
 
@@ -4423,11 +4683,20 @@ msgstr "Reactualizare"
 msgid "Reject"
 msgstr "Respingere"
 
+msgid "Relative humidity alarm (enabled/disabled)"
+msgstr ""
+
+msgid "Relative humidity threshold high (percent)"
+msgstr ""
+
 msgid "Release Notes"
 msgstr "Notă Ediție"
 
 msgid "Reload page"
 msgstr "Reîncărcare pagină"
+
+msgid "Remaining battery runtime"
+msgstr ""
 
 msgid "Remote Rsync Server"
 msgstr "Server Rsync Destinație"
@@ -4514,6 +4783,9 @@ msgstr "Restaurare metadata de la fișierul dat la providerul specificat."
 
 msgid "Results for net rpc testjoin:"
 msgstr "Rezultat testjoin net rpc:"
+
+msgid "Results of last self test"
+msgstr ""
 
 msgid "Resume"
 msgstr "Reluare Transfer"
@@ -4741,6 +5013,11 @@ msgstr ""
 "Selectați fișierul de configurație XML și utilizați butonul de mai jos "
 "pentru încărcarea acestuia."
 
+msgid ""
+"Select which interface to use. (only selectable if your server has more than "
+"one)"
+msgstr ""
+
 msgid "Select your read balance algorithm."
 msgstr "Selectați algoritmul de echilibrare la citire."
 
@@ -4771,6 +5048,9 @@ msgstr "Trimitere email de test"
 msgid "Separate email addresses by semi-colon."
 msgstr "Separați adresele de email prin punct şi virgulă ';'"
 
+msgid "Serial"
+msgstr ""
+
 msgid "Serial Console"
 msgstr "Consolă serială"
 
@@ -4786,8 +5066,14 @@ msgstr "Nume Server"
 msgid "Server description. This can usually be left blank."
 msgstr "Descriere server. Cîmpul poate fi lăsat necompletat."
 
+msgid "Server information"
+msgstr ""
+
 msgid "Server name"
 msgstr "Nume server"
+
+msgid "Server version"
+msgstr ""
 
 msgid "Service"
 msgstr "Serviciu"
@@ -4812,6 +5098,9 @@ msgstr "Definire bază CNID de rezervă pentru acest volum."
 
 msgid "Set the account's primary group to the given group."
 msgstr "Setarea grupului de autorizare primar la grupul dat."
+
+msgid "Set the content location(s) to or from the media library."
+msgstr ""
 
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr "Definire Set Identificator Serviciu (adică nume rețea)"
@@ -4894,6 +5183,9 @@ msgstr "Partajări"
 
 msgid "Shell"
 msgstr "Shell"
+
+msgid "Show RAW UPS Info"
+msgstr ""
 
 msgid "Show log entries in reverse order (newest entries on top)"
 msgstr ""
@@ -5171,6 +5463,9 @@ msgstr "Comutare VIP la BACKUP"
 msgid "Switch VIP to MASTER"
 msgstr "Comutare VIP la MASTER"
 
+msgid "Switch off when running on battery and no/low load"
+msgstr ""
+
 msgid "Switch to"
 msgstr "Comutare la"
 
@@ -5308,8 +5603,17 @@ msgstr "Destinații"
 msgid "Temperature"
 msgstr "Temperatura"
 
+msgid "Temperature alarm (enabled/disabled)"
+msgstr ""
+
 msgid "Temperature monitoring"
 msgstr "Monitorizare temperatură"
+
+msgid "Temperature threshold high (degrees C)"
+msgstr ""
+
+msgid "Temperature threshold low (degrees C)"
+msgstr ""
 
 msgid "Temporary Device"
 msgstr "Dispozitiv Temporar"
@@ -5504,6 +5808,14 @@ msgstr "Atributul '%s' trebuie să fie mai mic ca '%s'."
 #, c-format
 msgid "The attribute '%s' must contain at least one entry."
 msgstr "Atributul '%s' trebuie să aibă cel puţin o valoare."
+
+#, php-format
+msgid "The attribute '%s': use a port in the range from %d to %d."
+msgstr ""
+
+#, php-format
+msgid "The attribute 'Port': port '%ld' is already taken by another service."
+msgstr ""
 
 msgid ""
 "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
@@ -6547,6 +6859,15 @@ msgstr "Timp"
 msgid "Time Machine"
 msgstr "Timp Sistem"
 
+msgid "Time before the load will be rebooted"
+msgstr ""
+
+msgid "Time before the load will be shutdown"
+msgstr ""
+
+msgid "Time before the load will be started"
+msgstr ""
+
 msgid "Time interval"
 msgstr "Interval de Timp"
 
@@ -6776,26 +7097,53 @@ msgstr "Stare UPS"
 msgid "UPS Waiting"
 msgstr "UPS în așteptare"
 
+msgid "UPS alarms"
+msgstr ""
+
+msgid "UPS beeper status"
+msgstr ""
+
+msgid "UPS coldstarts from battery"
+msgstr ""
+
 msgid "UPS disabled"
 msgstr "UPS dezactivat"
+
+msgid "UPS external contact sensors"
+msgstr ""
+
+msgid "UPS firmware"
+msgstr ""
 
 msgid "UPS goes on battery"
 msgstr "UPS trece pe baterii"
 
+msgid "UPS model"
+msgstr ""
+
 msgid "UPS reaches low battery"
 msgstr "Nivel minim baterie"
+
+msgid "UPS starts when mains is (re)applied"
+msgstr ""
 
 msgid "UPS status"
 msgstr "Stare UPS"
 
+msgid "UPS system identifier"
+msgstr ""
+
+msgid "UPS temperature"
+msgstr ""
+
+msgid "UPS type"
+msgstr ""
+
+msgid "UPS watchdog status"
+msgstr ""
+
 msgid "UPnP"
 msgstr "UPnP"
-
-msgid "UPnP A/V Media Server"
-msgstr "Server Media A/V UPnP"
-
-msgid "UPnP friendly name."
-msgstr "Nume simplu UPnP."
 
 msgid "URI"
 msgstr "URI"
@@ -7005,6 +7353,9 @@ msgstr "Valoare"
 msgid "Variable"
 msgstr "Variabilă"
 
+msgid "Vendor ID"
+msgstr ""
+
 msgid "Version"
 msgstr "Versiune"
 
@@ -7113,6 +7464,9 @@ msgid ""
 msgstr ""
 "Cînd modul HAST este activat dispozitivele locale, serviciile locale și "
 "pachetele adiționale care nu suportă HAST nu pot fi folosite."
+
+msgid "When UPS switches to Low Battery"
+msgstr ""
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
@@ -7327,6 +7681,12 @@ msgstr "selector fișiere"
 msgid "get target info failed."
 msgstr "eșuare găsire info destinație."
 
+msgid "greatest settable high voltage transfer point"
+msgstr ""
+
+msgid "greatest settable low voltage transfer point"
+msgstr ""
+
 msgid "hiadaptive (high performance)"
 msgstr "superadaptiv (performanță maximă)"
 
@@ -7429,6 +7789,12 @@ msgstr "eroare scanare destinație."
 
 msgid "second(s)"
 msgstr "secunde"
+
+msgid "smallest settable high voltage transfer point"
+msgstr ""
+
+msgid "smallest settable low voltage transfer point"
+msgstr ""
 
 msgid "striping"
 msgstr "striping"

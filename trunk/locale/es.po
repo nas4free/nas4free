@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-04-15 03:51+0000\n"
+"POT-Creation-Date: 2013-05-20 04:39+0000\n"
 "PO-Revision-Date: 2013-04-14 19:59+0000\n"
 "Last-Translator: raul fernandez garcia <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-04 23:21+0000\n"
-"X-Generator: Launchpad (build 16598)\n"
+"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 "X-Poedit-Country: SPAIN\n"
 "Language: \n"
 "X-Poedit-Language: Spanish\n"
@@ -556,6 +556,9 @@ msgstr "Permitir nuevos archivos"
 msgid "Allow new files to be created."
 msgstr "Permitir crear nuevos archivos."
 
+msgid "Allow to start UPS from battery"
+msgstr ""
+
 msgid "Allow trusted domains."
 msgstr "Permitir Dominios de confianza"
 
@@ -601,6 +604,15 @@ msgid ""
 msgstr ""
 "Use siempre 0 para el número del dispositivo, esto ayuda cuando el número de "
 "dispositivo no es constante tras un reinicio, clúster, ..."
+
+msgid "Ambient Conditions From External Probe Equipment"
+msgstr ""
+
+msgid "Ambient relative humidity (percent)"
+msgstr ""
+
+msgid "Ambient temperature (degrees C)"
+msgstr ""
 
 msgid "An host with this name already exists."
 msgstr "Ya existe una máquina con este nombre."
@@ -721,6 +733,9 @@ msgstr "Modo de descubrimiento de discos automático"
 msgid "Autoselect"
 msgstr "Autoseleccionar"
 
+msgid "Auxiliary device firmware"
+msgstr ""
+
 msgid "Auxiliary parameters"
 msgstr "Parámetros auxiliares."
 
@@ -763,11 +778,48 @@ msgstr ""
 msgid "Battery Charge"
 msgstr "Carga de la batería"
 
+msgid "Battery Details"
+msgstr ""
+
 msgid "Battery Low"
 msgstr "Batería baja"
 
 msgid "Battery Remain Time"
 msgstr "Tiempo disponible de batería"
+
+msgid ""
+"Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
+msgstr ""
+
+msgid "Battery alarm threshold"
+msgstr ""
+
+msgid "Battery capacity"
+msgstr ""
+
+msgid "Battery change date"
+msgstr ""
+
+msgid "Battery charge"
+msgstr ""
+
+msgid "Battery chemistry"
+msgstr ""
+
+msgid "Battery current"
+msgstr ""
+
+msgid "Battery level when UPS switches to \"Warning\" state"
+msgstr ""
+
+msgid "Battery manufacturing date"
+msgstr ""
+
+msgid "Battery temperature"
+msgstr ""
+
+msgid "Battery voltage"
+msgstr ""
 
 msgid "Best available"
 msgstr "Mejor disponible"
@@ -1227,6 +1279,12 @@ msgstr "Versión Actual:"
 msgid "Current password"
 msgstr "Contraseña actual"
 
+msgid "Current value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Current value of real power (Watts)"
+msgstr ""
+
 msgid "Custom"
 msgstr "Personalizado"
 
@@ -1250,6 +1308,12 @@ msgstr "DDP"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DNLA/UPnP"
+msgstr ""
+
+msgid "DNLA/UPnP Media Server"
+msgstr ""
 
 msgid "DNS settings"
 msgstr "Configuración de DNS"
@@ -1503,9 +1567,6 @@ msgstr "Elemento compartido de destino"
 
 msgid "Detected"
 msgstr "Detectado"
-
-msgid "Detected Language:<br />(Change if needed)"
-msgstr "Lenguaje detectado:<br />(Cambiar si es necesario)"
 
 msgid "Detected RSYNC remote shares"
 msgstr "Elementos compartidos RSYNC detectados"
@@ -1880,6 +1941,15 @@ msgstr "Lista de controladores"
 msgid "Driver parameters"
 msgstr "Parametros del dispositivo"
 
+msgid "Driver used"
+msgstr ""
+
+msgid "Driver version"
+msgstr ""
+
+msgid "Driver version internal"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -1997,6 +2067,10 @@ msgstr "Editar usuario"
 msgid "Edit volume"
 msgstr "Editar volumen"
 
+msgid ""
+"Efficiency of the UPS (Ratio of the output current on the input current)"
+msgstr ""
+
 msgid "Email"
 msgstr "Correo electrónico (e-mail)"
 
@@ -2039,6 +2113,9 @@ msgstr "Habilitar ACL ZFS"
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr ""
 "Habilitar Zeroconf/Bonjour para advertir servicios en éste dispositivo"
+
+msgid "Enable administrative DNLA/UPnP WebGUI."
+msgstr ""
 
 msgid "Enable anonymous bind."
 msgstr "Permitir enlace anónimo"
@@ -2161,9 +2238,6 @@ msgstr "Permitir ajustar algunas variables del kernel"
 msgid "Enable use sendfile."
 msgstr "Permitir el uso de sendfile"
 
-msgid "Enable web user interface."
-msgstr "Activar la interfaz web de usuario."
-
 msgid "Enable write cache mode."
 msgstr "Habilitar Write Cache"
 
@@ -2278,6 +2352,12 @@ msgstr "Exportar todos los directorios en la ruta especificada."
 
 msgid "Extended attributes"
 msgstr "Atributos extendidos"
+
+msgid "Extended input frequency range"
+msgstr ""
+
+msgid "Extended input voltage range"
+msgstr ""
 
 msgid "Extensions"
 msgstr "Complementos"
@@ -2468,6 +2548,9 @@ msgstr "Comprobacion del Firmware"
 msgid "FirstBurstLength"
 msgstr "FirstBurstLength"
 
+msgid "Flag xxx (ups.conf or cmdline -x) status"
+msgstr ""
+
 msgid "Flags"
 msgstr "Banderas"
 
@@ -2538,6 +2621,9 @@ msgstr "Puerta de enlace usada para alcanzar la red de destino."
 msgid "General"
 msgstr "General"
 
+msgid "General Information UPS Unit"
+msgstr ""
+
 msgid "General Setup"
 msgstr "Configuracion general"
 
@@ -2555,6 +2641,9 @@ msgstr "GiB"
 
 msgid "Give only local users access to the web page."
 msgstr "Dar acceso a la pagina web sólo a los usuarios locales."
+
+msgid "Give your media library a friendly name."
+msgstr ""
 
 msgid "Grant access to the user portal."
 msgstr "Otorga acceso al portal de usuario."
@@ -2643,6 +2732,15 @@ msgstr "Ayuda"
 
 msgid "Hide dot files"
 msgstr "Ocultar archivos de punto"
+
+msgid "High voltage boosting transfer point"
+msgstr ""
+
+msgid "High voltage transfer point"
+msgstr ""
+
+msgid "High voltage trimming transfer point"
+msgstr ""
 
 msgid "Highlighting"
 msgstr "Resaltar"
@@ -2928,6 +3026,9 @@ msgstr "En la mayoría de los casos, 'public' es usado aquí."
 msgid "Include basic hardware information."
 msgstr "Incluir información básica del hardware."
 
+msgid "Incoming Line/Power Information"
+msgstr ""
+
 msgid "Incomplete directory"
 msgstr "Directorio Incompleto"
 
@@ -2992,6 +3093,30 @@ msgstr ""
 msgid "Initiators"
 msgstr "Iniciadores"
 
+msgid "Input current (A)"
+msgstr ""
+
+msgid "Input frequency"
+msgstr ""
+
+msgid "Input line frequency (Hz)"
+msgstr ""
+
+msgid "Input line frequency high (Hz)"
+msgstr ""
+
+msgid "Input line frequency low (Hz)"
+msgstr ""
+
+msgid "Input power quality (* opaque)"
+msgstr ""
+
+msgid "Input power sensitivity"
+msgstr ""
+
+msgid "Input voltage"
+msgstr ""
+
 msgid "Inquiry Product"
 msgstr "Investigar Producto"
 
@@ -3016,14 +3141,35 @@ msgstr "Interfaz"
 msgid "Interface Management"
 msgstr "Gestion de interfaces"
 
-msgid "Interface to listen to."
-msgstr "Interfaz al que escuchar."
+msgid "Interface selection"
+msgstr ""
 
 msgid "Interfaces"
 msgstr "Interfaces"
 
+msgid "Internal Server Information"
+msgstr ""
+
+msgid "Internal UPS clock date"
+msgstr ""
+
+msgid "Internal UPS clock time"
+msgstr ""
+
+msgid "Interval between self tests"
+msgstr ""
+
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "El intervalo debe ser mayor o igual a 10 segundos."
+
+msgid "Interval to wait after shutdown with delay command"
+msgstr ""
+
+msgid "Interval to wait before rebooting the UPS)"
+msgstr ""
+
+msgid "Interval to wait before restarting the load"
+msgstr ""
 
 msgid "Invalid file format."
 msgstr "Formato de archivo inválido."
@@ -3129,6 +3275,9 @@ msgstr "LUNs"
 
 msgid "Language"
 msgstr "Idioma"
+
+msgid "Language to use on front panel"
+msgstr ""
 
 msgid "Large read/write"
 msgstr "Gran lectura/escritura"
@@ -3259,6 +3408,12 @@ msgstr "Promedio de carga"
 msgid "Load file"
 msgstr "Cargar un archivo"
 
+msgid "Load on UPS"
+msgstr ""
+
+msgid "Load when UPS switches to overload condition (\"OVER\")"
+msgstr ""
+
 msgid "Loadbalance"
 msgstr "Balance de carga"
 
@@ -3309,6 +3464,9 @@ msgstr "Ubicacion de los archivos para compartir."
 msgid "Location where the content database file will be stored."
 msgstr "Ubicacion donde sera almacenada la base de datos de contenidos."
 
+msgid "Location where the database with media contents will be stored."
+msgstr ""
+
 #, php-format
 msgid ""
 "Location where the working files will be stored, e.g. %s/backup/.unison"
@@ -3358,6 +3516,15 @@ msgstr "Nombre de usuario para login"
 msgid "Logout"
 msgstr "Finalizar sesión"
 
+msgid "Low voltage boosting transfer point"
+msgstr ""
+
+msgid "Low voltage transfer point"
+msgstr ""
+
+msgid "Low voltage trimming transfer point"
+msgstr ""
+
 msgid "Lowercases names in both directions"
 msgstr "nombres en minuscula en ambas direcciones."
 
@@ -3405,6 +3572,9 @@ msgstr "Administración"
 
 msgid "Manufacturer"
 msgstr "Fabricante"
+
+msgid "Manufacturing date"
+msgstr ""
 
 msgid "Map all users to root"
 msgstr "Mapear todos los usuarios como root"
@@ -3470,6 +3640,9 @@ msgstr "Frecuencia Máxima"
 msgid "Maximum idle time in seconds."
 msgstr "Tiempo de espera maximo en segundos"
 
+msgid "Maximum incoming voltage seen"
+msgstr ""
+
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr ""
 "Número máximo de intentos de contraseñas permitidas antes de la desconexión."
@@ -3504,11 +3677,20 @@ msgstr ""
 msgid "Maximum performance, maximum acoustic output"
 msgstr "Máxima actividad, máximo ruido"
 
+msgid "Maximum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Maximum temperature seen (degrees C)"
+msgstr ""
+
 msgid "Media"
 msgstr "Medios"
 
 msgid "Media Directory"
 msgstr "Directorio multimedia"
+
+msgid "Media library"
+msgstr ""
 
 msgid "Medium acoustic output"
 msgstr "Ruido medio"
@@ -3534,14 +3716,26 @@ msgstr "Puerto pasivo mínimo."
 msgid "Minimum"
 msgstr "Mínimo"
 
+msgid "Minimum battery level for UPS restart after power-off"
+msgstr ""
+
 msgid "Minimum free space"
 msgstr "Espacio libre minimo"
 
 msgid "Minimum frequency"
 msgstr "Frecuencia Mínima"
 
+msgid "Minimum incoming voltage seen"
+msgstr ""
+
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Minima actividad, Minimo ruido"
+
+msgid "Minimum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Minimum temperature seen (degrees C)"
+msgstr ""
 
 msgid "Minutes"
 msgstr "Minutos"
@@ -3557,6 +3751,9 @@ msgstr "Falta una carpeta temporal."
 
 msgid "Mode"
 msgstr "Modo"
+
+msgid "Model"
+msgstr ""
 
 msgid "Model extra"
 msgstr "Modelo extra"
@@ -3633,6 +3830,9 @@ msgstr "NT1"
 
 msgid "NTP time server"
 msgstr "Servidor de fecha y hora NTP"
+
+msgid "NUT Internal Driver Information"
+msgstr ""
 
 msgid "Name"
 msgstr "Nombre"
@@ -3812,6 +4012,33 @@ msgstr "ID del Nodo"
 msgid "Node Name"
 msgstr "Nombre del nodo"
 
+msgid "Nominal battery voltage"
+msgstr ""
+
+msgid "Nominal input current (A)"
+msgstr ""
+
+msgid "Nominal input line frequency (Hz)"
+msgstr ""
+
+msgid "Nominal input voltage"
+msgstr ""
+
+msgid "Nominal output current (A)"
+msgstr ""
+
+msgid "Nominal output frequency (Hz)"
+msgstr ""
+
+msgid "Nominal output voltage (V)"
+msgstr ""
+
+msgid "Nominal value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Nominal value of real power (Watts)"
+msgstr ""
+
 msgid "None"
 msgstr "Ninguno"
 
@@ -3874,6 +4101,12 @@ msgstr "Ahora"
 
 msgid "Null passwords"
 msgstr "Contraseña nula"
+
+msgid "Number of bad battery packs"
+msgstr ""
+
+msgid "Number of battery packs"
+msgstr ""
 
 msgid "Number of clients"
 msgstr "Número de clientes"
@@ -3957,12 +4190,27 @@ msgstr "Otros"
 msgid "Out"
 msgstr "Salientes"
 
+msgid "Outgoing Power/Inverter Information"
+msgstr ""
+
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr ""
 "Direccion del servidor de salida de correos SMTP, Ej: smtp.miCorp.com"
 
 msgid "Outgoing mail server"
 msgstr "Servidor de correos salientes"
+
+msgid "Output current (A)"
+msgstr ""
+
+msgid "Output frequency (Hz)"
+msgstr ""
+
+msgid "Output voltage"
+msgstr ""
+
+msgid "Output voltage (V)"
+msgstr ""
 
 msgid "Overload"
 msgstr "Sobrecarga"
@@ -4016,6 +4264,9 @@ msgstr "Terriblemente agresivo"
 
 msgid "Pairwise"
 msgstr "Comparaciones por pares"
+
+msgid "Parameter xxx (ups.conf or cmdline -x) setting"
+msgstr ""
 
 msgid "Partition number"
 msgstr "Numero de particion"
@@ -4257,6 +4508,9 @@ msgstr "Conservar los tiempos de modificación."
 msgid "Preserve permissions"
 msgstr "Conservar permisos"
 
+msgid "Prevent deep discharge of battery"
+msgstr ""
+
 msgid "Primary"
 msgstr "Primario"
 
@@ -4283,6 +4537,9 @@ msgstr "Procesos"
 
 msgid "Processes information"
 msgstr "Información de procesos"
+
+msgid "Product ID"
+msgstr ""
 
 msgid "Profile"
 msgstr "Perfil"
@@ -4413,6 +4670,9 @@ msgstr "Sólo lectura"
 msgid "Realm"
 msgstr "Dominio"
 
+msgid "Reason for last transfer to battery (* opaque)"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Reiniciar Equipo"
 
@@ -4434,11 +4694,20 @@ msgstr "Actualizar"
 msgid "Reject"
 msgstr "Rechazar"
 
+msgid "Relative humidity alarm (enabled/disabled)"
+msgstr ""
+
+msgid "Relative humidity threshold high (percent)"
+msgstr ""
+
 msgid "Release Notes"
 msgstr "Notas de la versión"
 
 msgid "Reload page"
 msgstr "Recargar página"
+
+msgid "Remaining battery runtime"
+msgstr ""
 
 msgid "Remote Rsync Server"
 msgstr "Servidor Rsync remoto"
@@ -4525,6 +4794,9 @@ msgstr "Restaurar metadata desde el archivo otorgado al proveedor otorgado."
 
 msgid "Results for net rpc testjoin:"
 msgstr "Resultados para ingreso de prueba net rpc"
+
+msgid "Results of last self test"
+msgstr ""
 
 msgid "Resume"
 msgstr "Continuar"
@@ -4753,6 +5025,11 @@ msgstr ""
 "Seleccione el fichero XML de configuración y pulse el botón inferior para "
 "restaurar la configuración."
 
+msgid ""
+"Select which interface to use. (only selectable if your server has more than "
+"one)"
+msgstr ""
+
 msgid "Select your read balance algorithm."
 msgstr "Selecciones su algoritmo de balanceo de lectura."
 
@@ -4783,6 +5060,9 @@ msgstr "Enviar e-mail de prueba"
 msgid "Separate email addresses by semi-colon."
 msgstr "Separe direcciones de e-mail con punto y coma \";\""
 
+msgid "Serial"
+msgstr ""
+
 msgid "Serial Console"
 msgstr "Consola (RS-232)"
 
@@ -4798,8 +5078,14 @@ msgstr "Nombre del Servidor"
 msgid "Server description. This can usually be left blank."
 msgstr "Descripcion del servidor. Se puede dejar en blanco."
 
+msgid "Server information"
+msgstr ""
+
 msgid "Server name"
 msgstr "Nombre del servidor"
+
+msgid "Server version"
+msgstr ""
 
 msgid "Service"
 msgstr "Servicio"
@@ -4824,6 +5110,9 @@ msgstr "Asigne el CNID para ser usado por el volumen."
 
 msgid "Set the account's primary group to the given group."
 msgstr "Asigne la cuenta primaria de grupo para el grupo dado."
+
+msgid "Set the content location(s) to or from the media library."
+msgstr ""
 
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr ""
@@ -4911,6 +5200,9 @@ msgstr "Elementos compartidos"
 
 msgid "Shell"
 msgstr "Consola"
+
+msgid "Show RAW UPS Info"
+msgstr ""
 
 msgid "Show log entries in reverse order (newest entries on top)"
 msgstr ""
@@ -5187,6 +5479,9 @@ msgstr "Cambiar de VIP a BACKUP"
 msgid "Switch VIP to MASTER"
 msgstr "Cambiar de VIP a MAESTRO"
 
+msgid "Switch off when running on battery and no/low load"
+msgstr ""
+
 msgid "Switch to"
 msgstr "Cambiar a"
 
@@ -5325,8 +5620,17 @@ msgstr "Objetivos"
 msgid "Temperature"
 msgstr "Temperatura"
 
+msgid "Temperature alarm (enabled/disabled)"
+msgstr ""
+
 msgid "Temperature monitoring"
 msgstr "Monitor de temperatura"
+
+msgid "Temperature threshold high (degrees C)"
+msgstr ""
+
+msgid "Temperature threshold low (degrees C)"
+msgstr ""
 
 msgid "Temporary Device"
 msgstr "Dispositivo Temporal"
@@ -5524,6 +5828,14 @@ msgstr "El atributo '%s' debe ser menor que %s."
 #, c-format
 msgid "The attribute '%s' must contain at least one entry."
 msgstr "El atributo '%s' debe contener al menos una entrada."
+
+#, php-format
+msgid "The attribute '%s': use a port in the range from %d to %d."
+msgstr ""
+
+#, php-format
+msgid "The attribute 'Port': port '%ld' is already taken by another service."
+msgstr ""
 
 msgid ""
 "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
@@ -6584,6 +6896,15 @@ msgstr "Hora"
 msgid "Time Machine"
 msgstr "Máquina de tiempo"
 
+msgid "Time before the load will be rebooted"
+msgstr ""
+
+msgid "Time before the load will be shutdown"
+msgstr ""
+
+msgid "Time before the load will be started"
+msgstr ""
+
 msgid "Time interval"
 msgstr "Intervalo de tiempo"
 
@@ -6812,26 +7133,53 @@ msgstr "Estado del SAI"
 msgid "UPS Waiting"
 msgstr "SAI en espera"
 
+msgid "UPS alarms"
+msgstr ""
+
+msgid "UPS beeper status"
+msgstr ""
+
+msgid "UPS coldstarts from battery"
+msgstr ""
+
 msgid "UPS disabled"
 msgstr "UPS desactivado"
+
+msgid "UPS external contact sensors"
+msgstr ""
+
+msgid "UPS firmware"
+msgstr ""
 
 msgid "UPS goes on battery"
 msgstr "UPS alimentado por la batería"
 
+msgid "UPS model"
+msgstr ""
+
 msgid "UPS reaches low battery"
 msgstr "UPS alcanza el nivel de batería baja"
+
+msgid "UPS starts when mains is (re)applied"
+msgstr ""
 
 msgid "UPS status"
 msgstr "Estado UPS"
 
+msgid "UPS system identifier"
+msgstr ""
+
+msgid "UPS temperature"
+msgstr ""
+
+msgid "UPS type"
+msgstr ""
+
+msgid "UPS watchdog status"
+msgstr ""
+
 msgid "UPnP"
 msgstr "UPnP"
-
-msgid "UPnP A/V Media Server"
-msgstr "UPnP A/V Media Server"
-
-msgid "UPnP friendly name."
-msgstr "Nombre común UPnP."
 
 msgid "URI"
 msgstr "URI"
@@ -7041,6 +7389,9 @@ msgstr "Valor"
 msgid "Variable"
 msgstr "Variable"
 
+msgid "Vendor ID"
+msgstr ""
+
 msgid "Version"
 msgstr "Versión"
 
@@ -7150,6 +7501,9 @@ msgid ""
 msgstr ""
 "Cuando HAST esté habilitado, los dispositivos locales y los paquetes "
 "adicionales que no soporten volúmenes HAST , no podrán ser usados."
+
+msgid "When UPS switches to Low Battery"
+msgstr ""
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
@@ -7363,6 +7717,12 @@ msgstr "Selector de ficheros"
 msgid "get target info failed."
 msgstr "Petición de informacion fallida"
 
+msgid "greatest settable high voltage transfer point"
+msgstr ""
+
+msgid "greatest settable low voltage transfer point"
+msgstr ""
+
 msgid "hiadaptive (high performance)"
 msgstr "hiadaptive (Alto rendimiento-consumo moderado)"
 
@@ -7465,6 +7825,12 @@ msgstr "Fallo la busqueda del objetivo"
 
 msgid "second(s)"
 msgstr "segundo(s)"
+
+msgid "smallest settable high voltage transfer point"
+msgstr ""
+
+msgid "smallest settable low voltage transfer point"
+msgstr ""
 
 msgid "striping"
 msgstr "striping"
