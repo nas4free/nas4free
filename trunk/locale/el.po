@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2013-05-20 04:39+0000\n"
-"PO-Revision-Date: 2013-04-15 12:03+0000\n"
+"PO-Revision-Date: 2013-05-20 11:15+0000\n"
 "Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
+"X-Launchpad-Export-Date: 2013-05-20 15:20+0000\n"
 "X-Generator: Launchpad (build 16626)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
@@ -565,7 +565,7 @@ msgid "Allow new files to be created."
 msgstr "Να επιτρέπεται η δημιουργία νέων αρχείων."
 
 msgid "Allow to start UPS from battery"
-msgstr ""
+msgstr "Να επιτρέπεται η εκκίνηση του UPS από τη μπαταρία"
 
 msgid "Allow trusted domains."
 msgstr "Να επιτρέπονται έμπιστοι  τομείς"
@@ -619,13 +619,13 @@ msgstr ""
 "τμηματοποίηση, ..."
 
 msgid "Ambient Conditions From External Probe Equipment"
-msgstr ""
+msgstr "Συνθήκες περιβάλλοντος από εξωτερικό εξοπλισμό ανίχνευσης"
 
 msgid "Ambient relative humidity (percent)"
-msgstr ""
+msgstr "Σχετική υγρασία περιβάλλοντος (ποσοστό)"
 
 msgid "Ambient temperature (degrees C)"
-msgstr ""
+msgstr "Θερμοκρασία περιβάλλοντος (βαθμοί C)"
 
 msgid "An host with this name already exists."
 msgstr "Ένας υπολογιστής με αυτό το όνομα υπάρχει ήδη."
@@ -747,7 +747,7 @@ msgid "Autoselect"
 msgstr "Αυτόματη επιλογή"
 
 msgid "Auxiliary device firmware"
-msgstr ""
+msgstr "Firmware εξωτερικής συσκευής"
 
 msgid "Auxiliary parameters"
 msgstr "Βοηθητικές παράμετροι"
@@ -791,7 +791,7 @@ msgid "Battery Charge"
 msgstr "Επίπεδο φόρτισης μπαταρίας"
 
 msgid "Battery Details"
-msgstr ""
+msgstr "Πληροφορίες μπαταρίας"
 
 msgid "Battery Low"
 msgstr "Στάθμη μπαταρίας χαμηλή"
@@ -802,15 +802,17 @@ msgstr "Υπολειπόμενος χρόνος με μπαταρία"
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
 msgstr ""
+"Ποσοστό μπαταρίας που απομένει όταν το UPS αλλάζει σε λειτουργία "
+"απενεργοποίησης. (Χαμηλή Μπαταρία)"
 
 msgid "Battery alarm threshold"
 msgstr ""
 
 msgid "Battery capacity"
-msgstr ""
+msgstr "Χωρητικότητα μπαταρίας"
 
 msgid "Battery change date"
-msgstr ""
+msgstr "Ημερομηνία αλλαγής μπαταρίας"
 
 msgid "Battery charge"
 msgstr ""
@@ -825,13 +827,13 @@ msgid "Battery level when UPS switches to \"Warning\" state"
 msgstr ""
 
 msgid "Battery manufacturing date"
-msgstr ""
+msgstr "Ημερομηνία κατασκευής μπαταρίας"
 
 msgid "Battery temperature"
-msgstr ""
+msgstr "Θερμοκρασία μπαταρίας"
 
 msgid "Battery voltage"
-msgstr ""
+msgstr "Τάση Μπαταρίας"
 
 msgid "Best available"
 msgstr "Οι βέλτιστες διαθέσιμες"
@@ -1324,10 +1326,10 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DNLA/UPnP"
-msgstr ""
+msgstr "DNLA/UPnP"
 
 msgid "DNLA/UPnP Media Server"
-msgstr ""
+msgstr "DNLA/UPnP Media Server"
 
 msgid "DNS settings"
 msgstr "Ρυθμίσεις DNS"
@@ -1963,10 +1965,10 @@ msgid "Driver parameters"
 msgstr "Παράμετροι οδηγού"
 
 msgid "Driver used"
-msgstr ""
+msgstr "Οδηγός συσκευής που χρησιμοποιείται"
 
 msgid "Driver version"
-msgstr ""
+msgstr "Έκδοση οδηγού συσκευής"
 
 msgid "Driver version internal"
 msgstr ""
@@ -3314,7 +3316,7 @@ msgid "Language"
 msgstr "Γλώσσα"
 
 msgid "Language to use on front panel"
-msgstr ""
+msgstr "Γλώσσα για χρήση στην μπροστινή οθόνη"
 
 msgid "Large read/write"
 msgstr "Μεγάλη ανάγνωση/εγγραφή"
@@ -3449,7 +3451,7 @@ msgid "Load file"
 msgstr "Φόρτωση αρχείου"
 
 msgid "Load on UPS"
-msgstr ""
+msgstr "Φορτίο στο UPS"
 
 msgid "Load when UPS switches to overload condition (\"OVER\")"
 msgstr ""
@@ -3507,6 +3509,7 @@ msgstr ""
 
 msgid "Location where the database with media contents will be stored."
 msgstr ""
+"Τοποθεσία όπου θα αποθηκεύεται η βάση δεδομένων με τα περιεχόμενα πολυμέσων."
 
 #, php-format
 msgid ""
@@ -3613,7 +3616,7 @@ msgid "Manufacturer"
 msgstr "Κατασκευαστής"
 
 msgid "Manufacturing date"
-msgstr ""
+msgstr "Ημερομηνία κατασκευής"
 
 msgid "Map all users to root"
 msgstr "Αντιστοίχιση όλων των χρηστών σε root"
@@ -3791,7 +3794,7 @@ msgid "Mode"
 msgstr "Λειτουργία"
 
 msgid "Model"
-msgstr ""
+msgstr "Μοντέλο"
 
 msgid "Model extra"
 msgstr "Έξτρα μοντέλο"
@@ -4585,7 +4588,7 @@ msgid "Processes information"
 msgstr "Πληροφορίες εκτελούμενων διεργασιών"
 
 msgid "Product ID"
-msgstr ""
+msgstr "ID Προϊόντος"
 
 msgid "Profile"
 msgstr "Προφίλ"
@@ -7238,13 +7241,13 @@ msgid "UPS external contact sensors"
 msgstr ""
 
 msgid "UPS firmware"
-msgstr ""
+msgstr "Firmware του UPS"
 
 msgid "UPS goes on battery"
 msgstr "Το UPS λειτουργεί με μπαταρία"
 
 msgid "UPS model"
-msgstr ""
+msgstr "Μοντέλο του UPS"
 
 msgid "UPS reaches low battery"
 msgstr "Το UPS έχει χαμηλή στάθμη μπαταρίας"
@@ -7259,10 +7262,10 @@ msgid "UPS system identifier"
 msgstr ""
 
 msgid "UPS temperature"
-msgstr ""
+msgstr "Θερμοκρασία UPS"
 
 msgid "UPS type"
-msgstr ""
+msgstr "Τύπος UPS"
 
 msgid "UPS watchdog status"
 msgstr ""
