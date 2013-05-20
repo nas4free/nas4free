@@ -50,7 +50,7 @@ function tblclose () {
 function tblrow ($name, $value, $symbol = null, $id = null) {
 	if(!$value) return;
 
-	if($symbol == '&deg;')
+	if($symbol == '&deg;C')
 		$value = sprintf("%.1f", $value);
 
 	if($symbol == 'Hz')
@@ -264,15 +264,15 @@ function upsc_enable_change() {
 						}
 						tblrow('Status', $disp_status);
 
-						tblrowbar('Load', $ups['ups.load'], '%', '100-80', '79-60', '59-0');
-						tblrowbar('Battery Charge', $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
+						tblrowbar(gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
+						tblrowbar(gettext('Battery Charge'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
 
 						// status
 						tblrow(gettext('Battery voltage'), $ups['battery.voltage'], 'V');
 						tblrow(gettext('Input voltage'), $ups['input.voltage'], 'V');
 						tblrow(gettext('Input frequency'), $ups['input.frequency'], 'Hz');
 						tblrow(gettext('Output voltage'), $ups['output.voltage'], 'V');
-						tblrow(gettext('Temperature'), $ups['ups.temperature'], '&deg;');
+						tblrow(gettext('Temperature'), $ups['ups.temperature'], ' &deg;C');
 						tblrow(gettext('Remaining battery runtime'), $ups['battery.runtime'], ' seconds');
 						
 						html_separator();
@@ -291,7 +291,7 @@ function upsc_enable_change() {
 						tblrow(gettext('Product ID'), $ups['ups.productid']);
 						tblrow(gettext('UPS firmware'), $ups['ups.firmware']);
 						tblrow(gettext('Auxiliary device firmware'), $ups['ups.firmware.aux']);
-						tblrow(gettext('UPS temperature'), $ups['ups.temperature'], '&deg;');
+						tblrow(gettext('UPS temperature'), $ups['ups.temperature'], ' &deg;C');
 						tblrow(gettext('Load on UPS'), $ups['ups.load'], '%');
 						tblrow(gettext('Load when UPS switches to overload condition ("OVER")'), $ups['ups.load.high'], '%');
 						tblrow(gettext('UPS system identifier'), $ups['ups.id']);
@@ -366,7 +366,7 @@ function upsc_enable_change() {
 						tblrow(gettext('Battery voltage'), $ups['battery.voltage'], 'V');
 						tblrow(gettext('Battery capacity'), $ups['battery.capacity'], 'Ah');
 						tblrow(gettext('Battery current'), $ups['battery.current'], 'A');
-						tblrow(gettext('Battery temperature'), $ups['battery.temperature'], '&deg;');
+						tblrow(gettext('Battery temperature'), $ups['battery.temperature'], ' &deg;C');
 						tblrow(gettext('Nominal battery voltage'), $ups['battery.voltage.nominal'], 'V');
 						tblrow(gettext('Remaining battery runtime'), $ups['battery.runtime'], ' seconds');
 						tblrow(gettext('When UPS switches to Low Battery'), $ups['battery.runtime.low'], ' seconds');
@@ -382,12 +382,12 @@ function upsc_enable_change() {
 						html_separator();
 						
 						html_titleline(gettext('Ambient Conditions From External Probe Equipment'));
-						tblrow(gettext('Ambient temperature (degrees C)'), $ups['ambient.temperature'], '&deg;');
+						tblrow(gettext('Ambient temperature (degrees C)'), $ups['ambient.temperature'], ' &deg;C');
 						tblrow(gettext('Temperature alarm (enabled/disabled)'), $ups['ambient.temperature.alarm']);
-						tblrow(gettext('Temperature threshold high (degrees C)'), $ups['ambient.temperature.high'], '&deg;');
-						tblrow(gettext('Temperature threshold low (degrees C)'), $ups['ambient.temperature.low'], '&deg;');
-						tblrow(gettext('Maximum temperature seen (degrees C)'), $ups['ambient.temperature.maximum'], '&deg;');
-						tblrow(gettext('Minimum temperature seen (degrees C)'), $ups['ambient.temperature.minimum'], '&deg;');
+						tblrow(gettext('Temperature threshold high (degrees C)'), $ups['ambient.temperature.high'], ' &deg;C');
+						tblrow(gettext('Temperature threshold low (degrees C)'), $ups['ambient.temperature.low'], ' &deg;C');
+						tblrow(gettext('Maximum temperature seen (degrees C)'), $ups['ambient.temperature.maximum'], ' &deg;C');
+						tblrow(gettext('Minimum temperature seen (degrees C)'), $ups['ambient.temperature.minimum'], ' &deg;C');
 						tblrow(gettext('Ambient relative humidity (percent)'), $ups['ambient.humidity'], '%');
 						tblrow(gettext('Relative humidity alarm (enabled/disabled)'), $ups['ambient.humidity.alarm']);
 						tblrow(gettext('Relative humidity threshold high (percent)'), $ups['ambient.humidity.high'], '%');
