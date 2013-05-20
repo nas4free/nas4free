@@ -11,13 +11,13 @@
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -31,14 +31,14 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 require("auth.inc");
 require("guiconfig.inc");
 require("services.inc");
 
-$pgtitle = array(gettext("Services"),gettext("UPnP"));
+$pgtitle = array(gettext("Services"),gettext("DNLA/UPnP"));
 
 if (!isset($config['upnp']) || !is_array($config['upnp']))
 	$config['upnp'] = array();
@@ -71,7 +71,7 @@ if ($_POST) {
 	// Input validation.
 	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "name if port content home");
-		$reqdfieldsn = array(gettext("Name"), gettext("Interface"), gettext("Port"), gettext("Content"), gettext("Database directory"));
+		$reqdfieldsn = array(gettext("Name"), gettext("Interface"), gettext("Port"), gettext("Media library"), gettext("Database directory"));
 		$reqdfieldst = explode(" ", "string string port array string");
 
 		if ("Terratec_Noxon_iRadio" === $_POST['profile']) {
@@ -91,11 +91,11 @@ if ($_POST) {
 
 		// Check if port is already used.
 		if (services_is_port_used($_POST['port'], "upnp"))
-			$input_errors[] = sprintf(gettext("Port %ld is already used by another service."), $_POST['port']);
+			$input_errors[] = sprintf(gettext("The attribute 'Port': port '%ld' is already taken by another service."), $_POST['port']);
 
 		// Check port range.
 		if ($_POST['port'] && ((1024 > $_POST['port']) || (65535 < $_POST['port']))) {
-			$input_errors[] = sprintf(gettext("The attribute '%s' must be in the range from %d to %d."), gettext("Port"), 1025, 65535);
+			$input_errors[] = sprintf(gettext("The attribute '%s': use a port in the range from %d to %d."), gettext("Port"), 1025, 65535);
 		}
 	}
 
@@ -205,13 +205,13 @@ function transcoding_change() {
 				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 				<?php if (file_exists($d_upnpconfdirty_path)) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-				<?php html_titleline_checkbox("enable", gettext("UPnP A/V Media Server"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
-					<?php html_inputbox("name", gettext("Name"), $pconfig['name'], gettext("UPnP friendly name."), true, 20);?>
+				<?php html_titleline_checkbox("enable", gettext("DNLA/UPnP Media Server"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_inputbox("name", gettext("Name"), $pconfig['name'], gettext("Give your media library a friendly name."), true, 35);?>
 					<!--
-					<?php html_interfacecombobox("if", gettext("Interface"), $pconfig['if'], gettext("Interface to listen to."), true);?>
+					<?php html_interfacecombobox("if", gettext("Interface"), $pconfig['if'], gettext("Select which interface to use. (only selectable if your server has more than one)"), true);?>
 					-->
 				<tr>
-					<td width="22%" valign="top" class="vncellreq"><?=gettext("Interface");?></td>
+					<td width="22%" valign="top" class="vncellreq"><?=gettext("Interface selection");?></td>
 					<td width="78%" class="vtable">
 					<select name="if" class="formfld" id="xif">
 						<?php foreach($a_interface as $if => $ifinfo):?>
@@ -220,19 +220,19 @@ function transcoding_change() {
 							<?php endif;?>
 						<?php endforeach;?>
 					</select>
-					<br /><?=gettext("Interface to listen to.");?>
+					<br /><?=gettext("Select which interface to use. (only selectable if your server has more than one)");?>
 					</td>
 				</tr>
 					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], sprintf(gettext("Port to listen on. Only dynamic or private ports can be used (from %d through %d). Default port is %d."), 1025, 65535, 49152), true, 5);?>
-					<?php html_filechooser("home", gettext("Database directory"), $pconfig['home'], gettext("Location where the content database file will be stored."), $g['media_path'], true, 60);?>
-					<?php html_folderbox("content", gettext("Content"), !empty($pconfig['content']) ? $pconfig['content'] : array(), gettext("Location of the files to share."), $g['media_path'], true);?>
+					<?php html_filechooser("home", gettext("Database directory"), $pconfig['home'], gettext("Location where the database with media contents will be stored."), $g['media_path'], true, 67);?>
+					<?php html_folderbox("content", gettext("Media library"), !empty($pconfig['content']) ? $pconfig['content'] : array(), gettext("Set the content location(s) to or from the media library."), $g['media_path'], true);?>
 					<?php html_combobox("profile", gettext("Profile"), $pconfig['profile'], array("default" => gettext("Default"), "DLNA" => "DLNA", "Denon_AVR" => "DENON Network A/V Receiver", "PS3" => "Sony Playstation 3", "Telegent_TG100" => "Telegent TG100", "ZyXEL_DMA1000" => "ZyXEL DMA-1000", "Helios_X3000" => "Helios X3000", "DLink_DSM320" => "D-Link DSM320", "Microsoft_XBox360" => "Microsoft XBox 360", "Terratec_Noxon_iRadio" => "Terratec Noxon iRadio", "Yamaha_RXN600" => "Yamaha RX-N600", "Loewe_Connect" => "Loewe Connect"), gettext("Compliant profile to be used."), true, false, "profile_change()");?>
 					<?php html_inputbox("deviceip", gettext("Device IP"), $pconfig['deviceip'], gettext("The device's IP address."), true, 20);?>
 					<?php html_checkbox("transcoding", gettext("Transcoding"), !empty($pconfig['transcoding']) ? true : false, gettext("Enable transcoding."), "", false, "transcoding_change()");?>
-					<?php html_filechooser("tempdir", gettext("Temporary directory"), $pconfig['tempdir'], gettext("Temporary directory to store transcoded files."), $g['media_path'], true, 60);?>
+					<?php html_filechooser("tempdir", gettext("Temporary directory"), $pconfig['tempdir'], gettext("Temporary directory to store transcoded files."), $g['media_path'], true, 67);?>
 					<?php html_separator();?>
 					<?php html_titleline(gettext("Administrative WebGUI"));?>
-					<?php html_checkbox("web", gettext("WebGUI"), !empty($pconfig['web']) ? true : false, gettext("Enable web user interface."), "", false, "web_change()");?>
+					<?php html_checkbox("web", gettext("WebGUI"), !empty($pconfig['web']) ? true : false, gettext("Enable administrative DNLA/UPnP WebGUI."), "", false, "web_change()");?>
 					<?php
 					$if = get_ifname($pconfig['if']);
 					$ipaddr = get_ipaddr($if);
