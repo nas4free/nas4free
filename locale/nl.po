@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-04-15 03:51+0000\n"
-"PO-Revision-Date: 2013-04-14 21:43+0000\n"
+"POT-Creation-Date: 2013-05-20 04:39+0000\n"
+"PO-Revision-Date: 2013-05-20 02:30+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-04 23:21+0000\n"
-"X-Generator: Launchpad (build 16598)\n"
+"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 "X-Poedit-Country: Netherlands\n"
 "Language: \n"
 "X-Poedit-Language: Dutch\n"
@@ -441,7 +441,8 @@ msgid "Additional group"
 msgstr "Extra groep"
 
 msgid "Additional parameters to the hardware-specific part of the driver."
-msgstr "Extra parameters voor het hardware-specifieke deel van de driver."
+msgstr ""
+"Extra parameters voor het hardware-specifieke deel van het stuurprogramma."
 
 msgid "Address"
 msgstr "Adres"
@@ -454,7 +455,7 @@ msgid "Administration password"
 msgstr "Administrator wachtwoord"
 
 msgid "Administrative WebGUI"
-msgstr "Administratie WebGUI"
+msgstr "DNLA/UPnP WebGUI"
 
 msgid "Administrator name"
 msgstr "Administrator naam"
@@ -562,6 +563,9 @@ msgstr "Nieuwe bestanden toelaten"
 msgid "Allow new files to be created."
 msgstr "Sta toe dat nieuwe bestanden kunnen worden aangemaakt."
 
+msgid "Allow to start UPS from battery"
+msgstr "Start UPS van batterij toestaan"
+
 msgid "Allow trusted domains."
 msgstr "Vertrouwde domeinen toestaan."
 
@@ -607,6 +611,15 @@ msgid ""
 msgstr ""
 "Altijd 0 als apparaat nummer gebruiken, dit helpt wanneer een apparaat "
 "nummer niet constant is na een herstart, cluster, ..."
+
+msgid "Ambient Conditions From External Probe Equipment"
+msgstr "Omgevingsomstandigheden Externe Sonde Apparatuur"
+
+msgid "Ambient relative humidity (percent)"
+msgstr "Relatieve luchtvochtigheid (procent)"
+
+msgid "Ambient temperature (degrees C)"
+msgstr "Omgevingstemperatuur (graden C)"
 
 msgid "An host with this name already exists."
 msgstr "Een host met deze naam bestaat reeds."
@@ -727,6 +740,9 @@ msgstr "Automatische schijfdetectie mode"
 msgid "Autoselect"
 msgstr "Selecteer automatisch"
 
+msgid "Auxiliary device firmware"
+msgstr "Ondersteunende firmware apparaat"
+
 msgid "Auxiliary parameters"
 msgstr "Aanvullende parameters"
 
@@ -768,11 +784,50 @@ msgstr ""
 msgid "Battery Charge"
 msgstr "Batterijlading"
 
+msgid "Battery Details"
+msgstr "Batterij Details"
+
 msgid "Battery Low"
 msgstr "Batterij Leeg"
 
 msgid "Battery Remain Time"
 msgstr "Batterij Resterende Tijd"
+
+msgid ""
+"Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
+msgstr ""
+"Resterend Batterijniveau wanneer UPS schakelt naar Afsluit mode (Laag "
+"Batterij Niveau)"
+
+msgid "Battery alarm threshold"
+msgstr "Batterij alarmdrempel"
+
+msgid "Battery capacity"
+msgstr "Batterij capaciteit"
+
+msgid "Battery change date"
+msgstr "Batterij vervang datum"
+
+msgid "Battery charge"
+msgstr "Batterij lading"
+
+msgid "Battery chemistry"
+msgstr "Batterij chemie"
+
+msgid "Battery current"
+msgstr "Huidige Batterij"
+
+msgid "Battery level when UPS switches to \"Warning\" state"
+msgstr "Batterijniveau wanneer UPS schakelt naar de \"Waarschuwing\" staat"
+
+msgid "Battery manufacturing date"
+msgstr "Batterij productie datum"
+
+msgid "Battery temperature"
+msgstr "Battery temperature"
+
+msgid "Battery voltage"
+msgstr "Batterij  voltage"
 
 msgid "Best available"
 msgstr "Beste beschikbaar"
@@ -1093,7 +1148,7 @@ msgstr ""
 "verantwoordelijk is voor dit systeem: 'admin@email.adres'."
 
 msgid "Content"
-msgstr "Inhoud"
+msgstr "Mediabibliotheek"
 
 msgid "Controller Auth Group"
 msgstr "Controller Auth Groep"
@@ -1233,6 +1288,12 @@ msgstr "Huidige Versie:"
 msgid "Current password"
 msgstr "Huidig wachtwoord"
 
+msgid "Current value of apparent power (Volt-Amps)"
+msgstr "Huidige waarde van schijnbaar vermogen (Volt-Amps)"
+
+msgid "Current value of real power (Watts)"
+msgstr "Huidige waarde van het reële vermogen (watt)"
+
 msgid "Custom"
 msgstr "Aangepast"
 
@@ -1256,6 +1317,12 @@ msgstr "DDP"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DNLA/UPnP"
+msgstr "DNLA/UPnP"
+
+msgid "DNLA/UPnP Media Server"
+msgstr "DNLA/UPnP Media Server"
 
 msgid "DNS settings"
 msgstr "DNS instellingen"
@@ -1297,7 +1364,7 @@ msgid "Data integrity"
 msgstr "Data integriteit"
 
 msgid "Database directory"
-msgstr "Databasemap"
+msgstr "Locatie database"
 
 msgid "Dataset"
 msgstr "Dataset"
@@ -1340,7 +1407,7 @@ msgid "Define directories/URL's that require authentication."
 msgstr "Defineer mappen/URL'S die verificatie vereisen."
 
 msgid "Defines when the shutdown is initiated."
-msgstr "Geef hier aan wanneer het afsluiten in werking dient te treden."
+msgstr "Geef aan wanneer het afsluitproces in werking moet treden."
 
 msgid "Delete"
 msgstr "Verwijderen"
@@ -1510,9 +1577,6 @@ msgstr "Gedeelde bestemmingsmap"
 
 msgid "Detected"
 msgstr "Gedetecteerd"
-
-msgid "Detected Language:<br />(Change if needed)"
-msgstr "Gedetecteerde taal:<br />(Wijzig indien nodig)"
 
 msgid "Detected RSYNC remote shares"
 msgstr "Gedetecteerde RSYNC remote mappen"
@@ -1894,7 +1958,16 @@ msgid "Driver list"
 msgstr "Stuurprogramma lijst"
 
 msgid "Driver parameters"
-msgstr "Driver parameters"
+msgstr "Stuurprogramma parameters"
+
+msgid "Driver used"
+msgstr "Gebruikt stuurprogramma"
+
+msgid "Driver version"
+msgstr "Versie stuurprogramma"
+
+msgid "Driver version internal"
+msgstr "Versie interne stuurprogramma"
 
 msgid "Duplex"
 msgstr "Duplex"
@@ -2014,6 +2087,11 @@ msgstr "Gebruiker bewerken"
 msgid "Edit volume"
 msgstr "Bewerk volume"
 
+msgid ""
+"Efficiency of the UPS (Ratio of the output current on the input current)"
+msgstr ""
+"Efficiëntie van de UPS (Ratio van de uitgangsspanning van de ingangsspanning)"
+
 msgid "Email"
 msgstr "E-mail"
 
@@ -2057,6 +2135,9 @@ msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr ""
 "Inschakelen Zeroconf/Bonjour om deze service kenbaar te maken van dit "
 "apparaat"
+
+msgid "Enable administrative DNLA/UPnP WebGUI."
+msgstr "Inschakelen administratieve DNLA/UPnP WebGUI."
 
 msgid "Enable anonymous bind."
 msgstr "Inschakelen anonieme koppeling."
@@ -2137,7 +2218,7 @@ msgid "Enable recycle bin"
 msgstr "Inschakelen prullenbak"
 
 msgid "Enable remote monitoring of the local connected UPS."
-msgstr "Inschakelen remote monitoring  van de lokaal verbonden UPS."
+msgstr "Inschakelen remote monitoring voor de lokaal verbonden UPS."
 
 msgid ""
 "Enable reverse DNS lookup performed on the remote host's IP address for "
@@ -2180,9 +2261,6 @@ msgstr "Inschakelen kernel optimalisatie (aanbevolen)"
 
 msgid "Enable use sendfile."
 msgstr "Inschakelen gebruik zendbestand."
-
-msgid "Enable web user interface."
-msgstr "Inschakelen UPnP WebGUI beheer."
 
 msgid "Enable write cache mode."
 msgstr "Inschakelen schrijf cache mode."
@@ -2299,6 +2377,12 @@ msgstr "Exporteer alle mappen in het opgegeven pad."
 
 msgid "Extended attributes"
 msgstr "Uitgebreide attributen"
+
+msgid "Extended input frequency range"
+msgstr "Frequentiebereik uitgebreid"
+
+msgid "Extended input voltage range"
+msgstr "Ingangsspanning bereik uitgebreid"
 
 msgid "Extensions"
 msgstr "Uitbreidingen"
@@ -2488,6 +2572,9 @@ msgstr "Firmware Versie Controle"
 msgid "FirstBurstLength"
 msgstr "FirstBurstLength"
 
+msgid "Flag xxx (ups.conf or cmdline -x) status"
+msgstr "Flag xxx (ups.conf of cmdline -x) status"
+
 msgid "Flags"
 msgstr "Vlaggen"
 
@@ -2558,6 +2645,9 @@ msgstr "De gebruikte gateway om het bestemmingsnetwerk te bereiken."
 msgid "General"
 msgstr "Algemeen"
 
+msgid "General Information UPS Unit"
+msgstr "Algemene informatie UPS Unit"
+
 msgid "General Setup"
 msgstr "Algemene instellingen"
 
@@ -2575,6 +2665,9 @@ msgstr "GiB"
 
 msgid "Give only local users access to the web page."
 msgstr "Geef alleen lokale gebruikers toegang naar de web pagina."
+
+msgid "Give your media library a friendly name."
+msgstr "Geef uw mediabibliotheek een naam."
 
 msgid "Grant access to the user portal."
 msgstr "Toegang toestaan tot de gebruikers portaal."
@@ -2664,6 +2757,15 @@ msgstr "Help"
 
 msgid "Hide dot files"
 msgstr "Verberg punt bestanden"
+
+msgid "High voltage boosting transfer point"
+msgstr "Hoog voltage boosting transfer point"
+
+msgid "High voltage transfer point"
+msgstr "Hoog voltage transfer point"
+
+msgid "High voltage trimming transfer point"
+msgstr "Hoog voltage trimming transfer point"
 
 msgid "Highlighting"
 msgstr "Markeren"
@@ -2950,6 +3052,9 @@ msgstr "In de meeste gevallen, wordt 'publiek' hier gebruikt."
 msgid "Include basic hardware information."
 msgstr "Basis hardware informatie bijsluiten."
 
+msgid "Incoming Line/Power Information"
+msgstr "Binnenkomende Netspanning/Stroom informatie"
+
 msgid "Incomplete directory"
 msgstr "Incompleet map"
 
@@ -3011,6 +3116,30 @@ msgstr "Initiator zijde gebruikersnaam. (voor wederzijdse CHAP verificatie)"
 msgid "Initiators"
 msgstr "Initiators"
 
+msgid "Input current (A)"
+msgstr "Ingangsstroom (A)"
+
+msgid "Input frequency"
+msgstr "Ingangsfrequentie"
+
+msgid "Input line frequency (Hz)"
+msgstr "Lijningang frequentie (Hz)"
+
+msgid "Input line frequency high (Hz)"
+msgstr "Lijningang frequentie hoog (Hz)"
+
+msgid "Input line frequency low (Hz)"
+msgstr "Lijningang frequentie laag (Hz)"
+
+msgid "Input power quality (* opaque)"
+msgstr "Stroom kwaliteit ingang (* ondoorzichtig)"
+
+msgid "Input power sensitivity"
+msgstr "Ingangsspanning gevoeligheid"
+
+msgid "Input voltage"
+msgstr "Ingangsvoltage"
+
 msgid "Inquiry Product"
 msgstr "Onderzoek Produkt"
 
@@ -3035,14 +3164,35 @@ msgstr "Netwerk"
 msgid "Interface Management"
 msgstr "Netwerk Management"
 
-msgid "Interface to listen to."
-msgstr "Netwerkkaart voor de UPnP service."
+msgid "Interface selection"
+msgstr "Interface selectie"
 
 msgid "Interfaces"
 msgstr "Netwerk"
 
+msgid "Internal Server Information"
+msgstr "Interne Serverinformatie"
+
+msgid "Internal UPS clock date"
+msgstr "Interne UPS klok datum"
+
+msgid "Internal UPS clock time"
+msgstr "Interne UPS klok tijd"
+
+msgid "Interval between self tests"
+msgstr "Interval tussen zelftests"
+
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "De interval moet groter of gelijk zijn aan 10 seconden."
+
+msgid "Interval to wait after shutdown with delay command"
+msgstr "Interval te wachten na het afsluiten met vertraging opdracht"
+
+msgid "Interval to wait before rebooting the UPS)"
+msgstr "Interval te wachten voor het herstarten van de UPS)"
+
+msgid "Interval to wait before restarting the load"
+msgstr "Interval te wachten voor het opnieuw starten van de belasting"
 
 msgid "Invalid file format."
 msgstr "Ongeldig bestandsformaat."
@@ -3149,6 +3299,9 @@ msgstr "LUNs"
 
 msgid "Language"
 msgstr "Taal"
+
+msgid "Language to use on front panel"
+msgstr "Taal die wordt gebruikt op het voorpaneel"
 
 msgid "Large read/write"
 msgstr "Groot lezen/schrijven"
@@ -3279,6 +3432,13 @@ msgstr "Systeemprocessen belasting"
 msgid "Load file"
 msgstr "Bestand openen"
 
+msgid "Load on UPS"
+msgstr "Belasting van de UPS"
+
+msgid "Load when UPS switches to overload condition (\"OVER\")"
+msgstr ""
+"De belasting wanneer de UPS schakelt naar overbelasting modus  (\"OVER\")"
+
 msgid "Loadbalance"
 msgstr "Loadbalance (Netwerkbelasting verdelen)"
 
@@ -3329,7 +3489,12 @@ msgstr ""
 "laten worden."
 
 msgid "Location where the content database file will be stored."
-msgstr "Locatie waar de database met inhoud opgeslagen gaat worden."
+msgstr ""
+"Geef de locatie op waar de database van de mediabibliotheek opgeslagen moet "
+"worden."
+
+msgid "Location where the database with media contents will be stored."
+msgstr "Locatie waar de database met media inhoud opgeslagen moet worden."
 
 #, php-format
 msgid ""
@@ -3381,6 +3546,15 @@ msgstr "Aanmeldnaam van de gebruiker."
 msgid "Logout"
 msgstr "Uitloggen"
 
+msgid "Low voltage boosting transfer point"
+msgstr "Laag voltage boosting transfer point"
+
+msgid "Low voltage transfer point"
+msgstr "Laag voltage transfer point"
+
+msgid "Low voltage trimming transfer point"
+msgstr "Laag voltage trimming transfer point"
+
 msgid "Lowercases names in both directions"
 msgstr "Lowercase namen in beide richtingen"
 
@@ -3430,6 +3604,9 @@ msgstr "Management"
 
 msgid "Manufacturer"
 msgstr "Fabrikant"
+
+msgid "Manufacturing date"
+msgstr "Productie datum"
 
 msgid "Map all users to root"
 msgstr "Alle gebruikers aan de root toewijzen"
@@ -3494,6 +3671,9 @@ msgstr "Maximale frequentie"
 msgid "Maximum idle time in seconds."
 msgstr "De maximale rusttijd in seconden."
 
+msgid "Maximum incoming voltage seen"
+msgstr "Maximum ingangsvoltage gezien"
+
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr ""
 "Maximum aantal toegestane wachtwoord pogingen voor de verbinding wordt "
@@ -3529,11 +3709,20 @@ msgstr ""
 msgid "Maximum performance, maximum acoustic output"
 msgstr "Maximale prestaties, maximale geluidsproductie"
 
+msgid "Maximum relative humidity seen (percent)"
+msgstr "Maximum relatieve luchtvochtigheid gezien (procent)"
+
+msgid "Maximum temperature seen (degrees C)"
+msgstr "Maximum temperatuur gezien (graden C)"
+
 msgid "Media"
 msgstr "Media"
 
 msgid "Media Directory"
 msgstr "Media Locatie"
+
+msgid "Media library"
+msgstr "Mediabibliotheek"
 
 msgid "Medium acoustic output"
 msgstr "Medium geluidsproductie"
@@ -3559,14 +3748,26 @@ msgstr "Min. passieve poort"
 msgid "Minimum"
 msgstr "Minimaal"
 
+msgid "Minimum battery level for UPS restart after power-off"
+msgstr "Minimum batterijniveau voor de UPS opnieuw opstart na power-off"
+
 msgid "Minimum free space"
 msgstr "Minimale vrije ruimte"
 
 msgid "Minimum frequency"
 msgstr "Minimale frequentie"
 
+msgid "Minimum incoming voltage seen"
+msgstr "Minimum ingangsvoltage gezien"
+
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Minimale prestaties, Minimale geluidsproductie"
+
+msgid "Minimum relative humidity seen (percent)"
+msgstr "Minimum relatieve luchtvochtigheid gezien (procent)"
+
+msgid "Minimum temperature seen (degrees C)"
+msgstr "Minimum temperatuur gezien (graden C)"
 
 msgid "Minutes"
 msgstr "Minuten"
@@ -3582,6 +3783,9 @@ msgstr "Een tijdelijke map ontbreekt."
 
 msgid "Mode"
 msgstr "Mode"
+
+msgid "Model"
+msgstr "Model"
 
 msgid "Model extra"
 msgstr "Model extra"
@@ -3658,6 +3862,9 @@ msgstr "NT1"
 
 msgid "NTP time server"
 msgstr "NTP Tijdservers"
+
+msgid "NUT Internal Driver Information"
+msgstr "NUT intern stuurprogramma informatie"
 
 msgid "Name"
 msgstr "Naam"
@@ -3841,6 +4048,33 @@ msgstr "Knooppunt ID"
 msgid "Node Name"
 msgstr "Knooppuntnaam"
 
+msgid "Nominal battery voltage"
+msgstr "Nominale batterij voltage"
+
+msgid "Nominal input current (A)"
+msgstr "Nominale Ingangsstroom (A)"
+
+msgid "Nominal input line frequency (Hz)"
+msgstr "Nominale ingangsspannings frequentie (Hz)"
+
+msgid "Nominal input voltage"
+msgstr "Nominale ingangsvoltage"
+
+msgid "Nominal output current (A)"
+msgstr "Nominale uitgangsstroom (A)"
+
+msgid "Nominal output frequency (Hz)"
+msgstr "Nominaal uitgangsfrequentie (Hz)"
+
+msgid "Nominal output voltage (V)"
+msgstr "Nominale uitgangsvoltage (V)"
+
+msgid "Nominal value of apparent power (Volt-Amps)"
+msgstr "Nominale waarde van schijnbaar vermogen (Volt-Amps)"
+
+msgid "Nominal value of real power (Watts)"
+msgstr "Nominale waarde van echte vermogen (watt)"
+
 msgid "None"
 msgstr "None (Geen)"
 
@@ -3904,6 +4138,12 @@ msgstr "Nu"
 
 msgid "Null passwords"
 msgstr "Leeg wachtwoord"
+
+msgid "Number of bad battery packs"
+msgstr "Aantal slechte batterijsets"
+
+msgid "Number of battery packs"
+msgstr "Aantal batterijsets"
 
 msgid "Number of clients"
 msgstr "Aantal werkstations"
@@ -3989,11 +4229,26 @@ msgstr "Overige"
 msgid "Out"
 msgstr "Uit"
 
+msgid "Outgoing Power/Inverter Information"
+msgstr "Uitgaande Power/Omvormer gegevens"
+
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr "Uitgaande SMTP mailserver, bijv. smtp.mijninternetprovider.nl."
 
 msgid "Outgoing mail server"
 msgstr "Server voor uitgaande e-mail (SMTP)"
+
+msgid "Output current (A)"
+msgstr "Uitgangsstroom (A)"
+
+msgid "Output frequency (Hz)"
+msgstr "Uitvoerfrequentie (Hz)"
+
+msgid "Output voltage"
+msgstr "Uitgangsvoltage"
+
+msgid "Output voltage (V)"
+msgstr "Uitgangsspanning (V)"
 
 msgid "Overload"
 msgstr "Overbelasting"
@@ -4047,6 +4302,9 @@ msgstr "Moeizaam agressief"
 
 msgid "Pairwise"
 msgstr "Paargewijs"
+
+msgid "Parameter xxx (ups.conf or cmdline -x) setting"
+msgstr "Parameter xxx (ups.conf of cmdline -x) instelling"
 
 msgid "Partition number"
 msgstr "Partitie nummer"
@@ -4285,6 +4543,9 @@ msgstr "Reserveer modificatie tijden."
 msgid "Preserve permissions"
 msgstr "Toestemmingen reserveren"
 
+msgid "Prevent deep discharge of battery"
+msgstr "Voorkom diep ontladen van de batterij"
+
 msgid "Primary"
 msgstr "Primair"
 
@@ -4311,6 +4572,9 @@ msgstr "Processen"
 
 msgid "Processes information"
 msgstr "systeemprocessen"
+
+msgid "Product ID"
+msgstr "Product-ID"
 
 msgid "Profile"
 msgstr "Profiel"
@@ -4441,6 +4705,9 @@ msgstr "Alleen-lezen"
 msgid "Realm"
 msgstr "Realm"
 
+msgid "Reason for last transfer to battery (* opaque)"
+msgstr "Reden voor laatste overdracht naar batterij (* ondoorzichtig)"
+
 msgid "Reboot"
 msgstr "Herstarten"
 
@@ -4462,11 +4729,20 @@ msgstr "Verversen"
 msgid "Reject"
 msgstr "Afwijzen"
 
+msgid "Relative humidity alarm (enabled/disabled)"
+msgstr "Relatieve vochtigheid alarm (ingeschakeld/uitgeschakeld)"
+
+msgid "Relative humidity threshold high (percent)"
+msgstr "Relatieve vochtigheid drempel hoog (procent)"
+
 msgid "Release Notes"
 msgstr "Release Notes"
 
 msgid "Reload page"
 msgstr "Pagina herladen"
+
+msgid "Remaining battery runtime"
+msgstr "Resterende batterijduur"
 
 msgid "Remote Rsync Server"
 msgstr "Remote Rsync Server"
@@ -4554,6 +4830,9 @@ msgstr ""
 
 msgid "Results for net rpc testjoin:"
 msgstr "Resultaten voor net rpc testjoin:"
+
+msgid "Results of last self test"
+msgstr "Resultaten laatste zelftest"
 
 msgid "Resume"
 msgstr "Hervatten"
@@ -4783,6 +5062,13 @@ msgstr ""
 "Selecteer het server configuratiebestand (XML-formaat) en druk op de knop "
 "'Configuratie Herstellen' om de server in oude staat te herstellen."
 
+msgid ""
+"Select which interface to use. (only selectable if your server has more than "
+"one)"
+msgstr ""
+"Selecteer de interface om te gebruiken. (alleen te selecteren indien uw "
+"server er meer dan één heeft)"
+
 msgid "Select your read balance algorithm."
 msgstr "Selecteer het lees balance algoritme."
 
@@ -4816,6 +5102,9 @@ msgid "Separate email addresses by semi-colon."
 msgstr ""
 "Verscheidene e-mailadressen scheiden door punt-komma. (gebruik de ; toets)"
 
+msgid "Serial"
+msgstr "Seriëel"
+
 msgid "Serial Console"
 msgstr "Serial Console"
 
@@ -4831,8 +5120,14 @@ msgstr "Servernaam"
 msgid "Server description. This can usually be left blank."
 msgstr "Server omschrijving. Dit kan gewoonlijk leeg gelaten worden."
 
+msgid "Server information"
+msgstr "Server informatie"
+
 msgid "Server name"
 msgstr "Servernaam"
+
+msgid "Server version"
+msgstr "Server versie"
 
 msgid "Service"
 msgstr "Service"
@@ -4857,6 +5152,9 @@ msgstr "Stel de CNID backend in om te gebruiken voor het volume."
 
 msgid "Set the account's primary group to the given group."
 msgstr "Stel de account's primaire groep in naar de opgegeven groep."
+
+msgid "Set the content location(s) to or from the media library."
+msgstr "De media locatie (s) van of naar de mediabibliotheek instellen."
 
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr "Stel de gewenste Service Set Identifier in (aka netwerk naam)."
@@ -4937,6 +5235,9 @@ msgstr "Gedeelde mappen"
 
 msgid "Shell"
 msgstr "Shell"
+
+msgid "Show RAW UPS Info"
+msgstr "Toon ruwe UPS Info"
 
 msgid "Show log entries in reverse order (newest entries on top)"
 msgstr ""
@@ -5217,6 +5518,9 @@ msgstr "Schakel VIP naar BACKUP"
 msgid "Switch VIP to MASTER"
 msgstr "Schakel VIP naar MASTER"
 
+msgid "Switch off when running on battery and no/low load"
+msgstr "Uitschakelen bij het uitvoeren op batterij en geen/lage belasting"
+
 msgid "Switch to"
 msgstr "Schakel naar"
 
@@ -5354,8 +5658,17 @@ msgstr "Doelen"
 msgid "Temperature"
 msgstr "Temperatuur"
 
+msgid "Temperature alarm (enabled/disabled)"
+msgstr "Temperatuur alarm (ingeschakeld/uitgeschakeld)"
+
 msgid "Temperature monitoring"
 msgstr "Temperatuur controle"
+
+msgid "Temperature threshold high (degrees C)"
+msgstr "Temperatuur drempel hoog (graden C)"
+
+msgid "Temperature threshold low (degrees C)"
+msgstr "Temperatuur drempel laag (graden C)"
 
 msgid "Temporary Device"
 msgstr "Tijdelijk Apparaat"
@@ -5551,6 +5864,16 @@ msgstr "De attribuut '%s' dient lager te zijn dan '%s'."
 #, c-format
 msgid "The attribute '%s' must contain at least one entry."
 msgstr "Het attribuut '%s' moet tenmiste één invulling bevatten."
+
+#, php-format
+msgid "The attribute '%s': use a port in the range from %d to %d."
+msgstr "Het attribuut '%s': gebruik een port in het bereik van %d tot %d."
+
+#, php-format
+msgid "The attribute 'Port': port '%ld' is already taken by another service."
+msgstr ""
+"Het attribuut 'Poort': poort '%ld' is reeds in gebruik door een andere "
+"service."
 
 msgid ""
 "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
@@ -5988,7 +6311,7 @@ msgid "The rule number determines the order of the rule."
 msgstr "Het regelnummer bepaald de volgorde van de regel."
 
 msgid "The serial or USB port where your UPS is connected."
-msgstr "De seriele of USB poort waar de UPS aan verbonden is."
+msgstr "De seriële of USB poort waar de UPS mee verbonden is."
 
 #, php-format
 msgid "The server advertises itself as a time server to Windows clients."
@@ -6255,9 +6578,9 @@ msgid ""
 "configure your UPS please check the NUT (Network UPS Tools) <a href='%s' "
 "target='_blank'>documentation</a>."
 msgstr ""
-"Deze configuratie opties zijn gebruikt om de ups.conf configuratie bestand "
-"te genereren welke nodig zijn voor de NUT UPS daemon. Om meer informatie te "
-"krijgen hoe u uw UPS configureerd, bekijkt u dan de NUT (Netwerk UPS Tool) "
+"Deze configuratie opties zijn gebruikt om de ups.conf configuratiebestand te "
+"genereren welke nodig is voor de NUT UPS daemon. Om meer informatie te "
+"krijgen hoe u uw UPS configureerd, bekijkt u dan de NUT (Network UPS Tools) "
 "<a href='%s' target='_blank'>documentatie</a>."
 
 msgid "This controls how the case of filenames are viewed and stored."
@@ -6371,7 +6694,7 @@ msgstr "Deze naam is als voobeeld: iqn.2005-01.il.ac.huji.cs:iemand."
 
 msgid "This name is used to uniquely identify your UPS on this system."
 msgstr ""
-"Geef hier een naam die gebruikt wordt om op dit systeem uniek uw UPS te "
+"Geef hier een naam die gebruikt wordt om op deze server uw UPS te "
 "identificeren."
 
 msgid ""
@@ -6611,6 +6934,15 @@ msgstr "Tijd"
 msgid "Time Machine"
 msgstr "Tijdmachine"
 
+msgid "Time before the load will be rebooted"
+msgstr "Tijd voordat de belasting opnieuw zal worden opgestart"
+
+msgid "Time before the load will be shutdown"
+msgstr "Tijd voor de belasting afgesloten zal worden."
+
+msgid "Time before the load will be started"
+msgstr "Tijd voordat de belasting zal worden gestart"
+
 msgid "Time interval"
 msgstr "Tijdsinterval"
 
@@ -6841,26 +7173,53 @@ msgstr "UPS Status"
 msgid "UPS Waiting"
 msgstr "UPS Wachtend"
 
+msgid "UPS alarms"
+msgstr "UPS alarmen"
+
+msgid "UPS beeper status"
+msgstr "UPS piep status"
+
+msgid "UPS coldstarts from battery"
+msgstr "UPS koudstart van batterij"
+
 msgid "UPS disabled"
 msgstr "UPS is uitgeschakeld"
+
+msgid "UPS external contact sensors"
+msgstr "UPS externe contact sensoren"
+
+msgid "UPS firmware"
+msgstr "UPS firmware"
 
 msgid "UPS goes on battery"
 msgstr "UPS gaat over op batterij"
 
+msgid "UPS model"
+msgstr "UPS model"
+
 msgid "UPS reaches low battery"
 msgstr "UPS heeft een laag batterij niveau bereikt."
+
+msgid "UPS starts when mains is (re)applied"
+msgstr "UPS wordt gestart wanneer terug op lichtnet"
 
 msgid "UPS status"
 msgstr "UPS status"
 
+msgid "UPS system identifier"
+msgstr "UPS-systeem-id"
+
+msgid "UPS temperature"
+msgstr "UPS temperatuur"
+
+msgid "UPS type"
+msgstr "UPS type"
+
+msgid "UPS watchdog status"
+msgstr "UPS watchdog status"
+
 msgid "UPnP"
 msgstr "UPnP"
-
-msgid "UPnP A/V Media Server"
-msgstr "UPnP A/V Media Server"
-
-msgid "UPnP friendly name."
-msgstr "UPnP vriendschappelijke naam. (De media delen als...)"
 
 msgid "URI"
 msgstr "URI"
@@ -6875,7 +7234,7 @@ msgid "Uninstall package"
 msgstr "Pakket deïnstalleren"
 
 msgid "Uninterruptible Power Supply"
-msgstr "Ononderbreekbare Stroomvoorziening (UPS)"
+msgstr "UPS (niet onderbreekbare voeding)"
 
 msgid "Unison"
 msgstr "Unison"
@@ -7068,6 +7427,9 @@ msgstr "Waarde"
 msgid "Variable"
 msgstr "Variabele"
 
+msgid "Vendor ID"
+msgstr "Vendor ID"
+
 msgid "Version"
 msgstr "Versie"
 
@@ -7177,6 +7539,9 @@ msgstr ""
 "diensten met aanvullende pakketten die geen ondersteuning voor HAST volumes "
 "bieden niet worden gebruikt."
 
+msgid "When UPS switches to Low Battery"
+msgstr "Wanneer de UPS schakelt naar Laag Batterij Niveau"
+
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
 "attempt to identify the remote username."
@@ -7266,7 +7631,7 @@ msgid "You have to select at least one item for '%s'."
 msgstr "U moet tenminste 1 item selecteren voor '%s'."
 
 msgid "You may enter a description here for your reference."
-msgstr "Geef hier de omschrijving voor uw referentie."
+msgstr "Geef hier uw referentie omschrijving."
 
 #, php-format
 msgid ""
@@ -7394,6 +7759,12 @@ msgstr "bestandsselector"
 msgid "get target info failed."
 msgstr "doel info opvragen is mislukt."
 
+msgid "greatest settable high voltage transfer point"
+msgstr "grootste instelbare hoogspanning overstappunt"
+
+msgid "greatest settable low voltage transfer point"
+msgstr "grootste instelbare laagspanning overstappunt"
+
 msgid "hiadaptive (high performance)"
 msgstr "hiadaptive (hoge prestaties)"
 
@@ -7496,6 +7867,12 @@ msgstr "doel scannen is mislukt."
 
 msgid "second(s)"
 msgstr "seconde(n)"
+
+msgid "smallest settable high voltage transfer point"
+msgstr "kleinste instelbare hoogspanning overstappunt"
+
+msgid "smallest settable low voltage transfer point"
+msgstr "kleinste instelbare laagspanning overstappunt"
 
 msgid "striping"
 msgstr "striping"

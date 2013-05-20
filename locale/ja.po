@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-04-15 03:51+0000\n"
+"POT-Creation-Date: 2013-05-20 04:39+0000\n"
 "PO-Revision-Date: 2013-04-14 18:58+0000\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-04 23:21+0000\n"
-"X-Generator: Launchpad (build 16598)\n"
+"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
 "X-Poedit-Language: Japanese\n"
@@ -526,6 +526,9 @@ msgstr "新しいファイルを許可します。"
 msgid "Allow new files to be created."
 msgstr "新しいファイルの作成を許可します。"
 
+msgid "Allow to start UPS from battery"
+msgstr ""
+
 msgid "Allow trusted domains."
 msgstr "信頼するドメインを許可する。"
 
@@ -565,6 +568,15 @@ msgid ""
 "Always use 0 for device number, helps when the device number is not constant "
 "across a reboot, cluster, ..."
 msgstr "デバイス番号として常に0を使います。リブートやクラスタを超てデバイスが特定の値をもたない場合に役に立ちます。"
+
+msgid "Ambient Conditions From External Probe Equipment"
+msgstr ""
+
+msgid "Ambient relative humidity (percent)"
+msgstr ""
+
+msgid "Ambient temperature (degrees C)"
+msgstr ""
 
 msgid "An host with this name already exists."
 msgstr "この名前がつけられたホストは既に存在しています。"
@@ -679,6 +691,9 @@ msgstr "ディスクの自動検出モード"
 msgid "Autoselect"
 msgstr "自動選択"
 
+msgid "Auxiliary device firmware"
+msgstr ""
+
 msgid "Auxiliary parameters"
 msgstr "補助パラメータ"
 
@@ -719,11 +734,48 @@ msgstr "iqn. から指定しない場合は自動的にベース名が追加さ�
 msgid "Battery Charge"
 msgstr "バッテリー充電"
 
+msgid "Battery Details"
+msgstr ""
+
 msgid "Battery Low"
 msgstr "バッテリー残量が少なくなりました"
 
 msgid "Battery Remain Time"
 msgstr "バッテリー残り時間"
+
+msgid ""
+"Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
+msgstr ""
+
+msgid "Battery alarm threshold"
+msgstr ""
+
+msgid "Battery capacity"
+msgstr ""
+
+msgid "Battery change date"
+msgstr ""
+
+msgid "Battery charge"
+msgstr ""
+
+msgid "Battery chemistry"
+msgstr ""
+
+msgid "Battery current"
+msgstr ""
+
+msgid "Battery level when UPS switches to \"Warning\" state"
+msgstr ""
+
+msgid "Battery manufacturing date"
+msgstr ""
+
+msgid "Battery temperature"
+msgstr ""
+
+msgid "Battery voltage"
+msgstr ""
 
 msgid "Best available"
 msgstr "最も良いものを自動選択"
@@ -1161,6 +1213,12 @@ msgstr "現在のバージョン:"
 msgid "Current password"
 msgstr "現在のパスワード"
 
+msgid "Current value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Current value of real power (Watts)"
+msgstr ""
+
 msgid "Custom"
 msgstr "カスタム"
 
@@ -1184,6 +1242,12 @@ msgstr "DDP"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DNLA/UPnP"
+msgstr ""
+
+msgid "DNLA/UPnP Media Server"
+msgstr ""
 
 msgid "DNS settings"
 msgstr "DNS の設定"
@@ -1434,9 +1498,6 @@ msgstr "接続先共有"
 
 msgid "Detected"
 msgstr "検出"
-
-msgid "Detected Language:<br />(Change if needed)"
-msgstr "検出された言語:<br />(必要に応じて変更)"
 
 msgid "Detected RSYNC remote shares"
 msgstr "検出された RSYNC リモート共有"
@@ -1790,6 +1851,15 @@ msgstr "ドライバの一覧"
 msgid "Driver parameters"
 msgstr "ドライバパラメータ"
 
+msgid "Driver used"
+msgstr ""
+
+msgid "Driver version"
+msgstr ""
+
+msgid "Driver version internal"
+msgstr ""
+
 msgid "Duplex"
 msgstr "デュプレックス"
 
@@ -1907,6 +1977,10 @@ msgstr "ユーザを編集"
 msgid "Edit volume"
 msgstr "ボリュームを編集"
 
+msgid ""
+"Efficiency of the UPS (Ratio of the output current on the input current)"
+msgstr ""
+
 msgid "Email"
 msgstr "メール"
 
@@ -1948,6 +2022,9 @@ msgstr "ZFS ACLを有効化"
 
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "Zeroconf/Bonjour でのデバイスのサービスの広告を有効にする"
+
+msgid "Enable administrative DNLA/UPnP WebGUI."
+msgstr ""
 
 msgid "Enable anonymous bind."
 msgstr "匿名バインドを有効にします。"
@@ -2066,9 +2143,6 @@ msgstr "いくつかのカーネル変数のチューニングを許可する"
 msgid "Enable use sendfile."
 msgstr "sendfile を有効にします。"
 
-msgid "Enable web user interface."
-msgstr "Web ユーザインタフェースの有効化"
-
 msgid "Enable write cache mode."
 msgstr "書き込みキャッシュモードを有効にします。"
 
@@ -2170,6 +2244,12 @@ msgstr "指定されたパスの中にあるすべてのディレクトリーを
 
 msgid "Extended attributes"
 msgstr "拡張属性"
+
+msgid "Extended input frequency range"
+msgstr ""
+
+msgid "Extended input voltage range"
+msgstr ""
 
 msgid "Extensions"
 msgstr "拡張"
@@ -2352,6 +2432,9 @@ msgstr "ファームウェアバージョンチェック"
 msgid "FirstBurstLength"
 msgstr "FirstBurstLength"
 
+msgid "Flag xxx (ups.conf or cmdline -x) status"
+msgstr ""
+
 msgid "Flags"
 msgstr "フラグ"
 
@@ -2420,6 +2503,9 @@ msgstr "宛て先ネットワークに到達するためのゲートウェイ"
 msgid "General"
 msgstr "基本"
 
+msgid "General Information UPS Unit"
+msgstr ""
+
 msgid "General Setup"
 msgstr "基本設定"
 
@@ -2437,6 +2523,9 @@ msgstr "GiB"
 
 msgid "Give only local users access to the web page."
 msgstr "ローカルユーザのみにウェブページのアクセスを許可します。"
+
+msgid "Give your media library a friendly name."
+msgstr ""
 
 msgid "Grant access to the user portal."
 msgstr "ユーザポータルへのアクセスを許可します。"
@@ -2524,6 +2613,15 @@ msgstr "ヘルプ"
 
 msgid "Hide dot files"
 msgstr "ドットファイルを隠す"
+
+msgid "High voltage boosting transfer point"
+msgstr ""
+
+msgid "High voltage transfer point"
+msgstr ""
+
+msgid "High voltage trimming transfer point"
+msgstr ""
 
 msgid "Highlighting"
 msgstr "ハイライト"
@@ -2777,6 +2875,9 @@ msgstr "ほとんどの場合 'public' が使われます。"
 msgid "Include basic hardware information."
 msgstr "基本的なハードウェア情報を含む。"
 
+msgid "Incoming Line/Power Information"
+msgstr ""
+
 msgid "Incomplete directory"
 msgstr "未完了ディレクトリ"
 
@@ -2836,6 +2937,30 @@ msgstr "イニシエータ側ユーザ名。(双方向 CHAP 認証)"
 msgid "Initiators"
 msgstr "イニシエータ"
 
+msgid "Input current (A)"
+msgstr ""
+
+msgid "Input frequency"
+msgstr ""
+
+msgid "Input line frequency (Hz)"
+msgstr ""
+
+msgid "Input line frequency high (Hz)"
+msgstr ""
+
+msgid "Input line frequency low (Hz)"
+msgstr ""
+
+msgid "Input power quality (* opaque)"
+msgstr ""
+
+msgid "Input power sensitivity"
+msgstr ""
+
+msgid "Input voltage"
+msgstr ""
+
 msgid "Inquiry Product"
 msgstr "プロダクトの照会"
 
@@ -2860,14 +2985,35 @@ msgstr "インタフェース"
 msgid "Interface Management"
 msgstr "インタフェースの管理"
 
-msgid "Interface to listen to."
-msgstr "待ち受けるインタフェース。"
+msgid "Interface selection"
+msgstr ""
 
 msgid "Interfaces"
 msgstr "インタフェース"
 
+msgid "Internal Server Information"
+msgstr ""
+
+msgid "Internal UPS clock date"
+msgstr ""
+
+msgid "Internal UPS clock time"
+msgstr ""
+
+msgid "Interval between self tests"
+msgstr ""
+
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "10 秒以上の時間を指定してください。"
+
+msgid "Interval to wait after shutdown with delay command"
+msgstr ""
+
+msgid "Interval to wait before rebooting the UPS)"
+msgstr ""
+
+msgid "Interval to wait before restarting the load"
+msgstr ""
 
 msgid "Invalid file format."
 msgstr "無効なファイル形式です。"
@@ -2963,6 +3109,9 @@ msgstr "LUNs"
 
 msgid "Language"
 msgstr "言語"
+
+msgid "Language to use on front panel"
+msgstr ""
 
 msgid "Large read/write"
 msgstr "Large read/write"
@@ -3087,6 +3236,12 @@ msgstr "システム負荷"
 msgid "Load file"
 msgstr "ロード"
 
+msgid "Load on UPS"
+msgstr ""
+
+msgid "Load when UPS switches to overload condition (\"OVER\")"
+msgstr ""
+
 msgid "Loadbalance"
 msgstr "ロードバランス"
 
@@ -3130,6 +3285,9 @@ msgstr "共有ファイルの場所を指定します。"
 
 msgid "Location where the content database file will be stored."
 msgstr "コンテンツデータベースファイルが保存される場所を指定します。"
+
+msgid "Location where the database with media contents will be stored."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -3178,6 +3336,15 @@ msgstr "ユーザのログイン名"
 msgid "Logout"
 msgstr "ログアウト"
 
+msgid "Low voltage boosting transfer point"
+msgstr ""
+
+msgid "Low voltage transfer point"
+msgstr ""
+
+msgid "Low voltage trimming transfer point"
+msgstr ""
+
 msgid "Lowercases names in both directions"
 msgstr "両方で名前を小文字化します"
 
@@ -3224,6 +3391,9 @@ msgstr "マネージメント"
 
 msgid "Manufacturer"
 msgstr "製造者"
+
+msgid "Manufacturing date"
+msgstr ""
 
 msgid "Map all users to root"
 msgstr "全てのユーザを root にマッピングします。"
@@ -3286,6 +3456,9 @@ msgstr "最大周波数"
 msgid "Maximum idle time in seconds."
 msgstr "最大のアイドル時間を秒単位で指定します。"
 
+msgid "Maximum incoming voltage seen"
+msgstr ""
+
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr "セッションの切断までに、この値までパスワードの再入力を試行出来ます。"
 
@@ -3315,11 +3488,20 @@ msgstr "最大の同時接続数。初期値は 0 (無制限)。"
 msgid "Maximum performance, maximum acoustic output"
 msgstr "最大のパフォーマンス、最大の音響出力"
 
+msgid "Maximum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Maximum temperature seen (degrees C)"
+msgstr ""
+
 msgid "Media"
 msgstr "メディア"
 
 msgid "Media Directory"
 msgstr "メディアディレクトリ"
+
+msgid "Media library"
+msgstr ""
 
 msgid "Medium acoustic output"
 msgstr "中間の音響出力"
@@ -3345,14 +3527,26 @@ msgstr "パッシブモードで使用するポート(最小)"
 msgid "Minimum"
 msgstr "最小"
 
+msgid "Minimum battery level for UPS restart after power-off"
+msgstr ""
+
 msgid "Minimum free space"
 msgstr "空き容量の最小値"
 
 msgid "Minimum frequency"
 msgstr "最少周波数"
 
+msgid "Minimum incoming voltage seen"
+msgstr ""
+
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "最小のパフォーマンス、最小の音響出力"
+
+msgid "Minimum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Minimum temperature seen (degrees C)"
+msgstr ""
 
 msgid "Minutes"
 msgstr "分"
@@ -3368,6 +3562,9 @@ msgstr "テンポラリフォルダがありません。"
 
 msgid "Mode"
 msgstr "モード"
+
+msgid "Model"
+msgstr ""
 
 msgid "Model extra"
 msgstr "Model extra"
@@ -3442,6 +3639,9 @@ msgstr "NT1"
 
 msgid "NTP time server"
 msgstr "NTP サーバ"
+
+msgid "NUT Internal Driver Information"
+msgstr ""
 
 msgid "Name"
 msgstr "名前"
@@ -3601,6 +3801,33 @@ msgstr "ノードID"
 msgid "Node Name"
 msgstr "ノード名"
 
+msgid "Nominal battery voltage"
+msgstr ""
+
+msgid "Nominal input current (A)"
+msgstr ""
+
+msgid "Nominal input line frequency (Hz)"
+msgstr ""
+
+msgid "Nominal input voltage"
+msgstr ""
+
+msgid "Nominal output current (A)"
+msgstr ""
+
+msgid "Nominal output frequency (Hz)"
+msgstr ""
+
+msgid "Nominal output voltage (V)"
+msgstr ""
+
+msgid "Nominal value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Nominal value of real power (Watts)"
+msgstr ""
+
 msgid "None"
 msgstr "無し"
 
@@ -3654,6 +3881,12 @@ msgstr "今すぐ"
 
 msgid "Null passwords"
 msgstr "空のパスワード"
+
+msgid "Number of bad battery packs"
+msgstr ""
+
+msgid "Number of battery packs"
+msgstr ""
 
 msgid "Number of clients"
 msgstr "クライアントの数"
@@ -3733,11 +3966,26 @@ msgstr "その他"
 msgid "Out"
 msgstr "出力"
 
+msgid "Outgoing Power/Inverter Information"
+msgstr ""
+
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr "外向けのSMTPサーバのアドレス。例) smtp.mycorp.com"
 
 msgid "Outgoing mail server"
 msgstr "外向けのメールサーバ"
+
+msgid "Output current (A)"
+msgstr ""
+
+msgid "Output frequency (Hz)"
+msgstr ""
+
+msgid "Output voltage"
+msgstr ""
+
+msgid "Output voltage (V)"
+msgstr ""
 
 msgid "Overload"
 msgstr "オーバーロード"
@@ -3789,6 +4037,9 @@ msgstr "最高にアグレッシブ"
 
 msgid "Pairwise"
 msgstr "ペア"
+
+msgid "Parameter xxx (ups.conf or cmdline -x) setting"
+msgstr ""
 
 msgid "Partition number"
 msgstr "パーティション番号"
@@ -4018,6 +4269,9 @@ msgstr "更新時刻を保持します。"
 msgid "Preserve permissions"
 msgstr "パーミッションを保持します。"
 
+msgid "Prevent deep discharge of battery"
+msgstr ""
+
 msgid "Primary"
 msgstr "プライマリ"
 
@@ -4044,6 +4298,9 @@ msgstr "プロセス"
 
 msgid "Processes information"
 msgstr "プロセス情報"
+
+msgid "Product ID"
+msgstr ""
 
 msgid "Profile"
 msgstr "プロファイル"
@@ -4167,6 +4424,9 @@ msgstr "読み込み専用"
 msgid "Realm"
 msgstr "レルム"
 
+msgid "Reason for last transfer to battery (* opaque)"
+msgstr ""
+
 msgid "Reboot"
 msgstr "リブート"
 
@@ -4188,11 +4448,20 @@ msgstr "更新"
 msgid "Reject"
 msgstr "却下"
 
+msgid "Relative humidity alarm (enabled/disabled)"
+msgstr ""
+
+msgid "Relative humidity threshold high (percent)"
+msgstr ""
+
 msgid "Release Notes"
 msgstr "リリースノート"
 
 msgid "Reload page"
 msgstr "ページの再読込み"
+
+msgid "Remaining battery runtime"
+msgstr ""
 
 msgid "Remote Rsync Server"
 msgstr "リモート Rsync サーバ"
@@ -4275,6 +4544,9 @@ msgstr "メタデータをファイルからプロバイダに復元します。
 
 msgid "Results for net rpc testjoin:"
 msgstr "net rpc testjoin の結果:"
+
+msgid "Results of last self test"
+msgstr ""
 
 msgid "Resume"
 msgstr "リジューム"
@@ -4492,6 +4764,11 @@ msgid ""
 "restore the configuration."
 msgstr "サーバー設定ファイル(XMLフォーマット)を選択後、下のボタンをクリックすると設定が復元されます。"
 
+msgid ""
+"Select which interface to use. (only selectable if your server has more than "
+"one)"
+msgstr ""
+
 msgid "Select your read balance algorithm."
 msgstr "読込み時のバランスアルゴリズムを選択して下さい。"
 
@@ -4522,6 +4799,9 @@ msgstr "テストメールの送信"
 msgid "Separate email addresses by semi-colon."
 msgstr "セミコロンを使用してメールアドレスを複数記述する事が出来ます。"
 
+msgid "Serial"
+msgstr ""
+
 msgid "Serial Console"
 msgstr "シリアルコンソール"
 
@@ -4537,8 +4817,14 @@ msgstr "サーバ名"
 msgid "Server description. This can usually be left blank."
 msgstr "サーバの説明。通常は空白のままで構いません。"
 
+msgid "Server information"
+msgstr ""
+
 msgid "Server name"
 msgstr "サーバ名"
+
+msgid "Server version"
+msgstr ""
 
 msgid "Service"
 msgstr "サービス"
@@ -4563,6 +4849,9 @@ msgstr "ボリュームに CNID バックエンドを使用するよう設定し
 
 msgid "Set the account's primary group to the given group."
 msgstr "このアカウントのプライマリグループを設定して下さい。"
+
+msgid "Set the content location(s) to or from the media library."
+msgstr ""
 
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr "SSID (サービスセット識別子。ネットワーク名)を設定して下さい。"
@@ -4632,6 +4921,9 @@ msgstr "共有"
 
 msgid "Shell"
 msgstr "シェル"
+
+msgid "Show RAW UPS Info"
+msgstr ""
 
 msgid "Show log entries in reverse order (newest entries on top)"
 msgstr "逆順でログエントリを表示する (もっとも新しいエントリがトップ)"
@@ -4893,6 +5185,9 @@ msgstr "仮想IPをバックアップに変更"
 msgid "Switch VIP to MASTER"
 msgstr "仮想IPをマスターに変更"
 
+msgid "Switch off when running on battery and no/low load"
+msgstr ""
+
 msgid "Switch to"
 msgstr "切り替え"
 
@@ -5028,8 +5323,17 @@ msgstr "ターゲット"
 msgid "Temperature"
 msgstr "温度"
 
+msgid "Temperature alarm (enabled/disabled)"
+msgstr ""
+
 msgid "Temperature monitoring"
 msgstr "温度監視"
+
+msgid "Temperature threshold high (degrees C)"
+msgstr ""
+
+msgid "Temperature threshold low (degrees C)"
+msgstr ""
 
 msgid "Temporary Device"
 msgstr "一時的なデバイス"
@@ -5206,6 +5510,14 @@ msgstr "属性 '%s' は '%s' より小さくなければいけません。"
 #, c-format
 msgid "The attribute '%s' must contain at least one entry."
 msgstr "属性 '%s' は最低ひとつのエントリーを含む必要があります。"
+
+#, php-format
+msgid "The attribute '%s': use a port in the range from %d to %d."
+msgstr ""
+
+#, php-format
+msgid "The attribute 'Port': port '%ld' is already taken by another service."
+msgstr ""
 
 msgid ""
 "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
@@ -6090,6 +6402,15 @@ msgstr "時間"
 msgid "Time Machine"
 msgstr "Time Machine"
 
+msgid "Time before the load will be rebooted"
+msgstr ""
+
+msgid "Time before the load will be shutdown"
+msgstr ""
+
+msgid "Time before the load will be started"
+msgstr ""
+
 msgid "Time interval"
 msgstr "インターバル"
 
@@ -6308,26 +6629,53 @@ msgstr "UPSステータス"
 msgid "UPS Waiting"
 msgstr "USP待機"
 
+msgid "UPS alarms"
+msgstr ""
+
+msgid "UPS beeper status"
+msgstr ""
+
+msgid "UPS coldstarts from battery"
+msgstr ""
+
 msgid "UPS disabled"
 msgstr "UPS は無効です"
+
+msgid "UPS external contact sensors"
+msgstr ""
+
+msgid "UPS firmware"
+msgstr ""
 
 msgid "UPS goes on battery"
 msgstr "UPS はバッテリ駆動となりました"
 
+msgid "UPS model"
+msgstr ""
+
 msgid "UPS reaches low battery"
 msgstr "UPS のバッテリ残量が少なくなりました"
+
+msgid "UPS starts when mains is (re)applied"
+msgstr ""
 
 msgid "UPS status"
 msgstr "UPSのステータス"
 
+msgid "UPS system identifier"
+msgstr ""
+
+msgid "UPS temperature"
+msgstr ""
+
+msgid "UPS type"
+msgstr ""
+
+msgid "UPS watchdog status"
+msgstr ""
+
 msgid "UPnP"
 msgstr "UPnP"
-
-msgid "UPnP A/V Media Server"
-msgstr "UPnP A/V メディアサーバ"
-
-msgid "UPnP friendly name."
-msgstr "UPnP フレンドリ名。"
 
 msgid "URI"
 msgstr "URI"
@@ -6519,6 +6867,9 @@ msgstr "値"
 msgid "Variable"
 msgstr "変数"
 
+msgid "Vendor ID"
+msgstr ""
+
 msgid "Version"
 msgstr "バージョン"
 
@@ -6619,6 +6970,9 @@ msgid ""
 "additional packages which do not support HAST volume cannot be used."
 msgstr ""
 "HASTを有効にすると、HASTボリュームをサポートしていないローカルデバイス、ローカルサービス、追加パッケージは利用することが出来なくなります。"
+
+msgid "When UPS switches to Low Battery"
+msgstr ""
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
@@ -6818,6 +7172,12 @@ msgstr "ファイル選択"
 msgid "get target info failed."
 msgstr "ターゲット情報の取得に失敗しました。"
 
+msgid "greatest settable high voltage transfer point"
+msgstr ""
+
+msgid "greatest settable low voltage transfer point"
+msgstr ""
+
 msgid "hiadaptive (high performance)"
 msgstr "hiadaptive (高パフォーマンス)"
 
@@ -6920,6 +7280,12 @@ msgstr "ターゲットスキャンに失敗しました。"
 
 msgid "second(s)"
 msgstr "秒"
+
+msgid "smallest settable high voltage transfer point"
+msgstr ""
+
+msgid "smallest settable low voltage transfer point"
+msgstr ""
 
 msgid "striping"
 msgstr "ストライピング"

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-04-15 03:51+0000\n"
+"POT-Creation-Date: 2013-05-20 04:39+0000\n"
 "PO-Revision-Date: 2013-03-23 10:39+0000\n"
 "Last-Translator: Глория Хрусталёва <gloriya@hushmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-04 23:22+0000\n"
-"X-Generator: Launchpad (build 16598)\n"
+"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
 "X-Poedit-Language: Russian\n"
@@ -550,6 +550,9 @@ msgstr "Новые файлы"
 msgid "Allow new files to be created."
 msgstr "Позволять создание новых файлов"
 
+msgid "Allow to start UPS from battery"
+msgstr ""
+
 msgid "Allow trusted domains."
 msgstr "Разрешить доверенные домены."
 
@@ -596,6 +599,15 @@ msgid ""
 msgstr ""
 "Всегда использовать 0 для номера устройства. Это помогает, когда номер "
 "устройства меняется после перезагрузки, в кластере и т.п."
+
+msgid "Ambient Conditions From External Probe Equipment"
+msgstr ""
+
+msgid "Ambient relative humidity (percent)"
+msgstr ""
+
+msgid "Ambient temperature (degrees C)"
+msgstr ""
 
 msgid "An host with this name already exists."
 msgstr "Хост с таким именем уже существует."
@@ -716,6 +728,9 @@ msgstr "Режим автоматического поиска дисков"
 msgid "Autoselect"
 msgstr "Автоматически"
 
+msgid "Auxiliary device firmware"
+msgstr ""
+
 msgid "Auxiliary parameters"
 msgstr "Дополнительные параметры"
 
@@ -759,11 +774,48 @@ msgstr ""
 msgid "Battery Charge"
 msgstr "Заряд батареи"
 
+msgid "Battery Details"
+msgstr ""
+
 msgid "Battery Low"
 msgstr "Низкий заряд батареи"
 
 msgid "Battery Remain Time"
 msgstr "Оставшееся время аккумулятора"
+
+msgid ""
+"Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
+msgstr ""
+
+msgid "Battery alarm threshold"
+msgstr ""
+
+msgid "Battery capacity"
+msgstr ""
+
+msgid "Battery change date"
+msgstr ""
+
+msgid "Battery charge"
+msgstr ""
+
+msgid "Battery chemistry"
+msgstr ""
+
+msgid "Battery current"
+msgstr ""
+
+msgid "Battery level when UPS switches to \"Warning\" state"
+msgstr ""
+
+msgid "Battery manufacturing date"
+msgstr ""
+
+msgid "Battery temperature"
+msgstr ""
+
+msgid "Battery voltage"
+msgstr ""
 
 msgid "Best available"
 msgstr "Наилучший доступный"
@@ -1217,6 +1269,12 @@ msgstr "Текущая Версия:"
 msgid "Current password"
 msgstr "Текущий пароль"
 
+msgid "Current value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Current value of real power (Watts)"
+msgstr ""
+
 msgid "Custom"
 msgstr "Custom"
 
@@ -1240,6 +1298,12 @@ msgstr "DDP"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DNLA/UPnP"
+msgstr ""
+
+msgid "DNLA/UPnP Media Server"
+msgstr ""
 
 msgid "DNS settings"
 msgstr "Настройки DNS"
@@ -1493,9 +1557,6 @@ msgstr "Общий ресурс получателя"
 
 msgid "Detected"
 msgstr "Определенная"
-
-msgid "Detected Language:<br />(Change if needed)"
-msgstr "Используемый язык:<br />(измените если необходимо)"
 
 msgid "Detected RSYNC remote shares"
 msgstr "Обнаружены удаленные каталоги Rsync"
@@ -1872,6 +1933,15 @@ msgstr "Список драйверов"
 msgid "Driver parameters"
 msgstr "Параметры драйвера"
 
+msgid "Driver used"
+msgstr ""
+
+msgid "Driver version"
+msgstr ""
+
+msgid "Driver version internal"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -1990,6 +2060,10 @@ msgstr "Изменить пользователя"
 msgid "Edit volume"
 msgstr "Редактировать раздел"
 
+msgid ""
+"Efficiency of the UPS (Ratio of the output current on the input current)"
+msgstr ""
+
 msgid "Email"
 msgstr "Электронная почта"
 
@@ -2031,6 +2105,9 @@ msgstr "Вкдючить ZFS ACL"
 
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "Включить Zeroconf/Bonjour для объявления служб этого устройства"
+
+msgid "Enable administrative DNLA/UPnP WebGUI."
+msgstr ""
 
 msgid "Enable anonymous bind."
 msgstr "Разрешить анонимный доступ"
@@ -2155,9 +2232,6 @@ msgstr "Включить возможность настройки некото�
 msgid "Enable use sendfile."
 msgstr "Включить использование 'sendfile'"
 
-msgid "Enable web user interface."
-msgstr "Включить web-интерфейс управления"
-
 msgid "Enable write cache mode."
 msgstr "Включить кеширование записи."
 
@@ -2270,6 +2344,12 @@ msgstr "Экспорт всех каталогов по указанному п�
 
 msgid "Extended attributes"
 msgstr "Расширенные атрибуты"
+
+msgid "Extended input frequency range"
+msgstr ""
+
+msgid "Extended input voltage range"
+msgstr ""
 
 msgid "Extensions"
 msgstr "Расширения"
@@ -2462,6 +2542,9 @@ msgstr "Проверка версии прошивки"
 msgid "FirstBurstLength"
 msgstr "FirstBurstLength"
 
+msgid "Flag xxx (ups.conf or cmdline -x) status"
+msgstr ""
+
 msgid "Flags"
 msgstr "Флаги"
 
@@ -2532,6 +2615,9 @@ msgstr "Шлюз будет использован для доступа в ук
 msgid "General"
 msgstr "Общие"
 
+msgid "General Information UPS Unit"
+msgstr ""
+
 msgid "General Setup"
 msgstr "Общие параметры"
 
@@ -2549,6 +2635,9 @@ msgstr "ГБ"
 
 msgid "Give only local users access to the web page."
 msgstr "Только локальные пользователи могут открыть web-страницу."
+
+msgid "Give your media library a friendly name."
+msgstr ""
 
 msgid "Grant access to the user portal."
 msgstr "Предоставить доступ к порталу пользователя"
@@ -2636,6 +2725,15 @@ msgstr "Помощь"
 
 msgid "Hide dot files"
 msgstr "Скрывать файлы \".\""
+
+msgid "High voltage boosting transfer point"
+msgstr ""
+
+msgid "High voltage transfer point"
+msgstr ""
+
+msgid "High voltage trimming transfer point"
+msgstr ""
 
 msgid "Highlighting"
 msgstr "Подсветка"
@@ -2907,6 +3005,9 @@ msgstr "В большинстве случаев здесь использует
 msgid "Include basic hardware information."
 msgstr "Включить базовые сведения об аппаратном обеспечении"
 
+msgid "Incoming Line/Power Information"
+msgstr ""
+
 msgid "Incomplete directory"
 msgstr "Каталог неполных файлов"
 
@@ -2971,6 +3072,30 @@ msgstr ""
 msgid "Initiators"
 msgstr "Инициаторы"
 
+msgid "Input current (A)"
+msgstr ""
+
+msgid "Input frequency"
+msgstr ""
+
+msgid "Input line frequency (Hz)"
+msgstr ""
+
+msgid "Input line frequency high (Hz)"
+msgstr ""
+
+msgid "Input line frequency low (Hz)"
+msgstr ""
+
+msgid "Input power quality (* opaque)"
+msgstr ""
+
+msgid "Input power sensitivity"
+msgstr ""
+
+msgid "Input voltage"
+msgstr ""
+
 msgid "Inquiry Product"
 msgstr "Запрос продукта"
 
@@ -2995,14 +3120,35 @@ msgstr "Интерфейс"
 msgid "Interface Management"
 msgstr "Управление интерфейсами"
 
-msgid "Interface to listen to."
-msgstr "Интерфейс для прослушивания."
+msgid "Interface selection"
+msgstr ""
 
 msgid "Interfaces"
 msgstr "Интерфейсы"
 
+msgid "Internal Server Information"
+msgstr ""
+
+msgid "Internal UPS clock date"
+msgstr ""
+
+msgid "Internal UPS clock time"
+msgstr ""
+
+msgid "Interval between self tests"
+msgstr ""
+
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "Интервал должен быть больше или равен 10 секундам."
+
+msgid "Interval to wait after shutdown with delay command"
+msgstr ""
+
+msgid "Interval to wait before rebooting the UPS)"
+msgstr ""
+
+msgid "Interval to wait before restarting the load"
+msgstr ""
 
 msgid "Invalid file format."
 msgstr "Неверный формат файла."
@@ -3110,6 +3256,9 @@ msgstr "Логические номера устройств"
 
 msgid "Language"
 msgstr "Язык"
+
+msgid "Language to use on front panel"
+msgstr ""
 
 msgid "Large read/write"
 msgstr "Чтение/запись большими блоками"
@@ -3242,6 +3391,12 @@ msgstr "Средняя загрузка"
 msgid "Load file"
 msgstr "Загрузка файла"
 
+msgid "Load on UPS"
+msgstr ""
+
+msgid "Load when UPS switches to overload condition (\"OVER\")"
+msgstr ""
+
 msgid "Loadbalance"
 msgstr "Балансировка нагрузки"
 
@@ -3292,6 +3447,9 @@ msgstr "Размещение файлов на общем ресурсе."
 msgid "Location where the content database file will be stored."
 msgstr "Размещение для хранения содержимого базы данных."
 
+msgid "Location where the database with media contents will be stored."
+msgstr ""
+
 #, php-format
 msgid ""
 "Location where the working files will be stored, e.g. %s/backup/.unison"
@@ -3341,6 +3499,15 @@ msgstr "Имя пользователя (логин)."
 msgid "Logout"
 msgstr "Выход"
 
+msgid "Low voltage boosting transfer point"
+msgstr ""
+
+msgid "Low voltage transfer point"
+msgstr ""
+
+msgid "Low voltage trimming transfer point"
+msgstr ""
+
 msgid "Lowercases names in both directions"
 msgstr "Нижний регистр в обоих направлениях"
 
@@ -3388,6 +3555,9 @@ msgstr "Управление"
 
 msgid "Manufacturer"
 msgstr "Производитель"
+
+msgid "Manufacturing date"
+msgstr ""
 
 msgid "Map all users to root"
 msgstr "Присвоить всем пользователям права учетной записи root"
@@ -3450,6 +3620,9 @@ msgstr "Максимальная частота"
 msgid "Maximum idle time in seconds."
 msgstr "Максимальное время бездействия (в секундах)."
 
+msgid "Maximum incoming voltage seen"
+msgstr ""
+
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr "Максимально допустимое число попыток ввода пароля перед отключением."
 
@@ -3485,11 +3658,20 @@ msgstr ""
 msgid "Maximum performance, maximum acoustic output"
 msgstr "Максимальная производительность, максимальный уровень шума"
 
+msgid "Maximum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Maximum temperature seen (degrees C)"
+msgstr ""
+
 msgid "Media"
 msgstr "Носитель"
 
 msgid "Media Directory"
 msgstr "Каталог носителей"
+
+msgid "Media library"
+msgstr ""
 
 msgid "Medium acoustic output"
 msgstr "Средний уровень шума"
@@ -3515,14 +3697,26 @@ msgstr "Минимальный порт пассивного режима"
 msgid "Minimum"
 msgstr "Минимальный"
 
+msgid "Minimum battery level for UPS restart after power-off"
+msgstr ""
+
 msgid "Minimum free space"
 msgstr "Минимум свободного места"
 
 msgid "Minimum frequency"
 msgstr "Минимальная частота"
 
+msgid "Minimum incoming voltage seen"
+msgstr ""
+
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Минимальная производительность, минимум шума"
+
+msgid "Minimum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Minimum temperature seen (degrees C)"
+msgstr ""
 
 msgid "Minutes"
 msgstr "Минуты"
@@ -3538,6 +3732,9 @@ msgstr "&=&Отсутствует временный каталог."
 
 msgid "Mode"
 msgstr "Режим"
+
+msgid "Model"
+msgstr ""
 
 msgid "Model extra"
 msgstr "Model extra"
@@ -3614,6 +3811,9 @@ msgstr "NT1"
 
 msgid "NTP time server"
 msgstr "Сервер времени NTP"
+
+msgid "NUT Internal Driver Information"
+msgstr ""
 
 msgid "Name"
 msgstr "Имя"
@@ -3797,6 +3997,33 @@ msgstr "ID узла(Node ID)"
 msgid "Node Name"
 msgstr "Имя узла"
 
+msgid "Nominal battery voltage"
+msgstr ""
+
+msgid "Nominal input current (A)"
+msgstr ""
+
+msgid "Nominal input line frequency (Hz)"
+msgstr ""
+
+msgid "Nominal input voltage"
+msgstr ""
+
+msgid "Nominal output current (A)"
+msgstr ""
+
+msgid "Nominal output frequency (Hz)"
+msgstr ""
+
+msgid "Nominal output voltage (V)"
+msgstr ""
+
+msgid "Nominal value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Nominal value of real power (Watts)"
+msgstr ""
+
 msgid "None"
 msgstr "Нет"
 
@@ -3859,6 +4086,12 @@ msgstr "Сейчас"
 
 msgid "Null passwords"
 msgstr "Пустые пароли"
+
+msgid "Number of bad battery packs"
+msgstr ""
+
+msgid "Number of battery packs"
+msgstr ""
 
 msgid "Number of clients"
 msgstr "Количество клиентов"
@@ -3942,11 +4175,26 @@ msgstr "Другие"
 msgid "Out"
 msgstr "Исходящий"
 
+msgid "Outgoing Power/Inverter Information"
+msgstr ""
+
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr "Адрес SMTP-сервера исходящей почты, например, smtp.mycorp.com"
 
 msgid "Outgoing mail server"
 msgstr "Сервер исходящей почты"
+
+msgid "Output current (A)"
+msgstr ""
+
+msgid "Output frequency (Hz)"
+msgstr ""
+
+msgid "Output voltage"
+msgstr ""
+
+msgid "Output voltage (V)"
+msgstr ""
 
 msgid "Overload"
 msgstr "Перегрузка"
@@ -4000,6 +4248,9 @@ msgstr "Агрессивный"
 
 msgid "Pairwise"
 msgstr "Парные"
+
+msgid "Parameter xxx (ups.conf or cmdline -x) setting"
+msgstr ""
 
 msgid "Partition number"
 msgstr "Номер раздела"
@@ -4238,6 +4489,9 @@ msgstr "Сохранять время изменения"
 msgid "Preserve permissions"
 msgstr "Сохранять права доступа"
 
+msgid "Prevent deep discharge of battery"
+msgstr ""
+
 msgid "Primary"
 msgstr "Первичный (Primary)"
 
@@ -4264,6 +4518,9 @@ msgstr "Процессы"
 
 msgid "Processes information"
 msgstr "Информация о процессах"
+
+msgid "Product ID"
+msgstr ""
 
 msgid "Profile"
 msgstr "Профиль"
@@ -4393,6 +4650,9 @@ msgstr "Только чтение"
 msgid "Realm"
 msgstr "Название области"
 
+msgid "Reason for last transfer to battery (* opaque)"
+msgstr ""
+
 msgid "Reboot"
 msgstr "Перезагрузка"
 
@@ -4414,11 +4674,20 @@ msgstr "Обновить"
 msgid "Reject"
 msgstr "Отклонить"
 
+msgid "Relative humidity alarm (enabled/disabled)"
+msgstr ""
+
+msgid "Relative humidity threshold high (percent)"
+msgstr ""
+
 msgid "Release Notes"
 msgstr "Примечания к выпуску"
 
 msgid "Reload page"
 msgstr "Перезагрузить страницу"
+
+msgid "Remaining battery runtime"
+msgstr ""
 
 msgid "Remote Rsync Server"
 msgstr "Удаленный Rsync-сервер"
@@ -4505,6 +4774,9 @@ msgstr "Восстановить метаданные из выбранного 
 
 msgid "Results for net rpc testjoin:"
 msgstr "Результаты команды net rpc testjoin:"
+
+msgid "Results of last self test"
+msgstr ""
 
 msgid "Resume"
 msgstr "Возобновление"
@@ -4729,6 +5001,11 @@ msgstr ""
 "Выберите файл настроек сервера XML и щёлкните на кнопке ниже, чтобы "
 "восстановить настройки."
 
+msgid ""
+"Select which interface to use. (only selectable if your server has more than "
+"one)"
+msgstr ""
+
 msgid "Select your read balance algorithm."
 msgstr "Выберите желаемый алгоритм балансировки чтения."
 
@@ -4759,6 +5036,9 @@ msgstr "Отправить тестовый e-mail"
 msgid "Separate email addresses by semi-colon."
 msgstr "Несколько адресов e-mail разделяются точкой с запятой."
 
+msgid "Serial"
+msgstr ""
+
 msgid "Serial Console"
 msgstr "Консоль serial-порта"
 
@@ -4774,8 +5054,14 @@ msgstr "Имя сервера"
 msgid "Server description. This can usually be left blank."
 msgstr "Описание сервера. Обычно можно оставить пустым."
 
+msgid "Server information"
+msgstr ""
+
 msgid "Server name"
 msgstr "Имя сервера"
+
+msgid "Server version"
+msgstr ""
 
 msgid "Service"
 msgstr "Служба"
@@ -4800,6 +5086,9 @@ msgstr "CNID backend, используемый для этого тома."
 
 msgid "Set the account's primary group to the given group."
 msgstr "Установить данную группу основной."
+
+msgid "Set the content location(s) to or from the media library."
+msgstr ""
 
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr ""
@@ -4882,6 +5171,9 @@ msgstr "Общие ресурсы"
 
 msgid "Shell"
 msgstr "Командная оболочка (shell)"
+
+msgid "Show RAW UPS Info"
+msgstr ""
 
 msgid "Show log entries in reverse order (newest entries on top)"
 msgstr "Показать записи журнала в обратном порядке (новые записи сверху)"
@@ -5155,6 +5447,9 @@ msgstr "Переключить VIP на BACKUP"
 msgid "Switch VIP to MASTER"
 msgstr "Переключить VIP на MASTER"
 
+msgid "Switch off when running on battery and no/low load"
+msgstr ""
+
 msgid "Switch to"
 msgstr "Переключить на"
 
@@ -5292,8 +5587,17 @@ msgstr "Цели"
 msgid "Temperature"
 msgstr "Температура"
 
+msgid "Temperature alarm (enabled/disabled)"
+msgstr ""
+
 msgid "Temperature monitoring"
 msgstr "Контроль температуры"
+
+msgid "Temperature threshold high (degrees C)"
+msgstr ""
+
+msgid "Temperature threshold low (degrees C)"
+msgstr ""
 
 msgid "Temporary Device"
 msgstr "Временное устройство"
@@ -5487,6 +5791,14 @@ msgstr "Атрибут '%s' должен быть меньше, чем '%s'."
 #, c-format
 msgid "The attribute '%s' must contain at least one entry."
 msgstr "Атрибут '%s' должен содержать по меньшей мере одну запись."
+
+#, php-format
+msgid "The attribute '%s': use a port in the range from %d to %d."
+msgstr ""
+
+#, php-format
+msgid "The attribute 'Port': port '%ld' is already taken by another service."
+msgstr ""
 
 msgid ""
 "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
@@ -6520,6 +6832,15 @@ msgstr "Время"
 msgid "Time Machine"
 msgstr "Time Machine"
 
+msgid "Time before the load will be rebooted"
+msgstr ""
+
+msgid "Time before the load will be shutdown"
+msgstr ""
+
+msgid "Time before the load will be started"
+msgstr ""
+
 msgid "Time interval"
 msgstr "Временной интервал"
 
@@ -6752,26 +7073,53 @@ msgstr "Состояние ИБП"
 msgid "UPS Waiting"
 msgstr "ИБП в состоянии ожидания"
 
+msgid "UPS alarms"
+msgstr ""
+
+msgid "UPS beeper status"
+msgstr ""
+
+msgid "UPS coldstarts from battery"
+msgstr ""
+
 msgid "UPS disabled"
 msgstr "Служба UPS отключена"
+
+msgid "UPS external contact sensors"
+msgstr ""
+
+msgid "UPS firmware"
+msgstr ""
 
 msgid "UPS goes on battery"
 msgstr "Переключение UPS на работу от батареи"
 
+msgid "UPS model"
+msgstr ""
+
 msgid "UPS reaches low battery"
 msgstr "Низкий заряд батареи UPS"
+
+msgid "UPS starts when mains is (re)applied"
+msgstr ""
 
 msgid "UPS status"
 msgstr "Состояние UPS"
 
+msgid "UPS system identifier"
+msgstr ""
+
+msgid "UPS temperature"
+msgstr ""
+
+msgid "UPS type"
+msgstr ""
+
+msgid "UPS watchdog status"
+msgstr ""
+
 msgid "UPnP"
 msgstr "UPnP"
-
-msgid "UPnP A/V Media Server"
-msgstr "UPnP A/V медиасервер"
-
-msgid "UPnP friendly name."
-msgstr "Дружественное UPnP-имя."
 
 msgid "URI"
 msgstr "URI"
@@ -6980,6 +7328,9 @@ msgstr "Значение"
 msgid "Variable"
 msgstr "Переменная"
 
+msgid "Vendor ID"
+msgstr ""
+
 msgid "Version"
 msgstr "Версия"
 
@@ -7089,6 +7440,9 @@ msgstr ""
 "Когда режим HAST включен, локальные устройства, локальные сервисы и "
 "дополнительные пакеты, которые не поддерживают том(volume) HAST, не могут "
 "быть использованы."
+
+msgid "When UPS switches to Low Battery"
+msgstr ""
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
@@ -7304,6 +7658,12 @@ msgstr "Выбор файла"
 msgid "get target info failed."
 msgstr "неудачное получение информации о цели."
 
+msgid "greatest settable high voltage transfer point"
+msgstr ""
+
+msgid "greatest settable low voltage transfer point"
+msgstr ""
+
 msgid "hiadaptive (high performance)"
 msgstr "hiadaptive (высокая производительность)"
 
@@ -7406,6 +7766,12 @@ msgstr "неудачное сканирование цели."
 
 msgid "second(s)"
 msgstr "сек."
+
+msgid "smallest settable high voltage transfer point"
+msgstr ""
+
+msgid "smallest settable low voltage transfer point"
+msgstr ""
 
 msgid "striping"
 msgstr "чередование"

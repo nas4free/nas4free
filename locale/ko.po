@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-04-15 03:51+0000\n"
+"POT-Creation-Date: 2013-05-20 04:39+0000\n"
 "PO-Revision-Date: 2012-03-17 08:48+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-04 23:22+0000\n"
-"X-Generator: Launchpad (build 16598)\n"
+"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
+"X-Generator: Launchpad (build 16626)\n"
 "X-Poedit-Country: KOREA\n"
 "Language: \n"
 "X-Poedit-Language: Korean\n"
@@ -514,6 +514,9 @@ msgstr "새 파일 허용"
 msgid "Allow new files to be created."
 msgstr "새 파일 생성 허용."
 
+msgid "Allow to start UPS from battery"
+msgstr ""
+
 msgid "Allow trusted domains."
 msgstr ""
 
@@ -553,6 +556,15 @@ msgid ""
 "Always use 0 for device number, helps when the device number is not constant "
 "across a reboot, cluster, ..."
 msgstr "장치 번호로 항상 0을 사용합니다. 장치 번호가 리붓이나 클러스터 등에서 항상 일정하지 않을 때 도움이 됩니다."
+
+msgid "Ambient Conditions From External Probe Equipment"
+msgstr ""
+
+msgid "Ambient relative humidity (percent)"
+msgstr ""
+
+msgid "Ambient temperature (degrees C)"
+msgstr ""
 
 msgid "An host with this name already exists."
 msgstr "해당 이름을 가지고 있는 호스트가 존재합니다."
@@ -667,6 +679,9 @@ msgstr "자동 디스크 발견 모드"
 msgid "Autoselect"
 msgstr "자동 선택"
 
+msgid "Auxiliary device firmware"
+msgstr ""
+
 msgid "Auxiliary parameters"
 msgstr "보조 인자들"
 
@@ -707,10 +722,47 @@ msgstr "'iqn.'이 없이 시작할 때 기본 명이 자동으로 추가될 것�
 msgid "Battery Charge"
 msgstr ""
 
+msgid "Battery Details"
+msgstr ""
+
 msgid "Battery Low"
 msgstr ""
 
 msgid "Battery Remain Time"
+msgstr ""
+
+msgid ""
+"Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
+msgstr ""
+
+msgid "Battery alarm threshold"
+msgstr ""
+
+msgid "Battery capacity"
+msgstr ""
+
+msgid "Battery change date"
+msgstr ""
+
+msgid "Battery charge"
+msgstr ""
+
+msgid "Battery chemistry"
+msgstr ""
+
+msgid "Battery current"
+msgstr ""
+
+msgid "Battery level when UPS switches to \"Warning\" state"
+msgstr ""
+
+msgid "Battery manufacturing date"
+msgstr ""
+
+msgid "Battery temperature"
+msgstr ""
+
+msgid "Battery voltage"
 msgstr ""
 
 msgid "Best available"
@@ -1138,6 +1190,12 @@ msgstr ""
 msgid "Current password"
 msgstr ""
 
+msgid "Current value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Current value of real power (Watts)"
+msgstr ""
+
 msgid "Custom"
 msgstr "사용자 정의"
 
@@ -1161,6 +1219,12 @@ msgstr "DDP"
 
 msgid "DHCP"
 msgstr "DHCP"
+
+msgid "DNLA/UPnP"
+msgstr ""
+
+msgid "DNLA/UPnP Media Server"
+msgstr ""
 
 msgid "DNS settings"
 msgstr "DNS 설정"
@@ -1408,9 +1472,6 @@ msgstr "목적지 공유"
 
 msgid "Detected"
 msgstr "탐지 내용"
-
-msgid "Detected Language:<br />(Change if needed)"
-msgstr ""
 
 msgid "Detected RSYNC remote shares"
 msgstr "RYSNC 원격 공유 탐지됨"
@@ -1764,6 +1825,15 @@ msgstr "드라이버 리스트"
 msgid "Driver parameters"
 msgstr ""
 
+msgid "Driver used"
+msgstr ""
+
+msgid "Driver version"
+msgstr ""
+
+msgid "Driver version internal"
+msgstr ""
+
 msgid "Duplex"
 msgstr "Duplex"
 
@@ -1881,6 +1951,10 @@ msgstr "사용자 편집"
 msgid "Edit volume"
 msgstr ""
 
+msgid ""
+"Efficiency of the UPS (Ratio of the output current on the input current)"
+msgstr ""
+
 msgid "Email"
 msgstr "전자우편"
 
@@ -1922,6 +1996,9 @@ msgstr ""
 
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "이 장치의 서비스를 공지하기 위해 Zeroconf/Bonjour 활성화"
+
+msgid "Enable administrative DNLA/UPnP WebGUI."
+msgstr ""
 
 msgid "Enable anonymous bind."
 msgstr "익명 bind 활성화."
@@ -2040,9 +2117,6 @@ msgstr "몇몇 커널 변수들의 미세 조정 활성화"
 msgid "Enable use sendfile."
 msgstr "전송 파일 이용 활성화."
 
-msgid "Enable web user interface."
-msgstr "웹 사용자 인터페이스 활성화."
-
 msgid "Enable write cache mode."
 msgstr ""
 
@@ -2143,6 +2217,12 @@ msgstr ""
 
 msgid "Extended attributes"
 msgstr "확장 속성"
+
+msgid "Extended input frequency range"
+msgstr ""
+
+msgid "Extended input voltage range"
+msgstr ""
 
 msgid "Extensions"
 msgstr "확장자"
@@ -2326,6 +2406,9 @@ msgstr "펌웨어 버전 체크"
 msgid "FirstBurstLength"
 msgstr "FirstBurstLength"
 
+msgid "Flag xxx (ups.conf or cmdline -x) status"
+msgstr ""
+
 msgid "Flags"
 msgstr "플래그"
 
@@ -2394,6 +2477,9 @@ msgstr "대상 네트워크에 도달하는 데에 이용되는 게이트웨이.
 msgid "General"
 msgstr "일반"
 
+msgid "General Information UPS Unit"
+msgstr ""
+
 msgid "General Setup"
 msgstr "일반 설정"
 
@@ -2411,6 +2497,9 @@ msgstr "GiB"
 
 msgid "Give only local users access to the web page."
 msgstr "로컬 사용자만 웹 페이지에 접근할 수 있게 합니다."
+
+msgid "Give your media library a friendly name."
+msgstr ""
 
 msgid "Grant access to the user portal."
 msgstr "사용자 포털에 대해 접근 권한 부여."
@@ -2498,6 +2587,15 @@ msgstr "도움말"
 
 msgid "Hide dot files"
 msgstr "숨김 파일 감추기"
+
+msgid "High voltage boosting transfer point"
+msgstr ""
+
+msgid "High voltage transfer point"
+msgstr ""
+
+msgid "High voltage trimming transfer point"
+msgstr ""
 
 msgid "Highlighting"
 msgstr "강조"
@@ -2749,6 +2847,9 @@ msgstr "대부분의 경우 여기에는 'public'이 이용됩니다."
 msgid "Include basic hardware information."
 msgstr "기본 하드웨어 정보 포함."
 
+msgid "Incoming Line/Power Information"
+msgstr ""
+
 msgid "Incomplete directory"
 msgstr "불완전 파일 디렉터리"
 
@@ -2808,6 +2909,30 @@ msgstr "개시자 측의 사용자 명. (상호 CHAP 인증을 위한)"
 msgid "Initiators"
 msgstr "개시자"
 
+msgid "Input current (A)"
+msgstr ""
+
+msgid "Input frequency"
+msgstr ""
+
+msgid "Input line frequency (Hz)"
+msgstr ""
+
+msgid "Input line frequency high (Hz)"
+msgstr ""
+
+msgid "Input line frequency low (Hz)"
+msgstr ""
+
+msgid "Input power quality (* opaque)"
+msgstr ""
+
+msgid "Input power sensitivity"
+msgstr ""
+
+msgid "Input voltage"
+msgstr ""
+
 msgid "Inquiry Product"
 msgstr "제품 조회"
 
@@ -2832,14 +2957,35 @@ msgstr "인터페이스"
 msgid "Interface Management"
 msgstr "인터페이스 관리"
 
-msgid "Interface to listen to."
-msgstr "listen 할 인터페이스."
+msgid "Interface selection"
+msgstr ""
 
 msgid "Interfaces"
 msgstr "인터페이스"
 
+msgid "Internal Server Information"
+msgstr ""
+
+msgid "Internal UPS clock date"
+msgstr ""
+
+msgid "Internal UPS clock time"
+msgstr ""
+
+msgid "Interval between self tests"
+msgstr ""
+
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "시간 간격은 최소 10초 이상이어야 합니다."
+
+msgid "Interval to wait after shutdown with delay command"
+msgstr ""
+
+msgid "Interval to wait before rebooting the UPS)"
+msgstr ""
+
+msgid "Interval to wait before restarting the load"
+msgstr ""
 
 msgid "Invalid file format."
 msgstr "무효한 파일 포맷."
@@ -2935,6 +3081,9 @@ msgstr "LUNs"
 
 msgid "Language"
 msgstr "언어"
+
+msgid "Language to use on front panel"
+msgstr ""
 
 msgid "Large read/write"
 msgstr "대용량 읽기/쓰기"
@@ -3058,6 +3207,12 @@ msgstr "로드 평균"
 msgid "Load file"
 msgstr ""
 
+msgid "Load on UPS"
+msgstr ""
+
+msgid "Load when UPS switches to overload condition (\"OVER\")"
+msgstr ""
+
 msgid "Loadbalance"
 msgstr "로드 밸런스"
 
@@ -3101,6 +3256,9 @@ msgstr "공유할 파일들의 위치."
 
 msgid "Location where the content database file will be stored."
 msgstr "컨텐츠 데이터베이스 파일이 저장될 위치."
+
+msgid "Location where the database with media contents will be stored."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -3149,6 +3307,15 @@ msgstr "사용자의 로그인 명."
 msgid "Logout"
 msgstr "로그아웃"
 
+msgid "Low voltage boosting transfer point"
+msgstr ""
+
+msgid "Low voltage transfer point"
+msgstr ""
+
+msgid "Low voltage trimming transfer point"
+msgstr ""
+
 msgid "Lowercases names in both directions"
 msgstr "양쪽 모두 소문자 이름"
 
@@ -3195,6 +3362,9 @@ msgstr "관리"
 
 msgid "Manufacturer"
 msgstr "제조자"
+
+msgid "Manufacturing date"
+msgstr ""
 
 msgid "Map all users to root"
 msgstr "모든 사용자를 root로 mapping"
@@ -3257,6 +3427,9 @@ msgstr ""
 msgid "Maximum idle time in seconds."
 msgstr "초당 최대 유휴 시간."
 
+msgid "Maximum incoming voltage seen"
+msgstr ""
+
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr "연결을 해제할 때까지 허용된 비밀번호 재 시도의 최대 수."
 
@@ -3286,11 +3459,20 @@ msgstr "동시 연결의 최대 수. 기본 값은 0(무한)."
 msgid "Maximum performance, maximum acoustic output"
 msgstr "최대 성능, 최대 소음 출력"
 
+msgid "Maximum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Maximum temperature seen (degrees C)"
+msgstr ""
+
 msgid "Media"
 msgstr "매체"
 
 msgid "Media Directory"
 msgstr "매체 디렉터리"
+
+msgid "Media library"
+msgstr ""
 
 msgid "Medium acoustic output"
 msgstr "보통 소음 출력"
@@ -3316,14 +3498,26 @@ msgstr "최소 passive 포트"
 msgid "Minimum"
 msgstr "최소"
 
+msgid "Minimum battery level for UPS restart after power-off"
+msgstr ""
+
 msgid "Minimum free space"
 msgstr "최소 여유 공간"
 
 msgid "Minimum frequency"
 msgstr ""
 
+msgid "Minimum incoming voltage seen"
+msgstr ""
+
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "최소 성능, 최소 소음 출력"
+
+msgid "Minimum relative humidity seen (percent)"
+msgstr ""
+
+msgid "Minimum temperature seen (degrees C)"
+msgstr ""
 
 msgid "Minutes"
 msgstr "분"
@@ -3339,6 +3533,9 @@ msgstr "임시 폴더를 찾을 수 없습니다."
 
 msgid "Mode"
 msgstr "모드"
+
+msgid "Model"
+msgstr ""
 
 msgid "Model extra"
 msgstr "추가 모델"
@@ -3413,6 +3610,9 @@ msgstr ""
 
 msgid "NTP time server"
 msgstr "NTP 타임 서버"
+
+msgid "NUT Internal Driver Information"
+msgstr ""
 
 msgid "Name"
 msgstr "이름"
@@ -3572,6 +3772,33 @@ msgstr ""
 msgid "Node Name"
 msgstr ""
 
+msgid "Nominal battery voltage"
+msgstr ""
+
+msgid "Nominal input current (A)"
+msgstr ""
+
+msgid "Nominal input line frequency (Hz)"
+msgstr ""
+
+msgid "Nominal input voltage"
+msgstr ""
+
+msgid "Nominal output current (A)"
+msgstr ""
+
+msgid "Nominal output frequency (Hz)"
+msgstr ""
+
+msgid "Nominal output voltage (V)"
+msgstr ""
+
+msgid "Nominal value of apparent power (Volt-Amps)"
+msgstr ""
+
+msgid "Nominal value of real power (Watts)"
+msgstr ""
+
 msgid "None"
 msgstr "없음"
 
@@ -3625,6 +3852,12 @@ msgstr "지금"
 
 msgid "Null passwords"
 msgstr "비밀번호 없는 계정"
+
+msgid "Number of bad battery packs"
+msgstr ""
+
+msgid "Number of battery packs"
+msgstr ""
 
 msgid "Number of clients"
 msgstr "클라이언트 수"
@@ -3702,11 +3935,26 @@ msgstr "기타"
 msgid "Out"
 msgstr "밖"
 
+msgid "Outgoing Power/Inverter Information"
+msgstr ""
+
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr "나가는 SMTP 메일 서버 주소. 예. smtp.mycorp.com."
 
 msgid "Outgoing mail server"
 msgstr "나가는 메일 서버"
+
+msgid "Output current (A)"
+msgstr ""
+
+msgid "Output frequency (Hz)"
+msgstr ""
+
+msgid "Output voltage"
+msgstr ""
+
+msgid "Output voltage (V)"
+msgstr ""
 
 msgid "Overload"
 msgstr ""
@@ -3758,6 +4006,9 @@ msgstr "매우 공격적"
 
 msgid "Pairwise"
 msgstr "Pairwise"
+
+msgid "Parameter xxx (ups.conf or cmdline -x) setting"
+msgstr ""
 
 msgid "Partition number"
 msgstr "파티션 번호"
@@ -3987,6 +4238,9 @@ msgstr "변경 시간 보존."
 msgid "Preserve permissions"
 msgstr "권한 보존"
 
+msgid "Prevent deep discharge of battery"
+msgstr ""
+
 msgid "Primary"
 msgstr ""
 
@@ -4013,6 +4267,9 @@ msgstr "프로세스"
 
 msgid "Processes information"
 msgstr "프로세스 정보"
+
+msgid "Product ID"
+msgstr ""
 
 msgid "Profile"
 msgstr "프로파일"
@@ -4136,6 +4393,9 @@ msgstr "읽기 전용"
 msgid "Realm"
 msgstr "영역"
 
+msgid "Reason for last transfer to battery (* opaque)"
+msgstr ""
+
 msgid "Reboot"
 msgstr "리붓"
 
@@ -4157,11 +4417,20 @@ msgstr "갱신"
 msgid "Reject"
 msgstr "기각"
 
+msgid "Relative humidity alarm (enabled/disabled)"
+msgstr ""
+
+msgid "Relative humidity threshold high (percent)"
+msgstr ""
+
 msgid "Release Notes"
 msgstr "배포 정보"
 
 msgid "Reload page"
 msgstr "페이지 다시 읽기"
+
+msgid "Remaining battery runtime"
+msgstr ""
 
 msgid "Remote Rsync Server"
 msgstr "원격 Rsync 서버"
@@ -4244,6 +4513,9 @@ msgstr "주어진 파일의 메타 데이터를 주어진 제공자에게 복구
 
 msgid "Results for net rpc testjoin:"
 msgstr "net rpc testjoin의 결과:"
+
+msgid "Results of last self test"
+msgstr ""
 
 msgid "Resume"
 msgstr "다시 진행"
@@ -4458,6 +4730,11 @@ msgid ""
 "restore the configuration."
 msgstr ""
 
+msgid ""
+"Select which interface to use. (only selectable if your server has more than "
+"one)"
+msgstr ""
+
 msgid "Select your read balance algorithm."
 msgstr "읽기 밸런스 알고리즘을 선택하십시오."
 
@@ -4488,6 +4765,9 @@ msgstr "테스트 전자우편 보내기"
 msgid "Separate email addresses by semi-colon."
 msgstr "전자우편 주소들을 세미콜론 문자로 분리하십시오."
 
+msgid "Serial"
+msgstr ""
+
 msgid "Serial Console"
 msgstr "직렬 콘솔"
 
@@ -4503,8 +4783,14 @@ msgstr "서버 명"
 msgid "Server description. This can usually be left blank."
 msgstr "서버 설명. 공백으로 둘 수도 있습니다."
 
+msgid "Server information"
+msgstr ""
+
 msgid "Server name"
 msgstr "서버 명"
+
+msgid "Server version"
+msgstr ""
 
 msgid "Service"
 msgstr "서비스"
@@ -4529,6 +4815,9 @@ msgstr "이 볼륨을 위해 CNID 백엔드가 이용되도록 설정합니다."
 
 msgid "Set the account's primary group to the given group."
 msgstr "주어진 그룹으로 계정의 기본 그룹을 설정합니다."
+
+msgid "Set the content location(s) to or from the media library."
+msgstr ""
 
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr "원하는 서비스 셋 식별자(네트워크 이름으로도 알려짐)를 설정합니다."
@@ -4595,6 +4884,9 @@ msgstr "공유"
 
 msgid "Shell"
 msgstr "셸"
+
+msgid "Show RAW UPS Info"
+msgstr ""
 
 msgid "Show log entries in reverse order (newest entries on top)"
 msgstr "로그 항목을 역순(새 항목이 위쪽)으로 보이기"
@@ -4856,6 +5148,9 @@ msgstr ""
 msgid "Switch VIP to MASTER"
 msgstr ""
 
+msgid "Switch off when running on battery and no/low load"
+msgstr ""
+
 msgid "Switch to"
 msgstr "전환 대상:"
 
@@ -4991,8 +5286,17 @@ msgstr "타젯"
 msgid "Temperature"
 msgstr "온도"
 
+msgid "Temperature alarm (enabled/disabled)"
+msgstr ""
+
 msgid "Temperature monitoring"
 msgstr "온도 모니터링"
+
+msgid "Temperature threshold high (degrees C)"
+msgstr ""
+
+msgid "Temperature threshold low (degrees C)"
+msgstr ""
 
 msgid "Temporary Device"
 msgstr "임시 장치"
@@ -5169,6 +5473,14 @@ msgstr "속성 '%s'은(는) '%s'보다 작아야 합니다."
 #, c-format
 msgid "The attribute '%s' must contain at least one entry."
 msgstr "속성 '%s'은(는) 최소 한 개 이상의 항목을 포함해야 합니다."
+
+#, php-format
+msgid "The attribute '%s': use a port in the range from %d to %d."
+msgstr ""
+
+#, php-format
+msgid "The attribute 'Port': port '%ld' is already taken by another service."
+msgstr ""
 
 msgid ""
 "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
@@ -6050,6 +6362,15 @@ msgstr "시간"
 msgid "Time Machine"
 msgstr "시간 머신"
 
+msgid "Time before the load will be rebooted"
+msgstr ""
+
+msgid "Time before the load will be shutdown"
+msgstr ""
+
+msgid "Time before the load will be started"
+msgstr ""
+
 msgid "Time interval"
 msgstr "시간 간격"
 
@@ -6265,26 +6586,53 @@ msgstr ""
 msgid "UPS Waiting"
 msgstr ""
 
+msgid "UPS alarms"
+msgstr ""
+
+msgid "UPS beeper status"
+msgstr ""
+
+msgid "UPS coldstarts from battery"
+msgstr ""
+
 msgid "UPS disabled"
 msgstr "UPS 비활성화됨"
+
+msgid "UPS external contact sensors"
+msgstr ""
+
+msgid "UPS firmware"
+msgstr ""
 
 msgid "UPS goes on battery"
 msgstr "UPS가 배터리 상태로 갔습니다"
 
+msgid "UPS model"
+msgstr ""
+
 msgid "UPS reaches low battery"
 msgstr "UPS가 낮은 배터리 상태로 갔습니다"
+
+msgid "UPS starts when mains is (re)applied"
+msgstr ""
 
 msgid "UPS status"
 msgstr "UPS 상태"
 
+msgid "UPS system identifier"
+msgstr ""
+
+msgid "UPS temperature"
+msgstr ""
+
+msgid "UPS type"
+msgstr ""
+
+msgid "UPS watchdog status"
+msgstr ""
+
 msgid "UPnP"
 msgstr "UPnP"
-
-msgid "UPnP A/V Media Server"
-msgstr "UPnP A/V 미디어 서버"
-
-msgid "UPnP friendly name."
-msgstr "UPnP 친화형 이름."
 
 msgid "URI"
 msgstr ""
@@ -6477,6 +6825,9 @@ msgstr "값"
 msgid "Variable"
 msgstr "변수"
 
+msgid "Vendor ID"
+msgstr ""
+
 msgid "Version"
 msgstr "버전"
 
@@ -6575,6 +6926,9 @@ msgstr "요일"
 msgid ""
 "When HAST is enabled, the local devices, the local services and the "
 "additional packages which do not support HAST volume cannot be used."
+msgstr ""
+
+msgid "When UPS switches to Low Battery"
 msgstr ""
 
 msgid ""
@@ -6772,6 +7126,12 @@ msgstr "파일 선택기"
 msgid "get target info failed."
 msgstr "타젯 정보 얻기가 실패했습니다."
 
+msgid "greatest settable high voltage transfer point"
+msgstr ""
+
+msgid "greatest settable low voltage transfer point"
+msgstr ""
+
 msgid "hiadaptive (high performance)"
 msgstr ""
 
@@ -6874,6 +7234,12 @@ msgstr "타젯 스캔이 실패했습니다."
 
 msgid "second(s)"
 msgstr "초"
+
+msgid "smallest settable high voltage transfer point"
+msgstr ""
+
+msgid "smallest settable low voltage transfer point"
+msgstr ""
 
 msgid "striping"
 msgstr "striping"
