@@ -95,11 +95,7 @@ $GLOBALS["mimes"]=array(
 	"flash"	=> "Flash ムービーファイル",
 	"mkv"		=> "MKV File",
 	"vob"		=> "VOB File",
-	
-	// Micosoft / Adobe
-	"word"		=> "Word ドキュメント",
-	"excel"	=> "Excel ドキュメント",
-	"pdf"		=> "PDF ファイル"
+
 	// Micosoft / Adobe
 	"word"		=> "Word ドキュメント",
 	"excel"	=> "Excel ドキュメント",
