@@ -96,7 +96,6 @@ $GLOBALS["mimes"]=array(
 	"mkv"		=> "Fiºier Video MKV",
 	"vob"		=> "Fiºier Video VOB",
 
-
 	// Micosoft / Adobe
 	"word"		=> "Document Word",
 	"excel"	=> "Document Excel",
