@@ -34,6 +34,7 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
+
 require_once "_include/error.php";
 
 _debug("Initializing ---------------------------------------------------");
@@ -82,10 +83,12 @@ if (!is_readable("./_config/conf.php"))
 require "./_config/conf.php";
 require "./_config/configs.php";
 
-//_load_language($GLOBALS['language']);
+_load_language($GLOBALS['language']);
+/* NAS4FREE CODE*/
 if(isset($GLOBALS["lang"])) $GLOBALS["language"]=$GLOBALS["lang"];
 if(file_exists("./_lang/".$GLOBALS["language"].".php")) require "./_lang/".$GLOBALS["language"].".php";
 else require "./_lang/en.php";
+/* END NAS4FREE CODE*/
 
 require "./_config/mimes.php";
 require "./_include/extra.php";
