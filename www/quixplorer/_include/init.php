@@ -87,7 +87,7 @@ _load_language($GLOBALS['language']);
 /* NAS4FREE CODE*/
 if(isset($GLOBALS["lang"])) $GLOBALS["language"]=$GLOBALS["lang"];
 if(file_exists("./_lang/".$GLOBALS["language"].".php")) require "./_lang/".$GLOBALS["language"].".php";
-else require "./_lang/en.php";
+else require "./_lang/en_US.php";
 /* END NAS4FREE CODE*/
 
 require "./_config/mimes.php";
@@ -117,7 +117,7 @@ ob_end_clean(); // get rid of cached unwanted output
 function _load_language($lang)
 {
     if (!isset($lang))
-        $lang = 'en';
+        $lang = 'en_US';
     require "./_lang/$lang.php";
     require "./_lang/$lang" . "_mimes.php";
 }
