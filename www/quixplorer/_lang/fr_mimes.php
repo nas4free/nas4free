@@ -39,8 +39,8 @@
 $GLOBALS["mimes"]=array(
 
 	// dir, exe, file
-	"dir"		=> "Répertoire",
-	"exe"		=> "Exécutable",
+	"dir"		=> "RÃ©pertoire",
+	"exe"		=> "ExÃ©cutable",
 	"file"		=> "Fichier",
 
 	// text
@@ -89,12 +89,12 @@ $GLOBALS["mimes"]=array(
 	"flac"		=> "Fichier audio FLAC",
 
 	// movie
-	"mpg"		=> "Fichier vidéo MPG",
-	"mov"		=> "Fichier Vidéo",
-	"avi"		=> "Fichier vidéo AVI",
-	"flash"	=> "Fichier vidéo Flash",
-	"mkv"		=> "Fichier vidéo MKV",
-	"vob"		=> "Fichier vidéo VOB",
+	"mpg"		=> "Fichier vidÃ©o MPG",
+	"mov"		=> "Fichier VidÃ©o",
+	"avi"		=> "Fichier vidÃ©o AVI",
+	"flash"	=> "Fichier vidÃ©o Flash",
+	"mkv"		=> "Fichier vidÃ©o MKV",
+	"vob"		=> "Fichier vidÃ©o VOB",
 
 	// Micosoft / Adobe
 	"word"		=> "Word Document",
