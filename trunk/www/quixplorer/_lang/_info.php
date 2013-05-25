@@ -32,7 +32,7 @@
 */
 	//Set the language array
 	$lang = array(
-		'en'		=> 'English',
+		'en_US'	=> 'English',
 		'bg'		=> 'Bulgarian',
 		'cs'		=> 'Czech',
 		'da'		=> 'Dansk',
