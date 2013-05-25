@@ -80,22 +80,7 @@ function tblrow ($name, $value, $symbol = null, $id = null) {
 
 	if($symbol == 'Hz')
 		$value = sprintf("%d", $value);
-		
-	if ($symbol == ' seconds'
-			&& $value > 60) {
-		$minutes = (int) ($value / 60);
-		$seconds = $value % 60;
-		
-		if ($minutes > 60) {
-			$hours = (int) ($minutes / 60);
-			$minutes = $minutes % 60;
-			$value = $hours;
-			$symbol = ' hours '.$minutes.' minutes '.$seconds.$symbol;
-		} else {
-			$value = $minutes;
-			$symbol = ' minutes '.$seconds.$symbol;
-		}
-	}
+
 	
 	if ($symbol == 'pre') {
 		$value = '<pre>'.$value;
@@ -636,9 +621,6 @@ $(document).ready(function(){
 									tblrow(gettext('Status'), $disp_status. " <small>[<a href='diag_infos_ups.php'>".gettext("Show ups information")."</a></small>]");
 									tblrowbar(gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
 									tblrowbar(gettext('Battery Charge'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
-
-									// status
-									tblrow(gettext('Battery Remain Time'), $ups['battery.runtime'], ' seconds');
 								}
 								
 								unset($handle);
