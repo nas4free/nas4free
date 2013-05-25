@@ -34,13 +34,13 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-// English Mimes Module
+// Dansk Mimes Module
 
 $GLOBALS["mimes"]=array(
 
 	// dir, exe, file
 	"dir"		=> "Mappe",
-	"exe"		=> "Kørbar fil",
+	"exe"		=> "KÃ¸rbar fil",
 	"file"		=> "Fil",
 
 	// text
