@@ -43,10 +43,10 @@ $GLOBALS["error_msg"] = array(
 
 	// error
 	"error"		=> "ERROR(ES)",
-	"back"			=> "Ir Atrás",
+	"back"			=> "Ir AtrÃ¡s",
 	
 	// root
-	"home"			=> "El directorio home no existe, revise su configuración.",
+	"home"			=> "El directorio home no existe, revise su configuraciÃ³n.",
 	"abovehome"		=> "El directorio actual no puede estar arriba del directorio home.",
 	"targetabovehome"	=> "El directorio objetivo no puede estar arriba del directorio home.",
 	
@@ -54,21 +54,21 @@ $GLOBALS["error_msg"] = array(
 	"direxist"		=> "Este directorio no existe.",
 	//"filedoesexist"	=>  "Este archivo ya existe.",
 	"fileexist"		=> "Este archivo no existe.",
-	"itemdoesexist"	=> "Este artículo ya existe.",
-	"itemexist"		=> "Este artículo no existe.",
+	"itemdoesexist"	=> "Este artÃ­culo ya existe.",
+	"itemexist"		=> "Este artÃ­culo no existe.",
 	"targetexist"		=> "El directorio objetivo no existe.",
-	"targetdoesexist"	=> "El artículo objetivo ya existe.",
+	"targetdoesexist"	=> "El artÃ­culo objetivo ya existe.",
 	
 	// open
 	"opendir"		=> "Incapaz de abrir directorio.",
 	"readdir"		=> "Incapaz de leer directorio.",
 	
 	// access
-	"accessdir"		=> "Ud. no está permitido accesar este directorio.",
-	"accessfile"		=> "Ud. no está permitido accesar a este archivo.",
-	"accessitem"		=> "Ud. no está permitido accesar a este artículo.",
-	"accessfunc"		=> "Ud. no está permitido usar esta funcion.",
-	"accesstarget"	=> "Ud. no está permitido accesar al directorio objetivo.",
+	"accessdir"		=> "Ud. no estÃ¡ permitido accesar este directorio.",
+	"accessfile"		=> "Ud. no estÃ¡ permitido accesar a este archivo.",
+	"accessitem"		=> "Ud. no estÃ¡ permitido accesar a este artÃ­culo.",
+	"accessfunc"		=> "Ud. no estÃ¡ permitido usar esta funcion.",
+	"accesstarget"	=> "Ud. no estÃ¡ permitido accesar al directorio objetivo.",
 	
 	// actions
 	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
@@ -89,16 +89,16 @@ $GLOBALS["error_msg"] = array(
 	"searchnothing"	=> "Ud. debe suministrar algo para la busqueda.",
 	
 	// misc
-	"miscnofunc"		=> "Función no disponible.",
-	"miscfilesize"	=> "Archivo excede maximo tamaño.",
+	"miscnofunc"		=> "FunciÃ³n no disponible.",
+	"miscfilesize"	=> "Archivo excede maximo tamaÃ±o.",
 	"miscfilepart"	=> "Archivo fue parcialmente subido.",
 	"miscnoname"		=> "Ud. debe suministrar un nombre.",
-	"miscselitems"	=> "Ud. no tiene seleccionado(s) ningun artículo.",
-	"miscdelitems"	=> "Está seguro de querer borrar este(os) \"+num+\" artículo(s)?",
-	"miscdeluser"		=> "Está seguro de querer borrar usuario '\"+user+\"'?",
+	"miscselitems"	=> "Ud. no tiene seleccionado(s) ningun artÃ­culo.",
+	"miscdelitems"	=> "EstÃ¡ seguro de querer borrar este(os) \"+num+\" artÃ­culo(s)?",
+	"miscdeluser"		=> "EstÃ¡ seguro de querer borrar usuario '\"+user+\"'?",
 	"miscnopassdiff"	=> "Nuevo password no difiere del actual.",
 	"miscnopassmatch"	=> "No coinciden los Passwords.",
-	"miscfieldmissed"	=> "Ud. falló en un importante campo.",
+	"miscfieldmissed"	=> "Ud. fallÃ³ en un importante campo.",
 	"miscnouserpass"	=> "Usuario o password incorrecto.",
 	"miscselfremove"	=> "Ud. no puede borrarse a si mismo.",
 	"miscuserexist"	=> "Usuario ya existe.",
@@ -120,12 +120,12 @@ $GLOBALS["messages"] = array(
 	"adminlink"		=> "ADMINISTRAR",
 	"logoutlink"		=> "SALIR",
 	"uploadlink"		=> "SUBIR",
-	"searchlink"		=> "BÚSQUEDA",
+	"searchlink"		=> "BÃšSQUEDA",
 	"unziplink"		=> "UNZIP",
 	
 	// list
 	"nameheader"		=> "Nombre",
-	"sizeheader"		=> "Tamaño",
+	"sizeheader"		=> "TamaÃ±o",
 	"typeheader"		=> "Tipo",
 	"modifheader"		=> "Modificado",
 	"permheader"		=> "Permisos",
@@ -145,7 +145,7 @@ $GLOBALS["messages"] = array(
 	"btnmove"		=> "Mover",
 	"btnlogin"		=> "Login",
 	"btnlogout"		=> "Salir",
-	"btnadd"		=> "Añadir",
+	"btnadd"		=> "AÃ±adir",
 	"btnedit"		=> "Editar",
 	"btnremove"		=> "Remover",
 	"btnunzip"		=> "Unzip",
@@ -155,13 +155,13 @@ $GLOBALS["messages"] = array(
 	"actperms"		=> "Cambiar permisos",
 	"actedit"		=> "Editar archivo",
 	"actsearchresults"	=> "Resultado de busqueda.",
-	"actcopyitems"	=> "Copiar artículos(s)",
+	"actcopyitems"	=> "Copiar artÃ­culos(s)",
 	"actcopyfrom"		=> "Copia de /%s a /%s ",
-	"actmoveitems"	=> "Mover artículo(s)",
+	"actmoveitems"	=> "Mover artÃ­culo(s)",
 	"actmovefrom"		=> "Mover de /%s a /%s ",
 	"actlogin"		=> "Login",
 	"actloginheader"	=> "Login para usar QuiXplorer",
-	"actadmin"		=> "Administración",
+	"actadmin"		=> "AdministraciÃ³n",
 	"actchpwd"		=> "Cambiar password",
 	"actusers"		=> "Usuarios",
 	"actarchive"		=> "Archivar item(s)",
@@ -169,7 +169,7 @@ $GLOBALS["messages"] = array(
 	"actupload"		=> "Subir Archivo(s)",
 	
 	// misc
-	"miscitems"		=> "Artículo(s)",
+	"miscitems"		=> "ArtÃ­culo(s)",
 	"miscfree"		=> "Libre",
 	"miscusername"	=> "Nombre de usuario",
 	"miscpassword"	=> "Password",
@@ -180,16 +180,16 @@ $GLOBALS["messages"] = array(
 	"miscchpass"		=> "Cambiar password",
 	"mischomedir"		=> "Directorio Home",
 	"mischomeurl"		=> "URL Home",
-	"miscshowhidden"	=> "Mostrar artículos ocultos",
-	"mischidepattern"	=> "Ocultar patrón",
+	"miscshowhidden"	=> "Mostrar artÃ­culos ocultos",
+	"mischidepattern"	=> "Ocultar patrÃ³n",
 	"miscperms"		=> "Permisos",
-	"miscuseritems"	=> "(nombre, directorio home, mostrar artículos ocultos, permisos, activar)",
-	"miscadduser"		=> "añadir usuario",
+	"miscuseritems"	=> "(nombre, directorio home, mostrar artÃ­culos ocultos, permisos, activar)",
+	"miscadduser"		=> "aÃ±adir usuario",
 	"miscedituser"	=> "editar usario '%s'",
 	"miscactive"		=> "Activar",
 	"misclang"		=> "Lenguaje",
 	"miscnoresult"	=> "Resultado(s) no disponible(s).",
-	"miscsubdirs"		=> "Búsqueda de subdirectorios",
+	"miscsubdirs"		=> "BÃºsqueda de subdirectorios",
 	"miscpermissions"	=> array(
 					"read"		=> array("Read", "User may read and download a file"),
 					"create" 	=> array("Write", "User may create a new file"),
@@ -199,6 +199,6 @@ $GLOBALS["messages"] = array(
 					"admin"	=> array("Administrator", "Full access"),
 			),
 	"miscyesno"		=> array("Si","No","S","N"),
-	"miscchmod"		=> array("Propietario", "Grupo", "Público"),
+	"miscchmod"		=> array("Propietario", "Grupo", "PÃºblico"),
 );
 ?>
