@@ -217,8 +217,8 @@ function upsc_enable_change() {
 						tblrow(gettext('Manufacturer'), $ups['device.mfr']);
 						tblrow(gettext('Model'), $ups['device.model']);
 						tblrow(gettext('Type'), $ups['device.type']);
-						tblrow(gettext('Serial'), $ups['device.serial']);
-						tblrow(gettext('Firmware'), $ups['ups.firmware']);
+						tblrow(gettext('Serial number'), $ups['device.serial']);
+						tblrow(gettext('Firmware version'), $ups['ups.firmware']);
 
 						$status = explode(' ', $ups['ups.status']);
 						foreach($status as $condition) {
