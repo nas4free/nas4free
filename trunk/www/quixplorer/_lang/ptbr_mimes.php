@@ -34,13 +34,13 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-// Português - Brasil Language Module
+// PortuguÃªs - Brasil Language Module
 
 $GLOBALS["mimes"]=array(
 
 	// dir, exe, file
 	"dir"		=> "Pasta",
-	"exe"		=> "Arquivo executável",
+	"exe"		=> "Arquivo executÃ¡vel",
 	"file"		=> "Arquivo",
 
 	// text
@@ -50,7 +50,7 @@ $GLOBALS["mimes"]=array(
 	"php"		=> "PHP Script",
 	"sql"		=> "Arquivo SQL",
 	"perl"		=> "PERL Script",
-	"html"		=> "Página HTML",
+	"html"		=> "PÃ¡gina HTML",
 	"js"		=> "Javascript",
 	"css"		=> "CSS File",
 	"cgi"		=> "CGI Script",
