@@ -40,31 +40,31 @@ $GLOBALS["mimes"]=array(
 
 	// dir, exe, file
 	"dir"		=> "Director",
-	"exe"		=> "Fiºier Executabil",
-	"file"		=> "Fiºier",
+	"exe"		=> "FiÅŸier Executabil",
+	"file"		=> "FiÅŸier",
 
 	// text
-	"text"		=> "Fiºier Text",
+	"text"		=> "FiÅŸier Text",
 
 	// programming
 	"php"		=> "Script PHP",
-	"sql"		=> "Fiºier SQL",
+	"sql"		=> "FiÅŸier SQL",
 	"perl"		=> "Script PERL",
-	"html"		=> "Paginã HTML",
-	"js"		=> "Fiºier JavaScript",
-	"css"		=> "Fiºier CSS",
+	"html"		=> "PaginÃ£ HTML",
+	"js"		=> "FiÅŸier JavaScript",
+	"css"		=> "FiÅŸier CSS",
 	"cgi"		=> "Script CGI",
 
 	// C++
-	"cpps"		=> "Fiºier Sursã C++",
-	"cpph"		=> "Fiºsier Antet C++",
+	"cpps"		=> "FiÅŸier SursÃ£ C++",
+	"cpph"		=> "FiÅŸier Antet C++",
 
 	// Java
-	"javas"	=> "Fiºier Sursã Java",
-	"javac"	=> "Fiºier Clasã Java",
+	"javas"	=> "FiÅŸier SursÃ£ Java",
+	"javac"	=> "FiÅŸier ClasÃ£ Java",
 
 	// Pascal
-	"pas"		=> "Fiºier Pascal",
+	"pas"		=> "FiÅŸier Pascal",
 
 	// images
 	"gif"		=> "Imagine GIF",
@@ -73,35 +73,35 @@ $GLOBALS["mimes"]=array(
 	"png"		=> "Imagine PNG",
 
 	// compressed
-	"zip"		=> "Arhivã ZIP",
-	"tar"		=> "Arhivã TAR",
-	"gzip"		=> "Arhivã GZIP",
-	"bzip2"	=> "Arhivã BZIP2",
-	"rar"		=> "Arhivã RAR",
-	"iso"		=> "Arhivã ISO",
-	"mds"		=> "Arhivã MDS",
+	"zip"		=> "Arhiva ZIP",
+	"tar"		=> "Arhiva TAR",
+	"gzip"		=> "Arhiva GZIP",
+	"bzip2"	=> "Arhiva BZIP2",
+	"rar"		=> "Arhiva RAR",
+	"iso"		=> "Arhiva ISO",
+	"mds"		=> "Arhiva MDS",
 
 	// music
-	"mp3"		=> "Fiºier Audio MP3",
-	"wav"		=> "Fiºier Audio WAV",
-	"midi"		=> "Fiºier Audio MIDI",
-	"real"		=> "Fiºier RealAudio",
-	"flac"		=> "Fiºier Audio FLAC",
+	"mp3"		=> "FiÅŸier Audio MP3",
+	"wav"		=> "FiÅŸier Audio WAV",
+	"midi"		=> "FiÅŸier Audio MIDI",
+	"real"		=> "FiÅŸier RealAudio",
+	"flac"		=> "FiÅŸier Audio FLAC",
 
 	// movie
-	"mpg"		=> "Fiºier Video MPG",
-	"mov"		=> "Fiºier Video",
-	"avi"		=> "Fiºier Video AVI",
-	"flash"	=> "Fiºier Animaþie Flash",
-	"mkv"		=> "Fiºier Video MKV",
-	"vob"		=> "Fiºier Video VOB",
+	"mpg"		=> "FiÅŸier Video MPG",
+	"mov"		=> "FiÅŸier Video",
+	"avi"		=> "FiÅŸier Video AVI",
+	"flash"	=> "FiÅŸier AnimaÃ¾ie Flash",
+	"mkv"		=> "FiÅŸier Video MKV",
+	"vob"		=> "FiÅŸier Video VOB",
 
 	// Micosoft / Adobe
 	"word"		=> "Document Word",
 	"excel"	=> "Document Excel",
 	"pdf"		=> "PDF File",
 	"xml"		=> "XML File",
-	"c"		=> "Fiºier C",
-	"psd"		=> "Fiºier Photoshop",
-	"point"	=> "Fiºier PowerPoint"
+	"c"		=> "FiÅŸier C",
+	"psd"		=> "FiÅŸier Photoshop",
+	"point"	=> "FiÅŸier PowerPoint"
 ); ?>
