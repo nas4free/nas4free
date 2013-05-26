@@ -295,7 +295,7 @@ function is_domain($domain) {
 	if (!is_string($domain))
 		return false;
 
-	if (preg_match("/^([a-z0-9\-]+\.?)*$/i", $domain))
+	if (preg_match("/^([a-z0-9_\-]+\.?)*$/i", $domain))
 		return true;
 
 	return false;
@@ -307,6 +307,7 @@ function is_netbios($string) {
 		return false;
 
 	// See reference http://support.microsoft.com/kb/909264
+	// Update reference http://support.microsoft.com/kb/188997/en-us
 	// The following characters are not allowed: \ / : * ? " < > |
 	if (preg_match("/^[^\.]([^\\/:*\?\"<>|])*$/i", $string))
 		return true;
