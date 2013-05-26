@@ -82,7 +82,7 @@ function system_get_language_codeset() {
 	$codeset = $g_languages[$language]['codeset'];
 
 	if (empty($codeset))
-		$codeset = "ISO-8859-1"; // Set default codeset.
+		$codeset = "UTF-8"; // Set default codeset.
 
 	return $codeset;
 }
@@ -98,7 +98,7 @@ function system_get_language_code() {
 	$code = str_replace("_", "-", $language);
 
 	if (empty($code))
-		$code = "en-us"; // Set default code.
+		$code = "en-US"; // Set default code.
 
 	return $code;
 }
