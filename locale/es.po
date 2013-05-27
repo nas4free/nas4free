@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2013-05-20 04:39+0000\n"
-"PO-Revision-Date: 2013-05-20 12:16+0000\n"
+"PO-Revision-Date: 2013-05-27 11:17+0000\n"
 "Last-Translator: raul fernandez garcia <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-20 15:21+0000\n"
-"X-Generator: Launchpad (build 16626)\n"
+"X-Launchpad-Export-Date: 2013-05-27 15:12+0000\n"
+"X-Generator: Launchpad (build 16640)\n"
 "X-Poedit-Country: SPAIN\n"
 "Language: \n"
 "X-Poedit-Language: Spanish\n"
@@ -2552,7 +2552,7 @@ msgid "FirstBurstLength"
 msgstr "FirstBurstLength"
 
 msgid "Flag xxx (ups.conf or cmdline -x) status"
-msgstr ""
+msgstr "Flag xxx (ups.conf or cmdline -x) status"
 
 msgid "Flags"
 msgstr "Banderas"
@@ -2737,13 +2737,13 @@ msgid "Hide dot files"
 msgstr "Ocultar archivos de punto"
 
 msgid "High voltage boosting transfer point"
-msgstr ""
+msgstr "Punto de conmutación para impulsos de alto voltaje"
 
 msgid "High voltage transfer point"
-msgstr ""
+msgstr "Punto de conmutación para alta tensión"
 
 msgid "High voltage trimming transfer point"
-msgstr ""
+msgstr "Ajuste del punto de conmutación para alta tensión."
 
 msgid "Highlighting"
 msgstr "Resaltar"
@@ -3030,7 +3030,7 @@ msgid "Include basic hardware information."
 msgstr "Incluir información básica del hardware."
 
 msgid "Incoming Line/Power Information"
-msgstr ""
+msgstr "Información de entrada"
 
 msgid "Incomplete directory"
 msgstr "Directorio Incompleto"
@@ -3415,7 +3415,7 @@ msgid "Load on UPS"
 msgstr "Carga de la SAI"
 
 msgid "Load when UPS switches to overload condition (\"OVER\")"
-msgstr ""
+msgstr "Carga para la condición de sobrecarga (\"OVER\")"
 
 msgid "Loadbalance"
 msgstr "Balance de carga"
@@ -3520,13 +3520,13 @@ msgid "Logout"
 msgstr "Finalizar sesión"
 
 msgid "Low voltage boosting transfer point"
-msgstr ""
+msgstr "Punto de conmutación para picos de baja tensión"
 
 msgid "Low voltage transfer point"
-msgstr ""
+msgstr "Punto de conmutación baja tensión"
 
 msgid "Low voltage trimming transfer point"
-msgstr ""
+msgstr "Ajuste del punto de conmutación para baja tensión"
 
 msgid "Lowercases names in both directions"
 msgstr "nombres en minuscula en ambas direcciones."
@@ -4270,7 +4270,7 @@ msgid "Pairwise"
 msgstr "Comparaciones por pares"
 
 msgid "Parameter xxx (ups.conf or cmdline -x) setting"
-msgstr ""
+msgstr "Parameter xxx (ups.conf or cmdline -x) setting"
 
 msgid "Partition number"
 msgstr "Numero de particion"
@@ -4675,7 +4675,7 @@ msgid "Realm"
 msgstr "Dominio"
 
 msgid "Reason for last transfer to battery (* opaque)"
-msgstr ""
+msgstr "Razón para la ultma conmutación a batería (* opaque)"
 
 msgid "Reboot"
 msgstr "Reiniciar Equipo"
@@ -5116,7 +5116,7 @@ msgid "Set the account's primary group to the given group."
 msgstr "Asigne la cuenta primaria de grupo para el grupo dado."
 
 msgid "Set the content location(s) to or from the media library."
-msgstr ""
+msgstr "Localización del contenido de la librería de medios"
 
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr ""
@@ -5835,11 +5835,11 @@ msgstr "El atributo '%s' debe contener al menos una entrada."
 
 #, php-format
 msgid "The attribute '%s': use a port in the range from %d to %d."
-msgstr ""
+msgstr "Atributo '%s': use un puerto en el rango %d a %d."
 
 #, php-format
 msgid "The attribute 'Port': port '%ld' is already taken by another service."
-msgstr ""
+msgstr "Atributo 'Puerto' : El puerto '%ld' está en uso por otro servicio."
 
 msgid ""
 "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
@@ -7150,7 +7150,7 @@ msgid "UPS disabled"
 msgstr "UPS desactivado"
 
 msgid "UPS external contact sensors"
-msgstr ""
+msgstr "Sensores externos al SAI"
 
 msgid "UPS firmware"
 msgstr "Firmware del SAI"
@@ -7165,7 +7165,7 @@ msgid "UPS reaches low battery"
 msgstr "UPS alcanza el nivel de batería baja"
 
 msgid "UPS starts when mains is (re)applied"
-msgstr ""
+msgstr "El SAI arrancará cuando vuelva la tensión"
 
 msgid "UPS status"
 msgstr "Estado UPS"
@@ -7180,7 +7180,7 @@ msgid "UPS type"
 msgstr "Tipo de SAI"
 
 msgid "UPS watchdog status"
-msgstr ""
+msgstr "Estado del perro guardian del SAI"
 
 msgid "UPnP"
 msgstr "UPnP"
@@ -7507,7 +7507,7 @@ msgstr ""
 "adicionales que no soporten volúmenes HAST , no podrán ser usados."
 
 msgid "When UPS switches to Low Battery"
-msgstr ""
+msgstr "Cuando el SAI conmute a estado de batería baja"
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
@@ -7722,10 +7722,10 @@ msgid "get target info failed."
 msgstr "Petición de informacion fallida"
 
 msgid "greatest settable high voltage transfer point"
-msgstr ""
+msgstr "Max. valor permitido de alta tensión"
 
 msgid "greatest settable low voltage transfer point"
-msgstr ""
+msgstr "Max. valor permitido de baja tensión"
 
 msgid "hiadaptive (high performance)"
 msgstr "hiadaptive (Alto rendimiento-consumo moderado)"
@@ -7831,10 +7831,10 @@ msgid "second(s)"
 msgstr "segundo(s)"
 
 msgid "smallest settable high voltage transfer point"
-msgstr ""
+msgstr "Min. valor permitido de alta tensión"
 
 msgid "smallest settable low voltage transfer point"
-msgstr ""
+msgstr "Min. valor permitido de baja tensión"
 
 msgid "striping"
 msgstr "striping"
