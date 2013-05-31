@@ -11,13 +11,13 @@
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -31,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 require_once("config.inc");
@@ -123,7 +123,7 @@ class StatusReportRendererHTML extends StatusReportRenderer
 <html>
 <head>
 <title>Status Report</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <style type="text/css">
 <!--
 body, td, th {
@@ -141,7 +141,8 @@ a {
 .listtopic {
 	border-right: 1px solid #999999;
 	font-size: 11px;
-	background-color: #435370;
+	background-image: url("listtopic_bg.png");
+	background-color: #95A7C0;
 	padding-right: 16px;
 	padding-left: 6px;
 	color: #FFFFFF;
@@ -275,6 +276,7 @@ function report_send_mail() {
 		$statusreport->AddArticle(new StatusReportArticleCmd("Version","cat /etc/prd.version"));
 		$statusreport->AddArticle(new StatusReportArticleCmd("Revision","cat /etc/prd.revision"));
 		$statusreport->AddArticle(new StatusReportArticleCmd("Platform","cat /etc/platform"));
+		$statusreport->AddArticle(new StatusReportArticleCmd("System bios","/bin/kenv -q"));
 		$statusreport->AddArticle(new StatusReportArticleCmd("System uptime","uptime"));
 		$statusreport->AddArticle(new StatusReportArticleCmd("Interfaces","/sbin/ifconfig -a"));
 		$statusreport->AddArticle(new StatusReportArticleCmd("Routing tables","netstat -nr"));
@@ -366,6 +368,7 @@ function report_generate_html() {
 	$statusreport->AddArticle(new StatusReportArticleCmd("Version","cat /etc/prd.version"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("Revision","cat /etc/prd.revision"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("Platform","cat /etc/platform"));
+	$statusreport->AddArticle(new StatusReportArticleCmd("System bios","/bin/kenv -q"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("System uptime","uptime"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("dmesg","/sbin/dmesg"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("Interfaces","/sbin/ifconfig -a"));
@@ -397,6 +400,7 @@ function report_generate_html() {
 	$statusreport->AddArticle(new StatusReportArticleCmd("hosts.allow","cat /etc/hosts.allow"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("crontab","cat /var/etc/crontab"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("dhclient.conf","cat /etc/dhclient.conf"));
+	$statusreport->AddArticle(new StatusReportArticleCmd("hast.conf","cat /var/etc/hast.conf"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("smb.conf","cat /var/etc/smb.conf"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("sshd.conf","cat /var/etc/ssh/sshd_config"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("mdnsresponder.conf","cat /var/etc/mdnsresponder.conf"));
