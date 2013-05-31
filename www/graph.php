@@ -10,18 +10,18 @@
 	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
 	All rights reserved.
 	
-	portions of m0n0wall (http://m0n0.ch/wall)
+	portions of m0n0wall (http://m0n0.ch/wall).
 	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -35,7 +35,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 require("auth.inc");
@@ -57,8 +57,8 @@ $fetch_link = "stats.php?if=$ifnum";
 //SVG attributes
 $attribs['bg']='fill="#000" stroke="none" stroke-width="0" opacity="1"';
 $attribs['axis']='fill="black" stroke="black"';
-$attribs['in']='fill="#00CC00" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="7"';
-$attribs['out']='fill="#FF0000" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="7"';
+$attribs['in']='fill="#00CC00" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="6"';
+$attribs['out']='fill="#FF0000" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="6"';
 $attribs['legend']='fill="white" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="4"';
 $attribs['graph_in']='fill="none" stroke="#00CC00" stroke-opacity="0.8"';
 $attribs['graph_out']='fill="none" stroke="#FF0000" stroke-opacity="0.8"';
@@ -97,14 +97,15 @@ echo "<?xml version=\"1.0\" encoding=\"{$encoding}\"?>\n";
     <text id="grid_txt1" x="<?=$width*0.99?>" y="<?=$height/4*1?>" <?=$attribs['grid_txt']?> text-anchor="end">75%</text>
     <text id="grid_txt2" x="<?=$width*0.99?>" y="<?=$height/4*2?>" <?=$attribs['grid_txt']?> text-anchor="end">50%</text>
     <text id="grid_txt3" x="<?=$width*0.99?>" y="<?=$height/4*3?>" <?=$attribs['grid_txt']?> text-anchor="end">25%</text>
-    <text id="graph_in_lbl" x="5" y="8" <?=$attribs['in']?>><?=gettext("In");?> <tspan id="graph_in_txt" <?=$attribs['in']?>> </tspan></text>
-    <text id="graph_out_lbl" x="5" y="16" <?=$attribs['out']?>><?=gettext("Out");?> <tspan id="graph_out_txt" <?=$attribs['out']?>> </tspan></text>
-    <text id="switch_unit" x="<?=$width*0.60?>" y="5" <?=$attribs['switch_unit']?>><?=sprintf(gettext("Switch to %s/s"), ("bits" === $unit) ? "bytes" : "bits");?></text>
+    <text id="graph_in_lbl" x="3" y="7" <?=$attribs['in']?>><?=gettext("In");?> <tspan id="graph_in_txt" <?=$attribs['in']?>> </tspan></text>
+    <text id="graph_out_lbl" x="3" y="13" <?=$attribs['out']?>><?=gettext("Out");?> <tspan id="graph_out_txt" <?=$attribs['out']?>> </tspan></text>
+    <text id="switch_unit" x="<?=$width*0.60?>" y="5" <?=$attribs['switch_unit']?>><?=sprintf(gettext("Switch to %s/s"), ("bytes" === $unit) ? "bits" : "bytes");?></text>
     <text id="switch_scale" x="<?=$width*0.60?>" y="11" <?=$attribs['switch_scale']?>><?=gettext("AutoScale");?> (<?=("up" === $scale_type) ? gettext("Up") : gettext("Follow");?>)</text>
-    <text id="datetime" x="<?=$width*0.40?>" y="5" <?=$attribs['legend']?>> </text>
+    <text id="datetime" x="<?=$width*0.40?>" y="4" <?=$attribs['legend']?>> </text>
+    <text id="interface_name"  x="<?=$width*0.99?>" y="7" <?=$attribs['in']?> text-anchor="end"><?=$ifname?></text>
     <polygon id="axis_arrow_x" <?=$attribs['axis']?> points="<?=($width) . "," . ($height)?> <?=($width-2) . "," . ($height-2)?> <?=($width-2) . "," . $height?>"/>
     <text id="error" x="<?=$width*0.5?>" y="<?=$height*0.4?>" visibility="hidden" <?=$attribs['error']?> text-anchor="middle"><?=$error_text?></text>
-    <text id="collect_initial" x="<?=$width*0.5?>" y="<?=$height*0.4?>" visibility="hidden" <?=$attribs['collect_initial']?> text-anchor="middle"><?=gettext("Collecting initial data, please wait...");?></text>
+    <text id="collect_initial" x="<?=$width*0.5?>" y="<?=$height*0.3?>" visibility="hidden" <?=$attribs['collect_initial']?> text-anchor="middle"><?=gettext("Collecting initial data, please wait...");?></text>
   </g>
   <script type="text/ecmascript">
     <![CDATA[
@@ -181,7 +182,7 @@ function init(evt) {
 function switch_unit(event)
 {
   SVGDoc.getElementById('switch_unit').firstChild.data = '<?=gettext("Switch to");?> ' + unit + '/s';
-  unit = (unit == 'bits') ? 'bytes' : 'bits';
+  unit = (unit == 'bytes') ? 'bits' : 'bytes';
 }
 
 function switch_scale(event)
@@ -274,10 +275,10 @@ function plot_data(obj) {
 
   var rmax;  // max, rounded up
 
-  if (unit == 'bits') {
+  if (unit == 'bytes') {
     /* round up max, such that
-         100 kbps -> 200 kbps -> 400 kbps -> 800 kbps -> 1 Mbps -> 2 Mbps -> ... */
-    rmax = 12500;
+         10 KB/s -> 20 KB/s -> 40 KB/s -> 80 KB/s -> 100 KB/s -> 200 KB/s -> 400 KB/s -> 800 KB/s -> 1 MB/s ... */
+    rmax = 10240;
     i = 0;
     while (max > rmax) {
       i++;
@@ -285,6 +286,9 @@ function plot_data(obj) {
         rmax *= 1.25;
       else
         rmax *= 2;
+
+      if (i == 8)
+        rmax *= 1.024;
     }
   } else {
     /* round up max, such that
@@ -338,9 +342,9 @@ function isNumber(a) {
 }
 
 function formatSpeed(speed, unit) {
-  if (unit == 'bits')
-    return formatSpeedBits(speed);
   if (unit == 'bytes')
+    return formatSpeedBits(speed);
+  if (unit == 'bits')
     return formatSpeedBytes(speed);
 }
 
