@@ -89,7 +89,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("CIFS/S
 						unset($rawdata);
 						?></pre>
 					</td>
-				<?php html_titleline(gettext("Active shares"));?>
+				<?php html_titleline(gettext("Active Shares"));?>
 				<tr>
 					<td>
 						<pre><?php
@@ -99,7 +99,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("CIFS/S
 						?></pre>
 					</td>
 				</tr>
-				<?php html_titleline(gettext("List of open files"));?>
+				<?php html_titleline(gettext("Active Directory"));?>
 				<tr>
 					<td>
 						<pre><?php 
