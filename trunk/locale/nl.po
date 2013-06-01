@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-05-20 04:39+0000\n"
-"PO-Revision-Date: 2013-05-23 20:35+0000\n"
+"POT-Creation-Date: 2013-06-01 02:13+0000\n"
+"PO-Revision-Date: 2013-06-01 00:26+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-27 15:13+0000\n"
-"X-Generator: Launchpad (build 16640)\n"
+"X-Launchpad-Export-Date: 2013-06-01 00:37+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 "X-Poedit-Country: Netherlands\n"
 "Language: \n"
 "X-Poedit-Language: Dutch\n"
@@ -332,11 +332,14 @@ msgstr ""
 msgid "Active Directory"
 msgstr "Active Directory"
 
+msgid "Active Directory List"
+msgstr "Actieve Folderlijst"
+
+msgid "Active Shares"
+msgstr "Actief Gedeeld"
+
 msgid "Active Users"
 msgstr "Actieve Gebruikers"
-
-msgid "Active shares"
-msgstr "Actief gedeeld"
 
 msgid "Add"
 msgstr "Toevoegen"
@@ -790,9 +793,6 @@ msgstr "Batterij Details"
 msgid "Battery Low"
 msgstr "Batterij Leeg"
 
-msgid "Battery Remain Time"
-msgstr "Batterij Resterende Tijd"
-
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
 msgstr ""
@@ -958,6 +958,9 @@ msgstr "Annuleren"
 
 msgid "Canmount"
 msgstr "Canmount"
+
+msgid "Cannot get CPU load"
+msgstr "Kan geen CPU-belasting ophalen"
 
 msgid "Cannot get data about interface"
 msgstr "Kan geen data krijgen van de netwerkkaart"
@@ -2566,6 +2569,9 @@ msgstr "Firmware image bestand"
 msgid "Firmware uploading is not supported on this platform."
 msgstr "Het updaten van de firmware wordt niet ondersteund op dit platform."
 
+msgid "Firmware version"
+msgstr "Firmware versie"
+
 msgid "Firmware version check"
 msgstr "Firmware Versie Controle"
 
@@ -2775,11 +2781,14 @@ msgstr "Tip"
 
 #, php-format
 msgid ""
-"Hint: If this is checked, IP addresses in %s logs are resolved to real "
-"hostnames where possible."
+"Hint: If this is checked, IP addresses in the server logs are resolved to "
+"real hostnames where possible.<br><font color='red'>Warning</font>: This can "
+"cause a huge delay in loading the log page!"
 msgstr ""
-"Tip: Wanneer dit is aangevinkt, IP-adressen in de %s logs worden dan zoveel "
-"mogelijk omgezet naar echte hostnamen waar mogelijk."
+"Tip: Wanneer dit is aangevinkt, IP-adressen in de server logs worden waar "
+"mogelijk omgezet naar echte hostnamen.<br><font "
+"color='red'>Waarschuwing</font>: Dit kan een grote vertraging opleveren om "
+"de log pagina te laden!"
 
 msgid "Home directory"
 msgstr "Persoonlijke map"
@@ -3419,9 +3428,6 @@ msgstr "Lijst van geimporteerde gebruikers"
 
 msgid "List of mount points"
 msgstr "Koppelpunt lijst"
-
-msgid "List of open files"
-msgstr "Lijst van geopende bestanden"
 
 msgid "Load"
 msgstr "Belasting"
@@ -5102,9 +5108,6 @@ msgid "Separate email addresses by semi-colon."
 msgstr ""
 "Verscheidene e-mailadressen scheiden door punt-komma. (gebruik de ; toets)"
 
-msgid "Serial"
-msgstr "Seriëel"
-
 msgid "Serial Console"
 msgstr "Serial Console"
 
@@ -5541,11 +5544,11 @@ msgstr "Synchronisatie"
 msgid ""
 "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
 "server. Be sure to set syslogd on the remote server to accept syslog "
-"messages from %s."
+"messages from this server."
 msgstr ""
 "Syslog verstuurd UDP datagrammen naar poort 514 op de gespecificeerde remote "
-"syslog server. Verzeker uzelf er van dat u syslog op de remote server juist "
-"ingesteld heeft om de syslog berichten van %s te kunnen ontvangen."
+"syslog server. Verzeker uzelf er van dat u syslogd op de remote server juist "
+"ingesteld heeft om de syslog berichten van deze server te kunnen ontvangen."
 
 msgid "System"
 msgstr "Systeem"
@@ -5567,6 +5570,9 @@ msgstr "Systeem-info"
 
 msgid "System information"
 msgstr "Systeemoverzicht"
+
+msgid "System load"
+msgstr "Systeem belasting"
 
 msgid "System log"
 msgstr "Systeem log"
@@ -7069,9 +7075,6 @@ msgstr ""
 "de stop knop van uw browser klikken om de voortgang te zien van de gefaalde "
 "traceer route."
 
-msgid "Traffic graph"
-msgstr "Netwerk grafiek"
-
 msgid "Transcoding"
 msgstr "Hercodering"
 
@@ -7165,7 +7168,7 @@ msgid "UPS On Battery"
 msgstr "UPS Op Batterij"
 
 msgid "UPS On Line"
-msgstr "UPS Aan Lichtnet"
+msgstr "UPS Op Lichtnet"
 
 msgid "UPS Status"
 msgstr "UPS Status"
@@ -7495,12 +7498,6 @@ msgstr "Wake-on-LAN"
 
 msgid "Warning"
 msgstr "Waarschuwing"
-
-#, php-format
-msgid "Warning: This can cause a huge delay in loading the %s log page!"
-msgstr ""
-"Waarschuwing: Dit kan een grote vertraging opleveren om de %s log pagina te "
-"laden!"
 
 msgid ""
 "Warning: You are going to delete a RAID volume. All data will get lost and "
@@ -7895,3 +7892,42 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr "versie:"
+
+#~ msgid "Active shares"
+#~ msgstr "Actief gedeeld"
+
+#, php-format
+#~ msgid ""
+#~ "Hint: If this is checked, IP addresses in %s logs are resolved to real "
+#~ "hostnames where possible."
+#~ msgstr ""
+#~ "Tip: Wanneer dit is aangevinkt, IP-adressen in de %s logs worden dan zoveel "
+#~ "mogelijk omgezet naar echte hostnamen waar mogelijk."
+
+#~ msgid "List of open files"
+#~ msgstr "Lijst van geopende bestanden"
+
+#, php-format
+#~ msgid ""
+#~ "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
+#~ "server. Be sure to set syslogd on the remote server to accept syslog "
+#~ "messages from %s."
+#~ msgstr ""
+#~ "Syslog verstuurd UDP datagrammen naar poort 514 op de gespecificeerde remote "
+#~ "syslog server. Verzeker uzelf er van dat u syslog op de remote server juist "
+#~ "ingesteld heeft om de syslog berichten van %s te kunnen ontvangen."
+
+#~ msgid "Traffic graph"
+#~ msgstr "Netwerk grafiek"
+
+#, php-format
+#~ msgid "Warning: This can cause a huge delay in loading the %s log page!"
+#~ msgstr ""
+#~ "Waarschuwing: Dit kan een grote vertraging opleveren om de %s log pagina te "
+#~ "laden!"
+
+#~ msgid "Battery Remain Time"
+#~ msgstr "Batterij Resterende Tijd"
+
+#~ msgid "Serial"
+#~ msgstr "Seriëel"

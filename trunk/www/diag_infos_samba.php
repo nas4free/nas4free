@@ -99,7 +99,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("CIFS/S
 						?></pre>
 					</td>
 				</tr>
-				<?php html_titleline(gettext("Active Directory"));?>
+				<?php html_titleline(gettext("Active Directory List"));?>
 				<tr>
 					<td>
 						<pre><?php 

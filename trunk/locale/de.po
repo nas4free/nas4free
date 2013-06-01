@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-05-20 04:39+0000\n"
-"PO-Revision-Date: 2013-04-17 03:25+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2013-06-01 02:13+0000\n"
+"PO-Revision-Date: 2013-05-30 23:29+0000\n"
+"Last-Translator: apollo567 <apollo567@hotmail.de>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
-"X-Generator: Launchpad (build 16626)\n"
+"X-Launchpad-Export-Date: 2013-06-01 00:36+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
 "X-Poedit-Language: German\n"
@@ -333,11 +333,14 @@ msgstr ""
 msgid "Active Directory"
 msgstr "Active Directory"
 
+msgid "Active Directory List"
+msgstr ""
+
+msgid "Active Shares"
+msgstr ""
+
 msgid "Active Users"
 msgstr "Aktive Benutzer"
-
-msgid "Active shares"
-msgstr "Aktive Freigaben"
 
 msgid "Add"
 msgstr "Hinzufügen"
@@ -563,6 +566,7 @@ msgstr "Erlaube das Erstellen neuer Dateien."
 
 msgid "Allow to start UPS from battery"
 msgstr ""
+"Batteriebetrieb der unterbrechungsfreien Stromversorgung (UPS) aktivieren"
 
 msgid "Allow trusted domains."
 msgstr "Vertrauenswürdige Domänen erlauben."
@@ -614,10 +618,10 @@ msgid "Ambient Conditions From External Probe Equipment"
 msgstr ""
 
 msgid "Ambient relative humidity (percent)"
-msgstr ""
+msgstr "Luftfeuchte (in%)"
 
 msgid "Ambient temperature (degrees C)"
-msgstr ""
+msgstr "umgebungstemperatur (in C)"
 
 msgid "An host with this name already exists."
 msgstr "Ein Host mit diesem Namen existiert bereits."
@@ -740,7 +744,7 @@ msgid "Autoselect"
 msgstr "Autom. Auswahl"
 
 msgid "Auxiliary device firmware"
-msgstr ""
+msgstr "Firmwarerevision der Hilfseinheit"
 
 msgid "Auxiliary parameters"
 msgstr "Zusätzliche Parameter"
@@ -784,47 +788,45 @@ msgid "Battery Charge"
 msgstr "Ladestand des Akkus"
 
 msgid "Battery Details"
-msgstr ""
+msgstr "Batteriedetails"
 
 msgid "Battery Low"
 msgstr "Schwacher Akku"
 
-msgid "Battery Remain Time"
-msgstr "Akku Restlaufzeit"
-
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
-msgstr ""
+msgstr "Ladezustand der Batterie zur Einleitung der Systemabschaltung"
 
 msgid "Battery alarm threshold"
-msgstr ""
+msgstr "Alarmwert des LAdezustands der Batterie"
 
 msgid "Battery capacity"
-msgstr ""
+msgstr "Batteriekapazität"
 
 msgid "Battery change date"
-msgstr ""
+msgstr "Austauschdatum der Batterie"
 
 msgid "Battery charge"
-msgstr ""
+msgstr "Batterie Ladung"
 
 msgid "Battery chemistry"
-msgstr ""
+msgstr "Batterietyp"
 
 msgid "Battery current"
-msgstr ""
+msgstr "Batterie Strom"
 
 msgid "Battery level when UPS switches to \"Warning\" state"
 msgstr ""
+"Batterie Ladezustand, bei dem in den Status \"Warnung\" gewechselt wird"
 
 msgid "Battery manufacturing date"
-msgstr ""
+msgstr "Batterie Herstellungsdatum"
 
 msgid "Battery temperature"
-msgstr ""
+msgstr "Batterie Temperatur"
 
 msgid "Battery voltage"
-msgstr ""
+msgstr "Batterie Spannung"
 
 msgid "Best available"
 msgstr "Bester verfügbarer"
@@ -959,6 +961,9 @@ msgstr "Abbrechen"
 
 msgid "Canmount"
 msgstr "Canmount"
+
+msgid "Cannot get CPU load"
+msgstr ""
 
 msgid "Cannot get data about interface"
 msgstr "Kann von der Schnittstelle keine Daten erfassen"
@@ -1289,10 +1294,10 @@ msgid "Current password"
 msgstr "Aktuelles Passwort"
 
 msgid "Current value of apparent power (Volt-Amps)"
-msgstr ""
+msgstr "Aktuelle Scheinleistung (VA)"
 
 msgid "Current value of real power (Watts)"
-msgstr ""
+msgstr "Aktuelle Wirkleistung (W)"
 
 msgid "Custom"
 msgstr "Benutzerdefiniert"
@@ -1319,10 +1324,10 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DNLA/UPnP"
-msgstr ""
+msgstr "DNLA/UPnP"
 
 msgid "DNLA/UPnP Media Server"
-msgstr ""
+msgstr "DNLA/UPnP Medienserver"
 
 msgid "DNS settings"
 msgstr "DNS-Einstellungen"
@@ -1957,13 +1962,13 @@ msgid "Driver parameters"
 msgstr "Treiber Parameter"
 
 msgid "Driver used"
-msgstr ""
+msgstr "Verwendeter Treiber"
 
 msgid "Driver version"
-msgstr ""
+msgstr "Treiber Version"
 
 msgid "Driver version internal"
-msgstr ""
+msgstr "Treiber interne Version"
 
 msgid "Duplex"
 msgstr "Duplex"
@@ -2085,7 +2090,7 @@ msgstr "Datenträger bearbeiten"
 
 msgid ""
 "Efficiency of the UPS (Ratio of the output current on the input current)"
-msgstr ""
+msgstr "Effizienz der UPS (Verhältnis Ausgangsstrom zu Eingangsstrom)"
 
 msgid "Email"
 msgstr "E-Mail"
@@ -2130,7 +2135,7 @@ msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "Aktiviere Zeroconf/Bonjour zur Ankündigung der Dienste diese Gerätes"
 
 msgid "Enable administrative DNLA/UPnP WebGUI."
-msgstr ""
+msgstr "Aktivieren des DNLA/UPnP Weboberfläche"
 
 msgid "Enable anonymous bind."
 msgstr "Anomymes Bind einschalten"
@@ -2374,10 +2379,10 @@ msgid "Extended attributes"
 msgstr "Erweiterte Attribute"
 
 msgid "Extended input frequency range"
-msgstr ""
+msgstr "eingangseitige Stromfrequenzspanne"
 
 msgid "Extended input voltage range"
-msgstr ""
+msgstr "Erweiterter Eingangspannungsbereich"
 
 msgid "Extensions"
 msgstr "Erweiterungen"
@@ -2561,6 +2566,9 @@ msgstr "Firmware-Image"
 msgid "Firmware uploading is not supported on this platform."
 msgstr "Firmware-Upload wird auf dieser Plattform nicht unterstützt."
 
+msgid "Firmware version"
+msgstr ""
+
 msgid "Firmware version check"
 msgstr "Überprüfung der Firmware-Version"
 
@@ -2568,7 +2576,7 @@ msgid "FirstBurstLength"
 msgstr "FirstBurstLength"
 
 msgid "Flag xxx (ups.conf or cmdline -x) status"
-msgstr ""
+msgstr "Flag xxx (UPS-Konfigurationsdatei oder Kommandozeile '-x') Status"
 
 msgid "Flags"
 msgstr "Markierungen"
@@ -2641,7 +2649,7 @@ msgid "General"
 msgstr "Allgemein"
 
 msgid "General Information UPS Unit"
-msgstr ""
+msgstr "Allegemeine Information der UPS"
 
 msgid "General Setup"
 msgstr "Allgemeine Einstellungen"
@@ -2663,6 +2671,7 @@ msgstr "Ermögliche nur lokalen Benutzern Zugriff auf die Webseite."
 
 msgid "Give your media library a friendly name."
 msgstr ""
+"Vergeben Sie einen benutzerfreundlichen Namen für ihre Mediendatenbank"
 
 msgid "Grant access to the user portal."
 msgstr "Gewähre Zugang zum Benutzerportal."
@@ -2770,11 +2779,10 @@ msgstr "Hinweis"
 
 #, php-format
 msgid ""
-"Hint: If this is checked, IP addresses in %s logs are resolved to real "
-"hostnames where possible."
+"Hint: If this is checked, IP addresses in the server logs are resolved to "
+"real hostnames where possible.<br><font color='red'>Warning</font>: This can "
+"cause a huge delay in loading the log page!"
 msgstr ""
-"Hinweis: Ist dies aktiviert, werden IP-Adressen in den Logfiles von %s wenn "
-"möglich als Hostnamen angezeigt."
 
 msgid "Home directory"
 msgstr "Home-Verzeichnis"
@@ -3112,19 +3120,19 @@ msgid "Initiators"
 msgstr "Initiatoren"
 
 msgid "Input current (A)"
-msgstr ""
+msgstr "Stromstärke (A)"
 
 msgid "Input frequency"
-msgstr ""
+msgstr "eingangseitige Stromfrequenz"
 
 msgid "Input line frequency (Hz)"
-msgstr ""
+msgstr "Stromfrequenz (in Hz)"
 
 msgid "Input line frequency high (Hz)"
-msgstr ""
+msgstr "maximale eingangseitige Stromfrequenz"
 
 msgid "Input line frequency low (Hz)"
-msgstr ""
+msgstr "mininale eingangseitige Stromfrequenz (in Hz)"
 
 msgid "Input power quality (* opaque)"
 msgstr ""
@@ -3133,7 +3141,7 @@ msgid "Input power sensitivity"
 msgstr ""
 
 msgid "Input voltage"
-msgstr ""
+msgstr "Eingangsspannung (in V)"
 
 msgid "Inquiry Product"
 msgstr "Abfrageprodukt"
@@ -3160,7 +3168,7 @@ msgid "Interface Management"
 msgstr "Schnittstellen Management"
 
 msgid "Interface selection"
-msgstr ""
+msgstr "Auswahl der Schnittstelle"
 
 msgid "Interfaces"
 msgstr "Schnittstellen"
@@ -3169,13 +3177,13 @@ msgid "Internal Server Information"
 msgstr ""
 
 msgid "Internal UPS clock date"
-msgstr ""
+msgstr "Datum der UPS-Uhr"
 
 msgid "Internal UPS clock time"
-msgstr ""
+msgstr "Uhrzeit der UPS-Uhr"
 
 msgid "Interval between self tests"
-msgstr ""
+msgstr "Zeitlicher Intervall des Selbsttests"
 
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "Das Intervall muss genau oder länger als 10 Sekunden sein."
@@ -3184,7 +3192,7 @@ msgid "Interval to wait after shutdown with delay command"
 msgstr ""
 
 msgid "Interval to wait before rebooting the UPS)"
-msgstr ""
+msgstr "Wartezeit vor UPS-Neustart"
 
 msgid "Interval to wait before restarting the load"
 msgstr ""
@@ -3295,7 +3303,7 @@ msgid "Language"
 msgstr "Sprache"
 
 msgid "Language to use on front panel"
-msgstr ""
+msgstr "Sprache der Displayanzeige"
 
 msgid "Large read/write"
 msgstr "Large read/write"
@@ -3413,9 +3421,6 @@ msgstr "Liste der importierten Benutzer"
 msgid "List of mount points"
 msgstr "Liste von Einhängepunkten"
 
-msgid "List of open files"
-msgstr "Liste geöffneter Dateien"
-
 msgid "Load"
 msgstr "Laden"
 
@@ -3482,7 +3487,7 @@ msgid "Location where the content database file will be stored."
 msgstr "Standort an welchem die Inhalte-Datenbank gespeichert werden soll."
 
 msgid "Location where the database with media contents will be stored."
-msgstr ""
+msgstr "Speicherort der Übersicht der Medieninhalte"
 
 #, php-format
 msgid ""
@@ -3594,7 +3599,7 @@ msgid "Manufacturer"
 msgstr "Hersteller"
 
 msgid "Manufacturing date"
-msgstr ""
+msgstr "Herstellungsdatum"
 
 msgid "Map all users to root"
 msgstr "Bilde alle Benutzer auf den Nutzer 'root' ab"
@@ -3659,7 +3664,7 @@ msgid "Maximum idle time in seconds."
 msgstr "Maximale Leerlaufzeit in Sekunden."
 
 msgid "Maximum incoming voltage seen"
-msgstr ""
+msgstr "maximal gemessene Spannung"
 
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr ""
@@ -3699,10 +3704,10 @@ msgid "Maximum performance, maximum acoustic output"
 msgstr "Maximale Performance, maximale Geräuschbelastung"
 
 msgid "Maximum relative humidity seen (percent)"
-msgstr ""
+msgstr "maximal gemessene Luftfeuchte"
 
 msgid "Maximum temperature seen (degrees C)"
-msgstr ""
+msgstr "Maximal gemessene Temperatur (in C)"
 
 msgid "Media"
 msgstr "Media"
@@ -3711,7 +3716,7 @@ msgid "Media Directory"
 msgstr "Medien Verzeichnis"
 
 msgid "Media library"
-msgstr ""
+msgstr "Mediendatenbank"
 
 msgid "Medium acoustic output"
 msgstr "Mittlere Geräuschbelastung"
@@ -3753,10 +3758,10 @@ msgid "Minimum performance, Minimum acoustic output"
 msgstr "Minimale Performance, minimale Geräuschbelastung"
 
 msgid "Minimum relative humidity seen (percent)"
-msgstr ""
+msgstr "Minmale gemessene Luftfeuchtigkeit"
 
 msgid "Minimum temperature seen (degrees C)"
-msgstr ""
+msgstr "Minimale hgemesene Temperatur (in C)"
 
 msgid "Minutes"
 msgstr "Minuten"
@@ -4036,19 +4041,19 @@ msgid "Node Name"
 msgstr "Knotenname"
 
 msgid "Nominal battery voltage"
-msgstr ""
+msgstr "Batteriespannung (nominal)"
 
 msgid "Nominal input current (A)"
-msgstr ""
+msgstr "Eingangsstromstärke (in A)"
 
 msgid "Nominal input line frequency (Hz)"
 msgstr ""
 
 msgid "Nominal input voltage"
-msgstr ""
+msgstr "Spannung (nominal)"
 
 msgid "Nominal output current (A)"
-msgstr ""
+msgstr "Stromstärke (nominal)"
 
 msgid "Nominal output frequency (Hz)"
 msgstr ""
@@ -4126,10 +4131,10 @@ msgid "Null passwords"
 msgstr "Leere Passwörter"
 
 msgid "Number of bad battery packs"
-msgstr ""
+msgstr "Anzahl defekter Akkuzellen"
 
 msgid "Number of battery packs"
-msgstr ""
+msgstr "Anzahl Akkuzellen"
 
 msgid "Number of clients"
 msgstr "Anzahl der Clients"
@@ -4225,16 +4230,16 @@ msgid "Outgoing mail server"
 msgstr "Ausgehender Mailserver"
 
 msgid "Output current (A)"
-msgstr ""
+msgstr "ausgansseitige Stromstärke (in A)"
 
 msgid "Output frequency (Hz)"
-msgstr ""
+msgstr "ausgangseitige Stromfrequenz (in Hz)"
 
 msgid "Output voltage"
-msgstr ""
+msgstr "ausgangsseitige Stromspannung"
 
 msgid "Output voltage (V)"
-msgstr ""
+msgstr "ausgangsseitige Stromspannung (in V)"
 
 msgid "Overload"
 msgstr "Überlast"
@@ -4530,7 +4535,7 @@ msgid "Preserve permissions"
 msgstr "Dateirechte beibehalten"
 
 msgid "Prevent deep discharge of battery"
-msgstr ""
+msgstr "Tiefentladung der Batttierie verhindern"
 
 msgid "Primary"
 msgstr "Primärer"
@@ -4691,7 +4696,7 @@ msgid "Realm"
 msgstr "Bereich"
 
 msgid "Reason for last transfer to battery (* opaque)"
-msgstr ""
+msgstr "Grund für die Umschaltung auf Batteriebetrieb"
 
 msgid "Reboot"
 msgstr "Neustart"
@@ -4715,7 +4720,7 @@ msgid "Reject"
 msgstr "Zurückweisen"
 
 msgid "Relative humidity alarm (enabled/disabled)"
-msgstr ""
+msgstr "Alarm für Luftfeuchtigkeit (aktiviert/deaktiviert)"
 
 msgid "Relative humidity threshold high (percent)"
 msgstr ""
@@ -4727,7 +4732,7 @@ msgid "Reload page"
 msgstr "Seite neu laden"
 
 msgid "Remaining battery runtime"
-msgstr ""
+msgstr "verfügbare Restlaufzeit im Batteriebetrieb"
 
 msgid "Remote Rsync Server"
 msgstr "entfernter Rsync Server"
@@ -4819,7 +4824,7 @@ msgid "Results for net rpc testjoin:"
 msgstr "Ergebnisse für"
 
 msgid "Results of last self test"
-msgstr ""
+msgstr "Ergebnisse des letzten durchgeführten Selbsttests"
 
 msgid "Resume"
 msgstr "Fortfahren"
@@ -5082,9 +5087,6 @@ msgstr "Test-E-Mail senden"
 msgid "Separate email addresses by semi-colon."
 msgstr "Semikolon getrennte Liste von E-Mail Adressen."
 
-msgid "Serial"
-msgstr ""
-
 msgid "Serial Console"
 msgstr "Serial Console"
 
@@ -5107,7 +5109,7 @@ msgid "Server name"
 msgstr "Servername"
 
 msgid "Server version"
-msgstr ""
+msgstr "Serverversion"
 
 msgid "Service"
 msgstr "Service"
@@ -5523,11 +5525,8 @@ msgstr "Synchronisierung"
 msgid ""
 "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
 "server. Be sure to set syslogd on the remote server to accept syslog "
-"messages from %s."
+"messages from this server."
 msgstr ""
-"Syslog sendet UDP Datagramme an Port 514 auf dem angegebenen Remote Syslog "
-"Server. Stellen Sie sicher, dass 'syslogd' auf dem 'the remote server' "
-"syslog Meldungen von %s akzeptiert."
 
 msgid "System"
 msgstr "System"
@@ -5549,6 +5548,9 @@ msgstr "Systeminformation"
 
 msgid "System information"
 msgstr "Systeminformationen"
+
+msgid "System load"
+msgstr ""
 
 msgid "System log"
 msgstr "System log"
@@ -5641,7 +5643,7 @@ msgid "Temperature"
 msgstr "Temperatur"
 
 msgid "Temperature alarm (enabled/disabled)"
-msgstr ""
+msgstr "Alarm für Temperatur (aktiviert/deaktiviert)"
 
 msgid "Temperature monitoring"
 msgstr "Temperaturüberwachung"
@@ -7070,9 +7072,6 @@ msgstr ""
 "Schaltknopf ihres Webbrowsers, um sich den Stand fehlgeschlagener Abfragen "
 "anzeigen zu lassen."
 
-msgid "Traffic graph"
-msgstr "Durchgangsanzeige"
-
 msgid "Transcoding"
 msgstr "Umwandlung"
 
@@ -7175,7 +7174,7 @@ msgid "UPS Waiting"
 msgstr "UPS wartet"
 
 msgid "UPS alarms"
-msgstr ""
+msgstr "UPS Alarmsignale"
 
 msgid "UPS beeper status"
 msgstr ""
@@ -7190,13 +7189,13 @@ msgid "UPS external contact sensors"
 msgstr ""
 
 msgid "UPS firmware"
-msgstr ""
+msgstr "UPS Firmwareversion"
 
 msgid "UPS goes on battery"
 msgstr "UPS geht in den Batterie-Modus"
 
 msgid "UPS model"
-msgstr ""
+msgstr "UPS Modellbezeichnung"
 
 msgid "UPS reaches low battery"
 msgstr ""
@@ -7212,10 +7211,10 @@ msgid "UPS system identifier"
 msgstr ""
 
 msgid "UPS temperature"
-msgstr ""
+msgstr "Temperatur der UPS"
 
 msgid "UPS type"
-msgstr ""
+msgstr "UPS-Typ"
 
 msgid "UPS watchdog status"
 msgstr ""
@@ -7496,12 +7495,6 @@ msgstr "Wake On LAN"
 
 msgid "Warning"
 msgstr "Warnung"
-
-#, php-format
-msgid "Warning: This can cause a huge delay in loading the %s log page!"
-msgstr ""
-"Warnung: Dies kann eine beträchtliche Verzögerung beim Laden der Logfiles "
-"von %s verursachen!"
 
 msgid ""
 "Warning: You are going to delete a RAID volume. All data will get lost and "
@@ -7894,3 +7887,39 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr "Version:"
+
+#~ msgid "Active shares"
+#~ msgstr "Aktive Freigaben"
+
+#, php-format
+#~ msgid ""
+#~ "Hint: If this is checked, IP addresses in %s logs are resolved to real "
+#~ "hostnames where possible."
+#~ msgstr ""
+#~ "Hinweis: Ist dies aktiviert, werden IP-Adressen in den Logfiles von %s wenn "
+#~ "möglich als Hostnamen angezeigt."
+
+#~ msgid "List of open files"
+#~ msgstr "Liste geöffneter Dateien"
+
+#, php-format
+#~ msgid ""
+#~ "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
+#~ "server. Be sure to set syslogd on the remote server to accept syslog "
+#~ "messages from %s."
+#~ msgstr ""
+#~ "Syslog sendet UDP Datagramme an Port 514 auf dem angegebenen Remote Syslog "
+#~ "Server. Stellen Sie sicher, dass 'syslogd' auf dem 'the remote server' "
+#~ "syslog Meldungen von %s akzeptiert."
+
+#~ msgid "Traffic graph"
+#~ msgstr "Durchgangsanzeige"
+
+#, php-format
+#~ msgid "Warning: This can cause a huge delay in loading the %s log page!"
+#~ msgstr ""
+#~ "Warnung: Dies kann eine beträchtliche Verzögerung beim Laden der Logfiles "
+#~ "von %s verursachen!"
+
+#~ msgid "Battery Remain Time"
+#~ msgstr "Akku Restlaufzeit"

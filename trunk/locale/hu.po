@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-05-20 04:39+0000\n"
+"POT-Creation-Date: 2013-06-01 02:13+0000\n"
 "PO-Revision-Date: 2013-05-15 09:23+0000\n"
 "Last-Translator: Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
-"X-Generator: Launchpad (build 16626)\n"
+"X-Launchpad-Export-Date: 2013-06-01 00:37+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 "X-Poedit-Country: HUNGARY\n"
 "Language: \n"
 "X-Poedit-Language: Hungarian\n"
@@ -290,11 +290,14 @@ msgstr ""
 msgid "Active Directory"
 msgstr "Címtár szolgáltatás (AD)"
 
+msgid "Active Directory List"
+msgstr ""
+
+msgid "Active Shares"
+msgstr ""
+
 msgid "Active Users"
 msgstr "Aktív felhasználók"
-
-msgid "Active shares"
-msgstr "Aktív megosztások"
 
 msgid "Add"
 msgstr "Hozzáadás"
@@ -723,9 +726,6 @@ msgstr ""
 msgid "Battery Low"
 msgstr "Alacsony töltöttségi szint"
 
-msgid "Battery Remain Time"
-msgstr "Elem idő"
-
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
 msgstr ""
@@ -888,6 +888,9 @@ msgstr "Mégse"
 
 msgid "Canmount"
 msgstr "Mountolható"
+
+msgid "Cannot get CPU load"
+msgstr ""
 
 msgid "Cannot get data about interface"
 msgstr "Nem lehet adatot venni az interfészről"
@@ -2399,6 +2402,9 @@ msgstr "Firmware lemezkép"
 msgid "Firmware uploading is not supported on this platform."
 msgstr "A firmware feltöltés nem támogatott ezen a platformon."
 
+msgid "Firmware version"
+msgstr ""
+
 msgid "Firmware version check"
 msgstr "Firmware verzió ellenörzés"
 
@@ -2604,11 +2610,10 @@ msgstr "Tipp"
 
 #, php-format
 msgid ""
-"Hint: If this is checked, IP addresses in %s logs are resolved to real "
-"hostnames where possible."
+"Hint: If this is checked, IP addresses in the server logs are resolved to "
+"real hostnames where possible.<br><font color='red'>Warning</font>: This can "
+"cause a huge delay in loading the log page!"
 msgstr ""
-"Tipp: Ha ez be van kapcsolva, az IP címek a %s naplókban állomásnevekként "
-"jelennek meg, ahol ez lehetséges."
 
 msgid "Home directory"
 msgstr "Saját könyvtár"
@@ -3193,9 +3198,6 @@ msgstr "Importált felhasználók listája"
 
 msgid "List of mount points"
 msgstr "Csatolási pontok listája"
-
-msgid "List of open files"
-msgstr "Megnyitott fájlok listája"
 
 msgid "Load"
 msgstr "Betöltés"
@@ -4781,9 +4783,6 @@ msgstr "Próba e-mail küldése"
 msgid "Separate email addresses by semi-colon."
 msgstr "Az e-mail címeket pontosvesszővel válassza el."
 
-msgid "Serial"
-msgstr ""
-
 msgid "Serial Console"
 msgstr ""
 
@@ -5185,7 +5184,7 @@ msgstr "Szinkronizálás"
 msgid ""
 "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
 "server. Be sure to set syslogd on the remote server to accept syslog "
-"messages from %s."
+"messages from this server."
 msgstr ""
 
 msgid "System"
@@ -5208,6 +5207,9 @@ msgstr "Rendszerinformáció"
 
 msgid "System information"
 msgstr "Rendszerinformáció"
+
+msgid "System load"
+msgstr ""
 
 msgid "System log"
 msgstr "Rendszernapló"
@@ -6444,9 +6446,6 @@ msgstr ""
 "A Traceroute eltarthat egy ideig. Bármikor lenyomhatod a böngésződ stop "
 "gombját, ha hibás Traceroute folyamatot látsz."
 
-msgid "Traffic graph"
-msgstr "Forgalom grafikon"
-
 msgid "Transcoding"
 msgstr "Átkódolás"
 
@@ -6853,12 +6852,6 @@ msgstr ""
 msgid "Warning"
 msgstr "Figyelmeztetés"
 
-#, php-format
-msgid "Warning: This can cause a huge delay in loading the %s log page!"
-msgstr ""
-"Figyelem, ez hatalmas késéseket eredményezhet a %s naplózó oldal "
-"betöltésében!"
-
 msgid ""
 "Warning: You are going to delete a RAID volume. All data will get lost and "
 "can not be recovered."
@@ -7226,3 +7219,29 @@ msgstr ""
 #, php-format
 msgid "version:"
 msgstr ""
+
+#~ msgid "Active shares"
+#~ msgstr "Aktív megosztások"
+
+#, php-format
+#~ msgid ""
+#~ "Hint: If this is checked, IP addresses in %s logs are resolved to real "
+#~ "hostnames where possible."
+#~ msgstr ""
+#~ "Tipp: Ha ez be van kapcsolva, az IP címek a %s naplókban állomásnevekként "
+#~ "jelennek meg, ahol ez lehetséges."
+
+#~ msgid "List of open files"
+#~ msgstr "Megnyitott fájlok listája"
+
+#~ msgid "Traffic graph"
+#~ msgstr "Forgalom grafikon"
+
+#, php-format
+#~ msgid "Warning: This can cause a huge delay in loading the %s log page!"
+#~ msgstr ""
+#~ "Figyelem, ez hatalmas késéseket eredményezhet a %s naplózó oldal "
+#~ "betöltésében!"
+
+#~ msgid "Battery Remain Time"
+#~ msgstr "Elem idő"
