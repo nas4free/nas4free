@@ -1,7 +1,7 @@
 <?php
 /*
 	license.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
@@ -14,7 +14,7 @@
 
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -28,7 +28,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 // Configure page permission
@@ -86,36 +86,34 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
             <?php html_titleline(gettext("Credits"));?>
             <tr>
             	<td class="listt">
-            <p>The following persons have contributed to NAS4Free code:</p>                         
-              <div>Daisuke Aoyama (<a href="mailto:aoyama@nas4free.org">aoyama@nas4free.org</a>)<br />              
+            <p>The following persons have contributed to NAS4Free code:</p>
+              <div>Daisuke Aoyama (<a href="mailto:aoyama@nas4free.org">aoyama@nas4free.org</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer & Project leader</font></em></div><br />
-             <div>Michael Zoon (<a href="mailto:zoon01@nas4free.org">zoon01@nas4free.org</a>)<br />             
+             <div>Michael Zoon (<a href="mailto:zoon01@nas4free.org">zoon01@nas4free.org</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer & Project leader</font></em></div><br />
             <hr size="1" />
             <p>The following persons have contributed to NAS4Free support:</p>
             <div>Samuel Tunis alias killermist (<a href="mailto:killermist@nas4free.org">killermist@nas4free.org</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
-            <hr size="1" />
-            <p>The following persons have contributed to NAS4Free documentation project:</p>
+            <div>Alein Strimey alias SIFTU (<a href="mailto:siftu@nas4free.org">siftu@nas4free.org</a>)<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
+	     <hr size="1" />
+            <p>The following persons have contributed to NAS4Free documentation and/or webgui translations:</p>
             <div>Carsten Vinkler (<a href="mailto:carsten@indysign.dk">carsten@indysign.dk</a>)<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Danish translator of the WebGUI</font></em></div><br />            
-            <div>Kris Verhoeven (<a href="mailto:kris@esiv.be">kris@esiv.be</a>)<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Dutch translator of the WebGUI</font></em></div><br />
+              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Danish translator of the WebGUI</font></em></div><br />
             <div>Christophe Lherieau (<a href="skimpax+freenas@gmail.com">skimpax+freenas@gmail.com</a>)<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">French translator of the WebGUI</font></em></div><br />             
+              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">French translator of the WebGUI</font></em></div><br />
             <div>Dominik Plaszewski (<a href="mailto:domme555@gmx.net">domme555@gmx.net</a>)<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">German translator of the WebGUI</font></em></div><br />       
+              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">German translator of the WebGUI</font></em></div><br />
             <div>Petros Kyladitis (<a href="mailto:petros.kyladitis@gmail.com">petros.kyladitis@gmail.com</a>)<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Greek translator of the WebGUI</font></em></div><br />             
+              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Greek translator of the WebGUI</font></em></div><br />
             <div>Christian Sulmoni (<a href="mailto:csulmoni@gmail.com">csulmoni@gmail.com</a>)<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Italian translator of the WebGUI and QuiXplorer</font></em></div><br />              
+              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Italian translator of the WebGUI and QuiXplorer</font></em></div><br />
             <div>Frederico Tavares (<a href="mailto:frederico-tavares@sapo.pt">frederico-tavares@sapo.pt</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Portuguese translator of the WebGUI</font></em></div><br />
             <div>Raul Fernandez Garcia (<a href="mailto:raulfg3@gmail.com">raulfg3@gmail.com</a>)<br />
 	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Spanish translator of the WebGUI</font></em></div><br />
-	    <div>Kevin Fowler (<a href="mailto:kfowler@nas4free.org">kfowler@nas4free.org</a>)<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Webmaster, Documentation & Coder</font></em></div><br />	                                           
-						</td></tr>						
+						</td></tr>
             <?php html_separator();?>
             <?php html_titleline(gettext("Software used"));?>
             <tr>
@@ -123,21 +121,21 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
       <p>NAS4Free is based upon/includes various free software packages, listed
         below.<br />
         The authors of NAS4Free would like to thank the authors of these software
-        packages for their efforts.</p>
+        for their efforts.</p>
       <p> FreeBSD (<a href="http://www.freebsd.org" target="_blank">http://www.freebsd.org</a>)<br />
-        Copyright &copy; 1995-2012 The FreeBSD Project. All rights reserved.</p>
+        Copyright &copy; 1995-2013 The FreeBSD Project. All rights reserved.</p>
 
-      <p> geom raid5 <a href="http://wgboome.homepage.t-online.de/geom_raid5.tbz">FreeBSD GEOM RAID5 module</a><br />
+      <p> GEOM RAID5 module (<a href="http://www.wgboome.org/geom_raid5-html" target="_blank">http://www.wgboome.org/geom_raid5-html</a>)<br />
         Copyright &copy; 2006-2009 Arne Woerner (<a href="mailto:arne_woerner@yahoo.com">arne_woerner@yahoo.com</a>).</p>
 
-      <p> PHP (<a href="http://www.php.net" target="_blank">http://www.php.net</a>).<br />
-        Copyright &copy; 1999-2012 The PHP Group. All rights reserved.</p>
+      <p> PHP (<a href="http://www.php.net" target="_blank">http://www.php.net</a>)<br />
+        Copyright &copy; 1999-2013 The PHP Group. All rights reserved.</p>
 
       <p> jQuery (<a href="http://jquery.com" target="_blank">http://jquery.com</a>).<br />
         Copyright &copy; 2012 jQuery Foundation.</p>
 
       <p> Lighttpd (<a href="http://www.lighttpd.net" target="_blank">http://www.lighttpd.net</a>)<br />
-        Copyright &copy; 2004 by Jan Kneschke (jan@kneschke.de). All rights reserved.</p>
+        Copyright &copy; 2004 Jan Kneschke (<a href="mailto:jan@kneschke.de">jan@kneschke.de</a>). All rights reserved.</p>
 
       <p> OpenSSH (<a href="http://www.openssh.com" target="_blank">http://www.openssh.com</a>)<br />
         Copyright &copy; 1999-2009 OpenBSD</p>
@@ -149,7 +147,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
         Copyright &copy; 2007 Free Software Foundation</p>
 
       <p> ProFTPD - Highly configurable FTP server (<a href="http://www.proftpd.org" target="_blank">http://www.proftpd.org</a>)<br />
-        Copyright &copy; 1999, 2000-2012 The ProFTPD Project</p>
+        Copyright &copy; 1999, 2000-2013 The ProFTPD Project</p>
 
       <p>tftp-hpa (<a href="http://www.kernel.org/pub/software/network/tftp" target="_blank">http://www.kernel.org/pub/software/network/tftp</a>)<br />
        Copyright &copy; 1999, 2000-2009 The tftp-hpa series is maintained by H. Peter Anvin <hpa@zytor.com>.</p>
@@ -167,13 +165,13 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
         Copyright &copy; 2004-2005 Bruce Cran (bruce@cran.org.uk). All rights reserved.</p>
 
       <p>smartmontools (<a href="http://sourceforge.net/projects/smartmontools" target="_blank">http://sourceforge.net/projects/smartmontools</a>)<br />
-        Copyright &copy; 2002-2012 Bruce Allen.</p>
+        Copyright &copy; 2002-2013 Bruce Allen.</p>
 
       <p>iSCSI initiator (<a href="ftp://ftp.cs.huji.ac.il/users/danny/freebsd" target="_blank">ftp://ftp.cs.huji.ac.il/users/danny/freebsd</a>)<br />
         Copyright &copy; 2005-2011 Daniel Braniss (danny@cs.huji.ac.il).</p>
 
       <p>istgt - iSCSI target for FreeBSD (<a href="http://shell.peach.ne.jp/aoyama" target="_blank">http://shell.peach.ne.jp/aoyama</a>)<br />
-        Copyright &copy; 2008-2012 Daisuke Aoyama (aoyama@peach.ne.jp). All rights reserved.</p>
+        Copyright &copy; 2008-2013 Daisuke Aoyama (aoyama@peach.ne.jp). All rights reserved.</p>
 
       <p>FUPPES - Free UPnP Entertainment Service (<a href="http://fuppes.ulrich-voelkel.de" target="_blank">http://fuppes.ulrich-voelkel.de</a>)<br />
         Copyright &copy; 2005 - 2011 Ulrich V&ouml;lkel (u-voelkel@users.sourceforge.net).</p>
@@ -210,7 +208,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
         Rewritten by Eric Wassenaar, Nikhef-H, (e07@nikhef.nl).</p>
 
       <p>Transmission - Transmission is a fast, easy, and free multi-platform BitTorrent client (<a href="http://www.transmissionbt.com" target="_blank">http://www.transmissionbt.com</a>)<br />
-        Copyright &copy; 2008-2012 Transmission Project. All rights reserved.</p>
+        Copyright &copy; 2008-2013 Transmission Project. All rights reserved.</p>
 
       <p>QuiXplorer - Web-based file-management (<a href="http://quixplorer.sourceforge.net" target="_blank">http://quixplorer.sourceforge.net</a>)<br />
         Copyright &copy; Felix C. Stegerman. All rights reserved.</p>
