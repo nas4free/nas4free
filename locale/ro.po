@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-20 04:39+0000\n"
+"POT-Creation-Date: 2013-06-01 02:13+0000\n"
 "PO-Revision-Date: 2013-05-21 17:48+0000\n"
 "Last-Translator: Laurentiu Bubuianu <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-27 15:12+0000\n"
-"X-Generator: Launchpad (build 16640)\n"
+"X-Launchpad-Export-Date: 2013-06-01 00:37+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 "Language: ro_RO\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -325,11 +325,14 @@ msgstr ""
 msgid "Active Directory"
 msgstr "Active Directory (AD)"
 
+msgid "Active Directory List"
+msgstr ""
+
+msgid "Active Shares"
+msgstr ""
+
 msgid "Active Users"
 msgstr "Utilizatori activi"
-
-msgid "Active shares"
-msgstr "Partajări active"
 
 msgid "Add"
 msgstr "Adăugare"
@@ -781,9 +784,6 @@ msgstr "Detalii acumulator"
 msgid "Battery Low"
 msgstr "Acumulator descărcat"
 
-msgid "Battery Remain Time"
-msgstr "Timp rămas acumulator"
-
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
 msgstr ""
@@ -948,6 +948,9 @@ msgstr "Anulare"
 
 msgid "Canmount"
 msgstr "Canmount"
+
+msgid "Cannot get CPU load"
+msgstr ""
 
 msgid "Cannot get data about interface"
 msgstr "Nicio informație disponibilă despre interfață"
@@ -2541,6 +2544,9 @@ msgstr "Fișier imagine Firmware"
 msgid "Firmware uploading is not supported on this platform."
 msgstr "Actualizarea nu este posibilă pe această platformă."
 
+msgid "Firmware version"
+msgstr ""
+
 msgid "Firmware version check"
 msgstr "Verificare versiune firmware"
 
@@ -2750,11 +2756,10 @@ msgstr "Indiciu"
 
 #, php-format
 msgid ""
-"Hint: If this is checked, IP addresses in %s logs are resolved to real "
-"hostnames where possible."
+"Hint: If this is checked, IP addresses in the server logs are resolved to "
+"real hostnames where possible.<br><font color='red'>Warning</font>: This can "
+"cause a huge delay in loading the log page!"
 msgstr ""
-"Obs.: Dacă această opțiune este selectată, adresele IP din jurnalul %s vor "
-"fi convertite în  nume de sistem (acolo unde acest lucru este posibil)."
 
 msgid "Home directory"
 msgstr "Folder utilizator"
@@ -3396,9 +3401,6 @@ msgstr "Lista utilizatorilor importați"
 
 msgid "List of mount points"
 msgstr "Lista punctelor de montare"
-
-msgid "List of open files"
-msgstr "Lista fișierelor deschise"
 
 msgid "Load"
 msgstr "Încărcare"
@@ -5054,9 +5056,6 @@ msgstr "Trimitere email de test"
 msgid "Separate email addresses by semi-colon."
 msgstr "Separați adresele de email prin punct şi virgulă ';'"
 
-msgid "Serial"
-msgstr "Serial"
-
 msgid "Serial Console"
 msgstr "Consolă serială"
 
@@ -5492,10 +5491,8 @@ msgstr "Sincronizare"
 msgid ""
 "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
 "server. Be sure to set syslogd on the remote server to accept syslog "
-"messages from %s."
+"messages from this server."
 msgstr ""
-"Sistemul va trimite secvențe UDP către serverul de syslog selectat, prin "
-"portul 514. Verificați dacă serverul pentru syslog acceptă mesaje de la %s."
 
 msgid "System"
 msgstr "Sistem"
@@ -5517,6 +5514,9 @@ msgstr "Informații Sistem"
 
 msgid "System information"
 msgstr "Informații Sistem"
+
+msgid "System load"
+msgstr ""
 
 msgid "System log"
 msgstr "Jurnal Sistem"
@@ -7000,9 +7000,6 @@ msgstr ""
 "apăsînd butonul Stop, în browser fiind afișate rutele descoperite pînă în "
 "acel moment."
 
-msgid "Traffic graph"
-msgstr "Grafic Trafic"
-
 msgid "Transcoding"
 msgstr "Transcodare"
 
@@ -7429,12 +7426,6 @@ msgstr "Pornire prin LAN (WOL)"
 msgid "Warning"
 msgstr "Atenție"
 
-#, php-format
-msgid "Warning: This can cause a huge delay in loading the %s log page!"
-msgstr ""
-"Atenție: În acest mod poate apare o foarte mare întîrziere în încărcarea "
-"paginii jurnal %s!"
-
 msgid ""
 "Warning: You are going to delete a RAID volume. All data will get lost and "
 "can not be recovered."
@@ -7823,3 +7814,41 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr "versiune:"
+
+#~ msgid "Active shares"
+#~ msgstr "Partajări active"
+
+#~ msgid "Traffic graph"
+#~ msgstr "Grafic Trafic"
+
+#, php-format
+#~ msgid ""
+#~ "Hint: If this is checked, IP addresses in %s logs are resolved to real "
+#~ "hostnames where possible."
+#~ msgstr ""
+#~ "Obs.: Dacă această opțiune este selectată, adresele IP din jurnalul %s vor "
+#~ "fi convertite în  nume de sistem (acolo unde acest lucru este posibil)."
+
+#~ msgid "List of open files"
+#~ msgstr "Lista fișierelor deschise"
+
+#, php-format
+#~ msgid ""
+#~ "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
+#~ "server. Be sure to set syslogd on the remote server to accept syslog "
+#~ "messages from %s."
+#~ msgstr ""
+#~ "Sistemul va trimite secvențe UDP către serverul de syslog selectat, prin "
+#~ "portul 514. Verificați dacă serverul pentru syslog acceptă mesaje de la %s."
+
+#, php-format
+#~ msgid "Warning: This can cause a huge delay in loading the %s log page!"
+#~ msgstr ""
+#~ "Atenție: În acest mod poate apare o foarte mare întîrziere în încărcarea "
+#~ "paginii jurnal %s!"
+
+#~ msgid "Battery Remain Time"
+#~ msgstr "Timp rămas acumulator"
+
+#~ msgid "Serial"
+#~ msgstr "Serial"

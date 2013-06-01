@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-05-20 04:39+0000\n"
+"POT-Creation-Date: 2013-06-01 02:13+0000\n"
 "PO-Revision-Date: 2012-11-21 15:57+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
-"X-Generator: Launchpad (build 16626)\n"
+"X-Launchpad-Export-Date: 2013-06-01 00:37+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 "X-Poedit-Country: SWEDEN\n"
 "Language: \n"
 "X-Poedit-Language: Swedish\n"
@@ -320,11 +320,14 @@ msgstr ""
 msgid "Active Directory"
 msgstr "Active Directory"
 
+msgid "Active Directory List"
+msgstr ""
+
+msgid "Active Shares"
+msgstr ""
+
 msgid "Active Users"
 msgstr "Aktiva användare"
-
-msgid "Active shares"
-msgstr "Aktiva utdelningar"
 
 msgid "Add"
 msgstr "Lägg till"
@@ -765,9 +768,6 @@ msgstr ""
 msgid "Battery Low"
 msgstr ""
 
-msgid "Battery Remain Time"
-msgstr ""
-
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
 msgstr ""
@@ -930,6 +930,9 @@ msgstr "Avbryt"
 
 msgid "Canmount"
 msgstr "Kan montera"
+
+msgid "Cannot get CPU load"
+msgstr ""
 
 msgid "Cannot get data about interface"
 msgstr "Kan inte få data om gränssnittet"
@@ -2497,6 +2500,9 @@ msgstr "Avbildsfil för fast programvara"
 msgid "Firmware uploading is not supported on this platform."
 msgstr "Uppsändning av fast programvara stöds inte på den här plattformen."
 
+msgid "Firmware version"
+msgstr ""
+
 msgid "Firmware version check"
 msgstr "Kontroll av fast programvaruversion"
 
@@ -2703,11 +2709,10 @@ msgstr "Tips"
 
 #, php-format
 msgid ""
-"Hint: If this is checked, IP addresses in %s logs are resolved to real "
-"hostnames where possible."
+"Hint: If this is checked, IP addresses in the server logs are resolved to "
+"real hostnames where possible.<br><font color='red'>Warning</font>: This can "
+"cause a huge delay in loading the log page!"
 msgstr ""
-"Tips: Om denna är markerad kommer IP-adresser i %s-loggen att översättas "
-"till riktiga värdnamn när så är möjligt."
 
 msgid "Home directory"
 msgstr "Hemkatalog"
@@ -3325,9 +3330,6 @@ msgstr "Lista över importerade användare"
 
 msgid "List of mount points"
 msgstr "Lista med monteringspunkter"
-
-msgid "List of open files"
-msgstr "Öppna filer"
 
 msgid "Load"
 msgstr "Läs in"
@@ -4967,9 +4969,6 @@ msgstr "Sänd test-epost."
 msgid "Separate email addresses by semi-colon."
 msgstr "Separerar e-postadresser med semikolon."
 
-msgid "Serial"
-msgstr ""
-
 msgid "Serial Console"
 msgstr "Seriell Konsol"
 
@@ -5402,11 +5401,8 @@ msgstr "Synkronisera"
 msgid ""
 "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
 "server. Be sure to set syslogd on the remote server to accept syslog "
-"messages from %s."
+"messages from this server."
 msgstr ""
-"Syslog sänder UDP datagram till port 514 på den specificerade syslog-"
-"servern. Se till att ställa in syslogd på servern att acceptera syslog-"
-"meddelanden från %s."
 
 msgid "System"
 msgstr "System"
@@ -5428,6 +5424,9 @@ msgstr "Systeminfo"
 
 msgid "System information"
 msgstr "Systeminformation"
+
+msgid "System load"
+msgstr ""
 
 msgid "System log"
 msgstr "Systemlogg"
@@ -6871,9 +6870,6 @@ msgstr ""
 "Traceroute kan ta en stund att slutföra. Du kan trycka på Stopp-knappen i "
 "din webbläsare när som helst för att se misslyckade traceroutes."
 
-msgid "Traffic graph"
-msgstr "Trafikdiagram"
-
 msgid "Transcoding"
 msgstr "Omkodar"
 
@@ -7296,11 +7292,6 @@ msgstr "Wake On LAN"
 msgid "Warning"
 msgstr "Varning"
 
-#, php-format
-msgid "Warning: This can cause a huge delay in loading the %s log page!"
-msgstr ""
-"Varning: Detta kan orsaka stora fördröjningar vid laddning av %s loggsida!"
-
 msgid ""
 "Warning: You are going to delete a RAID volume. All data will get lost and "
 "can not be recovered."
@@ -7687,3 +7678,35 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr ""
+
+#~ msgid "Active shares"
+#~ msgstr "Aktiva utdelningar"
+
+#, php-format
+#~ msgid ""
+#~ "Hint: If this is checked, IP addresses in %s logs are resolved to real "
+#~ "hostnames where possible."
+#~ msgstr ""
+#~ "Tips: Om denna är markerad kommer IP-adresser i %s-loggen att översättas "
+#~ "till riktiga värdnamn när så är möjligt."
+
+#~ msgid "List of open files"
+#~ msgstr "Öppna filer"
+
+#, php-format
+#~ msgid ""
+#~ "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
+#~ "server. Be sure to set syslogd on the remote server to accept syslog "
+#~ "messages from %s."
+#~ msgstr ""
+#~ "Syslog sänder UDP datagram till port 514 på den specificerade syslog-"
+#~ "servern. Se till att ställa in syslogd på servern att acceptera syslog-"
+#~ "meddelanden från %s."
+
+#~ msgid "Traffic graph"
+#~ msgstr "Trafikdiagram"
+
+#, php-format
+#~ msgid "Warning: This can cause a huge delay in loading the %s log page!"
+#~ msgstr ""
+#~ "Varning: Detta kan orsaka stora fördröjningar vid laddning av %s loggsida!"

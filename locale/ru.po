@@ -2,19 +2,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-05-20 04:39+0000\n"
-"PO-Revision-Date: 2013-03-23 10:39+0000\n"
-"Last-Translator: Глория Хрусталёва <gloriya@hushmail.com>\n"
+"POT-Creation-Date: 2013-06-01 02:13+0000\n"
+"PO-Revision-Date: 2013-05-26 21:44+0000\n"
+"Last-Translator: Anton Shirokov <tsrodger@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
-"X-Generator: Launchpad (build 16626)\n"
+"X-Launchpad-Export-Date: 2013-06-01 00:37+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
 "X-Poedit-Language: Russian\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+msgid ""
+"When a client initially connects to the server the ident protocol is used to "
+"attempt to identify the remote username."
+msgstr ""
+"Когда клиент первоначально подключается к серверу, идентификационный "
+"протокол используется для попытки идентификации удаленного пользователя."
 
 msgid " interfaces:"
 msgstr " интерфейсы:"
@@ -323,11 +330,14 @@ msgstr ""
 msgid "Active Directory"
 msgstr "Служба каталогов Active Directory"
 
+msgid "Active Directory List"
+msgstr ""
+
+msgid "Active Shares"
+msgstr ""
+
 msgid "Active Users"
 msgstr "Активные пользователи"
-
-msgid "Active shares"
-msgstr "Активные общие ресурсы"
 
 msgid "Add"
 msgstr "Добавить"
@@ -551,7 +561,7 @@ msgid "Allow new files to be created."
 msgstr "Позволять создание новых файлов"
 
 msgid "Allow to start UPS from battery"
-msgstr ""
+msgstr "Разрешить включение ИБП от батареи"
 
 msgid "Allow trusted domains."
 msgstr "Разрешить доверенные домены."
@@ -602,12 +612,13 @@ msgstr ""
 
 msgid "Ambient Conditions From External Probe Equipment"
 msgstr ""
+"Данные об параметрах окружающей среды (по данным от внешнего оборудования)"
 
 msgid "Ambient relative humidity (percent)"
-msgstr ""
+msgstr "Относительная влажность окружающей среды (в процентах)"
 
 msgid "Ambient temperature (degrees C)"
-msgstr ""
+msgstr "Температура окружающей среды (в градусах Цельсия)"
 
 msgid "An host with this name already exists."
 msgstr "Хост с таким именем уже существует."
@@ -729,7 +740,7 @@ msgid "Autoselect"
 msgstr "Автоматически"
 
 msgid "Auxiliary device firmware"
-msgstr ""
+msgstr "Прошивка внешнего контроллера"
 
 msgid "Auxiliary parameters"
 msgstr "Дополнительные параметры"
@@ -775,47 +786,47 @@ msgid "Battery Charge"
 msgstr "Заряд батареи"
 
 msgid "Battery Details"
-msgstr ""
+msgstr "Информация о батарее"
 
 msgid "Battery Low"
 msgstr "Низкий заряд батареи"
 
-msgid "Battery Remain Time"
-msgstr "Оставшееся время аккумулятора"
-
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
 msgstr ""
+"Уровень заряда батареи, при котором происходит выключение ИБП (Low Battery)"
 
 msgid "Battery alarm threshold"
 msgstr ""
 
 msgid "Battery capacity"
-msgstr ""
+msgstr "Ёмкость аккумулятора"
 
 msgid "Battery change date"
-msgstr ""
+msgstr "Дата замены батареи"
 
 msgid "Battery charge"
-msgstr ""
+msgstr "Заряд батареи"
 
 msgid "Battery chemistry"
-msgstr ""
+msgstr "Тип батареи"
 
 msgid "Battery current"
-msgstr ""
+msgstr "Ток батареи"
 
 msgid "Battery level when UPS switches to \"Warning\" state"
 msgstr ""
+"Уровень заряда батареи, при котором ИБП переключается в режим "
+"\"Предупреждение\""
 
 msgid "Battery manufacturing date"
-msgstr ""
+msgstr "Дата изготовления батареи"
 
 msgid "Battery temperature"
-msgstr ""
+msgstr "Температура батареи"
 
 msgid "Battery voltage"
-msgstr ""
+msgstr "Напряжение батареи"
 
 msgid "Best available"
 msgstr "Наилучший доступный"
@@ -945,6 +956,9 @@ msgstr "Отмена"
 
 msgid "Canmount"
 msgstr "Возможность монтирования"
+
+msgid "Cannot get CPU load"
+msgstr ""
 
 msgid "Cannot get data about interface"
 msgstr "Невозможно получить информацию об интерфейсе"
@@ -1270,10 +1284,10 @@ msgid "Current password"
 msgstr "Текущий пароль"
 
 msgid "Current value of apparent power (Volt-Amps)"
-msgstr ""
+msgstr "Текущее значение полной мощности (ВА)"
 
 msgid "Current value of real power (Watts)"
-msgstr ""
+msgstr "Текущее значение действующей можности (Вт)"
 
 msgid "Custom"
 msgstr "Custom"
@@ -1300,10 +1314,10 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DNLA/UPnP"
-msgstr ""
+msgstr "DNLA/UPnP"
 
 msgid "DNLA/UPnP Media Server"
-msgstr ""
+msgstr "DNLA/UPnP Медиасервер"
 
 msgid "DNS settings"
 msgstr "Настройки DNS"
@@ -1934,13 +1948,13 @@ msgid "Driver parameters"
 msgstr "Параметры драйвера"
 
 msgid "Driver used"
-msgstr ""
+msgstr "Используемый драйвер"
 
 msgid "Driver version"
-msgstr ""
+msgstr "Версия драйвера"
 
 msgid "Driver version internal"
-msgstr ""
+msgstr "Встроенная версия драйвера"
 
 msgid "Duplex"
 msgstr "Duplex"
@@ -2062,7 +2076,7 @@ msgstr "Редактировать раздел"
 
 msgid ""
 "Efficiency of the UPS (Ratio of the output current on the input current)"
-msgstr ""
+msgstr "Эффективность ИБП (соотношение значения выходного тока к входному)"
 
 msgid "Email"
 msgstr "Электронная почта"
@@ -2536,6 +2550,9 @@ msgstr "Файл образа прошивки"
 msgid "Firmware uploading is not supported on this platform."
 msgstr "Загрузка прошивки не поддерживается этой платформой."
 
+msgid "Firmware version"
+msgstr ""
+
 msgid "Firmware version check"
 msgstr "Проверка версии прошивки"
 
@@ -2743,11 +2760,10 @@ msgstr "Подсказка"
 
 #, php-format
 msgid ""
-"Hint: If this is checked, IP addresses in %s logs are resolved to real "
-"hostnames where possible."
+"Hint: If this is checked, IP addresses in the server logs are resolved to "
+"real hostnames where possible.<br><font color='red'>Warning</font>: This can "
+"cause a huge delay in loading the log page!"
 msgstr ""
-"Подсказка: если эта опция разрешена, то IP-адреса хостов в журнале %s будут "
-"по возможности преобразовываться в реальные имена."
 
 msgid "Home directory"
 msgstr "Домашний каталог"
@@ -3006,7 +3022,7 @@ msgid "Include basic hardware information."
 msgstr "Включить базовые сведения об аппаратном обеспечении"
 
 msgid "Incoming Line/Power Information"
-msgstr ""
+msgstr "Информация о входной линии"
 
 msgid "Incomplete directory"
 msgstr "Каталог неполных файлов"
@@ -3073,28 +3089,28 @@ msgid "Initiators"
 msgstr "Инициаторы"
 
 msgid "Input current (A)"
-msgstr ""
+msgstr "Входной ток (А)"
 
 msgid "Input frequency"
-msgstr ""
+msgstr "Входная частота"
 
 msgid "Input line frequency (Hz)"
-msgstr ""
+msgstr "Входная частота (Гц)"
 
 msgid "Input line frequency high (Hz)"
-msgstr ""
+msgstr "Минимальное значение входной частоты (Гц)"
 
 msgid "Input line frequency low (Hz)"
-msgstr ""
+msgstr "Максимальное значение входной частоты (Гц)"
 
 msgid "Input power quality (* opaque)"
-msgstr ""
+msgstr "Качество входной линии (* относительное значение)"
 
 msgid "Input power sensitivity"
-msgstr ""
+msgstr "Входная мощность"
 
 msgid "Input voltage"
-msgstr ""
+msgstr "Входное напряжение"
 
 msgid "Inquiry Product"
 msgstr "Запрос продукта"
@@ -3121,34 +3137,34 @@ msgid "Interface Management"
 msgstr "Управление интерфейсами"
 
 msgid "Interface selection"
-msgstr ""
+msgstr "Выбор интерфейса"
 
 msgid "Interfaces"
 msgstr "Интерфейсы"
 
 msgid "Internal Server Information"
-msgstr ""
+msgstr "Информация о внутреннем сервере"
 
 msgid "Internal UPS clock date"
-msgstr ""
+msgstr "Дата по данным внутренних часов ИБП"
 
 msgid "Internal UPS clock time"
-msgstr ""
+msgstr "Время по данным внутренних часов ИБП"
 
 msgid "Interval between self tests"
-msgstr ""
+msgstr "Интервал между тестами самодиагностики"
 
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "Интервал должен быть больше или равен 10 секундам."
 
 msgid "Interval to wait after shutdown with delay command"
-msgstr ""
+msgstr "Задержка перед выполнением отоенной команды после отключения ИБП"
 
 msgid "Interval to wait before rebooting the UPS)"
-msgstr ""
+msgstr "Задержка после перезапуска ИБП"
 
 msgid "Interval to wait before restarting the load"
-msgstr ""
+msgstr "Задержка перед подключением нагрузки"
 
 msgid "Invalid file format."
 msgstr "Неверный формат файла."
@@ -3258,7 +3274,7 @@ msgid "Language"
 msgstr "Язык"
 
 msgid "Language to use on front panel"
-msgstr ""
+msgstr "Язык, используемый на лицевой панели"
 
 msgid "Large read/write"
 msgstr "Чтение/запись большими блоками"
@@ -3379,9 +3395,6 @@ msgstr "Список загруженных пользователей"
 msgid "List of mount points"
 msgstr "Список точек монтирования"
 
-msgid "List of open files"
-msgstr "Список открытых файлов"
-
 msgid "Load"
 msgstr "Загрузка"
 
@@ -3392,10 +3405,11 @@ msgid "Load file"
 msgstr "Загрузка файла"
 
 msgid "Load on UPS"
-msgstr ""
+msgstr "Нагрузка на ИБП"
 
 msgid "Load when UPS switches to overload condition (\"OVER\")"
 msgstr ""
+"Уровень нагрузки, при которой ИБП переключается в режим перегрузки (\"OVER\")"
 
 msgid "Loadbalance"
 msgstr "Балансировка нагрузки"
@@ -3557,7 +3571,7 @@ msgid "Manufacturer"
 msgstr "Производитель"
 
 msgid "Manufacturing date"
-msgstr ""
+msgstr "Дата изготовления"
 
 msgid "Map all users to root"
 msgstr "Присвоить всем пользователям права учетной записи root"
@@ -3621,7 +3635,7 @@ msgid "Maximum idle time in seconds."
 msgstr "Максимальное время бездействия (в секундах)."
 
 msgid "Maximum incoming voltage seen"
-msgstr ""
+msgstr "Максимальное зафиксированное значение напряжения"
 
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr "Максимально допустимое число попыток ввода пароля перед отключением."
@@ -3659,10 +3673,11 @@ msgid "Maximum performance, maximum acoustic output"
 msgstr "Максимальная производительность, максимальный уровень шума"
 
 msgid "Maximum relative humidity seen (percent)"
-msgstr ""
+msgstr "Максимальное зафиксированное значение влажности"
 
 msgid "Maximum temperature seen (degrees C)"
 msgstr ""
+"Максимальное зафиксированное значение температуры (в градусах Целься)"
 
 msgid "Media"
 msgstr "Носитель"
@@ -3671,7 +3686,7 @@ msgid "Media Directory"
 msgstr "Каталог носителей"
 
 msgid "Media library"
-msgstr ""
+msgstr "Медиабиблиотека"
 
 msgid "Medium acoustic output"
 msgstr "Средний уровень шума"
@@ -3698,7 +3713,7 @@ msgid "Minimum"
 msgstr "Минимальный"
 
 msgid "Minimum battery level for UPS restart after power-off"
-msgstr ""
+msgstr "Минимальный заряд батареи для перезапуска ИБП после отключения"
 
 msgid "Minimum free space"
 msgstr "Минимум свободного места"
@@ -3707,16 +3722,17 @@ msgid "Minimum frequency"
 msgstr "Минимальная частота"
 
 msgid "Minimum incoming voltage seen"
-msgstr ""
+msgstr "Минимальное зафиксированное значение напряжения"
 
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Минимальная производительность, минимум шума"
 
 msgid "Minimum relative humidity seen (percent)"
-msgstr ""
+msgstr "Минимальное зафиксированное значение влажности (в процентах)"
 
 msgid "Minimum temperature seen (degrees C)"
 msgstr ""
+"Минимальное зафиксированное значение температуры (в градусах Цельсия)"
 
 msgid "Minutes"
 msgstr "Минуты"
@@ -3734,7 +3750,7 @@ msgid "Mode"
 msgstr "Режим"
 
 msgid "Model"
-msgstr ""
+msgstr "Модель"
 
 msgid "Model extra"
 msgstr "Model extra"
@@ -3813,7 +3829,7 @@ msgid "NTP time server"
 msgstr "Сервер времени NTP"
 
 msgid "NUT Internal Driver Information"
-msgstr ""
+msgstr "Информация о драйвере NUT"
 
 msgid "Name"
 msgstr "Имя"
@@ -3998,31 +4014,31 @@ msgid "Node Name"
 msgstr "Имя узла"
 
 msgid "Nominal battery voltage"
-msgstr ""
+msgstr "Номинальное напряжение батареи"
 
 msgid "Nominal input current (A)"
-msgstr ""
+msgstr "Номинальный ток батареи"
 
 msgid "Nominal input line frequency (Hz)"
-msgstr ""
+msgstr "Номинальная входная частота (Гц)"
 
 msgid "Nominal input voltage"
-msgstr ""
+msgstr "Номинальное входное напряжение (В)"
 
 msgid "Nominal output current (A)"
-msgstr ""
+msgstr "Номинальный входной ток (А)"
 
 msgid "Nominal output frequency (Hz)"
-msgstr ""
+msgstr "Номинальная выходная частота (Гц)"
 
 msgid "Nominal output voltage (V)"
-msgstr ""
+msgstr "Номинальное выходное напряжение (В)"
 
 msgid "Nominal value of apparent power (Volt-Amps)"
-msgstr ""
+msgstr "Номинальная полная мощность (ВА)"
 
 msgid "Nominal value of real power (Watts)"
-msgstr ""
+msgstr "Номинальная действующая мощность (Вт)"
 
 msgid "None"
 msgstr "Нет"
@@ -4088,10 +4104,10 @@ msgid "Null passwords"
 msgstr "Пустые пароли"
 
 msgid "Number of bad battery packs"
-msgstr ""
+msgstr "Количество плохих батарейных блоков"
 
 msgid "Number of battery packs"
-msgstr ""
+msgstr "Количество батарейных блоков"
 
 msgid "Number of clients"
 msgstr "Количество клиентов"
@@ -4176,7 +4192,7 @@ msgid "Out"
 msgstr "Исходящий"
 
 msgid "Outgoing Power/Inverter Information"
-msgstr ""
+msgstr "Информация о выходной линии/инверторе"
 
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr "Адрес SMTP-сервера исходящей почты, например, smtp.mycorp.com"
@@ -4185,16 +4201,16 @@ msgid "Outgoing mail server"
 msgstr "Сервер исходящей почты"
 
 msgid "Output current (A)"
-msgstr ""
+msgstr "Выходной ток"
 
 msgid "Output frequency (Hz)"
-msgstr ""
+msgstr "Выходная частота (Гц)"
 
 msgid "Output voltage"
-msgstr ""
+msgstr "Выходное напряжение (В)"
 
 msgid "Output voltage (V)"
-msgstr ""
+msgstr "Выходное напряжение (В)"
 
 msgid "Overload"
 msgstr "Перегрузка"
@@ -4490,7 +4506,7 @@ msgid "Preserve permissions"
 msgstr "Сохранять права доступа"
 
 msgid "Prevent deep discharge of battery"
-msgstr ""
+msgstr "Предотвращать глубокий разряд батареи"
 
 msgid "Primary"
 msgstr "Первичный (Primary)"
@@ -4520,7 +4536,7 @@ msgid "Processes information"
 msgstr "Информация о процессах"
 
 msgid "Product ID"
-msgstr ""
+msgstr "ID продукта"
 
 msgid "Profile"
 msgstr "Профиль"
@@ -4651,7 +4667,7 @@ msgid "Realm"
 msgstr "Название области"
 
 msgid "Reason for last transfer to battery (* opaque)"
-msgstr ""
+msgstr "Причина последнего перехода на батарею"
 
 msgid "Reboot"
 msgstr "Перезагрузка"
@@ -4687,7 +4703,7 @@ msgid "Reload page"
 msgstr "Перезагрузить страницу"
 
 msgid "Remaining battery runtime"
-msgstr ""
+msgstr "Оставшееся время работы батареи"
 
 msgid "Remote Rsync Server"
 msgstr "Удаленный Rsync-сервер"
@@ -4776,7 +4792,7 @@ msgid "Results for net rpc testjoin:"
 msgstr "Результаты команды net rpc testjoin:"
 
 msgid "Results of last self test"
-msgstr ""
+msgstr "Результаты последнего теста самодиагностики"
 
 msgid "Resume"
 msgstr "Возобновление"
@@ -5005,6 +5021,8 @@ msgid ""
 "Select which interface to use. (only selectable if your server has more than "
 "one)"
 msgstr ""
+"Выберите интерфейс ИБП (выбрать можно только если Ваш сервер имеет более "
+"одного)"
 
 msgid "Select your read balance algorithm."
 msgstr "Выберите желаемый алгоритм балансировки чтения."
@@ -5036,9 +5054,6 @@ msgstr "Отправить тестовый e-mail"
 msgid "Separate email addresses by semi-colon."
 msgstr "Несколько адресов e-mail разделяются точкой с запятой."
 
-msgid "Serial"
-msgstr ""
-
 msgid "Serial Console"
 msgstr "Консоль serial-порта"
 
@@ -5055,13 +5070,13 @@ msgid "Server description. This can usually be left blank."
 msgstr "Описание сервера. Обычно можно оставить пустым."
 
 msgid "Server information"
-msgstr ""
+msgstr "Информация о сервере"
 
 msgid "Server name"
 msgstr "Имя сервера"
 
 msgid "Server version"
-msgstr ""
+msgstr "Версия сервера"
 
 msgid "Service"
 msgstr "Служба"
@@ -5173,7 +5188,7 @@ msgid "Shell"
 msgstr "Командная оболочка (shell)"
 
 msgid "Show RAW UPS Info"
-msgstr ""
+msgstr "Показать исходные данные о ИБП (RAW data)"
 
 msgid "Show log entries in reverse order (newest entries on top)"
 msgstr "Показать записи журнала в обратном порядке (новые записи сверху)"
@@ -5448,7 +5463,7 @@ msgid "Switch VIP to MASTER"
 msgstr "Переключить VIP на MASTER"
 
 msgid "Switch off when running on battery and no/low load"
-msgstr ""
+msgstr "Выключать ИБП, когда ИБП работает на батареи и не имеет нагрузки"
 
 msgid "Switch to"
 msgstr "Переключить на"
@@ -5470,11 +5485,8 @@ msgstr "Синхронизация"
 msgid ""
 "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
 "server. Be sure to set syslogd on the remote server to accept syslog "
-"messages from %s."
+"messages from this server."
 msgstr ""
-"Служба syslog посылает UDP-дейтаграммы на порт 514 указанного удаленного "
-"syslog-сервера. Убедитесь, что syslogd на удаленном сервере примет syslog-"
-"сообщения от %s."
 
 msgid "System"
 msgstr "Система"
@@ -5496,6 +5508,9 @@ msgstr "Информация о системе"
 
 msgid "System information"
 msgstr "Информация о системе"
+
+msgid "System load"
+msgstr ""
 
 msgid "System log"
 msgstr "Журнал системы"
@@ -6833,13 +6848,13 @@ msgid "Time Machine"
 msgstr "Time Machine"
 
 msgid "Time before the load will be rebooted"
-msgstr ""
+msgstr "Время до перезапуска нагрузки"
 
 msgid "Time before the load will be shutdown"
-msgstr ""
+msgstr "Время до отключения нагрузки"
 
 msgid "Time before the load will be started"
-msgstr ""
+msgstr "Время до подключения нагрузки"
 
 msgid "Time interval"
 msgstr "Временной интервал"
@@ -6967,9 +6982,6 @@ msgstr ""
 "любой момент нажать кнопку 'Стоп' в браузере, чтобы увидеть результат "
 "неудачных трассировок."
 
-msgid "Traffic graph"
-msgstr "График трафика"
-
 msgid "Transcoding"
 msgstr "Транскодирование"
 
@@ -7074,10 +7086,10 @@ msgid "UPS Waiting"
 msgstr "ИБП в состоянии ожидания"
 
 msgid "UPS alarms"
-msgstr ""
+msgstr "Тревоги ИБП"
 
 msgid "UPS beeper status"
-msgstr ""
+msgstr "Состояние зумера ИБП"
 
 msgid "UPS coldstarts from battery"
 msgstr ""
@@ -7089,13 +7101,13 @@ msgid "UPS external contact sensors"
 msgstr ""
 
 msgid "UPS firmware"
-msgstr ""
+msgstr "Версия прошивки ИБП"
 
 msgid "UPS goes on battery"
 msgstr "Переключение UPS на работу от батареи"
 
 msgid "UPS model"
-msgstr ""
+msgstr "Модель ИБП"
 
 msgid "UPS reaches low battery"
 msgstr "Низкий заряд батареи UPS"
@@ -7398,12 +7410,6 @@ msgstr "Wake On LAN"
 msgid "Warning"
 msgstr "Внимание"
 
-#, php-format
-msgid "Warning: This can cause a huge delay in loading the %s log page!"
-msgstr ""
-"Внимание: Это может привести к большой задержке в загрузке %s страницы "
-"журнала!"
-
 msgid ""
 "Warning: You are going to delete a RAID volume. All data will get lost and "
 "can not be recovered."
@@ -7442,14 +7448,7 @@ msgstr ""
 "быть использованы."
 
 msgid "When UPS switches to Low Battery"
-msgstr ""
-
-msgid ""
-"When a client initially connects to the server the ident protocol is used to "
-"attempt to identify the remote username."
-msgstr ""
-"Когда клиент первоначально подключается к серверу идентификационный протокол "
-"используется для попытки идентификации удаленного пользователя."
+msgstr "когда ИБП переключается в режим \"Низкий заряд батареи\""
 
 msgid "Where to save downloaded data."
 msgstr "Место хранения загруженных файлов."
@@ -7794,3 +7793,42 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr "версия:"
+
+#~ msgid "Active shares"
+#~ msgstr "Активные общие ресурсы"
+
+#, php-format
+#~ msgid ""
+#~ "Hint: If this is checked, IP addresses in %s logs are resolved to real "
+#~ "hostnames where possible."
+#~ msgstr ""
+#~ "Подсказка: если эта опция разрешена, то IP-адреса хостов в журнале %s будут "
+#~ "по возможности преобразовываться в реальные имена."
+
+#~ msgid "List of open files"
+#~ msgstr "Список открытых файлов"
+
+#, php-format
+#~ msgid ""
+#~ "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
+#~ "server. Be sure to set syslogd on the remote server to accept syslog "
+#~ "messages from %s."
+#~ msgstr ""
+#~ "Служба syslog посылает UDP-дейтаграммы на порт 514 указанного удаленного "
+#~ "syslog-сервера. Убедитесь, что syslogd на удаленном сервере примет syslog-"
+#~ "сообщения от %s."
+
+#~ msgid "Traffic graph"
+#~ msgstr "График трафика"
+
+#, php-format
+#~ msgid "Warning: This can cause a huge delay in loading the %s log page!"
+#~ msgstr ""
+#~ "Внимание: Это может привести к большой задержке в загрузке %s страницы "
+#~ "журнала!"
+
+#~ msgid "Battery Remain Time"
+#~ msgstr "Оставшееся время аккумулятора"
+
+#~ msgid "Serial"
+#~ msgstr "Серийный номер"

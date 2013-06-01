@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-05-20 04:39+0000\n"
+"POT-Creation-Date: 2013-06-01 02:13+0000\n"
 "PO-Revision-Date: 2012-06-26 22:58+0000\n"
 "Last-Translator: Martin Gundersen <martin@gundersen.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
-"X-Generator: Launchpad (build 16626)\n"
+"X-Launchpad-Export-Date: 2013-06-01 00:37+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 "X-Poedit-Country: NORWAY\n"
 "Language: \n"
 "X-Poedit-Language: Norwegian Bokmal\n"
@@ -313,11 +313,14 @@ msgstr ""
 msgid "Active Directory"
 msgstr "Active Directory"
 
+msgid "Active Directory List"
+msgstr ""
+
+msgid "Active Shares"
+msgstr ""
+
 msgid "Active Users"
 msgstr "Aktive brukere"
-
-msgid "Active shares"
-msgstr "Aktive delinger"
 
 msgid "Add"
 msgstr "Tilføy"
@@ -752,9 +755,6 @@ msgstr ""
 msgid "Battery Low"
 msgstr ""
 
-msgid "Battery Remain Time"
-msgstr ""
-
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
 msgstr ""
@@ -917,6 +917,9 @@ msgstr "Avbryt"
 
 msgid "Canmount"
 msgstr "Canmount"
+
+msgid "Cannot get CPU load"
+msgstr ""
 
 msgid "Cannot get data about interface"
 msgstr "Kan ikke hente data om grensesnittet"
@@ -2462,6 +2465,9 @@ msgstr "Fabrikkvare bildefil"
 msgid "Firmware uploading is not supported on this platform."
 msgstr "Fabrikkvare opplasting er ikke støttet på denne platformen."
 
+msgid "Firmware version"
+msgstr ""
+
 msgid "Firmware version check"
 msgstr "Fabrikkvare versjon sjekk"
 
@@ -2667,11 +2673,10 @@ msgstr "Hint"
 
 #, php-format
 msgid ""
-"Hint: If this is checked, IP addresses in %s logs are resolved to real "
-"hostnames where possible."
+"Hint: If this is checked, IP addresses in the server logs are resolved to "
+"real hostnames where possible.<br><font color='red'>Warning</font>: This can "
+"cause a huge delay in loading the log page!"
 msgstr ""
-"Tips: Hvis denne er på vil IP-adresser i %s logger bli løst til ekte "
-"vertsnavn når det er mulig."
 
 msgid "Home directory"
 msgstr "Hjemme mappe"
@@ -3263,9 +3268,6 @@ msgstr "Liste over importerte brukere"
 
 msgid "List of mount points"
 msgstr "Liste over monterings punkter"
-
-msgid "List of open files"
-msgstr "Liste over åpne filer"
 
 msgid "Load"
 msgstr "Last inn"
@@ -4861,9 +4863,6 @@ msgstr "Send test e-post"
 msgid "Separate email addresses by semi-colon."
 msgstr "Separer e-post adresser med semikolon."
 
-msgid "Serial"
-msgstr ""
-
 msgid "Serial Console"
 msgstr ""
 
@@ -5270,7 +5269,7 @@ msgstr "Synkroniser"
 msgid ""
 "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
 "server. Be sure to set syslogd on the remote server to accept syslog "
-"messages from %s."
+"messages from this server."
 msgstr ""
 
 msgid "System"
@@ -5293,6 +5292,9 @@ msgstr "System info"
 
 msgid "System information"
 msgstr "System informasjon"
+
+msgid "System load"
+msgstr ""
 
 msgid "System log"
 msgstr "System logg"
@@ -6536,9 +6538,6 @@ msgstr ""
 "Traceroute kan ta litt tid å fullføre. Du kan trykke på Stop knappen i din "
 "nettleser når som helst for å se fremgangen til feilede traceroutes."
 
-msgid "Traffic graph"
-msgstr "Trafikk graf"
-
 msgid "Transcoding"
 msgstr ""
 
@@ -6940,11 +6939,6 @@ msgstr ""
 msgid "Warning"
 msgstr "Advarsel"
 
-#, php-format
-msgid "Warning: This can cause a huge delay in loading the %s log page!"
-msgstr ""
-"Advarsel: Dette kan skape en stor forsinkelse i lastingen av %s loggsiden!"
-
 msgid ""
 "Warning: You are going to delete a RAID volume. All data will get lost and "
 "can not be recovered."
@@ -7316,3 +7310,25 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr ""
+
+#~ msgid "Active shares"
+#~ msgstr "Aktive delinger"
+
+#, php-format
+#~ msgid ""
+#~ "Hint: If this is checked, IP addresses in %s logs are resolved to real "
+#~ "hostnames where possible."
+#~ msgstr ""
+#~ "Tips: Hvis denne er på vil IP-adresser i %s logger bli løst til ekte "
+#~ "vertsnavn når det er mulig."
+
+#~ msgid "List of open files"
+#~ msgstr "Liste over åpne filer"
+
+#~ msgid "Traffic graph"
+#~ msgstr "Trafikk graf"
+
+#, php-format
+#~ msgid "Warning: This can cause a huge delay in loading the %s log page!"
+#~ msgstr ""
+#~ "Advarsel: Dette kan skape en stor forsinkelse i lastingen av %s loggsiden!"

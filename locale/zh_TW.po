@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-05-20 04:39+0000\n"
+"POT-Creation-Date: 2013-06-01 02:13+0000\n"
 "PO-Revision-Date: 2013-04-15 10:41+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
-"X-Generator: Launchpad (build 16626)\n"
+"X-Launchpad-Export-Date: 2013-06-01 00:36+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 "X-Poedit-Country: CHINA\n"
 "Language: \n"
 "X-Poedit-Language: Chinese (Traditional)\n"
@@ -292,11 +292,14 @@ msgstr "如果您想在檢測到新的錯誤或 S.M.A.R.T. 命令失敗時獲得
 msgid "Active Directory"
 msgstr "Active Directory"
 
+msgid "Active Directory List"
+msgstr ""
+
+msgid "Active Shares"
+msgstr ""
+
 msgid "Active Users"
 msgstr "活躍用戶"
-
-msgid "Active shares"
-msgstr "活躍分享區"
 
 msgid "Add"
 msgstr "新增"
@@ -724,9 +727,6 @@ msgstr ""
 msgid "Battery Low"
 msgstr "電力不足"
 
-msgid "Battery Remain Time"
-msgstr "電池剩餘時間"
-
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
 msgstr ""
@@ -889,6 +889,9 @@ msgstr "取消"
 
 msgid "Canmount"
 msgstr "可以掛載"
+
+msgid "Cannot get CPU load"
+msgstr ""
 
 msgid "Cannot get data about interface"
 msgstr "無法獲得介面的資料"
@@ -2397,6 +2400,9 @@ msgstr "韌體映像檔案"
 msgid "Firmware uploading is not supported on this platform."
 msgstr "此系統並不支援韌體上傳功能。."
 
+msgid "Firmware version"
+msgstr ""
+
 msgid "Firmware version check"
 msgstr "韌體版本檢查"
 
@@ -2602,9 +2608,10 @@ msgstr "提示"
 
 #, php-format
 msgid ""
-"Hint: If this is checked, IP addresses in %s logs are resolved to real "
-"hostnames where possible."
-msgstr "提示：如果開啟此選項， %s 記錄檔的 IP 位址都會轉換成對應的主機名稱。"
+"Hint: If this is checked, IP addresses in the server logs are resolved to "
+"real hostnames where possible.<br><font color='red'>Warning</font>: This can "
+"cause a huge delay in loading the log page!"
+msgstr ""
 
 msgid "Home directory"
 msgstr "個人目錄（ Home ）"
@@ -3184,9 +3191,6 @@ msgstr "已導入用戶列表"
 
 msgid "List of mount points"
 msgstr "掛載點列表"
-
-msgid "List of open files"
-msgstr "已開啟檔案列表"
 
 msgid "Load"
 msgstr "載入"
@@ -4750,9 +4754,6 @@ msgstr "傳送測試電郵"
 msgid "Separate email addresses by semi-colon."
 msgstr "以 \";\" 分號隔開電郵位址。"
 
-msgid "Serial"
-msgstr ""
-
 msgid "Serial Console"
 msgstr "串行控制台（Serial Console）"
 
@@ -5154,9 +5155,8 @@ msgstr "同步"
 msgid ""
 "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
 "server. Be sure to set syslogd on the remote server to accept syslog "
-"messages from %s."
+"messages from this server."
 msgstr ""
-"Syslog 會透過 UDP 514 端口將資料送到指定的遠端 syslog 伺服器。請確定遠端 syslog 伺服器會接受來自 %s 的記錄資料。"
 
 msgid "System"
 msgstr "系統"
@@ -5178,6 +5178,9 @@ msgstr "系統資訊"
 
 msgid "System information"
 msgstr "系統資訊"
+
+msgid "System load"
+msgstr ""
 
 msgid "System log"
 msgstr "系統記錄"
@@ -6435,9 +6438,6 @@ msgid ""
 "browser at any time to see the progress of failed traceroutes."
 msgstr "Traceroute需要一段時間才能完成。您可以隨時按下瀏覽器的停止按鍵並觀看結果。"
 
-msgid "Traffic graph"
-msgstr "流量圖表"
-
 msgid "Transcoding"
 msgstr "轉碼"
 
@@ -6840,10 +6840,6 @@ msgstr "Wake On LAN 網路喚醒"
 msgid "Warning"
 msgstr "警告"
 
-#, php-format
-msgid "Warning: This can cause a huge delay in loading the %s log page!"
-msgstr "注意：讀取 %s 記錄檔可能會再成很大的延遲！"
-
 msgid ""
 "Warning: You are going to delete a RAID volume. All data will get lost and "
 "can not be recovered."
@@ -7208,3 +7204,33 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr "版本："
+
+#~ msgid "Traffic graph"
+#~ msgstr "流量圖表"
+
+#, php-format
+#~ msgid "Warning: This can cause a huge delay in loading the %s log page!"
+#~ msgstr "注意：讀取 %s 記錄檔可能會再成很大的延遲！"
+
+#~ msgid "List of open files"
+#~ msgstr "已開啟檔案列表"
+
+#, php-format
+#~ msgid ""
+#~ "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
+#~ "server. Be sure to set syslogd on the remote server to accept syslog "
+#~ "messages from %s."
+#~ msgstr ""
+#~ "Syslog 會透過 UDP 514 端口將資料送到指定的遠端 syslog 伺服器。請確定遠端 syslog 伺服器會接受來自 %s 的記錄資料。"
+
+#~ msgid "Active shares"
+#~ msgstr "活躍分享區"
+
+#, php-format
+#~ msgid ""
+#~ "Hint: If this is checked, IP addresses in %s logs are resolved to real "
+#~ "hostnames where possible."
+#~ msgstr "提示：如果開啟此選項， %s 記錄檔的 IP 位址都會轉換成對應的主機名稱。"
+
+#~ msgid "Battery Remain Time"
+#~ msgstr "電池剩餘時間"

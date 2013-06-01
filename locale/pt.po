@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-05-20 04:39+0000\n"
+"POT-Creation-Date: 2013-06-01 02:13+0000\n"
 "PO-Revision-Date: 2012-10-14 07:46+0000\n"
 "Last-Translator: Luís Vilhena Santos <LuisVilhenaSantos@Hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
-"X-Generator: Launchpad (build 16626)\n"
+"X-Launchpad-Export-Date: 2013-06-01 00:37+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 "X-Poedit-Country: PORTUGAL\n"
 "Language: \n"
 "X-Poedit-Language: Portuguese\n"
@@ -322,11 +322,14 @@ msgstr ""
 msgid "Active Directory"
 msgstr "Active Directory"
 
+msgid "Active Directory List"
+msgstr ""
+
+msgid "Active Shares"
+msgstr ""
+
 msgid "Active Users"
 msgstr "Utilizadores Activos"
-
-msgid "Active shares"
-msgstr "Partilhas activas"
 
 msgid "Add"
 msgstr "Acrescentar"
@@ -766,9 +769,6 @@ msgstr ""
 msgid "Battery Low"
 msgstr ""
 
-msgid "Battery Remain Time"
-msgstr ""
-
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
 msgstr ""
@@ -932,6 +932,9 @@ msgstr "Cancelar"
 
 msgid "Canmount"
 msgstr "Pode montar"
+
+msgid "Cannot get CPU load"
+msgstr ""
 
 msgid "Cannot get data about interface"
 msgstr "Não foi possível reunir informação acerca do interface."
@@ -2503,6 +2506,9 @@ msgstr "Ficheiro de imagem do Firmware"
 msgid "Firmware uploading is not supported on this platform."
 msgstr "O envio (upload) de firmware não é suportado nesta plataforma."
 
+msgid "Firmware version"
+msgstr ""
+
 msgid "Firmware version check"
 msgstr "Verificação da versão do firmware"
 
@@ -2710,12 +2716,10 @@ msgstr "Dica"
 
 #, php-format
 msgid ""
-"Hint: If this is checked, IP addresses in %s logs are resolved to real "
-"hostnames where possible."
+"Hint: If this is checked, IP addresses in the server logs are resolved to "
+"real hostnames where possible.<br><font color='red'>Warning</font>: This can "
+"cause a huge delay in loading the log page!"
 msgstr ""
-"Dica: Se esta opção estiver selecionada, os endereços IP nos registros de "
-"eventos em %s serão resolvidos para nomes de anfitrião reais sempre que "
-"possível."
 
 msgid "Home directory"
 msgstr "Pasta pessoal"
@@ -3339,9 +3343,6 @@ msgstr "Lista de utilizadores importados"
 
 msgid "List of mount points"
 msgstr "Lista de pontos de montagem"
-
-msgid "List of open files"
-msgstr "Ficheiros abertos"
 
 msgid "Load"
 msgstr "Carregar"
@@ -4985,9 +4986,6 @@ msgstr "Enviar email de teste"
 msgid "Separate email addresses by semi-colon."
 msgstr "Separe os endereços de e-mail com ponto e vírgula"
 
-msgid "Serial"
-msgstr ""
-
 msgid "Serial Console"
 msgstr "Consola do Sistema"
 
@@ -5424,11 +5422,8 @@ msgstr "Sincronizar"
 msgid ""
 "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
 "server. Be sure to set syslogd on the remote server to accept syslog "
-"messages from %s."
+"messages from this server."
 msgstr ""
-"Syslog enviou datagramas UDP para a porta 514 do servidor remoto de syslog "
-"especificado. Confirme a alteração no servidor remoto de modo a que o "
-"syslogd aceite mensagens de syslog a partir de %s."
 
 msgid "System"
 msgstr "Sistema"
@@ -5450,6 +5445,9 @@ msgstr "Informação do sistema"
 
 msgid "System information"
 msgstr "Informação de sistema"
+
+msgid "System load"
+msgstr ""
 
 msgid "System log"
 msgstr "Registo do sistema"
@@ -6887,9 +6885,6 @@ msgstr ""
 "botão \"Parar\" no seu browser para cancelar e ver o resultado obtido até ao "
 "momento."
 
-msgid "Traffic graph"
-msgstr "Tráfego"
-
 msgid "Transcoding"
 msgstr "Codificação"
 
@@ -7315,12 +7310,6 @@ msgstr "Wake On LAN"
 msgid "Warning"
 msgstr "Aviso"
 
-#, php-format
-msgid "Warning: This can cause a huge delay in loading the %s log page!"
-msgstr ""
-"Atenção: Isto pode provocar um enorme atraso ao carregar as páginas de "
-"registro de eventos de %s!"
-
 msgid ""
 "Warning: You are going to delete a RAID volume. All data will get lost and "
 "can not be recovered."
@@ -7705,3 +7694,37 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr ""
+
+#~ msgid "Active shares"
+#~ msgstr "Partilhas activas"
+
+#, php-format
+#~ msgid ""
+#~ "Hint: If this is checked, IP addresses in %s logs are resolved to real "
+#~ "hostnames where possible."
+#~ msgstr ""
+#~ "Dica: Se esta opção estiver selecionada, os endereços IP nos registros de "
+#~ "eventos em %s serão resolvidos para nomes de anfitrião reais sempre que "
+#~ "possível."
+
+#~ msgid "List of open files"
+#~ msgstr "Ficheiros abertos"
+
+#, php-format
+#~ msgid ""
+#~ "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
+#~ "server. Be sure to set syslogd on the remote server to accept syslog "
+#~ "messages from %s."
+#~ msgstr ""
+#~ "Syslog enviou datagramas UDP para a porta 514 do servidor remoto de syslog "
+#~ "especificado. Confirme a alteração no servidor remoto de modo a que o "
+#~ "syslogd aceite mensagens de syslog a partir de %s."
+
+#~ msgid "Traffic graph"
+#~ msgstr "Tráfego"
+
+#, php-format
+#~ msgid "Warning: This can cause a huge delay in loading the %s log page!"
+#~ msgstr ""
+#~ "Atenção: Isto pode provocar um enorme atraso ao carregar as páginas de "
+#~ "registro de eventos de %s!"

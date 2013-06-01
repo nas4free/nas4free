@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2013-05-20 04:39+0000\n"
+"POT-Creation-Date: 2013-06-01 02:13+0000\n"
 "PO-Revision-Date: 2012-07-09 19:53+0000\n"
 "Last-Translator: Hasan Yılmaz <iletisim@hasanyilmaz.net>\n"
 "Language-Team: NAS4Free <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-05-20 02:52+0000\n"
-"X-Generator: Launchpad (build 16626)\n"
+"X-Launchpad-Export-Date: 2013-06-01 00:36+0000\n"
+"X-Generator: Launchpad (build 16660)\n"
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-Language: Turkish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -301,11 +301,14 @@ msgstr ""
 msgid "Active Directory"
 msgstr "Active Directory"
 
+msgid "Active Directory List"
+msgstr ""
+
+msgid "Active Shares"
+msgstr ""
+
 msgid "Active Users"
 msgstr "Aktif Kullanıcılar"
-
-msgid "Active shares"
-msgstr "Aktif paylaşımlar"
 
 msgid "Add"
 msgstr "Ekle"
@@ -735,9 +738,6 @@ msgstr ""
 msgid "Battery Low"
 msgstr ""
 
-msgid "Battery Remain Time"
-msgstr ""
-
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
 msgstr ""
@@ -899,6 +899,9 @@ msgid "Cancel"
 msgstr "İptal\""
 
 msgid "Canmount"
+msgstr ""
+
+msgid "Cannot get CPU load"
 msgstr ""
 
 msgid "Cannot get data about interface"
@@ -2408,6 +2411,9 @@ msgstr "Firmware image dosyası"
 msgid "Firmware uploading is not supported on this platform."
 msgstr "Firmware yükleme bu platform üstünde desteklenmez"
 
+msgid "Firmware version"
+msgstr ""
+
 msgid "Firmware version check"
 msgstr "Firmware versiyon kontrolü"
 
@@ -2613,8 +2619,9 @@ msgstr "İpucu"
 
 #, php-format
 msgid ""
-"Hint: If this is checked, IP addresses in %s logs are resolved to real "
-"hostnames where possible."
+"Hint: If this is checked, IP addresses in the server logs are resolved to "
+"real hostnames where possible.<br><font color='red'>Warning</font>: This can "
+"cause a huge delay in loading the log page!"
 msgstr ""
 
 msgid "Home directory"
@@ -3191,9 +3198,6 @@ msgstr ""
 
 msgid "List of mount points"
 msgstr "Bağlantı noktalarının listesi"
-
-msgid "List of open files"
-msgstr "Açık dosyaların listesi"
 
 msgid "Load"
 msgstr "Yükle"
@@ -4761,9 +4765,6 @@ msgstr "Test maili gönder"
 msgid "Separate email addresses by semi-colon."
 msgstr ""
 
-msgid "Serial"
-msgstr ""
-
 msgid "Serial Console"
 msgstr ""
 
@@ -5161,7 +5162,7 @@ msgstr ""
 msgid ""
 "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
 "server. Be sure to set syslogd on the remote server to accept syslog "
-"messages from %s."
+"messages from this server."
 msgstr ""
 
 msgid "System"
@@ -5184,6 +5185,9 @@ msgstr "Sistem Bilgisi"
 
 msgid "System information"
 msgstr "Sistem bilgileri"
+
+msgid "System load"
+msgstr ""
 
 msgid "System log"
 msgstr "Sistem günlükleri"
@@ -6411,9 +6415,6 @@ msgid ""
 "browser at any time to see the progress of failed traceroutes."
 msgstr ""
 
-msgid "Traffic graph"
-msgstr ""
-
 msgid "Transcoding"
 msgstr ""
 
@@ -6810,10 +6811,6 @@ msgstr ""
 msgid "Warning"
 msgstr "Dikkat"
 
-#, php-format
-msgid "Warning: This can cause a huge delay in loading the %s log page!"
-msgstr ""
-
 msgid ""
 "Warning: You are going to delete a RAID volume. All data will get lost and "
 "can not be recovered."
@@ -7177,3 +7174,9 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr ""
+
+#~ msgid "Active shares"
+#~ msgstr "Aktif paylaşımlar"
+
+#~ msgid "List of open files"
+#~ msgstr "Açık dosyaların listesi"

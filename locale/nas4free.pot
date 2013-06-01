@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
-"POT-Creation-Date: 2013-06-01 00:43+0000\n"
+"POT-Creation-Date: 2013-06-01 02:13+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -235,6 +235,9 @@ msgid "Activate email report if you want to be notified if a failure or a new er
 msgstr ""
 
 msgid "Active Directory"
+msgstr ""
+
+msgid "Active Directory List"
 msgstr ""
 
 msgid "Active Shares"
@@ -2405,7 +2408,7 @@ msgid "Hint"
 msgstr ""
 
 #, php-format
-msgid "Hint: If this is checked, IP addresses in %s logs are resolved to real hostnames where possible."
+msgid "Hint: If this is checked, IP addresses in the server logs are resolved to real hostnames where possible.<br><font color='red'>Warning</font>: This can cause a huge delay in loading the log page!"
 msgstr ""
 
 msgid "Home directory"
@@ -4770,7 +4773,7 @@ msgid "Synchronize"
 msgstr ""
 
 #, php-format
-msgid "Syslog sends UDP datagrams to port 514 on the specified remote syslog server. Be sure to set syslogd on the remote server to accept syslog messages from %s."
+msgid "Syslog sends UDP datagrams to port 514 on the specified remote syslog server. Be sure to set syslogd on the remote server to accept syslog messages from this server."
 msgstr ""
 
 msgid "System"
@@ -6171,10 +6174,6 @@ msgid "Wake On LAN"
 msgstr ""
 
 msgid "Warning"
-msgstr ""
-
-#, php-format
-msgid "Warning: This can cause a huge delay in loading the %s log page!"
 msgstr ""
 
 msgid "Warning: You are going to delete a RAID volume. All data will get lost and can not be recovered."
