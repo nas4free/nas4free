@@ -1,31 +1,31 @@
 PORTNAME=		lcdproc
 PORTVERSION=	0.5.6
-PORTREVISION= 2
+PORTREVISION= 3
 CATEGORIES=		sysutils
 MASTER_SITES=		SF
-COMMENT=		A client/server suite for LCD devices
+COMMENT=		Client/server suite for LCD devices
 MAINTAINER=		zoon01@nas4free.org
 
 USE_AUTOTOOLS=	autoconf automake aclocal
 GNU_CONFIGURE=	yes
-USE_GNOME=		pkgconfig
+USES=           pkgconfig
 
 LIB_DEPENDS+=		ftdi.21:${PORTSDIR}/devel/libftdi
 LIB_DEPENDS+=		hid:${PORTSDIR}/devel/libhid
 
 CONFIGURE_ARGS=	--enable-drivers="${LCDPROC_DRIVERS}" \
-						--with-libusb=/usr \
+						--with-libusb \
 						--disable-dependency-tracking \
 						--disable-doxygen
 
 OPTIONS_DEFINE=  USB FTDI HID FREETYPE PNG SERDISP
-USB_DESC=     USB support
-FTDI_DESC=    Build drivers using libftdi (requires USB)
-HID_DESC=     Build drivers using libhid (requires USB)
-SERDISP_DESC=   Build drivers using serdisplib
+USB_DESC=	   USB support
+FTDI_DESC=	   Build drivers using libftdi (requires USB)
+HID_DESC=	   Build drivers using libhid (requires USB)
+SERDISP_DESC=	   Build drivers using serdisplib
 
-OPTIONS_DEFAULT=USB FREETYPE
-NO_OPTIONS_SORT=yes
+OPTIONS_DEFAULT= USB FREETYPE
+NO_OPTIONS_SORT= yes
 
 # Empty args to aclocal required!
 ACLOCAL_ARGS=
@@ -73,12 +73,7 @@ LCDPROC_DRIVERS+=	mdm166a
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MUSB}
-. if ${OSVERSION} < 800069
-LIB_DEPENDS+=		usb-0.1:${PORTSDIR}/devel/libusb
-CONFIGURE_ARGS+=	--with-libusb
-. else
 CONFIGURE_ARGS+=	--with-libusb=/usr
-. endif
 PLIST_SUB+=		USB=""
 LCDPROC_DRIVERS+=IOWarrior \
 		picolcd \
