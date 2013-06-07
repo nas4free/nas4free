@@ -3,21 +3,21 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2013-06-01 02:13+0000\n"
-"PO-Revision-Date: 2013-05-23 09:38+0000\n"
-"Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
+"PO-Revision-Date: 2013-06-03 12:46+0000\n"
+"Last-Translator: Ιωάννης Ζαμπούκας <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-01 00:36+0000\n"
-"X-Generator: Launchpad (build 16660)\n"
+"X-Launchpad-Export-Date: 2013-06-07 13:33+0000\n"
+"X-Generator: Launchpad (build 16667)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
 "X-Poedit-Language: Greek\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 msgid " interfaces:"
-msgstr " διεπαφές δικτύου:"
+msgstr " διεπαφές:"
 
 msgid " was assigned to "
 msgstr " έχει ανατεθεί σε "
@@ -44,7 +44,7 @@ msgstr "%d έτη"
 
 #, c-format, php-format
 msgid "%d%% of %dMiB"
-msgstr "%d%% από %dMB"
+msgstr "%d%% από %dMiB"
 
 #, php-format
 msgid "%dB / block"
@@ -56,7 +56,7 @@ msgstr "Διεπαφή %s"
 
 #, php-format
 msgid "%s is too long."
-msgstr "Το %s έχει υπερβολικά μεγάλο μήκος."
+msgstr "%s είναι πολύ μεγάλο."
 
 #, php-format
 msgid "%s is used to create %s volumes."
@@ -113,7 +113,7 @@ msgid ""
 "href='%s'>user</a> must have shell access."
 msgstr ""
 "Το <a href='%s'>SSHD</a> πρέπει να είναι ενεργοποιημένο για Unison για να "
-"δουλέψει, και  <a href='%s'>ο χρήστης</a> πρέπει να έχει πρόσβαση φλοιού."
+"δουλέψει, και <a href='%s'>ο χρήστης</a> πρέπει να έχει πρόσβαση κελύφους."
 
 msgid ""
 "<b>EFI GPT partition</b> if you want to mount a GPT formatted drive "
@@ -130,7 +130,7 @@ msgid ""
 "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
 msgstr ""
 "<div id='enumeration'><ul><li>%d - Ημερομηνία</li><li>%h - Όνομα "
-"Υπολογιστή</li></ul></div>"
+"υπολογιστή</li></ul></div>"
 
 msgid ""
 "<div id='enumeration'><ul><li>The new password is also the default root "
@@ -201,9 +201,9 @@ msgid ""
 "A host name alias. This option can appear multiple times, for each domain "
 "that has the same IP. Use a space to separate multiple alias names."
 msgstr ""
-"Ένα ψευδώνυμο υπολογιστή. Αυτή η επιλογή μπορεί να εμφανίζεται πολλές φορές, "
-"για κάθε τομέα που έχει την ίδια IP. Χρησιμοποιήστε κενό χαρακτήρα για να "
-"διαχωρίσετε πολλαπλά ψευδώνυμα."
+"Ένα ψευδώνυμο ονόματος υπολογιστή. Αυτή η επιλογή μπορεί να εμφανίζεται "
+"πολλές φορές, για κάθε τομέα που έχει την ίδια IP. Χρησιμοποιήστε κενό "
+"χαρακτήρα για να διαχωρίσετε πολλαπλά ψευδώνυμα."
 
 msgid ""
 "A key will be either 5 or 13 characters (40 or 104 bits) depending of the "
@@ -280,10 +280,10 @@ msgid "AG"
 msgstr "AG"
 
 msgid "AIO read size"
-msgstr "Μέγεθος ανάγνωσης  I/O"
+msgstr "Μέγεθος ανάγνωσης AIO"
 
 msgid "AIO write size"
-msgstr "Μέγεθος εγγραφής Ασύγχρονου I/O"
+msgstr "Μέγεθος εγραφής  AIO"
 
 msgid "ALL interfaces"
 msgstr "Όλες οι διεπαφές"
@@ -301,7 +301,7 @@ msgid "Access Restrictions"
 msgstr "Περιορισμοί πρόσβασης"
 
 msgid "Access Time (atime)"
-msgstr "Ώρα Πρόσβασης ( atime)"
+msgstr "Ώρα Πρόσβασης (atime)"
 
 msgid "Access mode"
 msgstr "Λειτουργία πρόσβασης"
@@ -330,10 +330,10 @@ msgid "Active Directory"
 msgstr "Active Directory"
 
 msgid "Active Directory List"
-msgstr ""
+msgstr "Active Directory Κατάλογος"
 
 msgid "Active Shares"
-msgstr ""
+msgstr "Ενεργά διαμοιραζόμενα"
 
 msgid "Active Users"
 msgstr "Ενεργοί χρήστες"
@@ -966,7 +966,7 @@ msgid "Canmount"
 msgstr "Μπορεί να προσαρτηθεί"
 
 msgid "Cannot get CPU load"
-msgstr ""
+msgstr "Δεν μπορεί να εμφανιστεί ο φόρτος της CPU"
 
 msgid "Cannot get data about interface"
 msgstr "Αδυναμία παραλαβής δεδομένων σχετικά με την διεπαφή"
@@ -2579,7 +2579,7 @@ msgid "Firmware uploading is not supported on this platform."
 msgstr "Η αποστολή firmware δεν υποστηρίζεται σε αυτή την πλατφόρμα."
 
 msgid "Firmware version"
-msgstr ""
+msgstr "Έκδοση Firmware"
 
 msgid "Firmware version check"
 msgstr "Έλεγχος έκδοσης firmware"
@@ -2794,6 +2794,10 @@ msgid ""
 "real hostnames where possible.<br><font color='red'>Warning</font>: This can "
 "cause a huge delay in loading the log page!"
 msgstr ""
+"Συμβουλή: Αν είναι τσεκαρισμένο, οι διευθύνσεις IP στα αρχεία καταγραφής του "
+"διακομιστή επιλύονται σε πραγματικά ονόματα υπολογιστών όπου είναι δυνατόν. "
+"<br> <font color='red'> Προειδοποίηση </ font>: Αυτό μπορεί να προκαλέσει "
+"μια τεράστια καθυστέρηση στη φόρτωση της σελίδας καταγραφής!"
 
 msgid "Home directory"
 msgstr "Αρχικός κατάλογος"
@@ -5563,6 +5567,9 @@ msgid ""
 "server. Be sure to set syslogd on the remote server to accept syslog "
 "messages from this server."
 msgstr ""
+"Το Syslog στέλνει UDP datagrams στη θύρα 514 για τον συγκεκριμένο "
+"απομακρυσμένο διακομιστή syslog. Να είστε βέβαιος να θέσετε το  syslogd στον "
+"απομακρυσμένο διακομιστή να δεχτεί μηνύματα syslog από αυτόν το διακομιστή."
 
 msgid "System"
 msgstr "Σύστημα"
@@ -5586,7 +5593,7 @@ msgid "System information"
 msgstr "Πληροφορίες συστήματος"
 
 msgid "System load"
-msgstr ""
+msgstr "Φόρτος του συστήματος"
 
 msgid "System log"
 msgstr "Αρχείο καταγραφής συστήματος"
@@ -7957,42 +7964,3 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr "έκδοση:"
-
-#~ msgid "Active shares"
-#~ msgstr "Ενεργά κοινόχρηστα"
-
-#~ msgid "List of open files"
-#~ msgstr "Λίστα ανοικτών αρχείων"
-
-#~ msgid "Traffic graph"
-#~ msgstr "Γράφημα κίνησης"
-
-#, php-format
-#~ msgid "Warning: This can cause a huge delay in loading the %s log page!"
-#~ msgstr ""
-#~ "Προειδοποίηση: Αυτό μπορεί να προκαλέσει μια τεράστια καθυστέρηση στο "
-#~ "φόρτωμα της σελίδας του καταγραφέα %s!"
-
-#, php-format
-#~ msgid ""
-#~ "Hint: If this is checked, IP addresses in %s logs are resolved to real "
-#~ "hostnames where possible."
-#~ msgstr ""
-#~ "Συμβουλή: Αν αυτό είναι επιλεγμένο, οι διευθύνσεις IP στις καταγραφές %s "
-#~ "αναλύονται σε πραγματικά ονόματα υπολογιστών όταν είναι δυνατόν."
-
-#, php-format
-#~ msgid ""
-#~ "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
-#~ "server. Be sure to set syslogd on the remote server to accept syslog "
-#~ "messages from %s."
-#~ msgstr ""
-#~ "Το Syslog στέλνει πακέτα δεδομένων UDP στη θύρα 514 του καθορισμένου "
-#~ "απομακρυσμένου διακομιστή syslog. Σιγουρευτείτε ότι έχετε θέσει το syslogd "
-#~ "στον απομακρυσμένο διακομιστή να δέχεται μηνύματα syslog από το %s."
-
-#~ msgid "Battery Remain Time"
-#~ msgstr "Υπολειπόμενος χρόνος με μπαταρία"
-
-#~ msgid "Serial"
-#~ msgstr "Σειριακή"
