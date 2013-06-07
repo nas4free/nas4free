@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-01 02:13+0000\n"
-"PO-Revision-Date: 2013-05-21 17:48+0000\n"
+"PO-Revision-Date: 2013-06-02 05:02+0000\n"
 "Last-Translator: Laurentiu Bubuianu <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-01 00:37+0000\n"
-"X-Generator: Launchpad (build 16660)\n"
+"X-Launchpad-Export-Date: 2013-06-07 13:32+0000\n"
+"X-Generator: Launchpad (build 16667)\n"
 "Language: ro_RO\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -326,10 +326,10 @@ msgid "Active Directory"
 msgstr "Active Directory (AD)"
 
 msgid "Active Directory List"
-msgstr ""
+msgstr "Lista Active Directory"
 
 msgid "Active Shares"
-msgstr ""
+msgstr "Partajări active"
 
 msgid "Active Users"
 msgstr "Utilizatori activi"
@@ -950,7 +950,7 @@ msgid "Canmount"
 msgstr "Canmount"
 
 msgid "Cannot get CPU load"
-msgstr ""
+msgstr "Eroare afișare încărcare CPU"
 
 msgid "Cannot get data about interface"
 msgstr "Nicio informație disponibilă despre interfață"
@@ -2545,7 +2545,7 @@ msgid "Firmware uploading is not supported on this platform."
 msgstr "Actualizarea nu este posibilă pe această platformă."
 
 msgid "Firmware version"
-msgstr ""
+msgstr "Versiune firmware"
 
 msgid "Firmware version check"
 msgstr "Verificare versiune firmware"
@@ -2760,6 +2760,11 @@ msgid ""
 "real hostnames where possible.<br><font color='red'>Warning</font>: This can "
 "cause a huge delay in loading the log page!"
 msgstr ""
+"Sugestie: Dacă opțiunea este activă, acolo unde este posibil, toate adresele "
+"IP din jurnalele serverului vor fi afișate ca nume de server.<br><font "
+"color='red'>Atenție</font>: Acest mod de conversie a adeselor IP, mare "
+"consumator de timp, va determina o întîrziere importantă în afișarea "
+"jurnalelor!"
 
 msgid "Home directory"
 msgstr "Folder utilizator"
@@ -5493,6 +5498,9 @@ msgid ""
 "server. Be sure to set syslogd on the remote server to accept syslog "
 "messages from this server."
 msgstr ""
+"Modulul Syslog trimite datagrame UDP către portul 514 a serverului syslog "
+"remote specificat. Verificați ca serverul destinație să accepte mesajele "
+"trimise."
 
 msgid "System"
 msgstr "Sistem"
@@ -5516,7 +5524,7 @@ msgid "System information"
 msgstr "Informații Sistem"
 
 msgid "System load"
-msgstr ""
+msgstr "Încărcare sistem"
 
 msgid "System log"
 msgstr "Jurnal Sistem"
@@ -7814,41 +7822,3 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr "versiune:"
-
-#~ msgid "Active shares"
-#~ msgstr "Partajări active"
-
-#~ msgid "Traffic graph"
-#~ msgstr "Grafic Trafic"
-
-#, php-format
-#~ msgid ""
-#~ "Hint: If this is checked, IP addresses in %s logs are resolved to real "
-#~ "hostnames where possible."
-#~ msgstr ""
-#~ "Obs.: Dacă această opțiune este selectată, adresele IP din jurnalul %s vor "
-#~ "fi convertite în  nume de sistem (acolo unde acest lucru este posibil)."
-
-#~ msgid "List of open files"
-#~ msgstr "Lista fișierelor deschise"
-
-#, php-format
-#~ msgid ""
-#~ "Syslog sends UDP datagrams to port 514 on the specified remote syslog "
-#~ "server. Be sure to set syslogd on the remote server to accept syslog "
-#~ "messages from %s."
-#~ msgstr ""
-#~ "Sistemul va trimite secvențe UDP către serverul de syslog selectat, prin "
-#~ "portul 514. Verificați dacă serverul pentru syslog acceptă mesaje de la %s."
-
-#, php-format
-#~ msgid "Warning: This can cause a huge delay in loading the %s log page!"
-#~ msgstr ""
-#~ "Atenție: În acest mod poate apare o foarte mare întîrziere în încărcarea "
-#~ "paginii jurnal %s!"
-
-#~ msgid "Battery Remain Time"
-#~ msgstr "Timp rămas acumulator"
-
-#~ msgid "Serial"
-#~ msgstr "Serial"
