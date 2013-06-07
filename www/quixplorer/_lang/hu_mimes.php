@@ -1,10 +1,14 @@
 <?php
 /*
-	_info.php
-	
+	hu_mimes.php
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
+
+	Portions of Quixplorer (http://quixplorer.sourceforge.net).
+	Authors: quix@free.fr, ck@realtime-projects.com.
+	The Initial Developer of the Original Code is The QuiX project.
 
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
@@ -30,34 +34,74 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-	//Set the language array
-	$lang = array(
-		'en_US'	=> 'English',
-		'bg'		=> 'Bulgarian',
-		'cs'		=> 'Czech',
-		'da'		=> 'Dansk',
-		'de'		=> 'Deutsch',
-		'es'		=> 'Español',
-		'fr'		=> 'Français',
-		'el'		=> 'Greek',
-		'hu'		=> 'Hungarian',
-		'it'		=> 'Italiano',
-		'ja'		=> 'Japanese',
-		'nl'		=> 'Nederlands',
-		'pl'		=> 'Polski',
-		'ptbr'		=> 'Português - Brasil',
-		'ro'		=> 'Românã',
-		'ru'		=> 'Russian',
-		'zh_CN'	=> 'Chinese (Simplified)',
-		'zh_TW'	=> 'Chinese (Traditional)'
-	);
+// Hungarian Mimes Module
 
-	//Create the select box and options
-	echo "<SELECT name=\"lang\">\n";
-		foreach($lang as $key => $value) {
-			//Set the default language automatically based on global webgui language
-			$selected = ($key == $GLOBALS["language"]) ? " selected='selected'" : '';
-			//Now create the <options> list
-			echo "<option value='$key'$selected>$value</option>\n";
-	}
-	echo "</SELECT></TD></TR>\n";
+$GLOBALS["mimes"]=array(
+
+	// dir, exe, file
+	"dir"		=> "Könyvtár",
+	"exe"		=> "Futtatható fájl",
+	"file"		=> "Fájl",
+
+	// text
+	"text"		=> "Szöveg fájl",
+	
+	// programming
+	"php"		=> "PHP Script",
+	"sql"		=> "SQL fájl",
+	"perl"		=> "PERL Script",
+	"html"		=> "HTML oldal",
+	"js"		=> "Javascript fájl",
+	"css"		=> "CSS fájl",
+	"cgi"		=> "CGI Script",
+
+	// C++
+	"cpps"		=> "C++ forrás fájl",
+	"cpph"		=> "C++ fejléc fájl",
+
+	// Java
+	"javas"	=> "Java forrás fájl",
+	"javac"	=> "Java osztály fájl",
+
+	// Pascal
+	"pas"		=> "Pascal fájl",
+	
+	// images
+	"gif"		=> "GIF kép",
+	"jpg"		=> "JPG kép",
+	"bmp"		=> "BMP kép",
+	"png"		=> "PNG kép",
+	
+	// compressed
+	"zip"		=> "ZIP archív",
+	"tar"		=> "TAR archív",
+	"gzip"		=> "GZIP archív",
+	"bzip2"	=> "BZIP2 archív",
+	"rar"		=> "RAR archív",
+	"iso"		=> "ISO fájl",
+	"mds"		=> "MDS fájl",
+	
+	// music
+	"mp3"		=> "MP3 hangfájl",
+	"wav"		=> "WAV hangfájl",
+	"midi"		=> "MIDI hangfájl",
+	"real"		=> "RealAudio fájl",
+	"flac"		=> "FLAC hangfájl",
+	
+	// movie
+	"mpg"		=> "MPG fájl",
+	"mov"		=> "MOV fájl",
+	"avi"		=> "AVI fájl",
+	"flash"	=> "Flash fájl",
+	"mkv"		=> "MKV fájl",
+	"vob"		=> "VOB fájl",
+	
+	// Micosoft / Adobe
+	"word"		=> "Word dokumentum",
+	"excel"	=> "Excel dokumentum",
+	"pdf"		=> "PDF fájl",
+	"xml"		=> "XML fájl",
+	"c"		=> "C fájl",
+	"psd"		=> "Photoshop fájl",
+	"point"	=> "PowerPoint prezentáció"
+); ?>
