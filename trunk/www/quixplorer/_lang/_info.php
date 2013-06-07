@@ -47,7 +47,8 @@
 		'ptbr'		=> 'Português - Brasil',
 		'ro'		=> 'Românã',
 		'ru'		=> 'Russian',
-		'zh_CN'	=> 'Chinese (Simplified)',
+		'zh_CN'		=> 'Chinese (Simplified)',
+		'zh_TW'		=> 'Chinese (Traditional)'
 	);
 
 	//Create the select box and options
