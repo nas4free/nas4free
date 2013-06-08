@@ -265,7 +265,7 @@ function upsc_enable_change() {
 						tblrow('Status', $disp_status);
 
 						tblrowbar(gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
-						tblrowbar(gettext('Battery Charge'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
+						tblrowbar(gettext('Battery charge'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
 
 						// status
 						tblrow(gettext('Battery voltage'), $ups['battery.voltage'], 'V');
