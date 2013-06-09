@@ -51,7 +51,7 @@ $ifname=@htmlspecialchars($_GET["ifname"]) ? htmlspecialchars($_GET["ifname"]) :
 $scale_type="follow"; //Autoscale default setup : "up" = only increase scale; "follow" = increase and decrease scale according to current graphed datas
 $nb_plot=120;         //NB plot in graph
 $time_interval=1;		  //Refresh time Interval
-$unit="bits";         //Initial unit type: "bits" or "bytes"
+$unit="bytes";         //Initial unit type: "bits" or "bytes"
 $fetch_link = "stats.php?if=$ifnum";
 
 //SVG attributes
@@ -182,7 +182,7 @@ function init(evt) {
 function switch_unit(event)
 {
   SVGDoc.getElementById('switch_unit').firstChild.data = '<?=gettext("Switch to");?> ' + unit + '/s';
-  unit = (unit == 'bytes') ? 'bits' : 'bytes';
+  unit = (unit == 'bits') ? 'bytes' : 'bits';
 }
 
 function switch_scale(event)
@@ -342,9 +342,9 @@ function isNumber(a) {
 }
 
 function formatSpeed(speed, unit) {
-  if (unit == 'bytes')
-    return formatSpeedBits(speed);
   if (unit == 'bits')
+    return formatSpeedBits(speed);
+  if (unit == 'bytes')
     return formatSpeedBytes(speed);
 }
 
