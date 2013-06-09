@@ -128,6 +128,11 @@ if ($_POST) {
 			// need restarting server to export/clear .htusers.php by fmperm.
 			touch($d_sysrebootreqd_path);
 		}
+		if ((isset($config['system']['disableconsolemenu']) && (!isset($_POST['disableconsolemenu'])))
+		    || (!isset($config['system']['disableconsolemenu']) && (isset($_POST['disableconsolemenu'])))) {
+			// need restarting server to made active.
+			touch($d_sysrebootreqd_path);
+		}
 
 		$config['system']['disableconsolemenu'] = isset($_POST['disableconsolemenu']) ? true : false;
 		$config['system']['disablefm'] = isset($_POST['disablefm']) ? true : false;
