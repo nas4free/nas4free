@@ -44,24 +44,24 @@ $GLOBALS["mimes"]=array(
 	"file"		=> "Fájl",
 
 	// text
-	"text"		=> "Szöveg fájl",
+	"text"		=> "Szövegfájl",
 	
 	// programming
-	"php"		=> "PHP Script",
+	"php"		=> "PHP szkript",
 	"sql"		=> "SQL fájl",
-	"perl"		=> "PERL Script",
+	"perl"		=> "PERL szkript",
 	"html"		=> "HTML oldal",
 	"js"		=> "Javascript fájl",
 	"css"		=> "CSS fájl",
-	"cgi"		=> "CGI Script",
+	"cgi"		=> "CGI szkript",
 
 	// C++
-	"cpps"		=> "C++ forrás fájl",
-	"cpph"		=> "C++ fejléc fájl",
+	"cpps"		=> "C++ forrásfájl",
+	"cpph"		=> "C++ fejlécfájl",
 
 	// Java
-	"javas"	=> "Java forrás fájl",
-	"javac"	=> "Java osztály fájl",
+	"javas"	=> "Java forrásfájl",
+	"javac"	=> "Java osztályfájl",
 
 	// Pascal
 	"pas"		=> "Pascal fájl",
@@ -98,7 +98,7 @@ $GLOBALS["mimes"]=array(
 	
 	// Micosoft / Adobe
 	"word"		=> "Word dokumentum",
-	"excel"	=> "Excel dokumentum",
+	"excel"	=> "Excel táblázat",
 	"pdf"		=> "PDF fájl",
 	"xml"		=> "XML fájl",
 	"c"		=> "C fájl",
