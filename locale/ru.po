@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2013-06-01 02:13+0000\n"
-"PO-Revision-Date: 2013-05-26 21:44+0000\n"
-"Last-Translator: Anton Shirokov <tsrodger@gmail.com>\n"
+"PO-Revision-Date: 2013-06-12 21:22+0000\n"
+"Last-Translator: Lintruder <dmitry-confidential@ya.ru>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-07 13:33+0000\n"
+"X-Launchpad-Export-Date: 2013-06-12 21:48+0000\n"
 "X-Generator: Launchpad (build 16667)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
@@ -797,7 +797,7 @@ msgstr ""
 "Уровень заряда батареи, при котором происходит выключение ИБП (Low Battery)"
 
 msgid "Battery alarm threshold"
-msgstr ""
+msgstr "Порог тревоги для батареи"
 
 msgid "Battery capacity"
 msgstr "Ёмкость аккумулятора"
@@ -958,7 +958,7 @@ msgid "Canmount"
 msgstr "Возможность монтирования"
 
 msgid "Cannot get CPU load"
-msgstr ""
+msgstr "Информация о загрузке процессора недоступна"
 
 msgid "Cannot get data about interface"
 msgstr "Невозможно получить информацию об интерфейсе"
@@ -2121,7 +2121,7 @@ msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "Включить Zeroconf/Bonjour для объявления служб этого устройства"
 
 msgid "Enable administrative DNLA/UPnP WebGUI."
-msgstr ""
+msgstr "Включить административный DNLA / UPnP Web-интерфейс"
 
 msgid "Enable anonymous bind."
 msgstr "Разрешить анонимный доступ"
@@ -2360,10 +2360,10 @@ msgid "Extended attributes"
 msgstr "Расширенные атрибуты"
 
 msgid "Extended input frequency range"
-msgstr ""
+msgstr "Расширенный диапазон входящей частоты"
 
 msgid "Extended input voltage range"
-msgstr ""
+msgstr "Расширенный диапазон входящего напряжения"
 
 msgid "Extensions"
 msgstr "Расширения"
@@ -2551,7 +2551,7 @@ msgid "Firmware uploading is not supported on this platform."
 msgstr "Загрузка прошивки не поддерживается этой платформой."
 
 msgid "Firmware version"
-msgstr ""
+msgstr "Версия прошивки"
 
 msgid "Firmware version check"
 msgstr "Проверка версии прошивки"
@@ -2560,7 +2560,7 @@ msgid "FirstBurstLength"
 msgstr "FirstBurstLength"
 
 msgid "Flag xxx (ups.conf or cmdline -x) status"
-msgstr ""
+msgstr "Статус флага xxx (ups.conf или cmdline -x)"
 
 msgid "Flags"
 msgstr "Флаги"
@@ -2633,7 +2633,7 @@ msgid "General"
 msgstr "Общие"
 
 msgid "General Information UPS Unit"
-msgstr ""
+msgstr "Общая информация о блоке ИБП (UPS)"
 
 msgid "General Setup"
 msgstr "Общие параметры"
@@ -2654,7 +2654,7 @@ msgid "Give only local users access to the web page."
 msgstr "Только локальные пользователи могут открыть web-страницу."
 
 msgid "Give your media library a friendly name."
-msgstr ""
+msgstr "Дайте вашей медиа-библиотеке понятное имя"
 
 msgid "Grant access to the user portal."
 msgstr "Предоставить доступ к порталу пользователя"
@@ -2705,7 +2705,7 @@ msgid "HAST (Highly Available Storage)"
 msgstr "HAST (хранилище высокой доступности)"
 
 msgid "HAST disabled"
-msgstr ""
+msgstr "Режим HAST отключен"
 
 msgid "HAST resource"
 msgstr "Ресурс HAST"
@@ -2744,13 +2744,13 @@ msgid "Hide dot files"
 msgstr "Скрывать файлы \".\""
 
 msgid "High voltage boosting transfer point"
-msgstr ""
+msgstr "Верхняя граница напряжения для режима подпитки (boosting)"
 
 msgid "High voltage transfer point"
-msgstr ""
+msgstr "Верхняя граница напряжения для переключения"
 
 msgid "High voltage trimming transfer point"
-msgstr ""
+msgstr "Верхняя граница напряжения для режима понижения (trimming)"
 
 msgid "Highlighting"
 msgstr "Подсветка"
@@ -2764,6 +2764,10 @@ msgid ""
 "real hostnames where possible.<br><font color='red'>Warning</font>: This can "
 "cause a huge delay in loading the log page!"
 msgstr ""
+"Подсказка: Если опция отмечена, IP-адреса в логах сервера будут "
+"преобразованы в реальные имена хостов, где это возможно <br><font "
+"color='red'>Предупреждение</font>: Это может вызвать огромные задержки при "
+"загрузке страницы журнала!"
 
 msgid "Home directory"
 msgstr "Домашний каталог"
@@ -3462,7 +3466,7 @@ msgid "Location where the content database file will be stored."
 msgstr "Размещение для хранения содержимого базы данных."
 
 msgid "Location where the database with media contents will be stored."
-msgstr ""
+msgstr "Место, где будет сохранена база данных мультимедийного содержимого."
 
 #, php-format
 msgid ""
@@ -3514,13 +3518,13 @@ msgid "Logout"
 msgstr "Выход"
 
 msgid "Low voltage boosting transfer point"
-msgstr ""
+msgstr "Нижняя граница напряжения для режима подпитки (boosting)"
 
 msgid "Low voltage transfer point"
-msgstr ""
+msgstr "Нижняя граница напряжения для переключения"
 
 msgid "Low voltage trimming transfer point"
-msgstr ""
+msgstr "Нижняя граница напряжения для режима понижения (trimming)"
 
 msgid "Lowercases names in both directions"
 msgstr "Нижний регистр в обоих направлениях"
@@ -4266,7 +4270,7 @@ msgid "Pairwise"
 msgstr "Парные"
 
 msgid "Parameter xxx (ups.conf or cmdline -x) setting"
-msgstr ""
+msgstr "Установка параметра xxx (ups.conf или cmdline -x)"
 
 msgid "Partition number"
 msgstr "Номер раздела"
@@ -4691,10 +4695,10 @@ msgid "Reject"
 msgstr "Отклонить"
 
 msgid "Relative humidity alarm (enabled/disabled)"
-msgstr ""
+msgstr "Сигнализация для относительной влажности (включена/отключена)"
 
 msgid "Relative humidity threshold high (percent)"
-msgstr ""
+msgstr "Порог для высокой относительной влажности (в процентах)"
 
 msgid "Release Notes"
 msgstr "Примечания к выпуску"
@@ -5104,6 +5108,8 @@ msgstr "Установить данную группу основной."
 
 msgid "Set the content location(s) to or from the media library."
 msgstr ""
+"Укажите расположение(-ия) контента или его расположение относительно медиа-"
+"библиотеки."
 
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr ""
@@ -5487,6 +5493,9 @@ msgid ""
 "server. Be sure to set syslogd on the remote server to accept syslog "
 "messages from this server."
 msgstr ""
+"Syslog посылает UDP датаграммы на порт 514 указанного удаленного сервера "
+"syslog. Убедитесь, что syslogd установлен на удаленном сервере для приёма "
+"syslog сообщений с этого сервера."
 
 msgid "System"
 msgstr "Система"
@@ -5510,7 +5519,7 @@ msgid "System information"
 msgstr "Информация о системе"
 
 msgid "System load"
-msgstr ""
+msgstr "Загрузка системы"
 
 msgid "System log"
 msgstr "Журнал системы"
@@ -5603,16 +5612,16 @@ msgid "Temperature"
 msgstr "Температура"
 
 msgid "Temperature alarm (enabled/disabled)"
-msgstr ""
+msgstr "Сигнализация для температуры (включена/отключена)"
 
 msgid "Temperature monitoring"
 msgstr "Контроль температуры"
 
 msgid "Temperature threshold high (degrees C)"
-msgstr ""
+msgstr "Порог для высокой температуры (в градусах Цельсия)"
 
 msgid "Temperature threshold low (degrees C)"
-msgstr ""
+msgstr "Порог для низкой температуры (в градусах Цельсия)"
 
 msgid "Temporary Device"
 msgstr "Временное устройство"
@@ -5809,11 +5818,11 @@ msgstr "Атрибут '%s' должен содержать по меньшей 
 
 #, php-format
 msgid "The attribute '%s': use a port in the range from %d to %d."
-msgstr ""
+msgstr "Атрибут '%s': используйте порт в дипапзоне от %d до %d."
 
 #, php-format
 msgid "The attribute 'Port': port '%ld' is already taken by another service."
-msgstr ""
+msgstr "Атрибут 'Port': порт '%ld' уже используется другой службой."
 
 msgid ""
 "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
@@ -7092,13 +7101,13 @@ msgid "UPS beeper status"
 msgstr "Состояние зумера ИБП"
 
 msgid "UPS coldstarts from battery"
-msgstr ""
+msgstr "Холодный старт от батареи ИБП (UPS)"
 
 msgid "UPS disabled"
 msgstr "Служба UPS отключена"
 
 msgid "UPS external contact sensors"
-msgstr ""
+msgstr "Контакт ИБП (UPS) для внешних датчиков"
 
 msgid "UPS firmware"
 msgstr "Версия прошивки ИБП"
@@ -7113,22 +7122,22 @@ msgid "UPS reaches low battery"
 msgstr "Низкий заряд батареи UPS"
 
 msgid "UPS starts when mains is (re)applied"
-msgstr ""
+msgstr "ИБП (UPS) стартует, когда (пере)подключается к электросети"
 
 msgid "UPS status"
 msgstr "Состояние UPS"
 
 msgid "UPS system identifier"
-msgstr ""
+msgstr "Системный идентификатор ИБП (UPS)"
 
 msgid "UPS temperature"
-msgstr ""
+msgstr "Температура ИБП (UPS)"
 
 msgid "UPS type"
-msgstr ""
+msgstr "Тип ИБП (UPS)"
 
 msgid "UPS watchdog status"
-msgstr ""
+msgstr "Watchdog статус ИБП (UPS)"
 
 msgid "UPnP"
 msgstr "UPnP"
@@ -7341,7 +7350,7 @@ msgid "Variable"
 msgstr "Переменная"
 
 msgid "Vendor ID"
-msgstr ""
+msgstr "ID поставщика"
 
 msgid "Version"
 msgstr "Версия"
@@ -7659,9 +7668,11 @@ msgstr "неудачное получение информации о цели."
 
 msgid "greatest settable high voltage transfer point"
 msgstr ""
+"наибольшее устанавливаемое значение высокого напряжения для переключения"
 
 msgid "greatest settable low voltage transfer point"
 msgstr ""
+"наибольшее устанавливаемое значение низкого напряжения для переключения"
 
 msgid "hiadaptive (high performance)"
 msgstr "hiadaptive (высокая производительность)"
@@ -7768,9 +7779,11 @@ msgstr "сек."
 
 msgid "smallest settable high voltage transfer point"
 msgstr ""
+"наименьшее устанавливаемое значение высокого напряжения для переключения"
 
 msgid "smallest settable low voltage transfer point"
 msgstr ""
+"наименьшее устанавливаемое значение низкого напряжения для переключения"
 
 msgid "striping"
 msgstr "чередование"
