@@ -11,7 +11,7 @@ DISTNAME=				mt-daapd-svn-${PORTVERSION}
 LIB_DEPENDS=				sqlite3:${PORTSDIR}/databases/sqlite3 \
 										id3tag.0:${PORTSDIR}/audio/libid3tag \
 										vorbis.4:${PORTSDIR}/audio/libvorbis \
-										FLAC.10:${PORTSDIR}/audio/flac \
+										FLAC.11:${PORTSDIR}/audio/flac \
 										avcodec:${PORTSDIR}/multimedia/ffmpeg
 
 USE_LDCONFIG=				yes
