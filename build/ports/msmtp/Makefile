@@ -7,32 +7,35 @@ MAINTAINER=		zoon01@nas4free.org
 
 MASTER_SITES=	SF
 
-USE_BZIP2= yes
-GNU_CONFIGURE= yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
+USE_BZIP2=      yes 
+GNU_CONFIGURE=  yes 
+USE_GNOME=      pkgconfig 
+CPPFLAGS+=      -I${LOCALBASE}/include 
+LDFLAGS+=       -L${LOCALBASE}/lib 
+
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 
-OPTIONS=	GNUTLS "Adds GnuTLS support" on \
-		OPENSSL "Adds support for SSL (Secure Socket Layer)" on \
-		GSASL "Adds GSASL support" off \
-		NLS "Native Language Support via gettext utilities" on \
-		IDN "Enable Internationalized Domain Names" off \
-		GNOME_KEYRING "Build with GNOME Keyring auth support" off \
-		MSMTPQ "Install offline messaging scripts" off
+OPTIONS_DEFINE= 	   GSASL NLS IDN GNOMEKEYRING MSMTPQ 
+OPTIONS_RADIO=	   TLS 
+OPTIONS_RADIO_TLS=      GNUTLS OPENSSL 
+OPTIONS_DEFAULT=        MSMTPQ OPENSSL 
+
+GSASL_DESC=     GSASL support 
+MSMTPQ_DESC=    Install offline messaging scripts 
+
 
 .include       <bsd.port.options.mk>
 
-.if ${PORT_OPTIONS:MGNUTLS}
-LIB_DEPENDS+=   gnutls:${PORTSDIR}/security/gnutls
-CONFIGURE_ARGS+=	--with-ssl=gnutls
-.elif ${PORT_OPTIONS:MOPENSSL
-USE_OPENSSL=	yes
-CONFIGURE_ARGS+=	--with-ssl=openssl
-CONFIGURE_ENV+=	libssl_CFLAGS="-I${OPENSSLINC}" libssl_LIBS="-L${OPENSSLLIB} -lssl"
-.else
-CONFIGURE_ARGS+=	--with-ssl=no
-.endif
+.if ${PORT_OPTIONS:MGNUTLS} 
+LIB_DEPENDS+=   gnutls:${PORTSDIR}/security/gnutls 
+CONFIGURE_ARGS+=        --with-ssl=gnutls 
+.elif ${PORT_OPTIONS:MOPENSSL} 
+USE_OPENSSL=    yes 
+CONFIGURE_ARGS+=        --with-ssl=openssl 
+CONFIGURE_ENV+=         libssl_CFLAGS="-I${OPENSSLINC}" libssl_LIBS="-L${OPENSSLLIB} -lssl" 
+.else 
+CONFIGURE_ARGS+=        --with-ssl=no 
+.endif 
 
 .if ${PORT_OPTIONS:MGNUTLS} || ${PORT_OPTIONS:MOPENSSL}
 RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
