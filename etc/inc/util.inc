@@ -1451,7 +1451,6 @@ function get_ipv4dnsserver() {
 				if (0 == strcmp(strtolower(trim($adata[0])),"nameserver")) {
 					if (is_ipv4addr(trim($adata[1]))) {
 						$result[] = trim($adata[1]);
-						break;
 					}
 				}
 			}
@@ -1481,7 +1480,6 @@ function get_ipv6dnsserver() {
 				if (0 == strcmp(strtolower(trim($adata[0])),"nameserver")) {
 					if (is_ipv6addr(trim($adata[1]))) {
 						$result[] = trim($adata[1]);
-						break;
 					}
 				}
 			}
