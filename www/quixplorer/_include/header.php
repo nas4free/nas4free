@@ -160,7 +160,7 @@ $menu['advanced']['link'] = "../index.php";
 $menu['advanced']['menuitem'] = array();
 $menu['advanced']['menuitem'][] = array("desc" => gettext("File Editor"), "link" => "../system_edit.php", "visible" => Session::isAdmin());
 if (!isset($config['system']['disablefm'])) {
-	$menu['advanced']['menuitem'][] = array("desc" => gettext("File Manager"), "link" => "../file_manager/system_filemanager.php", "visible" => TRUE);
+	$menu['advanced']['menuitem'][] = array("desc" => gettext("File Manager"), "link" => "../quixplorer/system_filemanager.php", "visible" => TRUE);
 }
 $menu['advanced']['menuitem'][] = array("type" => "separator", "visible" => Session::isAdmin());
 $menu['advanced']['menuitem'][] = array("desc" => gettext("Command"), "link" => "../exec.php", "visible" => Session::isAdmin());
