@@ -35,7 +35,7 @@
     SUBDIR += openssh-portable
     SUBDIR += pam_ldap
     SUBDIR += pam_mkhomedir
-    SUBDIR += php5
+    SUBDIR += php55
     SUBDIR += proftpd
     SUBDIR += rconf
     SUBDIR += rsync
