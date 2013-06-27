@@ -1,5 +1,5 @@
 PORTNAME=		samba36
-PORTVERSION=	  3.6.15
+PORTVERSION=	  3.6.16
 #PORTREVISION?= 0
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -150,6 +150,10 @@ do-install:
 	@${INSTALL_SCRIPT} -v ${FILESDIR}/samba.in ${NAS4FREE_ROOTFS}/etc/rc.d/samba
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/libwbclient.so.0 ${NAS4FREE_ROOTFS}/${SAMBA_LIBDIR}
 	@${LN} -f -v -s libwbclient.so.0 ${NAS4FREE_ROOTFS}/${SAMBA_LIBDIR}/libwbclient.so
+
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/libtevent.so.0 ${NAS4FREE_ROOTFS}/${SAMBA_LIBDIR}
+	@${LN} -f -v -s libtevent.so.0 ${NAS4FREE_ROOTFS}/${SAMBA_LIBDIR}/libwbclient.so
+
 
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/smbd ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/nmbd ${NAS4FREE_ROOTFS}/usr/local/sbin
