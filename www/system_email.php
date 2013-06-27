@@ -47,6 +47,7 @@ $pconfig['server'] = $config['system']['email']['server'];
 $pconfig['port'] = $config['system']['email']['port'];
 $pconfig['auth'] = isset($config['system']['email']['auth']);
 $pconfig['authmethod'] = $config['system']['email']['authmethod'];
+$pconfig['starttls'] = isset($config['system']['email']['starttls']);
 $pconfig['security'] = $config['system']['email']['security'];
 $pconfig['username'] = $config['system']['email']['username'];
 $pconfig['password'] = $config['system']['email']['password'];
@@ -81,6 +82,7 @@ if ($_POST) {
 		$config['system']['email']['auth'] = isset($_POST['auth']) ? true : false;
 		$config['system']['email']['authmethod'] = $_POST['authmethod'];
 		$config['system']['email']['security'] = $_POST['security'];
+		$config['system']['email']['starttls'] = isset($_POST['starttls']) ? true : false;
 		$config['system']['email']['username'] = $_POST['username'];
 		$config['system']['email']['password'] = $_POST['password'];
 		$config['system']['email']['from'] = $_POST['from'];
@@ -131,6 +133,9 @@ function auth_change() {
       break;
 	}
 }
+function enable_change(enable_change) {
+	document.iform.starttls.disabled = endis;
+}
 //-->
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -159,6 +164,7 @@ function auth_change() {
 					<?php html_inputbox("server", gettext("Outgoing mail server"), $pconfig['server'], gettext("Outgoing SMTP mail server address, e.g. smtp.mycorp.com."), true, 40);?>
 					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], gettext("The default SMTP mail server port, e.g. 25 or 587."), true, 10);?>
 					<?php html_combobox("security", gettext("Security"), $pconfig['security'], array("none" => gettext("None"), "ssl" => "SSL", "tls" => "TLS"), "", true);?>
+					<?php html_checkbox("starttls", gettext("TLS mode"), !empty($pconfig['starttls']) ? true : false, gettext("Enable STARTTLS encryption. This doesn't mean you have to use TLS, you can use SSL."), gettext("This is a way to take an existing insecure connection, and upgrade it to a secure connection using SSL/TLS."), false);?>
 					<?php html_checkbox("auth", gettext("Authentication"), !empty($pconfig['auth']) ? true : false, gettext("Enable SMTP authentication."), "", false, "auth_change()");?>
 					<?php html_inputbox("username", gettext("Username"), $pconfig['username'], "", true, 40);?>
 					<?php html_passwordconfbox("password", "passwordconf", gettext("Password"), $pconfig['password'], $pconfig['passwordconf'], "", true);?>
