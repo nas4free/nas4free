@@ -1,5 +1,5 @@
 PORTNAME=		transmission
-PORTVERSION=	2.77
+PORTVERSION=	2.80
 PORTREVISION?= 0
 CATEGORIES?=		net-p2p
 COMMENT=		A fast and lightweight CLI bitTorrent client
@@ -15,7 +15,7 @@ GEN_RUN_DEPENDS=${LOCALBASE}/share/transmission/web/index.html:${PORTSDIR}/www/t
 USE_GMAKE=	yes
 USE_GNOME?=	pkgconfig
 USE_OPENSSL=	yes
-USE_BZIP2=	yes
+EXTRACT_SUFX= .tar.xz
 GNU_CONFIGURE=	yes
 CPPFLAGS=	-I${LOCALBASE}/include
 LDFLAGS=	-L${LOCALBASE}/lib
@@ -65,6 +65,7 @@ do-install:
 	@${INSTALL_DATA} -v ${WRKSRC}/web/images/favicon.ico ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/images
 	@${INSTALL_DATA} -v ${WRKSRC}/web/images/favicon.png ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/images
 	@${INSTALL_DATA} -v ${WRKSRC}/web/images/webclip-icon.png ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/images
+
 	@${INSTALL_DATA} -v ${WRKSRC}/web/javascript/common.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/javascript
 	@${INSTALL_DATA} -v ${WRKSRC}/web/javascript/dialog.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/javascript
 	@${INSTALL_DATA} -v ${WRKSRC}/web/javascript/file-row.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/javascript
@@ -76,18 +77,18 @@ do-install:
 	@${INSTALL_DATA} -v ${WRKSRC}/web/javascript/torrent.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/javascript
 	@${INSTALL_DATA} -v ${WRKSRC}/web/javascript/torrent-row.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/javascript
 	@${INSTALL_DATA} -v ${WRKSRC}/web/javascript/transmission.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/javascript
+
 	@${INSTALL_DATA} -v ${WRKSRC}/web/javascript/jquery/jquery.contextmenu.min.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/javascript/jquery
-	@${INSTALL_DATA} -v ${WRKSRC}/web/javascript/jquery/jquery.form.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/javascript/jquery
-	@${INSTALL_DATA} -v ${WRKSRC}/web/javascript/jquery/jquery.form.min.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/javascript/jquery
 	@${INSTALL_DATA} -v ${WRKSRC}/web/javascript/jquery/jquery.min.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/javascript/jquery
 	@${INSTALL_DATA} -v ${WRKSRC}/web/javascript/jquery/jquery.transmenu.min.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/javascript/jquery
 	@${INSTALL_DATA} -v ${WRKSRC}/web/javascript/jquery/jqueryui-1.8.16.min.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/javascript/jquery
 	@${INSTALL_DATA} -v ${WRKSRC}/web/javascript/jquery/json2.min.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/javascript/jquery
+
+	@${INSTALL_DATA} -v ${WRKSRC}/web/style/jqueryui/jqueryui-1.8.16.css ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/style/jqueryui
 	@${INSTALL_DATA} -v ${WRKSRC}/web/style/transmission/common.css ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/style/transmission
 	@${INSTALL_DATA} -v ${WRKSRC}/web/style/transmission/common.scss ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/style/transmission
 	@${INSTALL_DATA} -v ${WRKSRC}/web/style/transmission/mobile.css ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/style/transmission
 	@${INSTALL_DATA} -v ${WRKSRC}/web/style/transmission/mobile.scss ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/style/transmission
-	@${INSTALL_DATA} -v ${WRKSRC}/web/style/jqueryui/jqueryui-1.8.16.css ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/style/jqueryui
 
 	@${INSTALL_DATA} -v ${WRKSRC}/web/style/transmission/images/arrow-down.png ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/style/transmission/images
 	@${INSTALL_DATA} -v ${WRKSRC}/web/style/transmission/images/arrow-up.png ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}/web/style/transmission/images
