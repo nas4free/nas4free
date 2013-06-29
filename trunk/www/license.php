@@ -47,7 +47,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
 				<?php html_titleline(gettext("License"));?>
 				<tr>
 					<td class="listt">
-            <p><strong>NAS4Free is Copyright &copy; 2012-2013 by NAS4Free
+            <p><strong>NAS4Free is Copyright &copy; 2012-2013 The NAS4Free Project
               (<a href="mailto:info@nas4free.org">info@nas4free.org</a>).<br />
               All rights reserved.</strong></p>
 
@@ -194,7 +194,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
        </p>
 
       <p>e2fsprogs (<a href="http://e2fsprogs.sourceforge.net" target="_blank">http://e2fsprogs.sourceforge.net</a>)<br />
-        Copyright &copy; 1994-2006 Theodore Ts'o. All Rights Reserved.</p>
+        Copyright &copy; 2007 Theodore Ts'o. All Rights Reserved.</p>
 
       <p>inadyn-mt - Simple Dynamic DNS client (<a href="http://sourceforge.net/projects/inadyn-mt" target="_blank">http://sourceforge.net/projects/inadyn-mt</a>)<br />
         Inadyn Copyright &copy; 2003-2004 Narcis Ilisei. All Rights Reserved.<br />
