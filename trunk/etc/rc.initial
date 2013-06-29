@@ -30,7 +30,7 @@ PLATFORM=`cat /etc/platform`
 # Check if console menu is disabled.
 if configxml_isset "//system/disableconsolemenu"; then
 	while : ; do
-		printf "\n\n\33[31m%s\33[0m\n\n"  "*** Console menu disabled. ***"
+		printf "\n\n\33[31m%s\33[0m\n\n"  "*** Console Menu Disabled. ***"
 		read tmp
 	done
 else
@@ -44,8 +44,8 @@ else
 	while : ; do
 		# display menu
 		echo
-		echo "Console setup"
-		echo "-------------"
+		echo "Console Menu"
+		echo "------------"
 		echo "1) Configure Network Interfaces"
 		echo "2) Configure Network IP Address"
 		echo "3) Reset WebGUI Password"
