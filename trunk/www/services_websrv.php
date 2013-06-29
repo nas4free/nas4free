@@ -11,13 +11,13 @@
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -31,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 require("auth.inc");
@@ -216,10 +216,10 @@ function authentication_change() {
 					<?php html_combobox("protocol", gettext("Protocol"), $pconfig['protocol'], array("http" => "HTTP", "https" => "HTTPS"), "", true, false, "protocol_change()");?>
 					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], gettext("TCP port to bind the server to."), true, 5);?>
 					<?php html_combobox("runasuser", gettext("Run as"), $pconfig['runasuser'], array("server.username = \"www\"" => "www", "" => "root"), gettext("Set what user the service will run as (www by default). <br><b><font color='red'>NOTE</font>: Running as root is <u>not recommended</u> for security reasons, use it on your own risk!</b></br>"), true);?>	
-					<?php html_textarea("certificate", gettext("Certificate"), $pconfig['certificate'], gettext("Paste a signed certificate in X.509 PEM format here."), true, 65, 7, false, false);?>
-					<?php html_textarea("privatekey", gettext("Private key"), $pconfig['privatekey'], gettext("Paste an private key in PEM format here."), true, 65, 7, false, false);?>
-					<?php html_filechooser("documentroot", gettext("Document root"), $pconfig['documentroot'], gettext("Document root of the webserver. Home of the web page files."), $g['media_path'], true, 60);?>
-					<?php html_filechooser("uploaddir", gettext("Upload directory"), $pconfig['uploaddir'], sprintf(gettext("Upload directory of the webserver. The default is %s."), $default_uploaddir), $default_uploaddir, true, 60);?>
+					<?php html_textarea("certificate", gettext("Certificate"), $pconfig['certificate'], gettext("Paste a signed certificate in X.509 PEM format here."), true, 76, 7, false, false);?>
+					<?php html_textarea("privatekey", gettext("Private key"), $pconfig['privatekey'], gettext("Paste an private key in PEM format here."), true, 76, 7, false, false);?>
+					<?php html_filechooser("documentroot", gettext("Document root"), $pconfig['documentroot'], gettext("Document root of the webserver. Home of the web page files."), $g['media_path'], true, 76);?>
+					<?php html_filechooser("uploaddir", gettext("Upload directory"), $pconfig['uploaddir'], sprintf(gettext("Upload directory of the webserver. The default is %s."), $default_uploaddir), $default_uploaddir, true, 76);?>
 			    <?php html_checkbox("authentication", gettext("Authentication"), !empty($pconfig['authentication']) ? true : false, gettext("Enable authentication."), gettext("Give only local users access to the web page."), false, "authentication_change()");?>
 					<tr id="authdirs_tr">
 						<td width="22%" valign="top" class="vncell">&nbsp;</td>
@@ -260,7 +260,7 @@ function authentication_change() {
 						</td>
 					</tr>
 					<?php html_checkbox("dirlisting", gettext("Directory listing"), !empty($pconfig['dirlisting']) ? true : false, gettext("Enable directory listing."), gettext("A directory listing is generated if a directory is requested and no index-file (index.php, index.html, index.htm or default.htm) was found in that directory."), false);?>
-					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gettext("These parameters will be added to %s."), "wersrv.conf")  . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://redmine.lighttpd.net/projects/lighttpd/wiki"), false, 65, 5, false, false);?>
+					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gettext("These parameters will be added to %s."), "wersrv.conf")  . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://redmine.lighttpd.net/projects/lighttpd/wiki"), false, 85, 7, false, false);?>
 			  </table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />
