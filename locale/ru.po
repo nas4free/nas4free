@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-06-01 02:13+0000\n"
-"PO-Revision-Date: 2013-06-12 21:22+0000\n"
+"POT-Creation-Date: 2013-06-29 23:57+0000\n"
+"PO-Revision-Date: 2013-06-17 17:04+0000\n"
 "Last-Translator: Lintruder <dmitry-confidential@ya.ru>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-12 21:48+0000\n"
-"X-Generator: Launchpad (build 16667)\n"
+"X-Launchpad-Export-Date: 2013-06-29 23:49+0000\n"
+"X-Generator: Launchpad (build 16692)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
 "X-Poedit-Language: Russian\n"
@@ -331,10 +331,10 @@ msgid "Active Directory"
 msgstr "Служба каталогов Active Directory"
 
 msgid "Active Directory List"
-msgstr ""
+msgstr "Каталоги, используемые в данный момент"
 
 msgid "Active Shares"
-msgstr ""
+msgstr "Активные общие ресурсы"
 
 msgid "Active Users"
 msgstr "Активные пользователи"
@@ -2111,6 +2111,11 @@ msgstr "Включить NTP"
 msgid "Enable SMTP authentication."
 msgstr "Включить SMTP-авторизацию"
 
+msgid ""
+"Enable STARTTLS encryption. This doesn't mean you have to use TLS, you can "
+"use SSL."
+msgstr ""
+
 msgid "Enable TLS/SSL connections."
 msgstr "Разрешить TLS/SSL соединения"
 
@@ -2400,6 +2405,10 @@ msgstr ""
 
 msgid "Extra options to ifconfig (usually empty)."
 msgstr "Дополнительные настройки ifconfig (обычно пусто)."
+
+msgid ""
+"Extra options to pass over rpc using transmission-remote (usually empty)."
+msgstr ""
 
 msgid "Extra options to rsync (usually empty)."
 msgstr "Дополнительные настройки rsync (обычно пусто)."
@@ -5025,8 +5034,8 @@ msgid ""
 "Select which interface to use. (only selectable if your server has more than "
 "one)"
 msgstr ""
-"Выберите интерфейс ИБП (выбрать можно только если Ваш сервер имеет более "
-"одного)"
+"Выберите, какой интерфейс использовать (выбрать можно только если ваш сервер "
+"имеет более одного)"
 
 msgid "Select your read balance algorithm."
 msgstr "Выберите желаемый алгоритм балансировки чтения."
@@ -5553,6 +5562,9 @@ msgstr "TFTP"
 
 msgid "TKIP"
 msgstr "TKIP"
+
+msgid "TLS mode"
+msgstr ""
 
 msgid "Tag"
 msgstr "Метка"
@@ -6575,6 +6587,11 @@ msgstr "Используйте эту функцию исключительно 
 
 msgid "This group already exists in the group list."
 msgstr "Такая группа уже есть в списке групп."
+
+msgid ""
+"This is a way to take an existing insecure connection, and upgrade it to a "
+"secure connection using SSL/TLS."
+msgstr ""
 
 msgid ""
 "This is both the name of the server as advertised via "

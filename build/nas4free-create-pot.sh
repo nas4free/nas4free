@@ -41,11 +41,12 @@ msgstr \"\"
 \"Last-Translator: \\n\"
 \"Language-Team: \\n\"
 \"MIME-Version: 1.0\\n\"
-\"Content-Type: text/plain; charset=iso-8859-1\\n\"
+\"Content-Type: text/plain; charset=UTF-8\\n\"
 \"Content-Transfer-Encoding: 8bit\\n\"
 " >${OUTPUTDIR}/${OUTPUT}.tmp
 
 cat ${OUTPUTDIR}/${OUTPUT} >>${OUTPUTDIR}/${OUTPUT}.tmp
 mv -f ${OUTPUTDIR}/${OUTPUT}.tmp ${OUTPUTDIR}/${OUTPUT}
 
-echo "==> Translation file created: ${OUTPUTDIR}/${OUTPUT}"
+echo -e "\033\\033[32m";
+echo -e "==> Translation file created into:""\033[37m ${OUTPUTDIR}/${OUTPUT}\033[37m";
