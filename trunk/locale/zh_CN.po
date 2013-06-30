@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-06-01 02:13+0000\n"
+"POT-Creation-Date: 2013-06-29 23:57+0000\n"
 "PO-Revision-Date: 2013-06-12 11:54+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-12 21:48+0000\n"
-"X-Generator: Launchpad (build 16667)\n"
+"X-Launchpad-Export-Date: 2013-06-29 23:49+0000\n"
+"X-Generator: Launchpad (build 16692)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -1989,6 +1989,11 @@ msgstr "启用 NTP"
 msgid "Enable SMTP authentication."
 msgstr "启用 SMTP 认证。"
 
+msgid ""
+"Enable STARTTLS encryption. This doesn't mean you have to use TLS, you can "
+"use SSL."
+msgstr ""
+
 msgid "Enable TLS/SSL connections."
 msgstr "允许使用 TLS/SSL 连接。"
 
@@ -2254,6 +2259,10 @@ msgstr "用于/etc/ssh/sshd_config 中的额外选项（通常为空白）。注
 
 msgid "Extra options to ifconfig (usually empty)."
 msgstr "ifconfig 的额外选项（通常为空白）。"
+
+msgid ""
+"Extra options to pass over rpc using transmission-remote (usually empty)."
+msgstr ""
 
 msgid "Extra options to rsync (usually empty)."
 msgstr "rsync 的额外选项（通常为空白）。"
@@ -5210,6 +5219,9 @@ msgstr "TFTP"
 msgid "TKIP"
 msgstr "TKIP"
 
+msgid "TLS mode"
+msgstr ""
+
 msgid "Tag"
 msgstr "标签"
 
@@ -6095,6 +6107,11 @@ msgstr "不支援此功能。请自行承担风险！"
 
 msgid "This group already exists in the group list."
 msgstr "此群组已存在群组列表中。"
+
+msgid ""
+"This is a way to take an existing insecure connection, and upgrade it to a "
+"secure connection using SSL/TLS."
+msgstr ""
 
 msgid ""
 "This is both the name of the server as advertised via "

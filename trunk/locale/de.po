@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-06-01 02:13+0000\n"
-"PO-Revision-Date: 2013-06-07 08:07+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2013-06-29 23:57+0000\n"
+"PO-Revision-Date: 2013-06-23 22:01+0000\n"
+"Last-Translator: Römermann <roemermann@planetwanderer.de>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-06-07 13:33+0000\n"
-"X-Generator: Launchpad (build 16667)\n"
+"X-Launchpad-Export-Date: 2013-06-29 23:48+0000\n"
+"X-Generator: Launchpad (build 16692)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
 "X-Poedit-Language: German\n"
@@ -334,10 +334,10 @@ msgid "Active Directory"
 msgstr "Active Directory"
 
 msgid "Active Directory List"
-msgstr ""
+msgstr "Active Directory Verzeichnis"
 
 msgid "Active Shares"
-msgstr ""
+msgstr "Verwendete Freigaben"
 
 msgid "Active Users"
 msgstr "Aktive Benutzer"
@@ -963,7 +963,7 @@ msgid "Canmount"
 msgstr "Canmount"
 
 msgid "Cannot get CPU load"
-msgstr ""
+msgstr "CPU-Last nicht verfügbar"
 
 msgid "Cannot get data about interface"
 msgstr "Kann von der Schnittstelle keine Daten erfassen"
@@ -2125,6 +2125,11 @@ msgstr "Aktiviere NTP"
 msgid "Enable SMTP authentication."
 msgstr "Aktiviere SMTP Authentifizierung."
 
+msgid ""
+"Enable STARTTLS encryption. This doesn't mean you have to use TLS, you can "
+"use SSL."
+msgstr ""
+
 msgid "Enable TLS/SSL connections."
 msgstr "TLS/SSL-Verbindungen aktivieren."
 
@@ -2418,6 +2423,10 @@ msgstr ""
 
 msgid "Extra options to ifconfig (usually empty)."
 msgstr "Zusätzliche Optionen für ifconfig (normalerweise leer)."
+
+msgid ""
+"Extra options to pass over rpc using transmission-remote (usually empty)."
+msgstr ""
 
 msgid "Extra options to rsync (usually empty)."
 msgstr "Zusätzliche Optionen für rsync (normalerweise leer)."
@@ -3435,7 +3444,7 @@ msgid "Load file"
 msgstr "Datei laden"
 
 msgid "Load on UPS"
-msgstr ""
+msgstr "Belastung der UPS"
 
 msgid "Load when UPS switches to overload condition (\"OVER\")"
 msgstr ""
@@ -3747,7 +3756,7 @@ msgid "Minimum"
 msgstr "Minimum"
 
 msgid "Minimum battery level for UPS restart after power-off"
-msgstr ""
+msgstr "Minimaler Ladezustand für USV-Neustart nach Stromausfall"
 
 msgid "Minimum free space"
 msgstr "Unteres Limit für freien Speicherplatz"
@@ -3783,7 +3792,7 @@ msgid "Mode"
 msgstr "Modus"
 
 msgid "Model"
-msgstr ""
+msgstr "Modell"
 
 msgid "Model extra"
 msgstr "zusätzliches Modell"
@@ -5060,6 +5069,8 @@ msgid ""
 "Select which interface to use. (only selectable if your server has more than "
 "one)"
 msgstr ""
+"Schnittstellenauswahl (Nur möglich wenn Ihr Server mehr als eine "
+"Schnittstelle zur Auswahl hat)"
 
 msgid "Select your read balance algorithm."
 msgstr "Auswahl des 'Read Balance Algorithmus'."
@@ -5107,7 +5118,7 @@ msgid "Server description. This can usually be left blank."
 msgstr "Serverbeschreibung. Kann für gewöhnlich freigelassen werden."
 
 msgid "Server information"
-msgstr ""
+msgstr "Serverinformation"
 
 msgid "Server name"
 msgstr "Servername"
@@ -5226,7 +5237,7 @@ msgid "Shell"
 msgstr "Shell"
 
 msgid "Show RAW UPS Info"
-msgstr ""
+msgstr "Zeige Rohdaten USV-Informationen"
 
 msgid "Show log entries in reverse order (newest entries on top)"
 msgstr ""
@@ -5507,7 +5518,7 @@ msgid "Switch VIP to MASTER"
 msgstr "VIP in MASTER ändern"
 
 msgid "Switch off when running on battery and no/low load"
-msgstr ""
+msgstr "Herunterfahren wenn im Akkubetrieb und kaum Restladung vorhanden ist"
 
 msgid "Switch to"
 msgstr "Umschalten zu"
@@ -5531,6 +5542,9 @@ msgid ""
 "server. Be sure to set syslogd on the remote server to accept syslog "
 "messages from this server."
 msgstr ""
+"Syslog sendet UDP Datendiagramme über Port 514 an den festgelegten syslog-"
+"Server. Stellen Sie sicher, dass syslogd auf dem Remote-Server Nachrichten "
+"von diesem Server akzeptiert."
 
 msgid "System"
 msgstr "System"
@@ -5554,7 +5568,7 @@ msgid "System information"
 msgstr "Systeminformationen"
 
 msgid "System load"
-msgstr ""
+msgstr "Systemlast"
 
 msgid "System log"
 msgstr "System log"
@@ -5588,6 +5602,9 @@ msgstr "TFTP"
 
 msgid "TKIP"
 msgstr "TKIP"
+
+msgid "TLS mode"
+msgstr ""
 
 msgid "Tag"
 msgstr "Tag"
@@ -5653,10 +5670,10 @@ msgid "Temperature monitoring"
 msgstr "Temperaturüberwachung"
 
 msgid "Temperature threshold high (degrees C)"
-msgstr ""
+msgstr "maximale Temperatur (Grad Celsius)"
 
 msgid "Temperature threshold low (degrees C)"
-msgstr ""
+msgstr "minimale Temperatur (Grad Celsius)"
 
 msgid "Temporary Device"
 msgstr "temporäres Gerät"
@@ -6654,6 +6671,11 @@ msgid "This group already exists in the group list."
 msgstr "Diese Gruppe gibt es bereits."
 
 msgid ""
+"This is a way to take an existing insecure connection, and upgrade it to a "
+"secure connection using SSL/TLS."
+msgstr ""
+
+msgid ""
 "This is both the name of the server as advertised via "
 "Zeroconf/Bonjour/Rendezvous, and the name of the database exported via DAAP."
 msgstr ""
@@ -6947,10 +6969,10 @@ msgid "Time before the load will be rebooted"
 msgstr ""
 
 msgid "Time before the load will be shutdown"
-msgstr ""
+msgstr "Zeit bis der Prozess beendet wird"
 
 msgid "Time before the load will be started"
-msgstr ""
+msgstr "Zeit bis der Prozess gestartet wird"
 
 msgid "Time interval"
 msgstr "Zeitintervall"
@@ -7181,7 +7203,7 @@ msgid "UPS alarms"
 msgstr "UPS Alarmsignale"
 
 msgid "UPS beeper status"
-msgstr ""
+msgstr "USV Signalton Status"
 
 msgid "UPS coldstarts from battery"
 msgstr ""
@@ -7221,7 +7243,7 @@ msgid "UPS type"
 msgstr "UPS-Typ"
 
 msgid "UPS watchdog status"
-msgstr ""
+msgstr "USV Überwachungsdienst-Status"
 
 msgid "UPnP"
 msgstr "UPnP"
@@ -7432,7 +7454,7 @@ msgid "Variable"
 msgstr "Variable"
 
 msgid "Vendor ID"
-msgstr ""
+msgstr "Lieferantenkennung"
 
 msgid "Version"
 msgstr "Version"
@@ -7538,7 +7560,7 @@ msgstr ""
 "genutzt werden"
 
 msgid "When UPS switches to Low Battery"
-msgstr ""
+msgstr "USV niedriger Batteriestatus ab"
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
