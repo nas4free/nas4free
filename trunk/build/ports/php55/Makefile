@@ -1,5 +1,5 @@
 PORTNAME=		php55
-PORTVERSION=	5.5.0
+PORTVERSION=	5.5.1
 PORTREVISION?=  0
 CATEGORIES=		lang
 COMMENT=		PHP5 Scripting Language
@@ -13,7 +13,7 @@ USE_BZIP2=		yes
 
 BUILD_DEPENDS=	sqlite3>=3.0:${PORTSDIR}/databases/sqlite3
 LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
-LIB_DEPENDS+=	curl.6:${PORTSDIR}/ftp/curl
+LIB_DEPENDS+=	curl.7:${PORTSDIR}/ftp/curl
 LIB_DEPENDS+=	mcrypt.8:${PORTSDIR}/security/libmcrypt
 LIB_DEPENDS+=	onig.1:${PORTSDIR}/devel/oniguruma4
 LIB_DEPENDS+=	freetype.9:${PORTSDIR}/print/freetype2
