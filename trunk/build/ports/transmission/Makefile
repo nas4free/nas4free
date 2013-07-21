@@ -1,5 +1,5 @@
 PORTNAME=		transmission
-PORTVERSION=	2.80
+PORTVERSION=	2.81
 PORTREVISION?= 0
 CATEGORIES?=		net-p2p
 COMMENT=		A fast and lightweight CLI bitTorrent client
@@ -8,12 +8,12 @@ MAINTAINER=		zoon01@nas4free.org
 MASTER_SITES=   	http://download-origin.transmissionbt.com/files/ \
 			http://transmission.cachefly.net/
 
-LIB_DEPENDS=		curl.6:${PORTSDIR}/ftp/curl \
+LIB_DEPENDS=		curl.7:${PORTSDIR}/ftp/curl \
 	    		event-2.0.6:${PORTSDIR}/devel/libevent2
 GEN_RUN_DEPENDS=${LOCALBASE}/share/transmission/web/index.html:${PORTSDIR}/www/transmission-web
 
 USE_GMAKE=	yes
-USE_GNOME?=	pkgconfig
+USES=           pkgconfig
 USE_OPENSSL=	yes
 EXTRACT_SUFX= .tar.xz
 GNU_CONFIGURE=	yes
@@ -21,13 +21,10 @@ CPPFLAGS=	-I${LOCALBASE}/include
 LDFLAGS=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}"
 
-CONFIGURE_ARGS+=	--with-ssl=${OPENSSLBASE} \
-									--with-zlib=/usr \
-									--disable-libappindicator \
+CONFIGURE_ARGS+=	--with-zlib=/usr \
 									--enable-largefile \
 									--enable-daemon \
 									--without-gtk \
-									--disable-libnotify \
 		 							--disable-mac \
 		 							--disable-nls
 
