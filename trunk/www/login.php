@@ -1,7 +1,7 @@
 <?php
 /*
 	login.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
@@ -11,13 +11,13 @@
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -31,38 +31,47 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 require("guiconfig.inc");
+unset($input_errors);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	Session::start();
 
-	if ($_POST['username'] === $config['system']['username'] &&
-		$_POST['password'] === $config['system']['password']) {
-		Session::initAdmin();
-		header('Location: index.php');
-		exit;
-	} else {
-		$users = system_get_user_list();
-		foreach ($users as $userk => $userv) {
-			$password = crypt($_POST['password'], $userv['password']);
-			if (($_POST['username'] === $userv['name']) && ($password === $userv['password'])) {
-				// Check if it is a local user
-				if (empty($config['access']['user']) || FALSE === ($cnid = array_search_ex($userv['uid'], $config['access']['user'], "id")))
-					break;
-				// Is user allowed to access the user portal?
-				if (!isset($config['access']['user'][$cnid]['userportal']))
-					break;
-				Session::initUser($userv['uid'], $userv['name']);
-				header('Location: index.php');
-				exit;
+	if(is_validlogin($_POST['username'])){
+		Session::start();
+
+		if ($_POST['username'] === $config['system']['username'] &&
+			$_POST['password'] === $config['system']['password']) {
+			Session::initAdmin();
+			header('Location: index.php');
+			exit;
+		} else {
+			$users = system_get_user_list();
+			foreach ($users as $userk => $userv) {
+				$password = crypt($_POST['password'], $userv['password']);
+				if (($_POST['username'] === $userv['name']) && ($password === $userv['password'])) {
+					// Check if it is a local user
+					if (empty($config['access']['user']) || FALSE === ($cnid = array_search_ex($userv['uid'], $config['access']['user'], "id")))
+						break;
+					// Is user allowed to access the user portal?
+					if (!isset($config['access']['user'][$cnid]['userportal']))
+						break;
+					Session::initUser($userv['uid'], $userv['name']);
+					header('Location: index.php');
+					exit;
+				}
 			}
 		}
-	}
 
-	write_log(gettext("Authentication error for illegal user {$_POST['username']} from {$_SERVER['REMOTE_ADDR']}"));
+		write_log(gettext("Authentication error for illegal user : {$_POST['username']} from {$_SERVER['REMOTE_ADDR']}"));
+		$input_errors = gettext("Invalid username or password. Please try again.");
+	}
+	else {
+		write_log(gettext('Username contains invalid character(s) : '.escapeshellarg(escapeshellcmd( htmlspecialchars($_POST['username'],ENT_QUOTES))).' from '.$_SERVER['REMOTE_ADDR']));		
+		$input_errors = gettext('Username field : '.htmlspecialchars($_POST['username']).' contains illegal characters.');
+	}
 }
 ?>
 <?php header("Content-Type: text/html; charset=" . system_get_language_codeset());?>
@@ -215,6 +224,7 @@ function display_menu($menuid) {
 	<div style="clear:both"></div>
 </div>
         <br /><br /><br /><br /><br /><br /><br /><br />
+		<?php if (!empty($input_errors)) print_error_box($input_errors);?>
         <br /><br /><br /><br /><br /><br /><br /><br /><br />
         <div id="loginpage">
             <table height="100%" width="100%" cellspacing="0" cellpadding="0" border="0">
