@@ -12,9 +12,12 @@ EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}.tar.gz
 BUILD_DEPENDS=	ocamlc:${PORTSDIR}/lang/ocaml-nox11
 PATCH_DEPENDS=	${BUILD_DEPENDS}
 
-USE_GMAKE=	yes
+USES=         gmake
 MAKE_ARGS=	CFLAGS=""
 MAKE_ARGS+=	UISTYLE=text
+CONFLICTS?=     unison-devel-[0-9]* unison-nox11-[0-9]*
+
+MAKE_JOBS_UNSAFE=       yes
 
 # Install on host system too, otherwise depending ports fail during ./configure process (e.g. scponly).
 FORCE_PKG_REGISTER=	yes
