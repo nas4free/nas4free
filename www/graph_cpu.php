@@ -55,7 +55,7 @@ $attribs['cpu']='fill="#FF0000" font-family="Tahoma, Verdana, Arial, Helvetica, 
 $attribs['graph_cpu']='fill="none" stroke="#CA6110" stroke-opacity="0.8"';
 $attribs['legend']='fill="white" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="4"';
 $attribs['graphname']='fill="#435370" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="7"';
-$attribs['grid_txt']='fill="gray" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="6"';
+$attribs['grid_txt']='fill="gray" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="5"';
 $attribs['grid']='stroke="#C3C3C3" stroke-opacity="0.5"';
 $attribs['error']='fill="red" font-family="Arial" font-size="4"';
 $attribs['collect_initial']='fill="gray" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="4"';
@@ -84,10 +84,10 @@ echo "<?xml version=\"1.0\" encoding=\"{$encoding}\"?>\n";
     <path id="graph_cpu"  d="M0 <?=$height?> L 0 <?=$height?>" <?=$attribs['graph_cpu']?>/>
     <text id="graph_in_lbl" x="3" y="7" <?=$attribs['cpu']?>><?=gettext("CPU load");?> <tspan id="graph_cpu_txt" <?=$attribs['cpu']?>> </tspan></text>
     <path id="grid"  d="M0 <?=$height/4*1?> L <?=$width?> <?=$height/4*1?> M0 <?=$height/4*2?> L <?=$width?> <?=$height/4*2?> M0 <?=$height/4*3?> L <?=$width?> <?=$height/4*3?>" <?=$attribs['grid']?>/>
-    <text id="grid_txt1" x="<?=$width*0.99?>" y="<?=$height/4*1?>" <?=$attribs['grid_txt']?> text-anchor="end">75%</text>
-    <text id="grid_txt2" x="<?=$width*0.99?>" y="<?=$height/4*2?>" <?=$attribs['grid_txt']?> text-anchor="end">50%</text>
-    <text id="grid_txt3" x="<?=$width*0.99?>" y="<?=$height/4*3?>" <?=$attribs['grid_txt']?> text-anchor="end">25%</text>
-    <text id="datetime" x="<?=$width*0.50?>" y="4" <?=$attribs['legend']?>> </text>
+    <text id="grid_txt1" x="<?=$width*0.99?>" y="<?=$height/4.3*1?>" <?=$attribs['grid_txt']?> text-anchor="end">75%</text>
+    <text id="grid_txt2" x="<?=$width*0.99?>" y="<?=$height/4.15*2?>" <?=$attribs['grid_txt']?> text-anchor="end">50%</text>
+    <text id="grid_txt3" x="<?=$width*0.99?>" y="<?=$height/4.1*3?>" <?=$attribs['grid_txt']?> text-anchor="end">25%</text>
+    <text id="datetime" x="<?=$width*0.50?>" y="5" <?=$attribs['legend']?>> </text>
     <text id="cpu_name"  x="<?=$width*0.99?>" y="7" <?=$attribs['cpu']?> text-anchor="end">CPU <?=$cpu?></text>
     <polygon id="axis_arrow_x" <?=$attribs['axis']?> points="<?=($width) . "," . ($height)?> <?=($width-2) . "," . ($height-2)?> <?=($width-2) . "," . $height?>"/>
     <text id="error" x="<?=$width*0.5?>" y="<?=$height*0.4?>"  visibility="hidden" <?=$attribs['error']?> text-anchor="middle"><?=$error_text?></text>

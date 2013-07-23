@@ -62,7 +62,7 @@ $attribs['out']='fill="#FF0000" font-family="Tahoma, Verdana, Arial, Helvetica, 
 $attribs['legend']='fill="white" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="4"';
 $attribs['graph_in']='fill="none" stroke="#00CC00" stroke-opacity="0.8"';
 $attribs['graph_out']='fill="none" stroke="#FF0000" stroke-opacity="0.8"';
-$attribs['grid_txt']='fill="gray" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="6"';
+$attribs['grid_txt']='fill="gray" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="5"';
 $attribs['grid']='stroke="#C3C3C3" stroke-opacity="0.5"';
 $attribs['switch_unit']='fill="#FFFFFF" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="4" text-decoration="underline"';
 $attribs['switch_scale']='fill="#FFFFFF" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="4" text-decoration="underline"';
@@ -94,14 +94,14 @@ echo "<?xml version=\"1.0\" encoding=\"{$encoding}\"?>\n";
     <path id="graph_out" d="M0 <?=$height?> L 0 <?=$height?>" <?=$attribs['graph_out']?>/>
     <path id="graph_in"  d="M0 <?=$height?> L 0 <?=$height?>" <?=$attribs['graph_in']?>/>
     <path id="grid"  d="M0 <?=$height/4*1?> L <?=$width?> <?=$height/4*1?> M0 <?=$height/4*2?> L <?=$width?> <?=$height/4*2?> M0 <?=$height/4*3?> L <?=$width?> <?=$height/4*3?>" <?=$attribs['grid']?>/>
-    <text id="grid_txt1" x="<?=$width*0.99?>" y="<?=$height/4*1?>" <?=$attribs['grid_txt']?> text-anchor="end">75%</text>
-    <text id="grid_txt2" x="<?=$width*0.99?>" y="<?=$height/4*2?>" <?=$attribs['grid_txt']?> text-anchor="end">50%</text>
-    <text id="grid_txt3" x="<?=$width*0.99?>" y="<?=$height/4*3?>" <?=$attribs['grid_txt']?> text-anchor="end">25%</text>
+    <text id="grid_txt1" x="<?=$width*0.99?>" y="<?=$height/4.3*1?>" <?=$attribs['grid_txt']?> text-anchor="end">75%</text>
+    <text id="grid_txt2" x="<?=$width*0.99?>" y="<?=$height/4.15*2?>" <?=$attribs['grid_txt']?> text-anchor="end">50%</text>
+    <text id="grid_txt3" x="<?=$width*0.99?>" y="<?=$height/4.1*3?>" <?=$attribs['grid_txt']?> text-anchor="end">25%</text>
     <text id="graph_in_lbl" x="3" y="7" <?=$attribs['in']?>><?=gettext("In");?> <tspan id="graph_in_txt" <?=$attribs['in']?>> </tspan></text>
     <text id="graph_out_lbl" x="3" y="13" <?=$attribs['out']?>><?=gettext("Out");?> <tspan id="graph_out_txt" <?=$attribs['out']?>> </tspan></text>
-    <text id="switch_unit" x="<?=$width*0.60?>" y="5" <?=$attribs['switch_unit']?>><?=sprintf(gettext("Switch to %s/s"), ("bytes" === $unit) ? "bits" : "bytes");?></text>
+    <text id="switch_unit" x="<?=$width*0.60?>" y="5" <?=$attribs['switch_unit']?>><?=sprintf(gettext("Switch to %s/s"), ("bits" === $unit) ? "bytes" : "bits");?></text>
     <text id="switch_scale" x="<?=$width*0.60?>" y="11" <?=$attribs['switch_scale']?>><?=gettext("AutoScale");?> (<?=("up" === $scale_type) ? gettext("Up") : gettext("Follow");?>)</text>
-    <text id="datetime" x="<?=$width*0.40?>" y="4" <?=$attribs['legend']?>> </text>
+    <text id="datetime" x="<?=$width*0.40?>" y="5" <?=$attribs['legend']?>> </text>
     <text id="interface_name"  x="<?=$width*0.99?>" y="7" <?=$attribs['in']?> text-anchor="end"><?=$ifname?></text>
     <polygon id="axis_arrow_x" <?=$attribs['axis']?> points="<?=($width) . "," . ($height)?> <?=($width-2) . "," . ($height-2)?> <?=($width-2) . "," . $height?>"/>
     <text id="error" x="<?=$width*0.5?>" y="<?=$height*0.4?>" visibility="hidden" <?=$attribs['error']?> text-anchor="middle"><?=$error_text?></text>
@@ -275,10 +275,10 @@ function plot_data(obj) {
 
   var rmax;  // max, rounded up
 
-  if (unit == 'bytes') {
+  if (unit == 'bits') {
     /* round up max, such that
-         10 KB/s -> 20 KB/s -> 40 KB/s -> 80 KB/s -> 100 KB/s -> 200 KB/s -> 400 KB/s -> 800 KB/s -> 1 MB/s ... */
-    rmax = 10240;
+         100 kbps -> 200 kbps -> 400 kbps -> 800 kbps -> 1 Mbps -> 2 Mbps -> ... */
+    rmax = 12500;
     i = 0;
     while (max > rmax) {
       i++;
@@ -286,9 +286,6 @@ function plot_data(obj) {
         rmax *= 1.25;
       else
         rmax *= 2;
-
-      if (i == 8)
-        rmax *= 1.024;
     }
   } else {
     /* round up max, such that
@@ -351,17 +348,17 @@ function formatSpeed(speed, unit) {
 function formatSpeedBits(speed) {
   // format speed in bits/sec, input: bytes/sec
   if (speed < 125000)
-    return Math.round(speed / 125) + " Kbps";
+    return Math.round(speed / 125) + " kb/s";
   if (speed < 125000000)
-    return Math.round(speed / 1250)/100 + " Mbps";
+    return Math.round(speed / 1250)/100 + " Mb/s";
   // else
-  return Math.round(speed / 1250000)/100 + " Gbps";  /* wow! */
+  return Math.round(speed / 1250000)/100 + " Gb/s";  /* wow! */
 }
 
 function formatSpeedBytes(speed) {
   // format speed in bytes/sec, input:  bytes/sec
   if (speed < 1048576)
-    return Math.round(speed / 10.24)/100 + " KB/s";
+    return Math.round(speed / 10.24)/100 + " kB/s";
   if (speed < 1073741824)
     return Math.round(speed / 10485.76)/100 + " MB/s";
   // else
