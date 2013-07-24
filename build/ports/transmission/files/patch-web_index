@@ -1,14 +1,15 @@
 --- ./web/index.html.orig	2013-07-18 05:24:54.390910000 +0200
-+++ ./web/index.html	2013-07-24 20:38:54.000000000 +0200
-@@ -2,7 +2,6 @@
++++ ./web/index.html	2013-07-24 21:59:48.000000000 +0200
+@@ -2,7 +2,7 @@
  <html>
  	<head>
  		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 -		<meta http-equiv="X-UA-Compatible" content="IE=8,IE=9"><!-- ticket #4555 --> 
++		<meta http-equiv="X-UA-Compatible" content="IE=8,IE=9,IE=10,IE=11"><!-- ticket #4555 --> 
  		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;"/>
  		<meta name="apple-mobile-web-app-capable" content="yes" />
  		<link href="./images/favicon.ico" rel="icon" />
-@@ -282,11 +281,11 @@
+@@ -282,11 +282,11 @@
  			<div class="dialog_top_bar"></div>
  			<div class="dialog_window">
  				<div class="dialog_logo" id="upload_dialog_logo"></div>
@@ -22,7 +23,7 @@
  							<input type="file" name="torrent_files[]" id="torrent_upload_file" multiple="multiple" />
  						<label for="torrent_upload_url">Or enter a URL:</label>
  							<input type="url" id="torrent_upload_url"/>
-@@ -295,7 +294,7 @@
+@@ -295,7 +295,7 @@
  							<input type="checkbox" id="torrent_auto_start" />
  						<label for="torrent_auto_start" id="auto_start_label">Start when added</label>
  					</div>
@@ -31,7 +32,7 @@
  					<a href="#cancel" id="upload_cancel_button">Cancel</a>
  				</form>
  			</div>
-@@ -324,9 +323,6 @@
+@@ -324,9 +324,6 @@
  					<ul id="footer_super_menu">
  						<li id="about-button">About</li>
  						<li class="separator"></li>
@@ -41,7 +42,7 @@
  						<li id="statistics">Statistics</li>
  						<li id="toggle_notifications" style="display: none">Notifcations</li>
  						<li class="separator"></li>
-@@ -335,7 +331,6 @@
+@@ -335,7 +332,6 @@
  								<li id="unlimited_download_rate">Unlimited</li>
  								<li id="limited_download_rate">Limit (10 kB/s)</li>
  								<li class="separator"></li>
@@ -49,7 +50,7 @@
  								<li class='download-speed'>10 kB/s</li>
  								<li class='download-speed'>20 kB/s</li>
  								<li class='download-speed'>30 kB/s</li>
-@@ -346,8 +341,13 @@
+@@ -346,8 +342,13 @@
  								<li class='download-speed'>150 kB/s</li>
  								<li class='download-speed'>200 kB/s</li>
  								<li class='download-speed'>250 kB/s</li>
@@ -63,7 +64,7 @@
  							</ul>
  						</li>
  						<li>Total Upload Rate
-@@ -355,7 +355,6 @@
+@@ -355,7 +356,6 @@
  								<li id="unlimited_upload_rate">Unlimited</li>
  								<li id="limited_upload_rate">Limit (10 kB/s)</li>
  								<li class="separator"></li>
@@ -71,7 +72,7 @@
  								<li class='upload-speed'>10 kB/s</li>
  								<li class='upload-speed'>20 kB/s</li>
  								<li class='upload-speed'>30 kB/s</li>
-@@ -366,8 +365,13 @@
+@@ -366,8 +366,13 @@
  								<li class='upload-speed'>150 kB/s</li>
  								<li class='upload-speed'>200 kB/s</li>
  								<li class='upload-speed'>250 kB/s</li>
