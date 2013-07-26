@@ -14,7 +14,7 @@
 	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -554,7 +554,8 @@ $(document).ready(function(){
 							<?php if (!isset($config['ups']['enable'])):?>
 								<tr>
 									<td>
-										<pre><?=gettext("UPS disabled");?><?=" <small> [<a href='diag_infos_ups.php'>".gettext("Show ups information")."</a></small>]";?></pre>
+										<input style="padding: 0; border: 0;" size="14" name="upsstatus" id="upsstatus" value="<?=gettext("UPS disabled");?>" />
+										<?=" <small> [<a href='diag_infos_ups.php'>".gettext("Show ups information")."</a></small>]";?>
 									</td>
 								</tr>
 							<?php else:?>
