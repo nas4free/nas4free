@@ -1,7 +1,7 @@
 <?php
 /*
 	disks_manage_smart_edit.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
@@ -11,13 +11,13 @@
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -31,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 require("auth.inc");
@@ -45,7 +45,7 @@ if (isset($_POST['uuid']))
 $pgtitle = array(gettext("Disks"), gettext("Management"), gettext("S.M.A.R.T."), gettext("Scheduled Self-Test"), isset($uuid) ? gettext("Edit") : gettext("Add"));
 
 $a_months = explode(" ",gettext("January February March April May June July August September October November December"));
-$a_weekdays = explode(" ",gettext("Sunday Monday Tuesday Wednesday Thursday Friday Saturday"));
+$a_weekdays = explode(" ",gettext("Monday Tuesday Wednesday Thursday Friday Saturday Sunday"));
 
 if (!isset($config['smartd']) || !is_array($config['smartd']))
 	$config['smartd'] = array();
@@ -284,7 +284,7 @@ function enable_change(enable_change) {
 											<tr>
 												<td valign="top">
 													<select multiple="multiple" size="7" name="weekday[]" id="weekdays" onchange="set_selected('all_weekdays')">
-														<?php $i = 0; foreach ($a_weekdays as $day):?>
+														<?php $i = 1; foreach ($a_weekdays as $day):?>
 														<option value="<?=$i;?>" <?php if (isset($pconfig['weekday']) && in_array("$i", $pconfig['weekday'])) echo "selected=\"selected\"";?>><?=$day;?></option>
 														<?php $i++; endforeach;?>
 													</select>
