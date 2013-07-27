@@ -398,6 +398,71 @@ function write_config() {
 	config_unlock();
 }
 
+function write_loader_config(){
+	global $config, $g;
+
+	// Make sure the clock settings is plausible
+	if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
+        @date_default_timezone_set(@date_default_timezone_get());
+	if (time() > mktime(0, 0, 0, 9, 1, 2004)) {
+		$config['lastchange'] = time();
+	}
+
+	if(!isset($config['system']['loaderconf']['param'])){
+		/* Load configuration file into array. */
+		$config = parse_xml_config("{$g['conf_path']}/config.xml", $g['xml_rootobj']);
+		
+		/* read platform */
+		if (file_exists("{$g['etc_path']}/platform")) {
+			$g['fullplatform'] = strtolower(chop(file_get_contents("{$g['etc_path']}/platform")));
+			$data = explode("-", $g['fullplatform']);
+			$g['arch'] = $data[0];
+			$g['platform'] = $data[1];
+		}
+	}
+
+	if (isset($config['system']['loaderconf']['param']) && is_array($config['system']['loaderconf']['param'])){
+		config_lock();
+		conf_mount_rw();
+
+		// Set loader.conf.local location
+		if( $g['platform'] === 'full' ){
+			$loader_filename = "/boot/loader.conf.local";
+		}else{
+			$loader_filename = "{$g['cf_path']}/boot/loader.conf.local";
+		}
+
+		array_sort_key($config['system']['loaderconf']['param'], "name");
+
+		$lines = '';
+		$loader_param_list = &$config['system']['loaderconf']['param'];
+
+		foreach($loader_param_list as $param){
+			if(isset($param['enable'])){
+				$lines .= $param['name'].' = "'.trim($param['value'])."\"\n";
+			}
+		}
+
+		// Write configuration file
+		if (file_put_contents_safe($loader_filename, $lines ) === FALSE) {
+			die("Error: Failed to write configuration file '{$loader_filename}'");
+		}
+
+		//mwexec2("echo $data > /cf/boot/ttt");
+
+		// Modify file permissions
+		@chmod("{$g['cf_path']}/boot/loader.conf.local", 0600);
+
+		conf_mount_ro();
+
+		// Force completion of pending disk writes
+		mwexec("/bin/sync");
+
+		config_unlock();
+	}
+
+}
+
 function reset_factory_defaults() {
 	global $g;
 
@@ -423,6 +488,14 @@ function reset_factory_defaults() {
 	// Modify file permissions
 	@chmod("{$g['cf_conf_path']}/config.xml", 0600);
 
+	$loader_filename = "{$g['cf_path']}/boot/loader.conf.local";
+
+	if (file_exists($loader_filename) && unlink($loader_filename) === FALSE) {
+		die("Error: Failed to delete configuration file '{$loader_filename}'");
+	}
+	mwexec2("/bin/echo loader filename is ".$loader_filename);
+	sleep(30);
+
 	conf_mount_ro();
 	config_unlock();
 
@@ -447,6 +520,10 @@ function config_install($conffile) {
 
 	conf_mount_ro();
 	config_unlock();
+
+	if($result === TRUE) {
+		write_loader_config();
+	}
 
 	return (TRUE === $result) ? 0 : 1;
 }

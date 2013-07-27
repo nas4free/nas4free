@@ -129,6 +129,7 @@ if ($_POST) {
       	<li class="tabinact"><a href="system_swap.php"><span><?=gettext("Swap");?></span></a></li>
         <li class="tabact"><a href="system_rc.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Command scripts");?></span></a></li>
         <li class="tabinact"><a href="system_cron.php"><span><?=gettext("Cron");?></span></a></li>
+		<li class="tabinact"><a href="system_loaderconf.php"><span><?=gettext("loader.conf");?></span></a></li>
         <li class="tabinact"><a href="system_rcconf.php"><span><?=gettext("rc.conf");?></span></a></li>
         <li class="tabinact"><a href="system_sysctl.php"><span><?=gettext("sysctl.conf");?></span></a></li>
       </ul>
