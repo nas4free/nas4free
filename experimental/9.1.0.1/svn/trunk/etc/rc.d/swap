@@ -1,0 +1,144 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+# Create a swap file. Usefull for embedded systems.
+#
+
+# PROVIDE: swap
+# REQUIRE: FILESYSTEMS
+# KEYWORD: nojail shutdown
+# XQUERY: -i "count(//system/swap/enable) > 0" -o "0" -b
+# RCVAR: swap
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="swap"
+rcvar=`set_rcvar`
+
+load_rc_config "${name}"
+
+# Custom commands
+extra_commands="status"
+start_cmd="swap_start"
+stop_cmd="swap_stop"
+status_cmd="swap_status"
+
+# Defaults
+swap_enable="${swap_enable:-NO}"
+swap_mdidfile=${swap_mdidfile:-"/var/run/${name}.mdid"}
+swap_filename=${swap_filename:-".swapfile"}
+
+# Get type of swap, 'file' or 'device'
+swap_type=`configxml_get "//system/swap/type"`
+
+swap_status()
+{
+	local _mdid _device
+
+	if [ "file" = "${swap_type}" ]; then
+		if [ -e ${swap_mdidfile} ]; then
+			_mdid=`cat ${swap_mdidfile}`
+			_device="/dev/${_mdid}"
+		fi
+	else
+		_device=`configxml_get "//system/swap/devicespecialfile"`
+	fi
+
+	if [ -n "$(pstat -s | grep ${_device})" ]; then
+		echo "${name} is running."
+	else
+		echo "${name} is not running."
+		return 1
+	fi
+}
+
+swap_start()
+{
+	local _mdid _uuid _sharename _filename _size _device
+
+	if [ "file" = "${swap_type}" ]; then
+		_uuid=`configxml_get "//system/swap/mountpoint"`
+		_sharename=`configxml_get "//mounts/mount[uuid = '${_uuid}']/sharename"`
+		_filename="/mnt/${_sharename}/${swap_filename}"
+
+		# Check if already running
+		if [ -e ${swap_mdidfile} ]; then
+			_mdid=`cat ${swap_mdidfile}`
+			echo "${name} already running? (mdid=${_mdid})."
+			return 0
+		fi
+
+		# Create swap file if necessary
+		if [ ! -e ${_filename} ]; then
+			_size=`configxml_get "//system/swap/size"`
+			/bin/dd if=/dev/zero of=${_filename} bs=1024k count=${_size} >/dev/null 2>&1
+			[ 0 != $? ] && return 1
+			/bin/chmod 0600 ${_filename}
+		fi
+
+		# Create block device
+		_mdid=`/sbin/mdconfig -a -t vnode -f ${_filename}`
+		echo ${_mdid} > ${swap_mdidfile}
+
+		_device="/dev/${_mdid}"
+	else
+		_device=`configxml_get "//system/swap/devicespecialfile"`
+	fi
+
+	# Enable swap
+	echo "Starting ${name}."
+	/sbin/swapon "${_device}"
+}
+
+swap_stop()
+{
+	local _mdid _uuid _sharename _filename _device _result
+
+	if [ "file" = "${swap_type}" ]; then
+		# Check if running?
+		if [ ! -e ${swap_mdidfile} ]; then
+			echo "${name} not running? (check ${swap_mdidfile})."
+			return 0
+		fi
+
+		# Get memory disk id
+		_mdid=`cat ${swap_mdidfile}`
+
+		_device="/dev/${_mdid}"
+	else
+		_device=`configxml_get "//system/swap/devicespecialfile"`
+	fi
+
+	# Stop swap
+	echo "Stopping ${name}."
+	/sbin/swapoff "${_device}"
+	_result=$?
+
+	# Additional action when using swap file
+	if [ "file" = "${swap_type}" ]; then
+		_uuid=`configxml_get "//system/swap/mountpoint"`
+		_sharename=`configxml_get "//mounts/mount[uuid = '${_uuid}']/sharename"`
+		_filename="/mnt/${_sharename}/${swap_filename}"
+
+		# Destroy block device
+		/sbin/mdconfig -d -u ${_mdid}
+
+		# Delete swap file
+		rm -f ${_filename}
+
+		# Cleanup
+		rm -f ${swap_mdidfile}
+	fi
+
+	return ${_result}
+}
+
+run_rc_command "$1"

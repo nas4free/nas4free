@@ -1,0 +1,36 @@
+# Enable URL rewriting
+RewriteEngine   On
+
+RewriteCond %{HTTP_HOST} ^nas4free\.org$ [NC]
+RewriteRule ^(.*)$ http://www.nas4free.org/$1 [R=301,L]
+
+RewriteRule ^(typo3/|t3lib/|tslib/|fileadmin/|typo3conf/|typo3temp/|uploads/|showpic\.php|favicon\.ico) - [L]
+RewriteRule ^typo3$ typo3/index_re.php [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+
+# Main URL rewriting.
+RewriteRule .* index.php [L]
+### End: Rewrite stuff ###
+SetEnvIfNoCase Request_URI "test\.php$" no-gzip dont-vary
+SetEnvIfNoCase Request_URI "date\.php$" no-gzip dont-vary
+
+#Redirect 302 /rss http://feeds2.feedburner.com/nas4free
+
+ExpiresActive Off
+
+AcceptPathInfo Off
+Options -MultiViews
+
+
+
+
+
+
+
+
+
+
+

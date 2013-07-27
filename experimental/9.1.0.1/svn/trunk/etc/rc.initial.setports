@@ -1,0 +1,225 @@
+#!/usr/local/bin/php-cgi -f
+<?php
+/*
+	rc.initial.setports
+
+	Part of NAS4Free (http://www.nas4free.org).
+	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+	All rights reserved.
+
+	Portions of freenas (http://www.freenas.org).
+	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	All rights reserved.
+
+	Portions of m0n0wall (http://m0n0.ch/wall).
+	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met: 
+
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer. 
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution. 
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies, 
+	either expressed or implied, of the NAS4Free Project.
+*/
+require_once("config.inc");
+require_once("functions.inc");
+require_once("util.inc");
+require_once("rc.inc");
+require_once("tui.inc");
+
+$iflist = get_interface_list();
+
+// Display detected interfaces
+$text = "If you don't know the names of your interfaces, you may use auto-detection. In that case, disconnect all interfaces before you begin, and reconnect each one when prompted to do so.";
+do {
+	$amenuitem = array();
+	foreach ($iflist as $ifk => $ifv) {
+		$menuitem = array();
+		$menuitem['tag'] = $ifk;
+		$menuitem['item'] = sprintf("%s   %s", $ifv['mac'], $ifv['up'] ? "(up)" : "");
+		$amenuitem[] = $menuitem;
+	}
+	$menuitem = array();
+	$menuitem['tag'] = "auto";
+	$menuitem['item'] = "Auto-detection";
+	$amenuitem[] = $menuitem;
+	$result = tui_display_menu("Configure LAN interface", $text, 70, 17, 8, $amenuitem, $lanif);
+	if (0 != $result)
+		exit(0);
+
+	if ("auto" === $lanif) {
+		$lanif = autodetect_interface("LAN");
+	}
+} while (0 >= strlen($lanif));
+
+// Optional interfaces
+// skip OPT selection if there is only one interface detected
+if (1 != count($iflist)) {
+    $i = 0;
+    $optif = array();
+    while (1) {
+	    if ($optif[$i])
+		    $i++;
+	    $i1 = $i + 1;
+	    $text = "Select the optional OPT{$i1} interface name, auto-detection or none to finish configuration.";
+	    $amenuitem = array();
+	    foreach ($iflist as $ifk => $ifv) {
+		    $menuitem = array();
+		    $menuitem['tag'] = $ifk;
+		    $menuitem['item'] = sprintf("%s   %s", $ifv['mac'], $ifv['up'] ? "(up)" : "");
+		    $amenuitem[] = $menuitem;
+	}
+	    $menuitem = array();
+	    $menuitem['tag'] = "auto";
+	    $menuitem['item'] = "Auto-detection";
+	    $amenuitem[] = $menuitem;
+	    $menuitem['tag'] = "none";
+	    $menuitem['item'] = "Finish and exit configuration";
+	    $amenuitem[] = $menuitem;
+	    $result = tui_display_menu("Configure OPT interface", $text, 70, 17, 9, $amenuitem, $optif[$i]);
+	    if (0 != $result)
+		    exit(0);
+
+	    if (0 < strlen($optif[$i])) {
+		    if ("auto" === $optif[$i]) {
+			    $ad = autodetect_interface("optional OPT{$i1}");
+			    if ($ad)
+				    $optif[$i] = $ad;
+			    else
+				    unset($optif[$i]);
+		    } else if ("none" === $optif[$i]) {
+			    unset($optif[$i]);
+			    break;
+		    }
+	    }
+    }
+}
+
+// Check for duplicate assignments
+$ifarr = array_merge(array($lanif, $wanif), $optif);
+for ($i = 0; $i < (count($ifarr)-1); $i++) {
+	for ($j = ($i+1); $j < count($ifarr); $j++) {
+		if ($ifarr[$i] == $ifarr[$j]) {
+			$text = "You can't assign the same interface twice!";
+			tui_display_message("Error", $text, 46, 5);
+			exit(0);
+		}
+	}
+}
+
+$text = <<<EOD
+The interfaces will be assigned as follows:
+
+LAN  -> {$lanif}
+
+EOD;
+for ($i = 0; $i < count($optif); $i++) {
+	$text .= "OPT" . ($i+1) . " -> {$optif[$i]}\n";
+}
+$text .= "\nDo you want to proceed?";
+$result = tui_display_yesno($text, 47, 16);
+
+if (0 == $result) {
+	$config['interfaces']['lan']['if'] = $lanif;
+	if (preg_match($g['wireless_regex'], $lanif)) {
+		if (!is_array($config['interfaces']['lan']['wireless']))
+			$config['interfaces']['lan']['wireless'] = array();
+	} else {
+		unset($config['interfaces']['lan']['wireless']);
+	}
+
+	$if_isboot = @exec("/sbin/sysctl -q -n net.isboot.nic");
+	$ip_isboot = @exec("/sbin/sysctl -q -n hw.ibft.initiator_address");
+	$nic_prefix = @exec("/sbin/sysctl -q -n hw.ibft.nic_prefix");
+	$ip_conf = $config['interfaces']['lan']['ipaddr'];
+	if (strcmp($lanif, $if_isboot) == 0) {
+		// Update iSCSI booted NIC
+		$config['interfaces']['lan']['ipaddr'] = $ip_isboot;
+		$config['interfaces']['lan']['subnet'] = $nic_prefix;
+	} else if (strcmp($ip_conf, $ip_isboot) == 0) {
+		// set default if used iSCSI booted IP
+		$config['interfaces']['lan']['ipaddr'] = $g['default_ip'];
+		$config['interfaces']['lan']['subnet'] = 24;
+	}
+
+	for ($i = 0; $i < count($optif); $i++) {
+		if (!is_array($config['interfaces']['opt' . ($i+1)]))
+			$config['interfaces']['opt' . ($i+1)] = array();
+
+		$config['interfaces']['opt' . ($i+1)]['if'] = $optif[$i];
+		if (strcmp($optif[$i], $if_isboot) == 0) {
+			// Update iSCSI booted NIC
+			$config['interfaces']['opt' . ($i+1)]['ipaddr'] = $ip_isboot;
+			$config['interfaces']['opt' . ($i+1)]['subnet'] = $nic_prefix;
+			$config['interfaces']['opt' . ($i+1)]['enable'] = true;
+		}
+
+		// Wireless interface?
+		if (preg_match($g['wireless_regex'], $optif[$i])) {
+			if (!is_array($config['interfaces']['opt' . ($i+1)]['wireless']))
+				$config['interfaces']['opt' . ($i+1)]['wireless'] = array();
+		} else {
+			unset($config['interfaces']['opt' . ($i+1)]['wireless']);
+		}
+
+		if (strcmp($optif[$i], $if_isboot) != 0) {
+			unset($config['interfaces']['opt' . ($i+1)]['enable']);
+		}
+		$config['interfaces']['opt' . ($i+1)]['descr'] = "OPT" . ($i+1);
+		$config['interfaces']['opt' . ($i+1)]['ipv6addr'] = "auto";
+	}
+
+	// Remove all other (old) optional interfaces
+	for (; isset($config['interfaces']['opt' . ($i+1)]); $i++)
+		unset($config['interfaces']['opt' . ($i+1)]);
+
+	write_config();
+
+	// Initialize interface
+	write_console("\nInitializing interface. Please wait...");
+	rc_exec_service("rcconf");
+	rc_update_service("netif");
+	//rc_update_service("network_ipv6");
+}
+
+function autodetect_interface($ifname) {
+	$iflist_pre = get_interface_list();
+
+	$text = <<<EOD
+Connect the {$ifname} interface now and make
+sure that the link is up.
+Press OK to continue.
+EOD;
+	tui_display_message("", $text, 52, 7);
+
+	$iflist_post = get_interface_list();
+	foreach ($iflist_pre as $ifn => $ifa) {
+		if (!$ifa['up'] && $iflist_post[$ifn]['up']) {
+			tui_display_message("", "Detected link-up on interface {$ifn}.", 44, 5);
+			return $ifn;
+		}
+	}
+
+	tui_display_message("", "No link-up detected.", 24, 5);
+
+	return "";
+}
+?>

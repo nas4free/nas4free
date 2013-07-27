@@ -1,0 +1,248 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+# 
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+# All rights reserved.
+#
+
+# PROVIDE: fuppes
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+# XQUERY: -i "count(//upnp/enable) > 0" -o "0" -b
+# RCVAR: fuppes
+
+. /etc/rc.subr
+. /etc/util.subr
+. /etc/configxml.subr
+
+name="fuppes"
+rcvar=`set_rcvar`
+
+load_rc_config "${name}"
+
+# Custom commands
+start_precmd="fuppes_mkconf"
+stop_postcmd="fuppes_poststop"
+mkconf_cmd="fuppes_mkconf"
+rebuilddb_cmd="fuppes_dboptions"
+updatedb_cmd="fuppes_dboptions"
+rebuildvcont_cmd="fuppes_dboptions"
+extra_commands="mkconf rebuilddb updatedb rebuildvcont"
+
+# Defaults
+fuppes_enable=${fuppes_enable:-"NO"}
+fuppes_config_dir=${fuppes_config_dir-"/var/etc"}
+fuppes_config=${fuppes_config-"${fuppes_config_dir}/${name}.cfg"}
+fuppes_vfolder_config=${fuppes_vfolder_config-"/usr/local/share/${name}/vfolder.cfg"}
+fuppes_loglevel=${fuppes_loglevel-"2"}
+fuppes_logfile=${fuppes_logfile-"/var/log/${name}.log"}
+fuppes_port=${fuppes_port-"49152"}
+fuppes_local_charset=${fuppes_local_charset-"UTF-8"}
+fuppes_use_imagemagick=${fuppes_use_imagemagick-"false"}
+fuppes_use_taglib=${fuppes_use_taglib-"true"}
+fuppes_use_libavformat=${fuppes_use_libavformat-"true"}
+fuppes_plugin_dir=${fuppes_plugin_dir-"/usr/local/lib/${name}"}
+fuppes_template_device_dir=${fuppes_template_device_dir:-"/usr/local/share/${name}/devices"}
+fuppes_template_vfolder_dir=${fuppes_template_vfolder_dir:-"/usr/local/share/${name}/vfolders"}
+fuppes_device_dir=${fuppes_device_dir:-"/var/db/${name}/devices"}
+fuppes_vfolder_dir=${fuppes_vfolder_dir:-"/var/db/${name}/vfolders"}
+fuppes_custom_config=${fuppes_custom_config:-"/usr/local/share/${name}/${name}-custom.cfg"}
+fuppes_friendly_name=${fuppes_friendly_name:-"NAS4Free (%h)"}
+
+command="/usr/local/bin/${name}d"
+command_args="--config-file ${fuppes_config} --log-level ${fuppes_loglevel} --log-file ${fuppes_logfile} --plugin-dir ${fuppes_plugin_dir} --friendly-name \"${fuppes_friendly_name}\""
+
+# Set kill signal to KILL, otherwise fuppes takes too long to terminate.
+sig_stop=${sig_stop-"KILL"}
+
+fuppes_mkconf()
+{
+	local _if _port _name _profile _deviceip _command_args
+	local _dbfile _dir _endis
+
+	# Create directory for config_dir/vfolder_dir
+	if [ ! -d ${fuppes_device_dir} ]; then mkdir -p ${fuppes_device_dir}; fi
+	if [ ! -d ${fuppes_vfolder_dir} ]; then mkdir -p ${fuppes_vfolder_dir}; fi
+
+	# Copy configs to the writable directory
+	for file in ${fuppes_template_device_dir}/*.cfg; do
+	    cp -p $file ${fuppes_device_dir}/`basename $file`
+	done
+	for file in ${fuppes_template_vfolder_dir}/*.cfg; do
+	    cp -p $file ${fuppes_vfolder_dir}/`basename $file`
+	done
+
+	# Get interface and port used for uPnP.
+	_if=`configxml_get "//upnp/if"`
+	_port=`configxml_get "//upnp/port"`
+	_name=`configxml_get "//upnp/name"`
+	_profile=`configxml_get "//upnp/profile"`
+	_deviceip=`configxml_get "//upnp/deviceip"`
+	_dbfile=`configxml_get "//upnp/home"`"/${name}.db"
+
+	# Set customized port.
+	[ -n "${_port}" ] && fuppes_port="${_port}"
+
+	# Set default friendly name if necessary.
+	[ -z "${_name}" ] && _name=`get_product_name` # Set default friendly name.
+
+	# Setup a multicast route for UPnP messages.
+	/sbin/route add -net 239.0.0.0 -netmask 255.0.0.0 -interface ${_if} >/dev/null 2>&1
+
+	# Create config file.
+	if [ -f ${fuppes_custom_config} ]; then
+	    cp ${fuppes_custom_config} ${fuppes_config}
+	else
+	    cat << EOF > ${fuppes_config}
+<?xml version="1.0" encoding="UTF-8"?>
+<fuppes_config version="0.8">
+  <shared_objects>
+  </shared_objects>
+  <network>
+    <interface>${_if}</interface>
+    <http_port>${fuppes_port}</http_port>
+    <allowed_ips>
+    </allowed_ips>
+  </network>
+  <database type="sqlite3">
+    <file>${_dbfile}</file>
+    <readonly>false</readonly>
+  </database>
+  <content_directory>
+    <local_charset>UTF-8</local_charset>
+  </content_directory>
+  <global_settings>
+    <temp_dir/>
+    <use_fixed_uuid>false</use_fixed_uuid>
+    <default_device>${_profile}</default_device>
+  </global_settings>
+  <vfolders enabled="false">
+    <vfolder name="default" enabled="true" />
+    <vfolder name="xbox" enabled="false" />
+  </vfolders>
+  <device_mapping>
+  </device_mapping>
+</fuppes_config>
+EOF
+	fi
+
+	# Updates config file.
+	/usr/local/bin/xml sel -t -m "//upnp/content" \
+	    -v "." -n \
+	    ${configxml_file} | /usr/local/bin/xml unesc | \
+	    while read _dir; do
+		if [ -n "$_dir" ]; then
+		    /usr/local/bin/xml edit -s "//fuppes_config/shared_objects" \
+			-t elem -n dir -v "${_dir}" ${fuppes_config} > ${fuppes_config}.tmp
+		    /bin/mv ${fuppes_config}.tmp ${fuppes_config}
+		fi
+	    done
+
+	# Enable configured device and vfolder profile.
+#	/usr/local/bin/xml edit -P -u "//fuppes_config/device_settings/device[@name='${_profile}']/@enabled" \
+#		-v true ${fuppes_config} > ${fuppes_config}.tmp
+#	/bin/mv ${fuppes_config}.tmp ${fuppes_config}
+
+#	/usr/local/bin/xml edit -P -u "//fuppes_vfolder_config/vfolder_layout[@device='${_profile}']/@enabled" \
+#		-v true ${fuppes_vfolder_config} > ${fuppes_vfolder_config}.tmp
+#	/bin/mv ${fuppes_vfolder_config}.tmp ${fuppes_vfolder_config}
+
+	# Set device ip.
+	if [ -n "${_deviceip}" ]; then
+	    for file in ${fuppes_device_dir}/*.cfg; do
+		/usr/local/bin/xml edit -P \
+		    -s "//device[not(ip)]" \
+			-t elem -n ip -v "" \
+		    -u "//device/ip" \
+			-v "${_deviceip}" ${file} > ${file}.tmp
+		/bin/mv ${file}.tmp ${file}
+	    done
+	fi
+
+	# Set friendly name.
+	if [ -n "${_name}" ]; then
+	    #for file in ${fuppes_device_dir}/*.cfg; do
+	    for file in ${fuppes_device_dir}/default.cfg; do
+		/usr/local/bin/xml edit -P \
+		    -s "//device[not(description_values)]" \
+			-t elem -n description_values -v "" \
+		    -s "//device/description_values[not(friendly_name)]" \
+			-t elem -n friendly_name -v "" \
+		    -u "//device/description_values/friendly_name" \
+			-v "${_name}" ${file} > ${file}.tmp
+		/bin/mv ${file}.tmp ${file}
+	    done
+	fi
+
+	# Enable/disable web interface.
+	if ! configxml_isset //upnp/web; then
+		# Set allowed IP to loopback to disable all external IP's.
+		/usr/local/bin/xml edit -s "//fuppes_config/network/allowed_ips" \
+			-t elem -n ip -v "127.0.0.1" ${fuppes_config} > ${fuppes_config}.tmp
+		/bin/mv ${fuppes_config}.tmp ${fuppes_config}
+	fi
+
+	# Enable/disable transcoding
+	_endis="false"
+	if configxml_isset //upnp/transcoding; then
+		_endis="true"
+	fi
+
+	#for file in ${fuppes_device_dir}/*.cfg; do
+	for file in ${fuppes_device_dir}/default.cfg; do
+		/usr/local/bin/xml edit -P \
+			-u "//device/file_settings/file/transcode/@enabled" \
+				-v "${_endis}" ${file} > ${file}.tmp
+		/bin/mv ${file}.tmp ${file}
+	done
+
+	# Create command args line.
+	_command_args=`/usr/local/bin/xml sel -t -m "//upnp" \
+		-v "concat('--database-file \"',home,'/${name}.db\"')" \
+		-i "count(transcoding) > 0" \
+			-v "concat(' --temp-dir \"',tempdir,'\"')" \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc`
+
+	command_args="${command_args} ${_command_args}"
+}
+
+fuppes_poststop()
+{
+	# Delete multicast route.
+	/sbin/route -q delete -net 239.0.0.0 >/dev/null 2>&1
+	return 0
+}
+
+# Command to
+# - rebuild/update database
+# - rebuild virtual container
+fuppes_dboptions()
+{
+	local _if _port _ip _param
+
+	# Get interface and port used for uPnP.
+	_if=`configxml_get "//upnp/if"`
+	_port=`configxml_get "//upnp/port"`
+	_ip=`get_ipaddr inet ${_if}`
+
+	case ${rc_arg} in
+		rebuilddb)
+			_param="db=rebuild";
+			;;
+		updatedb)
+			_param="db=update";
+			;;
+		rebuildvcont)
+			_param="vcont=rebuild";
+			;;
+	esac
+
+	/usr/bin/fetch -q -o - http://${_ip}:${_port}/presentation/options.html?${_param} 1>/dev/null 2>&1
+}
+
+run_rc_command "$1"

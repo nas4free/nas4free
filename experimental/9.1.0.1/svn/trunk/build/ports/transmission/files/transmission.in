@@ -1,0 +1,264 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+# All rights reserved.
+#
+
+
+# PROVIDE: transmission
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+# XQUERY: -i "count(//bittorrent/enable) > 0" -o "0" -b
+# RCVAR: transmission
+
+. /etc/rc.subr
+. /etc/util.subr
+. /etc/configxml.subr
+
+name="transmission"
+rcvar=`set_rcvar`
+
+load_rc_config "${name}"
+
+# Custom commands
+start_precmd="transmission_prestart"
+start_postcmd="transmission_poststart"
+updateblocklist_cmd="transmission_updateblocklist"
+extra_commands="updateblocklist"
+
+# Defaults
+transmission_enable=${transmission_enable:-"NO"}
+transmission_allowed=${transmission_allowed:-"*.*.*.*"}
+transmission_blocklist=${transmission_blocklist:-"NO"}
+transmission_blocklist_url=${transmission_blocklist_url:-"http://www.bluetack.co.uk/config/level1.gz"}
+transmission_user=${transmission_user:-"transmission"}
+transmission_umask=${transmission_umask:-"0002"}
+
+command="/usr/local/bin/${name}-daemon"
+command_args="--allowed ${transmission_allowed}"
+
+safe_shellquote()
+{
+	local _result
+	# replace inside quote " => "\\\"", ' => '\''
+	_result=`echo "$@" | sed -e 's/"/"\\\\\\\\\\\\""/g' -e "s/'/'\\\\\\''/g"`
+	# return quoted string
+	echo "\"\\\"\"${_result}\"\\\"\""
+}
+
+safe_xmlescape()
+{
+	local _result
+	_result="$@"
+	# replace < > & => &lt;&gt;&amp;
+	#_result=`echo "${_result}" | sed -e 's/</\&lt;/g' -e 's/>/\&gt;/g' -e 's/\&/\&amp;/g'`
+	# replace inside XPath " => &quot;, ' => ',"'",';,
+	#_result=`echo "${_result}" | sed -e 's/"/\&quot;/g' -e "s/'/',\&quot;'\&quot;,'/g"`
+	# return escaped string
+	echo "${_result}"
+}
+
+transmission_prestart()
+{
+	local _command_args _umask
+	local _homedir _password _configfile
+	local _downloaddir _configdir _watchdir _incompletedir
+
+	# get user's homedirectory
+	_homedir=`su -l "${transmission_user}" -c 'echo $HOME'`
+	[ -z "${_homedir}" ] && _homedir="/home/transmission"
+
+	# save quotes in rc script and login shell and sh
+	_password=`configxml_get "//bittorrent/password"`
+	_password=`safe_shellquote "${_password}"`
+	_downloaddir=`configxml_get "//bittorrent/downloaddir"`
+	_downloaddir=`safe_shellquote "${_downloaddir}"`
+	_configdir=`configxml_get "//bittorrent/configdir"`
+	if [ -z "${_configdir}" ]; then
+	    # use default directory
+	    _configdir="${_homedir}/.config/${name}-daemon"
+	fi
+	if [ ! -d "${_configdir}" ]; then
+	    # create config directory
+	    eval "su -m \"${transmission_user}\" -c 'sh -c \"mkdir -p `safe_shellquote "${_configdir}"`\"'"
+	    if [ ! -d "${_configdir}" ]; then
+		echo "configdir fail: ${_configdir}" 1>&2
+		exit 1
+	    fi
+	fi
+	_configdir=`safe_shellquote "${_configdir}"`
+	_watchdir=`configxml_get "//bittorrent/watchdir"`
+	_watchdir=`safe_shellquote "${_watchdir}"`
+	_incompletedir=`configxml_get "//bittorrent/incompletedir"`
+	if [ -z "${_incompletedir}" ]; then
+	    # use default directory
+	    _incompletedir="${_homedir}/.config/${name}-daemon/Incomplete"
+	fi
+	_incompletedir=`safe_shellquote "${_incompletedir}"`
+
+	debug "homedir      : $_homedir"
+	debug "password     : $_password"
+	debug "downloaddir  : $_downloaddir"
+	debug "configdir    : $_configdir"
+	debug "watchdir     : $_watchdir"
+	debug "incompletedir: $_incompletedir"
+
+	# escape XML/XSLT/XPath special
+	_password=`safe_xmlescape "${_password}"`
+	_downloaddir=`safe_xmlescape "${_downloaddir}"`
+	_configdir=`safe_xmlescape "${_configdir}"`
+	_watchdir=`safe_xmlescape "${_watchdir}"`
+	_incompletedir=`safe_xmlescape "${_incompletedir}"`
+
+	debug "password     : $_password"
+	debug "downloaddir  : $_downloaddir"
+	debug "configdir    : $_configdir"
+	debug "watchdir     : $_watchdir"
+	debug "incompletedir: $_incompletedir"
+
+	# Create command args line.
+	_command_args=`/usr/local/bin/xml sel -t -m "//bittorrent" \
+		-i "count(authrequired) > 0" \
+			-o " --auth" \
+			-v "concat(' --username ',username)" \
+			-v "concat(' --password ${_password}','')" \
+		-b \
+		-i "count(authrequired) = 0" -o " --no-auth" -b \
+		-v "concat(' --download-dir ${_downloaddir}',' --port ',port)" \
+		-v "concat(' --config-dir ${_configdir}','')" \
+		-v "concat(' --peerport=',peerport)" \
+		-i "count(portforwarding) > 0" -o " --portmap" -b \
+		-i "count(portforwarding) = 0" -o " --no-portmap" -b \
+		-i "string-length(watchdir) > 0" -v "concat(' --watch-dir ${_watchdir}','')" -b \
+		-i "string-length(watchdir) = 0" -o " --no-watch-dir" -b \
+		-i "string-length(incompletedir) > 0" -v "concat(' --incomplete-dir ${_incompletedir}','')" -b \
+		-i "string-length(incompletedir) = 0" -o " --no-incomplete-dir" -b \
+		${configxml_file} | /usr/local/bin/xml unesc`
+
+	if checkyesno transmission_blocklist; then
+		_command_args="${_command_args} --blocklist"
+	else
+		_command_args="${_command_args} --no-blocklist"
+	fi
+
+	# Check the effective user.
+	debug "command_args: $_command_args"
+	if [ "${transmission_user}" = "`/usr/bin/id -un`" ]; then
+	    # eval first level quote
+	    _command_args=`eval echo "${_command_args}"`
+	    debug "command_args: $_command_args"
+	fi
+
+	command_args="${command_args} ${_command_args}"
+
+	# Set the umask.
+	_umask=`configxml_get "//bittorrent/umask"`
+	_umask=${_umask:-"${transmission_umask}"}
+
+	debug "umask: $_umask"
+	#umask ${_umask}
+
+	# Get the configuration directory.
+	_configdir=`configxml_get "//bittorrent/configdir"`
+	[ -z "${_configdir}" ] && _configdir="${_homedir}/.config/${name}-daemon"
+	# Check configuration's umask.
+	_configfile="${_configdir}/settings.json"
+	if [ ! -f "${_configfile}" ]; then
+	    # create default settings
+	    if [ "${transmission_user}" = "`/usr/bin/id -un`" ]; then
+		eval 'sh -c "${command} -d ${command_args} > "${_configfile}.new" 2>&1"'
+	    else
+		eval "su -m \"${transmission_user}\" -c 'sh -c \"${command} -d ${command_args} > `safe_shellquote "${_configfile}.new"` 2>&1\"'"
+	    fi
+	    if [ ! -f "${_configfile}" ]; then
+		# copy config
+		chmod 600 "${_configfile}.new"
+		mv "${_configfile}.new" ${_configfile}
+	    else
+		# use new created file
+		rm -f "${_configfile}.new"
+	    fi
+	fi
+	if [ -f "${_configfile}" ]; then
+	    # replace umask
+	    _umask=`printf "%d" "0${_umask}"`
+	    debug "replace umask: $_umask"
+	    sed -i.bak "/\"umask\":/ s/:[^0-9]*[0-9]*\(.*\)/: ${_umask}\1/" "${_configfile}" && rm "${_configfile}.bak"
+	fi
+}
+
+transmission_poststart()
+{
+	local _command_args
+
+	_command_args=`/usr/local/bin/xml sel -t -m "//bittorrent" \
+		-v "concat(' ',port)" \
+		-i "count(pex) > 0" -o " --pex" -b \
+		-i "count(pex) = 0" -o " --no-pex" -b \
+		-i "count(dht) > 0" -o " --dht" -b \
+		-i "count(dht) = 0" -o " --no-dht" -b \
+		-i "encryption[. = '0']" -o " --encryption-tolerated" -b \
+		-i "encryption[. = '1']" -o " --encryption-preferred" -b \
+		-i "encryption[. = '2']" -o " --encryption-required" -b \
+		-i "string-length(uplimit) > 0" -v "concat(' --uplimit=',uplimit)" -b \
+		-i "string-length(uplimit) = 0" -o " --no-uplimit" -b \
+		-i "string-length(downlimit) > 0" -v "concat(' --downlimit=',downlimit)" -b \
+		-i "string-length(downlimit) = 0" -o " --no-downlimit" -b \
+		-i "count(authrequired) > 0" \
+			-v "concat(' --auth=',username,':',password)" \
+		-b \
+		-i "string-length(extraoptions) > 0" -v "concat(' ',extraoptions)" -b \
+		${configxml_file} | /usr/local/bin/xml unesc`
+
+	sleep 1; transmission-remote ${_command_args} >/dev/null 2>&1
+}
+
+transmission_updateblocklist()
+{
+	local _configdir _md5 _file
+	local _homedir
+
+	# get user's home directory
+	_homedir=`su -l "${transmission_user}" -c 'echo $HOME'`
+	[ -z "${_homedir}" ] && _homedir="/home/transmission"
+
+	# Get the configuration directory.
+	_configdir=`configxml_get "//bittorrent/configdir"`
+	[ -z "${_configdir}" ] && _configdir="${_homedir}/.config/${name}-daemon"
+
+	# Check if blocklists folder exists, create it if necessary. Then
+	# change directory.
+	[ ! -e "${_configdir}/blocklists" ] && mkdir "${_configdir}/blocklists"
+	cd "${_configdir}/blocklists"
+
+	# Download blocklist file.
+	_file=${transmission_blocklist_url##*/}
+	[ -f "${_file}" ] && _md5=$(md5 -q "${_file}")
+	fetch -ampw 5 "${transmission_blocklist_url}"
+	if [ 0 -ne $? ]; then
+		logger -s -t "${name}" "Failed to fetch blocklist ${transmission_blocklist_url}"
+		exit 1
+	fi
+
+	# Has the file been updated?
+	if [ "$(md5 -q ${_file})" = "${_md5:=0}" ]; then
+		logger -s -t "${name}" "Blocklist is up-to-date"
+		exit 1
+	fi
+
+	# Extract file content.
+	gzip -dfkq ${_file};
+	if [ 0 -ne $? ]; then
+		logger -s -t "${name}" "Failed to extract blocklist update"
+		exit 1
+	fi
+
+	logger -s -t "${name}" "Blocklist has been updated successful"
+}
+
+run_rc_command "$1"

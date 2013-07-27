@@ -1,0 +1,14 @@
+--- src/webserver.c.orig	2009-02-17 15:01:13.000000000 +0100
++++ src/webserver.c	2009-02-17 15:02:44.218337818 +0100
+@@ -2042,7 +2042,10 @@
+         bytes_written = bytes_read;
+         if(!io_write(pwsc->hclient,buf,&bytes_written)) {
+             ws_dprintf(L_WS_LOG,"Write error: %s\n",io_errstr(pwsc->hclient));
+-            *bytes_copied = total_bytes;
++
++	    if (bytes_copied)
++	      *bytes_copied = total_bytes;
++
+             return FALSE;
+         }
+ 

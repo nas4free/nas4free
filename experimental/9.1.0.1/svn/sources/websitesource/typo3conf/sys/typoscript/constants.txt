@@ -1,0 +1,40 @@
+# remove target for internal links
+PAGE_TARGET =
+
+# set baseURL (development)
+#baseURL = http://www.nas4free.org/typo3/
+
+# set baseURL (Live)
+[globalString = IENV:HTTP_HOST=www.nas4free.org]
+ baseURL = http://www.nas4free.org/
+[GLOBAL]
+
+# powermail settings
+plugin.powermail {
+ # clear form/session after sending
+ clear.session = 1
+}
+
+# freecap captcha settings
+plugin.tx_srfreecap {
+ siteTagDomain = www.nas4free.org
+ generateNumbers = 1
+ useWordsList = 0
+ morphFactor = .8
+ accessibleOutput = 1
+}
+
+plugin.perfectlightbox {
+ libraryToUse = jquery
+ includeJSLibrarys = 0
+ lightBoxMaxW = 1280
+ lightBoxMaxH = 1024
+}
+
+styles.content {
+ imgtext.maxWInText = 0
+ imgtext.linkWrap.width = 800
+ imgtext.borderColor = #FFFFFF
+ imgtext.borderThick = 2
+ loginform.pid = 0
+}

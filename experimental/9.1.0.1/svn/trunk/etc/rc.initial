@@ -1,0 +1,99 @@
+#!/bin/sh
+
+# /etc/rc.initial
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+# Make sure the user can't kill us by pressing Ctrl-C
+trap : 2
+trap : 3
+trap : 4
+# Make sure the user can't access rootshell by pressing Ctrl-Z
+trap : 18
+
+# Set our operating platform
+PLATFORM=`cat /etc/platform`
+
+# Redirect input/output
+#exec </dev/console >/dev/console 2>/dev/console
+
+# Check if console menu is disabled.
+if configxml_isset "//system/disableconsolemenu"; then
+	while : ; do
+		printf "\n\n\33[31m%s\33[0m\n\n"  "*** Console Menu Disabled. ***"
+		read tmp
+	done
+else
+	case ${PLATFORM} in
+		*-live[cC][dD]|*-live[uU][sS][bB])
+			echo
+			echo "Now, the blank USB memory for installation can be inserted."
+			echo "To redisplay Console Menu, press enter key.";;
+	esac
+	# endless loop
+	while : ; do
+		# display menu
+		echo
+		echo "Console Menu"
+		echo "------------"
+		echo "1) Configure Network Interfaces"
+		echo "2) Configure Network IP Address"
+		echo "3) Reset WebGUI Password"
+		echo "4) Reset to Factory Defaults"
+		echo "5) Ping Host"
+		echo "6) Shell"
+		echo "7) Reboot Server"
+		echo "8) Shutdown Server"
+		case ${PLATFORM} in
+			*-live[cC][dD]|*-live[uU][sS][bB])
+				echo "9) Install/Upgrade from LiveCD/LiveUSB";;
+		esac
+
+		echo
+		read -p "Enter a number: " opmode
+
+		# see what the user has chosen
+		case ${opmode} in
+			1)
+				/etc/rc.initial.setports
+			 	;;
+			2)
+				/etc/rc.initial.setlanip
+			 	;;
+			3)
+				/etc/rc.initial.password
+				;;
+			4)
+				/etc/rc.initial.defaults
+				;;
+			5)
+				/etc/rc.initial.ping
+				;;
+			6)
+				exit
+				;;
+			7)
+				/etc/rc.initial.reboot
+				;;
+			8)
+				/etc/rc.initial.halt
+				;;
+			9)
+				case ${PLATFORM} in
+					*-live[cC][dD]|*-live[uU][sS][bB])
+						/etc/rc.initial.install
+				esac
+				;;
+		esac
+	done
+fi

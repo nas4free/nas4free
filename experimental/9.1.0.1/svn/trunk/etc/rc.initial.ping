@@ -1,0 +1,49 @@
+#!/bin/sh
+#
+# rc.initial.ping
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+. /etc/util.subr
+
+tmpfile=`tmpfile 2>/dev/null` || tmpfile=/tmp/tui$$
+trap "rm -f $tmpfile" 0 1 2 5 15
+
+/usr/local/bin/cdialog --clear --inputbox "Enter a host name or IP address." 8 50 2> $tmpfile
+
+retval=$?
+value=`cat $tmpfile`
+
+[ -z "${value}" ] && exit 0
+
+if [ 0 -eq ${retval} ]; then
+	echo
+
+	# Check if it is a IPv4 address
+	is_validip inet ${value}
+	if [ 0 -eq $? ]; then
+		echo "IPv4 address detected..."
+		ping -c 3 -n ${value}
+	else
+		# Check if it is a IPv6 address
+		is_validip inet6 ${value}
+		if [ 0 -eq $? ]; then
+			echo "IPv6 address detected..."
+			ping6 -c 3 -n ${value}
+		else
+			echo "Hostname supposed, trying IPv4 and IPv6 ping..."
+			ping -c 3 -n ${value}
+			ping6 -c 3 -n ${value}
+		fi
+	fi
+
+	echo
+	read -p "Press ENTER to continue." value
+fi
