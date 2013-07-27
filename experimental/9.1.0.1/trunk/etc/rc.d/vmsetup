@@ -1,0 +1,145 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+# PROVIDE: vmsetup
+# REQUIRE: FILESYSTEMS
+# BEFORE: netif
+
+. /etc/rc.subr
+. /etc/util.subr
+
+name="vmsetup"
+rcvar=`set_rcvar`
+load_rc_config "${name}"
+
+start_cmd="vmsetup_start"
+stop_cmd="vmsetup_stop"
+
+# default
+vmsetup_enable=${vmsetup_enable:="YES"}
+
+vmware_kmod_start()
+{
+    local _kmoddir
+    _kmoddir=/usr/local/lib/vmware-tools/modules/drivers
+    if [ ! -d $_kmoddir ]; then
+	return 0;
+    fi
+    if ! /sbin/kldstat -q -m vmmemctl; then
+	echo "Load vmmemctl module"
+	/sbin/kldload $_kmoddir/vmmemctl.ko >/dev/null 2>&1
+    fi
+    if ! /sbin/kldstat -q -m pci/if_vxn; then
+	echo "Load vmxnet module"
+	/sbin/kldload $_kmoddir/vmxnet.ko >/dev/null 2>&1
+    fi
+    if ! /sbin/kldstat -q -m vmblock; then
+	echo "Load vmblock module"
+	/sbin/kldload $_kmoddir/vmblock.ko >/dev/null 2>&1
+    fi
+    if ! /sbin/kldstat -q -m vmhgfs; then
+	echo "Load vmhgfs module"
+	/sbin/kldload $_kmoddir/vmhgfs.ko >/dev/null 2>&1
+    fi
+    if ! /sbin/kldstat -q -m pci/vmxnet3; then
+	echo "Load vmxnet3 module"
+	/sbin/kldload /boot/kernel/vmxnet3.ko >/dev/null 2>&1
+    fi
+}
+
+vmware_kmod_stop()
+{
+    local _kmoddir
+    _kmoddir=/usr/local/lib/vmware-tools/modules/drivers
+    if [ ! -d $_kmoddir ]; then
+	return 0;
+    fi
+    if /sbin/kldstat -q -m vmhgfs; then
+	echo "Unload vmhgfs module"
+	/sbin/kldunload $_kmoddir/vmhgfs.ko >/dev/null 2>&1
+    fi
+    if /sbin/kldstat -q -m vmblock; then
+	echo "Unload vmblock module"
+	/sbin/kldunload $_kmoddir/vmblock.ko >/dev/null 2>&1
+    fi
+    if /sbin/kldstat -q -m pci/if_vxn; then
+	echo "Unload vmxnet module"
+	/sbin/kldunload $_kmoddir/vmxnet.ko >/dev/null 2>&1
+    fi
+    if /sbin/kldstat -q -m vmmemctl; then
+	echo "Unload vmmemctl module"
+	/sbin/kldunload $_kmoddir/vmmemctl.ko >/dev/null 2>&1
+    fi
+    if /sbin/kldstat -q -m pci/vmxnet3; then
+	echo "Unload vmxnet3 module"
+	/sbin/kldunload /boot/kernel/vmxnet3.ko >/dev/null 2>&1
+    fi
+}
+
+vbox_kmod_start()
+{
+    local _kmoddir
+    _kmoddir=/boot/modules
+    if [ ! -d $_kmoddir ]; then
+	return 0;
+    fi
+    if ! /sbin/kldstat -q -m pci/vboxguest; then
+	echo "Load vboxguest module"
+	/sbin/kldload $_kmoddir/vboxguest.ko >/dev/null 2>&1
+    fi
+}
+
+vbox_kmod_stop()
+{
+    local _kmoddir
+    _kmoddir=/usr/local/lib/vmware-tools/modules/drivers
+    if [ ! -d $_kmoddir ]; then
+	return 0;
+    fi
+    if /sbin/kldstat -q -m pci/vboxguest; then
+	echo "Unload vboxguest module"
+	/sbin/kldunload $_kmoddir/vboxguest.ko >/dev/null 2>&1
+    fi
+}
+
+
+vmsetup_start()
+{
+    local _vmtype
+    _vmtype=`get_vmtype`
+    if [ "$_vmtype" = "vmware" ]; then
+	echo "Virtual machine setup for $_vmtype"
+	eval "vmware_kmod_start"
+	if [ "`/sbin/sysctl -n kern.smp.cpus`" != "1" ]; then
+	    /sbin/sysctl kern.timecounter.hardware=ACPI-fast > /dev/null
+	fi
+    elif [ "$_vmtype" = "vbox" ]; then
+	echo "Virtual machine setup for $_vmtype"
+	eval "vbox_kmod_start"
+    else
+	:
+    fi
+}
+
+vmsetup_stop()
+{
+    local _vmtype
+    _vmtype=`get_vmtype`
+    if [ "$_vmtype" = "vmware" ]; then
+	eval "vmware_kmod_stop"
+    elif [ "$_vmtype" = "vbox" ]; then
+	eval "vbox_kmod_stop"
+    else
+	:
+    fi
+}
+
+run_rc_command "$1"

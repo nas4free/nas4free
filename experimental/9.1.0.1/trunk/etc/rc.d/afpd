@@ -1,0 +1,98 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+# PROVIDE: afpd
+# REQUIRE: DAEMON
+# BEFORE: LOGIN
+# KEYWORD: shutdown
+# XQUERY: -i "count(//afp/enable) > 0" -o "0" -b
+# RCVAR: afpd
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="afpd"
+rcvar=`set_rcvar`
+
+load_rc_config "${name}"
+
+# Custom commands
+start_precmd="afpd_mkconf"
+start_postcmd="afpd_poststart"
+stop_postcmd="afpd_poststop"
+mkconf_cmd="afpd_mkconf"
+extra_commands="mkconf"
+
+# Defaults
+afpd_enable=${afpd_enable:-"NO"}
+afpd_config=${afpd_config:-"/var/etc/${name}.conf"}
+afpd_avdefault=${afpd_avdefault:-"/var/etc/AppleVolumes.default"}
+afpd_avsystem=${afpd_avsystem:-"/var/etc/AppleVolumes.system"}
+command="/usr/local/sbin/${name}"
+command_args="-F ${afpd_config}"
+
+afpd_mkconf()
+{
+	# Create config file
+	/usr/local/bin/xml sel -t -m "//afp" \
+		-i "string-length(afpname) > 0" -v "concat('\"',afpname,'\"')" -b \
+		-i "string-length(afpname) = 0" -o "-" -b \
+		-i "count(noddp) > 0" -o " -noddp" -b \
+		-o " -uamlist " \
+		-i "count(guest) > 0" -o "uams_guest.so" -b \
+		-i "count(local) > 0" -i "count(guest) > 0" -o "," -b -o "uams_clrtxt.so,uams_dhx.so,uams_randnum.so,uams_dhx2.so" -b \
+		-o " -nosavepassword -defaultvol ${afpd_avdefault} -systemvol ${afpd_avsystem} -uservol -uampath /etc/uams -guestname \"ftp\"" -n \
+		${configxml_file} | /usr/local/bin/xml unesc > ${afpd_config}
+
+	# Generate '/var/etc/AppleVolumes.system'
+	/usr/local/bin/xml sel -t -m "//mounts/mount" \
+		-v "concat('\"/mnt/',sharename,'\" \"',sharename,'\" ')" \
+		-o "options:usedots allow:@admin" \
+		-n \
+		${configxml_file} | /usr/local/bin/xml unesc > ${afpd_avsystem}
+
+	# Generate /var/etc/AppleVolumes.default
+	/usr/local/bin/xml sel -t -m "//afp/share" \
+		-v "concat('\"',path,'\" \"',name,'\" ')" \
+		-i "string-length(volpasswd) > 0" -v "concat('password:',volpasswd,' ')" -b \
+		-i "not(casefold[. = 'none'])" -v "concat('casefold:',casefold,' ')" -b \
+		-i "string-length(volcharset) > 0" -v "concat('volcharset:',volcharset,' ')" -b \
+		-o "ea:ad options:usedots" \
+		-m "options/*" \
+			-v "concat(',',local-name())" \
+		-b \
+		-i "adisk/enable" \
+			-i "string-length(adisk/advf) > 0" \
+				-v "concat(',','tm')" \
+			-b \
+		-b \
+		-o " " \
+		-i "string-length(allow) > 0" -v "concat('allow:',allow,' ')" -b \
+		-i "string-length(deny) > 0" -v "concat('deny:',deny,' ')" -b \
+		-i "string-length(rolist) > 0" -v "concat('rolist:',rolist,' ')" -b \
+		-i "string-length(rwlist) > 0" -v "concat('rwlist:',rwlist,' ')" -b \
+		-i "string-length(dbpath) > 0" -v "concat('dbpath:\"',dbpath,'\" ')" -b \
+		-i "string-length(cnidscheme) > 0" -v "concat('cnidscheme:',cnidscheme,' ')" -b \
+		-n \
+		${configxml_file} | /usr/local/bin/xml unesc > ${afpd_avdefault}
+}
+
+afpd_poststart()
+{
+	checkyesno afpd_enable && /usr/local/sbin/cnid_metad
+}
+
+afpd_poststop()
+{
+	checkyesno afpd_enable && killall cnid_metad
+}
+
+run_rc_command "$1"

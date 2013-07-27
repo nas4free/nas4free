@@ -1,0 +1,57 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+# PROVIDE: clog
+# BEFORE: syslogd
+# REQUIRE: FILESYSTEMS
+
+. /etc/rc.subr
+
+name="clog"
+
+load_rc_config "$name"
+
+# Defaults
+clog_logdir=${clog_logdir:-"/var/log"}
+
+# Display message
+echo "Creating clog files."
+
+# Generate circular logfiles if necessary
+if [ ! -e "${clog_logdir}/system.log" ]; then
+	clog -i -s 262144 "${clog_logdir}/system.log"
+fi
+
+if [ ! -e "${clog_logdir}/ftp.log" ]; then
+	clog -i -s 32768 "${clog_logdir}/ftp.log"
+fi
+
+if [ ! -e "${clog_logdir}/rsyncd.log" ]; then
+	clog -i -s 32768 "${clog_logdir}/rsyncd.log"
+fi
+
+if [ ! -e "${clog_logdir}/sshd.log" ]; then
+	clog -i -s 32768 "${clog_logdir}/sshd.log"
+fi
+
+if [ ! -e "${clog_logdir}/lastlog" ]; then
+	clog -i -s 32768 "${clog_logdir}/lastlog"
+fi
+
+if [ ! -e "${clog_logdir}/smartd.log" ]; then
+	clog -i -s 32768 "${clog_logdir}/smartd.log"
+fi
+
+if [ ! -e "${clog_logdir}/daemon.log" ]; then
+	clog -i -s 32768 "${clog_logdir}/daemon.log"
+fi
+
+chmod 0600 ${clog_logdir}/*.log

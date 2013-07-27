@@ -1,0 +1,73 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+
+# PROVIDE: unison
+# REQUIRE: DAEMON
+# XQUERY: -i "count(//unison/enable) > 0" -o "0" -b
+# RCVAR: unison
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="unison"
+rcvar=`set_rcvar`
+
+load_rc_config "$name"
+
+# Custom commands
+extra_commands="status"
+start_cmd="unison_start"
+stop_cmd=":"
+status_cmd="unison_status"
+
+# Defaults
+unison_enable=${unison_enable:-"NO"}
+unison_config=${unison_config:-"/etc/login.conf"}
+unison_directory_mode=${unison_directory_mode:-"0775"}
+
+unison_start()
+{
+	local _workdir
+
+	echo "Configuring ${name}."
+
+	# Ensure Unison environment variable exists
+	if [ 0 -eq `grep -c 'UNISON=.*' ${unison_config}` ]; then
+		err 1 "Can't find UNISON in ${unison_config}"
+	fi
+
+	# Get the configured working directory
+	_workdir=`configxml_get "//unison/workdir"`
+
+	# Create 'workdir' if necessary (Check if '//unison/mkdir' is set).
+	if [ 0 -ne `configxml_get_count "//unison/mkdir"` ]; then
+		if [ -n "${_workdir}" -a ! -e "${_workdir}" ]; then
+			mkdir -p ${_workdir}
+			chmod ${unison_directory_mode} ${_workdir}
+		fi
+	fi
+
+	# Add workdir to login.conf UNISON environment variable
+	_workdir=`echo ${_workdir} | /usr/bin/sed 's/\//\\\\\//g'`
+	/usr/bin/sed "s/UNISON=[a-zA-Z0-9/.=+-]*/UNISON=${_workdir}/" ${unison_config} > ${unison_config}.tmp
+	mv -f ${unison_config}.tmp ${unison_config}
+}
+
+unison_status()
+{
+	# Nothing to do here, but keep empty implementation
+	if [ 0 -eq `configxml_get_count "//unison/enable"` ]; then
+		return 1;
+	fi
+}
+
+run_rc_command "$1"
