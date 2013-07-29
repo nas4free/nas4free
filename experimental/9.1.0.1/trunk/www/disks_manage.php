@@ -41,7 +41,6 @@ $pgtitle = array(gettext("Disks"),gettext("Management"));
 
 if ($_POST) {
 	$pconfig = $_POST;
-
 	$clean_import = false;
 	if (!empty($_POST['clear_import']) || !empty($_POST['clear_import_swraid'])) {
 		$clean_import = true;
@@ -147,10 +146,11 @@ function diskmanagement_process_updatenotification($mode, $data) {
 	// make sure detected disks have same ID in config.
 	$verify_errors = disks_verify_all_disks();
 	if (!empty($verify_errors)) {
-		$errormsg .= gettext("There is wrong disk ID in the config. Please remove the disk and re-add it or use 'clear and import'.");
+		$errormsg .= gettext("The device(s) in config are different to actual device(s). Please remove the device(s) and re-add it or use 'Clear config and Import disks'.");
 		$errormsg .= "<br />\n";
 	}
 ?>
+
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
 		<td class="tabnavtbl">
@@ -170,13 +170,14 @@ function diskmanagement_process_updatenotification($mode, $data) {
 				<?php if (updatenotify_exists("device")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
-						<td width="5%" class="listhdrlr"><?=gettext("Disk"); ?></td>
+						<td width="5%" class="listhdrlr"><?=gettext("Device"); ?></td>
+						<td width="22%" class="listhdrr"><?=gettext("Device model"); ?></td>
 						<td width="5%" class="listhdrr"><?=gettext("Size"); ?></td>
-						<td width="22%" class="listhdrr"><?=gettext("Description"); ?></td>
-						<td width="15%" class="listhdrr"><?=gettext("Device model"); ?></td>
 						<td width="15%" class="listhdrr"><?=gettext("Serial number"); ?></td>
-						<td width="10%" class="listhdrr"><?=gettext("Standby time"); ?></td>
-						<td width="10%" class="listhdrr"><?=gettext("File system"); ?></td>
+						<td width="5%" class="listhdrr"><?=gettext("Controller"); ?></td>
+						<td width="15%" class="listhdrr"><?=gettext("Controller model"); ?></td>
+						<td width="7%" class="listhdrr"><?=gettext("Standby time"); ?></td>
+						<td width="8%" class="listhdrr"><?=gettext("File system"); ?></td>
 						<td width="8%" class="listhdrr"><?=gettext("Status"); ?></td>
 						<td width="10%" class="list"></td>
 					</tr>
@@ -211,14 +212,21 @@ function diskmanagement_process_updatenotification($mode, $data) {
 <?php } else { ?>
 						<td class="listlr"><?=htmlspecialchars($disk['name']);?></td>
 <?php } ?>
+						<td class="listr"><?=htmlspecialchars($disk['model']);?>&nbsp;</td>
 						<td class="listr"><?=htmlspecialchars($disk['size']);?></td>
-						<td class="listr"><?=htmlspecialchars($disk['desc']);?>&nbsp;</td>
-						<td class="listr"><?=htmlspecialchars(system_get_volume_model($disk['devicespecialfile']));?>&nbsp;</td>
 <?php if (!empty($verify_error)) { ?>
-						<td class="listr"><span style="color: #ff0000;font-weight:bold;"><?=htmlspecialchars(system_get_volume_serial($disk['devicespecialfile']));?></span>&nbsp;</td>
+						<td class="listr"><span style="color: #ff0000;font-weight:bold;"><?=htmlspecialchars(system_get_volume_serial($disk['devicespecialfile'], $disk['controller']));?></span>&nbsp;</td>
+						
 <?php } else { ?>
-						<td class="listr"><?=htmlspecialchars(system_get_volume_serial($disk['devicespecialfile']));?>&nbsp;</td>
+						<td class="listr"><?=(empty($disk['serial']) ) === FALSE ? htmlspecialchars($disk['serial']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
 <?php } ?>
+<?php if (!empty($verify_error)) { ?>
+						<td class="listr"><span style="color: #ff0000;font-weight:bold;"><?=htmlspecialchars(system_get_controller($disk['devicespecialfile']));?></span>&nbsp;</td>
+						
+<?php } else { ?>
+						<td class="listr"><?=(empty($disk['serial']) ) === FALSE ? htmlspecialchars($disk['controller'].$disk['controller_id']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
+<?php } ?>
+						<td class="listr"><?=htmlspecialchars($disk['controller_desc']);?>&nbsp;</td>
 						<td class="listr"><?php if ($disk['harddiskstandby']) { echo htmlspecialchars($disk['harddiskstandby']); } else { echo htmlspecialchars(gettext("Always on")); }?>&nbsp;</td>
 						<td class="listr"><?=(!empty($disk['fstype'])) ? htmlspecialchars(get_fstype_shortdesc($disk['fstype'])) : htmlspecialchars(gettext("Unknown or unformatted"))?>&nbsp;</td>
 						<td class="listbg"><?=htmlspecialchars($status);?>&nbsp;</td>
@@ -235,7 +243,7 @@ function diskmanagement_process_updatenotification($mode, $data) {
 					</tr>
 					<?php endforeach;?>
 					<tr>
-						<td class="list" colspan="8"></td>
+						<td class="list" colspan="9"></td>
 						<td class="list"> <a href="disks_manage_edit.php"><img src="plus.gif" title="<?=gettext("Add disk"); ?>" border="0" alt="<?=gettext("Add disk"); ?>" /></a></td>
 					</tr>
 				</table>

@@ -438,28 +438,47 @@ function system_get_device_iostat($device) {
  * @param[in] device	The device name, e.g. ad1
  * @return	The temperature in C if available, otherwise FALSE.
  */
-function system_get_device_temp($device) {
+function system_get_device_temp($devicespecialfile) {
 	$result = FALSE;
 
+
 	/* without smart */
-	mwexec2("ataidle /dev/{$device} | grep 'SMART Enabled'", $rawdata);
+	mwexec2("ataidle {$devicespecialfile} | grep 'SMART Enabled'", $rawdata);
 	if (!empty($rawdata) && 1 === preg_match("/^SMART Enabled:\s+(\S+)/", $rawdata[0], $matches)) {
 		if (strcasecmp($matches[1], "no") == 0) {
 			/* SMART disabled */
 			return $result;
 		}
 	}
-	/* with smart */
-	mwexec2("smartctl -A /dev/{$device}", $rawdata);
-	foreach ($rawdata as $rawdatav) {
-		$arawdatav = preg_split("/\s+/", $rawdatav);
-		if (!empty($arawdatav[1]) && (0 == strncmp(trim($arawdatav[1]), "Temperature_", 12)) &&
-			(0 != strcmp(trim($arawdatav[0]), "190"))) {
-			$result = chop($arawdatav[9]);
-			break;
-		} else if (preg_match("/Current Drive Temperature:\s+(\d+) C.*/", $rawdatav, $matches)) {
-			$result = $matches[1];
-			break;
+	
+	global $config;
+	// get S.M.A.R.T. arguments from config
+	if (is_array($config['disks']) && is_array($config['disks']['disk'])) {
+		foreach ($config['disks']['disk'] as &$disk) {
+			if($disk['devicespecialfile'] == $devicespecialfile){
+				$type_arg = '';
+
+				if( !is_null($disk['smart']['devicetypearg']) ){
+					$type_arg = "-d ".$disk['smart']['devicetypearg'];
+				}
+
+				/* get temperature from S.M.A.R.T. */
+				mwexec2("smartctl -A ".$type_arg." ".$disk['smart']['devicefilepath']."| grep -i 'Temperature_'" , $rawdata);
+
+				foreach ($rawdata as $rawdatav) {
+					$arawdatav = preg_split("/\s+/", $rawdatav);
+
+					if (!empty($arawdatav[1]) && (0 == strncmp(trim($arawdatav[1]), "Temperature_", 12)) &&
+						((0 != strcmp(trim($arawdatav[0]), "190")) || (0 != strcmp(trim($arawdatav[0]), "194")) )) {
+						$result = chop($arawdatav[9]);
+						break;
+					} else if (preg_match("/Current Drive Temperature:\s+(\d+) C.*/", $rawdatav, $matches)) {
+						$result = $matches[1];
+						break;
+					}
+				}
+				return $result;
+			}
 		}
 	}
 
@@ -467,26 +486,83 @@ function system_get_device_temp($device) {
 }
 
 /**
+ * Get controller
+ * @param[in] device	The device name, e.g. /dev/ad1
+ * @return The disk device serial number.
+ */
+function system_get_controller($devicespecialfile) {
+	$devlist = array();
+	$device = '';
+	$controller = '';
+	$controller_id = ''; 
+	$target_id = '';
+	$lun_id = '';
+
+	mwexec2("/sbin/camcontrol devlist -v 2> /dev/null", $rawdata);
+
+	foreach($rawdata as $line) {
+		// Get controller
+		if( preg_match("/(?<= on )[-A-z0-9]*(?= bus )+/", $line, $matches)){
+			$controller = preg_split( '/([-A-z]+)/', $matches[0], -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+			$device = '';
+		}
+		else if ( !strncmp($line, '<>' ,2) == 0){
+
+			// Get device name
+			// Parse substring between parentheses: (pass0,da0) or (da0,pass0)
+			preg_match("/.*\(([^>]*)\).*/",$line,$match);
+			$temp = preg_split("/,/", $match[1]);
+
+			// Check whether device name is at the first (da0,pass0) or the second (pass0,da0) arguement
+			$device = preg_split( '/([-A-z]+)/', $temp[1], -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+
+			if (strncmp($device[0],'pass',4) == 0){
+				$device = preg_split( '/([-A-z]+)/', $temp[0], -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+			}
+
+			if (strcmp($devicespecialfile,'/dev/'.$device[0].$device[1]) == 0){
+				return $controller[0].$controller[1];
+			}
+		}
+	}
+
+	return gettext("n/a");
+}
+
+/**
  * Get volume serial number.
  * @param[in] device	The device name, e.g. /dev/ad1
  * @return The disk device serial number.
  */
-function system_get_volume_serial($devicefile) {
+function system_get_volume_serial($devicespecialfile) {
+
+	global $config;
+
+	// get serial from config
+	if (is_array($config['disks']) && is_array($config['disks']['disk'])) {
+
+		foreach ($config['disks']['disk'] as &$disk) { 
+			if($disk['devicespecialfile'] == $devicespecialfile){
+				/* get serial from S.M.A.R.T. */
+				$smart_arg = get_smartctl_info($disk);
+
+				if( !empty($smart_arg['serial']) ){
+					return $smart_arg['serial'];
+				}
+			}
+		}
+	}
+
 	/* without smart */
-	mwexec2("ataidle {$devicefile} | grep 'Serial'", $rawdata);
+	mwexec2("ataidle {$devicespecialfile} | grep 'Serial'", $rawdata);
 	if (!empty($rawdata) && 1 === preg_match("/^Serial:\s+(.+)$/", $rawdata[0], $matches)) {
 		$serial = preg_replace("/[\x01-\x1f\x7f]/", "", $matches[1]);
 		if (!empty($serial))
 			return $serial;
 	}
-	/* failback to old method */
-	mwexec2("smartctl -i {$devicefile} | grep -i 'Serial Number'", $rawdata1);
-	if (!empty($rawdata1) && 1 === preg_match("/^Serial Number:\s+(.+)$/i", $rawdata1[0], $matches)) {
-		$serial = preg_replace("/[\x01-\x1f\x7f]/", "", $matches[1]);
-		if (!empty($serial))
-			return $serial;
-	}
-	mwexec2("camcontrol inquiry {$devicefile} -S", $rawdata2);
+
+	/* get serial from CAM */
+	mwexec2("camcontrol inquiry {$devicespecialfile} -S", $rawdata2);
 	if (!empty($rawdata2) && !empty($rawdata2[0])) {
 		$serial = preg_replace("/[\x01-\x1f\x7f]/", "", $rawdata2[0]);
 		if (!empty($serial))
@@ -501,22 +577,40 @@ function system_get_volume_serial($devicefile) {
  * @param[in] device	The device name, e.g. /dev/ad1
  * @return The disk device model.
  */
-function system_get_volume_model($devicefile) {
+function system_get_volume_model($devicespecialfile) {
+
+	global $config;
+
+	// get device model from config
+	if (is_array($config['disks']) && is_array($config['disks']['disk'])) {
+
+		foreach ($config['disks']['disk'] as &$disk) { 
+			if($disk['devicespecialfile'] == $devicespecialfile){
+				if(!empty($disk['model'])){
+					return $disk['model'];
+				}
+				else {
+					/* get device model from S.M.A.R.T. */
+					$smart_arg = get_smartctl_info($disk);
+					
+					if( !empty($smart_arg['model']) ){
+						return $smart_arg['model'];
+					}
+				}
+			}
+		}
+	}
+
 	/* without smart */
-	mwexec2("ataidle {$devicefile} | grep 'Model'", $rawdata);
+	mwexec2("ataidle {$devicespecialfile} | grep 'Model'", $rawdata);
 	if (!empty($rawdata) && 1 === preg_match("/^Model:\s+(.+)$/", $rawdata[0], $matches)) {
 		$model = preg_replace("/[\x01-\x1f\x7f]/", "", $matches[1]);
 		if (!empty($model))
 			return $model;
 	}
-	/* failback to old method */
-	mwexec2("smartctl -i {$devicefile} | grep 'Device Model'", $rawdata1);
-	if (!empty($rawdata1) && 1 === preg_match("/^Device Model:\s+(.+)$/", $rawdata1[0], $matches)) {
-		$model = preg_replace("/[\x01-\x1f\x7f]/", "", $matches[1]);
-		if (!empty($model))
-			return $model;
-	}
-	mwexec2("camcontrol inquiry {$devicefile} -D", $rawdata2);
+
+	/* get device model from CAM */
+	mwexec2("camcontrol inquiry {$devicespecialfile} -D", $rawdata2);
 	if (!empty($rawdata2) && 1 === preg_match("/<([^>]+)>/", $rawdata2[0], $matches)) {
 		$model = preg_replace("/[\x01-\x1f\x7f]/", "", $matches[1]);
 		if (!empty($model))
