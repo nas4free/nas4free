@@ -42,15 +42,14 @@ $pgtitle = array(gettext("System"), gettext("Advanced"), gettext("loader.conf"))
 if ($_POST) {
 	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
-		touch($d_sysrebootreqd_path);
 
 		if (!file_exists($d_sysrebootreqd_path)) {
-			$retval |= updatenotify_process("loaderconf", "loaderconf_process_updatenotification");
-			write_loader_config();
 			touch($d_sysrebootreqd_path);
 		}
 
+		$retval |= updatenotify_process("loaderconf", "loaderconf_process_updatenotification");
 		$savemsg = get_std_save_message($retval);
+
 		if ($retval == 0) {
 			updatenotify_delete("loaderconf");
 		}
@@ -90,6 +89,7 @@ function loaderconf_process_updatenotification($mode, $data) {
 				if (false !== $index) {
 					unset($config['system']['loaderconf']['param'][$index]);
 					write_config();
+					write_loader_config();
 				}
 			}
 			break;
