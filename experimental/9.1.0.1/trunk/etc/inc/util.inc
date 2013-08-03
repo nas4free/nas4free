@@ -905,7 +905,7 @@ function parse_camcontrol_info($devtype){
 	foreach($rawdata as $line) {
 		// Get controller
 		if( preg_match("/(?<= on )[-A-z0-9]*(?= bus )+/", $line, $matches)){
-			$controller = preg_split( '/([-A-z]+)/', $matches[0], -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+			$controller = preg_split( '/([0-9]+\z)/i', $matches[0], -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 			$controller_desc = '';
 			$controller_id = ''; 
 			$target_id = '';
@@ -1074,7 +1074,7 @@ function parse_controller_config(&$devlist){
 				$device['controller_desc'] = parse_ciss_controller_desc($device['controller'].$device['controller_id']);
 				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'];
 				$device['smart']['devicetype'] = 'hpt27xx';
-				$device['smart']['devicetypearg'] = "hpt27xx,".$controller_id."/".$disk_id;
+				$device['smart']['devicetypearg'] = "hpt,".$controller_id."/".$disk_id;
 				break;
 			// USB Mass Storage
 			case 'umass-sim':
