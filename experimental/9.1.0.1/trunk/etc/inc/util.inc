@@ -1159,8 +1159,12 @@ function get_smartctl_info($device){
 				$smartctl_info['rotation_rate'] = $matches[0];
 				break;
 			case 'SATA Version is:  ':
-				preg_match("/(?<= \(current: ).*(?=\))+/", $line, $matches);
-				$smartctl_info['transfer_rate'] = $matches[0];
+				if(preg_match("/(?<= \(current: ).*(?=\))+/", $line, $matches)){
+					$smartctl_info['transfer_rate'] = $matches[0];
+				}
+				else if(preg_match("/(?<=, ).*?(?>\/s)/", $line, $matches)){
+					$smartctl_info['transfer_rate'] = $matches[0];
+				}
 				break;
 			case 'SMART support is: ':
 				if(empty($smartctl_info['smart_support'])){

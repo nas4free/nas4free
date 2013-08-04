@@ -111,7 +111,7 @@ $a_phy_disk = array_merge((array)get_physical_disks_list());
 					<td class="listr"><?=htmlspecialchars($disk['size']);?></td>
 					<td class="listr"><?=(empty($disk['serial']) ) === FALSE ? htmlspecialchars($disk['serial']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
 					<td class="listr"><?=(empty($disk['rotation_rate']) ) === FALSE ? htmlspecialchars($disk['rotation_rate']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
-					<td class="listr"><?=htmlspecialchars($disk['transfer_rate']);?>&nbsp;</td>
+					<td class="listr"><?=(empty($disk['transfer_rate']) ) === FALSE ? htmlspecialchars($disk['transfer_rate']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
 				<?php
 					$matches = preg_split("/[\s\,]+/",$disk['smart']['smart_support']);
 					if(strcmp($matches[0], "Available") == 0){
