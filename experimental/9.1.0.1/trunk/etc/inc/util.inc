@@ -1043,10 +1043,37 @@ function parse_controller_config(&$devlist){
 			// SMART Device type format : cciss,N (N = which disk on the controller is monitored)
 			// e.g. smartctl -d cciss,1 -a /dev/ciss0
 			case 'ciss':
-				$device['controller_desc'] = parse_ciss_controller_desc($device['controller'].$device['controller_id']);
+				$device['controller_desc'] = parse_raid_controller_desc($device['controller'].$device['controller_id']);
 				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'].$device['controller_id'];
 				$device['smart']['devicetype'] = 'cciss';
 				$device['smart']['devicetypearg'] = "cciss,".$device['target_id'];
+				break;
+			// HighPoint RocketRAID SATA RAID controller
+			case 'hpt':
+				$controller_id = $device['controller_id'] + 1;
+				$disk_id = $device['target_id']+1;
+				
+				$device['controller_desc'] = parse_raid_controller_desc($device['controller'].$device['controller_id']);
+				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'].$device['controller_id'];
+				$device['smart']['devicetype'] = $device['controller'];
+				$device['smart']['devicetypearg'] = $device['controller'].",".$controller_id."/".$disk_id;
+				break;
+			// Highpoint RocketRAID 27xx controller
+			case 'hpt27xx':
+				$controller_id = $device['controller_id'] + 1;
+				$disk_id = $device['target_id']+1;
+
+				$device['controller_desc'] = parse_raid_controller_desc($device['controller'].$device['controller_id']);
+				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'];
+				$device['smart']['devicetype'] = 'hpt27xx';
+				$device['smart']['devicetypearg'] = "hpt,".$controller_id."/".$disk_id;
+				break;
+			// Qlogic ISP SCSI adapters
+			case 'isp':
+				$device['controller_desc'] = parse_raid_controller_desc($device['controller'].$device['controller_id']);
+				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'].$device['controller_id'];
+				$device['smart']['devicetype'] = 'isp';
+				$device['smart']['devicetypearg'] = "isp,".$device['target_id'];
 				break;
 			// LSI 2008 (IT mode)
 			case 'mps':
@@ -1058,23 +1085,6 @@ function parse_controller_config(&$devlist){
 				$device['smart']['devicefilepath'] = '/dev/'.$device['name'];
 				$device['smart']['devicetype'] = $devtype[0];
 				$device['smart']['devicetypearg'] = $devtype[0];
-				break;
-			// HighPoint RocketRAID SATA RAID controller
-			case 'hpt':
-				$device['controller_desc'] = parse_ciss_controller_desc($device['controller'].$device['controller_id']);
-				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'].$device['controller_id'];
-				$device['smart']['devicetype'] = $device['controller'];
-				$device['smart']['devicetypearg'] = $device['controller'].",".$controller_id."/".$disk_id;
-				break;
-			// Highpoint RocketRAID 27xx controller
-			case 'hpt27xx':
-				$controller_id = $device['controller_id'] + 1;
-				$disk_id = $device['target_id']+1;
-
-				$device['controller_desc'] = parse_ciss_controller_desc($device['controller'].$device['controller_id']);
-				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'];
-				$device['smart']['devicetype'] = 'hpt27xx';
-				$device['smart']['devicetypearg'] = "hpt,".$controller_id."/".$disk_id;
 				break;
 			// USB Mass Storage
 			case 'umass-sim':
@@ -1241,10 +1251,9 @@ function parse_ata_ahci_controller_desc($controller){
 	return $controller_desc;
 }
 
-function parse_ciss_controller_desc($controller){
+function parse_raid_controller_desc($controller){
 	$matches = array();
 
-	// only retrieve dmesg for HP Smart Array RAID controllers
 	if (strncmp($line, $controller ,4)){
 		mwexec2("dmesg | grep $controller", $lines);
 		//$output = `dmesg | grep -w $controller`;
