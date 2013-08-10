@@ -937,8 +937,8 @@ function parse_camcontrol_info($devtype){
 
 			// legacy compatibility: for scsi option, do not include ata drives, for ata option, do not include scsi drives
 			if( ($devtype!="scsi" & $controller[0] == $devtype) | ($devtype=="scsi" & $controller[0]!="ata") ){
-				// Ignore CD-ROMs
-				if($device[0] != "" & !preg_match("/^(cd|acd)/", $device[0] )){
+				// Ignore CD-ROMs and SCSI enclosure devices (ses)
+				if($device[0] != "" & !preg_match("/^(cd|acd|ses)/", $device[0] )){
 					// Add device into devlice list array
 					$devlist["$device[0]$device[1]"]['device'] = $device[0];
 					$devlist["$device[0]$device[1]"]['id'] = $device[1];
@@ -1067,13 +1067,6 @@ function parse_controller_config(&$devlist){
 				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'];
 				$device['smart']['devicetype'] = 'hpt27xx';
 				$device['smart']['devicetypearg'] = "hpt,".$controller_id."/".$disk_id;
-				break;
-			// Qlogic ISP SCSI adapters
-			case 'isp':
-				$device['controller_desc'] = parse_raid_controller_desc($device['controller'].$device['controller_id']);
-				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'].$device['controller_id'];
-				$device['smart']['devicetype'] = 'isp';
-				$device['smart']['devicetypearg'] = "isp,".$device['target_id'];
 				break;
 			// LSI 2008 (IT mode)
 			case 'mps':
