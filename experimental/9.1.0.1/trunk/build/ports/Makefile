@@ -45,6 +45,7 @@
     SUBDIR += smartmontools
     SUBDIR += tftp-hpa
     SUBDIR += transmission
+	SUBDIR += tw_cli
     SUBDIR += unison
     SUBDIR += vbox-additions
     SUBDIR += vmxnet3
