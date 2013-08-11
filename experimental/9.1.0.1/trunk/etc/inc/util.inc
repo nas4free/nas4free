@@ -1048,24 +1048,16 @@ function parse_controller_config(&$devlist){
 				$device['smart']['devicetype'] = 'cciss';
 				$device['smart']['devicetypearg'] = "cciss,".$device['target_id'];
 				break;
-			// HighPoint RocketRAID SATA RAID controller
-			case 'hpt':
-				$controller_id = $device['controller_id'] + 1;
-				$disk_id = $device['target_id']+1;
-				
-				$device['controller_desc'] = parse_raid_controller_desc($device['controller'].$device['controller_id']);
-				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'].$device['controller_id'];
-				$device['smart']['devicetype'] = $device['controller'];
-				$device['smart']['devicetypearg'] = $device['controller'].",".$controller_id."/".$disk_id;
-				break;
-			// Highpoint RocketRAID 27xx controller
-			case 'hpt27xx':
+			case 'hptiop': // HighPoint RocketRAID 3xxx/4xxx device driver
+			case 'hptmv': // HighPoint RocketRAID 182x device driver
+			case 'hptrr': // HighPoint RocketRAID device driver
+			case 'hpt27xx': // Highpoint RocketRAID 27xx controller
 				$controller_id = $device['controller_id'] + 1;
 				$disk_id = $device['target_id']+1;
 
 				$device['controller_desc'] = parse_raid_controller_desc($device['controller'].$device['controller_id']);
 				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'];
-				$device['smart']['devicetype'] = 'hpt27xx';
+				$device['smart']['devicetype'] = $device['controller'];
 				$device['smart']['devicetypearg'] = "hpt,".$controller_id."/".$disk_id;
 				break;
 			// LSI 2008 (IT mode)
