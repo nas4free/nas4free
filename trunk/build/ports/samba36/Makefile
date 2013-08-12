@@ -1,5 +1,5 @@
 PORTNAME=		samba36
-PORTVERSION=	  3.6.16
+PORTVERSION=	  3.6.17
 #PORTREVISION?= 0
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -71,6 +71,10 @@ CONFIGURE_ARGS+=	--enable-external-libtalloc
 BUILD_DEPENDS+=		tdb>=1.2.9:${PORTSDIR}/databases/tdb
 RUN_DEPENDS+=		tdb>=1.2.9:${PORTSDIR}/databases/tdb
 CONFIGURE_ARGS+=	--enable-external-libtdb
+# tevent
+BUILD_DEPENDS+=        	tevent>=0.9.11:${PORTSDIR}/devel/tevent
+RUN_DEPENDS+=         tevent>=0.9.11:${PORTSDIR}/devel/tevent
+CONFIGURE_ARGS+=     --without-libtevent --enable-external-libtevent
 
 CONFIGURE_ARGS+=	--without-libtalloc \
 			--without-libtdb \
@@ -151,8 +155,8 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/libwbclient.so.0 ${NAS4FREE_ROOTFS}/${SAMBA_LIBDIR}
 	@${LN} -f -v -s libwbclient.so.0 ${NAS4FREE_ROOTFS}/${SAMBA_LIBDIR}/libwbclient.so
 
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/libtevent.so.0 ${NAS4FREE_ROOTFS}/${SAMBA_LIBDIR}
-	@${LN} -f -v -s libtevent.so.0 ${NAS4FREE_ROOTFS}/${SAMBA_LIBDIR}/libwbclient.so
+#	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/libtevent.so.0 ${NAS4FREE_ROOTFS}/${SAMBA_LIBDIR}
+#	@${LN} -f -v -s libtevent.so.0 ${NAS4FREE_ROOTFS}/${SAMBA_LIBDIR}/libwbclient.so
 
 
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/smbd ${NAS4FREE_ROOTFS}/usr/local/sbin
