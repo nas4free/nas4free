@@ -15,13 +15,13 @@
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -35,7 +35,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 require_once("globals.inc");
@@ -398,6 +398,72 @@ function write_config() {
 	config_unlock();
 }
 
+function write_loader_config(){
+	global $config, $g;
+
+	// Make sure the clock settings is plausible
+	if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
+        @date_default_timezone_set(@date_default_timezone_get());
+	if (time() > mktime(0, 0, 0, 9, 1, 2004)) {
+		$config['lastchange'] = time();
+	}
+
+	if(!isset($config['system']['loaderconf']['param'])){
+		/* Load configuration file into array. */
+		$config = parse_xml_config("{$g['conf_path']}/config.xml", $g['xml_rootobj']);
+		
+		/* read platform */
+		if (file_exists("{$g['etc_path']}/platform")) {
+			$g['fullplatform'] = strtolower(chop(file_get_contents("{$g['etc_path']}/platform")));
+			$data = explode("-", $g['fullplatform']);
+			$g['arch'] = $data[0];
+			$g['platform'] = $data[1];
+		}
+	}
+
+	if (isset($config['system']['loaderconf']['param']) && is_array($config['system']['loaderconf']['param'])){
+		config_lock();
+		conf_mount_rw();
+
+		// Set loader.conf.local location
+		if( $g['platform'] === 'full' ){
+			$loader_filename = "/boot/loader.conf.local";
+		}else{
+			$loader_filename = "{$g['cf_path']}/boot/loader.conf.local";
+		}
+
+		array_sort_key($config['system']['loaderconf']['param'], "name");
+
+		$lines = '';
+		$loader_param_list = &$config['system']['loaderconf']['param'];
+
+		foreach($loader_param_list as $param){
+			if(isset($param['enable'])){
+				$lines .= $param['name'].' = "'.trim($param['value'])."\"\n";
+			}
+		}
+
+		if(strlen($lines) == 0){
+			unlink($loader_filename);
+		}
+		// Write configuration file
+		else if (file_put_contents_safe($loader_filename, $lines ) === FALSE) {
+			die("Error: Failed to write configuration file '{$loader_filename}'");
+		}
+
+		// Modify file permissions
+		@chmod("{$g['cf_path']}/boot/loader.conf.local", 0600);
+
+		conf_mount_ro();
+
+		// Force completion of pending disk writes
+		mwexec("/bin/sync");
+
+		config_unlock();
+	}
+
+}
+
 function reset_factory_defaults() {
 	global $g;
 
@@ -423,6 +489,14 @@ function reset_factory_defaults() {
 	// Modify file permissions
 	@chmod("{$g['cf_conf_path']}/config.xml", 0600);
 
+	$loader_filename = "{$g['cf_path']}/boot/loader.conf.local";
+
+	if (file_exists($loader_filename) && unlink($loader_filename) === FALSE) {
+		die("Error: Failed to delete configuration file '{$loader_filename}'");
+	}
+	mwexec2("/bin/echo loader filename is ".$loader_filename);
+	sleep(30);
+
 	conf_mount_ro();
 	config_unlock();
 
@@ -447,6 +521,10 @@ function config_install($conffile) {
 
 	conf_mount_ro();
 	config_unlock();
+
+	if($result === TRUE) {
+		write_loader_config();
+	}
 
 	return (TRUE === $result) ? 0 : 1;
 }
