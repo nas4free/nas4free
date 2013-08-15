@@ -554,7 +554,7 @@ $(document).ready(function(){
 							<?php if (!isset($config['ups']['enable'])):?>
 								<tr>
 									<td>
-										<input style="padding: 0; border: 0;" size="14" name="upsstatus" id="upsstatus" value="<?=gettext("UPS disabled");?>" />
+										<input style="padding: 0; border: 0;" size="17" name="upsstatus" id="upsstatus" value="<?=gettext("UPS disabled");?>" />
 										<?=" <small> [<a href='diag_infos_ups.php'>".gettext("Show ups information")."</a></small>]";?>
 									</td>
 								</tr>
