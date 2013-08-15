@@ -63,9 +63,9 @@ array_sort_key($config['system']['loaderconf']['param'], "name");
 $loader_param_list = &$config['system']['loaderconf']['param'];
 
 if (isset($_GET['act']) && $_GET['act'] === "del") {
-	if ($_GET['uuid'] === "all") {
-		foreach ($loader_param_list as $param) {
-			updatenotify_set("loaderconf", UPDATENOTIFY_MODE_DIRTY, $param['uuid']);
+	if ($_GET['id'] === "all") {
+		foreach ($loader_param_list as $param_key => $param_value) {
+			updatenotify_set("loaderconf", UPDATENOTIFY_MODE_DIRTY, $loader_param_list[$param_key]['uuid']);
 		}
 	} else {
 		updatenotify_set("loaderconf", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
@@ -82,14 +82,16 @@ function loaderconf_process_updatenotification($mode, $data) {
 	switch ($mode) {
 		case UPDATENOTIFY_MODE_NEW:
 		case UPDATENOTIFY_MODE_MODIFIED:
+			write_loader_config();
+			write_config();
 			break;
 		case UPDATENOTIFY_MODE_DIRTY:
 			if (is_array($config['system']['loaderconf']['param'])) {
 				$index = array_search_ex($data, $config['system']['loaderconf']['param'], "uuid");
 				if (false !== $index) {
 					unset($config['system']['loaderconf']['param'][$index]);
-					write_config();
 					write_loader_config();
+					write_config();
 				}
 			}
 			break;
@@ -119,9 +121,7 @@ function loaderconf_process_updatenotification($mode, $data) {
     <td class="tabcont">
     	<form action="system_loaderconf.php" method="post">
     		<?php if (!empty($savemsg)) print_info_box($savemsg);?>
-	    	<?php if (updatenotify_exists("loaderconf")) print_config_change_box();
-			sprintf( gettext("The changes have been saved. You have to <a href='%s'>reboot</a> the system for the changes to take effect."), "reboot.php");
-			?>
+	    	<?php if (updatenotify_exists("loaderconf")) print_config_change_box();?>
 	      <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	        <tr>
 	          <td width="40%" class="listhdrlr"><?=gettext("Variable");?></td>
@@ -153,7 +153,7 @@ function loaderconf_process_updatenotification($mode, $data) {
 	          <td class="list">
 							<a href="system_loaderconf_edit.php"><img src="plus.gif" title="<?=gettext("Add option");?>" border="0" alt="<?=gettext("Add option");?>" /></a>
 	          	<?php if (!empty($loader_param_list)):?>
-							<a href="system_loaderconf.php?act=del&amp;uuid=all" onclick="return confirm('<?=gettext("Do you really want to delete all options?");?>')"><img src="x.gif" title="<?=gettext("Delete all options");?>" border="0" alt="<?=gettext("Delete all options");?>" /></a>
+							<a href="system_loaderconf.php?act=del&amp;id=all" onclick="return confirm('<?=gettext("Do you really want to delete all options?");?>')"><img src="x.gif" title="<?=gettext("Delete all options");?>" border="0" alt="<?=gettext("Delete all options");?>" /></a>
 							<?php endif;?>
 						</td>
 	        </tr>

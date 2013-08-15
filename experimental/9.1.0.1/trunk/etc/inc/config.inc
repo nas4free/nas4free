@@ -443,12 +443,13 @@ function write_loader_config(){
 			}
 		}
 
+		if(strlen($lines) == 0){
+			unlink($loader_filename);
+		}
 		// Write configuration file
-		if (file_put_contents_safe($loader_filename, $lines ) === FALSE) {
+		else if (file_put_contents_safe($loader_filename, $lines ) === FALSE) {
 			die("Error: Failed to write configuration file '{$loader_filename}'");
 		}
-
-		//mwexec2("echo $data > /cf/boot/ttt");
 
 		// Modify file permissions
 		@chmod("{$g['cf_path']}/boot/loader.conf.local", 0600);

@@ -48,14 +48,14 @@ if (!isset($config['system']['loaderconf']['param']) || !is_array($config['syste
 	$config['system']['loaderconf']['param'] = array();
 
 array_sort_key($config['system']['loaderconf']['param'], "name");
-$a_rcvar = &$config['system']['loaderconf']['param'];
+$loader_param_list = &$config['system']['loaderconf']['param'];
 
-if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_rcvar, "uuid")))) {
-	$pconfig['enable'] = isset($a_rcvar[$cnid]['enable']);
-	$pconfig['uuid'] = $a_rcvar[$cnid]['uuid'];
-	$pconfig['name'] = $a_rcvar[$cnid]['name'];
-	$pconfig['value'] = $a_rcvar[$cnid]['value'];
-	$pconfig['comment'] = $a_rcvar[$cnid]['comment'];
+if (isset($uuid) && (FALSE !== ($index = array_search_ex($uuid, $loader_param_list, "uuid")))) {
+	$pconfig['enable'] = isset($loader_param_list[$index]['enable']);
+	$pconfig['uuid'] = $loader_param_list[$index]['uuid'];
+	$pconfig['name'] = $loader_param_list[$index]['name'];
+	$pconfig['value'] = $loader_param_list[$index]['value'];
+	$pconfig['comment'] = $loader_param_list[$index]['comment'];
 } else {
 	$pconfig['enable'] = true;
 	$pconfig['uuid'] = uuid();
@@ -89,17 +89,16 @@ if ($_POST) {
 		$param['value'] = $pconfig['value'];
 		$param['comment'] = $pconfig['comment'];
 
-		if (isset($uuid) && (FALSE !== $cnid)) {
-			$a_rcvar[$cnid] = $param;
+		if (isset($uuid) && (FALSE !== $index)) {
+			$loader_param_list[$index] = $param;
 			$mode = UPDATENOTIFY_MODE_MODIFIED;
 		} else {
-			$a_rcvar[] = $param;
+			$loader_param_list[] = $param;
 			$mode = UPDATENOTIFY_MODE_NEW;
 		}
 
 		updatenotify_set("loaderconf", $mode, $param['uuid']);
 		write_config();
-		write_loader_config();
 
 		header("Location: system_loaderconf.php");
 		exit;
@@ -134,7 +133,7 @@ if ($_POST) {
 					<?php html_inputbox("comment", gettext("Comment"), $pconfig['comment'], gettext("You may enter a description here for your reference."), false, 40);?>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $index)) ? gettext("Save") : gettext("Add")?>" />
 					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 				</div>
