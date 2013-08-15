@@ -848,7 +848,6 @@ create_full() {
 	echo 'kern.maxfiles="65536"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'kern.maxfilesperproc="50000"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'kern.cam.boot_delay="8000"' >> $NAS4FREE_TMPDIR/boot/loader.conf
-	echo 'vfs.zfs.prefetch_disable="1"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'splash_bmp_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'bitmap_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'bitmap_name="/boot/splash.bmp"' >> $NAS4FREE_TMPDIR/boot/loader.conf
