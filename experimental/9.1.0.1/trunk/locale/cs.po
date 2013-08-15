@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2013-08-15 03:26+0000\n"
-"PO-Revision-Date: 2013-08-14 23:05+0000\n"
+"PO-Revision-Date: 2013-08-15 12:31+0000\n"
 "Last-Translator: Radim Kolář <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-15 01:45+0000\n"
+"X-Launchpad-Export-Date: 2013-08-15 22:08+0000\n"
 "X-Generator: Launchpad (build 16723)\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 "Language: \n"
@@ -130,6 +130,8 @@ msgid ""
 "<div id='enumeration'><ul><li>The new password is also the default root "
 "password of the system!</li></ul></div>"
 msgstr ""
+"<div id='enumeration'><ul><li>Nové heslo bude také výchozím heslem uživatele "
+"root v systému!</li></ul></div>"
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -552,7 +554,7 @@ msgstr ""
 
 #, php-format
 msgid "Allows the server to try and become a local master browser."
-msgstr ""
+msgstr "Dovolí serveru se stát místním prohlížečen domény."
 
 msgid "AltRoot"
 msgstr "Alternativní kořen"
@@ -580,7 +582,7 @@ msgstr ""
 "zařízení po restartu, clusteru, ..."
 
 msgid "Ambient Conditions From External Probe Equipment"
-msgstr ""
+msgstr "Okolní podmínky získané z vnějšího čidla"
 
 msgid "Ambient relative humidity (percent)"
 msgstr "Okolní vlhkost (procenta)"
@@ -706,7 +708,7 @@ msgid "Autoselect"
 msgstr "Automatické vybírání"
 
 msgid "Auxiliary device firmware"
-msgstr ""
+msgstr "Přídavný firmware zařízení"
 
 msgid "Auxiliary parameters"
 msgstr "Pomocné parametry"
@@ -768,16 +770,16 @@ msgid "Battery change date"
 msgstr "Baterie měněna dne"
 
 msgid "Battery charge"
-msgstr ""
+msgstr "Nabití baterie"
 
 msgid "Battery chemistry"
-msgstr ""
+msgstr "Chemie baterie"
 
 msgid "Battery current"
-msgstr ""
+msgstr "Proud baterie"
 
 msgid "Battery level when UPS switches to \"Warning\" state"
-msgstr ""
+msgstr "Úroveň baterie při které se USP přepne do stavu \"Varování\""
 
 msgid "Battery manufacturing date"
 msgstr "Datum výroby baterie"
@@ -6219,9 +6221,10 @@ msgid ""
 "This allows you to set the file system for preformatted hard disks "
 "containing data."
 msgstr ""
+"Tímto nastavíte systém souborů pro zformátované disky již obsahující data."
 
 msgid "This allows you to set the transfer mode for ATA/IDE hard drives."
-msgstr ""
+msgstr "Tímto nastavíte přenosový režim pro ATA/IDE harddisky."
 
 #, php-format
 msgid ""
@@ -6233,6 +6236,7 @@ msgstr ""
 
 msgid "This controls how the case of filenames are viewed and stored."
 msgstr ""
+"Toto ovládá jak je velikost písmen v názvech souborů zobrazována a ukládána."
 
 msgid "This controls the access a remote host has to this module."
 msgstr ""
@@ -6247,12 +6251,14 @@ msgid ""
 msgstr ""
 
 msgid "This controls whether this share is accessible by guest account."
-msgstr ""
+msgstr "Toto nastavuje zdali je toto sdílení přístupné účtu hosta."
 
 msgid ""
 "This controls whether this share is seen in the list of available shares in "
 "a net view and in the browse list."
 msgstr ""
+"Toto ovládá zdali bude tohle sdílení zobrazeno v seznamu všech sdílení při "
+"prohlížení prostředků sítě."
 
 msgid "This couple targetname/targetaddress already exists in the disk list."
 msgstr ""
@@ -6264,15 +6270,18 @@ msgid "This disk already exists in the disk list."
 msgstr "Tento disk již existuje v seznamu disků."
 
 msgid "This email has been sent to validate your email configuration."
-msgstr ""
+msgstr "Tento email byl odeslán pro ověření vaší konfigurace emailu."
 
 msgid "This extent is used."
-msgstr ""
+msgstr "Tento extent se používá."
 
 msgid ""
 "This forces filenames to be restricted to the character set used by Windows. "
 "This is not recommended for shares used principally by Mac computers."
 msgstr ""
+"Toto způsobí omezení názvů souborů podle použité znakové sady Windows. "
+"Nepoužívejte tuto volbu pokud je toto sdílení používáno převážně uživateli "
+"Mac."
 
 msgid "This function is unsupported. Use it on your own risk!"
 msgstr "Tato funkce je bez záruky. Použijte na vlastní nebezpečí!"
@@ -6292,6 +6301,7 @@ msgstr ""
 
 msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr ""
+"Toto je pouze informativní (nepoužívá se během navazování iSCSI spojení)."
 
 msgid ""
 "This may make more efficient use of the system CPU's and cause Samba to be "
@@ -6309,13 +6319,18 @@ msgid ""
 "has not been tampered with.<br /><br />Do you want to install this image "
 "anyway (on your own risk)?"
 msgstr ""
+"To znamená že firmware který jste nahráli není oficiálně podporován a může "
+"vést k neočekávaným problémům nebo k bezpečnostním hrozbám. Instalujte "
+"firmware pouze ze zdrojů kterým věříte a ujistěte se že nebyl neoprávněně "
+"pozměněn. <br /><br />Chcete tedy tento soubor nainstalovat (na vlastní "
+"riziko)?"
 
 msgid "This name already exists in the disk list."
 msgstr "Toto jméno již existuje v seznamu disků."
 
 #, php-format
 msgid "This name is for example: %s."
-msgstr ""
+msgstr "Toto jméno je například: %s."
 
 msgid "This name is for example: iqn.2005-01.il.ac.huji.cs:somebody."
 msgstr "Příkladem jména je: iqn.2005-01.il.ac.huji.cs:somebody."
@@ -6331,6 +6346,7 @@ msgstr ""
 
 msgid "This option causes rsync to copy the local data to the remote server."
 msgstr ""
+"Tato volba způsobí že rsync překopíruje místní data na vzdálený server."
 
 msgid ""
 "This option causes rsync to update the remote extended attributes to be the "
@@ -6343,12 +6359,16 @@ msgid ""
 "This option causes the receiving rsync to set the destination permissions to "
 "be the same as the source permissions."
 msgstr ""
+"Tato volba způsobí že přijímající rsync nastaví práva přestně tak jako jsou "
+"na původním serveru."
 
 msgid ""
 "This option determines if this module should be listed when the client asks "
 "for a listing of available modules. By setting this to false you can create "
 "hidden modules."
 msgstr ""
+"Tato volba způsobí že tento modul bude vypsán pokud se klient zeptá na "
+"seznam všech modulů. Pokud ji vypnete můžete vytvořit skrytý modul."
 
 msgid ""
 "This option is a comma, space, or tab delimited set of host which are NOT "
@@ -6477,10 +6497,10 @@ msgid "This user already exists in the user list."
 msgstr "Tento uživatel již existuje na seznamu uživatelů."
 
 msgid "This user already exists."
-msgstr ""
+msgstr "Tento uživatel již existuje."
 
 msgid "This virtual device name already exists."
-msgstr ""
+msgstr "Toto virtuální zařízení již existuje"
 
 #, php-format
 msgid ""
@@ -6495,14 +6515,18 @@ msgid ""
 "This will erase ALL data on the selected disks! Do not use this option if "
 "you want to add an already existing RAID again."
 msgstr ""
+"Toto smaže všechna data na vybraných discích. Nepoužívejte tuto volbu pokud "
+"chcete znovu přidat existující RAID."
 
 msgid ""
 "This will erase ALL data on your disk! Do not use this option if you want to "
 "add an existing encrypted disk."
 msgstr ""
+"Toto smaže všechna data na vašem disku. Nepoužívejte tuto volbu pokud chcete "
+"přidat existující zašifrovaný disk."
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
-msgstr ""
+msgstr "Toto poskytne podporu pro ZFS ACL. (pouze ZFS filesystém)"
 
 msgid "This will provide shadow copy created by auto snapshot. (ZFS only)"
 msgstr ""
@@ -6514,7 +6538,7 @@ msgid "Time"
 msgstr "Čas"
 
 msgid "Time Machine"
-msgstr ""
+msgstr "Stroj času"
 
 msgid "Time before the load will be rebooted"
 msgstr ""
@@ -6567,18 +6591,24 @@ msgid ""
 "To get detailed informations about TCP Wrappers check the FreeBSD <a "
 "href='%s' target='_blank'>documentation</a>."
 msgstr ""
+"Pro detailní informace o TCP Wrappers si přečtěte FreeBSD <a href='%s' "
+"target='_blank'>příručku</a>."
 
 #, php-format
 msgid ""
 "To get detailed informations about writing firewall rules check the FreeBSD "
 "<a href='%s' target='_blank'>documentation</a>."
 msgstr ""
+"Pro detailní informace o psaní pravidel pro firewall si přečtete FreeBSD <a "
+"href='%s' target='_blank'>příručku</a>."
 
 #, php-format
 msgid ""
 "To get more information how to configure LCDproc check the LCDproc <a "
 "href='%s' target='_blank'>documentation</a>."
 msgstr ""
+"Pro detailní informace o konfiguraci LCDproc si přečtete LCDproc <a "
+"href='%s' target='_blank'>příručku</a>."
 
 #, php-format
 msgid ""
@@ -6600,6 +6630,10 @@ msgid ""
 "id='enumeration'><ul><li>CIFS/SMB</li><li>SSH</li><li>FTP</li><li>AFP</li><li"
 ">System</li></ul></div>"
 msgstr ""
+"Pro použití Active Directory musí být povolena služba CIFS/SMB. Následující "
+"služby podporují autentifikaci přes AD:<div "
+"id='enumeration'><ul><li>CIFS/SMB</li><li>SSH</li><li>FTP</li><li>AFP</li><li"
+">System</li></ul></div>"
 
 #, php-format
 msgid "To use subdirectories, you must mount each directories. (e.g. %s)"
