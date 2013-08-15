@@ -73,7 +73,7 @@ smartd_mkconf()
 			# Specify the type of the device.
 			case ${_type} in
 				IDE)
-					_param="${_param} -d ata";;
+					_param="${_param} -d atacam";;
 				SCSI)
 					case ${_devicespecialfile} in
 						/dev/ada*|ada*)

@@ -64,17 +64,25 @@ smartd_mkconf()
 
 	# Create configuration file
 	/usr/local/bin/xml sel -t -m "//disks/disk/smart[enable]" \
-		-v "concat(../devicespecialfile,' ',../type,' ',../controller,' ',../controller_id,' ',../id,' ',devicefilepath,' ',devicetypearg,' ',extraoptions)" \
+		-v "concat(../devicespecialfile,' ',../type,' ',extraoptions)" \
 		-i "position() <= last()" -n -b \
 		${configxml_file} | /usr/local/bin/xml unesc | \
-		while read _devicespecialfile _type _controller _controller_id _id _devicefilepath _devicetypearg _smartextraoptions; do
+		while read _devicespecialfile _type _smartextraoptions; do
 			_param="-a"
-			
-			# Device Type
-			if [ -n "${_devicetypearg}" ]; then
-				_param="${_param} -d ${_devicetypearg}";
-			fi
-			
+
+			# Specify the type of the device.
+			case ${_type} in
+				IDE)
+					_param="${_param} -d atacam";;
+				SCSI)
+					case ${_devicespecialfile} in
+						/dev/ada*|ada*)
+							_param="${_param} -d atacam";;
+						*)
+							_param="${_param} -d scsi";;
+					esac
+			esac
+
 			# Be more tolerant. Try to monitor the disk even if it appears to lack SMART capabilities.
 			_param="${_param} -T permissive"
 
@@ -150,7 +158,7 @@ smartd_mkconf()
 				_param="${_param} ${_smartextraoptions}"
 			fi
 
-			echo "${_devicefilepath} ${_param}" >> ${smartd_conf}
+			echo "${_devicespecialfile} ${_param}" >> ${smartd_conf}
 		done
 }
 
