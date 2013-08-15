@@ -1,6 +1,6 @@
 <?php
 /*
-	system_sysctl.php
+	system_loaderconf.php
 
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
@@ -37,43 +37,44 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("System"), gettext("Advanced"), gettext("sysctl.conf"));
+$pgtitle = array(gettext("System"), gettext("Advanced"), gettext("loader.conf"));
 
 if ($_POST) {
 	if (isset($_POST['apply']) && $_POST['apply']) {
 		$retval = 0;
+
 		if (!file_exists($d_sysrebootreqd_path)) {
-			$retval |= updatenotify_process("sysctl", "sysctl_process_updatenotification");
-			config_lock();
-			$retval |= rc_update_service("sysctl");
-			config_unlock();
+			touch($d_sysrebootreqd_path);
 		}
+
+		$retval |= updatenotify_process("loaderconf", "loaderconf_process_updatenotification");
 		$savemsg = get_std_save_message($retval);
+
 		if ($retval == 0) {
-			updatenotify_delete("sysctl");
+			updatenotify_delete("loaderconf");
 		}
 	}
 }
 
-if (!isset($config['system']['sysctl']['param']) || !is_array($config['system']['sysctl']['param']))
-	$config['system']['sysctl']['param'] = array();
+if (!isset($config['system']['loaderconf']['param']) || !is_array($config['system']['loaderconf']['param']))
+	$config['system']['loaderconf']['param'] = array();
 
-array_sort_key($config['system']['sysctl']['param'], "name");
-$a_sysctlvar = &$config['system']['sysctl']['param'];
+array_sort_key($config['system']['loaderconf']['param'], "name");
+$loader_param_list = &$config['system']['loaderconf']['param'];
 
 if (isset($_GET['act']) && $_GET['act'] === "del") {
 	if ($_GET['id'] === "all") {
-		foreach ($a_sysctlvar as $sysctlvark => $sysctlvarv) {
-			updatenotify_set("sysctl", UPDATENOTIFY_MODE_DIRTY, $a_sysctlvar[$sysctlvark]['uuid']);
+		foreach ($loader_param_list as $param_key => $param_value) {
+			updatenotify_set("loaderconf", UPDATENOTIFY_MODE_DIRTY, $loader_param_list[$param_key]['uuid']);
 		}
 	} else {
-		updatenotify_set("sysctl", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
+		updatenotify_set("loaderconf", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
 	}
-	header("Location: system_sysctl.php");
+	header("Location: system_loaderconf.php");
 	exit;
 }
 
-function sysctl_process_updatenotification($mode, $data) {
+function loaderconf_process_updatenotification($mode, $data) {
 	global $config;
 
 	$retval = 0;
@@ -81,12 +82,15 @@ function sysctl_process_updatenotification($mode, $data) {
 	switch ($mode) {
 		case UPDATENOTIFY_MODE_NEW:
 		case UPDATENOTIFY_MODE_MODIFIED:
+			write_loader_config();
+			write_config();
 			break;
 		case UPDATENOTIFY_MODE_DIRTY:
-			if (is_array($config['system']['sysctl']['param'])) {
-				$index = array_search_ex($data, $config['system']['sysctl']['param'], "uuid");
+			if (is_array($config['system']['loaderconf']['param'])) {
+				$index = array_search_ex($data, $config['system']['loaderconf']['param'], "uuid");
 				if (false !== $index) {
-					unset($config['system']['sysctl']['param'][$index]);
+					unset($config['system']['loaderconf']['param'][$index]);
+					write_loader_config();
 					write_config();
 				}
 			}
@@ -107,35 +111,35 @@ function sysctl_process_updatenotification($mode, $data) {
       	<li class="tabinact"><a href="system_swap.php"><span><?=gettext("Swap");?></span></a></li>
         <li class="tabinact"><a href="system_rc.php"><span><?=gettext("Command scripts");?></span></a></li>
         <li class="tabinact"><a href="system_cron.php"><span><?=gettext("Cron");?></span></a></li>
-		<li class="tabinact"><a href="system_loaderconf.php"><span><?=gettext("loader.conf");?></span></a></li>
+		<li class="tabact"><a href="system_loaderconf.php" title="<?=gettext("Reload page");?>"><span><?=gettext("loader.conf");?></span></a></li>
         <li class="tabinact"><a href="system_rcconf.php"><span><?=gettext("rc.conf");?></span></a></li>
-        <li class="tabact"><a href="system_sysctl.php" title="<?=gettext("Reload page");?>"><span><?=gettext("sysctl.conf");?></span></a></li>
+        <li class="tabinact"><a href="system_sysctl.php"><span><?=gettext("sysctl.conf");?></span></a></li>
       </ul>
     </td>
   </tr>
   <tr>
     <td class="tabcont">
-    	<form action="system_sysctl.php" method="post">
+    	<form action="system_loaderconf.php" method="post">
     		<?php if (!empty($savemsg)) print_info_box($savemsg);?>
-	    	<?php if (updatenotify_exists("sysctl")) print_config_change_box();?>
+	    	<?php if (updatenotify_exists("loaderconf")) print_config_change_box();?>
 	      <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	        <tr>
-	          <td width="40%" class="listhdrlr"><?=gettext("MIB");?></td>
+	          <td width="40%" class="listhdrlr"><?=gettext("Variable");?></td>
 	          <td width="20%" class="listhdrr"><?=gettext("Value");?></td>
 	          <td width="30%" class="listhdrr"><?=gettext("Comment");?></td>
 	          <td width="10%" class="list"></td>
 	        </tr>
-				  <?php foreach($a_sysctlvar as $sysctlvarv):?>
-				  <?php $notificationmode = updatenotify_get_mode("sysctl", $sysctlvarv['uuid']);?>
+				  <?php foreach($loader_param_list as $param):?>
+				  <?php $notificationmode = updatenotify_get_mode("loaderconf", $param['uuid']);?>
 	        <tr>
-	        	<?php $enable = isset($sysctlvarv['enable']);?>
-	          <td class="<?=$enable?"listlr":"listlrd";?>"><?=htmlspecialchars($sysctlvarv['name']);?>&nbsp;</td>
-	          <td class="<?=$enable?"listr":"listrd";?>"><?=htmlspecialchars($sysctlvarv['value']);?>&nbsp;</td>
-	          <td class="listbg"><?=htmlspecialchars($sysctlvarv['comment']);?>&nbsp;</td>
+	        	<?php $enable = isset($param['enable']);?>
+	          <td class="<?=$enable?"listlr":"listlrd";?>"><?=htmlspecialchars($param['name']);?>&nbsp;</td>
+	          <td class="<?=$enable?"listr":"listrd";?>"><?=htmlspecialchars($param['value']);?>&nbsp;</td>
+	          <td class="listbg"><?=htmlspecialchars($param['comment']);?>&nbsp;</td>
 	          <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
 	          <td valign="middle" nowrap="nowrap" class="list">
-	            <a href="system_sysctl_edit.php?uuid=<?=$sysctlvarv['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit MIB");?>" border="0" alt="<?=gettext("Edit MIB");?>" /></a>
-	            <a href="system_sysctl.php?act=del&amp;uuid=<?=$sysctlvarv['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this MIB?");?>')"><img src="x.gif" title="<?=gettext("Delete MIB");?>" border="0" alt="<?=gettext("Delete MIB");?>" /></a>
+	            <a href="system_loaderconf_edit.php?uuid=<?=$param['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit option");?>" border="0" alt="<?=gettext("Edit option");?>" /></a>
+	            <a href="system_loaderconf.php?act=del&amp;uuid=<?=$param['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this option?");?>')"><img src="x.gif" title="<?=gettext("Delete option");?>" border="0" alt="<?=gettext("Delete option");?>" /></a>
 	          </td>
 	          <?php else:?>
 						<td valign="middle" nowrap="nowrap" class="list">
@@ -144,17 +148,18 @@ function sysctl_process_updatenotification($mode, $data) {
 						<?php endif;?>
 	        </tr>
 	        <?php endforeach;?>
-					<tr>
+	        <tr>
 	          <td class="list" colspan="3"></td>
-	          <td class="list"><a href="system_sysctl_edit.php"><img src="plus.gif" title="<?=gettext("Add MIB");?>" border="0" alt="<?=gettext("Add MIB");?>" /></a>
-	          	<?php if (!empty($a_sysctlvar)):?>
-							<a href="system_sysctl.php?act=del&amp;id=all" onclick="return confirm('<?=gettext("Do you really want to delete all MIBs?");?>')"><img src="x.gif" title="<?=gettext("Delete all MIBs");?>" border="0" alt="<?=gettext("Delete all MIBs");?>" /></a>
+	          <td class="list">
+							<a href="system_loaderconf_edit.php"><img src="plus.gif" title="<?=gettext("Add option");?>" border="0" alt="<?=gettext("Add option");?>" /></a>
+	          	<?php if (!empty($loader_param_list)):?>
+							<a href="system_loaderconf.php?act=del&amp;id=all" onclick="return confirm('<?=gettext("Do you really want to delete all options?");?>')"><img src="x.gif" title="<?=gettext("Delete all options");?>" border="0" alt="<?=gettext("Delete all options");?>" /></a>
 							<?php endif;?>
 						</td>
 	        </tr>
 	      </table>
 	      <div id="remarks">
-	      	<?php html_remark("note", gettext("Note"), gettext("These MIBs will be added to /etc/sysctl.conf. This allow you to make changes to a running system."));?>
+	      	<?php html_remark("note", gettext("Note"), gettext("These option(s) will be added to /boot/loader.conf.local. This allows you to specify parameters to be passed to kernel, and additional modules to be loaded."));?>
 	      </div>
 	      <?php include("formend.inc");?>
 			</form>
