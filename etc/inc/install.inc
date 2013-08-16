@@ -15,13 +15,13 @@
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -35,7 +35,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 require_once("functions.inc");
@@ -314,6 +314,9 @@ function install_upgrade_full($harddrive)
 	if (file_exists("{$mntpath}/boot.config")) {
 		mwexec("/bin/cp -p {$mntpath}/boot.config {$sysbackup}");
 	}
+    if (file_exists("{$mntpath}/boot/loader.conf.local")) {
+		mwexec("/bin/cp -p {$mntpath}/boot/loader.conf.local {$sysbackup}");
+	}
 	mwexec("/bin/cp -p {$mntpath}/etc/platform {$sysbackup}");
 	mwexec("/bin/cp -p {$mntpath}/etc/fstab {$sysbackup}");
 	mwexec("/bin/cp -p {$mntpath}/etc/cfdevice {$sysbackup}");
@@ -349,6 +352,9 @@ function install_upgrade_full($harddrive)
 		mwexec("/bin/cp -p {$sysbackup}/boot.config {$mntpath}/");
 	} else {
 		mwexec("/bin/rm -f {$mntpath}/boot.config");
+	}
+    if (file_exists("{$sysbackup}/loader.conf.local")) {
+    	mwexec("/bin/cp -p {$sysbackup}/loader.conf.local {$mntpath}/boot/");
 	}
 	mwexec("/bin/cp -p {$sysbackup}/platform {$mntpath}/etc");
 	mwexec("/bin/cp -p {$sysbackup}/fstab {$mntpath}/etc");
@@ -478,6 +484,12 @@ function install_backup_config($disk)
 		write_console("Error: Failed to backup the configuration file!\n");
 		return 1;
 	}
+    
+    if (file_exists("{$mnt_cf_disk}/boot/loader.conf.local")
+	    && 1 == mwexec("/bin/cp -p {$mnt_cf_disk}/boot/loader.conf.local {$tmp_cf_bak}")) {
+		write_console("Error: Failed to backup the configuration file!\n");
+		return 1;
+	}
 
 	/* Unmount the drive to be upgraded */
 	if (1 == mwexec("/sbin/umount {$mnt_cf_disk}")) {
@@ -518,6 +530,10 @@ function install_restore_config($disk)
 			write_console("Error: Failed to remove the configuration file!\n");
 			return 1;
 		}
+	}
+       if (1 == mwexec("/bin/cp -p {$tmp_cf_bak}/loader.conf.local {$mnt_cf_disk}/boot")) {
+		write_console("Error: Failed to restore the configuration file!\n");
+		return 1;
 	}
 
 	/* Unmount the upgraded drive */
