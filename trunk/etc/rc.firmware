@@ -113,6 +113,10 @@ case $1 in
 		if [ -f /cf/boot.config ]; then
 			cp -p /cf/boot.config /tmp/configbak
 		fi
+		# Backup loader.conf.local
+		if [ -f /cf/boot/loader.conf.local ]; then
+		cp -p /cf/boot/loader.conf.local /tmp/configbak
+		fi
 
 		# Unmount /cf
 		/sbin/umount -f /cf
@@ -145,6 +149,10 @@ case $1 in
 		cp -p /tmp/configbak/* /conf
 		if [ -f /conf/boot.config ]; then
 			mv /conf/boot.config /cf
+		fi
+		# Restore loader.conf.local
+		if [ -f /tmp/configbak/loader.conf.local ]; then
+		mv /tmp/configbak/loader.conf.local /cf/boot
 		fi
 		rm -r /tmp/configbak
 
@@ -241,3 +249,4 @@ case $1 in
 esac
 
 exit 0
+
