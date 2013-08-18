@@ -7,7 +7,7 @@
 +#if 0
  	m_MediaServerSettings.FriendlyName = "FUPPES %v (%h)";
 +#else
-+	m_MediaServerSettings.FriendlyName = "FreeNAS (%h)";
++	m_MediaServerSettings.FriendlyName = "NAS4Free (%h)";
 +#endif
  	m_MediaServerSettings.Manufacturer = "Ulrich Voelkel";
  	m_MediaServerSettings.ManufacturerURL = "http://www.ulrich-voelkel.de"; 	

@@ -12,7 +12,7 @@
      }
    }
  
-+  // for FreeNAS
++  // for NAS4Free
 +  if(!foundMatch) {
 +    string devName = CSharedConfig::Shared()->globalSettings->DefaultDevice();
 +    string vFolder = CSharedConfig::Shared()->globalSettings->DefaultVirtualFolder();

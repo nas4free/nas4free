@@ -4,7 +4,7 @@
    string lsData;
    string lsConfig;
    
-+  // for FreeNAS
++  // for NAS4Free
 +  env = getenv("HOME");
 +  if(env == NULL || strlen(env) == 0)
 +    setenv("HOME", "/root", 0);
