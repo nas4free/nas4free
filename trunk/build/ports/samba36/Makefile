@@ -1,6 +1,6 @@
 PORTNAME=		samba36
 PORTVERSION=	  3.6.18
-#PORTREVISION?= 0
+#PORTREVISION?= 1
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
 MASTER_SITE_SUBDIR=	samba samba/old-versions samba/rc samba/pre
@@ -65,8 +65,8 @@ PKGCONFIGDIR_REL?=	${PKGCONFIGDIR:S|^${PREFIX}/||}
 
 USE_PKGCONFIG=          yes
 LIB_DEPENDS+=		execinfo.1:${PORTSDIR}/devel/libexecinfo
-BUILD_DEPENDS+=		talloc>=2.0.7:${PORTSDIR}/devel/talloc
-RUN_DEPENDS+=		talloc>=2.0.7:${PORTSDIR}/devel/talloc
+BUILD_DEPENDS+=		talloc>=2.0.8:${PORTSDIR}/devel/talloc
+RUN_DEPENDS+=		talloc>=2.0.8:${PORTSDIR}/devel/talloc
 CONFIGURE_ARGS+=	--enable-external-libtalloc
 BUILD_DEPENDS+=		tdb>=1.2.9:${PORTSDIR}/databases/tdb
 RUN_DEPENDS+=		tdb>=1.2.9:${PORTSDIR}/databases/tdb
