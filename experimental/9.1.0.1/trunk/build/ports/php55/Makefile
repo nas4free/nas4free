@@ -1,5 +1,5 @@
 PORTNAME=		php55
-PORTVERSION=	5.5.2
+PORTVERSION=	5.5.3
 PORTREVISION?=  0
 CATEGORIES=		lang
 COMMENT=		PHP5 Scripting Language
@@ -71,7 +71,8 @@ OPTIONS=	CLI "Build CLI version" on \
 		DTRACE "Enable DTrace support" off \
 		IPV6 "Enable ipv6 support" on \
 		MAILHEAD "Enable mail header patch" off \
-		LINKTHR "Link thread lib (for threaded extensions)" on
+		LINKTHR "Link thread lib (for threaded extensions)" on \
+		MZTS "Force Zend Thread Safety (ZTS) build" off
 #		SUHOSIN "Enable Suhosin protection system" on \
 
 .if defined(WITH_DTRACE)
