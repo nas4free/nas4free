@@ -1,6 +1,6 @@
 PORTNAME=		lighttpd
-PORTVERSION=	1.4.32
-PORTREVISION= 1
+PORTVERSION=	1.4.33
+PORTREVISION= 0
 CATEGORIES=		www
 COMMENT=		A secure, fast, compliant, and very flexible Web Server
 MAINTAINER=		zoon01@nas4free.org
