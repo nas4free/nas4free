@@ -1,5 +1,5 @@
 PORTNAME=		samba36
-PORTVERSION=	  3.6.18
+PORTVERSION=	  3.6.19
 #PORTREVISION?= 1
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -78,7 +78,7 @@ CONFIGURE_ARGS+=     --without-libtevent --enable-external-libtevent
 
 CONFIGURE_ARGS+=	--without-libtalloc \
 			--without-libtdb \
-			--with-libiconv="${LOCALBASE}" \
+			--with-libiconv= ${ICONV_CONFIGURE_BASE} \
 			--enable-as-needed \
 			--disable-pie \
 			--disable-cups \
