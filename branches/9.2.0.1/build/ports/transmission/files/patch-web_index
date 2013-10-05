@@ -1,0 +1,88 @@
+--- ./web/index.html.orig	2013-08-09 04:48:08.298419000 +0200
++++ ./web/index.html	2013-08-12 01:14:15.000000000 +0200
+@@ -2,7 +2,7 @@
+ <html>
+ 	<head>
+ 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+-		<meta http-equiv="X-UA-Compatible" content="IE=8,IE=9,IE=10"><!-- ticket #4555 --> 
++		<meta http-equiv="X-UA-Compatible" content="IE=8,IE=9,IE=10,IE=11"><!-- ticket #4555 -->
+ 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+ 		<meta name="apple-mobile-web-app-capable" content="yes" />
+ 		<link href="./images/favicon.ico" rel="icon" />
+@@ -282,11 +282,11 @@
+ 			<div class="dialog_top_bar"></div>
+ 			<div class="dialog_window">
+ 				<div class="dialog_logo" id="upload_dialog_logo"></div>
+-				<h2 class="dialog_heading">Upload Torrent Files</h2>
++				<h2 class="dialog_heading">Add a Torrent File</h2>
+ 				<form action="#" method="post" id="torrent_upload_form"
+ 					enctype="multipart/form-data" target="torrent_upload_frame">
+ 					<div class="dialog_message">
+-						<label for="torrent_upload_file">Please select a torrent file to upload:</label>
++						<label for="torrent_upload_file">Please select a torrent file to run:</label>
+ 							<input type="file" name="torrent_files[]" id="torrent_upload_file" multiple="multiple" />
+ 						<label for="torrent_upload_url">Or enter a URL:</label>
+ 							<input type="url" id="torrent_upload_url"/>
+@@ -295,7 +295,7 @@
+ 							<input type="checkbox" id="torrent_auto_start" />
+ 						<label for="torrent_auto_start" id="auto_start_label">Start when added</label>
+ 					</div>
+-					<a href="#upload" id="upload_confirm_button">Upload</a>
++					<a href="#upload" id="upload_confirm_button">Run</a>
+ 					<a href="#cancel" id="upload_cancel_button">Cancel</a>
+ 				</form>
+ 			</div>
+@@ -324,9 +324,6 @@
+ 					<ul id="footer_super_menu">
+ 						<li id="about-button">About</li>
+ 						<li class="separator"></li>
+-						<li id="homepage">Transmission Homepage</li>
+-						<li id="tipjar">Transmission Tip Jar</li>
+-						<li class="separator"></li>
+ 						<li id="statistics">Statistics</li>
+ 						<li id="toggle_notifications" style="display: none">Notifcations</li>
+ 						<li class="separator"></li>
+@@ -335,7 +332,6 @@
+ 								<li id="unlimited_download_rate">Unlimited</li>
+ 								<li id="limited_download_rate">Limit (10 kB/s)</li>
+ 								<li class="separator"></li>
+-								<li class='download-speed'>5 kB/s</li>
+ 								<li class='download-speed'>10 kB/s</li>
+ 								<li class='download-speed'>20 kB/s</li>
+ 								<li class='download-speed'>30 kB/s</li>
+@@ -346,8 +342,13 @@
+ 								<li class='download-speed'>150 kB/s</li>
+ 								<li class='download-speed'>200 kB/s</li>
+ 								<li class='download-speed'>250 kB/s</li>
++								<li class='download-speed'>300 kB/s</li>
++								<li class='download-speed'>350 kB/s</li>
++								<li class='download-speed'>400 kB/s</li>
++								<li class='download-speed'>450 kB/s</li>
+ 								<li class='download-speed'>500 kB/s</li>
+ 								<li class='download-speed'>750 kB/s</li>
++								<li class='download-speed'>1024 kB/s</li>
+ 							</ul>
+ 						</li>
+ 						<li>Total Upload Rate
+@@ -355,7 +356,6 @@
+ 								<li id="unlimited_upload_rate">Unlimited</li>
+ 								<li id="limited_upload_rate">Limit (10 kB/s)</li>
+ 								<li class="separator"></li>
+-								<li class='upload-speed'>5 kB/s</li>
+ 								<li class='upload-speed'>10 kB/s</li>
+ 								<li class='upload-speed'>20 kB/s</li>
+ 								<li class='upload-speed'>30 kB/s</li>
+@@ -366,8 +366,13 @@
+ 								<li class='upload-speed'>150 kB/s</li>
+ 								<li class='upload-speed'>200 kB/s</li>
+ 								<li class='upload-speed'>250 kB/s</li>
++								<li class='upload-speed'>300 kB/s</li>
++								<li class='upload-speed'>350 kB/s</li>
++								<li class='upload-speed'>400 kB/s</li>
++								<li class='upload-speed'>450 kB/s</li>
+ 								<li class='upload-speed'>500 kB/s</li>
+ 								<li class='upload-speed'>750 kB/s</li>
++								<li class='upload-speed'>1024 kB/s</li>
+ 							</ul>
+ 						</li>
+ 						<li class="separator"></li>

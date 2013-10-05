@@ -1,0 +1,154 @@
+#!/bin/sh
+#
+# $FreeBSD: src/etc/rc.d/bsnmpd,v 1.2.4.1.2.1 2011/11/11 04:20:22 kensmith Exp $
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+# PROVIDE: bsnmpd
+# REQUIRE: NETWORKING syslogd
+# KEYWORD: nojail shutdown
+# XQUERY: -i "count(//snmpd/enable) > 0" -o "0" -b
+# RCVAR: bsnmpd
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="bsnmpd"
+rcvar=`set_rcvar`
+
+load_rc_config "$name"
+
+# Custom commands
+start_precmd="bsnmpd_mkconf"
+mkconf_cmd="bsnmpd_mkconf"
+extra_commands="mkconf"
+
+# Defaults
+bsnmpd_enable=${bsnmpd_enable:-"NO"}
+bsnmpd_config=${bsnmpd_config:-"/var/etc/snmpd.config"}
+pidfile="/var/run/snmpd.pid"
+command="/usr/sbin/${name}"
+command_args="-c ${bsnmpd_config} -p ${pidfile}"
+
+bsnmpd_mkconf()
+{
+	# Get some system information
+	hw_machine=`/sbin/sysctl -n hw.machine`
+	hw_model=`/sbin/sysctl -n hw.model`
+	hw_clockrate=`/sbin/sysctl -n hw.clockrate`
+	kern_ostype=`/sbin/sysctl -n kern.ostype`
+	kern_osrelease=`/sbin/sysctl -n kern.osrelease`
+	kern_osrevision=`/sbin/sysctl -n kern.osrevision`
+
+	/usr/local/bin/xml sel -t -m "//snmpd" \
+		-o "# Set some common variables" -n \
+		-v "concat('host := ',//system/hostname)" -n \
+		-v "concat('location := \"',location,'\"')" -n \
+		-v "concat('contact := \"',contact,'\"')" -n \
+		-o "system := 1 # FreeBSD" -n \
+		-o "description := \"Hardware: ${hw_machine} ${hw_model} running at ${hw_clockrate} Software: ${kern_ostype} ${kern_osrelease} (revision ${kern_osrevision})\"" -n \
+		-v "concat('read := \"',read,'\"')" -n \
+		-i "count(trapenable) > 0" \
+			-n \
+			-o "# Trap settings" -n \
+			-v "concat('traphost := ',traphost)" -n \
+			-v "concat('trapport := ',trapport)" -n \
+			-v "concat('trap := \"',trap,'\"')" -n \
+		-b \
+		-n \
+		-o "# Configuration" -n \
+		-o "%snmpd" -n \
+		-o "begemotSnmpdDebugDumpPdus = 2" -n \
+		-o "begemotSnmpdDebugSyslogPri = 7" -n \
+		-n \
+		-o "# Set the read and write communities." -n \
+		-o "begemotSnmpdCommunityString.0.1 = \$(read)" -n \
+		-o "begemotSnmpdCommunityDisable = 1" -n \
+		-n \
+		-o "# open standard SNMP ports" -n \
+		-o "begemotSnmpdPortStatus.[\$(host)].161 = 1" -n \
+		-o "begemotSnmpdPortStatus.127.0.0.1.161 = 1" -n \
+		-n \
+		-o "# open a unix domain socket" -n \
+		-o "begemotSnmpdLocalPortStatus.\"/var/run/snmpd.sock\" = 1" -n \
+		-o "begemotSnmpdLocalPortType.\"/var/run/snmpd.sock\" = 4" -n \
+		-i "count(trapenable) > 0" \
+			-n \
+			-o "# send traps to the traphost" -n \
+			-o "begemotTrapSinkStatus.[\$(traphost)].\$(trapport) = 4" -n \
+			-o "begemotTrapSinkVersion.[\$(traphost)].\$(trapport) = 2" -n \
+			-o "begemotTrapSinkComm.[\$(traphost)].\$(trapport) = \$(trap)" -n \
+		-b \
+		-n \
+		-o "sysContact = \$(contact)" -n \
+		-o "sysLocation = \$(location)" -n \
+		-o "sysObjectId = 1.3.6.1.4.1.12325.1.1.2.1.\$(system)" -n \
+		-o "sysDescr = \$(description)" -n \
+		-n \
+		-o "snmpEnableAuthenTraps = 2" -n \
+		-i "count(modules/mibii) > 0" \
+			-n \
+			-o "#" -n \
+			-o "# Load MIB-2 module" -n \
+			-o "#" -n \
+			-o "begemotSnmpdModulePath.\"mibII\" = \"/usr/lib/snmp_mibII.so\"" -n \
+			-n \
+			-o "#%mibII" -n \
+			-o "#begemotIfForcePoll = 2000" -n \
+		-b \
+		-i "count(modules/netgraph) > 0" \
+			-n \
+			-o "#" -n \
+			-o "# Netgraph module" -n \
+			-o "#" -n \
+			-o "begemotSnmpdModulePath.\"netgraph\" = \"/usr/lib/snmp_netgraph.so\"" -n \
+			-n \
+			-o "%netgraph" -n \
+			-o "begemotNgControlNodeName = \"snmpd\"" -n \
+		-b \
+		-i "count(modules/hostres) > 0" \
+			-n \
+			-o "#" -n \
+			-o "# Host resources module snmp_hostres(3)." -n \
+			-o "# This requires the mibII module." -n \
+			-o "#" -n \
+			-o "begemotSnmpdModulePath.\"hostres\" = \"/usr/lib/snmp_hostres.so\"" -n \
+		-b \
+		-i "count(modules/ucd) > 0" \
+			-n \
+			-o "#" -n \
+			-o "# bsnmp-ucd (8)" -n \
+			-o "#" -n \
+			-o "begemotSnmpdModulePath.\"ucd\" = \"/usr/lib/snmp_ucd.so\"" -n \
+			-o "%ucd" -n \
+			-o "memMinimumSwap = 1600" -n \
+			-o "memSwapErrorMsg = \"No free swap!\"" -n \
+			-n \
+			-o "laConfig.1 = \"6.0\"" -n \
+			-o "laConfig.2 = \"5.0\"" -n \
+			-o "laConfig.3 = \"4.0\"" -n \
+			-n \
+			-o "laErrMessage.1 = \"1min load average is high!\"" -n \
+			-o "laErrMessage.2 = \"5min load average is high!\"" -n \
+			-o "laErrMessage.3 = \"15min load average is high!\"" -n \
+			-n \
+			-o "# Extension commands (extTable)" -n \
+			-o "extNames.0 = \"uname\"" -n \
+			-o "extCommand.0 = \"/usr/bin/uname -a\"" -n \
+			-o "extNames.1 = \"uptime\"" -n \
+			-o "extCommand.1 = \"/usr/bin/uptime\"" -n \
+		-b \
+		-m "auxparam" \
+			-v "." -n \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc > ${bsnmpd_config}
+}
+
+run_rc_command "$1"

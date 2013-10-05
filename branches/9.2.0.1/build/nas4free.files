@@ -1,0 +1,813 @@
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# List of files required for NAS4FREE.
+#
+# Lines with colons (':') in them list files that should be soft-linked
+# to each other, e.g.
+#     bin/link:bin/ln
+# => Copy over bin/link, then soft link ln to it.
+
+####### contents of /bin
+
+## Test -- condition evaluation utility
+bin/[:bin/test
+
+## cat -- concatenate and print files
+bin/cat
+
+## chmod -- change file modes
+bin/chmod
+
+## cp -- copy files
+bin/cp
+
+## tcsh -- C shell with file name completion and command line editing
+bin/csh:bin/tcsh
+
+## date -- display or set date and time
+bin/date
+
+## dd -- convert and copy a file
+bin/dd
+
+## df -- display free disk space
+bin/df
+
+## echo -- write arguments to the standard output
+bin/echo
+
+## expr -- evaluate expression
+bin/expr
+
+## hostname -- set or print name of current host system
+bin/hostname
+
+## kill -- terminate or signal a process
+bin/kill
+
+## ln, link -- make links
+bin/link:bin/ln
+
+## ls -- list directory contents
+bin/ls
+
+## mkdir -- make directories
+bin/mkdir
+
+## mv -- move files
+bin/mv
+
+## pax -- read and write file archives and copy directory hierarchies
+bin/pax
+
+## ps -- process status
+bin/ps
+
+## pwd -- return working directory name
+bin/pwd
+
+## realpath -- return resolved physical path
+bin/realpath
+
+## rm, unlink -- remove directory entries
+bin/rm:bin/unlink
+
+## sh -- command interpreter (shell)
+bin/sh
+
+## sleep -- suspend execution for an interval of time
+bin/sleep
+
+## stty -- set the options for a terminal device interface
+bin/stty
+
+## sync -- force completion of pending disk writes (flush cache)
+bin/sync
+
+## kenv -- dump or modify the kernel environment
+bin/kenv
+
+## rmdir -- remove directories
+bin/rmdir
+
+## chflags -- change file flags
+bin/chflags
+
+## pgrep, pkill -- find or signal processes by name
+bin/pkill:bin/pgrep:usr/bin/pkill:usr/bin/pgrep
+
+## pwait -- wait for processes to terminate
+bin/pwait
+
+## getfacl -- get ACL information
+bin/getfacl
+
+## setfacl -- set ACL information
+bin/setfacl
+
+## uuidgen -- generate universally unique identifiers
+bin/uuidgen
+
+####### contents of /sbin
+## adjkerntz -- adjust local time CMOS clock to reflect time zone changes and keep current timezone offset for the kernel
+sbin/adjkerntz
+
+## bsdlabel -- read and write disk pack label
+sbin/bsdlabel
+
+## devfs -- DEVFS control (NEW from FreeBSD 5.2, replace the )
+sbin/devfs
+
+## dhclient -- Dynamic Host Configuration Protocol (DHCP) client
+sbin/dhclient
+
+## dhclient-script -- DHCP client network configuration script
+sbin/dhclient-script
+
+## dmesg -- display the system message buffer
+sbin/dmesg
+
+## reboot, halt, fastboot, fasthalt -- stopping and restarting the system
+sbin/fastboot:sbin/fasthalt:sbin/halt:sbin/reboot
+
+## fdisk -- PC slice table maintenance utility
+sbin/fdisk
+
+## fsck -- file system consistency check and interactive repair
+sbin/fsck
+
+## fsck -- UFS,FFS 4.2BSD file system consistency check and interactive repair
+sbin/fsck_ufs:sbin/fsck_ffs:sbin/fsck_4.2bsd
+
+## fsck_msdosfs -- DOS/WINDOWS file system consistency check and interactive repair
+sbin/fsck_msdosfs
+
+## geom -- universal control utility for GEOM classes
+sbin/geom:sbin/gconcat:sbin/gmirror:sbin/gnop:sbin/gstripe:sbin/geli:sbin/glabel:sbin/graid
+
+## gmultipath -disk multipath control utility
+sbin/gmultipath
+
+## growfs -- grow size of an existing ufs file system
+sbin/growfs
+
+## gpart -- control utility for the disk partitioning GEOM class
+sbin/gpart
+
+## gvinum -- Volume manager (RAID0,1,5)
+sbin/gvinum
+
+## hastd -- Highly Available Storage daemon
+sbin/hastd
+
+## hastctl -- Highly Available Storage control utility
+sbin/hastctl
+
+## ifconfig -- configure network interface parameters
+sbin/ifconfig
+
+## init -- process control initialization
+sbin/init
+
+## iscontrol -- login/negotiator/control for an iSCSI initiator session
+sbin/iscontrol
+
+## kldload -- load a file into the kernel
+sbin/kldload
+
+## kldstat -- display status of dynamic kernel linker
+sbin/kldstat
+
+## kldunload -- unload a file from the kernel
+sbin/kldunload
+
+## ldconfig -- configure the shared library cache
+sbin/ldconfig
+
+## mdconfig -- configure and enable memory disks
+sbin/mdconfig
+
+## mknod -- build special file
+sbin/mknod
+
+## mount -- mount file systems
+sbin/mount
+
+## mdmfs, mount_mfs -- configure and mount an in-memory file system using the md(4) driver
+sbin/mdmfs:sbin/mount_mfs
+
+## mount_nullfs -- mount a loopback file system sub-tree; demonstrate the use of a null file system layer
+sbin/mount_nullfs
+
+## mount_unionfs -- mount union file systems
+sbin/mount_unionfs
+
+## mount_msdosfs -- mount MS-DOS file system
+sbin/mount_msdosfs
+
+## mount_nfs -- mount NFS file system
+sbin/mount_nfs
+
+## mount_cd9660 -- mount CDROM file system
+sbin/mount_cd9660
+
+## mount_udf -- mount UDF file system
+sbin/mount_udf
+
+## newsfs -- construct a new UFS1/UFS2 file system
+sbin/newfs
+
+## newsfs -- construct a FAT (16/32) file system
+sbin/newfs_msdos
+
+## ping -- send ICMP ECHO_REQUEST packets to network hosts
+sbin/ping
+
+## ping6 -- send ICMPv6 ECHO_REQUEST packets to network hosts
+sbin/ping6
+
+## route -- manually manipulate the routing tables
+sbin/route
+
+## shutdown -- close down the system at a given time
+sbin/shutdown
+
+## sysctl -- get or set kernel state
+sbin/sysctl
+
+## swapon - Enable swap
+sbin/swapon:sbin/swapoff
+
+## pstat, swapinfo -- display system data structures
+usr/sbin/pstat:usr/sbin/swapinfo
+
+## tunefs -- tune up an existing file system
+sbin/tunefs
+
+## umount -- unmount file systems
+sbin/umount
+
+## atacontrol -- manage IDE disk
+sbin/atacontrol
+
+## camcontrol -- manage SCSI disk
+sbin/camcontrol
+
+## rcorder -- print a dependency ordering of interdependent files
+sbin/rcorder
+
+## md5, sha1, sha256, rmd160 -- calculate a message-digest fingerprint
+sbin/md5:sbin/sha1:sbin/sha256:sbin/rmd160
+
+## mksnap_ffs -- take a file system snapshot
+sbin/mksnap_ffs
+
+## devd -- device state change daemon
+sbin/devd
+
+## ipfw -- IP firewall and traffic shaper control program
+sbin/ipfw
+
+## zfs - configures ZFS file systems
+sbin/zfs
+
+## zpool - configures ZFS storage pools
+sbin/zpool
+
+## clri -- clear an inode
+sbin/clri
+
+## dumpon -- specify a device for crash dumps
+sbin/dumpon
+
+## dumpfs -- dump UFS file system information
+sbin/dumpfs
+
+## savecore -- save a core dump of the operating system
+sbin/savecore
+
+## dump -- file system backup
+sbin/dump
+
+## restore -- restore files or file systems from backups made with dump
+sbin/restore
+
+## resolvconf -- a framework for managing multiple DNS configurations
+sbin/resolvconf
+
+####### contents of /usr/bin
+
+## awk -- pattern-directed scanning and processing language
+usr/bin/awk
+
+## bsnmpget, bsnmpwalk, bsnmpset -- simple tools for querying SNMP agents
+usr/bin/bsnmpget:usr/bin/bsnmpwalk:usr/bin/bsnmpset
+
+## bzip2, bunzip2, bzcat - a block-sorting file compressor
+usr/bin/bzip2:usr/bin/bunzip2:usr/bin/bzcat
+
+## bzip2recover - recovers data from damaged bzip2 files
+usr/bin/bzip2recover
+
+## du -- Display file usage: Usefull for checking disk space
+usr/bin/du
+
+## fstat -- identify active files
+usr/bin/fstat
+
+## fetch -- FTP/HTTP download tools
+usr/bin/fetch
+
+## gzip, gunzip, zcat -- compress or expand files
+usr/bin/gzip:usr/bin/gunzip:usr/bin/zcat
+
+## id -- displays the user and group names and numeric IDs, of the calling process
+usr/bin/id:usr/bin/groups
+
+## jot -- print sequential or random data
+usr/bin/jot
+
+## killall -- kill processes by name
+usr/bin/killall
+
+## logger -- make entries in the system log
+usr/bin/logger
+
+## mktemp -- make temporary file name (unique)
+usr/bin/mktemp
+
+## netstat -- show network status
+usr/bin/netstat
+
+## nohup -- invoke a utility immune to hangups
+usr/bin/nohup
+
+## passwd -- modify a user's password
+usr/bin/passwd
+
+## su -- substitute user identity
+usr/bin/su
+
+## scp -- secure copy (remote file copy program)
+usr/bin/scp
+
+## ssh -- secure Shell Client (used for RSYNC and Unison over SSH)
+# Note: Will be overwritten when openssh-portable package is activated.
+usr/bin/ssh
+
+## tail -- display the last part of a file
+usr/bin/tail
+
+## tar -- manipulate tape archives
+usr/bin/bsdtar:usr/bin/tar
+
+## top -- display and update information about the top cpu processes
+usr/bin/top
+
+## touch -- create/change file access and modification times
+usr/bin/touch
+
+## uptime -- show how long system has been running
+usr/bin/uptime:usr/bin/w
+
+## ldd -- list dynamic object dependencies
+usr/bin/ldd
+
+## stat -- display file status
+usr/bin/stat:usr/bin/readlink
+
+## less, more -- display content
+usr/bin/less:usr/bin/more
+
+## grep, egrep, fgrep, zgrep, zegrep, zfgrep, bzgrep, bzegrep, bzfgrep -- print lines matching a pattern
+usr/bin/grep:usr/bin/egrep:usr/bin/fgrep:usr/bin/zgrep:usr/bin/zegrep:usr/bin/zfgrep:usr/bin/bzgrep:usr/bin/bzegrep:usr/bin/bzfgrep
+
+## find -- walk a file hierarchy
+usr/bin/find
+
+## uname -- display information about the system
+usr/bin/uname
+
+## env -- set environment and execute command, or print environment
+usr/bin/env
+
+## tr -- translate characters
+usr/bin/tr
+
+## wc -- word, line, character, and byte count
+usr/bin/wc
+
+## head -- display first lines of a file
+usr/bin/head
+
+## uudecode, b64decode -- decode a binary file
+usr/bin/uudecode:usr/bin/b64decode
+
+## install -- install binaries
+usr/bin/install
+
+## basename, dirname -- return filename or directory portion of pathname
+usr/bin/basename
+
+## basename, dirname -- return filename or directory portion of pathname
+usr/bin/dirname
+
+## tee -- pipe fitting
+usr/bin/tee
+
+## sed -- stream editor
+usr/bin/sed
+
+## wall -- write a message to users (required by shutdown)
+usr/bin/wall
+
+## sort -- sort lines of text files
+usr/bin/sort
+
+## uniq -- report or filter out repeated lines in a file
+usr/bin/uniq
+
+## login -- log into the computer
+usr/bin/login
+
+## nice -- execute a utility at an altered scheduling priority
+usr/bin/nice
+
+## getent -- get entries from administrative database
+usr/bin/getent
+
+## cut -- select portions of each line of a file
+usr/bin/cut
+
+## cmp -- compare two files
+usr/bin/cmp
+
+## diff -- find differences between two files
+usr/bin/diff
+
+## bc -- An arbitrary precision calculator language
+usr/bin/bc
+
+## printf -- formatted output
+usr/bin/printf
+
+## true -- return true value
+usr/bin/true
+
+## nc -- arbitrary TCP and UDP connections and listens
+usr/bin/nc
+
+## ssh-keygen -- authentication key generation, management and conversion
+usr/bin/ssh-keygen
+
+## nfsstat -- display NFS statistics
+usr/bin/nfsstat
+
+## showmount -- show remote nfs mounts on host
+usr/bin/showmount
+
+## truss -- trace system calls
+usr/bin/truss
+
+## install-info -- update info/dir entries
+usr/bin/install-info
+
+## xargs -- construct argument list(s) and execute utility
+usr/bin/xargs
+
+## procstat -- get detailed process information
+usr/bin/procstat
+
+## getopt -- parse command options
+usr/bin/getopt
+
+## mt -- magnetic tape manipulating program
+usr/bin/mt
+
+## cu -- call UNIX
+usr/bin/cu
+
+## tip -- connect to a remote system
+usr/bin/tip
+
+## tty -- return user's terminal name
+usr/bin/tty
+
+## vi - text editors
+usr/bin/vi
+
+## cpuset -- configure processor sets
+usr/bin/cpuset
+
+## systat -- display system statistics
+usr/bin/systat
+
+## sockstat -- list open socket
+usr/bin/sockstat
+
+## vmstat -- report virtual memory statistics
+usr/bin/vmstat
+
+## patch -- apply a diff file to an original
+usr/bin/patch
+
+## xz,  unxz,  xzcat, lzma, unlzma, lzcat - Compress or decompress .xz and .lzma files
+usr/bin/xz:usr/bin/unxz:usr/bin/xzcat:usr/bin/lzma:usr/bin/unlzma:usr/bin/lzcat
+
+####### contents of /usr/sbin
+## acpiconf -- control ACPI power management
+usr/sbin/acpiconf
+
+## ancontrol -- configure Aironet 4500/4800 devices
+usr/sbin/ancontrol
+
+## arp -- address resolution display and control
+usr/sbin/arp
+
+#boot0cfg -- boot manager installation/configuration utility
+usr/sbin/boot0cfg
+
+## chown -- change file owner and group
+usr/sbin/chown:usr/bin/chgrp
+
+##chroot -- change root directory
+usr/sbin/chroot
+
+## cron -- daemon to execute scheduled commands (Vixie Cron)
+usr/sbin/cron
+
+## daemon -- run detached from the controlling terminal
+usr/sbin/daemon
+
+## pciconf -- diagnostic utility for the PCI bus
+usr/sbin/pciconf
+
+## powerd -- system power control utility
+usr/sbin/powerd
+
+## pw -- create, remove, modify & display system users and groups
+usr/sbin/pw
+
+## pwd_mkdb -- generate the password databases
+usr/sbin/pwd_mkdb
+
+## rtsold -- router solicitation daemon
+usr/sbin/rtsold:sbin/rtsol
+
+##  traceroute -- print the route packets take to network host
+usr/sbin/traceroute
+
+## traceroute6 -- print the route IPv6 packets will take to a network node
+usr/sbin/traceroute6
+
+## wpa_supplicant -- WPA/802.11i Supplicant for wireless network devices
+usr/sbin/wpa_supplicant
+
+## mountd -- service remote NFS mount requests
+usr/sbin/mountd
+
+## nfsd -- remote NFS server
+usr/sbin/nfsd
+
+## nfsuserd -- load user and group information into the kernel for NFSv4 service
+usr/sbin/nfsuserd
+
+## nfscbd -- NFSv4 client side callback daemon
+usr/sbin/nfscbd
+
+## rpcbind -- universal addresses to RPC program number mapper
+usr/sbin/rpcbind
+
+## rpcinfo -- report RPC information
+usr/bin/rpcinfo
+
+## rpc.lockd -- NFS file locking daemon
+usr/sbin/rpc.lockd
+
+## rpc.statd -- host status monitoring daemon
+usr/sbin/rpc.statd
+
+## sshd -- OpenSSH SSH daemon
+## Note: Will be overwritten when openssh-portable package is activated.
+usr/sbin/sshd
+
+## pkg_add -- a utility for installing software package distributions
+usr/sbin/pkg_add
+
+## pkg_info -- dump out information about packages
+usr/sbin/pkg_info
+
+## pkg_delete -- a utility for deleting previously installed software package distributions
+usr/sbin/pkg_delete
+
+## mtree -- map a directory hierarchy (required by pkg_add)
+usr/sbin/mtree
+
+## diskinfo -- get information about disk device
+usr/sbin/diskinfo
+
+## bsnmpd -- simple and extensible SNMP daemon
+usr/sbin/bsnmpd
+
+## snapinfo -- show snapshot location on UFS file systems
+usr/sbin/snapinfo
+
+## nologin -- politely refuse a login
+usr/sbin/nologin:sbin/nologin
+
+## ip6addrctl -- configure address selection policy for IPv6 and IPv4
+usr/sbin/ip6addrctl
+
+## jail -- manage system jails
+usr/sbin/jail
+
+## jexec -- execute a command inside an existing jail
+usr/sbin/jexec
+
+## jls -- list jails
+usr/sbin/jls
+
+## mount_smbfs -- mount a shared resource from an SMB file server
+usr/sbin/mount_smbfs
+
+## usbconfig -- configure the USB subsystem
+usr/sbin/usbconfig
+
+## iostat -- report I/O statistics
+usr/sbin/iostat
+
+## ntpdate -- set the date and time via NTP
+usr/sbin/ntpdate
+
+## vidcontrol -- system console control and configuration utility
+usr/sbin/vidcontrol
+
+## kbdcontrol -- keyboard control and configuration utility
+usr/sbin/kbdcontrol
+
+## gstat -- print statistics about GEOM disks
+usr/sbin/gstat
+
+## cpucontrol -- control utility for the cpuctl device
+usr/sbin/cpucontrol
+
+## wake -- send Wake on LAN frames to hosts on a local Ethernet network
+usr/sbin/wake
+
+## zdb - ZFS debugg
+usr/sbin/zdb
+
+####### contents of /usr/libexec
+# ld-elf.so.1, ld.so, rtld -- run-time link-editor
+libexec/ld-elf.so.1:usr/libexec/ld-elf.so.1
+
+# sftp-server -- SFTP server subsystem
+# Note: Will be overwritten when openssh-portable package is activated.
+usr/libexec/sftp-server
+
+## getty -- set terminal mode
+usr/libexec/getty
+
+####### contents of /usr/share/misc
+usr/share/misc/scsi_modes
+usr/share/misc/termcap:etc/termcap
+usr/share/misc/pci_vendors
+usr/share/misc/usb_hid_usages
+usr/share/misc/usbdevs
+
+####### contents of /usr/share/locale
+usr/share/locale/en_US.ISO8859-1/
+usr/share/locale/en_US.UTF-8/
+usr/share/locale/la_LN.ISO8859-1/
+usr/share/locale/la_LN.US-ASCII/
+usr/share/locale/UTF-8/
+
+####### contents of /usr/lib
+# PAM libraries
+usr/lib/pam_*.so.*
+
+# SNMP modules
+usr/lib/snmp_hostres.so.*:usr/lib/snmp_hostres.so
+usr/lib/snmp_mibII.so.*:usr/lib/snmp_mibII.so
+usr/lib/snmp_netgraph.so.*:usr/lib/snmp_netgraph.so
+
+# UBS library
+usr/lib/libusbhid.so.4
+
+####### contents of /lib/geom
+# GEOM tools
+lib/geom/geom_*.so
+
+# zfs tools
+lib/libzfs*.so.*
+lib/libzpool*.so.*
+
+# For packages and shelltips only
+lib/libulog.so.0
+lib/libelf.so.1
+
+####### contents of /etc/ssh
+# moduli -- system moduli file
+etc/ssh/moduli
+
+####### contents of /boot
+# PXE
+boot/pxeboot
+# MBR
+boot/mbr
+boot/boot
+boot/boot0
+boot/boot1
+# GPT
+boot/pmbr
+boot/gptboot
+
+####### contents of /etc
+etc/rc.shutdown
+etc/rc.subr
+etc/rc.resume
+etc/rc.suspend
+etc/network.subr
+etc/pccard_ether
+etc/gettytab
+####### Add custom devd.conf to NAS4Free 9.1.0.1 freebsd 9.1 series, it could use/need modifications
+#etc/devd.conf
+etc/devfs.conf
+etc/dhclient.conf
+etc/disktab
+etc/fbtab
+etc/netconfig
+etc/networks
+etc/protocols
+#etc/rc.firewall6
+etc/remote
+etc/rpc
+
+####### contents of /etc/defaults
+etc/defaults/devfs.rules
+#pccard.conf is not present on /etc/defaults on FreeBSD 8.0
+#Need to check if still usefull
+#etc/defaults/pccard.conf
+etc/defaults/rc.conf
+
+####### contents of /etc/rc.d
+etc/rc.d/LOGIN
+etc/rc.d/local
+#etc/rc.d/early.sh
+etc/rc.d/adjkerntz
+etc/rc.d/securelevel
+etc/rc.d/dhclient
+etc/rc.d/netoptions
+etc/rc.d/power_profile
+#etc/rc.d/network_ipv6
+#etc/rc.d/auto_linklocal
+etc/rc.d/FILESYSTEMS
+etc/rc.d/ip6addrctl
+etc/rc.d/random
+etc/rc.d/swap1
+#etc/rc.d/ip6fw
+etc/rc.d/devd
+etc/rc.d/dmesg
+etc/rc.d/hostid
+etc/rc.d/jail
+
+####### contents of /usr/share/snmp/defs
+usr/share/snmp/defs/atm_freebsd.def
+usr/share/snmp/defs/bridge_tree.def
+usr/share/snmp/defs/mibII_tree.def
+usr/share/snmp/defs/pf_tree.def
+usr/share/snmp/defs/atm_tree.def
+usr/share/snmp/defs/hostres_tree.def
+usr/share/snmp/defs/netgraph_tree.def
+usr/share/snmp/defs/tree.def
+
+####### contents of /usr/share/snmp/mibs
+usr/share/snmp/mibs/BEGEMOT-ATM-FREEBSD-MIB.txt
+usr/share/snmp/mibs/BEGEMOT-ATM.txt
+usr/share/snmp/mibs/BEGEMOT-BRIDGE-MIB.txt
+usr/share/snmp/mibs/BEGEMOT-HOSTRES-MIB.txt
+usr/share/snmp/mibs/BEGEMOT-IP-MIB.txt
+usr/share/snmp/mibs/BEGEMOT-MIB.txt
+usr/share/snmp/mibs/BEGEMOT-MIB2-MIB.txt
+usr/share/snmp/mibs/BEGEMOT-NETGRAPH.txt
+usr/share/snmp/mibs/BEGEMOT-PF-MIB.txt
+usr/share/snmp/mibs/BEGEMOT-SNMPD.txt
+usr/share/snmp/mibs/BRIDGE-MIB.txt
+usr/share/snmp/mibs/FOKUS-MIB.txt
+usr/share/snmp/mibs/FREEBSD-MIB.txt
+usr/share/snmp/mibs/RSTP-MIB.txt
+
+####### contents of /libexec/resolvconf
+libexec/resolvconf/dnsmasq
+libexec/resolvconf/libc
+libexec/resolvconf/named
+libexec/resolvconf/pdnsd
+libexec/resolvconf/unbound
+
+####### Intel wireless module license
+usr/share/doc/legal/intel_wpi/LICENSE
+usr/share/doc/legal/intel_iwi/LICENSE
+usr/share/doc/legal/intel_ipw/LICENSE

@@ -1,0 +1,15 @@
+--- ata/chipsets/ata-via.c.orig	2012-03-31 08:56:16.000000000 +0900
++++ ata/chipsets/ata-via.c	2012-09-12 13:28:33.000000000 +0900
+@@ -153,6 +153,12 @@
+     if (ata_setup_interrupt(dev, ata_generic_intr))
+ 	return ENXIO;
+ 
++    /* VT6421/6420 fix from http://thread.gmane.org/gmane.linux.kernel/1062139 */
++    if (pci_get_devid(dev) == ATA_VIA6421 || pci_get_devid(dev) == ATA_VIA6420) {
++	pci_write_config(dev, 0x52,
++	    (pci_read_config(dev, 0x52, 1) | 0x04), 1);
++    }
++
+     /* AHCI SATA */
+     if (ctlr->chip->cfg2 & VIAAHCI) {
+ 	if (ata_ahci_chipinit(dev) != ENXIO)

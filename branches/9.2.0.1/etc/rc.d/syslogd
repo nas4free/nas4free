@@ -1,0 +1,92 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+# PROVIDE: syslogd
+# REQUIRE: clog mountcritremote FILESYSTEMS NETWORKING
+# BEFORE: SERVERS
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="syslogd"
+rcvar="syslogd_enable"
+
+load_rc_config "$name"
+
+# Defaults
+syslogd_enable=${syslogd_enable:-"NO"}
+syslogd_config=${syslogd_config:-"/var/etc/syslog.conf"}
+clog_logdir=${clog_logdir:-"/var/log"}
+pidfile="/var/run/syslog.pid"
+command="/usr/sbin/${name}"
+command_args="-f ${syslogd_config}"
+
+# Custom commands
+start_precmd="syslogd_prestart"
+extra_commands="reload mkconf"
+reload_precmd="syslogd_prereload"
+mkconf_cmd="syslogd_mkconf"
+
+# Check if syslog'ing to remote syslog server is disabled
+if ! configxml_isset //syslogd/remote/enable; then
+	syslogd_flags="-8 -ss"
+	command_args="-f ${syslogd_config}"
+fi
+
+syslogd_mkconf()
+{
+	echo "local3.* %${clog_logdir}/sshd.log
+local4.* %${clog_logdir}/rsyncd.log
+local5.* %${clog_logdir}/smartd.log
+ftp.* %${clog_logdir}/ftp.log
+daemon.* %${clog_logdir}/daemon.log
+*.notice;kern.debug;lpr.info;mail.crit;mail.info;news.err;local0.none;local7.none %${clog_logdir}/system.log
+security.* %${clog_logdir}/system.log
+auth.info;authpriv.info %${clog_logdir}/system.log
+*.emerg *" > ${syslogd_config}
+
+	# Add remote server configuration if syslog'ing to remote syslog server is enabled
+	/usr/local/bin/xml sel -t \
+		-i "//syslogd/remote/enable" \
+			-i "//syslogd/remote/ftp" \
+				-o "ftp.* @" -v "//syslogd/remote/ipaddr" -n -b \
+			-i "//syslogd/remote/sshd" \
+				-o "local3.* @" -v "//syslogd/remote/ipaddr" -n -b \
+			-i "//syslogd/remote/rsyncd" \
+				-o "local4.* @" -v "//syslogd/remote/ipaddr" -n -b \
+			-i "//syslogd/remote/smartd" \
+				-o "local5.* @" -v "//syslogd/remote/ipaddr" -n -b \
+			-i "//syslogd/remote/daemon" \
+				-o "daemon.* @" -v "//syslogd/remote/ipaddr" -n -b \
+			-i "//syslogd/remote/system" \
+				-o "*.notice;kern.debug;lpr.info;mail.crit;news.err;local0.none;local7.none @" -v "//syslogd/remote/ipaddr" -n \
+				-o "security.* @" -v "//syslogd/remote/ipaddr" -n \
+				-o "auth.info;authpriv.info @" -v "//syslogd/remote/ipaddr" -n \
+				-o "*.emerg	@" -v "//syslogd/remote/ipaddr" -n -b \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${syslogd_config}
+}
+
+syslogd_prereload()
+{
+	# Clear existing file
+	cat /dev/null > ${syslogd_config}
+
+	# Create configuration file
+	syslogd_mkconf
+}
+
+syslogd_prestart()
+{
+	syslogd_prereload
+}
+
+run_rc_command "$1"

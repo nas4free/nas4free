@@ -1,0 +1,102 @@
+# configxml.subr
+# functions used by various rc scripts
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+configxml_file=${configxml_file:-"/conf/config.xml"}
+configxml_root=`cat /etc/prd.name | tr '[:upper:]' '[:lower:]'`
+
+# configxml_isset xpath
+# Check in /conf/config.xml if xpath is available/found.
+# Return 0 if set, nonzero otherwise.
+# $1 - XPATH expression
+configxml_isset()
+{
+	local _queryresult _result
+
+	debug "configxml_isset: xpath=<$1>"
+
+	# Get requested xpath
+	_queryresult=`/usr/local/bin/xml sel -t -v "count($1)" ${configxml_file}`
+	_result=$?
+
+	debug "configxml_isset: results: query=<${_queryresult}> cmd=<${_result}>"
+
+	if [ 0 -eq ${_queryresult} ]; then
+		return 1
+	else
+		return 0
+	fi
+}
+
+# configxml_get xpath
+# Get xpath from /conf/config.xml.
+# Return 0 if successful, nonzero otherwise. Return result from query is echoed.
+# $1 - XPATH expression
+configxml_get()
+{
+	local _queryresult _result
+
+	debug "configxml_get: xpath=<$1>"
+
+	# Get requested xpath
+	_queryresult=`/usr/local/bin/xml sel -t -v "$1" ${configxml_file} | /usr/local/bin/xml unesc`
+	_result=$?
+
+	# Output query for later processing.
+	echo ${_queryresult}
+
+	debug "configxml_get: results: query=<${_queryresult}> cmd=<${_result}>"
+
+	return ${_result}
+}
+
+# configxml_exec_query xquery
+# Execute given query.
+# Return 0 if successful, nonzero otherwise. Return result from query is echoed.
+configxml_exec_query()
+{
+	local _queryresult _result
+
+	debug "configxml_exec_query: query=<$@>"
+
+	# Execute xml query.
+	_queryresult=`eval "/usr/local/bin/xml sel -t $@ ${configxml_file} | /usr/local/bin/xml unesc"`
+	_result=$?
+
+	# Output query result for later processing.
+	echo ${_queryresult}
+
+	debug "configxml_exec_query: results: query=<${_queryresult}> cmd=<${_result}>"
+
+	return ${_result}
+}
+
+# configxml_get_count xpath
+# Get number of elements.
+# Return 0 if successful, nonzero otherwise. Return result from query is echoed.
+# $1 - XPATH expression
+configxml_get_count()
+{
+	local _queryresult _result
+
+	debug "configxml_get_count: xpath=<$1>"
+
+	# Get requested xpath
+	_queryresult=`/usr/local/bin/xml sel -t -v "count($1)" ${configxml_file}`
+	_result=$?
+
+	# Output query for later processing.
+	echo ${_queryresult}
+
+	debug "configxml_get_count: results: query=<${_queryresult}> cmd=<${_result}>"
+
+	return ${_result}
+}
