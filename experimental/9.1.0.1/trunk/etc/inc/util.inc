@@ -1071,6 +1071,21 @@ function parse_controller_config(&$devlist){
 				$device['smart']['devicetype'] = $devtype[0];
 				$device['smart']['devicetypearg'] = $devtype[0];
 				break;
+			case 'twa': // 3ware 9000/9500/9550/9650 series SATA RAID controller
+			case 'twe': // 3ware 5000/6000/7000/8000 series PATA/SATA RAID adapter
+				$device['controller_desc'] = parse_raid_controller_desc($device['controller'].$device['controller_id']);
+				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'].$device['controller_id'];
+				$device['smart']['devicetype'] = '3ware';
+
+				mwexec2('/usr/local/sbin/tw_cli /c'.$device['controller_id'].'/u'.$device['target_id'].' show | grep -E "^u"', $tw_line);
+
+				$port = 0;
+				if( preg_match("/(?<=p)[\d]+/", $tw_line, $port_num) ){
+					$port = $port_num;
+				}
+
+				$device['smart']['devicetypearg'] = '3ware,'.$port;
+				break;
 			// USB Mass Storage
 			case 'umass-sim':
 				$device['model'] = parse_device_desc($device['name']);
