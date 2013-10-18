@@ -1,5 +1,5 @@
 PORTNAME=		php55
-PORTVERSION=	5.5.4
+PORTVERSION=	5.5.5
 PORTREVISION?=  0
 CATEGORIES=		lang
 COMMENT=		PHP5 Scripting Language
@@ -28,6 +28,7 @@ USE_GNOME=	 libxml2
 USE_OPENLDAP=	 yes
 USE_OPENSSL=	 yes
 GNU_CONFIGURE=	 yes
+NO_STAGE=       yes
 
 CONFIGURE_ARGS+=	\
 		--without-mysql \
