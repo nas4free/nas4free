@@ -9,11 +9,12 @@ MASTER_SITES=	http://www.networkupstools.org/source/${PORTVERSION:R}/
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
+NO_STAGE=       yes
 USE_AUTOTOOLS=  autoconf
 GNU_CONFIGURE=	yes
-USE_GMAKE=		yes
+USES=		gmake
 USE_LDCONFIG=		yes
-USE_GNOME=		pkgconfig
+USES=           pkgconfig
 
 NUT_USER=		root
 NUT_GROUP=		root
