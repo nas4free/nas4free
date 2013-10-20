@@ -9,7 +9,7 @@ MASTER_SITES=	SF
 
 USE_BZIP2=      yes 
 GNU_CONFIGURE=  yes 
-USE_GNOME=      pkgconfig 
+USES =      pkgconfig 
 CPPFLAGS+=      -I${LOCALBASE}/include 
 LDFLAGS+=       -L${LOCALBASE}/lib 
 
