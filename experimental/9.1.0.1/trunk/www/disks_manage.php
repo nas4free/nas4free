@@ -144,7 +144,7 @@ function diskmanagement_process_updatenotification($mode, $data) {
 <?php include("fbegin.inc");?>
 <?php
 	// make sure detected disks have same ID in config.
-	$verify_errors = disks_verify_all_disks();
+	$verify_errors = disks_verify_all_disks($a_phy_disk);
 	if (!empty($verify_errors)) {
 		$errormsg .= gettext("The device(s) in config are different to actual device(s). Please remove the device(s) and re-add it or use 'Clear config and Import disks'.");
 		$errormsg .= "<br />\n";
@@ -171,15 +171,15 @@ function diskmanagement_process_updatenotification($mode, $data) {
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td width="5%" class="listhdrlr"><?=gettext("Device"); ?></td>
-						<td width="22%" class="listhdrr"><?=gettext("Device model"); ?></td>
+						<td width="15%" class="listhdrr"><?=gettext("Device model"); ?></td>
 						<td width="5%" class="listhdrr"><?=gettext("Size"); ?></td>
 						<td width="15%" class="listhdrr"><?=gettext("Serial number"); ?></td>
 						<td width="5%" class="listhdrr"><?=gettext("Controller"); ?></td>
 						<td width="15%" class="listhdrr"><?=gettext("Controller model"); ?></td>
 						<td width="7%" class="listhdrr"><?=gettext("Standby time"); ?></td>
 						<td width="8%" class="listhdrr"><?=gettext("File system"); ?></td>
-						<td width="8%" class="listhdrr"><?=gettext("Status"); ?></td>
-						<td width="10%" class="list"></td>
+						<td width="17%" class="listhdrr"><?=gettext("Status"); ?></td>
+						<td width="8%" class="list"></td>
 					</tr>
 					<?php foreach ($a_disk_conf as $disk):?>
 					<?php
@@ -200,36 +200,67 @@ function diskmanagement_process_updatenotification($mode, $data) {
 								$status = sprintf("%s (%s)", (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING"), $role);
 								$disk['size'] = $a_phy_disk[$disk['name']]['size'];
 							} else {
-								$status = (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : sprintf("%s (%s)", gettext("MISSING"), $disk['devicespecialfile']);
+								switch ( $verify_errors[$disk['name']]['error'] ){
+									case 1:
+										$status = sprintf("%s : %s", gettext('MOVED TO') , $verify_errors[$disk['name']]['new_devicespecialfile']);
+										break;
+									case 2:
+										if(empty($verify_errors[$disk['name']]['old_serial']) === FALSE){
+											$old_serial = htmlspecialchars($verify_errors[$disk['name']]['old_serial']);
+										} else {
+											$old_serial = htmlspecialchars(gettext("n/a"));
+										};
+
+										if(empty($verify_errors[$disk['name']]['new_serial']) === FALSE){
+											$new_serial = htmlspecialchars($verify_errors[$disk['name']]['new_serial']);
+										} else {
+											$new_serial = htmlspecialchars(gettext("n/a"));
+										};
+										$status = sprintf("%s (%s : '%s' %s '%s')", gettext('CHANGED'), gettext('Device Serial'), $old_serial, gettext('to'), $new_serial);
+										break;
+									case 4:
+										$status = sprintf("%s (%s : '%s' %s '%s')", gettext('CHANGED'), gettext('Controller'), htmlspecialchars($verify_errors[$disk['name']]['config_controller']), gettext('to'), htmlspecialchars($verify_errors[$disk['name']]['new_controller']) );
+										break;
+									case 8:
+										$status = sprintf("%s (%s)", gettext("MISSING"), $disk['devicespecialfile']);
+										break;
+									default:
+										$status = gettext("ONLINE");
+									}
 							}
 							break;
 					}
-					$verify_error = !empty($verify_errors[$disk['devicespecialfile']]) ? true : false;
 					?>
 					<tr>
-<?php if (!empty($verify_error)) { ?>
-						<td class="listlr"><span style="color: #ff0000;font-weight:bold;"><?=htmlspecialchars($disk['name']);?></span></td>
-<?php } else { ?>
-						<td class="listlr"><?=htmlspecialchars($disk['name']);?></td>
-<?php } ?>
-						<td class="listr"><?=htmlspecialchars($disk['model']);?>&nbsp;</td>
-						<td class="listr"><?=htmlspecialchars($disk['size']);?></td>
-<?php if (!empty($verify_error)) { ?>
-						<td class="listr"><span style="color: #ff0000;font-weight:bold;"><?=htmlspecialchars(system_get_volume_serial($disk['devicespecialfile'], $disk['controller']));?></span>&nbsp;</td>
-						
-<?php } else { ?>
-						<td class="listr"><?=(empty($disk['serial']) ) === FALSE ? htmlspecialchars($disk['serial']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
-<?php } ?>
-<?php if (!empty($verify_error)) { ?>
-						<td class="listr"><span style="color: #ff0000;font-weight:bold;"><?=htmlspecialchars(system_get_controller($disk['devicespecialfile']));?></span>&nbsp;</td>
-						
-<?php } else { ?>
-						<td class="listr"><?=(empty($disk['serial']) ) === FALSE ? htmlspecialchars($disk['controller'].$disk['controller_id']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
-<?php } ?>
-						<td class="listr"><?=htmlspecialchars($disk['controller_desc']);?>&nbsp;</td>
-						<td class="listr"><?php if ($disk['harddiskstandby']) { echo htmlspecialchars($disk['harddiskstandby']); } else { echo htmlspecialchars(gettext("Always on")); }?>&nbsp;</td>
-						<td class="listr"><?=(!empty($disk['fstype'])) ? htmlspecialchars(get_fstype_shortdesc($disk['fstype'])) : htmlspecialchars(gettext("Unknown or unformatted"))?>&nbsp;</td>
-						<td class="listbg"><?=htmlspecialchars($status);?>&nbsp;</td>
+					<?php
+						$start_tag = '<td class="listr">';
+						$end_tag = "</td>\n";
+						$status_start_tag = '<td class="listbg">';
+						$status_end_tag = $end_tag;
+
+						if ($verify_errors[$disk['name']]['error'] >0){
+							$start_tag = $start_tag . '<span style="color: #ff0000;font-weight:bold;">';
+							$end_tag = '</span>&nbsp;' . $end_tag;
+							$status_start_tag = $status_start_tag . '<span style="color: #ff0000;font-weight:bold;">';
+							$status_end_tag = '</span>&nbsp;'. $end_tag;
+						}
+
+						if($verify_errors[$disk['name']]['error'] == 8){
+							$start_tag = $start_tag . '<del>';
+							$end_tag = '</del>'. $end_tag;
+						}
+
+						print $start_tag . htmlspecialchars($disk['name']) . $end_tag;
+						print $start_tag . htmlspecialchars($disk['model']) . $end_tag;
+						print $start_tag . htmlspecialchars($disk['size']) . $end_tag;
+						print $start_tag . ((empty($disk['serial']) ) === FALSE ? htmlspecialchars($disk['serial']) : htmlspecialchars(gettext("n/a"))) . $end_tag;
+						print $start_tag . htmlspecialchars($disk['controller'].$disk['controller_id']) . $end_tag;
+						print $start_tag . htmlspecialchars($disk['controller_desc']) . $end_tag;
+						print $start_tag . ($disk['harddiskstandby'] ? htmlspecialchars($disk['harddiskstandby']) : gettext("Always on")) . $end_tag;
+						print $start_tag . ((!empty($disk['fstype'])) ? htmlspecialchars(get_fstype_shortdesc($disk['fstype'])) : htmlspecialchars(gettext("Unknown or unformatted"))) . $end_tag;
+						print $status_start_tag . htmlspecialchars($status) . $status_end_tag;
+					?>
+
 						<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
 						<td valign="middle" nowrap="nowrap" class="list">
 							<a href="disks_manage_edit.php?uuid=<?=$disk['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit disk");?>" border="0" alt="<?=gettext("Edit disk");?>" /></a>&nbsp;
