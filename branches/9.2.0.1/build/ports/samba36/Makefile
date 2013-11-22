@@ -1,5 +1,5 @@
 PORTNAME=		samba36
-PORTVERSION=	  3.6.19
+PORTVERSION=	  3.6.20
 #PORTREVISION?= 1
 CATEGORIES?=		net
 MASTER_SITES=		${MASTER_SITE_SAMBA}
@@ -62,8 +62,6 @@ CONFIGURE_ENV+=		CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 # pkg-config is used to find talloc
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PKGCONFIGDIR_REL?=	${PKGCONFIGDIR:S|^${PREFIX}/||}
-
-NO_STAGE=       yes
 
 USE_PKGCONFIG=          yes
 LIB_DEPENDS+=		execinfo.1:${PORTSDIR}/devel/libexecinfo
