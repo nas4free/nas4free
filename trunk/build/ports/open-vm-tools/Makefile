@@ -7,13 +7,14 @@ COMMENT=		Open VMware tools for FreeBSD VMware guests
 
 DISTFILES=
 NO_BUILD=		yes
+NO_STAGE=       yes
 NO_PKG_REGISTER=	yes
 ALWAYS_BUILD_DEPENDS=		yes
 DEPENDS_TARGET=	clean build
 
 BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/emulators/open-vm-tools-nox11:build
 
-BLDSRC=${PORTSDIR}/emulators/open-vm-tools-nox11/work/open-vm-tools-*/
+BLDSRC=${PORTSDIR}/emulators/open-vm-tools-nox11/work/open-vm-tools-*
 WRKSRC=${WRKDIR}/open-vm-tools-nox11
 
 do-install:
@@ -38,12 +39,12 @@ do-install:
 	@${INSTALL_DATA} -v ${BLDSRC}/modules/freebsd/vmblock.ko ${NAS4FREE_ROOTFS}/${PREFIX}/lib/vmware-tools/modules/drivers/vmblock.ko
 
 	@${INSTALL_PROGRAM} -v ${BLDSRC}/services/vmtoolsd/.libs/vmtoolsd ${NAS4FREE_ROOTFS}/${PREFIX}/bin
-	@${INSTALL_PROGRAM} -v ${BLDSRC}/checkvm/vmware-checkvm ${NAS4FREE_ROOTFS}/${PREFIX}/bin
+	@${INSTALL_SCRIPT} -v ${BLDSRC}/checkvm/vmware-checkvm ${NAS4FREE_ROOTFS}/${PREFIX}/bin
 	@${INSTALL_PROGRAM} -v ${BLDSRC}/hgfsclient/.libs/vmware-hgfsclient ${NAS4FREE_ROOTFS}/${PREFIX}/bin
 	@${INSTALL_PROGRAM} -v ${BLDSRC}/rpctool/vmware-rpctool ${NAS4FREE_ROOTFS}/${PREFIX}/bin
 	@${INSTALL_PROGRAM} -v ${BLDSRC}/toolbox/.libs/vmware-toolbox-cmd ${NAS4FREE_ROOTFS}/${PREFIX}/bin
 	@${INSTALL_PROGRAM} -v ${BLDSRC}/vmblock-fuse/vmware-vmblock-fuse ${NAS4FREE_ROOTFS}/${PREFIX}/bin
-	@${INSTALL_PROGRAM} -v ${BLDSRC}/xferlogs/vmware-xferlogs ${NAS4FREE_ROOTFS}/${PREFIX}/bin
+	@${INSTALL_SCRIPT} -v ${BLDSRC}/xferlogs/vmware-xferlogs ${NAS4FREE_ROOTFS}/${PREFIX}/bin
 
 	@${INSTALL_PROGRAM} -v ${BLDSRC}/hgfsmounter/mount.vmhgfs ${NAS4FREE_ROOTFS}/${PREFIX}/sbin/mount_vmhgfs
 
