@@ -27,6 +27,7 @@ EXTRA_PATCHES+=	${PATCHDIR}/xpatch-colonbreakswords
 
 GNU_CONFIGURE=	yes
 USE_BISON=			build
+NO_STAGE=       yes
 USE_GETTEXT=		yes
 CONFIGURE_ARGS=	--without-bash-malloc \
 								--disable-rpath \
