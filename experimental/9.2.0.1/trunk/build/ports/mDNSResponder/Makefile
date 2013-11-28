@@ -1,5 +1,5 @@
 PORTNAME=		mDNSResponder
-PORTVERSION=	333.10
+PORTVERSION=	541
 CATEGORIES=		net dns
 COMMENT=		Apple's mDNSResponder
 MAINTAINER=		aoyama@peach.ne.jp
@@ -8,7 +8,8 @@ MASTER_SITES=	http://www.opensource.apple.com/tarballs/mDNSResponder/
 DISTNAME=		${PORTNAME}-${PORTVERSION}
 
 USE_LDCONFIG=		YES
-USE_GMAKE=		YES
+USES=           bison gmake
+NO_STAGE=       yes
 MAKE_ARGS+=		os=freebsd LOCALBASE=${PREFIX}
 BUILD_WRKSRC=		${WRKSRC}/mDNSPosix
 CONFLICTS=		avahi-libdns-[0-9]*
