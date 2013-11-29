@@ -9,6 +9,7 @@ MAINTAINER=		zoon01@nas4free.org
 USE_AUTOTOOLS=	autoconf automake aclocal
 GNU_CONFIGURE=	yes
 USES=           pkgconfig
+NO_STAGE=       yes
 
 LIB_DEPENDS+=		ftdi.21:${PORTSDIR}/devel/libftdi
 LIB_DEPENDS+=		hid:${PORTSDIR}/devel/libhid

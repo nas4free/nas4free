@@ -10,6 +10,7 @@ NO_BUILD=		yes
 NO_PKG_REGISTER=	yes
 ALWAYS_BUILD_DEPENDS=	yes
 DEPENDS_TARGET=	clean build
+NO_STAGE=       yes
 
 BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/emulators/virtualbox-ose-additions:build
 

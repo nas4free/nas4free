@@ -13,6 +13,7 @@ NO_PKG_REGISTER?=	yes
 # Set default target to execute when a port is calling a dependency.
 ALWAYS_BUILD_DEPENDS=	yes
 DEPENDS_TARGET=	clean build
+NO_STAGE=       yes
 
 BUILD_DEPENDS=	ntfsprogs:${PORTSDIR}/sysutils/ntfsprogs
 

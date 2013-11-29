@@ -5,9 +5,10 @@ PORTREVISION=	0
 PORTEPOCH=	3
 CATEGORIES=		sysutils
 COMMENT=		GEOM RAID5 filesystem
-MAINTAINER=		aoyama@peach.ne.jp
+MAINTAINER=		zoon01@nas4free.org
 
 DISTFILES?=
+NO_STAGE=       yes
 
 do-build:
 	@${TAR} -zxvf ${FILESDIR}/geom_raid5.tbz -C /usr/src
