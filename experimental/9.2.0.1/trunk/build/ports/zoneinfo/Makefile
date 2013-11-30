@@ -1,5 +1,5 @@
 PORTNAME=		zoneinfo
-DISTVERSION=	2013g
+DISTVERSION=	2013h
 CATEGORIES=		misc
 COMMENT=		Updated timezone definitions
 MAINTAINER=		zoon01@nas4free.org
@@ -7,6 +7,8 @@ MAINTAINER=		zoon01@nas4free.org
 MASTER_SITES=   	ftp://ftp.iana.org/tz/releases/ \
 					ftp://munnari.oz.au/pub/
 DISTNAME=		tzdata${DISTVERSION}
+
+NO_STAGE=       yes
 
 WRKSRC=	${WRKDIR}
 PREFIX=	/usr
