@@ -71,18 +71,19 @@ echo "NAS4FREE_TMPDIR=${NAS4FREE_TMPDIR}" >> ${NAS4FREE_MK}
 
 # Local variables
 NAS4FREE_URL=$(cat $NAS4FREE_SVNDIR/etc/prd.url)
-NAS4FREE_SVNURL="https://svn.code.sf.net/p/nas4free/code/trunk"
-NAS4FREE_SVN_SRCTREE="svn://svn.FreeBSD.org/base/releng/9.1"
+#NAS4FREE_SVNURL="https://svn.code.sf.net/p/nas4free/code/trunk"
+NAS4FREE_SVNURL="https://svn.code.sf.net/p/nas4free/code/experimental/9.2.0.1/trunk"
+NAS4FREE_SVN_SRCTREE="svn://svn.FreeBSD.org/base/releng/9.2"
 
 # Size in MB of the MFS Root filesystem that will include all FreeBSD binary
 # and NAS4FREE WEbGUI/Scripts. Keep this file very small! This file is unzipped
 # to a RAM disk at NAS4FREE startup.
-# The image must fit on 256MB CF/USB.
-NAS4FREE_MFSROOT_SIZE=206
-NAS4FREE_IMG_SIZE=110
+# The image must fit on 512MB CF/USB.
+NAS4FREE_MFSROOT_SIZE=210
+NAS4FREE_IMG_SIZE=123
 if [ "amd64" = ${NAS4FREE_ARCH} ]; then
-	NAS4FREE_MFSROOT_SIZE=222
-	NAS4FREE_IMG_SIZE=110
+	NAS4FREE_MFSROOT_SIZE=224
+	NAS4FREE_IMG_SIZE=123
 fi
 
 # Media geometry, only relevant if bios doesn't understand LBA.

@@ -9,19 +9,19 @@
 	Portions of freenas (http://www.freenas.org).
 	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
 	All rights reserved.
-	
+
 	Portions of m0n0wall (http://m0n0.ch/wall).
 	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
-	All rights reserved.	
+	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -35,7 +35,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 $d_isfwfile = 1;
@@ -323,7 +323,7 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
 			</form>
 			<?php else:?>
 			<?php if (!file_exists($d_firmwarelock_path)):?>
-			<?=gettext("Click &quot;Enable firmware upload&quot; below, then choose the image file to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade process.");?>
+			<?=gettext("Click &quot;Enable firmware upload&quot; below, then choose the embedded image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start the upgrade process.");?>
 			<form action="system_firmware.php" method="post" enctype="multipart/form-data">
 				<?php if (!file_exists($d_sysrebootreqd_path)):?>
 					<?php if (!file_exists($d_fwupenabled_path)):?>
@@ -345,7 +345,7 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
 				<strong><?=gettext("You must reboot the system before you can upgrade the firmware.");?></strong>
 				<?php endif;?>
 				<div id="remarks">
-					<?php html_remark("warning", gettext("Warning"), sprintf(gettext("DO NOT abort the firmware upgrade once it has started. The server will reboot automatically after storing the new firmware. The configuration will be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the System configuration before doing a Firmware upgrade."), 512, "system_backup.php"));?>
+					<?php html_remark("warning", gettext("Warning"), sprintf(gettext("DO NOT abort the firmware upgrade process once it has started. Once it is completed, the server will automatically reboot, the current configuration will be maintained.<br />You need a minimum of %d MiB free RAM to perform the upgrade.<br />It is strongly recommended that you <a href='%s'>Backup</a> the server configuration before doing a upgrade."), 512, "system_backup.php"));?>
 				</div>
 				<?php include("formend.inc");?>
 			</form>
