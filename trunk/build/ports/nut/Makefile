@@ -1,12 +1,12 @@
 PORTNAME=		nut
-PORTVERSION=	2.6.5
+PORTVERSION=	2.7.1
 PORTREVISION=	1
 CATEGORIES=		sysutils
 COMMENT=		Network UPS tools
 MAINTAINER=		zoon01@nas4free.org
 
 MASTER_SITES=	http://www.networkupstools.org/source/${PORTVERSION:R}/
-DISTFILES=		${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
+DISTFILES=		${DISTNAME}${EXTRACT_SUFX}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 NO_STAGE=       yes
@@ -65,8 +65,10 @@ do-install:
 	@${INSTALL_DATA} -v ${WRKSRC}/data/driver.list ${NAS4FREE_ROOTFS}/${NUT_DATADIR}
 
 	@${MKDIR} -pv ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/al175 ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/apcsmart ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/apcsmart-old ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/apcupsd-ups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/bcmxcp ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/bcmxcp_usb ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/belkin ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
@@ -94,6 +96,7 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/mge-utalk ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/microdowell ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/netxml-ups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/nutdrv_qx ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/.libs/nut-ipmipsu ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/oldmge-shut ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/oneac ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
@@ -103,6 +106,8 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/powerpanel ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/rhino ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/richcomm_usb ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/riello_ser ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/riello_usb ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/safenet ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/skel ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/snmp-ups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
@@ -115,8 +120,8 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/usbhid-ups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/victronups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/clients/.libs/libupsclient.so.2 ${NAS4FREE_ROOTFS}/usr/local/lib
-	@${LN} -f -v -s /usr/local/lib/libupsclient.so.2 ${NAS4FREE_ROOTFS}/usr/local/lib/libupsclient.so
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/clients/.libs/libupsclient.so.3 ${NAS4FREE_ROOTFS}/usr/local/lib
+	@${LN} -f -v -s /usr/local/lib/libupsclient.so.3 ${NAS4FREE_ROOTFS}/usr/local/lib/libupsclient.so
 
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/clients/.libs/upsc ${NAS4FREE_ROOTFS}/usr/local/bin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/clients/.libs/upscmd ${NAS4FREE_ROOTFS}/usr/local/bin
