@@ -12,13 +12,13 @@ DISTFILES=		${DISTNAME}${EXTRACT_SUFX}:release
 USE_BZIP2=		yes
 
 BUILD_DEPENDS=	sqlite3>=3.0:${PORTSDIR}/databases/sqlite3
-LIB_DEPENDS=	pcre:${PORTSDIR}/devel/pcre
+LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
 LIB_DEPENDS+=	curl.7:${PORTSDIR}/ftp/curl
 LIB_DEPENDS+=	mcrypt.8:${PORTSDIR}/security/libmcrypt
 LIB_DEPENDS+=	onig.1:${PORTSDIR}/devel/oniguruma4
-LIB_DEPENDS+=	freetype.9:${PORTSDIR}/print/freetype2
-LIB_DEPENDS+=	png15:${PORTSDIR}/graphics/png
-LIB_DEPENDS+=	jpeg.11:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2
+LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	libjpeg.so:${PORTSDIR}/graphics/jpeg
 
 USE_AUTOTOOLS=	 autoconf
 AUTOTOOLSFILES=	 scripts/phpize.in
@@ -82,6 +82,10 @@ IGNORE=		cannot be built with DTrace support on FreeBSD < 9.x
 .endif
 CONFIGURE_ARGS+=--enable-dtrace
 .endif
+
+post-patch:
+	@${REINPLACE_CMD} -i -e 's|freetype/||g' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -i -e 's|freetype/||g' ${WRKSRC}/ext/gd/config.m4
 
 # Work around issues with newer (>=2.64) autoconf
 pre-configure:
