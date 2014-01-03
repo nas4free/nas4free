@@ -3,7 +3,7 @@
 # This script is designed to automate the assembly of NAS4Free builds.
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # Debug script
@@ -1023,7 +1023,7 @@ $DIALOG --title \"$NAS4FREE_PRODUCTNAME - Ports\" \\
 				cd ${NAS4FREE_SVNDIR}/build/ports/${port};
 				# Delete cookie first, otherwise Makefile will skip this step.
 				rm -f ./work/.install_done.*;
-				env NO_PKG_REGISTER=1 make install;
+				env FORCE_PKG_REGISTER=1 make install;
 				[ 0 != $? ] && return 1; # successful?
 			done;
 			;;
