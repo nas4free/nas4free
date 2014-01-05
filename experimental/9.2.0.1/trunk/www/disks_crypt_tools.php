@@ -3,12 +3,12 @@
 	disks_crypt_tools.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
 	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved..	
+	All rights reserved.	
 
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met: 
