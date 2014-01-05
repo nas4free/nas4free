@@ -80,8 +80,8 @@ do-install:
 #	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libmetadata_libavformat.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
 #	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libmetadata_dlna_profiles.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
 #	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libmetadata_dlna_profiles.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libmetadata_libmp4v2.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libmetadata_libmp4v2.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+#	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libmetadata_libmp4v2.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+#	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libmetadata_libmp4v2.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
 	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libencoder_wav.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libencoder_wav.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}	
 	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libencoder_pcm.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
