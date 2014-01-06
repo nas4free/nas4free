@@ -8,7 +8,7 @@ MASTER_SITES=	http://www.opensource.apple.com/tarballs/mDNSResponder/
 DISTNAME=		${PORTNAME}-${PORTVERSION}
 
 USE_LDCONFIG=		YES
-USES=           bison gmake
+USES=		gmake
 NO_STAGE=       yes
 
 MAKE_ARGS+=		os=freebsd LOCALBASE=${PREFIX}
