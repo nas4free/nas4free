@@ -2,8 +2,8 @@ NAS4Free 9.1.0.1 - Sandstorm
 ----------------------------
 
 Changes:
-- Upgrade to FreeBSD 9.1-RELEASE p5.
-- Improve WebGUI under PHP 5.4/5.5.
+- Upgrade to FreeBSD 9.1-RELEASE p9.
+- Improve WebGUI under PHP 5.5.
 - Refactoring email setup.
 - Add LiveUSB mode as same as LiveCD.
 - Revert to old CHS.
@@ -87,7 +87,6 @@ Changes:
 - Remove AIO disable at boot.
 - Add 60 days lifetime on ZFS auto snapshot.
 - Add ata chipset patch. (VT6420/VT6421)
-- Add amdtemp patch.
 - Add VM timer workaround.
 - Add useful PHP modules.
 - Add php wrapper for webserver.
@@ -95,6 +94,7 @@ Changes:
 - Add missing NUT drivers.
 - Add firefly patch.
 - Add gbe patch.
+- Updated amdtemp patch.
 - Use SCSI inquiry for model and serial.
 - Upgrade istgt to 20121123.
 - Upgrade isboot to 0.2.6.
