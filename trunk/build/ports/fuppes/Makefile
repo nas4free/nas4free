@@ -17,7 +17,7 @@ LIB_DEPENDS+=		sqlite3:${PORTSDIR}/databases/sqlite3 \
 			twolame.0:${PORTSDIR}/audio/twolame \
 			vorbis.4:${PORTSDIR}/audio/libvorbis \
 
-USE_AUTOTOOLS=		autoconf
+USE_AUTOTOOLS=  aclocal autoconf
 USE_GNOME=		libxml2
 USE_ICONV=		yes
 USE_GMAKE=		yes
