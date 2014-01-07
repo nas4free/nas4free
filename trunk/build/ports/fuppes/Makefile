@@ -1,6 +1,6 @@
 PORTNAME=		fuppes
 PORTVERSION=	0.692
-PORTREVISION= 1
+PORTREVISION= 2
 CATEGORIES=		net
 COMMENT=		Free UPnP Entertainment Service
 MAINTAINER=		zoon01@nas4free.org
@@ -16,8 +16,10 @@ LIB_DEPENDS+=		sqlite3:${PORTSDIR}/databases/sqlite3 \
 			mp3lame.0:${PORTSDIR}/audio/lame \
 			twolame.0:${PORTSDIR}/audio/twolame \
 			vorbis.4:${PORTSDIR}/audio/libvorbis \
+			avformat:${PORTSDIR}/multimedia/ffmpeg
 
-USE_AUTOTOOLS=  aclocal autoconf
+NO_STAGE=       	yes
+USE_AUTOTOOLS=	autoconf
 USE_GNOME=		libxml2
 USE_ICONV=		yes
 USE_GMAKE=		yes
@@ -50,12 +52,6 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/.libs/libfuppes.so.* ${NAS4FREE_ROOTFS}/usr/local/lib
 	@${INSTALL_SCRIPT} -v ${FILESDIR}/${PORTNAME}.in ${NAS4FREE_ROOTFS}/etc/rc.d/${PORTNAME}
 
-#	@${MKDIR} -v ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}
-#	@${INSTALL_DATA} -v ${WRKSRC}/src/lib/Presentation/fuppes-small.png ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}
-#	@${INSTALL_DATA} -v ${WRKSRC}/src/lib/Presentation/header-gradient.png ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}
-#	@${INSTALL_DATA} -v ${WRKSRC}/src/lib/Presentation/header-gradient-small.png ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}
-#	@${INSTALL_DATA} -v ${WRKSRC}/src/lib/Presentation/style.css ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}
-#	@${INSTALL_DATA} -v ${FILESDIR}/vfolder.cfg ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}
 	# Presentation
 	@${MKDIR} -v ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}
 	@${INSTALL_DATA} -v ${WRKSRC}/resources/*.js ${NAS4FREE_ROOTFS}/usr/local/share/${PORTNAME}
@@ -72,26 +68,22 @@ do-install:
 
 	# Install plugins
 	@${MKDIR} -v ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-#	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libtranscoder_ffmpeg.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-#	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libtranscoder_ffmpeg.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libmetadata_taglib.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libmetadata_taglib.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-#	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libmetadata_libavformat.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-#	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libmetadata_libavformat.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-#	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libmetadata_dlna_profiles.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-#	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libmetadata_dlna_profiles.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-#	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libmetadata_libmp4v2.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-#	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libmetadata_libmp4v2.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libencoder_wav.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libencoder_wav.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}	
-	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libencoder_pcm.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libencoder_pcm.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libdecoder_vorbis.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libdecoder_vorbis.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libdecoder_flac.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libdecoder_flac.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
 	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libdatabase_sqlite3.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libdatabase_sqlite3.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libdecoder_flac.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libdecoder_flac.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libdecoder_vorbis.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libdecoder_vorbis.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libencoder_pcm.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libencoder_pcm.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libencoder_wav.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libencoder_wav.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libmetadata_libavformat.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libmetadata_libavformat.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libmetadata_libmp4v2.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libmetadata_libmp4v2.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libmetadata_taglib.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libmetadata_taglib.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
 	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libsource_bliptv.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/plugins/.libs/libsource_bliptv.so.* ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
 	@${CP} -Rpv ${WRKSRC}/src/plugins/.libs/libsource_itunes.so ${NAS4FREE_ROOTFS}/${PREFIX}/lib/${PORTNAME}
