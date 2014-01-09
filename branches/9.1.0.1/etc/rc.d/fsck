@@ -1,0 +1,173 @@
+#!/bin/sh
+#
+# $FreeBSD: src/etc/rc.d/fsck,v 1.15.2.1.2.1 2011/11/11 04:20:22 kensmith Exp $
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+# Changes:	- Refactor fsck_start to process configured disks only
+# 		- Add fsck_start_root to check root file system on 'full' installations
+#
+
+# PROVIDE: fsck
+# REQUIRE: localswap
+# KEYWORD: nojail
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="fsck"
+
+# Custom commands
+extra_commands="root"
+start_cmd="fsck_start"
+stop_cmd=":"
+root_cmd="fsck_start_root"
+
+fsck_start()
+{
+	if [ "$autoboot" = no ]; then
+		echo "Fast boot: skipping disk checks."
+	elif [ ! -r /etc/fstab ]; then
+		echo "Warning! No /etc/fstab: skipping disk checks."
+	elif [ "$autoboot" = yes ]; then
+					# During fsck ignore SIGQUIT
+		trap : 3
+
+		echo "Starting file system checks:"
+
+		# Process all configured mounts.
+		/usr/local/bin/xml sel -t -m "//mounts/mount[fstype = 'ufs' or fstype = 'msdosfs' or fstype = 'ext2fs']" \
+			-v "concat(fstype,' ',devicespecialfile,' ',mdisk)" \
+			-i "count(fsck) > 0" -o " 1" -b \
+			-i "count(fsck) = 0" -o " 0" -b \
+			-i "position() <= last()" -n -b \
+			${configxml_file} | /usr/local/bin/xml unesc | \
+		while read _fstype _devicespecialfile _mdisk _fsck; do
+			# Check if fsck is enabled
+			if [ "0" = "${_fsck}" ]; then
+				continue
+			fi
+
+			# Check if block device exists
+			if [ ! -e "${_devicespecialfile}" ]; then
+				continue
+			fi
+
+			# Skip encrypted disks
+			_encrypted=`configxml_get_count "//geli/vdisk[devicespecialfile = '${_mdisk}']"`
+			if [ 0 -lt ${_encrypted} ]; then
+				continue
+			fi
+
+			if checkyesno background_fsck; then
+				fsck -F -p -t ${_fstype} ${_devicespecialfile}
+			else
+				fsck -p -t ${_fstype} ${_devicespecialfile}
+			fi
+
+			case $? in
+			0)
+				;;
+			2)
+				stop_boot
+				;;
+			4)
+				echo "Rebooting..."
+				reboot
+				echo "Reboot failed; help!"
+				stop_boot
+				;;
+			8)
+				if checkyesno fsck_y_enable; then
+					echo "File system preen failed, trying fsck -y."
+					fsck -y -t ${_fstype} ${_devicespecialfile}
+					case $? in
+					0)
+						;;
+					*)
+					echo "Automatic file system check failed; help!"
+						stop_boot
+						;;
+					esac
+				else
+					echo "Automatic file system check failed; help!"
+					stop_boot
+				fi
+				;;
+			12)
+				echo "Boot interrupted."
+				stop_boot
+				;;
+			130)
+				stop_boot
+				;;
+			*)
+				echo "Unknown error; help!"
+				stop_boot
+				;;
+			esac
+		done
+	fi
+}
+
+fsck_start_root()
+{
+	fsck_y_enable=yes
+
+	# During fsck ignore SIGQUIT
+	trap : 3
+
+	echo "Starting root file system check:"
+	fsck -p
+
+	case $? in
+	0)
+		;;
+	2)
+		stop_boot
+		;;
+	4)
+		echo "Rebooting..."
+		reboot
+		echo "Reboot failed; help!"
+		stop_boot
+		;;
+	8)
+		if checkyesno fsck_y_enable; then
+			echo "File system preen failed, trying fsck -y."
+			fsck -y
+			case $? in
+			0)
+				;;
+			*)
+			echo "Automatic file system check failed; help!"
+				stop_boot
+				;;
+			esac
+		else
+			echo "Automatic file system check failed; help!"
+			stop_boot
+		fi
+		;;
+	12)
+		echo "Boot interrupted."
+		stop_boot
+		;;
+	130)
+		stop_boot
+		;;
+	*)
+		echo "Unknown error; help!"
+		stop_boot
+		;;
+	esac
+}
+
+load_rc_config $name
+run_rc_command "$1"

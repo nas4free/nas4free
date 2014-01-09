@@ -1,0 +1,11 @@
+--- geom_raid5.c.orig	2008-07-29 22:58:03.000000000 +0900
++++ geom_raid5.c	2011-10-18 01:29:59.000000000 +0900
+@@ -56,7 +56,7 @@
+ #define G_TYPE_BOOL G_TYPE_NONE
+ #endif
+ 
+-#if __FreeBSD_version >= 700000
++#if __FreeBSD_version >= 700000 && __FreeBSD_version < 900000
+ #define GCMD67 NULL,
+ #else
+ #define GCMD67 

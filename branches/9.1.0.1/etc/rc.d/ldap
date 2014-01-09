@@ -1,0 +1,58 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+# PROVIDE: ldap
+# REQUIRE: var
+# BEFORE: NETWORK
+
+#
+# Configure LDAP modules
+#
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="ldap"
+
+load_rc_config "${name}"
+
+# Defaults
+ldap_config=${ldap_config:-"/var/etc/ldap.conf"}
+ldap_secret=${ldap_secret:-"/var/etc/ldap.secret"}
+
+# Clear existing file
+/bin/cat /dev/null > ${ldap_config}
+/bin/cat /dev/null > ${ldap_secret}
+
+# Create /var/etc/ldap.conf and /var/etc/ldap.secret
+if configxml_isset //ldap/enable; then
+	echo "Generating ldap.conf."
+	/usr/local/bin/xml sel -t -m "//ldap" \
+		-v "concat('uri ',hostname)" -n \
+		-v "concat('base ',base)" -n \
+		-i "count(anonymousbind) = 0" \
+			-v "concat('binddn ',binddn)" -n \
+			-v "concat('bindpw ',bindpw)" -n \
+		-b \
+		-v "concat('rootbinddn ',rootbinddn)" -n \
+		-i "string-length(password_suffix) > 0" -v "concat('nss_base_passwd ',password_suffix,',',base,'?one')" -n -b \
+		-i "string-length(group_suffix) > 0" -v "concat('nss_base_group ',group_suffix,',',base,'?one')" -n -b \
+		-v "concat('pam_password ',pam_password)" -n \
+		-m "auxparam" -v "." -n -b \
+		${configxml_file} | /usr/local/bin/xml unesc > ${ldap_config}
+
+	echo "Generating ldap.secret."
+	/usr/local/bin/xml sel -t -m "//ldap" \
+		-v "rootbindpw" \
+		${configxml_file} | /usr/local/bin/xml unesc > ${ldap_secret}
+
+	/bin/chmod 0600 ${ldap_secret}
+fi

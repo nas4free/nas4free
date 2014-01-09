@@ -1,0 +1,374 @@
+#!/usr/local/bin/php-cgi -f
+<?php
+/*
+	rc.initial.setlanip
+
+	Part of NAS4Free (http://www.nas4free.org).
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+	All rights reserved.
+
+	Portions of freenas (http://www.freenas.org).
+	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	All rights reserved.
+
+	Portions of m0n0wall (http://m0n0.ch/wall).
+	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
+
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer.
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies,
+	either expressed or implied, of the NAS4Free Project.
+*/
+require_once("config.inc");
+require_once("functions.inc");
+require_once("util.inc");
+require_once("rc.inc");
+require_once("tui.inc");
+require_once("interfaces.inc");
+require_once("services.inc");
+
+$result = tui_display_yesno("Do you want to use DHCP for this interface?", 47, 5);
+if (0 == $result) {
+	$config['interfaces']['lan']['ipaddr'] = "dhcp";
+} else if (255 == $result) {
+	exit(0);
+} else {
+	$lanip = $config['interfaces']['lan']['ipaddr'];
+	if ("dhcp" === $lanip)
+		$lanip = get_ipaddr($config['interfaces']['lan']['if']);
+	do {
+		$result = tui_display_input("Enter new LAN IPv4 address.", 35, 8, $lanip);
+		if (0 != $result) {
+			exit(0);
+		}
+	} while (!is_ipv4addr($lanip));
+
+	$lanbits = $config['interfaces']['lan']['subnet'];
+	do {
+		$result = tui_display_input("Enter new LAN subnet mask. Subnet masks are entered as bit counts (as in CIDR notation).\n\ne.g. 255.255.255.0 = 24\n     255.255.0.0 = 16\n     255.0.0.0 = 8", 68, 13, $lanbits);
+		if (0 != $result) {
+			exit(0);
+		}
+	} while (filter_var($lanbits, FILTER_VALIDATE_INT, array('options' => array('min_range' => 1, 'max_range' => 32))) == false);
+
+	$gatewayip = $config['interfaces']['lan']['gateway'];
+	do {
+		$result = tui_display_input("Enter IPv4 default gateway.", 35, 8, $gatewayip);
+		if (0 != $result) {
+			exit(0);
+		}
+		if ("" === $gatewayip) {
+			break;
+		}
+	} while (!is_ipv4addr($gatewayip));
+
+	$dnsserverip = implode(" ", $config['system']['dnsserver']);
+	do {
+		$result = tui_display_input("Enter DNS IPv4 address.", 35, 8, $dnsserverip);
+		if (0 != $result) {
+			exit(0);
+		}
+		if ("" === $dnsserverip) {
+			break;
+		}
+		$a_dnsserverip = explode(" ", $dnsserverip);
+		$valid_dns = true;
+		foreach ($a_dnsserverip as $tmp) {
+			if (!is_ipv4addr($tmp))
+				$valid_dns = false;
+		}
+	} while (!$valid_dns);
+
+	$config['interfaces']['lan']['ipaddr'] = $lanip;
+	$config['interfaces']['lan']['subnet'] = $lanbits;
+	$config['interfaces']['lan']['gateway'] = $gatewayip;
+	$config['system']['dnsserver'] = explode(" ", $dnsserverip);
+}
+
+$result = tui_display_yesno("Do you want to configure IPv6 for this interface?", 57, 5, false);
+if (0 == $result) {
+	$result = tui_display_yesno("Do you want to enable AutoConfiguration?", 44, 5);
+	if (0 == $result) {
+		$config['interfaces']['lan']['ipv6addr'] = "auto";
+	} else if (255 == $result) {
+		exit(0);
+	} else {
+		$lanip = $config['interfaces']['lan']['ipv6addr'];
+		if ("auto" === $lanip)
+			$lanip = get_ipv6addr($config['interfaces']['lan']['if']);
+		do {
+			$result = tui_display_input("Enter new LAN IPv6 address.", 35, 8, $lanip);
+			if (0 != $result) {
+				exit(0);
+			}
+		} while (!is_ipv6addr($lanip));
+
+		if (isset($config['interfaces']['lan']['ipv6subnet']))
+			$lanbits = $config['interfaces']['lan']['ipv6subnet'];
+		else
+			$lanbits = 64;
+		do {
+			$result = tui_display_input("Enter prefix.", 35, 8, $lanbits);
+			if (0 != $result) {
+				exit(0);
+			}
+		} while (filter_var($lanbits, FILTER_VALIDATE_INT, array('options' => array('min_range' => 1, 'max_range' => 128))) == false);
+
+		$gatewayip = $config['interfaces']['lan']['gateway'];
+		do {
+			$result = tui_display_input("Enter IPv6 default gateway.", 35, 8, $gatewayip);
+			if (0 != $result) {
+				exit(0);
+			}
+			if ("" === $gatewayip) {
+				break;
+			}
+		} while (!is_ipv6addr($gatewayip));
+
+		$dnsserverip = implode(" ", $config['system']['ipv6dnsserver']);
+		do {
+			$result = tui_display_input("Enter DNS IPv6 address.", 35, 8, $dnsserverip);
+			if (0 != $result) {
+				exit(0);
+			}
+			if ("" === $dnsserverip) {
+				break;
+			}
+			$a_dnsserverip = explode(" ", $dnsserverip);
+			$valid_dns = true;
+			foreach ($a_dnsserverip as $tmp) {
+				if (!is_ipv6addr($tmp))
+					$valid_dns = false;
+			}
+		} while (!$valid_dns);
+
+		$config['interfaces']['lan']['ipv6addr'] = $lanip;
+		$config['interfaces']['lan']['ipv6subnet'] = $lanbits;
+		$config['interfaces']['lan']['ipv6gateway'] = $gatewayip;
+		$config['system']['ipv6dnsserver'] = explode(" ", $dnsserverip);
+	}
+	$config['interfaces']['lan']['ipv6_enable'] = true;
+} else {
+	$config['interfaces']['lan']['ipv6_enable'] = false;
+}
+
+if ("https" === $config['system']['webgui']['protocol']) {
+	$result = tui_display_yesno("Do you want to revert to HTTP as the WebGUI protocol?", 57, 5);
+	if (0 == $result) {
+		$port = $config['system']['webgui']['port'] ? $config['system']['webgui']['port'] : 80;
+		do {
+			$result = tui_display_input("Enter port (e.g. 80 or 8080).", 41, 8, $port);
+			if (0 != $result) {
+				exit(0);
+			}
+			if ("" === $port) {
+				break;
+			}
+		} while (!is_port($port) && services_is_port_used($port, "sysgui"));
+
+		$config['system']['webgui']['protocol'] = "http";
+		$config['system']['webgui']['port'] = $port;
+	}
+}
+
+// Wireless NIC configuration
+if (preg_match($g['wireless_regex'], $config['interfaces']['lan']['if'])) {
+	$lancfg = &$config['interfaces']['lan'];
+
+	if (!is_array($lancfg['wireless']))
+		$lancfg['wireless'] = array();
+
+	// Get interface name
+	$if = get_ifname($lancfg['if']);
+
+	// Display 'Standard' dialog.
+	$standard = $lancfg['wireless']['standard'];
+	$amenuitem = array();
+	foreach (interfaces_wireless_get_standards($if) as $standardv) {
+		$menuitem = array();
+		$menuitem['tag'] = $standardv;
+		$menuitem['item'] = "802.{$standardv}";
+		$amenuitem[] = $menuitem;
+	}
+	$result = tui_display_menu(gettext("Operating mode"), gettext("Set the operating mode for this interface."), 48, 10, 3, $amenuitem, $standard);
+	if (0 != $result)
+		exit(0);
+
+	// Display 'SSID' dialog
+	$ssid = $lancfg['wireless']['ssid'];
+	$result = tui_display_input(gettext("Set the desired Service Set Identifier (aka network name)."), 43, 9, $ssid);
+
+	// Display 'Channel' dialog
+	$channel = $lancfg['wireless']['channel'];
+	$amenuitem = array();
+	$menuitem['tag'] = "any";
+	$menuitem['item'] = "Auto";
+	$amenuitem[] = $menuitem;
+	foreach (interfaces_wireless_get_channellist($if) as $channelk => $channelv) {
+		if ($channelv['mode'] === "11g") $mode = "11b/g"; else $mode = $channelv['mode'];
+		$menuitem = array();
+		$menuitem['tag'] = $channelk;
+		$menuitem['item'] = "{$channelv['channel']} ({$channelv['freq']} MHz, {$mode})";
+		$amenuitem[] = $menuitem;
+	}
+	$result = tui_display_menu(gettext("Select channel"), gettext("Set a single desired channel. Setting the channel to any will give you the default for your adaptor."), 50, 14, 8, $amenuitem, $channel);
+	if (0 != $result)
+		exit(0);
+
+	// Display 'Encryption' dialog
+	$encryption = $lancfg['wireless']['encryption'];
+	$amenuitem = array();
+	foreach (array("none" => gettext("None"), "wep" => gettext("WEP"), "wpa" => gettext("WPA")) as $encryptionk => $encryptionv) {
+		$menuitem['tag'] = $encryptionk;
+		$menuitem['item'] = $encryptionv;
+		$amenuitem[] = $menuitem;
+	}
+	$result = tui_display_menu(gettext("Encryption mode"), gettext("Select the encryption mode."), 40, 10, 3, $amenuitem, $encryption);
+	if (0 != $result)
+		exit(0);
+
+	if ("wep" === $encryption) {
+		$key = $lancfg['wireless']['wep']['key'];
+		$text = gettext("Please enter the WEP key.");
+		$text .= " ";
+		$text .= gettext("A key will be either 5 or 13 characters (40 or 104 bits) depending of the local network and the capabilities of the adaptor. It may be specified either as a plain string or as a string of hexadecimal digits preceded by '0x'.");
+		$result = tui_display_input($text, 70, 11, $key);
+		if (0 != $result)
+			exit(0);
+
+		$lancfg['wireless']['wep']['enable'] = true;
+		$lancfg['wireless']['wep']['key'] = $key;
+	} else if ("wpa" === $encryption) {
+		// Display 'Key Management Protocol' dialog
+		$keymgmt = $lancfg['wireless']['wpa']['keymgmt'];
+		$amenuitem = array();
+		foreach (array("WPA-PSK" => gettext("WPA-PSK (Pre Shared Key)"), "WPA-EAP" => gettext("WPA-EAP (Extensible Authentication Protocol)"), "WPA-PSK WPA-EAP" => gettext("WPA-PSK WPA-EAP")) as $keymgmtk => $keymgmtv) {
+			$menuitem['tag'] = $keymgmtk;
+			$menuitem['item'] = $keymgmtv;
+			$amenuitem[] = $menuitem;
+		}
+		$result = tui_display_menu(gettext("Key management protocol"), gettext("Select the key management protocol."), 70, 10, 3, $amenuitem, $keymgmt);
+		if (0 != $result)
+			exit(0);
+
+		// Display 'Pairwise' dialog
+		$pairwise = $lancfg['wireless']['wpa']['pairwise'];
+		$text = gettext("List of acceptable pairwise (unicast) ciphers for WPA. One or more of: CCMP (AES in Counter mode with CBC-MAC, RFC 3610, IEEE 802.11i/D7.0), TKIP (Temporal Key Integrity Protocol, IEEE 802.11i/D7.0).");
+		$amenuitem = array();
+		foreach (array("CCMP TKIP" => gettext("CCMP TKIP"), "CCMP" => gettext("CCMP"), "TKIP" => gettext("TKIP")) as $pairwisek => $pairwisev) {
+			$menuitem['tag'] = $pairwisek;
+			$menuitem['item'] = $pairwisev;
+			$amenuitem[] = $menuitem;
+		}
+		$result = tui_display_menu(gettext("Pairwise"), $text, 60, 13, 3, $amenuitem, $pairwise);
+		if (0 != $result)
+			exit(0);
+
+		// Display 'PSK' dialog
+		$psk = $lancfg['wireless']['wpa']['psk'];
+		$text = gettext("Enter the passphrase that will be used in WPA-PSK mode. This must be between 8 and 63 characters long.");
+		$result = tui_display_input($text, 70, 9, $psk);
+		if (0 != $result)
+			exit(0);
+
+		$lancfg['wireless']['wpa']['enable'] = true;
+		$lancfg['wireless']['wpa']['keymgmt'] = $keymgmt;
+		$lancfg['wireless']['wpa']['pairwise'] = $pairwise;
+		$lancfg['wireless']['wpa']['psk'] = $psk;
+	} else {
+		$lancfg['wireless']['wep']['enable'] = false;
+		$lancfg['wireless']['wpa']['enable'] = false;
+	}
+
+	$lancfg['wireless']['standard'] = $standard;
+	$lancfg['wireless']['ssid'] = $ssid;
+	$lancfg['wireless']['channel'] = $channel;
+	$lancfg['wireless']['encryption'] = $encryption;
+}
+
+// Store configuration changes
+write_config();
+
+// Initialize interface
+write_console("\nInitializing interface. Please wait...");
+rc_exec_service("rcconf");
+rc_restart_service("netif");
+rc_restart_service("routing");
+if ("dhcp" === $config['interfaces']['lan']['ipaddr']) {
+	mwexec("/etc/rc.d/netif restart ".get_ifname($config['interfaces']['lan']['if']));
+}
+//rc_restart_service("network_ipv6");
+rc_restart_service("resolv");
+rc_restart_service("lighttpd");
+
+// Get current IP.
+$lanipv4 = get_ipaddr($config['interfaces']['lan']['if']);
+$lanipv6 = get_ipv6addr($config['interfaces']['lan']['if']);
+
+unset($laninfo);
+if ("dhcp" === $config['interfaces']['lan']['ipaddr'])
+	$laninfov4 = "$lanipv4";
+else
+	$laninfov4 = "$lanipv4/{$config['interfaces']['lan']['subnet']}";
+
+unset($laninfov6);
+if ("auto" === $config['interfaces']['lan']['ipv6addr'])
+  $laninfov6 = "$lanipv6";
+else
+  $laninfov6 = "$lanipv6/{$config['interfaces']['lan']['ipv6subnet']}";
+
+write_console("\n\n");
+write_console("The IP address has been set to:\n");
+if ($laninfov4 !== "")
+    write_console("LAN Network IPv4 Address: {$laninfov4}\n");
+else
+    write_console("Error: Don't get IPv4 address!\n");
+if (isset($config['interfaces']['lan']['ipv6_enable'])) {
+    if ($laninfov6 !== "")
+	    write_console("LAN Network IPv6 Address: {$laninfov6}\n");
+    else
+        write_console("IPv6 enabled, but can't get one\n");
+}
+
+$port = !empty($config['system']['webgui']['port']) ? $config['system']['webgui']['port'] : 80;
+$protocol = $config['system']['webgui']['protocol'];
+
+write_console("\n");
+write_console("You can access the WebGUI using the following URL:\n");
+// Hide default port (80 for http and 443 for https)
+if ((($protocol === "https") && ($port === 443)) || (($protocol === "http") && ($port === 80))) {
+    write_console("{$protocol}://{$lanipv4}\n");
+    if (isset($config['interfaces']['lan']['ipv6_enable'])) {
+	if ($laninfov6 !== "")
+	    write_console("{$protocol}://[{$lanipv6}]\n");
+    }
+} else {
+    write_console("{$protocol}://{$lanipv4}:{$port}\n");
+    if (isset($config['interfaces']['lan']['ipv6_enable'])) {
+	if ($laninfov6 !== "")
+	    write_console("{$protocol}://[{$lanipv6}]:{$port}\n");
+    }
+}
+
+tui_wait_keypress();
+?>
