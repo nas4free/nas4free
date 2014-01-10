@@ -11,9 +11,10 @@ EXTRACT_SUFX=	.tgz
 
 ONLY_FOR_ARCHS=	i386 amd64
 RESTRICTED=			May not be redistributed in binary form
-NO_CDROM=				yes
-NO_BUILD=				yes
+NO_CDROM=		yes
+NO_BUILD=		yes
 NO_WRKSUBDIR=		yes
+NO_STAGE=       	yes
 
 .include <bsd.port.pre.mk>
 

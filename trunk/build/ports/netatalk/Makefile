@@ -1,5 +1,5 @@
 PORTNAME=		netatalk
-PORTVERSION=	2.2.4
+PORTVERSION=	2.2.5
 PORTREVISION=	0
 CATEGORIES=		net print
 MASTER_SITES=	SF
@@ -8,13 +8,12 @@ MAINTAINER=		zoon01@nas4free.org
 
 LIB_DEPENDS=	gcrypt:${PORTSDIR}/security/libgcrypt
 
+NO_STAGE=       yes
 USE_AUTOTOOLS=	libtool
 USE_BDB=	46+
 USE_BZIP2=	yes
-USE_ICONV=	yes
 GNU_CONFIGURE=	yes
-USE_GMAKE=	yes
-USE_PERL5=	yes
+USES=           iconv gmake perl5
 WANT_GNOME=	yes
 
 CONFIGURE_ARGS+=	--bindir=/usr/local/bin \

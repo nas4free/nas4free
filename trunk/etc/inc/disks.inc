@@ -1452,34 +1452,62 @@ function disks_rescan() {
 }
 
 // verify disks
-function disks_verify_all_disks() {
+function disks_verify_all_disks($a_phy_disks) {
 	global $config;
 
-	$num = $error = 0;
 	$result = array();
 
 	if (empty($config['disks']['disk']))
 		$config['disks']['disk'] = array();
 
-	$disks = $config['disks']['disk'];
-	if (empty($disks))
+	$conf_disks = $config['disks']['disk'];
+	if (empty($conf_disks))
 		return $result;
 
-	foreach ($disks as $diskv) {
-		$name = $diskv['name'];
-		$type = $diskv['type'];
-		$dev = $diskv['devicespecialfile'];
-		if (!empty($diskv['serial'])) {
-			$serial = system_get_volume_serial($dev);
-			if (($serial == "n/a") || ($serial == gettext("n/a"))) {
-				$serial = "";
-			}
-			if (!empty($serial) && $serial != $diskv['serial']) {
-				$result[$dev] = $serial;
-				$error++;
-			}
-		}
-	}
+	foreach ($conf_disks as $conf_disk) {
+        $disk_exists =0;
+
+        foreach ($a_phy_disks as $phy_disk){
+            if ($phy_disk['name'] === $conf_disk['name']){
+                $disk_exists = 1;
+                $disk_error = 0;
+
+                if ($phy_disk['serial'] !== $conf_disk['serial']){
+                    // check if conf_disk is moved
+                    if( !empty($conf_disk['serial']) ){
+                        $a_phy_disks1 = $a_phy_disks;
+
+                        foreach($a_phy_disks1 as $disk1){
+                            if($disk1['serial'] === $conf_disk['serial']){
+                                $result[$conf_disk['name']]['new_devicespecialfile'] = '/dev/'.$disk1['name'];
+                                $disk_error += 1; // moved/shuffled
+                            }
+                        }
+                    }
+
+                    $result[$conf_disk['name']]['old_serial'] = $conf_disk['serial'];
+                    $result[$conf_disk['name']]['new_serial'] = $phy_disk['serial'];
+                    $disk_error += 2; // disk changed
+                }
+
+                if ($phy_disk['controller'].$phy_disk['controller_id'] !== $conf_disk['controller'].$conf_disk['controller_id']){
+                    $result[$conf_disk['name']]['config_controller'] = $conf_disk['controller'].$conf_disk['controller_id'];
+                    $result[$conf_disk['name']]['new_controller'] = $phy_disk['controller'].$phy_disk['controller_id'];
+                    $disk_error += 4; // controller changed
+                }
+
+                if ($disk_error > 0){
+                    $result[$conf_disk['name']]['error'] = $disk_error;
+                }
+            }
+        }
+
+        if ($disk_exists == 0){
+            $result[$conf_disk['name']]['old_serial'] = $conf_disk['serial'];
+            $result[$conf_disk['name']]['error'] += 8; //disk removed
+        }
+    }
+
 	return $result;
 }
 
@@ -1496,6 +1524,7 @@ function disks_update_mounts() {
 
 	$disks = $config['disks']['disk'];
 	foreach ($disks as $diskv) {
+
 		$name = $diskv['name'];
 		$type = $diskv['type'];
 		$fstype = $diskv['fstype'];
@@ -1731,7 +1760,6 @@ function disks_import_all_disks($clean_import) {
 	}
 
 	foreach ($disks as $diskv) {
-		$name = $diskv['name'];
 		$type = $diskv['type'];
 		$dev = $diskv['devicespecialfile'];
 		if ($type == 'SCSI' || $type == 'RAID' || $type == 'IDE') {
@@ -1740,20 +1768,14 @@ function disks_import_all_disks($clean_import) {
 			if (false === $index) {
 				$num++; // detected
 
-				$fstype = disks_import_get_fstype($dev);
-
 				$pdisk = array();
 				$pdisk['uuid'] = uuid();
 				$pdisk['name'] = $diskv['name'];
+				$pdisk['id'] = $diskv['id'];
 				$pdisk['devicespecialfile'] = $dev;
-				$pdisk['harddiskstandby'] = "0";
-				$pdisk['acoustic'] = "0";
-				$pdisk['fstype'] = $fstype;
-				$pdisk['apm'] = "0";
-				$pdisk['transfermode'] = "auto";
-				$pdisk['type'] = $diskv['type'];
+				$pdisk['model'] = !empty($diskv['model']) ? $diskv['model'] : "";
 				$pdisk['desc'] = !empty($diskv['desc']) ? $diskv['desc'] : "";
-				$pdisk['size'] = $diskv['size'];
+				$pdisk['type'] = $diskv['type'];
 				$serial = "";
 				if (!empty($diskv['serial'])) {
 					$serial = $diskv['serial'];
@@ -1762,6 +1784,18 @@ function disks_import_all_disks($clean_import) {
 					$serial = "";
 				}
 				$pdisk['serial'] = $serial;
+				$pdisk['size'] = $diskv['size'];
+				$pdisk['harddiskstandby'] = "0";
+				$pdisk['acoustic'] = "0";
+				$pdisk['apm'] = "0";
+				$pdisk['transfermode'] = "auto";
+				$pdisk['fstype'] = disks_import_get_fstype($dev);
+				$pdisk['controller'] = $diskv['controller'];
+				$pdisk['controller_id'] =  $diskv['controller_id'];
+				$pdisk['controller_desc'] = $diskv['controller_desc'];
+				$pdisk['smart']['devicefilepath'] = $diskv['smart']['devicefilepath'];
+				$pdisk['smart']['devicetype'] = $diskv['smart']['devicetype'];
+				$pdisk['smart']['devicetypearg'] = $diskv['smart']['devicetypearg'];
 				$pdisk['smart']['enable'] = false;
 				$pdisk['smart']['extraoptions'] = "";
 
@@ -1830,15 +1864,11 @@ function disks_import_consumers($name, $type, $dev, $disks, $clean_import) {
 					$pdisk = array();
 					$pdisk['uuid'] = uuid();
 					$pdisk['name'] = $diskv['name'];
+					$pdisk['id'] = $diskv['id'];
 					$pdisk['devicespecialfile'] = $condev;
-					$pdisk['harddiskstandby'] = "0";
-					$pdisk['acoustic'] = "0";
-					$pdisk['fstype'] = "softraid";
-					$pdisk['apm'] = "0";
-					$pdisk['transfermode'] = "auto";
-					$pdisk['type'] = $diskv['type'];
+					$pdisk['model'] = !empty($diskv['model']) ? $diskv['model'] : "";
 					$pdisk['desc'] = !empty($diskv['desc']) ? $diskv['desc'] : "";
-					$pdisk['size'] = $diskv['size'];
+					$pdisk['type'] = $diskv['type'];
 					$serial = "";
 					if (!empty($diskv['serial'])) {
 						$serial = $diskv['serial'];
@@ -1847,6 +1877,19 @@ function disks_import_consumers($name, $type, $dev, $disks, $clean_import) {
 						$serial = "";
 					}
 					$pdisk['serial'] = $serial;
+					$pdisk['size'] = $diskv['size'];
+					$pdisk['harddiskstandby'] = "0";
+					$pdisk['acoustic'] = "0";
+					$pdisk['apm'] = "0";
+					$pdisk['transfermode'] = "auto";
+					$pdisk['fstype'] = "softraid";
+					$pdisk['controller'] = $diskv['controller'];
+					$pdisk['controller_id'] =  $diskv['controller_id'];
+					$pdisk['controller_desc'] = $diskv['controller_desc'];
+					$pdisk['smart']['devicefilepath'] = $diskv['smart']['devicefilepath'];
+					$pdisk['smart']['devicetype'] = $diskv['smart']['devicetype'];
+					$pdisk['smart']['devicetypearg'] = $diskv['smart']['devicetypearg'];
+					$pdisk['controller'] = $diskv['controller'];
 					$pdisk['smart']['enable'] = false;
 					$pdisk['smart']['extraoptions'] = "";
 				
@@ -2079,15 +2122,11 @@ function disks_import_all_encrypted_disks($clean_import) {
 				$pdisk = array();
 				$pdisk['uuid'] = uuid();
 				$pdisk['name'] = $diskv['name'];
+				$pdisk['id'] = $diskv['id'];
 				$pdisk['devicespecialfile'] = $dev;
-				$pdisk['harddiskstandby'] = "0";
-				$pdisk['acoustic'] = "0";
-				$pdisk['fstype'] = "geli";
-				$pdisk['apm'] = "0";
-				$pdisk['transfermode'] = "auto";
-				$pdisk['type'] = $diskv['type'];
+				$pdisk['model'] = !empty($diskv['model']) ? $diskv['model'] : "";
 				$pdisk['desc'] = !empty($diskv['desc']) ? $diskv['desc'] : "";
-				$pdisk['size'] = $diskv['size'];
+				$pdisk['type'] = $diskv['type'];
 				$serial = "";
 				if (!empty($diskv['serial'])) {
 					$serial = $diskv['serial'];
@@ -2096,6 +2135,18 @@ function disks_import_all_encrypted_disks($clean_import) {
 					$serial = "";
 				}
 				$pdisk['serial'] = $serial;
+				$pdisk['size'] = $diskv['size'];
+				$pdisk['harddiskstandby'] = "0";
+				$pdisk['acoustic'] = "0";
+				$pdisk['apm'] = "0";
+				$pdisk['transfermode'] = "auto";
+				$pdisk['fstype'] = "geli";
+				$pdisk['controller'] = $diskv['controller'];
+				$pdisk['controller_id'] =  $diskv['controller_id'];
+				$pdisk['controller_desc'] = $diskv['controller_desc'];
+				$pdisk['smart']['devicefilepath'] = $diskv['smart']['devicefilepath'];
+				$pdisk['smart']['devicetype'] = $diskv['smart']['devicetype'];
+				$pdisk['smart']['devicetypearg'] = $diskv['smart']['devicetypearg'];
 				$pdisk['smart']['enable'] = false;
 				$pdisk['smart']['extraoptions'] = "";
 				

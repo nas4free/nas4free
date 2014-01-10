@@ -1,23 +1,23 @@
 <?php
 /*
 	disks_manage_edit.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
 	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.	
+	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -31,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 require("auth.inc");
@@ -56,19 +56,29 @@ $a_disk = &$config['disks']['disk'];
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_disk, "uuid")))) {
 	$pconfig['uuid'] = $a_disk[$cnid]['uuid'];
 	$pconfig['name'] = $a_disk[$cnid]['name'];
+	$pconfig['id'] = $a_disk[$cnid]['id'];
+	$pconfig['devicespecialfile'] = $a_disk[$cnid]['devicespecialfile'];
+	$pconfig['model'] = $a_disk[$cnid]['model'];
+	$pconfig['desc'] = $a_disk[$cnid]['desc'];
+	$pconfig['serial'] = $a_disk[$cnid]['serial'];
 	$pconfig['harddiskstandby'] = $a_disk[$cnid]['harddiskstandby'];
 	$pconfig['acoustic'] = $a_disk[$cnid]['acoustic'];
-	$pconfig['fstype'] = $a_disk[$cnid]['fstype'];
 	$pconfig['apm'] = $a_disk[$cnid]['apm'];
 	$pconfig['transfermode'] = $a_disk[$cnid]['transfermode'];
-	$pconfig['devicespecialfile'] = $a_disk[$cnid]['devicespecialfile'];
-	$pconfig['serial'] = $a_disk[$cnid]['serial'];
+	$pconfig['fstype'] = $a_disk[$cnid]['fstype'];
+	$pconfig['controller'] = $a_disk[$cnid]['controller'];
+	$pconfig['controller_id'] =  $a_disk[$cnid]['controller_id'];
+	$pconfig['controller_desc'] = $a_disk[$cnid]['controller_desc'];
+	$pconfig['smart']['devicefilepath'] = $a_disk[$cnid]['smart']['devicefilepath'];
+	$pconfig['smart']['devicetype'] = $a_disk[$cnid]['smart']['devicetype'];
+	$pconfig['smart']['devicetypearg'] = $a_disk[$cnid]['smart']['devicetypearg'];
 	$pconfig['smart_enable'] = isset($a_disk[$cnid]['smart']['enable']);
 	$pconfig['smart_extraoptions'] = $a_disk[$cnid]['smart']['extraoptions'];
-	$pconfig['desc'] = $a_disk[$cnid]['desc'];
 } else {
 	$pconfig['uuid'] = uuid();
 	$pconfig['name'] = "";
+	$pconfig['model'] = "";
+	$pconfig['desc'] = "";
 	$pconfig['transfermode'] = "auto";
 	$pconfig['harddiskstandby'] = "0";
 	$pconfig['apm'] = "0";
@@ -77,7 +87,6 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_disk, "uuid"))
 	$pconfig['serial'] = "";
 	$pconfig['smart_enable'] = false;
 	$pconfig['smart_extraoptions'] = "";
-	$pconfig['desc'] = "";
 }
 
 if ($_POST) {
@@ -105,15 +114,11 @@ if ($_POST) {
 		$disks = array();
 		$disks['uuid'] = $_POST['uuid'];
 		$disks['name'] = $devname;
+		$disks['id'] = $a_phy_disk[$devname]['id'];
 		$disks['devicespecialfile'] = $a_phy_disk[$devname]['devicespecialfile'];
-		$disks['harddiskstandby'] = $_POST['harddiskstandby'];
-		$disks['acoustic'] = $_POST['acoustic'];
-		if ($_POST['fstype']) $disks['fstype'] = $_POST['fstype'];
-		$disks['apm'] = $_POST['apm'];
-		$disks['transfermode'] = $_POST['transfermode'];
-		$disks['type'] = $a_phy_disk[$devname]['type'];
+		$disks['model'] = (empty($_POST['model'])) ? $a_phy_disk[$devname]['model'] : $_POST['model'];
 		$disks['desc'] = (empty($_POST['desc'])) ? $a_phy_disk[$devname]['desc'] : $_POST['desc'];
-		$disks['size'] = $a_phy_disk[$devname]['size'];
+		$disks['type'] = $a_phy_disk[$devname]['type'];
 		if (isset($a_phy_disk[$devname]['serial'])) {
 			$serial = $a_phy_disk[$devname]['serial'];
 		} else {
@@ -123,6 +128,18 @@ if ($_POST) {
 			$serial = "";
 		}
 		$disks['serial'] = $serial;
+		$disks['size'] = $a_phy_disk[$devname]['size'];
+		$disks['harddiskstandby'] = $_POST['harddiskstandby'];
+		$disks['acoustic'] = $_POST['acoustic'];
+		$disks['apm'] = $_POST['apm'];
+		if ($_POST['fstype']) $disks['fstype'] = $_POST['fstype'];
+		$disks['transfermode'] = $_POST['transfermode'];
+		$disks['controller'] = $a_phy_disk[$devname]['controller'];
+		$disks['controller_id'] = $a_phy_disk[$devname]['controller_id'];
+		$disks['controller_desc'] = $a_phy_disk[$devname]['controller_desc'];
+		$disks['smart']['devicefilepath'] = $a_phy_disk[$devname]['smart']['devicefilepath'];
+		$disks['smart']['devicetype'] = $a_phy_disk[$devname]['smart']['devicetype'];
+		$disks['smart']['devicetypearg'] = $a_phy_disk[$devname]['smart']['devicetypearg'];
 		$disks['smart']['enable'] = isset($_POST['smart_enable']) ? true : false;
 		$disks['smart']['extraoptions'] = $_POST['smart_extraoptions'];
 
@@ -184,7 +201,7 @@ function smart_enable_change() {
 								<?php foreach ($a_phy_disk as $diskk => $diskv):?>
 								<?php // Do not display disks that are already configured. (Create mode);?>
 								<?php if (!isset($uuid) && (false !== array_search_ex($diskk, $a_disk, "name"))) continue;?>
-								<option value="<?=$diskk;?>" <?php if ($diskk == $pconfig['name']) echo "selected=\"selected\"";?>><?php echo htmlspecialchars($diskk . ": " .$diskv['size'] . " (" . $diskv['desc'] . ")");?></option>
+								<option value="<?=$diskk;?>" <?php if ($diskk == $pconfig['name']) echo "selected=\"selected\"";?>><?php echo htmlspecialchars($diskk . ": " .$diskv['size'] . " (" . $diskv['model'] . ")");?></option>
 								<?php endforeach;?>
 							</select>
 					  </td>

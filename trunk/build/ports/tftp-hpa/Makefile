@@ -9,6 +9,7 @@ MASTER_SITES=	ftp://ftp.kernel.org/pub/software/network/tftp/tftp-hpa/
 USE_BZIP2=		yes
 GNU_CONFIGURE=	yes
 USE_GMAKE=		yes
+NO_STAGE=       yes
 
 CONFIGURE_ARGS+=	--enable-largefile
 

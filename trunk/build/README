@@ -24,17 +24,19 @@
 Edit the script '/nas4free/svn/build/make.sh' and adapt the directory
 variables with your local ones.
 
-Check that you have installed the following ports:
-- subversion
-- bash
-- cdrtools
-- php5
-- xproto
-- portupgrade
-- perl
-- ruby
-- m4
-- bison
+Now install the following ports:
+
+#cd /usr/ports/shells/bash
+#make install clean
+
+#cd /usr/ports/ports-mgmt/portupgrade
+#make install clean
+
+#cd /usr/ports/sysutils/cdrtools
+#make install clean
+
+#cd /usr/ports/devel/subversion
+#make install clean
 
 Start /nas4free/svn/build/make.sh and follow the steps.
 
@@ -43,7 +45,7 @@ Start /nas4free/svn/build/make.sh and follow the steps.
 
 Here is how to build NAS4Free from the latest sources:
 
-- It's important to use the root user-account on your FreeBSD installed system!.
+- It's really important to use the root user-account on your FreeBSD installed system!
 
 3.1 Update your NAS4Free scripts/WebGUI code with the SVN:
 (this creates the svn directory)
@@ -68,12 +70,13 @@ portsnap fetch update
 
 svn/build/make.sh
 
-Execute all menus in '2' - Compile NAS4Free from scratch menu' to build your NAS4Free from scratch. After thit use one of the following menus:
+Execute all menus in '2' - Compile NAS4Free from Scratch' to compile your NAS4Free sources from scratch. When all are done, use one of the following options:
 
 10 - Create 'Embedded' (IMG) file (rawrite to CF/USB/DD).
-11 - Create 'LiveCD' (ISO) file.
-12 - Create 'LiveCD' (ISO) file without 'Embedded' file.
-13 - Create 'Full' (TGZ) update file.
+11 - Create 'LiveUSB' (IMG) file.
+12 - Create 'LiveCD' (ISO) file.
+13 - Create 'Livecd-Tiny' (ISO) File without 'Embedded' File.
+14 - Create 'Full' (TGZ) update file.
 
 =================================
 4. Building kernel
@@ -81,4 +84,10 @@ Execute all menus in '2' - Compile NAS4Free from scratch menu' to build your NAS
 Before building the kernel it is recommended to delete the directory /usr/src completely.
 Next, run the build scripts and update the kernel sources via subversion + freebsd-update.
 Continue building using the 'Build kernel' menu in the build script.
- 
+
+Hint! 
+  You can create a backup from the kernel source to revert them quickly.
+  # cp -r /usr/src /usr/src.orig
+
+(Kernel patches should be applied only once. Multiple times will fail (e.g. when
+  using patch command by ./make.sh file.)

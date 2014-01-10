@@ -12,6 +12,7 @@ LIB_DEPENDS=		curl.7:${PORTSDIR}/ftp/curl \
 	    		event-2.0.6:${PORTSDIR}/devel/libevent2
 GEN_RUN_DEPENDS=${LOCALBASE}/share/transmission/web/index.html:${PORTSDIR}/www/transmission-web
 
+NO_STAGE=       yes
 USE_GMAKE=	yes
 USES=           pkgconfig
 USE_OPENSSL=	yes

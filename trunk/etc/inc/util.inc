@@ -891,145 +891,440 @@ function get_hast_disks_list()
 	return $disklist;
 }
 
-// Get list of disks.
-// Parameter example : scsi, ata, cdrom, mpt
-// Note				 :- 'cdrom' returns both SCSI and IDE cdroms
-//    [ada0] => Array
-//        (
-//            [name] => ada0
-//            [devicespecialfile] => /dev/ada0
-//            [type] => IDE
-//            [desc] => VMware Virtual IDE Hard Drive 00000001
-//            [size] => 1024MB
-//            [serial] => 00000000000000000001
-//            [devicetype] => ata
-//        )
-function parse_devlist($devicetype){
-	$disklist = array();
-	
-	exec("/sbin/camcontrol devlist -v 2> /dev/null", $rawdata);
+// Parse infos from camcontrol
+function parse_camcontrol_info($devtype){
+	$devlist = array();
+	$device = '';
+	$controller = '';
+	$controller_id = ''; 
+	$target_id = '';
+	$lun_id = '';
+
+	mwexec2("/sbin/camcontrol devlist -v 2> /dev/null", $rawdata);
 
 	foreach($rawdata as $line) {
-	
-	
-		// Check for disk type
-		if( preg_match("/(?<= on )[-A-z]*(?=[0-9]* bus )+/", $line, $matches)){
-			$type = $matches[0];
-			continue ;
+		// Get controller
+		if( preg_match("/(?<= on )[-A-z0-9]*(?= bus )+/", $line, $matches)){
+			$controller = preg_split( '/([0-9]+\z)/i', $matches[0], -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+			$controller_desc = '';
+			$controller_id = ''; 
+			$target_id = '';
+			$lun_id = '';
+			$device = '';
 		}
-		
-		// Get information include between parenthese: (pass0,da0) or (da0,pass0)
-		preg_match("/.*\(([^>]*)\).*/",$line,$match);
+		else if ( !strncmp($line, '<>' ,2) == 0){
+			// Get target id
+			if ( preg_match("/(?<= target )[0-9]*(?= lun )+/",$line, $matches )){
+				$target_id = $matches[0];
+			}
 
-		// Split result by comma
-		$temp = preg_split("/,/", $match[1]);
+			// Get lun id
+			if ( preg_match("/(?<= lun )[0-9]*/",$line, $matches )){
+				$lun_id = $matches[0];
+			}
 
-		// Get device name
-		// Check if diskname is the first (da0,pass0) or the second (pass0,da0) arguement
-		$diskname = $temp[1];
-		if ($diskname[0] === "p"){
-			$diskname = $temp[0];
-		}
+			// Get device name
+			// Parse substring between parentheses: (pass0,da0) or (da0,pass0)
+			preg_match("/.*\(([^>]*)\).*/",$line,$match);
+			$temp = preg_split("/,/", $match[1]);
 
-		// for scsi option, do not include ata drives, for ata option, do not include scsi drives
-		if(($devicetype!="scsi" & $type == $devicetype) | ($devicetype=="scsi" & $type!="ata") ){
-			// Ignore CD-ROMs
-			if($diskname != "" & !preg_match("/^(cd|acd)/", $diskname )){
-				$disklist[$diskname] = array();
-				$disklist[$diskname]['name'] = $diskname;
-				$disklist[$diskname]['devicespecialfile'] = "/dev/" . $diskname;
+			// Check whether device name is at the first (da0,pass0) or the second (pass0,da0) arguement
+			$device = preg_split( '/([-A-z]+)/', $temp[1], -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 
-				// for backward compatibility
-				switch($type){
-				case 'ata':
-						$disklist[$diskname]['type'] = "IDE";
-						break;
-				case 'iscsi':
-						$disklist[$diskname]['type'] = "iSCSI";
-						break;
-				// scsi-controller list from /etc/devd.conf		
-				case 'aac' || 'adv' || 'adw' || 'aha' || 'ahb' || 'ahc' || 'ahd' || 'aic' || 'amd' || 'amr' || 'asr' || 'bt' || 'ciss' || 'ct' || 'dpt' || 'esp' || 'ida' || 'iir' || 'ips' || 'isp'|| 'mlx' || 'mly' || 'mpt' || 'ncr' ||'ncv' || 'nsp' || 'stg' || 'sym' || 'trm' || 'wds':
-				case "mpt": // LSI Fusion-MPT SCSI/Fibre Channel driver
-						$disklist[$diskname]['type'] = "SCSI";
-						break;
-				}		
+			if (strncmp($device[0],'pass',4) == 0){
+				$device = preg_split( '/([-A-z]+)/', $temp[0], -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+			}
 
-				// Get description between < and >
-				preg_match("/(?<=^\<).*(?=\>)+/",$line,$match);
-				$disklist[$diskname]['desc'] = $match[0];
-				
-				// Get diskinfo to get disk size
-				$diskinfo = disks_get_diskinfo($diskname);
-				$disklist[$diskname]['size'] = $diskinfo['mediasize_mbytes'] . "MB";
+			// legacy compatibility: for scsi option, do not include ata drives, for ata option, do not include scsi drives
+			if( ($devtype!="scsi" & $controller[0] == $devtype) | ($devtype=="scsi" & $controller[0]!="ata") ){
+				// Ignore CD-ROMs and SCSI enclosure devices (ses)
+				if($device[0] != "" & !preg_match("/^(cd|acd|ses)/", $device[0] )){
+					// Add device into devlice list array
+					$devlist["$device[0]$device[1]"]['device'] = $device[0];
+					$devlist["$device[0]$device[1]"]['id'] = $device[1];
+					$devlist["$device[0]$device[1]"]['name']  = $device[0].$device[1];
+					$devlist["$device[0]$device[1]"]['devicespecialfile'] = '/dev/'.$device[0].$device[1];
 
-				// Get serial number
-				$serial = system_get_volume_serial("/dev/" . $diskname);
-				$disklist[$diskname]['serial'] = $serial;
-				
-				// Get device type
-				$disklist[$diskname]['devicetype'] = $type;
+					init_device_attributes($devlist["$device[0]$device[1]"]);
+					
+					// Get diskinfo to get disk size
+					$diskinfo = disks_get_diskinfo($devlist["$device[0]$device[1]"]['devicespecialfile']);
+					$devlist["$device[0]$device[1]"]['size'] = $diskinfo['mediasize_mbytes'] . "MB";
+
+					$devlist["$device[0]$device[1]"]['controller'] = $controller[0];
+					$devlist["$device[0]$device[1]"]['controller_id'] = $controller[1];
+					$devlist["$device[0]$device[1]"]['target_id'] = $target_id;
+					$devlist["$device[0]$device[1]"]['lun_id'] = $lun_id;
+
+					// for backward compatibility
+					switch($controller[0]){
+					case 'ata':
+							$devlist["$device[0]$device[1]"]['type'] = "IDE";
+							break;
+					case 'iscsi':
+							$devlist["$device[0]$device[1]"]['type'] = "iSCSI";
+							break;
+					// scsi-controller list from /etc/devd.conf		
+					case 'aac' || 'adv' || 'adw' || 'aha' || 'ahb' || 'ahc' || 'ahd' || 'aic' || 'amd' || 'amr' || 'asr' || 'bt' || 'ciss' || 'ct' || 'dpt' || 'esp' || 'ida' || 'iir' || 'ips' || 'isp'|| 'mlx' || 'mly' || 'mpt' || 'ncr' ||'ncv' || 'nsp' || 'stg' || 'sym' || 'trm' || 'wds':
+					case "mpt": // LSI Fusion-MPT SCSI/Fibre Channel driver
+							$devlist["$device[0]$device[1]"]['type'] = "SCSI";
+							break;
+					}
 				}
-		}
-		// display both SCSI and IDE cdroms
-		elseif( $devicetype == "cdrom"){
-			if($diskname != "" & preg_match("/^(cd|acd)/", $diskname )){
-				$disklist[$diskname] = array();
-				$disklist[$diskname]['name'] = $diskname;
-				$disklist[$diskname]['devicespecialfile'] = "/dev/" . $diskname;
+			}
+			// display both SCSI and IDE cdroms
+			elseif( $devtype == "cdrom"){
+				if($device[0] != "" & preg_match("/^(cd|acd)/", $device[0] )){
+					// Add device into devlice list array
+					$devlist["$device[0]$device[1]"]['device'] = $device[0];
+					$devlist["$device[0]$device[1]"]['id'] = $device[1];
+					$devlist["$device[0]$device[1]"]['name']  = $device[0].$device[1];
+					$devlist["$device[0]$device[1]"]['devicespecialfile'] = '/dev/'.$device[0].$device[1];
 
-				// for backward compatibility
-				switch($type){
-				case 'ata':
-						$disklist[$diskname]['type'] = "IDE";
-						break;
-				case 'iscsi':
-						$disklist[$diskname]['type'] = "iSCSI";
-						break;
-				// scsi-controller list from /etc/devd.conf		
-				case 'aac' || 'adv' || 'adw' || 'aha' || 'ahb' || 'ahc' || 'ahd' || 'aic' || 'amd' || 'amr' || 'asr' || 'bt' || 'ciss' || 'ct' || 'dpt' || 'esp' || 'ida' || 'iir' || 'ips' || 'isp'|| 'mlx' || 'mly' || 'mpt' || 'ncr' ||'ncv' || 'nsp' || 'stg' || 'sym' || 'trm' || 'wds':
-				case "mpt": // LSI Fusion-MPT SCSI/Fibre Channel driver
-						$disklist[$diskname]['type'] = "SCSI";
-						break;
-				}		
+					init_device_attributes($devlist["$device[0]$device[1]"]);
 
-				// Get description between < and >
-				preg_match("/(?<=^\<).*(?=\>)+/",$line,$match);
-				$disklist[$diskname]['desc'] = $match[0];
-				
-				// Get diskinfo to get disk size
-				$diskinfo = disks_get_diskinfo($diskname);
-				$disklist[$diskname]['size'] = $diskinfo['mediasize_mbytes'] . "MB";
+					// Get diskinfo to get disk size
+					$diskinfo = disks_get_diskinfo($devlist["$device[0]$device[1]"]['devicespecialfile']);
+					$devlist["$device[0]$device[1]"]['size'] = $diskinfo['mediasize_mbytes'] . "MB";					
 
-				// Get serial number
-				$serial = system_get_volume_serial("/dev/" . $diskname);
-				$disklist[$diskname]['serial'] = $serial;
-				
-				// Get device type
-				$disklist[$diskname]['devicetype'] = $type;
-				}		
-		
+					$devlist["$device[0]$device[1]"]['controller'] = $controller[0];
+					$devlist["$device[0]$device[1]"]['controller_id'] = $controller[1];
+					$devlist["$device[0]$device[1]"]['target_id'] = $target_id;
+					$devlist["$device[0]$device[1]"]['lun_id'] = $lun_id;
+
+					// for backward compatibility
+					switch($controller[0]){
+					case 'ata':
+							$devlist["$device[0]$device[1]"]['type'] = "IDE";
+							break;
+					case 'iscsi':
+							$devlist["$device[0]$device[1]"]['type'] = "iSCSI";
+							break;
+					// scsi-controller list from /etc/devd.conf
+					case 'aac' || 'adv' || 'adw' || 'aha' || 'ahb' || 'ahc' || 'ahd' || 'aic' || 'amd' || 'amr' || 'asr' || 'bt' || 'ciss' || 'ct' || 'dpt' || 'esp' || 'ida' || 'iir' || 'ips' || 'isp'|| 'mlx' || 'mly' || 'mpt' || 'ncr' ||'ncv' || 'nsp' || 'stg' || 'sym' || 'trm' || 'wds':
+					case "mpt": // LSI Fusion-MPT SCSI/Fibre Channel driver
+					case "twa": // 3ware
+						$devlist["$device[0]$device[1]"]['type'] = "SCSI";
+						break;
+					}
+				}
+			}
 		}
 	}
-	return $disklist;
+	return $devlist;
+}
 
+// Parse controller dependent info
+function parse_controller_config(&$devlist){
+
+	foreach($devlist as &$device){
+		$devtype = '';
+		switch( $device['controller']){
+		// Experimental : requires arcmsr to add enclosure support
+		// Areca SATA[/SAS] RAID controller
+		// SMART Device type format : areca,N/E (N =  channel (slot), E = enclosure)
+		// smartctl -a -d areca,9/2 /dev/arcmsr0
+			case "arcmsr":
+				$device['smart']['devicefilepath'] = "/dev/".$device['controller'].$device['controller_id'];
+				$device['smart']['devicetype'] = 'areca';
+				$device['smart']['devicetypearg'] = 'areca,'.$device['target_id'];
+				break;
+			case 'ahcich':
+			case 'ata':
+				$device['model'] = parse_device_desc($device['name']);
+				$device['controller_desc'] = parse_ata_ahci_controller_desc($device['controller'].$device['controller_id']);
+
+				mwexec2("smartctl -d test "."/dev/".$device['name']." | grep \" opened\" | xargs -0 -J {} expr {} : \".*Device of type '\(.*\)' \[.*\] opened\"", $devtype);
+				$device['smart']['devicefilepath'] = '/dev/'.$device['name'];
+				$device['smart']['devicetype'] = $devtype[0];
+				$device['smart']['devicetypearg'] = $devtype[0];
+				break;
+			// HP Smart Array controller
+			// SMART Device type format : cciss,N (N = which disk on the controller is monitored)
+			// e.g. smartctl -d cciss,1 -a /dev/ciss0
+			case 'ciss':
+				$device['controller_desc'] = parse_raid_controller_desc($device['controller'].$device['controller_id']);
+				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'].$device['controller_id'];
+				$device['smart']['devicetype'] = 'cciss';
+				$device['smart']['devicetypearg'] = "cciss,".$device['target_id'];
+				break;
+			case 'hptiop': // HighPoint RocketRAID 3xxx/4xxx device driver
+			case 'hptmv': // HighPoint RocketRAID 182x device driver
+			case 'hptrr': // HighPoint RocketRAID device driver
+			case 'hpt27xx': // Highpoint RocketRAID 27xx controller
+				$controller_id = $device['controller_id'] + 1;
+				$disk_id = $device['target_id']+1;
+
+				$device['controller_desc'] = parse_raid_controller_desc($device['controller'].$device['controller_id']);
+				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'];
+				$device['smart']['devicetype'] = $device['controller'];
+				$device['smart']['devicetypearg'] = "hpt,".$controller_id."/".$disk_id;
+				break;
+			// LSI 2008 (IT mode)
+			case 'mps':
+			case 'mpt':
+				$device['model'] = parse_device_desc($device['name']);
+				$device['controller_desc'] = parse_device_desc($device['controller'].$device['controller_id']);
+
+				mwexec2('smartctl -d test /dev/'.$device['name']." | grep \" opened\" | xargs -0 -J {} expr {} : \".*Device of type '\(.*\)' \[.*\] opened\"", $devtype);
+				$device['smart']['devicefilepath'] = '/dev/'.$device['name'];
+				$device['smart']['devicetype'] = $devtype[0];
+				$device['smart']['devicetypearg'] = $devtype[0];
+				break;
+			case 'twa': // 3ware 9000/9500/9550/9650 series SATA RAID controller
+			case 'twe': // 3ware 5000/6000/7000/8000 series PATA/SATA RAID adapter
+				$device['controller_desc'] = parse_raid_controller_desc($device['controller'].$device['controller_id']);
+				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'].$device['controller_id'];
+				$device['smart']['devicetype'] = '3ware';
+
+				mwexec2('/usr/local/sbin/tw_cli /c'.$device['controller_id'].'/u'.$device['target_id'].' show | grep -E "^u"', $tw_line);
+
+				$port = 0;
+				if( preg_match("/(?<=p)[\d]+/", $tw_line, $port_num) ){
+					$port = $port_num;
+				}
+
+				$device['smart']['devicetypearg'] = '3ware,'.$port;
+				break;
+			// USB Mass Storage
+			case 'umass-sim':
+				$device['model'] = parse_device_desc($device['name']);
+				$device['controller_desc'] = parse_umass_controller_desc($device['controller_id']);
+				$device['smart']['devicefilepath'] = '/dev/'.$device['name'];
+				break;
+			// Auto detect devices to cater for SATA disks pass through via HBA (non-RAID) (such as LSI SAS2008 RAID controller (e.g. IBM ServeRAID M1015) flashed to LSI9211-IT firmware)
+			default:
+				$device['model'] = parse_device_desc($device['name']);
+				$device['controller_desc'] = parse_device_desc($device['controller'].$device['controller_id']);
+
+				mwexec2('smartctl -d test /dev/'.$device['name']." | grep \" opened\" | xargs -0 -J {} expr {} : \".*Device of type '\(.*\)' \[.*\] opened\"", $devtype);
+				$device['smart']['devicefilepath'] = '/dev/'.$device['name'];
+				$device['smart']['devicetype'] = $devtype[0];
+				$device['smart']['devicetypearg'] = $devtype[0];
+				break;
+		}
+
+		// Parse info from S.M.A.R.T.
+		$smartctl_info = get_smartctl_info($device);
+
+		if(!empty($smartctl_info['desc'])) $device['desc'] = $smartctl_info['desc'];
+		if(!empty($smartctl_info['model'])) $device['model'] = $smartctl_info['model'];
+		if(!empty($smartctl_info['serial'])) $device['serial'] = $smartctl_info['serial'];
+		if(!empty($smartctl_info['rotation_rate'])) $device['rotation_rate'] = $smartctl_info['rotation_rate'];
+		if(!empty($smartctl_info['transfer_rate'])) $device['transfer_rate'] = $smartctl_info['transfer_rate'];
+
+		// if S.M.A.R.T. is not available, get transfer speed from dmesg
+		if(empty($smartctl_info['transfer_rate'])){
+			mwexec2("dmesg | grep \"".$device['name'].": \"", $lines);
+
+			foreach($lines as $line){
+				$matches = preg_split("/[\s\:]+/",$line);
+
+				if( strcmp($matches[0], $device['name']) == 0 && strcmp($matches[2],'transfers') == 0){
+					$device['transfer_rate'] = $matches[1];
+				}
+			}
+		}
+
+		if(!empty($smartctl_info['smart_support'])) {
+			$device['smart']['smart_support'] = $smartctl_info['smart_support'];
+		}else{
+			$device['smart']['smart_support'] = "Unavailable";
+		}
+	}
+	return $devlist;
+}
+
+// Parse info from S.M.A.R.T.
+function get_smartctl_info($device){
+
+	$smartctl_info = array();
+	$type_arg = '';
+
+	if( !is_null($device['smart']['devicetypearg']) ){
+		$type_arg = "-d ".$device['smart']['devicetypearg'];
+	}
+
+	mwexec2("smartctl -i ".$type_arg." ".$device['smart']['devicefilepath'],$lines);
+
+	foreach($lines as $line){
+		$str_startswith = substr($line, 0, 18);
+		$matches = array();
+
+		switch ($str_startswith){
+			case 'Model Family:     ':
+				preg_match("/(?<=Model Family:     ).*/",$line, $matches );
+				$smartctl_info['desc'] = $matches[0];
+				break;
+			case 'Device Model:     ':
+				preg_match("/(?<=Device Model:     ).*/",$line, $matches );
+				$smartctl_info['model'] = $matches[0];
+				break;
+			case 'Serial Number:    ':
+				preg_match("/(?<=Serial Number:    ).*/",$line, $matches );
+				$smartctl_info['serial'] = $matches[0];
+				break;
+			case 'Rotation Rate:    ':
+				preg_match("/(?<=Rotation Rate:    ).*/",$line, $matches );
+				$smartctl_info['rotation_rate'] = $matches[0];
+				break;
+			case 'SATA Version is:  ':
+				if(preg_match("/(?<= \(current: ).*(?=\))+/", $line, $matches)){
+					$smartctl_info['transfer_rate'] = $matches[0];
+				}
+				else if(preg_match("/(?<=, ).*?(?>\/s)/", $line, $matches)){
+					$smartctl_info['transfer_rate'] = $matches[0];
+				}
+				break;
+			case 'SMART support is: ':
+				if(empty($smartctl_info['smart_support'])){
+					if(preg_match("/(?<=SMART support is: ).*(?=\-)+/", $line, $matches)){
+						$smartctl_info['smart_support'] = ltrim($matches[0]);
+					}
+				}else if( strncmp($smartctl_info['smart_support'], 'Available', 9) == 0 )  {
+					if( preg_match("/(?<=SMART support is: ).*/", $line, $matches)){
+						$smartctl_info['smart_support'] = $smartctl_info['smart_support'].', '.$matches[0];
+					}
+				}
+				break;
+			}
+	}
+	return $smartctl_info;
+}
+
+function init_device_attributes(&$device){
+	$device['desc'] = '';
+	$device['model'] = '';
+	$device['serial'] = '';
+	$device['type'];
+	$device['size'] = '';
+	$device['rotation_rate'] = '';
+	$device['transfer_rate'] = '';
+	$device['controller'] = '';
+	$device['controller_id'] = '';
+	$device['controller_desc'] = '';
+	$device['target_id'] = '';
+	$device['lun_id'] = '';
+	$device['smart']['devicefilepath'] = '';
+	$device['smart']['devicetype'] = '';
+	$device['smart']['devicetypearg'] = '';
+	$device['smart']['smart_support'] = '';
+}
+
+function parse_device_desc($device){
+	$matches = array();
+
+	mwexec2("dmesg | grep \"$device: <\"", $lines);
+
+	foreach($lines as $line){
+		// example: da2: <Corsair Voyager 1100> Removable Direct Access SCSI-0 device
+		if ( preg_match("/(?<=\<).*(?=\>)+/", $line, $matches )){
+			return $matches[0];
+		}
+	}
+	return $matches[0];
+}
+
+function parse_ata_ahci_controller_desc($controller){
+	$controller_desc = '';
+
+	mwexec2("dmesg | grep -w $controller: | sort -u | uniq", $lines);
+
+	foreach($lines as $line){
+		// example : ahcich2: <AHCI channel> at channel 2 on ahci0
+		if ( preg_match("/(?<= on )[a-z]+[0-9]+$/", $line, $matches )){
+			mwexec2("dmesg | grep -w $matches[0]: | sort -u | uniq", $lines2);
+
+			foreach($lines2 as $line2){
+				// example : ahci0: <Intel ICH10 AHCI SATA controller> port 0xf900-0xf907,0xf800-0xf803,0xf700-0xf707,0xf600-0xf603,0xf500-0xf51f mem 0xfdffd000-0xfdffd7ff irq 19 at device 31.2 on pci0
+				if ( preg_match("/(?<=: \<).*(?=\> )+/", $line2, $matches2) ){
+					if(strncmp($controller_desc,'', 1)==0){
+						$controller_desc = $matches2[0];
+					}
+					else{
+						$controller_desc = $controller_desc.", ".$matches2[0];
+					}
+				}
+			}
+		}
+	}
+	return $controller_desc;
+}
+
+function parse_raid_controller_desc($controller){
+	$matches = array();
+
+	if (strncmp($line, $controller ,4)){
+		mwexec2("dmesg | grep $controller", $lines);
+		//$output = `dmesg | grep -w $controller`;
+
+		foreach ($lines as $line){
+			if ( strncmp($line, $controller.': <' ,strlen($controller)+3) == 0){ 
+				if ( preg_match("/(?<=\<).*(?=\>)+/",$line,$matches)){
+					return $matches[0];
+				}
+			}
+		}
+	}
+	return $matches[0];
+}
+
+function parse_umass_controller_desc($controller_id){
+	$matches3 = array();
+
+	mwexec2("dmesg | grep -w umass$controller_id", $lines);
+
+	foreach($lines as $line){
+		// example: umass0: <Corsair Voyager, class 0/0, rev 2.00/11.00, addr 2> on usbus7
+		if ( preg_match("/(?<=\> on )[a-z]+[0-9]+$/", $line, $matches )){
+			mwexec2("dmesg | grep \"$matches[0] on \"", $lines2);
+
+			foreach($lines2 as $line2){
+				// example : usbus7 on ehci1
+				if ( preg_match("/(?<= on )[a-z]+[0-9]+$/", $line2, $matches2 )){
+					mwexec2("dmesg | grep \"$matches2[0]: <\"", $lines3);
+
+					// example : ehci1: <Intel 82801JI (ICH10) USB 2.0 controller USB-A> mem 0xfdffe000-0xfdffe3ff irq 23 at device 29.7 on pci0
+					foreach($lines3 as $line3){
+						if ( preg_match("/(?<=: \<).*(?=\> )+/", $line3, $matches3) ){
+							return $matches3[0];
+						}
+					}
+				}
+			}
+		}
+	}
+	return $matches3[0];
 }
 
 // Get list of ATA disks.
 function get_ata_disks_list()
 {
-	return parse_devlist("ata");
+	$devlist = array();
+	$devlist = parse_camcontrol_info("ata");
+	$devlist = parse_controller_config($devlist);
+
+	return $devlist;
 }
 
 // Get list of IDE AND SCSI CDROM.
 function get_cdrom_list()
 {
-	return parse_devlist("cdrom");
+	$devlist = array();
+	$devlist = parse_camcontrol_info("cdrom");
+	$devlist = parse_controller_config($devlist);
+
+	return $devlist;
 }
 
 // Get list of SCSI disks.
 function get_scsi_disks_list()
 {
-	return parse_devlist("scsi");
+	$devlist = array();
+	$devlist = parse_camcontrol_info("scsi");
+	$devlist = parse_controller_config($devlist);
+
+	return $devlist;
 }
 
 function get_iscsi_disks_list()
@@ -1081,7 +1376,7 @@ function get_iscsi_disks_list()
 			$disklist[$diskname]['size'] = $diskinfo['mediasize_mbytes'] . "MB";
 
 			/* Get serial number */
-			$serial = system_get_volume_serial("/dev/" . $diskname);
+			$serial = system_get_volume_serial("/dev/" . $diskname, $disklist[$diskname]['controller']);
 			$disklist[$diskname]['serial'] = $serial;
 		}
 	}
@@ -1153,7 +1448,7 @@ function get_hraid_disks_list()
 			$disklist[$diskname]['size'] = $diskinfo['mediasize_mbytes'] . "MB";
 
 			/* Get serial number */
-			$serial = system_get_volume_serial("/dev/" . $diskname);
+			$serial = system_get_volume_serial("/dev/" . $diskname, $disklist[$diskname]['controller']);
 			$disklist[$diskname]['serial'] = $serial;
 		}
 	}

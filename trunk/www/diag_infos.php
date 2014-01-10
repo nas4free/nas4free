@@ -80,15 +80,21 @@ $a_phy_disk = array_merge((array)get_physical_disks_list());
 					<td>
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
 				<tr>
-					<td width="4%" class="listhdrlr"><?=gettext("Disk");?></td>
-					<td width="10%" class="listhdrr"><?=gettext("Size");?></td>
-					<td width="40%" class="listhdrr"><?=gettext("Device model"); ?></td>
-					<td width="32%" class="listhdrr"><?=gettext("Serial number"); ?></td>
+					<td width="5%" class="listhdrlr"><?=gettext("Device");?></td>
+					<td width="10%" class="listhdrr"><?=gettext("Device model"); ?></td>
+					<td width="15%" class="listhdrr"><?=gettext("Description"); ?></td>
+					<td width="8%" class="listhdrr"><?=gettext("Size");?></td>
+					<td width="10%" class="listhdrr"><?=gettext("Serial number"); ?></td>
+					<td width="5%" class="listhdrr"><?=gettext("Rotation rate"); ?></td>
+					<td width="5%" class="listhdrr"><?=gettext("Transfer rate"); ?></td>
+					<td width="8%" class="listhdrr"><?=gettext("S.M.A.R.T."); ?></td>
+					<td width="5%" class="listhdrr"><?=gettext("Controller"); ?></td>
+					<td width="15%" class="listhdrr"><?=gettext("Controller model"); ?></td>
 					<td width="8%" class="listhdrr"><?=gettext("Temperature");?></td>
 					<td width="6%" class="listhdrr"><?=gettext("Status");?></td>
 				</tr>
 				<?php foreach ($a_phy_disk as $disk):?>
-				<?php (($temp = system_get_device_temp($disk['name'])) === FALSE) ? $temp = htmlspecialchars(gettext("n/a")) : $temp = sprintf("%s &deg;C", htmlspecialchars($temp));?>
+				<?php (($temp = system_get_device_temp($disk['devicespecialfile'])) === FALSE) ? $temp = htmlspecialchars(gettext("n/a")) : $temp = sprintf("%s &deg;C", htmlspecialchars($temp));?>
 				<?php
 					if ($disk['type'] == 'HAST') {
 						$role = $a_phy_disk[$disk['name']]['role'];
@@ -100,9 +106,29 @@ $a_phy_disk = array_merge((array)get_physical_disks_list());
 				?>
 				<tr>
 					<td class="listlr"><?=htmlspecialchars($disk['name']);?></td>
+					<td class="listr"><?=htmlspecialchars($disk['model']);?>&nbsp;</td>
+					<td class="listr"><?=(empty($disk['desc']) ) === FALSE ? htmlspecialchars($disk['desc']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars($disk['size']);?></td>
-					<td class="listr"><?=htmlspecialchars(system_get_volume_model($disk['devicespecialfile']));?>&nbsp;</td>
-					<td class="listr"><?=htmlspecialchars(system_get_volume_serial($disk['devicespecialfile']));?>&nbsp;</td>
+					<td class="listr"><?=(empty($disk['serial']) ) === FALSE ? htmlspecialchars($disk['serial']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
+					<td class="listr"><?=(empty($disk['rotation_rate']) ) === FALSE ? htmlspecialchars($disk['rotation_rate']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
+					<td class="listr"><?=(empty($disk['transfer_rate']) ) === FALSE ? htmlspecialchars($disk['transfer_rate']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
+				<?php
+					$matches = preg_split("/[\s\,]+/",$disk['smart']['smart_support']);
+					if(strcmp($matches[0], "Available") == 0){
+						$matches[0] = gettext("Available");
+						if(strcmp($matches[1], "Enabled") == 0){
+							$matches[0] = $matches[0].' , ';
+							$matches[1]  = gettext("Enabled");
+							}
+					}
+					else if(strcmp($matches[0], "Unavailable") == 0){
+						$matches[0] = gettext("Unavailable");
+					}
+				?>
+					<td class="listr"><?=htmlspecialchars($matches[0].$matches[1]);?>&nbsp;</td>
+					<!--<td class="listr"><?=htmlspecialchars($disk['smart']['smart_support']);?>&nbsp;</td> -->
+					<td class="listr"><?=htmlspecialchars($disk['controller'].$disk['controller_id']);?>&nbsp;</td>
+					<td class="listr"><?=htmlspecialchars($disk['controller_desc']);?>&nbsp;</td>
 					<td class="listr"><?=$temp;?>&nbsp;</td>
 					<td class="listbg"><?=$status;?>&nbsp;</td>
 				</tr>

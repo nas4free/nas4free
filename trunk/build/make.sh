@@ -72,17 +72,17 @@ echo "NAS4FREE_TMPDIR=${NAS4FREE_TMPDIR}" >> ${NAS4FREE_MK}
 # Local variables
 NAS4FREE_URL=$(cat $NAS4FREE_SVNDIR/etc/prd.url)
 NAS4FREE_SVNURL="https://svn.code.sf.net/p/nas4free/code/trunk"
-NAS4FREE_SVN_SRCTREE="svn://svn.FreeBSD.org/base/releng/9.1"
+NAS4FREE_SVN_SRCTREE="svn://svn.FreeBSD.org/base/releng/9.2"
 
 # Size in MB of the MFS Root filesystem that will include all FreeBSD binary
 # and NAS4FREE WEbGUI/Scripts. Keep this file very small! This file is unzipped
 # to a RAM disk at NAS4FREE startup.
-# The image must fit on 256MB CF/USB.
-NAS4FREE_MFSROOT_SIZE=210
-NAS4FREE_IMG_SIZE=110
+# The image must fit on 512MB CF/USB.
+NAS4FREE_MFSROOT_SIZE=223
+NAS4FREE_IMG_SIZE=125
 if [ "amd64" = ${NAS4FREE_ARCH} ]; then
-	NAS4FREE_MFSROOT_SIZE=226
-	NAS4FREE_IMG_SIZE=110
+	NAS4FREE_MFSROOT_SIZE=237
+	NAS4FREE_IMG_SIZE=125
 fi
 
 # Media geometry, only relevant if bios doesn't understand LBA.
@@ -261,7 +261,7 @@ pre_build_kernel() {
 	# Create list of available packages.
 	echo "#! /bin/sh
 $DIALOG --title \"$NAS4FREE_PRODUCTNAME - Kernel Patches\" \\
---checklist \"Select the patches you want to add. Make sure you have clean/origin kernel sources (via suvbersion) to apply patches successful.\" 22 75 14 \\" > $tempfile
+--checklist \"Select the patches you want to add. Make sure you have clean/origin kernel sources (via suvbersion) to apply patches successful.\" 22 88 14 \\" > $tempfile
 
 	for s in $NAS4FREE_SVNDIR/build/kernel-patches/*; do
 		[ ! -d "$s" ] && continue
@@ -344,7 +344,21 @@ build_kernel() {
 				modulesdir=${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules;
 				for module in $(cat ${NAS4FREE_WORKINGDIR}/modules.files | grep -v "^#"); do
 					install -v -o root -g wheel -m 555 ${modulesdir}/${module} ${NAS4FREE_ROOTFS}/boot/kernel
-				done;;
+				done
+
+				echo "--------------------------------------------------------------";
+				echo ">>> Add ${NAS4FREE_ARCH} Specific Kernel Modules";
+				echo "--------------------------------------------------------------";
+
+				[ -f ${NAS4FREE_WORKINGDIR}/modules_${NAS4FREE_ARCH}.files ] && rm -f ${NAS4FREE_WORKINGDIR}/modules_${NAS4FREE_ARCH}.files;
+				cp -f ${NAS4FREE_SVNDIR}/build/kernel-config/modules_${NAS4FREE_ARCH}.files ${NAS4FREE_WORKINGDIR};
+
+				modulesdir=${NAS4FREE_SVNDIR}/build/kernel-modules;
+
+				for module in $(cat ${NAS4FREE_WORKINGDIR}/modules_${NAS4FREE_ARCH}.files | grep -v "^#"); do
+					install -v -o root -g wheel -m 555 ${modulesdir}/${module} ${NAS4FREE_ROOTFS}/boot/modules
+				done
+				;;
   	esac
   done
 
@@ -429,6 +443,23 @@ copy_kmod() {
 		b=`basename ${f}`
 		(cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules; install -v -o root -g wheel -m 555 ${f} $NAS4FREE_TMPDIR/boot/kernel/${b}; gzip -9 $NAS4FREE_TMPDIR/boot/kernel/${b})
 	done
+
+	echo "Copy ${NAS4FREE_ARCH} specific kmod to $NAS4FREE_TMPDIR/boot/modules"
+
+	[ -f ${NAS4FREE_WORKINGDIR}/modules_${NAS4FREE_ARCH}.files ] && rm -f ${NAS4FREE_WORKINGDIR}/modules_${NAS4FREE_ARCH}.files;
+	cp -f ${NAS4FREE_SVNDIR}/build/kernel-config/modules_${NAS4FREE_ARCH}.files ${NAS4FREE_WORKINGDIR};
+
+	if [ ! -d $NAS4FREE_TMPDIR/boot/modules ]; then
+		mkdir -pv $NAS4FREE_TMPDIR/boot/modules
+	fi
+
+	modulesdir=${NAS4FREE_SVNDIR}/build/kernel-modules;
+
+	for module in $(cat ${NAS4FREE_WORKINGDIR}/modules_${NAS4FREE_ARCH}.files | grep -v "^#"); do
+		b=`basename ${modulesdir}/${module}`
+		( install -v -o root -g wheel -m 555 ${modulesdir}/${module} $NAS4FREE_TMPDIR/boot/modules/${b}; gzip -9 $NAS4FREE_TMPDIR/boot/modules/${b})
+	done
+
 	return 0;
 }
 

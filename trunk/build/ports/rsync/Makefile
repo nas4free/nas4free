@@ -14,6 +14,7 @@ MASTER_SITE_SUBDIR=	rsync
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX}
 DISTFILES+=		${PORTNAME}-patches-${PORTVERSION}${EXTRACT_SUFX}
 
+NO_STAGE=       	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=		--disable-debug \
 							--enable-ipv6 \

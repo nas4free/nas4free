@@ -1,175 +1,25 @@
-NAS4Free 9.1.0.1 - Sandstorm
+NAS4Free 9.2.0.1 - Sandstorm
 ----------------------------
 
 Changes:
-- Upgrade to FreeBSD 9.1-RELEASE p9.
-- Improve WebGUI under PHP 5.5.
-- Refactoring email setup.
-- Add LiveUSB mode as same as LiveCD.
-- Revert to old CHS.
-- Change geometry to CHS=x,255,63 of embedded image.
-- Change php to php-cgi.
-- Set webgui codeset UTF-8.
-- v9.6 config is forever marked as a blacklist.
-- Load zfs.ko and opensolaris.ko from loader.
-- Use AES-NI in geli by default.
-- Use clang for istgt by default.
-- Rewrite gui.js with jQuery.
-- Add HAST + iSCSI target service.
-- Add HAST + CIFS/SMB service.
-- Add HAST + GPT/UFS mount.
-- Add HAST + ZFS import/export.
-- Add HAST service WebGUI.
-- Add upgrade method from old freenas systems.
-- Add reload iSCSI target.
-- Add graid geom utility.
-- Add kern.geom.debugflags when installing.
-- Add jail related files.
-- Add HAST daemon and files.
-- Add rpcinfo utility.
-- Add vmstat utility.
-- Add acpiconf/wake utility.
-- Add sockstat utility.
-- Add dmidecode utility.
-- Add bzip2 utility.
-- Add vmxnet3 kernel module.
-- Add all kernel modules to boot media.
-- Add ability to edit sync property on ZFS dataset and volume.
-- Add ability to edit reservation property on ZFS dataset.
-- Add ability to edit permission on ZFS dataset.
-- Add ability to edit mountpoint of ZFS pool.
-- Add ability to import encrypted disks.
-- Add ability to import software raid disks. (except vinum)
-- Add ability to import single disks. (detect ZFS/UFS/NTFS only)
-- Add ability to configure multiple iSCSI LUNs. (disk type only)
-- Add ability to configure multiple portal/initiator group.
-- Add ability to configure HAST volume as iSCSI extent.
-- Add ability to configure bind interface of CIFS/SMB.
-- Add ability to edit power mode and CPU frequency.
-- Add ability to edit write cache mode on iSCSI target.
-- Add ability to edit upload directory of webserver.
-- Add ability to edit password server of CIFS/SMB.
-- Add ability to download files by File Manager.
-- Add ability to extract files by File Manager.
-- Add Chinese and Hungarian translations to File Manager.
-- Add loader.conf configuration option.
-- Update mount points after importing disks. (GPT UFS/MBR UFS/GPT NTFS only)
-- Add bridge/carp interface support.
-- Add ZFS sparse volume support.
-- Add GPT UUID to mount point.
-- Add a warning for changing of the disk in config.
-- Add force flag to ZFS pool creation.
-- Add random SCSI serial when creating iSCSI target.
-- Add auto IPv6 fot WebGUI.
-- Add AES-CBC at disk encryption.
-- Add TCP wrapper check in FTP service.
-- Add allow trusted domains for Active Directory in CIFS/SMB service.
-- Wait response of LAN interface if static with gateway.
-- Run umount before iSCSI initiator shutdown.
-- Remount all after netif is up for iSCSI device.
-- Clear notify after execute now of rsync client/local.
-- Increase the number of config backup to 6.
-- Confirm permission on temporary directory.
-- Check DNS if firmware check/required service is enabled.
-- Remove existing cache and notify at boot.
-- Change default AIO size to 4096.
-- Change kern.maxfilesperproc to 50000.
-- Change default atime of ZFS dataset is on.
-- Change minimum UID/GID is 1000.
-- Change bind WebGUI to LAN only.
-- Change default ZFS arc size.
-- Change LDAP host to URIs.
-- Change default password hash to sha512.
-- Set memorylocked limit to 64Kb for default login class.
-- Update SSL certificate and privatekey.
-- Add iscsi default values to default config.
-- Remove unused hw.ata.to from sysctl.
-- Remove AIO disable at boot.
-- Add 60 days lifetime on ZFS auto snapshot.
-- Add ata chipset patch. (VT6420/VT6421)
-- Add VM timer workaround.
-- Add useful PHP modules.
-- Add php wrapper for webserver.
-- Add sockstat to Diagnostics|Information|Sockets.
-- Add missing NUT drivers.
-- Add firefly patch.
-- Add gbe patch.
-- Updated amdtemp patch.
-- Use SCSI inquiry for model and serial.
-- Upgrade istgt to 20121123.
-- Upgrade isboot to 0.2.6.
-- Upgrade unison to 2.40.102.
-- Upgrade lcdproc to 0.5.6.
-- Upgrade netatalk to 2.2.4.
-- Upgrade inadyn-mt to 02.24.38.
-- Upgrade bash to 4.2 p45.
-- Upgrade msmtp to 1.4.31.
-- Upgrade quixplorer to 2.5.4.
-- Upgrade proftpd to 1.3.4d.
-- Upgrade e2fsprogs to 1.42.8.
-- Upgrade xmlstarlet to 1.5.0.
-- Upgrade smartmontools to 6.2.
-- Upgrade transmission to 2.82.
+- Upgrade to FreeBSD 9.2 RELEASE p2.
+- Improved WebGUI under PHP 5.5.
+- Add 'twa' (3ware 9000/9500/9550/9650 series SATA RAID controller) and 'twe' 
+  (3ware 5000/6000/7000/8000 series PATA/SATA RAID adapter) support.
+- Add Broadcom BCM57764, BCM57767, BCM57782, BCM57786 and BCM57787 support.
+- Add loader.conf configuration option to gui.
+- Add zfs lz4 compression option to gui.
+- Add tmux (A terminal multiplexer).
+- Add tw_cli (Command Line Interface Storage Management Software for AMCC/3ware ATA RAID Controllers.
+- Remove zfs zfs_prefetch_disable=1 default variabele. (now it's an user option).
+- amdtemp include support for AMD A10-5700 APU with Radeon(tm) HD Graphics.
+- Upgrade netatalk to 2.2.5.
 - Upgrade dmidecode to 2.12.
-- Upgrade lighttpd to 1.4.33.
 - Upgrade php to 5.5.7.
 - Upgrade samba to 3.6.22.
-- Upgrade nut to 2.7.1.
 - Upgrade zoneinfo to 2013i.
-- Upgrade rsync to 3.1.0.
-- Upgrade gzip to 1.6.
-- Upgrade mDNSResponder to 541.
-- Upgrade bsnmp-ucd to 0.4.0.
 
-Bug fixes:
-
-- Set default timezone.
-- Fix broken modifications.
-- Fix wrong mount check.
-- Remove extra space.
-- Fix istgt reload operation is failed.
-- Remount zfs dataset after modifying canmount.
-- Remove unused empty hosts.
-- Add LF to motd.
-- Fix missing desc and atime field of ZFS settings.
-- Load geom before import disks.
-- Remove lock before execute now of rsync client/local.
-- Fix using same ifield on file chooser.
-- Fix unknown state when creating ZFS pool.
-- Fix failure to detect installed device.
-- Fix wrong encrypted pass phrase with special characters.
-- Reflect owner and permission when ZFS config sync.
-- Fix error on empty ZFS config.
-- Fix gnop is not deleted at ZFS pool destruction.
-- Fix broken serial/model output.
-- Fix error on empty iSCSI target.
-- Fix VLAN is not configured.
-- Fix permission of /var/tmp/ftmp.
-- Fix AD password that contains a special character is not worked.
-- Fix Access AD does not set CIFS Authentication.
-- Fix IPv6 auto detection.
-- Fix display UTF-8 files on Diagnostics|Information|CIFS/SMB.
-- Fix sending UTF-8 mail without encoding.
-- Fix WebGUI cannot be accessed.
-- Fix access restriction is not changed when creating a dataset.
-- Fix labeled disk is showed as wrong method in vdev.
-- Remove unused php binary.
-- Fix nfs share error with ZFS dataset.
-- Fix multiple DNS server in setlanip.
-- Fix rsync client extra options is broken since r282.
-- Fix afp working.
-- Fix broken cron polling time jobs.
-- Fix AIO with SMB2.
-- Fix AD domain authentication.
-- Fix wol gbe driver.
-- Fix sipcalc does not support ipv6 zone index identifiers.
-- Fix the problem about hastd.conf.
-- Fix File Manager browsing  at /etc directory. (broken rev 573)
-- Fix SSL/TLS usage on email reports.
-- Fix starttls.
-- Fix vulnerability: arbitrary command injection by an unauthenticated user.
-- Fix WebGUI transmission can't add torrent.
-- Fix scheduled S.M.A.R.T. self-tests don't run on Sunday. (BR119) 
+Fixes:
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
