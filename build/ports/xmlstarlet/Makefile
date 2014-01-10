@@ -9,6 +9,8 @@ MASTER_SITES=		SF/xmlstar/${PORTNAME}/${PORTVERSION}
 USE_GNOME=		libxslt
 USE_ICONV=		yes
 GNU_CONFIGURE=		yes
+NO_STAGE=       yes
+
 CONFIGURE_ARGS=		--with-libxml-prefix=${LOCALBASE} \
 					--with-libxslt-prefix=${LOCALBASE} \
 					--with-libiconv-prefix=${LOCALBASE}

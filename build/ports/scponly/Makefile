@@ -10,6 +10,7 @@ DISTNAME=	${PORTNAME}-20110526
 
 EXTRACT_SUFX=		.tgz
 GNU_CONFIGURE=	yes
+NO_STAGE=       yes
 
 CONFIGURE_ARGS+=	--enable-passwd-compat
 

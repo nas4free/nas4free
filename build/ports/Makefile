@@ -44,7 +44,9 @@
     SUBDIR += sipcalc
     SUBDIR += smartmontools
     SUBDIR += tftp-hpa
+    SUBDIR += tmux
     SUBDIR += transmission
+    SUBDIR += tw_cli
     SUBDIR += unison
     SUBDIR += vbox-additions
     SUBDIR += vmxnet3

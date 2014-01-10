@@ -5,6 +5,8 @@ COMMENT=		PC slice table maintenance utility
 MAINTAINER=		aoyama@peach.ne.jp
 DISTFILES=
 
+NO_STAGE=       yes
+
 do-extract:
 	@${RM} -rf ${WRKDIR}
 	@${MKDIR} ${WRKDIR}

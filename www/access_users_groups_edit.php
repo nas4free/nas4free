@@ -1,9 +1,9 @@
 <?php
 /*
 	access_users_groups_edit.php
-	
+
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2013 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -11,7 +11,7 @@
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
@@ -31,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 require("auth.inc");

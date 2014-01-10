@@ -6,6 +6,8 @@ MAINTAINER=		aoyama@peach.ne.jp
 
 DISTFILES?=
 
+NO_STAGE=       yes
+
 do-build:
 	@${TAR} -zxvf ${FILESDIR}/syslogd-clog.tar.gz -C /usr/src/usr.bin
 	@${TAR} -zxvf ${FILESDIR}/clog-1.0.1.tar.gz -C /usr/src/usr.bin

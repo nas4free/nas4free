@@ -1,6 +1,6 @@
 PORTNAME=		nut
 PORTVERSION=	2.7.1
-PORTREVISION=	1
+PORTREVISION=	0
 CATEGORIES=		sysutils
 COMMENT=		Network UPS tools
 MAINTAINER=		zoon01@nas4free.org

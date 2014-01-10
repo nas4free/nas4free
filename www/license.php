@@ -131,7 +131,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
         The authors of NAS4Free would like to thank the authors of these software
         for their efforts.</p>
       <p> FreeBSD (<a href="http://www.freebsd.org" target="_blank">http://www.freebsd.org</a>)<br />
-        Copyright &copy; 1995-2013 The FreeBSD Project. All Rights Reserved.</p>
+        Copyright &copy; 1995-2014 The FreeBSD Project. All Rights Reserved.</p>
 
       <p> GEOM RAID5 module (<a href="http://www.wgboome.org/geom_raid5-html" target="_blank">http://www.wgboome.org/geom_raid5-html</a>)<br />
         Copyright &copy; 2006-2013 Arne Woerner (<a href="mailto:graid5@wgboome.org">graid5@wgboome.org</a>).</p>

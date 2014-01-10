@@ -15,8 +15,9 @@ LIB_DEPENDS=				gdbm.3:${PORTSDIR}/databases/gdbm \
 										avcodec:${PORTSDIR}/multimedia/ffmpeg
 
 USE_AUTOTOOLS=			autoheader:262 autoconf:262:env
-USE_ICONV=					yes
+USE_ICONV=			yes
 GNU_CONFIGURE=			yes
+NO_STAGE=       yes
 CONFIGURE_ENV=			CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS}" \
 										CPPFLAGS="${CPPFLAGS} -I${LOCALBASE}/include" \
 										LDFLAGS="-L${LOCALBASE}/lib" \

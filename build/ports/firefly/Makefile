@@ -14,12 +14,13 @@ LIB_DEPENDS+=				sqlite3:${PORTSDIR}/databases/sqlite3 \
 										vorbis.4:${PORTSDIR}/audio/libvorbis \
 										FLAC.11:${PORTSDIR}/audio/flac
 
-USE_PKGCONFIG=          yes
-MAKE_JOBS_UNSAFE=yes
-USE_GCC=any
-USE_LDCONFIG=				yes
-USE_ICONV=					yes
-GNU_CONFIGURE=			yes
+NO_STAGE=		yes
+USE_PKGCONFIG=	yes
+MAKE_JOBS_UNSAFE=	yes
+USE_GCC=		any
+USE_LDCONFIG=		yes
+USE_ICONV=		yes
+GNU_CONFIGURE=	yes
 
 
 CONFIGURE_ENV=			CFLAGS="${CFLAGS} ${PTHREAD_CFLAGS}" \

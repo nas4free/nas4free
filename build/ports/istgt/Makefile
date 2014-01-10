@@ -8,6 +8,7 @@ MASTER_SITES=		http://www.peach.ne.jp/archives/istgt/
 
 CC=clang
 GNU_CONFIGURE=	yes
+NO_STAGE=       yes
 CONFIGURE_ARGS+= --with-logfacility="daemon" --with-logpriority="info"
 
 do-install:
