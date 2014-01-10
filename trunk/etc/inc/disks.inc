@@ -1472,7 +1472,14 @@ function disks_verify_all_disks($a_phy_disks) {
                 $disk_exists = 1;
                 $disk_error = 0;
 
-                if ($phy_disk['serial'] !== $conf_disk['serial']){
+				if (($phy_disk['serial'] == "n/a") || ($phy_disk['serial'] == gettext("n/a"))){
+					$phy_disk_serial = "";
+				}
+				else{
+					$phy_disk_serial = $phy_disk['serial'];
+				}
+
+                if ($phy_disk_serial !== $conf_disk['serial']){
                     // check if conf_disk is moved
                     if( !empty($conf_disk['serial']) ){
                         $a_phy_disks1 = $a_phy_disks;
@@ -1486,7 +1493,7 @@ function disks_verify_all_disks($a_phy_disks) {
                     }
 
                     $result[$conf_disk['name']]['old_serial'] = $conf_disk['serial'];
-                    $result[$conf_disk['name']]['new_serial'] = $phy_disk['serial'];
+                    $result[$conf_disk['name']]['new_serial'] = $phy_disk_serial;
                     $disk_error += 2; // disk changed
                 }
 
