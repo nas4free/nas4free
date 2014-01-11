@@ -78,10 +78,10 @@ NAS4FREE_SVN_SRCTREE="svn://svn.FreeBSD.org/base/releng/9.2"
 # and NAS4FREE WEbGUI/Scripts. Keep this file very small! This file is unzipped
 # to a RAM disk at NAS4FREE startup.
 # The image must fit on 512MB CF/USB.
-NAS4FREE_MFSROOT_SIZE=223
+NAS4FREE_MFSROOT_SIZE=225
 NAS4FREE_IMG_SIZE=125
 if [ "amd64" = ${NAS4FREE_ARCH} ]; then
-	NAS4FREE_MFSROOT_SIZE=237
+	NAS4FREE_MFSROOT_SIZE=239
 	NAS4FREE_IMG_SIZE=125
 fi
 
