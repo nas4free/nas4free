@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-08-15 03:26+0000\n"
-"PO-Revision-Date: 2013-07-27 15:32+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2014-01-11 22:29+0000\n"
+"PO-Revision-Date: 2013-08-21 09:37+0000\n"
+"Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-15 01:44+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2014-01-12 19:33+0000\n"
+"X-Generator: Launchpad (build 16890)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
 "X-Poedit-Language: Greek\n"
@@ -755,6 +755,9 @@ msgstr "Firmware βοηθητικής συσκευής"
 msgid "Auxiliary parameters"
 msgstr "Βοηθητικές παράμετροι"
 
+msgid "Available"
+msgstr ""
+
 msgid "Backup configuration"
 msgstr "Αποθήκευση ρυθμίσεων"
 
@@ -882,6 +885,9 @@ msgstr "CCMP TKIP"
 
 msgid "CD/DVD"
 msgstr "CD/DVD"
+
+msgid "CHANGED"
+msgstr ""
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -1044,13 +1050,10 @@ msgstr ""
 "Εκκαθάριση του αρχείου ρυθμίσεων και εισαγωγή δίσκων raid μέσω λογισμικού"
 
 msgid ""
-"Click &quot;Enable firmware upload&quot; below, then choose the image file "
-"to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
-"process."
+"Click &quot;Enable firmware upload&quot; below, then choose the embedded "
+"image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start "
+"the upgrade process."
 msgstr ""
-"Πατήστε το &quot;Ενεργοποίηση αποστολής firmware&quot; παρακάτω, και κατόπιν "
-"επιλέξτε το αρχείο που θέλετε να ανεβάσετε.<br />Πατήστε το &quot;Αναβάθμιση "
-"firmware&quot; για να ξεκινήσει η διαδικασία αναβάθμισης."
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr ""
@@ -1159,6 +1162,9 @@ msgstr ""
 msgid "Content"
 msgstr "Περιεχόμενα"
 
+msgid "Controller"
+msgstr ""
+
 msgid "Controller Auth Group"
 msgstr "Ομάδα πιστοποίησης του Ελεγκτή"
 
@@ -1173,6 +1179,9 @@ msgstr "Διεύθυνση IP του Ελεγκτή"
 
 msgid "Controller TCP Port"
 msgstr "Θύρα TCP του Ελεγκτή"
+
+msgid "Controller model"
+msgstr ""
 
 msgid "Controls power consumption."
 msgstr "Ελέγχει την κατανάλωση ενέργειας."
@@ -1339,18 +1348,12 @@ msgstr "Ρυθμίσεις DNS"
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. The server will "
-"reboot automatically after storing the new firmware. The configuration will "
-"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-"update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-"System configuration before doing a Firmware upgrade."
+"DO NOT abort the firmware upgrade process once it has started. Once it is "
+"completed, the server will automatically reboot, the current configuration "
+"will be maintained.<br />You need a minimum of %d MiB free RAM to perform "
+"the upgrade.<br />It is strongly recommended that you <a "
+"href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
-"ΜΗΝ κάνετε ακύρωση της αναβάθμισης του firmware από τη στιγμή που έχει "
-"ξεκινήσει. Ο διακομιστής θα κάνει επανεκκίνηση αυτόματα μετά την αποθήκευση "
-"του νέου firmware. Οι ρυθμίσεις θα διατηρηθούν. <br />Χρειάζεστε το λιγότερο "
-" %d Mb RAM για να κάνετε την αναβάθμιση του firmware.<br />Σας συνιστούμε να "
-"κάνετε λήψη ενός <a href='%s'>Αντιγράφου ασφαλείας</a> των ρυθμίσεων του "
-"συστήματος πριν κάνετε αναβάθμιση στο firmware."
 
 msgid "DVD"
 msgstr "DVD"
@@ -1611,6 +1614,9 @@ msgstr "IP συσκευής"
 
 msgid "Device Pass-through"
 msgstr "Pass-through συσκευής"
+
+msgid "Device Serial"
+msgstr ""
 
 msgid "Device model"
 msgstr "Μοντέλο συσκευής"
@@ -3610,6 +3616,9 @@ msgstr "ΛΕΙΠΕΙ"
 msgid "MOTD"
 msgstr "Μήνυμα Ημέρας"
 
+msgid "MOVED TO"
+msgstr ""
+
 msgid "MS Active Directory"
 msgstr "MS Active Directory"
 
@@ -4903,6 +4912,9 @@ msgstr "Root bind DN"
 msgid "Root bind password"
 msgstr "Κωδικός Root bind"
 
+msgid "Rotation rate"
+msgstr ""
+
 msgid "Round-robin read"
 msgstr "Ανάγνωση Round-robin"
 
@@ -5903,7 +5915,7 @@ msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr ""
 "Η ιδιότητα '%s' μπορεί να αποτελείται μόνο από τους χαρακτήρες a-z, A-Z, 0-9."
 
-#, c-format, php-format
+#, c-format
 msgid "The attribute '%s' must be a number."
 msgstr "Η ιδιότητα '%s' πρέπει να είναι αριθμός."
 
@@ -6054,6 +6066,11 @@ msgstr ""
 
 msgid "The device's IP address."
 msgstr "Η διεύθυνση IP της συσκευής"
+
+msgid ""
+"The device(s) in config are different to actual device(s). Please remove the "
+"device(s) and re-add it or use 'Clear config and Import disks'."
+msgstr ""
 
 msgid ""
 "The directory containing the files you want to publish. The remote host does "
@@ -6493,13 +6510,6 @@ msgstr "Υπάρχουν πάρα πολλές επιπλέον ομάδες."
 msgid "There is no error, the file uploaded with success."
 msgstr "Δεν υπάρχει σφάλμα, το αρχείο ανέβηκε με επιτυχία."
 
-msgid ""
-"There is wrong disk ID in the config. Please remove the disk and re-add it "
-"or use 'clear and import'."
-msgstr ""
-"Υπάρχει λάθος ID για το δίσκο στο αρχείο ρυθμίσεων. Παρακαλώ αφαιρέστε το "
-"δίσκο και προσθέστε τον ξανά, ή χρησιμοποιήστε το 'εκκαθάριση και εισαγωγή'."
-
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "Πρέπει να υπάρχουν 2 δίσκοι σε έναν τόμο RAID 1."
 
@@ -6558,6 +6568,9 @@ msgid ""
 "specify parameters to be passed to kernel, and additional modules to be "
 "loaded."
 msgstr ""
+"Αυτές οι επιλογές θα προστεθούν στο /boot/loader.conf.local. Αυτό σας "
+"επιτρέπει να ορίσετε κάποιοες παραμέτρους για περάσουν στον πυρήνα, και για "
+"να φορτωθούν επιπλέον αρθρώματα."
 
 msgid ""
 "These option(s) will be added to /etc/rc.conf. This allow you to overwrite "
@@ -6822,9 +6835,9 @@ msgid ""
 "for a listing of available modules. By setting this to false you can create "
 "hidden modules."
 msgstr ""
-"Η επιλογή αυτή καθορίζει αν η μονάδα θα πρέπει να αναφέρεται όταν ο πελάτης "
-"ζητά μια λίστα με τα διαθέσιμα αρθρώματα. Με τον καθορισμό αυτού σε ψευδές, "
-"μπορείτε να δημιουργείτε κρυφά αρθρώματα."
+"Η επιλογή αυτή καθορίζει αν το άρθρωμα θα πρέπει να αναφέρεται όταν ο "
+"πελάτης ζητά μια λίστα με τα διαθέσιμα αρθρώματα. Με τον καθορισμό αυτού σε "
+"ψευδές, μπορείτε να δημιουργείτε κρυφά αρθρώματα."
 
 msgid ""
 "This option is a comma, space, or tab delimited set of host which are NOT "
@@ -7175,6 +7188,9 @@ msgstr "Ψηφιακή μετατροπή κωδικοποίησης"
 msgid "Transfer mode"
 msgstr "Λειτουργία μεταφοράς"
 
+msgid "Transfer rate"
+msgstr ""
+
 msgid "Trap host"
 msgstr "Παγίδευση υπολογιστή"
 
@@ -7325,6 +7341,9 @@ msgstr "URI"
 
 msgid "URL"
 msgstr "Διεύθυνση URL"
+
+msgid "Unavailable"
+msgstr ""
 
 msgid "Unformated"
 msgstr "Αδιαμόρφωτο"
@@ -7907,7 +7926,7 @@ msgid "load/unload failed."
 msgstr "αποτυχία από/φόρτωσης"
 
 msgid "loader.conf"
-msgstr ""
+msgstr "loader.conf"
 
 msgid "maximum (highest performance)"
 msgstr "maximum (υψηλότερες επιδόσεις)"
@@ -7995,6 +8014,9 @@ msgstr "επιτυχώς."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "to"
+msgstr ""
 
 msgid "umask"
 msgstr "umask"

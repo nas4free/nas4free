@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-08-15 03:26+0000\n"
-"PO-Revision-Date: 2013-08-14 08:05+0000\n"
+"POT-Creation-Date: 2014-01-11 22:29+0000\n"
+"PO-Revision-Date: 2013-10-13 20:53+0000\n"
 "Last-Translator: Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-15 01:44+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2014-01-12 19:33+0000\n"
+"X-Generator: Launchpad (build 16890)\n"
 "Language: hu_HU\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -739,6 +739,9 @@ msgstr "Auxiliary eszköz firmware"
 msgid "Auxiliary parameters"
 msgstr "Kiegészítő paraméterek"
 
+msgid "Available"
+msgstr ""
+
 msgid "Backup configuration"
 msgstr "Beállítások biztonsági mentése"
 
@@ -864,6 +867,9 @@ msgstr "CCMP TKIP"
 
 msgid "CD/DVD"
 msgstr "CD/DVD"
+
+msgid "CHANGED"
+msgstr ""
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -1022,13 +1028,10 @@ msgid "Clear config and Import software raid disks"
 msgstr "Beállítások törlése és szoftveres raid lemezek importálása"
 
 msgid ""
-"Click &quot;Enable firmware upload&quot; below, then choose the image file "
-"to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
-"process."
+"Click &quot;Enable firmware upload&quot; below, then choose the embedded "
+"image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start "
+"the upgrade process."
 msgstr ""
-"Kattints a &quot;Firmware feltöltés engedélyezése&quot; gombra, majd "
-"válasszd ki a feltöltendő fájlt.<br />Kattints &quot;Firmware "
-"frissítése&quot; gombra a frissítés megkezdéséhez."
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr ""
@@ -1137,6 +1140,9 @@ msgstr ""
 msgid "Content"
 msgstr "Tartalom"
 
+msgid "Controller"
+msgstr ""
+
 msgid "Controller Auth Group"
 msgstr "Kontroller Auth csoport"
 
@@ -1151,6 +1157,9 @@ msgstr "Kontroller IP cím"
 
 msgid "Controller TCP Port"
 msgstr "Kontroller IP port"
+
+msgid "Controller model"
+msgstr ""
 
 msgid "Controls power consumption."
 msgstr "Ez szabályozza az energiafogyasztást."
@@ -1315,17 +1324,12 @@ msgstr "DNS beállítások"
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. The server will "
-"reboot automatically after storing the new firmware. The configuration will "
-"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-"update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-"System configuration before doing a Firmware upgrade."
+"DO NOT abort the firmware upgrade process once it has started. Once it is "
+"completed, the server will automatically reboot, the current configuration "
+"will be maintained.<br />You need a minimum of %d MiB free RAM to perform "
+"the upgrade.<br />It is strongly recommended that you <a "
+"href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
-"NE megszakítsd meg a frissítést, ha egyszer az elkezdődött. A szerver "
-"automatikusan újraindul az új firmware mentése után. A jelenlegi beállítások "
-"megmaradnak.<br />Legalább% d Mb RAM szükséges a firmware firssítéhez.<br "
-"/>Erősen javasoljuk, hogy készítsen <a href='%s'>Mentést</a> a firmware "
-"frissítés megkezdése előtt."
 
 msgid "DVD"
 msgstr "DVD"
@@ -1585,6 +1589,9 @@ msgstr "Eszköz IP"
 
 msgid "Device Pass-through"
 msgstr "Pass-through Eszöz"
+
+msgid "Device Serial"
+msgstr ""
 
 msgid "Device model"
 msgstr "Eszköz típusa"
@@ -3525,6 +3532,9 @@ msgstr "HIÁNYZIK"
 msgid "MOTD"
 msgstr "A nap üzenete"
 
+msgid "MOVED TO"
+msgstr ""
+
 msgid "MS Active Directory"
 msgstr "MS Active Directory"
 
@@ -4805,6 +4815,9 @@ msgstr "Root bind DN"
 msgid "Root bind password"
 msgstr "Root bind jelszó"
 
+msgid "Rotation rate"
+msgstr ""
+
 msgid "Round-robin read"
 msgstr "Round-robin olvasás"
 
@@ -5784,7 +5797,7 @@ msgstr ""
 "A(z) '%s' tulajdonság csak a következő karaktereket tartalmazhatja: a-z, A-"
 "Z, 0-9."
 
-#, c-format, php-format
+#, c-format
 msgid "The attribute '%s' must be a number."
 msgstr "A(z) '%s' tulajdonság csak szám lehet."
 
@@ -5926,6 +5939,11 @@ msgstr ""
 
 msgid "The device's IP address."
 msgstr "Az eszköz IP címe."
+
+msgid ""
+"The device(s) in config are different to actual device(s). Please remove the "
+"device(s) and re-add it or use 'Clear config and Import disks'."
+msgstr ""
 
 msgid ""
 "The directory containing the files you want to publish. The remote host does "
@@ -6354,13 +6372,6 @@ msgstr "Túl sok a további csoport."
 msgid "There is no error, the file uploaded with success."
 msgstr "Nem történt hiba, a fájl feltöltése sikeresen megtörtént."
 
-msgid ""
-"There is wrong disk ID in the config. Please remove the disk and re-add it "
-"or use 'clear and import'."
-msgstr ""
-"Rossz lemezazonosító van a beállításokban. Távolítsd el a lemezt és újra add "
-"hozzá vagy használd a 'letöröl és importál' lehetőséget."
-
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "A RAID 1 kötetben 2 lemeznek kell lennie."
 
@@ -6416,6 +6427,8 @@ msgid ""
 "specify parameters to be passed to kernel, and additional modules to be "
 "loaded."
 msgstr ""
+"Ezek a beállítások a /boot/loader.conf.local fáljba kerülnek. Evvel "
+"lehetőség nyílik a kernel paramétereit illetve modulok betöltését beállítani."
 
 msgid ""
 "These option(s) will be added to /etc/rc.conf. This allow you to overwrite "
@@ -6991,6 +7004,9 @@ msgstr "Átkódolás"
 msgid "Transfer mode"
 msgstr "Átviteli mód"
 
+msgid "Transfer rate"
+msgstr ""
+
 msgid "Trap host"
 msgstr "Csapdák port"
 
@@ -7139,6 +7155,9 @@ msgstr "URI"
 
 msgid "URL"
 msgstr "URL"
+
+msgid "Unavailable"
+msgstr ""
 
 msgid "Unformated"
 msgstr "Formázatlan"
@@ -7700,7 +7719,7 @@ msgid "load/unload failed."
 msgstr "töltési hiba"
 
 msgid "loader.conf"
-msgstr ""
+msgstr "loader.conf"
 
 msgid "maximum (highest performance)"
 msgstr "maximum (legnagyobb teljesítmény)"
@@ -7788,6 +7807,9 @@ msgstr "sikeresen."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "to"
+msgstr ""
 
 msgid "umask"
 msgstr "umask"

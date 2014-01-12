@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-15 03:26+0000\n"
-"PO-Revision-Date: 2013-08-15 19:37+0000\n"
+"POT-Creation-Date: 2014-01-11 22:29+0000\n"
+"PO-Revision-Date: 2014-01-12 13:00+0000\n"
 "Last-Translator: Laurentiu Bubuianu <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-15 20:12+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2014-01-12 19:32+0000\n"
+"X-Generator: Launchpad (build 16890)\n"
 "Language: ro_RO\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -739,6 +739,9 @@ msgstr "Firmware dispozitiv auxiliar"
 msgid "Auxiliary parameters"
 msgstr "Parametri auxiliari"
 
+msgid "Available"
+msgstr "Disponibil"
+
 msgid "Backup configuration"
 msgstr "Salvare configurație"
 
@@ -866,6 +869,9 @@ msgstr "CCMP TKIP"
 
 msgid "CD/DVD"
 msgstr "CD/DVD"
+
+msgid "CHANGED"
+msgstr "MODIFICAT"
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -1027,14 +1033,13 @@ msgid "Clear config and Import software raid disks"
 msgstr "Ştergere Configurație și Import discuri Raid software"
 
 msgid ""
-"Click &quot;Enable firmware upload&quot; below, then choose the image file "
-"to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
-"process."
+"Click &quot;Enable firmware upload&quot; below, then choose the embedded "
+"image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start "
+"the upgrade process."
 msgstr ""
-"Selectați butonul &quot;Activare Actualizare Firmware&quot; după care "
-"alegeți fișierul imagine de încărcat.<br />Selectați apoi butonul "
-"&quot;Actualizare Firmware&quot; pentru a începe efectiv procesul de "
-"actualizare."
+"Click pe &quot;Activare încărcare firmware&quot; și selectați fișierul "
+"imagine de încărcat.<br />Click pe &quot;Actualizare firmare&quot; pentru a "
+"începe efectiv procesul de actualizare."
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr ""
@@ -1143,6 +1148,9 @@ msgstr ""
 msgid "Content"
 msgstr "Conținut"
 
+msgid "Controller"
+msgstr "Controler"
+
 msgid "Controller Auth Group"
 msgstr "Controler Grup Autorizat"
 
@@ -1157,6 +1165,9 @@ msgstr "Adresă IP Controler"
 
 msgid "Controller TCP Port"
 msgstr "Port TCP Controler"
+
+msgid "Controller model"
+msgstr "Model controler"
 
 msgid "Controls power consumption."
 msgstr "Control consum alimentare."
@@ -1322,17 +1333,18 @@ msgstr "Setări DNS"
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. The server will "
-"reboot automatically after storing the new firmware. The configuration will "
-"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-"update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-"System configuration before doing a Firmware upgrade."
+"DO NOT abort the firmware upgrade process once it has started. Once it is "
+"completed, the server will automatically reboot, the current configuration "
+"will be maintained.<br />You need a minimum of %d MiB free RAM to perform "
+"the upgrade.<br />It is strongly recommended that you <a "
+"href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
-"NU întrerupeți actualizarea sistemului odată ce procesul a început. Sistemul "
-"va reporni automat după salvarea noului firmware cu păstrarea configurației "
-"actuale.<br />Aveți nevoie de minimum %d MB RAM pentru a putea efectua "
-"actualizarea.<br />Este recomandat să <a href='%s'>Salvați</a> setările "
-"sistemului înainte de a începe efectiv actualizarea sistemului."
+"NU OPRIŢI procesul de actualizare firmware odată început. După terminarea "
+"procesului de actualizare sistemul va reporni în mod automat cu păstrarea "
+"configurației curente. <br />Aveți nevoie de minim %d MiB memorie RAM liberă "
+"pentru a putea efectua actualizarea.<br />Vă sugerăm să efectuați "
+"obligatoriu un <a href='%s'>Backup</a> al configurației curente a sistemului "
+"înainte de o actualizare firmware."
 
 msgid "DVD"
 msgstr "DVD"
@@ -1591,6 +1603,9 @@ msgstr "Dispozitiv IP"
 
 msgid "Device Pass-through"
 msgstr "Dispozitiv Pass-through"
+
+msgid "Device Serial"
+msgstr "Serial dispozitiv"
 
 msgid "Device model"
 msgstr "Model dispozitiv"
@@ -2160,7 +2175,7 @@ msgid "Enable extended attributes for this file system."
 msgstr "Activare atribute extinse pentru acest sistem de fișiere."
 
 msgid "Enable firmware upload"
-msgstr "Activare Actualizare Firmware"
+msgstr "Activare actualizare firmware"
 
 msgid ""
 "Enable foreground/background file system consistency check during boot "
@@ -3566,6 +3581,9 @@ msgstr "LIPSĂ"
 msgid "MOTD"
 msgstr "MOTD"
 
+msgid "MOVED TO"
+msgstr "MUTAT LA"
+
 msgid "MS Active Directory"
 msgstr "MS Active Directory"
 
@@ -4843,6 +4861,9 @@ msgstr "Root bind DN"
 msgid "Root bind password"
 msgstr "Parolă Root bind"
 
+msgid "Rotation rate"
+msgstr "Rată rotire"
+
 msgid "Round-robin read"
 msgstr "Citire Round-robin"
 
@@ -5824,7 +5845,7 @@ msgstr "Atributul '%s' poate conține doar caracterele a-z, A-Z, 0-9, _ , -."
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr "Atributul '%s' poate conține doar caracterele a-z, A-Z, 0-9."
 
-#, c-format, php-format
+#, c-format
 msgid "The attribute '%s' must be a number."
 msgstr "Atributul '%s' trebuie să fie tip număr."
 
@@ -5962,6 +5983,15 @@ msgstr "Numele dispozitivului poate conține doar caracterele  a-z, A-Z, 0-9."
 
 msgid "The device's IP address."
 msgstr "Adresa IP a dispozitivului."
+
+msgid ""
+"The device(s) in config are different to actual device(s). Please remove the "
+"device(s) and re-add it or use 'Clear config and Import disks'."
+msgstr ""
+"Dispozitivul/dispozitivele din fișierul de configurare diferă de "
+"dispozitivul/dispozitivele reale. Deconectați și reconectați din nou "
+"dispozitivul/dispozitivele sau adăugați-le din nou folosind 'Ştergere "
+"configurație și import discuri'."
 
 msgid ""
 "The directory containing the files you want to publish. The remote host does "
@@ -6391,13 +6421,6 @@ msgstr "Sînt prea multe grupuri adiționale."
 
 msgid "There is no error, the file uploaded with success."
 msgstr "Fișierul a fost încărcat cu succes, fără eroare."
-
-msgid ""
-"There is wrong disk ID in the config. Please remove the disk and re-add it "
-"or use 'clear and import'."
-msgstr ""
-"Configurația conține un ID de disc incorect. Ștergeți discul și adăugați-l "
-"din nou sau folosiți opțiunea  'ștergere și import'."
 
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "Sînt necesare cel puțin 2 discuri pentru un volum RAID 1."
@@ -7051,6 +7074,9 @@ msgstr "Transcodare"
 msgid "Transfer mode"
 msgstr "Mod transfer"
 
+msgid "Transfer rate"
+msgstr "Rată transfer"
+
 msgid "Trap host"
 msgstr "Captură sistem"
 
@@ -7199,6 +7225,9 @@ msgstr "URI"
 msgid "URL"
 msgstr "URL"
 
+msgid "Unavailable"
+msgstr "Indisponibil"
+
 msgid "Unformated"
 msgstr "Neformatat"
 
@@ -7245,7 +7274,7 @@ msgid "Updating in 5 seconds."
 msgstr "Actualizare în 5 secunde."
 
 msgid "Upgrade firmware"
-msgstr "Actualizare Firmware"
+msgstr "Actualizare firmware"
 
 msgid "Upload"
 msgstr "Încărcare"
@@ -7855,6 +7884,9 @@ msgstr "cu succes."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "to"
+msgstr "către"
 
 msgid "umask"
 msgstr "umask"

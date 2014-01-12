@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-08-15 03:26+0000\n"
-"PO-Revision-Date: 2013-07-29 14:53+0000\n"
+"POT-Creation-Date: 2014-01-11 22:29+0000\n"
+"PO-Revision-Date: 2013-09-01 07:41+0000\n"
 "Last-Translator: raul fernandez garcia <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-15 01:45+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2014-01-12 19:32+0000\n"
+"X-Generator: Launchpad (build 16890)\n"
 "X-Poedit-Country: SPAIN\n"
 "Language: \n"
 "X-Poedit-Language: Spanish\n"
@@ -742,6 +742,9 @@ msgstr "Firmware del dispositivo auxiliar"
 msgid "Auxiliary parameters"
 msgstr "Parámetros auxiliares."
 
+msgid "Available"
+msgstr ""
+
 msgid "Backup configuration"
 msgstr "Salvar la configuración"
 
@@ -869,6 +872,9 @@ msgstr "CCMP TKIP"
 
 msgid "CD/DVD"
 msgstr "CD/DVD"
+
+msgid "CHANGED"
+msgstr ""
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -1029,14 +1035,10 @@ msgid "Clear config and Import software raid disks"
 msgstr "Desechar configuración actual e importar RAID de discos"
 
 msgid ""
-"Click &quot;Enable firmware upload&quot; below, then choose the image file "
-"to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
-"process."
+"Click &quot;Enable firmware upload&quot; below, then choose the embedded "
+"image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start "
+"the upgrade process."
 msgstr ""
-"Click &quot;Habilitar la actualización del Sistema Base &quot; a "
-"continuación, luego seleccione el fichero de la imagen a enviar.<br />Click "
-"&quot;Actualizar Sistema Base&quot; para comenzar el proceso de "
-"actualización."
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr ""
@@ -1144,6 +1146,9 @@ msgstr ""
 msgid "Content"
 msgstr "Contenido"
 
+msgid "Controller"
+msgstr ""
+
 msgid "Controller Auth Group"
 msgstr "Grupo de autorizacion de controlador"
 
@@ -1158,6 +1163,9 @@ msgstr "Controlador de dirección IP"
 
 msgid "Controller TCP Port"
 msgstr "Controlador de puerto TCP"
+
+msgid "Controller model"
+msgstr ""
 
 msgid "Controls power consumption."
 msgstr "Controla el consumo de energía"
@@ -1324,18 +1332,12 @@ msgstr "Configuración de DNS"
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. The server will "
-"reboot automatically after storing the new firmware. The configuration will "
-"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-"update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-"System configuration before doing a Firmware upgrade."
+"DO NOT abort the firmware upgrade process once it has started. Once it is "
+"completed, the server will automatically reboot, the current configuration "
+"will be maintained.<br />You need a minimum of %d MiB free RAM to perform "
+"the upgrade.<br />It is strongly recommended that you <a "
+"href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
-"No interrumpir el proceso de actualización una vez iniciado. El servidor se "
-"reiniciará automáticamente , después de salvar el nuevo firmware. La "
-"configuración será mantenida  <br /> Se necesitará un mínimo de %d MB RAM "
-"para realizar la actualización del firmware <br /> Está muy recomendado que "
-"realice un <a href='%s'>Backup</a> del sistema antes de realizar la "
-"actualización"
 
 msgid "DVD"
 msgstr "DVD"
@@ -1594,6 +1596,9 @@ msgstr "Dispositivo IP"
 
 msgid "Device Pass-through"
 msgstr "Dispositivo por medio de paso"
+
+msgid "Device Serial"
+msgstr ""
 
 msgid "Device model"
 msgstr "Modelo del Dispositivo"
@@ -3568,6 +3573,9 @@ msgstr "DESAPARECIDO"
 msgid "MOTD"
 msgstr "Mensaje de bienvenida"
 
+msgid "MOVED TO"
+msgstr ""
+
 msgid "MS Active Directory"
 msgstr "Directorio Activo MS"
 
@@ -4854,6 +4862,9 @@ msgstr "Enlace raiz DN"
 msgid "Root bind password"
 msgstr "Contraseña de la raiz de enlace"
 
+msgid "Rotation rate"
+msgstr ""
+
 msgid "Round-robin read"
 msgstr "Round-Robin leido"
 
@@ -5840,7 +5851,7 @@ msgstr ""
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr "El atributo '%s' sólo puede consistir en caracteres a-z, A-Z, 0-9."
 
-#, c-format, php-format
+#, c-format
 msgid "The attribute '%s' must be a number."
 msgstr "El atributo '%s' debe ser un número."
 
@@ -5985,6 +5996,11 @@ msgstr ""
 
 msgid "The device's IP address."
 msgstr "La dirección IP del dispositivo."
+
+msgid ""
+"The device(s) in config are different to actual device(s). Please remove the "
+"device(s) and re-add it or use 'Clear config and Import disks'."
+msgstr ""
 
 msgid ""
 "The directory containing the files you want to publish. The remote host does "
@@ -6420,13 +6436,6 @@ msgstr "Hay demasiados grupos"
 msgid "There is no error, the file uploaded with success."
 msgstr "No hay error, el archivo fue subido con exito."
 
-msgid ""
-"There is wrong disk ID in the config. Please remove the disk and re-add it "
-"or use 'clear and import'."
-msgstr ""
-"Hay una identificación de disco erronea en la configuración. Por favor "
-"eliminelo, y vuelvalo a añadir, o use la opción 'Limpiar e importar'"
-
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "Debe haber al menos 2 discos en un volumen RAID 1."
 
@@ -6483,6 +6492,8 @@ msgid ""
 "specify parameters to be passed to kernel, and additional modules to be "
 "loaded."
 msgstr ""
+"Estas opciones seran añadidas a /boot/loader.conf.local  . Esto le permitirá "
+"pasar estos parametros al kernel y cargar modulos adicionales."
 
 msgid ""
 "These option(s) will be added to /etc/rc.conf. This allow you to overwrite "
@@ -7081,6 +7092,9 @@ msgstr "Transcodificación"
 msgid "Transfer mode"
 msgstr "Modo de transferencia"
 
+msgid "Transfer rate"
+msgstr ""
+
 msgid "Trap host"
 msgstr "Trap host"
 
@@ -7227,6 +7241,9 @@ msgstr "URI"
 
 msgid "URL"
 msgstr "URL"
+
+msgid "Unavailable"
+msgstr ""
 
 msgid "Unformated"
 msgstr "Sin formato"
@@ -7796,7 +7813,7 @@ msgid "load/unload failed."
 msgstr "Fallo en la carga y/o descarga"
 
 msgid "loader.conf"
-msgstr ""
+msgstr "loader.conf"
 
 msgid "maximum (highest performance)"
 msgstr "Máximo (Máximo rendimiento)"
@@ -7884,6 +7901,9 @@ msgstr "Satisfactoriamente"
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "to"
+msgstr ""
 
 msgid "umask"
 msgstr "umask"
