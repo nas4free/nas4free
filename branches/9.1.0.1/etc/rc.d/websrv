@@ -174,7 +174,7 @@ EOF
 
 	# Configure authentication.
 	if configxml_isset //websrv/authentication/enable; then
-		local _htpasswd="${_documentroot}/.websrv_htpasswd"
+		local _htpasswd="${_documentroot}.websrv_htpasswd"
 
 		# Add authentication configuration.
 		cat <<EOF >> ${websrv_conf}
