@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-08-15 03:26+0000\n"
+"POT-Creation-Date: 2014-01-11 22:29+0000\n"
 "PO-Revision-Date: 2012-09-05 08:21+0000\n"
 "Last-Translator: Carsten Matzon <carsten@matzon.dk>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-15 01:45+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2014-01-12 19:32+0000\n"
+"X-Generator: Launchpad (build 16890)\n"
 "X-Poedit-Country: DENMARK\n"
 "Language: \n"
 "X-Poedit-Language: Danish\n"
@@ -715,6 +715,9 @@ msgstr ""
 msgid "Auxiliary parameters"
 msgstr "Ekstra parametre"
 
+msgid "Available"
+msgstr ""
+
 msgid "Backup configuration"
 msgstr "Backup konfiguration"
 
@@ -839,6 +842,9 @@ msgstr "CCMP TKIP"
 
 msgid "CD/DVD"
 msgstr "CD/DVD"
+
+msgid "CHANGED"
+msgstr ""
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -997,13 +1003,10 @@ msgid "Clear config and Import software raid disks"
 msgstr ""
 
 msgid ""
-"Click &quot;Enable firmware upload&quot; below, then choose the image file "
-"to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
-"process."
+"Click &quot;Enable firmware upload&quot; below, then choose the embedded "
+"image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start "
+"the upgrade process."
 msgstr ""
-"Tryk på &quot;Aktiver firmware upload&quot; nedenfor, og vælg derefter image "
-"filen der skal uploades.<br />Tryk på &quot;Opgrader firmware&quot; for at "
-"starte opgraderings processen."
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr ""
@@ -1110,6 +1113,9 @@ msgstr ""
 msgid "Content"
 msgstr "Indhold"
 
+msgid "Controller"
+msgstr ""
+
 msgid "Controller Auth Group"
 msgstr "Controller Auth Gruppe"
 
@@ -1124,6 +1130,9 @@ msgstr "Controller IP addresse"
 
 msgid "Controller TCP Port"
 msgstr "Controller TCP port"
+
+msgid "Controller model"
+msgstr ""
 
 msgid "Controls power consumption."
 msgstr ""
@@ -1278,11 +1287,11 @@ msgstr "DNS indstillinger"
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. The server will "
-"reboot automatically after storing the new firmware. The configuration will "
-"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-"update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-"System configuration before doing a Firmware upgrade."
+"DO NOT abort the firmware upgrade process once it has started. Once it is "
+"completed, the server will automatically reboot, the current configuration "
+"will be maintained.<br />You need a minimum of %d MiB free RAM to perform "
+"the upgrade.<br />It is strongly recommended that you <a "
+"href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
 
 msgid "DVD"
@@ -1543,6 +1552,9 @@ msgstr "Enheds IP"
 
 msgid "Device Pass-through"
 msgstr "Device Pass-through"
+
+msgid "Device Serial"
+msgstr ""
 
 msgid "Device model"
 msgstr "Device model"
@@ -3457,6 +3469,9 @@ msgstr "MANGLER"
 msgid "MOTD"
 msgstr "Dagens meddelelse"
 
+msgid "MOVED TO"
+msgstr ""
+
 msgid "MS Active Directory"
 msgstr "MS Active Directory"
 
@@ -4726,6 +4741,9 @@ msgstr "Rod bind DN"
 msgid "Root bind password"
 msgstr "Rod bind kodeord"
 
+msgid "Rotation rate"
+msgstr ""
+
 msgid "Round-robin read"
 msgstr "Round-robin læsning"
 
@@ -5671,7 +5689,7 @@ msgstr "Attributten '%s' må kun bestå af tegnene a-z, A-Z, 0-9, _ og -."
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr "Attributten '%s' må kun bestå af tegnene a-z, A-Z og 0-9."
 
-#, c-format, php-format
+#, c-format
 msgid "The attribute '%s' must be a number."
 msgstr "Attributten '%s' skal være et tal."
 
@@ -5811,6 +5829,11 @@ msgstr "Enhedsnavnet må kun bestå af tegnene a-z, A-Z og 0-9."
 
 msgid "The device's IP address."
 msgstr "Enhedens IP-adresse."
+
+msgid ""
+"The device(s) in config are different to actual device(s). Please remove the "
+"device(s) and re-add it or use 'Clear config and Import disks'."
+msgstr ""
 
 msgid ""
 "The directory containing the files you want to publish. The remote host does "
@@ -6220,11 +6243,6 @@ msgstr "Der er for mange ekstra grupper."
 
 msgid "There is no error, the file uploaded with success."
 msgstr "Der opstod ingen fejl, filen blev succesfuldt uploaded."
-
-msgid ""
-"There is wrong disk ID in the config. Please remove the disk and re-add it "
-"or use 'clear and import'."
-msgstr ""
 
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "Der skal være 2 diske i et RAID 1 volume."
@@ -6861,6 +6879,9 @@ msgstr "Omkodning"
 msgid "Transfer mode"
 msgstr "Overførsels tilstand"
 
+msgid "Transfer rate"
+msgstr ""
+
 msgid "Trap host"
 msgstr "Trap vært"
 
@@ -7007,6 +7028,9 @@ msgstr ""
 
 msgid "URL"
 msgstr "URL"
+
+msgid "Unavailable"
+msgstr ""
 
 msgid "Unformated"
 msgstr "Uformateret"
@@ -7652,6 +7676,9 @@ msgstr "successfuldt."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "to"
+msgstr ""
 
 msgid "umask"
 msgstr "umask"

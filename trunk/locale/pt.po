@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-08-15 03:26+0000\n"
+"POT-Creation-Date: 2014-01-11 22:29+0000\n"
 "PO-Revision-Date: 2012-10-14 07:46+0000\n"
 "Last-Translator: Luís Vilhena Santos <LuisVilhenaSantos@Hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-15 01:45+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2014-01-12 19:32+0000\n"
+"X-Generator: Launchpad (build 16890)\n"
 "X-Poedit-Country: PORTUGAL\n"
 "Language: \n"
 "X-Poedit-Language: Portuguese\n"
@@ -725,6 +725,9 @@ msgstr ""
 msgid "Auxiliary parameters"
 msgstr "Parametros auxiliares"
 
+msgid "Available"
+msgstr ""
+
 msgid "Backup configuration"
 msgstr "Guardar a configuração"
 
@@ -850,6 +853,9 @@ msgstr "CCMP TKIP"
 
 msgid "CD/DVD"
 msgstr "CD/DVD"
+
+msgid "CHANGED"
+msgstr ""
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -1010,13 +1016,10 @@ msgid "Clear config and Import software raid disks"
 msgstr "Limpar configurações e carregar Discos raid (software)"
 
 msgid ""
-"Click &quot;Enable firmware upload&quot; below, then choose the image file "
-"to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
-"process."
+"Click &quot;Enable firmware upload&quot; below, then choose the embedded "
+"image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start "
+"the upgrade process."
 msgstr ""
-"Clique &quot;Permitir upload de firmware&quot; abaixo, depois escolha o "
-"ficheiro de imagem que será utilizado.<br />Clique &quot; Actualizar "
-"firmware&quot; para iniciar o processo de actualização."
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr ""
@@ -1123,6 +1126,9 @@ msgstr ""
 msgid "Content"
 msgstr "Conteúdo"
 
+msgid "Controller"
+msgstr ""
+
 msgid "Controller Auth Group"
 msgstr "Grupo de Controlador de Autenticação"
 
@@ -1137,6 +1143,9 @@ msgstr "Controlador de endereço IP"
 
 msgid "Controller TCP Port"
 msgstr "Controlador de porta TCP"
+
+msgid "Controller model"
+msgstr ""
 
 msgid "Controls power consumption."
 msgstr ""
@@ -1292,11 +1301,11 @@ msgstr "Definições de DNS"
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. The server will "
-"reboot automatically after storing the new firmware. The configuration will "
-"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-"update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-"System configuration before doing a Firmware upgrade."
+"DO NOT abort the firmware upgrade process once it has started. Once it is "
+"completed, the server will automatically reboot, the current configuration "
+"will be maintained.<br />You need a minimum of %d MiB free RAM to perform "
+"the upgrade.<br />It is strongly recommended that you <a "
+"href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
 
 msgid "DVD"
@@ -1558,6 +1567,9 @@ msgstr "Endereço IP do dispositivo"
 
 msgid "Device Pass-through"
 msgstr "Device de Passagem"
+
+msgid "Device Serial"
+msgstr ""
 
 msgid "Device model"
 msgstr "Modelo de dispositivo"
@@ -3500,6 +3512,9 @@ msgstr "EM FALTA"
 msgid "MOTD"
 msgstr "MOTD"
 
+msgid "MOVED TO"
+msgstr ""
+
 msgid "MS Active Directory"
 msgstr "MS Active Directory"
 
@@ -4773,6 +4788,9 @@ msgstr "Root bind DN"
 msgid "Root bind password"
 msgstr "Palavra passe de root bind"
 
+msgid "Rotation rate"
+msgstr ""
+
 msgid "Round-robin read"
 msgstr "Leitura Round-robin"
 
@@ -5734,7 +5752,7 @@ msgstr ""
 "O atributo '%s' apenas pode ser constituído por caracteres a-z, A-Z, 0-9, _ "
 ", -."
 
-#, c-format, php-format
+#, c-format
 msgid "The attribute '%s' must be a number."
 msgstr "O atributo '%s' deve ser um número."
 
@@ -5870,6 +5888,11 @@ msgstr "O nome do dispositivo só pode conter caracteres de a-z, A-Z, 0-9."
 
 msgid "The device's IP address."
 msgstr "O endereço IP do dispositivo."
+
+msgid ""
+"The device(s) in config are different to actual device(s). Please remove the "
+"device(s) and re-add it or use 'Clear config and Import disks'."
+msgstr ""
 
 msgid ""
 "The directory containing the files you want to publish. The remote host does "
@@ -6283,11 +6306,6 @@ msgstr "Existem demasiados grupos adicionais."
 
 msgid "There is no error, the file uploaded with success."
 msgstr "Não houve erros, ficheiro adicionado com sucesso."
-
-msgid ""
-"There is wrong disk ID in the config. Please remove the disk and re-add it "
-"or use 'clear and import'."
-msgstr ""
 
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "É obrigatório um mínimo de 2 discos num volume RAID 1."
@@ -6920,6 +6938,9 @@ msgstr "Codificação"
 msgid "Transfer mode"
 msgstr "Modo de transferência"
 
+msgid "Transfer rate"
+msgstr ""
+
 msgid "Trap host"
 msgstr "Trap host"
 
@@ -7068,6 +7089,9 @@ msgstr ""
 
 msgid "URL"
 msgstr "URL"
+
+msgid "Unavailable"
+msgstr ""
 
 msgid "Unformated"
 msgstr "Não formatado"
@@ -7719,6 +7743,9 @@ msgstr "com sucesso."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "to"
+msgstr ""
 
 msgid "umask"
 msgstr "umask"

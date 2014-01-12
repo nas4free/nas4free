@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-08-15 03:26+0000\n"
+"POT-Creation-Date: 2014-01-11 22:29+0000\n"
 "PO-Revision-Date: 2013-06-12 11:54+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-15 01:44+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2014-01-12 19:33+0000\n"
+"X-Generator: Launchpad (build 16890)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -681,6 +681,9 @@ msgstr "輔助設備韌體"
 msgid "Auxiliary parameters"
 msgstr "輔助參數"
 
+msgid "Available"
+msgstr ""
+
 msgid "Backup configuration"
 msgstr "備份設置"
 
@@ -805,6 +808,9 @@ msgstr "CCMP TKIP"
 
 msgid "CD/DVD"
 msgstr "CD/DVD"
+
+msgid "CHANGED"
+msgstr ""
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -958,11 +964,10 @@ msgid "Clear config and Import software raid disks"
 msgstr "清除和導入軟體RAID的磁盤設置"
 
 msgid ""
-"Click &quot;Enable firmware upload&quot; below, then choose the image file "
-"to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
-"process."
+"Click &quot;Enable firmware upload&quot; below, then choose the embedded "
+"image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start "
+"the upgrade process."
 msgstr ""
-"單擊 &quot;允許韌體上載&quot; ，然後選擇要上傳的韌體映像檔案。<br />單擊 &quot;升級韌體&quot; 開始升級過程。"
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr "點擊此按鈕下載XML格式的伺服器配置。"
@@ -1064,6 +1069,9 @@ msgstr "聯絡人資訊，例如系統管理員的姓名或是電子郵件：adm
 msgid "Content"
 msgstr "內容"
 
+msgid "Controller"
+msgstr ""
+
 msgid "Controller Auth Group"
 msgstr "控制器的認證組"
 
@@ -1078,6 +1086,9 @@ msgstr "控制器的 IP 位址"
 
 msgid "Controller TCP Port"
 msgstr "控制器的TCP端口"
+
+msgid "Controller model"
+msgstr ""
 
 msgid "Controls power consumption."
 msgstr "控制電源模式。"
@@ -1233,14 +1244,12 @@ msgstr "DNS 设置"
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. The server will "
-"reboot automatically after storing the new firmware. The configuration will "
-"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-"update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-"System configuration before doing a Firmware upgrade."
+"DO NOT abort the firmware upgrade process once it has started. Once it is "
+"completed, the server will automatically reboot, the current configuration "
+"will be maintained.<br />You need a minimum of %d MiB free RAM to perform "
+"the upgrade.<br />It is strongly recommended that you <a "
+"href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
-"韌體升級開始執行後, 請別中止。當新的韌體存儲後，伺服器將自動重新啟動。配置將保持不變。<br />您需要至少 %d MB 的 RAM "
-"來執行韌體更新。<br />強烈建議您 <a href='%s'>備份</a> 系統配置才執行韌體升級。"
 
 msgid "DVD"
 msgstr "DVD"
@@ -1497,6 +1506,9 @@ msgstr "裝置 IP"
 
 msgid "Device Pass-through"
 msgstr "設備直通（Device Pass-through）"
+
+msgid "Device Serial"
+msgstr ""
 
 msgid "Device model"
 msgstr "裝置型號"
@@ -3337,6 +3349,9 @@ msgstr "遺失"
 msgid "MOTD"
 msgstr "每日訊息"
 
+msgid "MOVED TO"
+msgstr ""
+
 msgid "MS Active Directory"
 msgstr "MS Active Directory"
 
@@ -4546,6 +4561,9 @@ msgstr "Root bind DN"
 msgid "Root bind password"
 msgstr "Root bind 密碼"
 
+msgid "Rotation rate"
+msgstr ""
+
 msgid "Round-robin read"
 msgstr "輪替式讀"
 
@@ -5453,7 +5471,7 @@ msgstr "'%s' 只可以由 a-z ， A-Z ， 0-9 ， “_”，“-” 的字元組
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr "'%s' 只可以由 a-z , A-Z , 0-9 的字元組成。"
 
-#, c-format, php-format
+#, c-format
 msgid "The attribute '%s' must be a number."
 msgstr "'%s' 必須是數字。"
 
@@ -5575,6 +5593,11 @@ msgstr "裝置名稱只可以由 a-z , A-Z , 0-9 的字元組成。"
 
 msgid "The device's IP address."
 msgstr "裝置的 IP 位址。"
+
+msgid ""
+"The device(s) in config are different to actual device(s). Please remove the "
+"device(s) and re-add it or use 'Clear config and Import disks'."
+msgstr ""
 
 msgid ""
 "The directory containing the files you want to publish. The remote host does "
@@ -5938,11 +5961,6 @@ msgstr "有太多的附加組。"
 
 msgid "There is no error, the file uploaded with success."
 msgstr "檔案上傳成功，沒有任何錯誤。"
-
-msgid ""
-"There is wrong disk ID in the config. Please remove the disk and re-add it "
-"or use 'clear and import'."
-msgstr "在配置裡有錯誤的磁盤ID。請刪除磁盤設置並重新添加或使用“清除和導入磁盤設置” 鍵。"
 
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "RAID 1 模式最少要有 2 個磁盘。"
@@ -6470,6 +6488,9 @@ msgstr "轉碼"
 msgid "Transfer mode"
 msgstr "傳輸模式"
 
+msgid "Transfer rate"
+msgstr ""
+
 msgid "Trap host"
 msgstr "Trap 主機"
 
@@ -6614,6 +6635,9 @@ msgstr "URI"
 
 msgid "URL"
 msgstr "URL"
+
+msgid "Unavailable"
+msgstr ""
 
 msgid "Unformated"
 msgstr "尚未格式化"
@@ -7226,6 +7250,9 @@ msgstr "成功地."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "to"
+msgstr ""
 
 msgid "umask"
 msgstr "umask 檔案預設權限"

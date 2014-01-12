@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-08-15 03:26+0000\n"
-"PO-Revision-Date: 2013-02-26 19:47+0000\n"
+"POT-Creation-Date: 2014-01-11 22:29+0000\n"
+"PO-Revision-Date: 2013-10-24 23:56+0000\n"
 "Last-Translator: Paulo Márcio da Hora <paulohora@ufba.br>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-15 01:44+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2014-01-12 19:33+0000\n"
+"X-Generator: Launchpad (build 16890)\n"
 "X-Poedit-Country: Brazilian Portuguese\n"
 "Language: \n"
 "X-Poedit-Language: Brazilian Portuguese\n"
@@ -326,10 +326,10 @@ msgid "Active Directory"
 msgstr "Diretório Ativo"
 
 msgid "Active Directory List"
-msgstr ""
+msgstr "Lista do Active Directory"
 
 msgid "Active Shares"
-msgstr ""
+msgstr "Compartilhamentos Ativos"
 
 msgid "Active Users"
 msgstr "Usuários Ativos"
@@ -425,7 +425,7 @@ msgid "Add snapshot"
 msgstr "Adicionar imagem"
 
 msgid "Add target"
-msgstr ""
+msgstr "Adicionar destino"
 
 msgid "Add user"
 msgstr "Adicionar usuário"
@@ -560,7 +560,7 @@ msgid "Allow new files to be created."
 msgstr "Permitir a criação de novos arquivos."
 
 msgid "Allow to start UPS from battery"
-msgstr ""
+msgstr "Permitir inicialização de UPS através de baterias"
 
 msgid "Allow trusted domains."
 msgstr "Permitir domínios reconhecidos."
@@ -609,13 +609,13 @@ msgstr ""
 "dispositivo não é constante através de um reinicio, cluster ..."
 
 msgid "Ambient Conditions From External Probe Equipment"
-msgstr ""
+msgstr "Condições do Ambiente a partir de equipamento externo de sondagem"
 
 msgid "Ambient relative humidity (percent)"
-msgstr ""
+msgstr "Humidade Relativa do Ar (percentual)"
 
 msgid "Ambient temperature (degrees C)"
-msgstr ""
+msgstr "Temperatura ambiente ( °C)"
 
 msgid "An host with this name already exists."
 msgstr "Uma máquina com esse nome já existe."
@@ -737,10 +737,13 @@ msgid "Autoselect"
 msgstr "Seleção automática"
 
 msgid "Auxiliary device firmware"
-msgstr ""
+msgstr "Firmware de disposivo auxiliar"
 
 msgid "Auxiliary parameters"
 msgstr "Parâmetros auxiliares"
+
+msgid "Available"
+msgstr ""
 
 msgid "Backup configuration"
 msgstr "Configuração de cópia de segurança"
@@ -781,7 +784,7 @@ msgid "Battery Charge"
 msgstr "Carga da Bateria"
 
 msgid "Battery Details"
-msgstr ""
+msgstr "Detalhes da bateria"
 
 msgid "Battery Low"
 msgstr "Bateria fraca"
@@ -789,36 +792,38 @@ msgstr "Bateria fraca"
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
 msgstr ""
+"Nível restante da bateria quando UPS muda para o modo de desligamento (Pouca "
+"Carga)"
 
 msgid "Battery alarm threshold"
-msgstr ""
+msgstr "Limite de alarme da bateria"
 
 msgid "Battery capacity"
-msgstr ""
+msgstr "Capacidade da bateria"
 
 msgid "Battery change date"
-msgstr ""
+msgstr "Data de troca da bateria"
 
 msgid "Battery charge"
-msgstr ""
+msgstr "Carga da bateria"
 
 msgid "Battery chemistry"
-msgstr ""
+msgstr "Composição química da bateria"
 
 msgid "Battery current"
-msgstr ""
+msgstr "Bateria atual"
 
 msgid "Battery level when UPS switches to \"Warning\" state"
-msgstr ""
+msgstr "Nível da bateria quando UPS muda para estado de \"Atenção\""
 
 msgid "Battery manufacturing date"
-msgstr ""
+msgstr "Data de fabricação da bateria"
 
 msgid "Battery temperature"
-msgstr ""
+msgstr "Temperatura da bateria"
 
 msgid "Battery voltage"
-msgstr ""
+msgstr "Tensão da bateria"
 
 msgid "Best available"
 msgstr "Melhor disponível"
@@ -867,6 +872,9 @@ msgstr "CCMP TKIP"
 
 msgid "CD/DVD"
 msgstr "CD/DVD"
+
+msgid "CHANGED"
+msgstr ""
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -932,7 +940,7 @@ msgid "Cache Device"
 msgstr "Dispositivo de Cache"
 
 msgid "Calibration Battery"
-msgstr ""
+msgstr "Calibração da Bateria"
 
 msgid "Can't format the OS origin disk!"
 msgstr "Não é possível formatar o disco que contém o sistema operacional!"
@@ -951,7 +959,7 @@ msgid "Canmount"
 msgstr "Pode montar"
 
 msgid "Cannot get CPU load"
-msgstr ""
+msgstr "Impossível obter carga de CPU"
 
 msgid "Cannot get data about interface"
 msgstr "Não foi possível obter as informações da interface"
@@ -1028,13 +1036,10 @@ msgid "Clear config and Import software raid disks"
 msgstr "Limpar os discos 'software raid' de configuração e de importação"
 
 msgid ""
-"Click &quot;Enable firmware upload&quot; below, then choose the image file "
-"to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
-"process."
+"Click &quot;Enable firmware upload&quot; below, then choose the embedded "
+"image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start "
+"the upgrade process."
 msgstr ""
-"Clique &quot;Permitir a carga de firmware&quot; abaixo; depois escolha o "
-"arquivo da imagem que será carregada.<br />Clique &quot; Atualizar "
-"firmware&quot; para iniciar o processo de atualização."
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr ""
@@ -1142,6 +1147,9 @@ msgstr ""
 msgid "Content"
 msgstr "Conteúdo"
 
+msgid "Controller"
+msgstr ""
+
 msgid "Controller Auth Group"
 msgstr "Grupo de Autenticação do Controlador"
 
@@ -1156,6 +1164,9 @@ msgstr "Endereço IP do controlador"
 
 msgid "Controller TCP Port"
 msgstr "Porta TCP do controlador"
+
+msgid "Controller model"
+msgstr ""
 
 msgid "Controls power consumption."
 msgstr "Controla o consumo de potência."
@@ -1280,10 +1291,10 @@ msgid "Current password"
 msgstr "Senha atual"
 
 msgid "Current value of apparent power (Volt-Amps)"
-msgstr ""
+msgstr "Potência Atual Aparente (Volt-Amps)"
 
 msgid "Current value of real power (Watts)"
-msgstr ""
+msgstr "Potência Real (Watts)"
 
 msgid "Custom"
 msgstr "Personalizado"
@@ -1310,28 +1321,22 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DNLA/UPnP"
-msgstr ""
+msgstr "DNLA/UPnP"
 
 msgid "DNLA/UPnP Media Server"
-msgstr ""
+msgstr "Servidor de Media DNLA/UPnP"
 
 msgid "DNS settings"
 msgstr "Configurações de DNS"
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. The server will "
-"reboot automatically after storing the new firmware. The configuration will "
-"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-"update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-"System configuration before doing a Firmware upgrade."
+"DO NOT abort the firmware upgrade process once it has started. Once it is "
+"completed, the server will automatically reboot, the current configuration "
+"will be maintained.<br />You need a minimum of %d MiB free RAM to perform "
+"the upgrade.<br />It is strongly recommended that you <a "
+"href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
-"NÃO interrompa a atualização do firmaware depois de iniciada. O servidor irá "
-"reiniciar automaticamente após a instalação do novo firmware. As "
-"configurações serão mantidas. <br />Você precisa um mínimo de %d Mb RAM para "
-"executar a atualização do firmware.<br /> Recomenda-se fortemente que seja "
-"realizado um <a href='%s'>Backup</a> das Configurações de Sistema ANTES de "
-"realizar uma atualização de Firmware."
 
 msgid "DVD"
 msgstr "DVD"
@@ -1590,6 +1595,9 @@ msgstr "Endereço IP do dispositivo"
 
 msgid "Device Pass-through"
 msgstr "Dispositivo de Passagem"
+
+msgid "Device Serial"
+msgstr ""
 
 msgid "Device model"
 msgstr "Modelo do dispositivo"
@@ -1940,13 +1948,13 @@ msgid "Driver parameters"
 msgstr "Parâmetros do controlador"
 
 msgid "Driver used"
-msgstr ""
+msgstr "\"Driver\" usado"
 
 msgid "Driver version"
-msgstr ""
+msgstr "Versão do \"driver\""
 
 msgid "Driver version internal"
-msgstr ""
+msgstr "Versão interna do \"driver\""
 
 msgid "Duplex"
 msgstr "Duplex"
@@ -2068,6 +2076,7 @@ msgstr "Editar volume"
 msgid ""
 "Efficiency of the UPS (Ratio of the output current on the input current)"
 msgstr ""
+"Eficiência da UPS (razão entre a corrente de saída na corrente de entrada)"
 
 msgid "Email"
 msgstr "Email"
@@ -2106,6 +2115,8 @@ msgid ""
 "Enable STARTTLS encryption. This doesn't mean you have to use TLS, you can "
 "use SSL."
 msgstr ""
+"Habilitar criptografia STARTTLS. Não é obrigatório o uso de TLS, pois pode-"
+"se usar SSL."
 
 msgid "Enable TLS/SSL connections."
 msgstr "Habilitar conexões TLS/SSL."
@@ -2118,7 +2129,7 @@ msgstr ""
 "Habilitar o Zeroconf/Bonjour para anunciar serviços deste dispositivo"
 
 msgid "Enable administrative DNLA/UPnP WebGUI."
-msgstr ""
+msgstr "Habilitar interface gráfica web para DNLA/UPnP"
 
 msgid "Enable anonymous bind."
 msgstr "Habilitar associação anônima."
@@ -2355,10 +2366,10 @@ msgid "Extended attributes"
 msgstr "Atributos estendidos"
 
 msgid "Extended input frequency range"
-msgstr ""
+msgstr "Faixa de freqüência de entrada estendida"
 
 msgid "Extended input voltage range"
-msgstr ""
+msgstr "Faixa de voltagem de entrada estendida"
 
 msgid "Extensions"
 msgstr "Extensões"
@@ -2398,6 +2409,8 @@ msgstr "Opções adicionais para o ifconfig (geralmente vazias)."
 msgid ""
 "Extra options to pass over rpc using transmission-remote (usually empty)."
 msgstr ""
+"Opções adicionais para \"driblar\" rpc usando transmissão remota (geralmente "
+"vazio)."
 
 msgid "Extra options to rsync (usually empty)."
 msgstr "Opções adicionais para o rsync (geralmente vazias)."
@@ -2548,7 +2561,7 @@ msgid "Firmware uploading is not supported on this platform."
 msgstr "A carga de firmware não é suportada nesta plataforma."
 
 msgid "Firmware version"
-msgstr ""
+msgstr "Versão do firmware"
 
 msgid "Firmware version check"
 msgstr "Verificar versão do firmware"
@@ -2557,7 +2570,7 @@ msgid "FirstBurstLength"
 msgstr "FirstBurstLength"
 
 msgid "Flag xxx (ups.conf or cmdline -x) status"
-msgstr ""
+msgstr "Flag xxx (ups.conf or cmdline -x) status"
 
 msgid "Flags"
 msgstr "Sinalizadores"
@@ -2630,7 +2643,7 @@ msgid "General"
 msgstr "Geral"
 
 msgid "General Information UPS Unit"
-msgstr ""
+msgstr "Informações Gerais de Unidade UPS"
 
 msgid "General Setup"
 msgstr "Configuração Geral"
@@ -2651,7 +2664,7 @@ msgid "Give only local users access to the web page."
 msgstr "Permitir que usuários locais acessem a página web."
 
 msgid "Give your media library a friendly name."
-msgstr ""
+msgstr "Dê um nome amigável à sua biblioteca de mídia"
 
 msgid "Grant access to the user portal."
 msgstr "Permitir acesso ao portal do usuário."
@@ -2704,7 +2717,7 @@ msgid "HAST (Highly Available Storage)"
 msgstr "HAST (Highly Available Storage)"
 
 msgid "HAST disabled"
-msgstr ""
+msgstr "HAST desabilitado"
 
 msgid "HAST resource"
 msgstr "Recurso de HAST"
@@ -2743,13 +2756,13 @@ msgid "Hide dot files"
 msgstr "Ocultar arquivos iniciados por ponto"
 
 msgid "High voltage boosting transfer point"
-msgstr ""
+msgstr "Ponto de transferência de aumento (Alta Tensão)"
 
 msgid "High voltage transfer point"
-msgstr ""
+msgstr "Ponto de Transferência de Alta Tensão"
 
 msgid "High voltage trimming transfer point"
-msgstr ""
+msgstr "Ponto de Transferência de corte (Alta Tensão)"
 
 msgid "Highlighting"
 msgstr "Realçar"
@@ -2763,6 +2776,9 @@ msgid ""
 "real hostnames where possible.<br><font color='red'>Warning</font>: This can "
 "cause a huge delay in loading the log page!"
 msgstr ""
+"Dica: Se esta opção for selecionada, os endereços IP nos logs do servidor "
+"são resolvidos para nomes reais, sempre que possível Atenção: Isso pode "
+"causar um enorme atraso no carregamento da página de log!"
 
 msgid "Home directory"
 msgstr "Diretório pessoal"
@@ -3032,7 +3048,7 @@ msgid "Include basic hardware information."
 msgstr "Incluir informação básica de hardware."
 
 msgid "Incoming Line/Power Information"
-msgstr ""
+msgstr "Informations de Entrada de Linha"
 
 msgid "Incomplete directory"
 msgstr "Diretório incompleto"
@@ -3098,28 +3114,28 @@ msgid "Initiators"
 msgstr "Initiators"
 
 msgid "Input current (A)"
-msgstr ""
+msgstr "Corrente de Entrada (A)"
 
 msgid "Input frequency"
-msgstr ""
+msgstr "Frequência de Entrada"
 
 msgid "Input line frequency (Hz)"
-msgstr ""
+msgstr "Freqüência da linha de entrada (Hz)"
 
 msgid "Input line frequency high (Hz)"
-msgstr ""
+msgstr "Entrada de linha de alta freqüência (Hz)"
 
 msgid "Input line frequency low (Hz)"
-msgstr ""
+msgstr "Entrada de Linha de Baixa Frequência (Hz)"
 
 msgid "Input power quality (* opaque)"
-msgstr ""
+msgstr "Qualidade da Energia de Entrada"
 
 msgid "Input power sensitivity"
-msgstr ""
+msgstr "Sensibilidade de Entrada de Energia"
 
 msgid "Input voltage"
-msgstr ""
+msgstr "Tensão de Entrada"
 
 msgid "Inquiry Product"
 msgstr "Inquiry Product"
@@ -3146,34 +3162,34 @@ msgid "Interface Management"
 msgstr "Gerenciamento de Interfaces"
 
 msgid "Interface selection"
-msgstr ""
+msgstr "Seleção de Interface"
 
 msgid "Interfaces"
 msgstr "Interfaces"
 
 msgid "Internal Server Information"
-msgstr ""
+msgstr "Informações do Servidor Interno"
 
 msgid "Internal UPS clock date"
-msgstr ""
+msgstr "Data da UPS"
 
 msgid "Internal UPS clock time"
-msgstr ""
+msgstr "Hora da UPS"
 
 msgid "Interval between self tests"
-msgstr ""
+msgstr "Intervalo Entre OS autotestes"
 
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "Intervalo deve ser maior ou igual a 10 segundos."
 
 msgid "Interval to wait after shutdown with delay command"
-msgstr ""
+msgstr "Intervalo de espera após o desligamento com o comando atraso"
 
 msgid "Interval to wait before rebooting the UPS)"
-msgstr ""
+msgstr "Intervalo a aguardar antes de reiniciar o UPS"
 
 msgid "Interval to wait before restarting the load"
-msgstr ""
+msgstr "Intervalo a aguardar antes de reiniciar o carregamento"
 
 msgid "Invalid file format."
 msgstr "Formato de arquivo inválido."
@@ -3183,7 +3199,7 @@ msgid "Invalid max. block size! It must be in the range from %d to %d."
 msgstr "Tamanho máximo do bloco inválido! Deve estar entre %d e %d."
 
 msgid "Invalid username or password. Please try again."
-msgstr ""
+msgstr "Nome de usuário ou senha inválidos. Por favor, tente novamente."
 
 msgid ""
 "It can be changed from the client side by standard SCSI mode page at any "
@@ -3407,7 +3423,7 @@ msgid "Load averages"
 msgstr "Médias de carga"
 
 msgid "Load file"
-msgstr ""
+msgstr "Carregar arquivo"
 
 msgid "Load on UPS"
 msgstr ""
@@ -3467,6 +3483,7 @@ msgstr "Local onde será armazenada o banco de dados de conteúdos."
 
 msgid "Location where the database with media contents will be stored."
 msgstr ""
+"Localização onde o banco de dados com conteúdos de mídia será armazenado."
 
 #, php-format
 msgid ""
@@ -3544,6 +3561,9 @@ msgstr "FALTANDO"
 msgid "MOTD"
 msgstr "MOTD"
 
+msgid "MOVED TO"
+msgstr ""
+
 msgid "MS Active Directory"
 msgstr "MS Active Directory"
 
@@ -3575,7 +3595,7 @@ msgid "Manufacturer"
 msgstr "Fabricante"
 
 msgid "Manufacturing date"
-msgstr ""
+msgstr "Data de Fabricação"
 
 msgid "Map all users to root"
 msgstr "Mapear todos os usuários para root"
@@ -3686,7 +3706,7 @@ msgid "Media Directory"
 msgstr "Diretório de midia"
 
 msgid "Media library"
-msgstr ""
+msgstr "Biblioteca de mídias"
 
 msgid "Medium acoustic output"
 msgstr "Nível de ruído médio"
@@ -3713,7 +3733,7 @@ msgid "Minimum"
 msgstr "Mínimo"
 
 msgid "Minimum battery level for UPS restart after power-off"
-msgstr ""
+msgstr "Nível mínimo de bateria para o UPS reiniciar após desligamento"
 
 msgid "Minimum free space"
 msgstr "Mínimo de espaço livre"
@@ -3767,7 +3787,7 @@ msgid "Modules"
 msgstr "Módulos"
 
 msgid "Monday Tuesday Wednesday Thursday Friday Saturday Sunday"
-msgstr ""
+msgstr "Segunda Terça Quarta Quinta Sexta Sábado Domingo"
 
 msgid "Months"
 msgstr "Meses"
@@ -4015,25 +4035,25 @@ msgid "Node Name"
 msgstr "Nome do Nó"
 
 msgid "Nominal battery voltage"
-msgstr ""
+msgstr "Voltagem nominal da bateria"
 
 msgid "Nominal input current (A)"
-msgstr ""
+msgstr "Corrente nominal de entrada (A)"
 
 msgid "Nominal input line frequency (Hz)"
 msgstr ""
 
 msgid "Nominal input voltage"
-msgstr ""
+msgstr "Voltagem nominal de entrada"
 
 msgid "Nominal output current (A)"
-msgstr ""
+msgstr "Corrente nominal de saída (A)"
 
 msgid "Nominal output frequency (Hz)"
-msgstr ""
+msgstr "Frequência nominal de saída (Hz)"
 
 msgid "Nominal output voltage (V)"
-msgstr ""
+msgstr "Voltagem nominal de saída (V)"
 
 msgid "Nominal value of apparent power (Volt-Amps)"
 msgstr ""
@@ -4202,16 +4222,16 @@ msgid "Outgoing mail server"
 msgstr "Servidor de envio"
 
 msgid "Output current (A)"
-msgstr ""
+msgstr "Corrente de Saída (A)"
 
 msgid "Output frequency (Hz)"
-msgstr ""
+msgstr "Frequência de Saída (Hz)"
 
 msgid "Output voltage"
-msgstr ""
+msgstr "Voltagem de Saída"
 
 msgid "Output voltage (V)"
-msgstr ""
+msgstr "Voltagem de saída (V)"
 
 msgid "Overload"
 msgstr "Sobrecarga"
@@ -4535,7 +4555,7 @@ msgid "Processes information"
 msgstr "Informações de processos"
 
 msgid "Product ID"
-msgstr ""
+msgstr "ID de Produto"
 
 msgid "Profile"
 msgstr "Perfil"
@@ -4690,7 +4710,7 @@ msgid "Reject"
 msgstr "Rejeitar"
 
 msgid "Relative humidity alarm (enabled/disabled)"
-msgstr ""
+msgstr "Alarme de umidade relativa (ativado/desativado)"
 
 msgid "Relative humidity threshold high (percent)"
 msgstr ""
@@ -4764,7 +4784,7 @@ msgid "Rescan interval"
 msgstr "Intervalo de rescaneamento."
 
 msgid "Reservation"
-msgstr ""
+msgstr "Reserva"
 
 msgid "Resolve"
 msgstr "Resolver"
@@ -4791,7 +4811,7 @@ msgid "Results for net rpc testjoin:"
 msgstr "Resultados para o net rpc testjoin:"
 
 msgid "Results of last self test"
-msgstr ""
+msgstr "Resultados do último auto-teste"
 
 msgid "Resume"
 msgstr "Continuar"
@@ -4803,7 +4823,7 @@ msgid "Reverse DNS lookup"
 msgstr "Pesquisa DNS reverso"
 
 msgid "Reverse direction"
-msgstr ""
+msgstr "Direção reversa"
 
 msgid "Role"
 msgstr ""
@@ -4819,6 +4839,9 @@ msgstr "Bind DN raíz"
 
 msgid "Root bind password"
 msgstr "Senha para bind raíz"
+
+msgid "Rotation rate"
+msgstr ""
 
 msgid "Round-robin read"
 msgstr "Leitura Round-robin"
@@ -4929,7 +4952,7 @@ msgid "Save and Restart"
 msgstr "Salvar e reiniciar"
 
 msgid "Save file"
-msgstr ""
+msgstr "Salvar arquivo"
 
 msgid "Save login information in configuration file."
 msgstr "Salvar informação de login no arquivo de configuração"
@@ -5021,6 +5044,8 @@ msgid ""
 "Select which interface to use. (only selectable if your server has more than "
 "one)"
 msgstr ""
+"Selecione que interface usar. (apenas selecionável se seu servidor tem mais "
+"de uma)"
 
 msgid "Select your read balance algorithm."
 msgstr "Selecione seu algoritmo de leitura balanceada."
@@ -5069,13 +5094,13 @@ msgstr ""
 "Descrição do servidor. Esta opção pode normalmente ser deixada em branco."
 
 msgid "Server information"
-msgstr ""
+msgstr "Informação do servidor"
 
 msgid "Server name"
 msgstr "Nome do servidor"
 
 msgid "Server version"
-msgstr ""
+msgstr "Versão do servidor"
 
 msgid "Service"
 msgstr "Serviço"
@@ -5197,7 +5222,7 @@ msgid "Show process information"
 msgstr "Mostrar informações sobre os processos"
 
 msgid "Show ups information"
-msgstr ""
+msgstr "Mostrar informação de UPS"
 
 msgid "Shutdown"
 msgstr "Desligar"
@@ -5427,7 +5452,7 @@ msgid "Subnet mask"
 msgstr "Máscara de Rede"
 
 msgid "Subsystem"
-msgstr ""
+msgstr "Subsistema"
 
 msgid "Successful"
 msgstr "Com sucesso"
@@ -5468,7 +5493,7 @@ msgid "Switch VIP to MASTER"
 msgstr ""
 
 msgid "Switch off when running on battery and no/low load"
-msgstr ""
+msgstr "Desligar quando estiver na bateria e com carga baixa ou sem carga"
 
 msgid "Switch to"
 msgstr "Alternar para"
@@ -5478,7 +5503,7 @@ msgid "Switch to %s/s"
 msgstr "Alternar para %s/s"
 
 msgid "Sync"
-msgstr ""
+msgstr "Sincronizar"
 
 msgid "Synchronization time"
 msgstr "Horário de sincronização"
@@ -5612,16 +5637,16 @@ msgid "Temperature"
 msgstr "Temperatura"
 
 msgid "Temperature alarm (enabled/disabled)"
-msgstr ""
+msgstr "Alarme de temperatura (ativado/desativado)"
 
 msgid "Temperature monitoring"
 msgstr "Monitoramento de Temperatura"
 
 msgid "Temperature threshold high (degrees C)"
-msgstr ""
+msgstr "Alto limiar de temperatura (ºC)"
 
 msgid "Temperature threshold low (degrees C)"
-msgstr ""
+msgstr "Baixo limiar de temperatura (ºC)"
 
 msgid "Temporary Device"
 msgstr "Dispositivo temporário"
@@ -5777,7 +5802,7 @@ msgstr "O atributo '%s' não é uma máscara de subrede válida."
 
 #, c-format
 msgid "The attribute '%s' is not a valid time value."
-msgstr ""
+msgstr "O atributo '%s' não é um valor de tempo válido."
 
 #, c-format, php-format
 msgid "The attribute '%s' is required."
@@ -5796,7 +5821,7 @@ msgstr ""
 "O atributo '%s' somente pode ser constituído por caracteres a-z, A-Z, 0-9, _ "
 ", -."
 
-#, c-format, php-format
+#, c-format
 msgid "The attribute '%s' must be a number."
 msgstr "O atributo '%s' deve ser um número."
 
@@ -5934,6 +5959,11 @@ msgstr "O nome do dispositivo só pode conter caracteres de a-z, A-Z, 0-9."
 
 msgid "The device's IP address."
 msgstr "O endereço IP do dispositivo."
+
+msgid ""
+"The device(s) in config are different to actual device(s). Please remove the "
+"device(s) and re-add it or use 'Clear config and Import disks'."
+msgstr ""
 
 msgid ""
 "The directory containing the files you want to publish. The remote host does "
@@ -6361,13 +6391,6 @@ msgstr "Existem muitos grupos adicionais."
 msgid "There is no error, the file uploaded with success."
 msgstr "Não houve erros, arquivo adicionado com sucesso."
 
-msgid ""
-"There is wrong disk ID in the config. Please remove the disk and re-add it "
-"or use 'clear and import'."
-msgstr ""
-"Existe uma ID de disco errada na configuração. Por favor remova o disco e "
-"readicione-o ou user 'limpar e importar'."
-
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "São necessários 2 discos em um volume RAID 1."
 
@@ -6393,7 +6416,7 @@ msgid "There must be at least 3 disks in a raidz2."
 msgstr "São necessários pelo menos 3 discos num raidz2."
 
 msgid "There must be at least 4 disks in a raidz3."
-msgstr ""
+msgstr "Devem haver ao menos 4 discos em um raidz3."
 
 msgid "There must be selected a minimum of 1 interface."
 msgstr "É necessário selecionar pelo menos uma interface."
@@ -6424,6 +6447,9 @@ msgid ""
 "specify parameters to be passed to kernel, and additional modules to be "
 "loaded."
 msgstr ""
+"Estas opções serão adicionadas a /boot/loader.conf.local. Isto permitirá "
+"especificar parâmetros a serem passados ao kernel, e módulos adicionais a "
+"serem carregados."
 
 msgid ""
 "These option(s) will be added to /etc/rc.conf. This allow you to overwrite "
@@ -6538,6 +6564,8 @@ msgstr ""
 
 msgid "This controls whether this share is accessible by guest account."
 msgstr ""
+"Isto controla se este compartilhamento é acessível por uma conta de "
+"convidado."
 
 msgid ""
 "This controls whether this share is seen in the list of available shares in "
@@ -6581,6 +6609,8 @@ msgid ""
 "This is a way to take an existing insecure connection, and upgrade it to a "
 "secure connection using SSL/TLS."
 msgstr ""
+"Esta é uma forma de transformar uma conexão insegura existente, atualizando-"
+"a para uma conexão segura usando  SSL/TLS."
 
 msgid ""
 "This is both the name of the server as advertised via "
@@ -6592,6 +6622,7 @@ msgstr ""
 
 msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr ""
+"Isto é apenas para sua informação (não é usando durante a negociação iSCSI)."
 
 msgid ""
 "This may make more efficient use of the system CPU's and cause Samba to be "
@@ -6641,6 +6672,7 @@ msgstr ""
 
 msgid "This option causes rsync to copy the local data to the remote server."
 msgstr ""
+"Esta opção faz com que o rsync copie os dados locais para o servidor remoto."
 
 msgid ""
 "This option causes rsync to update the remote extended attributes to be the "
@@ -7001,6 +7033,9 @@ msgstr "Transcodificação"
 msgid "Transfer mode"
 msgstr "Modo de transferência"
 
+msgid "Transfer rate"
+msgstr ""
+
 msgid "Trap host"
 msgstr "Trap host"
 
@@ -7149,6 +7184,9 @@ msgstr ""
 
 msgid "URL"
 msgstr "URL"
+
+msgid "Unavailable"
+msgstr ""
 
 msgid "Unformated"
 msgstr "Não formatado"
@@ -7795,6 +7833,9 @@ msgstr "com sucesso."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "to"
+msgstr ""
 
 msgid "umask"
 msgstr "umask"

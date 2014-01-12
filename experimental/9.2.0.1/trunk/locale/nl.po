@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-08-15 03:26+0000\n"
-"PO-Revision-Date: 2013-08-15 01:40+0000\n"
+"POT-Creation-Date: 2014-01-11 22:29+0000\n"
+"PO-Revision-Date: 2014-01-12 04:40+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-15 01:44+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2014-01-12 19:33+0000\n"
+"X-Generator: Launchpad (build 16890)\n"
 "X-Poedit-Country: Netherlands\n"
 "Language: \n"
 "X-Poedit-Language: Dutch\n"
@@ -749,6 +749,9 @@ msgstr "Externe firmware"
 msgid "Auxiliary parameters"
 msgstr "Aanvullende parameters"
 
+msgid "Available"
+msgstr "Beschikbaar"
+
 msgid "Backup configuration"
 msgstr "Backup Configuratie"
 
@@ -876,6 +879,9 @@ msgstr "CCMP TKIP"
 
 msgid "CD/DVD"
 msgstr "CD/DVD"
+
+msgid "CHANGED"
+msgstr "VERANDERD"
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -1037,9 +1043,9 @@ msgid "Clear config and Import software raid disks"
 msgstr "Config leegmaken en importeer Software RAID schijven"
 
 msgid ""
-"Click &quot;Enable firmware upload&quot; below, then choose the image file "
-"to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
-"process."
+"Click &quot;Enable firmware upload&quot; below, then choose the embedded "
+"image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start "
+"the upgrade process."
 msgstr ""
 "Druk op de knop &quot;Inschakelen Firmware Update&quot; selecteer dan het "
 "image bestand.<br />Druk op &quot;Update Firmware&quot; om het updateproces "
@@ -1153,6 +1159,9 @@ msgstr ""
 msgid "Content"
 msgstr "Mediabibliotheek"
 
+msgid "Controller"
+msgstr "Controller"
+
 msgid "Controller Auth Group"
 msgstr "Controller Auth Groep"
 
@@ -1167,6 +1176,9 @@ msgstr "IP-adres Controller"
 
 msgid "Controller TCP Port"
 msgstr "TCP-poort Controller"
+
+msgid "Controller model"
+msgstr "Model controller"
 
 msgid "Controls power consumption."
 msgstr "Instelling van het energieverbruik."
@@ -1332,11 +1344,11 @@ msgstr "DNS instellingen"
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. The server will "
-"reboot automatically after storing the new firmware. The configuration will "
-"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-"update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-"System configuration before doing a Firmware upgrade."
+"DO NOT abort the firmware upgrade process once it has started. Once it is "
+"completed, the server will automatically reboot, the current configuration "
+"will be maintained.<br />You need a minimum of %d MiB free RAM to perform "
+"the upgrade.<br />It is strongly recommended that you <a "
+"href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
 "Breek de firmware update procedure niet af nadat deze is gestart. De server "
 "zal automatisch herstarten na het updaten van de nieuwe firmware. De huidige "
@@ -1603,6 +1615,9 @@ msgstr "IP apparaat"
 
 msgid "Device Pass-through"
 msgstr "Apparaat Pass-through"
+
+msgid "Device Serial"
+msgstr "Serienummer"
 
 msgid "Device model"
 msgstr "Apparaat model"
@@ -3224,7 +3239,7 @@ msgid "Invalid max. block size! It must be in the range from %d to %d."
 msgstr "Ongeldige blokgrootte! Het dient in het bereik %d tot %d te zijn."
 
 msgid "Invalid username or password. Please try again."
-msgstr "Ongeldige gebruikersnaam of wachtwoord. Probeer het opnieuw."
+msgstr "Gebruikersnaam of wachtwoord onjuist. Probeer het opnieuw."
 
 msgid ""
 "It can be changed from the client side by standard SCSI mode page at any "
@@ -3594,6 +3609,9 @@ msgstr "ONTBREKEND"
 
 msgid "MOTD"
 msgstr "BVDD"
+
+msgid "MOVED TO"
+msgstr "VERPLAATST NAAR"
 
 msgid "MS Active Directory"
 msgstr "MS Active Directory"
@@ -4886,6 +4904,9 @@ msgstr "Root koppelings DN"
 msgid "Root bind password"
 msgstr "Root koppelings wachtwoord"
 
+msgid "Rotation rate"
+msgstr "Rotatie snelheid"
+
 msgid "Round-robin read"
 msgstr "Round-robin lezen"
 
@@ -5873,7 +5894,7 @@ msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr ""
 "De attribuut '%s' kan alleen bestaan uit de karakters van a-z, A-Z, 0-9."
 
-#, c-format, php-format
+#, c-format
 msgid "The attribute '%s' must be a number."
 msgstr "Het attribuut '%s' moet een nummer zijn."
 
@@ -6018,6 +6039,14 @@ msgstr "De schijf naam mag alleen bestaan uit de karakters a-z, A-Z, 0-9."
 
 msgid "The device's IP address."
 msgstr "Het IP-adres van het apparaat."
+
+msgid ""
+"The device(s) in config are different to actual device(s). Please remove the "
+"device(s) and re-add it or use 'Clear config and Import disks'."
+msgstr ""
+"De schijven in de config verschillen van de werkelijke schijven. Verwijder "
+"de schijven en voeg deze opnieuw toe of gebruik 'Config leegmaken en  "
+"Importeer schijven'."
 
 msgid ""
 "The directory containing the files you want to publish. The remote host does "
@@ -6451,13 +6480,6 @@ msgstr "Er zijn te veel extra groepen."
 
 msgid "There is no error, the file uploaded with success."
 msgstr "Er is geen fout ontdekt, het bestand is met succes geupload."
-
-msgid ""
-"There is wrong disk ID in the config. Please remove the disk and re-add it "
-"or use 'clear and import'."
-msgstr ""
-"Er is een verkeerd shijf ID in de config . Verwijder de schijf en voeg deze "
-"opnieuw toe of gebruik 'leegmaken en importeren'."
 
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "Er moeten minimaal 2 schijven zijn in een RAID 1 volume."
@@ -7119,6 +7141,9 @@ msgstr "Hercodering"
 msgid "Transfer mode"
 msgstr "Overdracht mode"
 
+msgid "Transfer rate"
+msgstr "Overdracht snelheid"
+
 msgid "Trap host"
 msgstr "Trap host"
 
@@ -7267,6 +7292,9 @@ msgstr "URI"
 
 msgid "URL"
 msgstr "URL"
+
+msgid "Unavailable"
+msgstr "Niet beschikbaar"
 
 msgid "Unformated"
 msgstr "Niet geformatteerd"
@@ -7926,6 +7954,9 @@ msgstr "succes."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "to"
+msgstr "naar"
 
 msgid "umask"
 msgstr "umask"

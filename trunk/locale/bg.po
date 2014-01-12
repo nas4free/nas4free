@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-08-15 03:26+0000\n"
+"POT-Creation-Date: 2014-01-11 22:29+0000\n"
 "PO-Revision-Date: 2013-05-13 21:46+0000\n"
 "Last-Translator: elsof <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-15 01:44+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2014-01-12 19:33+0000\n"
+"X-Generator: Launchpad (build 16890)\n"
 "X-Poedit-Country: BULGARIA\n"
 "Language: \n"
 "X-Poedit-Language: Bulgarian\n"
@@ -670,6 +670,9 @@ msgstr ""
 msgid "Auxiliary parameters"
 msgstr ""
 
+msgid "Available"
+msgstr ""
+
 msgid "Backup configuration"
 msgstr "Запази конфигурацията"
 
@@ -793,6 +796,9 @@ msgid "CCMP TKIP"
 msgstr ""
 
 msgid "CD/DVD"
+msgstr ""
+
+msgid "CHANGED"
 msgstr ""
 
 msgid "CHAP"
@@ -947,9 +953,9 @@ msgid "Clear config and Import software raid disks"
 msgstr ""
 
 msgid ""
-"Click &quot;Enable firmware upload&quot; below, then choose the image file "
-"to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
-"process."
+"Click &quot;Enable firmware upload&quot; below, then choose the embedded "
+"image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start "
+"the upgrade process."
 msgstr ""
 
 msgid "Click this button to download the server configuration in XML format."
@@ -1052,6 +1058,9 @@ msgstr ""
 msgid "Content"
 msgstr "Съдържание"
 
+msgid "Controller"
+msgstr ""
+
 msgid "Controller Auth Group"
 msgstr ""
 
@@ -1065,6 +1074,9 @@ msgid "Controller IP address"
 msgstr ""
 
 msgid "Controller TCP Port"
+msgstr ""
+
+msgid "Controller model"
 msgstr ""
 
 msgid "Controls power consumption."
@@ -1208,11 +1220,11 @@ msgstr ""
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. The server will "
-"reboot automatically after storing the new firmware. The configuration will "
-"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-"update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-"System configuration before doing a Firmware upgrade."
+"DO NOT abort the firmware upgrade process once it has started. Once it is "
+"completed, the server will automatically reboot, the current configuration "
+"will be maintained.<br />You need a minimum of %d MiB free RAM to perform "
+"the upgrade.<br />It is strongly recommended that you <a "
+"href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
 
 msgid "DVD"
@@ -1469,6 +1481,9 @@ msgid "Device IP"
 msgstr ""
 
 msgid "Device Pass-through"
+msgstr ""
+
+msgid "Device Serial"
 msgstr ""
 
 msgid "Device model"
@@ -3301,6 +3316,9 @@ msgstr ""
 msgid "MOTD"
 msgstr "MOTD"
 
+msgid "MOVED TO"
+msgstr ""
+
 msgid "MS Active Directory"
 msgstr ""
 
@@ -4509,6 +4527,9 @@ msgstr ""
 msgid "Root bind password"
 msgstr ""
 
+msgid "Rotation rate"
+msgstr ""
+
 msgid "Round-robin read"
 msgstr ""
 
@@ -5415,7 +5436,7 @@ msgstr ""
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr ""
 
-#, c-format, php-format
+#, c-format
 msgid "The attribute '%s' must be a number."
 msgstr ""
 
@@ -5533,6 +5554,11 @@ msgid "The device name may only consist of the characters a-z, A-Z, 0-9."
 msgstr "The device name may only consist of the characters a-z, A-Z, 0-9."
 
 msgid "The device's IP address."
+msgstr ""
+
+msgid ""
+"The device(s) in config are different to actual device(s). Please remove the "
+"device(s) and re-add it or use 'Clear config and Import disks'."
 msgstr ""
 
 msgid ""
@@ -5897,11 +5923,6 @@ msgid "There are too many additional groups."
 msgstr ""
 
 msgid "There is no error, the file uploaded with success."
-msgstr ""
-
-msgid ""
-"There is wrong disk ID in the config. Please remove the disk and re-add it "
-"or use 'clear and import'."
 msgstr ""
 
 msgid "There must be 2 disks in a RAID 1 volume."
@@ -6407,6 +6428,9 @@ msgstr ""
 msgid "Transfer mode"
 msgstr ""
 
+msgid "Transfer rate"
+msgstr ""
+
 msgid "Trap host"
 msgstr ""
 
@@ -6550,6 +6574,9 @@ msgstr ""
 
 msgid "URL"
 msgstr "Уеб адрес"
+
+msgid "Unavailable"
+msgstr ""
 
 msgid "Unformated"
 msgstr ""
@@ -7161,6 +7188,9 @@ msgid "successfully."
 msgstr ""
 
 msgid "sysctl.conf"
+msgstr ""
+
+msgid "to"
 msgstr ""
 
 msgid "umask"

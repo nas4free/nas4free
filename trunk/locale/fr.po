@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2013-08-15 03:26+0000\n"
-"PO-Revision-Date: 2013-06-06 12:00+0000\n"
-"Last-Translator: Travel_ED <richard.edouard84@gmail.com>\n"
+"POT-Creation-Date: 2014-01-11 22:29+0000\n"
+"PO-Revision-Date: 2013-09-08 11:49+0000\n"
+"Last-Translator: whren <whren@free.fr>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2013-08-15 01:44+0000\n"
-"X-Generator: Launchpad (build 16723)\n"
+"X-Launchpad-Export-Date: 2014-01-12 19:32+0000\n"
+"X-Generator: Launchpad (build 16890)\n"
 "X-Poedit-Country: FRANCE\n"
 "Language: \n"
 "X-Poedit-Language: French\n"
@@ -748,6 +748,9 @@ msgstr "Firmware auxiliaire"
 msgid "Auxiliary parameters"
 msgstr "Paramètres auxiliaires"
 
+msgid "Available"
+msgstr ""
+
 msgid "Backup configuration"
 msgstr "Sauvegarder la configuration"
 
@@ -875,6 +878,9 @@ msgstr "CCMP TKIP"
 
 msgid "CD/DVD"
 msgstr "CD/DVD"
+
+msgid "CHANGED"
+msgstr ""
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -1036,13 +1042,10 @@ msgstr ""
 "Effacer la configuration actuelle et importer les disques raid logiciel"
 
 msgid ""
-"Click &quot;Enable firmware upload&quot; below, then choose the image file "
-"to be uploaded.<br />Click &quot;Upgrade firmware&quot; to start the upgrade "
-"process."
+"Click &quot;Enable firmware upload&quot; below, then choose the embedded "
+"image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start "
+"the upgrade process."
 msgstr ""
-"Cliquez sur &quot;Activer le chargement de mise à jour&quot; ci-dessous, "
-"puis choisissez un fichier image à charger.<br />Cliquez sur "
-"&quot;Charger&quot; pour lancer la mise à jour."
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr ""
@@ -1151,6 +1154,9 @@ msgstr ""
 msgid "Content"
 msgstr "Contenu"
 
+msgid "Controller"
+msgstr ""
+
 msgid "Controller Auth Group"
 msgstr "Groupe Auth du contrôleur"
 
@@ -1165,6 +1171,9 @@ msgstr "Adresse IP du contrôleur"
 
 msgid "Controller TCP Port"
 msgstr "Port TCP du contrôleur"
+
+msgid "Controller model"
+msgstr ""
 
 msgid "Controls power consumption."
 msgstr "Contrôle la consommation de puissance."
@@ -1331,19 +1340,12 @@ msgstr "Configuration DNS"
 
 #, php-format
 msgid ""
-"DO NOT abort the firmware upgrade once it has started. The server will "
-"reboot automatically after storing the new firmware. The configuration will "
-"be maintained.<br />You need a minimum of %d Mb RAM to perform the firmware "
-"update.<br />It is strongly recommended that you <a href='%s'>Backup</a> the "
-"System configuration before doing a Firmware upgrade."
+"DO NOT abort the firmware upgrade process once it has started. Once it is "
+"completed, the server will automatically reboot, the current configuration "
+"will be maintained.<br />You need a minimum of %d MiB free RAM to perform "
+"the upgrade.<br />It is strongly recommended that you <a "
+"href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
-"NE PAS arr&ecirc;ter la mise &agrave; jour du firmware une fois celle-ci "
-"d&eacute;marr&eacute;e. Le serveur rebootera automatiquement apr&egrave;s le "
-"chargement du nouveau firmware. La configuration sera maintenue.<br />Vous "
-"avez besoin d'un minimum de %d Mo de RAM pour r&eacute;aliser la mise "
-"&agrave; jour du firmware.<br />Il est fortement recommand&eacute; que vous "
-"<a href='%s'>Sauvegardiez</a> la configuration du Syst&egrave;me avant de "
-"proc&eacute;der &agrave; la mise à jour du firmware."
 
 msgid "DVD"
 msgstr "DVD"
@@ -1603,6 +1605,9 @@ msgstr "IP du périphérique"
 
 msgid "Device Pass-through"
 msgstr "Périphérique Pass-through"
+
+msgid "Device Serial"
+msgstr ""
 
 msgid "Device model"
 msgstr "Modèle d'appareil"
@@ -2126,6 +2131,8 @@ msgid ""
 "Enable STARTTLS encryption. This doesn't mean you have to use TLS, you can "
 "use SSL."
 msgstr ""
+"Activer l'encryption STARTTLS. Ce n'implique pas que vous deviez utiliser du "
+"TLS, vous pouvez utiliser du SSL."
 
 msgid "Enable TLS/SSL connections."
 msgstr "Autorise les connexions TLS/SSL."
@@ -2421,6 +2428,8 @@ msgstr "Options supplémentaires pour ifconfig (souvent vide)."
 msgid ""
 "Extra options to pass over rpc using transmission-remote (usually empty)."
 msgstr ""
+"Options supplémentaires à passer par rpc en utilisant transmission-remote "
+"(généralement vide)."
 
 msgid "Extra options to rsync (usually empty)."
 msgstr "Options additionnelles pour Rsync (généralement vide)."
@@ -3215,7 +3224,7 @@ msgstr ""
 "Taille maximum de bloc invalide ! Elle doit être dans la plage de %d à %d."
 
 msgid "Invalid username or password. Please try again."
-msgstr ""
+msgstr "Nom d'utilisateur ou mot de passe invalide. Merci de réessayer."
 
 msgid ""
 "It can be changed from the client side by standard SCSI mode page at any "
@@ -3584,6 +3593,9 @@ msgstr "MANQUANT"
 msgid "MOTD"
 msgstr "MOTD"
 
+msgid "MOVED TO"
+msgstr ""
+
 msgid "MS Active Directory"
 msgstr "MS Active Directory"
 
@@ -3811,7 +3823,7 @@ msgid "Modules"
 msgstr "Modules"
 
 msgid "Monday Tuesday Wednesday Thursday Friday Saturday Sunday"
-msgstr ""
+msgstr "Lundi Mardi Mercredi Jeudi Vendredi Samedi Dimanche"
 
 msgid "Months"
 msgstr "Mois"
@@ -4872,6 +4884,9 @@ msgstr "DN pour le bind racine"
 msgid "Root bind password"
 msgstr "Mots de passe pour le bind racine"
 
+msgid "Rotation rate"
+msgstr ""
+
 msgid "Round-robin read"
 msgstr "Lecture circulaire (round-robin)"
 
@@ -5611,7 +5626,7 @@ msgid "TKIP"
 msgstr "TKIP"
 
 msgid "TLS mode"
-msgstr ""
+msgstr "Mode TLS"
 
 msgid "Tag"
 msgstr "Tag"
@@ -5860,7 +5875,7 @@ msgstr ""
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr "L'attribut '%s' ne peut contenir que les caractères a-z, A-Z, 0-9."
 
-#, c-format, php-format
+#, c-format
 msgid "The attribute '%s' must be a number."
 msgstr "L'attribut '%s' doit être un nombre."
 
@@ -6008,6 +6023,11 @@ msgstr ""
 
 msgid "The device's IP address."
 msgstr "Adresse IP du matériel."
+
+msgid ""
+"The device(s) in config are different to actual device(s). Please remove the "
+"device(s) and re-add it or use 'Clear config and Import disks'."
+msgstr ""
 
 msgid ""
 "The directory containing the files you want to publish. The remote host does "
@@ -6445,13 +6465,6 @@ msgstr "Il y a trop de groupe supplémentaire."
 msgid "There is no error, the file uploaded with success."
 msgstr "Auncune erreur, le fichier a été uploadé avec succès."
 
-msgid ""
-"There is wrong disk ID in the config. Please remove the disk and re-add it "
-"or use 'clear and import'."
-msgstr ""
-"Il y a une ID fausse dans le disque de config. Retirer le disque puis le "
-"remettre ou utiliser 'effacer et. importer'."
-
 msgid "There must be 2 disks in a RAID 1 volume."
 msgstr "Un volume RAID1 doit être composé de 2 disques."
 
@@ -6508,6 +6521,9 @@ msgid ""
 "specify parameters to be passed to kernel, and additional modules to be "
 "loaded."
 msgstr ""
+"Ces options seront ajoutées à /boot/loader.conf.local. Cela vous permet de "
+"spécifier des paramètres à passer au kernel, et des modules additionnels à "
+"charger."
 
 msgid ""
 "These option(s) will be added to /etc/rc.conf. This allow you to overwrite "
@@ -6670,6 +6686,8 @@ msgid ""
 "This is a way to take an existing insecure connection, and upgrade it to a "
 "secure connection using SSL/TLS."
 msgstr ""
+"C'est un moyen d'utiliser une connexion existante non sécurisée, et de la "
+"mettre à jour en connexion sécurisée en utilisant du SSL/TLS."
 
 msgid ""
 "This is both the name of the server as advertised via "
@@ -7095,6 +7113,9 @@ msgstr "Transcodage"
 msgid "Transfer mode"
 msgstr "Mode de transfert"
 
+msgid "Transfer rate"
+msgstr ""
+
 msgid "Trap host"
 msgstr "Hôte destinataire des traps"
 
@@ -7243,6 +7264,9 @@ msgstr "URI"
 
 msgid "URL"
 msgstr "URL"
+
+msgid "Unavailable"
+msgstr ""
 
 msgid "Unformated"
 msgstr "Non formaté"
@@ -7417,10 +7441,10 @@ msgid "Username"
 msgstr "Nom d'utilisateur"
 
 msgid "Username contains invalid character(s) : "
-msgstr ""
+msgstr "Le nom d'utilisateur contient des caractères invalides : "
 
 msgid "Username field : "
-msgstr ""
+msgstr "Champ nom d'utilisateur : "
 
 msgid "Username of a domain administrator account."
 msgstr "Identifiant d'un compte administrateur du domaine."
@@ -7812,7 +7836,7 @@ msgid "load/unload failed."
 msgstr "Echec du chargement/déchargement."
 
 msgid "loader.conf"
-msgstr ""
+msgstr "loader.conf"
 
 msgid "maximum (highest performance)"
 msgstr "maximum (très haute performance)"
@@ -7902,6 +7926,9 @@ msgstr "avec succès."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "to"
+msgstr ""
 
 msgid "umask"
 msgstr "umask"
