@@ -621,7 +621,7 @@ $(document).ready(function(){
 								}
 									tblrow(gettext('Status'), $disp_status. " <small>[<a href='diag_infos_ups.php'>".gettext("Show ups information")."</a></small>]");
 									tblrowbar(gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
-									tblrowbar(gettext('Battery Charge'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
+									tblrowbar(gettext('Battery Level'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
 								}
 								
 								unset($handle);
