@@ -265,7 +265,7 @@ function upsc_enable_change() {
 						tblrow('Status', $disp_status);
 
 						tblrowbar(gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
-						tblrowbar(gettext('Battery charge'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
+						tblrowbar(gettext('Battery level'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
 
 						// status
 						tblrow(gettext('Battery voltage'), $ups['battery.voltage'], 'V');
@@ -359,7 +359,7 @@ function upsc_enable_change() {
 						html_separator();
 						
 						html_titleline(gettext('Battery Details'));
-						tblrow(gettext('Battery charge'), $ups['battery.charge'], '%');
+						tblrow(gettext('Battery level'), $ups['battery.charge'], '%');
 						tblrow(gettext('Battery Remaining level when UPS switches to Shutdown mode (Low Battery)'), $ups['battery.charge.low'], '%');
 						tblrow(gettext('Minimum battery level for UPS restart after power-off'), $ups['battery.charge.restart'], '%');
 						tblrow(gettext('Battery level when UPS switches to "Warning" state'), $ups['battery.charge.warning'], '%');
