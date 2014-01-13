@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-01-11 22:29+0000\n"
-"PO-Revision-Date: 2013-10-13 20:53+0000\n"
+"POT-Creation-Date: 2014-01-13 05:28+0000\n"
+"PO-Revision-Date: 2014-01-13 10:06+0000\n"
 "Last-Translator: Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-12 19:33+0000\n"
+"X-Launchpad-Export-Date: 2014-01-13 23:09+0000\n"
 "X-Generator: Launchpad (build 16890)\n"
 "Language: hu_HU\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -740,7 +740,7 @@ msgid "Auxiliary parameters"
 msgstr "Kiegészítő paraméterek"
 
 msgid "Available"
-msgstr ""
+msgstr "Elérhető"
 
 msgid "Backup configuration"
 msgstr "Beállítások biztonsági mentése"
@@ -776,11 +776,11 @@ msgid ""
 "Base Name will be appended automatically when starting without 'iqn.'."
 msgstr "Base név automatikusan hozzá lesz fűzve amikor 'iqn.' nélkül indul."
 
-msgid "Battery Charge"
-msgstr "Töltöttségi állapot"
-
 msgid "Battery Details"
 msgstr "Akkumulátor adatok"
+
+msgid "Battery Level"
+msgstr "Feltöltöttségi szint"
 
 msgid "Battery Low"
 msgstr "Alacsony töltöttségi szint"
@@ -799,14 +799,14 @@ msgstr "Akkumulátor kapacitása"
 msgid "Battery change date"
 msgstr "Akkumulátorcsere dátuma"
 
-msgid "Battery charge"
-msgstr "Akkumulátor töltöttsége"
-
 msgid "Battery chemistry"
 msgstr "Akkumulátor kémiai összetétele"
 
 msgid "Battery current"
 msgstr "Akkumulátor jelen van"
+
+msgid "Battery level"
+msgstr "Akkumulátor szintje"
 
 msgid "Battery level when UPS switches to \"Warning\" state"
 msgstr "Akkumulátorszint, amikor UPS \"Figyelmeztetési\" állapotba kapcsol"
@@ -869,7 +869,7 @@ msgid "CD/DVD"
 msgstr "CD/DVD"
 
 msgid "CHANGED"
-msgstr ""
+msgstr "MEGVÁLTOZOTT"
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -1032,6 +1032,9 @@ msgid ""
 "image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start "
 "the upgrade process."
 msgstr ""
+"Kattints a &quot;Firmware feltöltés engedélyezése&quot; gombra, majd válaszd "
+"ki az embedded képfájlt.<br />Végül kattints a &quot;Firmware "
+"frissítés&quot; gombra a folyamat indításához."
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr ""
@@ -1141,7 +1144,7 @@ msgid "Content"
 msgstr "Tartalom"
 
 msgid "Controller"
-msgstr ""
+msgstr "Vezérlő"
 
 msgid "Controller Auth Group"
 msgstr "Kontroller Auth csoport"
@@ -1159,7 +1162,7 @@ msgid "Controller TCP Port"
 msgstr "Kontroller IP port"
 
 msgid "Controller model"
-msgstr ""
+msgstr "Vezérlő modell"
 
 msgid "Controls power consumption."
 msgstr "Ez szabályozza az energiafogyasztást."
@@ -1330,6 +1333,11 @@ msgid ""
 "the upgrade.<br />It is strongly recommended that you <a "
 "href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
+"NE SZAKÍTSD meg a frissítési folyamatot, ha már elindítottad! Amint "
+"befejeződött, a szerver automatikusan újraindul, a jelenlegi konfiguráció "
+"utána is megmarad. <br />Legalább %d MiB szabad RAM szükséges a "
+"frissítéshez. <br />Frissítés előtt célszerű a beállításokat menteni: <a "
+"href='%s'>Mentés</a>."
 
 msgid "DVD"
 msgstr "DVD"
@@ -1591,7 +1599,7 @@ msgid "Device Pass-through"
 msgstr "Pass-through Eszöz"
 
 msgid "Device Serial"
-msgstr ""
+msgstr "Soros eszköz"
 
 msgid "Device model"
 msgstr "Eszköz típusa"
@@ -2629,9 +2637,6 @@ msgstr "Az átjárót távoli hálózatok eléréshez használják."
 msgid "General"
 msgstr "Általános"
 
-msgid "General Information UPS Unit"
-msgstr "Általános információk a szünetmentesről"
-
 msgid "General Setup"
 msgstr "Általános beállítások"
 
@@ -3533,7 +3538,7 @@ msgid "MOTD"
 msgstr "A nap üzenete"
 
 msgid "MOVED TO"
-msgstr ""
+msgstr "ÁTHELYEZVE:"
 
 msgid "MS Active Directory"
 msgstr "MS Active Directory"
@@ -4816,7 +4821,7 @@ msgid "Root bind password"
 msgstr "Root bind jelszó"
 
 msgid "Rotation rate"
-msgstr ""
+msgstr "Forgatás százalékban"
 
 msgid "Round-robin read"
 msgstr "Round-robin olvasás"
@@ -5944,6 +5949,9 @@ msgid ""
 "The device(s) in config are different to actual device(s). Please remove the "
 "device(s) and re-add it or use 'Clear config and Import disks'."
 msgstr ""
+"A beállításokban lévő eszköz(ök) eltérnek a jelenlegi(ek)től. Távolítsd le "
+"majd újra hozzá az eszköz(öke)t, vagy használd a 'Beállítások törlése és "
+"lemezek importálása' lehetőséget."
 
 msgid ""
 "The directory containing the files you want to publish. The remote host does "
@@ -7005,7 +7013,7 @@ msgid "Transfer mode"
 msgstr "Átviteli mód"
 
 msgid "Transfer rate"
-msgstr ""
+msgstr "Átviteli sebesség"
 
 msgid "Trap host"
 msgstr "Csapdák port"
@@ -7099,6 +7107,9 @@ msgstr "Szünetmentes bekapcsolva"
 msgid "UPS Status"
 msgstr "Szünetmentes állapota"
 
+msgid "UPS Unit General Information"
+msgstr "Szünetmenetes Egység Általános Információi"
+
 msgid "UPS Waiting"
 msgstr "Szünetmentes várakozik"
 
@@ -7157,7 +7168,7 @@ msgid "URL"
 msgstr "URL"
 
 msgid "Unavailable"
-msgstr ""
+msgstr "Nem érhető el"
 
 msgid "Unformated"
 msgstr "Formázatlan"
@@ -7809,7 +7820,7 @@ msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
 msgid "to"
-msgstr ""
+msgstr "eddig:"
 
 msgid "umask"
 msgstr "umask"
@@ -7823,3 +7834,12 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr "verzió:"
+
+#~ msgid "Battery Charge"
+#~ msgstr "Töltöttségi állapot"
+
+#~ msgid "Battery charge"
+#~ msgstr "Akkumulátor töltöttsége"
+
+#~ msgid "General Information UPS Unit"
+#~ msgstr "Általános információk a szünetmentesről"
