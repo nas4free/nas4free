@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-01-11 22:29+0000\n"
-"PO-Revision-Date: 2013-11-02 20:13+0000\n"
-"Last-Translator: Tobias Bannert <Unknown>\n"
+"POT-Creation-Date: 2014-01-13 05:28+0000\n"
+"PO-Revision-Date: 2014-01-13 18:01+0000\n"
+"Last-Translator: apollo567 <apollo567@hotmail.de>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-12 19:33+0000\n"
+"X-Launchpad-Export-Date: 2014-01-13 23:09+0000\n"
 "X-Generator: Launchpad (build 16890)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
@@ -750,7 +750,7 @@ msgid "Auxiliary parameters"
 msgstr "Zusätzliche Parameter"
 
 msgid "Available"
-msgstr ""
+msgstr "Verfügbar"
 
 msgid "Backup configuration"
 msgstr "Konfiguration sichern"
@@ -787,11 +787,11 @@ msgid ""
 msgstr ""
 "Ist der Anfang nicht 'iqn.', wird der Base Name automatisch mit angehängt."
 
-msgid "Battery Charge"
-msgstr "Ladestand des Akkus"
-
 msgid "Battery Details"
 msgstr "Batteriedetails"
+
+msgid "Battery Level"
+msgstr "Batteriestatus"
 
 msgid "Battery Low"
 msgstr "Schwacher Akku"
@@ -809,14 +809,14 @@ msgstr "Batteriekapazität"
 msgid "Battery change date"
 msgstr "Austauschdatum der Batterie"
 
-msgid "Battery charge"
-msgstr "Batterie Ladung"
-
 msgid "Battery chemistry"
 msgstr "Batterietyp"
 
 msgid "Battery current"
 msgstr "Batterie Strom"
+
+msgid "Battery level"
+msgstr "Batteriestatus"
 
 msgid "Battery level when UPS switches to \"Warning\" state"
 msgstr ""
@@ -881,7 +881,7 @@ msgid "CD/DVD"
 msgstr "CD/DVD"
 
 msgid "CHANGED"
-msgstr ""
+msgstr "geändert"
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -1159,7 +1159,7 @@ msgid "Content"
 msgstr "Inhalt"
 
 msgid "Controller"
-msgstr ""
+msgstr "Controller"
 
 msgid "Controller Auth Group"
 msgstr "Authentifizierungsgruppe des Controllers"
@@ -1610,7 +1610,7 @@ msgid "Device Pass-through"
 msgstr "Gerät durchreichen"
 
 msgid "Device Serial"
-msgstr ""
+msgstr "Seriennummer"
 
 msgid "Device model"
 msgstr "Gerätemodell"
@@ -2663,9 +2663,6 @@ msgstr "Gateway, der zum Erreichen des Zielnetzwerks benutzt werden soll."
 msgid "General"
 msgstr "Allgemein"
 
-msgid "General Information UPS Unit"
-msgstr "Allegemeine Information der UPS"
-
 msgid "General Setup"
 msgstr "Allgemeine Einstellungen"
 
@@ -3225,6 +3222,7 @@ msgstr "Ungültige Blockgröße! Sie muss im Bereich von %d bis %d sein."
 
 msgid "Invalid username or password. Please try again."
 msgstr ""
+"ungülter Username oder falsches Passwort. Bitte nochmals korrekt eingeben !"
 
 msgid ""
 "It can be changed from the client side by standard SCSI mode page at any "
@@ -3590,7 +3588,7 @@ msgid "MOTD"
 msgstr "MOTD"
 
 msgid "MOVED TO"
-msgstr ""
+msgstr "verlagert zu"
 
 msgid "MS Active Directory"
 msgstr "Microsoft ActiveDirectory"
@@ -3822,7 +3820,7 @@ msgid "Modules"
 msgstr "Module"
 
 msgid "Monday Tuesday Wednesday Thursday Friday Saturday Sunday"
-msgstr ""
+msgstr "Montag Dienstag Mittwoch Donnerstag Freitag Samstag Sonntag"
 
 msgid "Months"
 msgstr "Monate"
@@ -4882,7 +4880,7 @@ msgid "Root bind password"
 msgstr "Systemadministrator-Kennwort für Bind"
 
 msgid "Rotation rate"
-msgstr ""
+msgstr "Drehgeschwindigkeit"
 
 msgid "Round-robin read"
 msgstr "Round-robin read"
@@ -7126,7 +7124,7 @@ msgid "Transfer mode"
 msgstr "Übertragungs Modus"
 
 msgid "Transfer rate"
-msgstr ""
+msgstr "Übertragungsgeschwindigkeit"
 
 msgid "Trap host"
 msgstr "Trap-Host"
@@ -7220,6 +7218,9 @@ msgstr "UPS On Line"
 msgid "UPS Status"
 msgstr "UPS Status"
 
+msgid "UPS Unit General Information"
+msgstr "Allegemeine Informationen zur UPS"
+
 msgid "UPS Waiting"
 msgstr "UPS wartet"
 
@@ -7279,7 +7280,7 @@ msgid "URL"
 msgstr "URL"
 
 msgid "Unavailable"
-msgstr ""
+msgstr "Nicht verfügbar"
 
 msgid "Unformated"
 msgstr "Unformatiert"
@@ -7952,3 +7953,12 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr "Version:"
+
+#~ msgid "Battery Charge"
+#~ msgstr "Ladestand des Akkus"
+
+#~ msgid "Battery charge"
+#~ msgstr "Batterie Ladung"
+
+#~ msgid "General Information UPS Unit"
+#~ msgstr "Allegemeine Information der UPS"
