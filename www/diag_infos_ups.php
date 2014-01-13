@@ -278,7 +278,7 @@ function upsc_enable_change() {
 						html_separator();
 						
 						// output						
-						html_titleline(gettext('General Information UPS Unit'));
+						html_titleline(gettext('UPS Unit General Information'));
 						tblrow(gettext('UPS status'), $ups['ups.status']);
 						tblrow(gettext('UPS alarms'), $ups['ups.alarm']);
 						tblrow(gettext('Internal UPS clock time'), $ups['ups.time']);
