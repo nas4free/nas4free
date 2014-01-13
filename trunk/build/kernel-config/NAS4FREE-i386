@@ -34,9 +34,6 @@ device		ixgb		# Intel Pro/10Gbe PCI-X Ethernet
 device		ixgbe		# Intel PRO/10GbE PCIE Ethernet Family
 device		mxge		# Myricom Myri-10G 10GbE NIC
 device		nxge		# Neterion Xframe 10GbE Server/Storage Adapter
-device		qlxgb		# QLogic 3200 and 8200 10GbE/CNA Adapter
-device		sfxge		# Solarflare 10Gb Ethernet Adapter
-device		vxge		# Exar/Neterion XFrame 3100 10GbE
 
 # VirtIO support
 device		virtio		# Generic VirtIO bus (required)
@@ -76,4 +73,4 @@ options 	QUOTA			#enable disk quotas
 #nooption 	NFS_ROOT		# NFS usable as /, requires NFSCL
 #nooption 	NFSCL			# New Network Filesystem Client
 #nooption 	NFSD			# New Network Filesystem Server
-#nodevice	xhci			# XHCI PCI->USB interface (USB 3.0)
+#nooption	xhci			# XHCI PCI->USB interface (USB 3.0)
