@@ -12,22 +12,26 @@ Changes:
 - Add zfs lz4 compression option to gui.
 - Add tmux (A terminal multiplexer).
 - Add tw_cli (Command Line Interface Storage Management Software for AMCC/3ware ATA RAID Controllers.
-- Add additional check to device's controller to detect scenario when a device is moved/shuffled to different controllers
-- Highlight the entire row when device detected does not match with device in config.xml
-- Provide more detailed information at Status column to help troubleshooting
+- Add additional check to device's controller to detect scenario when a device is moved/shuffled to different controllers.
+- Highlight the entire row when device detected does not match with device in config.xml.
+- Provide more detailed information at Status column to help troubleshooting.
 - Remove zfs zfs_prefetch_disable=1 default variabele. (now it's an user option)
 - Backup and restore the loader.conf.local settings with livecd/usb upgrades and convert.
 - Backup and restore the loader.conf (/boot/loader.conf.local) settings on firmware upgrades.
 - Remove zfs zfs_prefetch_disable=1 default variabele. (now it's an user option).
 - amdtemp include support for AMD A10-5700 APU with Radeon(tm) HD Graphics.
-- Upgrade gzip to 1.6 with gzip-rsyncable patch
+- Upgrade gzip to 1.6 with gzip-rsyncable patch.
 - Upgrade netatalk to 2.2.5.
 - Upgrade dmidecode to 2.12.
+- Upgrade mDNSResponder-541.
 - Upgrade php to 5.5.7.
 - Upgrade samba to 3.6.22.
 - Upgrade zoneinfo to 2013i.
+- Upgrade nut to 2.7.1.
 
 Fixes:
+- mDNSResponder config format.
+
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
