@@ -6,13 +6,21 @@ Changes:
 - Improved WebGUI under PHP 5.5.
 - Add 'twa' (3ware 9000/9500/9550/9650 series SATA RAID controller) and 'twe' 
   (3ware 5000/6000/7000/8000 series PATA/SATA RAID adapter) support.
+- Add areca SAS/SATA HBA ARC-1300/ARC-1320 series adapter driver.  (arcsas.ko)
 - Add Broadcom BCM57764, BCM57767, BCM57782, BCM57786 and BCM57787 support.
 - Add loader.conf configuration option to gui.
 - Add zfs lz4 compression option to gui.
 - Add tmux (A terminal multiplexer).
 - Add tw_cli (Command Line Interface Storage Management Software for AMCC/3ware ATA RAID Controllers.
+- Add additional check to device's controller to detect scenario when a device is moved/shuffled to different controllers
+- Highlight the entire row when device detected does not match with device in config.xml
+- Provide more detailed information at Status column to help troubleshooting
+- Remove zfs zfs_prefetch_disable=1 default variabele. (now it's an user option)
+- Backup and restore the loader.conf.local settings with livecd/usb upgrades and convert.
+- Backup and restore the loader.conf (/boot/loader.conf.local) settings on firmware upgrades.
 - Remove zfs zfs_prefetch_disable=1 default variabele. (now it's an user option).
 - amdtemp include support for AMD A10-5700 APU with Radeon(tm) HD Graphics.
+- Upgrade gzip to 1.6 with gzip-rsyncable patch
 - Upgrade netatalk to 2.2.5.
 - Upgrade dmidecode to 2.12.
 - Upgrade php to 5.5.7.
