@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2014-01-13 05:28+0000\n"
-"PO-Revision-Date: 2014-01-13 11:02+0000\n"
+"PO-Revision-Date: 2014-01-14 04:32+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-13 23:09+0000\n"
+"X-Launchpad-Export-Date: 2014-01-14 04:36+0000\n"
 "X-Generator: Launchpad (build 16890)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -1250,6 +1250,8 @@ msgid ""
 "the upgrade.<br />It is strongly recommended that you <a "
 "href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
+"一旦韌體升級程序啟動後,不可中止升級程序。一旦固件升級程序啟動後，不要中止升級程序。一旦升級完成後，服務器會自動重啟，當前的配置將保持不變。<br "
+"/>您至少需要 %d MIB 的可用RAM 來升級程序。<br />強烈建議您在升級前<a href='%s'>備份</a> 伺服器的配置。"
 
 msgid "DVD"
 msgstr "DVD"
@@ -2005,7 +2007,7 @@ msgstr "啟用 SMTP 認證。"
 msgid ""
 "Enable STARTTLS encryption. This doesn't mean you have to use TLS, you can "
 "use SSL."
-msgstr ""
+msgstr "啟用STARTTLS加密。這並不意味著您必須使用TLS，您可以使用SSL。"
 
 msgid "Enable TLS/SSL connections."
 msgstr "允許使用 TLS/SSL 連接。"
@@ -2275,7 +2277,7 @@ msgstr "ifconfig 的額外選項(通常為空白)。"
 
 msgid ""
 "Extra options to pass over rpc using transmission-remote (usually empty)."
-msgstr ""
+msgstr "額外的選項來使用transmission-remote 傳遞 RPC（通常為空白）。"
 
 msgid "Extra options to rsync (usually empty)."
 msgstr "rsync 的額外選項(通常為空白)。"
@@ -2627,6 +2629,8 @@ msgid ""
 "real hostnames where possible.<br><font color='red'>Warning</font>: This can "
 "cause a huge delay in loading the log page!"
 msgstr ""
+"提示：如果勾選此選項，在伺服器日誌中的IP 地址將盡可能解析為主機名。<br><font "
+"color='red'>警告</font>：這可能會導致延遲加載日誌頁！"
 
 msgid "Home directory"
 msgstr "個人目錄（ Home ）"
@@ -2993,13 +2997,13 @@ msgid "Interval must be greater or equal than 10 seconds."
 msgstr "間隔值必須大於或等於10秒。"
 
 msgid "Interval to wait after shutdown with delay command"
-msgstr ""
+msgstr "delay 命令後的等待關機間隔"
 
 msgid "Interval to wait before rebooting the UPS)"
-msgstr ""
+msgstr "重新啟動 UPS 前的等待間隔"
 
 msgid "Interval to wait before restarting the load"
-msgstr "等待重新启动负载之前的时间间隔"
+msgstr "重新啟動負載之前的等待間隔"
 
 msgid "Invalid file format."
 msgstr "檔案格式無效。"
@@ -3223,7 +3227,7 @@ msgid "Load on UPS"
 msgstr "UPS 負載"
 
 msgid "Load when UPS switches to overload condition (\"OVER\")"
-msgstr ""
+msgstr "UPS切換到超載的情況時的加載（“OVER”）"
 
 msgid "Loadbalance"
 msgstr "負載平衡"
@@ -3514,7 +3518,7 @@ msgid "Minimum"
 msgstr "最小值"
 
 msgid "Minimum battery level for UPS restart after power-off"
-msgstr ""
+msgstr "斷電後UPS重啟的最小電池電量"
 
 msgid "Minimum free space"
 msgstr "最少需求空間"
@@ -3952,7 +3956,7 @@ msgid "Out"
 msgstr "出"
 
 msgid "Outgoing Power/Inverter Information"
-msgstr ""
+msgstr "輸出電力/逆變器的信息"
 
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr "郵件發送（SMTP）伺服器的地址，例如：smtp.mycorp.com"
@@ -4024,7 +4028,7 @@ msgid "Pairwise"
 msgstr "成對（Pairwise）"
 
 msgid "Parameter xxx (ups.conf or cmdline -x) setting"
-msgstr ""
+msgstr "參數xxx（ups.conf 或 cmdline -x）的設置"
 
 msgid "Partition number"
 msgstr "分割區編號"
@@ -4253,7 +4257,7 @@ msgid "Preserve permissions"
 msgstr "保留權限"
 
 msgid "Prevent deep discharge of battery"
-msgstr ""
+msgstr "防止電池深度漏電"
 
 msgid "Primary"
 msgstr "主要"
@@ -4408,7 +4412,7 @@ msgid "Realm"
 msgstr "Realm"
 
 msgid "Reason for last transfer to battery (* opaque)"
-msgstr ""
+msgstr "上次轉移到電池的原因（*不透明）"
 
 msgid "Reboot"
 msgstr "重新啟動"
@@ -4830,7 +4834,7 @@ msgid "Set the account's primary group to the given group."
 msgstr "設定帳號的主要群組。"
 
 msgid "Set the content location(s) to or from the media library."
-msgstr ""
+msgstr "設置從或到媒體庫的內容位置。"
 
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr "設置所需的服務集標識符（Service Set Identifier）（也稱為網絡名稱）。"
@@ -5184,6 +5188,8 @@ msgid ""
 "server. Be sure to set syslogd on the remote server to accept syslog "
 "messages from this server."
 msgstr ""
+"Syslog 發送UDP 數據包到遠程syslog伺服器的514端口。請確定在遠程syslog 伺服器的syslogd 接收來自此伺服器的syslog "
+"信息。"
 
 msgid "System"
 msgstr "系統"
@@ -5490,11 +5496,11 @@ msgstr "'%s' 必須有至少一個項目。"
 
 #, php-format
 msgid "The attribute '%s': use a port in the range from %d to %d."
-msgstr ""
+msgstr "屬性'%s'：從 %d 到 %d 的範圍使用一個端口。"
 
 #, php-format
 msgid "The attribute 'Port': port '%ld' is already taken by another service."
-msgstr ""
+msgstr "屬性'端口'：'%ld' 端口已經被另一項服務採用。"
 
 msgid ""
 "The base name (e.g. iqn.2007-09.jp.ne.peach.istgt) will append the target "
@@ -5594,7 +5600,7 @@ msgstr "裝置的 IP 位址。"
 msgid ""
 "The device(s) in config are different to actual device(s). Please remove the "
 "device(s) and re-add it or use 'Clear config and Import disks'."
-msgstr ""
+msgstr "在配置中的設備和實際設備並不相同。請移除設備，然後重新添加它，或使用“清除和導入磁盤設置\"。"
 
 msgid ""
 "The directory containing the files you want to publish. The remote host does "
@@ -6140,7 +6146,7 @@ msgstr "此群組已存在群組列表中。"
 msgid ""
 "This is a way to take an existing insecure connection, and upgrade it to a "
 "secure connection using SSL/TLS."
-msgstr ""
+msgstr "把現有不安全的連接，使用SSL / TLS將其升級為安全連接。"
 
 msgid ""
 "This is both the name of the server as advertised via "
@@ -6360,13 +6366,13 @@ msgid "Time Machine"
 msgstr "Time Machine"
 
 msgid "Time before the load will be rebooted"
-msgstr ""
+msgstr "負載將重新啟動之前的時間"
 
 msgid "Time before the load will be shutdown"
-msgstr ""
+msgstr "負載將被關閉之前的時間"
 
 msgid "Time before the load will be started"
-msgstr ""
+msgstr "負載將啟動之前的時間"
 
 msgid "Time interval"
 msgstr "時間間隔"
@@ -6577,7 +6583,7 @@ msgid "UPS Status"
 msgstr "UPS 狀態"
 
 msgid "UPS Unit General Information"
-msgstr ""
+msgstr "UPS單位的一般資料"
 
 msgid "UPS Waiting"
 msgstr "UPS 等待中"
@@ -6586,16 +6592,16 @@ msgid "UPS alarms"
 msgstr "UPS 報警"
 
 msgid "UPS beeper status"
-msgstr ""
+msgstr "UPS的蜂鳴器狀態"
 
 msgid "UPS coldstarts from battery"
-msgstr ""
+msgstr "UPS由電池冷啟動"
 
 msgid "UPS disabled"
 msgstr "UPS 已停用"
 
 msgid "UPS external contact sensors"
-msgstr ""
+msgstr "UPS外置接觸式傳感器"
 
 msgid "UPS firmware"
 msgstr "UPS 韌體"
@@ -6610,7 +6616,7 @@ msgid "UPS reaches low battery"
 msgstr "UPS 電池電量不足"
 
 msgid "UPS starts when mains is (re)applied"
-msgstr ""
+msgstr "有電源時，啟動 UPS"
 
 msgid "UPS status"
 msgstr "UPS 狀態"
@@ -6794,10 +6800,10 @@ msgid "Username"
 msgstr "用戶名"
 
 msgid "Username contains invalid character(s) : "
-msgstr ""
+msgstr "用戶名包含無效字符： "
 
 msgid "Username field : "
-msgstr ""
+msgstr "用戶名： "
 
 msgid "Username of a domain administrator account."
 msgstr "請在此設置域管理員的帳號。"
@@ -7266,9 +7272,3 @@ msgstr "upriv"
 #, php-format
 msgid "version:"
 msgstr "版本："
-
-#~ msgid "Battery Charge"
-#~ msgstr "電池電力"
-
-#~ msgid "Battery charge"
-#~ msgstr "電池充電"
