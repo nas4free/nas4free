@@ -1,5 +1,5 @@
---- bge/if_bge.c.orig	2014-01-14 06:06:18.000000000 +0100
-+++ bge/if_bge.c	2014-01-14 22:57:47.000000000 +0100
+--- bge/if_bge.c.orig	2014-01-15 02:19:31.000000000 +0100
++++ bge/if_bge.c	2014-01-15 23:12:55.000000000 +0100
 @@ -176,6 +176,8 @@
  	{ BCOM_VENDORID,	BCOM_DEVICEID_BCM5721 },
  	{ BCOM_VENDORID,	BCOM_DEVICEID_BCM5722 },
@@ -411,30 +411,30 @@
 +static void
 +bge_setwol(struct bge_softc *sc)
 +{
-+ struct ifnet *ifp;
-+ uint16_t pmstat;
-+ int pmc;
++       struct ifnet *ifp;
++       uint16_t pmstat;
++       int pmc;
 +
-+ ifp = sc->bge_ifp;
++       ifp = sc->bge_ifp;
 +
-+ if ((ifp->if_capenable & IFCAP_WOL_MAGIC) == 0)
-+ return;
++       if ((ifp->if_capenable & IFCAP_WOL_MAGIC) == 0)
++           return;
 +
-+ if (pci_find_cap(sc->bge_dev, PCIY_PMG, &pmc) != 0)
-+ return;
++       if (pci_find_cap(sc->bge_dev, PCIY_PMG, &pmc) != 0)
++           return;
 +
-+ BGE_SETBIT(sc, BGE_MAC_MODE, BGE_MACMODE_MAGIC_PKT_ENB);
++       BGE_SETBIT(sc, BGE_MAC_MODE, BGE_MACMODE_MAGIC_PKT_ENB);
 +
-+ BGE_CLRBIT(sc, BGE_MAC_MODE, BGE_MACMODE_PORTMODE);
-+ BGE_SETBIT(sc, BGE_MAC_MODE, BGE_PORTMODE_GMII);
++       BGE_CLRBIT(sc, BGE_MAC_MODE, BGE_MACMODE_PORTMODE);
++       BGE_SETBIT(sc, BGE_MAC_MODE, BGE_PORTMODE_GMII);
 +
-+ BGE_SETBIT(sc, BGE_RX_MODE, BGE_RXMODE_ENABLE);
++       BGE_SETBIT(sc, BGE_RX_MODE, BGE_RXMODE_ENABLE);
 +
-+ /* Request PME. */
-+ pmstat = pci_read_config(sc->bge_dev,
-+ pmc + PCIR_POWER_STATUS, 2);
-+ pmstat |= PCIM_PSTAT_PME | PCIM_PSTAT_PMEENABLE;
-+ pci_write_config(sc->bge_dev,
-+ pmc + PCIR_POWER_STATUS, pmstat, 2);
++       /* Request PME. */
++       pmstat = pci_read_config(sc->bge_dev,
++           pmc + PCIR_POWER_STATUS, 2);
++       pmstat |= PCIM_PSTAT_PME | PCIM_PSTAT_PMEENABLE;
++       pci_write_config(sc->bge_dev,
++           pmc + PCIR_POWER_STATUS, pmstat, 2);
 +}
 +
