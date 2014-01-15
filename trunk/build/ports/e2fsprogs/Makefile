@@ -1,5 +1,5 @@
 PORTNAME=		e2fsprogs
-PORTVERSION=	1.42.8
+PORTVERSION=	1.42.9
 PORTREVISION?= 0
 CATEGORIES=		sysutils
 COMMENT=		Utilities & library to manipulate ext2/3/4 filesystems
