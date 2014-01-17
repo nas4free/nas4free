@@ -216,7 +216,7 @@ function mountmanagement_process_updatenotification($mode, $data) {
           </tr>
         </table>
         <div id="remarks">
-        	<?php html_remark("warning", gettext("Warning"), sprintf(gettext("UFS and variants are the NATIVE file format for FreeBSD (the underlying OS of %s). Attempting to use other file formats such as FAT, FAT32, EXT2, EXT3, or NTFS can result in unpredictable results, file corruption, and loss of data!"), get_product_name()));?>
+		<?php html_remark("Warning", gettext("Warning"), sprintf(gettext("UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). Attempting to use other filesystems such as FAT, FAT32, EXT2, EXT3, EXT4 or NTFS can result in unpredictable results, file corruption, and loss of data!"), get_product_name()));?>
         </div>
         <?php include("formend.inc");?>
       </form>
