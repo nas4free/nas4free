@@ -65,21 +65,18 @@ mdnsresponder_mkconf()
 # For types: http://www.dns-sd.org/ServiceTypes.html" > ${mdnsresponder_config}
 	/usr/local/bin/xml sel -t \
 		-v "//system/hostname" -n \
-		-o "_device-info._tcp" -n \
-		-o "local." -n \
+		-o "_device-info._tcp. local." -n \
 		-o "1" -n \
 		-o "model=Xserve" -n \
 		-n \
 		-v "//system/hostname" -n \
 		-i "//system/webgui/protocol[. = 'https']" \
-			-o "_https._tcp" -n \
-			-o "local." -n \
+			-o "_https._tcp. local." -n \
 			-i "string-length(//system/webgui/port) > 0" -v "//system/webgui/port" -n -b \
 			-i "string-length(//system/webgui/port) = 0" -o "443" -n -b \
 		-b \
 		-i "//system/webgui/protocol[. != 'https']" \
-			-o "_http._tcp" -n \
- 			-o "local." -n \
+			-o "_http._tcp. local." -n \
 			-i "string-length(//system/webgui/port) > 0" -v "//system/webgui/port" -n -b \
 			-i "string-length(//system/webgui/port) = 0" -o "80" -n -b \
 		-b \
@@ -87,13 +84,11 @@ mdnsresponder_mkconf()
 		-n \
 		-i "count(//afp/enable) > 0" \
 			-v "//system/hostname" -n \
-			-o "_afpovertcp._tcp" -n \
-			-o "local." -n \
+			-o "_afpovertcp._tcp. local." -n \
 			-o "548" -n \
 			-n \
 			-v "//system/hostname" -n \
-			-o "_adisk._tcp" -n \
-			-o "local." -n \
+			-o "_adisk._tcp. local." -n \
 			-o "9" -n \
 			-o "sys=waMA=0,adVF=0x100" -n \
 			-m "//afp/share" \
@@ -107,37 +102,32 @@ mdnsresponder_mkconf()
 		-b \
 		-i "count(//rsyncd/enable) > 0" \
 			-v "//system/hostname" -n \
-			-o "_rsync._tcp" -n \
-			-o "local." -n \
+			-o "_rsync._tcp. local." -n \
 			-v "//rsyncd/port" -n \
 			-n \
 		-b \
 		-i "count(//sshd/enable) > 0" \
 			-v "//system/hostname" -n \
-			-o "_ssh._tcp" -n \
-			-o "local." -n \
+			-o "_ssh._tcp. local." -n \
 			-v "//sshd/port" -n \
 			-n \
 		-b \
 		-i "count(//ftpd/enable) > 0" \
 			-v "//system/hostname" -n \
-			-o "_ftp._tcp" -n \
-			-o "local." -n \
+			-o "_ftp._tcp. local." -n \
 			-v "//ftpd/port" -n \
 			-n \
 		-b \
 		-i "count(//samba/enable) > 0" \
 			-v "//system/hostname" -n \
-			-o "_smb._tcp" -n \
-			-o "local." -n \
+			-o "_smb._tcp. local." -n \
 			-o "139" -n \
 			-n \
 		-b \
 		-i "count(//nfsd/enable) > 0" \
 			-m "//nfsd/share" \
 				-v "//system/hostname" -n \
-				-o "_nfs._tcp" -n \
-				-o "local." -n \
+				-o "_nfs._tcp. local." -n \
 				-o "2049" -n \
 				-v "concat('path=',path)" -n \
 				-n \
@@ -145,8 +135,7 @@ mdnsresponder_mkconf()
 		-b \
 		-i "count(//upnp/enable) > 0" \
 			-v "//upnp/name" -n \
-			-o "_upnp._tcp" -n \
-			-o "local." -n \
+			-o "_upnp._tcp. local." -n \
 			-i "string-length(//upnp/port) > 0" -v "//upnp/port" -n -b \
 			-i "string-length(//upnp/port) = 0" -o "49152" -n -b \
 			-n \
@@ -160,15 +149,13 @@ mdnsresponder_mkconf()
 			-o "Version=196610" -n \
 			-n \
 			-v "//daap/servername" -n \
-			-o "_rsp._tcp" -n \
-			-o "local." -n \
+			-o "_rsp._tcp. local." -n \
 			-v "//daap/port" -n \
 			-n \
 		-b \
 		-i "count(//bittorrent/enable) > 0" \
 			-v "//system/hostname" -n \
-			-o "_bittorrent._tcp" -n \
-			-o "local." -n \
+			-o "_bittorrent._tcp. local." -n \
 			-v "//bittorrent/port" -n \
 			-n \
 		-b \
