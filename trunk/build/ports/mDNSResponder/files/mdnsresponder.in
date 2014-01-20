@@ -64,7 +64,7 @@ mdnsresponder_mkconf()
 #
 # For types: http://www.dns-sd.org/ServiceTypes.html" > ${mdnsresponder_config}
 	/usr/local/bin/xml sel -t \
-		-v "//system/hostname" -n \
+		-v "//afp/afpname" -n \
 		-o "_device-info._tcp. local." -n \
 		-o "1" -n \
 		-o "model=Xserve" -n \
@@ -87,7 +87,7 @@ mdnsresponder_mkconf()
 			-o "_afpovertcp._tcp. local." -n \
 			-o "548" -n \
 			-n \
-			-v "//system/hostname" -n \
+			-v "//afp/afpname" -n \
 			-o "_adisk._tcp. local." -n \
 			-o "9" -n \
 			-o "sys=waMA=0,adVF=0x100" -n \
