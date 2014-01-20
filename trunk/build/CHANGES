@@ -30,8 +30,9 @@ Changes:
 - Upgrade php to 5.5.8.
 
 Fixes:
-- mDNSResponder config format.
+- Fix mDNSResponder start.
 - WOL patch bge driver.
+- Use afpd server name instate of the server host name.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.

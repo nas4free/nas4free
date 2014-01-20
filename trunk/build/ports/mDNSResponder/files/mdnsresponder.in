@@ -83,7 +83,7 @@ mdnsresponder_mkconf()
 		-o "path=/index.php" -n \
 		-n \
 		-i "count(//afp/enable) > 0" \
-			-v "//system/hostname" -n \
+			-v "//afp/afpname" -n \
 			-o "_afpovertcp._tcp. local." -n \
 			-o "548" -n \
 			-n \
