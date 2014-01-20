@@ -51,6 +51,8 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_passwd.so ${NAS4FREE_ROOTFS}/etc/uams
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_randnum.so ${NAS4FREE_ROOTFS}/etc/uam
 
+	@${INSTALL_SCRIPT} -v ${FILESDIR}/afpd.in ${NAS4FREE_ROOTFS}/etc/rc.d/afpd
+
 	@cd ${NAS4FREE_ROOTFS}/etc/uams && ${LN} -fsv uams_passwd.so uams_clrtxt.so && ${LN} -fsv uams_dhx_passwd.so uams_dhx.so && ${LN} -fsv uams_dhx2_passwd.so uams_dhx2.so
 
 .include <bsd.port.mk>
