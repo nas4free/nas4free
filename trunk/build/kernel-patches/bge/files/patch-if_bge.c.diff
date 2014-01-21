@@ -1,5 +1,5 @@
---- bge/if_bge.c.orig	2014-01-15 02:19:31.000000000 +0100
-+++ bge/if_bge.c	2014-01-15 23:12:55.000000000 +0100
+--- bge/if_bge.c.orig	2014-01-09 01:33:34.000000000 +0100
++++ bge/if_bge.c	2014-01-09 16:43:42.000000000 +0100
 @@ -176,6 +176,8 @@
  	{ BCOM_VENDORID,	BCOM_DEVICEID_BCM5721 },
  	{ BCOM_VENDORID,	BCOM_DEVICEID_BCM5722 },
@@ -50,15 +50,7 @@
  
  	{ 0, NULL }
  };
-@@ -475,6 +485,7 @@
- static void bge_stop_fw(struct bge_softc *);
- static int bge_reset(struct bge_softc *);
- static void bge_link_upd(struct bge_softc *);
-+static void bge_setwol(struct bge_softc *);
- 
- static void bge_ape_lock_init(struct bge_softc *);
- static void bge_ape_read_fw_ver(struct bge_softc *);
-@@ -1796,6 +1807,20 @@
+@@ -1796,6 +1806,20 @@
  		pci_write_config(sc->bge_dev, BGE_PCI_MSI_DATA + 2, val, 2);
  	}
  
@@ -79,7 +71,7 @@
  	/*
  	 * Set up the PCI DMA control register.
  	 */
-@@ -1871,8 +1896,9 @@
+@@ -1871,8 +1895,9 @@
  		 * a status tag update and leave interrupts permanently
  		 * disabled.
  		 */
@@ -91,7 +83,7 @@
  			dma_rw_ctl |= BGE_PCIDMARWCTL_TAGGED_STATUS_WA;
  	}
  	pci_write_config(sc->bge_dev, BGE_PCI_DMA_RW_CTL, dma_rw_ctl, 4);
-@@ -1881,7 +1907,8 @@
+@@ -1881,7 +1906,8 @@
  	 * Set up general mode register.
  	 */
  	mode_ctl = bge_dma_swap_options(sc);
@@ -101,7 +93,7 @@
  		/* Retain Host-2-BMC settings written by APE firmware. */
  		mode_ctl |= CSR_READ_4(sc, BGE_MODE_CTL) &
  		    (BGE_MODECTL_BYTESWAP_B2HRX_DATA |
-@@ -1939,7 +1966,7 @@
+@@ -1939,7 +1965,7 @@
  	struct bge_rcb *rcb;
  	bus_size_t vrcb;
  	bge_hostaddr taddr;
@@ -110,7 +102,7 @@
  	int i, limit;
  
  	/*
-@@ -2210,6 +2237,11 @@
+@@ -2210,6 +2236,11 @@
  	if (!BGE_IS_5705_PLUS(sc))
  		/* 5700 to 5704 had 16 send rings. */
  		limit = BGE_TX_RINGS_EXTSSRAM_MAX;
@@ -122,7 +114,7 @@
  	else
  		limit = 1;
  	vrcb = BGE_MEMWIN_START + BGE_SEND_RING_RCB;
-@@ -2248,6 +2280,7 @@
+@@ -2248,6 +2279,7 @@
  	} else if (!BGE_IS_5705_PLUS(sc))
  		limit = BGE_RX_RINGS_MAX;
  	else if (sc->bge_asicrev == BGE_ASICREV_BCM5755 ||
@@ -130,7 +122,7 @@
  	    BGE_IS_57765_PLUS(sc))
  		limit = 4;
  	else
-@@ -2287,7 +2320,8 @@
+@@ -2287,7 +2319,8 @@
  
  	/* Set inter-packet gap */
  	val = 0x2620;
@@ -140,7 +132,7 @@
  		val |= CSR_READ_4(sc, BGE_TX_LENGTHS) &
  		    (BGE_TXLEN_JMB_FRM_LEN_MSK | BGE_TXLEN_CNT_DN_VAL_MSK);
  	CSR_WRITE_4(sc, BGE_TX_LENGTHS, val);
-@@ -2451,7 +2485,8 @@
+@@ -2451,7 +2484,8 @@
  			val |= BGE_RDMAMODE_TSO6_ENABLE;
  	}
  
@@ -150,7 +142,7 @@
  		val |= CSR_READ_4(sc, BGE_RDMA_MODE) &
  			BGE_RDMAMODE_H2BNC_VLAN_DET;
  		/*
-@@ -2465,14 +2500,18 @@
+@@ -2465,14 +2499,18 @@
  	    sc->bge_asicrev == BGE_ASICREV_BCM5784 ||
  	    sc->bge_asicrev == BGE_ASICREV_BCM5785 ||
  	    sc->bge_asicrev == BGE_ASICREV_BCM57780 ||
@@ -173,7 +165,7 @@
  			dmactl &= ~(BGE_RDMA_RSRVCTRL_FIFO_LWM_MASK |
  			    BGE_RDMA_RSRVCTRL_FIFO_HWM_MASK |
  			    BGE_RDMA_RSRVCTRL_TXMRGN_MASK);
-@@ -2485,7 +2524,7 @@
+@@ -2485,7 +2523,7 @@
  		 * The fix is to limit the number of RX BDs
  		 * the hardware would fetch at a fime.
  		 */
@@ -182,7 +174,7 @@
  		    BGE_RDMA_RSRVCTRL_FIFO_OFLW_FIX);
  	}
  
-@@ -2503,11 +2542,34 @@
+@@ -2503,11 +2541,34 @@
  		    CSR_READ_4(sc, BGE_RDMA_LSO_CRPTEN_CTRL) |
  		    BGE_RDMA_LSO_CRPTEN_CTRL_BLEN_BD_512 |
  		    BGE_RDMA_LSO_CRPTEN_CTRL_BLEN_LSO_4K);
@@ -217,7 +209,7 @@
  	/* Turn on RX data completion state machine */
  	CSR_WRITE_4(sc, BGE_RDC_MODE, BGE_RDCMODE_ENABLE);
  
-@@ -2634,6 +2696,12 @@
+@@ -2634,6 +2695,12 @@
  		case BCOM_DEVICEID_BCM5718:
  		case BCOM_DEVICEID_BCM5719:
  		case BCOM_DEVICEID_BCM5720:
@@ -230,7 +222,7 @@
  			id = pci_read_config(dev,
  			    BGE_PCI_GEN2_PRODID_ASICREV, 4);
  			break;
-@@ -2642,7 +2710,9 @@
+@@ -2642,7 +2709,9 @@
  		case BCOM_DEVICEID_BCM57765:
  		case BCOM_DEVICEID_BCM57766:
  		case BCOM_DEVICEID_BCM57781:
@@ -240,7 +232,7 @@
  		case BCOM_DEVICEID_BCM57791:
  		case BCOM_DEVICEID_BCM57795:
  			id = pci_read_config(dev,
-@@ -3334,6 +3404,7 @@
+@@ -3334,6 +3403,7 @@
  
  	/* Save chipset family. */
  	switch (sc->bge_asicrev) {
@@ -248,7 +240,7 @@
  	case BGE_ASICREV_BCM57765:
  	case BGE_ASICREV_BCM57766:
  		sc->bge_flags |= BGE_FLAG_57765_PLUS;
-@@ -3344,10 +3415,18 @@
+@@ -3344,10 +3414,18 @@
  		sc->bge_flags |= BGE_FLAG_5717_PLUS | BGE_FLAG_5755_PLUS |
  		    BGE_FLAG_575X_PLUS | BGE_FLAG_5705_PLUS | BGE_FLAG_JUMBO |
  		    BGE_FLAG_JUMBO_FRAME;
@@ -271,7 +263,7 @@
  		}
  		break;
  	case BGE_ASICREV_BCM5755:
-@@ -3386,6 +3465,7 @@
+@@ -3386,6 +3464,7 @@
  	case BGE_ASICREV_BCM5719:
  	case BGE_ASICREV_BCM5720:
  	case BGE_ASICREV_BCM5761:
@@ -279,25 +271,7 @@
  		sc->bge_flags |= BGE_FLAG_APE;
  		break;
  	}
-@@ -3688,7 +3768,7 @@
- 	IFQ_SET_READY(&ifp->if_snd);
- 	ifp->if_hwassist = sc->bge_csum_features;
- 	ifp->if_capabilities = IFCAP_HWCSUM | IFCAP_VLAN_HWTAGGING |
--	    IFCAP_VLAN_MTU;
-+	    IFCAP_VLAN_MTU | IFCAP_WOL_MAGIC;
- 	if ((sc->bge_flags & (BGE_FLAG_TSO | BGE_FLAG_TSO3)) != 0) {
- 		ifp->if_hwassist |= CSUM_TSO;
- 		ifp->if_capabilities |= IFCAP_TSO4 | IFCAP_VLAN_HWTSO;
-@@ -3904,6 +3984,8 @@
- 		ether_ifdetach(ifp);
- 		BGE_LOCK(sc);
- 		bge_stop(sc);
-+		bge_reset(sc);
-+		bge_setwol(sc);
- 		BGE_UNLOCK(sc);
- 		callout_drain(&sc->bge_stat_ch);
- 	}
-@@ -4765,6 +4847,7 @@
+@@ -4765,6 +4844,7 @@
  {
  	struct ifnet *ifp;
  	struct bge_mac_stats *stats;
@@ -305,7 +279,7 @@
  
  	ifp = sc->bge_ifp;
  	stats = &sc->bge_mac_stats;
-@@ -4865,6 +4948,24 @@
+@@ -4865,6 +4945,24 @@
  	ifp->if_collisions = (u_long)stats->etherStatsCollisions;
  	ifp->if_ierrors = (u_long)(stats->NoMoreRxBDs + stats->InputDiscards +
  	    stats->InputErrors);
@@ -330,7 +304,7 @@
  }
  
  static void
-@@ -5194,17 +5295,51 @@
+@@ -5194,17 +5292,51 @@
  		csum_flags |= BGE_TXBDFLAG_VLAN_TAG;
  		vlan_tag = m->m_pkthdr.ether_vtag;
  	}
@@ -393,7 +367,7 @@
  	}
  
  	/* Mark the last segment as end of packet... */
-@@ -5431,7 +5566,8 @@
+@@ -5431,7 +5563,8 @@
  	mode = CSR_READ_4(sc, BGE_TX_MODE);
  	if (BGE_IS_5755_PLUS(sc) || sc->bge_asicrev == BGE_ASICREV_BCM5906)
  		mode |= BGE_TXMODE_MBUF_LOCKUP_FIX;
@@ -403,38 +377,8 @@
  		mode &= ~(BGE_TXMODE_JMB_FRM_LEN | BGE_TXMODE_CNT_DN_MODE);
  		mode |= CSR_READ_4(sc, BGE_TX_MODE) &
  		    (BGE_TXMODE_JMB_FRM_LEN | BGE_TXMODE_CNT_DN_MODE);
-@@ -6669,3 +6805,34 @@
+@@ -6669,3 +6802,4 @@
  	}
  	return (*func == NULL ? ENXIO : 0);
  }
-+
-+static void
-+bge_setwol(struct bge_softc *sc)
-+{
-+       struct ifnet *ifp;
-+       uint16_t pmstat;
-+       int pmc;
-+
-+       ifp = sc->bge_ifp;
-+
-+       if ((ifp->if_capenable & IFCAP_WOL_MAGIC) == 0)
-+           return;
-+
-+       if (pci_find_cap(sc->bge_dev, PCIY_PMG, &pmc) != 0)
-+           return;
-+
-+       BGE_SETBIT(sc, BGE_MAC_MODE, BGE_MACMODE_MAGIC_PKT_ENB);
-+
-+       BGE_CLRBIT(sc, BGE_MAC_MODE, BGE_MACMODE_PORTMODE);
-+       BGE_SETBIT(sc, BGE_MAC_MODE, BGE_PORTMODE_GMII);
-+
-+       BGE_SETBIT(sc, BGE_RX_MODE, BGE_RXMODE_ENABLE);
-+
-+       /* Request PME. */
-+       pmstat = pci_read_config(sc->bge_dev,
-+           pmc + PCIR_POWER_STATUS, 2);
-+       pmstat |= PCIM_PSTAT_PME | PCIM_PSTAT_PMEENABLE;
-+       pci_write_config(sc->bge_dev,
-+           pmc + PCIR_POWER_STATUS, pmstat, 2);
-+}
 +
