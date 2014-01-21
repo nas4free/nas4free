@@ -261,7 +261,7 @@ pre_build_kernel() {
 	# Create list of available packages.
 	echo "#! /bin/sh
 $DIALOG --title \"$NAS4FREE_PRODUCTNAME - Kernel Patches\" \\
---checklist \"Select the patches you want to add. Make sure you have clean/origin kernel sources (via suvbersion) to apply patches successful.\" 22 100 14 \\" > $tempfile
+--checklist \"Select the patches you want to add. Make sure you have clean/origin kernel sources (via suvbersion) to apply patches successful.\" 22 88 14 \\" > $tempfile
 
 	for s in $NAS4FREE_SVNDIR/build/kernel-patches/*; do
 		[ ! -d "$s" ] && continue
