@@ -17,7 +17,7 @@
 . /etc/util.subr
 
 name="vmguestd"
-rcvar=`set_rcvar`
+rcvar=vmguestd_enable
 load_rc_config "${name}"
 
 start_cmd="vmguestd_start"

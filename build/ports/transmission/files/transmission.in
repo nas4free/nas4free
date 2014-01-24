@@ -21,7 +21,7 @@
 . /etc/configxml.subr
 
 name="transmission"
-rcvar=`set_rcvar`
+rcvar=transmission_enable
 
 load_rc_config "${name}"
 

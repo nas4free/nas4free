@@ -20,7 +20,7 @@
 . /etc/configxml.subr
 
 name="nut_upslog"
-rcvar=`set_rcvar`
+rcvar=nut_upslog_enable
 
 load_rc_config "${name}"
 

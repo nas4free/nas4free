@@ -21,7 +21,7 @@
 . /etc/configxml.subr
 
 name="nfsd"
-rcvar=`set_rcvar nfs_server`
+rcvar=nfs_server_enable
 command="/usr/sbin/${name}"
 
 # Customize number of server processes/daemons

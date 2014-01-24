@@ -20,7 +20,7 @@
 . /etc/configxml.subr
 
 name="smartd"
-rcvar=`set_rcvar`
+rcvar=smartd_enable
 
 load_rc_config "${name}"
 

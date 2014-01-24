@@ -17,7 +17,7 @@
 . /etc/util.subr
 
 name="vmsetup"
-rcvar=`set_rcvar`
+rcvar=vmsetup_enable
 load_rc_config "${name}"
 
 start_cmd="vmsetup_start"

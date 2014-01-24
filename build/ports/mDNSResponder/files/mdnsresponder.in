@@ -22,7 +22,7 @@
 . /etc/util.subr
 
 name="mdnsresponder"
-rcvar=`set_rcvar`
+rcvar=mdnsresponder_enable
 
 load_rc_config "${name}"
 

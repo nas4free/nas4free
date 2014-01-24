@@ -24,7 +24,7 @@
 . /etc/configxml.subr
 
 name="ntpdate"
-rcvar=`set_rcvar`
+rcvar=ntpdate_enable
 
 load_rc_config "$name"
 

@@ -18,7 +18,7 @@
 . /etc/configxml.subr
 
 name="lighttpd"
-rcvar=`set_rcvar`
+rcvar=lighttpd_enable
 
 load_rc_config "${name}"
 

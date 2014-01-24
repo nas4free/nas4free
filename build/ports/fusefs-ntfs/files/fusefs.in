@@ -20,7 +20,7 @@
 . /etc/configxml.subr
 
 name="fusefs"
-rcvar=`set_rcvar`
+rcvar=fusefs_enable
 
 # Custom commands
 start_cmd="fusefs_start"

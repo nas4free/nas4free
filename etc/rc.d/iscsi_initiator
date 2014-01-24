@@ -20,7 +20,7 @@
 . /etc/configxml.subr
 
 name="iscsi_initiator"
-rcvar=`set_rcvar`
+rcvar=iscsi_initiator_enable
 
 load_rc_config "$name"
 

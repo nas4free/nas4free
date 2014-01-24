@@ -22,7 +22,7 @@
 . /etc/rc.subr
 
 name="rpcbind"
-rcvar=`set_rcvar`
+rcvar=rpcbind_enable
 command="/usr/sbin/${name}"
 
 load_rc_config $name

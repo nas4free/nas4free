@@ -19,7 +19,7 @@
 . /etc/configxml.subr
 
 name="inadyn"
-rcvar=`set_rcvar`
+rcvar=inadyn_enable
 
 load_rc_config "${name}"
 

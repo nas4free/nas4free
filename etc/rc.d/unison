@@ -19,7 +19,7 @@
 . /etc/configxml.subr
 
 name="unison"
-rcvar=`set_rcvar`
+rcvar=unison_enable
 
 load_rc_config "$name"
 
