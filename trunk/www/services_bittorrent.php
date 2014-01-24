@@ -108,8 +108,8 @@ if ($_POST) {
 	if (empty($input_errors)) {
 		$config['bittorrent']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['bittorrent']['port'] = $_POST['port'];
-		$config['bittorrent']['downloaddir'] = $_POST['downloaddir'];
-		$config['bittorrent']['configdir'] = $_POST['configdir'];
+		$config['bittorrent']['downloaddir'] = strlen($_POST['downloaddir']) > 1 ? rtrim($_POST['downloaddir'],'/') : $_POST['downloaddir'];
+		$config['bittorrent']['configdir'] = strlen($_POST['configdir']) > 1 ? rtrim($_POST['configdir'],'/') : $_POST['configdir'];
 		$config['bittorrent']['username'] = $_POST['username'];
 		$config['bittorrent']['password'] = $_POST['password'];
 		$config['bittorrent']['authrequired'] = isset($_POST['authrequired']) ? true : false;
@@ -120,8 +120,8 @@ if ($_POST) {
 		$config['bittorrent']['pex'] = isset($_POST['pex']) ? true : false;
 		$config['bittorrent']['dht'] = isset($_POST['dht']) ? true : false;
 		$config['bittorrent']['encryption'] = $_POST['encryption'];
-		$config['bittorrent']['watchdir'] = $_POST['watchdir'];
-		$config['bittorrent']['incompletedir'] = $_POST['incompletedir'];
+		$config['bittorrent']['watchdir'] = strlen($_POST['watchdir']) > 1 ? rtrim($_POST['watchdir'],'/') : $_POST['watchdir'];
+		$config['bittorrent']['incompletedir'] = strlen($_POST['incompletedir']) > 1 ? rtrim($_POST['incompletedir'],'/') : $_POST['incompletedir'];
 		$config['bittorrent']['umask'] = $_POST['umask'];
 		$config['bittorrent']['extraoptions'] = $_POST['extraoptions'];
 
