@@ -20,7 +20,7 @@
 . /etc/util.subr
 
 name="websrv"
-rcvar=`set_rcvar`
+rcvar=websrv_enable
 
 load_rc_config "${name}"
 

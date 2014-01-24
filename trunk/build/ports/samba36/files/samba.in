@@ -21,7 +21,7 @@
 . /etc/util.subr
 
 name="samba"
-rcvar=$(set_rcvar)
+rcvar=samba_enable
 
 load_rc_config "${name}"
 

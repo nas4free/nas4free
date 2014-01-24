@@ -19,7 +19,7 @@
 . /etc/configxml.subr
 
 name="rsyncd"
-rcvar=`set_rcvar`
+rcvar=rsyncd_enable
 
 load_rc_config "${name}"
 

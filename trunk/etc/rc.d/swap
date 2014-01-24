@@ -21,7 +21,7 @@
 . /etc/configxml.subr
 
 name="swap"
-rcvar=`set_rcvar`
+rcvar=swap_enable
 
 load_rc_config "${name}"
 

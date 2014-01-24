@@ -21,7 +21,7 @@
 . /etc/configxml.subr
 
 name="bsnmpd"
-rcvar=`set_rcvar`
+rcvar=bsnmpd_enable
 
 load_rc_config "$name"
 

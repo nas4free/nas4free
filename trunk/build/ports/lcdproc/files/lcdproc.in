@@ -18,7 +18,7 @@
 . /etc/configxml.subr
 
 name="lcdproc"
-rcvar=$(set_rcvar)
+rcvar=lcdproc_enable
 
 load_rc_config "${name}"
 

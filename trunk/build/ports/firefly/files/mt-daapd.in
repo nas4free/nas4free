@@ -19,7 +19,7 @@
 . /etc/configxml.subr
 
 name="mtdaapd"
-rcvar=`set_rcvar`
+rcvar=mtdaapd_enable
 
 load_rc_config "${name}"
 

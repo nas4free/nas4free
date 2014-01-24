@@ -20,7 +20,7 @@
 . /etc/configxml.subr
 
 name="afpd"
-rcvar=`set_rcvar`
+rcvar=afpd_enable
 
 load_rc_config "${name}"
 

@@ -22,7 +22,7 @@
 . /etc/configxml.subr
 
 name="proftpd"
-rcvar=`set_rcvar`
+rcvar=proftpd_enable
 
 load_rc_config "$name"
 
