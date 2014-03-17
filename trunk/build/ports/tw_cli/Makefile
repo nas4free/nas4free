@@ -1,14 +1,17 @@
 PORTNAME=		tw_cli
-PORTVERSION=	9.5.4
+PORTVERSION=	 9.5.5
 PORTREVISION?= 0
 CATEGORIES=		sysutils
 COMMENT=		3ware storage controllers management CLI
 MAINTAINER=		redantz@nas4free.org
 
-MASTER_SITES=		ftp://tsupport:tsupport@ftp0.lsil.com/private/3Ware/downloads/
-DISTNAME=		cli_freebsd_10.2.1_9.5.4
+MASTER_SITES=		http://www.lsi.com/downloads/Public/SATA/SATA%20Common%20Files/${DISTNAME}${EXTRACT_SUFX}?source=/
+DISTNAME=		CLI_freebsd-from_the_10.2.2.1_9.5.5.1_codesets
 
-RESTRICTED=	Redistribution is not allowed
+EXTRACT_SUFX:=	.zip
+
+
+RESTRICTED=	Redistribution forbidden by license
 # i386 binary should work on ia64, but not tested
 ONLY_FOR_ARCHS=	i386 amd64 ia64
 
