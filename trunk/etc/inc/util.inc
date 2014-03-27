@@ -1025,9 +1025,10 @@ function parse_controller_config(&$devlist){
 		// SMART Device type format : areca,N/E (N =  channel (slot), E = enclosure)
 		// smartctl -a -d areca,9/2 /dev/arcmsr0
 			case "arcmsr":
+				$device['controller_desc'] = parse_raid_controller_desc($device['controller'].$device['controller_id']);
 				$device['smart']['devicefilepath'] = "/dev/".$device['controller'].$device['controller_id'];
 				$device['smart']['devicetype'] = 'areca';
-				$device['smart']['devicetypearg'] = 'areca,'.$device['target_id'];
+				$device['smart']['devicetypearg'] = 'areca,'.($device['target_id']+1);
 				break;
 			case 'ahcich':
 			case 'ata':
@@ -1077,11 +1078,12 @@ function parse_controller_config(&$devlist){
 				$device['smart']['devicefilepath'] = '/dev/'.$device['controller'].$device['controller_id'];
 				$device['smart']['devicetype'] = '3ware';
 
-				mwexec2('/usr/local/sbin/tw_cli /c'.$device['controller_id'].'/u'.$device['target_id'].' show | grep -E "^u"', $tw_line);
-
+				$tw_line = array();
 				$port = 0;
-				if( preg_match("/(?<=p)[\d]+/", $tw_line, $port_num) ){
-					$port = $port_num;
+				$port_num = array();
+				mwexec2('/usr/local/sbin/tw_cli /c'.$device['controller_id'].'/u'.$device['target_id'].' show | grep -E "^u"', $tw_line);
+				if( preg_match("/(?<=p)[\d]+/", $tw_line[0], $port_num) ){
+					$port = $port_num[0];
 				}
 
 				$device['smart']['devicetypearg'] = '3ware,'.$port;
@@ -1196,7 +1198,7 @@ function init_device_attributes(&$device){
 	$device['desc'] = '';
 	$device['model'] = '';
 	$device['serial'] = '';
-	$device['type'];
+	$device['type'] = '';
 	$device['size'] = '';
 	$device['rotation_rate'] = '';
 	$device['transfer_rate'] = '';
@@ -1259,8 +1261,8 @@ function parse_raid_controller_desc($controller){
 		//$output = `dmesg | grep -w $controller`;
 
 		foreach ($lines as $line){
-			if ( strncmp($line, $controller.': <' ,strlen($controller)+3) == 0){ 
-				if ( preg_match("/(?<=\<).*(?=\>)+/",$line,$matches)){
+			if ( strncmp($line, $controller.': <' ,strlen($controller)+3) == 0){
+				if ( preg_match("/(?<=\<).*(?=\>)|(?<=\<).*(?=$)/",$line,$matches)){
 					return $matches[0];
 				}
 			}
@@ -1422,23 +1424,48 @@ function get_hraid_disks_list()
 
 		if ($allready) 	{
 			/* If not an IDE and SCSI disk */
-			$disklist[$diskname] = array();
+			$device = array();
+
+			$device = preg_split( '/([-A-z]+)/', $diskname, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+
 			$disklist[$diskname]['name'] = $diskname;
+			$disklist[$diskname]['id'] = $device[1];
+
+			init_device_attributes($disklist[$diskname]);
+
 			$disklist[$diskname]['devicespecialfile']= "/dev/" . $diskname;
 			$disklist[$diskname]['type'] = "RAID";
 
-			/* Looking for the disk description in the dmesg */
-			foreach ($rawdmesg as $dmesgline) {
-				/* Separe la ligne par les espace */
-				$dmesgtab = explode(" ", $dmesgline);
-				$dmesgtab[0] = rtrim($dmesgtab[0],":");
-				// si la ligne commence par le nom du disque: attention il y a 2 lignes
-				if ($dmesgtab[0]!="" &&(strcasecmp($dmesgtab[0],$diskname) == 0)) {
-					// the first line as this example "aacd0: <RAID 5> on aac0"
-					if (strcasecmp(substr($dmesgtab[1], 0, 1),"<") == 0) {
-						/* Match the description witch is include between < and > */
-						preg_match("/.*\<([^>]*)>.*/",$dmesgline,$match);
-						$disklist[$diskname]['desc'] = $match[1];
+			if($device[0] == "twed"){
+
+				$disklist[$diskname]['target_id'] = $disklist[$diskname]['id'];
+				$matches = array();
+
+				// look for controller details from dmesg
+				foreach($rawdmesg as $line){
+					// example : twed2 on twe0
+					if ( preg_match("/(?<=".$diskname." on )[a-z]+[0-9]+$/", $line, $matches )){
+						$controller = array();
+						$controller = preg_split( '/([-A-z]+)/', $matches[0], -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+						// get controller and controller id
+						$disklist[$diskname]['controller'] = $controller[0];
+						$disklist[$diskname]['controller_id'] = $controller[1];
+					}
+				}
+			}else{
+				/* Looking for the disk description in the dmesg */
+				foreach ($rawdmesg as $dmesgline) {
+					/* Separe la ligne par les espace */
+					$dmesgtab = explode(" ", $dmesgline);
+					$dmesgtab[0] = rtrim($dmesgtab[0],":");
+					// si la ligne commence par le nom du disque: attention il y a 2 lignes
+					if ($dmesgtab[0]!="" &&(strcasecmp($dmesgtab[0],$diskname) == 0)) {
+						// the first line as this example "aacd0: <RAID 5> on aac0"
+						if (strcasecmp(substr($dmesgtab[1], 0, 1),"<") == 0) {
+							/* Match the description witch is include between < and > */
+							preg_match("/.*\<([^>]*)>.*/",$dmesgline,$match);
+							$disklist[$diskname]['desc'] = $match[1];
+						}
 					}
 				}
 			}
@@ -1452,6 +1479,9 @@ function get_hraid_disks_list()
 			$disklist[$diskname]['serial'] = $serial;
 		}
 	}
+
+	$disklist = parse_controller_config($disklist);
+
 
 	return $disklist;
 }
