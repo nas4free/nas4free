@@ -1,5 +1,5 @@
 PORTNAME=		lighttpd
-PORTVERSION=	1.4.34
+PORTVERSION=	1.4.35
 PORTREVISION= 0
 CATEGORIES=		www
 COMMENT=		A secure, fast, compliant, and very flexible Web Server
