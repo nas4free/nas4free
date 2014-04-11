@@ -126,7 +126,12 @@ function userdbuser_process_updatenotification($mode, $data) {
 						<td class="listlr"><?=htmlspecialchars($userv['login']);?>&nbsp;</td>
 						<td class="listr"><?=htmlspecialchars($userv['fullname']);?>&nbsp;</td>
 						<td class="listr"><?=htmlspecialchars($userv['id']);?>&nbsp;</td>
-						<td class="listr"><?=array_search($userv['primarygroup'], $a_group);?>&nbsp;</td>
+						<td class="listr"><?=array_search($userv['primarygroup'], $a_group); 
+							if (is_array($userv['group'])) {
+								for ($i = 0; $i < count($userv['group']); ) {
+									echo ", ".array_search($userv['group'][$i], $a_group); ++$i; 
+								}
+							}?>&nbsp;</td>
 						<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
 						<td valign="middle" nowrap="nowrap" class="list">
 							<a href="access_users_edit.php?uuid=<?=$userv['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit user");?>" border="0" alt="<?=gettext("Edit user");?>" /></a>&nbsp;
