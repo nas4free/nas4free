@@ -54,7 +54,7 @@ if ($_POST) {
 
 		if (!file_exists($d_sysrebootreqd_path)) {
 			// Process notifications
-			updatenotify_process("zfsdataset", "zfsdataset_process_updatenotification");
+			$retval |= updatenotify_process("zfsdataset", "zfsdataset_process_updatenotification");
 		}
 		$savemsg = get_std_save_message($retval);
 		if ($retval == 0) {
