@@ -38,7 +38,7 @@ require("auth.inc");
 require("guiconfig.inc");
 require("services.inc");
 
-$pgtitle = array(gettext("Services"),gettext("DNLA/UPnP"));
+$pgtitle = array(gettext("Services"),gettext("DLNA/UPnP"));
 
 if (!isset($config['upnp']) || !is_array($config['upnp']))
 	$config['upnp'] = array();
@@ -205,7 +205,7 @@ function transcoding_change() {
 				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 				<?php if (file_exists($d_upnpconfdirty_path)) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-				<?php html_titleline_checkbox("enable", gettext("DNLA/UPnP Media Server"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
+				<?php html_titleline_checkbox("enable", gettext("DLNA/UPnP Media Server"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_inputbox("name", gettext("Name"), $pconfig['name'], gettext("Give your media library a friendly name."), true, 35);?>
 					<!--
 					<?php html_interfacecombobox("if", gettext("Interface"), $pconfig['if'], gettext("Select which interface to use. (only selectable if your server has more than one)"), true);?>
@@ -232,7 +232,7 @@ function transcoding_change() {
 					<?php html_filechooser("tempdir", gettext("Temporary directory"), $pconfig['tempdir'], gettext("Temporary directory to store transcoded files."), $g['media_path'], true, 67);?>
 					<?php html_separator();?>
 					<?php html_titleline(gettext("Administrative WebGUI"));?>
-					<?php html_checkbox("web", gettext("WebGUI"), !empty($pconfig['web']) ? true : false, gettext("Enable administrative DNLA/UPnP WebGUI."), "", false, "web_change()");?>
+					<?php html_checkbox("web", gettext("WebGUI"), !empty($pconfig['web']) ? true : false, gettext("Enable administrative DLNA/UPnP WebGUI."), "", false, "web_change()");?>
 					<?php
 					$if = get_ifname($pconfig['if']);
 					$ipaddr = get_ipaddr($if);
