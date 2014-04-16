@@ -2,7 +2,7 @@ NAS4Free 9.2.0.1 - Shigawire
 ----------------------------
 
 Changes:
-- Upgrade to FreeBSD 9.2 RELEASE p3.
+- Upgrade to FreeBSD 9.2 RELEASE p4.
 - Improved WebGUI under PHP 5.5.
 - Add 'twa' (3ware 9000/9500/9550/9650 series SATA RAID controller) and 'twe' 
   (3ware 5000/6000/7000/8000 series PATA/SATA RAID adapter) support.
@@ -35,6 +35,8 @@ Changes:
 Fixes:
 - Fix mDNSResponder start.
 - Use afpd server name instate of the server host name.
+- Fix Trap notifications on Disks|ZFS| datasets and volumes.
+- Fix Display all groups in Access|Users page instead of just primary group.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
