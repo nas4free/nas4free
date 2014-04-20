@@ -1,5 +1,5 @@
 PORTNAME=		nut
-PORTVERSION=	2.7.1
+PORTVERSION=	2.7.2
 PORTREVISION=	0
 CATEGORIES=		sysutils
 COMMENT=		Network UPS tools
@@ -120,8 +120,8 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/usbhid-ups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/victronups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/clients/.libs/libupsclient.so.3 ${NAS4FREE_ROOTFS}/usr/local/lib
-	@${LN} -f -v -s /usr/local/lib/libupsclient.so.3 ${NAS4FREE_ROOTFS}/usr/local/lib/libupsclient.so
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/clients/.libs/libupsclient.so.4 ${NAS4FREE_ROOTFS}/usr/local/lib
+	@${LN} -f -v -s /usr/local/lib/libupsclient.so.4 ${NAS4FREE_ROOTFS}/usr/local/lib/libupsclient.so
 
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/clients/.libs/upsc ${NAS4FREE_ROOTFS}/usr/local/bin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/clients/.libs/upscmd ${NAS4FREE_ROOTFS}/usr/local/bin
