@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-01-18 00:19+0000\n"
-"PO-Revision-Date: 2014-01-17 11:30+0000\n"
+"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"PO-Revision-Date: 2014-04-16 07:49+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-18 00:29+0000\n"
-"X-Generator: Launchpad (build 16901)\n"
+"X-Launchpad-Export-Date: 2014-04-21 22:08+0000\n"
+"X-Generator: Launchpad (build 16985)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -1233,11 +1233,14 @@ msgstr "DDP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DLNA/UPnP"
+msgstr "DLNA/UPnP"
+
+msgid "DLNA/UPnP Media Server"
+msgstr "DLNA/UPnP 的媒體伺服器"
+
 msgid "DNLA/UPnP"
 msgstr "DNLA/UPnP"
-
-msgid "DNLA/UPnP Media Server"
-msgstr "DNLA/ UPnP 媒體伺服器"
 
 msgid "DNS settings"
 msgstr "DNS 设置"
@@ -2018,8 +2021,8 @@ msgstr "啟用 ZFS 存取控制清單 (ACL)"
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "啟用 Zeroconf/ Bonjour 來宣傳這個裝置的服務"
 
-msgid "Enable administrative DNLA/UPnP WebGUI."
-msgstr "啟用DNLA/ UPnP的的網頁管理界面。"
+msgid "Enable administrative DLNA/UPnP WebGUI."
+msgstr "啟用 DLNA/ UPnP 的的管理網頁。"
 
 msgid "Enable anonymous bind."
 msgstr "啟用匿名綁定。"
@@ -5474,7 +5477,7 @@ msgstr "'%s' 只可以由 a-z ， A-Z ， 0-9 ， “_”，“-” 的字元組
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr "'%s' 只可以由 a-z , A-Z , 0-9 的字元組成。"
 
-#, c-format
+#, c-format, php-format
 msgid "The attribute '%s' must be a number."
 msgstr "'%s' 必須是數字。"
 
