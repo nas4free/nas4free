@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-01-18 00:19+0000\n"
-"PO-Revision-Date: 2014-01-14 08:25+0000\n"
+"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"PO-Revision-Date: 2014-04-21 07:21+0000\n"
 "Last-Translator: raul fernandez garcia <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-18 00:29+0000\n"
-"X-Generator: Launchpad (build 16901)\n"
+"X-Launchpad-Export-Date: 2014-04-21 22:10+0000\n"
+"X-Generator: Launchpad (build 16985)\n"
 "X-Poedit-Country: SPAIN\n"
 "Language: \n"
 "X-Poedit-Language: Spanish\n"
@@ -1324,11 +1324,14 @@ msgstr "DDP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DLNA/UPnP"
+msgstr "DLNA/UPnP"
+
+msgid "DLNA/UPnP Media Server"
+msgstr "Servidor DLNA/UPnP"
+
 msgid "DNLA/UPnP"
 msgstr "DNLA/UPnP"
-
-msgid "DNLA/UPnP Media Server"
-msgstr "DNLA/UPnP Media Server"
 
 msgid "DNS settings"
 msgstr "Configuración de DNS"
@@ -2141,8 +2144,8 @@ msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr ""
 "Habilitar Zeroconf/Bonjour para advertir servicios en éste dispositivo"
 
-msgid "Enable administrative DNLA/UPnP WebGUI."
-msgstr "Habilitar la WebGUI administrativa DNLA/UPnP"
+msgid "Enable administrative DLNA/UPnP WebGUI."
+msgstr "Habilitar WebGUI de administración de DLNA/UPnP"
 
 msgid "Enable anonymous bind."
 msgstr "Permitir enlace anónimo"
@@ -5857,7 +5860,7 @@ msgstr ""
 msgid "The attribute '%s' may only consist of the characters a-z, A-Z, 0-9."
 msgstr "El atributo '%s' sólo puede consistir en caracteres a-z, A-Z, 0-9."
 
-#, c-format
+#, c-format, php-format
 msgid "The attribute '%s' must be a number."
 msgstr "El atributo '%s' debe ser un número."
 
@@ -7161,6 +7164,10 @@ msgid ""
 "Attempting to use other filesystems such as FAT, FAT32, EXT2, EXT3, EXT4 or "
 "NTFS can result in unpredictable results, file corruption, and loss of data!"
 msgstr ""
+"UFS y ZFS Son sistemas de archivo nativos de FreeBSD (El S.O. de  %s). "
+"Intentar usar otro sistema de archivos como  FAT, FAT32, EXT2, EXT3, EXT4 or "
+"NTFS Puede dar resultados impredecibles, corrupciób de ficheros o perdida de "
+"datos."
 
 #, php-format
 msgid ""

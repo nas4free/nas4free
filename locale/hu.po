@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-01-18 00:19+0000\n"
-"PO-Revision-Date: 2014-01-13 10:06+0000\n"
+"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"PO-Revision-Date: 2014-04-16 18:57+0000\n"
 "Last-Translator: Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-01-18 00:29+0000\n"
-"X-Generator: Launchpad (build 16901)\n"
+"X-Launchpad-Export-Date: 2014-04-21 22:09+0000\n"
+"X-Generator: Launchpad (build 16985)\n"
 "Language: hu_HU\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -1316,11 +1316,14 @@ msgstr "DDP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DLNA/UPnP"
+msgstr "DLNA/UPnP"
+
+msgid "DLNA/UPnP Media Server"
+msgstr "DLNA/UPnP Média zzerver"
+
 msgid "DNLA/UPnP"
 msgstr "DNLA/UPnP"
-
-msgid "DNLA/UPnP Media Server"
-msgstr "DNLA/UPnP Média Szerver"
 
 msgid "DNS settings"
 msgstr "DNS beállítások"
@@ -2127,8 +2130,8 @@ msgstr "ZFS ACL engedélyezése"
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "Zeroconf/Bonjour engedélyezése"
 
-msgid "Enable administrative DNLA/UPnP WebGUI."
-msgstr "DNLA/UPnP WebGUI engedélyezése"
+msgid "Enable administrative DLNA/UPnP WebGUI."
+msgstr "DLNA/UPnP adminisztráció engedélyezése a WebGUI-n."
 
 msgid "Enable anonymous bind."
 msgstr "Névtelen csatlakozás engedélyezése"
@@ -5802,7 +5805,7 @@ msgstr ""
 "A(z) '%s' tulajdonság csak a következő karaktereket tartalmazhatja: a-z, A-"
 "Z, 0-9."
 
-#, c-format
+#, c-format, php-format
 msgid "The attribute '%s' must be a number."
 msgstr "A(z) '%s' tulajdonság csak szám lehet."
 
@@ -7072,6 +7075,10 @@ msgid ""
 "Attempting to use other filesystems such as FAT, FAT32, EXT2, EXT3, EXT4 or "
 "NTFS can result in unpredictable results, file corruption, and loss of data!"
 msgstr ""
+"UFS és ZFS a FreeBSD - a(z) %s alapjául szolgáló operációs rendszer - NATÍV "
+"fájlrendszerei. Más fájlrendszer használata, mint például a FAT, FAT32, "
+"EXT2, EXT3, EXT4 vagy az NTFS kiszámíthatatlan eseményeket, fájlok "
+"sérüléseit, és adatvesztést okozhat!"
 
 #, php-format
 msgid ""
