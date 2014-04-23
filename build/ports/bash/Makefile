@@ -1,7 +1,7 @@
 PORTNAME=				bash
 PATCHLEVEL=		11
 PORTVERSION=		4.3.${PATCHLEVEL:S/^0//g}
-PORTREVISION?=	0
+PORTREVISION?=	2
 CATEGORIES=			shells
 COMMENT=				The GNU Project's Bourne Again SHell
 MAINTAINER=			zoon01@nas4free.org
@@ -22,18 +22,23 @@ PATCHFILES!=				/usr/bin/jot -s " " -w \
 										${PORTNAME}${PORTVERSION:R:S/.//g}-%03d \
 										${PATCHLEVEL} 1 ${PATCHLEVEL}
 
-EXTRA_PATCHES+=	${PATCHDIR}/xpatch-implicitcd
-EXTRA_PATCHES+=	${PATCHDIR}/xpatch-colonbreakswords
+OPTIONS_DEFINE=         IMPLICITCD COLONBREAKSWORDS 
+OPTIONS_DEFAULT=        IMPLICITCD COLONBREAKSWORDS 
+IMPLICITCD_DESC=        Use directory name alone to cd into it 
+COLONBREAKSWORDS_DESC=  Colons break words 
 
-GNU_CONFIGURE=	yes
-USE_BISON=			build
+IMPLICITCD_EXTRA_PATCHES=       ${PATCHDIR}/extrapatch-implicitcd
+COLONBREAKSWORDS_EXTRA_PATCHES= ${PATCHDIR}/extrapatch-colonbreakswords
+
+GNU_CONFIGURE=  yes
+USES=		  bison
 NO_STAGE=       yes
-USE_GETTEXT=		yes
+USE_GETTEXT=	  yes
 CONFIGURE_ARGS=	--without-bash-malloc \
 								--disable-rpath \
 								--enable-disabled-builtins \
 								--disable-help-builtin \
-								--enable-static-link=no
+								--disable-static-link
 CPPFLAGS+=			${PTHREAD_CFLAGS} \
 								-I${LOCALBASE}/include
 LDFLAGS+=				-L${LOCALBASE}/lib
