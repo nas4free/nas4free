@@ -1,5 +1,5 @@
---- amdtemp/amdtemp.c.orig	2013-12-03 20:10:32.000000000 +1100
-+++ amdtemp/amdtemp.c	2013-12-03 22:19:04.000000000 +1100
+--- amdtemp/amdtemp.c.orig	2014-04-22 01:52:25.000000000 +0200
++++ amdtemp/amdtemp.c	2014-04-23 13:03:33.000000000 +0200
 @@ -1,7 +1,7 @@
  /*-
   * Copyright (c) 2008, 2009 Rui Paulo <rpaulo@FreeBSD.org>
@@ -58,23 +58,25 @@
  	int32_t		(*sc_gettemp)(device_t, amdsensor_t);
  	struct sysctl_oid *sc_sysctl_cpu[MAXCPU];
  	struct intr_config_hook sc_ich;
-@@ -76,6 +76,9 @@
+@@ -76,6 +76,10 @@
  #define	DEVICEID_AMD_MISC0F	0x1103
  #define	DEVICEID_AMD_MISC10	0x1203
  #define	DEVICEID_AMD_MISC11	0x1303
 +#define	DEVICEID_AMD_MISC12	0x1403
 +#define	DEVICEID_AMD_MISC14	0x1703
 +#define	DEVICEID_AMD_MISC15	0x1603
++#define	DEVICEID_AMD_MISC16	0x1533
  
  static struct amdtemp_product {
  	uint16_t	amdtemp_vendorid;
-@@ -84,20 +87,29 @@
+@@ -84,20 +88,30 @@
  	{ VENDORID_AMD,	DEVICEID_AMD_MISC0F },
  	{ VENDORID_AMD,	DEVICEID_AMD_MISC10 },
  	{ VENDORID_AMD,	DEVICEID_AMD_MISC11 },
 +	{ VENDORID_AMD,	DEVICEID_AMD_MISC12 },
 +	{ VENDORID_AMD,	DEVICEID_AMD_MISC14 },
 +	{ VENDORID_AMD,	DEVICEID_AMD_MISC15 },
++	{ VENDORID_AMD,	DEVICEID_AMD_MISC16 },
  	{ 0, 0 }
  };
  
@@ -102,7 +104,7 @@
  
  /*
   * CPU Family/Model Register
-@@ -124,7 +136,7 @@
+@@ -124,7 +138,7 @@
  	DEVMETHOD(device_attach,	amdtemp_attach),
  	DEVMETHOD(device_detach,	amdtemp_detach),
  
@@ -111,17 +113,18 @@
  };
  
  static driver_t amdtemp_driver = {
-@@ -189,6 +201,9 @@
+@@ -189,6 +203,10 @@
  		break;
  	case 0x10:
  	case 0x11:
 +	case 0x12:
 +	case 0x14:
 +	case 0x15:
++	case 0x16:
  		break;
  	default:
  		return (ENXIO);
-@@ -201,26 +216,23 @@
+@@ -201,26 +219,23 @@
  static int
  amdtemp_attach(device_t dev)
  {
@@ -156,7 +159,7 @@
  	if (family != 0x0f || model >= 0x40) {
  		cpuid = pci_read_config(dev, AMDTEMP_CPUID, 4);
  		family = CPUID_TO_FAMILY(cpuid);
-@@ -232,11 +244,6 @@
+@@ -232,11 +247,6 @@
  		/*
  		 * Thermaltrip Status Register
  		 *
@@ -168,7 +171,7 @@
  		 * - ThermSenseCoreSel
  		 *
  		 * Revision F & G:	0 - Core1, 1 - Core0
-@@ -254,15 +261,37 @@
+@@ -254,15 +264,37 @@
  		 * ThermSenseCoreSel work in undocumented cases as well.
  		 * In fact, the Linux driver suggests it may not work but
  		 * we just assume it does until we find otherwise.
@@ -213,7 +216,7 @@
  		}
  
  		/*
-@@ -273,7 +302,31 @@
+@@ -273,7 +305,32 @@
  		sc->sc_gettemp = amdtemp_gettemp0f;
  		break;
  	case 0x10:
@@ -242,10 +245,11 @@
 +	case 0x12:
 +	case 0x14:
 +	case 0x15:
++	case 0x16:
  		/*
  		 * There is only one sensor per package.
  		 */
-@@ -289,6 +342,9 @@
+@@ -289,6 +346,9 @@
  	if (sc->sc_ncores > MAXCPU)
  		return (ENXIO);
  
@@ -255,7 +259,7 @@
  	if (bootverbose)
  		device_printf(dev, "Found %d cores and %d sensors.\n",
  		    sc->sc_ncores,
-@@ -297,41 +353,49 @@
+@@ -297,41 +357,49 @@
  	/*
  	 * dev.amdtemp.N tree.
  	 */
@@ -327,7 +331,7 @@
  	}
  
  	/*
-@@ -377,7 +441,7 @@
+@@ -377,7 +445,7 @@
  			sysctlctx = device_get_sysctl_ctx(cpu);
  
  			sensor = sc->sc_ntemps > 1 ?
@@ -336,7 +340,7 @@
  			sc->sc_sysctl_cpu[i] = SYSCTL_ADD_PROC(sysctlctx,
  			    SYSCTL_CHILDREN(device_get_sysctl_tree(cpu)),
  			    OID_AUTO, "temperature", CTLTYPE_INT | CTLFLAG_RD,
-@@ -415,13 +479,13 @@
+@@ -415,13 +483,13 @@
  
  	switch (sensor) {
  	case CORE0:
@@ -354,7 +358,7 @@
  		temp = imax(auxtemp[0], auxtemp[1]);
  		break;
  	default:
-@@ -439,53 +503,36 @@
+@@ -439,53 +507,36 @@
  amdtemp_gettemp0f(device_t dev, amdsensor_t sensor)
  {
  	struct amdtemp_softc *sc = device_get_softc(dev);
@@ -424,7 +428,7 @@
  
  	return (temp);
  }
-@@ -493,20 +540,12 @@
+@@ -493,20 +544,12 @@
  static int32_t
  amdtemp_gettemp(device_t dev, amdsensor_t sensor)
  {
