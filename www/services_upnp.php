@@ -104,7 +104,6 @@ if ($_POST) {
 		$config['upnp']['name'] = $_POST['name'];
 		$config['upnp']['if'] = $_POST['if'];
 		$config['upnp']['port'] = $_POST['port'];
-		$config['upnp']['web'] = isset($_POST['web']) ? true : false;
 		$config['upnp']['home'] = $_POST['home'];
 		$config['upnp']['profile'] = $_POST['profile'];
 		$config['upnp']['deviceip'] = $_POST['deviceip'];
@@ -145,7 +144,6 @@ function enable_change(enable_change) {
 	document.iform.name.disabled = endis;
 	document.iform.xif.disabled = endis;
 	document.iform.port.disabled = endis;
-	document.iform.web.disabled = endis;
 	document.iform.home.disabled = endis;
 	document.iform.homebrowsebtn.disabled = endis;
 	document.iform.content.disabled = endis;
@@ -168,18 +166,6 @@ function profile_change() {
 
 		default:
 			showElementById('deviceip_tr','hide');
-			break;
-	}
-}
-
-function web_change() {
-	switch(document.iform.web.checked) {
-		case false:
-			showElementById('url_tr','hide');
-			break;
-
-		case true:
-			showElementById('url_tr','show');
 			break;
 	}
 }
@@ -232,7 +218,6 @@ function transcoding_change() {
 					<?php html_filechooser("tempdir", gettext("Temporary directory"), $pconfig['tempdir'], gettext("Temporary directory to store transcoded files."), $g['media_path'], true, 67);?>
 					<?php html_separator();?>
 					<?php html_titleline(gettext("Administrative WebGUI"));?>
-					<?php html_checkbox("web", gettext("WebGUI"), !empty($pconfig['web']) ? true : false, gettext("Enable administrative DLNA/UPnP WebGUI."), "", false, "web_change()");?>
 					<?php
 					$if = get_ifname($pconfig['if']);
 					$ipaddr = get_ipaddr($if);

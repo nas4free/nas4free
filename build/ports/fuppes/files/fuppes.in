@@ -179,12 +179,12 @@ EOF
 	fi
 
 	# Enable/disable web interface.
-	if ! configxml_isset //upnp/web; then
-		# Set allowed IP to loopback to disable all external IP's.
-		/usr/local/bin/xml edit -s "//fuppes_config/network/allowed_ips" \
-			-t elem -n ip -v "127.0.0.1" ${fuppes_config} > ${fuppes_config}.tmp
-		/bin/mv ${fuppes_config}.tmp ${fuppes_config}
-	fi
+#	if ! configxml_isset //upnp/web; then
+#		# Set allowed IP to loopback to disable all external IP's.
+#		/usr/local/bin/xml edit -s "//fuppes_config/network/allowed_ips" \
+#			-t elem -n ip -v "127.0.0.1" ${fuppes_config} > ${fuppes_config}.tmp
+#		/bin/mv ${fuppes_config}.tmp ${fuppes_config}
+#	fi
 
 	# Enable/disable transcoding
 	_endis="false"
