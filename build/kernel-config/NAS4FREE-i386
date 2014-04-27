@@ -21,31 +21,35 @@ options 	GEOM_ELI		# Disk encryption.
 options 	GEOM_UZIP		# Read-only compressed disks
 
 device		lagg			# Link aggregation interface.
-device		vlan			# 802.1Q VLAN support
+#device		vlan			# 802.1Q VLAN support
 device		if_bridge		# Bridge interface.
 
 # 10GbE adapters
-device		bxe		# Broadcom BCM57710/BCM57711/BCM57711E 10Gb Ethernet
-device		de		# DEC/Intel DC21x4x (``Tulip'')
 device		cxgb		# Chelsio T3 10 Gigabit Ethernet
 device		cxgb_t3fw	# Chelsio T3 10 Gigabit Ethernet firmware
 device		cxgbe		# Chelsio T4 10GbE PCIe adapter
-device		ixgb		# Intel Pro/10Gbe PCI-X Ethernet
-device		ixgbe		# Intel PRO/10GbE PCIE Ethernet Family
+device		ixgbe		# Intel Pro/10Gbe PCI-X Ethernet
 device		mxge		# Myricom Myri-10G 10GbE NIC
 device		nxge		# Neterion Xframe 10GbE Server/Storage Adapter
+#device	qlxgb		# QLogic 3200 and 8200 10GbE/CNA Adapter
+device		vxge		# Exar/Neterion XFrame 3100 10GbE
+device		oce		# Emulex 10Gbe Ethernet
+#device	sfxge		# Solarflare 10Gb Ethernet Adapters
 
-# VirtIO support
-device		virtio		# Generic VirtIO bus (required)
-device		virtio_pci	# VirtIO PCI Interface
-device		vtnet		# VirtIO Ethernet device
-device		virtio_blk	# VirtIO Block device
-device		virtio_scsi	# VirtIO SCSI device
-device		virtio_balloon	# VirtIO Memory Balloon device
+# InfiniBand support
+options	OFED		# InfiniBand support
+options	SDP		# SDP protocol
+options	IPOIB		# IPoIB
+options	IPOIB_CM	# IPoIB connected mode
+
+# InfiniBand Adapters
+device		mlx4ib
+device		mlxen
+device		mthca
 
 # Hardware crypto acceleration
-device		crypto
-device		cryptodev
+device		crypto		# core crypto support
+device		cryptodev	# /dev/crypto for access to h/w
 
 # Temperature sensors:
 #
@@ -64,7 +68,7 @@ options		IPFIREWALL_VERBOSE_LIMIT=5
 options		IPFIREWALL_DEFAULT_TO_ACCEPT
 
 # Disk quotas are supported when this option is enabled.
-options 	QUOTA			#enable disk quotas
+#options 	QUOTA			#enable disk quotas
 
 # use module
 #nooption 	NFSCLIENT		# Network File System client
