@@ -97,7 +97,7 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/microdowell ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/netxml-ups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/nutdrv_qx ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/.libs/nut-ipmipsu ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/nut-ipmipsu ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/oldmge-shut ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/oneac ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/optiups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
