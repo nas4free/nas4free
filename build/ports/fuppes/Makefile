@@ -23,6 +23,7 @@ USE_AUTOTOOLS=	autoconf
 USE_GNOME=		libxml2
 USE_ICONV=		yes
 USE_GMAKE=		yes
+MAKE_JOBS_UNSAFE=yes
 GNU_CONFIGURE=		yes 
 CONFIGURE_ARGS+=	--enable-largefile \
 			--enable-transcoder-ffmpeg \
