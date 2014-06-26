@@ -1,6 +1,6 @@
 PORTNAME=		proftpd
-PORTVERSION=	1.3.4d
-PORTREVISION?=  0
+PORTVERSION=	1.3.5
+PORTREVISION?=  2
 CATEGORIES=		ftp
 COMMENT=		Highly configurable FTP daemon
 MAINTAINER=		zoon01@nas4free.org
@@ -13,7 +13,8 @@ MASTER_SITES=		ftp://ftp.proftpd.org/distrib/source/ \
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-USE_GMAKE=		yes
+MAKE_JOBS_UNSAFE=       yes
+USES=           gmake libtool
 USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 USE_GETTEXT=		yes
@@ -37,7 +38,8 @@ CONFIGURE_ARGS=	--localstatedir=/var/run \
 				--enable-ctrls \
 				--enable-largefile
 CONFIGURE_ENV=	"LIBS=-lintl -L${LOCALBASE}/lib -lssl -lcrypto -L${OPENSSLLIB}"
-CFLAGS+=	-DHAVE_OPENSSL -I${OPENSSLINC}
+
+CPPFLAGS+=      -DHAVE_OPENSSL -I${OPENSSLINC}
 
 .include <bsd.port.pre.mk>
 
