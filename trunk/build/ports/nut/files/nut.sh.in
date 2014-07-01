@@ -9,7 +9,6 @@
 # All rights reserved.
 #
 
-
 # PROVIDE: nut
 # REQUIRE: NETWORKING
 # BEFORE: LOGIN
@@ -84,14 +83,18 @@ EOF
 
 	# Add listening interface for remote monitoring
 	if configxml_isset //ups/remotemonitor; then
-		_if=`configxml_get "//interfaces/lan/if"`
-		_ip=`get_ipaddr inet ${_if}`
-		echo "LISTEN ${_ip} ${nut_upsd_port}" >> ${nut_upsd_conf}
+	_if=`configxml_get "//interfaces/lan/if"`
+	_ip=`get_ipaddr inet ${_if}`
 
-		#if configxml_isset //interfaces/lan/ipv6_enable; then
-		#	_ip=`get_ipaddr inet6 ${_if}`
-		#	echo "LISTEN ${_ip} ${nut_upsd_port}" >> ${nut_upsd_conf}
-		#fi
+	for _oneip in ${_ip}
+	do
+	echo "LISTEN ${_oneip} ${nut_upsd_port}" >> ${nut_upsd_conf}
+	done
+
+	#if configxml_isset //interfaces/lan/ipv6_enable; then
+	# _ip=`get_ipaddr inet6 ${_if}`
+	# echo "LISTEN ${_ip} ${nut_upsd_port}" >> ${nut_upsd_conf}
+	#fi
 	fi
 
 	############################
