@@ -1,6 +1,6 @@
 PORTNAME=		lcdproc
-PORTVERSION=	0.5.6
-PORTREVISION= 3
+PORTVERSION=	0.5.7
+PORTREVISION= 0
 CATEGORIES=		sysutils
 MASTER_SITES=		SF
 COMMENT=		Client/server suite for LCD devices
@@ -9,10 +9,9 @@ MAINTAINER=		zoon01@nas4free.org
 USE_AUTOTOOLS=	autoconf automake aclocal
 GNU_CONFIGURE=	yes
 USES=           pkgconfig
-NO_STAGE=       yes
 
 LIB_DEPENDS+=		ftdi.21:${PORTSDIR}/devel/libftdi
-LIB_DEPENDS+=		hid:${PORTSDIR}/devel/libhid
+LIB_DEPENDS+=		libhid.so:${PORTSDIR}/devel/libhid
 
 CONFIGURE_ARGS=	--enable-drivers="${LCDPROC_DRIVERS}" \
 						--with-libusb \
@@ -81,7 +80,7 @@ LCDPROC_DRIVERS+=IOWarrior \
 		shuttleVFD
 
 . if ${PORT_OPTIONS:MFTDI}
-LIB_DEPENDS+=        ftdi:${PORTSDIR}/devel/libftdi
+LIB_DEPENDS+=		libftdi.so:${PORTSDIR}/devel/libftdi
 CONFIGURE_ARGS+=	--enable-libftdi
 PLIST_SUB+=		FTDI=""
 LCDPROC_DRIVERS+=i2500vfd \
@@ -93,7 +92,7 @@ PLIST_SUB+=		FTDI="@comment "
 . endif
 
 . if ${PORT_OPTIONS:MHID}
-LIB_DEPENDS+=		hid:${PORTSDIR}/devel/libhid
+LIB_DEPENDS+=		libhid.so:${PORTSDIR}/devel/libhid
 CONFIGURE_ARGS+=	--enable-libhid
 PLIST_SUB+=		HID=""
 LCDPROC_DRIVERS+=mdm166a
@@ -108,24 +107,23 @@ PLIST_SUB+=		USB="@comment " FTDI="@comment " HID="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MFREETYPE}
-LIB_DEPENDS+=        freetype:${PORTSDIR}/print/freetype2
+LIB_DEPENDS+=        libfreetype.so:${PORTSDIR}/print/freetype2
 .else
 CONFIGURE_ARGS+=     --disable-freetype
 .endif
 
 .if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=        png15:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=        libpng.so:${PORTSDIR}/graphics/png
 .else
 CONFIGURE_ARGS+=     --disable-libpng
 .endif
 
 .if ${PORT_OPTIONS:MSERDISP}
-LIB_DEPENDS+=        serdisp:${PORTSDIR}/devel/serdisplib
-CFLAGS+=             -I${LOCALBASE}/include
-LDFLAGS+=            -L${LOCALBASE}/lib
-CPPFLAGS+=           -I${LOCALBASE}/include
+SERDISP_LIB_DEPENDS=	libserdisp.so:${PORTSDIR}/devel/serdisplib
+SERDISP_CFLAGS=		-I${LOCALBASE}/include
+SERDISP_LDFLAGS=	-L${LOCALBASE}/lib
+SERDISP_CPPFLAGS=	-I${LOCALBASE}/include
 .endif
- 
 
 
 do-install:
