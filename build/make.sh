@@ -345,19 +345,6 @@ build_kernel() {
 				for module in $(cat ${NAS4FREE_WORKINGDIR}/modules.files | grep -v "^#"); do
 					install -v -o root -g wheel -m 555 ${modulesdir}/${module} ${NAS4FREE_ROOTFS}/boot/kernel
 				done
-
-				echo "--------------------------------------------------------------";
-				echo ">>> Add ${NAS4FREE_ARCH} Specific Kernel Modules";
-				echo "--------------------------------------------------------------";
-
-				[ -f ${NAS4FREE_WORKINGDIR}/modules_${NAS4FREE_ARCH}.files ] && rm -f ${NAS4FREE_WORKINGDIR}/modules_${NAS4FREE_ARCH}.files;
-				cp -f ${NAS4FREE_SVNDIR}/build/kernel-config/modules_${NAS4FREE_ARCH}.files ${NAS4FREE_WORKINGDIR};
-
-				modulesdir=${NAS4FREE_SVNDIR}/build/kernel-modules;
-
-				for module in $(cat ${NAS4FREE_WORKINGDIR}/modules_${NAS4FREE_ARCH}.files | grep -v "^#"); do
-					install -v -o root -g wheel -m 555 ${modulesdir}/${module} ${NAS4FREE_ROOTFS}/boot/modules
-				done
 				;;
   	esac
   done
@@ -443,23 +430,6 @@ copy_kmod() {
 		b=`basename ${f}`
 		(cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules; install -v -o root -g wheel -m 555 ${f} $NAS4FREE_TMPDIR/boot/kernel/${b}; gzip -9 $NAS4FREE_TMPDIR/boot/kernel/${b})
 	done
-
-	echo "Copy ${NAS4FREE_ARCH} specific kmod to $NAS4FREE_TMPDIR/boot/modules"
-
-	[ -f ${NAS4FREE_WORKINGDIR}/modules_${NAS4FREE_ARCH}.files ] && rm -f ${NAS4FREE_WORKINGDIR}/modules_${NAS4FREE_ARCH}.files;
-	cp -f ${NAS4FREE_SVNDIR}/build/kernel-config/modules_${NAS4FREE_ARCH}.files ${NAS4FREE_WORKINGDIR};
-
-	if [ ! -d $NAS4FREE_TMPDIR/boot/modules ]; then
-		mkdir -pv $NAS4FREE_TMPDIR/boot/modules
-	fi
-
-	modulesdir=${NAS4FREE_SVNDIR}/build/kernel-modules;
-
-	for module in $(cat ${NAS4FREE_WORKINGDIR}/modules_${NAS4FREE_ARCH}.files | grep -v "^#"); do
-		b=`basename ${modulesdir}/${module}`
-		( install -v -o root -g wheel -m 555 ${modulesdir}/${module} $NAS4FREE_TMPDIR/boot/modules/${b}; gzip -9 $NAS4FREE_TMPDIR/boot/modules/${b})
-	done
-
 	return 0;
 }
 
