@@ -42,6 +42,9 @@ $pgtitle = array(gettext("Status"), gettext("Disks"));
 // Get all physical disks.
 $a_phy_disk = array_merge((array)get_conf_physical_disks_list());
 
+$pconfig['temp_info'] = $config['smartd']['temp']['info'];
+$pconfig['temp_crit'] = $config['smartd']['temp']['crit'];
+
 if (!isset($config['disks']['disk']) || !is_array($config['disks']['disk']))
 	$config['disks']['disk'] = array();
 
@@ -86,14 +89,26 @@ $raidstatus = get_sraid_disks_list();
 					<td class="listr"><?=(empty($disk['serial']) ) === FALSE ? htmlspecialchars($disk['serial']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
 					<td class="listr"><?=($disk['fstype']) ? htmlspecialchars(get_fstype_shortdesc($disk['fstype'])) : htmlspecialchars(gettext("Unknown or unformatted"))?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars($iostat);?>&nbsp;</td>
-					<td class="listr"><?=$temp;?>&nbsp;</td>
+					<td class="listr"><?php
+					if ($temp <> htmlspecialchars(gettext("n/a"))){
+						if ($temp >= $pconfig['temp_crit']){
+							print "<div class=\"errortext\">".$temp."</div>";
+						}
+						else if( $temp >= $pconfig['temp_info']){
+							print "<div class=\"warningtext\">".$temp."</div>";
+						}
+					}
+					else{
+						print $temp;
+					}
+					?>&nbsp;</td>
 					<td class="listbg"><?=$status;?>&nbsp;</td>
 				</tr>
 				<?php endforeach; ?>
 				<?php if (isset($raidstatus)):?>
 				<?php foreach ($raidstatus as $diskk => $diskv):?>
 				<?php (($iostat = system_get_device_iostat($diskk)) === FALSE) ? $iostat = gettext("n/a") : $iostat = sprintf("%s KiB/t, %s tps, %s MiB/s", $iostat['kpt'], $iostat['tps'], $iostat['mps']);?>
-				<?php (($temp = system_get_device_temp($diskk)) === FALSE) ? $temp = gettext("n/a") : $temp = sprintf("%s &deg;C", $temp);?>
+				<?php (($temp = system_get_device_temp($diskk)) === FALSE) ? $temp = htmlspecialchars(gettext("n/a")) : $temp = sprintf("%s &deg;C", htmlspecialchars($temp));?>
 				<tr>
 					<td class="listlr"><?=htmlspecialchars($diskk);?></td>
 					<td class="listr"><?=htmlspecialchars($diskv['size']);?></td>
@@ -102,7 +117,19 @@ $raidstatus = get_sraid_disks_list();
 					<td class="listr"><?=htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
 					<td class="listr"><?=($diskv['fstype']) ? htmlspecialchars(get_fstype_shortdesc($diskv['fstype'])) : htmlspecialchars(gettext("Unknown or unformatted"))?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars($iostat);?>&nbsp;</td>
-					<td class="listr"><?=htmlspecialchars($temp);?>&nbsp;</td>
+					<td class="listr"><?php
+					if ($temp <> htmlspecialchars(gettext("n/a"))){
+						if ($temp >= $pconfig['temp_crit']){
+							print "<div class=\"errortext\">".$temp."</div>";
+						}
+						else if( $temp >= $pconfig['temp_info']){
+							print "<div class=\"warningtext\">".$temp."</div>";
+						}
+					}
+					else{
+						print $temp;
+					}
+					?>&nbsp;</td>
 					<td class="listbg"><?=htmlspecialchars($diskv['state']);?>&nbsp;</td>
 				</tr>
 				<?php endforeach;?>
