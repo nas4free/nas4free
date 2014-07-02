@@ -10,7 +10,7 @@ MASTER_SITES=	http://download.lighttpd.net/lighttpd/releases-1.4.x/ \
 
 LIB_DEPENDS+=		libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid \
 							libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
-							pcre:${PORTSDIR}/devel/pcre
+							libpcre.so:${PORTSDIR}/devel/pcre
 
 USE_BZIP2=	  yes
 #USE_AUTOTOOLS= libtool
@@ -36,6 +36,8 @@ CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd --enable-static \
 									--with-webdav-locks
 
 do-install:
+		@${INSTALL_SCRIPT} -v ${FILESDIR}/${PORTNAME}.in ${NAS4FREE_ROOTFS}/etc/rc.d/${PORTNAME}
+
 		@${INSTALL_PROGRAM} -v ${WRKSRC}/src/lighttpd ${NAS4FREE_ROOTFS}/usr/local/sbin
 
 		@${MKDIR} -v ${NAS4FREE_ROOTFS}/usr/local/lib/lighttpd
