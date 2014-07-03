@@ -342,7 +342,7 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
 					</div>
 					<?php endif;?>
 				<?php else:?>
-				<strong><?=gettext("You must reboot the system before you can upgrade the firmware.");?></strong>
+				<strong><?=sprintf(gettext("You must <a href='%s'>reboot</a> the system before you can upgrade the firmware."), "reboot.php");?></strong>
 				<?php endif;?>
 				<div id="remarks">
 					<?php html_remark("warning", gettext("Warning"), sprintf(gettext("DO NOT abort the firmware upgrade process once it has started. Once it is completed, the server will automatically reboot, the current configuration will be maintained.<br />You need a minimum of %d MiB free RAM to perform the upgrade.<br />It is strongly recommended that you <a href='%s'>Backup</a> the server configuration before doing a upgrade."), 512, "system_backup.php"));?>
