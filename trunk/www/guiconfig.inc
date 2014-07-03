@@ -290,7 +290,7 @@ function print_warning_box($msg) {
 function print_config_change_box() {
 	$message = gettext("Apply changes");
 	echo "<div id='applybox'>";
-	print_info_box(gettext("The configuration has been changed.<br />You must apply the changes in order for them to take effect."));
+	print_info_box(sprintf(gettext("The configuration has been changed.<br />You must apply the changes in order for them to take effect.<br /><b>If this message persist take a look at the <a href='%s'>system log</a> for more information.</b>"), "diag_log.php"));
 	echo "<input name=\"apply\" type=\"submit\" class=\"formbtn\" id=\"apply\" value=\"{$message}\" />";
 	echo "</div>";
 }
