@@ -934,9 +934,14 @@ function parse_camcontrol_info($devtype){
 			if (strncmp($device[0],'pass',4) == 0){
 				$device = preg_split( '/([-A-z]+)/', $temp[0], -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
 			}
+			// if there is no other device name, use pass[0-9]
+			// example : devices on 'mfi' will show :- <ATA WDC WD40EFRX-68W 0A80> at scbus6 target 1 lun 0 (pass5)
+			else if( empty($device) && count($temp) == 1 && strncmp($temp[0],'pass',4) == 0){
+				$device = preg_split( '/([-A-z]+)/', $temp[0], -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY);
+			}
 
 			// legacy compatibility: for scsi option, do not include ata drives, for ata option, do not include scsi drives
-			if( ($devtype!="scsi" & $controller[0] == $devtype) | ($devtype=="scsi" & $controller[0]!="ata") ){
+			if( (($devtype!="scsi" & $controller[0] == $devtype) | ($devtype=="scsi" & $controller[0]!="ata") ) && $controller[0] != "mfi" ){
 				// Ignore CD-ROMs and SCSI enclosure devices (ses)
 				if($device[0] != "" & !preg_match("/^(cd|acd|ses)/", $device[0] )){
 					// Add device into devlice list array
@@ -1061,6 +1066,18 @@ function parse_controller_config(&$devlist){
 				$device['smart']['devicetype'] = $device['controller'];
 				$device['smart']['devicetypearg'] = "hpt,".$controller_id."/".$disk_id;
 				break;
+			// LSI MegaRAID SAS
+			case 'mfi':
+				$mfi_device = map_mfi_device_name($device['controller'].$device['controller_id'],$device['name']);
+
+				$device['target_id'] = $mfi_device['target_id'];
+				$device['model'] = parse_device_desc($mfi_device['device_name']);
+				$device['controller_desc'] = parse_raid_controller_desc($device['controller'].$device['controller_id']);
+
+				$device['smart']['devicefilepath'] = '/dev/'.$mfi_device['device_name'];
+				$device['smart']['devicetype'] = 'sat';
+				$device['smart']['devicetypearg'] = 'sat';
+				break;
 			// LSI 2008 (IT mode)
 			case 'mps':
 			case 'mpt':
@@ -1136,6 +1153,31 @@ function parse_controller_config(&$devlist){
 	}
 	return $devlist;
 }
+
+
+function map_mfi_device_name($controller, $mfisyspd){
+	$mfi_device = array();
+	mwexec2("dmesg | grep \"".$device['controller']."\"", $lines);
+
+	// look for deviceid '0' in mfisyspd0: 3815447MB (7814037168 sectors) SYSPD volume (deviceid: 0)
+	foreach($lines as $line){
+		if( preg_match("/^".$mfisyspd.": /", $line, $matches)){
+			if( preg_match("/(?<= \(deviceid: )[0-9]+/", $line, $matches)){
+				$mfi_device['target_id']=$matches[0];
+			}
+		}
+	}
+
+	// 2nd pass to retrieve actual device name
+	foreach($lines as $line){
+		if(preg_match("/[-A-z0-9].*(?= at ".$controller." [-A-z0-9 ].*(?=target ".$mfi_device['target_id']."))+/",$line, $matches)){
+			$mfi_device['device_name'] = $matches[0];
+		}
+	}
+
+	return $mfi_device;
+}
+
 
 // Parse info from S.M.A.R.T.
 function get_smartctl_info($device){
@@ -1258,7 +1300,6 @@ function parse_raid_controller_desc($controller){
 
 	if (strncmp($line, $controller ,4)){
 		mwexec2("dmesg | grep $controller", $lines);
-		//$output = `dmesg | grep -w $controller`;
 
 		foreach ($lines as $line){
 			if ( strncmp($line, $controller.': <' ,strlen($controller)+3) == 0){
@@ -1436,9 +1477,12 @@ function get_hraid_disks_list()
 			$disklist[$diskname]['devicespecialfile']= "/dev/" . $diskname;
 			$disklist[$diskname]['type'] = "RAID";
 
-			if($device[0] == "twed"){
+			if($device[0] == "twed" || $device[0] == "mfisyspd"){
 
-				$disklist[$diskname]['target_id'] = $disklist[$diskname]['id'];
+				if( $device[0] == "twed") {
+					$disklist[$diskname]['target_id'] = $disklist[$diskname]['id'];
+				}
+
 				$matches = array();
 
 				// look for controller details from dmesg
@@ -1452,7 +1496,8 @@ function get_hraid_disks_list()
 						$disklist[$diskname]['controller_id'] = $controller[1];
 					}
 				}
-			}else{
+			}
+			else{
 				/* Looking for the disk description in the dmesg */
 				foreach ($rawdmesg as $dmesgline) {
 					/* Separe la ligne par les espace */
