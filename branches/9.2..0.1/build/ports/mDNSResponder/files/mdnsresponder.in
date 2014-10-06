@@ -1,0 +1,165 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+# 
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+# Copyright (c) 2006-2010 Volker Theile (votdev@gmx.de)
+# All rights reserved.
+#
+# Service types definition: http://www.dns-sd.org/ServiceTypes.html
+
+# PROVIDE: mdnsresponder
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+# XQUERY: -i "count(//system/zeroconf) > 0" -o "0" -b
+# RCVAR: mdnsresponder
+
+. /etc/rc.subr
+. /etc/configxml.subr
+. /etc/util.subr
+
+name="mdnsresponder"
+rcvar=mdnsresponder_enable
+
+load_rc_config "${name}"
+
+# Custom commands
+start_precmd="mdnsresponder_mkconf"
+stop_cmd="mdnsresponder_stop"
+mkconf_cmd="mdnsresponder_mkconf"
+extra_commands="mkconf"
+
+# Defaults
+mdnsresponder_config=${mdnsresponder_config:-"/var/etc/${name}.conf"}
+pidfile="/var/run/mDNSResponder.pid"
+command="/usr/local/bin/mDNSResponderPosix"
+command_args="-b -f ${mdnsresponder_config}"
+
+
+mdnsresponder_stop()
+{
+	if [ -f ${pidfile} ]; then
+		kill -s int `cat ${pidfile}`
+		rm ${pidfile}
+	fi
+}
+
+mdnsresponder_mkconf()
+{
+	local _if
+
+	echo "" > ${mdnsresponder_config}
+#
+# This file contains the services to be announced to other Rendezvous aware
+# machines on the .local network
+#
+# Entries constist of four consecutive lines as follows:
+# NAME OF SERVICE
+# TYPE OF SERVICE (and, if different from .local, the domain seperated by a space)
+# PORT OF SERVICE
+# TXT RECORD (short description of service)
+#
+# For types: http://www.dns-sd.org/ServiceTypes.html" > ${mdnsresponder_config}
+	/usr/local/bin/xml sel -t \
+		-v "//afp/afpname" -n \
+		-o "_device-info._tcp. local." -n \
+		-o "1" -n \
+		-o "model=Xserve" -n \
+		-n \
+		-v "//system/hostname" -n \
+		-i "//system/webgui/protocol[. = 'https']" \
+			-o "_https._tcp. local." -n \
+			-i "string-length(//system/webgui/port) > 0" -v "//system/webgui/port" -n -b \
+			-i "string-length(//system/webgui/port) = 0" -o "443" -n -b \
+		-b \
+		-i "//system/webgui/protocol[. != 'https']" \
+			-o "_http._tcp. local." -n \
+			-i "string-length(//system/webgui/port) > 0" -v "//system/webgui/port" -n -b \
+			-i "string-length(//system/webgui/port) = 0" -o "80" -n -b \
+		-b \
+		-o "path=/index.php" -n \
+		-n \
+		-i "count(//afp/enable) > 0" \
+			-v "//afp/afpname" -n \
+			-o "_afpovertcp._tcp. local." -n \
+			-o "548" -n \
+			-n \
+			-v "//afp/afpname" -n \
+			-o "_adisk._tcp. local." -n \
+			-o "9" -n \
+			-o "sys=waMA=0,adVF=0x100" -n \
+			-m "//afp/share" \
+				-i "adisk/enable" \
+					-v "concat('dk',position()-1,'=')" \
+					-i "string-length(adisk/advf) > 0" -v "concat('adVF=',adisk/advf,',')" -b \
+					-v "concat('adVN=',name,',adVU=',uuid)" -n \
+				-b \
+			-b \
+			-n \
+		-b \
+		-i "count(//rsyncd/enable) > 0" \
+			-v "//system/hostname" -n \
+			-o "_rsync._tcp. local." -n \
+			-v "//rsyncd/port" -n \
+			-n \
+		-b \
+		-i "count(//sshd/enable) > 0" \
+			-v "//system/hostname" -n \
+			-o "_ssh._tcp. local." -n \
+			-v "//sshd/port" -n \
+			-n \
+		-b \
+		-i "count(//ftpd/enable) > 0" \
+			-v "//system/hostname" -n \
+			-o "_ftp._tcp. local." -n \
+			-v "//ftpd/port" -n \
+			-n \
+		-b \
+		-i "count(//samba/enable) > 0" \
+			-v "//system/hostname" -n \
+			-o "_smb._tcp. local." -n \
+			-o "139" -n \
+			-n \
+		-b \
+		-i "count(//nfsd/enable) > 0" \
+			-m "//nfsd/share" \
+				-v "//system/hostname" -n \
+				-o "_nfs._tcp. local." -n \
+				-o "2049" -n \
+				-v "concat('path=',path)" -n \
+				-n \
+			-b \
+		-b \
+		-i "count(//upnp/enable) > 0" \
+			-v "//upnp/name" -n \
+			-o "_upnp._tcp. local." -n \
+			-i "string-length(//upnp/port) > 0" -v "//upnp/port" -n -b \
+			-i "string-length(//upnp/port) = 0" -o "49152" -n -b \
+			-n \
+		-b \
+		-i "count(//daap/enable) > 0" \
+			-v "//daap/servername" -n \
+			-o "_daap._tcp. local." -n \
+			-v "//daap/port" -n \
+			-o "txtvers=1" -n \
+			-o "iTSh Version=131073" -n \
+			-o "Version=196610" -n \
+			-n \
+			-v "//daap/servername" -n \
+			-o "_rsp._tcp. local." -n \
+			-v "//daap/port" -n \
+			-n \
+		-b \
+		-i "count(//bittorrent/enable) > 0" \
+			-v "//system/hostname" -n \
+			-o "_bittorrent._tcp. local." -n \
+			-v "//bittorrent/port" -n \
+			-n \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${mdnsresponder_config}
+}
+
+run_rc_command "$1"

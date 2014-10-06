@@ -1,0 +1,62 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# This script export users to Quixplorer config.
+#
+
+# PROVIDE: fmperm
+# REQUIRE: DAEMON
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="fmperm"
+
+load_rc_config "$name"
+
+# Defaults
+fmperm_configdir=${fmperm_configdir:-"/usr/local/www/quixplorer/_config"}
+fmperm_htusers=${fmperm_htusers:-"${fmperm_configdir}/.htusers.php"}
+fmperm_user_permissions=${fmperm_user_permissions:-"17"}
+fmperm_user_active=${fmperm_user_active:-"1"}
+
+echo "Preparing web-based file-management."
+
+# Generate .htusers.php file and export User accounts
+echo '<?php $GLOBALS["users"]=array(' > ${fmperm_htusers}
+
+# Option to disable/enable 'File Manager' by WebGUI
+if [ `configxml_get_count "//system/disablefm"` -gt 0 ]; then
+    echo ');?>' >> ${fmperm_htusers}
+    exit 0;
+fi
+
+# Export and set Users account
+_index=`configxml_get_count "//access/user"`
+while [ ${_index} -gt 0 ]
+do
+	_password=`configxml_get "//access/user[${_index}]/password"`
+	_password_md5=`/sbin/md5 -q -s "${_password}"`
+	_homedir=`configxml_get "//access/user[${_index}]/homedir"`
+	[ -z "${_homedir}" ] && _homedir=/mnt
+
+	/usr/local/bin/xml sel -t -m "//access/user[${_index}]" \
+		-v "concat('array(\"',login,'\",\"${_password_md5}\",\"${_homedir}\",\"http://localhost\",0,\"^.ht\",${fmperm_user_permissions},${fmperm_user_active}),')" \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${fmperm_htusers}
+
+	_index=$(( ${_index} - 1 ))
+done
+
+# Export and set Administrator and Root account
+	_password=`configxml_get "//system/password"`
+	_password_md5=`/sbin/md5 -q -s "${_password}"`
+
+	/usr/local/bin/xml sel -t -m "//system" \
+		-v "concat('array(\"',username,'\",\"${_password_md5}\",\"/\",\"http://localhost\",1,\"\",32847,1),')" -n \
+		-o "array(\"root\",\"${_password_md5}\",\"/\",\"http://localhost\",1,\"\",32847,1)," \
+	${configxml_file} | /usr/local/bin/xml unesc >> ${fmperm_htusers}
+
+echo ');?>' >> ${fmperm_htusers}

@@ -1,0 +1,123 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+# All rights reserved.
+#
+#set -x
+
+. /etc/rc.subr
+
+name="rconf"
+version="0.1.7"
+
+# Defaults
+type=${1}
+action=${2}
+rc_config=${rc_config:-"/etc/rc.conf"}
+
+usage() {
+cat << FOO
+${name} (version ${version}), manipulate ${rc_config} file.
+Volker Theile (votdev@gmx.de) Copyright (C) 2007
+
+Usage: ${0} service (enable|disable|remove|rcvar) servicename
+       ${0} attribute set name value
+       ${0} attribute remove name
+
+Examples:
+       # ${name} service enable sshd
+       Set sshd_enable="YES" in ${rc_config}.
+
+       # ${name} service disable sshd
+       Set sshd_enable="NO" in ${rc_config}.
+
+       # ${name} service remove sshd
+       Remove sshd_enable from ${rc_config}.
+
+       # ${name} service rcvar sshd
+       Display what rc.conf variable is used (if any).
+       Return 0 if YES, otherwise 1
+
+       # ${name} attribute set hostname xyz
+       Set attribute hostname="xyz" in ${rc_config}.
+
+       # ${name} attribute remove hostname
+       Remove attribute hostname from ${rc_config}.
+FOO
+	exit 1
+}
+
+# remove string
+# Remove given string from file.
+remove() {
+	if [ -e ${rc_config} ]; then
+		/usr/bin/sed -i "" "/^${1}=.*/d" ${rc_config}
+	fi
+}
+
+if [ $# -lt 2 ]; then
+	usage
+	exit 1
+fi
+
+case ${type} in
+	service)
+		shift 2
+		services=$*
+		for service in $services; do
+			case ${action} in
+				enable)
+					remove "${service}_enable"
+					echo "${service}_enable=\"YES\"" >> ${rc_config}
+					;;
+
+				disable)
+					remove "${service}_enable"
+					echo "${service}_enable=\"NO\"" >> ${rc_config}
+					;;
+
+				remove)
+					remove "${service}_enable"
+					;;
+
+				rcvar)
+					load_rc_config ${service}
+					if checkyesno "${service}_enable"; then
+						exit 0
+					else
+						exit 1
+					fi
+					;;
+			esac
+		done
+		;;
+
+	attribute)
+		attribute=${3}
+		case ${action} in
+			set)
+				remove "${attribute}"
+				# Shift parameters and use the rest of the given parameters as value.
+				shift 3
+				value=$*
+				echo "${attribute}=\"${value}\"" >> ${rc_config}
+				;;
+
+			remove)
+				remove "${attribute}"
+				;;
+		esac
+		;;
+
+	*)
+		usage
+		exit 1
+		;;
+esac
+
+exit 0

@@ -1,0 +1,116 @@
+#!/bin/sh
+
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+
+# Original script by Freddie Cash <fjwcash@gmail.com>
+# Modified by Michael W. Lucas <mwlucas@BlackHelicopters.org>
+# and Viktor Petersson <vpetersson@wireload.net>
+# Modified for NAS4Free.
+
+# The names of the HAST resources, as listed in /etc/hast.conf
+resources=`/sbin/hastctl dump | /usr/bin/grep resource | /usr/bin/sed -e 's/^.*:\ *//'`
+
+# delay in mounting HAST resource after becoming master
+# make your best guess
+delay=3
+
+# logging
+log="user.notice"
+name="carp-hast"
+
+# end of user configurable stuff
+
+
+if [ -z "${resources}" ]; then
+    # no resources
+    exit 0
+fi
+
+# get carp interfaces
+carps=`/usr/local/bin/xml sel -t -m "//vinterfaces/carp" -v if -n -b /conf/config.xml`
+
+case "$1" in
+    master)
+	logger -p $log -t $name "Switching to primary provider for ${resources}."
+	sleep ${delay}
+
+	# Wait for any "hastd secondary" processes to stop
+	for disk in ${resources}; do
+	    while $( pgrep -lf "hastd: ${disk} \(secondary\)" > /dev/null 2>&1 ); do
+		sleep 1
+	    done
+
+	    # Switch role for each disk
+	    hastctl role primary ${disk}
+	    if [ $? -ne 0 ]; then
+		logger -p $log -t $name "Unable to change role to primary for resource ${disk}."
+		exit 1
+	    fi
+	done
+
+	# Wait for the /dev/hast/* devices to appear
+	for disk in ${resources}; do
+	    for I in $( jot 120 ); do
+		[ -c "/dev/hast/${disk}" ] && break
+		sleep 0.5
+	    done
+
+	    if [ ! -c "/dev/hast/${disk}" ]; then
+		logger -p $log -t $name "GEOM provider /dev/hast/${disk} did not appear."
+		exit 1
+	    fi
+	done
+
+	logger -p $log -t $name "Role for HAST resources ${resources} switched to primary."
+
+	# Mount devices and start services
+	logger -p $log -t $name "Mounting disks and strting services."
+	/usr/local/sbin/hastswitch start
+
+	# iSCSI service
+	/etc/rc.d/iscsi_target start
+
+	# make sure all carp is master
+	if [ -n "${carps}" ]; then
+		for if in ${carps}; do
+			/sbin/ifconfig ${if} up state master
+		done
+	fi
+    ;;
+
+    slave)
+	logger -p $log -t $name "Switching to secondary provider for ${resources}."
+
+	# make sure all carp is backup
+	if [ -n "${carps}" ]; then
+		for if in ${carps}; do
+			/sbin/ifconfig ${if} state backup
+		done
+	fi
+
+	# iSCSI service
+	/etc/rc.d/iscsi_target forcestop
+
+	# Stop services and unmount devices
+	logger -p $log -t $name "Stopping services and unmounting disks."
+	/usr/local/sbin/hastswitch stop
+
+	# Switch roles for the HAST resources
+	sleep $delay
+	for disk in ${resources}; do
+	    sleep 1
+	    hastctl role secondary ${disk} 2>&1
+	    if [ $? -ne 0 ]; then
+		logger -p $log -t $name "Unable to switch role to secondary for resource ${disk}."
+		exit 1
+	    fi
+	    logger -p $log -t $name "Role switched to secondary for resource ${disk}."
+	done
+    ;;
+
+    *)
+	logger -p $log -t $name "Unsupported command $1."
+    ;;
+esac

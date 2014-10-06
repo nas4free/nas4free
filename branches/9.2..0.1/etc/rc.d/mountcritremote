@@ -1,0 +1,61 @@
+#!/bin/sh
+#
+# $FreeBSD: src/etc/rc.d/mountcritremote,v 1.21.2.1.2.1 2011/11/11 04:20:22 kensmith Exp $
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+# Chanes:	- Modify prereq's.
+#
+
+# PROVIDE: mountcritremote
+# REQUIRE: NETWORKING FILESYSTEMS ipsec netwait
+# KEYWORD: nojail shutdown
+
+. /etc/rc.subr
+
+name="mountcritremote"
+stop_cmd="mountcritremote_stop"
+start_cmd="mountcritremote_start"
+start_precmd="mountcritremote_precmd"
+
+# Mount NFS filesystems if present in /etc/fstab
+#
+# XXX When the vfsload() issues with nfsclient support and related sysctls
+# have been resolved, this block can be removed, and the condition that
+# skips nfs in the following block (for "other network filesystems") can
+# be removed.
+#
+mountcritremote_precmd()
+{
+	# Currently this script is used as dummy.
+	return 0
+}
+
+mountcritremote_start()
+{
+	local _result
+
+	eval "/etc/rc.d.php/${name} cmd=start"
+	_result=$?
+
+	return ${_result}
+}
+
+mountcritremote_stop()
+{
+	local _result
+
+	eval "/etc/rc.d.php/${name} cmd=stop"
+	_result=$?
+
+	return ${_result}
+}
+
+load_rc_config $name
+run_rc_command "$1"

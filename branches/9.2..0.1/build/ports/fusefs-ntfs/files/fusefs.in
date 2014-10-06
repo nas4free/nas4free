@@ -1,0 +1,86 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+# 
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+# All rights reserved.
+#
+
+# PROVIDE: fusefs
+# REQUIRE: sysctl
+# BEFORE: mountcritlocal
+# KEYWORD: shutdown
+# XQUERY: -i "count(//mounts/mount/fstype[. = 'ntfs']) > 0" -o "0" -b
+# RCVAR: fusefs
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="fusefs"
+rcvar=fusefs_enable
+
+# Custom commands
+start_cmd="fusefs_start"
+stop_cmd="fusefs_stop"
+
+# Defaults
+fusefs_enable=${fusefs_enable:-"NO"}
+fusefs_safe=${fusefs_safe:-"NO"}
+fusefs_safe_evil=${fusefs_safe_evil:-"NO"}
+kmod="/boot/kernel/fuse.ko"
+
+fusefs_start()
+{
+	if kldstat | grep -q fuse\\.ko; then
+		echo "${name} is already running."
+		return 0
+	fi
+	echo "Starting ${name}."
+	kldload $kmod
+}
+
+fusefs_stop()
+{
+	if ! kldstat | grep -q fuse\\.ko; then
+		echo "${name} is not running."
+		return 1
+	fi
+	echo "Stopping ${name}."
+# Unmount FUSE filesystems in reverse order (in case they are nested) to
+# allow recent FUSE implementation to synchronize disks before shutdown.
+	mount | sed -e '1!G;h;$!d' | while read dev d1 mountpoint d2; do
+		case "$dev" in
+		/dev/fuse[0-9]*)
+			echo "fusefs: unmounting ${mountpoint}."
+			umount -f $mountpoint
+			;;
+		esac
+	done
+	if checkyesno "${name}_safe_evil"; then
+		if [ -n "$_rcshutdown_watchdog" ]; then
+			echo "fusefs: pausing watchdog timer."
+			kill -STOP "$_rcshutdown_watchdog"
+		fi
+	fi
+	if checkyesno "${name}_safe"; then
+		printf "fusefs: unloading $kmod... "
+		while ! kldunload $kmod 2> /dev/null; do
+			sleep 0.25
+		done
+		echo "done."
+	else
+	kldunload $kmod
+	fi
+	if checkyesno "${name}_safe_evil"; then
+		if [ -n "$_rcshutdown_watchdog" ]; then
+			echo "fusefs: continuing watchdog timer."
+			kill -CONT "$_rcshutdown_watchdog"
+		fi
+	fi
+}
+
+load_rc_config $name
+run_rc_command "$1"

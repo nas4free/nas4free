@@ -1,0 +1,157 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+# PROVIDE: smartd
+# REQUIRE: DAEMON
+# BEFORE: LOGIN
+# KEYWORD: shutdown
+# XQUERY: -i "count(//smartd/enable) > 0 and count(//disks/disk/smart[enable]) > 0" -o "0" -b
+# RCVAR: smartd
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="smartd"
+rcvar=smartd_enable
+
+load_rc_config "${name}"
+
+# Custom commands
+start_precmd="smartd_mkconf"
+mkconf_cmd="smartd_mkconf"
+extra_commands="mkconf"
+
+# Defaults
+smartd_enable=${smartd_enable:-"NO"}
+smartd_conf=${smartd_conf:-"/var/etc/${name}.conf"}
+pidfile="/var/run/${name}.pid"
+command="/usr/local/sbin/smartd"
+command_args="--configfile=${smartd_conf} --pidfile=${pidfile} --logfacility=local5"
+
+# Set check interval
+_interval=`configxml_get "//smartd/interval"`
+if [ -n "${_interval}" ]; then
+	command_args="${command_args} --interval=${_interval}"
+fi
+
+smartd_mkconf()
+{
+	local _devicespecialfile _devicefilepath _devicetypearg _smartextraoptions _param _powermode _email _tmp
+
+	# Clear existing file
+	/bin/cat /dev/null > ${smartd_conf}
+
+	# Power mode
+	_powermode=`configxml_get "//smartd/powermode"`
+
+	# Email report enabled?
+	_email=`/usr/local/bin/xml sel -t -m "//smartd/email" \
+		-i "count(enable) > 0" \
+			-v "concat('-m ',translate(to,';',','),' -M exec /etc/mail/smartdreport.sh')" \
+			-i "count(testemail) > 0" \
+				-o " -M test" \
+			-b \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc`
+
+	# Create configuration file
+	/usr/local/bin/xml sel -t -m "//disks/disk/smart[enable]" \
+		-v "concat(../devicespecialfile,' ',devicefilepath,' ',devicetypearg,' ',extraoptions)" \
+		-i "position() <= last()" -n -b \
+		${configxml_file} | /usr/local/bin/xml unesc | \
+		while read _devicespecialfile _devicefilepath _devicetypearg _smartextraoptions; do
+			_param="-a"
+			
+			# Device Type
+			if [ -n "${_devicetypearg}" ]; then
+				_param="${_param} -d ${_devicetypearg}";
+			fi
+			
+			# Be more tolerant. Try to monitor the disk even if it appears to lack SMART capabilities.
+			_param="${_param} -T permissive"
+
+			# Process scheduled self-tests.
+			# Example: -s (O/../.././(00|06|12|18)|S/../.././01|L/../../6/03)
+			_tmp=`/usr/local/bin/xml sel -t -m "//smartd/selftest[devicespecialfile = '${_devicespecialfile}']" \
+				-i "count(//smartd/selftest) > 1 and position() = 1" -o "(" -b \
+				-i "position() > 1" -o "|" -b \
+				-v "concat(type,'/')" \
+				-i "all_months[. = "0"]" \
+					-i "count(month) > 1" -o "(" -b \
+					-m month \
+						-i "position() > 1" -o "|" -b \
+						-v "format-number(.,'00')" \
+					-b \
+					-i "count(month) > 1" -o ")" -b \
+				-b \
+				-i "all_months[. != "0"]" -o ".." -b \
+				-o "/" \
+				-i "all_days[. = "0"]" \
+					-i "count(day) > 1" -o "(" -b \
+					-m day \
+						-i "position() > 1" -o "|" -b \
+						-v "format-number(.,'00')" \
+					-b \
+					-i "count(day) > 1" -o ")" -b \
+				-b \
+				-i "all_days[. != "0"]" -o ".." -b \
+				-o "/" \
+				-i "all_weekdays[. = "0"]" \
+					-i "count(weekday) > 1" -o "(" -b \
+					-m weekday \
+						-i "position() > 1" -o "|" -b \
+						-v "." \
+					-b \
+					-i "count(weekday) > 1" -o ")" -b \
+				-b \
+				-i "all_weekdays[. != "0"]" -o "." -b \
+				-o "/" \
+				-i "all_hours[. = "0"]" \
+					-i "count(hour) > 1" -o "(" -b \
+					-m hour \
+						-i "position() > 1" -o "|" -b \
+						-v "format-number(.,'00')" \
+					-b \
+					-i "count(hour) > 1" -o ")" -b \
+				-b \
+				-i "all_hours[. != "0"]" -o ".." -b \
+				-i "count(//smartd/selftest) > 1 and position() = last()" -o ")" -b \
+				${configxml_file} | /usr/local/bin/xml unesc`
+			if [ -n "${_tmp}" ]; then
+				_param="${_param} -s ${_tmp}";
+			fi
+
+			# Temperature monitoring.
+			_tmp=`/usr/local/bin/xml sel -t -m "//smartd/temp" \
+				-v "concat(diff,',',info,',',crit)" \
+				${configxml_file} | /usr/local/bin/xml unesc`
+			_param="${_param} -W ${_tmp}";
+
+			# Power mode
+			if [ -n "${_powermode}" ]; then
+				_param="${_param} -n ${_powermode},q";
+			fi
+
+			# Email report enabled?
+			if [ -n "${_email}" ]; then
+				_param="${_param} ${_email}";
+			fi
+
+			# Append extra options
+			if [ -n "${_smartextraoptions}" ]; then
+				_param="${_param} ${_smartextraoptions}"
+			fi
+
+			echo "${_devicefilepath} ${_param}" >> ${smartd_conf}
+		done
+}
+
+run_rc_command "$1"

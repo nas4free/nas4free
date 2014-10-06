@@ -1,0 +1,18 @@
+/*
+	NAS4Free notes.txt
+*/
+
+- Encrypted user passwords in config.xml:
+	It is not possible to use encrypted passwords in config.xml due to the following feature:
+	'Services|Webserver' --> 'Authentication' --> 'Enable Authentication'. Because the script
+	'/etc/rc.d/websrv_htpasswd' uses plain-text passwords to create an htpasswd file.
+
+- The 'vfs_readahead' Samba plugin is not usable on FreeBSD because the kernel
+  does not support a required POSIX function (posix_fadvice). SO it is buildable
+  on FreeBSD, but it will produce a syslog entry that the plugin is not
+  supported on this platform:
+
+	readahead_sendfile: no readahead on this platform
+
+	See ../samba3/work/samba-3.0.26a/source/modules/vfs_readahead.c for more
+	details.

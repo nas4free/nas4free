@@ -1,0 +1,83 @@
+#!/bin/sh
+#
+# Copyright (c) 1999  Matt Dillon
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# $FreeBSD: src/etc/rc.d/resolv,v 1.39.2.1.2.1 2011/11/11 04:20:22 kensmith Exp $
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+# PROVIDE: resolv
+# REQUIRE: netif FILESYSTEMS
+# KEYWORD: nojail
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="resolv"
+stop_cmd=':'
+
+load_rc_config $name
+
+# if the info is available via dhcp/kenv
+# build the resolv.conf
+#
+if [ ! -e /etc/resolv.conf -a \
+	-n "`/bin/kenv dhcp.domain-name-servers 2> /dev/null`" ]; then
+		> /etc/resolv.conf
+
+		if [ -n "`/bin/kenv dhcp.domain-name 2> /dev/null`" ]; then
+			echo domain `/bin/kenv dhcp.domain-name` > /etc/resolv.conf
+		fi
+
+		set -- `/bin/kenv dhcp.domain-name-servers`
+		for ns in `IFS=','; echo $*`; do
+			echo nameserver $ns >> /etc/resolv.conf;
+		done
+else
+	# Update resolv.conf if DHCP is not configured. Use configuration values from config.xml.
+	_ipaddress=`configxml_get "//interfaces/lan/ipaddr"`
+	if [ "dhcp" != "${_ipaddress}" ]; then
+		echo "Updating resolv.conf."
+
+		# Set the domain, IP4 and IP6 DNS servers.
+		/usr/local/bin/xml sel -t -o "domain " -v "//system/domain" -n \
+			-m "//system/dnsserver" \
+				-i "string-length() > 0" -o "nameserver " -v "." -n -b \
+			-b \
+			-i "count(//interfaces/*[enable]/ipv6_enable) > 0" \
+				-m "//system/ipv6dnsserver" \
+					-i "string-length() > 0" -o "nameserver " -v "." -n -b \
+				-b \
+			-b \
+			${configxml_file} | /usr/local/bin/xml unesc > /etc/resolv.conf
+	fi
+fi
