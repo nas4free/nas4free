@@ -1,47 +1,31 @@
 # wgboome.homepage.t-online.de/geom_raid5.tbz
 PORTNAME=		geom_raid5
-PORTVERSION=	1.0
-PORTREVISION=	0
-PORTEPOCH=	3
+PORTVERSION=	1.3
+PORTREVISION?=  1
 CATEGORIES=		sysutils
 COMMENT=		GEOM RAID5 filesystem
 MAINTAINER=		zoon01@nas4free.org
 
 DISTFILES?=
-NO_STAGE=       yes
 
-do-build:
-	@${TAR} -zxvf ${FILESDIR}/geom_raid5.tbz -C /usr/src
+NO_BUILD?=	yes
 
-	# Patch geom raid 5 for FreeBSD 8.0.
-	@${PATCH} -f /usr/src/sys/geom/raid5/g_raid5.c ${FILESDIR}/g_raid5.c.patch
-	@${PATCH} -f /usr/src/sbin/geom/class/raid5/Makefile ${FILESDIR}/Makefile.patch
-	@${PATCH} -f /usr/src/sbin/geom/class/raid5/geom_raid5.c ${FILESDIR}/geom_raid5.c.patch
+NO_PKG_REGISTER?=	yes
 
-	# Make kernel module.
-	@${MAKE} -C /usr/src/sys/modules/geom/geom_raid5 depend
-	@${MAKE} -C /usr/src/sys/modules/geom/geom_raid5
+ALWAYS_BUILD_DEPENDS=	yes
 
-	# Make application.
-	@${MKDIR} -v /usr/include/geom/raid5
-	@${CP} -pv /usr/src/sys/geom/raid5/g_raid5.h /usr/include/geom/raid5
-	@${MAKE} -C /usr/src/sbin/geom/class/raid5 depend
-	@${MAKE} -C /usr/src/sbin/geom/class/raid5
+DEPENDS_TARGET=	clean build
+
+BUILD_DEPENDS=	graid5:${PORTSDIR}/sysutils/graid5
+
 
 do-install:
 	# Install kernel module.
-	@${INSTALL_KLD} -v /usr/obj/usr/src/sys/modules/geom/geom_raid5/geom_raid5.ko ${NAS4FREE_ROOTFS}/boot/kernel
+	@${INSTALL_KLD} -v ${PORTSDIR}/sysutils/graid5/work/graid5-1.3.20140711.62/sys/geom_raid5.ko ${NAS4FREE_ROOTFS}/boot/kernel
 
 	# Install application.
 	@${LN} -f -v -s /sbin/geom ${NAS4FREE_ROOTFS}/sbin/graid5
-	@${INSTALL_PROGRAM} -v /usr/obj/usr/src/sbin/geom/class/raid5/geom_raid5.so ${NAS4FREE_ROOTFS}/lib/geom
+	@${INSTALL_PROGRAM} -v ${PORTSDIR}/sysutils/graid5/work/graid5-1.3.20140711.62/lib/geom_raid5.so ${NAS4FREE_ROOTFS}/lib/geom
 
-pre-clean:
-.if exists(/usr/src/sys/modules/geom/geom_raid5)
-	@${MAKE} -C /usr/src/sys/modules/geom/geom_raid5 clean obj
-.endif
-.if exists(/usr/src/sbin/geom/class/raid5)
-	@${MAKE} -C /usr/src/sbin/geom/class/raid5 clean obj
-.endif
 
 .include <bsd.port.mk>

@@ -8,7 +8,7 @@ MASTER_SITES=	http://www.routemeister.net/projects/sipcalc/files/
 
 USE_GETOPT_LONG=	yes
 GNU_CONFIGURE=	yes
-NO_STAGE=       yes
+NO_PKG_REGISTER=yes
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/sipcalc ${NAS4FREE_ROOTFS}/usr/local/bin

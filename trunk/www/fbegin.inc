@@ -111,8 +111,7 @@ $menu['services']['menuitem'][] = array("desc" => gettext("AFP"), "link" => "ser
 $menu['services']['menuitem'][] = array("desc" => gettext("Rsync"), "link" => "services_rsyncd.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("Unison"), "link" => "services_unison.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("iSCSI Target"), "link" => "services_iscsitarget.php", "visible" => TRUE);
-$menu['services']['menuitem'][] = array("desc" => gettext("DLNA/UPnP"), "link" => "services_upnp.php", "visible" => TRUE);
-$menu['services']['menuitem'][] = array("desc" => gettext("iTunes/DAAP"), "link" => "services_daap.php", "visible" => TRUE);
+$menu['services']['menuitem'][] = array("desc" => gettext("CLAMAV"), "link" => "services_clamav.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("Dynamic DNS"), "link" => "services_dynamicdns.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("SNMP"), "link" => "services_snmp.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("UPS"), "link" => "services_ups.php", "visible" => TRUE);
@@ -191,7 +190,13 @@ function display_menu($menuid) {
 	$link = $menu[$menuid]['link'];
 	if ($link == '') $link = 'index.php';
 	echo "<li>\n";
-	echo "	<a href=\"{$link}\" onmouseover=\"mopen('{$menuid}')\" onmouseout=\"mclosetime()\">".htmlspecialchars($menu[$menuid]['desc'])."</a>\n";
+	    $agent = $_SERVER['HTTP_USER_AGENT']; // Put browser name into local variable for desktop/mobile detection
+       if ((preg_match("/iPhone/i", $agent)) || (preg_match("/android/i", $agent))) {
+          echo "<a href=\"javascript:mopen('{$menuid}');\" onmouseout=\"mclosetime()\">".htmlspecialchars($menu[$menuid]['desc'])."</a>\n";
+       }
+       else {
+          echo "<a href=\"{$link}\" onmouseover=\"mopen('{$menuid}')\" onmouseout=\"mclosetime()\">".htmlspecialchars($menu[$menuid]['desc'])."</a>\n";
+       }
 	echo "	<div id=\"{$menuid}\" onmouseover=\"mcancelclosetime()\" onmouseout=\"mclosetime()\">\n";
 
 	# Display menu items.
@@ -273,7 +278,15 @@ function display_menu($menuid) {
 		<!-- Begin extension section -->
 		<?php if (Session::isAdmin() && is_dir("{$g['www_path']}/ext")):?>
 		<li>
-			<a href="index.php" onmouseover="mopen('extensions')" onmouseout="mclosetime()"><?=gettext("Extensions");?></a>
+			    <?php
+                $agent = $_SERVER['HTTP_USER_AGENT']; // Put browser name into local variable for desktop/mobile detection
+                if ((preg_match("/iPhone/i", $agent)) || (preg_match("/android/i", $agent))) {
+                   echo "<a href=\"javascript:mopen('extensions');\" onmouseout=\"mclosetime()\">".gettext("Extensions")."</a>";
+                }
+                else {
+                    echo "<a href=\"index.php\" onmouseover=\"mopen('extensions')\" onmouseout=\"mclosetime()\">".gettext("Extensions")."</a>";
+                }
+                ?>
 			<div id="extensions" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
 				<?php
 				$dh = @opendir("{$g['www_path']}/ext");

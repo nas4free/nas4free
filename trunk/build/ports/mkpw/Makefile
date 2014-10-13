@@ -6,7 +6,6 @@ COMMENT=		Password generation tool
 MAINTAINER=		zoon01@nas4free.org
 
 DISTFILES?=
-NO_STAGE=       yes
 
 do-build:
 	@${MKDIR} -p ${WRKSRC}

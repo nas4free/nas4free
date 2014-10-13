@@ -1,5 +1,5 @@
 PORTNAME=				bash
-PATCHLEVEL=		28
+PATCHLEVEL=		30
 PORTVERSION=		4.3.${PATCHLEVEL:S/^0//g}
 PORTREVISION?=	3
 CATEGORIES=			shells
@@ -32,7 +32,6 @@ COLONBREAKSWORDS_EXTRA_PATCHES= ${PATCHDIR}/extrapatch-colonbreakswords
 
 GNU_CONFIGURE=  yes
 USES=		  bison
-NO_STAGE=       yes
 USE_GETTEXT=	  yes
 CONFIGURE_ARGS=	--without-bash-malloc \
 								--disable-rpath \

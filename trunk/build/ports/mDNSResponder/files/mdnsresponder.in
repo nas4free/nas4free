@@ -28,24 +28,14 @@ load_rc_config "${name}"
 
 # Custom commands
 start_precmd="mdnsresponder_mkconf"
-stop_cmd="mdnsresponder_stop"
 mkconf_cmd="mdnsresponder_mkconf"
 extra_commands="mkconf"
 
 # Defaults
 mdnsresponder_config=${mdnsresponder_config:-"/var/etc/${name}.conf"}
-pidfile="/var/run/mDNSResponder.pid"
+pidfile="/var/run/${name}.pid"
 command="/usr/local/bin/mDNSResponderPosix"
-command_args="-b -f ${mdnsresponder_config}"
-
-
-mdnsresponder_stop()
-{
-	if [ -f ${pidfile} ]; then
-		kill -s int `cat ${pidfile}`
-		rm ${pidfile}
-	fi
-}
+command_args=" -b -f ${mdnsresponder_config} -P ${pidfile}"
 
 mdnsresponder_mkconf()
 {
@@ -64,7 +54,7 @@ mdnsresponder_mkconf()
 #
 # For types: http://www.dns-sd.org/ServiceTypes.html" > ${mdnsresponder_config}
 	/usr/local/bin/xml sel -t \
-		-v "//afp/afpname" -n \
+-v "//system/hostname" -n \
 		-o "_device-info._tcp. local." -n \
 		-o "1" -n \
 		-o "model=Xserve" -n \
@@ -83,10 +73,16 @@ mdnsresponder_mkconf()
 		-o "path=/index.php" -n \
 		-n \
 		-i "count(//afp/enable) > 0" \
+			-i "//afp/afpname[. = '']" \
+			-v "//system/hostname" \
+			-b \
 			-v "//afp/afpname" -n \
 			-o "_afpovertcp._tcp. local." -n \
 			-o "548" -n \
 			-n \
+			-i "//afp/afpname[. = '']" \
+			-v "//system/hostname" \
+			-b \
 			-v "//afp/afpname" -n \
 			-o "_adisk._tcp. local." -n \
 			-o "9" -n \

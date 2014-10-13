@@ -367,6 +367,8 @@ samba_start_precmd() {
 }
 
 samba_rcvar_cmd() {
+	local name rcvar
+	rcvar=${name}_enable
 	# Prevent recursive calling
 	unset "${rc_arg}_cmd" "${rc_arg}_precmd" "${rc_arg}_postcmd"
 	# Check master variable
@@ -397,7 +399,7 @@ samba_reload_cmd() {
 	unset "${rc_arg}_cmd" "${rc_arg}_precmd" "${rc_arg}_postcmd"
 	# Apply to all daemons
 	for name in ${samba_daemons}; do
-		rcvar=$(set_rcvar)
+		rcvar=${name}_enable
 		command="/usr/local/sbin/${name}"
 		pidfile="${samba_piddir}/${name}${pid_extra}.pid"
 		# Daemon should be enabled and running
@@ -463,7 +465,7 @@ samba_cmd() {
 	# Apply to all daemons
 	all_status=0
 	for name in ${samba_daemons}; do
-		rcvar=$(set_rcvar)
+		rcvar=${name}_enable
 		command="/usr/local/sbin/${name}"
 		pidfile="${samba_piddir}/${name}${pid_extra}.pid"
 		# Daemon should be enabled and running

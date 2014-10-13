@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# $FreeBSD: src/etc/rc.d/ipfw,v 1.25.2.1.2.1 2011/11/11 04:20:22 kensmith Exp $
+# $FreeBSD: releng/9.3/etc/rc.d/ipfw 253232 2013-07-12 01:12:28Z hrs $
 #
 # Part of NAS4Free (http://www.nas4free.org).
 # Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
@@ -18,7 +18,7 @@
 # PROVIDE: ipfw
 # REQUIRE: netif
 # BEFORE: NETWORKING
-# KEYWORD: nojail
+# KEYWORD: nojailvnet
 # XQUERY: -i "count(//system/firewall/enable) > 0" -o "0" -b
 # RCVAR: firewall
 
@@ -88,12 +88,12 @@ ipfw_prestart()
 	if checkyesno dummynet_enable; then
 		required_modules="$required_modules dummynet"
 	fi
-
+	if checkyesno natd_enable; then
+		required_modules="$required_modules ipdivert"
+	fi
 	if checkyesno firewall_nat_enable; then
-		if ! checkyesno natd_enable; then
-			required_modules="$required_modules ipfw_nat"
-		fi
-	fi 
+		required_modules="$required_modules ipfw_nat"
+	fi
 }
 
 ipfw_start()

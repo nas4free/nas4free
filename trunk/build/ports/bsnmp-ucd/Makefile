@@ -1,5 +1,5 @@
 PORTNAME=		bsnmp-ucd
-PORTVERSION=	0.4.0
+PORTVERSION=	0.4.1
 CATEGORIES=		net-mgmt
 COMMENT=			A bsnmpd module that implements parts of UCD-SNMP-MIB
 MAINTAINER=		zoon01@nas4free.org
@@ -7,12 +7,11 @@ MAINTAINER=		zoon01@nas4free.org
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 
 USE_MAKE=		yes
-USE_AUTOTOOLS=	libtool:env
-NO_STAGE=       	yes
+USES=           uidfix
+ MAKE_ENV+=      NO_OBJ=yes
 
 post-patch:
 	@${REINPLACE_CMD} -e '32,32 s/^.*/#include <sys\/queue.h>/' ${WRKSRC}/snmp_ucd.h
-	@${REINPLACE_CMD} -e "s/LOCALBASE/PREFIX/g" ${WRKSRC}/Makefile
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/snmp_ucd.so.* ${NAS4FREE_ROOTFS}/usr/lib

@@ -14,7 +14,7 @@
 . /etc/configxml.subr
 
 name="autosnapshot"
-rcvar=`set_rcvar`
+rcvar=autosnapshot_enable
 
 load_rc_config "${name}"
 

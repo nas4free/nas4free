@@ -8,8 +8,6 @@ MASTER_SITE_SUBDIR=	${PORTNAME}
 MAINTAINER=	zoon01@nas4free.org
 COMMENT=	A tool for dumping DMI (SMBIOS) contents in human-readable format
 
-NO_STAGE=       yes
-
 USE_BZIP2=	yes
 LICENSE=	GPLv2
 

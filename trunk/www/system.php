@@ -79,7 +79,7 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Hostname"), gettext("Username"));
 	$reqdfieldst = explode(" ", "hostname alias");
 
-	if (isset($_POST['domain'])) {
+	if (!empty($_POST['domain'])) {
 		$reqdfields = array_merge($reqdfields, array("domain"));
 		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Domain")));
 		$reqdfieldst = array_merge($reqdfieldst, array("domain"));
@@ -292,7 +292,7 @@ function webguiproto_change() {
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 			    <?php html_separator();?>
 			    <?php html_titleline(gettext("WebGUI"));?>
-					<?php html_inputbox("username", gettext("Username"), $pconfig['username'], gettext("It's recommended to change the default username and password for accessing the WebGUI, enter the username here."), true, 21);?>
+					<?php html_inputbox("username", gettext("Username"), $pconfig['username'], gettext("It's recommended to change the default username and password for accessing the WebGUI, enter the username here."), false, 21);?>
 					<?php html_combobox("webguiproto", gettext("Protocol"), $pconfig['webguiproto'], array("http" => "HTTP", "https" => "HTTPS"), gettext("Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol Secure (HTTPS) for the WebGUI."), false, false, "webguiproto_change()");?>
 					<?php html_inputbox("webguiport", gettext("Port"), $pconfig['webguiport'], gettext("Enter a custom port number for the WebGUI if you want to override the default (80 for HTTP, 443 for HTTPS)."), false, 6);?>
 					<?php html_textarea("certificate", gettext("Certificate"), $pconfig['certificate'], gettext("Paste a signed certificate in X.509 PEM format here."), true, 65, 7, false, false);?>
@@ -303,7 +303,7 @@ function webguiproto_change() {
 						<td colspan="2" valign="top" class="listtopic"><?=gettext("Hostname");?></td>
 					</tr>
 					<?php html_inputbox("hostname", gettext("Hostname"), $pconfig['hostname'], sprintf(gettext("Name of the NAS host, without domain part e.g. %s."), "<em>" . strtolower(get_product_name()) ."</em>"), true, 40);?>
-					<?php html_inputbox("domain", gettext("Domain"), $pconfig['domain'], sprintf(gettext("e.g. %s"), "<em>com, local</em>"), true, 40);?>
+					<?php html_inputbox("domain", gettext("Domain"), $pconfig['domain'], sprintf(gettext("e.g. %s"), "<em>com, local</em>"), false, 40);?>
 					<?php html_separator();?>
 					<?php html_titleline(gettext("DNS settings"));?>
 			    <tr>

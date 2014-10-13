@@ -8,8 +8,6 @@ DISTFILES?=
 
 .include <../nas4free.mk>
 
-NO_STAGE=       yes
-
 do-build:
 # Translate *po files to *.mo.
 	@for i in $$(ls ${NAS4FREE_SVNDIR}/locale/*.po); do \

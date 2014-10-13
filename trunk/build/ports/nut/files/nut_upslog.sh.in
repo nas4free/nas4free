@@ -37,6 +37,8 @@ pidfile="/var/run/upslog.pid"
 
 # Modify command flags.
 _upsname=`configxml_get "//ups/upsname"`
-nut_upslog_flags="-s ${_upsname}@localhost ${nut_upslog_flags}"
+_upsip=`configxml_get "//ups/ip"`
+nut_upslog_flags="-s ${_upsname}@${_upsip} ${nut_upslog_flags}"
 
 run_rc_command "$1"
+

@@ -8,17 +8,16 @@ MAINTAINER=		zoon01@nas4free.org
 MASTER_SITES=		SF/${PORTNAME}/${PORTNAME}/SVN-660
 DISTNAME=		${PORTNAME}-${PORTVERSION}
 
-LIB_DEPENDS+=		sqlite3:${PORTSDIR}/databases/sqlite3 \
-			tag:${PORTSDIR}/audio/taglib \
-			curl:${PORTSDIR}/ftp/curl \
-			pcre:${PORTSDIR}/devel/pcre \
-			uuid.1:${PORTSDIR}/misc/e2fsprogs-libuuid \
-			mp3lame.0:${PORTSDIR}/audio/lame \
-			twolame.0:${PORTSDIR}/audio/twolame \
-			vorbis.4:${PORTSDIR}/audio/libvorbis \
-			avformat:${PORTSDIR}/multimedia/ffmpeg
+LIB_DEPENDS+=		libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
+			libtag.so:${PORTSDIR}/audio/taglib \
+			libcurl.so:${PORTSDIR}/ftp/curl \
+			libpcre.so:${PORTSDIR}/devel/pcre \
+			libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid \
+			libmp3lame.so:${PORTSDIR}/audio/lame \
+			libtwolame.so:${PORTSDIR}/audio/twolame \
+			libvorbis.so:${PORTSDIR}/audio/libvorbis \
+			libavformat.so:${PORTSDIR}/multimedia/ffmpeg
 
-NO_STAGE=       	yes
 USE_AUTOTOOLS=	autoconf
 USE_GNOME=		libxml2
 USE_ICONV=		yes
