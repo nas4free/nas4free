@@ -21,7 +21,6 @@ IPATHS=			-I${WRKDIR}/${DISTNAME}/source3/m4 -I${WRKDIR}/${DISTNAME}/m4 -I${WRKD
 AUTOHEADER_ARGS=	${IPATHS}
 AUTOCONF_ARGS=		${IPATHS}
 
-NO_STAGE=       	yes
 USE_GMAKE=		yes
 GNU_CONFIGURE=	yes
 USES=                pkgconfig iconv
@@ -65,7 +64,7 @@ PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PKGCONFIGDIR_REL?=	${PKGCONFIGDIR:S|^${PREFIX}/||}
 
 USE_PKGCONFIG=          yes
-LIB_DEPENDS+=		execinfo.1:${PORTSDIR}/devel/libexecinfo
+LIB_DEPENDS+=		libexecinfo.so:${PORTSDIR}/devel/libexecinfo
 BUILD_DEPENDS+=		talloc>=2.0.8:${PORTSDIR}/devel/talloc
 RUN_DEPENDS+=		talloc>=2.0.8:${PORTSDIR}/devel/talloc
 CONFIGURE_ARGS+=	--enable-external-libtalloc
@@ -134,7 +133,7 @@ CONFIGURE_ARGS+=	--with-ldap
 
 #CONFIGURE_ARGS+=	--with-shared-modules="idmap_tdb2,idmap_ad,idmap_adex,idmap_hash,idmap_rid,charset_weird"
 .if ${OSVERSION} > 800000
-LIB_DEPENDS+=		sunacl.1:${PORTSDIR}/sysutils/libsunacl
+LIB_DEPENDS+=		libsunacl.so:${PORTSDIR}/sysutils/libsunacl
 CONFIGURE_ARGS+=	--with-shared-modules="idmap_tdb2,idmap_ad,idmap_adex,idmap_hash,idmap_rid,charset_weird,vfs_cacheprime,vfs_commit,vfs_dirsort,vfs_syncops,vfs_zfsacl"
 .else
 CONFIGURE_ARGS+=	--with-shared-modules="idmap_tdb2,idmap_ad,idmap_adex,idmap_hash,idmap_rid,charset_weird,vfs_cacheprime,vfs_commit,vfs_dirsort,vfs_syncops"
@@ -185,7 +184,7 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/smbcquotas ${NAS4FREE_ROOTFS}/usr/local/bin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/smbget ${NAS4FREE_ROOTFS}/usr/local/bin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/smbspool ${NAS4FREE_ROOTFS}/usr/local/bin
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/testparm ${NAS4FREE_ROOTFS}/usr/local/bin
+#	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/testparm ${NAS4FREE_ROOTFS}/usr/local/bin
 #	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/tdbbackup ${NAS4FREE_ROOTFS}/usr/local/bin
 #	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/tdbdump ${NAS4FREE_ROOTFS}/usr/local/bin
 #	@${INSTALL_PROGRAM} -v ${WRKSRC}/bin/tdbtool ${NAS4FREE_ROOTFS}/usr/local/bin

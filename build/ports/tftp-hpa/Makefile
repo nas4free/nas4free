@@ -8,7 +8,6 @@ MASTER_SITES=	ftp://ftp.kernel.org/pub/software/network/tftp/tftp-hpa/
 
 GNU_CONFIGURE=	yes
 USES=           gmake tar:xz
-NO_STAGE=       yes
 
 CONFIGURE_ARGS+=	--enable-largefile
 

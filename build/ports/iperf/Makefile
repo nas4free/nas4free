@@ -7,7 +7,6 @@ MAINTAINER=		zoon01@nas4free.org
 MASTER_SITES=			SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}%20source
 
 GNU_CONFIGURE=	yes
-NO_STAGE=       yes
 CONFIGURE_ARGS+=	--enable-ipv6 \
 									--enable-threads \
 									--enable-multicast

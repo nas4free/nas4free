@@ -18,7 +18,6 @@ options 	GEOM_ELI		# Disk encryption.
 options 	GEOM_UZIP		# Read-only compressed disks
 
 device		lagg			# Link aggregation interface.
-#device	vlan			# 802.1Q VLAN support
 device		if_bridge		# Bridge interface.
 
 # ATA/SCSI peripherals
@@ -37,15 +36,15 @@ device		oce		# Emulex 10Gbe Ethernet
 device		sfxge		# Solarflare 10Gb Ethernet Adapters
 
 # InfiniBand support
-options	OFED		# InfiniBand support
-options	SDP		# SDP protocol
-options	IPOIB		# IPoIB
-options	IPOIB_CM	# IPoIB connected mode
+#options	OFED		# InfiniBand support
+#options	SDP		# SDP protocol
+#options	IPOIB		# IPoIB
+#options	IPOIB_CM	# IPoIB connected mode
 
 # InfiniBand Adapters
-device		mlx4ib
-device		mlxen
-device		mthca
+#device		mlx4ib
+#device		mlxen
+#device		mthca
 
 # Hardware crypto acceleration
 device		crypto		# core crypto support
@@ -78,3 +77,64 @@ options		IPFIREWALL_DEFAULT_TO_ACCEPT
 #nooption 	NFSCL			# New Network Filesystem Client
 #nooption 	NFSD			# New Network Filesystem Server
 #nodevice	xhci			# XHCI PCI->USB interface (USB 3.0)
+
+options		NKPT=165
+
+# load drivers below as seperate module if needed
+
+#sound
+nodevice snd_cmi
+nodevice snd_csa
+nodevice snd_emu10kx
+nodevice snd_es137x
+nodevice snd_hda
+nodevice snd_ich
+nodevice snd_uaudio
+nodevice snd_via8233
+
+# usb serial devices
+nodevice u3g # USB-based 3G modems
+nodevice uark # ARK3116
+nodevice ubsa # Belkin F5U103 and compatible serial adapters
+nodevice uftdi # For FTDI usb serial adapters
+nodevice uplcom # Prolific PL-2303 serial adapters
+nodevice uipaq # Some WinCE based devices
+nodevice uslcom # SI Labs CP2101/CP2102 serial adapters
+nodevice uvisor # Visor and Palm devices
+nodevice uvscom # USB serial support for DDI pocket's PHS
+
+nodevice urio # Diamond Rio 500 MP3 player
+
+
+# usb wireless
+nodevice rum
+nodevice run
+nodevice uath
+nodevice upgt
+nodevice ural
+nodevice urtw
+nodevice zyd
+
+#wireless NIC
+nodevice an
+nodevice ath
+nodevice ath_pci
+nodevice ath_hal
+nodevice AH_SUPPORT_AR5416
+nodevice ath_rate_sample
+nodevice ipw
+nodevice iwn
+nodevice wi
+nodevice wpi
+nodevice iwi
+nodevice malo
+nodevice mwl
+nodevice ral
+
+# vnet jails
+options 	VIMAGE
+device		epair
+options   RACCT
+options   RCTL
+
+options		NULLFS

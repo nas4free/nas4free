@@ -63,7 +63,7 @@ nut_upsmon_mkconf()
 	############################
 	# Create upsmon.conf
 	/usr/local/bin/xml sel -t \
-		-v "concat('MONITOR ',//ups/upsname,'@localhost 1 ${nut_upsmon_user} ',//system/password,' master')" -n \
+		-v "concat('MONITOR ',//ups/upsname,'@',//ups/ip,' 1 ',//ups/monitoruser,' ',//ups/password,' ',//ups/mode)" -n \
 		${configxml_file} | /usr/local/bin/xml unesc > ${nut_upsmon_conf}
 
 	cat <<EOF >> ${nut_upsmon_conf}
@@ -135,3 +135,4 @@ EOF
 nut_upsmon_mkconf
 
 run_rc_command "$1"
+

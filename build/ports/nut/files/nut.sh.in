@@ -9,6 +9,7 @@
 # All rights reserved.
 #
 
+
 # PROVIDE: nut
 # REQUIRE: NETWORKING
 # BEFORE: LOGIN
@@ -83,28 +84,28 @@ EOF
 
 	# Add listening interface for remote monitoring
 	if configxml_isset //ups/remotemonitor; then
-	_if=`configxml_get "//interfaces/lan/if"`
-	_ip=`get_ipaddr inet ${_if}`
+		_if=`configxml_get "//interfaces/lan/if"`
+		_ip=`get_ipaddr inet ${_if}`
+		echo "LISTEN ${_ip} ${nut_upsd_port}" >> ${nut_upsd_conf}
 
-	for _oneip in ${_ip}
-	do
-	echo "LISTEN ${_oneip} ${nut_upsd_port}" >> ${nut_upsd_conf}
-	done
-
-	#if configxml_isset //interfaces/lan/ipv6_enable; then
-	# _ip=`get_ipaddr inet6 ${_if}`
-	# echo "LISTEN ${_ip} ${nut_upsd_port}" >> ${nut_upsd_conf}
-	#fi
+		#if configxml_isset //interfaces/lan/ipv6_enable; then
+		#	_ip=`get_ipaddr inet6 ${_if}`
+		#	echo "LISTEN ${_ip} ${nut_upsd_port}" >> ${nut_upsd_conf}
+		#fi
 	fi
 
 	############################
 	# Create upsd.users
 	/usr/local/bin/xml sel -t \
 		-o "[${nut_upsmon_user}]" -n \
-		-v "concat('        password = ',//system/password)" -n \
+		-v "concat('        password = ',//ups/password)" -n \
 		-o "        actions = set" -n \
 		-o "        instcmds = all" -n \
-		-o "        upsmon master" \
+		-v "concat('        upsmon ',//ups/mode)" -n \
+		-o " " -n \
+		-o "[upsmon]" -n \
+		-o "        password = upsmon" -n \
+		-o "        upsmon slave" -n \
 		${configxml_file} | /usr/local/bin/xml unesc > ${nut_upsd_users}
 
 	chmod 0600 ${nut_nut_conf}
@@ -127,4 +128,11 @@ mkdir -m 0600 ${nut_statedir} 2>/dev/null
 # Create required config file
 nut_mkconf
 
+_upsmode=`configxml_get "//ups/mode"`
+if [ "slave" = "${_upsmode}" ]; then
+	nut_enable="NO"
+	rcvar=nut_enable
+fi
+
 run_rc_command "$1"
+

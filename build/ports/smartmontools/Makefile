@@ -9,7 +9,7 @@ MASTER_SITES=		SF
 CONFLICTS=		smartmontools-devel-[0-9]*
 
 USE_GMAKE=		yes
-NO_STAGE=       yes
+NO_PKG_REGISTER=yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-docdir=${DOCSDIR} --disable-sample \

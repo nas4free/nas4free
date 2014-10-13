@@ -9,12 +9,11 @@ MASTER_SITES=			http://nightlies.fireflymediaserver.org/nightlies/svn-${PORTVERS
 DISTNAME=				mt-daapd-svn-${PORTVERSION}
 
 FORCE_PKG_REGISTER=yes
-LIB_DEPENDS+=				sqlite3:${PORTSDIR}/databases/sqlite3 \
-										id3tag.0:${PORTSDIR}/audio/libid3tag \
-										vorbis.4:${PORTSDIR}/audio/libvorbis \
-										FLAC.11:${PORTSDIR}/audio/flac
+LIB_DEPENDS+=				libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
+										libid3tag.so:${PORTSDIR}/audio/libid3tag \
+										libvorbis.so:${PORTSDIR}/audio/libvorbis \
+										libFLAC.so:${PORTSDIR}/audio/flac
 
-NO_STAGE=		yes
 USE_PKGCONFIG=	yes
 MAKE_JOBS_UNSAFE=	yes
 USE_GCC=		any

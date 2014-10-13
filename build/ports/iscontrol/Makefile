@@ -5,7 +5,6 @@ COMMENT=		login/negotiator/control for an iSCSI initiator session
 MAINTAINER=		aoyama@peach.ne.jp
 DISTFILES=
 SRCDIR=/usr/src/sbin/iscontrol
-NO_STAGE=       yes
 
 do-build:
 	@(cd ${SRCDIR}; make clean obj; make)

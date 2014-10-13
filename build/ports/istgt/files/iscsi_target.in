@@ -23,7 +23,7 @@
 . /etc/util.subr
 
 name="istgt"
-rcvar=`set_rcvar`
+rcvar=istgt_enable
 
 load_rc_config "${name}"
 

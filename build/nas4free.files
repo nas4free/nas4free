@@ -542,6 +542,9 @@ usr/sbin/cron
 ## daemon -- run detached from the controlling terminal
 usr/sbin/daemon
 
+##
+usr/sbin/kldxref
+
 ## pciconf -- diagnostic utility for the PCI bus
 usr/sbin/pciconf
 
@@ -593,15 +596,6 @@ usr/sbin/rpc.statd
 ## sshd -- OpenSSH SSH daemon
 ## Note: Will be overwritten when openssh-portable package is activated.
 usr/sbin/sshd
-
-## pkg_add -- a utility for installing software package distributions
-usr/sbin/pkg_add
-
-## pkg_info -- dump out information about packages
-usr/sbin/pkg_info
-
-## pkg_delete -- a utility for deleting previously installed software package distributions
-usr/sbin/pkg_delete
 
 ## mtree -- map a directory hierarchy (required by pkg_add)
 usr/sbin/mtree
@@ -773,6 +767,10 @@ etc/rc.d/devd
 etc/rc.d/dmesg
 etc/rc.d/hostid
 etc/rc.d/jail
+etc/rc.d/netif
+etc/rc.d/netwait
+etc/rc.d/nfscbd
+etc/rc.d/nfsuserd
 
 ####### contents of /usr/share/snmp/defs
 usr/share/snmp/defs/atm_freebsd.def
@@ -811,3 +809,6 @@ libexec/resolvconf/unbound
 usr/share/doc/legal/intel_wpi/LICENSE
 usr/share/doc/legal/intel_iwi/LICENSE
 usr/share/doc/legal/intel_ipw/LICENSE
+
+
+usr/local/sbin/pkg

@@ -7,7 +7,6 @@ COMMENT=		Open VMware tools for FreeBSD VMware guests
 
 DISTFILES=
 NO_BUILD=		yes
-NO_STAGE=       yes
 NO_PKG_REGISTER=	yes
 ALWAYS_BUILD_DEPENDS=		yes
 DEPENDS_TARGET=	clean build

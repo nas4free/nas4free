@@ -1,0 +1,272 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+# PROVIDE: lighttpd
+# REQUIRE: htpasswd DAEMON
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+. /etc/util.subr
+. /etc/configxml.subr
+
+name="lighttpd"
+rcvar=lighttpd_enable
+
+load_rc_config "${name}"
+
+# Custom commands
+start_precmd="lighttpd_mkconf"
+stop_postcmd="lighttpd_poststop"
+restart_precmd="lighttpd_check"
+reload_precmd="lighttpd_prereload"
+reload_postcmd="lighttpd_postreload"
+mkconf_cmd="lighttpd_mkconf"
+check_cmd="lighttpd_check"
+extra_commands="reload check mkconf"
+
+# Defaults
+lighttpd_enable=${lighttpd_enable:-"NO"}
+lighttpd_conf=${lighttpd_conf:-"/var/etc/lighttpd.conf"}
+lighttpd_certpem=${lighttpd_certpem:-"/var/etc/cert.pem"}
+lighttpd_docroot=${lighttpd_docroot:-"/usr/local/www"}
+lighttpd_server_maxwriteidle=${lighttpd_server_maxwriteidle:-"360"}
+lighttpd_pidfile=${lighttpd_pidfile:-"/var/run/${name}.pid"}
+lighttpd_authrequire=${lighttpd_authrequire:-"NO"}
+lighttpd_uploaddir=${lighttpd_uploaddir:-"/var/tmp"}
+lighttpd_maxrequestsize=${lighttpd_maxrequestsize:-"262144"}
+command=/usr/local/sbin/lighttpd
+command_args="-f ${lighttpd_conf} -m /usr/local/lib/lighttpd"
+pidfile=${lighttpd_pidfile}
+sig_reload="-INT"
+
+# Create symlink for lighttpd file upload if it doesn't exist.
+#if [ ! -h "${lighttpd_uploaddir}/ftmp" ]; then
+#	ln -s /ftmp "${lighttpd_uploaddir}/ftmp"
+#fi
+if [ -h "${lighttpd_uploaddir}/ftmp" ]; then
+	rm -f "${lighttpd_uploaddir}/ftmp"
+fi
+if [ ! -d "${lighttpd_uploaddir}/ftmp" ]; then
+	mkdir -p "${lighttpd_uploaddir}/ftmp"
+fi
+chmod 1777 "${lighttpd_uploaddir}/ftmp"
+
+lighttpd_mkconf()
+{
+	local _protocol _certificate _privatekey _tmpfile
+	local _ifn _ipaddr _ipv6addr _port
+
+	# LAN IF/ADDR
+	_ifn=`configxml_get "//interfaces/lan/if"`
+	_ifn=`get_if ${_ifn}`
+	_ipaddr=`configxml_get "//interfaces/lan/ipaddr"`
+	if [ "${_ipaddr}" = "dhcp" ]; then
+		_ipaddr=`get_ipaddr inet ${_ifn}`
+	fi
+	_ipv6addr=""
+	if configxml_isset "//interfaces/*[enable]/ipv6_enable"; then
+		_ipv6addr=`configxml_get "//interfaces/lan/ipv6addr"`
+		if [ "${_ipv6addr}" = "auto" ]; then
+			_ipv6addr=`get_ipaddr inet6 ${_ifn}`
+		fi
+	fi
+
+	# TCP port
+	_protocol=`configxml_get "//system/webgui/protocol"`
+	_port=`configxml_get "//system/webgui/port"`
+	if [ -z "$_port" ]; then
+		if [ "${_protocol}" = "https" ]; then
+			_port="443"
+		else
+			_port="80"
+		fi
+	fi
+
+	# Create lighttpd.conf file
+	cat <<EOF > ${lighttpd_conf}
+server.modules = (
+  "mod_access",
+  "mod_auth",
+  "mod_cgi" )
+server.document-root = "${lighttpd_docroot}"
+server.errorlog-use-syslog = "enable"
+server.event-handler = "freebsd-kqueue"
+server.max-write-idle = ${lighttpd_server_maxwriteidle}
+index-file.names = ( "index.php" )
+# mimetype mapping
+mimetype.assign             = (
+  ".pdf"          =>      "application/pdf",
+  ".sig"          =>      "application/pgp-signature",
+  ".spl"          =>      "application/futuresplash",
+  ".class"        =>      "application/octet-stream",
+  ".ps"           =>      "application/postscript",
+  ".torrent"      =>      "application/x-bittorrent",
+  ".dvi"          =>      "application/x-dvi",
+  ".gz"           =>      "application/x-gzip",
+  ".pac"          =>      "application/x-ns-proxy-autoconfig",
+  ".swf"          =>      "application/x-shockwave-flash",
+  ".tar.gz"       =>      "application/x-tgz",
+  ".tgz"          =>      "application/x-tgz",
+  ".tar"          =>      "application/x-tar",
+  ".zip"          =>      "application/zip",
+  ".mp3"          =>      "audio/mpeg",
+  ".m3u"          =>      "audio/x-mpegurl",
+  ".wma"          =>      "audio/x-ms-wma",
+  ".wax"          =>      "audio/x-ms-wax",
+  ".ogg"          =>      "application/ogg",
+  ".wav"          =>      "audio/x-wav",
+  ".gif"          =>      "image/gif",
+  ".jar"          =>      "application/x-java-archive",
+  ".jpg"          =>      "image/jpeg",
+  ".jpeg"         =>      "image/jpeg",
+  ".png"          =>      "image/png",
+  ".svg"          =>      "image/svg+xml",
+  ".xbm"          =>      "image/x-xbitmap",
+  ".xpm"          =>      "image/x-xpixmap",
+  ".xwd"          =>      "image/x-xwindowdump",
+  ".css"          =>      "text/css",
+  ".html"         =>      "text/html",
+  ".htm"          =>      "text/html",
+  ".js"           =>      "text/javascript",
+  ".asc"          =>      "text/plain",
+  ".c"            =>      "text/plain",
+  ".cpp"          =>      "text/plain",
+  ".log"          =>      "text/plain",
+  ".conf"         =>      "text/plain",
+  ".text"         =>      "text/plain",
+  ".txt"          =>      "text/plain",
+  ".spec"         =>      "text/plain",
+  ".dtd"          =>      "text/xml",
+  ".xml"          =>      "text/xml",
+  ".mp4"          =>      "video/mp4",
+  ".mpg4"         =>      "video/mp4",
+  ".mpeg"         =>      "video/mpeg",
+  ".mpg"          =>      "video/mpeg",
+  ".mov"          =>      "video/quicktime",
+  ".qt"           =>      "video/quicktime",
+  ".avi"          =>      "video/x-msvideo",
+  ".asf"          =>      "video/x-ms-asf",
+  ".asx"          =>      "video/x-ms-asf",
+  ".wmv"          =>      "video/x-ms-wmv",
+  ".bz2"          =>      "application/x-bzip",
+  ".tbz"          =>      "application/x-bzip-compressed-tar",
+  ".tar.bz2"      =>      "application/x-bzip-compressed-tar",
+  ".rpm"          =>      "application/x-rpm",
+  # make the default mime type application/octet-stream.
+  ""              =>      "application/octet-stream",
+ )
+url.access-deny = ( "~", ".inc", ".htpasswd" )
+static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
+server.pid-file = "${pidfile}"
+cgi.assign = (".php" => "/usr/local/bin/php-cgi")
+EOF
+
+	# Set IP address and TCP port
+	if [ -n "${_ipaddr}" ]; then
+		cat <<EOF >> ${lighttpd_conf}
+server.bind = "${_ipaddr}"
+server.port = "${_port}"
+EOF
+		if [ -n "${_ipv6addr}" ]; then
+			cat <<EOF >> ${lighttpd_conf}
+\$SERVER["socket"] == "[${_ipv6addr}]:${_port}" { }
+EOF
+		fi
+	else
+		if [ -n "${_ipv6addr}" ]; then
+			cat <<EOF >> ${lighttpd_conf}
+server.bind = "${_ipv6addr}"
+server.port = "${_port}"
+EOF
+		fi
+	fi
+
+	# Set temporary directory
+	cat <<EOF >> ${lighttpd_conf}
+server.upload-dirs = ( "${lighttpd_uploaddir}/ftmp", "${lighttpd_uploaddir}" )
+server.max-request-size = ${lighttpd_maxrequestsize}
+EOF
+
+	# Disable File Manager
+	if [ `configxml_get_count "//system/disablefm"` -gt 0 ]; then
+		cat <<EOF >> ${lighttpd_conf}
+\$HTTP["url"] =~ "^/quixplorer/" {
+  url.access-deny = ( "" )
+}
+EOF
+	fi
+
+	# Is authentication (RFC 2617) required?
+	if checkyesno lighttpd_authrequire; then
+		/usr/local/bin/xml sel -t \
+			-o "auth.backend = \"htpasswd\"" -n \
+			-o "auth.backend.htpasswd.userfile = \"${lighttpd_docroot}/.htpasswd\"" -n \
+			-o "auth.require = ( \"/\" => (" -n \
+			-o "  \"method\"  => \"basic\"," -n \
+			-v "concat('  \"realm\"   => \"',//system/hostname,'\",')" -n \
+			-o "  \"require\" => \"valid-user\"" -n \
+			-o "  )," -n \
+			-o ")" -n \
+			${configxml_file} | /usr/local/bin/xml unesc >> ${lighttpd_conf}
+	fi
+
+	/usr/local/bin/xml sel -t \
+		-i "//system/webgui/protocol[. = 'https']" \
+			-o "ssl.engine = \"enable\"" -n \
+			-o "ssl.pemfile = \"${lighttpd_certpem}\"" -n \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${lighttpd_conf}
+
+	_protocol=`configxml_get "//system/webgui/protocol"`
+	_certificate=`configxml_get "//system/webgui/certificate"`
+	_privatekey=`configxml_get "//system/webgui/privatekey"`
+
+	if [ "${_protocol}" = "https" ]; then
+		# Create /var/etc/cert.pem file
+		if [ -n "${_certificate}" -a -n "${_privatekey}" ]; then
+			_tmpfile=/tmp/lighttpd$$.tmp
+
+			echo "${_certificate}" > ${_tmpfile}
+			/usr/bin/uudecode -m -p -r ${_tmpfile} > ${lighttpd_certpem}
+			echo "" >> ${lighttpd_certpem}
+			echo "${_privatekey}" > ${_tmpfile}
+			/usr/bin/uudecode -m -p -r ${_tmpfile} >> ${lighttpd_certpem}
+
+			/bin/rm -f ${_tmpfile}
+		fi
+
+		[ -e ${lighttpd_certpem} ] && /bin/chmod 0600 ${lighttpd_certpem}
+	fi
+}
+
+lighttpd_check()
+{
+	echo "Performing sanity check on ${name} configuration:"
+	eval "${command} ${command_args} -t"
+}
+
+lighttpd_poststop()
+{
+	rm -f ${pidfile}
+}
+
+lighttpd_prereload()
+{
+	echo "Stopping ${name} and starting gracefully."
+}
+
+lighttpd_postreload()
+{
+	rm -f ${pidfile}
+	run_rc_command start
+}
+
+run_rc_command "$1"

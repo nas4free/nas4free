@@ -12,7 +12,7 @@ NO_BUILD?=	yes
 
 NO_WRKSUBDIR=	yes
 
-NO_STAGE=       yes
+NO_PKG_REGISTER=yes
 
 do-install:
 	${INSTALL_SCRIPT} ${FILESDIR}/${PORTNAME} ${NAS4FREE_ROOTFS}/usr/local/sbin/

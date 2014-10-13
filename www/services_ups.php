@@ -44,10 +44,14 @@ if (!isset($config['ups']) || !is_array($config['ups']))
 	$config['ups'] = array();
 
 $pconfig['enable'] = isset($config['ups']['enable']);
+$pconfig['mode'] = $config['ups']['mode'];
 $pconfig['upsname'] = $config['ups']['upsname'];
-$pconfig['driver'] = !empty($config['ups']['driver']) ? $config['ups']['driver'] : "";
-$pconfig['port'] = !empty($config['ups']['port']) ? $config['ups']['port'] : "";
+$pconfig['driver'] = !empty($config['ups']['driver']) ? $config['ups']['driver'] : "-----";
+$pconfig['port'] = !empty($config['ups']['port']) ? $config['ups']['port'] : "auto";
 $pconfig['desc'] = !empty($config['ups']['desc']) ? $config['ups']['desc'] : "";
+$pconfig['ip'] = !empty($config['ups']['ip']) ? $config['ups']['ip'] : "localhost";
+$pconfig['monitoruser'] = !empty($config['ups']['monitoruser']) ? $config['ups']['monitoruser'] : "root";
+$pconfig['password'] = !empty($config['ups']['password']) ? $config['ups']['password'] : $config['system']['password'];
 $pconfig['shutdownmode'] = $config['ups']['shutdownmode'];
 $pconfig['shutdowntimer'] = $config['ups']['shutdowntimer'];
 $pconfig['remotemonitor'] = isset($config['ups']['remotemonitor']);
@@ -85,10 +89,14 @@ if ($_POST) {
 
 	if (empty($input_errors)) {
 		$config['ups']['enable'] = isset($_POST['enable']) ? true : false;
+		$config['ups']['mode'] = $_POST['mode'];
 		$config['ups']['upsname'] = $_POST['upsname'];
 		$config['ups']['driver'] = $_POST['driver'];
 		$config['ups']['port'] = $_POST['port'];
 		$config['ups']['desc'] = $_POST['desc'];
+		$config['ups']['ip'] = ($config['ups']['mode'] == "master") ? "localhost" : $_POST['ip'];
+		$config['ups']['monitoruser'] = ($config['ups']['mode'] == "master") ? "root" : "upsmon";
+		$config['ups']['password'] = ($config['ups']['mode'] == "master") ? $config['system']['password'] : "upsmon";
 		$config['ups']['shutdownmode'] = $_POST['shutdownmode'];
 		$config['ups']['shutdowntimer'] = $_POST['shutdowntimer'];
 		$config['ups']['remotemonitor'] = isset($_POST['remotemonitor']) ? true : false;
@@ -131,10 +139,12 @@ function enable_change(enable_change) {
 		document.iform.email_to.disabled = endis;
 		document.iform.email_subject.disabled = endis;
 	} else {
+		document.iform.mode.disabled = endis;
 		document.iform.upsname.disabled = endis;
 		document.iform.driver.disabled = endis;
 		document.iform.port.disabled = endis;
 		document.iform.auxparam.disabled = endis;
+		document.iform.ip.disabled = endis;
 		document.iform.desc.disabled = endis;
 		document.iform.shutdownmode.disabled = endis;
 		document.iform.shutdowntimer.disabled = endis;
@@ -161,6 +171,34 @@ function shutdownmode_change() {
 			break;
 	}
 }
+
+function mode_change() {
+	switch(document.iform.mode.value) {
+		case "slave":
+			showElementById('upsname_tr','show');
+			showElementById('driver_tr','hide');
+			showElementById('port_tr','hide');
+			showElementById('auxparam_tr','hide');
+			showElementById('ip_tr','show');
+			showElementById('desc_tr','show');
+			showElementById('shutdownmode_tr','show');
+			showElementById('shutdowntimer_tr','show');
+			showElementById('remotemonitor_tr','hide');
+			break;
+
+		default:
+			showElementById('upsname_tr','show');
+			showElementById('driver_tr','show');
+			showElementById('port_tr','show');
+			showElementById('auxparam_tr','show');
+			showElementById('ip_tr','hide');
+			showElementById('desc_tr','show');
+			showElementById('shutdownmode_tr','show');
+			showElementById('shutdowntimer_tr','show');
+			showElementById('remotemonitor_tr','show');
+			break;
+	}
+}          
 //-->
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -172,10 +210,12 @@ function shutdownmode_change() {
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline_checkbox("enable", gettext("Uninterruptible Power Supply"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
-					<?php html_inputbox("upsname", gettext("Identifier"), $pconfig['upsname'], gettext("This name is used to uniquely identify your UPS on this system."), true, 30);?>
+                    <?php html_combobox("mode", gettext("Mode"), !empty($config['ups']['mode']) ? $config['ups']['mode'] : "Master", array('master' =>'Master','slave'=> 'Slave'), gettext("Choose UPS mode."), true, false, "mode_change()" );?>
+                    <?php html_inputbox("upsname", gettext("Identifier"), $pconfig['upsname'], gettext("This name is used to uniquely identify your UPS on this system.")." ".gettext("In slave mode it is the UPS name (Identifier) at the UPS master."), true, 30);?>
 					<?php html_inputbox("driver", gettext("Driver"), $pconfig['driver'], sprintf(gettext("The driver used to communicate with your UPS. Get the list of available <a href='%s' target='_blank'>drivers</a>."), "services_ups_drv.php"), true, 30);?>
 					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], gettext("The serial or USB port where your UPS is connected."), true, 30);?>
 					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", gettext("Additional parameters to the hardware-specific part of the driver."), false, 65, 5, false, false);?>
+                    <?php html_inputbox("ip", gettext("IP address"), $pconfig['ip'], gettext("The IP address of the UPS master."), true, 30);?>
 					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
 					<?php html_combobox("shutdownmode", gettext("Shutdown mode"), $pconfig['shutdownmode'], array("fsd" => gettext("UPS reaches low battery"), "onbatt" => gettext("UPS goes on battery")), gettext("Defines when the shutdown is initiated."), true, false, "shutdownmode_change()");?>
 					<?php html_inputbox("shutdowntimer", gettext("Shutdown timer"), $pconfig['shutdowntimer'], gettext("The time in seconds until shutdown is initiated. If the UPS happens to come back before the time is up the shutdown is canceled."), true, 3);?>
@@ -184,9 +224,6 @@ function shutdownmode_change() {
 					<?php html_titleline_checkbox("email_enable", gettext("Email notification"), !empty($pconfig['email_enable']) ? true : false, gettext("Activate"), "enable_change(this)");?>
 					<?php html_inputbox("email_to", gettext("To email"), $pconfig['email_to'], sprintf("%s %s", gettext("Destination email address."), gettext("Separate email addresses by semi-colon.")), true, 40);?>
 					<?php html_inputbox("email_subject", gettext("Subject"), $pconfig['email_subject'], gettext("The subject of the email.") . " " . gettext("You can use the following parameters for substitution:") . "</span>" . gettext("<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>") . "<span>", true, 60);?>
-
-
-
 			  </table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />
@@ -201,6 +238,7 @@ function shutdownmode_change() {
 </table>
 <script type="text/javascript">
 <!--
+mode_change();
 shutdownmode_change();
 enable_change(false);
 //-->

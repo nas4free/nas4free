@@ -10,7 +10,6 @@ DISTNAME=			${PORTNAME}
 
 EXTRACT_SUFX=	.tar.Z
 NO_WRKSUBDIR=	yes
-NO_STAGE=       yes
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/${PORTNAME} ${NAS4FREE_ROOTFS}/usr/bin

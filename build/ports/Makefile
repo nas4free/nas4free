@@ -35,7 +35,7 @@
     SUBDIR += openssh-portable
     SUBDIR += pam_ldap
     SUBDIR += pam_mkhomedir
-    SUBDIR += php55
+    SUBDIR += php56
     SUBDIR += proftpd
     SUBDIR += rconf
     SUBDIR += rsync
@@ -44,7 +44,6 @@
     SUBDIR += sipcalc
     SUBDIR += smartmontools
     SUBDIR += tftp-hpa
-    SUBDIR += tmux
     SUBDIR += transmission
     SUBDIR += tw_cli
     SUBDIR += unison

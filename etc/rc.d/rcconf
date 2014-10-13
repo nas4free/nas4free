@@ -118,7 +118,10 @@ setifconfig()
 			eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
 		fi
 		if [ -n "${_ipaddr}" ]; then
+		# dirty fix voor bad value melding bij dhcp en mogelijks voor dns dhcp.xxx.xxx query
+		   if [ "${_ipaddr}" != "dhcp" ]; then
 			eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "${_ipaddr}/${_subnet}"
+			fi			
 		fi
 	fi
 
@@ -180,7 +183,10 @@ setifconfig()
 				eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
 			fi
 			if [ -n "${_ipaddr}" ]; then
+			# dirty fix voor bad value melding bij dhcp en mogelijks voor dns dhcp.xxx.xxx query
+				if [ "${_ipaddr}" != "dhcp" ]; then
 				eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "${_ipaddr}/${_subnet}"
+				fi
 			fi
 		else
 			eval /usr/local/sbin/rconf attribute remove "ifconfig_${_ifn}"
@@ -453,3 +459,4 @@ echo
 #load_rc_config ${name}
 
 return 0
+

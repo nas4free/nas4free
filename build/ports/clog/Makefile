@@ -6,7 +6,7 @@ MAINTAINER=		aoyama@peach.ne.jp
 
 DISTFILES?=
 
-NO_STAGE=       yes
+NO_PKG_REGISTER=yes
 
 do-build:
 	@${TAR} -zxvf ${FILESDIR}/syslogd-clog.tar.gz -C /usr/src/usr.bin

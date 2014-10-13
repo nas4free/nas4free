@@ -8,13 +8,11 @@ MAINTAINER=		zoon01@nas4free.org
 MASTER_SITES=   	http://download-origin.transmissionbt.com/files/ \
 			http://transmission.cachefly.net/
 
-LIB_DEPENDS=		curl.7:${PORTSDIR}/ftp/curl \
-	    		event-2.0.6:${PORTSDIR}/devel/libevent2
+LIB_DEPENDS=		libcurl.so:${PORTSDIR}/ftp/curl \
+	    		libevent.so:${PORTSDIR}/devel/libevent2
 GEN_RUN_DEPENDS=${LOCALBASE}/share/transmission/web/index.html:${PORTSDIR}/www/transmission-web
 
-NO_STAGE=       yes
-USE_GMAKE=	yes
-USES=           pkgconfig
+USES+=		gmake iconv libtool pkgconfig
 USE_OPENSSL=	yes
 EXTRACT_SUFX= .tar.xz
 GNU_CONFIGURE=	yes

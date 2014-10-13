@@ -13,14 +13,13 @@ LIB_DEPENDS+=		libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid \
 							libpcre.so:${PORTSDIR}/devel/pcre
 
 USE_BZIP2=	  yes
-#USE_AUTOTOOLS= libtool
+USES=		gmake libtool
 GNU_CONFIGURE=  yes
 USE_OPENSSL=	  yes
 USE_GNOME+=	  libxml2
 MAKE_JOBS_SAFE= yes
-NO_STAGE=       yes
 
-USE_AUTOTOOLS=	autoconf autoheader aclocal automake libtool
+USE_AUTOTOOLS=	autoconf autoheader aclocal automake
 ACLOCAL_ARGS=	-I m4
 AUTOMAKE_ARGS=	--add-missing
 
@@ -36,8 +35,6 @@ CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd --enable-static \
 									--with-webdav-locks
 
 do-install:
-		@${INSTALL_SCRIPT} -v ${FILESDIR}/${PORTNAME}.in ${NAS4FREE_ROOTFS}/etc/rc.d/${PORTNAME}
-
 		@${INSTALL_PROGRAM} -v ${WRKSRC}/src/lighttpd ${NAS4FREE_ROOTFS}/usr/local/sbin
 
 		@${MKDIR} -v ${NAS4FREE_ROOTFS}/usr/local/lib/lighttpd

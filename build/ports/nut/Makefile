@@ -9,12 +9,10 @@ MASTER_SITES=	http://www.networkupstools.org/source/${PORTVERSION:R}/
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-NO_STAGE=       yes
 USE_AUTOTOOLS=  autoconf
 GNU_CONFIGURE=	yes
-USES=		gmake
 USE_LDCONFIG=		yes
-USES=           pkgconfig
+USES=		gmake pkgconfig libtool
 
 NUT_USER=		root
 NUT_GROUP=		root
@@ -54,10 +52,11 @@ CONFIGURE_ARGS=	--sysconfdir=${NUT_SYSCONFDIR} \
 .if ${OSVERSION} < 800069
 LIB_DEPENDS+=	usb-0.1:${PORTSDIR}/devel/libusb
 .endif
-LIB_DEPENDS+=	netsnmp.30:${PORTSDIR}/net-mgmt/net-snmp
-LIB_DEPENDS+=	neon.27:${PORTSDIR}/www/neon29
-LIB_DEPENDS+=	powerman.0:${PORTSDIR}/sysutils/powerman
-LIB_DEPENDS+=	freeipmi:${PORTSDIR}/sysutils/freeipmi
+LIB_DEPENDS+=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
+LIB_DEPENDS+=	libneon.so:${PORTSDIR}/www/neon29
+LIB_DEPENDS+=	libpowerman.so:${PORTSDIR}/sysutils/powerman
+LIB_DEPENDS+=	libfreeipmi.so:${PORTSDIR}/sysutils/freeipmi
+
 
 do-install:
 	@${MKDIR} -pv ${NAS4FREE_ROOTFS}/${NUT_DATADIR}

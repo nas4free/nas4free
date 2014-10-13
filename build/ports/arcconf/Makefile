@@ -14,7 +14,6 @@ RESTRICTED=			May not be redistributed in binary form
 NO_CDROM=		yes
 NO_BUILD=		yes
 NO_WRKSUBDIR=		yes
-NO_STAGE=       	yes
 
 .include <bsd.port.pre.mk>
 

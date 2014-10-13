@@ -65,6 +65,37 @@ $pconfig['extraoptions'] = $config['bittorrent']['extraoptions'];
 // Set default values.
 if (!$pconfig['port']) $pconfig['port'] = "9091";
 
+// Function to check directories (if exists & permisssions)
+function change_perms($dir) {
+    global $input_errors;
+    
+    $path = rtrim($dir,'/');                                            // remove trailing slash
+    if (strlen($path) > 1) {
+        if (!is_dir($path)) {                                           // check if directory exists
+            $input_errors[] = "Directory $path doesn't exist!";
+        }
+        else {
+            $path_check = explode("/", $path);                          // split path to get directory names
+            $path_elements = count($path_check);                        // get path depth
+            $fp = substr(sprintf('%o', fileperms("/$path_check[1]/$path_check[2]")), -1);   // get mountpoint permissions for others
+            if ($fp >= 5) {                                             // transmission needs at least read & search permission at the mountpoint
+                $directory = "/$path_check[1]/$path_check[2]";          // set to the mountpoint
+                for ($i = 3; $i < $path_elements - 1; $i++) {           // traverse the path and set permissions to rx
+                    $directory = $directory."/$path_check[$i]";         // add next level
+                    exec("chmod o=+r+x \"$directory\"");                // set permissions to o=+r+x
+                }
+                $path_elements = $path_elements - 1;
+                $directory = $directory."/$path_check[$path_elements]"; // add last level
+                exec("chmod o=rwx \"$directory\"");                     // set permissions to o=rwx
+            }
+            else
+            {
+                $input_errors[] = sprintf(gettext("BitTorrent needs at least read & execute permissions at the mount point for directory $path! Set the Read and Execute bits for Others (Access Restrictions | Mode) for the mount point /$path_check[1]/$path_check[2] (in <a href='%s'>Disks | Mount Point | Management</a>) and hit Save in order to take them effect."), "disks_mount.php"); 
+            }
+        }
+    }
+}
+
 if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
@@ -103,7 +134,13 @@ if ($_POST) {
 		if ($_POST['port'] && ((1024 > $_POST['port']) || (65535 < $_POST['port']))) {
 			$input_errors[] = sprintf(gettext("The attribute '%s' must be in the range from %d to %d."), gettext("Port"), 1024, 65535);
 		}
-	}
+	
+        // Check directories (if exist & permisssions)
+        if (!empty($_POST['incompletedir'])) change_perms($_POST['incompletedir']);
+        if (!empty($_POST['watchdir'])) change_perms($_POST['watchdir']);
+        if (!empty($_POST['downloaddir'])) change_perms($_POST['downloaddir']);
+        if (!empty($_POST['configdir'])) change_perms($_POST['configdir']);
+    }
 
 	if (empty($input_errors)) {
 		$config['bittorrent']['enable'] = isset($_POST['enable']) ? true : false;
@@ -231,3 +268,4 @@ authrequired_change();
 //-->
 </script>
 <?php include("fend.inc");?>
+

@@ -115,7 +115,7 @@ if(!isset($do_action)) {
 				}
 				?>
 				<div id="remarks">
-					<?php html_remark("note", gettext("Note"), gettext("You can also install a package via SSH or console using the the pkg_add command.<br />Example: pkg_add -r packagename"));?>
+					<?php html_remark("note", gettext("Note"), gettext("You can also install a package via SSH or console using the the pkg add command.<br />Example: pkg add packagename"));?>
 				</div>
 				<?php include("formend.inc");?>
 			</form>

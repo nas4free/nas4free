@@ -197,7 +197,7 @@ function upsc_enable_change() {
 				</tr>
 				<?php else:?>
 				<?php
-					$cmd = "/usr/local/bin/upsc {$config['ups']['upsname']}@localhost";
+					$cmd = "/usr/local/bin/upsc {$config['ups']['upsname']}@{$config['ups']['ip']}";
 					$handle = popen($cmd, 'r');
 					
 					if($handle) {
