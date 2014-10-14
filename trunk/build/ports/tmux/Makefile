@@ -51,7 +51,10 @@ post-configure:
 		${WRKSRC}/${MAKEFILE}
 .endif
 
+.include <bsd.port.pre.mk>
+
 do-install:
+#	for now also build on system
 	${INSTALL_PROGRAM} ${WRKSRC}/tmux ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/tmux.1 ${STAGEDIR}${MANPREFIX}/man/man1
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/bash_completion.d
@@ -61,4 +64,10 @@ do-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/examples/* ${STAGEDIR}${EXAMPLESDIR}
 
+#	NAS4Free Install
+	@${INSTALL_PROGRAM} ${WRKSRC}/tmux ${NAS4FREE_ROOTFS}/bin
+
+post-install:
+	${MKDIR} ${NAS4FREE_ROOTFS}/etc/bash_completion.d
+	@${INSTALL_DATA} ${WRKSRC}/examples/bash_completion_tmux.sh ${NAS4FREE_ROOTFS}/etc/bash_completion.d/tmux
 .include <bsd.port.mk>
