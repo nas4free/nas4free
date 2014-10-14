@@ -517,12 +517,12 @@ function install_restore_config($disk)
 
 	/* Restore the configuration file */
 	if (1 == mwexec("/bin/cp -p {$tmp_cf_bak}/config.xml {$mnt_cf_disk}/conf")) {
-		write_console("Error: Failed to restore the configuration file!\n");
+		write_console("Error: Failed to restore the configuration file! (config.xml)\n");
 		return 1;
 	}
 	if (file_exists("{$tmp_cf_bak}/boot.config")) {
 		if (1 == mwexec("/bin/cp -p {$tmp_cf_bak}/boot.config {$mnt_cf_disk}/")) {
-			write_console("Error: Failed to restore the configuration file!\n");
+			write_console("Error: Failed to restore the configuration file!(boot.config)\n");
 			return 1;
 		}
 	} else {
@@ -532,7 +532,7 @@ function install_restore_config($disk)
 		}
 	}
        if (1 == mwexec("/bin/cp -p {$tmp_cf_bak}/loader.conf.local {$mnt_cf_disk}/boot")) {
-		write_console("Error: Failed to restore the configuration file!\n");
+		write_console("Error: Failed to restore the configuration file! (loader.conf.local)\n");
 		return 1;
 	}
 
