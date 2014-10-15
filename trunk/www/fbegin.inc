@@ -111,7 +111,8 @@ $menu['services']['menuitem'][] = array("desc" => gettext("AFP"), "link" => "ser
 $menu['services']['menuitem'][] = array("desc" => gettext("Rsync"), "link" => "services_rsyncd.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("Unison"), "link" => "services_unison.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("iSCSI Target"), "link" => "services_iscsitarget.php", "visible" => TRUE);
-$menu['services']['menuitem'][] = array("desc" => gettext("CLAMAV"), "link" => "services_clamav.php", "visible" => TRUE);
+$menu['services']['menuitem'][] = array("desc" => gettext("DLNA/UPnP"), "link" => "services_upnp.php", "visible" => TRUE);
+$menu['services']['menuitem'][] = array("desc" => gettext("iTunes/DAAP"), "link" => "services_daap.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("Dynamic DNS"), "link" => "services_dynamicdns.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("SNMP"), "link" => "services_snmp.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("UPS"), "link" => "services_ups.php", "visible" => TRUE);
@@ -278,7 +279,7 @@ function display_menu($menuid) {
 		<!-- Begin extension section -->
 		<?php if (Session::isAdmin() && is_dir("{$g['www_path']}/ext")):?>
 		<li>
-			    <?php
+		<?php
                 $agent = $_SERVER['HTTP_USER_AGENT']; // Put browser name into local variable for desktop/mobile detection
                 if ((preg_match("/iPhone/i", $agent)) || (preg_match("/android/i", $agent))) {
                    echo "<a href=\"javascript:mopen('extensions');\" onmouseout=\"mclosetime()\">".gettext("Extensions")."</a>";
@@ -288,7 +289,7 @@ function display_menu($menuid) {
                 }
                 ?>
 			<div id="extensions" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
-				<?php
+		  <?php
 				$dh = @opendir("{$g['www_path']}/ext");
 				if ($dh) {
 					while (($extd = readdir($dh)) !== false) {
@@ -315,8 +316,8 @@ function display_menu($menuid) {
 	  <tr valign="top">
 	    <td>
 				<table width="100%" border="0" cellpadding="10" cellspacing="0">
-	        <tr>
-						<td>
-							<?php if (!isset($pgtitle_omit) || !$pgtitle_omit): ?>
-	      			<p class="pgtitle"><?=htmlspecialchars(gentitle($pgtitle));?></p>
-							<?php endif;?>
+	<tr>
+<td>
+<?php if (!isset($pgtitle_omit) || !$pgtitle_omit): ?>
+		<p class="pgtitle"><?=htmlspecialchars(gentitle($pgtitle));?></p>
+<?php endif;?>
