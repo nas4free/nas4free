@@ -149,8 +149,19 @@ function get_latest_file($rss) {
 	foreach ($xml->channel->item as $item) {
 		$link = $item->link;
 		$title = $item->title;
-		$date = $item->pubDate;
+		$pubdate = $item->pubDate;
 		$parts = pathinfo($title);
+
+		// convert to local time
+		$date = preg_replace('/UT$/', 'GMT', $pubdate);
+		$time = strtotime($date);
+		if ($time === FALSE) {
+			// convert error
+			$date = $pubdate;
+		} else {
+			$date = date("D, d M Y H:i:s T", $time);
+		}
+
 		if (empty($parts['extension']) || strcasecmp($parts['extension'], $ext) != 0)
 			continue;
 		$filename = $parts['filename'];
@@ -175,9 +186,9 @@ function get_latest_file($rss) {
 }
 
 function check_firmware_version_rss($locale) {
-	$rss_path = "http://sourceforge.net/api/file/index/project-id/722987/mtime/desc/limit/20/rss";
-	$rss_release = "http://sourceforge.net/api/file/index/project-id/722987/path/NAS4Free-@@VERSION@@/mtime/desc/limit/20/rss";
-	$rss_beta = "http://sourceforge.net/api/file/index/project-id/722987/path/NAS4Free-Beta/mtime/desc/limit/20/rss";
+	$rss_path = "http://sourceforge.net/projects/nas4free/rss?limit=40";
+	$rss_release = "http://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-@@VERSION&limit=20";
+	$rss_beta = "http://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-Beta&limit=20";
 
 	// replace with existing version
 	$path_version = get_path_version($rss_path);
