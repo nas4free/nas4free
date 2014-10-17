@@ -18,9 +18,11 @@
     SUBDIR += host
     SUBDIR += inadyn-mt
     SUBDIR += iperf
+    SUBDIR += isboot
     SUBDIR += iscontrol
     SUBDIR += istgt
     SUBDIR += lighttpd
+    SUBDIR += lcdproc
     SUBDIR += locale
     SUBDIR += mDNSResponder
     SUBDIR += mkpw
