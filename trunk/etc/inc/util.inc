@@ -1150,6 +1150,11 @@ function parse_controller_config(&$devlist){
 		}else{
 			$device['smart']['smart_support'] = "Unavailable";
 		}
+
+		// retry empty case
+		if(empty($device['model'])) $device['model'] = system_get_volume_model($device['devicespecialfile']);
+		if(empty($device['desc'])) $device['desc'] = $device['model'];
+		if(empty($device['serial'])) $device['serial'] = system_get_volume_serial($device['devicespecialfile']);
 	}
 	return $devlist;
 }
