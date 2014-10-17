@@ -4,7 +4,7 @@ CATEGORIES=		benchmarks ipv6
 COMMENT=		A tool to measure maximum TCP and UDP bandwidth
 MAINTAINER=		zoon01@nas4free.org
 
-MASTER_SITES=			SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}%20source
+MASTER_SITES=			SF/${PORTNAME}
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-ipv6 \
