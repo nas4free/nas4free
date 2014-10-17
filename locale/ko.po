@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"POT-Creation-Date: 2014-10-18 01:05+0000\n"
 "PO-Revision-Date: 2012-03-17 08:48+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-21 22:09+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 "X-Poedit-Country: KOREA\n"
 "Language: \n"
 "X-Poedit-Language: Korean\n"
@@ -555,11 +555,6 @@ msgstr "항상 켜둠"
 msgid "Always scan"
 msgstr "항상 스캔"
 
-msgid ""
-"Always use 0 for device number, helps when the device number is not constant "
-"across a reboot, cluster, ..."
-msgstr "장치 번호로 항상 0을 사용합니다. 장치 번호가 리붓이나 클러스터 등에서 항상 일정하지 않을 때 도움이 됩니다."
-
 msgid "Ambient Conditions From External Probe Equipment"
 msgstr ""
 
@@ -672,12 +667,6 @@ msgstr "자동 크기"
 
 msgid "AutoScale"
 msgstr "자동 스케일"
-
-msgid "Automatic disk discovery"
-msgstr "자동 디스크 발견"
-
-msgid "Automatic disk discovery mode"
-msgstr "자동 디스크 발견 모드"
 
 msgid "Autoselect"
 msgstr "자동 선택"
@@ -909,9 +898,6 @@ msgstr "인터페이스에 관한 데이터를 얻을 수 없습니다."
 msgid "Capacity"
 msgstr "용량"
 
-msgid "Case Folding"
-msgstr "대소문자 무시"
-
 msgid ""
 "Causes the server to display the network information for the specified IP "
 "address or DNS hostname to the client, on the assumption that that IP "
@@ -954,6 +940,9 @@ msgstr "중국어(간체)"
 msgid "Chinese (Traditional)"
 msgstr "중국어(번체)"
 
+msgid "Choose UPS mode."
+msgstr ""
+
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr "이 규칙에 일치하기 위해 어떤 인터페이스로 패킷이 들어와야 하는 지를 선택하십시오."
 
@@ -983,12 +972,6 @@ msgstr ""
 
 msgid "Client"
 msgstr "클라이언트"
-
-msgid "Client sees lowercase, server sees uppercase"
-msgstr "클라이언트는 소문자, 서버는 대문자로 보기"
-
-msgid "Client sees uppercase, server sees lowercase"
-msgstr "클라이언트는 대문자, 서버는 소문자로 보기"
 
 msgid "Clone"
 msgstr ""
@@ -1227,9 +1210,6 @@ msgstr "체코어"
 msgid "DAAP"
 msgstr "DAAP"
 
-msgid "DDP"
-msgstr "DDP"
-
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -1237,9 +1217,6 @@ msgid "DLNA/UPnP"
 msgstr ""
 
 msgid "DLNA/UPnP Media Server"
-msgstr ""
-
-msgid "DNLA/UPnP"
 msgstr ""
 
 msgid "DNS settings"
@@ -1568,9 +1545,6 @@ msgstr "이동식 미디어를 포함하는 디렉터리.(예 /mnt/iscsi/)"
 msgid "Directory to watch for new .torrent files."
 msgstr "새 .torrent 파일들을 감시할 디렉터리"
 
-msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-msgstr "DDP 연결을 방지하기 위해 AFP-over-Appletalk 비활성화."
-
 msgid "Disable File Manager"
 msgstr "파일 관리자 비활성화"
 
@@ -1591,12 +1565,6 @@ msgstr "기동 시와 끌 때 스피커 울림을 비활성화"
 
 msgid "Disabled"
 msgstr "비활성화됨"
-
-msgid ""
-"Disables :hex translations for anything except dot files. This option makes "
-"the '/' character illegal."
-msgstr ""
-"점으로 시작되는 파일 이외의 모든 것에 대해 :hex 번역을 비활성화 합니다. 이 옵션은 '/' 문자를 비 합법적으로 만듭니다."
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -1793,17 +1761,8 @@ msgstr "도메인 명. 예. example.com."
 msgid "Don't Erase MBR"
 msgstr "MBR을 지우지 않음"
 
-msgid "Don't advertise createfileid, resolveid, deleteid calls."
-msgstr "createfileid, resolveid, deleteid 호출은 공지하지 않습니다."
-
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr "MBR을 지우지 않습니다(몇몇 RAID 컨트롤러 카드에 유용)"
-
-msgid ""
-"Don't stat volume path when enumerating volumes list, useful for "
-"automounting or volumes created by a preexec script."
-msgstr ""
-"볼륨 목록을 열거할 때 볼륨 경로 정보를 얻지 않습니다. 자동 마운팅 시나 볼륨이 preexec 스크립트에 의해 생성될 때 유용합니다."
 
 msgid "Donate"
 msgstr "기증"
@@ -2021,17 +1980,11 @@ msgstr ""
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "이 장치의 서비스를 공지하기 위해 Zeroconf/Bonjour 활성화"
 
-msgid "Enable administrative DLNA/UPnP WebGUI."
-msgstr ""
-
 msgid "Enable anonymous bind."
 msgstr "익명 bind 활성화."
 
 msgid "Enable authentication."
 msgstr "인증 활성화."
-
-msgid "Enable automatic disk discovery."
-msgstr "자동 디스크 발견 활성화."
 
 msgid "Enable compression."
 msgstr "압축 활성화."
@@ -2146,17 +2099,6 @@ msgstr ""
 
 msgid "Enabled"
 msgstr "활성화됨"
-
-msgid ""
-"Enables crlf translation for TEXT files, automatically converting macintosh "
-"line breaks into Unix ones. Use of this option might be dangerous since some "
-"older programs store binary data files as type 'TEXT' when saving and switch "
-"the filetype in a second step. Afpd will potentially destroy such files when "
-"'erroneously' changing bytes in order to do line break translation."
-msgstr ""
-"텍스트 파일의 crlf 번역을 활성화하여 매킨토시 줄 바꿈 문자를 유닉스 줄 바꿈 문자로 자동 변환합니다. 몇몇 구형 프로그램들은 이진 "
-"데이터 파일들을 저장 시 '텍스트'로 저장하고 다음 단계에서 파일 타입을 변경하므로 이 옵션을 이용하는 것은 위험할 수도 있습니다. "
-"afpd가 이를 '잘못 인식하고' 줄 바꿈 문자를 변환할 때 이들 파일들을 파괴할 위험성이 있습니다."
 
 msgid "Encrypted"
 msgstr "암호화됨"
@@ -2790,14 +2732,6 @@ msgstr ""
 "효율적으로 격리하기 위해 이용될 수 있습니다."
 
 msgid ""
-"If set afpd uses the ID information stored in AppleDouble V2 header files to "
-"reduce database load. Don't set this option if the volume is modified by non "
-"AFP clients (NFS/SMB/local)."
-msgstr ""
-"옵션이 설정되면 afpd는 데이터베이스를 읽어 들이는 작업을 줄이기 위해 AppleDouble V2 헤더 파일들에 저장된 ID 정보를 "
-"이용합니다. AFP가 아닌 클라이언트(NFS/SMB/로컬)에 의해 볼륨이 변경된다면 이 옵션을 설정하지 마십시오."
-
-msgid ""
 "If the selected disk/partition is mounted it will be unmounted temporarily "
 "to perform selected command, otherwise the commands work in read-only "
 "mode.<br />Service disruption to users accessing this mount will occur "
@@ -2872,6 +2806,9 @@ msgstr "안"
 
 msgid "In most cases, 'public' is used here."
 msgstr "대부분의 경우 여기에는 'public'이 이용됩니다."
+
+msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
+msgstr ""
 
 msgid "Include basic hardware information."
 msgstr "기본 하드웨어 정보 포함."
@@ -3345,9 +3282,6 @@ msgstr ""
 msgid "Low voltage trimming transfer point"
 msgstr ""
 
-msgid "Lowercases names in both directions"
-msgstr "양쪽 모두 소문자 이름"
-
 msgid "MAC address"
 msgstr "MAC 주소"
 
@@ -3722,9 +3656,6 @@ msgstr ""
 msgid "No RSYNC Client configured"
 msgstr "RSYNC 클라이언트가 구성되지 않았음"
 
-msgid "No case folding"
-msgstr "대소문자 구분"
-
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
@@ -3856,11 +3787,6 @@ msgstr "부착되지 않음"
 
 msgid "Note"
 msgstr "참조"
-
-msgid ""
-"Note! Selecting 'Time Machine' on multiple shares will may cause "
-"unpredictable behavior in MacOS."
-msgstr "주의! 다중 공유에서 '시간 머신'을 선택하는 것은 맥 OS에서 예기치 않은 행동을 야기할 수도 있습니다."
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
@@ -4317,9 +4243,6 @@ msgstr "프로토콜"
 
 msgid "Provider"
 msgstr "공급자"
-
-msgid "Provides compatibility with Apple II clients."
-msgstr "애플 II 클라이언트와의 호환성을 제공합니다."
 
 msgid "Proxy"
 msgstr "프록시"
@@ -4845,9 +4768,6 @@ msgstr "읽기 전용으로 설정"
 msgid "Set share password."
 msgstr "공유 암호 설정."
 
-msgid "Set the CNID backend to be used for the volume."
-msgstr "이 볼륨을 위해 CNID 백엔드가 이용되도록 설정합니다."
-
 msgid "Set the account's primary group to the given group."
 msgstr "주어진 그룹으로 계정의 기본 그룹을 설정합니다."
 
@@ -4877,11 +4797,6 @@ msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr "root 데이터 셋을 위한 다른 마운트 지점을 설정합니다. 기본 값은 /mnt입니다."
-
-msgid ""
-"Sets the database information to be stored in path. You have to specifiy a "
-"writable location, even if the volume is read only."
-msgstr "데이터베이스 정보가 경로에 저장되도록 설정합니다. 볼륨이 읽기 전용이더라도 기록 가능한 위치를 명세 해야 합니다."
 
 msgid ""
 "Sets the interval between disk checks to N seconds. The minimum allowed "
@@ -5371,6 +5286,9 @@ msgstr "이 옵션을 활성화하기 전에 바이오스에서 COM 포트가 �
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
 
+msgid "The IP address of the UPS master."
+msgstr ""
+
 msgid "The IP address that this hostname represents."
 msgstr "이 호스트 명이 가리키는 IP 주소."
 
@@ -5568,10 +5486,12 @@ msgstr "설정이 복원되지 못했습니다. %s"
 msgid "The configuration could not be restored. No file was uploaded!"
 msgstr ""
 
+#, c-format
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
-"for them to take effect."
-msgstr "설정 내용이 변경되었습니다.<br />설정 내용이 효과를 발휘하려면 변경 내용을 적용해야 합니다."
+"for them to take effect.<br /><b>If this message persist take a look at the "
+"<a href='%s'>system log</a> for more information.</b>"
+msgstr ""
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
@@ -6121,22 +6041,11 @@ msgstr ""
 "자세한 내용은 NUT(Network UPS Tools) <a href='%s' target='_blank'>문서</a>를 참조하기 "
 "바랍니다."
 
-msgid "This controls how the case of filenames are viewed and stored."
-msgstr "이것은 파일 명의 대소문자를 보이고 저장하는 방법을 제어합니다."
-
 msgid "This controls the access a remote host has to this module."
 msgstr "이것은 원격 호스트가 이 모듈에 대해 가지는 접근 권한을 제어합니다."
 
 msgid "This controls the access to this share with an access password."
 msgstr "이 공유에 대한 접근을 접근 암호로 제어합니다."
-
-msgid ""
-"This controls whether the .AppleDouble directory gets created unless "
-"absolutely needed. This option should not be used if files are access mostly "
-"by Mac computers."
-msgstr ""
-"이것은 절대적으로 필요하지 않은 한 .AppleDouble 디렉터리를 생성할지 여부를 설정합니다. 파일들이 대부분 맥 컴퓨터에 의해 접근 "
-"된다면 이 옵션이 이용되어서는 안됩니다."
 
 msgid "This controls whether this share is accessible by guest account."
 msgstr ""
@@ -6160,12 +6069,6 @@ msgstr ""
 
 msgid "This extent is used."
 msgstr "이 범위는 이용되고 있습니다."
-
-msgid ""
-"This forces filenames to be restricted to the character set used by Windows. "
-"This is not recommended for shares used principally by Mac computers."
-msgstr ""
-"이것은 윈도우즈에서 이용되는 문자 셋들로 파일 명을 제한하게 합니다. 주로 맥 컴퓨터에 의해 이용되는 공유에는 권장되지 않습니다."
 
 msgid "This function is unsupported. Use it on your own risk!"
 msgstr "이 기능은 지원되지 않습니다. 자기 책임 하에 이용하십시오!"
@@ -6408,9 +6311,6 @@ msgstr "TiB"
 
 msgid "Time"
 msgstr "시간"
-
-msgid "Time Machine"
-msgstr "시간 머신"
 
 msgid "Time before the load will be rebooted"
 msgstr ""
@@ -6755,12 +6655,6 @@ msgstr ""
 msgid "Upload directory of the webserver. The default is %s."
 msgstr ""
 
-msgid "Uppercases names in both directions"
-msgstr "양쪽 모두 대문자 이름"
-
-msgid "Use AFP3 unix privileges."
-msgstr "AFP3 유닉스 권한을 이용합니다."
-
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
 "up at least one DNS server if you enter a host name here!"
@@ -7036,9 +6930,9 @@ msgid "Yes"
 msgstr "예"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg_add "
-"command.<br />Example: pkg_add -r packagename"
-msgstr "SSH나 콘솔에서 pkg_add 명령을 이용해서 패키지를 설치할 수도 있습니다.<br />예 : pkg_add -r 패키지"
+"You can also install a package via SSH or console using the the pkg add "
+"command.<br />Example: pkg add packagename"
+msgstr ""
 
 msgid "You can use the following parameters for substitution:"
 msgstr "치환을 위해 아래의 인자들을 이용할 수 있습니다:"
@@ -7076,6 +6970,12 @@ msgstr "SCSI 조회 데이터로 명세 할 수 있습니다. 비워 두면 기�
 msgid "You may specify logical block length (%d by default)."
 msgstr "논리적 블록 길이를 명세 할 수 있습니다(기본 값은 %d)."
 
+#, php-format
+msgid ""
+"You must <a href='%s'>reboot</a> the system before you can upgrade the "
+"firmware."
+msgstr ""
+
 msgid "You must add disks first."
 msgstr "먼저 디스크를 추가해야 합니다."
 
@@ -7085,9 +6985,6 @@ msgstr "네트워크와 게이트웨이에 동일한 IP 타입을 입력해야 �
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "iSCSI 타젯을 이용하려면 최소 %dMB 이상의 램이 있어야 합니다."
-
-msgid "You must reboot the system before you can upgrade the firmware."
-msgstr "펌웨어를 업그레이드 하기 전에 시스템을 리붓 해야 합니다."
 
 msgid "You must select at least one authentication method."
 msgstr "최소 한 개 이상의 인증 방법을 선택해야 합니다."
@@ -7139,6 +7036,10 @@ msgstr "Zeroconf/Bonjour"
 msgid "adaptive (low power consumption)"
 msgstr ""
 
+#, php-format
+msgid "add any supplemental parameters"
+msgstr ""
+
 msgid "all disks are imported."
 msgstr ""
 
@@ -7148,26 +7049,14 @@ msgstr ""
 msgid "all software raid disks are imported."
 msgstr ""
 
-msgid "cachecnid"
-msgstr "cachecnid"
-
 msgid "change failed."
 msgstr "변경이 실패되었습니다."
 
 msgid "chroot() everyone, but root."
 msgstr "root를 제외한 모두에게 chroot()."
 
-msgid "cnidscheme"
-msgstr "cnidscheme"
-
-msgid "crlf"
-msgstr "crlf"
-
 msgid "day(s)"
 msgstr "일"
-
-msgid "dbpath"
-msgstr "dbpath"
 
 msgid "detected an error while importing."
 msgstr ""
@@ -7240,9 +7129,6 @@ msgstr "mirroring"
 msgid "mount"
 msgstr "마운트"
 
-msgid "mswindows"
-msgstr "mswindows"
-
 msgid "n/a"
 msgstr "n/a"
 
@@ -7255,29 +7141,11 @@ msgstr ""
 msgid "no new software raid disk found."
 msgstr ""
 
-msgid "noadouble"
-msgstr "noadouble"
-
-msgid "nodev"
-msgstr "nodev"
-
-msgid "nofileid"
-msgstr "nofileid"
-
-msgid "nohex"
-msgstr "nohex"
-
 msgid "none"
 msgstr "없음"
 
-msgid "nostat"
-msgstr "nostat"
-
 msgid "phpBB"
 msgstr "phpBB"
-
-msgid "prodos"
-msgstr "prodos"
 
 msgid "rc.conf"
 msgstr "rc.conf"
@@ -7318,9 +7186,166 @@ msgstr "umask"
 msgid "umount"
 msgstr "마운트 해제"
 
-msgid "upriv"
-msgstr "upriv"
-
 #, php-format
 msgid "version:"
 msgstr ""
+
+#~ msgid ""
+#~ "Always use 0 for device number, helps when the device number is not constant "
+#~ "across a reboot, cluster, ..."
+#~ msgstr "장치 번호로 항상 0을 사용합니다. 장치 번호가 리붓이나 클러스터 등에서 항상 일정하지 않을 때 도움이 됩니다."
+
+#~ msgid "Automatic disk discovery"
+#~ msgstr "자동 디스크 발견"
+
+#~ msgid "Automatic disk discovery mode"
+#~ msgstr "자동 디스크 발견 모드"
+
+#~ msgid "Case Folding"
+#~ msgstr "대소문자 무시"
+
+#~ msgid "Client sees lowercase, server sees uppercase"
+#~ msgstr "클라이언트는 소문자, 서버는 대문자로 보기"
+
+#~ msgid "Client sees uppercase, server sees lowercase"
+#~ msgstr "클라이언트는 대문자, 서버는 소문자로 보기"
+
+#~ msgid "DDP"
+#~ msgstr "DDP"
+
+#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
+#~ msgstr "DDP 연결을 방지하기 위해 AFP-over-Appletalk 비활성화."
+
+#~ msgid ""
+#~ "Disables :hex translations for anything except dot files. This option makes "
+#~ "the '/' character illegal."
+#~ msgstr ""
+#~ "점으로 시작되는 파일 이외의 모든 것에 대해 :hex 번역을 비활성화 합니다. 이 옵션은 '/' 문자를 비 합법적으로 만듭니다."
+
+#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
+#~ msgstr "createfileid, resolveid, deleteid 호출은 공지하지 않습니다."
+
+#~ msgid ""
+#~ "Don't stat volume path when enumerating volumes list, useful for "
+#~ "automounting or volumes created by a preexec script."
+#~ msgstr ""
+#~ "볼륨 목록을 열거할 때 볼륨 경로 정보를 얻지 않습니다. 자동 마운팅 시나 볼륨이 preexec 스크립트에 의해 생성될 때 유용합니다."
+
+#~ msgid "Enable automatic disk discovery."
+#~ msgstr "자동 디스크 발견 활성화."
+
+#~ msgid ""
+#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
+#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
+#~ "older programs store binary data files as type 'TEXT' when saving and switch "
+#~ "the filetype in a second step. Afpd will potentially destroy such files when "
+#~ "'erroneously' changing bytes in order to do line break translation."
+#~ msgstr ""
+#~ "텍스트 파일의 crlf 번역을 활성화하여 매킨토시 줄 바꿈 문자를 유닉스 줄 바꿈 문자로 자동 변환합니다. 몇몇 구형 프로그램들은 이진 "
+#~ "데이터 파일들을 저장 시 '텍스트'로 저장하고 다음 단계에서 파일 타입을 변경하므로 이 옵션을 이용하는 것은 위험할 수도 있습니다. "
+#~ "afpd가 이를 '잘못 인식하고' 줄 바꿈 문자를 변환할 때 이들 파일들을 파괴할 위험성이 있습니다."
+
+#~ msgid ""
+#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
+#~ "reduce database load. Don't set this option if the volume is modified by non "
+#~ "AFP clients (NFS/SMB/local)."
+#~ msgstr ""
+#~ "옵션이 설정되면 afpd는 데이터베이스를 읽어 들이는 작업을 줄이기 위해 AppleDouble V2 헤더 파일들에 저장된 ID 정보를 "
+#~ "이용합니다. AFP가 아닌 클라이언트(NFS/SMB/로컬)에 의해 볼륨이 변경된다면 이 옵션을 설정하지 마십시오."
+
+#~ msgid "Lowercases names in both directions"
+#~ msgstr "양쪽 모두 소문자 이름"
+
+#~ msgid "No case folding"
+#~ msgstr "대소문자 구분"
+
+#~ msgid ""
+#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
+#~ "unpredictable behavior in MacOS."
+#~ msgstr "주의! 다중 공유에서 '시간 머신'을 선택하는 것은 맥 OS에서 예기치 않은 행동을 야기할 수도 있습니다."
+
+#~ msgid "Provides compatibility with Apple II clients."
+#~ msgstr "애플 II 클라이언트와의 호환성을 제공합니다."
+
+#~ msgid "Set the CNID backend to be used for the volume."
+#~ msgstr "이 볼륨을 위해 CNID 백엔드가 이용되도록 설정합니다."
+
+#~ msgid ""
+#~ "Sets the database information to be stored in path. You have to specifiy a "
+#~ "writable location, even if the volume is read only."
+#~ msgstr "데이터베이스 정보가 경로에 저장되도록 설정합니다. 볼륨이 읽기 전용이더라도 기록 가능한 위치를 명세 해야 합니다."
+
+#~ msgid ""
+#~ "The configuration has been changed.<br />You must apply the changes in order "
+#~ "for them to take effect."
+#~ msgstr "설정 내용이 변경되었습니다.<br />설정 내용이 효과를 발휘하려면 변경 내용을 적용해야 합니다."
+
+#~ msgid "This controls how the case of filenames are viewed and stored."
+#~ msgstr "이것은 파일 명의 대소문자를 보이고 저장하는 방법을 제어합니다."
+
+#~ msgid ""
+#~ "This controls whether the .AppleDouble directory gets created unless "
+#~ "absolutely needed. This option should not be used if files are access mostly "
+#~ "by Mac computers."
+#~ msgstr ""
+#~ "이것은 절대적으로 필요하지 않은 한 .AppleDouble 디렉터리를 생성할지 여부를 설정합니다. 파일들이 대부분 맥 컴퓨터에 의해 접근 "
+#~ "된다면 이 옵션이 이용되어서는 안됩니다."
+
+#~ msgid ""
+#~ "This forces filenames to be restricted to the character set used by Windows. "
+#~ "This is not recommended for shares used principally by Mac computers."
+#~ msgstr ""
+#~ "이것은 윈도우즈에서 이용되는 문자 셋들로 파일 명을 제한하게 합니다. 주로 맥 컴퓨터에 의해 이용되는 공유에는 권장되지 않습니다."
+
+#~ msgid "Time Machine"
+#~ msgstr "시간 머신"
+
+#~ msgid "Uppercases names in both directions"
+#~ msgstr "양쪽 모두 대문자 이름"
+
+#~ msgid "Use AFP3 unix privileges."
+#~ msgstr "AFP3 유닉스 권한을 이용합니다."
+
+#~ msgid ""
+#~ "You can also install a package via SSH or console using the the pkg_add "
+#~ "command.<br />Example: pkg_add -r packagename"
+#~ msgstr "SSH나 콘솔에서 pkg_add 명령을 이용해서 패키지를 설치할 수도 있습니다.<br />예 : pkg_add -r 패키지"
+
+#~ msgid "You must reboot the system before you can upgrade the firmware."
+#~ msgstr "펌웨어를 업그레이드 하기 전에 시스템을 리붓 해야 합니다."
+
+#~ msgid "cachecnid"
+#~ msgstr "cachecnid"
+
+#~ msgid "cnidscheme"
+#~ msgstr "cnidscheme"
+
+#~ msgid "crlf"
+#~ msgstr "crlf"
+
+#~ msgid "dbpath"
+#~ msgstr "dbpath"
+
+#~ msgid "mswindows"
+#~ msgstr "mswindows"
+
+#~ msgid "noadouble"
+#~ msgstr "noadouble"
+
+#~ msgid "nodev"
+#~ msgstr "nodev"
+
+#~ msgid "nofileid"
+#~ msgstr "nofileid"
+
+#~ msgid "nohex"
+#~ msgstr "nohex"
+
+#~ msgid "nostat"
+#~ msgstr "nostat"
+
+#~ msgid "prodos"
+#~ msgstr "prodos"
+
+#~ msgid "upriv"
+#~ msgstr "upriv"

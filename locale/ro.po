@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-16 00:50+0000\n"
-"PO-Revision-Date: 2014-01-18 06:54+0000\n"
+"POT-Creation-Date: 2014-10-18 01:05+0000\n"
+"PO-Revision-Date: 2014-04-23 15:27+0000\n"
 "Last-Translator: Laurentiu Bubuianu <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-21 22:08+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: ro_RO\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -598,13 +598,6 @@ msgstr "Pornit Mereu"
 msgid "Always scan"
 msgstr "Scanează întotdeauna"
 
-msgid ""
-"Always use 0 for device number, helps when the device number is not constant "
-"across a reboot, cluster, ..."
-msgstr ""
-"Folosiţi întotdeauna 0 pentru numărul de dispozitiv, ajută întotdeauna cînd "
-"numărul nu este constant de-a lungul repornirii, creării unui cluster,..."
-
 msgid "Ambient Conditions From External Probe Equipment"
 msgstr "Parametri ambientali de la echipamentul de probă extern"
 
@@ -723,12 +716,6 @@ msgstr "Dimensionare automată"
 
 msgid "AutoScale"
 msgstr "AutoScalare"
-
-msgid "Automatic disk discovery"
-msgstr "Descoperire automată disc"
-
-msgid "Automatic disk discovery mode"
-msgstr "Mod descoperire automată disc"
 
 msgid "Autoselect"
 msgstr "Selectare automată"
@@ -964,9 +951,6 @@ msgstr "Nicio informație disponibilă despre interfață"
 msgid "Capacity"
 msgstr "Capacitate"
 
-msgid "Case Folding"
-msgstr "Transformare de tip caracter"
-
 msgid ""
 "Causes the server to display the network information for the specified IP "
 "address or DNS hostname to the client, on the assumption that that IP "
@@ -1011,6 +995,9 @@ msgstr "Chineză (Simplificată)"
 msgid "Chinese (Traditional)"
 msgstr "Chineză (Tradițională)"
 
+msgid "Choose UPS mode."
+msgstr ""
+
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
 "Alegeți interfața pe care trebuie să vină pachetele pentru a se potrivi cu "
@@ -1048,12 +1035,6 @@ msgstr ""
 
 msgid "Client"
 msgstr "Client"
-
-msgid "Client sees lowercase, server sees uppercase"
-msgstr "Clientul vede litere ca minuscule, serverul le vede ca majuscule"
-
-msgid "Client sees uppercase, server sees lowercase"
-msgstr "Clientul vede litere ca majuscule, serverul le vede ca minuscule"
 
 msgid "Clone"
 msgstr "Clonă"
@@ -1316,20 +1297,14 @@ msgstr "Cehă"
 msgid "DAAP"
 msgstr "DAAP"
 
-msgid "DDP"
-msgstr "DDP"
-
 msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DLNA/UPnP"
-msgstr ""
+msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
-msgstr ""
-
-msgid "DNLA/UPnP"
-msgstr "DNLA/UPnP"
+msgstr "Server media DLNA/UPnP"
 
 msgid "DNS settings"
 msgstr "Setări DNS"
@@ -1669,11 +1644,6 @@ msgstr "Folder care conține medii detașabile. (ex. /mnt/iscsi/)"
 msgid "Directory to watch for new .torrent files."
 msgstr "Folder pentru urmărirea apariției fișierelor noi tip .torrent."
 
-msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-msgstr ""
-"Dezactivează protocolul AFP-over-Appletalk pentru a preveni conexiunile tip "
-"DDP."
-
 msgid "Disable File Manager"
 msgstr "Dezactivare Manager de Fişiere"
 
@@ -1694,13 +1664,6 @@ msgstr "Dezactivare sunet atenționare la pornirea/oprirea sistemului"
 
 msgid "Disabled"
 msgstr "Dezactivat"
-
-msgid ""
-"Disables :hex translations for anything except dot files. This option makes "
-"the '/' character illegal."
-msgstr ""
-"Dezactivare translaţie :hex cu excepția fișierelor cu punct (dot files). "
-"Această opțiune face caracterul '/' ilegal."
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -1907,19 +1870,9 @@ msgstr "Nume domeniu, ex. exemplu.com."
 msgid "Don't Erase MBR"
 msgstr "Formatare fără ștergerea MBR"
 
-msgid "Don't advertise createfileid, resolveid, deleteid calls."
-msgstr "Fără publicare cereri createfileid, resolveid, deleteid."
-
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr ""
 "MBR-ul nu va fi sters la formatare (util pentru unele controlere RAID)"
-
-msgid ""
-"Don't stat volume path when enumerating volumes list, useful for "
-"automounting or volumes created by a preexec script."
-msgstr ""
-"Fără afișare cale către volum la afișarea listei volumelor, util pentru "
-"automontarea volumelor create de un script pre-executat."
 
 msgid "Donate"
 msgstr "Donează"
@@ -2141,17 +2094,11 @@ msgstr ""
 "Activare Zeroconf/Bonjour pentru anunțarea serviciilor oferite de acest "
 "dispozitiv"
 
-msgid "Enable administrative DLNA/UPnP WebGUI."
-msgstr ""
-
 msgid "Enable anonymous bind."
 msgstr "Activare legătură anonimă."
 
 msgid "Enable authentication."
 msgstr "Activare autentificare."
-
-msgid "Enable automatic disk discovery."
-msgstr "Activare detecție automată disc."
 
 msgid "Enable compression."
 msgstr "Activare compresie."
@@ -2270,21 +2217,6 @@ msgstr "Activare mod cache la scriere."
 
 msgid "Enabled"
 msgstr "Activat"
-
-msgid ""
-"Enables crlf translation for TEXT files, automatically converting macintosh "
-"line breaks into Unix ones. Use of this option might be dangerous since some "
-"older programs store binary data files as type 'TEXT' when saving and switch "
-"the filetype in a second step. Afpd will potentially destroy such files when "
-"'erroneously' changing bytes in order to do line break translation."
-msgstr ""
-"Permite translarea crlf pentru fișiere TEXT convertind automat codul de "
-"sfîrșit de linie macintosh în codul Unix. Utilizarea acestei opțiuni poate "
-"produce efecte nedorite întrucît unele programe mai vechi salvează inițial "
-"date binare în formatul 'TEXT' modificînd ulterior tipul fișierului. Afpd "
-"poate distruge acest tip de fișiere atunci cînd 'din eroare' modifică biții "
-"în ideea de a face translația caracterului sfîrșit de linie de la mac la "
-"Unix."
 
 msgid "Encrypted"
 msgstr "Criptat"
@@ -2955,15 +2887,6 @@ msgstr ""
 "gazdei."
 
 msgid ""
-"If set afpd uses the ID information stored in AppleDouble V2 header files to "
-"reduce database load. Don't set this option if the volume is modified by non "
-"AFP clients (NFS/SMB/local)."
-msgstr ""
-"Dacă se activează această opțiune, afpd va utiliza informația din headerul "
-"AppleDouble V2 pentru a reduce încărcarea bazei de date. Nu activați această "
-"opțiune dacă volumul poate fi modificat de clienți non AFP (NFS/SMB/local)."
-
-msgid ""
 "If the selected disk/partition is mounted it will be unmounted temporarily "
 "to perform selected command, otherwise the commands work in read-only "
 "mode.<br />Service disruption to users accessing this mount will occur "
@@ -3056,6 +2979,9 @@ msgstr "In"
 
 msgid "In most cases, 'public' is used here."
 msgstr "În cele mai multe cazuri aici se utilizează 'public'."
+
+msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
+msgstr ""
 
 msgid "Include basic hardware information."
 msgstr "Include informații de bază hardware."
@@ -3563,9 +3489,6 @@ msgstr "Punct de transfer pentru tensiune minimă"
 msgid "Low voltage trimming transfer point"
 msgstr "Ajustare punct de transfer tensiune minimă"
 
-msgid "Lowercases names in both directions"
-msgstr "Minuscule în ambele direcții"
-
 msgid "MAC address"
 msgstr "Adresa MAC"
 
@@ -3954,9 +3877,6 @@ msgstr "Nu există setări DNS definite."
 msgid "No RSYNC Client configured"
 msgstr "Niciun client RSYNC configurat"
 
-msgid "No case folding"
-msgstr "Fără modificare aspect caractere"
-
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
@@ -4105,13 +4025,6 @@ msgstr "Neatașat"
 
 msgid "Note"
 msgstr "Obs."
-
-msgid ""
-"Note! Selecting 'Time Machine' on multiple shares will may cause "
-"unpredictable behavior in MacOS."
-msgstr ""
-"Atenție! Selectînd 'Time Machine' pentru partajări multiple se pot obține "
-"rezultate impredictibile în MacOS."
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
@@ -4591,9 +4504,6 @@ msgstr "Protocol"
 
 msgid "Provider"
 msgstr "Furnizor"
-
-msgid "Provides compatibility with Apple II clients."
-msgstr "Asigură compatibilitatea cu clienții Apple ll."
 
 msgid "Proxy"
 msgstr "Proxy"
@@ -5142,9 +5052,6 @@ msgstr "Setare doar citire"
 msgid "Set share password."
 msgstr "Setare parolă partajare."
 
-msgid "Set the CNID backend to be used for the volume."
-msgstr "Definire bază CNID de rezervă pentru acest volum."
-
 msgid "Set the account's primary group to the given group."
 msgstr "Setarea grupului de autorizare primar la grupul dat."
 
@@ -5184,13 +5091,6 @@ msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
 "Definire punct alternativ de montare pentru rădăcina bazei de date. Implicit "
 "este /mnt."
-
-msgid ""
-"Sets the database information to be stored in path. You have to specifiy a "
-"writable location, even if the volume is read only."
-msgstr ""
-"Stabilire locație bază de date. Trebuie să specificați o locație care "
-"permite scrierea, chiar dacă volumul este marcat ca 'doar citire'."
 
 msgid ""
 "Sets the interval between disk checks to N seconds. The minimum allowed "
@@ -5708,6 +5608,9 @@ msgstr "Portul COM trebuie să fie mai întîi activat în BIOS."
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr "Volumul HAST nu poate fi accesat înainte de a deveni nod Primar."
 
+msgid "The IP address of the UPS master."
+msgstr ""
+
 msgid "The IP address that this hostname represents."
 msgstr "Adresa IP corespunzătoare sistemului."
 
@@ -5926,12 +5829,12 @@ msgid "The configuration could not be restored. No file was uploaded!"
 msgstr ""
 "Configurația nu a putut fi restaurată. Niciun fișier nu a fost încărcat!"
 
+#, c-format
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
-"for them to take effect."
+"for them to take effect.<br /><b>If this message persist take a look at the "
+"<a href='%s'>system log</a> for more information.</b>"
 msgstr ""
-"Configurația a fost modificată.<br />Pentru a deveni activă va trebui să "
-"utilizați butonul 'Aplică'."
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
@@ -6574,23 +6477,11 @@ msgstr ""
 "cum puteți configura UPS-ul dumneavoastră verificați <a href='%s' "
 "target='_blank'>documentația</a> NUT (Network UPS Tools)."
 
-msgid "This controls how the case of filenames are viewed and stored."
-msgstr "Controlează aspectul numelui fișierelor vizualizate și stocate."
-
 msgid "This controls the access a remote host has to this module."
 msgstr "Controlează accesul unui sistem remote la acest modul."
 
 msgid "This controls the access to this share with an access password."
 msgstr "Controlează accesul la această partajare cu o parolă de acces."
-
-msgid ""
-"This controls whether the .AppleDouble directory gets created unless "
-"absolutely needed. This option should not be used if files are access mostly "
-"by Mac computers."
-msgstr ""
-"Controlează dacă folderul .AppleDouble este creat doar dacă este absolut "
-"necesar. Această opțiune nu trebuie utilizată dacă fișierele sînt accesate "
-"preponderent de sisteme Mac."
 
 msgid "This controls whether this share is accessible by guest account."
 msgstr "Controlează dacă partajarea este accesibilă prin contul vizitator."
@@ -6620,14 +6511,6 @@ msgstr ""
 
 msgid "This extent is used."
 msgstr "Această extensie este utilizată."
-
-msgid ""
-"This forces filenames to be restricted to the character set used by Windows. "
-"This is not recommended for shares used principally by Mac computers."
-msgstr ""
-"Se forțează ca numele de fișiere să folosească doar setul de caractere "
-"Windows. Acest mod nu este recomandat dacă partajările sînt utilizate "
-"preponderent de către sisteme Mac."
 
 msgid "This function is unsupported. Use it on your own risk!"
 msgstr ""
@@ -6928,9 +6811,6 @@ msgstr "TiB"
 
 msgid "Time"
 msgstr "Timp"
-
-msgid "Time Machine"
-msgstr "Timp Sistem"
 
 msgid "Time before the load will be rebooted"
 msgstr "Timpul pînă la repornirea sarcinii"
@@ -7292,12 +7172,6 @@ msgstr "Folder de încărcare"
 msgid "Upload directory of the webserver. The default is %s."
 msgstr "Folderul de încărcare pentru serverul web. Implicit este %s."
 
-msgid "Uppercases names in both directions"
-msgstr "Conversie la majuscule în ambele sensuri."
-
-msgid "Use AFP3 unix privileges."
-msgstr "Utilizare privilegii Unix AFP3."
-
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
 "up at least one DNS server if you enter a host name here!"
@@ -7600,11 +7474,9 @@ msgid "Yes"
 msgstr "Da"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg_add "
-"command.<br />Example: pkg_add -r packagename"
+"You can also install a package via SSH or console using the the pkg add "
+"command.<br />Example: pkg add packagename"
 msgstr ""
-"Puteți instala deasemenea un pachet via SSH sau la consolă folosind comanda "
-"pkg_add.<br />Exemplu: pkg_add -r nume_pachet"
 
 msgid "You can use the following parameters for substitution:"
 msgstr "Puteți folosi următorii parametri pentru substituție:"
@@ -7649,6 +7521,12 @@ msgstr ""
 msgid "You may specify logical block length (%d by default)."
 msgstr "Puteți defini lungimea blocului logic (implicit %d)."
 
+#, php-format
+msgid ""
+"You must <a href='%s'>reboot</a> the system before you can upgrade the "
+"firmware."
+msgstr ""
+
 msgid "You must add disks first."
 msgstr "Trebuie să adăugați mai întâi discuri."
 
@@ -7661,10 +7539,6 @@ msgstr ""
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr ""
 "Trebuie să aveți cel puțin %dMB RAM pentru a putea folosi destinații iSCSI."
-
-msgid "You must reboot the system before you can upgrade the firmware."
-msgstr ""
-"Trebuie să reporniți sistemul înainte de a putea actualiza firmwareul."
 
 msgid "You must select at least one authentication method."
 msgstr "Trebuie să selectați cel puțin o metodă de autentificare."
@@ -7718,6 +7592,10 @@ msgstr "Zeroconf/Bonjour"
 msgid "adaptive (low power consumption)"
 msgstr "adaptiv (consum redus de energie)"
 
+#, php-format
+msgid "add any supplemental parameters"
+msgstr ""
+
 msgid "all disks are imported."
 msgstr "toate discurile sînt importate."
 
@@ -7727,26 +7605,14 @@ msgstr "toate discurile criptate sînt importate."
 msgid "all software raid disks are imported."
 msgstr "toate discurile raid software sînt importate."
 
-msgid "cachecnid"
-msgstr "cachecnid"
-
 msgid "change failed."
 msgstr "schimbare eșuată."
 
 msgid "chroot() everyone, but root."
 msgstr "chroot() pentru toți utilizatorii, fără root."
 
-msgid "cnidscheme"
-msgstr "cnidscheme"
-
-msgid "crlf"
-msgstr "crlf"
-
 msgid "day(s)"
 msgstr "zi(le)"
-
-msgid "dbpath"
-msgstr "dbpath"
 
 msgid "detected an error while importing."
 msgstr "au fost detectate erori la import."
@@ -7819,9 +7685,6 @@ msgstr "oglindire"
 msgid "mount"
 msgstr "montare"
 
-msgid "mswindows"
-msgstr "mswindows"
-
 msgid "n/a"
 msgstr "n/a"
 
@@ -7834,29 +7697,11 @@ msgstr "niciun disc nou criptat găsit."
 msgid "no new software raid disk found."
 msgstr "niciun raid software nou găsit."
 
-msgid "noadouble"
-msgstr "noadouble"
-
-msgid "nodev"
-msgstr "nodev"
-
-msgid "nofileid"
-msgstr "nofileid"
-
-msgid "nohex"
-msgstr "nohex"
-
 msgid "none"
 msgstr "nimic"
 
-msgid "nostat"
-msgstr "nostat"
-
 msgid "phpBB"
 msgstr "phpBB"
-
-msgid "prodos"
-msgstr "prodos"
 
 msgid "rc.conf"
 msgstr "rc.conf"
@@ -7897,9 +7742,195 @@ msgstr "umask"
 msgid "umount"
 msgstr "demontare"
 
-msgid "upriv"
-msgstr "upriv"
-
 #, php-format
 msgid "version:"
 msgstr "versiune:"
+
+#~ msgid "DDP"
+#~ msgstr "DDP"
+
+#~ msgid "upriv"
+#~ msgstr "upriv"
+
+#~ msgid "Set the CNID backend to be used for the volume."
+#~ msgstr "Definire bază CNID de rezervă pentru acest volum."
+
+#~ msgid "Case Folding"
+#~ msgstr "Transformare de tip caracter"
+
+#~ msgid "No case folding"
+#~ msgstr "Fără modificare aspect caractere"
+
+#~ msgid "Time Machine"
+#~ msgstr "Timp Sistem"
+
+#~ msgid ""
+#~ "Always use 0 for device number, helps when the device number is not constant "
+#~ "across a reboot, cluster, ..."
+#~ msgstr ""
+#~ "Folosiţi întotdeauna 0 pentru numărul de dispozitiv, ajută întotdeauna cînd "
+#~ "numărul nu este constant de-a lungul repornirii, creării unui cluster,..."
+
+#~ msgid "Uppercases names in both directions"
+#~ msgstr "Conversie la majuscule în ambele sensuri."
+
+#~ msgid "cachecnid"
+#~ msgstr "cachecnid"
+
+#~ msgid "cnidscheme"
+#~ msgstr "cnidscheme"
+
+#~ msgid "nofileid"
+#~ msgstr "nofileid"
+
+#~ msgid "nostat"
+#~ msgstr "nostat"
+
+#~ msgid "dbpath"
+#~ msgstr "dbpath"
+
+#~ msgid "crlf"
+#~ msgstr "crlf"
+
+#~ msgid "noadouble"
+#~ msgstr "noadouble"
+
+#~ msgid "nodev"
+#~ msgstr "nodev"
+
+#~ msgid "prodos"
+#~ msgstr "prodos"
+
+#~ msgid "nohex"
+#~ msgstr "nohex"
+
+#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
+#~ msgstr ""
+#~ "Dezactivează protocolul AFP-over-Appletalk pentru a preveni conexiunile tip "
+#~ "DDP."
+
+#~ msgid ""
+#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
+#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
+#~ "older programs store binary data files as type 'TEXT' when saving and switch "
+#~ "the filetype in a second step. Afpd will potentially destroy such files when "
+#~ "'erroneously' changing bytes in order to do line break translation."
+#~ msgstr ""
+#~ "Permite translarea crlf pentru fișiere TEXT convertind automat codul de "
+#~ "sfîrșit de linie macintosh în codul Unix. Utilizarea acestei opțiuni poate "
+#~ "produce efecte nedorite întrucît unele programe mai vechi salvează inițial "
+#~ "date binare în formatul 'TEXT' modificînd ulterior tipul fișierului. Afpd "
+#~ "poate distruge acest tip de fișiere atunci cînd 'din eroare' modifică biții "
+#~ "în ideea de a face translația caracterului sfîrșit de linie de la mac la "
+#~ "Unix."
+
+#~ msgid "This controls how the case of filenames are viewed and stored."
+#~ msgstr "Controlează aspectul numelui fișierelor vizualizate și stocate."
+
+#~ msgid ""
+#~ "This controls whether the .AppleDouble directory gets created unless "
+#~ "absolutely needed. This option should not be used if files are access mostly "
+#~ "by Mac computers."
+#~ msgstr ""
+#~ "Controlează dacă folderul .AppleDouble este creat doar dacă este absolut "
+#~ "necesar. Această opțiune nu trebuie utilizată dacă fișierele sînt accesate "
+#~ "preponderent de sisteme Mac."
+
+#~ msgid "Automatic disk discovery"
+#~ msgstr "Descoperire automată disc"
+
+#~ msgid "Automatic disk discovery mode"
+#~ msgstr "Mod descoperire automată disc"
+
+#~ msgid "Client sees lowercase, server sees uppercase"
+#~ msgstr "Clientul vede litere ca minuscule, serverul le vede ca majuscule"
+
+#~ msgid "Client sees uppercase, server sees lowercase"
+#~ msgstr "Clientul vede litere ca majuscule, serverul le vede ca minuscule"
+
+#~ msgid ""
+#~ "Disables :hex translations for anything except dot files. This option makes "
+#~ "the '/' character illegal."
+#~ msgstr ""
+#~ "Dezactivare translaţie :hex cu excepția fișierelor cu punct (dot files). "
+#~ "Această opțiune face caracterul '/' ilegal."
+
+#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
+#~ msgstr "Fără publicare cereri createfileid, resolveid, deleteid."
+
+#~ msgid ""
+#~ "Don't stat volume path when enumerating volumes list, useful for "
+#~ "automounting or volumes created by a preexec script."
+#~ msgstr ""
+#~ "Fără afișare cale către volum la afișarea listei volumelor, util pentru "
+#~ "automontarea volumelor create de un script pre-executat."
+
+#~ msgid "Enable automatic disk discovery."
+#~ msgstr "Activare detecție automată disc."
+
+#~ msgid ""
+#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
+#~ "reduce database load. Don't set this option if the volume is modified by non "
+#~ "AFP clients (NFS/SMB/local)."
+#~ msgstr ""
+#~ "Dacă se activează această opțiune, afpd va utiliza informația din headerul "
+#~ "AppleDouble V2 pentru a reduce încărcarea bazei de date. Nu activați această "
+#~ "opțiune dacă volumul poate fi modificat de clienți non AFP (NFS/SMB/local)."
+
+#~ msgid "Lowercases names in both directions"
+#~ msgstr "Minuscule în ambele direcții"
+
+#~ msgid ""
+#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
+#~ "unpredictable behavior in MacOS."
+#~ msgstr ""
+#~ "Atenție! Selectînd 'Time Machine' pentru partajări multiple se pot obține "
+#~ "rezultate impredictibile în MacOS."
+
+#~ msgid "Provides compatibility with Apple II clients."
+#~ msgstr "Asigură compatibilitatea cu clienții Apple ll."
+
+#~ msgid ""
+#~ "Sets the database information to be stored in path. You have to specifiy a "
+#~ "writable location, even if the volume is read only."
+#~ msgstr ""
+#~ "Stabilire locație bază de date. Trebuie să specificați o locație care "
+#~ "permite scrierea, chiar dacă volumul este marcat ca 'doar citire'."
+
+#~ msgid ""
+#~ "The configuration has been changed.<br />You must apply the changes in order "
+#~ "for them to take effect."
+#~ msgstr ""
+#~ "Configurația a fost modificată.<br />Pentru a deveni activă va trebui să "
+#~ "utilizați butonul 'Aplică'."
+
+#~ msgid ""
+#~ "This forces filenames to be restricted to the character set used by Windows. "
+#~ "This is not recommended for shares used principally by Mac computers."
+#~ msgstr ""
+#~ "Se forțează ca numele de fișiere să folosească doar setul de caractere "
+#~ "Windows. Acest mod nu este recomandat dacă partajările sînt utilizate "
+#~ "preponderent de către sisteme Mac."
+
+#~ msgid "Use AFP3 unix privileges."
+#~ msgstr "Utilizare privilegii Unix AFP3."
+
+#~ msgid ""
+#~ "You can also install a package via SSH or console using the the pkg_add "
+#~ "command.<br />Example: pkg_add -r packagename"
+#~ msgstr ""
+#~ "Puteți instala deasemenea un pachet via SSH sau la consolă folosind comanda "
+#~ "pkg_add.<br />Exemplu: pkg_add -r nume_pachet"
+
+#~ msgid "You must reboot the system before you can upgrade the firmware."
+#~ msgstr ""
+#~ "Trebuie să reporniți sistemul înainte de a putea actualiza firmwareul."
+
+#~ msgid "mswindows"
+#~ msgstr "mswindows"
+
+#~ msgid "DNLA/UPnP"
+#~ msgstr "DNLA/UPnP"
+
+#~ msgid "Enable administrative DLNA/UPnP WebGUI."
+#~ msgstr "Activare interfață grafică de administrare DLNA/UPnP."

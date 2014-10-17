@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"POT-Creation-Date: 2014-10-18 01:05+0000\n"
 "PO-Revision-Date: 2012-04-16 00:17+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-21 22:10+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 "X-Poedit-Country: ALBANIA\n"
 "Language: \n"
 "X-Poedit-Language: Albanian\n"
@@ -579,13 +579,6 @@ msgstr "Gjithmone ndezur"
 msgid "Always scan"
 msgstr "Skano gjithmone"
 
-msgid ""
-"Always use 0 for device number, helps when the device number is not constant "
-"across a reboot, cluster, ..."
-msgstr ""
-"Perdor gjithmone 0 per numrin e paisjes, te ndihmon kur numri i paisjes nuk "
-"eshte fiks kur rindez, cluster ...."
-
 msgid "Ambient Conditions From External Probe Equipment"
 msgstr ""
 
@@ -704,12 +697,6 @@ msgstr "Madhesi Automatike"
 
 msgid "AutoScale"
 msgstr "Shkallezim automatik"
-
-msgid "Automatic disk discovery"
-msgstr "Zbulim automatik per diskun"
-
-msgid "Automatic disk discovery mode"
-msgstr "Modalitet automatik per zbulimin e diskut"
 
 msgid "Autoselect"
 msgstr "Autoselect"
@@ -942,9 +929,6 @@ msgstr "Nuk mund te merren te dhenat nga nderfaqja"
 msgid "Capacity"
 msgstr "Kapacitet"
 
-msgid "Case Folding"
-msgstr "Case Folding"
-
 msgid ""
 "Causes the server to display the network information for the specified IP "
 "address or DNS hostname to the client, on the assumption that that IP "
@@ -987,6 +971,9 @@ msgstr "Kinezshe ( Thjeshtuar)"
 msgid "Chinese (Traditional)"
 msgstr "Kinezshe (Tradicionale)"
 
+msgid "Choose UPS mode."
+msgstr ""
+
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr "Zgjidh ne cilat paketa  te nderfaqes ky rregull duhet te zbatohet."
 
@@ -1016,12 +1003,6 @@ msgstr ""
 
 msgid "Client"
 msgstr "Llient"
-
-msgid "Client sees lowercase, server sees uppercase"
-msgstr "Klienti sheh germa dore, serveri i sheh germa shtypi"
-
-msgid "Client sees uppercase, server sees lowercase"
-msgstr "Klienti sheh germa shtypi, serveri i sheh germa dore"
 
 msgid "Clone"
 msgstr "Klono"
@@ -1261,9 +1242,6 @@ msgstr "Çekisht"
 msgid "DAAP"
 msgstr "DAAP"
 
-msgid "DDP"
-msgstr "DDP"
-
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -1271,9 +1249,6 @@ msgid "DLNA/UPnP"
 msgstr ""
 
 msgid "DLNA/UPnP Media Server"
-msgstr ""
-
-msgid "DNLA/UPnP"
 msgstr ""
 
 msgid "DNS settings"
@@ -1600,9 +1575,6 @@ msgstr ""
 msgid "Directory to watch for new .torrent files."
 msgstr "Drejtoria per te kerkuar per file torrent te rinj."
 
-msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-msgstr "Dizabilito AFP-over-Appletalk per te parandaluar lidhjet DDP."
-
 msgid "Disable File Manager"
 msgstr "Dizaktivizo Menaxherin e Dosjeve"
 
@@ -1623,13 +1595,6 @@ msgstr "Dizabilito altoparlantin ne ndezje dhe ne fikje"
 
 msgid "Disabled"
 msgstr "I dizaktivizuar"
-
-msgid ""
-"Disables :hex translations for anything except dot files. This option makes "
-"the '/' character illegal."
-msgstr ""
-"Dizabilito: perkthimet hex per cdo gje perveç skedarve dot. Ky opcion ben qe "
-"karakterin '/' jo te vlefshem."
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -1837,16 +1802,8 @@ msgstr "Emri i domain-it, p.sh. shembull.com."
 msgid "Don't Erase MBR"
 msgstr "Mos fshij MBR-ne"
 
-msgid "Don't advertise createfileid, resolveid, deleteid calls."
-msgstr "Mos reklamo createfileid, resolveid, deleteid calls."
-
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr "Mos fshij MBR-ne (e nevojitshme per disa skeda kontrolli RAID)"
-
-msgid ""
-"Don't stat volume path when enumerating volumes list, useful for "
-"automounting or volumes created by a preexec script."
-msgstr ""
 
 msgid "Donate"
 msgstr "Dhuro"
@@ -2064,17 +2021,11 @@ msgstr ""
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "Aktivizo Zeroconf/Bonjour qe te reklamoni sherbimin e kesaj paisje"
 
-msgid "Enable administrative DLNA/UPnP WebGUI."
-msgstr ""
-
 msgid "Enable anonymous bind."
 msgstr "Aktivizo bind anonim."
 
 msgid "Enable authentication."
 msgstr "Aktivo Autentikimin"
-
-msgid "Enable automatic disk discovery."
-msgstr "Aktivo zbulimin automatik te diskut."
 
 msgid "Enable compression."
 msgstr "Aktivo kompresimin"
@@ -2188,14 +2139,6 @@ msgstr ""
 
 msgid "Enabled"
 msgstr "Aktivizuar"
-
-msgid ""
-"Enables crlf translation for TEXT files, automatically converting macintosh "
-"line breaks into Unix ones. Use of this option might be dangerous since some "
-"older programs store binary data files as type 'TEXT' when saving and switch "
-"the filetype in a second step. Afpd will potentially destroy such files when "
-"'erroneously' changing bytes in order to do line break translation."
-msgstr ""
 
 msgid "Encrypted"
 msgstr "Shifruar"
@@ -2838,12 +2781,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"If set afpd uses the ID information stored in AppleDouble V2 header files to "
-"reduce database load. Don't set this option if the volume is modified by non "
-"AFP clients (NFS/SMB/local)."
-msgstr ""
-
-msgid ""
 "If the selected disk/partition is mounted it will be unmounted temporarily "
 "to perform selected command, otherwise the commands work in read-only "
 "mode.<br />Service disruption to users accessing this mount will occur "
@@ -2919,6 +2856,9 @@ msgstr "Ne"
 
 msgid "In most cases, 'public' is used here."
 msgstr "Ne shumicen e rasteve, 'publike' perdoret ketu."
+
+msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
+msgstr ""
 
 msgid "Include basic hardware information."
 msgstr "Permban informacionet hardware baze."
@@ -3400,9 +3340,6 @@ msgstr ""
 msgid "Low voltage trimming transfer point"
 msgstr ""
 
-msgid "Lowercases names in both directions"
-msgstr ""
-
 msgid "MAC address"
 msgstr "Adresa MAC"
 
@@ -3783,9 +3720,6 @@ msgstr ""
 msgid "No RSYNC Client configured"
 msgstr "Nuk ka nje klient RSYNC te konfiguruar"
 
-msgid "No case folding"
-msgstr ""
-
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
@@ -3918,11 +3852,6 @@ msgstr "I palidhur"
 
 msgid "Note"
 msgstr "Shënim"
-
-msgid ""
-"Note! Selecting 'Time Machine' on multiple shares will may cause "
-"unpredictable behavior in MacOS."
-msgstr ""
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
@@ -4382,9 +4311,6 @@ msgstr "Protokoll"
 
 msgid "Provider"
 msgstr ""
-
-msgid "Provides compatibility with Apple II clients."
-msgstr "Mundeson kompatibilitetin me klientat Apple II."
 
 msgid "Proxy"
 msgstr "Proksi"
@@ -4908,9 +4834,6 @@ msgstr "Vendos vetem lexim"
 msgid "Set share password."
 msgstr "Vendos fjakalim te perbashket."
 
-msgid "Set the CNID backend to be used for the volume."
-msgstr ""
-
 msgid "Set the account's primary group to the given group."
 msgstr ""
 
@@ -4937,11 +4860,6 @@ msgid ""
 msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
-msgstr ""
-
-msgid ""
-"Sets the database information to be stored in path. You have to specifiy a "
-"writable location, even if the volume is read only."
 msgstr ""
 
 msgid ""
@@ -5428,6 +5346,9 @@ msgstr ""
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
 
+msgid "The IP address of the UPS master."
+msgstr ""
+
 msgid "The IP address that this hostname represents."
 msgstr ""
 
@@ -5619,9 +5540,11 @@ msgstr ""
 msgid "The configuration could not be restored. No file was uploaded!"
 msgstr ""
 
+#, c-format
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
-"for them to take effect."
+"for them to take effect.<br /><b>If this message persist take a look at the "
+"<a href='%s'>system log</a> for more information.</b>"
 msgstr ""
 
 #, php-format
@@ -6157,19 +6080,10 @@ msgid ""
 "target='_blank'>documentation</a>."
 msgstr ""
 
-msgid "This controls how the case of filenames are viewed and stored."
-msgstr ""
-
 msgid "This controls the access a remote host has to this module."
 msgstr ""
 
 msgid "This controls the access to this share with an access password."
-msgstr ""
-
-msgid ""
-"This controls whether the .AppleDouble directory gets created unless "
-"absolutely needed. This option should not be used if files are access mostly "
-"by Mac computers."
 msgstr ""
 
 msgid "This controls whether this share is accessible by guest account."
@@ -6193,11 +6107,6 @@ msgid "This email has been sent to validate your email configuration."
 msgstr ""
 
 msgid "This extent is used."
-msgstr ""
-
-msgid ""
-"This forces filenames to be restricted to the character set used by Windows. "
-"This is not recommended for shares used principally by Mac computers."
 msgstr ""
 
 msgid "This function is unsupported. Use it on your own risk!"
@@ -6412,9 +6321,6 @@ msgid "TiB"
 msgstr ""
 
 msgid "Time"
-msgstr ""
-
-msgid "Time Machine"
 msgstr ""
 
 msgid "Time before the load will be rebooted"
@@ -6744,12 +6650,6 @@ msgstr ""
 msgid "Upload directory of the webserver. The default is %s."
 msgstr ""
 
-msgid "Uppercases names in both directions"
-msgstr ""
-
-msgid "Use AFP3 unix privileges."
-msgstr "Perdor privilegjet unix AFP3."
-
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
 "up at least one DNS server if you enter a host name here!"
@@ -7027,8 +6927,8 @@ msgid "Yes"
 msgstr "Po"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg_add "
-"command.<br />Example: pkg_add -r packagename"
+"You can also install a package via SSH or console using the the pkg add "
+"command.<br />Example: pkg add packagename"
 msgstr ""
 
 msgid "You can use the following parameters for substitution:"
@@ -7067,6 +6967,12 @@ msgstr ""
 msgid "You may specify logical block length (%d by default)."
 msgstr ""
 
+#, php-format
+msgid ""
+"You must <a href='%s'>reboot</a> the system before you can upgrade the "
+"firmware."
+msgstr ""
+
 msgid "You must add disks first."
 msgstr "Perpara duhet te shtoni nje disk."
 
@@ -7076,9 +6982,6 @@ msgstr "Duhet te vini te njejten tip IP-je per rrjetin dhe gateway."
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr ""
-
-msgid "You must reboot the system before you can upgrade the firmware."
-msgstr "Duhet te reboot sistemin perpara se te axhornoni firmware."
 
 msgid "You must select at least one authentication method."
 msgstr "Duhet te zgjdhni te pakten nje metode autentikimi."
@@ -7131,6 +7034,10 @@ msgstr "Zeroconf/Bonjour"
 msgid "adaptive (low power consumption)"
 msgstr ""
 
+#, php-format
+msgid "add any supplemental parameters"
+msgstr ""
+
 msgid "all disks are imported."
 msgstr ""
 
@@ -7140,26 +7047,14 @@ msgstr ""
 msgid "all software raid disks are imported."
 msgstr ""
 
-msgid "cachecnid"
-msgstr ""
-
 msgid "change failed."
 msgstr ""
 
 msgid "chroot() everyone, but root."
 msgstr ""
 
-msgid "cnidscheme"
-msgstr "skeme cnid"
-
-msgid "crlf"
-msgstr "crlf"
-
 msgid "day(s)"
 msgstr "ditë(t)"
-
-msgid "dbpath"
-msgstr "dbpath"
 
 msgid "detected an error while importing."
 msgstr ""
@@ -7232,9 +7127,6 @@ msgstr "pasqyrim"
 msgid "mount"
 msgstr "monto"
 
-msgid "mswindows"
-msgstr "mswindows"
-
 msgid "n/a"
 msgstr "n/a"
 
@@ -7247,29 +7139,11 @@ msgstr ""
 msgid "no new software raid disk found."
 msgstr ""
 
-msgid "noadouble"
-msgstr "noadouble"
-
-msgid "nodev"
-msgstr "nodev"
-
-msgid "nofileid"
-msgstr "nofileid"
-
-msgid "nohex"
-msgstr "nohex"
-
 msgid "none"
 msgstr "asnje"
 
-msgid "nostat"
-msgstr "nostat"
-
 msgid "phpBB"
 msgstr "phpBB"
-
-msgid "prodos"
-msgstr "prodos"
 
 msgid "rc.conf"
 msgstr "rc.conf"
@@ -7310,9 +7184,89 @@ msgstr "umask"
 msgid "umount"
 msgstr "zmonto"
 
-msgid "upriv"
-msgstr "upriv"
-
 #, php-format
 msgid "version:"
 msgstr ""
+
+#~ msgid ""
+#~ "Always use 0 for device number, helps when the device number is not constant "
+#~ "across a reboot, cluster, ..."
+#~ msgstr ""
+#~ "Perdor gjithmone 0 per numrin e paisjes, te ndihmon kur numri i paisjes nuk "
+#~ "eshte fiks kur rindez, cluster ...."
+
+#~ msgid "Automatic disk discovery"
+#~ msgstr "Zbulim automatik per diskun"
+
+#~ msgid "Automatic disk discovery mode"
+#~ msgstr "Modalitet automatik per zbulimin e diskut"
+
+#~ msgid "Case Folding"
+#~ msgstr "Case Folding"
+
+#~ msgid "Client sees lowercase, server sees uppercase"
+#~ msgstr "Klienti sheh germa dore, serveri i sheh germa shtypi"
+
+#~ msgid "Client sees uppercase, server sees lowercase"
+#~ msgstr "Klienti sheh germa shtypi, serveri i sheh germa dore"
+
+#~ msgid "DDP"
+#~ msgstr "DDP"
+
+#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
+#~ msgstr "Dizabilito AFP-over-Appletalk per te parandaluar lidhjet DDP."
+
+#~ msgid ""
+#~ "Disables :hex translations for anything except dot files. This option makes "
+#~ "the '/' character illegal."
+#~ msgstr ""
+#~ "Dizabilito: perkthimet hex per cdo gje perveç skedarve dot. Ky opcion ben qe "
+#~ "karakterin '/' jo te vlefshem."
+
+#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
+#~ msgstr "Mos reklamo createfileid, resolveid, deleteid calls."
+
+#~ msgid "Enable automatic disk discovery."
+#~ msgstr "Aktivo zbulimin automatik te diskut."
+
+#~ msgid "Provides compatibility with Apple II clients."
+#~ msgstr "Mundeson kompatibilitetin me klientat Apple II."
+
+#~ msgid "Use AFP3 unix privileges."
+#~ msgstr "Perdor privilegjet unix AFP3."
+
+#~ msgid "You must reboot the system before you can upgrade the firmware."
+#~ msgstr "Duhet te reboot sistemin perpara se te axhornoni firmware."
+
+#~ msgid "cnidscheme"
+#~ msgstr "skeme cnid"
+
+#~ msgid "crlf"
+#~ msgstr "crlf"
+
+#~ msgid "dbpath"
+#~ msgstr "dbpath"
+
+#~ msgid "mswindows"
+#~ msgstr "mswindows"
+
+#~ msgid "noadouble"
+#~ msgstr "noadouble"
+
+#~ msgid "nodev"
+#~ msgstr "nodev"
+
+#~ msgid "nofileid"
+#~ msgstr "nofileid"
+
+#~ msgid "nohex"
+#~ msgstr "nohex"
+
+#~ msgid "nostat"
+#~ msgstr "nostat"
+
+#~ msgid "prodos"
+#~ msgstr "prodos"
+
+#~ msgid "upriv"
+#~ msgstr "upriv"

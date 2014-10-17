@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"POT-Creation-Date: 2014-10-18 01:05+0000\n"
 "PO-Revision-Date: 2014-04-20 14:39+0000\n"
 "Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-21 22:08+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
 "X-Poedit-Language: Greek\n"
@@ -613,14 +613,6 @@ msgstr "Συνέχεια ενεργό"
 msgid "Always scan"
 msgstr "Συνεχής σάρωση"
 
-msgid ""
-"Always use 0 for device number, helps when the device number is not constant "
-"across a reboot, cluster, ..."
-msgstr ""
-"Πάντοτε να χρησιμοποιείτε το 0 για τον αριθμό της συσκευής, βοηθάει όταν ο "
-"αριθμός της συσκευής δεν παραμένει σταθερός ύστερα από μια επανεκκίνηση, "
-"τμηματοποίηση, ..."
-
 msgid "Ambient Conditions From External Probe Equipment"
 msgstr "Συνθήκες περιβάλλοντος από εξωτερικό εξοπλισμό ανίχνευσης"
 
@@ -739,12 +731,6 @@ msgstr "Αυτόματο μέγεθος"
 
 msgid "AutoScale"
 msgstr "Αυτόματη Κλιμάκωση"
-
-msgid "Automatic disk discovery"
-msgstr "Αυτόματη ανεύρεση δίσκου"
-
-msgid "Automatic disk discovery mode"
-msgstr "Αυτόματη λειτουργία ανεύρεσης δίσκου"
 
 msgid "Autoselect"
 msgstr "Αυτόματη επιλογή"
@@ -980,9 +966,6 @@ msgstr "Αδυναμία παραλαβής δεδομένων σχετικά μ
 msgid "Capacity"
 msgstr "Χωρητικότητα"
 
-msgid "Case Folding"
-msgstr "Εμφάνιση πεζών/κεφαλαίων"
-
 msgid ""
 "Causes the server to display the network information for the specified IP "
 "address or DNS hostname to the client, on the assumption that that IP "
@@ -1027,6 +1010,9 @@ msgstr "Κινέζικα (Απλοποιημένα)"
 msgid "Chinese (Traditional)"
 msgstr "Κινέζικα (Παραδοσιακά)"
 
+msgid "Choose UPS mode."
+msgstr ""
+
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
 "Επιλέξτε τα πακέτα ποιάς διεπαφής πρέπει να φθάσουν για να ταιριάζει με "
@@ -1065,12 +1051,6 @@ msgstr ""
 
 msgid "Client"
 msgstr "Πελάτης"
-
-msgid "Client sees lowercase, server sees uppercase"
-msgstr "Πελάτης βλέπει μικρά γράμματα, ο εξυπηρετητής βλέπει κεφαλαία"
-
-msgid "Client sees uppercase, server sees lowercase"
-msgstr "Πελάτης βλέπει κεφαλαία, ο εξυπηρετητής βλέπει πεζά"
 
 msgid "Clone"
 msgstr "Δημιουργία κλώνου"
@@ -1334,9 +1314,6 @@ msgstr "Τσέχικα"
 msgid "DAAP"
 msgstr "DAAP"
 
-msgid "DDP"
-msgstr "DDP"
-
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -1345,9 +1322,6 @@ msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Media Server"
-
-msgid "DNLA/UPnP"
-msgstr "DNLA/UPnP"
 
 msgid "DNS settings"
 msgstr "Ρυθμίσεις DNS"
@@ -1688,10 +1662,6 @@ msgstr "Κατάλογος που περιέχει αφαιρούμενο μέσ
 msgid "Directory to watch for new .torrent files."
 msgstr "Κατάλογος που θα παρακολουθείται για νέα αρχεία .torrent."
 
-msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-msgstr ""
-"Απενεργοποιήστε το AFP-over-Appletalk για να εμποδίσετε συνδέσεις DDP."
-
 msgid "Disable File Manager"
 msgstr "Απενεργοποίηση διαχειριστή αρχείων"
 
@@ -1714,13 +1684,6 @@ msgstr ""
 
 msgid "Disabled"
 msgstr "Απενεργοποιημένο"
-
-msgid ""
-"Disables :hex translations for anything except dot files. This option makes "
-"the '/' character illegal."
-msgstr ""
-"Απενεργοποιεί τις :hex μεταφράσεις για όλα εκτός από τα dot αρχεία. Η "
-"επιλογή αυτή καθιστά τον χαρακτήρα '/' μη επιτρεπτό."
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -1932,19 +1895,8 @@ msgstr "Όνομα τομέα, π.χ. example.com."
 msgid "Don't Erase MBR"
 msgstr "Να μη διαγραφεί το MBR"
 
-msgid "Don't advertise createfileid, resolveid, deleteid calls."
-msgstr "Να μην ανακοινώνονται κλήσεις createfileid, resolveid, deleteid."
-
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr "Να μη διαγραφεί το MBR (χρήσιμο για κάποιες κάρτες ελεγκτών RAID)"
-
-msgid ""
-"Don't stat volume path when enumerating volumes list, useful for "
-"automounting or volumes created by a preexec script."
-msgstr ""
-"Να μην λογαριάζεται η διαδρομή του τόμου όταν δημιουργείται λίστα "
-"απαρίθμησης των τόμων, χρήσιμο για αυτόματη προσάρτηση ή για τόμους που "
-"δημιουργούνται από preexec script."
 
 msgid "Donate"
 msgstr "Δωρεά"
@@ -2168,17 +2120,11 @@ msgstr ""
 "Ενεργοποίηση του Zeroconf/Bonjour για τη διαφήμιση των υπηρεσιών αυτής της "
 "συσκευής"
 
-msgid "Enable administrative DLNA/UPnP WebGUI."
-msgstr "Ενεργοποίηση WebGUI διαχείρισης DLNA/UPnP"
-
 msgid "Enable anonymous bind."
 msgstr "Ενεργοποίηση ανώνυμου bind."
 
 msgid "Enable authentication."
 msgstr "Ενεργοποίηση πιστοποίησης."
-
-msgid "Enable automatic disk discovery."
-msgstr "Ενεργοποίηση αυτόματης ανεύρεσης δίσκου."
 
 msgid "Enable compression."
 msgstr "Ενεργοποίηση συμπίεσης."
@@ -2299,21 +2245,6 @@ msgstr "Ενεργοποίηση προσωρινής μνήμης για την
 
 msgid "Enabled"
 msgstr "Ενεργοποιημένο"
-
-msgid ""
-"Enables crlf translation for TEXT files, automatically converting macintosh "
-"line breaks into Unix ones. Use of this option might be dangerous since some "
-"older programs store binary data files as type 'TEXT' when saving and switch "
-"the filetype in a second step. Afpd will potentially destroy such files when "
-"'erroneously' changing bytes in order to do line break translation."
-msgstr ""
-"Δίνει τη δυνατότητα μετάφρασης CRLF για αρχεία κειμένου, μετατρέποντας "
-"αυτόματα μετατροπή τις αλλαγές γραμμής macintosh σε Unix. Η χρήση αυτής της "
-"δυνατότητας θα μπορούσε να είναι επικίνδυνη, δεδομένου ότι κάποια παλιότερα "
-"προγράμματα αποθηκεύουν δυαδικά αρχεία δεδομένων ως τύπο 'TEXT' και αλλάζουν "
-"τον τύπο αρχείου σε δεύτερη φάση. Οπότε, σε αυτή την περίπτωση,  θα "
-"καταστραφούν τα εν λόγω αρχεία, όταν 'κατά λάθος', θα αλλαχτούν τα bytes για "
-"τη μετάφραση της αλλαγής γραμμής."
 
 msgid "Encrypted"
 msgstr "Κρυπτογραφημένο"
@@ -2991,16 +2922,6 @@ msgstr ""
 "του χώρου των αρχείων, του συστήματος του εξυπηρετητή."
 
 msgid ""
-"If set afpd uses the ID information stored in AppleDouble V2 header files to "
-"reduce database load. Don't set this option if the volume is modified by non "
-"AFP clients (NFS/SMB/local)."
-msgstr ""
-"Αν ορίσετε το afpd , τότε θα χρησιμοποιούνται οι πληροφορίες ταυτότητας που "
-"αποθηκεύονται στα αρχεία κεφαλίδας AppleDouble V2  για μείωση του φορτίου "
-"της βάσης δεδομένων. Μην ορίζετε αυτή την επιλογή εάν ο τόμος έχει "
-"τροποποιηθεί από μη πελάτες AFP (NFS/SMB/local)."
-
-msgid ""
 "If the selected disk/partition is mounted it will be unmounted temporarily "
 "to perform selected command, otherwise the commands work in read-only "
 "mode.<br />Service disruption to users accessing this mount will occur "
@@ -3096,6 +3017,9 @@ msgstr "Μέσα"
 
 msgid "In most cases, 'public' is used here."
 msgstr "Στις περισσότερες περιπτώσεις, το 'Δημόσιο' χρησιμοποιείται εδώ."
+
+msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
+msgstr ""
 
 msgid "Include basic hardware information."
 msgstr "Να συμπεριληφθούν βασικές πληροφορίες υλικού."
@@ -3607,9 +3531,6 @@ msgstr "Σημείο μεταφοράς χαμηλής τάσης"
 msgid "Low voltage trimming transfer point"
 msgstr "Σημείο για μεταφορά σε εκτόνωση χαμηλής τάσης"
 
-msgid "Lowercases names in both directions"
-msgstr "Μετατροπή των ονομάτων σε πεζά και στις δύο κατευθύνσεις"
-
 msgid "MAC address"
 msgstr "Διεύθυνση MAC"
 
@@ -4000,9 +3921,6 @@ msgstr "Δεν βρέθηκε ρύθμιση DNS."
 msgid "No RSYNC Client configured"
 msgstr "Δε ρυθμίστηκε Πελάτης RSYNC"
 
-msgid "No case folding"
-msgstr "Μη αλλαγή σε κεφαλαία"
-
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
@@ -4154,13 +4072,6 @@ msgstr "Μη συνημμένος"
 
 msgid "Note"
 msgstr "Σημείωση"
-
-msgid ""
-"Note! Selecting 'Time Machine' on multiple shares will may cause "
-"unpredictable behavior in MacOS."
-msgstr ""
-"Σημείωση! Η επιλογή 'Time Machine' σε πολλά κοινόχρηστα στοιχεία, μπορεί να "
-"προκαλέσει απρόβλεπτη συμπεριφορά σε MacOS."
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
@@ -4648,9 +4559,6 @@ msgstr "Πρωτόκολλο"
 
 msgid "Provider"
 msgstr "Πάροχος"
-
-msgid "Provides compatibility with Apple II clients."
-msgstr "Παρέχει συμβατότητα με Apple II πελάτες."
 
 msgid "Proxy"
 msgstr "Διακομιστής μεσολάβησης"
@@ -5206,9 +5114,6 @@ msgstr "Ορισμός μόνο για ανάγνωση"
 msgid "Set share password."
 msgstr "Ορισμός κονόχρηστου κωδικού."
 
-msgid "Set the CNID backend to be used for the volume."
-msgstr "Ρυθμίζει το CNID backend που θα χρησιμοποιηθεί για τον τόμο."
-
 msgid "Set the account's primary group to the given group."
 msgstr "Καθορισμός πρωτεύοντος ομάδας για τον λογαριασμό."
 
@@ -5249,14 +5154,6 @@ msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
 "Ρυθμίζει μια εναλλακτική τοποθεσία για τη ρίζα των αρχείων. Η προεπιλεγμένη "
 "είναι /mnt."
-
-msgid ""
-"Sets the database information to be stored in path. You have to specifiy a "
-"writable location, even if the volume is read only."
-msgstr ""
-"Καθορίζει τη διαδρομή που θα αποθηκευτούν οι πληροφορίες της βάσης "
-"δεδομένων. Πρέπει να καθορίσετε μια τοποθεσία που επιτρέπεται η εγγραφή, "
-"ακόμα κι αν ο τόμος είναι μόνο για ανάγνωση."
 
 msgid ""
 "Sets the interval between disk checks to N seconds. The minimum allowed "
@@ -5785,6 +5682,9 @@ msgstr ""
 "Οι τόμοι HAST δεν μπορούν να προσπελαστούν μέχρι ο κόμβος HAST να γίνει "
 "πρωτεύων."
 
+msgid "The IP address of the UPS master."
+msgstr ""
+
 msgid "The IP address that this hostname represents."
 msgstr "Η διεύθυνση IP που αντιπροσωπεύει αυτό το όνομα υπολογιστή."
 
@@ -6010,12 +5910,12 @@ msgstr "Οι ρυθμίσεις δεν ήταν δυνατό να επαναφε
 msgid "The configuration could not be restored. No file was uploaded!"
 msgstr "Οι ρυθμίσεις δεν μπόρεσαν να γίνουν επαναφορά. Δεν απεστάλη αρχείο!"
 
+#, c-format
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
-"for them to take effect."
+"for them to take effect.<br /><b>If this message persist take a look at the "
+"<a href='%s'>system log</a> for more information.</b>"
 msgstr ""
-"Οι ρυθμίσεις έχουν αλλάξει.<br />Πρέπει να κάνετε εφαρμογή των αλλαγών για "
-"να μπορέσουν να τεθούν σε ισχύ."
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
@@ -6686,9 +6586,6 @@ msgstr ""
 "όσον αφορά στο πώς να ρυθμίσετε το UPS σας, παρακαλούμε να ελέγξετε την <a "
 "href='%s' target='_blank'>τεκμηρίωση</ a> του NUT (Network UPS Tools)."
 
-msgid "This controls how the case of filenames are viewed and stored."
-msgstr "Αυτό ελέγχει πώς τα ονόματα των αρχείων φαίνονται και αποθηκεύονται."
-
 msgid "This controls the access a remote host has to this module."
 msgstr ""
 "Αυτό ελέγχει την πρόσβαση που θα έχει ένας απομακρυσμένος υπολογιστής σε "
@@ -6698,15 +6595,6 @@ msgid "This controls the access to this share with an access password."
 msgstr ""
 "Αυτή ελέγχει την πρόσβαση σε αυτό το κοινόχρηστο πόρο, με έναν κωδικό "
 "πρόσβασης."
-
-msgid ""
-"This controls whether the .AppleDouble directory gets created unless "
-"absolutely needed. This option should not be used if files are access mostly "
-"by Mac computers."
-msgstr ""
-"Αυτό ελέγχει αν δημιουργείται ο κατάλογος .AppleDouble μόνο όταν είναι "
-"απολύτως απαραίτητο. Αυτή η επιλογή δεν πρέπει να χρησιμοποιείται εάν στα "
-"αρχεία έχουν ως επί το πλείστον πρόσβαση από υπολογιστές Mac."
 
 msgid "This controls whether this share is accessible by guest account."
 msgstr ""
@@ -6738,14 +6626,6 @@ msgstr ""
 
 msgid "This extent is used."
 msgstr "Αυτή η επέκταση χρησιμοποιείται."
-
-msgid ""
-"This forces filenames to be restricted to the character set used by Windows. "
-"This is not recommended for shares used principally by Mac computers."
-msgstr ""
-"Αυτό αναγκάζει τα ονόματα των αρχείων να περιορίζονται στο σετ χαρακτήρων "
-"που χρησιμοποιείται από τα Windows. Αυτό δεν συνιστάται για τους "
-"κοινόχρηστους πόρους που χρησιμοποιούνται κυρίως από υπολογιστές Mac."
 
 msgid "This function is unsupported. Use it on your own risk!"
 msgstr ""
@@ -7052,9 +6932,6 @@ msgstr "TB"
 
 msgid "Time"
 msgstr "Χρόνος"
-
-msgid "Time Machine"
-msgstr "Time Machine"
 
 msgid "Time before the load will be rebooted"
 msgstr "Χρόνος πριν την επανεκκίνηση του φορτίου"
@@ -7424,12 +7301,6 @@ msgstr ""
 "Ο φάκελος του διακομιστή web για αποστολές αρχείων. Ο προκαθορισμένος είναι "
 "ο %s."
 
-msgid "Uppercases names in both directions"
-msgstr "Κεφαλαία ονόματα και στις δύο κατευθύνσεις"
-
-msgid "Use AFP3 unix privileges."
-msgstr "Χρήση AFP3 unix προνομίων."
-
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
 "up at least one DNS server if you enter a host name here!"
@@ -7737,11 +7608,9 @@ msgid "Yes"
 msgstr "Ναι"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg_add "
-"command.<br />Example: pkg_add -r packagename"
+"You can also install a package via SSH or console using the the pkg add "
+"command.<br />Example: pkg add packagename"
 msgstr ""
-"Μπορείτε επίσης να εγκαταστήσετε ένα πακέτο μέσω SSH ή από την κονσόλα με "
-"την εντολή pkg_add<br /> Για παράδειγμα: pkg_add -r packagename"
 
 msgid "You can use the following parameters for substitution:"
 msgstr ""
@@ -7789,6 +7658,12 @@ msgstr ""
 msgid "You may specify logical block length (%d by default)."
 msgstr "Μπορείτε να καθορίσετε το μήκος του λογικού μπλοκ (%d η προεπιλογή)."
 
+#, php-format
+msgid ""
+"You must <a href='%s'>reboot</a> the system before you can upgrade the "
+"firmware."
+msgstr ""
+
 msgid "You must add disks first."
 msgstr "Πρέπει πρώτα να προσθέσετε δίσκους."
 
@@ -7800,11 +7675,6 @@ msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr ""
 "Πρέπει να έχετε το ελάχιστο %dMB RAM για να χρησιμοποιήσετε έναν προορισμό "
 "iSCSI."
-
-msgid "You must reboot the system before you can upgrade the firmware."
-msgstr ""
-"Πρέπει να επανεκκινήσετε το σύστημα προτού να μπορείτε να αναβαθμίσετε το "
-"firmware."
 
 msgid "You must select at least one authentication method."
 msgstr "Πρέπει να επιλέξετε τουλάχιστον μία μεθοδο πιστοποίησης."
@@ -7861,6 +7731,10 @@ msgstr "Zeroconf/Bonjour"
 msgid "adaptive (low power consumption)"
 msgstr "adaptive (χαμηλή κατανάλωση ενέργειας)"
 
+#, php-format
+msgid "add any supplemental parameters"
+msgstr ""
+
 msgid "all disks are imported."
 msgstr "όλοι οι δίσκοι εισήχθησαν."
 
@@ -7870,26 +7744,14 @@ msgstr "όλοι οι κρυπτογραφημένοι δίσκοι εισήχθ
 msgid "all software raid disks are imported."
 msgstr "όλοι οι δίσκοι σε raid μέσω λογισμικού εισήχθησαν."
 
-msgid "cachecnid"
-msgstr "cachecnid"
-
 msgid "change failed."
 msgstr "η αλλαγή απέτυχε."
 
 msgid "chroot() everyone, but root."
 msgstr "chroot() όλοι, εκτός του root."
 
-msgid "cnidscheme"
-msgstr "Σχήμα cnid"
-
-msgid "crlf"
-msgstr "crlf"
-
 msgid "day(s)"
 msgstr "ημέρα(ες)"
-
-msgid "dbpath"
-msgstr "Τοποθεσία βάσης δεδομένων"
 
 msgid "detected an error while importing."
 msgstr "ανιχνεύθηκε ένα σφάλμα κατά τη διαδικασία εισαγωγής"
@@ -7962,9 +7824,6 @@ msgstr "καθρεπτισμός"
 msgid "mount"
 msgstr "προσάρτηση"
 
-msgid "mswindows"
-msgstr "mswindows"
-
 msgid "n/a"
 msgstr "n/a"
 
@@ -7977,29 +7836,11 @@ msgstr "δεν βρέθηκε κάποιος νέος κρυπτογραφημέ
 msgid "no new software raid disk found."
 msgstr "δεν βρέθηκε κάποιος νέος δίσκος raid μέσω λογισμικού."
 
-msgid "noadouble"
-msgstr "noadouble"
-
-msgid "nodev"
-msgstr "nodev"
-
-msgid "nofileid"
-msgstr "nofileid"
-
-msgid "nohex"
-msgstr "nohex"
-
 msgid "none"
 msgstr "κανένα"
 
-msgid "nostat"
-msgstr "nostat"
-
 msgid "phpBB"
 msgstr "phpBB"
-
-msgid "prodos"
-msgstr "prodos"
 
 msgid "rc.conf"
 msgstr "rc.conf"
@@ -8040,9 +7881,199 @@ msgstr "umask"
 msgid "umount"
 msgstr "αποπροσάρτηση"
 
-msgid "upriv"
-msgstr "upriv"
-
 #, php-format
 msgid "version:"
 msgstr "έκδοση:"
+
+#~ msgid "Client sees lowercase, server sees uppercase"
+#~ msgstr "Πελάτης βλέπει μικρά γράμματα, ο εξυπηρετητής βλέπει κεφαλαία"
+
+#~ msgid "Client sees uppercase, server sees lowercase"
+#~ msgstr "Πελάτης βλέπει κεφαλαία, ο εξυπηρετητής βλέπει πεζά"
+
+#~ msgid "DDP"
+#~ msgstr "DDP"
+
+#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
+#~ msgstr ""
+#~ "Απενεργοποιήστε το AFP-over-Appletalk για να εμποδίσετε συνδέσεις DDP."
+
+#~ msgid ""
+#~ "Disables :hex translations for anything except dot files. This option makes "
+#~ "the '/' character illegal."
+#~ msgstr ""
+#~ "Απενεργοποιεί τις :hex μεταφράσεις για όλα εκτός από τα dot αρχεία. Η "
+#~ "επιλογή αυτή καθιστά τον χαρακτήρα '/' μη επιτρεπτό."
+
+#~ msgid "This controls how the case of filenames are viewed and stored."
+#~ msgstr "Αυτό ελέγχει πώς τα ονόματα των αρχείων φαίνονται και αποθηκεύονται."
+
+#~ msgid "Uppercases names in both directions"
+#~ msgstr "Κεφαλαία ονόματα και στις δύο κατευθύνσεις"
+
+#~ msgid "You must reboot the system before you can upgrade the firmware."
+#~ msgstr ""
+#~ "Πρέπει να επανεκκινήσετε το σύστημα προτού να μπορείτε να αναβαθμίσετε το "
+#~ "firmware."
+
+#~ msgid "cachecnid"
+#~ msgstr "cachecnid"
+
+#~ msgid "cnidscheme"
+#~ msgstr "Σχήμα cnid"
+
+#~ msgid "crlf"
+#~ msgstr "crlf"
+
+#~ msgid "mswindows"
+#~ msgstr "mswindows"
+
+#~ msgid "noadouble"
+#~ msgstr "noadouble"
+
+#~ msgid "nodev"
+#~ msgstr "nodev"
+
+#~ msgid "nofileid"
+#~ msgstr "nofileid"
+
+#~ msgid "nohex"
+#~ msgstr "nohex"
+
+#~ msgid "nostat"
+#~ msgstr "nostat"
+
+#~ msgid "prodos"
+#~ msgstr "prodos"
+
+#~ msgid "upriv"
+#~ msgstr "upriv"
+
+#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
+#~ msgstr "Να μην ανακοινώνονται κλήσεις createfileid, resolveid, deleteid."
+
+#~ msgid ""
+#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
+#~ "reduce database load. Don't set this option if the volume is modified by non "
+#~ "AFP clients (NFS/SMB/local)."
+#~ msgstr ""
+#~ "Αν ορίσετε το afpd , τότε θα χρησιμοποιούνται οι πληροφορίες ταυτότητας που "
+#~ "αποθηκεύονται στα αρχεία κεφαλίδας AppleDouble V2  για μείωση του φορτίου "
+#~ "της βάσης δεδομένων. Μην ορίζετε αυτή την επιλογή εάν ο τόμος έχει "
+#~ "τροποποιηθεί από μη πελάτες AFP (NFS/SMB/local)."
+
+#~ msgid "Lowercases names in both directions"
+#~ msgstr "Μετατροπή των ονομάτων σε πεζά και στις δύο κατευθύνσεις"
+
+#~ msgid "No case folding"
+#~ msgstr "Μη αλλαγή σε κεφαλαία"
+
+#~ msgid "Provides compatibility with Apple II clients."
+#~ msgstr "Παρέχει συμβατότητα με Apple II πελάτες."
+
+#~ msgid "Set the CNID backend to be used for the volume."
+#~ msgstr "Ρυθμίζει το CNID backend που θα χρησιμοποιηθεί για τον τόμο."
+
+#~ msgid ""
+#~ "This forces filenames to be restricted to the character set used by Windows. "
+#~ "This is not recommended for shares used principally by Mac computers."
+#~ msgstr ""
+#~ "Αυτό αναγκάζει τα ονόματα των αρχείων να περιορίζονται στο σετ χαρακτήρων "
+#~ "που χρησιμοποιείται από τα Windows. Αυτό δεν συνιστάται για τους "
+#~ "κοινόχρηστους πόρους που χρησιμοποιούνται κυρίως από υπολογιστές Mac."
+
+#~ msgid "Use AFP3 unix privileges."
+#~ msgstr "Χρήση AFP3 unix προνομίων."
+
+#~ msgid ""
+#~ "You can also install a package via SSH or console using the the pkg_add "
+#~ "command.<br />Example: pkg_add -r packagename"
+#~ msgstr ""
+#~ "Μπορείτε επίσης να εγκαταστήσετε ένα πακέτο μέσω SSH ή από την κονσόλα με "
+#~ "την εντολή pkg_add<br /> Για παράδειγμα: pkg_add -r packagename"
+
+#~ msgid ""
+#~ "Always use 0 for device number, helps when the device number is not constant "
+#~ "across a reboot, cluster, ..."
+#~ msgstr ""
+#~ "Πάντοτε να χρησιμοποιείτε το 0 για τον αριθμό της συσκευής, βοηθάει όταν ο "
+#~ "αριθμός της συσκευής δεν παραμένει σταθερός ύστερα από μια επανεκκίνηση, "
+#~ "τμηματοποίηση, ..."
+
+#~ msgid ""
+#~ "Don't stat volume path when enumerating volumes list, useful for "
+#~ "automounting or volumes created by a preexec script."
+#~ msgstr ""
+#~ "Να μην λογαριάζεται η διαδρομή του τόμου όταν δημιουργείται λίστα "
+#~ "απαρίθμησης των τόμων, χρήσιμο για αυτόματη προσάρτηση ή για τόμους που "
+#~ "δημιουργούνται από preexec script."
+
+#~ msgid ""
+#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
+#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
+#~ "older programs store binary data files as type 'TEXT' when saving and switch "
+#~ "the filetype in a second step. Afpd will potentially destroy such files when "
+#~ "'erroneously' changing bytes in order to do line break translation."
+#~ msgstr ""
+#~ "Δίνει τη δυνατότητα μετάφρασης CRLF για αρχεία κειμένου, μετατρέποντας "
+#~ "αυτόματα μετατροπή τις αλλαγές γραμμής macintosh σε Unix. Η χρήση αυτής της "
+#~ "δυνατότητας θα μπορούσε να είναι επικίνδυνη, δεδομένου ότι κάποια παλιότερα "
+#~ "προγράμματα αποθηκεύουν δυαδικά αρχεία δεδομένων ως τύπο 'TEXT' και αλλάζουν "
+#~ "τον τύπο αρχείου σε δεύτερη φάση. Οπότε, σε αυτή την περίπτωση,  θα "
+#~ "καταστραφούν τα εν λόγω αρχεία, όταν 'κατά λάθος', θα αλλαχτούν τα bytes για "
+#~ "τη μετάφραση της αλλαγής γραμμής."
+
+#~ msgid ""
+#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
+#~ "unpredictable behavior in MacOS."
+#~ msgstr ""
+#~ "Σημείωση! Η επιλογή 'Time Machine' σε πολλά κοινόχρηστα στοιχεία, μπορεί να "
+#~ "προκαλέσει απρόβλεπτη συμπεριφορά σε MacOS."
+
+#~ msgid ""
+#~ "Sets the database information to be stored in path. You have to specifiy a "
+#~ "writable location, even if the volume is read only."
+#~ msgstr ""
+#~ "Καθορίζει τη διαδρομή που θα αποθηκευτούν οι πληροφορίες της βάσης "
+#~ "δεδομένων. Πρέπει να καθορίσετε μια τοποθεσία που επιτρέπεται η εγγραφή, "
+#~ "ακόμα κι αν ο τόμος είναι μόνο για ανάγνωση."
+
+#~ msgid ""
+#~ "The configuration has been changed.<br />You must apply the changes in order "
+#~ "for them to take effect."
+#~ msgstr ""
+#~ "Οι ρυθμίσεις έχουν αλλάξει.<br />Πρέπει να κάνετε εφαρμογή των αλλαγών για "
+#~ "να μπορέσουν να τεθούν σε ισχύ."
+
+#~ msgid ""
+#~ "This controls whether the .AppleDouble directory gets created unless "
+#~ "absolutely needed. This option should not be used if files are access mostly "
+#~ "by Mac computers."
+#~ msgstr ""
+#~ "Αυτό ελέγχει αν δημιουργείται ο κατάλογος .AppleDouble μόνο όταν είναι "
+#~ "απολύτως απαραίτητο. Αυτή η επιλογή δεν πρέπει να χρησιμοποιείται εάν στα "
+#~ "αρχεία έχουν ως επί το πλείστον πρόσβαση από υπολογιστές Mac."
+
+#~ msgid "Time Machine"
+#~ msgstr "Time Machine"
+
+#~ msgid "Enable automatic disk discovery."
+#~ msgstr "Ενεργοποίηση αυτόματης ανεύρεσης δίσκου."
+
+#~ msgid "Automatic disk discovery"
+#~ msgstr "Αυτόματη ανεύρεση δίσκου"
+
+#~ msgid "Automatic disk discovery mode"
+#~ msgstr "Αυτόματη λειτουργία ανεύρεσης δίσκου"
+
+#~ msgid "Case Folding"
+#~ msgstr "Εμφάνιση πεζών/κεφαλαίων"
+
+#~ msgid "dbpath"
+#~ msgstr "Τοποθεσία βάσης δεδομένων"
+
+#~ msgid "DNLA/UPnP"
+#~ msgstr "DNLA/UPnP"
+
+#~ msgid "Enable administrative DLNA/UPnP WebGUI."
+#~ msgstr "Ενεργοποίηση WebGUI διαχείρισης DLNA/UPnP"

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-04-16 00:50+0000\n"
-"PO-Revision-Date: 2012-06-02 00:13+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2014-10-18 01:05+0000\n"
+"PO-Revision-Date: 2014-06-04 01:19+0000\n"
+"Last-Translator: jure <jure.medved@amis.net>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-21 22:09+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 "X-Poedit-Country: SLOVENIA\n"
 "Language: \n"
 "X-Poedit-Language: Slovenian\n"
@@ -24,23 +24,23 @@ msgstr " je bila pripeta k "
 
 #, php-format
 msgid "%d days"
-msgstr ""
+msgstr "%d dni"
 
 #, php-format
 msgid "%d week"
-msgstr ""
+msgstr "%d teden"
 
 #, php-format
 msgid "%d weeks"
-msgstr ""
+msgstr "%d tednov"
 
 #, php-format
 msgid "%d year"
-msgstr ""
+msgstr "%d leto"
 
 #, php-format
 msgid "%d years"
-msgstr ""
+msgstr "%d let"
 
 #, c-format, php-format
 msgid "%d%% of %dMiB"
@@ -72,7 +72,7 @@ msgstr "%s na %s"
 
 #, php-format
 msgid "%s%% available"
-msgstr ""
+msgstr "%s%% na voljo"
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
@@ -266,7 +266,7 @@ msgid "AIO write size"
 msgstr "AIO velikost pisanja"
 
 msgid "ALL interfaces"
-msgstr ""
+msgstr "Vsi vmesniki"
 
 msgid "ARP Tables"
 msgstr "ARP tabele"
@@ -281,7 +281,7 @@ msgid "Access Restrictions"
 msgstr "Omejitve dostopa"
 
 msgid "Access Time (atime)"
-msgstr ""
+msgstr "Časovni dostop"
 
 msgid "Access mode"
 msgstr "Način dostopa"
@@ -564,13 +564,6 @@ msgstr "Vedno vklopljen"
 msgid "Always scan"
 msgstr "Vedno preišči"
 
-msgid ""
-"Always use 0 for device number, helps when the device number is not constant "
-"across a reboot, cluster, ..."
-msgstr ""
-"Vedno uporabi 0 za številko naprave. Uporabno, če se številka naprave "
-"spreminja ob ponovnih zagonih, oblakih, ..."
-
 msgid "Ambient Conditions From External Probe Equipment"
 msgstr ""
 
@@ -689,12 +682,6 @@ msgstr "Samodejna velikost"
 
 msgid "AutoScale"
 msgstr "AvtoSkala"
-
-msgid "Automatic disk discovery"
-msgstr "Samodejna prepoznava diska"
-
-msgid "Automatic disk discovery mode"
-msgstr "Možnost samodejne prepoznave diska"
 
 msgid "Autoselect"
 msgstr "Samodejna izbira"
@@ -927,9 +914,6 @@ msgstr "Ne morem pridobiti podatkov o vmesniku"
 msgid "Capacity"
 msgstr "Kapaciteta"
 
-msgid "Case Folding"
-msgstr "Uredi velikosti črk"
-
 msgid ""
 "Causes the server to display the network information for the specified IP "
 "address or DNS hostname to the client, on the assumption that that IP "
@@ -973,6 +957,9 @@ msgstr "Kitajščina (poenostavljena)"
 msgid "Chinese (Traditional)"
 msgstr "Kitajščina (tradicionalna)"
 
+msgid "Choose UPS mode."
+msgstr ""
+
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
 "Izberite na katero napravo morejo priti paketi, da se ujemajo s tem pravilom."
@@ -1003,12 +990,6 @@ msgstr ""
 
 msgid "Client"
 msgstr "Odjemalec"
-
-msgid "Client sees lowercase, server sees uppercase"
-msgstr "Klient vidi majhne črke, server pa velike."
-
-msgid "Client sees uppercase, server sees lowercase"
-msgstr "Klient vidi velike črke, strežnik pa majhne."
 
 msgid "Clone"
 msgstr ""
@@ -1252,9 +1233,6 @@ msgstr "Češčina"
 msgid "DAAP"
 msgstr "DAAP"
 
-msgid "DDP"
-msgstr "DDP"
-
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -1262,9 +1240,6 @@ msgid "DLNA/UPnP"
 msgstr ""
 
 msgid "DLNA/UPnP Media Server"
-msgstr ""
-
-msgid "DNLA/UPnP"
 msgstr ""
 
 msgid "DNS settings"
@@ -1596,9 +1571,6 @@ msgstr "Mapa, ki vsebuje odstranljiv medij. (npr. /mnt/iscsi/)"
 msgid "Directory to watch for new .torrent files."
 msgstr "Direktorij za spremljanje za novimi .torrent datotekami."
 
-msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-msgstr "Onemogoči AFP-preko-Appletalk za preprečevanje DDP povezav."
-
 msgid "Disable File Manager"
 msgstr "Onemogoči nadzornika datotek"
 
@@ -1619,13 +1591,6 @@ msgstr "Onemogoči sistemski zvok ob zagonu in izklopu"
 
 msgid "Disabled"
 msgstr "Onemogočen"
-
-msgid ""
-"Disables :hex translations for anything except dot files. This option makes "
-"the '/' character illegal."
-msgstr ""
-"Onemogoči :hex prevode za vse, razen dot datoteke. Ta možno naredi '/' znak "
-"neveljaven."
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -1830,18 +1795,8 @@ msgstr "Ime domene, npr. primer.com."
 msgid "Don't Erase MBR"
 msgstr "Ne izbriši MBR"
 
-msgid "Don't advertise createfileid, resolveid, deleteid calls."
-msgstr "Ne prikazuj createfileid, resolveid, deleteid klicev."
-
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr "Ne izbriši MBR (uporabno pri nekaterih RAID kontrolerjih)"
-
-msgid ""
-"Don't stat volume path when enumerating volumes list, useful for "
-"automounting or volumes created by a preexec script."
-msgstr ""
-"Don't stat poti particij, pri raziskovanju seznama diskov. Uporabno za "
-"samodejo priklapljanje, ali particije ustvarjene s preexec skripto."
 
 msgid "Donate"
 msgstr "Doniraj"
@@ -2059,17 +2014,11 @@ msgstr ""
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "Omogoči Zeroconf/Bonjour za oglaševanje te naprave"
 
-msgid "Enable administrative DLNA/UPnP WebGUI."
-msgstr ""
-
 msgid "Enable anonymous bind."
 msgstr "Omogoči anonimen priklop."
 
 msgid "Enable authentication."
 msgstr "Omogoči prijavo."
-
-msgid "Enable automatic disk discovery."
-msgstr "Omogoči samodejno obnovo diska."
 
 msgid "Enable compression."
 msgstr "Omogoči stiskanje."
@@ -2185,19 +2134,6 @@ msgstr ""
 
 msgid "Enabled"
 msgstr "Omogočen"
-
-msgid ""
-"Enables crlf translation for TEXT files, automatically converting macintosh "
-"line breaks into Unix ones. Use of this option might be dangerous since some "
-"older programs store binary data files as type 'TEXT' when saving and switch "
-"the filetype in a second step. Afpd will potentially destroy such files when "
-"'erroneously' changing bytes in order to do line break translation."
-msgstr ""
-"Omogoči rclf prevajanje TEKST datotek, ki samodejno pretvori macintosh "
-"prelome vrstic v Unix prelome. Uporaba te možnosti je lahko nevarna, saj "
-"nekateri starejši programi shranjujejo binarne datoteke, v tipu 'TEKST', ter "
-"jih šele potem pretvorijo v primerno datoteko. Afpd lahko takšne datoteke "
-"pokvari."
 
 msgid "Encrypted"
 msgstr "Šifrirano"
@@ -2849,15 +2785,6 @@ msgstr ""
 "datotečnega sistema."
 
 msgid ""
-"If set afpd uses the ID information stored in AppleDouble V2 header files to "
-"reduce database load. Don't set this option if the volume is modified by non "
-"AFP clients (NFS/SMB/local)."
-msgstr ""
-"Če je nastavljena, afpd uporabi ID informacije, shranjene v AppleDouble V2 "
-"datotekah glave, da se zmanjša obremenitev podatkovne baze. Ne nastavite "
-"tega, če se baza spreminja preko ne-AFP klientov (NFS/SMB/lokalno)."
-
-msgid ""
 "If the selected disk/partition is mounted it will be unmounted temporarily "
 "to perform selected command, otherwise the commands work in read-only "
 "mode.<br />Service disruption to users accessing this mount will occur "
@@ -2939,6 +2866,9 @@ msgstr "Noter"
 
 msgid "In most cases, 'public' is used here."
 msgstr "V večini primerov je tukaj uporabljen 'javno'"
+
+msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
+msgstr ""
 
 msgid "Include basic hardware information."
 msgstr "Vsebuje glavne informacije strojne opreme"
@@ -3429,9 +3359,6 @@ msgstr ""
 msgid "Low voltage trimming transfer point"
 msgstr ""
 
-msgid "Lowercases names in both directions"
-msgstr "Majhne črke imen"
-
 msgid "MAC address"
 msgstr "MAC naslov"
 
@@ -3815,9 +3742,6 @@ msgstr ""
 msgid "No RSYNC Client configured"
 msgstr "Določen ni nobeden RSYNC odjemalec"
 
-msgid "No case folding"
-msgstr "Ne uredi velikosti črk"
-
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
@@ -3958,13 +3882,6 @@ msgstr "Ni pripet"
 
 msgid "Note"
 msgstr "Opombe"
-
-msgid ""
-"Note! Selecting 'Time Machine' on multiple shares will may cause "
-"unpredictable behavior in MacOS."
-msgstr ""
-"Izbira 'časovni stroj' na večih deljenih mapah lahko povroči nenavadne "
-"težave v MacOS."
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
@@ -4430,9 +4347,6 @@ msgstr "Protokol"
 
 msgid "Provider"
 msgstr "Ponudnik"
-
-msgid "Provides compatibility with Apple II clients."
-msgstr "Ponuja kompatibilnost z Apple 2 klienti."
 
 msgid "Proxy"
 msgstr "Posrednik"
@@ -4975,9 +4889,6 @@ msgstr "Samo za branje"
 msgid "Set share password."
 msgstr "Nastavi geslo skupni mapi"
 
-msgid "Set the CNID backend to be used for the volume."
-msgstr "Nastavi, da se uporablja CNID, za ta disk"
-
 msgid "Set the account's primary group to the given group."
 msgstr "Uporabniku nastavi to primarno skupino"
 
@@ -5009,13 +4920,6 @@ msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr "Nastavi drugo priklopno mesto za dataset. Privzeto je /mnt."
-
-msgid ""
-"Sets the database information to be stored in path. You have to specifiy a "
-"writable location, even if the volume is read only."
-msgstr ""
-"Nastavi, kje so shranjene informacije poti za podatkovno bazo. Izbrati "
-"morete mesto, ki je zapisljivo, čeprav je morda cilj samo za branje."
 
 msgid ""
 "Sets the interval between disk checks to N seconds. The minimum allowed "
@@ -5521,6 +5425,9 @@ msgstr ""
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
 
+msgid "The IP address of the UPS master."
+msgstr ""
+
 msgid "The IP address that this hostname represents."
 msgstr "IP naslov, ki ga predstavlja to ime gostitelja."
 
@@ -5719,9 +5626,11 @@ msgstr ""
 msgid "The configuration could not be restored. No file was uploaded!"
 msgstr ""
 
+#, c-format
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
-"for them to take effect."
+"for them to take effect.<br /><b>If this message persist take a look at the "
+"<a href='%s'>system log</a> for more information.</b>"
 msgstr ""
 
 #, php-format
@@ -6265,19 +6174,10 @@ msgid ""
 "target='_blank'>documentation</a>."
 msgstr ""
 
-msgid "This controls how the case of filenames are viewed and stored."
-msgstr ""
-
 msgid "This controls the access a remote host has to this module."
 msgstr ""
 
 msgid "This controls the access to this share with an access password."
-msgstr ""
-
-msgid ""
-"This controls whether the .AppleDouble directory gets created unless "
-"absolutely needed. This option should not be used if files are access mostly "
-"by Mac computers."
 msgstr ""
 
 msgid "This controls whether this share is accessible by guest account."
@@ -6302,11 +6202,6 @@ msgid "This email has been sent to validate your email configuration."
 msgstr ""
 
 msgid "This extent is used."
-msgstr ""
-
-msgid ""
-"This forces filenames to be restricted to the character set used by Windows. "
-"This is not recommended for shares used principally by Mac computers."
 msgstr ""
 
 msgid "This function is unsupported. Use it on your own risk!"
@@ -6522,9 +6417,6 @@ msgstr ""
 
 msgid "Time"
 msgstr "Čas"
-
-msgid "Time Machine"
-msgstr ""
 
 msgid "Time before the load will be rebooted"
 msgstr ""
@@ -6853,12 +6745,6 @@ msgstr ""
 msgid "Upload directory of the webserver. The default is %s."
 msgstr ""
 
-msgid "Uppercases names in both directions"
-msgstr ""
-
-msgid "Use AFP3 unix privileges."
-msgstr ""
-
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
 "up at least one DNS server if you enter a host name here!"
@@ -7130,8 +7016,8 @@ msgid "Yes"
 msgstr "Da"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg_add "
-"command.<br />Example: pkg_add -r packagename"
+"You can also install a package via SSH or console using the the pkg add "
+"command.<br />Example: pkg add packagename"
 msgstr ""
 
 msgid "You can use the following parameters for substitution:"
@@ -7170,6 +7056,12 @@ msgstr ""
 msgid "You may specify logical block length (%d by default)."
 msgstr ""
 
+#, php-format
+msgid ""
+"You must <a href='%s'>reboot</a> the system before you can upgrade the "
+"firmware."
+msgstr ""
+
 msgid "You must add disks first."
 msgstr "Najprej morate dodati diske."
 
@@ -7179,9 +7071,6 @@ msgstr ""
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr ""
-
-msgid "You must reboot the system before you can upgrade the firmware."
-msgstr "Pred Firmware nadgradnjo je potreben ponovni zagon sistema."
 
 msgid "You must select at least one authentication method."
 msgstr "Izbrati morate vsaj eno metodo preverjanja."
@@ -7234,6 +7123,10 @@ msgstr ""
 msgid "adaptive (low power consumption)"
 msgstr ""
 
+#, php-format
+msgid "add any supplemental parameters"
+msgstr ""
+
 msgid "all disks are imported."
 msgstr ""
 
@@ -7243,25 +7136,13 @@ msgstr ""
 msgid "all software raid disks are imported."
 msgstr ""
 
-msgid "cachecnid"
-msgstr ""
-
 msgid "change failed."
 msgstr ""
 
 msgid "chroot() everyone, but root."
 msgstr ""
 
-msgid "cnidscheme"
-msgstr ""
-
-msgid "crlf"
-msgstr ""
-
 msgid "day(s)"
-msgstr ""
-
-msgid "dbpath"
 msgstr ""
 
 msgid "detected an error while importing."
@@ -7335,9 +7216,6 @@ msgstr "zrcaljenje"
 msgid "mount"
 msgstr ""
 
-msgid "mswindows"
-msgstr ""
-
 msgid "n/a"
 msgstr "ni na voljo"
 
@@ -7350,28 +7228,10 @@ msgstr ""
 msgid "no new software raid disk found."
 msgstr ""
 
-msgid "noadouble"
-msgstr ""
-
-msgid "nodev"
-msgstr ""
-
-msgid "nofileid"
-msgstr ""
-
-msgid "nohex"
-msgstr ""
-
 msgid "none"
 msgstr ""
 
-msgid "nostat"
-msgstr ""
-
 msgid "phpBB"
-msgstr ""
-
-msgid "prodos"
 msgstr ""
 
 msgid "rc.conf"
@@ -7413,9 +7273,108 @@ msgstr "umask"
 msgid "umount"
 msgstr "izvrzi"
 
-msgid "upriv"
-msgstr "upriv"
-
 #, php-format
 msgid "version:"
 msgstr ""
+
+#~ msgid ""
+#~ "Always use 0 for device number, helps when the device number is not constant "
+#~ "across a reboot, cluster, ..."
+#~ msgstr ""
+#~ "Vedno uporabi 0 za številko naprave. Uporabno, če se številka naprave "
+#~ "spreminja ob ponovnih zagonih, oblakih, ..."
+
+#~ msgid "Automatic disk discovery"
+#~ msgstr "Samodejna prepoznava diska"
+
+#~ msgid "Automatic disk discovery mode"
+#~ msgstr "Možnost samodejne prepoznave diska"
+
+#~ msgid "Case Folding"
+#~ msgstr "Uredi velikosti črk"
+
+#~ msgid "Client sees lowercase, server sees uppercase"
+#~ msgstr "Klient vidi majhne črke, server pa velike."
+
+#~ msgid "Client sees uppercase, server sees lowercase"
+#~ msgstr "Klient vidi velike črke, strežnik pa majhne."
+
+#~ msgid "DDP"
+#~ msgstr "DDP"
+
+#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
+#~ msgstr "Onemogoči AFP-preko-Appletalk za preprečevanje DDP povezav."
+
+#~ msgid ""
+#~ "Disables :hex translations for anything except dot files. This option makes "
+#~ "the '/' character illegal."
+#~ msgstr ""
+#~ "Onemogoči :hex prevode za vse, razen dot datoteke. Ta možno naredi '/' znak "
+#~ "neveljaven."
+
+#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
+#~ msgstr "Ne prikazuj createfileid, resolveid, deleteid klicev."
+
+#~ msgid ""
+#~ "Don't stat volume path when enumerating volumes list, useful for "
+#~ "automounting or volumes created by a preexec script."
+#~ msgstr ""
+#~ "Don't stat poti particij, pri raziskovanju seznama diskov. Uporabno za "
+#~ "samodejo priklapljanje, ali particije ustvarjene s preexec skripto."
+
+#~ msgid "Enable automatic disk discovery."
+#~ msgstr "Omogoči samodejno obnovo diska."
+
+#~ msgid ""
+#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
+#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
+#~ "older programs store binary data files as type 'TEXT' when saving and switch "
+#~ "the filetype in a second step. Afpd will potentially destroy such files when "
+#~ "'erroneously' changing bytes in order to do line break translation."
+#~ msgstr ""
+#~ "Omogoči rclf prevajanje TEKST datotek, ki samodejno pretvori macintosh "
+#~ "prelome vrstic v Unix prelome. Uporaba te možnosti je lahko nevarna, saj "
+#~ "nekateri starejši programi shranjujejo binarne datoteke, v tipu 'TEKST', ter "
+#~ "jih šele potem pretvorijo v primerno datoteko. Afpd lahko takšne datoteke "
+#~ "pokvari."
+
+#~ msgid ""
+#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
+#~ "reduce database load. Don't set this option if the volume is modified by non "
+#~ "AFP clients (NFS/SMB/local)."
+#~ msgstr ""
+#~ "Če je nastavljena, afpd uporabi ID informacije, shranjene v AppleDouble V2 "
+#~ "datotekah glave, da se zmanjša obremenitev podatkovne baze. Ne nastavite "
+#~ "tega, če se baza spreminja preko ne-AFP klientov (NFS/SMB/lokalno)."
+
+#~ msgid "Lowercases names in both directions"
+#~ msgstr "Majhne črke imen"
+
+#~ msgid "No case folding"
+#~ msgstr "Ne uredi velikosti črk"
+
+#~ msgid ""
+#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
+#~ "unpredictable behavior in MacOS."
+#~ msgstr ""
+#~ "Izbira 'časovni stroj' na večih deljenih mapah lahko povroči nenavadne "
+#~ "težave v MacOS."
+
+#~ msgid "Provides compatibility with Apple II clients."
+#~ msgstr "Ponuja kompatibilnost z Apple 2 klienti."
+
+#~ msgid "Set the CNID backend to be used for the volume."
+#~ msgstr "Nastavi, da se uporablja CNID, za ta disk"
+
+#~ msgid ""
+#~ "Sets the database information to be stored in path. You have to specifiy a "
+#~ "writable location, even if the volume is read only."
+#~ msgstr ""
+#~ "Nastavi, kje so shranjene informacije poti za podatkovno bazo. Izbrati "
+#~ "morete mesto, ki je zapisljivo, čeprav je morda cilj samo za branje."
+
+#~ msgid "You must reboot the system before you can upgrade the firmware."
+#~ msgstr "Pred Firmware nadgradnjo je potreben ponovni zagon sistema."
+
+#~ msgid "upriv"
+#~ msgstr "upriv"
