@@ -519,7 +519,7 @@ create_image() {
 		cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 apm/apm.ko $NAS4FREE_TMPDIR/boot/kernel
 	fi
 	# iSCSI driver
-	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 iscsi/isboot/isboot.ko $NAS4FREE_TMPDIR/boot/kernel
+	install -v -o root -g wheel -m 555 ${NAS4FREE_ROOTFS}/boot/kernel/isboot.ko $NAS4FREE_TMPDIR/boot/kernel
 	# preload kernel drivers
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
@@ -611,7 +611,7 @@ create_iso () {
 		cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 apm/apm.ko $NAS4FREE_TMPDIR/boot/kernel
 	fi
 	# iSCSI driver
-	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 iscsi/isboot/isboot.ko $NAS4FREE_TMPDIR/boot/kernel
+	install -v -o root -g wheel -m 555 ${NAS4FREE_ROOTFS}/boot/kernel/isboot.ko $NAS4FREE_TMPDIR/boot/kernel
 	# preload kernel drivers
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
@@ -741,7 +741,7 @@ create_usb () {
 		cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 apm/apm.ko $NAS4FREE_TMPDIR/boot/kernel
 	fi
 	# iSCSI driver
-	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 iscsi/isboot/isboot.ko $NAS4FREE_TMPDIR/boot/kernel
+	install -v -o root -g wheel -m 555 ${NAS4FREE_ROOTFS}/boot/kernel/isboot.ko $NAS4FREE_TMPDIR/boot/kernel
 	# preload kernel drivers
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
@@ -832,7 +832,7 @@ create_full() {
 		cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && cp apm/apm.ko $NAS4FREE_TMPDIR/boot/kernel
 	fi
 	# iSCSI driver
-	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 iscsi/isboot/isboot.ko $NAS4FREE_TMPDIR/boot/kernel
+	install -v -o root -g wheel -m 555 ${NAS4FREE_ROOTFS}/boot/kernel/isboot.ko $NAS4FREE_TMPDIR/boot/kernel
 	# preload kernel drivers
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
