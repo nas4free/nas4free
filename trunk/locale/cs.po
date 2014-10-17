@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"POT-Creation-Date: 2014-10-18 01:05+0000\n"
 "PO-Revision-Date: 2013-08-16 08:45+0000\n"
 "Last-Translator: Radim Kolář <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-21 22:09+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 "Language: \n"
 "X-Poedit-Language: Czech\n"
@@ -574,13 +574,6 @@ msgstr "Vždy zapnuto"
 msgid "Always scan"
 msgstr "Vždy prohledávat"
 
-msgid ""
-"Always use 0 for device number, helps when the device number is not constant "
-"across a reboot, cluster, ..."
-msgstr ""
-"Vždy použít 0 jako číslo zařízení, pomáhá při nekonstantním číslování "
-"zařízení po restartu, clusteru, ..."
-
 msgid "Ambient Conditions From External Probe Equipment"
 msgstr "Okolní podmínky získané z vnějšího čidla"
 
@@ -697,12 +690,6 @@ msgstr "Automatická velikost"
 
 msgid "AutoScale"
 msgstr "Automatické měřítko"
-
-msgid "Automatic disk discovery"
-msgstr "Automatické objevování disků"
-
-msgid "Automatic disk discovery mode"
-msgstr "Automatické nalezení disků"
 
 msgid "Autoselect"
 msgstr "Automatické vybírání"
@@ -935,9 +922,6 @@ msgstr "Není možné získat informace o rozhraní"
 msgid "Capacity"
 msgstr "Kapacita"
 
-msgid "Case Folding"
-msgstr "Skládání velikosti písmen"
-
 msgid ""
 "Causes the server to display the network information for the specified IP "
 "address or DNS hostname to the client, on the assumption that that IP "
@@ -981,6 +965,9 @@ msgstr "Čínština (Zjednodušená)"
 msgid "Chinese (Traditional)"
 msgstr "Čínština (Klasická)"
 
+msgid "Choose UPS mode."
+msgstr ""
+
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
 "Vyberte, na které rozhraní musí dorazit pakety, aby bylo toto pravidlo "
@@ -1012,12 +999,6 @@ msgstr "Pro stažení konfogurace v XMP klikněte na toto tlačítko."
 
 msgid "Client"
 msgstr "Klient"
-
-msgid "Client sees lowercase, server sees uppercase"
-msgstr "Klient vidí malá písmena, server vidí velká písmena"
-
-msgid "Client sees uppercase, server sees lowercase"
-msgstr "Klient vidí velká písmena, server vidí malá písmena"
 
 msgid "Clone"
 msgstr "Klonovat"
@@ -1257,9 +1238,6 @@ msgstr "Čeština"
 msgid "DAAP"
 msgstr "DAAP"
 
-msgid "DDP"
-msgstr "DDP"
-
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -1267,9 +1245,6 @@ msgid "DLNA/UPnP"
 msgstr ""
 
 msgid "DLNA/UPnP Media Server"
-msgstr ""
-
-msgid "DNLA/UPnP"
 msgstr ""
 
 msgid "DNS settings"
@@ -1602,9 +1577,6 @@ msgstr "Adresář obsahující vyjímatelná média. (např. /mnt/iscsi/)"
 msgid "Directory to watch for new .torrent files."
 msgstr "Adresář se sledováním výskytu nových .torrent souborů."
 
-msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-msgstr "Zakázat AFP přes Appletalk kvůlu prevenci DDP spojení"
-
 msgid "Disable File Manager"
 msgstr "Zakázat správce souborů"
 
@@ -1625,13 +1597,6 @@ msgstr "Vypnout pípnutí při startu systému a při jeho ukončování"
 
 msgid "Disabled"
 msgstr "Vypnuto"
-
-msgid ""
-"Disables :hex translations for anything except dot files. This option makes "
-"the '/' character illegal."
-msgstr ""
-"Vypíná :hex překlady všeho mimo souborů s tečkou. Tato volba zneplatňuje "
-"znak '/'."
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -1842,18 +1807,8 @@ msgstr "Název domény, např.: priklad.com"
 msgid "Don't Erase MBR"
 msgstr "Nemazat MBR (Master Boot Record)"
 
-msgid "Don't advertise createfileid, resolveid, deleteid calls."
-msgstr "Neoznamovat  volání createfileid, resolveid, deleteid."
-
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr "Nemaž MBR (užitečné u některých RAID karet)"
-
-msgid ""
-"Don't stat volume path when enumerating volumes list, useful for "
-"automounting or volumes created by a preexec script."
-msgstr ""
-"Nevykonávat stat cesty ke svazku při vypisování seznamu svazků. Užitečné pro "
-"automatické připojování svazků vytvořené preexec skriptem."
 
 msgid "Donate"
 msgstr "Přispět"
@@ -2071,17 +2026,11 @@ msgstr ""
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "Povolit oznamování služeb Zeroconf/Bonjour pro toto zařízení."
 
-msgid "Enable administrative DLNA/UPnP WebGUI."
-msgstr ""
-
 msgid "Enable anonymous bind."
 msgstr "Umožnit anonymní spojení"
 
 msgid "Enable authentication."
 msgstr "Povolit ověřování."
-
-msgid "Enable automatic disk discovery."
-msgstr ""
 
 msgid "Enable compression."
 msgstr "Povolit kompresi."
@@ -2198,20 +2147,6 @@ msgstr ""
 
 msgid "Enabled"
 msgstr "Povoleno"
-
-msgid ""
-"Enables crlf translation for TEXT files, automatically converting macintosh "
-"line breaks into Unix ones. Use of this option might be dangerous since some "
-"older programs store binary data files as type 'TEXT' when saving and switch "
-"the filetype in a second step. Afpd will potentially destroy such files when "
-"'erroneously' changing bytes in order to do line break translation."
-msgstr ""
-"Umožňuje překlad konců řádků textových souborů CR/LF, automaticky překládá "
-"zakončení řádků Macintosh na unixové zakončení. Použití této volby může být "
-"nebezpečné, protože některé starší programy ukládají binární údaje jako typ "
-"'TEXT' a v druhém kroku změní typ souboru. Afpd potencionálně zničí takovéto "
-"soubory, pokud „chybne” změní binární soubor ve snaze o překlad zakončení "
-"řádků."
 
 msgid "Encrypted"
 msgstr "Zašifrováno"
@@ -2860,15 +2795,6 @@ msgstr ""
 "části hostitelského souborového systému."
 
 msgid ""
-"If set afpd uses the ID information stored in AppleDouble V2 header files to "
-"reduce database load. Don't set this option if the volume is modified by non "
-"AFP clients (NFS/SMB/local)."
-msgstr ""
-"Pokud je zvoleno, tak afdp použije ID infromace uložené v AppleDouble V2 "
-"hlavičkách souborů a sníží tak zátěž databáze. Nenastavujte ztuto volbu "
-"pokud na svazek zapisují jiní klienti (NFS/SMB/local) než jen AFP."
-
-msgid ""
 "If the selected disk/partition is mounted it will be unmounted temporarily "
 "to perform selected command, otherwise the commands work in read-only "
 "mode.<br />Service disruption to users accessing this mount will occur "
@@ -2948,6 +2874,9 @@ msgstr "Do"
 
 msgid "In most cases, 'public' is used here."
 msgstr "Ve většinš případů je zde použito \"public\"."
+
+msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
+msgstr ""
 
 msgid "Include basic hardware information."
 msgstr "Zahrnout základní info o hardware."
@@ -3432,9 +3361,6 @@ msgstr ""
 msgid "Low voltage trimming transfer point"
 msgstr ""
 
-msgid "Lowercases names in both directions"
-msgstr "Změní názvy souborů v obou adresářích na malá písmena."
-
 msgid "MAC address"
 msgstr "MAC adresa"
 
@@ -3816,9 +3742,6 @@ msgstr "Nastavení DNS nenalezeno."
 msgid "No RSYNC Client configured"
 msgstr "Žádný nakonfigurovaný RSYNC klient"
 
-msgid "No case folding"
-msgstr "Žádné skládání velkých písmen."
-
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
@@ -3952,11 +3875,6 @@ msgstr "Nezadáno"
 
 msgid "Note"
 msgstr "Poznámka"
-
-msgid ""
-"Note! Selecting 'Time Machine' on multiple shares will may cause "
-"unpredictable behavior in MacOS."
-msgstr ""
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
@@ -4426,9 +4344,6 @@ msgstr "Protokol"
 
 msgid "Provider"
 msgstr "Poskytovatel"
-
-msgid "Provides compatibility with Apple II clients."
-msgstr "Poskytuje kompatibilitu s klienty Apple II."
 
 msgid "Proxy"
 msgstr "Proxy"
@@ -4964,9 +4879,6 @@ msgstr "Nastavit pouze pro čtení"
 msgid "Set share password."
 msgstr "Nastavit sdílené heslo"
 
-msgid "Set the CNID backend to be used for the volume."
-msgstr "Nastavit použití CNID backendu pro tento svazek."
-
 msgid "Set the account's primary group to the given group."
 msgstr "Nastavit primární skupinu pro tento účet."
 
@@ -4998,13 +4910,6 @@ msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
-
-msgid ""
-"Sets the database information to be stored in path. You have to specifiy a "
-"writable location, even if the volume is read only."
-msgstr ""
-"Nastavení cesty k uložení databázových informací. Musíte nastavit místo s "
-"právem na zápis, i když je svazek určen jen pro čtení."
 
 msgid ""
 "Sets the interval between disk checks to N seconds. The minimum allowed "
@@ -5506,6 +5411,9 @@ msgstr ""
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
 
+msgid "The IP address of the UPS master."
+msgstr ""
+
 msgid "The IP address that this hostname represents."
 msgstr "IP adresa reprezentovaná tímto názvem hostitele"
 
@@ -5697,12 +5605,12 @@ msgstr ""
 msgid "The configuration could not be restored. No file was uploaded!"
 msgstr ""
 
+#, c-format
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
-"for them to take effect."
+"for them to take effect.<br /><b>If this message persist take a look at the "
+"<a href='%s'>system log</a> for more information.</b>"
 msgstr ""
-"Nastavení bylo změněno.<br />Aby změny vstoupily v platnost, musíte je "
-"nejdříve aplikovat."
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
@@ -6255,20 +6163,10 @@ msgid ""
 "target='_blank'>documentation</a>."
 msgstr ""
 
-msgid "This controls how the case of filenames are viewed and stored."
-msgstr ""
-"Toto ovládá jak je velikost písmen v názvech souborů zobrazována a ukládána."
-
 msgid "This controls the access a remote host has to this module."
 msgstr ""
 
 msgid "This controls the access to this share with an access password."
-msgstr ""
-
-msgid ""
-"This controls whether the .AppleDouble directory gets created unless "
-"absolutely needed. This option should not be used if files are access mostly "
-"by Mac computers."
 msgstr ""
 
 msgid "This controls whether this share is accessible by guest account."
@@ -6295,14 +6193,6 @@ msgstr "Tento email byl odeslán pro ověření vaší konfigurace emailu."
 
 msgid "This extent is used."
 msgstr "Tento extent se používá."
-
-msgid ""
-"This forces filenames to be restricted to the character set used by Windows. "
-"This is not recommended for shares used principally by Mac computers."
-msgstr ""
-"Toto způsobí omezení názvů souborů podle použité znakové sady Windows. "
-"Nepoužívejte tuto volbu pokud je toto sdílení používáno převážně uživateli "
-"Mac."
 
 msgid "This function is unsupported. Use it on your own risk!"
 msgstr "Tato funkce je bez záruky. Použijte na vlastní nebezpečí!"
@@ -6557,9 +6447,6 @@ msgstr "TiB"
 
 msgid "Time"
 msgstr "Čas"
-
-msgid "Time Machine"
-msgstr "Stroj času"
 
 msgid "Time before the load will be rebooted"
 msgstr ""
@@ -6899,12 +6786,6 @@ msgstr "Nahrát adresář"
 msgid "Upload directory of the webserver. The default is %s."
 msgstr ""
 
-msgid "Uppercases names in both directions"
-msgstr "Názvy velkými písmeny v obou směrech"
-
-msgid "Use AFP3 unix privileges."
-msgstr "Použít AFP3 unixová privilegia."
-
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
 "up at least one DNS server if you enter a host name here!"
@@ -7189,8 +7070,8 @@ msgid "Yes"
 msgstr "Ano"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg_add "
-"command.<br />Example: pkg_add -r packagename"
+"You can also install a package via SSH or console using the the pkg add "
+"command.<br />Example: pkg add packagename"
 msgstr ""
 
 msgid "You can use the following parameters for substitution:"
@@ -7229,6 +7110,12 @@ msgstr ""
 msgid "You may specify logical block length (%d by default)."
 msgstr ""
 
+#, php-format
+msgid ""
+"You must <a href='%s'>reboot</a> the system before you can upgrade the "
+"firmware."
+msgstr ""
+
 msgid "You must add disks first."
 msgstr "Musíte nejprve přidat disky."
 
@@ -7238,9 +7125,6 @@ msgstr ""
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "Pro použití iSCSI cíle musíte mít alespoň %dMB RAM."
-
-msgid "You must reboot the system before you can upgrade the firmware."
-msgstr "Před aktualizací firmare musíte restartovat systém."
 
 msgid "You must select at least one authentication method."
 msgstr "Musíte vybrat alespoň jednu autentifikační metodu"
@@ -7292,6 +7176,10 @@ msgstr "Zeroconf/Bonjour"
 msgid "adaptive (low power consumption)"
 msgstr ""
 
+#, php-format
+msgid "add any supplemental parameters"
+msgstr ""
+
 msgid "all disks are imported."
 msgstr "všechny disky jsou importované."
 
@@ -7301,26 +7189,14 @@ msgstr "všechny zašifrované disky jsou importované"
 msgid "all software raid disks are imported."
 msgstr "všechny softwarové raid disky jsou importované"
 
-msgid "cachecnid"
-msgstr "cachecnid"
-
 msgid "change failed."
 msgstr "změna selhala."
 
 msgid "chroot() everyone, but root."
 msgstr "chroot() příkaz pro každého kromě roota."
 
-msgid "cnidscheme"
-msgstr "cnidscheme"
-
-msgid "crlf"
-msgstr "crlf"
-
 msgid "day(s)"
 msgstr "dnů"
-
-msgid "dbpath"
-msgstr "dbpath"
 
 msgid "detected an error while importing."
 msgstr "při importu nastala chyba"
@@ -7393,9 +7269,6 @@ msgstr "zrcadlení"
 msgid "mount"
 msgstr "připojit"
 
-msgid "mswindows"
-msgstr "mswindows"
-
 msgid "n/a"
 msgstr "není k dispozici"
 
@@ -7408,29 +7281,11 @@ msgstr "žadný nový šifrovaný disk nenalezen."
 msgid "no new software raid disk found."
 msgstr "žádný nový software raid disk nenalezen."
 
-msgid "noadouble"
-msgstr "noadouble"
-
-msgid "nodev"
-msgstr "nodev"
-
-msgid "nofileid"
-msgstr "nofileid"
-
-msgid "nohex"
-msgstr "nohex"
-
 msgid "none"
 msgstr "žádný"
 
-msgid "nostat"
-msgstr "nostat"
-
 msgid "phpBB"
 msgstr "phpBB"
-
-msgid "prodos"
-msgstr "prodos"
 
 msgid "rc.conf"
 msgstr "rc.conf"
@@ -7471,9 +7326,160 @@ msgstr "umask"
 msgid "umount"
 msgstr "odpojit"
 
-msgid "upriv"
-msgstr "upriv"
-
 #, php-format
 msgid "version:"
 msgstr "verze:"
+
+#~ msgid ""
+#~ "Always use 0 for device number, helps when the device number is not constant "
+#~ "across a reboot, cluster, ..."
+#~ msgstr ""
+#~ "Vždy použít 0 jako číslo zařízení, pomáhá při nekonstantním číslování "
+#~ "zařízení po restartu, clusteru, ..."
+
+#~ msgid "Automatic disk discovery"
+#~ msgstr "Automatické objevování disků"
+
+#~ msgid "Automatic disk discovery mode"
+#~ msgstr "Automatické nalezení disků"
+
+#~ msgid "Case Folding"
+#~ msgstr "Skládání velikosti písmen"
+
+#~ msgid "Client sees lowercase, server sees uppercase"
+#~ msgstr "Klient vidí malá písmena, server vidí velká písmena"
+
+#~ msgid "Client sees uppercase, server sees lowercase"
+#~ msgstr "Klient vidí velká písmena, server vidí malá písmena"
+
+#~ msgid "DDP"
+#~ msgstr "DDP"
+
+#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
+#~ msgstr "Zakázat AFP přes Appletalk kvůlu prevenci DDP spojení"
+
+#~ msgid ""
+#~ "Disables :hex translations for anything except dot files. This option makes "
+#~ "the '/' character illegal."
+#~ msgstr ""
+#~ "Vypíná :hex překlady všeho mimo souborů s tečkou. Tato volba zneplatňuje "
+#~ "znak '/'."
+
+#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
+#~ msgstr "Neoznamovat  volání createfileid, resolveid, deleteid."
+
+#~ msgid ""
+#~ "Don't stat volume path when enumerating volumes list, useful for "
+#~ "automounting or volumes created by a preexec script."
+#~ msgstr ""
+#~ "Nevykonávat stat cesty ke svazku při vypisování seznamu svazků. Užitečné pro "
+#~ "automatické připojování svazků vytvořené preexec skriptem."
+
+#~ msgid ""
+#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
+#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
+#~ "older programs store binary data files as type 'TEXT' when saving and switch "
+#~ "the filetype in a second step. Afpd will potentially destroy such files when "
+#~ "'erroneously' changing bytes in order to do line break translation."
+#~ msgstr ""
+#~ "Umožňuje překlad konců řádků textových souborů CR/LF, automaticky překládá "
+#~ "zakončení řádků Macintosh na unixové zakončení. Použití této volby může být "
+#~ "nebezpečné, protože některé starší programy ukládají binární údaje jako typ "
+#~ "'TEXT' a v druhém kroku změní typ souboru. Afpd potencionálně zničí takovéto "
+#~ "soubory, pokud „chybne” změní binární soubor ve snaze o překlad zakončení "
+#~ "řádků."
+
+#~ msgid ""
+#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
+#~ "reduce database load. Don't set this option if the volume is modified by non "
+#~ "AFP clients (NFS/SMB/local)."
+#~ msgstr ""
+#~ "Pokud je zvoleno, tak afdp použije ID infromace uložené v AppleDouble V2 "
+#~ "hlavičkách souborů a sníží tak zátěž databáze. Nenastavujte ztuto volbu "
+#~ "pokud na svazek zapisují jiní klienti (NFS/SMB/local) než jen AFP."
+
+#~ msgid "Lowercases names in both directions"
+#~ msgstr "Změní názvy souborů v obou adresářích na malá písmena."
+
+#~ msgid "No case folding"
+#~ msgstr "Žádné skládání velkých písmen."
+
+#~ msgid "Provides compatibility with Apple II clients."
+#~ msgstr "Poskytuje kompatibilitu s klienty Apple II."
+
+#~ msgid "Set the CNID backend to be used for the volume."
+#~ msgstr "Nastavit použití CNID backendu pro tento svazek."
+
+#~ msgid ""
+#~ "Sets the database information to be stored in path. You have to specifiy a "
+#~ "writable location, even if the volume is read only."
+#~ msgstr ""
+#~ "Nastavení cesty k uložení databázových informací. Musíte nastavit místo s "
+#~ "právem na zápis, i když je svazek určen jen pro čtení."
+
+#~ msgid ""
+#~ "The configuration has been changed.<br />You must apply the changes in order "
+#~ "for them to take effect."
+#~ msgstr ""
+#~ "Nastavení bylo změněno.<br />Aby změny vstoupily v platnost, musíte je "
+#~ "nejdříve aplikovat."
+
+#~ msgid "Uppercases names in both directions"
+#~ msgstr "Názvy velkými písmeny v obou směrech"
+
+#~ msgid "Use AFP3 unix privileges."
+#~ msgstr "Použít AFP3 unixová privilegia."
+
+#~ msgid "cachecnid"
+#~ msgstr "cachecnid"
+
+#~ msgid "cnidscheme"
+#~ msgstr "cnidscheme"
+
+#~ msgid "crlf"
+#~ msgstr "crlf"
+
+#~ msgid "dbpath"
+#~ msgstr "dbpath"
+
+#~ msgid "mswindows"
+#~ msgstr "mswindows"
+
+#~ msgid "noadouble"
+#~ msgstr "noadouble"
+
+#~ msgid "nodev"
+#~ msgstr "nodev"
+
+#~ msgid "nofileid"
+#~ msgstr "nofileid"
+
+#~ msgid "nohex"
+#~ msgstr "nohex"
+
+#~ msgid "nostat"
+#~ msgstr "nostat"
+
+#~ msgid "prodos"
+#~ msgstr "prodos"
+
+#~ msgid "upriv"
+#~ msgstr "upriv"
+
+#~ msgid "You must reboot the system before you can upgrade the firmware."
+#~ msgstr "Před aktualizací firmare musíte restartovat systém."
+
+#~ msgid "Time Machine"
+#~ msgstr "Stroj času"
+
+#~ msgid ""
+#~ "This forces filenames to be restricted to the character set used by Windows. "
+#~ "This is not recommended for shares used principally by Mac computers."
+#~ msgstr ""
+#~ "Toto způsobí omezení názvů souborů podle použité znakové sady Windows. "
+#~ "Nepoužívejte tuto volbu pokud je toto sdílení používáno převážně uživateli "
+#~ "Mac."
+
+#~ msgid "This controls how the case of filenames are viewed and stored."
+#~ msgstr ""
+#~ "Toto ovládá jak je velikost písmen v názvech souborů zobrazována a ukládána."

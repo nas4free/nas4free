@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"POT-Creation-Date: 2014-10-18 01:05+0000\n"
 "PO-Revision-Date: 2012-10-14 07:46+0000\n"
 "Last-Translator: Luís Vilhena Santos <LuisVilhenaSantos@Hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-21 22:10+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 "X-Poedit-Country: PORTUGAL\n"
 "Language: \n"
 "X-Poedit-Language: Portuguese\n"
@@ -585,12 +585,6 @@ msgstr "Sempre ligado"
 msgid "Always scan"
 msgstr "Procurar Sempre"
 
-msgid ""
-"Always use 0 for device number, helps when the device number is not constant "
-"across a reboot, cluster, ..."
-msgstr ""
-"Utilize sempre o dispositivo 0, ajuda quando o numero de dispositivo......."
-
 msgid "Ambient Conditions From External Probe Equipment"
 msgstr ""
 
@@ -709,12 +703,6 @@ msgstr "Tamanho automático"
 
 msgid "AutoScale"
 msgstr "Escala automática"
-
-msgid "Automatic disk discovery"
-msgstr "Procura automática de disco"
-
-msgid "Automatic disk discovery mode"
-msgstr "Modo de procura automática de disco"
 
 msgid "Autoselect"
 msgstr "Selecção automática"
@@ -948,9 +936,6 @@ msgstr "Não foi possível reunir informação acerca do interface."
 msgid "Capacity"
 msgstr "Capacidade"
 
-msgid "Case Folding"
-msgstr "Case Folding"
-
 msgid ""
 "Causes the server to display the network information for the specified IP "
 "address or DNS hostname to the client, on the assumption that that IP "
@@ -995,6 +980,9 @@ msgstr "Chinês (Simplificado)"
 msgid "Chinese (Traditional)"
 msgstr "Chinês (Tradicional)"
 
+msgid "Choose UPS mode."
+msgstr ""
+
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
 "Escolhe qual a interface em que se deve aplicar esta regra para os pacotes "
@@ -1026,12 +1014,6 @@ msgstr ""
 
 msgid "Client"
 msgstr "Cliente"
-
-msgid "Client sees lowercase, server sees uppercase"
-msgstr "O cliente vê minúsculas, o servidor vê maiúsculas"
-
-msgid "Client sees uppercase, server sees lowercase"
-msgstr "O cliente vê maiúsculas, o servidor vê minúsculas"
 
 msgid "Clone"
 msgstr "Clone"
@@ -1284,9 +1266,6 @@ msgstr "Checo"
 msgid "DAAP"
 msgstr "DAAP"
 
-msgid "DDP"
-msgstr "DDP"
-
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -1294,9 +1273,6 @@ msgid "DLNA/UPnP"
 msgstr ""
 
 msgid "DLNA/UPnP Media Server"
-msgstr ""
-
-msgid "DNLA/UPnP"
 msgstr ""
 
 msgid "DNS settings"
@@ -1631,9 +1607,6 @@ msgstr "Directoria que contém os media removíveis. (e.g /mnt/iscsi/)"
 msgid "Directory to watch for new .torrent files."
 msgstr "Directorio onde procurar novos ficheiros .torrent."
 
-msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-msgstr "Desativar AFP-over-Appletalk para prevenir conexões DDP"
-
 msgid "Disable File Manager"
 msgstr "Desactivar Gestor de Ficheiros"
 
@@ -1654,13 +1627,6 @@ msgstr "Desactivar os avisos sonoros ao arrancar e desligar"
 
 msgid "Disabled"
 msgstr "Desactivado"
-
-msgid ""
-"Disables :hex translations for anything except dot files. This option makes "
-"the '/' character illegal."
-msgstr ""
-"Desactiva :hex traduções para tudo excepto para ficheiro dot. Esta opção faz "
-"com que o caracter '/' seja ilegal."
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -1870,18 +1836,8 @@ msgstr "Nome do domínio, e.g. exemplo.com"
 msgid "Don't Erase MBR"
 msgstr "Não apagar o MBR"
 
-msgid "Don't advertise createfileid, resolveid, deleteid calls."
-msgstr "Não avisar as chamadas createfileid, resolveid, deleteid."
-
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr "Não apagar o MBR (útil no caso de alguns controladores RAID)"
-
-msgid ""
-"Don't stat volume path when enumerating volumes list, useful for "
-"automounting or volumes created by a preexec script."
-msgstr ""
-"Não obter o caminho de volume quando enumerar a lista de volumes, útil para "
-"auto-montar ou para volumes criadosc om o script preexec."
 
 msgid "Donate"
 msgstr "Doar"
@@ -2100,17 +2056,11 @@ msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr ""
 "Permitir Zeroconf/Bonjour para informar sobre os serviços deste dispositivo"
 
-msgid "Enable administrative DLNA/UPnP WebGUI."
-msgstr ""
-
 msgid "Enable anonymous bind."
 msgstr "Permitir ligação anónima."
 
 msgid "Enable authentication."
 msgstr "Activar autenticação"
-
-msgid "Enable automatic disk discovery."
-msgstr "Permitir a recuperação automática de disco."
 
 msgid "Enable compression."
 msgstr "Activar compressão"
@@ -2229,20 +2179,6 @@ msgstr ""
 
 msgid "Enabled"
 msgstr "Activado"
-
-msgid ""
-"Enables crlf translation for TEXT files, automatically converting macintosh "
-"line breaks into Unix ones. Use of this option might be dangerous since some "
-"older programs store binary data files as type 'TEXT' when saving and switch "
-"the filetype in a second step. Afpd will potentially destroy such files when "
-"'erroneously' changing bytes in order to do line break translation."
-msgstr ""
-"Permite tradução crlf para ficheiros TEXTO, convertendo automaticamente as "
-"quebras de linha macintosh para Unix. Usar esta opção pode ser perigoso uma "
-"vez que alguns programas antigos guardam ficheiros de dados binários com o "
-"tipo  'TEXTO' quando guardam ou mudam o tipo de ficheiro num segundo passo. "
-"Afpd vai potencialmente destruir tais ficheiros quando 'erradamente' mudar "
-"bytes com vista a fazer a conversão da quebra de linha."
 
 msgid "Encrypted"
 msgstr "Encriptado"
@@ -2901,16 +2837,6 @@ msgstr ""
 "servidor."
 
 msgid ""
-"If set afpd uses the ID information stored in AppleDouble V2 header files to "
-"reduce database load. Don't set this option if the volume is modified by non "
-"AFP clients (NFS/SMB/local)."
-msgstr ""
-"Se estiver activo, o afpd utiliza a informação de ID guardada nos ficheiros "
-"de cabeçalho AppleDouble V2 para reduzir a carga na base de dados. Não "
-"active esta opção se o volume é modificado por clientes não AFP "
-"(NFS/SMB/local)."
-
-msgid ""
 "If the selected disk/partition is mounted it will be unmounted temporarily "
 "to perform selected command, otherwise the commands work in read-only "
 "mode.<br />Service disruption to users accessing this mount will occur "
@@ -2998,6 +2924,9 @@ msgstr "Entrada"
 
 msgid "In most cases, 'public' is used here."
 msgstr "Na maioria dos casos,  'public'  é usado aqui."
+
+msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
+msgstr ""
 
 msgid "Include basic hardware information."
 msgstr "Incluir informação básica de hardware."
@@ -3494,9 +3423,6 @@ msgstr ""
 msgid "Low voltage trimming transfer point"
 msgstr ""
 
-msgid "Lowercases names in both directions"
-msgstr "Nomes minúsculos em ambas as direcções"
-
 msgid "MAC address"
 msgstr "Endereço MAC"
 
@@ -3879,9 +3805,6 @@ msgstr ""
 msgid "No RSYNC Client configured"
 msgstr "Nenhum cliente RSYNC configurado"
 
-msgid "No case folding"
-msgstr "No case folding"
-
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
@@ -4030,13 +3953,6 @@ msgstr "Não anexado"
 
 msgid "Note"
 msgstr "Nota"
-
-msgid ""
-"Note! Selecting 'Time Machine' on multiple shares will may cause "
-"unpredictable behavior in MacOS."
-msgstr ""
-"Nota! Seleccionar 'Time Machine' em múltiplas partilhas pode causar um "
-"comportamento inesperado no MacOS."
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
@@ -4516,9 +4432,6 @@ msgstr "Protocolo"
 
 msgid "Provider"
 msgstr "Fornecedor"
-
-msgid "Provides compatibility with Apple II clients."
-msgstr "Fornece compatibilidade com clientes Apple II."
 
 msgid "Proxy"
 msgstr "Proxy"
@@ -5062,9 +4975,6 @@ msgstr "Activar modo só de leitura"
 msgid "Set share password."
 msgstr "Palavra-passe da partilha."
 
-msgid "Set the CNID backend to be used for the volume."
-msgstr "Coloca o CNID final para ser usado no volume."
-
 msgid "Set the account's primary group to the given group."
 msgstr "Torna o grupo escolhido o grupo principal."
 
@@ -5100,14 +5010,6 @@ msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
 "Define um ponto de montagem alternativo para o conjunto de dados. Por "
 "defeito é /mnt."
-
-msgid ""
-"Sets the database information to be stored in path. You have to specifiy a "
-"writable location, even if the volume is read only."
-msgstr ""
-"Configura a informação da base de dados para ser guardada. Tem de "
-"especificar uma localização com permissão de escrita, mesmo que o volume "
-"seja apenas de leitura."
 
 msgid ""
 "Sets the interval between disk checks to N seconds. The minimum allowed "
@@ -5623,6 +5525,9 @@ msgstr "A porta COM na BIOS tem de ser activada antes de activar esta opção"
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
 
+msgid "The IP address of the UPS master."
+msgstr ""
+
 msgid "The IP address that this hostname represents."
 msgstr "O endereço IP que este nome de anfitrião representa."
 
@@ -5835,12 +5740,12 @@ msgstr "A configuração não pode ser restaurada. %s"
 msgid "The configuration could not be restored. No file was uploaded!"
 msgstr ""
 
+#, c-format
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
-"for them to take effect."
+"for them to take effect.<br /><b>If this message persist take a look at the "
+"<a href='%s'>system log</a> for more information.</b>"
 msgstr ""
-"A configuração foi alterar.<br />Deve aplicar as alterações de forma a que "
-"tenham efeito."
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
@@ -6458,24 +6363,12 @@ msgstr ""
 "informação sobre como configurar a sua UPS, por favor verifique o NUT "
 "(Network UPS Tools) <a href='%s' target='_blank'>documentação</a>."
 
-msgid "This controls how the case of filenames are viewed and stored."
-msgstr "Isto controla de que forma o nome do ficheiro é visto e guardado."
-
 msgid "This controls the access a remote host has to this module."
 msgstr "Isto controla o acesso que um cliente remoto tem a este módulo."
 
 msgid "This controls the access to this share with an access password."
 msgstr ""
 "Isto controla o acesso a esta partilha com uma palavra-passe de acesso."
-
-msgid ""
-"This controls whether the .AppleDouble directory gets created unless "
-"absolutely needed. This option should not be used if files are access mostly "
-"by Mac computers."
-msgstr ""
-"Isto controla de que forma a directoria .AppleDouble é criada a menos que "
-"seja mesmo precisa. Esta opção não deve ser usada se os ficheiros são "
-"acedidos na sua maioria por computadores Mac."
 
 msgid "This controls whether this share is accessible by guest account."
 msgstr ""
@@ -6501,14 +6394,6 @@ msgstr ""
 
 msgid "This extent is used."
 msgstr "Esta extensão é usada."
-
-msgid ""
-"This forces filenames to be restricted to the character set used by Windows. "
-"This is not recommended for shares used principally by Mac computers."
-msgstr ""
-"Isto força o nome dos ficheiros a utilizarem apenas os caracteres definidos "
-"pelo Windows. Não é recomendado para partilhas usadas principalmente por "
-"computadores Mac."
 
 msgid "This function is unsupported. Use it on your own risk!"
 msgstr "Esta função não é suportada. Use-a por sua conta e risco!"
@@ -6796,9 +6681,6 @@ msgstr "TiB"
 
 msgid "Time"
 msgstr "Agendar em"
-
-msgid "Time Machine"
-msgstr "Time Machine"
 
 msgid "Time before the load will be rebooted"
 msgstr ""
@@ -7153,12 +7035,6 @@ msgstr ""
 msgid "Upload directory of the webserver. The default is %s."
 msgstr ""
 
-msgid "Uppercases names in both directions"
-msgstr "Nomes em maiusculas em ambas as direcções."
-
-msgid "Use AFP3 unix privileges."
-msgstr "Usar previlégios unix AFP3"
-
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
 "up at least one DNS server if you enter a host name here!"
@@ -7458,11 +7334,9 @@ msgid "Yes"
 msgstr "Sim"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg_add "
-"command.<br />Example: pkg_add -r packagename"
+"You can also install a package via SSH or console using the the pkg add "
+"command.<br />Example: pkg add packagename"
 msgstr ""
-"Pode também instalar um pacote usando SSH ou a consola utilizado o comando "
-"pkg_add.<br />Exemplo: pkg_add -r nome_do_pacote"
 
 msgid "You can use the following parameters for substitution:"
 msgstr "Pode usar os seguintes parâmetros para substituição:"
@@ -7508,6 +7382,12 @@ msgstr ""
 msgid "You may specify logical block length (%d by default)."
 msgstr "Deve especificar o comprimento lógico do bloco (%d por defeito)."
 
+#, php-format
+msgid ""
+"You must <a href='%s'>reboot</a> the system before you can upgrade the "
+"firmware."
+msgstr ""
+
 msgid "You must add disks first."
 msgstr "Tem que adicionar discos primeiro."
 
@@ -7517,9 +7397,6 @@ msgstr "Tem de introduzir o mesmo tipo de IP para a rede e gateway."
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "Deve ter um mínimo de %dMB de RAM para usar dispositivo iSCSI."
-
-msgid "You must reboot the system before you can upgrade the firmware."
-msgstr "Tem que reninicializar o sistema para poder actualizar o firmware."
 
 msgid "You must select at least one authentication method."
 msgstr "É obrigatório selecionar pelo menos um método de autenticação."
@@ -7572,6 +7449,10 @@ msgstr "Zeroconf/Bonjour"
 msgid "adaptive (low power consumption)"
 msgstr ""
 
+#, php-format
+msgid "add any supplemental parameters"
+msgstr ""
+
 msgid "all disks are imported."
 msgstr "todos os Discos foram carregados."
 
@@ -7581,26 +7462,14 @@ msgstr "todos os Discos encriptados foram carregados."
 msgid "all software raid disks are imported."
 msgstr "todos os Discos raid (software) foram carregados."
 
-msgid "cachecnid"
-msgstr "cachecnid"
-
 msgid "change failed."
 msgstr "falhou a mudança."
 
 msgid "chroot() everyone, but root."
 msgstr "chroot() todos, excepto root."
 
-msgid "cnidscheme"
-msgstr "cnidscheme"
-
-msgid "crlf"
-msgstr "crlf"
-
 msgid "day(s)"
 msgstr "dia(s)"
-
-msgid "dbpath"
-msgstr "dbpath"
 
 msgid "detected an error while importing."
 msgstr "detectado um erro ao carregar."
@@ -7673,9 +7542,6 @@ msgstr "mirroring (espelho)"
 msgid "mount"
 msgstr "montar"
 
-msgid "mswindows"
-msgstr "mswindows"
-
 msgid "n/a"
 msgstr "n/d (não disponível)"
 
@@ -7688,29 +7554,11 @@ msgstr ""
 msgid "no new software raid disk found."
 msgstr ""
 
-msgid "noadouble"
-msgstr "noadouble"
-
-msgid "nodev"
-msgstr "nodev"
-
-msgid "nofileid"
-msgstr "nofileid"
-
-msgid "nohex"
-msgstr "nohex"
-
 msgid "none"
 msgstr "Nenhum"
 
-msgid "nostat"
-msgstr "nostat"
-
 msgid "phpBB"
 msgstr "phpBB"
-
-msgid "prodos"
-msgstr "prodos"
 
 msgid "rc.conf"
 msgstr "rc.conf"
@@ -7752,9 +7600,186 @@ msgstr "umask"
 msgid "umount"
 msgstr "umount"
 
-msgid "upriv"
-msgstr "upriv"
-
 #, php-format
 msgid "version:"
 msgstr ""
+
+#~ msgid ""
+#~ "Always use 0 for device number, helps when the device number is not constant "
+#~ "across a reboot, cluster, ..."
+#~ msgstr ""
+#~ "Utilize sempre o dispositivo 0, ajuda quando o numero de dispositivo......."
+
+#~ msgid "Automatic disk discovery"
+#~ msgstr "Procura automática de disco"
+
+#~ msgid "Automatic disk discovery mode"
+#~ msgstr "Modo de procura automática de disco"
+
+#~ msgid "Case Folding"
+#~ msgstr "Case Folding"
+
+#~ msgid "Client sees lowercase, server sees uppercase"
+#~ msgstr "O cliente vê minúsculas, o servidor vê maiúsculas"
+
+#~ msgid "Client sees uppercase, server sees lowercase"
+#~ msgstr "O cliente vê maiúsculas, o servidor vê minúsculas"
+
+#~ msgid "DDP"
+#~ msgstr "DDP"
+
+#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
+#~ msgstr "Desativar AFP-over-Appletalk para prevenir conexões DDP"
+
+#~ msgid ""
+#~ "Disables :hex translations for anything except dot files. This option makes "
+#~ "the '/' character illegal."
+#~ msgstr ""
+#~ "Desactiva :hex traduções para tudo excepto para ficheiro dot. Esta opção faz "
+#~ "com que o caracter '/' seja ilegal."
+
+#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
+#~ msgstr "Não avisar as chamadas createfileid, resolveid, deleteid."
+
+#~ msgid ""
+#~ "Don't stat volume path when enumerating volumes list, useful for "
+#~ "automounting or volumes created by a preexec script."
+#~ msgstr ""
+#~ "Não obter o caminho de volume quando enumerar a lista de volumes, útil para "
+#~ "auto-montar ou para volumes criadosc om o script preexec."
+
+#~ msgid "Enable automatic disk discovery."
+#~ msgstr "Permitir a recuperação automática de disco."
+
+#~ msgid ""
+#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
+#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
+#~ "older programs store binary data files as type 'TEXT' when saving and switch "
+#~ "the filetype in a second step. Afpd will potentially destroy such files when "
+#~ "'erroneously' changing bytes in order to do line break translation."
+#~ msgstr ""
+#~ "Permite tradução crlf para ficheiros TEXTO, convertendo automaticamente as "
+#~ "quebras de linha macintosh para Unix. Usar esta opção pode ser perigoso uma "
+#~ "vez que alguns programas antigos guardam ficheiros de dados binários com o "
+#~ "tipo  'TEXTO' quando guardam ou mudam o tipo de ficheiro num segundo passo. "
+#~ "Afpd vai potencialmente destruir tais ficheiros quando 'erradamente' mudar "
+#~ "bytes com vista a fazer a conversão da quebra de linha."
+
+#~ msgid ""
+#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
+#~ "reduce database load. Don't set this option if the volume is modified by non "
+#~ "AFP clients (NFS/SMB/local)."
+#~ msgstr ""
+#~ "Se estiver activo, o afpd utiliza a informação de ID guardada nos ficheiros "
+#~ "de cabeçalho AppleDouble V2 para reduzir a carga na base de dados. Não "
+#~ "active esta opção se o volume é modificado por clientes não AFP "
+#~ "(NFS/SMB/local)."
+
+#~ msgid "Lowercases names in both directions"
+#~ msgstr "Nomes minúsculos em ambas as direcções"
+
+#~ msgid "No case folding"
+#~ msgstr "No case folding"
+
+#~ msgid ""
+#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
+#~ "unpredictable behavior in MacOS."
+#~ msgstr ""
+#~ "Nota! Seleccionar 'Time Machine' em múltiplas partilhas pode causar um "
+#~ "comportamento inesperado no MacOS."
+
+#~ msgid "Provides compatibility with Apple II clients."
+#~ msgstr "Fornece compatibilidade com clientes Apple II."
+
+#~ msgid "Set the CNID backend to be used for the volume."
+#~ msgstr "Coloca o CNID final para ser usado no volume."
+
+#~ msgid ""
+#~ "Sets the database information to be stored in path. You have to specifiy a "
+#~ "writable location, even if the volume is read only."
+#~ msgstr ""
+#~ "Configura a informação da base de dados para ser guardada. Tem de "
+#~ "especificar uma localização com permissão de escrita, mesmo que o volume "
+#~ "seja apenas de leitura."
+
+#~ msgid ""
+#~ "The configuration has been changed.<br />You must apply the changes in order "
+#~ "for them to take effect."
+#~ msgstr ""
+#~ "A configuração foi alterar.<br />Deve aplicar as alterações de forma a que "
+#~ "tenham efeito."
+
+#~ msgid "This controls how the case of filenames are viewed and stored."
+#~ msgstr "Isto controla de que forma o nome do ficheiro é visto e guardado."
+
+#~ msgid ""
+#~ "This controls whether the .AppleDouble directory gets created unless "
+#~ "absolutely needed. This option should not be used if files are access mostly "
+#~ "by Mac computers."
+#~ msgstr ""
+#~ "Isto controla de que forma a directoria .AppleDouble é criada a menos que "
+#~ "seja mesmo precisa. Esta opção não deve ser usada se os ficheiros são "
+#~ "acedidos na sua maioria por computadores Mac."
+
+#~ msgid ""
+#~ "This forces filenames to be restricted to the character set used by Windows. "
+#~ "This is not recommended for shares used principally by Mac computers."
+#~ msgstr ""
+#~ "Isto força o nome dos ficheiros a utilizarem apenas os caracteres definidos "
+#~ "pelo Windows. Não é recomendado para partilhas usadas principalmente por "
+#~ "computadores Mac."
+
+#~ msgid "Time Machine"
+#~ msgstr "Time Machine"
+
+#~ msgid "Uppercases names in both directions"
+#~ msgstr "Nomes em maiusculas em ambas as direcções."
+
+#~ msgid "Use AFP3 unix privileges."
+#~ msgstr "Usar previlégios unix AFP3"
+
+#~ msgid ""
+#~ "You can also install a package via SSH or console using the the pkg_add "
+#~ "command.<br />Example: pkg_add -r packagename"
+#~ msgstr ""
+#~ "Pode também instalar um pacote usando SSH ou a consola utilizado o comando "
+#~ "pkg_add.<br />Exemplo: pkg_add -r nome_do_pacote"
+
+#~ msgid "You must reboot the system before you can upgrade the firmware."
+#~ msgstr "Tem que reninicializar o sistema para poder actualizar o firmware."
+
+#~ msgid "cachecnid"
+#~ msgstr "cachecnid"
+
+#~ msgid "cnidscheme"
+#~ msgstr "cnidscheme"
+
+#~ msgid "crlf"
+#~ msgstr "crlf"
+
+#~ msgid "dbpath"
+#~ msgstr "dbpath"
+
+#~ msgid "mswindows"
+#~ msgstr "mswindows"
+
+#~ msgid "noadouble"
+#~ msgstr "noadouble"
+
+#~ msgid "nodev"
+#~ msgstr "nodev"
+
+#~ msgid "nofileid"
+#~ msgstr "nofileid"
+
+#~ msgid "nohex"
+#~ msgstr "nohex"
+
+#~ msgid "nostat"
+#~ msgstr "nostat"
+
+#~ msgid "prodos"
+#~ msgstr "prodos"
+
+#~ msgid "upriv"
+#~ msgstr "upriv"

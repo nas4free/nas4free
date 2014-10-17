@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"POT-Creation-Date: 2014-10-18 01:05+0000\n"
 "PO-Revision-Date: 2013-05-13 21:46+0000\n"
 "Last-Translator: elsof <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-21 22:09+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 "X-Poedit-Country: BULGARIA\n"
 "Language: \n"
 "X-Poedit-Language: Bulgarian\n"
@@ -537,11 +537,6 @@ msgstr "винаги включен"
 msgid "Always scan"
 msgstr ""
 
-msgid ""
-"Always use 0 for device number, helps when the device number is not constant "
-"across a reboot, cluster, ..."
-msgstr ""
-
 msgid "Ambient Conditions From External Probe Equipment"
 msgstr ""
 
@@ -654,12 +649,6 @@ msgstr ""
 
 msgid "AutoScale"
 msgstr "AutoScale"
-
-msgid "Automatic disk discovery"
-msgstr ""
-
-msgid "Automatic disk discovery mode"
-msgstr ""
 
 msgid "Autoselect"
 msgstr ""
@@ -891,9 +880,6 @@ msgstr "Не мога да взема информация за интерфей
 msgid "Capacity"
 msgstr ""
 
-msgid "Case Folding"
-msgstr ""
-
 msgid ""
 "Causes the server to display the network information for the specified IP "
 "address or DNS hostname to the client, on the assumption that that IP "
@@ -934,6 +920,9 @@ msgstr ""
 msgid "Chinese (Traditional)"
 msgstr ""
 
+msgid "Choose UPS mode."
+msgstr ""
+
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
 
@@ -963,12 +952,6 @@ msgstr ""
 
 msgid "Client"
 msgstr "Клиент"
-
-msgid "Client sees lowercase, server sees uppercase"
-msgstr ""
-
-msgid "Client sees uppercase, server sees lowercase"
-msgstr ""
 
 msgid "Clone"
 msgstr ""
@@ -1203,9 +1186,6 @@ msgstr ""
 msgid "DAAP"
 msgstr ""
 
-msgid "DDP"
-msgstr ""
-
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -1213,9 +1193,6 @@ msgid "DLNA/UPnP"
 msgstr ""
 
 msgid "DLNA/UPnP Media Server"
-msgstr ""
-
-msgid "DNLA/UPnP"
 msgstr ""
 
 msgid "DNS settings"
@@ -1540,9 +1517,6 @@ msgstr ""
 msgid "Directory to watch for new .torrent files."
 msgstr ""
 
-msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-msgstr ""
-
 msgid "Disable File Manager"
 msgstr ""
 
@@ -1563,11 +1537,6 @@ msgstr "забрани Системния звънец при пускане и 
 
 msgid "Disabled"
 msgstr "Забрани"
-
-msgid ""
-"Disables :hex translations for anything except dot files. This option makes "
-"the '/' character illegal."
-msgstr ""
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -1770,16 +1739,8 @@ msgstr ""
 msgid "Don't Erase MBR"
 msgstr "не изтривай MBR"
 
-msgid "Don't advertise createfileid, resolveid, deleteid calls."
-msgstr ""
-
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr "не изтривай MBR (полезно за някой RAID контролери)"
-
-msgid ""
-"Don't stat volume path when enumerating volumes list, useful for "
-"automounting or volumes created by a preexec script."
-msgstr ""
 
 msgid "Donate"
 msgstr ""
@@ -1997,16 +1958,10 @@ msgstr ""
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr ""
 
-msgid "Enable administrative DLNA/UPnP WebGUI."
-msgstr ""
-
 msgid "Enable anonymous bind."
 msgstr ""
 
 msgid "Enable authentication."
-msgstr ""
-
-msgid "Enable automatic disk discovery."
 msgstr ""
 
 msgid "Enable compression."
@@ -2121,14 +2076,6 @@ msgstr ""
 
 msgid "Enabled"
 msgstr "Позволи"
-
-msgid ""
-"Enables crlf translation for TEXT files, automatically converting macintosh "
-"line breaks into Unix ones. Use of this option might be dangerous since some "
-"older programs store binary data files as type 'TEXT' when saving and switch "
-"the filetype in a second step. Afpd will potentially destroy such files when "
-"'erroneously' changing bytes in order to do line break translation."
-msgstr ""
 
 msgid "Encrypted"
 msgstr ""
@@ -2754,12 +2701,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"If set afpd uses the ID information stored in AppleDouble V2 header files to "
-"reduce database load. Don't set this option if the volume is modified by non "
-"AFP clients (NFS/SMB/local)."
-msgstr ""
-
-msgid ""
 "If the selected disk/partition is mounted it will be unmounted temporarily "
 "to perform selected command, otherwise the commands work in read-only "
 "mode.<br />Service disruption to users accessing this mount will occur "
@@ -2828,6 +2769,9 @@ msgid "In"
 msgstr "Входен"
 
 msgid "In most cases, 'public' is used here."
+msgstr ""
+
+msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr ""
 
 msgid "Include basic hardware information."
@@ -3298,9 +3242,6 @@ msgstr ""
 msgid "Low voltage trimming transfer point"
 msgstr ""
 
-msgid "Lowercases names in both directions"
-msgstr ""
-
 msgid "MAC address"
 msgstr "MAC адрес"
 
@@ -3674,9 +3615,6 @@ msgstr ""
 msgid "No RSYNC Client configured"
 msgstr "No RSYNC Client configured"
 
-msgid "No case folding"
-msgstr ""
-
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
@@ -3806,11 +3744,6 @@ msgstr "не е закачен"
 
 msgid "Note"
 msgstr "Забележка"
-
-msgid ""
-"Note! Selecting 'Time Machine' on multiple shares will may cause "
-"unpredictable behavior in MacOS."
-msgstr ""
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
@@ -4264,9 +4197,6 @@ msgid "Protocol"
 msgstr ""
 
 msgid "Provider"
-msgstr ""
-
-msgid "Provides compatibility with Apple II clients."
 msgstr ""
 
 msgid "Proxy"
@@ -4791,9 +4721,6 @@ msgstr ""
 msgid "Set share password."
 msgstr ""
 
-msgid "Set the CNID backend to be used for the volume."
-msgstr ""
-
 msgid "Set the account's primary group to the given group."
 msgstr ""
 
@@ -4820,11 +4747,6 @@ msgid ""
 msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
-msgstr ""
-
-msgid ""
-"Sets the database information to be stored in path. You have to specifiy a "
-"writable location, even if the volume is read only."
 msgstr ""
 
 msgid ""
@@ -5315,6 +5237,9 @@ msgstr ""
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
 
+msgid "The IP address of the UPS master."
+msgstr ""
+
 msgid "The IP address that this hostname represents."
 msgstr "The IP address that this hostname represents."
 
@@ -5506,9 +5431,11 @@ msgstr ""
 msgid "The configuration could not be restored. No file was uploaded!"
 msgstr ""
 
+#, c-format
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
-"for them to take effect."
+"for them to take effect.<br /><b>If this message persist take a look at the "
+"<a href='%s'>system log</a> for more information.</b>"
 msgstr ""
 
 #, php-format
@@ -6052,19 +5979,10 @@ msgid ""
 "target='_blank'>documentation</a>."
 msgstr ""
 
-msgid "This controls how the case of filenames are viewed and stored."
-msgstr ""
-
 msgid "This controls the access a remote host has to this module."
 msgstr ""
 
 msgid "This controls the access to this share with an access password."
-msgstr ""
-
-msgid ""
-"This controls whether the .AppleDouble directory gets created unless "
-"absolutely needed. This option should not be used if files are access mostly "
-"by Mac computers."
 msgstr ""
 
 msgid "This controls whether this share is accessible by guest account."
@@ -6088,11 +6006,6 @@ msgid "This email has been sent to validate your email configuration."
 msgstr ""
 
 msgid "This extent is used."
-msgstr ""
-
-msgid ""
-"This forces filenames to be restricted to the character set used by Windows. "
-"This is not recommended for shares used principally by Mac computers."
 msgstr ""
 
 msgid "This function is unsupported. Use it on your own risk!"
@@ -6308,9 +6221,6 @@ msgstr ""
 
 msgid "Time"
 msgstr "Час"
-
-msgid "Time Machine"
-msgstr ""
 
 msgid "Time before the load will be rebooted"
 msgstr ""
@@ -6639,12 +6549,6 @@ msgstr ""
 msgid "Upload directory of the webserver. The default is %s."
 msgstr ""
 
-msgid "Uppercases names in both directions"
-msgstr ""
-
-msgid "Use AFP3 unix privileges."
-msgstr ""
-
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
 "up at least one DNS server if you enter a host name here!"
@@ -6916,8 +6820,8 @@ msgid "Yes"
 msgstr "Да"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg_add "
-"command.<br />Example: pkg_add -r packagename"
+"You can also install a package via SSH or console using the the pkg add "
+"command.<br />Example: pkg add packagename"
 msgstr ""
 
 msgid "You can use the following parameters for substitution:"
@@ -6956,6 +6860,12 @@ msgstr ""
 msgid "You may specify logical block length (%d by default)."
 msgstr ""
 
+#, php-format
+msgid ""
+"You must <a href='%s'>reboot</a> the system before you can upgrade the "
+"firmware."
+msgstr ""
+
 msgid "You must add disks first."
 msgstr "трябва първо да добавите диск"
 
@@ -6965,9 +6875,6 @@ msgstr ""
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr ""
-
-msgid "You must reboot the system before you can upgrade the firmware."
-msgstr "трябва да рестартирате системата преди да обновите firmware-а."
 
 msgid "You must select at least one authentication method."
 msgstr "You must select at least one authentication method."
@@ -7020,6 +6927,10 @@ msgstr ""
 msgid "adaptive (low power consumption)"
 msgstr ""
 
+#, php-format
+msgid "add any supplemental parameters"
+msgstr ""
+
 msgid "all disks are imported."
 msgstr ""
 
@@ -7029,25 +6940,13 @@ msgstr ""
 msgid "all software raid disks are imported."
 msgstr ""
 
-msgid "cachecnid"
-msgstr ""
-
 msgid "change failed."
 msgstr ""
 
 msgid "chroot() everyone, but root."
 msgstr ""
 
-msgid "cnidscheme"
-msgstr ""
-
-msgid "crlf"
-msgstr ""
-
 msgid "day(s)"
-msgstr ""
-
-msgid "dbpath"
 msgstr ""
 
 msgid "detected an error while importing."
@@ -7121,9 +7020,6 @@ msgstr "mirroring"
 msgid "mount"
 msgstr ""
 
-msgid "mswindows"
-msgstr ""
-
 msgid "n/a"
 msgstr "няма"
 
@@ -7136,28 +7032,10 @@ msgstr ""
 msgid "no new software raid disk found."
 msgstr ""
 
-msgid "noadouble"
-msgstr ""
-
-msgid "nodev"
-msgstr ""
-
-msgid "nofileid"
-msgstr ""
-
-msgid "nohex"
-msgstr ""
-
 msgid "none"
 msgstr ""
 
-msgid "nostat"
-msgstr ""
-
 msgid "phpBB"
-msgstr ""
-
-msgid "prodos"
 msgstr ""
 
 msgid "rc.conf"
@@ -7199,9 +7077,9 @@ msgstr ""
 msgid "umount"
 msgstr ""
 
-msgid "upriv"
-msgstr ""
-
 #, php-format
 msgid "version:"
 msgstr ""
+
+#~ msgid "You must reboot the system before you can upgrade the firmware."
+#~ msgstr "трябва да рестартирате системата преди да обновите firmware-а."

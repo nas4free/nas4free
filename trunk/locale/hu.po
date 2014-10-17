@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"POT-Creation-Date: 2014-10-18 01:05+0000\n"
 "PO-Revision-Date: 2014-04-16 18:57+0000\n"
 "Last-Translator: Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-04-21 22:09+0000\n"
-"X-Generator: Launchpad (build 16985)\n"
+"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: hu_HU\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -598,13 +598,6 @@ msgstr "Mindig bekapcsolva"
 msgid "Always scan"
 msgstr "Mindig keres"
 
-msgid ""
-"Always use 0 for device number, helps when the device number is not constant "
-"across a reboot, cluster, ..."
-msgstr ""
-"Mindig 0 az eszköz száma, segít, ha az eszköz száma nem állandó "
-"újranidításnál, klaszterben, ..."
-
 msgid "Ambient Conditions From External Probe Equipment"
 msgstr "A külső érzékelőkből érkező környezeti jellemzők"
 
@@ -723,12 +716,6 @@ msgstr "Automatikus méret"
 
 msgid "AutoScale"
 msgstr "Automatikus méretezés"
-
-msgid "Automatic disk discovery"
-msgstr "Automatikus lemez helyreállítás"
-
-msgid "Automatic disk discovery mode"
-msgstr "Automatikus lemez-helyreállító mód"
 
 msgid "Autoselect"
 msgstr "Automatikus választás"
@@ -961,9 +948,6 @@ msgstr "Nem lehet adatot nyerni az interfészről"
 msgid "Capacity"
 msgstr "Kapacitás"
 
-msgid "Case Folding"
-msgstr "Case Folding"
-
 msgid ""
 "Causes the server to display the network information for the specified IP "
 "address or DNS hostname to the client, on the assumption that that IP "
@@ -1008,6 +992,9 @@ msgstr "Kínai (egyszerűsített)"
 msgid "Chinese (Traditional)"
 msgstr "Kínai (hagyományos)"
 
+msgid "Choose UPS mode."
+msgstr ""
+
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
 "Válasszd ki, mely interfészen bejövő csomagokra legyen érvényes az a szabály."
@@ -1043,12 +1030,6 @@ msgstr ""
 
 msgid "Client"
 msgstr "Kliens"
-
-msgid "Client sees lowercase, server sees uppercase"
-msgstr "Kliens megjelenítése kisbetüvel, szerver megjelenítése nagybetüvel"
-
-msgid "Client sees uppercase, server sees lowercase"
-msgstr "Kliens megjelenítése nagybetüvel, szerver megjelenítése kisbetüvel"
 
 msgid "Clone"
 msgstr "Klón"
@@ -1310,9 +1291,6 @@ msgstr "Cseh"
 msgid "DAAP"
 msgstr "DAAP"
 
-msgid "DDP"
-msgstr "DDP"
-
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -1321,9 +1299,6 @@ msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Média zzerver"
-
-msgid "DNLA/UPnP"
-msgstr "DNLA/UPnP"
 
 msgid "DNS settings"
 msgstr "DNS beállítások"
@@ -1661,9 +1636,6 @@ msgstr "Cserélhető médiát tartalmazó könyvtár. (pl.: /mnt/iscsi/)"
 msgid "Directory to watch for new .torrent files."
 msgstr "Könyvtár a .torrent fájlok figyelésére."
 
-msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-msgstr "AFP-over-Appletalk tiltása a DDP csatlakozások megakadályozásához."
-
 msgid "Disable File Manager"
 msgstr "Fájlkezelő tiltása"
 
@@ -1684,13 +1656,6 @@ msgstr "Rendszersípolás letíltása indulásnál és leállásnál."
 
 msgid "Disabled"
 msgstr "Tiltva"
-
-msgid ""
-"Disables :hex translations for anything except dot files. This option makes "
-"the '/' character illegal."
-msgstr ""
-"Kikapcsolja: hex fordításokat, kivéve a  . fájloknál. Ez az opció a  '/' "
-"karaktert illegálissá teszi."
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -1898,19 +1863,8 @@ msgstr "Tartománynév, pl.: minta.hu"
 msgid "Don't Erase MBR"
 msgstr "Ne töröld az MBR-t"
 
-msgid "Don't advertise createfileid, resolveid, deleteid calls."
-msgstr "Nem hirdesse a createfileid, resolveid, deleteid hívásokat."
-
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr "Ne töröld az MBR-t (néhány RAID vezérlő kártyánál lehet hasznos)"
-
-msgid ""
-"Don't stat volume path when enumerating volumes list, useful for "
-"automounting or volumes created by a preexec script."
-msgstr ""
-"Amikor felsorolja a kötetek listáját, ne listázzd a kötet elérési útja. "
-"Hasznos autocsatolásos vagy preexec script által létrehozott kötetek "
-"esetében."
 
 msgid "Donate"
 msgstr "Adományozás"
@@ -2130,17 +2084,11 @@ msgstr "ZFS ACL engedélyezése"
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "Zeroconf/Bonjour engedélyezése"
 
-msgid "Enable administrative DLNA/UPnP WebGUI."
-msgstr "DLNA/UPnP adminisztráció engedélyezése a WebGUI-n."
-
 msgid "Enable anonymous bind."
 msgstr "Névtelen csatlakozás engedélyezése"
 
 msgid "Enable authentication."
 msgstr "Hitelesítés engedélyezése"
-
-msgid "Enable automatic disk discovery."
-msgstr "Automatikus lemezfeltérképező engedélyezése"
 
 msgid "Enable compression."
 msgstr "Tömörítés egnedélyezése."
@@ -2257,20 +2205,6 @@ msgstr "Írás cache engedélyezése."
 
 msgid "Enabled"
 msgstr "Engedélyezve"
-
-msgid ""
-"Enables crlf translation for TEXT files, automatically converting macintosh "
-"line breaks into Unix ones. Use of this option might be dangerous since some "
-"older programs store binary data files as type 'TEXT' when saving and switch "
-"the filetype in a second step. Afpd will potentially destroy such files when "
-"'erroneously' changing bytes in order to do line break translation."
-msgstr ""
-"Engeélyezi a crlf fordítást TEXT fájlok esetén, automatikusan konvertálja a "
-"macintosh sortöréseket Unix sortöréssé. Veszélyes lehet ez az opció néhány "
-"régebbi program esetén, melyek bináris adatokat tárolnak mint 'TEXT' amikor "
-"mentünk és a fáljtipust megváltoztatjuk a 2. lépésben. Afpd tönkreteheti "
-"ezeket a fájlokat amikor 'tévesen' lecseréli a byte-okat a sortörések "
-"cseréjekor."
 
 msgid "Encrypted"
 msgstr "Titkosított"
@@ -2933,15 +2867,6 @@ msgstr ""
 "elkülönítsük a klienst a host rendszer fájlterületének részétől."
 
 msgid ""
-"If set afpd uses the ID information stored in AppleDouble V2 header files to "
-"reduce database load. Don't set this option if the volume is modified by non "
-"AFP clients (NFS/SMB/local)."
-msgstr ""
-"Ha be van állítva az afpd használja az AppleDouble V2 header fájlokban "
-"tárolt azonosító adatokat adatbázis terhelésének csökkentésére. Ne állítsd "
-"be ezt az opciót, ha a kötet megváltozott nemAFP kliens (NFS/SMB/helyi)."
-
-msgid ""
 "If the selected disk/partition is mounted it will be unmounted temporarily "
 "to perform selected command, otherwise the commands work in read-only "
 "mode.<br />Service disruption to users accessing this mount will occur "
@@ -3031,6 +2956,9 @@ msgstr "Be"
 
 msgid "In most cases, 'public' is used here."
 msgstr "A legtöbb esetben a 'publikus' használandó."
+
+msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
+msgstr ""
 
 msgid "Include basic hardware information."
 msgstr "Alap hardverinfromációk tartalmazása."
@@ -3522,9 +3450,6 @@ msgstr "Kisfeszültségű pontot"
 msgid "Low voltage trimming transfer point"
 msgstr "Kisfeszültségű átkapcsolási pontot"
 
-msgid "Lowercases names in both directions"
-msgstr "Kisebtűs nevek mindét irányba"
-
 msgid "MAC address"
 msgstr "Fizikai cím (MAC address)"
 
@@ -3909,9 +3834,6 @@ msgstr "Nem találtam DNS beállítást."
 msgid "No RSYNC Client configured"
 msgstr "Nincs RSYNC kliens beállítva"
 
-msgid "No case folding"
-msgstr "Nincs behajtható eset"
-
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
@@ -4062,13 +3984,6 @@ msgstr "Nem csatolt"
 
 msgid "Note"
 msgstr "Megjegyzés"
-
-msgid ""
-"Note! Selecting 'Time Machine' on multiple shares will may cause "
-"unpredictable behavior in MacOS."
-msgstr ""
-"Figyelem! Az 'Időkiszolgáló' kiválasztása többszörös megosztáson "
-"kiszámíthatatlan viselkedés okozhat MacOS gépeken."
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
@@ -4549,9 +4464,6 @@ msgstr "Protokoll"
 
 msgid "Provider"
 msgstr "Szolgáltató"
-
-msgid "Provides compatibility with Apple II clients."
-msgstr "Kompatibilitást nyújt az Apple II kliensekkel."
 
 msgid "Proxy"
 msgstr "Proxy"
@@ -5102,9 +5014,6 @@ msgstr "Beállítás csak olvashatónak"
 msgid "Set share password."
 msgstr "Megosztási jelszó beállítása"
 
-msgid "Set the CNID backend to be used for the volume."
-msgstr "CNID háttér beállítása a kötethez."
-
 msgid "Set the account's primary group to the given group."
 msgstr "Az adott csoport beállítása elsődleges csoportnak."
 
@@ -5142,13 +5051,6 @@ msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
 "Állítja egy másik csatolási pontot a gyökér adattár részére. Az "
 "alapértelmezett a /mnt"
-
-msgid ""
-"Sets the database information to be stored in path. You have to specifiy a "
-"writable location, even if the volume is read only."
-msgstr ""
-"Beállítja az útvpnalban tárolandó adatbázis információkat. Meg kell "
-"határozni egy írható helyet, akkor is, ha a kötet csak olvasható."
 
 msgid ""
 "Sets the interval between disk checks to N seconds. The minimum allowed "
@@ -5665,6 +5567,9 @@ msgstr ""
 "A HAST kötetek nem érhetőek el mindaddig, míg a HAST csomópont Elsődlegessé "
 "nem válik."
 
+msgid "The IP address of the UPS master."
+msgstr ""
+
 msgid "The IP address that this hostname represents."
 msgstr "Az IP cím, melyet az állomásnév takar."
 
@@ -5889,12 +5794,12 @@ msgstr "A beállításokat nem lehet visszaállítani. %s"
 msgid "The configuration could not be restored. No file was uploaded!"
 msgstr "A beállításokat nem lehet visszaállítani. Nincs feltöltött fájl!"
 
+#, c-format
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
-"for them to take effect."
+"for them to take effect.<br /><b>If this message persist take a look at the "
+"<a href='%s'>system log</a> for more information.</b>"
 msgstr ""
-"A beállítások megváltoztak.<br/>Alkalmaznia kell a változtatásokat, hogy "
-"azok életbe lépjenek."
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
@@ -6535,23 +6440,11 @@ msgstr ""
 "(Hálózat Szünetmentes Eszközök) <a href='%s' "
 "target='_blank'>dokumentációját</a>."
 
-msgid "This controls how the case of filenames are viewed and stored."
-msgstr "Ez befolyásolja, hogy a fájlnevek hogyan látszódnak és tárolódnak."
-
 msgid "This controls the access a remote host has to this module."
 msgstr "Ez befolyásolja a távoli host ezen modulhoz való hozzáférését."
 
 msgid "This controls the access to this share with an access password."
 msgstr "Ez befolyásolja ennek a megosztásnak jelszóval való elérését."
-
-msgid ""
-"This controls whether the .AppleDouble directory gets created unless "
-"absolutely needed. This option should not be used if files are access mostly "
-"by Mac computers."
-msgstr ""
-"Ez szabályozza, hogy a .AppleDouble könyvtár létrejöttét, hacsak az "
-"feltétlenül nem szükséges. Ez az opció nem használható, ha a fájlok "
-"hozzáférése többnyire Mac számítógépekről történik."
 
 msgid "This controls whether this share is accessible by guest account."
 msgstr "Ez befolyásolja, hogy a megosztás elérhető-e vendég hozzáféréssel."
@@ -6577,13 +6470,6 @@ msgstr "Ezt e-mailt küldtünk, hogy érvényesítse az e-mail beállításait."
 
 msgid "This extent is used."
 msgstr "Ez a mérték használatban van."
-
-msgid ""
-"This forces filenames to be restricted to the character set used by Windows. "
-"This is not recommended for shares used principally by Mac computers."
-msgstr ""
-"Ez kikényszeríti, hogy a fájlnevek Windows-ok által használt karakterekből "
-"álljanak.Ez nem tanácsos Mac gépek által használt megosztásokon."
 
 msgid "This function is unsupported. Use it on your own risk!"
 msgstr "Ez a funkció nem támogatott. Csak saját felelősségére használd!"
@@ -6872,9 +6758,6 @@ msgstr "TiB"
 
 msgid "Time"
 msgstr "Idő"
-
-msgid "Time Machine"
-msgstr "Idő gép"
 
 msgid "Time before the load will be rebooted"
 msgstr "Idő mielőtt a töltés újraindul"
@@ -7234,12 +7117,6 @@ msgstr "Feltöltési könyvtár"
 msgid "Upload directory of the webserver. The default is %s."
 msgstr "Webszerver feltöltési könyvtára. Alapértelmezetten: %s"
 
-msgid "Uppercases names in both directions"
-msgstr "Nagybetűs nevek mindkét irányba"
-
-msgid "Use AFP3 unix privileges."
-msgstr "AFP3 unix jogosultások használata"
-
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
 "up at least one DNS server if you enter a host name here!"
@@ -7536,11 +7413,9 @@ msgid "Yes"
 msgstr "Igen"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg_add "
-"command.<br />Example: pkg_add -r packagename"
+"You can also install a package via SSH or console using the the pkg add "
+"command.<br />Example: pkg add packagename"
 msgstr ""
-"Csomagot telepíteni SSH-n vagy a konzolon a keresztül is lehet a "
-"pkg_addparanccsal. <br /> Példa: pkg_add-r csomagnév"
 
 msgid "You can use the following parameters for substitution:"
 msgstr "Használhatja a következő paraméterek helyettesítésre:"
@@ -7585,6 +7460,12 @@ msgstr ""
 msgid "You may specify logical block length (%d by default)."
 msgstr "Megadhatod a logikai blokk hozzást (%d alapértelmezetten)."
 
+#, php-format
+msgid ""
+"You must <a href='%s'>reboot</a> the system before you can upgrade the "
+"firmware."
+msgstr ""
+
 msgid "You must add disks first."
 msgstr "Először lemezt kell hozzáadni."
 
@@ -7594,9 +7475,6 @@ msgstr "Ugyanazt az IP-t kell beállítanod a hálózathoz és az átjáróhoz"
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "Legalább %dMB RAM-ra van szükség iSCSI target használatához"
-
-msgid "You must reboot the system before you can upgrade the firmware."
-msgstr "Újra kell indítani a rendszert a firmware frissítés előtt."
 
 msgid "You must select at least one authentication method."
 msgstr "Legalább egy hitelesítési eljárást ki kell választanod."
@@ -7652,6 +7530,10 @@ msgstr "Zeroconf/Bonjour"
 msgid "adaptive (low power consumption)"
 msgstr "adaptív (alacsony fogyasztás)"
 
+#, php-format
+msgid "add any supplemental parameters"
+msgstr ""
+
 msgid "all disks are imported."
 msgstr "összes lemez importálva"
 
@@ -7661,26 +7543,14 @@ msgstr "összes encrypted raid lemez importálva."
 msgid "all software raid disks are imported."
 msgstr "összes szoftveres raid lemez importálva."
 
-msgid "cachecnid"
-msgstr "cachecnid"
-
 msgid "change failed."
 msgstr "változtatás sikertelen"
 
 msgid "chroot() everyone, but root."
 msgstr "chroot() mindenki, kivéve root."
 
-msgid "cnidscheme"
-msgstr "cnidscheme"
-
-msgid "crlf"
-msgstr "crlf"
-
 msgid "day(s)"
 msgstr "nap"
-
-msgid "dbpath"
-msgstr "adatbázis elérési út"
 
 msgid "detected an error while importing."
 msgstr "hiba az importálás közben"
@@ -7753,9 +7623,6 @@ msgstr "tükrözés"
 msgid "mount"
 msgstr "csatolás"
 
-msgid "mswindows"
-msgstr "mswindows"
-
 msgid "n/a"
 msgstr "nem elérhető"
 
@@ -7768,29 +7635,11 @@ msgstr "nincs új encrypted lemez."
 msgid "no new software raid disk found."
 msgstr "nincs új szoftveres raid lemez."
 
-msgid "noadouble"
-msgstr "noadouble"
-
-msgid "nodev"
-msgstr "nodev"
-
-msgid "nofileid"
-msgstr "nofileid"
-
-msgid "nohex"
-msgstr "nohex"
-
 msgid "none"
 msgstr "nincs"
 
-msgid "nostat"
-msgstr "nostat"
-
 msgid "phpBB"
 msgstr "phpBB"
-
-msgid "prodos"
-msgstr "prodos"
 
 msgid "rc.conf"
 msgstr "rc.conf"
@@ -7831,9 +7680,191 @@ msgstr "umask"
 msgid "umount"
 msgstr "leválasztás"
 
-msgid "upriv"
-msgstr "upriv"
-
 #, php-format
 msgid "version:"
 msgstr "verzió:"
+
+#~ msgid "Automatic disk discovery"
+#~ msgstr "Automatikus lemez helyreállítás"
+
+#~ msgid "Automatic disk discovery mode"
+#~ msgstr "Automatikus lemez-helyreállító mód"
+
+#~ msgid "Client sees lowercase, server sees uppercase"
+#~ msgstr "Kliens megjelenítése kisbetüvel, szerver megjelenítése nagybetüvel"
+
+#~ msgid "Client sees uppercase, server sees lowercase"
+#~ msgstr "Kliens megjelenítése nagybetüvel, szerver megjelenítése kisbetüvel"
+
+#~ msgid "DDP"
+#~ msgstr "DDP"
+
+#~ msgid "Enable automatic disk discovery."
+#~ msgstr "Automatikus lemezfeltérképező engedélyezése"
+
+#~ msgid "Provides compatibility with Apple II clients."
+#~ msgstr "Kompatibilitást nyújt az Apple II kliensekkel."
+
+#~ msgid "You must reboot the system before you can upgrade the firmware."
+#~ msgstr "Újra kell indítani a rendszert a firmware frissítés előtt."
+
+#~ msgid "mswindows"
+#~ msgstr "mswindows"
+
+#~ msgid "upriv"
+#~ msgstr "upriv"
+
+#~ msgid "prodos"
+#~ msgstr "prodos"
+
+#~ msgid "nostat"
+#~ msgstr "nostat"
+
+#~ msgid "noadouble"
+#~ msgstr "noadouble"
+
+#~ msgid "nofileid"
+#~ msgstr "nofileid"
+
+#~ msgid "nodev"
+#~ msgstr "nodev"
+
+#~ msgid "nohex"
+#~ msgstr "nohex"
+
+#~ msgid ""
+#~ "Always use 0 for device number, helps when the device number is not constant "
+#~ "across a reboot, cluster, ..."
+#~ msgstr ""
+#~ "Mindig 0 az eszköz száma, segít, ha az eszköz száma nem állandó "
+#~ "újranidításnál, klaszterben, ..."
+
+#~ msgid "Case Folding"
+#~ msgstr "Case Folding"
+
+#~ msgid "DNLA/UPnP"
+#~ msgstr "DNLA/UPnP"
+
+#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
+#~ msgstr "AFP-over-Appletalk tiltása a DDP csatlakozások megakadályozásához."
+
+#~ msgid ""
+#~ "Disables :hex translations for anything except dot files. This option makes "
+#~ "the '/' character illegal."
+#~ msgstr ""
+#~ "Kikapcsolja: hex fordításokat, kivéve a  . fájloknál. Ez az opció a  '/' "
+#~ "karaktert illegálissá teszi."
+
+#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
+#~ msgstr "Nem hirdesse a createfileid, resolveid, deleteid hívásokat."
+
+#~ msgid ""
+#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
+#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
+#~ "older programs store binary data files as type 'TEXT' when saving and switch "
+#~ "the filetype in a second step. Afpd will potentially destroy such files when "
+#~ "'erroneously' changing bytes in order to do line break translation."
+#~ msgstr ""
+#~ "Engeélyezi a crlf fordítást TEXT fájlok esetén, automatikusan konvertálja a "
+#~ "macintosh sortöréseket Unix sortöréssé. Veszélyes lehet ez az opció néhány "
+#~ "régebbi program esetén, melyek bináris adatokat tárolnak mint 'TEXT' amikor "
+#~ "mentünk és a fáljtipust megváltoztatjuk a 2. lépésben. Afpd tönkreteheti "
+#~ "ezeket a fájlokat amikor 'tévesen' lecseréli a byte-okat a sortörések "
+#~ "cseréjekor."
+
+#~ msgid ""
+#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
+#~ "reduce database load. Don't set this option if the volume is modified by non "
+#~ "AFP clients (NFS/SMB/local)."
+#~ msgstr ""
+#~ "Ha be van állítva az afpd használja az AppleDouble V2 header fájlokban "
+#~ "tárolt azonosító adatokat adatbázis terhelésének csökkentésére. Ne állítsd "
+#~ "be ezt az opciót, ha a kötet megváltozott nemAFP kliens (NFS/SMB/helyi)."
+
+#~ msgid "Time Machine"
+#~ msgstr "Idő gép"
+
+#~ msgid "Uppercases names in both directions"
+#~ msgstr "Nagybetűs nevek mindkét irányba"
+
+#~ msgid "Use AFP3 unix privileges."
+#~ msgstr "AFP3 unix jogosultások használata"
+
+#~ msgid ""
+#~ "You can also install a package via SSH or console using the the pkg_add "
+#~ "command.<br />Example: pkg_add -r packagename"
+#~ msgstr ""
+#~ "Csomagot telepíteni SSH-n vagy a konzolon a keresztül is lehet a "
+#~ "pkg_addparanccsal. <br /> Példa: pkg_add-r csomagnév"
+
+#~ msgid "cachecnid"
+#~ msgstr "cachecnid"
+
+#~ msgid "cnidscheme"
+#~ msgstr "cnidscheme"
+
+#~ msgid "crlf"
+#~ msgstr "crlf"
+
+#~ msgid "dbpath"
+#~ msgstr "adatbázis elérési út"
+
+#~ msgid "Lowercases names in both directions"
+#~ msgstr "Kisebtűs nevek mindét irányba"
+
+#~ msgid "No case folding"
+#~ msgstr "Nincs behajtható eset"
+
+#~ msgid "Set the CNID backend to be used for the volume."
+#~ msgstr "CNID háttér beállítása a kötethez."
+
+#~ msgid ""
+#~ "Sets the database information to be stored in path. You have to specifiy a "
+#~ "writable location, even if the volume is read only."
+#~ msgstr ""
+#~ "Beállítja az útvpnalban tárolandó adatbázis információkat. Meg kell "
+#~ "határozni egy írható helyet, akkor is, ha a kötet csak olvasható."
+
+#~ msgid "This controls how the case of filenames are viewed and stored."
+#~ msgstr "Ez befolyásolja, hogy a fájlnevek hogyan látszódnak és tárolódnak."
+
+#~ msgid ""
+#~ "This controls whether the .AppleDouble directory gets created unless "
+#~ "absolutely needed. This option should not be used if files are access mostly "
+#~ "by Mac computers."
+#~ msgstr ""
+#~ "Ez szabályozza, hogy a .AppleDouble könyvtár létrejöttét, hacsak az "
+#~ "feltétlenül nem szükséges. Ez az opció nem használható, ha a fájlok "
+#~ "hozzáférése többnyire Mac számítógépekről történik."
+
+#~ msgid ""
+#~ "This forces filenames to be restricted to the character set used by Windows. "
+#~ "This is not recommended for shares used principally by Mac computers."
+#~ msgstr ""
+#~ "Ez kikényszeríti, hogy a fájlnevek Windows-ok által használt karakterekből "
+#~ "álljanak.Ez nem tanácsos Mac gépek által használt megosztásokon."
+
+#~ msgid ""
+#~ "Don't stat volume path when enumerating volumes list, useful for "
+#~ "automounting or volumes created by a preexec script."
+#~ msgstr ""
+#~ "Amikor felsorolja a kötetek listáját, ne listázzd a kötet elérési útja. "
+#~ "Hasznos autocsatolásos vagy preexec script által létrehozott kötetek "
+#~ "esetében."
+
+#~ msgid ""
+#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
+#~ "unpredictable behavior in MacOS."
+#~ msgstr ""
+#~ "Figyelem! Az 'Időkiszolgáló' kiválasztása többszörös megosztáson "
+#~ "kiszámíthatatlan viselkedés okozhat MacOS gépeken."
+
+#~ msgid ""
+#~ "The configuration has been changed.<br />You must apply the changes in order "
+#~ "for them to take effect."
+#~ msgstr ""
+#~ "A beállítások megváltoztak.<br/>Alkalmaznia kell a változtatásokat, hogy "
+#~ "azok életbe lépjenek."
+
+#~ msgid "Enable administrative DLNA/UPnP WebGUI."
+#~ msgstr "DLNA/UPnP adminisztráció engedélyezése a WebGUI-n."
