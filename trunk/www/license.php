@@ -137,7 +137,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
         Copyright &copy; 2006-2013 Arne Woerner (<a href="mailto:graid5@wgboome.org">graid5@wgboome.org</a>).</p>
 
       <p> PHP (<a href="http://www.php.net" target="_blank">http://www.php.net</a>)<br />
-        Copyright &copy; 1999-2013 The PHP Group. All Rights Reserved.</p>
+        Copyright &copy; 1999-2014 The PHP Group. All Rights Reserved.</p>
 
       <p> jQuery (<a href="http://jquery.com" target="_blank">http://jquery.com</a>).<br />
         Copyright &copy; 2012 jQuery Foundation. All Rights Reserved.</p>
@@ -155,7 +155,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
         Copyright &copy; 2007 Free Software Foundation. All Rights Reserved.</p>
 
       <p> ProFTPD - Highly configurable FTP server (<a href="http://www.proftpd.org" target="_blank">http://www.proftpd.org</a>)<br />
-        Copyright &copy; 1999, 2000-2013 The ProFTPD Project. All Rights Reserved.</p>
+        Copyright &copy; 1999, 2000-2014 The ProFTPD Project. All Rights Reserved.</p>
 
       <p>tftp-hpa (<a href="http://www.kernel.org/pub/software/network/tftp" target="_blank">http://www.kernel.org/pub/software/network/tftp</a>)<br />
        Copyright &copy; 1999, 2000-2009 The tftp-hpa series is maintained by H. Peter Anvin. <hpa@zytor.com>All Rights Reserved.</p>
@@ -173,13 +173,13 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
         Copyright &copy; 2004-2005 Bruce Cran (<a href="mailto:bruce@cran.org.uk">bruce@cran.org.uk</a>). All Rights Reserved.</p>
 
       <p>smartmontools (<a href="http://sourceforge.net/projects/smartmontools" target="_blank">http://sourceforge.net/projects/smartmontools</a>)<br />
-        Copyright &copy; 2002-2013 Bruce Allen. All Rights Reserved.</p>
+        Copyright &copy; 2002-2014 Bruce Allen. All Rights Reserved.</p>
 
       <p>iSCSI initiator (<a href="ftp://ftp.cs.huji.ac.il/users/danny/freebsd" target="_blank">ftp://ftp.cs.huji.ac.il/users/danny/freebsd</a>)<br />
         Copyright &copy; 2005-2011 Daniel Braniss (<a href="mailto:danny@cs.huji.ac.il">danny@cs.huji.ac.il</a>). All Rights Reserved.</p>
 
       <p>istgt - iSCSI target for FreeBSD (<a href="http://shell.peach.ne.jp/aoyama" target="_blank">http://shell.peach.ne.jp/aoyama</a>)<br />
-        Copyright &copy; 2008-2013 Daisuke Aoyama (<a href="mailto:aoyama@peach.ne.jp">aoyama@peach.ne.jp</a>). All Rights Reserved.</p>
+        Copyright &copy; 2008-2014 Daisuke Aoyama (<a href="mailto:aoyama@peach.ne.jp">aoyama@peach.ne.jp</a>). All Rights Reserved.</p>
 
       <p>FUPPES - Free UPnP Entertainment Service (<a href="http://fuppes.ulrich-voelkel.de" target="_blank">http://fuppes.ulrich-voelkel.de</a>)<br />
         Copyright &copy; 2005 - 2011 Ulrich V&ouml;lkel (<a href="mailto:mail@ulrich-voelkel.de">mail@ulrich-voelkel.de</a>). All Rights Reserved.</p>
@@ -216,9 +216,9 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
         Rewritten by Eric Wassenaar, Nikhef-H, (<a href="mailto:e07@nikhef.nl">e07@nikhef.nl</a>). All Rights Reserved.</p>
 
       <p>Transmission - Transmission is a fast, easy, and free multi-platform BitTorrent client (<a href="http://www.transmissionbt.com" target="_blank">http://www.transmissionbt.com</a>)<br />
-        Copyright &copy; 2008-2013 Transmission Project. All Rights Reserved.</p>
+        Copyright &copy; 2008-2014 Transmission Project. All Rights Reserved.</p>
 
-      <p>QuiXplorer - Web-based file-management (<a href="http://quixplorer.sourceforge.net" target="_blank">http://quixplorer.sourceforge.net</a>)<br />
+      <p>QuiXplorer - Web-based file-management (<a href="https://github.com/realtimeprojects/quixplorer" target="_blank">https://github.com/realtimeprojects/quixplorer</a>)<br />
         Copyright &copy; Felix C. Stegerman. All Rights Reserved.</p>
 
       <p>pfSense: NAS4Free use some pfSense code too (<a href="http://www.pfsense.com" target="_blank">http://www.pfsense.com</a>)<br />
@@ -233,6 +233,9 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
 
       <p>LCDproc: A client/server suite for LCD devices (<a href="http://lcdproc.org/" target="_blank">http://lcdproc.org</a>)<br />
 	 Copyright &copy; 1998-2006 William Ferrell, Selene Scriven and many other contributors. All Rights Reserved.</p>
+
+      <p>tmux: tmux is a terminal multiplexer. (<a href="http://sourceforge.net/projects/tmux/" target="_blank">http://sourceforge.net/projects/tmux/</a>)<br />
+	 Copyright &copy; 2010 Nicholas Marriott. All Rights Reserved.</p>
 
       <p>Some of the software used for NAS4Free are under the <a href="gpl-license.txt">GNU General Public License</a> (<a href="gpl-license.txt">GPLv2</a>, <a href="gpl3-license.txt">GPLv3</a>), <a href="lgpl-license.txt">GNU Lesser General Public License (LGPL)</a>, <a href="apple-license.txt">Apple Public Source License</a> and <a href="php-license.txt">PHP License</a>.</p>
 
