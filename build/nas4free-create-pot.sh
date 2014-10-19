@@ -23,7 +23,7 @@ xgettext ${PARAMETERS} *.*
 cd ${NAS4FREE_SVNDIR}/www
 xgettext ${PARAMETERS} --join-existing *.*
 
-cd ${NAS4FREE_SVNDIR}/www/quixplorer/.include
+cd ${NAS4FREE_SVNDIR}/www/quixplorer/_include
 xgettext ${PARAMETERS} --join-existing *.*
 
 cd ${NAS4FREE_SVNDIR}/etc/inc
