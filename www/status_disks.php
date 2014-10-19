@@ -115,7 +115,7 @@ $raidstatus = get_sraid_disks_list();
 					<td class="listr"><?=htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars(gettext("Software RAID"));?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
-					<td class="listr"><?=($diskv['fstype']) ? htmlspecialchars(get_fstype_shortdesc($diskv['fstype'])) : htmlspecialchars(gettext("Unknown or unformatted"))?>&nbsp;</td>
+					<td class="listr"><?=($diskv['fstype']) ? htmlspecialchars(get_fstype_shortdesc($diskv['fstype'])) : htmlspecialchars(gettext("UFS"))?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars($iostat);?>&nbsp;</td>
 					<td class="listr"><?php
 					if ($temp <> htmlspecialchars(gettext("n/a"))){
