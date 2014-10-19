@@ -1,5 +1,5 @@
 PORTNAME=		e2fsprogs
-PORTVERSION=	1.42.10
+PORTVERSION=	1.42.12
 PORTREVISION?= 0
 CATEGORIES=		sysutils
 COMMENT=		Utilities & library to manipulate ext2/3/4 filesystems
@@ -8,7 +8,6 @@ MAINTAINER=		zoon01@nas4free.org
 
 MASTER_SITES=		KERNEL_ORG/linux/kernel/people/tytso/${PORTNAME}/v${PORTVERSION}
 
-PATCH_STRIP=	  -p1
 USES=		gmake pkgconfig tar:xz
 USE_CSTD=	  gnu99
 USE_LDCONFIG=	  yes
@@ -60,6 +59,10 @@ post-patch::
 .endfor
 
 .if ${MASTERDIR} == ${.CURDIR}
+pre-build:
+# fix up Makefile ordering for parallel builds
+	cd ${WRKSRC}/lib/et && ${DO_MAKE_BUILD} compile_et
+	cd ${WRKSRC}/e2fsck && ${DO_MAKE_BUILD} prof_err.h
 post-build:
 # Relink e2fsck statically - We need to make sure that tools for the root file
 # system are statically linked against anything that is outside the root fs,
@@ -82,6 +85,21 @@ post-build:
 	if test "x$$a" = "x" ; then echo 'PASS' ; else \
 	    echo 'FAIL' ; echo '===>  e2fsck depends on:' ; echo "$$a" ; exit 1 ; fi
 .endif
+# Build fsck(8) wrapper
+	${CC} ${CPPFLAGS} ${CFLAGS} ${LDFLAGS} -s ${LIBS} \
+		-o ${WRKSRC}/fsck_ext2fs ${FILESDIR}/fsck_ext2fs.c
+# While the ${MAKE} check can take a minute on an end user's system, the
+# correctness of tools such as e2fsck is critical to the health of the
+# file systems.  The upstream is not using any *BSD as his development
+# system, and therefore let's exercise due diligence in running the self-
+# test on each and every system and not just package building hosts.
+# There have been subtle failures induced by Linux-isms in the past.
+# -- Matthias Andree, package maintainer, 2007-09-18
+	@${ECHO_CMD} '===>  Running e2fsprogs self-test suite'
+# do not add -j options to ${MAKE_CMD} below, this might break
+# due to excessive disk space use.
+	cd ${WRKSRC}/tests && ${MKDIR} ${WRKDIR}/tmp && ${MAKE_CMD} check TMPDIR=${WRKDIR}/tmp \
+	    || { head -n30000 ${WRKSRC}/tests/*.failed 2>/dev/null ; exit 1 ; }
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/e2fsck/e2fsck ${NAS4FREE_ROOTFS}/usr/local/sbin
