@@ -118,7 +118,7 @@ setifconfig()
 			eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
 		fi
 		if [ -n "${_ipaddr}" ]; then
-		# dirty fix voor bad value melding bij dhcp en mogelijks voor dns dhcp.xxx.xxx query
+		# dirty fix for bad value report on dhcp and possibly dns dhcp.xxx.xxx query
 		   if [ "${_ipaddr}" != "dhcp" ]; then
 			eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "${_ipaddr}/${_subnet}"
 			fi			
