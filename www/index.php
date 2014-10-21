@@ -296,10 +296,9 @@ $(document).ready(function(){
 			    <td width="25%" valign="top" class="vncellt"><?=gettext("Platform OS");?></td>
 			    <td width="75%" class="listr">
 			      <?
-			        exec("/sbin/sysctl -n kern.ostype", $ostype);
-			        exec("/sbin/sysctl -n kern.osrelease", $osrelease);
-			        exec("/sbin/sysctl -n kern.osreldate", $osreldate);
-			        echo("$ostype[0] $osrelease[0] (kern.osreldate: $osreldate[0])");
+				 exec("/sbin/sysctl -n kern.osrevision", $osrevision);
+			        exec("/sbin/sysctl -n kern.version", $osversion);
+			        echo("FreeBSD Revision: $osrevision[0]<br>$osversion[0]</br>");
 			      ?>
 			    </td>
 			  </tr>
