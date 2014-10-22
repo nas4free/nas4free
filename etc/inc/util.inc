@@ -1021,9 +1021,11 @@ function parse_camcontrol_info($devtype){
 
 // Parse controller dependent info
 function parse_controller_config(&$devlist){
+	global $config_disks;
 
 	foreach($devlist as &$device){
 		$devtype = '';
+		$device['desc'] = $config_disks[$device['name']]['desc'];
 		switch( $device['controller']){
 		// Experimental : requires arcmsr to add enclosure support
 		// Areca SATA[/SAS] RAID controller
@@ -1189,45 +1191,62 @@ function get_smartctl_info($device){
 
 	$smartctl_info = array();
 	$type_arg = '';
+	$vendor = '';
+	$product = '';
+	$revision = '';
 
-	if( !is_null($device['smart']['devicetypearg']) ){
+	if( !empty($device['smart']['devicetypearg']) ){
 		$type_arg = "-d ".$device['smart']['devicetypearg'];
 	}
 
 	mwexec2("smartctl -i ".$type_arg." ".$device['smart']['devicefilepath'],$lines);
 
 	foreach($lines as $line){
-		$str_startswith = substr($line, 0, 18);
+        	// trim and convert token to lowercase
+		$str_startswith = strtolower(trim(substr($line, 0, 18)));
 		$matches = array();
 
 		switch ($str_startswith){
-			case 'Model Family:     ':
-				preg_match("/(?<=Model Family:     ).*/",$line, $matches );
-				$smartctl_info['desc'] = $matches[0];
+        		// compare always to lowercase and trimmed keywords
+			case 'model family:':
+				preg_match("/(?<=Model Family:).*/",$line, $matches );
+				$smartctl_info['desc'] = trim($matches[0]);
 				break;
-			case 'Device Model:     ':
-				preg_match("/(?<=Device Model:     ).*/",$line, $matches );
-				$smartctl_info['model'] = $matches[0];
+			case 'device model:':
+				preg_match("/(?<=Device Model:).*/",$line, $matches );
+				$smartctl_info['model'] = trim($matches[0]);
 				break;
-			case 'Serial Number:    ':
-				preg_match("/(?<=Serial Number:    ).*/",$line, $matches );
-				$smartctl_info['serial'] = $matches[0];
+			case 'vendor:':
+				preg_match("/(?<=Vendor:).*/",$line, $matches );
+				$vendor = trim($matches[0]);
 				break;
-			case 'Rotation Rate:    ':
-				preg_match("/(?<=Rotation Rate:    ).*/",$line, $matches );
-				$smartctl_info['rotation_rate'] = $matches[0];
+			case 'revision:':
+				preg_match("/(?<=Revision:).*/",$line, $matches );
+				$revision = trim($matches[0]);
 				break;
-			case 'SATA Version is:  ':
-				if(preg_match("/(?<= \(current: ).*(?=\))+/", $line, $matches)){
-					$smartctl_info['transfer_rate'] = $matches[0];
+			case 'product:':
+				preg_match("/(?<=Product:).*/",$line, $matches );
+				$product = trim($matches[0]);
+				break;
+			case 'serial number:':
+				preg_match("/(?<=Serial [Nn]umber:).*/",$line, $matches );
+				$smartctl_info['serial'] = trim($matches[0]);
+				break;
+			case 'rotation rate:':
+				preg_match("/(?<=Rotation Rate:).*/",$line, $matches );
+				$smartctl_info['rotation_rate'] = trim($matches[0]);
+				break;
+			case 'sata version is:':
+				if(preg_match("/(?<= \(current:).*(?=\))+/", $line, $matches)){
+					$smartctl_info['transfer_rate'] = trim($matches[0]);
 				}
 				else if(preg_match("/(?<=, ).*?(?>\/s)/", $line, $matches)){
-					$smartctl_info['transfer_rate'] = $matches[0];
+					$smartctl_info['transfer_rate'] = trim($matches[0]);
 				}
 				break;
-			case 'SMART support is: ':
+			case 'smart support is:':
 				if(empty($smartctl_info['smart_support'])){
-					if(preg_match("/(?<=SMART support is: ).*(?=\-)+/", $line, $matches)){
+					if(preg_match("/(?<=SMART support is:).*(?=\-)+/", $line, $matches)){
 						$smartctl_info['smart_support'] = ltrim($matches[0]);
 					}
 				}else if( strncmp($smartctl_info['smart_support'], 'Available', 9) == 0 )  {
@@ -1238,6 +1257,10 @@ function get_smartctl_info($device){
 				break;
 			}
 	}
+	// Set model to vendor,product,revision
+	if(empty($smartctl_info['model'])){
+		$smartctl_info['model'] = trim($vendor.' '.$product.' '.$revision);
+ 	}
 	return $smartctl_info;
 }
 

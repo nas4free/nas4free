@@ -107,6 +107,9 @@ $a_phy_disk = array_merge((array)get_physical_disks_list());
 				<tr>
 					<td class="listlr"><?=htmlspecialchars($disk['name']);?></td>
 					<td class="listr"><?=htmlspecialchars($disk['model']);?>&nbsp;</td>
+				<?php	global $config_disks;
+					$disk['desc'] = $config_disks[$disk['devicespecialfile']]['desc'];
+				?>
 					<td class="listr"><?=(empty($disk['desc']) ) === FALSE ? htmlspecialchars($disk['desc']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars($disk['size']);?></td>
 					<td class="listr"><?=(empty($disk['serial']) ) === FALSE ? htmlspecialchars($disk['serial']) : htmlspecialchars(gettext("n/a"));?>&nbsp;</td>

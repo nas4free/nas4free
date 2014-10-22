@@ -15,13 +15,13 @@
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met: 
+	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer. 
+	   list of conditions and the following disclaimer.
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution. 
+	   and/or other materials provided with the distribution.
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -35,7 +35,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies, 
+	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
 require_once("functions.inc");
@@ -450,20 +450,23 @@ function system_get_device_temp($devicespecialfile) {
 			return $result;
 		}
 	}
-	
+
 	global $config;
 	// get S.M.A.R.T. arguments from config
-	if (is_array($config['disks']) && is_array($config['disks']['disk'])) {
-		foreach ($config['disks']['disk'] as &$disk) {
-			if($disk['devicespecialfile'] == $devicespecialfile){
+	global $config_disks;
+
+			if(empty($_SESSION[$devicespecialfile]['temp']['value']) or
+				time() - $_SESSION[$devicespecialfile]['temp']['timestamp'] > 120
+				){
+
 				$type_arg = '';
 
-				if( !is_null($disk['smart']['devicetypearg']) ){
-					$type_arg = "-d ".$disk['smart']['devicetypearg'];
+				if( !empty($config_disks[$devicespecialfile]['smart']['devicetypearg']) ){
+					$type_arg = "-d ".$config_disks[$devicespecialfile]['smart']['devicetypearg'];
 				}
 
 				/* get temperature from S.M.A.R.T. */
-				mwexec2("smartctl -A ".$type_arg." ".$disk['smart']['devicefilepath']."| grep -i 'Temperature_'" , $rawdata);
+				mwexec2("smartctl -A ".$type_arg." ".$config_disks[$devicespecialfile]['smart']['devicefilepath']."| grep -i 'Temperature'" , $rawdata);
 
 				foreach ($rawdata as $rawdatav) {
 					$arawdatav = preg_split("/\s+/", $rawdatav);
@@ -477,10 +480,12 @@ function system_get_device_temp($devicespecialfile) {
 						break;
 					}
 				}
+				$_SESSION[$devicespecialfile]['temp']['value']=$result;
+				$_SESSION[$devicespecialfile]['temp']['timestamp']=time();
 				return $result;
+			} else {
+				return $_SESSION[$devicespecialfile]['temp']['value'];
 			}
-		}
-	}
 
 	return $result;
 }
@@ -539,19 +544,13 @@ function system_get_volume_serial($devicespecialfile) {
 	global $config;
 
 	// get serial from config
-	if (is_array($config['disks']) && is_array($config['disks']['disk'])) {
-
-		foreach ($config['disks']['disk'] as &$disk) { 
-			if($disk['devicespecialfile'] == $devicespecialfile){
-				/* get serial from S.M.A.R.T. */
-				$smart_arg = get_smartctl_info($disk);
+	global $config_disks;
+ 				/* get serial from S.M.A.R.T. */
+				$smart_arg = get_smartctl_info($config_disks[$devicespecialfile]);
 
 				if( !empty($smart_arg['serial']) ){
 					return $smart_arg['serial'];
 				}
-			}
-		}
-	}
 
 	/* without smart */
 	mwexec2("ataidle {$devicespecialfile} | grep 'Serial'", $rawdata);
@@ -582,24 +581,18 @@ function system_get_volume_model($devicespecialfile) {
 	global $config;
 
 	// get device model from config
-	if (is_array($config['disks']) && is_array($config['disks']['disk'])) {
-
-		foreach ($config['disks']['disk'] as &$disk) { 
-			if($disk['devicespecialfile'] == $devicespecialfile){
-				if(!empty($disk['model'])){
-					return $disk['model'];
-				}
+	global $config_disks;
+ 				if(!empty($config_disks[$devicespecialfile]['model'])){
+ 					return $config_disks[$devicespecialfile]['model'];
+ 				}
 				else {
 					/* get device model from S.M.A.R.T. */
-					$smart_arg = get_smartctl_info($disk);
+					$smart_arg = get_smartctl_info($config_disks[$devicespecialfile]);
 					
 					if( !empty($smart_arg['model']) ){
 						return $smart_arg['model'];
 					}
 				}
-			}
-		}
-	}
 
 	/* without smart */
 	mwexec2("ataidle {$devicespecialfile} | grep 'Model'", $rawdata);

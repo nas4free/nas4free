@@ -313,6 +313,15 @@ EOD;
 	}
 
 	config_unlock();
+	global $config_disks;
+	// get S.M.A.R.T. arguments from config and store it in a hash to get better performance:
+        if (is_array($config['disks']) && is_array($config['disks']['disk'])) {
+                foreach ($config['disks']['disk'] as $disk) {
+			$config_disks[$disk['devicespecialfile']]['smart']['devicefilepath'] = $disk['smart']['devicefilepath'];
+			$config_disks[$disk['devicespecialfile']]['smart']['devicetypearg'] = $disk['smart']['devicetypearg'];
+			$config_disks[$disk['devicespecialfile']]['desc'] = $disk['desc'];
+		}
+	}
 }
 
 /* mount flash card read/write */
