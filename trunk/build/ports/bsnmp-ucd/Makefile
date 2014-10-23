@@ -8,7 +8,7 @@ MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 
 USE_MAKE=		yes
 USES=           uidfix
- MAKE_ENV+=      NO_OBJ=yes
+MAKE_ENV+=      NO_OBJ=yes
 
 post-patch:
 	@${REINPLACE_CMD} -e '32,32 s/^.*/#include <sys\/queue.h>/' ${WRKSRC}/snmp_ucd.h
