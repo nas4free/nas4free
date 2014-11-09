@@ -78,7 +78,8 @@ $a_disk = get_physical_disks_list();
 				<tr>
 			    <td>
 						<pre><?php
-						if(!is_null($diskv['smart']['devicetypearg'])){
+						$devicetype_arg = "";
+						if(!empty($diskv['smart']['devicetypearg'])){
 							$devicetype_arg = "-d ".$diskv['smart']['devicetypearg'];
 						}
 						exec ("/usr/local/sbin/smartctl -a {$diskv['smart']['devicefilepath']} {$devicetype_arg}",$rawdata);
