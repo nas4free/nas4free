@@ -71,6 +71,8 @@ cp -v ${NAS4FREE_WORLD}/boot/defaults/loader.conf $MINIBSD_DIR/defaults
 cp -v ${NAS4FREE_WORLD}/boot/loader $MINIBSD_DIR
 cp -v ${NAS4FREE_WORLD}/boot/boot $MINIBSD_DIR
 cp -v ${NAS4FREE_WORLD}/boot/mbr $MINIBSD_DIR
+cp -v ${NAS4FREE_WORLD}/boot/gptboot $MINIBSD_DIR
+cp -v ${NAS4FREE_WORLD}/boot/pmbr $MINIBSD_DIR
 cp -v ${NAS4FREE_WORLD}/boot/cdboot $MINIBSD_DIR
 cp -v ${NAS4FREE_WORLD}/boot/loader.4th $MINIBSD_DIR
 cp -v ${NAS4FREE_WORLD}/boot/support.4th $MINIBSD_DIR
