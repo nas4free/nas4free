@@ -88,7 +88,7 @@ foreach ($cdlist as $cdromk => $cdromv) {
 	$menuitem['item'] = $cdromv['desc'];
 	$amenuitem[] = $menuitem;
 }
-$result = tui_display_menu("Choose installation media", "Select CD/DVD/USB drive for installation.", 60, 10, 6, $amenuitem, $cdrom);
+$result = tui_display_menu("Choose installation media", "Select CD/DVD/USB drive for installation source.", 60, 10, 6, $amenuitem, $cdrom);
 if (0 != $result)
 	exit(0);
 

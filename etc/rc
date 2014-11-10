@@ -68,6 +68,51 @@ case ${PLATFORM} in
 	*)
 		# If running from liveCD or embedded, mount the root (ramdisk) in read-write.
 		/sbin/mount -u -o rw /dev/md0 /;
+
+		/bin/echo "creating 2nd memory disk for ${PLATFORM}"
+		md=`/sbin/mdconfig -s 768m`
+		case ${PLATFORM} in
+			*-liveUSB)
+				root=`/sbin/glabel status -s|/usr/bin/awk '/liveboot/{print $3;exit 0}'`
+				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
+				#if [ ! -f ${swap} ]; then
+				#	dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
+				#	/sbin/gpart add -s 512m -t freebsd-swap ${dev}
+				#fi
+				/sbin/swapon /dev/${swap}
+				echo "/dev/${swap}" > /etc/swapdevice
+
+				/sbin/mount /dev/${root} /mnt
+				/usr/bin/xz -dcv /mnt/mdlocal.xz | \
+				    /bin/dd of=/dev/${md} bs=1m status=none
+				/sbin/umount /mnt
+				;;
+			*-embedded)
+				root=`/sbin/glabel status -s|/usr/bin/awk '/embboot/{print $3;exit 0}'`
+				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
+
+				/sbin/swapon /dev/${swap}
+				echo "/dev/${swap}" > /etc/swapdevice
+
+				/sbin/mount /dev/${root} /mnt
+				/usr/bin/xz -dcv /mnt/mdlocal.xz | \
+				    /bin/dd of=/dev/${md} bs=1m status=none
+				/sbin/umount /mnt
+				;;
+			*-liveCD)
+				root=`/sbin/glabel status -s|/usr/bin/awk '/LiveCD/{print $3;exit 0}'`
+				swap=NONE
+				echo "NONE" > /etc/swapdevice
+
+				/sbin/mount -t cd9660 /dev/${root} /mnt
+				/usr/bin/xz -dcv /mnt/mdlocal.xz | \
+				    /bin/dd of=/dev/${md} bs=1m status=none
+				/sbin/umount /mnt
+				;;
+			*)
+				;;
+		esac
+		/sbin/mount /dev/${md} /usr/local
 		;;
 esac
 

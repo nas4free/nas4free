@@ -81,7 +81,7 @@ foreach ($cdlist as $cdromk => $cdromv) {
 	$menuitem['item'] = $cdromv['desc'];
 	$amenuitem[] = $menuitem;
 }
-$result = tui_display_menu("Choose installation media", "Select CD/DVD/USB drive for installation.", 60, 10, 6, $amenuitem, $cdrom);
+$result = tui_display_menu("Choose installation media", "Select CD/DVD/USB drive for installation source.", 60, 10, 6, $amenuitem, $cdrom);
 if (0 != $result)
 	exit(0);
 
@@ -113,6 +113,12 @@ if (install_mount_cd($cdlist[$cdrom])) {
 if (install_dd_image($harddrive)) {
 	install_unmount_cd();
 	tui_wait_keypress("There was a problem while copying files.");
+	exit(0);
+}
+
+if (add_default_swap($harddrive)) {
+	install_unmount_cd();
+	tui_wait_keypress("There was a problem while adding swap.");
 	exit(0);
 }
 

@@ -65,7 +65,7 @@ function get_install_source_drive()
 	global $g;
 
 	$mntpath = "/mnt";
-	$imgfile = get_product_name(). "-{$g['arch']}-embedded.gz";
+	$imgfile = get_product_name(). "-{$g['arch']}-embedded.xz";
 
 	$cdlist = get_cdrom_list();
 	$dalist = get_scsi_disks_list();
@@ -145,16 +145,28 @@ function install_unmount_cd()
 	return $result;
 }
 
+// Add default swap partition.
+function add_default_swap($harddrive)
+{
+	global $g_install;
+
+	if (mwexec("/sbin/gpart add -s {$g_install['default_swap']}m -t freebsd-swap {$harddrive}")) {
+		write_console("Error: Failed to add swap.\n");
+		return 1;
+	}
+	return 0;
+}
+
 // Install the IMG on the destination harddrive.
 // Return 0 if successful, otherwise 1
 function install_dd_image($harddrive)
 {
 	global $g;
 
-	$imgfilename=get_product_name(). "-{$g['arch']}-embedded.gz";
+	$imgfilename=get_product_name(). "-{$g['arch']}-embedded.xz";
 
 	// Test firmware file integrity.
-	if (mwexec("/usr/bin/gzip -t /mnt/cdrom/{$imgfilename}")) {
+	if (mwexec("/usr/bin/xz -t /mnt/cdrom/{$imgfilename}")) {
 		write_console("Error: Firmware file is corrupted.\n");
 		return 1;
 	}
@@ -162,7 +174,7 @@ function install_dd_image($harddrive)
 	set_kern_geom_debugflags(0x10);
 	// dd image file on the destination disk.
 	write_console("Installing system image on device {$harddrive}.\n");
-	if (mwexec("/usr/bin/gzip -cd /mnt/cdrom/{$imgfilename} | /bin/dd of=/dev/{$harddrive} ibs=16k obs=16k > /dev/null 2>&1")) {
+	if (mwexec("/usr/bin/xz -cdv /mnt/cdrom/{$imgfilename} | /bin/dd of=/dev/{$harddrive} ibs=16k obs=16k > /dev/null 2>&1")) {
 		set_kern_geom_debugflags(0);
 		write_console("Error: Failed to dd image on '/dev/{$harddrive}'!\n");
 		return 1;
@@ -531,9 +543,11 @@ function install_restore_config($disk)
 			return 1;
 		}
 	}
-       if (1 == mwexec("/bin/cp -p {$tmp_cf_bak}/loader.conf.local {$mnt_cf_disk}/boot")) {
-		write_console("Error: Failed to restore the configuration file! (loader.conf.local)\n");
-		return 1;
+	if (file_exists("{$tmp_cf_bak}/loader.conf.local")) {
+		if (1 == mwexec("/bin/cp -p {$tmp_cf_bak}/loader.conf.local {$mnt_cf_disk}/boot")) {
+			write_console("Error: Failed to restore the configuration file! (loader.conf.local)\n");
+			return 1;
+		}
 	}
 
 	/* Unmount the upgraded drive */
@@ -864,7 +878,7 @@ function install_newfs($disk, $volname, $sector, $fsize, $bsize) {
 function install_detect_installation($mode, &$devinfo) {
 	global $g;
 
-	$imgfile = get_product_name(). "-{$g['arch']}-embedded.gz";
+	$imgfile = get_product_name(). "-{$g['arch']}-embedded.xz";
 	$result = 1;
 	$devinfo = array();
 
