@@ -490,7 +490,7 @@ create_image() {
 	mdp=${md}a
 
 	echo "===> Formatting this memory disk using UFS"
-	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -U -o space -m 0 -L "embboot" -t /dev/${md}a
+	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -U -o space -m 0 -L "embboot" /dev/${md}a
 	echo "===> Mount this virtual disk on $NAS4FREE_TMPDIR"
 	mount /dev/${md}a $NAS4FREE_TMPDIR
 	echo "===> Copying previously generated MFSROOT file to memory disk"
@@ -727,7 +727,7 @@ create_usb () {
 
 	echo "USB: Formatting this memory disk using UFS"
 	#newfs -S 512 -b 32768 -f 4096 -O2 -U -j -o time -m 8 /dev/${mdp}
-	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -U -o space -m 0 -L "liveboot" -t /dev/${mdp}
+	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -U -o space -m 0 -L "liveboot" /dev/${mdp}
 
 	echo "USB: Mount this virtual disk on $NAS4FREE_TMPDIR"
 	mount /dev/${mdp} $NAS4FREE_TMPDIR
