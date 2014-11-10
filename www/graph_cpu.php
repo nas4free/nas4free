@@ -87,7 +87,7 @@ echo "<?xml version=\"1.0\" encoding=\"{$encoding}\"?>\n";
     <text id="grid_txt1" x="<?=$width*0.99?>" y="<?=$height/4.3*1?>" <?=$attribs['grid_txt']?> text-anchor="end">75%</text>
     <text id="grid_txt2" x="<?=$width*0.99?>" y="<?=$height/4.15*2?>" <?=$attribs['grid_txt']?> text-anchor="end">50%</text>
     <text id="grid_txt3" x="<?=$width*0.99?>" y="<?=$height/4.1*3?>" <?=$attribs['grid_txt']?> text-anchor="end">25%</text>
-    <text id="datetime" x="<?=$width*0.50?>" y="5" <?=$attribs['legend']?>> </text>
+    <text id="datetime" x="<?=$width*0.50?>" y="5" <?=$attribs['legend']?>>00/00/0000</text>
     <text id="cpu_name"  x="<?=$width*0.99?>" y="7" <?=$attribs['cpu']?> text-anchor="end">CPU <?=$cpu?></text>
     <polygon id="axis_arrow_x" <?=$attribs['axis']?> points="<?=($width) . "," . ($height)?> <?=($width-2) . "," . ($height-2)?> <?=($width-2) . "," . $height?>"/>
     <text id="error" x="<?=$width*0.5?>" y="<?=$height*0.4?>"  visibility="hidden" <?=$attribs['error']?> text-anchor="middle"><?=$error_text?></text>
