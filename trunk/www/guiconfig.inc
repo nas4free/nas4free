@@ -241,6 +241,14 @@ function print_input_errors($input_errors) {
 	echo "  </div>\n";
 }
 
+function verify_xz_file($fname) {
+	$returnvar = mwexec("/usr/bin/xz -t " . escapeshellarg($fname), true);
+	if ($returnvar != 0)
+		return 0;
+	else
+		return 1;
+}
+
 function verify_gzip_file($fname) {
 	$returnvar = mwexec("/usr/bin/gzip -t " . escapeshellarg($fname), true);
 	if ($returnvar != 0)
