@@ -19,7 +19,7 @@
 # - fullupgrade <file> : Do a full release (TGZ file) upgrade using the file <file>
 #
 
-SIZE="256M"
+SIZE="512M"
 CFDEVICE=`cat /etc/cfdevice | sed -e 's/[a-h]$//'`
 FTMP="/var/tmp/ftmp"
 
@@ -50,15 +50,14 @@ case $1 in
 		# Redirect I/O to console.
 		exec </dev/console >/dev/console 2>/dev/console
 
-		# Use auto-unit feature to automatically select an unused device.
-		/sbin/mdmfs -m 0 -s $SIZE -b 8192 -f 1024 md ${FTMP} > /dev/null 2>&1
+		# Use efficient memory file system
+		/sbin/mount -t tmpfs -o size=${SIZE},mode=1777 tmpfs ${FTMP} > /dev/null 2>&1
 		if [ 0 != $? ]; then # successfully?
 			msg="ERROR: Failed to create in-memory file system."
 			printf "\n\33[31m%s\33[0m\n" "${msg}"
 			/usr/bin/logger "UPGRADE ${msg}"
 			exit 1
 		fi
-		/bin/chmod 1777 ${FTMP}
 		;;
 
 	disable)
@@ -76,9 +75,6 @@ case $1 in
 			/usr/bin/logger "UPGRADE ${msg}"
 			exit 1
 		fi
-
-		# Detach md device.
-		/sbin/mdconfig -d -u ${mdid}
 		;;
 
 	upgrade)
@@ -99,7 +95,7 @@ case $1 in
 		fi
 
 		# Test firmware file
-		/usr/bin/gzip -t "$2" 2>&1
+		/usr/bin/xz -t "$2" 2>&1
 		if [ 0 != $? ]; then
 			msg="ERROR: Firmware file is corrupted."
 			printf "\n\33[31m%s\33[0m\n" "${msg}"
@@ -115,7 +111,7 @@ case $1 in
 		fi
 		# Backup loader.conf.local
 		if [ -f /cf/boot/loader.conf.local ]; then
-		cp -p /cf/boot/loader.conf.local /tmp/configbak
+			cp -p /cf/boot/loader.conf.local /tmp/configbak
 		fi
 
 		# Unmount /cf
@@ -126,10 +122,18 @@ case $1 in
 			/usr/bin/logger "UPGRADE ${msg}"
 		fi
 
+		if [ -f /etc/swapdevice ]; then
+			SWAPDEVICE=`cat /etc/swapdevice`
+			if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ];then
+				echo "swapoff ${SWAPDEVICE}"
+				swapoff ${SWAPDEVICE}
+			fi
+		fi
+
 		# dd image onto card
 		result=1
 		if [ -r "$2" ]; then
-			/usr/bin/gzip -cd "$2" | /bin/dd of=/dev/${CFDEVICE} ibs=16k obs=16k > /dev/null 2>&1
+			/usr/bin/xz -cdv "$2" | /bin/dd of=/dev/${CFDEVICE} ibs=16k obs=16k > /dev/null 2>&1
 			result=$?
 			if [ 0 != ${result} ]; then # successfully?
 				msg="ERROR: Failed to install firmware image on '/dev/${CFDEVICE}'!"
@@ -142,6 +146,14 @@ case $1 in
 			fi
 		fi
 
+		if [ -f /etc/swapdevice ]; then
+			SWAPDEVICE=`cat /etc/swapdevice`
+			if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ];then
+				echo "swapon ${SWAPDEVICE}"
+				swapon ${SWAPDEVICE}
+			fi
+		fi
+
 		# Mount /cf read-write
 		/sbin/mount -w -o noatime /cf
 
@@ -151,8 +163,8 @@ case $1 in
 			mv /conf/boot.config /cf
 		fi
 		# Restore loader.conf.local
-		if [ -f /tmp/configbak/loader.conf.local ]; then
-		mv /tmp/configbak/loader.conf.local /cf/boot
+		if [ -f /conf/loader.conf.local ]; then
+			mv /conf/loader.conf.local /cf/boot
 		fi
 		rm -r /tmp/configbak
 
@@ -189,7 +201,7 @@ case $1 in
 		fi
 
 		# Test firmware file
-		/usr/bin/gzip -t "$2" 2>&1
+		/usr/bin/xz -t "$2" 2>&1
 		if [ 0 != $? ]; then
 			msg="ERROR: Firmware file is corrupted."
 			printf "\33[31m%s\33[0m\n" "${msg}"
@@ -205,6 +217,10 @@ case $1 in
 		cp -p /conf/* /tmp/configbak 2>/dev/null
 		if [ -f /boot.config ]; then
 			cp -p /boot.config /tmp/configbak 2>/dev/null
+		fi
+		# Backup loader.conf.local
+		if [ -f /cf/boot/loader.conf.local ]; then
+			cp -p /cf/boot/loader.conf.local /tmp/configbak
 		fi
 
 		/usr/bin/tar xzUPf "$2" -C / 2>&1
@@ -223,6 +239,10 @@ case $1 in
 		cp -p /tmp/configbak/* /conf 2>/dev/null
 		if [ -f /conf/boot.config ]; then
 			mv /conf/boot.config / 2>/dev/null
+		fi
+		# Restore loader.conf.local
+		if [ -f /conf/loader.conf.local ]; then
+			mv /conf/loader.conf.local /cf/boot
 		fi
 		rm -r /tmp/configbak
 

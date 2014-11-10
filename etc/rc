@@ -75,7 +75,7 @@ case ${PLATFORM} in
 			*-liveUSB)
 				root=`/sbin/glabel status -s|/usr/bin/awk '/liveboot/{print $3;exit 0}'`
 				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
-				#if [ ! -f ${swap} ]; then
+				#if [ ! -e "/dev/${swap}" ]; then
 				#	dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
 				#	/sbin/gpart add -s 512m -t freebsd-swap ${dev}
 				#fi
@@ -90,7 +90,10 @@ case ${PLATFORM} in
 			*-embedded)
 				root=`/sbin/glabel status -s|/usr/bin/awk '/embboot/{print $3;exit 0}'`
 				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
-
+				if [ ! -e "/dev/${swap}" ]; then
+					dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
+					/sbin/gpart add -s 512m -t freebsd-swap ${dev}
+				fi
 				/sbin/swapon /dev/${swap}
 				echo "/dev/${swap}" > /etc/swapdevice
 
