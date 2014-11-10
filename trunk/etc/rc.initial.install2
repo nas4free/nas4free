@@ -60,7 +60,7 @@ $text = <<<EOD
 
 - Create MBR partition 1, using UFS, {$part1size}MB size for OS image
 - Create MBR partition 2, using UFS, for DATA
-- Create MBR partition 3, as SWAP
+- Create MBR partition 3, as SWAP, 512MB or more
 - Uses a RAM disk to limit read/write access to the device
 
 WARNING: There will be some limitations:
@@ -88,7 +88,7 @@ foreach ($cdlist as $cdromk => $cdromv) {
 	$menuitem['item'] = $cdromv['desc'];
 	$amenuitem[] = $menuitem;
 }
-$result = tui_display_menu("Choose installation media", "Select CD/DVD/USB drive for installation.", 60, 10, 6, $amenuitem, $cdrom);
+$result = tui_display_menu("Choose installation media", "Select CD/DVD/USB drive for installation source.", 60, 10, 6, $amenuitem, $cdrom);
 if (0 != $result)
 	exit(0);
 
@@ -113,17 +113,18 @@ if (disks_ismounted_ex($harddrive, "mdisk")) {
 }
 
 // Add swap partition?
-$result = tui_display_yesno("Do you want to add a swap partition?", 40, 5, false);
+//$result = tui_display_yesno("Do you want to add a swap partition?", 40, 5, false);
+$result = 0; // always adding swap
 if (0 == $result) {
 	do {
 		$raminfo = system_get_ram_info();
 		$swapsize = intval($raminfo['physical'] / 1024 / 1024); // Convert to MB
-		if ($swapsize < 256)
-			$swapsize = 256;
-		$result = tui_display_input("Enter the size of the swap partition in MB.", 47, 8, $swapsize);
+		if ($swapsize < 512)
+			$swapsize = 512;
+		$result = tui_display_input("Enter the size of the swap partition in MB. (min 512MB)", 47, 8, $swapsize);
 		if (0 != $result)
 			exit(0);
-	} while (!is_numeric($swapsize));
+	} while (!is_numeric($swapsize) || $swapsize < 512);
 
 	// Add swap slice/partition to the partition layout.
 	$partlayout[] = array("slice" => 3, "fstype" => "swap", "size" => $swapsize, "volname" => "");
@@ -143,6 +144,12 @@ if (install_init_disk($harddrive, $partlayout)) {
 if (install_dd_image("{$harddrive}s1")) {
 	install_unmount_cd();
 	tui_wait_keypress("There was a problem while copying files.");
+	exit(0);
+}
+
+if (add_default_swap("{$harddrive}s1")) {
+	install_unmount_cd();
+	tui_wait_keypress("There was a problem while adding swap.");
 	exit(0);
 }
 

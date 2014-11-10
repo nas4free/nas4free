@@ -77,12 +77,15 @@ NAS4FREE_SVN_SRCTREE="svn://svn.FreeBSD.org/base/releng/9.3"
 # Size in MB of the MFS Root filesystem that will include all FreeBSD binary
 # and NAS4FREE WEbGUI/Scripts. Keep this file very small! This file is unzipped
 # to a RAM disk at NAS4FREE startup.
-# The image must fit on 512MB CF/USB.
-NAS4FREE_MFSROOT_SIZE=223
-NAS4FREE_IMG_SIZE=125
+# The image must fit on 2GB CF/USB.
+# Actual size of MDLOCAL is defined in /etc/rc.
+NAS4FREE_MFSROOT_SIZE=128
+NAS4FREE_MDLOCAL_SIZE=768
+NAS4FREE_IMG_SIZE=512
 if [ "amd64" = ${NAS4FREE_ARCH} ]; then
-	NAS4FREE_MFSROOT_SIZE=240
-	NAS4FREE_IMG_SIZE=125
+	NAS4FREE_MFSROOT_SIZE=128
+	NAS4FREE_MDLOCAL_SIZE=768
+	NAS4FREE_IMG_SIZE=512
 fi
 
 # Media geometry, only relevant if bios doesn't understand LBA.
@@ -392,28 +395,37 @@ create_mfsroot() {
 	cd $NAS4FREE_WORKINGDIR
 
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
 	[ -d $NAS4FREE_SVNDIR ] && use_svn ;
 
 	# Make mfsroot to have the size of the NAS4FREE_MFSROOT_SIZE variable
 	dd if=/dev/zero of=$NAS4FREE_WORKINGDIR/mfsroot bs=1k count=$(expr ${NAS4FREE_MFSROOT_SIZE} \* 1024)
+	dd if=/dev/zero of=$NAS4FREE_WORKINGDIR/mdlocal bs=1k count=$(expr ${NAS4FREE_MDLOCAL_SIZE} \* 1024)
 	# Configure this file as a memory disk
 	md=`mdconfig -a -t vnode -f $NAS4FREE_WORKINGDIR/mfsroot`
+	md2=`mdconfig -a -t vnode -f $NAS4FREE_WORKINGDIR/mdlocal`
 	# Format memory disk using UFS
 	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -o space -m 0 /dev/${md}
+	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -o space -m 0 -t /dev/${md2}
 	# Umount memory disk (if already used)
 	umount $NAS4FREE_TMPDIR >/dev/null 2>&1
 	# Mount memory disk
 	mount /dev/${md} ${NAS4FREE_TMPDIR}
+	mkdir -p ${NAS4FREE_TMPDIR}/usr/local
+	mount /dev/${md2} ${NAS4FREE_TMPDIR}/usr/local
 	cd $NAS4FREE_TMPDIR
 	tar -cf - -C $NAS4FREE_ROOTFS ./ | tar -xvpf -
 
 	cd $NAS4FREE_WORKINGDIR
 	# Umount memory disk
+	umount $NAS4FREE_TMPDIR/usr/local
 	umount $NAS4FREE_TMPDIR
 	# Detach memory disk
+	mdconfig -d -u ${md2}
 	mdconfig -d -u ${md}
 
 	gzip -9fnv $NAS4FREE_WORKINGDIR/mfsroot
+	xz -9v $NAS4FREE_WORKINGDIR/mdlocal
 
 	return 0
 }
@@ -428,7 +440,8 @@ copy_kmod() {
 			continue;
 		fi
 		b=`basename ${f}`
-		(cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules; install -v -o root -g wheel -m 555 ${f} $NAS4FREE_TMPDIR/boot/kernel/${b}; gzip -9 $NAS4FREE_TMPDIR/boot/kernel/${b})
+		#(cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules; install -v -o root -g wheel -m 555 ${f} $NAS4FREE_TMPDIR/boot/kernel/${b}; gzip -9 $NAS4FREE_TMPDIR/boot/kernel/${b})
+		(cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules; install -v -o root -g wheel -m 555 ${f} $NAS4FREE_TMPDIR/boot/kernel/${b})
 	done
 	return 0;
 }
@@ -446,7 +459,7 @@ create_image() {
 
 	# Cleanup.
 	[ -f ${NAS4FREE_WORKINGDIR}/image.bin ] && rm -f ${NAS4FREE_WORKINGDIR}/image.bin
-	[ -f ${NAS4FREE_WORKINGDIR}/image.bin.gz ] && rm -f ${NAS4FREE_WORKINGDIR}/image.bin.gz
+	[ -f ${NAS4FREE_WORKINGDIR}/image.bin.xz ] && rm -f ${NAS4FREE_WORKINGDIR}/image.bin.xz
 
 	# Set platform information.
 	PLATFORM="${NAS4FREE_XARCH}-embedded"
@@ -477,11 +490,13 @@ create_image() {
 	mdp=${md}a
 
 	echo "===> Formatting this memory disk using UFS"
-	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -U -o space -m 0 /dev/${md}a
+	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -U -o space -m 0 -L "embboot" -t /dev/${md}a
 	echo "===> Mount this virtual disk on $NAS4FREE_TMPDIR"
 	mount /dev/${md}a $NAS4FREE_TMPDIR
 	echo "===> Copying previously generated MFSROOT file to memory disk"
 	cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
+	cp $NAS4FREE_WORKINGDIR/mdlocal.xz $NAS4FREE_TMPDIR
+	echo "${NAS4FREE_PRODUCTNAME}-${PLATFORM}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}" > $NAS4FREE_TMPDIR/version
 
 	echo "===> Copying Bootloader File(s) to memory disk"
 	mkdir -p $NAS4FREE_TMPDIR/boot
@@ -531,12 +546,13 @@ create_image() {
 	echo "===> Detach memory disk"
 	mdconfig -d -u ${md}
 	echo "===> Compress the IMG file"
-	gzip -9n $NAS4FREE_WORKINGDIR/image.bin
-	cp $NAS4FREE_WORKINGDIR/image.bin.gz $NAS4FREE_ROOTDIR/$IMGFILENAME
+	xz -9v $NAS4FREE_WORKINGDIR/image.bin
+	cp $NAS4FREE_WORKINGDIR/image.bin.xz $NAS4FREE_ROOTDIR/${IMGFILENAME}.xz
 
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
 	[ -f $NAS4FREE_WORKINGDIR/image.bin ] && rm -f $NAS4FREE_WORKINGDIR/image.bin
 
 	return 0
@@ -552,6 +568,7 @@ create_iso () {
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
 
 	if [ ! $TINY_ISO ]; then
 		LABEL="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveCD-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}"
@@ -576,6 +593,8 @@ create_iso () {
 
 	echo "ISO: Copying previously generated MFSROOT file to $NAS4FREE_TMPDIR"
 	cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
+	cp $NAS4FREE_WORKINGDIR/mdlocal.xz $NAS4FREE_TMPDIR
+	echo "${LABEL}" > $NAS4FREE_TMPDIR/version
 
 	echo "ISO: Copying Bootloader file(s) to $NAS4FREE_TMPDIR"
 	mkdir -p $NAS4FREE_TMPDIR/boot
@@ -620,7 +639,7 @@ create_iso () {
 
 	if [ ! $TINY_ISO ]; then
 		echo "ISO: Copying IMG file to $NAS4FREE_TMPDIR"
-		cp ${NAS4FREE_WORKINGDIR}/image.bin.gz ${NAS4FREE_TMPDIR}/${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-embedded.gz
+		cp ${NAS4FREE_WORKINGDIR}/image.bin.xz ${NAS4FREE_TMPDIR}/${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-embedded.xz
 	fi
 
 	echo "ISO: Generating ISO File"
@@ -629,11 +648,12 @@ create_iso () {
 
 	echo "Generating SHA256 CHECKSUM File"
 	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.checksum"
-	cd ${NAS4FREE_ROOTDIR} && sha256 *.img *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
+	cd ${NAS4FREE_ROOTDIR} && sha256 *.img *.xz *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
 
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
 
 	return 0
 }
@@ -655,8 +675,9 @@ create_usb () {
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
 	[ -f ${NAS4FREE_WORKINGDIR}/image.bin ] && rm -f ${NAS4FREE_WORKINGDIR}/image.bin
-	[ -f ${NAS4FREE_WORKINGDIR}/image.bin.gz ] && rm -f ${NAS4FREE_WORKINGDIR}/image.bin.gz
+	[ -f ${NAS4FREE_WORKINGDIR}/image.bin.xz ] && rm -f ${NAS4FREE_WORKINGDIR}/image.bin.xz
 	[ -f ${NAS4FREE_WORKINGDIR}/mfsroot.gz ] && rm -f ${NAS4FREE_WORKINGDIR}/mfsroot.gz
+	[ -f ${NAS4FREE_WORKINGDIR}/mdlocal.xz ] && rm -f ${NAS4FREE_WORKINGDIR}/mdlocal.xz
 	[ -f ${NAS4FREE_WORKINGDIR}/usb-image.bin ] && rm -f ${NAS4FREE_WORKINGDIR}/usb-image.bin
 	[ -f ${NAS4FREE_WORKINGDIR}/usb-image.bin.gz ] && rm -f ${NAS4FREE_WORKINGDIR}/usb-image.bin.gz
 
@@ -676,11 +697,18 @@ create_usb () {
 	mkdir $NAS4FREE_TMPDIR
 	create_mfsroot;
 
-	IMGSIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/image.bin.gz)
+	# for 2GB USB stick
+	IMGSIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/image.bin.xz)
 	MFSSIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/mfsroot.gz)
-	IMGSIZEM=$(expr \( $IMGSIZE + $MFSSIZE - 1 + 1024 \* 1024 \) / 1024 / 1024)
-	USBROOTM=64
-	USBIMGSIZEM=$(expr $USBROOTM + $IMGSIZEM)
+	MDLSIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/mdlocal.xz)
+	IMGSIZEM=$(expr \( $IMGSIZE + $MFSSIZE + $MDLSIZE - 1 + 1024 \* 1024 \) / 1024 / 1024)
+	USBROOTM=200
+	USBSWAPM=512
+	USBDATAM=50
+
+	USBSYSSIZEM=$(expr $USBROOTM + $IMGSIZEM)
+	USBDATSIZEM=$(expr $USBDATAM + 0)
+	USBIMGSIZEM=$(expr $USBSYSSIZEM + $USBSWAPM + $USBDATSIZEM + 1)
 
 	# 1MB aligned USB stick
 	echo "USB: Creating Empty IMG File"
@@ -692,18 +720,25 @@ create_usb () {
 	echo "USB: Creating BSD partition on this memory disk"
 	gpart create -s bsd ${md}
 	gpart bootcode -b ${NAS4FREE_BOOTDIR}/boot ${md}
-	gpart add -t freebsd-ufs ${md}
+	gpart add -s ${USBSYSSIZEM}m -t freebsd-ufs ${md}
+	gpart add -s ${USBSWAPM}m -t freebsd-swap ${md}
+	gpart add -s ${USBDATSIZEM}m -t freebsd-ufs ${md}
 	mdp=${md}a
 
 	echo "USB: Formatting this memory disk using UFS"
 	#newfs -S 512 -b 32768 -f 4096 -O2 -U -j -o time -m 8 /dev/${mdp}
-	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -U -o space -m 0 /dev/${mdp}
+	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -U -o space -m 0 -L "liveboot" -t /dev/${mdp}
 
 	echo "USB: Mount this virtual disk on $NAS4FREE_TMPDIR"
 	mount /dev/${mdp} $NAS4FREE_TMPDIR
 
+	#echo "USB: Creating swap file on the memory disk"
+	#dd if=/dev/zero of=$NAS4FREE_TMPDIR/swap.dat bs=1m count=${USBSWAPM}
+
 	echo "USB: Copying previously generated MFSROOT file to memory disk"
 	cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
+	cp $NAS4FREE_WORKINGDIR/mdlocal.xz $NAS4FREE_TMPDIR
+	echo "${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveUSB-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}" > $NAS4FREE_TMPDIR/version
 
 	echo "USB: Copying Bootloader File(s) to memory disk"
 	mkdir -p $NAS4FREE_TMPDIR/boot
@@ -749,7 +784,7 @@ create_usb () {
 	copy_kmod
 
 	echo "USB: Copying IMG file to $NAS4FREE_TMPDIR"
-	cp ${NAS4FREE_WORKINGDIR}/image.bin.gz ${NAS4FREE_TMPDIR}/${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-embedded.gz
+	cp ${NAS4FREE_WORKINGDIR}/image.bin.xz ${NAS4FREE_TMPDIR}/${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-embedded.xz
 
 	echo "USB: Unmount memory disk"
 	umount $NAS4FREE_TMPDIR
@@ -762,12 +797,13 @@ create_usb () {
 
 	echo "Generating SHA256 CHECKSUM File"
 	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.checksum"
-	cd ${NAS4FREE_ROOTDIR} && sha256 *.img *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
+	cd ${NAS4FREE_ROOTDIR} && sha256 *.img *.xz *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
 
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
-	[ -f $NAS4FREE_WORKINGDIR/image.bin ] && rm -f $NAS4FREE_WORKINGDIR/image.bin
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
+	[ -f $NAS4FREE_WORKINGDIR/image.bin.xz ] && rm -f $NAS4FREE_WORKINGDIR/image.bin.xz
 	[ -f $NAS4FREE_WORKINGDIR/usb-image.bin ] && rm -f $NAS4FREE_WORKINGDIR/usb-image.bin
 
 	return 0
@@ -796,6 +832,7 @@ create_full() {
 	cd $NAS4FREE_TMPDIR
 	tar -cf - -C $NAS4FREE_ROOTFS ./ | tar -xvpf -
 	#tar -cf - -C $NAS4FREE_ROOTFS ./ | tar -xvpf - -C $NAS4FREE_TMPDIR
+	echo "${NAS4FREE_PRODUCTNAME}-${PLATFORM}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}" > $NAS4FREE_TMPDIR/version
 
 	echo "Copying bootloader file(s) to root filesystem"
 	mkdir -p $NAS4FREE_TMPDIR/boot/kernel $NAS4FREE_TMPDIR/boot/defaults $NAS4FREE_TMPDIR/boot/zfs
@@ -1023,8 +1060,8 @@ $DIALOG --title \"$NAS4FREE_PRODUCTNAME - Ports\" \\
 				echo "--------------------------------------------------------------";
 				cd ${NAS4FREE_SVNDIR}/build/ports/${port};
 				# Delete cookie first, otherwise Makefile will skip this step.
-				rm -f ./work/.install_done.*;
-				env FORCE_PKG_REGISTER=1 make install;
+				rm -f ./work/.install_done.* ./work/.stage_done.*;
+				env PKG_DBDIR=$NAS4FREE_WORKINGDIR/pkg FORCE_PKG_REGISTER=1 make install;
 				[ 0 != $? ] && return 1; # successful?
 			done;
 			;;
@@ -1037,6 +1074,7 @@ $DIALOG --title \"$NAS4FREE_PRODUCTNAME - Ports\" \\
 main() {
 	# Ensure we are in $NAS4FREE_WORKINGDIR
 	[ ! -d "$NAS4FREE_WORKINGDIR" ] && mkdir $NAS4FREE_WORKINGDIR
+	[ ! -d "$NAS4FREE_WORKINGDIR/pkg" ] && mkdir $NAS4FREE_WORKINGDIR/pkg
 	cd $NAS4FREE_WORKINGDIR
 
 	echo -n "
