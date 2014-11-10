@@ -302,6 +302,12 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
 }
 ?>
 <?php include("fbegin.inc");?>
+<script type="text/javascript">//<![CDATA[
+$(document).ready(function(){
+$('input[name=ulfile]').css('width', '350px');
+});
+//]]>
+</script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="tabcont">
