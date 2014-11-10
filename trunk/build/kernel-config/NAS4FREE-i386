@@ -19,6 +19,8 @@ options		VM_KMEM_SIZE_MAX=(1280UL*1024*1024)
 # GEOM classes
 options 	GEOM_ELI		# Disk encryption.
 options 	GEOM_UZIP		# Read-only compressed disks
+options 	TMPFS			# Efficient memory filesystem
+options 	UNIONFS			# Union filesystem
 
 device		lagg			# Link aggregation interface.
 device		vlan			# 802.1Q VLAN support
