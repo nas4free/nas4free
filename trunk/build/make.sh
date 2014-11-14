@@ -540,7 +540,7 @@ create_image() {
 	create_mfsroot;
 
 	echo "===> Creating Empty IMG File"
-	dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/image.bin bs=${NAS4FREE_IMG_SECTS}b count=`expr ${NAS4FREE_IMG_SIZE_SEC} / ${NAS4FREE_IMG_SECTS}`
+	dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/image.bin bs=${NAS4FREE_IMG_SECTS}b count=`expr ${NAS4FREE_IMG_SIZE_SEC} / ${NAS4FREE_IMG_SECTS} + 64`
 	echo "===> Use IMG as a memory disk"
 	md=`mdconfig -a -t vnode -f ${NAS4FREE_WORKINGDIR}/image.bin -x ${NAS4FREE_IMG_SECTS} -y ${NAS4FREE_IMG_HEADS}`
 	diskinfo -v ${md}
@@ -548,7 +548,7 @@ create_image() {
 	echo "===> Creating BSD partition on this memory disk"
 	gpart create -s bsd ${md}
 	gpart bootcode -b ${NAS4FREE_BOOTDIR}/boot ${md}
-	gpart add -t freebsd-ufs ${md}
+	gpart add -s ${NAS4FREE_IMG_SIZE}m -t freebsd-ufs ${md}
 	mdp=${md}a
 
 	echo "===> Formatting this memory disk using UFS"
@@ -772,7 +772,7 @@ create_usb () {
 	MDLSIZE2=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/mdlocal-mini.xz)
 	IMGSIZEM=$(expr \( $IMGSIZE + $MFSSIZE + $MDLSIZE + $MDLSIZE2 - 1 + 1024 \* 1024 \) / 1024 / 1024)
 	USBROOTM=200
-	USBSWAPM=512
+	USBSWAPM=1024
 	USBDATAM=50
 
 	USBSYSSIZEM=$(expr $USBROOTM + $IMGSIZEM)
