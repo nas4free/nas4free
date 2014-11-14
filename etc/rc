@@ -57,6 +57,23 @@ export HOME PATH
 # Get operating platform
 PLATFORM=`cat /etc/platform`
 
+# Fixed values requested by build/make.sh
+MDLOCALSIZE=768m
+SWAPSIZE=512m
+
+# NAS4Free request 2GB for swapless running
+mem=`/sbin/sysctl -n hw.physmem`
+mem=`/bin/expr ${mem} / 1024 / 1024`
+BOOT_LOWMEM=0
+BOOT_LIVECD=0
+if [ ${mem} -le 1536 ]; then
+	# less than or equal to 1.5GB
+	echo "Booting with low memory"
+	BOOT_LOWMEM=1
+fi
+export BOOT_LOWMEM BOOT_LIVECD
+#/bin/kenv -q boot_lowmem=${BOOT_LOWMEM} > /dev/null
+
 case ${PLATFORM} in
 	*-full)
 		# Do a fsck on root file system.
@@ -67,21 +84,24 @@ case ${PLATFORM} in
 		;;
 	*)
 		# If running from liveCD or embedded, mount the root (ramdisk) in read-write.
-		/sbin/mount -u -o rw /dev/md0 /;
+		/sbin/mount -u -o rw,noatime /dev/md0 /;
 
-		/bin/echo "creating 2nd memory disk for ${PLATFORM}"
-		md=`/sbin/mdconfig -s 768m`
+		/bin/echo "Creating 2nd memory disk for ${PLATFORM}"
+		md=`/sbin/mdconfig -t swap -s ${MDLOCALSIZE}`
 		case ${PLATFORM} in
 			*-liveUSB)
 				root=`/sbin/glabel status -s|/usr/bin/awk '/liveboot/{print $3;exit 0}'`
 				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
 				#if [ ! -e "/dev/${swap}" ]; then
 				#	dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
-				#	/sbin/gpart add -s 512m -t freebsd-swap ${dev}
+				#	/sbin/gpart add -s ${SWAPSIZE} -t freebsd-swap ${dev}
 				#fi
-				/sbin/swapon /dev/${swap}
-				echo "/dev/${swap}" > /etc/swapdevice
-
+				if [ ${BOOT_LOWMEM} -ne 0 ]; then
+					/sbin/swapon /dev/${swap}
+					echo "/dev/${swap}" > /etc/swapdevice
+				else
+					rm -f /etc/swapdevice
+				fi
 				/sbin/mount /dev/${root} /mnt
 				/usr/bin/xz -dcv /mnt/mdlocal.xz | \
 				    /bin/dd of=/dev/${md} bs=1m status=none
@@ -90,12 +110,17 @@ case ${PLATFORM} in
 			*-embedded)
 				root=`/sbin/glabel status -s|/usr/bin/awk '/embboot/{print $3;exit 0}'`
 				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
+				# always create swap partition if not exists
 				if [ ! -e "/dev/${swap}" ]; then
 					dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
-					/sbin/gpart add -s 512m -t freebsd-swap ${dev}
+					/sbin/gpart add -s ${SWAPSIZE} -t freebsd-swap ${dev}
 				fi
-				/sbin/swapon /dev/${swap}
-				echo "/dev/${swap}" > /etc/swapdevice
+				if [ ${BOOT_LOWMEM} -ne 0 ]; then
+					/sbin/swapon /dev/${swap}
+					echo "/dev/${swap}" > /etc/swapdevice
+				else
+					rm -f /etc/swapdevice
+				fi
 
 				/sbin/mount /dev/${root} /mnt
 				/usr/bin/xz -dcv /mnt/mdlocal.xz | \
@@ -103,21 +128,30 @@ case ${PLATFORM} in
 				/sbin/umount /mnt
 				;;
 			*-liveCD)
+				BOOT_LIVECD=1
 				root=`/sbin/glabel status -s|/usr/bin/awk '/LiveCD/{print $3;exit 0}'`
 				swap=NONE
-				echo "NONE" > /etc/swapdevice
+				#echo "NONE" > /etc/swapdevice
+				rm -f /etc/swapdevice
 
 				/sbin/mount -t cd9660 /dev/${root} /mnt
-				/usr/bin/xz -dcv /mnt/mdlocal.xz | \
-				    /bin/dd of=/dev/${md} bs=1m status=none
+				if [ ${BOOT_LOWMEM} -ne 0 ]; then
+					# no live mode, installation only
+					/usr/bin/xz -dcv /mnt/mdlocal-mini.xz | \
+					    /bin/dd of=/dev/${md} bs=1m status=none
+				else
+					/usr/bin/xz -dcv /mnt/mdlocal.xz | \
+					    /bin/dd of=/dev/${md} bs=1m status=none
+				fi
 				/sbin/umount /mnt
 				;;
 			*)
 				;;
 		esac
-		/sbin/mount /dev/${md} /usr/local
+		/sbin/mount -o noatime /dev/${md} /usr/local
 		;;
 esac
+echo "${BOOT_LOWMEM}" > /etc/boot_lowmem
 
 # Create required directories in /var
 for dir in /var/run /var/log /var/etc /var/etc/ssh /var/etc/ssl/private /var/etc/private /var/etc/iscsi /var/etc/netatalk /var/db /var/mount /var/empty /var/backups /var/cron /var/cron/tabs /var/spool /var/spool/lock; do
