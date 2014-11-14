@@ -68,6 +68,8 @@ populate_var()
 case "${varmfs}" in
 [Yy][Ee][Ss])
 	mount_md ${varsize} /var "${varmfs_flags}"
+	mkdir /var/tmp
+	/sbin/mount -t tmpfs -o mode=1777,size=${vartmpsize} tmpfs /var/tmp
 	;;
 [Nn][Oo])
 	;;
@@ -76,6 +78,8 @@ case "${varmfs}" in
 		rmdir /var/.diskless
 	else
 		mount_md ${varsize} /var "${varmfs_flags}"
+		mkdir /var/tmp
+		/sbin/mount -t tmpfs -o mode=1777,size=${vartmpsize} tmpfs /var/tmp
 	fi
 esac
 
