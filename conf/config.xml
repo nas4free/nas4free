@@ -105,8 +105,15 @@
 			<param>
 				<uuid>1c2a4807-9969-42bc-8500-ba234e33a3f5</uuid>
 				<name>varsize</name>
-				<value>64m</value>
+				<value>128m</value>
 				<comment>Default /var size</comment>
+				<enable/>
+			</param>
+			<param>
+				<uuid>3ab45cfd-9ea5-4295-98c8-bebc7603332e</uuid>
+				<name>vartmpsize</name>
+				<value>64m</value>
+				<comment>Default /var/tmp size</comment>
 				<enable/>
 			</param>
 			<param>
