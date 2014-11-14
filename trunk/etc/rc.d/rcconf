@@ -31,8 +31,12 @@ setvar()
 			;;
 		*)
 			# If running from liveCD or embedded use a memory filesystem for /var.
-			eval /usr/local/sbin/rconf attribute set varmfs "YES";
-			eval /usr/local/sbin/rconf attribute set varmfs_flags "-S -m 3";
+			if [ ${BOOT_LIVECD} -ne 0 -a ${BOOT_LOWMEM} -ne 0 ]; then
+				eval /usr/local/sbin/rconf attribute set varmfs "NO";
+			else
+				eval /usr/local/sbin/rconf attribute set varmfs "YES";
+			fi
+			eval /usr/local/sbin/rconf attribute set varmfs_flags "-U -t -o noatime -m 2";
 			eval /usr/local/sbin/rconf attribute set populate_var "YES";
 			;;
 	esac
@@ -376,6 +380,13 @@ updateservices()
 				# Execute query.
 				_queryresult=`configxml_exec_query ${_xquery}`
 
+				# Force off when low memory liveCD
+				if [ ${BOOT_LIVECD} -ne 0 -a ${BOOT_LOWMEM} -ne 0 ]; then
+					if [ "${_rcscriptname}" = "mdnsresponder" ]; then
+						_queryresult=1;
+					fi
+				fi
+
 				# Enable/disable service depending on query result
 				if [ "0" = "${_queryresult}" ]; then
 					eval /usr/local/sbin/rconf service enable ${_rcvar}
@@ -386,6 +397,16 @@ updateservices()
 				fi
 
 				echo -n "."
+			else
+				# Force off when low memory liveCD
+				if [ ${BOOT_LIVECD} -ne 0 -a ${BOOT_LOWMEM} -ne 0 ]; then
+					if [ "${_rcscriptname}" = "lighttpd" -o \
+					     "${_rcscriptname}" = "cron" ]; then
+						eval /usr/local/sbin/rconf service disable ${_rcscriptname}
+						debug "rcconf: ${_rcscriptname} service disabled"
+						echo -n "."
+					fi
+				fi
 			fi
 		fi
 	done

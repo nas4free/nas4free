@@ -34,6 +34,14 @@ if configxml_isset "//system/disableconsolemenu"; then
 		read tmp
 	done
 else
+	BOOT_LOWMEM=`cat /etc/boot_lowmem`
+	DISABLE_LIVEMODE=0
+	if [ "${BOOT_LOWMEM}" = "1" ]; then
+		case ${PLATFORM} in
+			*-live[cC][dD])
+				DISABLE_LIVEMODE=1 ;;
+		esac
+	fi
 	case ${PLATFORM} in
 		*-live[cC][dD]|*-live[uU][sS][bB])
 			echo
@@ -46,11 +54,15 @@ else
 		echo
 		echo "Console Menu"
 		echo "------------"
-		echo "1) Configure Network Interfaces"
-		echo "2) Configure Network IP Address"
-		echo "3) Reset WebGUI Password"
-		echo "4) Reset to Factory Defaults"
-		echo "5) Ping Host"
+		if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
+			echo "1) Configure Network Interfaces"
+			echo "2) Configure Network IP Address"
+			echo "3) Reset WebGUI Password"
+			echo "4) Reset to Factory Defaults"
+			echo "5) Ping Host"
+		else
+			echo "1-5) Disabled (LiveCD requires 2GB memory)"
+		fi
 		echo "6) Shell"
 		echo "7) Reboot Server"
 		echo "8) Shutdown Server"
@@ -65,19 +77,29 @@ else
 		# see what the user has chosen
 		case ${opmode} in
 			1)
-				/etc/rc.initial.setports
+				if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
+					/etc/rc.initial.setports
+				fi
 			 	;;
 			2)
-				/etc/rc.initial.setlanip
+				if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
+					/etc/rc.initial.setlanip
+				fi
 			 	;;
 			3)
-				/etc/rc.initial.password
+				if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
+					/etc/rc.initial.password
+				fi
 				;;
 			4)
-				/etc/rc.initial.defaults
+				if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
+					/etc/rc.initial.defaults
+				fi
 				;;
 			5)
-				/etc/rc.initial.ping
+				if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
+					/etc/rc.initial.ping
+				fi
 				;;
 			6)
 				exit
