@@ -122,6 +122,7 @@ case $1 in
 			/usr/bin/logger "UPGRADE ${msg}"
 		fi
 
+		# Remove swap on booting device if any
 		if [ -f /etc/swapdevice ]; then
 			SWAPDEVICE=`cat /etc/swapdevice`
 			if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ];then
@@ -146,13 +147,13 @@ case $1 in
 			fi
 		fi
 
-		if [ -f /etc/swapdevice ]; then
-			SWAPDEVICE=`cat /etc/swapdevice`
-			if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ];then
-				echo "swapon ${SWAPDEVICE}"
-				swapon ${SWAPDEVICE}
-			fi
-		fi
+		#if [ -f /etc/swapdevice ]; then
+		#	SWAPDEVICE=`cat /etc/swapdevice`
+		#	if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ];then
+		#		echo "swapon ${SWAPDEVICE}"
+		#		swapon ${SWAPDEVICE}
+		#	fi
+		#fi
 
 		# Mount /cf read-write
 		/sbin/mount -w -o noatime /cf
