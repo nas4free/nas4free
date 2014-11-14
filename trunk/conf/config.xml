@@ -186,14 +186,14 @@
 			<param>
 				<uuid>c8ecaad7-0da8-4042-9248-95de2b39695d</uuid>
 				<name>net.inet.tcp.sendspace</name>
-				<value>262144</value>
+				<value>131072</value>
 				<comment>System tuning</comment>
 				<enable/>
 			</param>
 			<param>
 				<uuid>69f639d1-6ed4-4189-ad0b-9bb3073bb728</uuid>
 				<name>net.inet.tcp.recvspace</name>
-				<value>262144</value>
+				<value>131072</value>
 				<comment>System tuning</comment>
 				<enable/>
 			</param>
@@ -207,7 +207,7 @@
 			<param>
 				<uuid>ef39320f-ec3d-403d-a947-946cdf3e7438</uuid>
 				<name>net.inet.tcp.sendbuf_inc</name>
-				<value>262144</value>
+				<value>131072</value>
 				<comment>System tuning</comment>
 				<enable/>
 			</param>
@@ -228,7 +228,7 @@
 			<param>
 				<uuid>c1ef4e9f-0a3e-4ae0-b903-056392d121e1</uuid>
 				<name>net.inet.tcp.recvbuf_inc</name>
-				<value>262144</value>
+				<value>131070</value>
 				<comment>System tuning</comment>
 				<enable/>
 			</param>
@@ -284,28 +284,28 @@
 			<param>
 				<uuid>2e1e5005-895b-4f20-bd6c-ab5c85bc494b</uuid>
 				<name>kern.ipc.nmbclusters</name>
-				<value>262144</value>
+				<value>131072</value>
 				<comment>System tuning</comment>
 				<enable/>
 			</param>
 			<param>
 				<uuid>d9f1625d-5de5-400a-961c-59da3e616388</uuid>
 				<name>kern.ipc.nmbjumbop</name>
-				<value>262144</value>
+				<value>131072</value>
 				<comment>System tuning</comment>
 				<enable/>
 			</param>
 			<param>
 				<uuid>d831105a-e105-4735-895e-5af035a631a4</uuid>
 				<name>kern.ipc.nmbjumbo9</name>
-				<value>131072</value>
+				<value>32768</value>
 				<comment>System tuning</comment>
 				<enable/>
 			</param>
 			<param>
 				<uuid>160234ee-1e1a-45e0-9bfa-0bb541d6393e</uuid>
 				<name>kern.ipc.nmbjumbo16</name>
-				<value>65536</value>
+				<value>16384</value>
 				<comment>System tuning</comment>
 				<enable/>
 			</param>
@@ -319,7 +319,7 @@
 			<param>
 				<uuid>a4bd7970-1c77-43d7-8bc8-7924d9f86077</uuid>
 				<name>kern.maxfilesperproc</name>
-				<value>50000</value>
+				<value>60000</value>
 				<comment>System tuning</comment>
 				<enable/>
 			</param>

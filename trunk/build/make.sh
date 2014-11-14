@@ -952,11 +952,10 @@ create_full() {
 	echo 'kernel="kernel"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'bootfile="kernel"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'kernel_options=""' >> $NAS4FREE_TMPDIR/boot/loader.conf
-	echo 'kern.hz="100"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'hw.est.msr_info="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'hw.hptrr.attach_generic="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'kern.maxfiles="65536"' >> $NAS4FREE_TMPDIR/boot/loader.conf
-	echo 'kern.maxfilesperproc="50000"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'kern.maxfilesperproc="60000"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'kern.cam.boot_delay="8000"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'splash_bmp_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'bitmap_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
