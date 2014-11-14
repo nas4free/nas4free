@@ -125,9 +125,9 @@ case $1 in
 		# Remove swap on booting device if any
 		if [ -f /etc/swapdevice ]; then
 			SWAPDEVICE=`cat /etc/swapdevice`
-			if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ];then
+			if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ]; then
 				echo "swapoff ${SWAPDEVICE}"
-				swapoff ${SWAPDEVICE}
+				swapoff -q ${SWAPDEVICE} 2>/dev/null
 			fi
 		fi
 
@@ -149,9 +149,9 @@ case $1 in
 
 		#if [ -f /etc/swapdevice ]; then
 		#	SWAPDEVICE=`cat /etc/swapdevice`
-		#	if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ];then
+		#	if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ]; then
 		#		echo "swapon ${SWAPDEVICE}"
-		#		swapon ${SWAPDEVICE}
+		#		swapon -q ${SWAPDEVICE} 2>/dev/null
 		#	fi
 		#fi
 
@@ -172,6 +172,9 @@ case $1 in
 		# Remount /cf read-only
 		/sbin/umount -f /cf
 		/sbin/mount -r /cf
+
+		# Umount tmpfs
+		/sbin/umount -f ${FTMP} > /dev/null 2>&1
 
 		# Reboot system if upgrade was successfully.
 		if [ 0 -eq ${result} ]; then

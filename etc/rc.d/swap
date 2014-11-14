@@ -96,6 +96,15 @@ swap_start()
 	# Enable swap
 	echo "Starting ${name}."
 	/sbin/swapon "${_device}"
+
+	# Remove swap on booting device if any
+	if [ -f /etc/swapdevice ]; then
+		SWAPDEVICE=`/bin/cat /etc/swapdevice`
+		if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ]; then
+			echo "swapoff ${SWAPDEVICE}"
+			/sbin/swapoff -q ${SWAPDEVICE} 2>/dev/null
+		fi
+	fi
 }
 
 swap_stop()
@@ -115,6 +124,15 @@ swap_stop()
 		_device="/dev/${_mdid}"
 	else
 		_device=`configxml_get "//system/swap/devicespecialfile"`
+	fi
+
+	# Add default swap on low memory mode
+	if [ -f /etc/swapdevice ]; then
+		SWAPDEVICE=`cat /etc/swapdevice`
+		if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ]; then
+			echo "swapon ${SWAPDEVICE}"
+			swapon -q ${SWAPDEVICE} 2>/dev/null
+		fi
 	fi
 
 	# Stop swap
