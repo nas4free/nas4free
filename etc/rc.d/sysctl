@@ -64,7 +64,9 @@ parse_file()
 					${val})
 						;;
 					*)
-						if [ "${mib}" = "kern.ipc.nmbjumbo9" -o \
+						if [ "${mib}" = "kern.ipc.nmbclusters" -o \
+							"${mib}" = "kern.ipc.nmbjumbop" -o \
+							"${mib}" = "kern.ipc.nmbjumbo9" -o \
 							"${mib}" = "kern.ipc.nmbjumbo16" ]; then
 							if [ ${val} -lt ${current_value} ]; then
 								echo "${mib}: ${current_value} (not updated by the smaller value)"
