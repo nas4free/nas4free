@@ -130,12 +130,12 @@ if (0 == $result) {
 	do {
 		$raminfo = system_get_ram_info();
 		$swapsize = intval($raminfo['physical'] / 1024 / 1024); // Convert to MB
-		if ($swapsize < 256)
-			$swapsize = 256;
-		$result = tui_display_input("Enter the size of the swap partition in MB.", 47, 8, $swapsize);
+		if ($swapsize < 512)
+			$swapsize = 512;
+		$result = tui_display_input("Enter the size of the swap partition in MB. (minimum 512, recommended 1024)", 47, 8, $swapsize);
 		if (0 != $result)
 			exit(0);
-	} while (!is_numeric($swapsize));
+	} while (!is_numeric($swapsize) || $swapsize < 512);
 
 	// Add swap slice/partition to the partition layout.
 	$partlayout[] = array("slice" => 3, "fstype" => "swap", "size" => $swapsize, "volname" => "");
@@ -164,7 +164,26 @@ install_unmount_cd();
 $text = <<<EOD
 
 {$productname} has been installed on {$harddrive}s1.
+
+EOD;
+
+$boot_lowmem = trim(@file_get_contents("/etc/boot_lowmem"));
+if ($boot_lowmem === "1") {
+	// The lowmem version uses swap on it. Should not remove!!
+	$text .= <<<EOD
+
+You can now reboot the server.
+
+EOD;
+} else {
+	$text .= <<<EOD
+
 You can now safely remove the LiveCD/USB and reboot the server.
+
+EOD;
+}
+
+$text .= <<<EOD
 
 To use the DATA partition:
 - Add the disk {$harddrive} on the 'Disks|Management' page.

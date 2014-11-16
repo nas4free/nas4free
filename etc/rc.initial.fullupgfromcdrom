@@ -135,8 +135,24 @@ install_unmount_cd();
 $text = <<<EOD
 
 {$productname} installed on device {$devinfo['device']}{$devinfo['partition']} has been upgraded.
-You can now safely remove the LiveCD/USB and reboot the server.
+
 EOD;
+
+$boot_lowmem = trim(@file_get_contents("/etc/boot_lowmem"));
+if ($boot_lowmem === "1") {
+	// The lowmem version uses swap on it. Should not remove!!
+	$text .= <<<EOD
+
+You can now reboot the server.
+
+EOD;
+} else {
+	$text .= <<<EOD
+
+You can now safely remove the LiveCD/USB and reboot the server.
+
+EOD;
+}
 
 tui_wait_keypress($text);
 ?>

@@ -99,9 +99,15 @@ case ${PLATFORM} in
 				if [ ${BOOT_LOWMEM} -ne 0 ]; then
 					/sbin/swapon /dev/${swap}
 					echo "/dev/${swap}" > /etc/swapdevice
+					if [ -f /boot/kernel/geom_xmd.ko ]; then
+						/sbin/mdconfig -d -u ${md}
+						/sbin/kldload /boot/kernel/geom_xmd.ko
+						md=xmd0
+					fi
 				else
 					rm -f /etc/swapdevice
 				fi
+
 				/sbin/mount /dev/${root} /mnt
 				/usr/bin/xz -dcv /mnt/mdlocal.xz | \
 				    /bin/dd of=/dev/${md} bs=1m status=none
@@ -118,6 +124,11 @@ case ${PLATFORM} in
 				if [ ${BOOT_LOWMEM} -ne 0 ]; then
 					/sbin/swapon /dev/${swap}
 					echo "/dev/${swap}" > /etc/swapdevice
+					if [ -f /boot/kernel/geom_xmd.ko ]; then
+						/sbin/mdconfig -d -u ${md}
+						/sbin/kldload /boot/kernel/geom_xmd.ko
+						md=xmd0
+					fi
 				else
 					rm -f /etc/swapdevice
 				fi
