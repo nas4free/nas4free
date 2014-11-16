@@ -571,7 +571,7 @@ class HTMLTimeZoneComboBox extends HTMLComboBox {
 			return !preg_match("/\/$/", $elt);
 		}
 
-		exec('/usr/bin/tar -tf /usr/share/zoneinfo.tgz', $timezonelist);
+		exec('/usr/bin/tar -tf /usr/share/zoneinfo.txz', $timezonelist);
 		$timezonelist = array_filter($timezonelist, 'is_timezone');
 		sort($timezonelist);
 
