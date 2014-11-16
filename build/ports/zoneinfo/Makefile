@@ -49,6 +49,6 @@ do-install:
 	@${ECHO_CMD} "zone.tab" >> ${WRKSRC}/zoneinfo.exlude
 
 	@${MKDIR} -p ${NAS4FREE_ROOTFS}/usr/share
-	${TAR} -c -v -f - -X ${WRKSRC}/zoneinfo.exlude -C ${WRKSRC}/zoneinfo/ . | ${GZIP_CMD} -cv > ${NAS4FREE_ROOTFS}/usr/share/zoneinfo.tgz
+	${TAR} -c -v -f - -X ${WRKSRC}/zoneinfo.exlude -C ${WRKSRC}/zoneinfo/ . | ${XZ_CMD} -cv > ${NAS4FREE_ROOTFS}/usr/share/zoneinfo.txz
 
 .include <bsd.port.post.mk>

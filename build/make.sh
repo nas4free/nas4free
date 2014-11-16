@@ -252,7 +252,7 @@ create_rootfs() {
 	echo "Factory" > $NAS4FREE_TMPDIR/zoneinfo.exlude
 	echo "posixrules" >> $NAS4FREE_TMPDIR/zoneinfo.exlude
 	echo "zone.tab" >> $NAS4FREE_TMPDIR/zoneinfo.exlude
-	tar -c -v -f - -X $NAS4FREE_TMPDIR/zoneinfo.exlude -C /usr/share/zoneinfo/ . | gzip -cv > $NAS4FREE_ROOTFS/usr/share/zoneinfo.tgz
+	tar -c -v -f - -X $NAS4FREE_TMPDIR/zoneinfo.exlude -C /usr/share/zoneinfo/ . | xz -cv > $NAS4FREE_ROOTFS/usr/share/zoneinfo.txz
 	rm $NAS4FREE_TMPDIR/zoneinfo.exlude
 
 	return 0
