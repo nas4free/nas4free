@@ -1158,6 +1158,7 @@ function parse_controller_config(&$devlist){
 		if(empty($device['desc'])) $device['desc'] = $device['model'];
 		if(empty($device['serial'])) $device['serial'] = system_get_volume_serial($device['devicespecialfile']);
 	}
+	unset($device);
 	return $devlist;
 }
 
