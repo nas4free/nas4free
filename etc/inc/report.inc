@@ -286,7 +286,6 @@ function report_send_mail() {
 		$statusreport->AddArticle(new StatusReportArticleCmd("Swap usage","/usr/sbin/swapinfo"));
 		$statusreport->AddArticle(new StatusReportArticleCmd("ZFS pool list","/sbin/zpool list"));
 		$statusreport->AddArticle(new StatusReportArticleCmd("ZFS pool status","/sbin/zpool status"));
-		$statusreport->AddArticle(new StatusReportArticleCmd("ATA disk","/sbin/atacontrol list"));
 		$statusreport->AddArticle(new StatusReportArticleCmd("SCSI disk","/sbin/camcontrol devlist"));
 		$disklist = get_physical_disks_list();
 		foreach ($disklist as $disknamek => $disknamev) {
@@ -380,7 +379,6 @@ function report_generate_html() {
 	$statusreport->AddArticle(new StatusReportArticleCmd("Swap usage","/usr/sbin/swapinfo"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("ZFS pool list","/sbin/zpool list"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("ZFS pool status","/sbin/zpool status"));
-	$statusreport->AddArticle(new StatusReportArticleCmd("ATA disk","/sbin/atacontrol list"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("SCSI disk","/sbin/camcontrol devlist"));
 	$disklist = get_physical_disks_list();
 	foreach ($disklist as $disknamek => $disknamev) {

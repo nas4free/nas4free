@@ -87,7 +87,6 @@ $disk_error = gettext("No disks configured, please add disks to see the diagnost
 							echo "<pre>\n";
 								$name = $diskv['name'];
 								$device = $diskv['devicespecialfile'];
-								$dmamode = trim(preg_replace("/current mode = /", "", exec("/sbin/atacontrol mode {$name}")));
 
 								echo gettext("Disk") . ":		{$name}<br />";
 						
