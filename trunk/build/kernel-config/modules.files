@@ -21,7 +21,7 @@ if_carp/if_carp.ko
 # File systems
 ext2fs/ext2fs.ko
 nullfs/nullfs.ko
-unionfs/unionfs.ko
+#unionfs/unionfs.ko
 smbfs/smbfs.ko
 udf/udf.ko
 udf_iconv/udf_iconv.ko
@@ -44,7 +44,7 @@ netgraph/ether/ng_ether.ko
 # Misc.
 iscsi/initiator/iscsi_initiator.ko
 syscons/green/green_saver.ko
-ata/atapicam/atapicam.ko
+#ata/atapicam/atapicam.ko
 aio/aio.ko
 #iscsi/isboot/isboot.ko
 ipmi/ipmi.ko
