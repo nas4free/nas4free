@@ -23,7 +23,7 @@ load_rc_config "${name}"
 # Defaults
 ataidle_delay=${ataidle_delay:-"60"}
 
-echo -n "Initializing Acoustic/Standby/APM/UDMA on ATA disks: "
+echo -n "Initializing Acoustic/Standby/APM on ATA disks: "
 
 # Process all configured IDE disks
 /usr/local/bin/xml sel -t -m "//disks/disk[type = 'IDE' or type = 'SCSI']" \
@@ -42,9 +42,9 @@ echo -n "Initializing Acoustic/Standby/APM/UDMA on ATA disks: "
 		fi
 
 		# If UDMA mode is forced, launch atacontrol
-		if [ "auto" != "${_transfermode}" ]; then
-			/sbin/atacontrol mode ${_name} ${_transfermode} > /dev/null 2>&1
-		fi
+		#if [ "auto" != "${_transfermode}" ]; then
+		#	/sbin/atacontrol mode ${_name} ${_transfermode} > /dev/null 2>&1
+		#fi
 
 		# Set command args
 		_cmdargs=""
