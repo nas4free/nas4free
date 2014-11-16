@@ -455,37 +455,37 @@ function system_get_device_temp($devicespecialfile) {
 	// get S.M.A.R.T. arguments from config
 	global $config_disks;
 
-			if(empty($_SESSION[$devicespecialfile]['temp']['value']) or
-				time() - $_SESSION[$devicespecialfile]['temp']['timestamp'] > 120
-				){
+	if(empty($_SESSION[$devicespecialfile]['temp']['value']) or
+		time() - $_SESSION[$devicespecialfile]['temp']['timestamp'] > 120
+		){
 
-				$type_arg = '';
+		$type_arg = '';
 
-				if( !empty($config_disks[$devicespecialfile]['smart']['devicetypearg']) ){
-					$type_arg = "-d ".$config_disks[$devicespecialfile]['smart']['devicetypearg'];
-				}
+		if( !empty($config_disks[$devicespecialfile]['smart']['devicetypearg']) ){
+			$type_arg = "-d ".$config_disks[$devicespecialfile]['smart']['devicetypearg'];
+		}
 
-				/* get temperature from S.M.A.R.T. */
-				mwexec2("smartctl -A ".$type_arg." ".$config_disks[$devicespecialfile]['smart']['devicefilepath']."| grep -i 'Temperature'" , $rawdata);
+		/* get temperature from S.M.A.R.T. */
+		mwexec2("smartctl -A ".$type_arg." ".$config_disks[$devicespecialfile]['smart']['devicefilepath']."| grep -i 'Temperature'" , $rawdata);
 
-				foreach ($rawdata as $rawdatav) {
-					$arawdatav = preg_split("/\s+/", $rawdatav);
+		foreach ($rawdata as $rawdatav) {
+			$arawdatav = preg_split("/\s+/", $rawdatav);
 
-					if (!empty($arawdatav[1]) && (0 == strncmp(trim($arawdatav[1]), "Temperature_", 12)) &&
-						((0 != strcmp(trim($arawdatav[0]), "190")) || (0 != strcmp(trim($arawdatav[0]), "194")) )) {
-						$result = chop($arawdatav[9]);
-						break;
-					} else if (preg_match("/Current Drive Temperature:\s+(\d+) C.*/", $rawdatav, $matches)) {
-						$result = $matches[1];
-						break;
-					}
-				}
-				$_SESSION[$devicespecialfile]['temp']['value']=$result;
-				$_SESSION[$devicespecialfile]['temp']['timestamp']=time();
-				return $result;
-			} else {
-				return $_SESSION[$devicespecialfile]['temp']['value'];
+			if (!empty($arawdatav[1]) && (0 == strncmp(trim($arawdatav[1]), "Temperature_", 12)) &&
+				((0 != strcmp(trim($arawdatav[0]), "190")) || (0 != strcmp(trim($arawdatav[0]), "194")) )) {
+				$result = chop($arawdatav[9]);
+				break;
+			} else if (preg_match("/Current Drive Temperature:\s+(\d+) C.*/", $rawdatav, $matches)) {
+				$result = $matches[1];
+				break;
 			}
+		}
+		$_SESSION[$devicespecialfile]['temp']['value']=$result;
+		$_SESSION[$devicespecialfile]['temp']['timestamp']=time();
+		return $result;
+	} else {
+		return $_SESSION[$devicespecialfile]['temp']['value'];
+	}
 
 	return $result;
 }
@@ -545,12 +545,12 @@ function system_get_volume_serial($devicespecialfile) {
 
 	// get serial from config
 	global $config_disks;
- 				/* get serial from S.M.A.R.T. */
-				$smart_arg = get_smartctl_info($config_disks[$devicespecialfile]);
+	/* get serial from S.M.A.R.T. */
+	$smart_arg = get_smartctl_info($config_disks[$devicespecialfile]);
 
-				if( !empty($smart_arg['serial']) ){
-					return $smart_arg['serial'];
-				}
+	if( !empty($smart_arg['serial']) ){
+		return $smart_arg['serial'];
+	}
 
 	/* without smart */
 	mwexec2("ataidle {$devicespecialfile} | grep 'Serial'", $rawdata);
@@ -582,17 +582,17 @@ function system_get_volume_model($devicespecialfile) {
 
 	// get device model from config
 	global $config_disks;
- 				if(!empty($config_disks[$devicespecialfile]['model'])){
- 					return $config_disks[$devicespecialfile]['model'];
- 				}
-				else {
-					/* get device model from S.M.A.R.T. */
-					$smart_arg = get_smartctl_info($config_disks[$devicespecialfile]);
-					
-					if( !empty($smart_arg['model']) ){
-						return $smart_arg['model'];
-					}
-				}
+	if(!empty($config_disks[$devicespecialfile]['model'])){
+		return $config_disks[$devicespecialfile]['model'];
+	}
+	else {
+		/* get device model from S.M.A.R.T. */
+		$smart_arg = get_smartctl_info($config_disks[$devicespecialfile]);
+
+		if( !empty($smart_arg['model']) ){
+			return $smart_arg['model'];
+		}
+	}
 
 	/* without smart */
 	mwexec2("ataidle {$devicespecialfile} | grep 'Model'", $rawdata);
