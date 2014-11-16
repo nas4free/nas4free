@@ -857,7 +857,7 @@ function get_hast_disks_list()
 	$disklist = array();
 
 	/* Send the shell cmd and get the result */
-	exec("/sbin/hastctl list",$rawdata);
+	exec("/sbin/hastctl list 2>/dev/null",$rawdata);
 
 	foreach ($rawdata as $line) {
 		if (preg_match("/^(\S+):$/",$line,$match)) {
@@ -2178,7 +2178,7 @@ function get_hvol_info($name)
 	$hvolinfo['error'] = 0;
 	$hvolinfo['status'] = 'unknown';
 
-	exec("/sbin/hastctl list {$name}",$rawdata);
+	exec("/sbin/hastctl list {$name} 2>/dev/null",$rawdata);
 	foreach ($rawdata as $line) {
 		// skip name
 		if (preg_match('/^\S+:/', $line)) continue;
