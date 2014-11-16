@@ -1286,7 +1286,8 @@ function init_device_attributes(&$device){
 function parse_device_desc($device){
 	$matches = array();
 
-	mwexec2("dmesg | grep \"^$device: <\"", $lines);
+	// device order may change, so take latest(last) line 
+	mwexec2("dmesg | grep \"^$device: <\" | tail -r", $lines);
 
 	foreach($lines as $line){
 		// example: da2: <Corsair Voyager 1100> Removable Direct Access SCSI-0 device
