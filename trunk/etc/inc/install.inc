@@ -221,11 +221,10 @@ function install_harddrive_image($harddrive)
 kernel="kernel"
 bootfile="kernel"
 kernel_options=""
-kern.hz="100"
 hw.est.msr_info="0"
 hw.hptrr.attach_generic="0"
 kern.maxfiles="65536"
-kern.maxfilesperproc="50000"
+kern.maxfilesperproc="60000"
 kern.cam.boot_delay="8000"
 autoboot_delay="5"
 isboot_load="YES"
@@ -326,7 +325,7 @@ function install_upgrade_full($harddrive)
 	if (file_exists("{$mntpath}/boot.config")) {
 		mwexec("/bin/cp -p {$mntpath}/boot.config {$sysbackup}");
 	}
-    if (file_exists("{$mntpath}/boot/loader.conf.local")) {
+	if (file_exists("{$mntpath}/boot/loader.conf.local")) {
 		mwexec("/bin/cp -p {$mntpath}/boot/loader.conf.local {$sysbackup}");
 	}
 	mwexec("/bin/cp -p {$mntpath}/etc/platform {$sysbackup}");
@@ -365,8 +364,8 @@ function install_upgrade_full($harddrive)
 	} else {
 		mwexec("/bin/rm -f {$mntpath}/boot.config");
 	}
-    if (file_exists("{$sysbackup}/loader.conf.local")) {
-    	mwexec("/bin/cp -p {$sysbackup}/loader.conf.local {$mntpath}/boot/");
+	if (file_exists("{$sysbackup}/loader.conf.local")) {
+		mwexec("/bin/cp -p {$sysbackup}/loader.conf.local {$mntpath}/boot/");
 	}
 	mwexec("/bin/cp -p {$sysbackup}/platform {$mntpath}/etc");
 	mwexec("/bin/cp -p {$sysbackup}/fstab {$mntpath}/etc");
