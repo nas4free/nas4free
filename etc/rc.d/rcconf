@@ -64,8 +64,8 @@ setifconfig()
 	local _value _ifn _ifconfig_args _ipaddr _subnet _gateway _cloned_interfaces _id
 	local _ifn_isboot
 
-	# Cleanup
-	set | grep ^ifconfig_ | while read _value; do
+	# Cleanup ifn and addrs
+	set | grep -E '^(ifconfig_|ipv4_|ipv6_)' | while read _value; do
 		_value=${_value%=*}
 		eval /usr/local/sbin/rconf attribute remove "${_value}"
 	done
@@ -118,14 +118,16 @@ setifconfig()
 	if [ "${_ifn}" = "${_ifn_isboot}" ]; then
 		# don't set default for iSCSI booted NIC
 	else
+		# "ifconfig hostname" is valid syntax, so it should not set a string.
+		#  A string causes name resolution.
+		if [ -n "${_ipaddr}" -a -n "${_subnet}" ]; then
+			is_validip inet "${_ipaddr}/${_subnet}"
+			if [ 0 -eq $? ]; then
+				_ifconfig_args="inet ${_ipaddr}/${_subnet} ${_ifconfig_args}"
+			fi
+		fi
 		if [ -n "${_ifconfig_args}" ]; then
 			eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
-		fi
-		if [ -n "${_ipaddr}" ]; then
-		# dirty fix for bad value report on dhcp and possibly dns dhcp.xxx.xxx query
-		   if [ "${_ipaddr}" != "dhcp" ]; then
-			eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "${_ipaddr}/${_subnet}"
-			fi			
 		fi
 	fi
 
@@ -183,16 +185,19 @@ setifconfig()
 
 			_ipaddr=`configxml_get "//interfaces/*[name() = 'opt${_id}']/ipaddr"`
 			_subnet=`configxml_get "//interfaces/*[name() = 'opt${_id}']/subnet"`
+			# "ifconfig hostname" is valid syntax, so it should not set a string.
+			#  A string causes name resolution.
+			if [ -n "${_ipaddr}" -a -n "${_subnet}" ]; then
+				is_validip inet "${_ipaddr}/${_subnet}"
+				if [ 0 -eq $? ]; then
+					_ifconfig_args="inet ${_ipaddr}/${_subnet} ${_ifconfig_args}"
+				fi
+			fi
 			if [ -n "${_ifconfig_args}" ]; then
 				eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
 			fi
-			if [ -n "${_ipaddr}" ]; then
-			# dirty fix voor bad value melding bij dhcp en mogelijks voor dns dhcp.xxx.xxx query
-				if [ "${_ipaddr}" != "dhcp" ]; then
-				eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "${_ipaddr}/${_subnet}"
-				fi
-			fi
 		else
+			# OPTX is disabled
 			eval /usr/local/sbin/rconf attribute remove "ifconfig_${_ifn}"
 		fi
 
