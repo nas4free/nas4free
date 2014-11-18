@@ -10,6 +10,9 @@ WRKSRC=                 ${WRKDIR}/${DISTNAME}/src
 
 CFLAGS += -DVIMAGE
 
+do-build:
+	(cd ${WRKSRC}; make all)
+
 do-install:
 	@${INSTALL_KLD} -v ${WRKSRC}/isboot.ko ${NAS4FREE_ROOTFS}/boot/kernel
 
