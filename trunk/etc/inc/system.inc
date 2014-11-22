@@ -676,7 +676,7 @@ function system_get_sysinfo() {
 
 	// Get uptime and date.
 	$value['uptime'] = system_get_uptime();
-	$value['date'] = shell_exec("date");
+	$value['date'] = trim(shell_exec("date"));
 
 	// Get RAM usage.
 	$raminfo = system_get_ram_info();
