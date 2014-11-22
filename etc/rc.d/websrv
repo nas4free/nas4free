@@ -78,6 +78,7 @@ websrv_mkconf()
 server.modules = (
   "mod_access",
   "mod_auth",
+  "mod_expire",
   "mod_cgi",
   "mod_rewrite",
   "mod_redirect",
@@ -89,6 +90,9 @@ debug.log-request-handling = "disable"
 server.event-handler = "freebsd-kqueue"
 server.max-write-idle = ${websrv_server_maxwriteidle}
 index-file.names   = ( "index.php", "index.html", "index.htm", "index.shtml", "default.htm" )
+#\$HTTP["url"] =~ "\.(js|css|png|gif|jpg)$" {
+#    expire.url = ( "" => "access plus 1 hours" )
+#}
 # mimetype mapping
 mimetype.assign             = (
   ".pdf"          =>      "application/pdf",

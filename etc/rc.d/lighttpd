@@ -95,12 +95,16 @@ lighttpd_mkconf()
 server.modules = (
   "mod_access",
   "mod_auth",
+  "mod_expire",
   "mod_cgi" )
 server.document-root = "${lighttpd_docroot}"
 server.errorlog-use-syslog = "enable"
 server.event-handler = "freebsd-kqueue"
 server.max-write-idle = ${lighttpd_server_maxwriteidle}
 index-file.names = ( "index.php" )
+\$HTTP["url"] =~ "\.(js|css|png|gif|jpg)$" {
+    expire.url = ( "" => "access plus 1 hours" )
+}
 # mimetype mapping
 mimetype.assign             = (
   ".pdf"          =>      "application/pdf",
