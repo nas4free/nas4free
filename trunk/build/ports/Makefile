@@ -34,7 +34,7 @@
     SUBDIR += ntfsprogs
     SUBDIR += nut
     SUBDIR += open-vm-tools
-    SUBDIR += openssh-portable
+    SUBDIR += openssh-portable66
     SUBDIR += pam_ldap
     SUBDIR += pam_mkhomedir
     SUBDIR += php56
