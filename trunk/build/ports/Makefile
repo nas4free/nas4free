@@ -17,7 +17,7 @@
     SUBDIR += gzip
     SUBDIR += host
     SUBDIR += inadyn-mt
-    SUBDIR += iperf
+    SUBDIR += iperf3
     SUBDIR += isboot
     SUBDIR += iscontrol
     SUBDIR += istgt
