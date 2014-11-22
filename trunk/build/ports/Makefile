@@ -19,7 +19,6 @@
     SUBDIR += inadyn-mt
     SUBDIR += iperf3
     SUBDIR += isboot
-    SUBDIR += iscontrol
     SUBDIR += istgt
     SUBDIR += lighttpd
     SUBDIR += lcdproc
