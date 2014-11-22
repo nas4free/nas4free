@@ -84,7 +84,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("CIFS/S
 				<tr>
 					<td>
 						<pre><?php
-						exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -b | grep -v 'Samba version'", $rawdata);
+						exec("/usr/bin/env LC_ALL=en_US.UTF-8 smbstatus -b | grep -v 'Samba version'", $rawdata);
 						echo htmlspecialchars(implode("\n", $rawdata));
 						unset($rawdata);
 						?></pre>
@@ -93,7 +93,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("CIFS/S
 				<tr>
 					<td>
 						<pre><?php
-						exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -S", $rawdata);
+						exec("/usr/bin/env LC_ALL=en_US.UTF-8 smbstatus -S", $rawdata);
 						echo htmlspecialchars(implode("\n", $rawdata));
 						unset($rawdata);
 						?></pre>
@@ -103,7 +103,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("CIFS/S
 				<tr>
 					<td>
 						<pre><?php 
-						 exec("/usr/bin/env LC_ALL=en_US.UTF-8 /usr/bin/smbstatus -L | grep -v 'Locked files'", $rawdata);
+						 exec("/usr/bin/env LC_ALL=en_US.UTF-8 smbstatus -L | grep -v 'Locked files'", $rawdata);
 						 echo htmlspecialchars(implode("\n", $rawdata));
 						 unset($rawdata);
 						?></pre>
