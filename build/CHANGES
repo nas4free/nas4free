@@ -11,6 +11,7 @@ Changes:
 - Upgrade bash 4.3 to patch 30.
 - Upgrade transmission to 2.84.
 - Upgrade isboot to 0.2.8.
+- Upgrade istgt to 20141122.
 - Upgrade smartmontools 6.3
 - Upgrade xmlstarlet to 1.6.1.
 - Upgrade inadyn-mt to 02.24.43.
@@ -18,6 +19,10 @@ Changes:
 - Upgrade php to 5.6.3.
 
 Fixes:
+- Switching DHCP and static IP cause unexpected behavior.
+- Some drives can't get disk model/description.
+- The text on graph is not sized on Chrome.
+- Firmware page show incorrectly.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
