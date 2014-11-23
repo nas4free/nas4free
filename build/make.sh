@@ -774,6 +774,8 @@ create_usb () {
 	USBROOTM=200
 	USBSWAPM=1024
 	USBDATAM=50
+	USB_SECTS=64
+	USB_HEADS=32
 
 	USBSYSSIZEM=$(expr $USBROOTM + $IMGSIZEM)
 	USBDATSIZEM=$(expr $USBDATAM + 0)
@@ -783,20 +785,29 @@ create_usb () {
 	echo "USB: Creating Empty IMG File"
 	dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/usb-image.bin bs=1m count=${USBIMGSIZEM}
 	echo "USB: Use IMG as a memory disk"
-	md=`mdconfig -a -t vnode -f ${NAS4FREE_WORKINGDIR}/usb-image.bin -x ${NAS4FREE_IMG_SECTS} -y ${NAS4FREE_IMG_HEADS}`
+	md=`mdconfig -a -t vnode -f ${NAS4FREE_WORKINGDIR}/usb-image.bin -x ${USB_SECTS} -y ${USB_HEADS}`
 	diskinfo -v ${md}
 
 	echo "USB: Creating BSD partition on this memory disk"
-	gpart create -s bsd ${md}
-	gpart bootcode -b ${NAS4FREE_BOOTDIR}/boot ${md}
-	gpart add -s ${USBSYSSIZEM}m -t freebsd-ufs ${md}
-	gpart add -s ${USBSWAPM}m -t freebsd-swap ${md}
-	gpart add -s ${USBDATSIZEM}m -t freebsd-ufs ${md}
-	mdp=${md}a
+	#gpart create -s bsd ${md}
+	#gpart bootcode -b ${NAS4FREE_BOOTDIR}/boot ${md}
+	#gpart add -s ${USBSYSSIZEM}m -t freebsd-ufs ${md}
+	#gpart add -s ${USBSWAPM}m -t freebsd-swap ${md}
+	#gpart add -s ${USBDATSIZEM}m -t freebsd-ufs ${md}
+	#mdp=${md}a
+	gpart create -s mbr ${md}
+	gpart add -i 4 -t freebsd ${md}
+	mdp=${md}s4
+	gpart create -s bsd ${mdp}
+	gpart add -a 1m -s ${USBSYSSIZEM}m -t freebsd-ufs ${mdp}
+	gpart add -a 1m -s ${USBSWAPM}m -t freebsd-swap ${mdp}
+	gpart add -a 1m -s ${USBDATSIZEM}m -t freebsd-ufs ${mdp}
+	mdp=${mdp}a
 
 	echo "USB: Formatting this memory disk using UFS"
-	#newfs -S 512 -b 32768 -f 4096 -O2 -U -j -o time -m 8 /dev/${mdp}
-	newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -U -o space -m 0 -L "liveboot" /dev/${mdp}
+	#newfs -S 512 -b 32768 -f 4096 -O2 -U -j -o time -m 8 -L "liveboot" /dev/${mdp}
+	#newfs -S $NAS4FREE_IMGFMT_SECTOR -b $NAS4FREE_IMGFMT_BSIZE -f $NAS4FREE_IMGFMT_FSIZE -O2 -U -o space -m 0 -L "liveboot" /dev/${mdp}
+	newfs -S 4096 -b 32768 -f 4096 -O2 -U -j -o space -m 0 -L "liveboot" /dev/${mdp}
 
 	echo "USB: Mount this virtual disk on $NAS4FREE_TMPDIR"
 	mount /dev/${mdp} $NAS4FREE_TMPDIR
