@@ -190,6 +190,8 @@ function install_harddrive_image($harddrive)
 {
 	global $g;
 
+	$boot_lowmem = trim(@file_get_contents("/etc/boot_lowmem"));
+	$platform = get_platform_type();
 	$mntpath = "/mnt/inst_{$harddrive}";
 
 	// Mount disk used to install OS.
@@ -202,6 +204,16 @@ function install_harddrive_image($harddrive)
 	// Install system files.
 	write_console("Installing system files on device {$harddrive}s1a.\n");
 	mwexec("/usr/bin/tar --exclude mnt/ --exclude dev/ --exclude var/ --exclude tmp/ --exclude {$g['cf_path']}/ -c -f - -C / . | tar -xvpf - -C {$mntpath}");
+	if ($boot_lowmem === "1" && preg_match('/-liveCD$/i', $platform)) {
+		// under lowmem version
+		mwexec("/usr/bin/xz -dcv /mnt/cdrom/mdlocal.xz | dd of={$mntpath}/ftmp/mdlocal bs=1m status=none");
+		exec("/sbin/mdconfig -a -t vnode -f {$mntpath}/ftmp/mdlocal", $mdid, $result);
+		mwexec("/sbin/mount /dev/{$mdid[0]} {$mntpath}/cf");
+		mwexec("/usr/bin/tar -c -f - -C {$mntpath}/cf . | tar -xvpf - -C {$mntpath}/usr/local");
+		mwexec("/sbin/umount {$mntpath}/cf");
+		mwexec("/sbin/mdconfig -d -u {$mdid[0]}");
+		mwexec("/bin/rm {$mntpath}/ftmp/mdlocal");
+	}
 	mwexec("/bin/mkdir -p {$mntpath}/var");
 	mwexec("/bin/mkdir -p {$mntpath}/dev");
 	mwexec("/bin/mkdir -p {$mntpath}/mnt");
@@ -308,6 +320,8 @@ function install_upgrade_full($harddrive)
 {
 	global $g;
 
+	$boot_lowmem = trim(@file_get_contents("/etc/boot_lowmem"));
+	$platform = get_platform_type();
 	$mntpath = "/mnt/inst_{$harddrive}";
 	$sysbackup = "/tmp/inst_{$harddrive}_bak";
 
@@ -341,6 +355,16 @@ function install_upgrade_full($harddrive)
 	// Install system files
 	write_console("Installing system files on device {$harddrive}s1a.\n");
 	mwexec("/usr/bin/tar --exclude mnt/ --exclude dev/ --exclude var/ --exclude tmp/ --exclude {$g['cf_path']}/ -c -f - -C / . | tar -xvpf - -C {$mntpath}");
+	if ($boot_lowmem === "1" && preg_match('/-liveCD$/i', $platform)) {
+		// under lowmem version
+		mwexec("/usr/bin/xz -dcv /mnt/cdrom/mdlocal.xz | dd of={$mntpath}/ftmp/mdlocal bs=1m status=none");
+		exec("/sbin/mdconfig -a -t vnode -f {$mntpath}/ftmp/mdlocal", $mdid, $result);
+		mwexec("/sbin/mount /dev/{$mdid[0]} {$mntpath}/cf");
+		mwexec("/usr/bin/tar -c -f - -C {$mntpath}/cf . | tar -xvpf - -C {$mntpath}/usr/local");
+		mwexec("/sbin/umount {$mntpath}/cf");
+		mwexec("/sbin/mdconfig -d -u {$mdid[0]}");
+		mwexec("/bin/rm {$mntpath}/ftmp/mdlocal");
+	}
 	mwexec("/bin/mkdir -p {$mntpath}/var");
 	mwexec("/bin/mkdir -p {$mntpath}/dev");
 	mwexec("/bin/mkdir -p {$mntpath}/mnt");
