@@ -439,7 +439,7 @@ create_mdlocal_mini() {
 	# Detach memory disk
 	mdconfig -d -u ${md}
 
-	xz -9v $NAS4FREE_WORKINGDIR/mdlocal-mini
+	xz -8v $NAS4FREE_WORKINGDIR/mdlocal-mini
 
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini.files ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini.files
 
@@ -485,7 +485,7 @@ create_mfsroot() {
 	mdconfig -d -u ${md}
 
 	gzip -9fnv $NAS4FREE_WORKINGDIR/mfsroot
-	xz -9v $NAS4FREE_WORKINGDIR/mdlocal
+	xz -8v $NAS4FREE_WORKINGDIR/mdlocal
 
 	create_mdlocal_mini;
 
@@ -609,7 +609,7 @@ create_image() {
 	echo "===> Detach memory disk"
 	mdconfig -d -u ${md}
 	echo "===> Compress the IMG file"
-	xz -9v $NAS4FREE_WORKINGDIR/image.bin
+	xz -8v $NAS4FREE_WORKINGDIR/image.bin
 	cp $NAS4FREE_WORKINGDIR/image.bin.xz $NAS4FREE_ROOTDIR/${IMGFILENAME}.xz
 
 	# Cleanup.
