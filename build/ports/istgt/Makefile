@@ -1,5 +1,5 @@
 PORTNAME=		istgt
-PORTVERSION=		20141122
+PORTVERSION=		20141125
 CATEGORIES=		net
 COMMENT=		Implementation of userland ISCSI target
 MAINTAINER=		aoyama@nas4free.org
