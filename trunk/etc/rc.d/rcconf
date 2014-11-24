@@ -370,6 +370,10 @@ EOF
 # Update services
 updateservices()
 {
+	local _platform
+
+    	_platform=`cat /etc/platform`
+
 	# Update rcvar's. Use settings from config.xml
 	for _rcscript in /etc/rc.d/*; do
 		_rcscriptname=${_rcscript#/etc/rc.d/}
@@ -405,8 +409,7 @@ updateservices()
 			else
 				# Force off when low memory liveCD
 				if [ ${BOOT_LIVECD} -ne 0 -a ${BOOT_LOWMEM} -ne 0 ]; then
-					if [ "${_rcscriptname}" = "lighttpd" -o \
-					     "${_rcscriptname}" = "cron" ]; then
+					if [ "${_rcscriptname}" = "lighttpd" ]; then
 						eval /usr/local/sbin/rconf service disable ${_rcscriptname}
 						debug "rcconf: ${_rcscriptname} service disabled"
 						echo -n "."
@@ -415,6 +418,15 @@ updateservices()
 			fi
 		fi
 	done
+
+	# Force on when low memory full
+	case ${_platform} in
+		*-full)
+			if [ ${BOOT_LOWMEM} -ne 0 ]; then
+				eval /usr/local/sbin/rconf service enable lighttpd
+			fi
+			;;
+	esac
 }
 
 # Set additional options.
