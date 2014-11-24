@@ -126,14 +126,15 @@ swap_stop()
 		_device=`configxml_get "//system/swap/devicespecialfile"`
 	fi
 
-	# Add default swap on low memory mode
-	if [ -f /etc/swapdevice ]; then
-		SWAPDEVICE=`cat /etc/swapdevice`
-		if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ]; then
-			echo "swapon ${SWAPDEVICE}"
-			swapon -q ${SWAPDEVICE} 2>/dev/null
-		fi
-	fi
+	# XXX don't add here
+	## Add default swap on low memory mode
+	#if [ -f /etc/swapdevice ]; then
+	#	SWAPDEVICE=`cat /etc/swapdevice`
+	#	if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ]; then
+	#		echo "swapon ${SWAPDEVICE}"
+	#		swapon -q ${SWAPDEVICE} 2>/dev/null
+	#	fi
+	#fi
 
 	# Stop swap
 	echo "Stopping ${name}."
