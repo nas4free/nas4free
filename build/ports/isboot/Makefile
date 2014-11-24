@@ -8,7 +8,11 @@ MASTER_SITES=		http://www.peach.ne.jp/archives/isboot/
 
 WRKSRC=                 ${WRKDIR}/${DISTNAME}/src
 
-CFLAGS += -DVIMAGE
+.include <bsd.port.pre.mk>
+.if ${ARCH} == "amd64"
+post-patch:
+	echo "CFLAGS += -DVIMAGE" >> ${WRKSRC}/Makefile
+.endif
 
 do-build:
 	(cd ${WRKSRC}; make all)
@@ -16,4 +20,4 @@ do-build:
 do-install:
 	@${INSTALL_KLD} -v ${WRKSRC}/isboot.ko ${NAS4FREE_ROOTFS}/boot/kernel
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
