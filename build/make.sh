@@ -797,8 +797,11 @@ create_usb () {
 	#mdp=${md}a
 	gpart create -s mbr ${md}
 	gpart add -i 4 -t freebsd ${md}
+	gpart set -a active -i 4 ${md}
+	gpart bootcode -b ${NAS4FREE_BOOTDIR}/mbr ${md}
 	mdp=${md}s4
 	gpart create -s bsd ${mdp}
+	gpart bootcode -b ${NAS4FREE_BOOTDIR}/boot ${mdp}
 	gpart add -a 1m -s ${USBSYSSIZEM}m -t freebsd-ufs ${mdp}
 	gpart add -a 1m -s ${USBSWAPM}m -t freebsd-swap ${mdp}
 	gpart add -a 1m -s ${USBDATSIZEM}m -t freebsd-ufs ${mdp}
