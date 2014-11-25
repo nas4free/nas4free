@@ -71,21 +71,31 @@
 	$buildtime = get_product_buildtime();
 	$revision = get_product_revision();
 
+	/* return string if tty is not serial */
+	$tty = @exec("/usr/bin/tty");
+	function _esc($code) {
+		global $tty;
+		if (!preg_match('/ttyu[0-9]+/', $tty))
+			return "$code";
+		return "";
+	}
+	$esc="_esc";
+
 	echo <<<EOD
     {$productname}: {$version} (revision {$revision})
     Build on: {$buildtime} Platform: {$g['fullplatform']}
     Copyright (c) 2012-2013 The NAS4Free Project. All Rights Reserved.
-    \33[1;34mVisit: http://www.{$producturl} for system updates!\33[0;39m\n
+    {$esc("\33[1;34m")}Visit: http://www.{$producturl} for system updates!{$esc("\33[0;39m")}\n
 
-	LAN Network IPv4 Address: \33[1;33m{$ipaddr}\33[0;39m\n
+	LAN Network IPv4 Address: {$esc("\33[1;33m")}{$ipaddr}{$esc("\33[0;39m")}\n
 EOD;
 	if (isset($config['interfaces']['lan']['ipv6_enable'])) {
 	echo <<<EOD
-	LAN Network IPv6 Address: \33[1;33m{$ipv6addr}\33[0;39m\n
+	LAN Network IPv6 Address: {$esc("\33[1;33m")}{$ipv6addr}{$esc("\33[0;39m")}\n
 EOD;
 	}
 echo <<<EOD
-    	LAN Network Interface:    \33[1;33m{$if}\33[0;39m\n
+    	LAN Network Interface:    {$esc("\33[1;33m")}{$if}{$esc("\33[0;39m")}\n
 EOD;
 
 	for ($i = 1; isset($config['interfaces']['opt' . $i]); $i++)
