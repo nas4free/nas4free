@@ -370,15 +370,21 @@ function pool_change() {
 					$first_type = $type;
 				}
 				foreach ($vdevice['device'] as $devicev) {
+					$pnum ='';
+					if (preg_match('/(p[0-9]+)$/', $devicev, $m)) {
+						$pnum = $m[1];
+					}
+					$devicev = preg_replace('/p[0-9]+$/', '', $devicev);
+
 					$a_disk = get_conf_disks_filtered_ex("fstype", "zfs");
 					$a_encrypteddisk = get_conf_encryped_disks_list();
 
 					if (($index = array_search_ex($devicev, $a_disk, "devicespecialfile")) !== false) {
 						$tmp = $a_disk[$index];
 						$tmp['type'] = $type;
-						$tmp['name2'] = $tmp['name'];
+						$tmp['name2'] = $tmp['name'].$pnum;
 						if (($index = array_search_ex($devicev, $a_encrypteddisk, "devicespecialfile")) !== false) {
-							$tmp['name2'] = $tmp['name'].".eli";
+							$tmp['name2'] = $tmp['name'].$pnum.".eli";
 						}
 						$result[] = $tmp;
 					}
