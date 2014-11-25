@@ -69,7 +69,7 @@ function get_install_source_drive()
 
 	$cdlist = get_cdrom_list();
 	$dalist = get_scsi_disks_list();
-	$ptlist = array("a", "s1a", "p2");
+	$ptlist = array("a", "s1a", "s4a", "p1", "p2");
 
 	$disklist = $cdlist;
 	foreach ($dalist as $disk) {
