@@ -216,7 +216,7 @@ foreach ($rawdata as $line)
 		else if ($type == 'log')
 		{
 			$dev = $m[1];
-			if ($dev == 'mirror') {
+			if (preg_match("/^mirror-([0-9]+)$/", $dev, $m)) {
 				$type = "log-mirror";
 			}
 		}
