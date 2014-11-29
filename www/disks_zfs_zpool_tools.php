@@ -65,7 +65,7 @@ foreach ($a_vdevice as $vdevicev) {
 		}
 		$tmp['devs'] = implode(" ", $a_devs);
 		$a_vdevice_cache[] = $tmp;
-	} else if ($vdevicev['type'] == 'log') {
+	} else if ($vdevicev['type'] == 'log' || $vdevicev['type'] == 'log-mirror') {
 		$tmp = $vdevicev;
 		$a_devs = array();
 		foreach ($vdevicev['device'] as $device) {
@@ -133,6 +133,35 @@ function get_spare_list($pool) {
 		$req_level = -1;
 	}
 	return $result;
+}
+
+function get_logmirror($pool, $dev) {
+	mwexec2("zpool status {$pool}", $rawdata);
+	$type = "";
+	$mirror = "";
+	$dev = preg_replace('/^\/dev\//', "", $dev);
+	foreach ($rawdata as $line) {
+		if ($line[0] != "\t") continue;
+		if (preg_match('/^\t(\S+)/', $line, $m)) {
+			$mirror = "";
+			if ($m[1] == "logs")
+				$type = "log";
+			else
+				$type = "";
+			continue;
+		} else if ($type != "log") {
+			continue;
+		}
+		if (preg_match('/^\t(\s+)(mirror-(\S+))/', $line, $m)) {
+			$mirror = $m[2];
+		} else if ($mirror == "") {
+			continue;
+		}
+		if (preg_match('/^\t\s+([a-z]+[0-9]+)/', $line, $dev)) {
+			break;
+		}
+	}
+	return $mirror;
 }
 
 function get_device_type($device, &$a_vdevice) {
@@ -1180,6 +1209,9 @@ var_dump($config['zfs']['vdevices']);
 			if ($result != 0)
 				break;
 			$devs = implode(" ", $device);
+			if ($vdevice['type'] == "log-mirror") {
+				$devs = "mirror ".$devs;
+			}
 			$result = zfs_zpool_cmd("add", "{$pool} log {$devs}", true);
 			// Update config
 			if ($result == 0) {
@@ -1214,7 +1246,16 @@ var_dump($config['zfs']['vdevices']);
 				$device = $a;
 			}
 			$devs = implode(" ", $device);
-			$result = zfs_zpool_cmd("remove", "{$pool} {$devs}", true);
+			if ($vdevice['type'] == "log-mirror") {
+				$mirror = get_logmirror($pool, $device[0]);
+				if ($mirror == "") {
+					printf(gettext("%s: cannot get mirror name.")."\n", $device[0]);
+					break;
+				}
+				$result = zfs_zpool_cmd("remove", "{$pool} {$mirror}", true);
+			} else {
+				$result = zfs_zpool_cmd("remove", "{$pool} {$devs}", true);
+			}
 
 			// Destroy gnop
 			if ($result == 0) {
