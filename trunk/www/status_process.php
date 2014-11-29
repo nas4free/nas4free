@@ -40,7 +40,7 @@ require("guiconfig.inc");
 $pgtitle = array(gettext("Status"), gettext("Processes"));
 
 function get_process_info() {
-	exec("top -b", $result);
+	exec("top -b 20", $result);
 	return implode("\n", $result);
 }
 
