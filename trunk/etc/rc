@@ -106,11 +106,7 @@ case ${PLATFORM} in
 					if [ -f /boot/kernel/geom_xmd.ko ]; then
 						/sbin/mdconfig -d -u ${md}
 						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
-						if [ -e /dev/xmd1 ]; then
-							md=xmd1
-						else
-							md=xmd0
-						fi
+						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
 					fi
 				else
 					rm -f /etc/swapdevice
@@ -135,11 +131,7 @@ case ${PLATFORM} in
 					if [ -f /boot/kernel/geom_xmd.ko ]; then
 						/sbin/mdconfig -d -u ${md}
 						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
-						if [ -e /dev/xmd1 ]; then
-							md=xmd1
-						else
-							md=xmd0
-						fi
+						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
 					fi
 				else
 					rm -f /etc/swapdevice
