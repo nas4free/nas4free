@@ -65,9 +65,19 @@ populate_var()
 # instead of touch to test.  We want mount to record its mounts so we
 # have to make sure /var/db exists before doing the mount -a.
 #
+BOOT_LOWMEM=0
+if [ -f /etc/boot_lowmem ]; then
+	BOOT_LOWMEM=`/bin/cat /etc/boot_lowmem`
+fi
 case "${varmfs}" in
 [Yy][Ee][Ss])
-	mount_md ${varsize} /var "${varmfs_flags}"
+	if [ ${BOOT_LOWMEM} -ne 0 ]; then
+		xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 1`
+		/sbin/newfs -U -t -m2 -o space /dev/${xmd} >/dev/null
+		/sbin/mount -o noatime /dev/${xmd} /var
+	else
+		mount_md ${varsize} /var "${varmfs_flags}"
+	fi
 	mkdir /var/tmp
 	/sbin/mount -t tmpfs -o mode=1777,size=${vartmpsize} tmpfs /var/tmp
 	;;
@@ -77,7 +87,13 @@ case "${varmfs}" in
 	if /bin/mkdir -p /var/.diskless 2> /dev/null; then
 		rmdir /var/.diskless
 	else
-		mount_md ${varsize} /var "${varmfs_flags}"
+		if [ ${BOOT_LOWMEM} -ne 0 ]; then
+			xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 1`
+			/sbin/newfs -U -t -m2 -o space /dev/${xmd} >/dev/null
+			/sbin/mount -o noatime /dev/${xmd} /var
+		else
+			mount_md ${varsize} /var "${varmfs_flags}"
+		fi
 		mkdir /var/tmp
 		/sbin/mount -t tmpfs -o mode=1777,size=${vartmpsize} tmpfs /var/tmp
 	fi
