@@ -821,6 +821,50 @@ function config_upgrade() {
 		$config['version'] = "1.7";
 	}
 
+	/* Convert 1.7 -> 1.8 */
+	if ($config['version'] === "1.7") {
+		if (!empty($config['system']['sysctl']) && !empty($config['system']['sysctl']['param'])) {
+			$a_mib = array(
+				"net.inet.tcp.sendspace" => 131072,
+				"net.inet.tcp.recvspace" => 131072,
+				"net.inet.tcp.sendbuf_inc" => 131072,
+				"net.inet.tcp.recvbuf_inc" => 131072,
+				"kern.ipc.nmbclusters" => 131072,
+				"kern.ipc.nmbjumbop" => 131072,
+				"kern.ipc.nmbjumbo9" => 32768,
+				"kern.ipc.nmbjumbo16" => 16384,
+				"kern.maxfilesperproc" => 60000,
+			);
+			foreach ($a_mib as $key => $val) {
+				$index = array_search_ex($key, $config['system']['sysctl']['param'], "name");
+				if ($index !== false) {
+					$config['system']['sysctl']['param'][$index]['value'] = $val;
+				}
+			}
+		}
+		$index = array_search_ex("varsize", $config['system']['rcconf']['param'], "name");
+		if ($index === false) {
+			$config['system']['rcconf']['param'][] = array(
+				"uuid" => uuid(),
+				"name" => "varsize",
+				"value" => "128m",
+				"comment" => "Default /var size",
+				"enable" => true );
+		} else {
+			$config['system']['rcconf']['param'][$index]['value'] = "128m";
+		}
+		$index = array_search_ex("vartmpsize", $config['system']['rcconf']['param'], "name");
+		if ($index === false) {
+			$config['system']['rcconf']['param'][] = array(
+				"uuid" => uuid(),
+				"name" => "vartmpsize",
+				"value" => "64m",
+				"comment" => "Default /var/tmp size",
+				"enable" => true );
+		} else {
+			$config['system']['rcconf']['param'][$index]['value'] = "64m";
+		}
+	}
 
 	/* XXX Convert 9.5 -> 9.7 (must skip 9.6) */
 
