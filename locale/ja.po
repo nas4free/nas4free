@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2014-10-20 08:19+0000\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-30 20:57+0000\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-20 08:21+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
 "X-Poedit-Language: Japanese\n"
@@ -77,6 +77,10 @@ msgstr "残り%s%%"
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s は既に %s%d で使用されています。"
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr "%s: ミラー名が取得できません。"
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -498,11 +502,17 @@ msgstr "すべてのディレクトリ"
 msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr "\"すべてのディレクトリ\"はマウントされたパスが必要ですが、指定されたパス %s はマウントされていません。"
 
+msgid "All disks are imported."
+msgstr "すべてのディスクがインポートされました。"
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "全ての共有で 'usedots' を使用します。従って、ファイル名 .Parent と .Appleから始まる全てのファイルは使えません。"
+
+msgid "All software raid disks are imported."
+msgstr "すべてのソフトウェアRAIDがインポートされました。"
 
 msgid "All users will have the root privilege."
 msgstr "全てのユーザが root 権限を持ちます。"
@@ -1245,6 +1255,9 @@ msgstr "DLNA/UPnP"
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP メディアサーバー"
 
+msgid "DNLA/UPnP"
+msgstr ""
+
 msgid "DNS settings"
 msgstr "DNS の設定"
 
@@ -1495,8 +1508,14 @@ msgstr "接続先共有"
 msgid "Detected"
 msgstr "検出"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr "検出された言語:<br />(必要ならば変更してください)"
+
 msgid "Detected RSYNC remote shares"
 msgstr "検出された RSYNC リモート共有"
+
+msgid "Detected an error while importing."
+msgstr "インポート中にエラーを検出しました。"
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3271,6 +3290,9 @@ msgstr "ログ"
 msgid "Log (mirror)"
 msgstr "ログ (ミラー)"
 
+msgid "Log Device"
+msgstr "ログ デバイス"
+
 msgid "Log Level"
 msgstr "ログレベル"
 
@@ -3747,6 +3769,12 @@ msgstr "ディスクが構成されていません。ディスクの診断情報
 
 msgid "No file was uploaded."
 msgstr "ファイルはアップロードされていませんでした。"
+
+msgid "No new disk found."
+msgstr "新しいディスクがありません。"
+
+msgid "No new software raid disk found."
+msgstr "新しいソフトウェアRAIDがありません。"
 
 msgid "No pool was found."
 msgstr "プールは見つかりませんでした。"
@@ -6551,6 +6579,9 @@ msgstr "エクステントとして使用するタイプを選択して下さい
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
+msgid "UFS"
+msgstr "UFS"
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -7100,14 +7131,8 @@ msgstr "adaptive (低消費電力)"
 msgid "add any supplemental parameters"
 msgstr "もしあれば補足パラメータを追加してください"
 
-msgid "all disks are imported."
-msgstr "ディスクをすべてインポートします。"
-
 msgid "all encrypted disks are imported."
 msgstr "暗号化されたディスクをすべてインポートします。"
-
-msgid "all software raid disks are imported."
-msgstr "ソフトウェアRAIDディスクをすべてインポートします。"
 
 msgid "change failed."
 msgstr "変更に失敗しました。"
@@ -7192,14 +7217,8 @@ msgstr "マウント"
 msgid "n/a"
 msgstr "n/a"
 
-msgid "no new disk found."
-msgstr "新しいディスクは見つかりません。"
-
 msgid "no new encrypted disk found."
 msgstr "新しい暗号化ディスクは見つかりません。"
-
-msgid "no new software raid disk found."
-msgstr "新しいソフトウェアRAIDディスクは見つかりません。"
 
 msgid "none"
 msgstr "none"
@@ -7249,3 +7268,15 @@ msgstr "アンマウント"
 #, php-format
 msgid "version:"
 msgstr "バージョン:"
+
+#~ msgid "all software raid disks are imported."
+#~ msgstr "ソフトウェアRAIDディスクをすべてインポートします。"
+
+#~ msgid "no new software raid disk found."
+#~ msgstr "新しいソフトウェアRAIDディスクは見つかりません。"
+
+#~ msgid "no new disk found."
+#~ msgstr "新しいディスクは見つかりません。"
+
+#~ msgid "all disks are imported."
+#~ msgstr "ディスクをすべてインポートします。"

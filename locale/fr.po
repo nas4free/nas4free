@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2014-05-11 18:50+0000\n"
-"Last-Translator: Pierre Antoine <Unknown>\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-17 04:04+0000\n"
+"Last-Translator: NAS4Free Developer <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: FRANCE\n"
 "Language: \n"
 "X-Poedit-Language: French\n"
@@ -78,6 +78,10 @@ msgstr "%s%% disponible"
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s est déjà utilisé par %s%d."
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -529,12 +533,18 @@ msgstr ""
 "Tous les répertoires doivent disposer d'un chemin de montage, mais le chemin "
 "%s n'est pas monté."
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "Tout les partages utilisent l'option « usedots » ; par suite, les noms de "
 "fichiers .Parent et tout ce qui commence par .Apple est invalide."
+
+msgid "All software raid disks are imported."
+msgstr ""
 
 msgid "All users will have the root privilege."
 msgstr "Tous les utilisateurs auront les privilèges root."
@@ -814,7 +824,7 @@ msgid "Battery temperature"
 msgstr "Température de la batterie"
 
 msgid "Battery voltage"
-msgstr "Voltage Batterie"
+msgstr "Tension Batterie"
 
 msgid "Best available"
 msgstr "Meilleur disponible"
@@ -1315,6 +1325,9 @@ msgstr "DLNA/UPnP"
 msgid "DLNA/UPnP Media Server"
 msgstr "Serveur de médias DLNA/UPnP"
 
+msgid "DNLA/UPnP"
+msgstr ""
+
 msgid "DNS settings"
 msgstr "Configuration DNS"
 
@@ -1570,8 +1583,14 @@ msgstr "Partage de destination"
 msgid "Detected"
 msgstr "Détecté"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "Partages RSYNC distants détectés"
+
+msgid "Detected an error while importing."
+msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -2330,7 +2349,7 @@ msgid "Extended input frequency range"
 msgstr "Plage étendue de la fréquence d'entrée"
 
 msgid "Extended input voltage range"
-msgstr "Plage étendue du voltage d'entrée"
+msgstr "Plage étendue de la tension d'entrée"
 
 msgid "Extensions"
 msgstr "Extensions"
@@ -3091,7 +3110,7 @@ msgid "Input power sensitivity"
 msgstr "Sensibilité de puissance d'entrée"
 
 msgid "Input voltage"
-msgstr "Voltage d'entrer"
+msgstr "Voltage d'entrée"
 
 msgid "Inquiry Product"
 msgstr "Inquiry Product"
@@ -3462,6 +3481,9 @@ msgstr "Journal"
 msgid "Log (mirror)"
 msgstr "Log (miroir)"
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr "Niveau de journalisation"
 
@@ -3502,7 +3524,7 @@ msgid "Low voltage boosting transfer point"
 msgstr "Point de transfert de basse tension additionnelle"
 
 msgid "Low voltage transfer point"
-msgstr "point de transfert faible voltage"
+msgstr "point de transfert tension faible"
 
 msgid "Low voltage trimming transfer point"
 msgstr "Point de transfert de rognage de basse tension"
@@ -3623,7 +3645,7 @@ msgid "Maximum idle time in seconds."
 msgstr "Temps d'inoccupation maximum en secondes."
 
 msgid "Maximum incoming voltage seen"
-msgstr "Voltage maximum vu"
+msgstr "Tension maximum vue"
 
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr ""
@@ -3707,7 +3729,7 @@ msgid "Minimum frequency"
 msgstr "Fréquence minimum"
 
 msgid "Minimum incoming voltage seen"
-msgstr "Plus petit voltage d'entrée vu"
+msgstr "Plus petite tension d'entrée vue"
 
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Performance minimale, niveau acoustique minimal"
@@ -3971,6 +3993,12 @@ msgstr ""
 msgid "No file was uploaded."
 msgstr "Aucun fichier n'a été uploadé."
 
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
+msgstr ""
+
 msgid "No pool was found."
 msgstr "Aucun pool trouvé."
 
@@ -3996,7 +4024,7 @@ msgid "Node Name"
 msgstr "Nom du noeud"
 
 msgid "Nominal battery voltage"
-msgstr "Voltage nominal de la batterie"
+msgstr "Tension nominale de la batterie"
 
 msgid "Nominal input current (A)"
 msgstr "Courant nominal d'entrée (A)"
@@ -4005,7 +4033,7 @@ msgid "Nominal input line frequency (Hz)"
 msgstr "Fréquence nominalle d'entrée de ligne"
 
 msgid "Nominal input voltage"
-msgstr "Voltage d'entrée nominal"
+msgstr "Tension d'entrée nominale"
 
 msgid "Nominal output current (A)"
 msgstr "Courant de sortie nominal (A)"
@@ -4014,7 +4042,7 @@ msgid "Nominal output frequency (Hz)"
 msgstr "Fréquence de sortie nominale (Hz)"
 
 msgid "Nominal output voltage (V)"
-msgstr "Voltage de sortie nominal (V)"
+msgstr "Tension de sortie nominale (V)"
 
 msgid "Nominal value of apparent power (Volt-Amps)"
 msgstr "Valeur nominale de la puissance apparente (Volt-Ampères)"
@@ -4183,10 +4211,10 @@ msgid "Output frequency (Hz)"
 msgstr "Fréquence de sortie (Hz)"
 
 msgid "Output voltage"
-msgstr "Voltage en sortie"
+msgstr "Tension en sortie"
 
 msgid "Output voltage (V)"
-msgstr "Voltage en sortie (V)"
+msgstr "Tension en sortie (V)"
 
 msgid "Overload"
 msgstr "Surcharge"
@@ -7056,6 +7084,9 @@ msgstr "Type utilisé comme extension (extent)"
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -7645,14 +7676,8 @@ msgstr "adaptif (faible consommation)"
 msgid "add any supplemental parameters"
 msgstr ""
 
-msgid "all disks are imported."
-msgstr "tous les disques sont importés."
-
 msgid "all encrypted disks are imported."
 msgstr "tous les disques chiffrés ont été importés."
-
-msgid "all software raid disks are imported."
-msgstr "tous les disques raid logiciel ont été importés."
 
 msgid "change failed."
 msgstr "Échec de modification."
@@ -7677,10 +7702,10 @@ msgid "get target info failed."
 msgstr "Echec de récupération d'information sur la cible."
 
 msgid "greatest settable high voltage transfer point"
-msgstr "Plus grande valeur du point de transfert  haut voltage configurable"
+msgstr "Plus grande valeur du point de transfert tension haute configurable"
 
 msgid "greatest settable low voltage transfer point"
-msgstr "Plus petite valeur du point de transfert  haut voltage configurable"
+msgstr "Plus grande valeur du point de transfert tension basse configurable"
 
 msgid "hiadaptive (high performance)"
 msgstr "hiadaptif (haute performance)"
@@ -7737,14 +7762,8 @@ msgstr "montage"
 msgid "n/a"
 msgstr "n/a"
 
-msgid "no new disk found."
-msgstr "pas de nouveau disque trouvé."
-
 msgid "no new encrypted disk found."
 msgstr "aucun nouveau disque chiffré n'a été trouvé."
-
-msgid "no new software raid disk found."
-msgstr "aucun nouveau disque raid logiciel n'a été trouvé."
 
 msgid "none"
 msgstr "aucun"
@@ -7769,11 +7788,11 @@ msgstr "seconde(s)"
 
 msgid "smallest settable high voltage transfer point"
 msgstr ""
-"Plus petite valeur, du point de transfert de haute tension, configurable"
+"Plus petite valeur, du point de transfert de  tension haute configurable"
 
 msgid "smallest settable low voltage transfer point"
 msgstr ""
-"Plus petite valeur, du point de transfert de faible tension, configurable"
+"Plus petite valeur, du point de transfert de  tension faible configurable"
 
 msgid "striping"
 msgstr "striping"
@@ -7797,196 +7816,14 @@ msgstr "démontage"
 msgid "version:"
 msgstr "version:"
 
-#~ msgid ""
-#~ "Always use 0 for device number, helps when the device number is not constant "
-#~ "across a reboot, cluster, ..."
-#~ msgstr ""
-#~ "Toujours utiliser 0 comme numéro de périphérique, cela peut aider lorsque le "
-#~ "numéro de périphérique n'est pas constant au travers d'un reboot, d'un "
-#~ "cluster, ..."
+#~ msgid "all software raid disks are imported."
+#~ msgstr "tous les disques raid logiciel ont été importés."
 
-#~ msgid "Automatic disk discovery"
-#~ msgstr "Découverte automatique de disque"
+#~ msgid "no new software raid disk found."
+#~ msgstr "aucun nouveau disque raid logiciel n'a été trouvé."
 
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "Mode de découverte automatique de disque"
+#~ msgid "all disks are imported."
+#~ msgstr "tous les disques sont importés."
 
-#~ msgid "Case Folding"
-#~ msgstr "Modification de casse"
-
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "Les client voient en minuscules, les serveurs en majuscules"
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "Les client voient en majuscules, les serveurs en minuscules"
-
-#~ msgid "DDP"
-#~ msgstr "DDP"
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr "Désactiver AFP-sur-Appletalk pour prévenir les connections DDP."
-
-#~ msgid ""
-#~ "Disables :hex translations for anything except dot files. This option makes "
-#~ "the '/' character illegal."
-#~ msgstr ""
-#~ "Désactive les traductions hexa pour tout sauf les fichiers dot. Cette option "
-#~ "rend le caractère '/' illégal."
-
-#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
-#~ msgstr ""
-#~ "Ne pas publier les créations, résolutions et destructions de fileid "
-#~ "(respectivement createfileid, resolveid, deleteid)"
-
-#~ msgid ""
-#~ "Don't stat volume path when enumerating volumes list, useful for "
-#~ "automounting or volumes created by a preexec script."
-#~ msgstr ""
-#~ "Ne pas utiliser 'stat' lors de l'énumération de la liste des volumes, utile "
-#~ "pour les montages automatiques ou pour les volumes créés par un script pré-"
-#~ "éxécuté."
-
-#~ msgid "Enable automatic disk discovery."
-#~ msgstr "Activer la découverte automatique de disque."
-
-#~ msgid ""
-#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
-#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
-#~ "older programs store binary data files as type 'TEXT' when saving and switch "
-#~ "the filetype in a second step. Afpd will potentially destroy such files when "
-#~ "'erroneously' changing bytes in order to do line break translation."
-#~ msgstr ""
-#~ "Activer la traduction des crlf (retour charriot) pour les fichiers TEXT, "
-#~ "convertissant automatiquement les fin de ligne Macintosh en fin de ligne "
-#~ "Unix. L'utilisation de cette option peut être dangereuse, car des programmes "
-#~ "plus anciens enregistrent des fichiers de données binaires en type 'TEXT' au "
-#~ "moment de leur sauvegarde et substituent le type du fichier dans une seconde "
-#~ "étape. Afpd risque potentiellement de détruire de tels fichiers lors du "
-#~ "changement 'erroné' des octets pour effectuer la traduction des fins de "
-#~ "ligne."
-
-#~ msgid ""
-#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
-#~ "reduce database load. Don't set this option if the volume is modified by non "
-#~ "AFP clients (NFS/SMB/local)."
-#~ msgstr ""
-#~ "Si activé, AFPD utilise l'information d'ID stockée dans les fichiers d'en-"
-#~ "tête AppleDouble V2 pour réduire la charge de la base de données. Ne pas "
-#~ "activer cette option si le volume est modifié par des clients non AFP "
-#~ "(NFS/SMB/local)."
-
-#~ msgid "Lowercases names in both directions"
-#~ msgstr "Noms en minuscules dans les deux directions"
-
-#~ msgid "No case folding"
-#~ msgstr "Pas de modification de casse"
-
-#~ msgid "Provides compatibility with Apple II clients."
-#~ msgstr "Permets la compatibilité avec les clients Apple II"
-
-#~ msgid "Set the CNID backend to be used for the volume."
-#~ msgstr "Configure la table de traduction des CNID à utiliser pour le volume."
-
-#~ msgid ""
-#~ "The configuration has been changed.<br />You must apply the changes in order "
-#~ "for them to take effect."
-#~ msgstr ""
-#~ "La configuration a été modifiée.<br />Vous devez appliquer les changements "
-#~ "afin qu'ils prennent effet."
-
-#~ msgid "This controls how the case of filenames are viewed and stored."
-#~ msgstr ""
-#~ "Ceci contrôle comment la casse des noms de fichiers est affichée et stockée."
-
-#~ msgid ""
-#~ "This controls whether the .AppleDouble directory gets created unless "
-#~ "absolutely needed. This option should not be used if files are access mostly "
-#~ "by Mac computers."
-#~ msgstr ""
-#~ "Ceci contrôle si le répertoire .AppleDouble doit être créé sur absolue "
-#~ "nécessité seulement. Cette option ne devrait pas être utilisée si des "
-#~ "fichiers sont accédés principalement par des ordinateurs Mac."
-
-#~ msgid ""
-#~ "This forces filenames to be restricted to the character set used by Windows. "
-#~ "This is not recommended for shares used principally by Mac computers."
-#~ msgstr ""
-#~ "Ceci force pour les noms de fichiers la restriction au jeu de caractères "
-#~ "utilisé par Windows. Ceci n'est pas recommandé pour les partages utilisés "
-#~ "principalement par des ordinateurs Mac."
-
-#~ msgid "Time Machine"
-#~ msgstr "Time Machine"
-
-#~ msgid "Uppercases names in both directions"
-#~ msgstr "Noms en majuscules dans les deux directions"
-
-#~ msgid "Use AFP3 unix privileges."
-#~ msgstr "Utiliser les privilèges AFP3."
-
-#~ msgid ""
-#~ "You can also install a package via SSH or console using the the pkg_add "
-#~ "command.<br />Example: pkg_add -r packagename"
-#~ msgstr ""
-#~ "Vous pouvez aussi installer un paquetage par SSH ou depuis la console en "
-#~ "utilisant la commande pkg_add.<br />Exemple: pkg_add -r nomdupaquetage"
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr ""
-#~ "Vous devez redémarrer le système avant de pouvoir effectuer une mise à jour."
-
-#~ msgid "cachecnid"
-#~ msgstr "cachecnid"
-
-#~ msgid "cnidscheme"
-#~ msgstr "cnidscheme"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "dbpath"
-#~ msgstr "dbpath"
-
-#~ msgid "mswindows"
-#~ msgstr "mswindows"
-
-#~ msgid "noadouble"
-#~ msgstr "noadouble"
-
-#~ msgid "nodev"
-#~ msgstr "nodev"
-
-#~ msgid "nofileid"
-#~ msgstr "nofileid"
-
-#~ msgid "nohex"
-#~ msgstr "nohex"
-
-#~ msgid "nostat"
-#~ msgstr "nostat"
-
-#~ msgid "prodos"
-#~ msgstr "prodos"
-
-#~ msgid "upriv"
-#~ msgstr "upriv"
-
-#~ msgid ""
-#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
-#~ "unpredictable behavior in MacOS."
-#~ msgstr ""
-#~ "Note! Sélectionner « Time Machine » sur plusieurs partages peut causer un "
-#~ "comportement erratique dans MacOS."
-
-#~ msgid ""
-#~ "Sets the database information to be stored in path. You have to specifiy a "
-#~ "writable location, even if the volume is read only."
-#~ msgstr ""
-#~ "Définit le chemin de la base de données à stocker. Vous devez spécifier un "
-#~ "emplacement inscriptible, même si le volume est en lecture seule."
-
-#~ msgid "DNLA/UPnP"
-#~ msgstr "DNLA/UPnP"
-
-#~ msgid "Enable administrative DLNA/UPnP WebGUI."
-#~ msgstr "Activer l'interface graphique DLNA/UPnP"
+#~ msgid "no new disk found."
+#~ msgstr "pas de nouveau disque trouvé."

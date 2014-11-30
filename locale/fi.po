@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2012-06-25 21:24+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-30 21:49+0000\n"
+"Last-Translator: nomizfs <nomisma@fastmail.fm>\n"
 "Language-Team: NAS4Free <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:36+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: FINLAND\n"
 "X-Poedit-Language: Finnish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -28,35 +28,35 @@ msgstr ""
 
 #, php-format
 msgid "%d days"
-msgstr ""
+msgstr "%d päivää"
 
 #, php-format
 msgid "%d week"
-msgstr ""
+msgstr "%d viikko"
 
 #, php-format
 msgid "%d weeks"
-msgstr ""
+msgstr "%d viikkoa"
 
 #, php-format
 msgid "%d year"
-msgstr ""
+msgstr "%d vuosi"
 
 #, php-format
 msgid "%d years"
-msgstr ""
+msgstr "%d vuosia"
 
 #, c-format, php-format
 msgid "%d%% of %dMiB"
-msgstr ""
+msgstr "%d%% of %dMegatavua"
 
 #, php-format
 msgid "%dB / block"
-msgstr ""
+msgstr "%dB / lohko"
 
 #, php-format
 msgid "%s interface"
-msgstr "%s liitäntä"
+msgstr "%s-liittymä"
 
 #, php-format
 msgid "%s is too long."
@@ -76,11 +76,15 @@ msgstr ""
 
 #, php-format
 msgid "%s%% available"
-msgstr ""
+msgstr "%s%% käytettävissä"
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
-msgstr ""
+msgstr "%s%d %s on %s%d:n käytössä"
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr "%s: peilin nimi ei saatavilla."
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -94,12 +98,15 @@ msgid "*** Imported duplicate ***"
 msgstr "*** Tuotu kaksoiskappale ***"
 
 msgid "0=disabled, 1-255=enabled command queuing with specified depth."
-msgstr ""
+msgstr "0=ei käytössa, 1-255=käytä komentojonoa määritellyllä syvyydellä."
 
 msgid ""
 "1. Use these specials actions for debugging only!<br />2. There is no need "
 "of using this menu for starting a RAID volume (start automaticaly)."
 msgstr ""
+"1. Käytä nämä erikoisominaisuudet ainoastaan ohjelmavirheiden jäljitystä "
+"varten!<br />2. Tätä valikkoa ei ole tarpeen käyttää RAID taltion "
+"käynnistämiseksi (käynnistyy automaattisesti)"
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN tunniste (1 ja 4094 väliltä)."
@@ -112,6 +119,8 @@ msgid ""
 "<a href='%s'>SSHD</a> must be enabled for Unison to work, and the <a "
 "href='%s'>user</a> must have shell access."
 msgstr ""
+"<a href='%s'>SSHD</a> täytyy olla aktivoituna Unison:in käyttämiseksi, ja <a "
+"href='%s'>käyttäjällä</a> täytyy olla pääsy komentokehotteeseen."
 
 msgid ""
 "<b>EFI GPT partition</b> if you want to mount a GPT formatted drive "
@@ -119,10 +128,16 @@ msgid ""
 "UFS formatted drive or do imported disks from other OS.<br/><b>CD/DVD "
 "volume</b> if you want to mount a CD/DVD volume."
 msgstr ""
+"<b>EFI GPT osio</b> jos haluat liittää GPT-alustettua levyä (<b>oletus "
+"osio</b>).<br/><b>MBR osio</b> jos haluat liittää UFS-alustettua levyä tai "
+"ottaa käyttöön muista käyttöjärjestelmistä tuotuja levyjä.<br/><b>CD/DVD "
+"levy</b> jos haluat liittää CD/DVD levyä."
 
 msgid ""
 "<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>"
 msgstr ""
+"<div id='enumerointi'><ul><li>%d - Päivämäärä</li><li>%h - "
+"Isäntä</li></ul></div>"
 
 msgid ""
 "<div id='enumeration'><ul><li>The new password is also the default root "
@@ -482,9 +497,15 @@ msgstr "Kaikki hakemistot"
 msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr ""
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
+msgstr ""
+
+msgid "All software raid disks are imported."
 msgstr ""
 
 msgid "All users will have the root privilege."
@@ -1213,6 +1234,9 @@ msgstr ""
 msgid "DLNA/UPnP Media Server"
 msgstr ""
 
+msgid "DNLA/UPnP"
+msgstr ""
+
 msgid "DNS settings"
 msgstr "DNS asetukset"
 
@@ -1460,7 +1484,13 @@ msgstr "Kohde jako"
 msgid "Detected"
 msgstr ""
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
+msgstr ""
+
+msgid "Detected an error while importing."
 msgstr ""
 
 msgid ""
@@ -3221,6 +3251,9 @@ msgstr "Loki"
 msgid "Log (mirror)"
 msgstr ""
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr "Lokitustaso"
 
@@ -3696,6 +3729,12 @@ msgid ""
 msgstr ""
 
 msgid "No file was uploaded."
+msgstr ""
+
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
 msgstr ""
 
 msgid "No pool was found."
@@ -6404,6 +6443,9 @@ msgstr ""
 msgid "UCD-SNMP-MIB"
 msgstr ""
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -6943,13 +6985,7 @@ msgstr ""
 msgid "add any supplemental parameters"
 msgstr ""
 
-msgid "all disks are imported."
-msgstr ""
-
 msgid "all encrypted disks are imported."
-msgstr ""
-
-msgid "all software raid disks are imported."
 msgstr ""
 
 msgid "change failed."
@@ -7035,13 +7071,7 @@ msgstr ""
 msgid "n/a"
 msgstr "Ei ole"
 
-msgid "no new disk found."
-msgstr ""
-
 msgid "no new encrypted disk found."
-msgstr ""
-
-msgid "no new software raid disk found."
 msgstr ""
 
 msgid "none"
@@ -7092,38 +7122,3 @@ msgstr ""
 #, php-format
 msgid "version:"
 msgstr ""
-
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "Asiakas näkyy pienillä ja palvelin isoilla kirjaimilla"
-
-#~ msgid "DDP"
-#~ msgstr "DDP"
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr ""
-#~ "Sinun täytyy käynnistää järjestelmä uudelleen ennen kuin voit päivittää "
-#~ "firmwaren."
-
-#~ msgid "cnidscheme"
-#~ msgstr "cnidscheme"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "dbpath"
-#~ msgstr "tietokantapolku"
-
-#~ msgid "mswindows"
-#~ msgstr "mswindows"
-
-#~ msgid "nodev"
-#~ msgstr "ei laitetta"
-
-#~ msgid "nofileid"
-#~ msgstr "ei tiedostotunnistetta"
-
-#~ msgid "nohex"
-#~ msgstr "ei heksanumeroa"
-
-#~ msgid "nostat"
-#~ msgstr "ei tilatietoa"

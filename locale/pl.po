@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2014-06-04 20:52+0000\n"
-"Last-Translator: skrzat <Unknown>\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-17 04:07+0000\n"
+"Last-Translator: NAS4Free Developer <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: POLAND\n"
 "Language: \n"
 "X-Poedit-Language: Polish\n"
@@ -77,6 +77,10 @@ msgstr "%s%% dostępne"
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s jest obecnie używany przez %s%d."
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -502,9 +506,15 @@ msgstr "Wszystkie katalogi"
 msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr ""
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
+msgstr ""
+
+msgid "All software raid disks are imported."
 msgstr ""
 
 msgid "All users will have the root privilege."
@@ -580,10 +590,10 @@ msgid "Ambient Conditions From External Probe Equipment"
 msgstr ""
 
 msgid "Ambient relative humidity (percent)"
-msgstr ""
+msgstr "Względna wilgotność otoczenia (procentowo)"
 
 msgid "Ambient temperature (degrees C)"
-msgstr ""
+msgstr "Temperatura otoczenia (stopnie C)"
 
 msgid "An host with this name already exists."
 msgstr "Host o tej nazwie już istnieje."
@@ -755,7 +765,7 @@ msgid ""
 msgstr ""
 
 msgid "Battery alarm threshold"
-msgstr ""
+msgstr "Próg alarmu baterii"
 
 msgid "Battery capacity"
 msgstr "Pojemność baterii"
@@ -803,7 +813,7 @@ msgid "Blocksize"
 msgstr ""
 
 msgid "Bridge"
-msgstr ""
+msgstr "Mostek"
 
 msgid "Browseable"
 msgstr "Widoczny"
@@ -821,7 +831,7 @@ msgid "CARP"
 msgstr ""
 
 msgid "CARP only"
-msgstr ""
+msgstr "Tylko CARP"
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -833,7 +843,7 @@ msgid "CD/DVD"
 msgstr "CD/DVD"
 
 msgid "CHANGED"
-msgstr ""
+msgstr "ZMIENIONO"
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -905,7 +915,7 @@ msgid "Can't format the OS origin disk!"
 msgstr "Nie można sformatować źródłowego dysku systemu operacyjnego!"
 
 msgid "Can't get UFS ID."
-msgstr ""
+msgstr "Nie można pobrać UFS ID"
 
 msgid "Can't mount the system partition 1, the DATA partition is the 2."
 msgstr "Nie można zamontować partycji systemowej 1, partycją DANYCH jest 2."
@@ -917,7 +927,7 @@ msgid "Canmount"
 msgstr "Możliwość montowania"
 
 msgid "Cannot get CPU load"
-msgstr ""
+msgstr "Nie można pobrać obciążenia CPU"
 
 msgid "Cannot get data about interface"
 msgstr "Nie można uzyskać danych o interfejsie"
@@ -994,6 +1004,7 @@ msgstr ""
 
 msgid "Click this button to download the server configuration in XML format."
 msgstr ""
+"Naciśnij ten przycisk by ściągnąć konfigurację servera w formacie XML."
 
 msgid "Client"
 msgstr "Klient"
@@ -1245,6 +1256,9 @@ msgstr "DLNA/UPnP"
 msgid "DLNA/UPnP Media Server"
 msgstr ""
 
+msgid "DNLA/UPnP"
+msgstr ""
+
 msgid "DNS settings"
 msgstr "Ustawienia DNS"
 
@@ -1373,7 +1387,7 @@ msgid "Delete auto snapshot"
 msgstr ""
 
 msgid "Delete clone"
-msgstr ""
+msgstr "Usuń klon"
 
 msgid "Delete command"
 msgstr "Usuń polecenie"
@@ -1492,8 +1506,14 @@ msgstr "Udział docelowy"
 msgid "Detected"
 msgstr "Wykryty"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "Usuń zzdalne udziały RSYNC"
+
+msgid "Detected an error while importing."
+msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -1516,7 +1536,7 @@ msgid "Device Pass-through"
 msgstr ""
 
 msgid "Device Serial"
-msgstr ""
+msgstr "Numer seryjny urządzenia"
 
 msgid "Device model"
 msgstr "Model urządzenia"
@@ -1660,7 +1680,7 @@ msgid "Do you really want to delete this auto snapshot?"
 msgstr ""
 
 msgid "Do you really want to delete this clone?"
-msgstr ""
+msgstr "Czy na pewno chcesz usunąć ten klon?"
 
 msgid "Do you really want to delete this command?"
 msgstr "Czy na pewno chcesz usunąć to polecenie?"
@@ -1847,10 +1867,10 @@ msgid "Driver used"
 msgstr ""
 
 msgid "Driver version"
-msgstr ""
+msgstr "Wersja sterownika"
 
 msgid "Driver version internal"
-msgstr ""
+msgstr "Wewnętrzna wersja sterownika"
 
 msgid "Duplex"
 msgstr "Dupleks"
@@ -1986,7 +2006,7 @@ msgid "Email report"
 msgstr "Wyślij raport"
 
 msgid "Empty as default."
-msgstr ""
+msgstr "Domyślnie pusty"
 
 msgid "Enable"
 msgstr "Włącz"
@@ -3309,6 +3329,9 @@ msgstr "Dziennik"
 msgid "Log (mirror)"
 msgstr ""
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr "Poziom logowania"
 
@@ -3805,6 +3828,12 @@ msgstr ""
 
 msgid "No file was uploaded."
 msgstr "?Nie wysłano pliku."
+
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
+msgstr ""
 
 msgid "No pool was found."
 msgstr "Brak puli."
@@ -6642,6 +6671,9 @@ msgstr ""
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -7201,13 +7233,7 @@ msgstr ""
 msgid "add any supplemental parameters"
 msgstr ""
 
-msgid "all disks are imported."
-msgstr ""
-
 msgid "all encrypted disks are imported."
-msgstr ""
-
-msgid "all software raid disks are imported."
 msgstr ""
 
 msgid "change failed."
@@ -7293,13 +7319,7 @@ msgstr "montowanie"
 msgid "n/a"
 msgstr "n/a"
 
-msgid "no new disk found."
-msgstr ""
-
 msgid "no new encrypted disk found."
-msgstr ""
-
-msgid "no new software raid disk found."
 msgstr ""
 
 msgid "none"
@@ -7350,63 +7370,3 @@ msgstr "odmontuj"
 #, php-format
 msgid "version:"
 msgstr ""
-
-#~ msgid ""
-#~ "Always use 0 for device number, helps when the device number is not constant "
-#~ "across a reboot, cluster, ..."
-#~ msgstr ""
-#~ "Zawsze używaj 0 jako numer urządzenia. Pomocne gdy numer urządzenia nie jest "
-#~ "stały pomiędzy kolejnymi uruchomieniami."
-
-#~ msgid "Automatic disk discovery"
-#~ msgstr "Automatyczne wykrywanie dysku"
-
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "Tryb automatycznego wykrywania dysku"
-
-#~ msgid "Case Folding"
-#~ msgstr "Składanie znaków"
-
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "Klient widzi małe litery, serwer widzi wielkie litery"
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "Klient widzi wielkie litery, serwer widzi małe litery"
-
-#~ msgid "DDP"
-#~ msgstr "DDP"
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr "Wyłącz AFP-over-Appletalk aby zablokować połączenia DDP."
-
-#~ msgid "Enable automatic disk discovery."
-#~ msgstr "Włącz automatyczne wykrywanie dysku"
-
-#~ msgid "Lowercases names in both directions"
-#~ msgstr "Nazwy małymi literami w obu kierunkach"
-
-#~ msgid "Provides compatibility with Apple II clients."
-#~ msgstr "Zapewnia kompatybilność z klientami Aplle II."
-
-#~ msgid ""
-#~ "The configuration has been changed.<br />You must apply the changes in order "
-#~ "for them to take effect."
-#~ msgstr ""
-#~ "Konfiguracja została zmieniona.<br />Musisz zastosować zmiany, aby odniosły "
-#~ "skutek."
-
-#~ msgid "This controls how the case of filenames are viewed and stored."
-#~ msgstr ""
-#~ "Kontroluje to w jaki sposób pokazywane oraz przechowywane są nazwy plików."
-
-#~ msgid "Uppercases names in both directions"
-#~ msgstr "Nazwy wielkimi literami w obu kierunkach"
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr "Musisz uruchomić ponownie system zanim zaktualizujesz firmware."
-
-#~ msgid "mswindows"
-#~ msgstr "mswindows"
-
-#~ msgid "DNLA/UPnP"
-#~ msgstr "DNLA/UPnP"

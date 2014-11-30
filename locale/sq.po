@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2012-04-16 00:17+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-17 04:09+0000\n"
+"Last-Translator: NAS4Free Developer <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: ALBANIA\n"
 "Language: \n"
 "X-Poedit-Language: Albanian\n"
@@ -77,6 +77,10 @@ msgstr ""
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s eshte duke u perdorur nga %s%d."
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -503,12 +507,18 @@ msgstr ""
 "Të gjitha drjetoritë duhet te jenë te montuara ne rrënjë, por rrënja %s nuk "
 "ështe e montuar."
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "Te gjithe shperndarjet perdorin opcionin 'usedots' keshtu qe te krijojne "
 "emrat e skedarve. cdo gje do te filloje me .Apple illegal."
+
+msgid "All software raid disks are imported."
+msgstr ""
 
 msgid "All users will have the root privilege."
 msgstr "Te gjithe perdoruesit do te kene privilegje ne rrenje."
@@ -1251,6 +1261,9 @@ msgstr ""
 msgid "DLNA/UPnP Media Server"
 msgstr ""
 
+msgid "DNLA/UPnP"
+msgstr ""
+
 msgid "DNS settings"
 msgstr "Konfigurimi DNS"
 
@@ -1498,8 +1511,14 @@ msgstr "Destinaconi per shperndarjen"
 msgid "Detected"
 msgstr "Gjendur"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "Gjej shperndarjet RSYNC ne largesi."
+
+msgid "Detected an error while importing."
+msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3295,6 +3314,9 @@ msgstr "Log"
 msgid "Log (mirror)"
 msgstr ""
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr ""
 
@@ -3777,6 +3799,12 @@ msgstr ""
 
 msgid "No file was uploaded."
 msgstr "Nuk u ngarkua asnje file."
+
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
+msgstr ""
 
 msgid "No pool was found."
 msgstr ""
@@ -6493,6 +6521,9 @@ msgstr ""
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -7038,13 +7069,7 @@ msgstr ""
 msgid "add any supplemental parameters"
 msgstr ""
 
-msgid "all disks are imported."
-msgstr ""
-
 msgid "all encrypted disks are imported."
-msgstr ""
-
-msgid "all software raid disks are imported."
 msgstr ""
 
 msgid "change failed."
@@ -7130,13 +7155,7 @@ msgstr "monto"
 msgid "n/a"
 msgstr "n/a"
 
-msgid "no new disk found."
-msgstr ""
-
 msgid "no new encrypted disk found."
-msgstr ""
-
-msgid "no new software raid disk found."
 msgstr ""
 
 msgid "none"
@@ -7187,86 +7206,3 @@ msgstr "zmonto"
 #, php-format
 msgid "version:"
 msgstr ""
-
-#~ msgid ""
-#~ "Always use 0 for device number, helps when the device number is not constant "
-#~ "across a reboot, cluster, ..."
-#~ msgstr ""
-#~ "Perdor gjithmone 0 per numrin e paisjes, te ndihmon kur numri i paisjes nuk "
-#~ "eshte fiks kur rindez, cluster ...."
-
-#~ msgid "Automatic disk discovery"
-#~ msgstr "Zbulim automatik per diskun"
-
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "Modalitet automatik per zbulimin e diskut"
-
-#~ msgid "Case Folding"
-#~ msgstr "Case Folding"
-
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "Klienti sheh germa dore, serveri i sheh germa shtypi"
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "Klienti sheh germa shtypi, serveri i sheh germa dore"
-
-#~ msgid "DDP"
-#~ msgstr "DDP"
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr "Dizabilito AFP-over-Appletalk per te parandaluar lidhjet DDP."
-
-#~ msgid ""
-#~ "Disables :hex translations for anything except dot files. This option makes "
-#~ "the '/' character illegal."
-#~ msgstr ""
-#~ "Dizabilito: perkthimet hex per cdo gje perveç skedarve dot. Ky opcion ben qe "
-#~ "karakterin '/' jo te vlefshem."
-
-#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
-#~ msgstr "Mos reklamo createfileid, resolveid, deleteid calls."
-
-#~ msgid "Enable automatic disk discovery."
-#~ msgstr "Aktivo zbulimin automatik te diskut."
-
-#~ msgid "Provides compatibility with Apple II clients."
-#~ msgstr "Mundeson kompatibilitetin me klientat Apple II."
-
-#~ msgid "Use AFP3 unix privileges."
-#~ msgstr "Perdor privilegjet unix AFP3."
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr "Duhet te reboot sistemin perpara se te axhornoni firmware."
-
-#~ msgid "cnidscheme"
-#~ msgstr "skeme cnid"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "dbpath"
-#~ msgstr "dbpath"
-
-#~ msgid "mswindows"
-#~ msgstr "mswindows"
-
-#~ msgid "noadouble"
-#~ msgstr "noadouble"
-
-#~ msgid "nodev"
-#~ msgstr "nodev"
-
-#~ msgid "nofileid"
-#~ msgstr "nofileid"
-
-#~ msgid "nohex"
-#~ msgstr "nohex"
-
-#~ msgid "nostat"
-#~ msgstr "nostat"
-
-#~ msgid "prodos"
-#~ msgstr "prodos"
-
-#~ msgid "upriv"
-#~ msgstr "upriv"

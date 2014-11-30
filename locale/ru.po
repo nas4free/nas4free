@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2013-08-20 18:41+0000\n"
-"Last-Translator: Anton Shirokov <Unknown>\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-17 04:08+0000\n"
+"Last-Translator: NAS4Free Developer <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
 "X-Poedit-Language: Russian\n"
@@ -84,6 +84,10 @@ msgstr "%s%% доступного"
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s уже используется %s%d."
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -528,12 +532,18 @@ msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr ""
 "Все каталоги требуют смонтированных путей, однако путь %s не смонтирован."
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "Общие ресурсы используют опцию 'usedots', поэтому имена файлов .Parent и все "
 "начинающиеся с .Apple недопустимы."
+
+msgid "All software raid disks are imported."
+msgstr ""
 
 msgid "All users will have the root privilege."
 msgstr "Все пользователи будут иметь права учетной записи root."
@@ -1306,6 +1316,9 @@ msgstr ""
 msgid "DLNA/UPnP Media Server"
 msgstr ""
 
+msgid "DNLA/UPnP"
+msgstr ""
+
 msgid "DNS settings"
 msgstr "Настройки DNS"
 
@@ -1554,8 +1567,14 @@ msgstr "Общий ресурс получателя"
 msgid "Detected"
 msgstr "Определенная"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "Обнаружены удаленные каталоги Rsync"
+
+msgid "Detected an error while importing."
+msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3434,6 +3453,9 @@ msgstr "Журнал"
 msgid "Log (mirror)"
 msgstr "Log (mirror) (*)"
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr "Уровень журналирования"
 
@@ -3946,6 +3968,12 @@ msgstr ""
 
 msgid "No file was uploaded."
 msgstr "&=&Файл не был загружен."
+
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
+msgstr ""
 
 msgid "No pool was found."
 msgstr "Пул не обнаружен."
@@ -6987,6 +7015,9 @@ msgstr "Тип, используемый как экстент."
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -7567,14 +7598,8 @@ msgstr "адаптивный (низкое энергопотребление)"
 msgid "add any supplemental parameters"
 msgstr ""
 
-msgid "all disks are imported."
-msgstr "все диски импортированы."
-
 msgid "all encrypted disks are imported."
 msgstr "все диски использующие шифрование импортированы."
-
-msgid "all software raid disks are imported."
-msgstr "все software raid диски импортированы."
 
 msgid "change failed."
 msgstr "неудачное изменение."
@@ -7661,14 +7686,8 @@ msgstr "монтировать"
 msgid "n/a"
 msgstr "n/a"
 
-msgid "no new disk found."
-msgstr "новый диск не найден."
-
 msgid "no new encrypted disk found."
 msgstr "новый диск использующий шифрование не найден."
-
-msgid "no new software raid disk found."
-msgstr "не найдено новых software raid дисков"
 
 msgid "none"
 msgstr "none"
@@ -7721,182 +7740,14 @@ msgstr "размонтировать"
 msgid "version:"
 msgstr "версия:"
 
-#~ msgid ""
-#~ "Always use 0 for device number, helps when the device number is not constant "
-#~ "across a reboot, cluster, ..."
-#~ msgstr ""
-#~ "Всегда использовать 0 для номера устройства. Это помогает, когда номер "
-#~ "устройства меняется после перезагрузки, в кластере и т.п."
+#~ msgid "no new disk found."
+#~ msgstr "новый диск не найден."
 
-#~ msgid "Automatic disk discovery"
-#~ msgstr "Автоматический поиск дисков"
+#~ msgid "all disks are imported."
+#~ msgstr "все диски импортированы."
 
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "Режим автоматического поиска дисков"
+#~ msgid "all software raid disks are imported."
+#~ msgstr "все software raid диски импортированы."
 
-#~ msgid "Case Folding"
-#~ msgstr "Переключение регистра"
-
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "Клиент оперирует нижним регистром, сервер - верхним"
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "Клиент оперирует верхним регистром, сервер - нижним"
-
-#~ msgid "DDP"
-#~ msgstr "DDP"
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr "Запретить AFP-over-Appletalk для предотвращения подключений DDP"
-
-#~ msgid ""
-#~ "Disables :hex translations for anything except dot files. This option makes "
-#~ "the '/' character illegal."
-#~ msgstr ""
-#~ "Отключить перевод в :hex для всех файлов, кроме \"точки\". Эта настройка "
-#~ "делает символ \"/\" недоступным."
-
-#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
-#~ msgstr "Не показывать вызовы createfileid, resolveid, deleteid."
-
-#~ msgid ""
-#~ "Don't stat volume path when enumerating volumes list, useful for "
-#~ "automounting or volumes created by a preexec script."
-#~ msgstr ""
-#~ "Не собирать информацию о томах (stat volume path). Удобно при "
-#~ "автомонтировании или для томов, создаваемых скриптом preexec."
-
-#~ msgid "Enable automatic disk discovery."
-#~ msgstr "Включить автоматический поиск дисков"
-
-#~ msgid ""
-#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
-#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
-#~ "older programs store binary data files as type 'TEXT' when saving and switch "
-#~ "the filetype in a second step. Afpd will potentially destroy such files when "
-#~ "'erroneously' changing bytes in order to do line break translation."
-#~ msgstr ""
-#~ "Включает перевод crlf для текстовых файлов TEXT, автоматически преобразуя "
-#~ "переводы строк Macintosh в Unix. Использование этой настройки может быть "
-#~ "опасным, поскольку некоторые старые программы сохраняют бинарные файлы как "
-#~ "тип 'TEXT' и только потом меняют тип файла. Afpd может легко повредить "
-#~ "содержимое таких файлов, когда начнет конвертировать в них переводы строк."
-
-#~ msgid ""
-#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
-#~ "reduce database load. Don't set this option if the volume is modified by non "
-#~ "AFP clients (NFS/SMB/local)."
-#~ msgstr ""
-#~ "Настройка указывает afpd использовать идентификаторы AppleDouble V2, "
-#~ "хранящиеся в файлах. Не включайте эту настройку, если том используется не "
-#~ "AFP клиентами (NFS/SMB/local)."
-
-#~ msgid "Lowercases names in both directions"
-#~ msgstr "Нижний регистр в обоих направлениях"
-
-#~ msgid "No case folding"
-#~ msgstr "Без преобразования регистра"
-
-#~ msgid ""
-#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
-#~ "unpredictable behavior in MacOS."
-#~ msgstr ""
-#~ "Внимание! Выбор 'Time Machine' для нескольких общих ресурсов может привести "
-#~ "к непредсказуемому поведению в MacOS."
-
-#~ msgid "Provides compatibility with Apple II clients."
-#~ msgstr "Предоставить совместимость с клиентами Apple II."
-
-#~ msgid "Set the CNID backend to be used for the volume."
-#~ msgstr "CNID backend, используемый для этого тома."
-
-#~ msgid ""
-#~ "Sets the database information to be stored in path. You have to specifiy a "
-#~ "writable location, even if the volume is read only."
-#~ msgstr ""
-#~ "Путь для хранения данных. Нужно указать путь с возможностью записи, даже "
-#~ "если раздел находится в режиме только-для-чтения."
-
-#~ msgid ""
-#~ "The configuration has been changed.<br />You must apply the changes in order "
-#~ "for them to take effect."
-#~ msgstr ""
-#~ "Конфигурация была изменена.<br />Необходимо принять изменения, чтобы они "
-#~ "вступили в силу."
-
-#~ msgid "This controls how the case of filenames are viewed and stored."
-#~ msgstr "Выбор регистра для просмотра и хранения имен файлов."
-
-#~ msgid ""
-#~ "This controls whether the .AppleDouble directory gets created unless "
-#~ "absolutely needed. This option should not be used if files are access mostly "
-#~ "by Mac computers."
-#~ msgstr ""
-#~ "Задать необходимость создания каталога .AppleDouble в крайнем случае. Этот "
-#~ "параметр не должна использоваться, если доступ к файлам осуществляется в "
-#~ "основном с компьютеров Macintosh."
-
-#~ msgid ""
-#~ "This forces filenames to be restricted to the character set used by Windows. "
-#~ "This is not recommended for shares used principally by Mac computers."
-#~ msgstr ""
-#~ "Ограничить использование в именах файлов только набора символов Windows. Не "
-#~ "рекомендуется для общих ресурсов, используемых компьютерами Macintosh."
-
-#~ msgid "Time Machine"
-#~ msgstr "Time Machine"
-
-#~ msgid "Uppercases names in both directions"
-#~ msgstr "Верхний регистр в обоих направлениях"
-
-#~ msgid "Use AFP3 unix privileges."
-#~ msgstr "Использовать права AFP3 unix."
-
-#~ msgid ""
-#~ "You can also install a package via SSH or console using the the pkg_add "
-#~ "command.<br />Example: pkg_add -r packagename"
-#~ msgstr ""
-#~ "Возможно также установить пакет посредством SSH или консоли, используя "
-#~ "команду pkg_add.<br /> Пример: pkg_add -r packagename"
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr "Необходимо перезагрузить систему перед обновлением прошивки."
-
-#~ msgid "cachecnid"
-#~ msgstr "cachecnid"
-
-#~ msgid "cnidscheme"
-#~ msgstr "cnidscheme"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "dbpath"
-#~ msgstr "dbpath"
-
-#~ msgid "mswindows"
-#~ msgstr "mswindows"
-
-#~ msgid "noadouble"
-#~ msgstr "noadouble"
-
-#~ msgid "nodev"
-#~ msgstr "nodev"
-
-#~ msgid "nofileid"
-#~ msgstr "nofileid"
-
-#~ msgid "nohex"
-#~ msgstr "nohex"
-
-#~ msgid "nostat"
-#~ msgstr "nostat"
-
-#~ msgid "prodos"
-#~ msgstr "prodos"
-
-#~ msgid "upriv"
-#~ msgstr "upriv"
-
-#~ msgid "DNLA/UPnP"
-#~ msgstr "DNLA/UPnP"
+#~ msgid "no new software raid disk found."
+#~ msgstr "не найдено новых software raid дисков"

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2014-06-08 10:23+0000\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-17 04:09+0000\n"
 "Last-Translator: Anders Malm <anders.malm@brevet.se>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: SWEDEN\n"
 "Language: \n"
 "X-Poedit-Language: Swedish\n"
@@ -77,6 +77,10 @@ msgstr "%s%%tillgänglig"
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s används redan av %s%d."
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -518,12 +522,18 @@ msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr ""
 "Alla kataloger kräver en monterad sökväg, men Sökvägen %s är inte monterad."
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "Alla utdelningar använder inställningen 'usedots' vilket gör att filnamnen "
 ".Parent och allting som börjar med .Apple är otillåtet."
+
+msgid "All software raid disks are imported."
+msgstr ""
 
 msgid "All users will have the root privilege."
 msgstr "Alla användare kommer att ha root-behörighet."
@@ -988,7 +998,7 @@ msgid "Chinese (Traditional)"
 msgstr "Kinesiska (traditionell)"
 
 msgid "Choose UPS mode."
-msgstr ""
+msgstr "Välj UPS läge."
 
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
@@ -1291,6 +1301,9 @@ msgstr "DLNA/UPnP"
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Mediaserver"
 
+msgid "DNLA/UPnP"
+msgstr ""
+
 msgid "DNS settings"
 msgstr "DNS inställningar"
 
@@ -1543,8 +1556,14 @@ msgstr "Destination utdelning"
 msgid "Detected"
 msgstr "Identifierad"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "Upptäckte fjärranslutna RSYNC utdelningar"
+
+msgid "Detected an error while importing."
+msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3408,6 +3427,9 @@ msgstr "Logg"
 msgid "Log (mirror)"
 msgstr "Logg (spegel)"
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr "Loggnivå"
 
@@ -3913,6 +3935,12 @@ msgstr ""
 
 msgid "No file was uploaded."
 msgstr "Ingen fil laddades upp."
+
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
+msgstr ""
 
 msgid "No pool was found."
 msgstr "Ingen pool finns."
@@ -5567,7 +5595,7 @@ msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr "HAST-volymer kan inte nås förrän HAST-noden blir Primär."
 
 msgid "The IP address of the UPS master."
-msgstr ""
+msgstr "UPS masterns IP-adress."
 
 msgid "The IP address that this hostname represents."
 msgstr "IP-adressen som det här värdnamnet representerar."
@@ -5793,6 +5821,9 @@ msgid ""
 "for them to take effect.<br /><b>If this message persist take a look at the "
 "<a href='%s'>system log</a> for more information.</b>"
 msgstr ""
+"Inställningarna har ändrats.<br />Du måste bekräfta ändringarna för att de "
+"skall börja gälla.<br /><b>Titta i <a href='%s'>system log</a> för mer "
+"information om detta meddelande kvarstår.</b>"
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
@@ -6951,6 +6982,9 @@ msgstr "Typen används som område."
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -7419,6 +7453,8 @@ msgid ""
 "You can also install a package via SSH or console using the the pkg add "
 "command.<br />Example: pkg add packagename"
 msgstr ""
+"Du kan också installera ett paket via SSH eller konsolen genom att använda "
+"\"pkg add\" kommandot.<br />Exempelvis: pkg add paketnamn"
 
 msgid "You can use the following parameters for substitution:"
 msgstr "Du kan använda följande parametrar för substitution(utbyte):"
@@ -7468,6 +7504,8 @@ msgid ""
 "You must <a href='%s'>reboot</a> the system before you can upgrade the "
 "firmware."
 msgstr ""
+"Du måste <a href='%s'>reboot</a> systemet innan du kan uppgradera "
+"systemmjukvaran."
 
 msgid "You must add disks first."
 msgstr "Du måste lägga till diskar först."
@@ -7535,16 +7573,10 @@ msgstr "adaptiv (låg effektförbrukning)"
 
 #, php-format
 msgid "add any supplemental parameters"
-msgstr ""
-
-msgid "all disks are imported."
-msgstr "alla diskar är importerade"
+msgstr "lägg till eventuella extra parametrar"
 
 msgid "all encrypted disks are imported."
 msgstr "alla krypterade diskar är importerade"
-
-msgid "all software raid disks are imported."
-msgstr "alla mjukvaruraiddiskar är importerade"
 
 msgid "change failed."
 msgstr "Ändringen misslyckades."
@@ -7629,14 +7661,8 @@ msgstr "montera"
 msgid "n/a"
 msgstr "ej tillgängligt"
 
-msgid "no new disk found."
-msgstr "inga nya diskar hittades"
-
 msgid "no new encrypted disk found."
 msgstr "inga nya krypterade diskar hittades"
-
-msgid "no new software raid disk found."
-msgstr "inga nya mjukvaruraiddiskar  hittades"
 
 msgid "none"
 msgstr "ingen"
@@ -7687,190 +7713,14 @@ msgstr "umount"
 msgid "version:"
 msgstr "version:"
 
-#~ msgid ""
-#~ "Always use 0 for device number, helps when the device number is not constant "
-#~ "across a reboot, cluster, ..."
-#~ msgstr ""
-#~ "Ange alltid 0 som enhetsnummer, det hjälper när numret inte är konstant "
-#~ "mellan omstart, kluster, ..."
+#~ msgid "all software raid disks are imported."
+#~ msgstr "alla mjukvaruraiddiskar är importerade"
 
-#~ msgid "Automatic disk discovery"
-#~ msgstr "Upptäck disk automatiskt"
+#~ msgid "all disks are imported."
+#~ msgstr "alla diskar är importerade"
 
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "Automatisk disk avkänningsläge"
+#~ msgid "no new software raid disk found."
+#~ msgstr "inga nya mjukvaruraiddiskar  hittades"
 
-#~ msgid "Case Folding"
-#~ msgstr "Textnormalisering"
-
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "Klienten ser gemener, servern ser versaler."
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "Klienten ser versaler, servern ser gemener."
-
-#~ msgid "DDP"
-#~ msgstr "DDP"
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr "Avaktivera AFP-over-Appletalk för att förhindra DDP-anslutningar."
-
-#~ msgid ""
-#~ "Disables :hex translations for anything except dot files. This option makes "
-#~ "the '/' character illegal."
-#~ msgstr ""
-#~ "Avaktiverar :hex översättningar för allt utom punktfiler. Detta alternativ "
-#~ "gör att tecknet '/' blir otillåtet."
-
-#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
-#~ msgstr ""
-#~ "Tillåt inte publicering av \"creatfileid, resolveid, deleteid\" anrop."
-
-#~ msgid ""
-#~ "Don't stat volume path when enumerating volumes list, useful for "
-#~ "automounting or volumes created by a preexec script."
-#~ msgstr ""
-#~ "Ange EJ volymsökvägen vid uppräkningen av volymlistan, användbar för "
-#~ "automatisk montering eller volymer som skapts av i förväg exekverade skript.."
-
-#~ msgid ""
-#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
-#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
-#~ "older programs store binary data files as type 'TEXT' when saving and switch "
-#~ "the filetype in a second step. Afpd will potentially destroy such files when "
-#~ "'erroneously' changing bytes in order to do line break translation."
-#~ msgstr ""
-#~ "Aktiverar CRLF-översättnnig för TEXT-filer, som automatiskt konverterar "
-#~ "Macintosh radbrytningar till UNIX-kompatibla sådana. Användandet av detta "
-#~ "alternativ kan vara farligt då vissa äldre probgram lagrar binära datafiler "
-#~ "som typen 'TEXT' när data sparas, och sedan byter filtyp i ett andra steg. "
-#~ "Afpd kan eventuellt förstöra sådana filer vid felaktig ändring under "
-#~ "radbyteskonverteringen."
-
-#~ msgid ""
-#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
-#~ "reduce database load. Don't set this option if the volume is modified by non "
-#~ "AFP clients (NFS/SMB/local)."
-#~ msgstr ""
-#~ "Om inställdt afpd använder ID-information lagrad i AppleDouble V2 "
-#~ "rubrikfiler för att minska databasbelastningen. Välj inte denna inställning "
-#~ "om volymen är modifierad av en icke AFP-klient (NFS/SMB/lokal)."
-
-#~ msgid "Lowercases names in both directions"
-#~ msgstr "Namn med små bokstäver, i båda riktningarna"
-
-#~ msgid "No case folding"
-#~ msgstr "Ingen textnormalisering"
-
-#~ msgid ""
-#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
-#~ "unpredictable behavior in MacOS."
-#~ msgstr ""
-#~ "Observera! Valet av 'Time Machine' på flera utdelningar kan skapa/skapar "
-#~ "oförutsägbart beteende in MacOS."
-
-#~ msgid "Provides compatibility with Apple II clients."
-#~ msgstr "Tillhandahåller kompatibilitet för Apple II klienter."
-
-#~ msgid "Set the CNID backend to be used for the volume."
-#~ msgstr "Välj CNID-backend som skall användas för denna volym."
-
-#~ msgid ""
-#~ "Sets the database information to be stored in path. You have to specifiy a "
-#~ "writable location, even if the volume is read only."
-#~ msgstr ""
-#~ "Ställ in sökvägen för att lagra databasinformationen. Du måste specificera "
-#~ "en skrivbar plats, även om volymen är inställd för endast-läsning (read-"
-#~ "only)."
-
-#~ msgid ""
-#~ "The configuration has been changed.<br />You must apply the changes in order "
-#~ "for them to take effect."
-#~ msgstr ""
-#~ "Konfigurationen har ändrats. <br /> Du måste lägga till ändringarna för att "
-#~ "de ska börja gälla."
-
-#~ msgid "This controls how the case of filenames are viewed and stored."
-#~ msgstr "Detta styr hur teckenstorlekarna för filerna läses och lagras."
-
-#~ msgid ""
-#~ "This controls whether the .AppleDouble directory gets created unless "
-#~ "absolutely needed. This option should not be used if files are access mostly "
-#~ "by Mac computers."
-#~ msgstr ""
-#~ "Detta styr om .AppleDouble katalogen skall skapas om det inte är absolut "
-#~ "nödvändigt. Denna option bör inte användas om filerna används av MAC-datorer "
-#~ "i största utsträckning."
-
-#~ msgid ""
-#~ "This forces filenames to be restricted to the character set used by Windows. "
-#~ "This is not recommended for shares used principally by Mac computers."
-#~ msgstr ""
-#~ "Detta tvingar filnamn till att begränsas till tecken som används av Windows. "
-#~ " Detta rekommenderas inte för delningar som uteslutande används av MAC-"
-#~ "datorer."
-
-#~ msgid "Time Machine"
-#~ msgstr "Time Machine"
-
-#~ msgid "Uppercases names in both directions"
-#~ msgstr "Namn med stora tecken i båda riktningarna."
-
-#~ msgid "Use AFP3 unix privileges."
-#~ msgstr "Använd AFP3 unix privilegier."
-
-#~ msgid ""
-#~ "You can also install a package via SSH or console using the the pkg_add "
-#~ "command.<br />Example: pkg_add -r packagename"
-#~ msgstr ""
-#~ "Du kan också installera ett paket via SSH eller konsolen med pkg_add "
-#~ "kommandot.<br /> Exempel: pkg_add -r 'paketnamn'"
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr ""
-#~ "Du måste starta om systemet innan du kan uppgradera den fasta programvaran."
-
-#~ msgid "cachecnid"
-#~ msgstr "cachecnid (cnid-buffert)"
-
-#~ msgid "cnidscheme"
-#~ msgstr "cnidscheme (cnid-schema)"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "dbpath"
-#~ msgstr "dbpath"
-
-#~ msgid "mswindows"
-#~ msgstr "mswindows"
-
-#~ msgid "prodos"
-#~ msgstr "prodos"
-
-#~ msgid "upriv"
-#~ msgstr "upriv"
-
-#~ msgid "nostat"
-#~ msgstr "nostat"
-
-#~ msgid "nofileid"
-#~ msgstr "nofileid"
-
-#~ msgid "noadouble"
-#~ msgstr "noadouble"
-
-#~ msgid "nodev"
-#~ msgstr "nodev"
-
-#~ msgid "nohex"
-#~ msgstr "nohex"
-
-#~ msgid "DNLA/UPnP"
-#~ msgstr "DNLA/UPnP"
-
-#~ msgid "Enable administrative DLNA/UPnP WebGUI."
-#~ msgstr "Aktivera administrativt DLNA/UPnP webgränssnitt."
-
-#~ msgid "Enable automatic disk discovery."
-#~ msgstr "Aktivera automatisk diskdetektering"
+#~ msgid "no new disk found."
+#~ msgstr "inga nya diskar hittades"

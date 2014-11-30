@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2014-10-17 23:34+0000\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-30 15:21+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: Netherlands\n"
 "Language: \n"
 "X-Poedit-Language: Dutch\n"
@@ -77,6 +77,10 @@ msgstr "%s%% beschikbaar"
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s is reeds gebruikt door %s%d."
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr "%s: kan mirror naam niet krijgen."
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -531,12 +535,18 @@ msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr ""
 "Alle mappen vereisen een aangekoppeld pad, maar Pad %s is niet aangekoppeld."
 
+msgid "All disks are imported."
+msgstr "Alle schijven zijn geïmporteerd."
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "Alle gedeelde mappen moeten de optie 'usedots' gebruiken waarmee "
 "bestandsnamen .Parent en alles beginnend met .Apple onbruikbaar wordt."
+
+msgid "All software raid disks are imported."
+msgstr "Alle software raid schijven zijn geïmporteerd."
 
 msgid "All users will have the root privilege."
 msgstr "Alle gebruikers zullen root bevoegdheden hebben."
@@ -1317,6 +1327,9 @@ msgstr "DLNA/UPnP"
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Media Server"
 
+msgid "DNLA/UPnP"
+msgstr "DNLA/UPnP"
+
 msgid "DNS settings"
 msgstr "DNS instellingen"
 
@@ -1571,8 +1584,14 @@ msgstr "Gedeelde bestemmingsmap"
 msgid "Detected"
 msgstr "Gedetecteerd"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr "Gedetecteerde taal:<br />(Veranderen als dat nodig is)"
+
 msgid "Detected RSYNC remote shares"
 msgstr "Gedetecteerde RSYNC remote mappen"
+
+msgid "Detected an error while importing."
+msgstr "Er is een fout gedetecteerd tijdens het importeren."
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3471,6 +3490,9 @@ msgstr "Logboek"
 msgid "Log (mirror)"
 msgstr "Log (mirror)"
 
+msgid "Log Device"
+msgstr "Log-device"
+
 msgid "Log Level"
 msgstr "Log Niveau"
 
@@ -3985,6 +4007,12 @@ msgstr ""
 
 msgid "No file was uploaded."
 msgstr "Er is geen bestand geupload."
+
+msgid "No new disk found."
+msgstr "Geen nieuwe schijven gevonden."
+
+msgid "No new software raid disk found."
+msgstr "Geen nieuwe software raid schijven gevonden."
 
 msgid "No pool was found."
 msgstr "Er is geen pool gevonden."
@@ -7076,6 +7104,9 @@ msgstr "Type gebruikt als extentie."
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
+msgid "UFS"
+msgstr "UFS"
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -7670,14 +7701,8 @@ msgstr "adaptieve (laag energieverbruik)"
 msgid "add any supplemental parameters"
 msgstr "Voeg hier eventuele aanvullende parameters toe"
 
-msgid "all disks are imported."
-msgstr "all schijven zijn geïmporteerd."
-
 msgid "all encrypted disks are imported."
 msgstr "alle versleutelde schijven worden geïmporteerd."
-
-msgid "all software raid disks are imported."
-msgstr "alle Software RAID schijven zijn geïmporteerd."
 
 msgid "change failed."
 msgstr "wijziging mislukt."
@@ -7762,14 +7787,8 @@ msgstr "aankoppelen"
 msgid "n/a"
 msgstr "n.v.t."
 
-msgid "no new disk found."
-msgstr "geen nieuwe schijven gevonden."
-
 msgid "no new encrypted disk found."
 msgstr "geen nieuwe versleutelde schijven gevonden."
-
-msgid "no new software raid disk found."
-msgstr "er zijn geen nieuwe Software RAID schijven gevonden."
 
 msgid "none"
 msgstr "geen"
@@ -7820,194 +7839,14 @@ msgstr "loskoppelen"
 msgid "version:"
 msgstr "versie:"
 
-#~ msgid ""
-#~ "Always use 0 for device number, helps when the device number is not constant "
-#~ "across a reboot, cluster, ..."
-#~ msgstr ""
-#~ "Altijd 0 als apparaat nummer gebruiken, dit helpt wanneer een apparaat "
-#~ "nummer niet constant is na een herstart, cluster, ..."
+#~ msgid "no new disk found."
+#~ msgstr "geen nieuwe schijven gevonden."
 
-#~ msgid "Automatic disk discovery"
-#~ msgstr "Automatische schijfdetectie"
+#~ msgid "all disks are imported."
+#~ msgstr "all schijven zijn geïmporteerd."
 
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "Automatische schijfdetectie mode"
+#~ msgid "all software raid disks are imported."
+#~ msgstr "alle Software RAID schijven zijn geïmporteerd."
 
-#~ msgid "Case Folding"
-#~ msgstr "karakter omzetting"
-
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "De werkstation ziet kleine letters, de server ziet hoofdletters"
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "De werkstation ziet hoofdletters, de server ziet kleine letters"
-
-#~ msgid "DDP"
-#~ msgstr "DDP"
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr ""
-#~ "Uitschakelen AFP-over-Appletalk voor het verhinderen van DDP verbindingen."
-
-#~ msgid ""
-#~ "Disables :hex translations for anything except dot files. This option makes "
-#~ "the '/' character illegal."
-#~ msgstr ""
-#~ "Uitschakelen :hex vertalingen voor alles behalve dot bestanden. Deze optie "
-#~ "maakt het '/' karakter ongeldig."
-
-#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
-#~ msgstr "Niet bekendmaken maakbestandid, omzetid, wisid aanvragen."
-
-#~ msgid ""
-#~ "Don't stat volume path when enumerating volumes list, useful for "
-#~ "automounting or volumes created by a preexec script."
-#~ msgstr ""
-#~ "Niet het volume pad specificeren bij het opsommen van een volumenlijst, "
-#~ "nuttig bij het automatisch aankoppelen van volumes gecreeerd door een "
-#~ "preexec script."
-
-#~ msgid "Enable automatic disk discovery."
-#~ msgstr "Automatische schijfdetectie inschakelen."
-
-#~ msgid ""
-#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
-#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
-#~ "older programs store binary data files as type 'TEXT' when saving and switch "
-#~ "the filetype in a second step. Afpd will potentially destroy such files when "
-#~ "'erroneously' changing bytes in order to do line break translation."
-#~ msgstr ""
-#~ "Inschakelen crlf vertaling van TEKST bestanden, automatisch omzettend "
-#~ "macintosh lijnonderbrekingen in degenen van Unix. Het gebruik van deze optie "
-#~ "zou gevaarlijk kunnen zijn aangezien sommige oudere programma's binaire data "
-#~ "bestanden opslaan als type  'TEKST'  wanneer het bewaren en omschakelen "
-#~ "bestandtype in een tweede stap plaats vindt. Afpd zou dus mogelijk "
-#~ "dergelijke bestanden kunnen beschadigen bij het 'per abuis' vertalen van de "
-#~ "regel afbrekingen."
-
-#~ msgid ""
-#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
-#~ "reduce database load. Don't set this option if the volume is modified by non "
-#~ "AFP clients (NFS/SMB/local)."
-#~ msgstr ""
-#~ "Wanneer geactiveerd, gebruikt afpd de ID informatie die opgeslagen is in het "
-#~ "AppleDouble V2 hoofdbestand om de database belasting omlaag te brengen. "
-#~ "Gebruik deze optie niet wanneer de volume is aangepast door niet AFP "
-#~ "werkstations (NFS/SMB/lokaal)."
-
-#~ msgid "Lowercases names in both directions"
-#~ msgstr "Lowercase namen in beide richtingen"
-
-#~ msgid "No case folding"
-#~ msgstr "Geen hoge/lage karakters veranderen"
-
-#~ msgid ""
-#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
-#~ "unpredictable behavior in MacOS."
-#~ msgstr ""
-#~ "Opmerking! Het selecteren van 'Tijdmachine' op meerdere netwerkdelingen kan "
-#~ "tot een onvoorspelbaar gedrag leiden op een MacOS."
-
-#~ msgid "Provides compatibility with Apple II clients."
-#~ msgstr "Biedt compatibiliteit met Apple II werkstations."
-
-#~ msgid "Set the CNID backend to be used for the volume."
-#~ msgstr "Stel de CNID backend in om te gebruiken voor het volume."
-
-#~ msgid ""
-#~ "Sets the database information to be stored in path. You have to specifiy a "
-#~ "writable location, even if the volume is read only."
-#~ msgstr ""
-#~ "Plaatst de database informatie dat opgeslagen moet worden in het pad. U moet "
-#~ "een beschrijfbare locatie opgeven zelfs als de volume alleen lezen is."
-
-#~ msgid ""
-#~ "The configuration has been changed.<br />You must apply the changes in order "
-#~ "for them to take effect."
-#~ msgstr ""
-#~ "De configuratie is veranderd.<br />U dient de wijzigingen toe te passen "
-#~ "voordat deze effect zullen hebben."
-
-#~ msgid "This controls how the case of filenames are viewed and stored."
-#~ msgstr ""
-#~ "Dit beheerd het geval van bestandnamen hoe die worden bekeken en opgeslagen."
-
-#~ msgid ""
-#~ "This controls whether the .AppleDouble directory gets created unless "
-#~ "absolutely needed. This option should not be used if files are access mostly "
-#~ "by Mac computers."
-#~ msgstr ""
-#~ "Dit controleert of de .AppleDouble map gecreërd wordt tenzij absoluut nodig. "
-#~ "Deze optie zou niet moeten worden gebruikt als de bestandstoegang meestal de "
-#~ "MAC computers zijn."
-
-#~ msgid ""
-#~ "This forces filenames to be restricted to the character set used by Windows. "
-#~ "This is not recommended for shares used principally by Mac computers."
-#~ msgstr ""
-#~ "Dit forceert dat bestandnamen worden beperkt aan het karakter reeks gebruikt "
-#~ "door Windows. Dit is niet aanbevolen voor netwerkdelingen die hoofdzakelijk "
-#~ "uit Mac computers bestaan."
-
-#~ msgid "Time Machine"
-#~ msgstr "Tijdmachine"
-
-#~ msgid "Uppercases names in both directions"
-#~ msgstr "Uppercases namen in beide richtingen"
-
-#~ msgid "Use AFP3 unix privileges."
-#~ msgstr "Gebruik AFP3 unix bevoegdheden."
-
-#~ msgid ""
-#~ "You can also install a package via SSH or console using the the pkg_add "
-#~ "command.<br />Example: pkg_add -r packagename"
-#~ msgstr ""
-#~ "U kunt ook een pakket installeren via SSH of met de console door gebruik te "
-#~ "maken van de pkg_add opdracht.<br />Voorbeeld: pkg_add -r pakketnaam"
-
-#~ msgid "cachecnid"
-#~ msgstr "cachecnid"
-
-#~ msgid "cnidscheme"
-#~ msgstr "cnidscheme"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "dbpath"
-#~ msgstr "dbpad"
-
-#~ msgid "mswindows"
-#~ msgstr "mswindows"
-
-#~ msgid "noadouble"
-#~ msgstr "noadouble"
-
-#~ msgid "nodev"
-#~ msgstr "nodev"
-
-#~ msgid "nofileid"
-#~ msgstr "nofileid"
-
-#~ msgid "nohex"
-#~ msgstr "nohex"
-
-#~ msgid "nostat"
-#~ msgstr "nostat"
-
-#~ msgid "prodos"
-#~ msgstr "prodos"
-
-#~ msgid "upriv"
-#~ msgstr "upriv"
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr ""
-#~ "U moet de server eerst herstarten voordat u de firmware upgrade kunt "
-#~ "uitvoeren."
-
-#~ msgid "DNLA/UPnP"
-#~ msgstr "DNLA/UPnP"
-
-#~ msgid "Enable administrative DLNA/UPnP WebGUI."
-#~ msgstr "Inschakelen administratieve DLNA/UPnP WebGUI."
+#~ msgid "no new software raid disk found."
+#~ msgstr "er zijn geen nieuwe Software RAID schijven gevonden."
