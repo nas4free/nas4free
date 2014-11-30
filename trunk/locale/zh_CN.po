@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2014-04-16 07:49+0000\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-17 04:09+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -75,6 +75,10 @@ msgstr "%s%% 可用"
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s 已被 %s%d 使用。"
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -480,10 +484,16 @@ msgstr "所有目录"
 msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr "所有目录都需要已挂载的路径，但路径 %s 尚未挂载。"
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr "所有分享区使用'usedots' 选项，导致任何以.Parent 和.Apple 开始的档案名称不合法。"
+
+msgid "All software raid disks are imported."
+msgstr ""
 
 msgid "All users will have the root privilege."
 msgstr "让所有的用户都有 root 权限。"
@@ -1219,6 +1229,9 @@ msgstr "DLNA/UPnP"
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP 媒体伺服器"
 
+msgid "DNLA/UPnP"
+msgstr ""
+
 msgid "DNS settings"
 msgstr "DNS 设置"
 
@@ -1468,8 +1481,14 @@ msgstr "共享目的端"
 msgid "Detected"
 msgstr "检测到"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "删除 RSYNC 远端共享"
+
+msgid "Detected an error while importing."
+msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3226,6 +3245,9 @@ msgstr "记录档"
 msgid "Log (mirror)"
 msgstr "记录档（镜像）"
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr "记录档层级"
 
@@ -3700,6 +3722,12 @@ msgstr "尚未配置硬盘。请先添加新的硬盘再看硬盘的诊断信息
 
 msgid "No file was uploaded."
 msgstr "没有文件被上传。"
+
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
+msgstr ""
 
 msgid "No pool was found."
 msgstr "找不到池。"
@@ -6450,6 +6478,9 @@ msgstr "Extent 的类型。"
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -6992,14 +7023,8 @@ msgstr "自适应（低耗电量）"
 msgid "add any supplemental parameters"
 msgstr ""
 
-msgid "all disks are imported."
-msgstr "已经导入所有硬盘。"
-
 msgid "all encrypted disks are imported."
 msgstr "已经导入所有加密硬盘。"
-
-msgid "all software raid disks are imported."
-msgstr "已经导入所有软体 RAID 硬盘。"
 
 msgid "change failed."
 msgstr "更改失败。"
@@ -7084,14 +7109,8 @@ msgstr "挂载"
 msgid "n/a"
 msgstr "无资料"
 
-msgid "no new disk found."
-msgstr "没有发现新的硬盘。"
-
 msgid "no new encrypted disk found."
 msgstr "没有发现新的加密硬盘。"
-
-msgid "no new software raid disk found."
-msgstr "没有发现新的软体 RAID 硬盘。"
 
 msgid "none"
 msgstr "无"
@@ -7142,166 +7161,14 @@ msgstr "卸载"
 msgid "version:"
 msgstr "版本："
 
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "客户端显示小写，服务器端显示大写。"
+#~ msgid "all software raid disks are imported."
+#~ msgstr "已经导入所有软体 RAID 硬盘。"
 
-#~ msgid "DDP"
-#~ msgstr "DDP"
+#~ msgid "all disks are imported."
+#~ msgstr "已经导入所有硬盘。"
 
-#~ msgid "No case folding"
-#~ msgstr "大小写视为相异"
+#~ msgid "no new disk found."
+#~ msgstr "没有发现新的硬盘。"
 
-#~ msgid "Provides compatibility with Apple II clients."
-#~ msgstr "兼容 Apple II。"
-
-#~ msgid "Uppercases names in both directions"
-#~ msgstr "双向大写名称"
-
-#~ msgid "Use AFP3 unix privileges."
-#~ msgstr "使用 AFP3 UNIX 权限。"
-
-#~ msgid "prodos"
-#~ msgstr "prodos"
-
-#~ msgid "upriv"
-#~ msgstr "upriv"
-
-#~ msgid ""
-#~ "Always use 0 for device number, helps when the device number is not constant "
-#~ "across a reboot, cluster, ..."
-#~ msgstr "请务必使用0 为装置编号，有助于装置编号在重新启动，集群时的易变..."
-
-#~ msgid "Automatic disk discovery"
-#~ msgstr "自动搜索磁盘"
-
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "自动搜索磁盘模式"
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "客户端显示大写，伺服器端显示小写"
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr "关闭 AFP-over-Appletalk 以避免 DDP 连线。"
-
-#~ msgid ""
-#~ "Disables :hex translations for anything except dot files. This option makes "
-#~ "the '/' character illegal."
-#~ msgstr "关闭 :hex 除了点文件以外, 使用十六进制翻译所有的文件。此选项使 '/' 字符不合法。"
-
-#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
-#~ msgstr "不广告 createfileid，resolveid，deleteid 呼唤。"
-
-#~ msgid "Enable automatic disk discovery."
-#~ msgstr "启用自动硬盘搜索。"
-
-#~ msgid ""
-#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
-#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
-#~ "older programs store binary data files as type 'TEXT' when saving and switch "
-#~ "the filetype in a second step. Afpd will potentially destroy such files when "
-#~ "'erroneously' changing bytes in order to do line break translation."
-#~ msgstr ""
-#~ "启用TEXT 文件的crlf "
-#~ "转换，把Macintosh格式的换行（crlf）自动转换成Unix格式。使用此选项有可能是危险的，因为一些较旧的程序储存时会将二进制数据文件(binary"
-#~ " data files) 储存为'TEXT' 型，然后再切换文件格式。 Afpd 将有可能“错误地”改变字节以转换换行符而破坏这种文件。"
-
-#~ msgid ""
-#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
-#~ "reduce database load. Don't set this option if the volume is modified by non "
-#~ "AFP clients (NFS/SMB/local)."
-#~ msgstr ""
-#~ "如果启用此设置， afpd 会使用存储在AppleDouble V2 的头文件（header）的ID "
-#~ "信息以减少数据库负载。如果卷（volume）会被非AFP 客户端（NFS/SMB/SMB/local）修改则不要设置此选项。"
-
-#~ msgid "Lowercases names in both directions"
-#~ msgstr "双向字母小写名称"
-
-#~ msgid ""
-#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
-#~ "unpredictable behavior in MacOS."
-#~ msgstr "注意！在MacOS 多个分享区选择'Time Machine' 将可能导致不可预知的行为。"
-
-#~ msgid ""
-#~ "Sets the database information to be stored in path. You have to specifiy a "
-#~ "writable location, even if the volume is read only."
-#~ msgstr "数据库资讯的存储路径设置。即使是唯读卷，您也必须指定一个可写入的位置。"
-
-#~ msgid ""
-#~ "The configuration has been changed.<br />You must apply the changes in order "
-#~ "for them to take effect."
-#~ msgstr "配置已被更改。<br />您必须套用更改以使其生效。"
-
-#~ msgid "This controls how the case of filenames are viewed and stored."
-#~ msgstr "控制文件​​名的大小写会否影响查看和存储文件。"
-
-#~ msgid ""
-#~ "This controls whether the .AppleDouble directory gets created unless "
-#~ "absolutely needed. This option should not be used if files are access mostly "
-#~ "by Mac computers."
-#~ msgstr "控制除非绝对必要是否会创建.AppleDouble 目录。如果档案主要是由Mac 电脑访问的话就不该使用此选项。"
-
-#~ msgid ""
-#~ "This forces filenames to be restricted to the character set used by Windows. "
-#~ "This is not recommended for shares used principally by Mac computers."
-#~ msgstr "这将强制档案名只限于Windows 所使用的字符集。不推荐使用\t于主要是由Mac 电脑使用的分享区。"
-
-#~ msgid "Time Machine"
-#~ msgstr "Time Machine"
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr "您必须重新启动系统，然后才可以升级固件。"
-
-#~ msgid "cachecnid"
-#~ msgstr "cachecnid"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "cnidscheme"
-#~ msgstr "cnidscheme"
-
-#~ msgid "dbpath"
-#~ msgstr "dbpath"
-
-#~ msgid "mswindows"
-#~ msgstr "微软视窗"
-
-#~ msgid "nofileid"
-#~ msgstr "nofileid"
-
-#~ msgid "nostat"
-#~ msgstr "nostat"
-
-#~ msgid "noadouble"
-#~ msgstr "noadouble"
-
-#~ msgid "nodev"
-#~ msgstr "nodev"
-
-#~ msgid "nohex"
-#~ msgstr "nohex"
-
-#~ msgid "Case Folding"
-#~ msgstr "大小写视为相同"
-
-#~ msgid "Set the CNID backend to be used for the volume."
-#~ msgstr "设置卷用的 CNID 后端。"
-
-#~ msgid ""
-#~ "Don't stat volume path when enumerating volumes list, useful for "
-#~ "automounting or volumes created by a preexec script."
-#~ msgstr ""
-#~ "Don't stat volume path when enumerating volumes list, useful for "
-#~ "automounting or volumes created by a preexec script."
-
-#~ msgid ""
-#~ "You can also install a package via SSH or console using the the pkg_add "
-#~ "command.<br />Example: pkg_add -r packagename"
-#~ msgstr ""
-#~ "您也可以通过 SSH 或在 console 使用 pkg_add 命令来安装套件。 <br />（例如：pkg_add -r packagename）"
-
-#~ msgid "DNLA/UPnP"
-#~ msgstr "DNLA/UPnP"
-
-#~ msgid "Enable administrative DLNA/UPnP WebGUI."
-#~ msgstr "启用 DLNA/UPnP 的管理网页。"
+#~ msgid "no new software raid disk found."
+#~ msgstr "没有发现新的软体 RAID 硬盘。"

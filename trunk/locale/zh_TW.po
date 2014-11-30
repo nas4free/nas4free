@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2014-09-14 14:51+0000\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-17 04:10+0000\n"
 "Last-Translator: akong <akong@aspa.idv.tw>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:36+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -75,6 +75,10 @@ msgstr "%s%% 可用"
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s 已被 %s%d 使用。"
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -284,7 +288,7 @@ msgstr "啟用此裝置的S.M.A.R.T.監測"
 msgid ""
 "Activate email report if you want to be notified if a failure or a new error "
 "has been detected, or if a S.M.A.R.T. command to a disk fails."
-msgstr "如果您想在檢測到新的錯誤或 S.M.A.R.T. 命令失敗時獲得通知，請開啟電郵報告功能。"
+msgstr "如果您希望偵測到新的錯誤或是對磁碟的 S.M.A.R.T. 指令失敗時獲得通知，請使用 email 回報功能。"
 
 msgid "Active Directory"
 msgstr "Active Directory"
@@ -480,10 +484,16 @@ msgstr "所有目錄"
 msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr "所有目錄都需要已掛載的路徑，但路徑 %s 尚未掛載。"
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr "所有分享區使用 'usedots' 選項，導致任何以 .Parent 和 .Apple 開始的檔案名稱不合法。"
+
+msgid "All software raid disks are imported."
+msgstr ""
 
 msgid "All users will have the root privilege."
 msgstr "讓所有的使用者都有 root 權限。"
@@ -932,7 +942,7 @@ msgid "Chinese (Traditional)"
 msgstr "正體中文"
 
 msgid "Choose UPS mode."
-msgstr ""
+msgstr "選擇 UPS 模式"
 
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr "選擇這個介面的封包必須符合這個規則。"
@@ -1110,9 +1120,9 @@ msgid ""
 ":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
 "wiki article BEFORE using this feature.</b></br>"
 msgstr ""
-"控制重复数据删除模式。<br><b><font color='red'>注意/警告</font>：使用此功能前，請參閱 <a "
+"控制重複資料删除模式。<br><b><font color='red'>注意/警告</font>：使用此功能前，請參閱 <a "
 "href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
-":disks-zfs-volumes-volume' target='_blank'>ZFS 卷 與 重复数据删除</a> 維基文章。</b></br>"
+":disks-zfs-volumes-volume' target='_blank'>ZFS 卷 與 重複資料删除</a> 維基文章。</b></br>"
 
 msgid ""
 "Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
@@ -1121,9 +1131,9 @@ msgid ""
 ":disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & "
 "deduplication</a> wiki article BEFORE using this feature.</b></br>"
 msgstr ""
-"控制重复数据删除模式。<br><b><font color='red'>注意/警告</font>：使用此功能前，請參閱 <a "
+"控制重複資料删除模式。<br><b><font color='red'>注意/警告</font>：使用此功能前，請參閱 <a "
 "href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
-":disks_zfs_datasets_dataset' target='_blank'>ZFS 數據集 與 重复数据删除</a> "
+":disks_zfs_datasets_dataset' target='_blank'>ZFS 數據集 與 重複資料删除</a> "
 "維基文章。</b></br>"
 
 msgid "Controls whether this dataset can be modified."
@@ -1218,6 +1228,9 @@ msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP 的媒體伺服器"
+
+msgid "DNLA/UPnP"
+msgstr ""
 
 msgid "DNS settings"
 msgstr "DNS 设置"
@@ -1451,13 +1464,13 @@ msgid "Destination host name or IP number."
 msgstr "目的端主機名稱或 IP 位址。"
 
 msgid "Destination network"
-msgstr "目的端網絡"
+msgstr "目標網段"
 
 msgid "Destination network bit count"
-msgstr "目的端網絡位數"
+msgstr "目標網域 bit count"
 
 msgid "Destination network for this static route"
-msgstr "此靜態路由的目的端網絡"
+msgstr "本路由設定要套用的目標網段"
 
 msgid "Destination port"
 msgstr "目的端端口"
@@ -1468,8 +1481,14 @@ msgstr "共享目的端"
 msgid "Detected"
 msgstr "已偵測"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "刪除 RSYNC 遠端分享"
+
+msgid "Detected an error while importing."
+msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -1580,7 +1599,7 @@ msgid "Disk"
 msgstr "磁碟"
 
 msgid "Disk space usage"
-msgstr "磁盤空間使用情況"
+msgstr "磁碟使用狀況"
 
 msgid "Disks"
 msgstr "磁碟"
@@ -2266,7 +2285,7 @@ msgid "Failed"
 msgstr "失敗"
 
 msgid "Failed to create in-memory file system."
-msgstr "无法创建 RAM Disk"
+msgstr "無法建立 RAM Disk"
 
 msgid "Failed to execute cron job."
 msgstr "執行定時任務失敗。"
@@ -2296,7 +2315,7 @@ msgid "Failed to upload metadata backup file."
 msgstr "元數據備份檔案上傳失敗。"
 
 msgid "Failed to write file to disk."
-msgstr "無法將檔案寫入磁盤。"
+msgstr "讀取檔案至磁碟失敗。"
 
 msgid "Failed."
 msgstr "失敗"
@@ -2410,7 +2429,7 @@ msgid "Free"
 msgstr "可用空間"
 
 msgid "Free disk space"
-msgstr "可用空間"
+msgstr "磁碟可用空間"
 
 msgid "French"
 msgstr "法文"
@@ -2440,7 +2459,7 @@ msgid "Gateway"
 msgstr "閘道器（Gateway）"
 
 msgid "Gateway to be used to reach the destination network."
-msgstr "用閘道器到達目的地網絡。"
+msgstr "用來到達目的端網路的閘道器。"
 
 msgid "General"
 msgstr "一般設定"
@@ -2663,7 +2682,7 @@ msgid "IP or FQDN address of remote Rsync server."
 msgstr "Rsync 遠程伺服器的 IP 或 FQDN 位址"
 
 msgid "IP type mismatch for network and gateway."
-msgstr "網路與閘道器的 IP 類型不符合。"
+msgstr "網路與閘道的 IP 類型不符合"
 
 msgid "IPv4 Configuration"
 msgstr "IPv4 配置"
@@ -2779,19 +2798,19 @@ msgid "Import"
 msgstr "導入"
 
 msgid "Import disks"
-msgstr "導入磁碟"
+msgstr "匯入磁碟"
 
 msgid "Import disks used in configuration."
-msgstr "導入磁盤的配置。"
+msgstr "匯入磁碟設定"
 
 msgid "Import firewall rules."
 msgstr "導入防火牆規則。"
 
 msgid "Import on-disk ZFS config"
-msgstr "從硬碟上導入 ZFS 設定"
+msgstr "從硬碟上匯入ZFS 設定"
 
 msgid "Import software raid disks"
-msgstr "導入軟體RAID的磁盤"
+msgstr "匯入軟體RAID的磁碟"
 
 msgid "In"
 msgstr "入"
@@ -2800,7 +2819,7 @@ msgid "In most cases, 'public' is used here."
 msgstr "大多數的情況下，這裡會設定'public'"
 
 msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
-msgstr ""
+msgstr "在次要模式中主要的UPS名稱就是這個UPS的名稱。"
 
 msgid "Include basic hardware information."
 msgstr "包括基本的硬件資訊。"
@@ -3067,7 +3086,7 @@ msgstr "拉脫維亞文"
 msgid ""
 "Leave '%s' for unformated disks and format them using <a "
 "href='%s'>format</a> menu."
-msgstr "使用 <a href='%s'>格式化</a> 菜單來保留 '%s' 的未格式化空間和格式化磁盤。"
+msgstr "使用 <a href='%s'>格式化</a> 選單來保留 '%s' 的未格式化空間和格式化磁碟。"
 
 msgid "Leave already configured auto snapshots."
 msgstr "保留已經配置的自動快照。"
@@ -3146,7 +3165,7 @@ msgid "List of available target name on all configured iSCSI targets"
 msgstr "所有已配置和可用的 iSCSI 目標名稱列表"
 
 msgid "List of detected disks"
-msgstr "檢測到的磁盤列表"
+msgstr "列出已偵測到的磁碟"
 
 msgid "List of imported users"
 msgstr "已導入用戶列表"
@@ -3227,6 +3246,9 @@ msgstr "記錄檔"
 msgid "Log (mirror)"
 msgstr "記錄檔（鏡像）"
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr "記錄檔層級"
 
@@ -3238,7 +3260,7 @@ msgstr "邏輯塊長度"
 
 #, php-format
 msgid "Logical Unit Controller Authorised network (%s by default)"
-msgstr "邏輯單元控制器授權網絡（默認 %s）"
+msgstr "LUN 網路 (預設 %s)"
 
 #, php-format
 msgid "Logical Unit Controller IP address (%s by default)"
@@ -3479,7 +3501,7 @@ msgid "Minutes"
 msgstr "分鐘"
 
 msgid "Minutes between network time sync."
-msgstr "多少分鐘進行一次網絡時間同步。"
+msgstr "多少分鐘進行一次校時。"
 
 msgid "Mirror"
 msgstr "鏡像"
@@ -3599,32 +3621,32 @@ msgid "Netgraph"
 msgstr "網路圖表"
 
 msgid "Network"
-msgstr "网络"
+msgstr "網路"
 
 msgid "Network File System"
-msgstr "网络檔案系統"
+msgstr "網路檔案系統(NFS)"
 
 msgid ""
 "Network authorised to access to the iSCSI target. It takes IP or CIDR "
 "addresses or 'ALL' for any IPs."
-msgstr "網絡授權可訪問 iSCSI 目標。它需要 IP 位址或 CIDR 位址或“ALL” （任何 IP 位址）。"
+msgstr "網路授權可訪問 iSCSI 目標。它需要 IP 位址或 CIDR 位址或“ALL” （任何 IP 位址）。"
 
 msgid "Network mask"
-msgstr "網絡掩碼"
+msgstr "網路遮罩"
 
 msgid "Network port"
-msgstr "網絡通訊端口"
+msgstr "網路卡通訊埠"
 
 msgid "Network that is authorised to access the NFS share."
-msgstr "授權可使用 NFS 分享區的網域。"
+msgstr "授權可以存取 NFS 分享區的網域。"
 
 msgid "Networks"
-msgstr "网络"
+msgstr "網路"
 
 msgid ""
 "Never - Poll (check) the device regardless of its power mode. This may cause "
 "a disk which is spun-down to be spun-up when it is checked."
-msgstr "永不 - 任何功耗模式都輪詢（檢查）裝置。這可能會導致降速中的磁盤增速。"
+msgstr "永不 - 永遠不管目標磁碟的電源模式而進行檢查。"
 
 msgid "Never - default"
 msgstr "從不 - 默認"
@@ -3688,19 +3710,25 @@ msgid "No device selected."
 msgstr "沒有選擇裝置。"
 
 msgid "No disk configured"
-msgstr "尚未配置磁盤"
+msgstr "尚未加入磁碟"
 
 #, php-format
 msgid "No disks available. Please add new <a href='%s'>disk</a> first."
-msgstr "沒有可用磁盤。請先添加新的<a href='%s'>磁盤</a>。"
+msgstr "沒有可用磁碟。請先新增<a href='%s'>磁碟</a>。"
 
 msgid ""
 "No disks configured, please add disks to see the diagnostic information of "
 "disks!"
-msgstr "尚未配置磁盤。請先添加新的磁盤再看磁盤的診斷信息！"
+msgstr "沒有磁碟設定。請先新增磁碟再來看磁碟診斷資訊!"
 
 msgid "No file was uploaded."
 msgstr "沒有檔案被上傳。"
+
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
+msgstr ""
 
 msgid "No pool was found."
 msgstr "找不到池。"
@@ -3909,10 +3937,10 @@ msgid "Overload"
 msgstr "負載"
 
 msgid "Overwrite already configured disks (only affects filesystem value)."
-msgstr "覆蓋已配置磁盤（僅影響檔案系統值）。"
+msgstr "覆蓋已設定的磁碟 (只影響檔案系統值)。"
 
 msgid "Overwrite disks configuration"
-msgstr "覆蓋磁碟配置"
+msgstr "覆蓋磁碟設定"
 
 msgid "Owner"
 msgstr "擁有者"
@@ -4236,7 +4264,7 @@ msgstr "代理伺服器（Proxy）"
 msgid ""
 "Puts the hard disk into standby mode when the selected amount of time after "
 "the last hard disk access has been elapsed."
-msgstr "設定當硬碟待命了指定的时间後設為待命模式。"
+msgstr "設定當硬碟沒有作動多久之後將其設為待命模式。"
 
 msgid "Queue Depth"
 msgstr "佇列深度"
@@ -4653,7 +4681,7 @@ msgid ""
 msgstr "請在網頁界面中選擇超文本傳輸協議（HTTP）或安全超文本傳輸協議（HTTPS）。"
 
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
-msgstr "請選擇已開啟 S.M.A.R.T. 監測的磁碟。"
+msgstr "選擇要開啟 S.M.A.R.T. 監測的磁碟。"
 
 msgid "Select item to remove from the list"
 msgstr "請從列表中選擇要刪除的項目"
@@ -4843,7 +4871,7 @@ msgid "Shutdown timer"
 msgstr "關機倒數"
 
 msgid "Simple Network Management Protocol"
-msgstr "Simple Network Management Protocol"
+msgstr "SNMP"
 
 msgid "Single-parity RAID-Z"
 msgstr "單奇偶校驗容錯性 （RAID-Z）"
@@ -5272,7 +5300,7 @@ msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr "在HAST 成為主節點（Primary node）之前無法使用HAST 卷。"
 
 msgid "The IP address of the UPS master."
-msgstr ""
+msgstr "主要UPS的IP位址"
 
 msgid "The IP address that this hostname represents."
 msgstr "主機名稱所代表的 IP 位址。"
@@ -5474,6 +5502,8 @@ msgid ""
 "for them to take effect.<br /><b>If this message persist take a look at the "
 "<a href='%s'>system log</a> for more information.</b>"
 msgstr ""
+"設定已經變更。<br />您必須套用變更才可以變更設定。<br /><b>假如這個訊息一直存在請去看一下<a "
+"href='%s'>系統紀錄</a>來取得更多資訊。</b>"
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
@@ -5690,7 +5720,7 @@ msgstr ""
 
 #, php-format
 msgid "The network '%s' is invalid."
-msgstr "'%s' 網絡無效。"
+msgstr "網路 '%s' 是無效的。"
 
 msgid ""
 "The new password does not match. Please ensure the passwords match exactly."
@@ -6451,6 +6481,9 @@ msgstr "Extent 的類型。"
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -6887,6 +6920,7 @@ msgid ""
 "You can also install a package via SSH or console using the the pkg add "
 "command.<br />Example: pkg add packagename"
 msgstr ""
+"您也可以透過 SSH 或是 Console 介面並使用 pkg add 指令來安裝套件。<br />例如: pkg add packagename"
 
 msgid "You can use the following parameters for substitution:"
 msgstr "您可以使用以下的參數替代："
@@ -6928,13 +6962,13 @@ msgstr "您可以指定邏輯塊長度（默認為 %d）"
 msgid ""
 "You must <a href='%s'>reboot</a> the system before you can upgrade the "
 "firmware."
-msgstr ""
+msgstr "在您可以升級韌體之前您必須 <a href='%s'>重新啟動</a> 系統。"
 
 msgid "You must add disks first."
 msgstr "請先加入磁盤。"
 
 msgid "You must enter the same IP type for network and gateway."
-msgstr "您必須輸入與網絡和閘道器相同的 IP 類型。"
+msgstr "你必須在網路與閘道輸入相同的 IP 類型。"
 
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
@@ -6992,16 +7026,10 @@ msgstr "自適應（低耗電量）"
 
 #, php-format
 msgid "add any supplemental parameters"
-msgstr ""
-
-msgid "all disks are imported."
-msgstr "已经導入所有磁盤。"
+msgstr "新增任意補充的參數"
 
 msgid "all encrypted disks are imported."
 msgstr "已经導入所有加密磁盤。"
-
-msgid "all software raid disks are imported."
-msgstr "已经導入所有軟體 RAID 磁盤。"
 
 msgid "change failed."
 msgstr "更改失敗。"
@@ -7086,14 +7114,8 @@ msgstr "掛載"
 msgid "n/a"
 msgstr "無資料"
 
-msgid "no new disk found."
-msgstr "沒有發現新的磁盤。"
-
 msgid "no new encrypted disk found."
 msgstr "沒有發現新的加密磁盤。"
-
-msgid "no new software raid disk found."
-msgstr "沒有發現新的軟體 RAID 磁盤。"
 
 msgid "none"
 msgstr "無"
@@ -7144,166 +7166,14 @@ msgstr "卸載"
 msgid "version:"
 msgstr "版本："
 
-#~ msgid "Case Folding"
-#~ msgstr "大小寫視為相同"
+#~ msgid "no new disk found."
+#~ msgstr "沒有發現新的磁盤。"
 
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "客戶端顯示小寫，伺服端顯示大寫。"
+#~ msgid "no new software raid disk found."
+#~ msgstr "沒有發現新的軟體 RAID 磁盤。"
 
-#~ msgid "DDP"
-#~ msgstr "DDP"
+#~ msgid "all software raid disks are imported."
+#~ msgstr "已经導入所有軟體 RAID 磁盤。"
 
-#~ msgid ""
-#~ "Don't stat volume path when enumerating volumes list, useful for "
-#~ "automounting or volumes created by a preexec script."
-#~ msgstr ""
-#~ "Don't stat volume path when enumerating volumes list, useful for "
-#~ "automounting or volumes created by a preexec script."
-
-#~ msgid "No case folding"
-#~ msgstr "大小寫視為相異"
-
-#~ msgid "Uppercases names in both directions"
-#~ msgstr "雙向大寫名稱"
-
-#~ msgid "Use AFP3 unix privileges."
-#~ msgstr "使用 AFP3 UNIX 權限。"
-
-#~ msgid "cachecnid"
-#~ msgstr "cachecnid"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "noadouble"
-#~ msgstr "noadouble"
-
-#~ msgid "nodev"
-#~ msgstr "nodev"
-
-#~ msgid "nofileid"
-#~ msgstr "nofileid"
-
-#~ msgid "nohex"
-#~ msgstr "nohex"
-
-#~ msgid "nostat"
-#~ msgstr "nostat"
-
-#~ msgid "prodos"
-#~ msgstr "prodos"
-
-#~ msgid "upriv"
-#~ msgstr "upriv"
-
-#~ msgid ""
-#~ "Always use 0 for device number, helps when the device number is not constant "
-#~ "across a reboot, cluster, ..."
-#~ msgstr "請務必使用0 為裝置編號，有助於裝置編號在重新啟動，集群時的易變..."
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr "關閉 AFP-over-Appletalk 以避免 DDP 連線。"
-
-#~ msgid ""
-#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
-#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
-#~ "older programs store binary data files as type 'TEXT' when saving and switch "
-#~ "the filetype in a second step. Afpd will potentially destroy such files when "
-#~ "'erroneously' changing bytes in order to do line break translation."
-#~ msgstr ""
-#~ "啟用 TEXT 文件的 crlf "
-#~ "轉換，把Macintosh格式的換行（crlf）自動轉換成Unix格式。使用此選項有可能是危險的，因為一些較舊的程序儲存時會將二進制數據文件(binary"
-#~ " data files) 儲存為 'TEXT' 型，然后再切換文件格式。Afpd 將有可能“錯誤地”改變字節以轉換換行符而破壞這種文件。"
-
-#~ msgid ""
-#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
-#~ "unpredictable behavior in MacOS."
-#~ msgstr "注意！在MacOS 多個共享區選擇 'Time Machine' 將可能導致不可預知的行為。"
-
-#~ msgid "Set the CNID backend to be used for the volume."
-#~ msgstr "設置卷用的 CNID 後端。"
-
-#~ msgid ""
-#~ "The configuration has been changed.<br />You must apply the changes in order "
-#~ "for them to take effect."
-#~ msgstr "配置已被更改。<br />您必須套用更改以使其生效。"
-
-#~ msgid ""
-#~ "This controls whether the .AppleDouble directory gets created unless "
-#~ "absolutely needed. This option should not be used if files are access mostly "
-#~ "by Mac computers."
-#~ msgstr "控制除非絕對必要是否會創建 .AppleDouble 目錄。如果檔案主要是由Mac 電腦訪問的話就不该使用此選項。"
-
-#~ msgid ""
-#~ "This forces filenames to be restricted to the character set used by Windows. "
-#~ "This is not recommended for shares used principally by Mac computers."
-#~ msgstr "這將強制檔案名只限於 Windows 所使用的字符集。不推薦使用\t於主要是由 Mac 電腦使用的分享區。"
-
-#~ msgid "Time Machine"
-#~ msgstr "Time Machine"
-
-#~ msgid "cnidscheme"
-#~ msgstr "cnidscheme"
-
-#~ msgid "mswindows"
-#~ msgstr "微軟視窗"
-
-#~ msgid ""
-#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
-#~ "reduce database load. Don't set this option if the volume is modified by non "
-#~ "AFP clients (NFS/SMB/local)."
-#~ msgstr ""
-#~ "如果啟用設置， afpd 會使用存儲在 AppleDouble V2 的頭文件（header）的 ID "
-#~ "信息以減少數據庫負載。如果卷（volume）會被非 AFP 客戶端（NFS/SMB/SMB/local）修改則不要設置此選項。"
-
-#~ msgid ""
-#~ "Sets the database information to be stored in path. You have to specifiy a "
-#~ "writable location, even if the volume is read only."
-#~ msgstr "數據庫資訊的存儲路徑設置。即使是唯讀卷，您也必須指定一個可寫入的位置。"
-
-#~ msgid "Enable automatic disk discovery."
-#~ msgstr "啟用自動磁碟搜索。"
-
-#~ msgid "Lowercases names in both directions"
-#~ msgstr "雙向字母小寫名稱"
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "客戶端顯示大寫，伺服器端顯示小寫"
-
-#~ msgid ""
-#~ "Disables :hex translations for anything except dot files. This option makes "
-#~ "the '/' character illegal."
-#~ msgstr "關閉 :hex 除了點文件以外, 使用十六進制翻譯所有的文件。此選項使 '/' 字符不合法。"
-
-#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
-#~ msgstr "不廣告 createfileid，resolveid，deleteid 呼喚。"
-
-#~ msgid "Provides compatibility with Apple II clients."
-#~ msgstr "兼容 Apple II。"
-
-#~ msgid "This controls how the case of filenames are viewed and stored."
-#~ msgstr "控制檔案名的大小寫會會否影響查看和存儲檔案。"
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr "您必須重新啟動系統，然後才可以升級韌體。"
-
-#~ msgid "dbpath"
-#~ msgstr "dbpath"
-
-#~ msgid ""
-#~ "You can also install a package via SSH or console using the the pkg_add "
-#~ "command.<br />Example: pkg_add -r packagename"
-#~ msgstr ""
-#~ "您也可以通過 SSH 或在 console 使用 pkg_add 命令來安裝套件。<br />（例如：pkg_add -r packagename）"
-
-#~ msgid "DNLA/UPnP"
-#~ msgstr "DNLA/UPnP"
-
-#~ msgid "Enable administrative DLNA/UPnP WebGUI."
-#~ msgstr "啟用 DLNA/ UPnP 的的管理網頁。"
-
-#~ msgid "Automatic disk discovery"
-#~ msgstr "自動尋找磁碟"
-
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "自動尋找磁碟模式"
+#~ msgid "all disks are imported."
+#~ msgstr "已经導入所有磁盤。"

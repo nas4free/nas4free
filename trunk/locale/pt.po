@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2012-10-14 07:46+0000\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-17 04:07+0000\n"
 "Last-Translator: Luís Vilhena Santos <LuisVilhenaSantos@Hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: PORTUGAL\n"
 "Language: \n"
 "X-Poedit-Language: Portuguese\n"
@@ -77,6 +77,10 @@ msgstr ""
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s já está a ser usado por %s%d."
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -510,12 +514,18 @@ msgstr ""
 "Todas as directorias requerem que o caminho esteja montado, mas a Directoria "
 "%s não está montada."
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "Todas as partilhas usam a opção 'usedots' logo compondo os nomes de "
 "ficheiro. Directoria pai e qualquer coisa começando com .Apple é ilegal."
+
+msgid "All software raid disks are imported."
+msgstr ""
 
 msgid "All users will have the root privilege."
 msgstr "Todos os utilizadores terão previlégios de administrador (root)"
@@ -1275,6 +1285,9 @@ msgstr ""
 msgid "DLNA/UPnP Media Server"
 msgstr ""
 
+msgid "DNLA/UPnP"
+msgstr ""
+
 msgid "DNS settings"
 msgstr "Definições de DNS"
 
@@ -1524,8 +1537,14 @@ msgstr "Partilha de destino"
 msgid "Detected"
 msgstr "Detectado"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "Partilhas remotas RSYNC detectadas"
+
+msgid "Detected an error while importing."
+msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3378,6 +3397,9 @@ msgstr "Registo"
 msgid "Log (mirror)"
 msgstr ""
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr "Nível de Registo"
 
@@ -3878,6 +3900,12 @@ msgstr ""
 
 msgid "No file was uploaded."
 msgstr "Nenhum ficheiro foi adicionado."
+
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
+msgstr ""
 
 msgid "No pool was found."
 msgstr "Não foi encontrado nenhum conjunto de voumes."
@@ -6874,6 +6902,9 @@ msgstr "Tipo usado como extensão."
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -7453,14 +7484,8 @@ msgstr ""
 msgid "add any supplemental parameters"
 msgstr ""
 
-msgid "all disks are imported."
-msgstr "todos os Discos foram carregados."
-
 msgid "all encrypted disks are imported."
 msgstr "todos os Discos encriptados foram carregados."
-
-msgid "all software raid disks are imported."
-msgstr "todos os Discos raid (software) foram carregados."
 
 msgid "change failed."
 msgstr "falhou a mudança."
@@ -7545,13 +7570,7 @@ msgstr "montar"
 msgid "n/a"
 msgstr "n/d (não disponível)"
 
-msgid "no new disk found."
-msgstr ""
-
 msgid "no new encrypted disk found."
-msgstr ""
-
-msgid "no new software raid disk found."
 msgstr ""
 
 msgid "none"
@@ -7604,182 +7623,8 @@ msgstr "umount"
 msgid "version:"
 msgstr ""
 
-#~ msgid ""
-#~ "Always use 0 for device number, helps when the device number is not constant "
-#~ "across a reboot, cluster, ..."
-#~ msgstr ""
-#~ "Utilize sempre o dispositivo 0, ajuda quando o numero de dispositivo......."
+#~ msgid "all software raid disks are imported."
+#~ msgstr "todos os Discos raid (software) foram carregados."
 
-#~ msgid "Automatic disk discovery"
-#~ msgstr "Procura automática de disco"
-
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "Modo de procura automática de disco"
-
-#~ msgid "Case Folding"
-#~ msgstr "Case Folding"
-
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "O cliente vê minúsculas, o servidor vê maiúsculas"
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "O cliente vê maiúsculas, o servidor vê minúsculas"
-
-#~ msgid "DDP"
-#~ msgstr "DDP"
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr "Desativar AFP-over-Appletalk para prevenir conexões DDP"
-
-#~ msgid ""
-#~ "Disables :hex translations for anything except dot files. This option makes "
-#~ "the '/' character illegal."
-#~ msgstr ""
-#~ "Desactiva :hex traduções para tudo excepto para ficheiro dot. Esta opção faz "
-#~ "com que o caracter '/' seja ilegal."
-
-#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
-#~ msgstr "Não avisar as chamadas createfileid, resolveid, deleteid."
-
-#~ msgid ""
-#~ "Don't stat volume path when enumerating volumes list, useful for "
-#~ "automounting or volumes created by a preexec script."
-#~ msgstr ""
-#~ "Não obter o caminho de volume quando enumerar a lista de volumes, útil para "
-#~ "auto-montar ou para volumes criadosc om o script preexec."
-
-#~ msgid "Enable automatic disk discovery."
-#~ msgstr "Permitir a recuperação automática de disco."
-
-#~ msgid ""
-#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
-#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
-#~ "older programs store binary data files as type 'TEXT' when saving and switch "
-#~ "the filetype in a second step. Afpd will potentially destroy such files when "
-#~ "'erroneously' changing bytes in order to do line break translation."
-#~ msgstr ""
-#~ "Permite tradução crlf para ficheiros TEXTO, convertendo automaticamente as "
-#~ "quebras de linha macintosh para Unix. Usar esta opção pode ser perigoso uma "
-#~ "vez que alguns programas antigos guardam ficheiros de dados binários com o "
-#~ "tipo  'TEXTO' quando guardam ou mudam o tipo de ficheiro num segundo passo. "
-#~ "Afpd vai potencialmente destruir tais ficheiros quando 'erradamente' mudar "
-#~ "bytes com vista a fazer a conversão da quebra de linha."
-
-#~ msgid ""
-#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
-#~ "reduce database load. Don't set this option if the volume is modified by non "
-#~ "AFP clients (NFS/SMB/local)."
-#~ msgstr ""
-#~ "Se estiver activo, o afpd utiliza a informação de ID guardada nos ficheiros "
-#~ "de cabeçalho AppleDouble V2 para reduzir a carga na base de dados. Não "
-#~ "active esta opção se o volume é modificado por clientes não AFP "
-#~ "(NFS/SMB/local)."
-
-#~ msgid "Lowercases names in both directions"
-#~ msgstr "Nomes minúsculos em ambas as direcções"
-
-#~ msgid "No case folding"
-#~ msgstr "No case folding"
-
-#~ msgid ""
-#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
-#~ "unpredictable behavior in MacOS."
-#~ msgstr ""
-#~ "Nota! Seleccionar 'Time Machine' em múltiplas partilhas pode causar um "
-#~ "comportamento inesperado no MacOS."
-
-#~ msgid "Provides compatibility with Apple II clients."
-#~ msgstr "Fornece compatibilidade com clientes Apple II."
-
-#~ msgid "Set the CNID backend to be used for the volume."
-#~ msgstr "Coloca o CNID final para ser usado no volume."
-
-#~ msgid ""
-#~ "Sets the database information to be stored in path. You have to specifiy a "
-#~ "writable location, even if the volume is read only."
-#~ msgstr ""
-#~ "Configura a informação da base de dados para ser guardada. Tem de "
-#~ "especificar uma localização com permissão de escrita, mesmo que o volume "
-#~ "seja apenas de leitura."
-
-#~ msgid ""
-#~ "The configuration has been changed.<br />You must apply the changes in order "
-#~ "for them to take effect."
-#~ msgstr ""
-#~ "A configuração foi alterar.<br />Deve aplicar as alterações de forma a que "
-#~ "tenham efeito."
-
-#~ msgid "This controls how the case of filenames are viewed and stored."
-#~ msgstr "Isto controla de que forma o nome do ficheiro é visto e guardado."
-
-#~ msgid ""
-#~ "This controls whether the .AppleDouble directory gets created unless "
-#~ "absolutely needed. This option should not be used if files are access mostly "
-#~ "by Mac computers."
-#~ msgstr ""
-#~ "Isto controla de que forma a directoria .AppleDouble é criada a menos que "
-#~ "seja mesmo precisa. Esta opção não deve ser usada se os ficheiros são "
-#~ "acedidos na sua maioria por computadores Mac."
-
-#~ msgid ""
-#~ "This forces filenames to be restricted to the character set used by Windows. "
-#~ "This is not recommended for shares used principally by Mac computers."
-#~ msgstr ""
-#~ "Isto força o nome dos ficheiros a utilizarem apenas os caracteres definidos "
-#~ "pelo Windows. Não é recomendado para partilhas usadas principalmente por "
-#~ "computadores Mac."
-
-#~ msgid "Time Machine"
-#~ msgstr "Time Machine"
-
-#~ msgid "Uppercases names in both directions"
-#~ msgstr "Nomes em maiusculas em ambas as direcções."
-
-#~ msgid "Use AFP3 unix privileges."
-#~ msgstr "Usar previlégios unix AFP3"
-
-#~ msgid ""
-#~ "You can also install a package via SSH or console using the the pkg_add "
-#~ "command.<br />Example: pkg_add -r packagename"
-#~ msgstr ""
-#~ "Pode também instalar um pacote usando SSH ou a consola utilizado o comando "
-#~ "pkg_add.<br />Exemplo: pkg_add -r nome_do_pacote"
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr "Tem que reninicializar o sistema para poder actualizar o firmware."
-
-#~ msgid "cachecnid"
-#~ msgstr "cachecnid"
-
-#~ msgid "cnidscheme"
-#~ msgstr "cnidscheme"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "dbpath"
-#~ msgstr "dbpath"
-
-#~ msgid "mswindows"
-#~ msgstr "mswindows"
-
-#~ msgid "noadouble"
-#~ msgstr "noadouble"
-
-#~ msgid "nodev"
-#~ msgstr "nodev"
-
-#~ msgid "nofileid"
-#~ msgstr "nofileid"
-
-#~ msgid "nohex"
-#~ msgstr "nohex"
-
-#~ msgid "nostat"
-#~ msgstr "nostat"
-
-#~ msgid "prodos"
-#~ msgstr "prodos"
-
-#~ msgid "upriv"
-#~ msgstr "upriv"
+#~ msgid "all disks are imported."
+#~ msgstr "todos os Discos foram carregados."

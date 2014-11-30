@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2012-09-05 08:21+0000\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-17 04:03+0000\n"
 "Last-Translator: Carsten Matzon <carsten@matzon.dk>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: DENMARK\n"
 "Language: \n"
 "X-Poedit-Language: Danish\n"
@@ -77,6 +77,10 @@ msgstr ""
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s er allerede brugt af %s%d."
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -501,12 +505,18 @@ msgstr "Alle mapper"
 msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr "Alle mapper kræver en monteret sti, men stien %s er ikke monteret."
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "Alle shares bruger indstillinger 'usedots' og gør derfor filnavnene .Parent "
 "og alt hvad der begynder med .Apple ulovlige."
+
+msgid "All software raid disks are imported."
+msgstr ""
 
 msgid "All users will have the root privilege."
 msgstr "Alle brugere vil have root rettigheder."
@@ -1260,6 +1270,9 @@ msgstr ""
 msgid "DLNA/UPnP Media Server"
 msgstr ""
 
+msgid "DNLA/UPnP"
+msgstr ""
+
 msgid "DNS settings"
 msgstr "DNS indstillinger"
 
@@ -1508,8 +1521,14 @@ msgstr "Destinations share"
 msgid "Detected"
 msgstr "Fundet"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "Fundne fjerne RSYNC shares"
+
+msgid "Detected an error while importing."
+msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3335,6 +3354,9 @@ msgstr "Log"
 msgid "Log (mirror)"
 msgstr "Log (spejl)"
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr "Log niveau"
 
@@ -3835,6 +3857,12 @@ msgstr ""
 
 msgid "No file was uploaded."
 msgstr "Ingen fil blev oploaded."
+
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
+msgstr ""
 
 msgid "No pool was found."
 msgstr "Ingen pulje fundet."
@@ -6815,6 +6843,9 @@ msgstr "Type brugt som Extent."
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -7388,13 +7419,7 @@ msgstr ""
 msgid "add any supplemental parameters"
 msgstr ""
 
-msgid "all disks are imported."
-msgstr ""
-
 msgid "all encrypted disks are imported."
-msgstr ""
-
-msgid "all software raid disks are imported."
 msgstr ""
 
 msgid "change failed."
@@ -7480,13 +7505,7 @@ msgstr "mount"
 msgid "n/a"
 msgstr "Ikke tilgængelig"
 
-msgid "no new disk found."
-msgstr ""
-
 msgid "no new encrypted disk found."
-msgstr ""
-
-msgid "no new software raid disk found."
 msgstr ""
 
 msgid "none"
@@ -7537,183 +7556,3 @@ msgstr "umount"
 #, php-format
 msgid "version:"
 msgstr ""
-
-#~ msgid ""
-#~ "Always use 0 for device number, helps when the device number is not constant "
-#~ "across a reboot, cluster, ..."
-#~ msgstr ""
-#~ "Brug altid 0 som enhedsnummer, hjælper når enhedsnummeret ikke er kontant "
-#~ "efter genstart eller i cluster osv."
-
-#~ msgid "Automatic disk discovery"
-#~ msgstr "Automatisk disk gendannelse"
-
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "Automatiks disk gendannelses tilstand"
-
-#~ msgid "Case Folding"
-#~ msgstr "Skift mellem små og store bogstaver"
-
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "Klient ser små bogstaver, server ser store bogstaver"
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "Klient ser store bogstaver, server ser små bogstaver"
-
-#~ msgid "DDP"
-#~ msgstr "DDP"
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr "Deaktiver AFP-over-Appletalk for at forhindre DDP forbindelser."
-
-#~ msgid ""
-#~ "Disables :hex translations for anything except dot files. This option makes "
-#~ "the '/' character illegal."
-#~ msgstr ""
-#~ "Deaktiverer :hex oversættelser for alt andet end punktum-filer. Denne "
-#~ "indstillinger gør '/'-tegnet ulovligt."
-
-#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
-#~ msgstr "Benyt ikke createfileid, resolveid og deleteid kald."
-
-#~ msgid ""
-#~ "Don't stat volume path when enumerating volumes list, useful for "
-#~ "automounting or volumes created by a preexec script."
-#~ msgstr ""
-#~ "Brug ikke stat på volume stien, når volume listen optælles, nyttig til "
-#~ "automontering og volumer oprettet af et preexec script."
-
-#~ msgid "Enable automatic disk discovery."
-#~ msgstr "Aktiver automatisk disk gendannelse."
-
-#~ msgid ""
-#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
-#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
-#~ "older programs store binary data files as type 'TEXT' when saving and switch "
-#~ "the filetype in a second step. Afpd will potentially destroy such files when "
-#~ "'erroneously' changing bytes in order to do line break translation."
-#~ msgstr ""
-#~ "Aktiverer crlf oversættelse for TEKST filer, og konverterer automatisk "
-#~ "macintosh linjeskift til Unix linjeskift. Det kan være farligt at bruge "
-#~ "denne indstillinger, da nogle ældre programmer gemmer binære data filer som "
-#~ "typen 'TEKST' når de gemmer, og skifter filtypen i et ekstra skridt. Afpd "
-#~ "vil muligvis ødelægge sådanne filer når de 'fejlagtigt' ændrer bytes for at "
-#~ "udføre linjeskift oversættelsen."
-
-#~ msgid ""
-#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
-#~ "reduce database load. Don't set this option if the volume is modified by non "
-#~ "AFP clients (NFS/SMB/local)."
-#~ msgstr ""
-#~ "Hvis sat, bruger afpd ID informationen der er gemt i AppleDouble V2 header "
-#~ "filer, for at reducere database belastningen. Angiv ikke denne indstilling "
-#~ "hvis volumen bliver ændret af ikke-AFP klienter (NFS/SMB/Lokal)."
-
-#~ msgid "Lowercases names in both directions"
-#~ msgstr "Navne med små bogstaver i begge retninger"
-
-#~ msgid "No case folding"
-#~ msgstr "Ingen skift mellem store og små bogstaver"
-
-#~ msgid ""
-#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
-#~ "unpredictable behavior in MacOS."
-#~ msgstr ""
-#~ "Bemærk! Hvis 'Time Machine' vælges på flere shares, kan det resultere i "
-#~ "uforudsigelig adfærd i MacOS."
-
-#~ msgid "Provides compatibility with Apple II clients."
-#~ msgstr "Giver kompatibilitet til Apple II klienter."
-
-#~ msgid "Set the CNID backend to be used for the volume."
-#~ msgstr "Vælg CNID backend der skal bruges til dette volume."
-
-#~ msgid ""
-#~ "Sets the database information to be stored in path. You have to specifiy a "
-#~ "writable location, even if the volume is read only."
-#~ msgstr ""
-#~ "Vælg stien hvor database informationen skal gemmes. Du skal angive en "
-#~ "skrivbar placering, selv om volumen er skrivebeskyttet."
-
-#~ msgid ""
-#~ "The configuration has been changed.<br />You must apply the changes in order "
-#~ "for them to take effect."
-#~ msgstr ""
-#~ "Konfigurationen er blevet ændret.<br />Du skal anvende ændringer inden de "
-#~ "bliver taget i brug."
-
-#~ msgid "This controls how the case of filenames are viewed and stored."
-#~ msgstr ""
-#~ "Dette styrer hvordan store og små bogstaver i filnavne vises og gemmes."
-
-#~ msgid ""
-#~ "This controls whether the .AppleDouble directory gets created unless "
-#~ "absolutely needed. This option should not be used if files are access mostly "
-#~ "by Mac computers."
-#~ msgstr ""
-#~ "Dette styrer om .AppleDouble mappen bliver oprettet, når den ikke er absolut "
-#~ "nødvendig. Denne indstilling bør ikke bruges, hvis filerne oftest tilgås af "
-#~ "Mac computere."
-
-#~ msgid ""
-#~ "This forces filenames to be restricted to the character set used by Windows. "
-#~ "This is not recommended for shares used principally by Mac computers."
-#~ msgstr ""
-#~ "Dette tvinger tilnavne til at være begrænset af tegnsættet der bruges af "
-#~ "Windows. Dette er ikke anbefalet for shares der oftest tilgås af Mac "
-#~ "computere."
-
-#~ msgid "Time Machine"
-#~ msgstr "Time Machine"
-
-#~ msgid "Uppercases names in both directions"
-#~ msgstr "Store bogstavs navne i begge retninger"
-
-#~ msgid "Use AFP3 unix privileges."
-#~ msgstr "Brug AFP3 unix rettigheder."
-
-#~ msgid ""
-#~ "You can also install a package via SSH or console using the the pkg_add "
-#~ "command.<br />Example: pkg_add -r packagename"
-#~ msgstr ""
-#~ "Du kan også installere en pakke via SSH eller konsollen, ved at bruge "
-#~ "pkg_add kommandoen.<br />Eksempel: pkg_add -r pakkenavn"
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr "Du skal genstarte systemet, inden du kan opgradere firmwaren."
-
-#~ msgid "cachecnid"
-#~ msgstr "cachecnid"
-
-#~ msgid "cnidscheme"
-#~ msgstr "cnidscheme"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "dbpath"
-#~ msgstr "dbpath"
-
-#~ msgid "mswindows"
-#~ msgstr "mswindows"
-
-#~ msgid "noadouble"
-#~ msgstr "noadouble"
-
-#~ msgid "nodev"
-#~ msgstr "nodev"
-
-#~ msgid "nofileid"
-#~ msgstr "nofileid"
-
-#~ msgid "nohex"
-#~ msgstr "nohex"
-
-#~ msgid "nostat"
-#~ msgstr "nostat"
-
-#~ msgid "prodos"
-#~ msgstr "prodos"
-
-#~ msgid "upriv"
-#~ msgstr "upriv"

@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2012-07-09 19:53+0000\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-17 04:09+0000\n"
 "Last-Translator: Hasan Yılmaz <iletisim@hasanyilmaz.net>\n"
 "Language-Team: NAS4Free <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:36+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-Language: Turkish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -81,6 +81,10 @@ msgstr ""
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s zaten %s%d tarafından kullanılmaktadır."
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -488,9 +492,15 @@ msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr ""
 "%s konumu tanımlanmamış.Tüm dizinler tanımlanmış bir konuma ihtiyaç duyuyor."
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
+msgstr ""
+
+msgid "All software raid disks are imported."
 msgstr ""
 
 msgid "All users will have the root privilege."
@@ -1222,6 +1232,9 @@ msgstr ""
 msgid "DLNA/UPnP Media Server"
 msgstr ""
 
+msgid "DNLA/UPnP"
+msgstr ""
+
 msgid "DNS settings"
 msgstr "DNS ayarları"
 
@@ -1469,8 +1482,14 @@ msgstr "Hedef Paylaşım"
 msgid "Detected"
 msgstr "Algılandı"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "RSYNC Uzak paylaşım algıladı"
+
+msgid "Detected an error while importing."
+msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3244,6 +3263,9 @@ msgstr "Günlük"
 msgid "Log (mirror)"
 msgstr ""
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr "Günlükleme Seviyesi"
 
@@ -3724,6 +3746,12 @@ msgid ""
 msgstr ""
 
 msgid "No file was uploaded."
+msgstr ""
+
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
 msgstr ""
 
 msgid "No pool was found."
@@ -6434,6 +6462,9 @@ msgstr ""
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -6970,13 +7001,7 @@ msgstr ""
 msgid "add any supplemental parameters"
 msgstr ""
 
-msgid "all disks are imported."
-msgstr ""
-
 msgid "all encrypted disks are imported."
-msgstr ""
-
-msgid "all software raid disks are imported."
 msgstr ""
 
 msgid "change failed."
@@ -7062,13 +7087,7 @@ msgstr ""
 msgid "n/a"
 msgstr ""
 
-msgid "no new disk found."
-msgstr ""
-
 msgid "no new encrypted disk found."
-msgstr ""
-
-msgid "no new software raid disk found."
 msgstr ""
 
 msgid "none"
@@ -7119,61 +7138,3 @@ msgstr "umount"
 #, php-format
 msgid "version:"
 msgstr ""
-
-#~ msgid "Automatic disk discovery"
-#~ msgstr "Otomatik disk kurtarma"
-
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "Otomatik disk kurtarma modu"
-
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "İstemci Küçük Harfleri, Sunucu Büyük Harfleri görür."
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "İstemci Büyük Harfleri, Sunucu Küçük Harfleri görür"
-
-#~ msgid "DDP"
-#~ msgstr "DDP"
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr ""
-#~ "DDP bğlantılarını engellemek için AFP-over-Appletalk devre dışı bırakın"
-
-#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
-#~ msgstr "deleteid, resolveid, createfileid çağrılarını bildirme"
-
-#~ msgid "Enable automatic disk discovery."
-#~ msgstr "Otomatik disk kurtarmayı etkinleştir."
-
-#~ msgid "Lowercases names in both directions"
-#~ msgstr "Her iki talimatdada küçük harfli isimler"
-
-#~ msgid "Time Machine"
-#~ msgstr "Makine saati"
-
-#~ msgid "cachecnid"
-#~ msgstr "cachecnid"
-
-#~ msgid "cnidscheme"
-#~ msgstr "cnidscheme"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "dbpath"
-#~ msgstr "dbpath"
-
-#~ msgid "mswindows"
-#~ msgstr "mswindows"
-
-#~ msgid "nodev"
-#~ msgstr "nodev"
-
-#~ msgid "nostat"
-#~ msgstr "nostat"
-
-#~ msgid "prodos"
-#~ msgstr "prodos"
-
-#~ msgid "upriv"
-#~ msgstr "upriv"

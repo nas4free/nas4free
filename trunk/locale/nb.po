@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2012-06-26 22:58+0000\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-17 04:07+0000\n"
 "Last-Translator: Martin Gundersen <martin@gundersen.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: NORWAY\n"
 "Language: \n"
 "X-Poedit-Language: Norwegian Bokmal\n"
@@ -77,6 +77,10 @@ msgstr ""
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s er allerede brukt av %s%d."
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -499,12 +503,18 @@ msgstr "Alle kataloger"
 msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr "Alle kataloger krever en montert sti, men Path %s er ikke montert."
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "Alle delte enheter benytter 'usedots'. Dette gjør filnavn som .Parent og alt "
 "annet som starter med .Apple ugyldig."
+
+msgid "All software raid disks are imported."
+msgstr ""
 
 msgid "All users will have the root privilege."
 msgstr "Alle brukere vil ha superbrukerprivilegier."
@@ -1250,6 +1260,9 @@ msgstr ""
 msgid "DLNA/UPnP Media Server"
 msgstr ""
 
+msgid "DNLA/UPnP"
+msgstr ""
+
 msgid "DNS settings"
 msgstr "DNS innstillinger"
 
@@ -1497,8 +1510,14 @@ msgstr "Mål deling"
 msgid "Detected"
 msgstr "Oppdaget"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "Oppdag RSYNC fjerne delinger"
+
+msgid "Detected an error while importing."
+msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3300,6 +3319,9 @@ msgstr "Logg"
 msgid "Log (mirror)"
 msgstr "Logg (speilet)"
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr "Logg nivå"
 
@@ -3784,6 +3806,12 @@ msgstr ""
 
 msgid "No file was uploaded."
 msgstr "Ingen fil ble lastet opp."
+
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
+msgstr ""
 
 msgid "No pool was found."
 msgstr ""
@@ -6542,6 +6570,9 @@ msgstr ""
 msgid "UCD-SNMP-MIB"
 msgstr ""
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -7088,13 +7119,7 @@ msgstr ""
 msgid "add any supplemental parameters"
 msgstr ""
 
-msgid "all disks are imported."
-msgstr ""
-
 msgid "all encrypted disks are imported."
-msgstr ""
-
-msgid "all software raid disks are imported."
 msgstr ""
 
 msgid "change failed."
@@ -7180,13 +7205,7 @@ msgstr ""
 msgid "n/a"
 msgstr "n/a"
 
-msgid "no new disk found."
-msgstr ""
-
 msgid "no new encrypted disk found."
-msgstr ""
-
-msgid "no new software raid disk found."
 msgstr ""
 
 msgid "none"
@@ -7237,109 +7256,3 @@ msgstr "avmontér"
 #, php-format
 msgid "version:"
 msgstr ""
-
-#~ msgid ""
-#~ "Always use 0 for device number, helps when the device number is not constant "
-#~ "across a reboot, cluster, ..."
-#~ msgstr ""
-#~ "Alltid bruk 0 som enhetsnummer, hjelper når enhetsnummeret ikke er konstant "
-#~ "under en restart, klynge,..."
-
-#~ msgid "Automatic disk discovery"
-#~ msgstr "Automatisk disk-gjennoppretting"
-
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "Automatisk disk-oppdagelses modus"
-
-#~ msgid "Case Folding"
-#~ msgstr "Skille mellom store og små bokstaver"
-
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "Klient ser små bokstaver, tjener ser store bokstaver"
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "Klient ser store bokstaver, tjener ser små bokstaver"
-
-#~ msgid "DDP"
-#~ msgstr "DDP"
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr "Slå av AFP-over-Appletalk for å forhindre DDP tilkoblinger."
-
-#~ msgid ""
-#~ "Disables :hex translations for anything except dot files. This option makes "
-#~ "the '/' character illegal."
-#~ msgstr ""
-#~ "Deaktiverer oversetting av :hex for alt unntatt filer som starter med "
-#~ "punktum. Dette valget resulterer i at tegnet '/' er ulovlig."
-
-#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
-#~ msgstr "Ikke reklamer for createfileid, resolveid, deleteid kall."
-
-#~ msgid "Enable automatic disk discovery."
-#~ msgstr "Slå på automatisk disk-oppdagelse"
-
-#~ msgid ""
-#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
-#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
-#~ "older programs store binary data files as type 'TEXT' when saving and switch "
-#~ "the filetype in a second step. Afpd will potentially destroy such files when "
-#~ "'erroneously' changing bytes in order to do line break translation."
-#~ msgstr ""
-#~ "Aktiverer crlf oversetting for TEXT filer, automatisk konvertering av "
-#~ "linjebrudd i macintoshformat til UNIXformat. Aktivering av dette valget kan "
-#~ "være farlig siden eldre programmer lagrer binærdatafiler i 'TEXT' formatet "
-#~ "under lagring for så å bytte filtype i et annet steg. Afpd vil potensielt "
-#~ "ødelegge disse filene siden den endrer bytene i filen for å oversette "
-#~ "linjebruddene."
-
-#~ msgid ""
-#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
-#~ "reduce database load. Don't set this option if the volume is modified by non "
-#~ "AFP clients (NFS/SMB/local)."
-#~ msgstr ""
-#~ "Hvis afpd aktiveres brukes ID-informasjonen lagret i AppleDouble V2 "
-#~ "inkluderingsfiler til å redusere databaselast. Ikke aktiver denne dersom "
-#~ "volumet modifiseres av andre enn AFP-klienter (NFS/SMB/local)."
-
-#~ msgid "Provides compatibility with Apple II clients."
-#~ msgstr "Gir kompatabilitet med Apple II klienter."
-
-#~ msgid "Use AFP3 unix privileges."
-#~ msgstr "Bruk AFP3 UNIX privilegier"
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr "Du må starte systemet på nytt før du kan oppgradere fabrikkvaren"
-
-#~ msgid "cachecnid"
-#~ msgstr "cachecnid"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "dbpath"
-#~ msgstr "dbpath"
-
-#~ msgid "mswindows"
-#~ msgstr "mswindows"
-
-#~ msgid "noadouble"
-#~ msgstr "noadouble"
-
-#~ msgid "nodev"
-#~ msgstr "nodev"
-
-#~ msgid "nofileid"
-#~ msgstr "nofileid"
-
-#~ msgid "nohex"
-#~ msgstr "nohex"
-
-#~ msgid "nostat"
-#~ msgstr "nostat"
-
-#~ msgid "prodos"
-#~ msgstr "prodos"
-
-#~ msgid "upriv"
-#~ msgstr "upriv"

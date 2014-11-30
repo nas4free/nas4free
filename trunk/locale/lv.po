@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2013-10-21 10:12+0000\n"
-"Last-Translator: Jānis-Marks Gailis <jm-gailis@fai-vianet.fr>\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-17 04:06+0000\n"
+"Last-Translator: Jānis Marks Gailis <jm-gailis@fai-vianet.fr>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: LATVIA\n"
 "Language: \n"
 "X-Poedit-Language: Latvian\n"
@@ -77,6 +77,10 @@ msgstr ""
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s jau tiek izmantots pēc %s%d."
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -503,12 +507,18 @@ msgstr "Visas direktorijas"
 msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr "Visas mapes pieprasa piemontētu ceļu, bet Ceļš %s nav piemontēts."
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "Visi kopīgojumi lieto iespēju 'lietotpunktus (usedots)' veidojot datņu "
 "nosaukumus. Pirmavots un viss kas sākas ar .Apple ir nelegāls."
+
+msgid "All software raid disks are imported."
+msgstr ""
 
 msgid "All users will have the root privilege."
 msgstr "Visiem lietotājiem būs saknes privilēģijas"
@@ -1258,6 +1268,9 @@ msgstr ""
 msgid "DLNA/UPnP Media Server"
 msgstr ""
 
+msgid "DNLA/UPnP"
+msgstr ""
+
 msgid "DNS settings"
 msgstr "DNS uzstādījumi"
 
@@ -1505,8 +1518,14 @@ msgstr "Galamērķa kopīgojums"
 msgid "Detected"
 msgstr "Atklāts"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "Atklātas RSYNC attālinātais kopīgojums"
+
+msgid "Detected an error while importing."
+msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3342,6 +3361,9 @@ msgstr "Žurnāls"
 msgid "Log (mirror)"
 msgstr "Žurnāls (spogulis)"
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr "Žurnalēšanas līmenis"
 
@@ -3843,6 +3865,12 @@ msgstr ""
 
 msgid "No file was uploaded."
 msgstr "Neviena datne netika augšupielādēta."
+
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
+msgstr ""
 
 msgid "No pool was found."
 msgstr "Neviens pūls netika atrasts."
@@ -6804,6 +6832,9 @@ msgstr "Tips lietots kā paplašinājums."
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -7379,13 +7410,7 @@ msgstr ""
 msgid "add any supplemental parameters"
 msgstr ""
 
-msgid "all disks are imported."
-msgstr ""
-
 msgid "all encrypted disks are imported."
-msgstr ""
-
-msgid "all software raid disks are imported."
 msgstr ""
 
 msgid "change failed."
@@ -7471,13 +7496,7 @@ msgstr "piemontēt"
 msgid "n/a"
 msgstr "n/p"
 
-msgid "no new disk found."
-msgstr ""
-
 msgid "no new encrypted disk found."
-msgstr ""
-
-msgid "no new software raid disk found."
 msgstr ""
 
 msgid "none"
@@ -7528,185 +7547,3 @@ msgstr "aitsaistīt"
 #, php-format
 msgid "version:"
 msgstr ""
-
-#~ msgid ""
-#~ "Always use 0 for device number, helps when the device number is not constant "
-#~ "across a reboot, cluster, ..."
-#~ msgstr ""
-#~ "Vienmēr lieto 0 ierīces numuram, palīdz, kad ierīces numurs nav pastāvīgs "
-#~ "pārlādēs, klusterī, ..."
-
-#~ msgid "Automatic disk discovery"
-#~ msgstr "Automātiska diska atklāšana"
-
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "Automātiskā diska atklāšanas režīms"
-
-#~ msgid "Case Folding"
-#~ msgstr "Lietas Locīšana"
-
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "Klients redz mazos, serveris redz lielos"
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "Klients redz lielos, serveris redz mazos"
-
-#~ msgid "DDP"
-#~ msgstr "DDP"
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr "Atspējot AFP-pār-Appletalk lai neatļautu DDP pieslēgumus."
-
-#~ msgid ""
-#~ "Disables :hex translations for anything except dot files. This option makes "
-#~ "the '/' character illegal."
-#~ msgstr ""
-#~ "Atspējo :hex tulkojumus visam izņemot punkta datnes. Šī iespēja padara '/' "
-#~ "simbolu par nederīgu."
-
-#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
-#~ msgstr "Nereklamēt veidotlauku, atklāšanasid, dzēšanasid zvanus."
-
-#~ msgid ""
-#~ "Don't stat volume path when enumerating volumes list, useful for "
-#~ "automounting or volumes created by a preexec script."
-#~ msgstr ""
-#~ "Nenorādi sējuma ceļu, kad uzskaiti sējumu sakarstu, noderīgs priekš "
-#~ "automātiskās montēšanas vai sējumiem, kurus izveidojis preexec skripts."
-
-#~ msgid "Enable automatic disk discovery."
-#~ msgstr "Iespējot automātisku diska atklāšanu."
-
-#~ msgid ""
-#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
-#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
-#~ "older programs store binary data files as type 'TEXT' when saving and switch "
-#~ "the filetype in a second step. Afpd will potentially destroy such files when "
-#~ "'erroneously' changing bytes in order to do line break translation."
-#~ msgstr ""
-#~ "Iespējo crlf tulkojumus priekš TEXT dantēm, automātiski pārveido makintošu "
-#~ "stila līniju pārrāvumus uz Unix veida. Šīs iespējas lietošana var būt "
-#~ "bīstama, jo vecas programmas saglabā bināras datu datnes, kā tipu 'TEXT' "
-#~ "kamēr saglabā un pēc tam maina datnes tipu otrajā solī. Afpd var potenciāli "
-#~ "iznīcināt šadas datnes, kad kļūdaini maina bitus, lai iztulkotu līniju "
-#~ "pārrāvumus."
-
-#~ msgid ""
-#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
-#~ "reduce database load. Don't set this option if the volume is modified by non "
-#~ "AFP clients (NFS/SMB/local)."
-#~ msgstr ""
-#~ "Ja uzstādīts, afpd lieto ID informāciju, kura saglabāta AppleDouble V2 "
-#~ "galvenes datnēs, lai samazinātu datubāzes slodzi. Neuzstādi šo iespēju, ja "
-#~ "sējumu ir modificējis ne AFP klients (NFS/SMB/lokāls)."
-
-#~ msgid "Lowercases names in both directions"
-#~ msgstr "Mazo burtu vārdi abos virzienos"
-
-#~ msgid "No case folding"
-#~ msgstr "Nav gadījuma locīšanas"
-
-#~ msgid ""
-#~ "Note! Selecting 'Time Machine' on multiple shares will may cause "
-#~ "unpredictable behavior in MacOS."
-#~ msgstr ""
-#~ "Piezīme! Izvēloties 'Laika Mašīnu' uz daudziem kopīgojumiem var radīt "
-#~ "neparedzamu izturēšanos iekš MacOS."
-
-#~ msgid "Provides compatibility with Apple II clients."
-#~ msgstr "Piegādā saderību ar Apple II klientiem."
-
-#~ msgid "Set the CNID backend to be used for the volume."
-#~ msgstr "Uzstādīt, lai lieto CNID aizmuguri priekš šī sējuma."
-
-#~ msgid ""
-#~ "Sets the database information to be stored in path. You have to specifiy a "
-#~ "writable location, even if the volume is read only."
-#~ msgstr ""
-#~ "Liek saglabāt datubāzes informāciju norādītajā ceļā. Tev vajag norādīt "
-#~ "rakstāmu vietu, pat ja sējuma ir tikai lasāms."
-
-#~ msgid ""
-#~ "The configuration has been changed.<br />You must apply the changes in order "
-#~ "for them to take effect."
-#~ msgstr ""
-#~ "Konfigurācija ir izmainīta.<br />Tev vajag lietot izmaiņas, lai tās dotu "
-#~ "efektu."
-
-#~ msgid "This controls how the case of filenames are viewed and stored."
-#~ msgstr "Šis kontrolē, kā datņu nosaukumu kastes tiek skatītas un glabātas."
-
-#~ msgid ""
-#~ "This controls whether the .AppleDouble directory gets created unless "
-#~ "absolutely needed. This option should not be used if files are access mostly "
-#~ "by Mac computers."
-#~ msgstr ""
-#~ "Šis kontrolē vai .AppleDouble mape tiek izveidota tikai tad, kad tā ir "
-#~ "absolūti nepieciešama. Šo iespēju nevajadzētu lietot, ja datnes galvenokārt "
-#~ "lieto uz Mac datoriem."
-
-#~ msgid ""
-#~ "This forces filenames to be restricted to the character set used by Windows. "
-#~ "This is not recommended for shares used principally by Mac computers."
-#~ msgstr ""
-#~ "Šis liek datņu nosaukumiem būt ierobežotiem pēc Windows izmantotās "
-#~ "rakstzīmju kopas. Šis netiek rekomendēts, ja kopīgojumus galvenokārt lieto "
-#~ "uz Mac datoriem."
-
-#~ msgid "Time Machine"
-#~ msgstr "Laika Mašīna"
-
-#~ msgid "Uppercases names in both directions"
-#~ msgstr "Lielo burtu nosaukumi abos virzienos"
-
-#~ msgid "Use AFP3 unix privileges."
-#~ msgstr "Lietot AFP unix privilēģijas."
-
-#~ msgid ""
-#~ "You can also install a package via SSH or console using the the pkg_add "
-#~ "command.<br />Example: pkg_add -r packagename"
-#~ msgstr ""
-#~ "Tu arī vari instalēt paku caur SSH vai konsoli lietojot pkg_add komandu.<br "
-#~ "/>Piemērs: pkg_add -r pakasnosaukums"
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr "Tev vajag pārlādēt sistēmu pirms Tu vari uzlabot programmatūru."
-
-#~ msgid "cachecnid"
-#~ msgstr "cachecnid"
-
-#~ msgid "cnidscheme"
-#~ msgstr "cnidscheme"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "dbpath"
-#~ msgstr "dbpath"
-
-#~ msgid "mswindows"
-#~ msgstr "mswindows"
-
-#~ msgid "noadouble"
-#~ msgstr "noadouble"
-
-#~ msgid "nodev"
-#~ msgstr "nodev"
-
-#~ msgid "nofileid"
-#~ msgstr "nofileid"
-
-#~ msgid "nohex"
-#~ msgstr "nohex"
-
-#~ msgid "nostat"
-#~ msgstr "nostat"
-
-#~ msgid "prodos"
-#~ msgstr "prodos"
-
-#~ msgid "upriv"
-#~ msgstr "upriv"
-
-#~ msgid "DNLA/UPnP"
-#~ msgstr "DNLA/UPnP"

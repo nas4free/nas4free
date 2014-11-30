@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-10-18 01:05+0000\n"
-"PO-Revision-Date: 2013-08-16 08:45+0000\n"
-"Last-Translator: Radim Kolář <Unknown>\n"
+"POT-Creation-Date: 2014-11-30 15:42+0000\n"
+"PO-Revision-Date: 2014-11-30 15:32+0000\n"
+"Last-Translator: Tomáš Bednář <bednto@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-10-17 23:37+0000\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Launchpad-Export-Date: 2014-11-30 22:01+0000\n"
+"X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 "Language: \n"
 "X-Poedit-Language: Czech\n"
@@ -77,6 +77,10 @@ msgstr "%s%% k dispozici"
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s je již použito uživatelem %s%d."
+
+#, php-format
+msgid "%s: cannot get mirror name."
+msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -213,7 +217,7 @@ msgstr ""
 "Musí být zadána správná IPv4 adresa pro primární/sekundární DNS server."
 
 msgid "A valid IPv4 address must be specified."
-msgstr "Musí být zadána platná IP adresa."
+msgstr "Musí být zadána platná IPv4 adresa."
 
 msgid "A valid IPv4 network bit count must be specified."
 msgstr "Musí být zadána správná bitová maska IPv4 sítě."
@@ -498,12 +502,18 @@ msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr ""
 "Všechny adresáře vyžadují připojenou cestu, ale cesta %s není připojena."
 
+msgid "All disks are imported."
+msgstr ""
+
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "Všechny sdílené složky používají volbu 'usedots', proto jsou názvy souborů "
 ".Parent a cokoliv začínající tečkou neplatné."
+
+msgid "All software raid disks are imported."
+msgstr ""
 
 msgid "All users will have the root privilege."
 msgstr "Všichni uživatelé budou mít práva jako 'root' uživatel."
@@ -741,7 +751,7 @@ msgid "Battery Details"
 msgstr "Podrobnosti o baterii"
 
 msgid "Battery Level"
-msgstr ""
+msgstr "Stav akumulátoru"
 
 msgid "Battery Low"
 msgstr "Baterie je téměř vybitá"
@@ -749,6 +759,8 @@ msgstr "Baterie je téměř vybitá"
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
 msgstr ""
+"Zbývající kapacita akumulátoru než se UPS přepne do režimu vypnutí (Vybitý "
+"akumulátor)"
 
 msgid "Battery alarm threshold"
 msgstr ""
@@ -766,7 +778,7 @@ msgid "Battery current"
 msgstr "Proud baterie"
 
 msgid "Battery level"
-msgstr ""
+msgstr "Stav akumulátoru"
 
 msgid "Battery level when UPS switches to \"Warning\" state"
 msgstr "Úroveň baterie při které se USP přepne do stavu \"Varování\""
@@ -829,7 +841,7 @@ msgid "CD/DVD"
 msgstr "CD/DVD"
 
 msgid "CHANGED"
-msgstr ""
+msgstr "ZMĚNĚNO"
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -966,7 +978,7 @@ msgid "Chinese (Traditional)"
 msgstr "Čínština (Klasická)"
 
 msgid "Choose UPS mode."
-msgstr ""
+msgstr "Vyberte režim UPS."
 
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
@@ -1115,7 +1127,7 @@ msgid "Controller model"
 msgstr ""
 
 msgid "Controls power consumption."
-msgstr ""
+msgstr "Řídí spotřebu energie."
 
 msgid "Controls the behavior of synchronous requests."
 msgstr ""
@@ -1215,10 +1227,10 @@ msgid "Current password"
 msgstr "Současné heslo"
 
 msgid "Current value of apparent power (Volt-Amps)"
-msgstr ""
+msgstr "Aktuální hodnota zdánlivého výkonu (VA)"
 
 msgid "Current value of real power (Watts)"
-msgstr ""
+msgstr "Aktuální hodnota činného výkonu (W)"
 
 msgid "Custom"
 msgstr "Volitelný"
@@ -1242,9 +1254,12 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DLNA/UPnP"
-msgstr ""
+msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
+msgstr "DLNA/UPnP Media Server"
+
+msgid "DNLA/UPnP"
 msgstr ""
 
 msgid "DNS settings"
@@ -1258,6 +1273,11 @@ msgid ""
 "the upgrade.<br />It is strongly recommended that you <a "
 "href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
+"NEpřerušujte proces aktualizace firmware po jeho spuštění. Jakmile bude "
+"dokončen, server automaticky restartuje. Aktuální nastavení bude zachováno. "
+"<br /> Potřebujete minimálně% d MiB volné paměti RAM k dokončení "
+"aktualizace. <br /> Je důrazně doporučeno <a href = '% s'> Zálohovat </a> "
+"konfiguraci serveru před provedením aktualizace."
 
 msgid "DVD"
 msgstr "DVD"
@@ -1494,8 +1514,14 @@ msgstr "Cílové sdílení"
 msgid "Detected"
 msgstr "Rozpoznáno"
 
+msgid "Detected Language:<br />(Change if needed)"
+msgstr ""
+
 msgid "Detected RSYNC remote shares"
 msgstr "Zjištěné RSYNC vzdálené sdílení"
+
+msgid "Detected an error while importing."
+msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -1977,7 +2003,7 @@ msgstr "Upravit svazek"
 
 msgid ""
 "Efficiency of the UPS (Ratio of the output current on the input current)"
-msgstr ""
+msgstr "Účinnost UPS (poměr výstupního proudu na vstupním proudu)"
 
 msgid "Email"
 msgstr "E-mail"
@@ -1992,7 +2018,7 @@ msgid "Email report"
 msgstr "Emailové hlášení"
 
 msgid "Empty as default."
-msgstr ""
+msgstr "Prázdné jako výchozí."
 
 msgid "Enable"
 msgstr "Povoleno"
@@ -2016,6 +2042,8 @@ msgid ""
 "Enable STARTTLS encryption. This doesn't mean you have to use TLS, you can "
 "use SSL."
 msgstr ""
+"Povolit šifrování STARTTLS. To neznamená, že budete muset použít TLS, můžete "
+"použít SSL."
 
 msgid "Enable TLS/SSL connections."
 msgstr "Povolit TLS/SSL spojení"
@@ -2054,7 +2082,7 @@ msgid "Enable extended attribute support"
 msgstr "Povolit podporu rozšířených atributů"
 
 msgid "Enable extended attributes for this file system."
-msgstr ""
+msgstr "Povolit rozšířené atributy pro tento systém souborů."
 
 msgid "Enable firmware upload"
 msgstr "Povolit nahrání firmwaru"
@@ -2116,7 +2144,7 @@ msgid "Enable serial console"
 msgstr "Povolit sériovou konzoli. (RS232)"
 
 msgid "Enable shadow copy"
-msgstr ""
+msgstr "Povolit stínové kopie"
 
 msgid "Enable store DOS attributes"
 msgstr "Povolit ukládání DOSových atributů"
@@ -2143,7 +2171,7 @@ msgid "Enable use sendfile."
 msgstr "Povolit použití sendfile."
 
 msgid "Enable write cache mode."
-msgstr ""
+msgstr "Zapnout režim mezipaměťi pro zápis."
 
 msgid "Enabled"
 msgstr "Povoleno"
@@ -2171,6 +2199,8 @@ msgid ""
 "Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
+"Zadejte číslo portu pro WebGUI pokud chcete přepsat výchozí (80 pro HTTP, "
+"443 pro HTTPS)."
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Zadejte platný sysctl MIB."
@@ -2236,16 +2266,16 @@ msgid "Export"
 msgstr "Exportovat"
 
 msgid "Export all the directories in the specified path."
-msgstr ""
+msgstr "Exportovat všechny adresáře v zadané cestě."
 
 msgid "Extended attributes"
 msgstr "Rozšířené atributy"
 
 msgid "Extended input frequency range"
-msgstr ""
+msgstr "Rozšířený vstupní frekvenční rozsah"
 
 msgid "Extended input voltage range"
-msgstr ""
+msgstr "Rozšířený rozsah vstupního napětí"
 
 msgid "Extensions"
 msgstr "Rozšíření"
@@ -2502,7 +2532,7 @@ msgid "GID"
 msgstr "GID"
 
 msgid "GPT partition"
-msgstr ""
+msgstr "GPT diskový oddíl"
 
 msgid "Gateway"
 msgstr "Brána"
@@ -2805,6 +2835,8 @@ msgid ""
 "If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
 msgstr ""
+"Pokud je server za proxy, nastavení těchto parametrů umožňí místním službám "
+"přístup k internetu přes proxy."
 
 msgid ""
 "If this parameter is set, Samba attempts to first read DOS attributes "
@@ -2842,6 +2874,9 @@ msgid ""
 "reboot immediately. The entire system configuration will be overwritten. The "
 "LAN IP address will be reset to %s and the password will be set to '%s'."
 msgstr ""
+"Pokud klepnete na tlačítko \"Ano\", server se vrátí do továrního nastavení a "
+"bude okamžitě restartován. Celá konfigurace systému bude přepsána. LAN IP "
+"adresa bude resetována na% s a heslo bude nastaveno na \"% s\"."
 
 msgid ""
 "If you want to change the password for accessing the WebGUI, enter it here "
@@ -2944,19 +2979,19 @@ msgid "Initiators"
 msgstr ""
 
 msgid "Input current (A)"
-msgstr ""
+msgstr "Vstupní proud (A)"
 
 msgid "Input frequency"
-msgstr ""
+msgstr "Vstupní frekvence"
 
 msgid "Input line frequency (Hz)"
-msgstr ""
+msgstr "Vstupní frekvence sítě (Hz)"
 
 msgid "Input line frequency high (Hz)"
-msgstr ""
+msgstr "Vstupní frekvence nejvyšší (Hz)"
 
 msgid "Input line frequency low (Hz)"
-msgstr ""
+msgstr "Vstupní frekvence sítě nejnižší (Hz)"
 
 msgid "Input power quality (* opaque)"
 msgstr ""
@@ -2965,7 +3000,7 @@ msgid "Input power sensitivity"
 msgstr ""
 
 msgid "Input voltage"
-msgstr ""
+msgstr "Vstupní napětí"
 
 msgid "Inquiry Product"
 msgstr ""
@@ -3001,13 +3036,13 @@ msgid "Internal Server Information"
 msgstr "Interní verze serveru"
 
 msgid "Internal UPS clock date"
-msgstr ""
+msgstr "Datum v UPS"
 
 msgid "Internal UPS clock time"
-msgstr ""
+msgstr "Čas v UPS"
 
 msgid "Interval between self tests"
-msgstr ""
+msgstr "Doba mezi autodiagnostickými testy"
 
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "Interval musí být větší nebo rovný 10 sekund."
@@ -3016,7 +3051,7 @@ msgid "Interval to wait after shutdown with delay command"
 msgstr ""
 
 msgid "Interval to wait before rebooting the UPS)"
-msgstr ""
+msgstr "Doba čekání než restartuje UPS"
 
 msgid "Interval to wait before restarting the load"
 msgstr ""
@@ -3057,6 +3092,8 @@ msgid ""
 "It's recommended to change the default username and password for accessing "
 "the WebGUI, enter the username here."
 msgstr ""
+"Je doporučeno změnit výchozí uživatelské jméno a heslo pro přístup do "
+"WebGUI. Vložte uživatelské jméno zde."
 
 msgid "Italian"
 msgstr "Italština"
@@ -3105,7 +3142,7 @@ msgid "LAN net"
 msgstr "Síť LAN"
 
 msgid "LAN only"
-msgstr ""
+msgstr "pouze LAN"
 
 msgid "LCDproc"
 msgstr ""
@@ -3150,6 +3187,8 @@ msgid ""
 "Leave '%s' for unformated disks and format them using <a "
 "href='%s'>format</a> menu."
 msgstr ""
+"Nechte '% s' pro neformátované disky a naformátujte je pomocí nabídky <a "
+"href='%s'> formát </a> v menu."
 
 msgid "Leave already configured auto snapshots."
 msgstr ""
@@ -3158,7 +3197,7 @@ msgid "Leave auto snapshot configuration"
 msgstr ""
 
 msgid "Leave this field empty to use default settings."
-msgstr ""
+msgstr "Nechte toto pole prázdné pro použití výchozího nastavení."
 
 msgid "Level 1 - Minimum power usage with Standby (spindown)"
 msgstr "Level 1 - Minimální spotřeba s pohotovostním režimem (spindown)"
@@ -3246,10 +3285,10 @@ msgid "Load file"
 msgstr "Načíst soubor"
 
 msgid "Load on UPS"
-msgstr ""
+msgstr "Zátěž na UPS"
 
 msgid "Load when UPS switches to overload condition (\"OVER\")"
-msgstr ""
+msgstr "Zatížení kdy se UPS  přepne do stavu přetížení (\"OVER\")"
 
 msgid "Loadbalance"
 msgstr "Vyrvovnání zátěže"
@@ -3303,7 +3342,7 @@ msgid "Location where the content database file will be stored."
 msgstr "Umístění databázového souboru s obsahem."
 
 msgid "Location where the database with media contents will be stored."
-msgstr ""
+msgstr "Umístění kde bude uložena databáze s multimediálním obsahem."
 
 #, php-format
 msgid ""
@@ -3316,6 +3355,9 @@ msgstr "Protokol"
 msgid "Log (mirror)"
 msgstr ""
 
+msgid "Log Device"
+msgstr ""
+
 msgid "Log Level"
 msgstr "Úroveň protokolování"
 
@@ -3323,7 +3365,7 @@ msgid "Log packets that are handled by this rule to syslog."
 msgstr "Logovat pakety zachycené tímto pravidlem."
 
 msgid "Logical Block Length"
-msgstr ""
+msgstr "Délka logického bloku"
 
 #, php-format
 msgid "Logical Unit Controller Authorised network (%s by default)"
@@ -3365,7 +3407,7 @@ msgid "MAC address"
 msgstr "MAC adresa"
 
 msgid "MBR partition"
-msgstr ""
+msgstr "MBR diskový oddíl"
 
 msgid "MIB"
 msgstr "MIB"
@@ -3377,7 +3419,7 @@ msgid "MOTD"
 msgstr "MOTD"
 
 msgid "MOVED TO"
-msgstr ""
+msgstr "Přesunuto do"
 
 msgid "MS Active Directory"
 msgstr "MS Active Directory"
@@ -3410,7 +3452,7 @@ msgid "Manufacturer"
 msgstr "Výrobce"
 
 msgid "Manufacturing date"
-msgstr ""
+msgstr "Datum výroby"
 
 msgid "Map all users to root"
 msgstr "Mapovat všechny uživatele na roota."
@@ -3440,7 +3482,7 @@ msgid "Max. connections"
 msgstr "Max. spojení"
 
 msgid "Max. login attempts"
-msgstr ""
+msgstr "Maximum pokusů o přihlášení"
 
 msgid "Max. passive port"
 msgstr ""
@@ -3449,7 +3491,7 @@ msgid "Max. pre-send R2T"
 msgstr ""
 
 msgid "Max. sessions"
-msgstr ""
+msgstr "Maximum relací"
 
 msgid ""
 "Max. time-to-live (max. number of hops) used in outgoing probe packets."
@@ -3470,16 +3512,16 @@ msgid "Maximum connections"
 msgstr "Maximální počet spojení"
 
 msgid "Maximum frequency"
-msgstr ""
+msgstr "Maximální frekvence"
 
 msgid "Maximum idle time in seconds."
 msgstr "Maximální doba nečinnosti v sekundách."
 
 msgid "Maximum incoming voltage seen"
-msgstr ""
+msgstr "Maximální zaznamenané vstupní napětí"
 
 msgid "Maximum number of allowed password attempts before disconnection."
-msgstr ""
+msgstr "Maximální počet povolených pokusů o zadání hesla před odpojením."
 
 #, php-format
 msgid "Maximum number of connections in each session (%d by default)."
@@ -3496,7 +3538,7 @@ msgstr ""
 
 #, php-format
 msgid "Maximum number of sessions holding at same time (%d by default)."
-msgstr ""
+msgstr "Maximální počet relací ve stejný čas (%d by default)."
 
 msgid "Maximum number of simultaneous clients."
 msgstr "Maximální počet současně připojených klientů."
@@ -3511,7 +3553,7 @@ msgid "Maximum relative humidity seen (percent)"
 msgstr ""
 
 msgid "Maximum temperature seen (degrees C)"
-msgstr ""
+msgstr "Maximální zaznamenaná teplota °C"
 
 msgid "Media"
 msgstr "Nosiče"
@@ -3574,7 +3616,7 @@ msgid "Minutes between network time sync."
 msgstr "Perioda synchronizace času ze sítě (v minutách)."
 
 msgid "Mirror"
-msgstr ""
+msgstr "Zrcadlo"
 
 msgid "Missing a temporary folder."
 msgstr "Chybí dočasný adresář."
@@ -3748,13 +3790,15 @@ msgid ""
 msgstr ""
 
 msgid "No configured CARP interfaces."
-msgstr ""
+msgstr "Není nastaveno žádné CARP rozhraní."
 
 #, php-format
 msgid ""
 "No configured CARP interfaces. Please add new <a href='%s'>CARP "
 "interface</a> first."
 msgstr ""
+"Není nastaveno žádné CARP rozhraní. Prosím přidejte nejdříve nové <a "
+"href='%s'>CARP rozhraní</a> ."
 
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
@@ -3797,9 +3841,19 @@ msgid ""
 "No disks configured, please add disks to see the diagnostic information of "
 "disks!"
 msgstr ""
+"Žádné disky nakonfigurovány, přidejte disky vidět diagnostické informace "
+"disků!\r\n"
+"Žádné disky nejsou nakonfigurovány. Prosím přidejte disky pro zobrazení "
+"diagnostických informací!"
 
 msgid "No file was uploaded."
 msgstr "Žádný soubor nebyl nahrán"
+
+msgid "No new disk found."
+msgstr ""
+
+msgid "No new software raid disk found."
+msgstr ""
 
 msgid "No pool was found."
 msgstr "Nebyl nalezen žádný rozsah"
@@ -3826,31 +3880,31 @@ msgid "Node Name"
 msgstr "Název uzlu"
 
 msgid "Nominal battery voltage"
-msgstr ""
+msgstr "Jpenovité napětí akumulátoru"
 
 msgid "Nominal input current (A)"
-msgstr ""
+msgstr "Jmenovitý vstupní proud (A)"
 
 msgid "Nominal input line frequency (Hz)"
-msgstr ""
+msgstr "Jmenovitá vstupní frekvence sítě (Hz)"
 
 msgid "Nominal input voltage"
-msgstr ""
+msgstr "Jmenovité vstupní napětí"
 
 msgid "Nominal output current (A)"
-msgstr ""
+msgstr "Jmenovitý výstupní proud (A)"
 
 msgid "Nominal output frequency (Hz)"
-msgstr ""
+msgstr "Jmenovitá výstupní frekvence (Hz)"
 
 msgid "Nominal output voltage (V)"
-msgstr ""
+msgstr "Jmenovité výstupní napětí (V)"
 
 msgid "Nominal value of apparent power (Volt-Amps)"
-msgstr ""
+msgstr "Jmenovitá hodnota zdánlivého výkonu (VA)"
 
 msgid "Nominal value of real power (Watts)"
-msgstr ""
+msgstr "Jmenovitá hodnota činného výkonu (W)"
 
 msgid "None"
 msgstr "Žádný"
@@ -3908,10 +3962,10 @@ msgid "Null passwords"
 msgstr "Bez hesla"
 
 msgid "Number of bad battery packs"
-msgstr ""
+msgstr "Počet špatných akumulátorů"
 
 msgid "Number of battery packs"
-msgstr ""
+msgstr "Počet akumulátorů"
 
 msgid "Number of clients"
 msgstr "Počet klientů"
@@ -4001,25 +4055,26 @@ msgid "Outgoing mail server"
 msgstr "Odchozí mail server"
 
 msgid "Output current (A)"
-msgstr ""
+msgstr "Výstupní proud (A)"
 
 msgid "Output frequency (Hz)"
-msgstr ""
+msgstr "Výstupní frekvence (Hz)"
 
 msgid "Output voltage"
-msgstr ""
+msgstr "Výstupní napětí"
 
 msgid "Output voltage (V)"
-msgstr ""
+msgstr "Výstupní napětí (V)"
 
 msgid "Overload"
-msgstr ""
+msgstr "Přetížení"
 
 msgid "Overwrite already configured disks (only affects filesystem value)."
 msgstr ""
+"Přepsat již nakonfigurované disky (ovlivňuje pouze počet  souborový systémů)."
 
 msgid "Overwrite disks configuration"
-msgstr ""
+msgstr "Přepsat konfiguraci disků"
 
 msgid "Owner"
 msgstr "Vlastník"
@@ -6629,6 +6684,9 @@ msgstr ""
 msgid "UCD-SNMP-MIB"
 msgstr ""
 
+msgid "UFS"
+msgstr ""
+
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -7180,14 +7238,8 @@ msgstr ""
 msgid "add any supplemental parameters"
 msgstr ""
 
-msgid "all disks are imported."
-msgstr "všechny disky jsou importované."
-
 msgid "all encrypted disks are imported."
 msgstr "všechny zašifrované disky jsou importované"
-
-msgid "all software raid disks are imported."
-msgstr "všechny softwarové raid disky jsou importované"
 
 msgid "change failed."
 msgstr "změna selhala."
@@ -7272,14 +7324,8 @@ msgstr "připojit"
 msgid "n/a"
 msgstr "není k dispozici"
 
-msgid "no new disk found."
-msgstr "žádný nový disk nenalezen."
-
 msgid "no new encrypted disk found."
 msgstr "žadný nový šifrovaný disk nenalezen."
-
-msgid "no new software raid disk found."
-msgstr "žádný nový software raid disk nenalezen."
 
 msgid "none"
 msgstr "žádný"
@@ -7330,156 +7376,14 @@ msgstr "odpojit"
 msgid "version:"
 msgstr "verze:"
 
-#~ msgid ""
-#~ "Always use 0 for device number, helps when the device number is not constant "
-#~ "across a reboot, cluster, ..."
-#~ msgstr ""
-#~ "Vždy použít 0 jako číslo zařízení, pomáhá při nekonstantním číslování "
-#~ "zařízení po restartu, clusteru, ..."
+#~ msgid "no new software raid disk found."
+#~ msgstr "žádný nový software raid disk nenalezen."
 
-#~ msgid "Automatic disk discovery"
-#~ msgstr "Automatické objevování disků"
+#~ msgid "no new disk found."
+#~ msgstr "žádný nový disk nenalezen."
 
-#~ msgid "Automatic disk discovery mode"
-#~ msgstr "Automatické nalezení disků"
+#~ msgid "all software raid disks are imported."
+#~ msgstr "všechny softwarové raid disky jsou importované"
 
-#~ msgid "Case Folding"
-#~ msgstr "Skládání velikosti písmen"
-
-#~ msgid "Client sees lowercase, server sees uppercase"
-#~ msgstr "Klient vidí malá písmena, server vidí velká písmena"
-
-#~ msgid "Client sees uppercase, server sees lowercase"
-#~ msgstr "Klient vidí velká písmena, server vidí malá písmena"
-
-#~ msgid "DDP"
-#~ msgstr "DDP"
-
-#~ msgid "Disable AFP-over-Appletalk to prevent DDP connections."
-#~ msgstr "Zakázat AFP přes Appletalk kvůlu prevenci DDP spojení"
-
-#~ msgid ""
-#~ "Disables :hex translations for anything except dot files. This option makes "
-#~ "the '/' character illegal."
-#~ msgstr ""
-#~ "Vypíná :hex překlady všeho mimo souborů s tečkou. Tato volba zneplatňuje "
-#~ "znak '/'."
-
-#~ msgid "Don't advertise createfileid, resolveid, deleteid calls."
-#~ msgstr "Neoznamovat  volání createfileid, resolveid, deleteid."
-
-#~ msgid ""
-#~ "Don't stat volume path when enumerating volumes list, useful for "
-#~ "automounting or volumes created by a preexec script."
-#~ msgstr ""
-#~ "Nevykonávat stat cesty ke svazku při vypisování seznamu svazků. Užitečné pro "
-#~ "automatické připojování svazků vytvořené preexec skriptem."
-
-#~ msgid ""
-#~ "Enables crlf translation for TEXT files, automatically converting macintosh "
-#~ "line breaks into Unix ones. Use of this option might be dangerous since some "
-#~ "older programs store binary data files as type 'TEXT' when saving and switch "
-#~ "the filetype in a second step. Afpd will potentially destroy such files when "
-#~ "'erroneously' changing bytes in order to do line break translation."
-#~ msgstr ""
-#~ "Umožňuje překlad konců řádků textových souborů CR/LF, automaticky překládá "
-#~ "zakončení řádků Macintosh na unixové zakončení. Použití této volby může být "
-#~ "nebezpečné, protože některé starší programy ukládají binární údaje jako typ "
-#~ "'TEXT' a v druhém kroku změní typ souboru. Afpd potencionálně zničí takovéto "
-#~ "soubory, pokud „chybne” změní binární soubor ve snaze o překlad zakončení "
-#~ "řádků."
-
-#~ msgid ""
-#~ "If set afpd uses the ID information stored in AppleDouble V2 header files to "
-#~ "reduce database load. Don't set this option if the volume is modified by non "
-#~ "AFP clients (NFS/SMB/local)."
-#~ msgstr ""
-#~ "Pokud je zvoleno, tak afdp použije ID infromace uložené v AppleDouble V2 "
-#~ "hlavičkách souborů a sníží tak zátěž databáze. Nenastavujte ztuto volbu "
-#~ "pokud na svazek zapisují jiní klienti (NFS/SMB/local) než jen AFP."
-
-#~ msgid "Lowercases names in both directions"
-#~ msgstr "Změní názvy souborů v obou adresářích na malá písmena."
-
-#~ msgid "No case folding"
-#~ msgstr "Žádné skládání velkých písmen."
-
-#~ msgid "Provides compatibility with Apple II clients."
-#~ msgstr "Poskytuje kompatibilitu s klienty Apple II."
-
-#~ msgid "Set the CNID backend to be used for the volume."
-#~ msgstr "Nastavit použití CNID backendu pro tento svazek."
-
-#~ msgid ""
-#~ "Sets the database information to be stored in path. You have to specifiy a "
-#~ "writable location, even if the volume is read only."
-#~ msgstr ""
-#~ "Nastavení cesty k uložení databázových informací. Musíte nastavit místo s "
-#~ "právem na zápis, i když je svazek určen jen pro čtení."
-
-#~ msgid ""
-#~ "The configuration has been changed.<br />You must apply the changes in order "
-#~ "for them to take effect."
-#~ msgstr ""
-#~ "Nastavení bylo změněno.<br />Aby změny vstoupily v platnost, musíte je "
-#~ "nejdříve aplikovat."
-
-#~ msgid "Uppercases names in both directions"
-#~ msgstr "Názvy velkými písmeny v obou směrech"
-
-#~ msgid "Use AFP3 unix privileges."
-#~ msgstr "Použít AFP3 unixová privilegia."
-
-#~ msgid "cachecnid"
-#~ msgstr "cachecnid"
-
-#~ msgid "cnidscheme"
-#~ msgstr "cnidscheme"
-
-#~ msgid "crlf"
-#~ msgstr "crlf"
-
-#~ msgid "dbpath"
-#~ msgstr "dbpath"
-
-#~ msgid "mswindows"
-#~ msgstr "mswindows"
-
-#~ msgid "noadouble"
-#~ msgstr "noadouble"
-
-#~ msgid "nodev"
-#~ msgstr "nodev"
-
-#~ msgid "nofileid"
-#~ msgstr "nofileid"
-
-#~ msgid "nohex"
-#~ msgstr "nohex"
-
-#~ msgid "nostat"
-#~ msgstr "nostat"
-
-#~ msgid "prodos"
-#~ msgstr "prodos"
-
-#~ msgid "upriv"
-#~ msgstr "upriv"
-
-#~ msgid "You must reboot the system before you can upgrade the firmware."
-#~ msgstr "Před aktualizací firmare musíte restartovat systém."
-
-#~ msgid "Time Machine"
-#~ msgstr "Stroj času"
-
-#~ msgid ""
-#~ "This forces filenames to be restricted to the character set used by Windows. "
-#~ "This is not recommended for shares used principally by Mac computers."
-#~ msgstr ""
-#~ "Toto způsobí omezení názvů souborů podle použité znakové sady Windows. "
-#~ "Nepoužívejte tuto volbu pokud je toto sdílení používáno převážně uživateli "
-#~ "Mac."
-
-#~ msgid "This controls how the case of filenames are viewed and stored."
-#~ msgstr ""
-#~ "Toto ovládá jak je velikost písmen v názvech souborů zobrazována a ukládána."
+#~ msgid "all disks are imported."
+#~ msgstr "všechny disky jsou importované."
