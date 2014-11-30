@@ -7,15 +7,12 @@ MAINTAINER=		aoyama@nas4free.org
 MASTER_SITES=		http://www.peach.ne.jp/archives/isboot/
 
 WRKSRC=                 ${WRKDIR}/${DISTNAME}/src
+USES=			kmod
 
 .include <bsd.port.pre.mk>
 .if ${ARCH} == "amd64"
-post-patch:
-	echo "CFLAGS += -DVIMAGE" >> ${WRKSRC}/Makefile
+CFLAGS+=	-DVIMAGE
 .endif
-
-do-build:
-	(cd ${WRKSRC}; make all)
 
 do-install:
 	@${INSTALL_KLD} -v ${WRKSRC}/isboot.ko ${NAS4FREE_ROOTFS}/boot/kernel
