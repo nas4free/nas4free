@@ -47,13 +47,13 @@ function xmlrpc_system_getinfo($xmlrpcmsg) {
 
 // When an XML-RPC request is sent to this script, it can be found in the
 // raw post data.
-$request_xml = $HTTP_RAW_POST_DATA;
+$request_xml = file_get_contents("php://input");
 if (empty($request_xml))
 	die;
 
 // Create XMLRPC server.
 $xmlrpc_server = new xmlrpc_server(array(
-	"system.getInfo" => array(
+	"systemGetInfo" => array(
 		"function" => "xmlrpc_system_getinfo",
 		"signature" => array(array($xmlrpcStruct)),
 		"docstring" => "Get various system informations.")), false);
