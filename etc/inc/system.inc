@@ -725,6 +725,26 @@ function system_get_sysinfo() {
 		}
 	}
 
+	// Get pool info.
+	$zfspools = zfs_get_pool_list();
+	if (!empty($zfspools)) {
+		foreach ($zfspools as $poolk => $poolv) {
+			$id = $poolv['name'];
+			$id = preg_replace('/[-\.: ]/', '_', $id);
+			$poolinfo = array();
+			$poolinfo['id'] = $id;
+			$poolinfo['name'] = $poolv['name'];
+			$poolinfo['capacity'] = $poolv['cap'];
+			$poolinfo['percentage'] = rtrim($poolv['cap'], "%");
+			$poolinfo['size'] = $poolv['size'];
+			$poolinfo['used'] = $poolv['alloc'];
+			$poolinfo['avail'] = $poolv['free'];
+			$poolinfo['tooltip']['used'] = sprintf(gettext("%sB used of %sB"), $poolv['alloc'], $poolv['size']);
+			$poolinfo['tooltip']['available'] = sprintf(gettext("%sB available of %sB"), $poolv['free'], $poolv['size']);
+			$value['poolusage'][] = $poolinfo;
+		}
+	}
+
 	// Get swap info.
 	$swapinfo = system_get_swap_info();
 	if (is_array($swapinfo) && (0 < count($swapinfo))) {

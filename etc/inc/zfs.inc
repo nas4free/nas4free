@@ -66,8 +66,8 @@ function zfs_get_pool_list() {
 		$result[$poolname] = array();
 		$result[$poolname]['name'] = $aline[0];
 		$result[$poolname]['size'] = $aline[1];
-		$result[$poolname]['used'] = $aline[2];
-		$result[$poolname]['avail'] = $aline[3];
+		$result[$poolname]['alloc'] = $aline[2];
+		$result[$poolname]['free'] = $aline[3];
 		$result[$poolname]['cap'] = $aline[4];
 		$result[$poolname]['dedup'] = $aline[5];		
 		$result[$poolname]['health'] = $aline[6];
