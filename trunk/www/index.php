@@ -219,6 +219,22 @@ $(document).ready(function(){
 				}
 			}
 		}
+		if (typeof(data.poolusage) != 'undefined') {
+			for (var idx = 0; idx < data.poolusage.length; idx++) {
+				var pu = data.poolusage[idx];
+				if ($('#diskusage_'+pu.id+'_bar_used').size() > 0) {
+					$('#diskusage_'+pu.id+'_name').text(pu.name);
+					$('#diskusage_'+pu.id+'_bar_used').attr('width', pu.percentage + 'px');
+					$('#diskusage_'+pu.id+'_bar_used').attr('title', pu['tooltip'].used);
+					$('#diskusage_'+pu.id+'_bar_free').attr('width', (100 - pu.percentage) + 'px');
+					$('#diskusage_'+pu.id+'_bar_free').attr('title', pu['tooltip'].available);
+					$('#diskusage_'+pu.id+'_capacity').text(pu.capacity);
+					$('#diskusage_'+pu.id+'_total').text(pu.size);
+					$('#diskusage_'+pu.id+'_used').text(pu.used);
+					$('#diskusage_'+pu.id+'_free').text(pu.avail);
+				}
+			}
+		}
 		if (typeof(data.swapusage) != 'undefined') {
 			for (var idx = 0; idx < data.swapusage.length; idx++) {
 				var su = data.swapusage[idx];
@@ -511,9 +527,10 @@ $(document).ready(function(){
 
 								foreach ($zfspools as $poolk => $poolv) {
 									$ctrlid = $poolv['name'];
+									$ctrlid = preg_replace('/[-\.: ]/', '_', $ctrlid);
 									$percent_used = rtrim($poolv['cap'],"%");
-									$tooltip_used = sprintf(gettext("%sB used of %sB"), $poolv['used'], $poolv['size']);
-									$tooltip_available = sprintf(gettext("%sB available of %sB"), $poolv['avail'], $poolv['size']);
+									$tooltip_used = sprintf(gettext("%sB used of %sB"), $poolv['alloc'], $poolv['size']);
+									$tooltip_available = sprintf(gettext("%sB available of %sB"), $poolv['free'], $poolv['size']);
 
 									echo "<tr><td><div id='diskusage'>";
 									echo "<span name='diskusage_{$ctrlid}_name' id='diskusage_{$ctrlid}_name' class='name'>{$poolv['name']}</span><br />";
@@ -527,8 +544,8 @@ $(document).ready(function(){
 									echo "<br />";
 									echo sprintf(gettext("Total: %s | Used: %s | Free: %s | State: %s"),
 										"<span name='diskusage_{$ctrlid}_total' id='diskusage_{$ctrlid}_total' class='total'>{$poolv['size']}</span>",
-										"<span name='diskusage_{$ctrlid}_used' id='diskusage_{$ctrlid}_used' class='used'>{$poolv['used']}</span>",
-										"<span name='diskusage_{$ctrlid}_free' id='diskusage_{$ctrlid}_free' class='free'>{$poolv['avail']}</span>",
+										"<span name='diskusage_{$ctrlid}_used' id='diskusage_{$ctrlid}_used' class='used'>{$poolv['alloc']}</span>",
+										"<span name='diskusage_{$ctrlid}_free' id='diskusage_{$ctrlid}_free' class='free'>{$poolv['free']}</span>",
 										"<span name='diskusage_{$ctrlid}_state' id='diskusage_{$ctrlid}_state' class='state'><a href='disks_zfs_zpool_info.php?pool={$poolv['name']}'>{$poolv['health']}</a></span>");
 									echo "</div></td></tr>";
 
