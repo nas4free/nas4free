@@ -5,7 +5,20 @@ Changes:
 - Upgrade to FreeBSD 9.3 RELEASE p5.
 - Confert to pkgng.
 - Improved WebGUI under PHP 5.6.
+- Improved WebGUI with Chrome.
 - Improved config restore verbose output.
+- Changed rootfs layout. (2GB USB/CF is required. Full is 4GB or more.)
+- Changed image files to use XZ.
+- Drop LiveCD mode support with less than 2GB memory. (install/upgrade only)
+  Supported minimum spec except LiveCD is 512MB memory + 512MB swap device or partition.
+  1024MB swap device or partition is recommended.
+  File based swap and ZFS volume swap is not recommended.
+- Add default swap of 1024MB for LiveUSB and before user configuration.
+- Adjust number of Status|Processes.
+- Add MBR partition to LiveUSB.
+- Add log/mirrored log support in Disks|ZFS|Pools|Tools.
+- Add expires HTTP header. (some js must be force reloaded.)
+- Increase http upload size to 512MB.
 - Upgrade e2fsprogs to 1.42.12.
 - Upgrade bash 4.3 to patch 30.
 - Upgrade transmission to 2.84.
@@ -19,6 +32,8 @@ Changes:
 - Change iperf2.x for iperf3.
 
 Fixes:
+- xmlrpc is broken.
+- Missing GPT partition in Disks|ZFS|Pools|Tools.
 - Switching DHCP and static IP cause unexpected behavior.
 - Some drives can't get disk model/description.
 - The text on graph is not sized on Chrome.
