@@ -389,20 +389,38 @@ if (isset($_POST['import_config']))
 				{
 					$disk = array_search_ex($device, $disks, 'devicespecialfile');
 					$disk = $disks[$disk];
+					$serial = "";
+					if (!empty($disk['serial'])) {
+						$serial = $disk['serial'];
+					}
+					if (($serial == "n/a") || ($serial == gettext("n/a"))) {
+						$serial = "";
+					}
 					$cfg['disks']['disk'][] = array(
 						'uuid' => uuid(),
 						'name' => $disk['name'],
+						'id' => $disk['id'],
 						'devicespecialfile' => $disk['devicespecialfile'],
+						'model' => !empty($disk['model']) ? $disk['model'] : "",
+						'desc' => !empty($disk['desc']) ? $disk['desc'] : "",
+						'type' => $disk['type'],
+						'serial' => $serial,
+						'size' => $disk['size'],
 						'harddiskstandby' => 0,
 						'acoustic' => 0,
-						'fstype' => $encrypted ? 'geli' : 'zfs',
 						'apm' => 0,
 						'transfermode' => 'auto',
-						'type' => $disk['type'],
-						'desc' => $disk['desc'],
-						'size' => $disk['size'],
-						'serial' => $disk['serial'],
-						'smart' => false,
+						'fstype' => $encrypted ? 'geli' : 'zfs',
+						'controller' => $disk['controller'],
+						'controller_id' => $disk['controller_id'],
+						'controller_desc' => $disk['controller_desc'],
+						'smart' => array(
+							'devicefilepath' => $disk['smart']['devicefilepath'],
+							'devicetype' => $disk['smart']['devicetype'],
+							'devicetypearg' => $disk['smart']['devicetypearg'],
+							'enable' => false,
+							'extraoptions' => "",
+						),
 					);
 				}
 				else if ($index !== false && isset($_POST['import_disks_overwrite']))
