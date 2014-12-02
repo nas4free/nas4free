@@ -226,6 +226,7 @@ EOF
 		-i "//system/webgui/protocol[. = 'https']" \
 			-o "ssl.engine = \"enable\"" -n \
 			-o "ssl.pemfile = \"${lighttpd_certpem}\"" -n \
+			-o "ssl.use-sslv3 = \"disable\"" -n \
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc >> ${lighttpd_conf}
 
