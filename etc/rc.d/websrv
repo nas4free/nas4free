@@ -204,6 +204,7 @@ EOF
 		cat <<EOF >> ${websrv_conf}
 ssl.engine = "enable"
 ssl.pemfile = "${websrv_certpem}"
+ssl.use-sslv3 = "disable"
 EOF
 
 		# Create .pem file (required)
