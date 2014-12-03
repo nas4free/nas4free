@@ -7,7 +7,8 @@ Changes:
 - Improved WebGUI under PHP 5.6.
 - Improved WebGUI with Chrome.
 - Improved config restore verbose output.
-- Improved ZFS pool usage and import ZFS disks.
+- Improved ZFS pool usage/tool and import ZFS disks.
+- Replaced the server certificate with 2048bits key and sha256 signature.
 - Changed rootfs layout. (2GB USB/CF is required. Full is 4GB or more.)
 - Changed image files to use XZ.
 - Drop SSLv3 support. (HTTPS must use TLS)
