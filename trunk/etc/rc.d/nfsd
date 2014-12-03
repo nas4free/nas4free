@@ -19,6 +19,7 @@
 
 . /etc/rc.subr
 . /etc/configxml.subr
+. /etc/util.subr
 
 name="nfsd"
 rcvar=nfs_server_enable
@@ -29,6 +30,7 @@ nfs_server_flags=`/usr/local/bin/xml sel -t -v "concat('-u -t -n ',//nfsd/numpro
 
 load_rc_config $name
 start_precmd="nfsd_precmd"
+start_cmd="nfsd_cmd"
 sig_stop="USR1"
 
 nfsd_precmd()
@@ -82,6 +84,18 @@ nfsd_precmd()
 		force_depend mountd || return 1
 	fi
 	return 0
+}
+
+nfsd_cmd()
+{
+	_enable=`configxml_get_count "//hast/enable"`
+	_role=`get_hast_role`
+        if [ "${rc_arg}" != "status" -a "$_enable" != "0" -a "$_role" != "primary" -a "$_rc_prefix" != "force" ]; then
+		return 0;
+	fi
+
+	check_startmsgs && echo "Starting ${name}."
+	eval "$command $rc_flags $command_args"
 }
 
 run_rc_command "$1"
