@@ -23,8 +23,11 @@ cat $autosnapshot_config | while read _type _path _name _recursive _timeday _tim
   snapshot="${_path}@${name}"
 
   # oldest snapshot name
-  lifetimesec=`/bin/expr $NOW - ${_lifetimesec}`
-  delname=`/bin/date -j -f "%s" $lifetimesec "+${_name}"`
+  TODAY=`date -j -f "%s" $NOW +%F`
+  TODAYEPOCH=`date -j -f "%F %T" "$TODAY 12:00:00" +%s`
+  DELEPOCH=`/bin/expr $TODAYEPOCH - ${_lifetimesec}`
+  DELDAY=`date -j -f "%s" $DELEPOCH +%F`
+  delname=`/bin/date -j -f "%F %H%M" "$DELDAY $NOWHM" "+${_name}"`
   if [ -z $delname ]; then continue; fi;
   delsnapshot="${_path}@${delname}"
 
