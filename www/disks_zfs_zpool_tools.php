@@ -643,7 +643,11 @@ function pool_change() {
       <form action="disks_zfs_zpool_tools.php" method="post" name="iform" id="iform">
 	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 	<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
+	<?php if (!$do_action) { ?>
 	<table width="100%" border="0" cellpadding="6" cellspacing="0">
+	<?php } else { ?>
+	<table width="100%" border="0" cellpadding="6" cellspacing="0" style="display:none;">
+	<?php } ?>
 	<tr>
 	  <td width="22%" valign="top" class="vncellreq"><?=gettext("Command");?></td>
 	  <td width="78%" class="vtable">
@@ -691,9 +695,15 @@ function pool_change() {
 	<?php html_combobox("device_spare", gettext("Hot Spare"), NULL, NULL, "", true);?>
 	<?php html_combobox("device_vdev", gettext("Virtual device"), NULL, NULL, gettext("Once you add the virtual device, it becomes impossible to delete again. It recommends adding the same number of drives as the existing virtual device."), true);?>
 	</table>
+	<?php if (!$do_action) { ?>
 	<div id="submit">
 	  <input name="Submit" type="submit" class="formbtn" value="<?=gettext("Send Command!");?>" />
 	</div>
+	<?php } else { ?>
+	<div id="reload">
+	  <input name="reload" type="button" class="formbtn" value="<?=gettext("Return to Command page");?>" onclick="location.href='disks_zfs_zpool_tools.php';" />
+	</div>
+	<?php } ?>
 	<?php if ($do_action) {
 		echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
 		echo('<pre class="cmdoutput">');
