@@ -866,6 +866,7 @@ function get_hast_disks_list()
 			$disklist[$diskname]['name'] = $diskname;
 			$disklist[$diskname]['devicespecialfile'] = "/dev/hast/" . $diskname;
 			$disklist[$diskname]['type'] = "HAST";
+			$disklist[$diskname]['model'] = "HAST device";
 			$disklist[$diskname]['desc'] = "HAST device";
 			$disklist[$diskname]['role'] = gettext("Unknown");
 			$disklist[$diskname]['status'] = gettext("Unknown");

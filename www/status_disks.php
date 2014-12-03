@@ -41,6 +41,7 @@ $pgtitle = array(gettext("Status"), gettext("Disks"));
 
 // Get all physical disks.
 $a_phy_disk = array_merge((array)get_conf_physical_disks_list());
+$a_phy_hast = array_merge((array)get_hast_disks_list());
 
 $pconfig['temp_info'] = $config['smartd']['temp']['info'];
 $pconfig['temp_crit'] = $config['smartd']['temp']['crit'];
@@ -74,9 +75,10 @@ $raidstatus = get_sraid_disks_list();
 				<?php (($temp = system_get_device_temp($disk['devicespecialfile'])) === FALSE) ? $temp = htmlspecialchars(gettext("n/a")) : $temp = sprintf("%s &deg;C", htmlspecialchars($temp));?>
 				<?php
 					if ($disk['type'] == 'HAST') {
-						$role = $a_phy_disk[$disk['name']]['role'];
+						$role = $a_phy_hast[$disk['name']]['role'];
+						$size = $a_phy_hast[$disk['name']]['size'];
 						$status = sprintf("%s (%s)", (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING"), $role);
-						$disk['size'] = $a_phy_disk[$disk['name']]['size'];
+						$disk['size'] = $size;
 					} else {
 						$status = (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING");
 					}

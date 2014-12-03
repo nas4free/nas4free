@@ -1447,12 +1447,14 @@ function disks_verify_all_disks($a_phy_disks) {
                 $disk_exists = 1;
                 $disk_error = 0;
 
-				if (($phy_disk['serial'] == "n/a") || ($phy_disk['serial'] == gettext("n/a"))){
-					$phy_disk_serial = "";
-				}
-				else{
-					$phy_disk_serial = $phy_disk['serial'];
-				}
+		if ($phy_disk['type'] === "HAST")
+			continue;
+
+		if (($phy_disk['serial'] == "n/a") || ($phy_disk['serial'] == gettext("n/a"))){
+			$phy_disk_serial = "";
+		} else{
+			$phy_disk_serial = $phy_disk['serial'];
+		}
 
                 if ($phy_disk_serial !== $conf_disk['serial']){
                     // check if conf_disk is moved
