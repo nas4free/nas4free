@@ -581,7 +581,7 @@ EOD;
 		<!--
 			function onSubmit()
 			{
-				opener.ifield.value = document.forms[0].p.value;
+				opener.ifield.value = document.forms[0].p.value.replace(/\/$/, '');
 				close();
 			}
 			function onReset()
