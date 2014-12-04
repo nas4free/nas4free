@@ -1615,9 +1615,6 @@ function disks_import_try_allfs($dev) {
 			$ntfs = disks_try_ntfs($file);
 			if (!empty($ntfs))
 				return "ntfs";
-			$zfs = disks_try_zfs($file);
-			if (!empty($zfs))
-				return "zfs";
 		}
 	}
 
