@@ -1731,6 +1731,7 @@ function disks_import_all_disks($clean_import) {
 	$num = $error = 0;
 
 	$disks = get_all_disks_list();
+	$disks = array_merge((array)$disks, (array)get_hast_disks_list());
 	if (empty($disks))
 		return $num;
 
@@ -1743,7 +1744,7 @@ function disks_import_all_disks($clean_import) {
 	foreach ($disks as $diskv) {
 		$type = $diskv['type'];
 		$dev = $diskv['devicespecialfile'];
-		if ($type == 'SCSI' || $type == 'RAID' || $type == 'IDE') {
+		if ($type == 'SCSI' || $type == 'RAID' || $type == 'HAST' || $type == 'IDE') {
 			// disk exist in config?
 			$index = array_search_ex($dev, $config['disks']['disk'], "devicespecialfile");
 			if (false === $index) {
