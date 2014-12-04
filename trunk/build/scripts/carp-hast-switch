@@ -9,8 +9,21 @@
 # and Viktor Petersson <vpetersson@wireload.net>
 # Modified for NAS4Free.
 
+if [ ! -e /var/run/hastctl ]; then
+    sleep 2
+    if [ ! -e /var/run/hastctl ]; then
+	# hastd is not started
+	return 0
+    fi
+fi
+
+hastd_config=/etc/hast.conf
+if [ -f /var/etc/hast.conf ]; then
+    hastd_config=/var/etc/hast.conf
+fi
+
 # The names of the HAST resources, as listed in /etc/hast.conf
-resources=`/sbin/hastctl dump | /usr/bin/grep resource | /usr/bin/sed -e 's/^.*:\ *//'`
+resources=`/sbin/hastctl dump -c ${hastd_config} | /usr/bin/grep resource | /usr/bin/sed -e 's/^.*:\ *//'`
 
 # delay in mounting HAST resource after becoming master
 # make your best guess
@@ -43,7 +56,7 @@ case "$1" in
 	    done
 
 	    # Switch role for each disk
-	    hastctl role primary ${disk}
+	    hastctl role -c ${hastd_config} primary ${disk}
 	    if [ $? -ne 0 ]; then
 		logger -p $log -t $name "Unable to change role to primary for resource ${disk}."
 		exit 1
@@ -101,7 +114,7 @@ case "$1" in
 	sleep $delay
 	for disk in ${resources}; do
 	    sleep 1
-	    hastctl role secondary ${disk} 2>&1
+	    hastctl role -c ${hastd_config} secondary ${disk} 2>&1
 	    if [ $? -ne 0 ]; then
 		logger -p $log -t $name "Unable to switch role to secondary for resource ${disk}."
 		exit 1
