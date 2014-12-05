@@ -28,15 +28,13 @@ do-install:
 #	mount_fusefs is in basesystem, copy from there
 #	@${INSTALL_PROGRAM} -v ${PORTSDIR}/sysutils/fusefs-kmod/work/fuse4bsd*/mount_fusefs/mount_fusefs ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/sysutils/fusefs-ntfs/work/ntfs-3g*/src/.libs/ntfs-3g ${NAS4FREE_ROOTFS}/usr/local/bin
-																			
+
 #	@${INSTALL_KLD} -v ${PORTSDIR}/sysutils/fusefs-kmod/work/fuse4bsd*/fuse_module/fuse.ko ${NAS4FREE_ROOTFS}/boot/kernel
-	@${INSTALL_PROGRAM} -v ${PORTSDIR}/sysutils/fusefs-ntfs/work/ntfs-3g*/libntfs-3g/.libs/libntfs-3g.so ${NAS4FREE_ROOTFS}/usr/local/lib
+	@${INSTALL_PROGRAM} -v ${PORTSDIR}/sysutils/fusefs-ntfs/work/ntfs-3g*/libntfs-3g/.libs/libntfs-3g.so.85 ${NAS4FREE_ROOTFS}/usr/local/lib
 #	@${INSTALL_PROGRAM} -v ${PORTSDIR}/sysutils/fusefs-libs/work/fuse-*/lib/.libs/lib*.so* ${NAS4FREE_ROOTFS}/usr/local/lib
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/sysutils/fusefs-libs/work/fuse-*/lib/.libs/lib*.so ${NAS4FREE_ROOTFS}/usr/local/lib
 #	@${INSTALL_PROGRAM} -v ${PORTSDIR}/devel/libublio/work/libublio-*/libubl*.so* ${NAS4FREE_ROOTFS}/usr/local/lib
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/devel/libublio/work/libublio-*/libubl*.so ${NAS4FREE_ROOTFS}/usr/local/lib
-
-	
 
 	@${LN} -s -f -v /usr/local/bin/ntfs-3g ${NAS4FREE_ROOTFS}/bin/mount_ntfs
 	@${LN} -s -f -v /usr/local/bin/ntfs-3g ${NAS4FREE_ROOTFS}/bin/mount_ntfs-3g
