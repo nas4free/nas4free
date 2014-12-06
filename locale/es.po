@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-11-30 23:42+0000\n"
-"PO-Revision-Date: 2014-11-17 04:03+0000\n"
-"Last-Translator: NAS4Free Developer <Unknown>\n"
+"POT-Creation-Date: 2014-12-06 18:23+0000\n"
+"PO-Revision-Date: 2014-12-03 18:13+0000\n"
+"Last-Translator: raul fernandez garcia <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-01 15:45+0000\n"
+"X-Launchpad-Export-Date: 2014-12-06 09:41+0000\n"
 "X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Country: SPAIN\n"
 "Language: \n"
@@ -80,7 +80,7 @@ msgstr "%s%d %s está siendo usado por %s%d."
 
 #, php-format
 msgid "%s: cannot get mirror name."
-msgstr ""
+msgstr "%s: No se puede usar ese nombre de espejo."
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -530,7 +530,7 @@ msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr "Se requiere un Path que este montado, pero %s no esta montado"
 
 msgid "All disks are imported."
-msgstr ""
+msgstr "Todos los discos han sido importados."
 
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
@@ -540,7 +540,7 @@ msgstr ""
 "los archivos .Parent y cualquiera que empiece con .Apple."
 
 msgid "All software raid disks are imported."
-msgstr ""
+msgstr "Todos los RAID por software han sido importados."
 
 msgid "All users will have the root privilege."
 msgstr "Todos los usuarios tendrán permisos de root."
@@ -625,9 +625,6 @@ msgstr "Ya existe una máquina con este nombre."
 
 msgid "An interface with the specified description already exists."
 msgstr "Ya existe una interfaz con la descripcion especificada."
-
-msgid "Anonymous"
-msgstr "Anónimo"
 
 msgid "Anonymous bind"
 msgstr "Enlace anónimo"
@@ -1572,13 +1569,13 @@ msgid "Detected"
 msgstr "Detectado"
 
 msgid "Detected Language:<br />(Change if needed)"
-msgstr ""
+msgstr "Lengua detectada :<br />(Cambiar si es necesario)"
 
 msgid "Detected RSYNC remote shares"
 msgstr "Elementos compartidos RSYNC detectados"
 
 msgid "Detected an error while importing."
-msgstr ""
+msgstr "Detectado un error mientras se realizaba la importación."
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3465,7 +3462,7 @@ msgid "Log (mirror)"
 msgstr "Registro de eventos (mirror)"
 
 msgid "Log Device"
-msgstr ""
+msgstr "Dispositivo de Log"
 
 msgid "Log Level"
 msgstr "Nivel de registro"
@@ -3977,10 +3974,10 @@ msgid "No file was uploaded."
 msgstr "Ningún archivo fue subido."
 
 msgid "No new disk found."
-msgstr ""
+msgstr "No se han encontrados nuevos discos."
 
 msgid "No new software raid disk found."
-msgstr ""
+msgstr "No se han encontrado nuevos Discos RAID"
 
 msgid "No pool was found."
 msgstr "Ningun poll fue encontrado."
@@ -4788,6 +4785,9 @@ msgstr "Continuar"
 msgid "Retry"
 msgstr "Reintentar"
 
+msgid "Return to Command page"
+msgstr "Volver a la página de comandos."
+
 msgid "Reverse DNS lookup"
 msgstr "Búsqueda inversa de DNS"
 
@@ -4869,11 +4869,13 @@ msgstr "registro S.M.A.R.T."
 msgid "SMB2"
 msgstr "SMB2"
 
-msgid ""
-"SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."
+msgid "SMB3"
 msgstr ""
-"SMB2 es usado por sistemas operativos recientes como Windows 7 y Vista. NT1 "
-"es para S.O. antiguos como XP"
+
+msgid ""
+"SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and "
+"Vista. NT1 is for legacy OS like XP."
+msgstr ""
 
 msgid "SNMP"
 msgstr "SNMP"
@@ -7067,7 +7069,7 @@ msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
 msgid "UFS"
-msgstr ""
+msgstr "UFS"
 
 #, php-format
 msgid ""
@@ -7798,3 +7800,12 @@ msgstr "Desmontar"
 #, php-format
 msgid "version:"
 msgstr "versión:"
+
+#~ msgid "Anonymous"
+#~ msgstr "Anónimo"
+
+#~ msgid ""
+#~ "SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."
+#~ msgstr ""
+#~ "SMB2 es usado por sistemas operativos recientes como Windows 7 y Vista. NT1 "
+#~ "es para S.O. antiguos como XP"
