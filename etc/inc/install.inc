@@ -241,6 +241,7 @@ kern.cam.boot_delay="8000"
 autoboot_delay="5"
 isboot_load="YES"
 zfs_load="YES"
+geom_xmd_load="YES"
 
 EOD;
 
