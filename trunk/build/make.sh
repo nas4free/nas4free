@@ -988,6 +988,8 @@ create_full() {
 	echo 'bitmap_name="/boot/splash.bmp"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'autoboot_delay="5"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'isboot_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'zfs_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'geom_xmd_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 
 	#Check that there is no /etc/fstab file! This file can be generated only during install, and must be kept
 	[ -f $NAS4FREE_TMPDIR/etc/fstab ] && rm -f $NAS4FREE_TMPDIR/etc/fstab

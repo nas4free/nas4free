@@ -105,7 +105,7 @@ fi
 
 # Generate the loader.conf file using by bootloader
 echo "Generate $MINIBSD_DIR/loader.conf"
-echo 'mfsroot_load="YES"' > $MINIBSD_DIR/loader.conf
+echo 'mfsroot_load="NO"' > $MINIBSD_DIR/loader.conf
 echo 'mfsroot_type="mfs_root"' >> $MINIBSD_DIR/loader.conf
 echo 'mfsroot_name="/mfsroot"' >> $MINIBSD_DIR/loader.conf
 echo 'hw.est.msr_info="0"' >> $MINIBSD_DIR/loader.conf
@@ -145,6 +145,11 @@ echo 'isboot_load="YES"' >> $MINIBSD_DIR/loader.conf
 echo 'zfs_load="YES"' >> $MINIBSD_DIR/loader.conf
 #echo 'geom_mirror_load="YES"' >> $MINIBSD_DIR/loader.conf
 #echo 'geom_stripe_load="YES"' >> $MINIBSD_DIR/loader.conf
+# xmd
+echo 'xmfsroot_load="YES"' >> $MINIBSD_DIR/loader.conf
+echo 'xmfsroot_type="xmd_root"' >> $MINIBSD_DIR/loader.conf
+echo 'xmfsroot_name="/mfsroot.uzip"' >> $MINIBSD_DIR/loader.conf
+echo 'geom_xmd_load="YES"' >> $MINIBSD_DIR/loader.conf
 
 # Copy kernel.
 if [ -e "${NAS4FREE_WORKINGDIR}/kernel.gz" ] ; then
