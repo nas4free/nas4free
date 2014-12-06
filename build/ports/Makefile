@@ -38,6 +38,7 @@
     SUBDIR += pam_mkhomedir
     SUBDIR += php56
     SUBDIR += proftpd
+    SUBDIR += python2
     SUBDIR += rconf
     SUBDIR += rsync
     SUBDIR += samba36
