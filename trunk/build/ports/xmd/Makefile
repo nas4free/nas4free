@@ -21,6 +21,7 @@ IGNORE=unsupported on ${ARCH}
 .endif
 
 do-install:
+	@${MKDIR} -p ${NAS4FREE_BOOTDIR}/kernel
 	@${INSTALL_KLD} -v ${WRKSRC}/${BASEDIR}/geom_xmd.ko ${NAS4FREE_BOOTDIR}/kernel
 	@${INSTALL_KLD} -v ${WRKSRC}/${BASEDIR}/geom_xmd.ko ${NAS4FREE_ROOTFS}/boot/kernel
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/${BASEDIR}/xmdconfig ${NAS4FREE_ROOTFS}/sbin
