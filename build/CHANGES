@@ -3,7 +3,8 @@ NAS4Free 9.3.0.1 - Nayla
 
 Changes:
 - Upgrade to FreeBSD 9.3 RELEASE p5.
-- Confert to pkgng.
+- Upgrade to Samba 4.1.13 and add SMB3 in WebGUI.
+- Convert to pkgng.
 - Improved WebGUI under PHP 5.6.
 - Improved WebGUI with Chrome.
 - Improved config restore verbose output.
@@ -43,6 +44,9 @@ Fixes:
 - Some drives can't get disk model/description.
 - The text on graph is not sized on Chrome.
 - Firmware page show incorrectly.
+- ntfs-3g is broken.
+- Form size is too small on Chrome.
+- HAST device is not imported by import disks.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
