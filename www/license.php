@@ -151,6 +151,9 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
       <p> Samba (<a href="http://www.samba.org" target="_blank">http://www.samba.org</a>)<br />
         Copyright &copy; 2007 Free Software Foundation. All Rights Reserved.</p>
 
+      <p> Python (<a href="http://www.python.org" target="_blank">http://www.python.org</a>)<br />
+        Copyright &copy; 2001-2014 Python Software Foundation. All Rights Reserved.</p>
+
       <p> Rsync (<a href="http://www.samba.org/rsync" target="_blank">http://www.samba.org/rsync</a>)<br />
         Copyright &copy; 2007 Free Software Foundation. All Rights Reserved.</p>
 
