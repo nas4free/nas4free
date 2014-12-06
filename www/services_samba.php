@@ -103,7 +103,9 @@ if ($_POST) {
 		$reqdfieldsn = array(gettext("Send Buffer Size"),gettext("Receive Buffer Size"));
 		$reqdfieldst = explode(" ", "numericint numericint");
 
-		if ($_POST['security'] == "share" && $_POST['maxprotocol'] == "SMB2") {
+		// samba 4+ does not have "share". you can delete this in future.
+		if (($_POST['security'] == "share" && $_POST['maxprotocol'] == "SMB2")
+		    || ($_POST['security'] == "share" && $_POST['maxprotocol'] == "SMB3")) {
 			$input_errors[] = gettext("It cannot be used combining SMB2 and Anonymous.");
 		}
 		if (!empty($_POST['createmask']) || !empty($_POST['directorymask'])) {
@@ -297,8 +299,8 @@ function aio_change() {
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline_checkbox("enable", gettext("Common Internet File System"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
-					<?php html_combobox("security", gettext("Authentication"), $pconfig['security'], array("share" => gettext("Anonymous"), "user" => gettext("Local User"), "ads" => gettext("Active Directory")), "", true, false, "authentication_change()");?>
-					<?php html_combobox("maxprotocol", gettext("Max Protocol"), $pconfig['maxprotocol'], array("SMB2" => gettext("SMB2"), "NT1" => gettext("NT1")), gettext("SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."), true, false, "");?>
+					<?php html_combobox("security", gettext("Authentication"), $pconfig['security'], array("user" => gettext("Local User"), "ads" => gettext("Active Directory")), "", true, false, "authentication_change()");?>
+					<?php html_combobox("maxprotocol", gettext("Max Protocol"), $pconfig['maxprotocol'], array("SMB3" => gettext("SMB3"), "SMB2" => gettext("SMB2"), "NT1" => gettext("NT1")), gettext("SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and Vista. NT1 is for legacy OS like XP."), true, false, "");?>
           <tr>
             <td width="22%" valign="top" class="vncellreq"><?=gettext("NetBIOS name");?></td>
             <td width="78%" class="vtable">
