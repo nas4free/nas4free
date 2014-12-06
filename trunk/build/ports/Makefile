@@ -53,6 +53,7 @@
     SUBDIR += vbox-additions
     SUBDIR += vmxnet3
     SUBDIR += wol
+    SUBDIR += xmd
     SUBDIR += xmlstarlet
     SUBDIR += zoneinfo
 
