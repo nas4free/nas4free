@@ -35,7 +35,8 @@ CONFIGURE_ARGS+=	--enable-largefile \
 			--enable-musepack \
 			--enable-flac \
 			--enable-dlna \
-			--disable-exiv2
+			--disable-exiv2 \
+			--disable-inotify
 CONFIGURE_ARGS+=	--localstatedir=/var/db
 
 CONFIGURE_ENV=		CPPFLAGS="-I${LOCALBASE}/include -I${LOCALBASE}/include/ffmpeg ${PTHREAD_CFLAGS}" \
