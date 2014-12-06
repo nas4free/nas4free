@@ -520,6 +520,15 @@ usr/bin/patch
 ## xz,  unxz,  xzcat, lzma, unlzma, lzcat - Compress or decompress .xz and .lzma files
 usr/bin/xz:usr/bin/unxz:usr/bin/xzcat:usr/bin/lzma:usr/bin/unlzma:usr/bin/lzcat
 
+## kinit -- acquire initial tickets
+usr/bin/kinit
+
+## klist -- list Kerberos credentials
+usr/bin/klist
+
+## kdestroy -- remove one credental or destroy the current ticket file
+usr/bin/kdestroy
+
 ####### contents of /usr/sbin
 ## acpiconf -- control ACPI power management
 usr/sbin/acpiconf
