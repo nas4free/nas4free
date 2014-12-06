@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-11-30 23:42+0000\n"
-"PO-Revision-Date: 2014-11-17 04:04+0000\n"
+"POT-Creation-Date: 2014-12-06 18:23+0000\n"
+"PO-Revision-Date: 2014-12-03 08:38+0000\n"
 "Last-Translator: Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-01 15:45+0000\n"
+"X-Launchpad-Export-Date: 2014-12-06 09:41+0000\n"
 "X-Generator: Launchpad (build 17274)\n"
 "Language: hu_HU\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -84,7 +84,7 @@ msgstr "%s%d %s már használatban van: %s%d."
 
 #, php-format
 msgid "%s: cannot get mirror name."
-msgstr ""
+msgstr "%s: nincs tükörnév."
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -527,7 +527,7 @@ msgstr ""
 "nincs becsatolva."
 
 msgid "All disks are imported."
-msgstr ""
+msgstr "Összes lemez importálva."
 
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
@@ -537,7 +537,7 @@ msgstr ""
 "bármi .Apple kezdettel nem használható."
 
 msgid "All software raid disks are imported."
-msgstr ""
+msgstr "Összes szoftveres raid lemez importálva."
 
 msgid "All users will have the root privilege."
 msgstr "Az összes felhasználónak root privilégiuma lesz."
@@ -622,9 +622,6 @@ msgstr "Egy állomás ugyanezzel a névvel létezik már."
 
 msgid "An interface with the specified description already exists."
 msgstr "A meghatározott leírású csatoló már létezik."
-
-msgid "Anonymous"
-msgstr "Anonymous"
 
 msgid "Anonymous bind"
 msgstr "Anonymus kötés"
@@ -1563,13 +1560,13 @@ msgid "Detected"
 msgstr "Észlelt"
 
 msgid "Detected Language:<br />(Change if needed)"
-msgstr ""
+msgstr "Érzékelt nyelv:<br />(Változatassa meg, ha szükséges)"
 
 msgid "Detected RSYNC remote shares"
 msgstr "Felismert rsync távoli megosztások"
 
 msgid "Detected an error while importing."
-msgstr ""
+msgstr "Hiba az importálás során."
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3422,7 +3419,7 @@ msgid "Log (mirror)"
 msgstr "Napló (tükör)"
 
 msgid "Log Device"
-msgstr ""
+msgstr "Napló eszköz"
 
 msgid "Log Level"
 msgstr "Naplózási szint"
@@ -3931,10 +3928,10 @@ msgid "No file was uploaded."
 msgstr "Nem lett fájl feltöltve."
 
 msgid "No new disk found."
-msgstr ""
+msgstr "Nincs új lemez."
 
 msgid "No new software raid disk found."
-msgstr ""
+msgstr "Nincs új szoftveres raid lemez."
 
 msgid "No pool was found."
 msgstr "Nincs tároló"
@@ -4740,6 +4737,9 @@ msgstr "Folytatás"
 msgid "Retry"
 msgstr "Ismét"
 
+msgid "Return to Command page"
+msgstr "Vissza a parancssorhoz."
+
 msgid "Reverse DNS lookup"
 msgstr "Fordított DNS keresés"
 
@@ -4821,11 +4821,13 @@ msgstr "S.M.A.R.T. napló"
 msgid "SMB2"
 msgstr "SMB2"
 
-msgid ""
-"SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."
+msgid "SMB3"
 msgstr ""
-"SMB2 mai oprendszerek esetén, mint Windows 7, Windows 8 és Vista. NT1 "
-"régebbi oprendszerekehez, mint XP."
+
+msgid ""
+"SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and "
+"Vista. NT1 is for legacy OS like XP."
+msgstr ""
 
 msgid "SNMP"
 msgstr "SNMP"
@@ -6982,7 +6984,7 @@ msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
 msgid "UFS"
-msgstr ""
+msgstr "UFS"
 
 #, php-format
 msgid ""
@@ -7706,3 +7708,12 @@ msgstr "leválasztás"
 #, php-format
 msgid "version:"
 msgstr "verzió:"
+
+#~ msgid "Anonymous"
+#~ msgstr "Anonymous"
+
+#~ msgid ""
+#~ "SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."
+#~ msgstr ""
+#~ "SMB2 mai oprendszerek esetén, mint Windows 7, Windows 8 és Vista. NT1 "
+#~ "régebbi oprendszerekehez, mint XP."

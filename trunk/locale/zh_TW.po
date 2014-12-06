@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-11-30 23:42+0000\n"
-"PO-Revision-Date: 2014-11-17 04:10+0000\n"
-"Last-Translator: akong <akong@aspa.idv.tw>\n"
+"POT-Creation-Date: 2014-12-06 18:23+0000\n"
+"PO-Revision-Date: 2014-12-03 21:57+0000\n"
+"Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-01 15:44+0000\n"
+"X-Launchpad-Export-Date: 2014-12-06 09:42+0000\n"
 "X-Generator: Launchpad (build 17274)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -78,7 +78,7 @@ msgstr "%s%d %s 已被 %s%d 使用。"
 
 #, php-format
 msgid "%s: cannot get mirror name."
-msgstr ""
+msgstr "%s: 找不到鏡像名。"
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -485,7 +485,7 @@ msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr "所有目錄都需要已掛載的路徑，但路徑 %s 尚未掛載。"
 
 msgid "All disks are imported."
-msgstr ""
+msgstr "已經導入所有硬盤。"
 
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
@@ -493,7 +493,7 @@ msgid ""
 msgstr "所有分享區使用 'usedots' 選項，導致任何以 .Parent 和 .Apple 開始的檔案名稱不合法。"
 
 msgid "All software raid disks are imported."
-msgstr ""
+msgstr "已經導入所有軟體RAID的硬盤。"
 
 msgid "All users will have the root privilege."
 msgstr "讓所有的使用者都有 root 權限。"
@@ -572,9 +572,6 @@ msgstr "已經有一個相同的主機名稱存在了。"
 
 msgid "An interface with the specified description already exists."
 msgstr "已經有一個相同的介面存在了。"
-
-msgid "Anonymous"
-msgstr "匿名"
 
 msgid "Anonymous bind"
 msgstr "匿名綁定"
@@ -1479,13 +1476,13 @@ msgid "Detected"
 msgstr "已偵測"
 
 msgid "Detected Language:<br />(Change if needed)"
-msgstr ""
+msgstr "檢測語言：<br />（如果需要請更改）"
 
 msgid "Detected RSYNC remote shares"
 msgstr "刪除 RSYNC 遠端分享"
 
 msgid "Detected an error while importing."
-msgstr ""
+msgstr "在導入時檢測到一個錯誤。"
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -3244,7 +3241,7 @@ msgid "Log (mirror)"
 msgstr "記錄檔（鏡像）"
 
 msgid "Log Device"
-msgstr ""
+msgstr "记录设备"
 
 msgid "Log Level"
 msgstr "記錄檔層級"
@@ -3722,10 +3719,10 @@ msgid "No file was uploaded."
 msgstr "沒有檔案被上傳。"
 
 msgid "No new disk found."
-msgstr ""
+msgstr "沒有發現新的硬盤。"
 
 msgid "No new software raid disk found."
-msgstr ""
+msgstr "沒有發現新的軟體RAID的硬盤。"
 
 msgid "No pool was found."
 msgstr "找不到池。"
@@ -4492,6 +4489,9 @@ msgstr "繼續"
 msgid "Retry"
 msgstr "重試"
 
+msgid "Return to Command page"
+msgstr "返回到命令網頁"
+
 msgid "Reverse DNS lookup"
 msgstr "反向DNS查找"
 
@@ -4573,9 +4573,13 @@ msgstr "S.M.A.R.T. 記錄"
 msgid "SMB2"
 msgstr "SMB2"
 
+msgid "SMB3"
+msgstr ""
+
 msgid ""
-"SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."
-msgstr "SMB2是針對於較新的操作系統，如 Windows 7 和 Vista。 NT1 是是針對舊版的操作系統，如XP。"
+"SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and "
+"Vista. NT1 is for legacy OS like XP."
+msgstr ""
 
 msgid "SNMP"
 msgstr "SNMP"
@@ -6479,7 +6483,7 @@ msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
 msgid "UFS"
-msgstr ""
+msgstr "UFS"
 
 #, php-format
 msgid ""
@@ -7162,3 +7166,10 @@ msgstr "卸載"
 #, php-format
 msgid "version:"
 msgstr "版本："
+
+#~ msgid ""
+#~ "SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."
+#~ msgstr "SMB2是針對於較新的操作系統，如 Windows 7 和 Vista。 NT1 是是針對舊版的操作系統，如XP。"
+
+#~ msgid "Anonymous"
+#~ msgstr "匿名"
