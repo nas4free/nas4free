@@ -138,9 +138,6 @@ if ("restore" === $pconfig['action']) {
 <?php include("fbegin.inc");?>
 <script type="text/javascript">
 <!--
-$(document).ready(function(){
-$('input[name=backupfile]').css('width', '350px');
-});
 function action_change() {
 	switch(document.iform.action.value) {
 		case "attach":
