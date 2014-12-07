@@ -70,14 +70,22 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("Space 
 	</tr>
   <tr>
     <td class="tabcont">
-    	<table width="100%" border="0">
-				<?php html_titleline(gettext("Free disk space"));?>
-				<tr>
-			    <td>
-			    	<pre><?php unset($rawdata); exec("/bin/df -h", $rawdata); echo htmlspecialchars(implode("\n", $rawdata));?></pre>
-					</td>
-			  </tr>
-    	</table>
+      <table width="100%" border="0">
+	<?php html_titleline(gettext("Free disk space"));?>
+	<tr>
+	  <td>
+	    <pre><?php unset($rawdata); exec("/bin/df -h", $rawdata); echo htmlspecialchars(implode("\n", $rawdata));?></pre>
+	  </td>
+	</tr>
+<?php if (file_exists("/sbin/xmdconfig")) { ?>
+	<?php html_titleline(gettext("Memory usage"));?>
+	<tr>
+	  <td>
+	    <pre><?php unset($rawdata); exec("/sbin/xmdconfig -lv", $rawdata); echo htmlspecialchars(implode("\n", $rawdata));?></pre>
+	  </td>
+	</tr>
+<?php } ?>
+      </table>
     </td>
   </tr>
 </table>
