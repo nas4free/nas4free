@@ -10,6 +10,7 @@ Changes:
 - Improved config restore verbose output.
 - Improved ZFS pool usage/tool and import ZFS disks.
 - Improved ZFS pool import on embedded.
+- Replaced /dev/md0 with xmd using LZ4 compression.
 - Replaced the server certificate with 2048bits key and sha256 signature.
 - Changed rootfs layout. (2GB USB/CF is required. Full is 4GB or more.)
 - Changed image files to use XZ.
