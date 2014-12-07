@@ -581,7 +581,13 @@ EOD;
 		<!--
 			function onSubmit()
 			{
-				opener.ifield.value = document.forms[0].p.value.replace(/\/$/, '');
+				var slash = eval("opener.slash_"+opener.ifield.id);
+				if (typeof slash === "undefined" || slash == 0) {
+					opener.ifield.value = document.forms[0].p.value.replace(/\/$/, '');
+				} else {
+					// slash != 0
+					opener.ifield.value = document.forms[0].p.value;
+				}
 				close();
 			}
 			function onReset()
