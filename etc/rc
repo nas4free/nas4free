@@ -145,6 +145,9 @@ case ${PLATFORM} in
 				/sbin/mount /dev/${root} /mnt
 				/usr/bin/xz -dcv /mnt/mdlocal.xz | \
 				    /bin/dd of=/dev/${md} bs=1m status=none
+				#if [ -e /mnt/boot/zfs/zpool.cache ]; then
+				#	/bin/cp -p /mnt/boot/zfs/zpool.cache /boot/zfs/
+				#fi
 				/sbin/umount /mnt
 				;;
 			*-liveCD)
