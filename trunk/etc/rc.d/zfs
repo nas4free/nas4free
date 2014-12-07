@@ -60,6 +60,12 @@ zfs_init()
 		info Importing ZFS pools...
 		zpool import -d /dev -f -a
 		zfs umount -a
+		# if cache is created, write it to boot device
+		if [ -e /boot/zfs/zpool.cache -a -d /cf/boot/zfs ]; then
+			mount -u -o rw /cf
+			cp -p /boot/zfs/zpool.cache /cf/boot/zfs/zpool.cache
+			mount -u -o ro /cf		    
+		fi
 	fi
 }
 

@@ -64,6 +64,11 @@ if (isset($_POST['import']))
 	}
 
 	$retval = mwexec($cmd);
+
+	// remove existing pool cache
+	conf_mount_rw();
+	unlink_if_exists("{$g['cf_path']}/boot/zfs/zpool.cache");
+	conf_mount_ro();
 }
 
 $rawdata = null;
