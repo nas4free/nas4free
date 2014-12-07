@@ -85,9 +85,9 @@ case ${PLATFORM} in
 	*)
 		# If running from liveCD or embedded, mount the root (ramdisk) in read-write.
 		if [ -e /dev/xmd0 ]; then
-			/sbin/mount -u -o rw,noatime /dev/xmd0 /;
+			/sbin/mount -u -o rw,noatime,acls /dev/xmd0 /;
 		else
-			/sbin/mount -u -o rw,noatime /dev/md0 /;
+			/sbin/mount -u -o rw,noatime,acls /dev/md0 /;
 		fi
 
 		/bin/echo "Creating 2nd memory disk for ${PLATFORM}"
@@ -135,6 +135,11 @@ case ${PLATFORM} in
 					fi
 				else
 					rm -f /etc/swapdevice
+					if [ -f /boot/kernel/geom_xmd.ko ]; then
+						/sbin/mdconfig -d -u ${md}
+						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
+						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
+					fi
 				fi
 
 				/sbin/mount /dev/${root} /mnt
@@ -163,7 +168,7 @@ case ${PLATFORM} in
 			*)
 				;;
 		esac
-		/sbin/mount -o noatime /dev/${md} /usr/local
+		/sbin/mount -o noatime,acls /dev/${md} /usr/local
 		;;
 esac
 echo "${BOOT_LOWMEM}" > /etc/boot_lowmem
