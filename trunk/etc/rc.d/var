@@ -69,14 +69,27 @@ BOOT_LOWMEM=0
 if [ -f /etc/boot_lowmem ]; then
 	BOOT_LOWMEM=`/bin/cat /etc/boot_lowmem`
 fi
+PLATFORM=`/bin/cat /etc/platform`
 case "${varmfs}" in
 [Yy][Ee][Ss])
 	if [ ${BOOT_LOWMEM} -ne 0 ]; then
-		xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 1`
-		/sbin/newfs -U -t -m2 -o space /dev/${xmd} >/dev/null
-		/sbin/mount -o noatime /dev/${xmd} /var
+		xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 9`
+		#/sbin/newfs -U -t -m2 -o space /dev/${xmd} >/dev/null
+		/sbin/newfs -U -t /dev/${xmd} >/dev/null
+		/sbin/mount -o noatime,acls /dev/${xmd} /var
+		/sbin/xmdconfig -m -c 6 -u ${xmd}
 	else
-		mount_md ${varsize} /var "${varmfs_flags}"
+		case ${PLATFORM} in
+		*-embedded)
+			xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 9`
+			/sbin/newfs -U -t /dev/${xmd} >/dev/null
+			/sbin/mount -o noatime,acls /dev/${xmd} /var
+			/sbin/xmdconfig -m -c 1 -u ${xmd}
+			;;
+		*)
+			mount_md ${varsize} /var "${varmfs_flags}"
+			;;
+		esac
 	fi
 	mkdir /var/tmp
 	/sbin/mount -t tmpfs -o mode=1777,size=${vartmpsize} tmpfs /var/tmp
@@ -88,11 +101,22 @@ case "${varmfs}" in
 		rmdir /var/.diskless
 	else
 		if [ ${BOOT_LOWMEM} -ne 0 ]; then
-			xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 1`
-			/sbin/newfs -U -t -m2 -o space /dev/${xmd} >/dev/null
-			/sbin/mount -o noatime /dev/${xmd} /var
+			xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 9`
+			/sbin/newfs -U -t /dev/${xmd} >/dev/null
+			/sbin/mount -o noatime,acls /dev/${xmd} /var
+			/sbin/xmdconfig -m -c 6 -u ${xmd}
 		else
-			mount_md ${varsize} /var "${varmfs_flags}"
+			case ${PLATFORM} in
+			*-embedded)
+				xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 9`
+				/sbin/newfs -U -t /dev/${xmd} >/dev/null
+				/sbin/mount -o noatime,acls /dev/${xmd} /var
+				/sbin/xmdconfig -m -c 1 -u ${xmd}
+				;;
+			*)
+				mount_md ${varsize} /var "${varmfs_flags}"
+				;;
+			esac
 		fi
 		mkdir /var/tmp
 		/sbin/mount -t tmpfs -o mode=1777,size=${vartmpsize} tmpfs /var/tmp
