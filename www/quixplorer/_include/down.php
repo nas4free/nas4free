@@ -34,7 +34,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("./_include/permissions.php");
+require_once("_include/archive.php");
+require_once("_include/permissions.php");
 require_once("qxpage.php");
 
 /**
@@ -43,38 +44,42 @@ require_once("qxpage.php");
  **/
 function download_selected($dir)
 {
-    $dir = get_abs_dir($dir);
-    global $site_name;
     require_once("_include/archive.php");
     $items = qxpage_selected_items();
-    if (count($items) == 1 && is_file($items[0]))
-    {
-        download_item( $dir, $items[0] );
-    }
-    else
-    {
-        zip_download( $dir, $items );
-    }
+    _download_items($dir, $items);
 }
 
 // download file
 function download_item($dir, $item)
 {
-	// Security Fix:
-	$item=basename($item);
-
-	if (!permissions_grant($dir, $item, "read"))
-		show_error($GLOBALS["error_msg"]["accessfunc"]);
-
-	if (!get_is_file($dir,$item))    show_error($item.": ".$GLOBALS["error_msg"]["fileexist"]);
-	if (!get_show_item($dir, $item)) show_error($item.": ".$GLOBALS["error_msg"]["accessfile"]);
-
-	$abs_item = get_abs_item($dir,$item);
-    _download($abs_item, $item);
+    _download_items($dir, array($item));
 }
 
-function _download_header($filename, $filesize = 0)
+function _download_items($dir, $items)
 {
+    // check if user selected any items to download
+    _debug("count items: '$items[0]'");
+    if (count($items) == 0)
+        show_error($GLOBALS["error_msg"]["miscselitems"]);
+
+    // check if user has permissions to download
+    // this file
+    if ( ! _is_download_allowed($dir, $items) )
+		show_error( $GLOBALS["error_msg"]["accessitem"] );
+
+    // if we have exactly one file and this is a real
+    // file we directly download it
+    if ( count($items) == 1 && get_is_file( $dir, $items[0] ) )
+    {
+        $abs_item = get_abs_item($dir, $items[0]);
+        _download($abs_item, $items[0]);
+    }
+
+    // otherwise we do the zip download
+    zip_download( get_abs_dir($dir), $items );
+}
+
+function _download_header($filename, $filesize = 0) {
 	$browser=id_browser();
 	header('Content-Type: '.(($browser=='IE' || $browser=='OPERA')?
 		'application/octetstream':'application/octet-stream'));
@@ -101,4 +106,20 @@ function _download($file, $localname)
 	exit;
 }
 
+function _is_download_allowed( $dir, $items )
+{
+    foreach ($items as $file)
+    {
+        if (!permissions_grant($dir, $file, "read"))
+            return false;
+
+        if (!get_show_item($dir, $file))
+            return false;
+
+        if (!file_exists(get_abs_item( $dir, $file )))
+            return false;
+    }
+
+    return true;
+}
 ?>

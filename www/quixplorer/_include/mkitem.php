@@ -35,7 +35,7 @@
 	either expressed or implied, of the NAS4Free Project.
 */
 require_once("./_include/permissions.php");
-//------------------------------------------------------------------------------
+
 // make new directory or file
 function make_item ($dir)
 {
@@ -63,5 +63,5 @@ function make_item ($dir)
 	
 	header("Location: ".make_link("list",$dir,NULL));
 }
-//------------------------------------------------------------------------------
+
 ?>

@@ -35,7 +35,7 @@
 	either expressed or implied, of the NAS4Free Project.
 */
 require_once("./_include/permissions.php");
-//------------------------------------------------------------------------------
+
 // delete files/dirs
 function del_items($dir)
 {
@@ -83,5 +83,5 @@ function del_items($dir)
 	
 	header("Location: ".make_link("list",$dir,NULL));
 }
-//------------------------------------------------------------------------------
+
 ?>

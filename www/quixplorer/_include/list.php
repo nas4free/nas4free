@@ -36,49 +36,7 @@
 */
 require_once("./_include/permissions.php");
 require_once("./_include/login.php");
-
-//------------------------------------------------------------------------------
-// HELPER FUNCTIONS (USED BY MAIN FUNCTION 'list_dir', SEE BOTTOM)
-// The breadcrumbs function will take the user's current path and build a breadcrumb 
-// (a list of links for each directory in the current path).  
-// Arguments.  
-// $curdir is a string containing what will usually be the users current directory.  
-// %displayseparator is optional and contains a string that will be displayed between each crumb.
-// Typical syntax: 
-// echo breadcrumbs($dir, ">>");
-// show_header($GLOBALS["messages"]["actdir"].":".breadcrumbs($dir));
-function breadcrumbs($curdir, $displayseparator = ' &raquo; ') {
-	//Directory separator to be used in the links.
-	$separator = '/';
-	//Get localized name for the Home directory
-	$homedir = $GLOBALS["messages"]["homelink"];
-    // Initialize first crumb and set it to the home directory.
-    $crumbdir = "";
-	$breadcrumbs[] = "<a href=\"".make_link("list",$crumbdir,NULL)."\"> $homedir</a>";
-	// Take the current directory and split the string into an array at each '/'.
-	$patharray = explode('/', $curdir);
-    // Find out the index for the last value in our path array
-	 $lastx = array_keys($patharray);
-	 $last = end($lastx);
-    
-    // Build the rest of the breadcrumbs
-    foreach ($patharray AS $x => $crumb) {
-        // Add a new directory to the directory list so the link has the correct path to the current crumb.
-		$crumbdir = $crumbdir . $crumb;
-		if ($x != $last):
-			// If we are not on the last index, then create a link using $crumb as the text.
-			$breadcrumbs[] = "<a href=\"".make_link("list",$crumbdir,NULL)."\">$crumb</a>";
-			// Add a separator between our crumbs.
-			$crumbdir = $crumbdir . $separator;
-		else:
-			// Don't create a link for the final crumb.  Just display the crumb name.
-            $breadcrumbs[] = $crumb;
-		endif;
-    }
-	// Build temporary array into one string.
-    return implode($displayseparator, $breadcrumbs);
-}
-
+require_once("./_include/qxpath.php");
 
 function make_list($_list1, $_list2) {		// make list of files
 	$list = array();
@@ -127,7 +85,7 @@ function make_tables($dir, &$dir_list, &$file_list, &$tot_file_size, &$num_items
         if (!get_show_item($dir, $new_item))
             continue;
 
-        $new_file_size = filesize($abs_new_item);
+        $new_file_size = is_link($abs_new_item) ? 0 : @filesize($abs_new_item);
         $tot_file_size += $new_file_size;
         $num_items++;
 
@@ -275,6 +233,17 @@ function print_table ($dir, $list)
 				echo "src=\"".$GLOBALS["baricons"]["none"]."\" ALT=\"\"></TD>\n";
 			}
 		}
+
+
+
+		// DOWNLOAD
+		if(get_is_file($dir,$item))
+		{
+			_print_link("download", permissions_grant($dir, $item, "read"), $dir, $item);
+		} else {
+			echo "<TD><IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" ";
+			echo "src=\"".$GLOBALS["baricons"]["none"]."\" ALT=\"\"></TD>\n";
+		}
 		echo "</TABLE>\n</TD></TR>\n";
 	}
 }
@@ -292,8 +261,10 @@ function list_dir ( $dir )
 	// make file & dir tables, & get total filesize & number of items
 	make_tables($dir, $dir_list, $file_list, $tot_file_size, $num_items);
 
-	$s_dir=$dir;		if(strlen($s_dir)>50) $s_dir="...".substr($s_dir,-47);
-	show_header($GLOBALS["messages"]["actdir"].":".breadcrumbs($dir));
+	$s_dir = $dir;
+    if (strlen($s_dir) >50 )
+        $s_dir = "..." . substr($s_dir,-47);
+	show_header($GLOBALS["messages"]["actdir"].": "._breadcrumbs($dir));
 	// show_header($GLOBALS["messages"]["actdir"].": /".get_rel_item("",$s_dir));
 
 	// Javascript functions:
@@ -311,8 +282,7 @@ function list_dir ( $dir )
 	echo "<BR><TABLE width=\"95%\"><TR><TD><TABLE><TR>\n";
 
 	// PARENT DIR
-    $dir_up = dirname($dir);
-	echo "<TD><A HREF=\"".make_link("list",$dir_up,NULL)."\">";
+	echo "<TD><A HREF=\"".make_link("list", path_up($dir), NULL)."\">";
 	echo "<IMG border=\"0\" width=\"16\" height=\"16\" align=\"ABSMIDDLE\" src=\"".$GLOBALS["baricons"]["up"]."\" ";
 	echo "ALT=\"".$GLOBALS["messages"]["uplink"]."\" TITLE=\"".$GLOBALS["messages"]["uplink"]."\"></A></TD>\n";
 	// HOME DIR
@@ -331,6 +301,9 @@ function list_dir ( $dir )
 
 	echo "<TD></TD>";
 
+    // print the download button
+	_print_link("download_selected", permissions_grant($dir, NULL, "read"), $dir, NULL);
+
 	// print the edit buttons
 	_print_edit_buttons($dir);
 
@@ -338,7 +311,6 @@ function list_dir ( $dir )
 	if (login_is_user_logged_in())
 	{
 		echo "<TD></TD>";
-
 		// ADMIN
 		_print_link("admin",
 				permissions_grant(NULL, NULL, "admin")
@@ -403,11 +375,11 @@ function list_dir ( $dir )
 	// print number of items & total filesize
 	echo "<TR><TD colspan=\"7\"><HR></TD></TR><TR>\n<TD class=\"header\"></TD>";
 	echo "<TD class=\"header\">".$num_items." ".$GLOBALS["messages"]["miscitems"]." (";
-       $free=parse_file_size(diskfreespace("/"));
+    $free=parse_file_size(diskfreespace("/"));
 	echo $GLOBALS["messages"]["miscfree"].": ".$free.")</TD>\n";
 	echo "<TD class=\"header\">".parse_file_size($tot_file_size)."</TD>\n";
 
-    	echo "<TD class=\"header\" colspan=4></TD>";
+		echo "<TD class=\"header\" colspan=4></TD>";
 
 	echo "</TR>\n<TR><TD colspan=\"7\"><HR></TD></TR></FORM></TABLE>\n";
 	echo "<BR></BR>";
@@ -426,14 +398,16 @@ function list_dir ( $dir )
 // -->
 </script><?php
 }
-//------------------------------------------------------------------------------
+
+// *** HELPER FUNCTIONS
+
 function _print_edit_buttons ($dir)
 {
 	// for the copy button the user must have create and read rights
 	_print_link("copy", permissions_grant_all($dir, NULL, array("create", "read")), $dir, NULL);
 	_print_link("move", permissions_grant($dir, NULL, "change"), $dir, NULL);
 	_print_link("delete", permissions_grant($dir, NULL, "delete"), $dir, NULL);
-// NAS4Free disable upload
+// NAS4Free info: We disable upload function for security and limited space var/temp
 //	_print_link("upload", permissions_grant($dir, NULL, "create") && get_cfg_var("file_uploads"), $dir, NULL);
 //	_print_link("archive",
 //		permissions_grant_all($dir, NULL, array("create", "read"))
@@ -527,4 +501,59 @@ function _get_link_info($dir, $item)
     }
     return $type;
 }
+
+/**
+  The breadcrumbs function will take the user's current path and build a breadcrumb.
+
+  A breadcrums is a list of links for each directory in the current path.
+
+  @param    $curdir is a string containing what will usually be the users
+            current directory.  %displayseparator is optional and contains a
+            string that will be displayed betweenach crumb.
+
+ Typical syntax:
+
+     echo breadcrumbs($dir, ">>");
+     show_header($GLOBALS["messages"]["actdir"].":".breadcrumbs($dir));
+ */
+function _breadcrumbs($curdir, $displayseparator = ' &raquo; ')
+{
+	//Get localized name for the Home directory
+	$homedir = $GLOBALS["messages"]["homelink"];
+
+    // Initialize first crumb and set it to the home directory.
+	$breadcrumbs[] = "<a href=\"".make_link("list", "", NULL)."\">$homedir</a>";
+
+	// Take the current directory and split the string into an array at each '/'.
+	$patharray = explode('/', $curdir);
+
+    // Find out the index for the last value in our path array
+	 $lastx = array_keys($patharray);
+	 $last = end($lastx);
+
+    // Build the rest of the breadcrumbs
+    $crumbdir = "";
+    foreach ($patharray AS $x => $crumb)
+    {
+        // Add a new directory to the directory list so the link has the
+        // correct path to the current crumb.
+		$crumbdir = $crumbdir . $crumb;
+		if ($x != $last):
+            // If we are not on the last index, then create a link using $crumb
+            // as the text.
+
+			$breadcrumbs[] = "<a href=\"".make_link("list", $crumbdir, NULL)."\">$crumb</a>";
+
+			// Add a separator between our crumbs.
+			$crumbdir = $crumbdir . DIRECTORY_SEPARATOR;
+		else:
+			// Don't create a link for the final crumb.  Just display the crumb name.
+            $breadcrumbs[] = $crumb;
+		endif;
+    }
+
+	// Build temporary array into one string.
+    return implode($displayseparator, $breadcrumbs);
+}
+
 ?>

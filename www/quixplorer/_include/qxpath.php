@@ -1,6 +1,6 @@
 <?php
 /*
-	error.php
+	qxpath.php
 
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
@@ -34,30 +34,48 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once "_include/header.php";
-require_once "_include/debug.php";
 
 /**
-    show error-message and terminate
+  @returns the FullPath out of an RelativePath
+
+  A FullPath is the full path including the home directory and a subdirectory
+  below of it.
+
+  If the home directory is set to '/var/www/data' in the conf.php ('home_dir'),
+  and you provide a RelativePath of 'first_subdirectory', the function returns
+  '/var/www/data/first_subdirectory'.
+
+  This path is intended for internal use and not for presentation to the
+  user, since he should only see relative pathes.
+ 
  */
-function show_error($error,$extra=NULL)
+function path_f ($path = '')
 {
-    _error( $error . " : " . $extra );
-
-    // we do not know whether the language module was already loaded
-    $errmsg = isset($GLOBALS["error_msg"]) ? $GLOBALS["error_msg"]["error"] : "ERROR";
-    $backmsg = isset($GLOBALS["error_msg"]) ? $GLOBALS["error_msg"]["back"] : "BACK";
-
-	show_header($errmsg);
-    ?>
-	<center>
-        <h2><?php echo $errmsg ?></h2>
-        <?php echo $error ?>
-        <h3> <a href="javascript:window.history.back()"><?php echo $backmsg ?></a><h3>
-        <?php if ($extra != NULL) echo " - " . $extra; ?>
-    </center>
-    <?php
-    show_footer();
-    exit;
+    global $home_dir;
+    $abs_dir = $home_dir;
+    switch ($path)
+    {
+        case '.':
+        case '': return realpath($abs_dir);
+    }
+    
+    return realpath(realpath($home_dir) . "/$path");
 }
+
+function path_r ($path)
+{
+    global $home_dir;
+    $base = realpath($home_dir);
+    $ret = preg_replace("#^$base#", "", $path);
+    return $ret;
+}
+
+function path_up ($path)
+{
+    $ret = dirname($path);
+    // make sure that we stop at the root directory
+    // and convert the "." to an empty string
+    return $ret == "." ?  "" : $ret;
+}
+
 ?>

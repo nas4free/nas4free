@@ -1,9 +1,8 @@
 <?php
-
+#
 # Part of NAS4Free (http://www.nas4free.org).
 # Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
-#
 #
 # ZipStream - Streamed, dynamically generated zip archives.
 # by Paul Duncan <pabs@pablotron.org>
@@ -28,8 +27,6 @@
 # OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
 # ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 # OTHER DEALINGS IN THE SOFTWARE.
-#
-
 #
 # Requirements: PHP version 5.1.2 or newer.
 #

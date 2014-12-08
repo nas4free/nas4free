@@ -36,7 +36,7 @@
 */
 function _syslog($level, $message)
 {
-    openlog("quixplorer", LOG_PERROR | LOG_LOCAL0, LOG_USER);
+    openlog("quixplorer", LOG_PID | LOG_PERROR | LOG_LOCAL0, LOG_USER);
     syslog($level, $message);
     closelog();
 }
@@ -50,7 +50,7 @@ function _debug ($data)
 {
     global $FD_LOG;
 
-    $debug = 1;
+    $debug = 0;
 
     if ($debug == 0)
       return;
