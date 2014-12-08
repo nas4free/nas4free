@@ -35,8 +35,9 @@
 	either expressed or implied, of the NAS4Free Project.
 */
 require_once("./_include/permissions.php");
-//------------------------------------------------------------------------------
-function savefile($file_name) {			// save edited file
+
+// save edited file
+function savefile($file_name) {
 	//$code = stripslashes($GLOBALS['__POST']["code"]);
 	$code = $GLOBALS['__POST']["code"];
 	$fp = @fopen($file_name, "w");
@@ -44,7 +45,7 @@ function savefile($file_name) {			// save edited file
 	fputs($fp, $code);
 	@fclose($fp);
 }
-//------------------------------------------------------------------------------
+
 // edit file
 function edit_file($dir, $item)
 {
@@ -90,7 +91,7 @@ function edit_file($dir, $item)
 	// Form
 	echo "<BR><FORM name=\"editfrm\" method=\"post\" action=\"".make_link("edit",$dir,$item)."\">\n";
 	echo "<input type=\"hidden\" name=\"dosave\" value=\"yes\">\n";
-	echo "<TEXTAREA NAME=\"code\" rows=\"25\" cols=\"120\" wrap=\"off\">";
+	echo "<TEXTAREA NAME=\"code\" rows=\"27\" cols=\"142\" wrap=\"off\">";
 		
 	// Show File In TextArea
 	$buffer="";
@@ -114,5 +115,5 @@ function edit_file($dir, $item)
 // -->
 </script><?php
 }
-//------------------------------------------------------------------------------
+
 ?>

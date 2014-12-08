@@ -1,6 +1,6 @@
 <?php
 /*
-	error.php
+	str.php
 
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
@@ -34,30 +34,9 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once "_include/header.php";
-require_once "_include/debug.php";
-
-/**
-    show error-message and terminate
- */
-function show_error($error,$extra=NULL)
+function str_startswith ( $candidate, $search_str )
 {
-    _error( $error . " : " . $extra );
-
-    // we do not know whether the language module was already loaded
-    $errmsg = isset($GLOBALS["error_msg"]) ? $GLOBALS["error_msg"]["error"] : "ERROR";
-    $backmsg = isset($GLOBALS["error_msg"]) ? $GLOBALS["error_msg"]["back"] : "BACK";
-
-	show_header($errmsg);
-    ?>
-	<center>
-        <h2><?php echo $errmsg ?></h2>
-        <?php echo $error ?>
-        <h3> <a href="javascript:window.history.back()"><?php echo $backmsg ?></a><h3>
-        <?php if ($extra != NULL) echo " - " . $extra; ?>
-    </center>
-    <?php
-    show_footer();
-    exit;
+    return substr( $candidate, 0, strlen( $search_str) ) == $search_str;
 }
+
 ?>

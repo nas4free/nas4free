@@ -63,6 +63,7 @@ function login ()
 {
     if ( isset( $_SESSION["s_user"] ) )
     {
+        _debug("login(): session detected");
         if ( ! user_activate( $_SESSION["s_user"], $_SESSION["s_pass"] ))
         {
             _debug("Failed to activate user " . $_SESSION['s_user']);
@@ -78,11 +79,12 @@ function login ()
 
         if ( isset( $_POST["p_user"] ) )
         {
+            _debug("login(): login authentication");
             // Check Login
             if ( ! user_activate( stripslashes( $_POST["p_user"] ), md5( stripslashes( $p_pass ) ) ) )
             {
-                _error( "failed to authenticate user " . $_POST["p_user"] );
-                logout();
+                global $error_msg;
+                show_error( $error_msg["login_failed"] . ": " . $_POST["p_user"] );
             }
             // authentication sucessfull
             _debug( "user '" . $_POST[ "p_user" ]  . "' successfully authenticated" );
@@ -91,20 +93,22 @@ function login ()
             $_SESSION['language'] = qx_request("lang", "en");
             return;
         } else {
-		// Ask for Login
-		show_header($GLOBALS["messages"]["actlogin"]);
-		echo "<CENTER><BR><TABLE width=\"300\"><TR><TD colspan=\"2\" class=\"header\" nowrap><B>";
-		echo $GLOBALS["messages"]["actloginheader"]."</B></TD></TR>\n<FORM name=\"login\" action=\"";
-		echo make_link("login",NULL,NULL)."\" method=\"post\">\n";
-		echo "<TR><TD>".$GLOBALS["messages"]["miscusername"].":</TD><TD align=\"right\">";
-		echo "<INPUT name=\"p_user\" type=\"text\" size=\"25\"></TD></TR>\n";
-		echo "<TR><TD>".$GLOBALS["messages"]["miscpassword"].":</TD><TD align=\"right\">";
-		echo "<INPUT name=\"p_pass\" type=\"password\" size=\"25\"></TD></TR>\n";
-		//Select box and auto language detection array
-		echo "<TR><TD>".gettext("Detected Language:<br />(Change if needed)")."</TD><TD align=\"right\">";
-		include('./_lang/_info.php');
-		echo "<TR><TD colspan=\"2\" align=\"right\"><INPUT type=\"submit\" value=\"";
-		echo $GLOBALS["messages"]["btnlogin"]."\"></TD></TR>\n</FORM></TABLE><BR></CENTER>\n";
+            // Ask for Login
+            show_header($GLOBALS["messages"]["actlogin"]);
+            echo "<CENTER><BR><TABLE width=\"300\"><TR><TD colspan=\"2\" class=\"header\" nowrap><B>";
+            echo $GLOBALS["messages"]["actloginheader"]."</B></TD></TR>\n<FORM name=\"login\" action=\"";
+            echo make_link("login",NULL,NULL)."\" method=\"post\">\n";
+            echo "<TR><TD>".$GLOBALS["messages"]["miscusername"].":</TD><TD align=\"right\">";
+            echo "<INPUT name=\"p_user\" type=\"text\" size=\"25\"></TD></TR>\n";
+            echo "<TR><TD>".$GLOBALS["messages"]["miscpassword"].":</TD><TD align=\"right\">";
+            echo "<INPUT name=\"p_pass\" type=\"password\" size=\"25\"></TD></TR>\n";
+            // NAS4Free Code
+            //Select box and auto language detection array
+            echo "<TR><TD>".gettext("Detected Language:<br />(Change if needed)")."</TD><TD align=\"right\">";
+            @include "./_lang/_info.php";
+            // End NAS4Free Code
+            echo "<TR><TD colspan=\"2\" align=\"right\"><INPUT type=\"submit\" value=\"";
+            echo $GLOBALS["messages"]["btnlogin"]."\"></TD></TR>\n</FORM></TABLE><BR></CENTER>\n";
             ?><script language="JavaScript1.2" type="text/javascript">
                 <!--
                 if(document.login) document.login.p_user.focus();

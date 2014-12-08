@@ -34,9 +34,9 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-
 // NAS4Free Code
-function show_footer() {			// footer for html-page
+// footer for html-page
+function show_footer() {
 	echo "</div>";
 	echo "<div id=\"pagefooter\">\n";
 	echo "<span><p><a title=\"www.".get_product_url()."\" href=\"http://".get_product_url()."\" target=\"_blank\"></a> ".str_replace("Copyright (C)","&copy;",get_product_copyright())."</a></p></span>\n";

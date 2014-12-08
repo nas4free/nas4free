@@ -33,8 +33,9 @@
 	The views and conclusions contained in the software and documentation are those
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
-*/require_once("./_include/permissions.php");
-//------------------------------------------------------------------------------
+*/
+require_once("./_include/permissions.php");
+
 // change permissions
 function chmod_item($dir, $item)
 {
@@ -88,5 +89,5 @@ function chmod_item($dir, $item)
 	echo "\"></TD>\n<TD><input type=\"button\" value=\"".$GLOBALS["messages"]["btncancel"];
 	echo "\" onClick=\"javascript:location='".make_link("list",$dir,NULL)."';\">\n</TD></TR></FORM></TABLE><BR>\n";
 }
-//------------------------------------------------------------------------------
+
 ?>

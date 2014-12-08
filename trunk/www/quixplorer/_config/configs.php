@@ -97,4 +97,5 @@ $GLOBALS["baricons"] = array(
 	
 	"none"			=> "_img/_.gif",
 );
+
 ?>

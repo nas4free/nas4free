@@ -36,17 +36,17 @@
 */
 /* NAS4FREE CODE */
 require("/usr/local/www/guiconfig.inc");
-
 require_once("session.inc");
+
 Session::start();
 // Check if session is valid
 if (!Session::isLogin()) {
 	header('Location: /login.php');
 	exit;
 }
-//------------------------------------------------------------------------------
+// Navigation level separator string.
 function gentitle($title) {
-	$navlevelsep = "|"; // Navigation level separator string.
+	$navlevelsep = "|";
 	return join($navlevelsep, $title);
 }
 
@@ -224,15 +224,17 @@ function display_menu($menuid) {
 	echo "	</div>\n";
 	echo "</li>\n";
 }
-	
 /* QUIXPLORER CODE */
-function show_header($title) {			// header for html-page
+// header for html-page
+function show_header($title, $additional_header_content = null)
+{
+    global $site_name;
+
 	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 	header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 	header("Cache-Control: no-cache, must-revalidate");
 	header("Pragma: no-cache");
 	header("Content-Type: text/html; charset=".$GLOBALS["charset"]);
-
 /* NAS4FREE & QUIXPLORER CODE*/
 	// Html & Page Headers
 	echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n";
@@ -329,4 +331,5 @@ function show_header($title) {			// header for html-page
 	echo "</center>";
 	echo "<div class=\"main_tbl\">";
 }
+
 ?>
