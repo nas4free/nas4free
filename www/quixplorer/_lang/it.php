@@ -44,12 +44,12 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"		=> "ERRORE(I)",
 	"back"			=> "Torna indietro",
-	
+
 	// root
 	"home"			=> "La directory home non esiste, controlla le impostazioni.",
 	"abovehome"		=> "La directory corrente potrebbe non essere sopra al livello della directory home.",
 	"targetabovehome"	=> "La directory di destinazione potrebbe non essere sopra al livello della directory home.",
-	
+
 	// exist
 	"direxist"		=> "Questa cartella non esiste.",
 	//"filedoesexist"	=> "Questo file esiste già.",
@@ -58,18 +58,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "Questo elemento non esiste.",
 	"targetexist"		=> "La directory di destinazione non esiste.",
 	"targetdoesexist"	=> "L'elemento di destinazione esiste già.",
-	
+
 	// open
 	"opendir"		=> "Impossibile aprire la directory.",
 	"readdir"		=> "Impossibile leggere la directory.",
-	
+
 	// access
 	"accessdir"		=> "Non hai il permesso di accedere a questa directory.",
 	"accessfile"		=> "Non hai il permesso di accedere a questo file.",
 	"accessitem"		=> "Non hai il permesso di accedere a questo elemento.",
 	"accessfunc"		=> "Non hai il permesso di usare questa funzione.",
 	"accesstarget"	=> "Non hai il permesso di accedere alla directory di destinazione.",
-	
+
 	// actions
 	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
 	"permread"		=> "Recupero dei permessi fallito.",
@@ -87,7 +87,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "Aggiunta dell'utente fallita.",
 	"saveuser"		=> "Salvataggio dell'utente fallito.",
 	"searchnothing"	=> "Devi fornire un criterio di ricerca.",
-	
+
 	// misc
 	"miscnofunc"		=> "Funzione non disponibile.",
 	"miscfilesize"	=> "Il file supera la dimensione massima.",
@@ -122,7 +122,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "CARICA",
 	"searchlink"		=> "CERCA",
 	"unziplink"		=> "UNZIP",
-	
+
 	// list
 	"nameheader"		=> "Nome",
 	"sizeheader"		=> "Dimensione",
@@ -131,7 +131,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "Permessi",
 	"actionheader"	=> "Azioni",
 	"pathheader"		=> "Percorso",
-	
+
 	// buttons
 	"btncancel"		=> "Annulla",
 	"btnsave"		=> "Salva",
@@ -149,7 +149,7 @@ $GLOBALS["messages"] = array(
 	"btnedit"		=> "Modifica",
 	"btnremove"		=> "Rimuovi",
 	"btnunzip"		=> "Unzip",
-	
+
 	// actions
 	"actdir"		=> "Directory",
 	"actperms"		=> "Cambia i permessi",
@@ -167,7 +167,7 @@ $GLOBALS["messages"] = array(
 	"actarchive"		=> "Archivia elemento(i)",
 	"actunzipitem"	=> "Extracting",
 	"actupload"		=> "Carica file(s)",
-	
+
 	// misc
 	"miscitems"		=> "Elemento(i)",
 	"miscfree"		=> "Liberi",
@@ -201,4 +201,5 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("Si","No","S","N"),
 	"miscchmod"		=> array("Proprietario", "Gruppo", "Pubblico"),
 );
+
 ?>

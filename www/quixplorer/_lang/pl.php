@@ -201,4 +201,5 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("Tak","Nie","T","N"),
 	"miscchmod"		=> array("W³a¶ciciel", "Grupa", "Publiczny"),
 );
+
 ?>

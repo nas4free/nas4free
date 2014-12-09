@@ -44,7 +44,7 @@ $GLOBALS["error_msg"] = array(
       // error
       "error"                => "Ошибка",
       "back"                 => "Назад",
-      
+
       // root
       "home"                 => "Домашний каталог пользователя не существует, проверьте ваши настройки...",
       "abovehome"            => "Текущий каталог не может находиться выше домашнего каталога пользователя.",
@@ -58,7 +58,7 @@ $GLOBALS["error_msg"] = array(
       "itemexist"            => "Этого объекта не существует",
       "targetexist"          => "Целевого каталога не существует",
       "targetdoesexist"      => "Целевой объект уже существует",
-      
+
       // open
       "opendir"              => "Невозможно открыть каталог",
       "readdir"              => "Невозможно прочесть содержимое каталога",
@@ -87,7 +87,7 @@ $GLOBALS["error_msg"] = array(
       "adduser"              => "Ошибка добавления пользователя",
       "saveuser"             => "Ошибка сохранения пользователя",
       "searchnothing"        => "Строка поиска не должна быть пустой",
-      
+
       // misc
       "miscnofunc"           => "Функция недоступна",
       "miscfilesize"         => "Размер файла превышает максимальный",
@@ -105,51 +105,52 @@ $GLOBALS["error_msg"] = array(
       "miscnofinduser"       => "Невозможно найти пользователя",
 );
 $GLOBALS["messages"] = array(
-      // links
-      "permlink"             => "Изменить права доступа",
-      "editlink"             => "Редактировать",
-      "downlink"             => "Скачать",
+
+      	// links
+	"permlink"             => "Изменить права доступа",
+	"editlink"             => "Редактировать",
+	"downlink"             => "Скачать",
 	"download_selected"	=> "DOWNLOAD SELECTED FILES",
-      "uplink"               => "Наверх",
-      "homelink"             => "Домой",
-      "reloadlink"           => "Обновить",
-      "copylink"             => "Копировать",
-      "movelink"             => "Переместить",
-      "dellink"              => "Удалить",
-      "comprlink"            => "Архивировать",
-      "adminlink"            => "Администрирование",
-      "logoutlink"           => "Выход",
-      "uploadlink"           => "Закачать",
-      "searchlink"           => "Поиск",
+	"uplink"               => "Наверх",
+	"homelink"             => "Домой",
+	"reloadlink"           => "Обновить",
+	"copylink"             => "Копировать",
+	"movelink"             => "Переместить",
+	"dellink"              => "Удалить",
+	"comprlink"            => "Архивировать",
+	"adminlink"            => "Администрирование",
+	"logoutlink"           => "Выход",
+	"uploadlink"           => "Закачать",
+	"searchlink"           => "Поиск",
 	"unziplink"		=> "UNZIP",
-      
-      // list
-      "nameheader"           => "Файл",
-      "sizeheader"           => "Размер",
-      "typeheader"           => "Тип",
-      "modifheader"          => "Изменен",
-      "permheader"           => "Права доступа",
-      "actionheader"         => "Действия",
-      "pathheader"           => "Путь",
-      
-      // buttons
-      "btncancel"            => "Отменить",
-      "btnsave"              => "Сохранить",
-      "btnchange"            => "Изменить",
-      "btnreset"             => "Очистить",
-      "btnclose"             => "Закрыть",
-      "btncreate"            => "Создать",
-      "btnsearch"            => "Поиск",
-      "btnupload"            => "Закачать",
-      "btncopy"              => "Копировать",
-      "btnmove"              => "Переместить",
-      "btnlogin"             => "Вход",
-      "btnlogout"            => "Выход",
-      "btnadd"               => "Добавить",
-      "btnedit"              => "Редактировать",
-      "btnremove"            => "Удалить",
+
+	// list
+	"nameheader"           => "Файл",
+	"sizeheader"           => "Размер",
+	"typeheader"           => "Тип",
+	"modifheader"          => "Изменен",
+	"permheader"           => "Права доступа",
+	"actionheader"         => "Действия",
+	"pathheader"           => "Путь",
+
+	// buttons
+	"btncancel"            => "Отменить",
+	"btnsave"              => "Сохранить",
+	"btnchange"            => "Изменить",
+	"btnreset"             => "Очистить",
+	"btnclose"             => "Закрыть",
+	"btncreate"            => "Создать",
+	"btnsearch"            => "Поиск",
+	"btnupload"            => "Закачать",
+	"btncopy"              => "Копировать",
+	"btnmove"              => "Переместить",
+	"btnlogin"             => "Вход",
+	"btnlogout"            => "Выход",
+	"btnadd"               => "Добавить",
+	"btnedit"              => "Редактировать",
+	"btnremove"            => "Удалить",
 	"btnunzip"		=> "Unzip",
-      
+
       // actions
       "actdir"               => "Каталог",
       "actperms"             => "Поменять права доступа",
@@ -167,7 +168,7 @@ $GLOBALS["messages"] = array(
       "actarchive"           => "Архивировать объекты",
 	"actunzipitem"	=> "Extracting",
       "actupload"            => "Закачать файлы",
-      
+
       // misc
       "miscitems"            => "Объекты",
       "miscfree"             => "Свободно",
@@ -201,4 +202,5 @@ $GLOBALS["messages"] = array(
       "miscyesno"            => array("Да","Нет","Yes","No"),
       "miscchmod"            => array("Владелец", "Группа", "Общий"),
 );
+
 ?>

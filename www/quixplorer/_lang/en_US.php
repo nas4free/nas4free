@@ -44,12 +44,12 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"		=> "ERROR(S)",
 	"back"			=> "Go Back",
-	
+
 	// root
 	"home"			=> "The home directory doesn't exist, check your settings.",
 	"abovehome"		=> "The current directory may not be above the home directory.",
 	"targetabovehome"	=> "The target directory may not be above the home directory.",
-	
+
 	// exist
 	"direxist"		=> "This directory doesn't exist.",
 	"fileexist"		=> "This file doesn't exist.",
@@ -57,18 +57,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "This item doesn't exist.",
 	"targetexist"		=> "The target directory doesn't exist.",
 	"targetdoesexist"	=> "The target item already exists.",
-	
+
 	// open
 	"opendir"		=> "Unable to open directory.",
 	"readdir"		=> "Unable to read directory.",
-	
+
 	// access
 	"accessdir"		=> "You are not allowed to access this directory.",
 	"accessfile"		=> "You are not allowed to access this file.",
 	"accessitem"		=> "You are not allowed to access this item.",
 	"accessfunc"		=> "You are not allowed to use this function.",
 	"accesstarget"	=> "You are not allowed to access the target directory.",
-	
+
 	// actions
 	"chmod_not_allowed" => 'Changing Permissions to NONE is not allowed!',
 	"permread"		=> "Getting permissions failed.",
@@ -86,7 +86,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "Adding user failed.",
 	"saveuser"		=> "Saving user failed.",
 	"searchnothing"	=> "You must supply something to search for.",
-	
+
 	// misc
 	"miscnofunc"		=> "Function unavailable.",
 	"miscfilesize"	=> "File exceeds maximum size.",
@@ -121,7 +121,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "UPLOAD",
 	"searchlink"		=> "SEARCH",
 	"unziplink"		=> "UNZIP",
-	
+
 	// list
 	"nameheader"		=> "Name",
 	"sizeheader"		=> "Size",
@@ -130,7 +130,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "Permissions",
 	"actionheader"	=> "Actions",
 	"pathheader"		=> "Path",
-	
+
 	// buttons
 	"btncancel"		=> "Cancel",
 	"btnsave"		=> "Save",
@@ -148,7 +148,7 @@ $GLOBALS["messages"] = array(
 	"btnedit"		=> "Edit",
 	"btnremove"		=> "Remove",
 	"btnunzip"		=> "Unzip",
-	
+
 	// actions
 	"actdir"		=> "Directory",
 	"actperms"		=> "Change permissions",
@@ -164,9 +164,9 @@ $GLOBALS["messages"] = array(
 	"actchpwd"		=> "Change password",
 	"actusers"		=> "Users",
 	"actarchive"		=> "Archive item(s)",
-    "actunzipitem"	=> "Extracting",
+	"actunzipitem"	=> "Extracting",
 	"actupload"		=> "Upload file(s)",
-	
+
 	// misc
 	"miscitems"		=> "Item(s)",
 	"miscfree"		=> "Free",
@@ -200,4 +200,5 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("Yes","No","Y","N"),
 	"miscchmod"		=> array("Owner", "Group", "Public"),
 );
+
 ?>

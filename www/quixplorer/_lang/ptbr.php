@@ -44,12 +44,12 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"		=> "ERRO(S)",
 	"back"			=> "Voltar",
-	
+
 	// root
 	"home"			=> "A pasta padrão não existe. Entre em contato com o administrador.",
 	"abovehome"		=> "A pasta atual não existe. Entre em contato com o administrador..",
 	"targetabovehome"	=> "A pasta destino não existe.",
-	
+
 	// exist
 	"direxist"		=> "Esta pasta não existe.",
 	"filedoesexist"	=> "Este arquivo já existe.",
@@ -58,18 +58,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "Este item não existe.",
 	"targetexist"		=> "A pasta destino não existe.",
 	"targetdoesexist"	=> "A pasta destino já existe.",
-	
+
 	// open
 	"opendir"		=> "Erro ao abrir a pasta.",
 	"readdir"		=> "Erro ao ler a pasta.",
-	
+
 	// access
 	"accessdir"		=> "Você não tem permissão para acessar esta pasta.",
 	"accessfile"		=> "Você não tem permissão para acessar este arquivo.",
 	"accessitem"		=> "Você não tem permissão para acessar este item.",
 	"accessfunc"		=> "Você não tem permissão para acessar esta função.",
 	"accesstarget"	=> "Você não tem permissão para acessar esta pasta.",
-	
+
 	// actions
 	"permread"		=> "Sem permissão.",
 	"permchange"		=> "Sem permissão.",
@@ -86,7 +86,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "Erro ao adicionar usuário.",
 	"saveuser"		=> "Erro ao salvar usuário.",
 	"searchnothing"	=> "Digite algo para buscar.",
-	
+
 	// misc
 	"miscnofunc"		=> "Função indisponível.",
 	"miscfilesize"	=> "Arquivo excedeu tamanho máximo permitido.",
@@ -121,7 +121,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "ENVIAR",
 	"searchlink"		=> "BUSCAR",
 	"unziplink"		=> "UNZIP",
-	
+
 	// list
 	"nameheader"		=> "Nome",
 	"sizeheader"		=> "Tamanho",
@@ -130,7 +130,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "Permissões",
 	"actionheader"	=> "Ações",
 	"pathheader"		=> "Caminho",
-	
+
 	// buttons
 	"btncancel"		=> "Cancelar",
 	"btnsave"		=> "Salvar",
@@ -148,7 +148,7 @@ $GLOBALS["messages"] = array(
 	"btnedit"		=> "Editar",
 	"btnremove"		=> "Remover",
 	"btnunzip"		=> "Unzip",
-	
+
 	// actions
 	"actdir"		=> "Pasta",
 	"actperms"		=> "Modificar permissões",
@@ -166,7 +166,7 @@ $GLOBALS["messages"] = array(
 	"actarchive"		=> "Compactar item(s)",
 	"actunzipitem"	=> "Extracting",
 	"actupload"		=> "Enviar arqiuvo(s)",
-	
+
 	// misc
 	"miscitems"		=> "Item(s)",
 	"miscfree"		=> "Livre",
@@ -200,4 +200,5 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("Sim","Não","S","N"),
 	"miscchmod"		=> array("Usuário", "Grupo", "Público"),
 );
+
 ?>

@@ -42,10 +42,11 @@ $GLOBALS["mimes"]=array(
 	"dir"		=> "Könyvtár",
 	"exe"		=> "Futtatható fájl",
 	"file"		=> "Fájl",
+	"link"		=> "Link",
 
 	// text
 	"text"		=> "Szövegfájl",
-	
+
 	// programming
 	"php"		=> "PHP szkript",
 	"sql"		=> "SQL fájl",
@@ -65,13 +66,13 @@ $GLOBALS["mimes"]=array(
 
 	// Pascal
 	"pas"		=> "Pascal fájl",
-	
+
 	// images
 	"gif"		=> "GIF kép",
 	"jpg"		=> "JPG kép",
 	"bmp"		=> "BMP kép",
 	"png"		=> "PNG kép",
-	
+
 	// compressed
 	"zip"		=> "ZIP archív",
 	"tar"		=> "TAR archív",
@@ -80,14 +81,14 @@ $GLOBALS["mimes"]=array(
 	"rar"		=> "RAR archív",
 	"iso"		=> "ISO fájl",
 	"mds"		=> "MDS fájl",
-	
+
 	// music
 	"mp3"		=> "MP3 hangfájl",
 	"wav"		=> "WAV hangfájl",
 	"midi"		=> "MIDI hangfájl",
 	"real"		=> "RealAudio fájl",
 	"flac"		=> "FLAC hangfájl",
-	
+
 	// movie
 	"mpg"		=> "MPG fájl",
 	"mov"		=> "MOV fájl",
@@ -95,7 +96,7 @@ $GLOBALS["mimes"]=array(
 	"flash"	=> "Flash fájl",
 	"mkv"		=> "MKV fájl",
 	"vob"		=> "VOB fájl",
-	
+
 	// Micosoft / Adobe
 	"word"		=> "Word dokumentum",
 	"excel"	=> "Excel táblázat",
@@ -104,4 +105,6 @@ $GLOBALS["mimes"]=array(
 	"c"		=> "C fájl",
 	"psd"		=> "Photoshop fájl",
 	"point"	=> "PowerPoint prezentáció"
-); ?>
+);
+
+?>

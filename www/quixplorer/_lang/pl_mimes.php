@@ -41,10 +41,11 @@ $GLOBALS["mimes"]=array(
 	"dir"		=> "Katalog",
 	"exe"		=> "Plik wykonywalny Windows",
 	"file"		=> "Plik",
+	"link"		=> "Link",
 
 	// text
 	"text"		=> "Plik Tekstowy",
-	
+
 	// programming
 	"php"		=> "Skrypt PHP",
 	"sql"		=> "Plik SQL",
@@ -64,13 +65,13 @@ $GLOBALS["mimes"]=array(
 
 	// Pascal
 	"pas"		=> "Plik zród³owy PASCAL",
-	
+
 	// images
 	"gif"		=> "Obraz GIF",
 	"jpg"		=> "Obraz JPG",
 	"bmp"		=> "Obraz BMP",
 	"png"		=> "Obraz PNG",
-	
+
 	// compressed
 	"zip"		=> "Archiwum ZIP",
 	"tar"		=> "Archiwum TAR",
@@ -80,14 +81,13 @@ $GLOBALS["mimes"]=array(
 	"iso"		=> "Plik ISO",
 	"mds"		=> "Plik MDS",
 
-	
 	// music
 	"mp3"		=> "Plik MP3 Audio ",
 	"wav"		=> "Plik WAV Audio",
 	"midi"		=> "Plik MIDI Audio",
 	"real"		=> "Plik RealAudio",
 	"flac"		=> "Plik FLAC Audio",
-	
+
 	// movie
 	"mpg"		=> "Plik MPG Video",
 	"mov"		=> "Plik Movie",
@@ -104,4 +104,6 @@ $GLOBALS["mimes"]=array(
 	"c"		=> "Plik C",
 	"psd"		=> "Plik Photoshop",
 	"point"	=> "PowerPoint Presentation"
-); ?>
+);
+
+?>

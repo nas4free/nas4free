@@ -44,12 +44,12 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"			=> "ΣΦΑΛΜΑ(ΤΑ)",
 	"back"			=> "Πίσω",
-	
+
 	// root
 	"home"			=> "Ο αρχικός φάκελος δεν υπάρχει, ελέγξτε τις ρυθμίσεις.",
 	"abovehome"		=> "Ο τρέχων φάκελος δεν μπορεί να είναι πάνω από τον αρχικό φάκελο.",
 	"targetabovehome"	=> "Ο φάκελος προορισμού δεν μπορεί να είναι πάνω από τον αρχικό φάκελο.",
-	
+
 	// exist
 	"direxist"		=> "Αυτός ο φάκελος δεν υπάρχει.",
 	//"filedoesexist"	=> "This file already exists.",
@@ -58,18 +58,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "Αυτό το αντικείμενο δεν υπάρχει.",
 	"targetexist"		=> "Ο φάκελος προορισμού δεν υπάρχει.",
 	"targetdoesexist"	=> "Το αντικείμενο προορισμού υπάρχει ήδη.",
-	
+
 	// open
 	"opendir"		=> "Αδυναμία ανοίγματος φακέλου.",
 	"readdir"		=> "Αδυναμία διαβάσματος φακέλου.",
-	
+
 	// access
 	"accessdir"		=> "Δεν επιτρέπεται να προσπελάσετε αυτό το φάκελο.",
 	"accessfile"		=> "Δεν επιτρέπεται να προσπελάσετε αυτό το αρχείο.",
 	"accessitem"		=> "Δεν επιτρέπεται να προσπελάσετε αυτό το αντικείμενο.",
 	"accessfunc"		=> "Δεν επιτρέπεται να χρησιμοποιήσετε αυτή τη λειτουργία.",
 	"accesstarget"		=> "Δεν επιτρέπεται να προσπελάσετε το φάκελο προορισμού.",
-	
+
 	// actions
 	"chmod_not_allowed" => 'Η αλλαγή δικαιωμάτων σε ΤΙΠΟΤΑ δεν επιτρέπεται!',
 	"permread"		=> "Απέτυχε η λήψη των δικαιωμάτων.",
@@ -87,7 +87,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "Αποτυχία προσθήκης χρήστη.",
 	"saveuser"		=> "Αποτυχία αποθήκευσης χρήστη.",
 	"searchnothing"		=> "Πρέπει να γράψετε κάτι προς αναζήτηση.",
-	
+
 	// misc
 	"miscnofunc"		=> "Η λειτουργία δεν είναι διαθέσιμη.",
 	"miscfilesize"		=> "Το αρχείο ξεπερνά το μέγιστο μέγεθος.",
@@ -122,7 +122,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "ΑΝΕΒΑΣΜΑ",
 	"searchlink"		=> "ΑΝΑΖΗΤΗΣΗ",
 	"unziplink"		=> "UNZIP",
-	
+
 	// list
 	"nameheader"		=> "Όνομα",
 	"sizeheader"		=> "Μέγεθος",
@@ -131,7 +131,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "Δικαιώματα",
 	"actionheader"		=> "Ενέργειες",
 	"pathheader"		=> "Διαδρομή",
-	
+
 	// buttons
 	"btncancel"		=> "Άκυρο",
 	"btnsave"		=> "Αποθήκευση",
@@ -149,7 +149,7 @@ $GLOBALS["messages"] = array(
 	"btnedit"		=> "Επεξεργασία",
 	"btnremove"		=> "Αφαίρεση",
 	"btnunzip"		=> "Unzip",
-	
+
 	// actions
 	"actdir"		=> "Φάκελος",
 	"actperms"		=> "Αλλαγή δικαιωμάτων",
@@ -167,7 +167,7 @@ $GLOBALS["messages"] = array(
 	"actarchive"		=> "Aντικείμενα σε συμπιεσμένο αρχείο",
 	"actunzipitem"	=> "Extracting",
 	"actupload"		=> "Ανέβασμα αρχείων",
-	
+
 	// misc
 	"miscitems"		=> "Αντικείμενα",
 	"miscfree"		=> "Ελεύθερος χώρος",
@@ -201,4 +201,5 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("Ναι","Όχι","Ν","Ο"),
 	"miscchmod"		=> array("Κάτοχος", "Ομάδα", "Κοινόχρηστο"),
 );
+
 ?>

@@ -44,12 +44,12 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"		=> "EROARE(I)",
 	"back"			=> "Înapoi",
-	
+
 	// root
 	"home"			=> "Directorul implicit nu existã, verificã-þi parametrii.",
 	"abovehome"		=> "Directorul curent ar putea sã nu fie deasupra directorului implicit.",
 	"targetabovehome"	=> "Directorul þintã ar putea sã nu fie deasupra directorului implicit.",
-	
+
 	// exist
 	"direxist"		=> "Acest director nu existã.",
 	//"filedoesexist"	=> "Acest fişier existã deja.",
@@ -58,18 +58,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "Acest element nu existã.",
 	"targetexist"		=> "Directorul þintã nu existã.",
 	"targetdoesexist"	=> "Elementul þintã existã deja.",
-	
+
 	// open
 	"opendir"		=> "Nu pot deschide directorul.",
 	"readdir"		=> "Nu pot citi directorul.",
-	
+
 	// access
 	"accessdir"		=> "Nu ai permisiunea de a accesa acest director.",
 	"accessfile"		=> "Nu ai permisiunea de a accesa acest fişier.",
 	"accessitem"		=> "Nu eşti autorizat sã accesezi acest element.",
 	"accessfunc"		=> "Nu eşti autorizat sã foloseºti aceastã funcþie.",
 	"accesstarget"	=> "Nu eşti autorizat sã accesezi directorul þintã.",
-	
+
 	// actions
 	"permread"		=> "Obþinerea permisiunii a eşuat.",
 	"permchange"		=> "Schimbarea permisiunii a eşuat.",
@@ -86,7 +86,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "Adăugarea utilizatorului a eşuat.",
 	"saveuser"		=> "Salvarea utilizatorului a eşuat.",
 	"searchnothing"	=> "Trebuie să defineşti ce trebuie căutat.",
-	
+
 	// misc
 	"miscnofunc"		=> "Funcţie indisponibilă",
 	"miscfilesize"	=> "Fişierul depăşeşte dimensiunea maximă.",
@@ -121,7 +121,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "ÎNCĂRCARE",
 	"searchlink"		=> "CĂUTARE",
 	"unziplink"		=> "UNZIP",
-	
+
 	// list
 	"nameheader"		=> "Nume",
 	"sizeheader"		=> "Dimensiune",
@@ -130,7 +130,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "Permisiuni",
 	"actionheader"	=> "Acţiuni",
 	"pathheader"		=> "Cale",
-	
+
 	// buttons
 	"btncancel"		=> "Anulare",
 	"btnsave"		=> "Salvare",
@@ -148,7 +148,7 @@ $GLOBALS["messages"] = array(
 	"btnedit"		=> "Editare",
 	"btnremove"		=> "Ştergere",
 	"btnunzip"		=> "Unzip",
-	
+
 	// actions
 	"actdir"		=> "Director",
 	"actperms"		=> "Schimbare permisiuni",
@@ -166,7 +166,7 @@ $GLOBALS["messages"] = array(
 	"actarchive"		=> "Archivare element(e)",
 	"actunzipitem"	=> "Extracting",
 	"actupload"		=> "Încărcare fişier(e)",
-	
+
 	// misc
 	"miscitems"		=> "Element(e)",
 	"miscfree"		=> "Liber",
@@ -200,4 +200,5 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("Da","Nu","D","N"),
 	"miscchmod"		=> array("Proprietar", "Grup", "Public"),
 );
+
 ?>

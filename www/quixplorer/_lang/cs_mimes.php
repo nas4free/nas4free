@@ -42,6 +42,7 @@ $GLOBALS["mimes"]=array(
 	"dir"		=> "Adresáø",
 	"exe"		=> "Spustitelný soubor",
 	"file"		=> "Soubor",
+	"link"		=> "Link",
 
 	// text
 	"text"		=> "Textový soubor",
@@ -104,4 +105,6 @@ $GLOBALS["mimes"]=array(
 	"c"		=> "C soubor",
 	"psd"		=> "Photoshop soubor",
 	"point"	=> "PowerPoint dokument"
-); ?>
+);
+
+?>

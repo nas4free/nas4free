@@ -44,12 +44,12 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"		=> "ERREUR(S)",
 	"back"			=> "Page précédente",
-	
+
 	// root
 	"home"			=> "Le répertoire home n'existe pas, vérifiez vos préférences.",
 	"abovehome"		=> "Le répertoire courant n'a pas l'air d'etre au-dessus du répertoire home.",
 	"targetabovehome"	=> "Le répertoire cible n'a pas l'air d'etre au-dessus du répertoire home.",
-	
+
 	// exist
 	"direxist"		=> "Ce répertoire n'existe pas.",
 	//"filedoesexist"	=> "Ce fichier existe deja.",
@@ -58,18 +58,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "Cet item n'existe pas.",
 	"targetexist"		=> "Le répertoire cible n'existe pas.",
 	"targetdoesexist"	=> "L'item cible existe deja.",
-	
+
 	// open
 	"opendir"		=> "Impossible d'ouvrir le répertoire.",
 	"readdir"		=> "Impossible de lire le répertoire.",
-	
+
 	// access
 	"accessdir"		=> "Vous n'etes pas autorisé a acceder a ce répertoire.",
 	"accessfile"		=> "Vous n'etes pas autorisé a accéder a ce fichier.",
 	"accessitem"		=> "Vous n'etes pas autorisé a accéder a cet item.",
 	"accessfunc"		=> "Vous ne pouvez pas utiliser cette fonction.",
 	"accesstarget"	=> "Vous n'etes pas autorisé a accéder au repertoire cible.",
-	
+
 	// actions
 	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
 	"permread"		=> "Lecture des permissions échouée.",
@@ -87,7 +87,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "L'ajout de l'usager a échouée.",
 	"saveuser"		=> "La sauvegarde de l'usager a échouée.",
 	"searchnothing"	=> "Vous devez entrez quelquechose à chercher.",
-	
+
 	// misc
 	"miscnofunc"		=> "Fonctionalité non disponible.",
 	"miscfilesize"	=> "La taille du fichier excède la taille maximale autorisée.",
@@ -122,7 +122,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "ENVOYER",
 	"searchlink"		=> "RECHERCHER",
 	"unziplink"		=> "UNZIP",
-	
+
 	// list
 	"nameheader"		=> "Nom",
 	"sizeheader"		=> "Taille",
@@ -131,7 +131,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "Perm's",
 	"actionheader"	=> "Actions",
 	"pathheader"		=> "Chemin",
-	
+
 	// buttons
 	"btncancel"		=> "Annuler",
 	"btnsave"		=> "Sauver",
@@ -149,7 +149,7 @@ $GLOBALS["messages"] = array(
 	"btnedit"		=> "Éditer",
 	"btnremove"		=> "Supprimer",
 	"btnunzip"		=> "Unzip",
-	
+
 	// actions
 	"actdir"		=> "Répertoire",
 	"actperms"		=> "Changer les permissions",
@@ -167,7 +167,7 @@ $GLOBALS["messages"] = array(
 	"actarchive"		=> "Archiver le(s) item(s)",
 	"actunzipitem"	=> "Extracting",
 	"actupload"		=> "Envoyer le(s) fichier(s)",
-	
+
 	// misc
 	"miscitems"		=> "Item(s)",
 	"miscfree"		=> "Disponible",
@@ -201,4 +201,5 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("Oui","Non","O","N"),
 	"miscchmod"		=> array("Propriétaire", "Groupe", "Publique"),
 );
+
 ?>

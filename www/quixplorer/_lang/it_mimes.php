@@ -103,4 +103,6 @@ $GLOBALS["mimes"]=array(
 	"c"		=> "File C",
 	"psd"		=> "File Photoshop",
 	"point"	=> "File PowerPoint"
-); ?>
+); 
+
+?>

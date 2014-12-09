@@ -44,12 +44,12 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"		=> "HIBA",
 	"back"			=> "Vissza",
-	
+
 	// root
 	"home"			=> "A home könyvtár nem létezik, ellenőrizd a beállításokat.",
 	"abovehome"		=> "A könyvtár nem a home könyvtár alatt van.",
 	"targetabovehome"	=> "A célkönyvtár nem a home könyvtár alatt van.",
-	
+
 	// exist
 	"direxist"		=> "A könyvtár nem létezik.",
 	"fileexist"		=> "A fájl nem létezik.",
@@ -57,18 +57,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "az elem nem létezik.",
 	"targetexist"		=> "A célkönyvtár nem létezik.",
 	"targetdoesexist"	=> "A cél már létezik.",
-	
+
 	// open
 	"opendir"		=> "Nem lehet megnyitni a könyvtárat.",
 	"readdir"		=> "Nem lehet olvasni a könyvtárat.",
-	
+
 	// access
 	"accessdir"		=> "Nem érheted el ezt a könyvtárat.",
 	"accessfile"		=> "Nem érheted el ezt a fájlt.",
 	"accessitem"		=> "Nem érheted el ezt az elemet.",
 	"accessfunc"		=> "Nem érheted el ezt a függvényt.",
 	"accesstarget"	=> "Nem érheted el a célkönyvtárat.",
-	
+
 	// actions
 	"chmod_not_allowed" => "NEM-re állítani a jogokat nem megengedett!",
 	"permread"		=> "Jogosultságok beállítása sikertelen.",
@@ -86,7 +86,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "Felhasználó hozzáadása sikertelen.",
 	"saveuser"		=> "Felhasználó mentése sikertelen.",
 	"searchnothing"	=> "Meg kell adnod valamit, amit keressek.",
-	
+
 	// misc
 	"miscnofunc"		=> "Függvény nem elérhető.",
 	"miscfilesize"	=> "Fájl elérte a maximális méretet.",
@@ -121,7 +121,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "FELTÖLTÉS",
 	"searchlink"		=> "KERESÉS",
 	"unziplink"		=> "KITÖMÖRÍT",
-	
+
 	// list
 	"nameheader"		=> "Név",
 	"sizeheader"		=> "Méret",
@@ -130,7 +130,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "Jogosultságok",
 	"actionheader"	=> "Műveletek",
 	"pathheader"		=> "Útvonal",
-	
+
 	// buttons
 	"btncancel"		=> "Mégsem",
 	"btnsave"		=> "Mentés",
@@ -148,7 +148,7 @@ $GLOBALS["messages"] = array(
 	"btnedit"		=> "Szerkeszt",
 	"btnremove"		=> "Eltávolít",
 	"btnunzip"		=> "Kitömörít",
-	
+
 	// actions
 	"actdir"		=> "Könyvtár",
 	"actperms"		=> "Jogosultságok megváltoztatása",
@@ -166,7 +166,7 @@ $GLOBALS["messages"] = array(
 	"actarchive"		=> "Archív elem(ek)",
     "actunzipitem"	=> "Kicsomagolás",
 	"actupload"		=> "Fájl(ok) feltöltése",
-	
+
 	// misc
 	"miscitems"		=> "Elem",
 	"miscfree"		=> "Szabad",
@@ -200,4 +200,5 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("Igen","Nem","I","N"),
 	"miscchmod"		=> array("Tulajdonos", "Csoport", "Nyilvános"),
 );
+
 ?>

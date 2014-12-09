@@ -44,33 +44,33 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"		=> "錯誤",
 	"back"			=> "返回",
-	
+
 	// root
 	"home"			=> "主目錄不存在，請檢查您的設置。",
 	"abovehome"		=> "當前目錄不在主目錄裡。",
 	"targetabovehome"	=> "目標目錄不在主目錄裡。",
-	
+
 	// exist
 	"direxist"		=> "此目錄並不存在。",
 	"fileexist"		=> "此檔案並不存在。",
-	"itemdoesexist"	=> "此項目已經存在。",
+	"itemdoesexist"		=> "此項目已經存在。",
 	"itemexist"		=> "此項目並不存在。",
 	"targetexist"		=> "目標目錄並不存在。",
 	"targetdoesexist"	=> "目標項目已經存在。",
-	
+
 	// open
 	"opendir"		=> "無法打開目錄。",
 	"readdir"		=> "無法讀取目錄。",
-	
+
 	// access
 	"accessdir"		=> "您不允許訪問此目錄。",
 	"accessfile"		=> "您不允許訪問此檔案。",
 	"accessitem"		=> "您不允許使用此項目。",
 	"accessfunc"		=> "您不允許使用此項功能。",
-	"accesstarget"	=> "您不允許訪問目標目錄。",
-	
+	"accesstarget"		=> "您不允許訪問目標目錄。",
+
 	// actions
-	"chmod_not_allowed" => '不允許更改權限為NONE！',
+	"chmod_not_allowed" 	=> '不允許更改權限為NONE！',
 	"permread"		=> "無法獲取權限。",
 	"permchange"		=> "無法更改權限。",
 	"openfile"		=> "無法打開檔案。",
@@ -85,22 +85,22 @@ $GLOBALS["error_msg"] = array(
 	"deluser"		=> "無法刪除用戶。",
 	"adduser"		=> "無法添加用戶。",
 	"saveuser"		=> "無法保存用戶。",
-	"searchnothing"	=> "您必須提供搜索查找。",
-	
+	"searchnothing"		=> "您必須提供搜索查找。",
+
 	// misc
 	"miscnofunc"		=> "無法使用此項功能。",
-	"miscfilesize"	=> "檔案超過最大大小。",
-	"miscfilepart"	=> "只上傳了部分檔案。",
+	"miscfilesize"		=> "檔案超過最大大小。",
+	"miscfilepart"		=> "只上傳了部分檔案。",
 	"miscnoname"		=> "您必須提供一個名稱。",
-	"miscselitems"	=> "您還沒有選擇任何項目。",
-	"miscdelitems"	=> "您確定要刪除這些 \"+num+\" 項目？",
+	"miscselitems"		=> "您還沒有選擇任何項目。",
+	"miscdelitems"		=> "您確定要刪除這些 \"+num+\" 項目？",
 	"miscdeluser"		=> "您確定要刪除用戶 '\"+user+\"'?",
 	"miscnopassdiff"	=> "新密碼與當前密碼是相同的。",
 	"miscnopassmatch"	=> "密碼不符合。",
 	"miscfieldmissed"	=> "您遺漏了一個重要的字段。",
 	"miscnouserpass"	=> "用戶名或密碼不正確。",
 	"miscselfremove"	=> "您無法刪除自己。",
-	"miscuserexist"	=> "用戶已經存在。",
+	"miscuserexist"		=> "用戶已經存在。",
 	"miscnofinduser"	=> "找不到用戶。",
 );
 $GLOBALS["messages"] = array(
@@ -121,16 +121,16 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "上載",
 	"searchlink"		=> "搜索",
 	"unziplink"		=> "解縮",
-	
+
 	// list
 	"nameheader"		=> "名稱",
 	"sizeheader"		=> "大小",
 	"typeheader"		=> "類型",
 	"modifheader"		=> "更改",
 	"permheader"		=> "權限",
-	"actionheader"	=> "操作",
+	"actionheader"		=> "操作",
 	"pathheader"		=> "路徑",
-	
+
 	// buttons
 	"btncancel"		=> "取消",
 	"btnsave"		=> "儲存",
@@ -148,15 +148,15 @@ $GLOBALS["messages"] = array(
 	"btnedit"		=> "編輯",
 	"btnremove"		=> "刪除",
 	"btnunzip"		=> "解壓",
-	
+
 	// actions
 	"actdir"		=> "目錄",
 	"actperms"		=> "更改權限",
 	"actedit"		=> "編輯檔案",
 	"actsearchresults"	=> "搜索結果",
-	"actcopyitems"	=> "複製項目",
+	"actcopyitems"		=> "複製項目",
 	"actcopyfrom"		=> "從 /%s 複製到 /%s ",
-	"actmoveitems"	=> "移动项目",
+	"actmoveitems"		=> "移动项目",
 	"actmovefrom"		=> "從 /%s 移動到 /%s ",
 	"actlogin"		=> "登錄",
 	"actloginheader"	=> "登錄使用檔案管理器",
@@ -164,17 +164,17 @@ $GLOBALS["messages"] = array(
 	"actchpwd"		=> "更改密碼",
 	"actusers"		=> "用戶",
 	"actarchive"		=> "壓縮項目",
-    "actunzipitem"	=> "解壓中",
+	"actunzipitem"		=> "解壓中",
 	"actupload"		=> "上載檔案",
-	
+
 	// misc
 	"miscitems"		=> "項目",
 	"miscfree"		=> "可用",
-	"miscusername"	=> "用戶名",
-	"miscpassword"	=> "密碼",
+	"miscusername"		=> "用戶名",
+	"miscpassword"		=> "密碼",
 	"miscoldpass"		=> "舊密碼",
 	"miscnewpass"		=> "新密碼",
-	"miscconfpass"	=> "確認密碼",
+	"miscconfpass"		=> "確認密碼",
 	"miscconfnewpass"	=> "確認新密碼",
 	"miscchpass"		=> "更改密碼",
 	"mischomedir"		=> "主目錄",
@@ -182,12 +182,12 @@ $GLOBALS["messages"] = array(
 	"miscshowhidden"	=> "顯示隱藏的項目",
 	"mischidepattern"	=> "隱藏模式",
 	"miscperms"		=> "權限",
-	"miscuseritems"	=> "（名稱，主目錄，顯示隱藏的項目，權限，活躍）",
+	"miscuseritems"		=> "（名稱，主目錄，顯示隱藏的項目，權限，活躍）",
 	"miscadduser"		=> "添加用戶",
-	"miscedituser"	=> "編輯用戶 '%s'",
+	"miscedituser"		=> "編輯用戶 '%s'",
 	"miscactive"		=> "活躍",
 	"misclang"		=> "語言",
-	"miscnoresult"	=> "沒有結果。",
+	"miscnoresult"		=> "沒有結果。",
 	"miscsubdirs"		=> "搜索子目錄",
 	"miscpermissions"	=> array(
 					"read"		=> array("Read", "用戶可以讀取和下載檔案"),
@@ -200,4 +200,5 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("是","否","Y","N"),
 	"miscchmod"		=> array("用戶", "組", "其他用戶"),
 );
+
 ?>

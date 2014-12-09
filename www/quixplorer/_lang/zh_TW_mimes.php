@@ -42,10 +42,11 @@ $GLOBALS["mimes"]=array(
 	"dir"		=> "目錄",
 	"exe"		=> "可執行檔",
 	"file"		=> "檔案",
+	"link"		=> "Link",
 
 	// text
 	"text"		=> "文字檔",
-	
+
 	// programming
 	"php"		=> "PHP 腳本",
 	"sql"		=> "SQL 檔案",
@@ -65,13 +66,13 @@ $GLOBALS["mimes"]=array(
 
 	// Pascal
 	"pas"		=> "Pascal 檔案",
-	
+
 	// images
 	"gif"		=> "GIF 圖片",
 	"jpg"		=> "JPG 圖片",
 	"bmp"		=> "BMP 圖片",
 	"png"		=> "PNG 圖片",
-	
+
 	// compressed
 	"zip"		=> "ZIP 壓縮檔",
 	"tar"		=> "TAR 壓縮檔",
@@ -80,14 +81,14 @@ $GLOBALS["mimes"]=array(
 	"rar"		=> "RAR 壓縮檔",
 	"iso"		=> "ISO 檔案",
 	"mds"		=> "MDS 檔案",
-	
+
 	// music
 	"mp3"		=> "MP3 音頻檔案",
 	"wav"		=> "WAV 音頻檔案",
 	"midi"		=> "MIDI 音頻檔案",
 	"real"		=> "RealAudio 音頻檔案",
 	"flac"		=> "FLAC 音頻檔案",
-	
+
 	// movie
 	"mpg"		=> "MPG 檔案",
 	"mov"		=> "MOV 檔案",
@@ -95,7 +96,7 @@ $GLOBALS["mimes"]=array(
 	"flash"	=> "Flash 檔案",
 	"mkv"		=> "MKV 檔案",
 	"vob"		=> "VOB 檔案",
-	
+
 	// Micosoft / Adobe
 	"word"		=> "Word 文檔",
 	"excel"	=> "Excel 文檔",
@@ -104,4 +105,6 @@ $GLOBALS["mimes"]=array(
 	"c"		=> "C 檔案",
 	"psd"		=> "Photoshop 檔案",
 	"point"	=> "PowerPoint 演示文稿"
-); ?>
+);
+
+?>
