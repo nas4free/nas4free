@@ -50,7 +50,7 @@
 		'ru'		=> 'Russian',
 		'zh_CN'	=> 'Chinese (Simplified)',
 		'zh_TW'	=> 'Chinese (Traditional)'
-	);
+);
 
 	//Create the select box and options
 	echo "<SELECT name=\"lang\">\n";
@@ -59,5 +59,5 @@
 			$selected = ($key == $GLOBALS["language"]) ? " selected='selected'" : '';
 			//Now create the <options> list
 			echo "<option value='$key'$selected>$value</option>\n";
-	}
+}
 	echo "</SELECT></TD></TR>\n";

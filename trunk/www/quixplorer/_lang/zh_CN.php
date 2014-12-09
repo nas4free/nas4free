@@ -44,12 +44,12 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"		=> "错误",
 	"back"			=> "返回",
-	
+
 	// root
 	"home"			=> "主目录不存在，请检查您的设置。",
 	"abovehome"		=> "当前目录可能不在主目录里。",
 	"targetabovehome"	=> "目标目录可能不在主目录里。",
-	
+
 	// exist
 	"direxist"		=> "此目录并不存在。",
 	"fileexist"		=> "此文件并不存在。",
@@ -57,18 +57,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "此项目并不存在。",
 	"targetexist"		=> "目标目录并不存在。",
 	"targetdoesexist"	=> "目标项目已经存在。",
-	
+
 	// open
 	"opendir"		=> "无法打开目录。",
 	"readdir"		=> "无法读取目录。",
-	
+
 	// access
 	"accessdir"		=> "您不允许访问此目录。",
 	"accessfile"		=> "您不允许访问此文件。",
 	"accessitem"		=> "您不允许使用此项目。",
 	"accessfunc"		=> "您不允许使用这个功能。",
 	"accesstarget"	=> "您不允许访问目标目录。",
-	
+
 	// actions
 	"chmod_not_allowed" => '不允许更改权限为NONE！',
 	"permread"		=> "无法获取权限。",
@@ -86,7 +86,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "无法添加用户。",
 	"saveuser"		=> "无法保存用户。",
 	"searchnothing"	=> "您必须提供搜索查找。",
-	
+
 	// misc
 	"miscnofunc"		=> "功能不可使用。",
 	"miscfilesize"	=> "文件超过最大大小。",
@@ -121,7 +121,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "上载",
 	"searchlink"		=> "搜索",
 	"unziplink"		=> "解缩",
-	
+
 	// list
 	"nameheader"		=> "名称",
 	"sizeheader"		=> "大小",
@@ -130,7 +130,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "权限",
 	"actionheader"	=> "操作",
 	"pathheader"		=> "路径",
-	
+
 	// buttons
 	"btncancel"		=> "取消",
 	"btnsave"		=> "储存",
@@ -148,7 +148,7 @@ $GLOBALS["messages"] = array(
 	"btnedit"		=> "编辑",
 	"btnremove"		=> "删除",
 	"btnunzip"		=> "解缩",
-	
+
 	// actions
 	"actdir"		=> "目录",
 	"actperms"		=> "更改权限",
@@ -166,7 +166,7 @@ $GLOBALS["messages"] = array(
 	"actarchive"		=> "压缩项目",
     "actunzipitem"	=> "解缩中",
 	"actupload"		=> "上载文件",
-	
+
 	// misc
 	"miscitems"		=> "项目",
 	"miscfree"		=> "可用",
@@ -200,4 +200,5 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("是","否","Y","N"),
 	"miscchmod"		=> array("用户", "组", "其他用户"),
 );
+
 ?>

@@ -38,9 +38,10 @@
 
 $GLOBALS["mimes"]=array(
       // dir, exe, file
-      "dir"		=> "Директория",
-      "exe"		=> "Изпълним файл",
-      "file"		=> "Файл",
+	"dir"		=> "Директория",
+	"exe"		=> "Изпълним файл",
+	"file"		=> "Файл",
+	"link"		=> "Link",
 
       // text
       "text"		=> "Текстов файл",
@@ -77,7 +78,6 @@ $GLOBALS["mimes"]=array(
       "iso"		=> "ISO архив",
       "mds"		=> "MDS архив",
 
-
       // music
       "mp3"		=> "MP3 Аудио файл",
       "wav"		=> "WAV Аудио файл",
@@ -101,4 +101,6 @@ $GLOBALS["mimes"]=array(
 	"c"		=> "C архив",
 	"psd"		=> "Photoshop архив",
 	"point"	=> "PowerPoint архив"
-); ?>
+);
+
+?>

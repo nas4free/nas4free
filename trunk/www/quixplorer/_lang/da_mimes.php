@@ -42,6 +42,7 @@ $GLOBALS["mimes"]=array(
 	"dir"		=> "Mappe",
 	"exe"		=> "Kørbar fil",
 	"file"		=> "Fil",
+	"link"		=> "Link",
 
 	// text
 	"text"		=> "Tekst Fil",
@@ -104,4 +105,6 @@ $GLOBALS["mimes"]=array(
 	"c"		=> "C Fil",
 	"psd"		=> "Photoshop File",
 	"point"	=> "PowerPoint Dokument"
-); ?>
+);
+
+?>

@@ -44,12 +44,12 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"		=> "エラー",
 	"back"			=> "戻る",
-	
+
 	// root
 	"home"			=> "ホームディレクトリがありません。設定を確認してください。",
 	"abovehome"		=> "カレントディレクトリはホームディレクトリの中にありません。",
 	"targetabovehome"	=> "ターゲットディレクトリはホームディレクトリの中にありません。",
-	
+
 	// exist
 	"direxist"		=> "このディレクトリは存在していません。",
 	//"filedoesexist"	=> "このファイルは既に存在しています。",
@@ -58,18 +58,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "この項目は存在していません。",
 	"targetexist"		=> "指定されたディレクトリは存在していません。",
 	"targetdoesexist"	=> "指定された項目は既に存在しています。",
-	
+
 	// open
 	"opendir"		=> "ディレクトリを開くことができません。",
 	"readdir"		=> "ディレクトリを読むことができません。",
-	
+
 	// access
 	"accessdir"		=> "このディレクトリへのアクセスが許可されていません。",
 	"accessfile"		=> "このファイルへのアクセスが許可されていません。",
 	"accessitem"		=> "この項目へのアクセスが許可されていません。",
 	"accessfunc"		=> "この機能の利用が許可されていません。",
 	"accesstarget"	=> "指定されたディレクトリへのアクセスが許可されていません。",
-	
+
 	// actions
 	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
 	"permread"		=> "権限の取得ができません。",
@@ -87,7 +87,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "ユーザの追加ができません。",
 	"saveuser"		=> "ユーザの保存ができません。",
 	"searchnothing"	=> "検索するものを入力する必要があります。",
-	
+
 	// misc
 	"miscnofunc"		=> "機能は利用できません。",
 	"miscfilesize"	=> "ファイルは最大サイズを超えています。",
@@ -122,7 +122,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "アップロード",
 	"searchlink"		=> "検索",
 	"unziplink"		=> "UNZIP",
-	
+
 	// list
 	"nameheader"		=> "名前",
 	"sizeheader"		=> "サイズ",
@@ -131,7 +131,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "権限",
 	"actionheader"		=> "動作",
 	"pathheader"		=> "パス",
-	
+
 	// buttons
 	"btncancel"		=> "キャンセル",
 	"btnsave"		=> "保存",
@@ -149,7 +149,7 @@ $GLOBALS["messages"] = array(
 	"btnedit"		=> "編集",
 	"btnremove"		=> "削除",
 	"btnunzip"		=> "Unzip",
-	
+
 	// actions
 	"actdir"		=> "ディレクトリ",
 	"actperms"		=> "権限変更",
@@ -167,7 +167,7 @@ $GLOBALS["messages"] = array(
 	"actarchive"		=> "アーカイブ項目",
 	"actunzipitem"	=> "Extracting",
 	"actupload"		=> "アップロードファイル",
-	
+
 	// misc
 	"miscitems"		=> "項目",
 	"miscfree"		=> "フリー",
@@ -201,4 +201,5 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("はい","いいえ","Y","N"),
 	"miscchmod"		=> array("所有者", "グループ", "その他"),
 );
+
 ?>
