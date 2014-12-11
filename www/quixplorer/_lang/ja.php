@@ -36,7 +36,7 @@
 */
 // Japanese Language Module
 
-$GLOBALS["charset"] = "utf-8";
+$GLOBALS["charset"] = "UTF-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "Y/m/d H:i";
 $GLOBALS["error_msg"] = array(
@@ -71,7 +71,7 @@ $GLOBALS["error_msg"] = array(
 	"accesstarget"	=> "指定されたディレクトリへのアクセスが許可されていません。",
 
 	// actions
-	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
+	"chmod_not_allowed"  => "パーミッションを NONE に変更する事は許可されていません！",
 	"permread"		=> "権限の取得ができません。",
 	"permchange"		=> "権限の変更ができません。",
 	"openfile"		=> "ファイルのオープンができません。",
@@ -109,7 +109,7 @@ $GLOBALS["messages"] = array(
 	"permlink"		=> "権限変更",
 	"editlink"		=> "編集",
 	"downlink"		=> "ダウンロード",
-	"download_selected"	=> "DOWNLOAD SELECTED FILES",
+	"download_selected"	=> "選択したファイルをダウンロード",
 	"uplink"			=> "上へ",
 	"homelink"		=> "ホーム",
 	"reloadlink"		=> "リロード",
@@ -121,7 +121,7 @@ $GLOBALS["messages"] = array(
 	"logoutlink"		=> "ログアウト",
 	"uploadlink"		=> "アップロード",
 	"searchlink"		=> "検索",
-	"unziplink"		=> "UNZIP",
+	"unziplink"		=> "展開",
 
 	// list
 	"nameheader"		=> "名前",
@@ -148,7 +148,7 @@ $GLOBALS["messages"] = array(
 	"btnadd"		=> "追加",
 	"btnedit"		=> "編集",
 	"btnremove"		=> "削除",
-	"btnunzip"		=> "Unzip",
+	"btnunzip"		=> "展開",
 
 	// actions
 	"actdir"		=> "ディレクトリ",
@@ -191,12 +191,12 @@ $GLOBALS["messages"] = array(
 	"miscnoresult"	=> "検索結果がありません。",
 	"miscsubdirs"		=> "サブディレクトリの検索",
 	"miscpermissions"	=> array(
-					"read"		=> array("Read", "User may read and download a file"),
-					"create" 	=> array("Write", "User may create a new file"),
-					"change"		=> array("Change", "User may change (upload, modify) an existing file"),
-					"delete"		=> array("Delete", "User may delete an existing file"),
-					"password"	=> array("Change password", "User may change the password"),
-					"admin"		=> array("Administrator", "Full access"),
+					"read"		=> array("読込", "ユーザーは読込、ダウンロード可能"),
+					"create" 	=> array("作成", "ユーザーは新規ファイルを作成可能"),
+					"change"		=> array("変更", "ユーザーは既存ファイルを変更(アップロード・修正)可能"),
+					"delete"		=> array("削除", "ユーザーは既存ファイルを削除可能"),
+					"password"	=> array("パスワード変更", "ユーザーはパスワード変更可能"),
+					"admin"		=> array("管理者", "フルアクセス"),
 			),
 	"miscyesno"		=> array("はい","いいえ","Y","N"),
 	"miscchmod"		=> array("所有者", "グループ", "その他"),
