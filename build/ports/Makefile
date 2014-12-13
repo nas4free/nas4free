@@ -5,6 +5,7 @@
     SUBDIR += autosnapshot
     SUBDIR += bash
     SUBDIR += bsnmp-ucd
+    SUBDIR += ca_root_nss
     SUBDIR += cdialog
     SUBDIR += clog
     SUBDIR += dmidecode
