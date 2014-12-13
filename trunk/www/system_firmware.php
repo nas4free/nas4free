@@ -142,6 +142,7 @@ function get_latest_file($rss) {
 		$revision = $m[2];
 	}
 	$ext = "img";
+	$ext2 = "xz";
 
 	$resp = "";
 	$xml = @simplexml_load_file($rss);
@@ -162,12 +163,15 @@ function get_latest_file($rss) {
 			$date = date("D, d M Y H:i:s T", $time);
 		}
 
-		if (empty($parts['extension']) || strcasecmp($parts['extension'], $ext) != 0)
+		if (empty($parts['extension']))
+			continue;
+		if (strcasecmp($parts['extension'], $ext) != 0
+		    && strcasecmp($parts['extension'], $ext2) != 0)
 			continue;
 		$filename = $parts['filename'];
 		$fullname = $parts['filename'].".".$parts['extension'];
 
-		if (preg_match("/^{$product}-{$platform}-(.*?)\.(\d+)$/", $filename, $m)) {
+		if (preg_match("/^{$product}-{$platform}-(.*?)\.(\d+)(\.img)?$/", $filename, $m)) {
 			$filever = $m[1];
 			$filerev = $m[2];
 			if ($version < $filever
@@ -187,7 +191,7 @@ function get_latest_file($rss) {
 
 function check_firmware_version_rss($locale) {
 	$rss_path = "http://sourceforge.net/projects/nas4free/rss?limit=40";
-	$rss_release = "http://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-@@VERSION&limit=20";
+	$rss_release = "http://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-@@VERSION@@&limit=20";
 	$rss_beta = "http://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-Beta&limit=20";
 
 	// replace with existing version
