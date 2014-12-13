@@ -66,6 +66,7 @@ if ($_POST) {
 
 	$pconfig = $_POST;
 
+	$preempt = @exec("/sbin/sysctl -q -n net.inet.carp.preempt");
 	if (isset($_POST['switch_backup']) && $_POST['switch_backup']) {
 		// down all carp
 		foreach ($a_carp as $carp) {
@@ -84,8 +85,10 @@ if ($_POST) {
 			write_log("error: still hasted primary exists!");
 		}
 		// up and set backup all carp
-		foreach ($a_carp as $carp) {
-			system("/sbin/ifconfig {$carp['if']} up state backup");
+		if ($preempt == 0 || (isset($a_carp[0]) && $a_carp[0]['advskew'] > 1)) {
+			foreach ($a_carp as $carp) {
+				system("/sbin/ifconfig {$carp['if']} up state backup");
+			}
 		}
 		header("Location: services_hast.php");
 		exit;
