@@ -249,7 +249,7 @@ $(document).ready(function(){
 	<tr id="control_btn">
 	  <td colspan="2">
 	    <input id="switch_backup" name="switch_backup" type="submit" class="formbtn" value="<?php echo gettext("Switch VIP to BACKUP"); ?>" />
-	    <?php if (isset($a_carp[0]) && $a_carp[0]['advskew'] == 0) { ?>
+	    <?php if (isset($a_carp[0]) && $a_carp[0]['advskew'] <= 1) { ?>
 	    &nbsp;<input id="switch_master" name="switch_master" type="submit" class="formbtn" value="<?php echo gettext("Switch VIP to MASTER"); ?>" />
 	    <?php } ?>
 	  </td>
