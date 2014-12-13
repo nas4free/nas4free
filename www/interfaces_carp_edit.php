@@ -171,7 +171,7 @@ function get_nextcarp_id() {
 				<?php html_inputbox("if", gettext("Interface"), $pconfig['if'], "", true, 5, true);?>
 				<?php html_inputbox("vhid", gettext("Virtual Host ID"), $pconfig['vhid'], "", true, 5);?>
 				<?php html_ipv4addrbox("vipaddr", "vsubnet", gettext("Virtual IP address"), $pconfig['vipaddr'], $pconfig['vsubnet'], "", true);?>
-				<?php html_inputbox("advskew", gettext("Advertisement skew"), $pconfig['advskew'], "", true, 5);?>
+				<?php html_inputbox("advskew", gettext("Advertisement skew"), $pconfig['advskew'], gettext("Lowest value is higher priority. For master node, use 0 or 1. If preempt is enabled, it is adjusted to 240 on failure."), true, 5);?>
 				<?php html_inputbox("password", gettext("Password"), $pconfig['password'], "", true, 20);?>
 				<?php html_inputbox("linkup", gettext("Link up action"), $pconfig['linkup'], sprintf(gettext("Command for LINK_UP event (e.g. %s)."), $default_linkup), false, 60);?>
 				<?php html_inputbox("linkdown", gettext("Link down action"), $pconfig['linkdown'], sprintf(gettext("Command for LINK_DOWN event (e.g. %s)."), $default_linkdown), false, 60);?>
