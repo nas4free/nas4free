@@ -51,6 +51,25 @@ get_ipaddr()
 	echo `/usr/bin/netstat -inW -f ${_protocol_family} -I ${_interface} | /usr/bin/grep ${_interface} | /usr/bin/awk '{print $4}'`
 }
 
+# get_network [protocol_family] [interface]
+get_network()
+{
+	local _protocol_family _interface _ipaddr _prefix
+
+	_protocol_family=$1
+	_interface=`get_if $2`
+
+	if [ "$_protocol_family" = "inet6" ]; then
+		_ipaddr=`/sbin/ifconfig ${_interface} inet6 | grep inet6 | head -n 1 | /usr/bin/awk '{print $2}'`
+		_prefix=`/sbin/ifconfig ${_interface} inet6 | grep inet6 | head -n 1 | /usr/bin/awk '{print $4}'`
+		if [ -n "$_ipaddr" -a -n "$_prefix" ]; then
+			echo "$_ipaddr/$_prefix"; return
+		fi
+	fi
+
+	echo `/usr/bin/netstat -inW -f ${_protocol_family} -I ${_interface} | /usr/bin/grep ${_interface} | /usr/bin/awk '{print $3}'`
+}
+
 # get_macaddr [interface]
 # Get MAC address for the given interface.
 # Example:
