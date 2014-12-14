@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-12-06 18:23+0000\n"
+"POT-Creation-Date: 2014-12-14 09:25+0000\n"
 "PO-Revision-Date: 2014-12-06 19:05+0000\n"
 "Last-Translator: Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-11 12:49+0000\n"
-"X-Generator: Launchpad (build 17283)\n"
+"X-Launchpad-Export-Date: 2014-12-14 01:09+0000\n"
+"X-Generator: Launchpad (build 17286)\n"
 "Language: hu_HU\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -224,6 +224,10 @@ msgstr "Az útvonal ehhez a célhálózathoz már létezik."
 
 msgid "A valid IP address must be specified."
 msgstr "Érvényes IP cím megdása szükséges."
+
+msgid ""
+"A valid IP address or CIDR notation must be specified for the hosts allow."
+msgstr ""
 
 msgid ""
 "A valid IPv4 address must be specified for the primary/secondary DNS server."
@@ -3467,6 +3471,11 @@ msgstr "Kisfeszültségű pontot"
 msgid "Low voltage trimming transfer point"
 msgstr "Kisfeszültségű átkapcsolási pontot"
 
+msgid ""
+"Lowest value is higher priority. For master node, use 0 or 1. If preempt is "
+"enabled, it is adjusted to 240 on failure."
+msgstr ""
+
 msgid "MAC address"
 msgstr "Fizikai cím (MAC address)"
 
@@ -5226,6 +5235,11 @@ msgstr "Forrás megosztása"
 
 msgid "Space Used"
 msgstr "Helyhasználat"
+
+msgid ""
+"Space delimited set of IP or CIDR notation that permitted to access the "
+"WebGUI. (empty is the same network of LAN interface)"
+msgstr ""
 
 msgid "Spanish"
 msgstr "Spanyol"
