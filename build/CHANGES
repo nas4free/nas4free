@@ -10,6 +10,7 @@ Changes:
 - Improved config restore verbose output.
 - Improved ZFS pool usage/tool and import ZFS disks.
 - Improved ZFS pool import on embedded.
+- Improved HAST switch with net.inet.carp.preempt.
 - Replaced /dev/md0 with xmd using LZ4 compression.
 - Replaced the server certificate with 2048bits key and sha256 signature.
 - Changed rootfs layout. (2GB USB/CF is required. Full is 4GB or more.)
@@ -19,7 +20,8 @@ Changes:
   Supported minimum spec except LiveCD is 512MB memory + 512MB swap device or partition.
   1024MB swap device or partition is recommended.
   File based swap and ZFS volume swap is not recommended.
-- Add NFS support in HAST serivce
+- Add WebGUI access restriction.
+- Add NFS support in HAST serivce.
 - Add default swap of 1024MB for LiveUSB and before user configuration.
 - Adjust number of Status|Processes.
 - Add MBR partition to LiveUSB.
