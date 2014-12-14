@@ -110,7 +110,7 @@ if ($_POST) {
 		foreach (explode(' ', $_POST['webguihostsallow']) as $a) {
 			list($hp,$np) = explode('/', $a);
 			if (!is_ipaddr($hp) || (!empty($np) && !is_subnet($a))) {
-				$input_errors[] = gettext("A valid IP address or CIDR notation  must be specified for the hosts allow.");
+				$input_errors[] = gettext("A valid IP address or CIDR notation must be specified for the hosts allow.");
 			}
 		}
 	}
