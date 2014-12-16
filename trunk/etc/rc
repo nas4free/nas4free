@@ -59,7 +59,7 @@ PLATFORM=`cat /etc/platform`
 
 # Fixed values requested by build/make.sh
 MDLOCALSIZE=768m
-SWAPSIZE=1024m
+SWAPSIZE=512m
 
 # NAS4Free request 2GB for swapless running
 mem=`/sbin/sysctl -n hw.physmem`
