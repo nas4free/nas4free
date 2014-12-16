@@ -67,7 +67,12 @@ get_network()
 		fi
 	fi
 
-	echo `/usr/bin/netstat -inW -f ${_protocol_family} -I ${_interface} | /usr/bin/grep ${_interface} | /usr/bin/awk '{print $3}'`
+	_ipaddr=`/usr/local/bin/sipcalc --cidr-addr ${_interface} | grep 'Network address' | /usr/bin/awk '{print $4}'`
+	_prefix=`/usr/local/bin/sipcalc --cidr-addr ${_interface} | grep 'Network mask (bits)' | /usr/bin/awk '{print $5}'`
+	if [ -n "$_ipaddr" -a -n "$_prefix" ]; then
+		echo "$_ipaddr/$_prefix"; return
+	fi
+	echo ""
 }
 
 # get_macaddr [interface]
