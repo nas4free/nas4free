@@ -382,6 +382,9 @@ add_libs() {
 		fi
 	done
 
+	# for compatibility
+	install -c -s -v ${NAS4FREE_WORLD}/lib/libreadline.* ${NAS4FREE_ROOTFS}/lib
+
 	# Cleanup.
 	rm -f /tmp/lib.list
 
@@ -433,6 +436,29 @@ create_mdlocal_mini() {
 			fi
 		done
 	done
+
+	# Identify required libs.
+	[ -f /tmp/lib.list ] && rm -f /tmp/lib.list
+	dirs=(${NAS4FREE_TMPDIR}/usr/local/bin ${NAS4FREE_TMPDIR}/usr/local/sbin ${NAS4FREE_TMPDIR}/usr/local/lib ${NAS4FREE_TMPDIR}/usr/local/libexec)
+	for i in ${dirs[@]}; do
+		for file in $(find -L ${i} -type f -print); do
+			ldd -f "%p\n" ${file} 2> /dev/null >> /tmp/lib.list
+		done
+	done
+
+	# Copy identified libs.
+	for i in $(sort -u /tmp/lib.list); do
+		if [ -e "${NAS4FREE_WORLD}${i}" ]; then
+			DESTDIR=${NAS4FREE_TMPDIR}$(echo $i | rev | cut -d '/' -f 2- | rev)
+			if [ ! -d ${DESTDIR} ]; then
+			    DESTDIR=${NAS4FREE_TMPDIR}/usr/local/lib
+			fi
+			install -c -s -v ${NAS4FREE_WORLD}${i} ${DESTDIR}
+		fi
+	done
+
+	# Cleanup.
+	rm -f /tmp/lib.list
 
 	# Umount memory disk
 	umount $NAS4FREE_TMPDIR/usr/local
