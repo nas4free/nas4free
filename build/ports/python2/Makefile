@@ -1,6 +1,6 @@
 PORTNAME=		python2
-PORTVERSION=		1.0
-PORTREVISION=		0
+PORTVERSION=		${PYTHON_MAJOR_VER}
+PORTREVISION=		3
 CATEGORIES=		lang python
 
 COMMENT=		Interpreted object-oriented programming language
@@ -9,10 +9,10 @@ MAINTAINER=		aoyama@nas4free.org
 DISTFILES=
 NO_BUILD=		yes
 NO_PKG_REGISTER=	yes
-ALWAYS_BUILD_DEPENDS=	yes
+#ALWAYS_BUILD_DEPENDS=	yes
 DEPENDS_TARGET=	clean build stage
 
-BUILD_DEPENDS=		python2.7:${PORTSDIR}/lang/python27
+BUILD_DEPENDS=		${NONEXISTENT}:${PORTSDIR}/lang/python27
 DEP_STAGEDIR=		${PORTSDIR}/lang/python27/work/stage
 
 # To test python, run smaba-tool in NAS4Free
