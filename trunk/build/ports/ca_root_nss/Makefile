@@ -1,6 +1,6 @@
 PORTNAME=		ca_root_nss
-PORTVERSION=		1.0
-PORTREVISION=		0
+PORTVERSION=		${VERSION_NSS}
+PORTREVISION=		1
 CATEGORIES=		security
 
 COMMENT=		The root certificate bundle from the Mozilla Project
@@ -13,7 +13,7 @@ NO_PKG_REGISTER=	yes
 DISABLE_VULNERABILITIES=yes
 DEPENDS_TARGET=	clean build stage
 
-BUILD_DEPENDS=		ca_root_nss:${PORTSDIR}/security/ca_root_nss
+BUILD_DEPENDS=		${NONEXISTENT}:${PORTSDIR}/security/ca_root_nss
 DEP_STAGEDIR=		${PORTSDIR}/security/ca_root_nss/work/stage
 
 do-install:
