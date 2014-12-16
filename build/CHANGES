@@ -11,6 +11,7 @@ Changes:
 - Improved ZFS pool usage/tool and import ZFS disks.
 - Improved ZFS pool import on embedded.
 - Improved HAST switch with net.inet.carp.preempt.
+- Improved PHP session handle.
 - Replaced /dev/md0 with xmd using LZ4 compression.
 - Replaced the server certificate with 2048bits key and sha256 signature.
 - Changed rootfs layout. (2GB USB/CF is required. Full is 4GB or more.)
@@ -42,6 +43,7 @@ Changes:
 - Change iperf2.x for iperf3.
 
 Fixes:
+- some DHCP setting of WebGUI does not work. 
 - xmlrpc is broken.
 - Missing GPT partition in Disks|ZFS|Pools|Tools.
 - Switching DHCP and static IP cause unexpected behavior.
