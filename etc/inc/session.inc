@@ -43,6 +43,7 @@ class Session {
 	 * Initialize default session variables.
 	 */
 	private static function _init() {
+		session_regenerate_id(true);
 		$_SESSION['login'] = TRUE;
 		$_SESSION['authtoken'] = crypt(session_id());
 		$_SESSION['ts'] = time();
@@ -53,6 +54,7 @@ class Session {
 	 */
 	public static function start() {
 		session_start();
+		$_SESSION['at'] = time();
 	}
 
 	/**
