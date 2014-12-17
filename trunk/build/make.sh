@@ -449,6 +449,12 @@ create_mdlocal_mini() {
 	# Copy identified libs.
 	for i in $(sort -u /tmp/lib.list); do
 		if [ -e "${NAS4FREE_WORLD}${i}" ]; then
+			d=`dirname $i`
+			b=`basename $i`
+			if [ "$d" = "/lib" -o "$d" = "/usr/lib" ]; then
+				# skip lib in mfsroot
+				[ -e ${NAS4FREE_ROOTFS}${i} ] && continue
+			fi
 			DESTDIR=${NAS4FREE_TMPDIR}$(echo $i | rev | cut -d '/' -f 2- | rev)
 			if [ ! -d ${DESTDIR} ]; then
 			    DESTDIR=${NAS4FREE_TMPDIR}/usr/local/lib
