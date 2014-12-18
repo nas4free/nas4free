@@ -229,7 +229,7 @@ function install_harddrive_image($harddrive)
 	mwexec("/bin/cp -v {$g['conf_default_path']}/config.xml {$mntpath}{$g['conf_path']}");
 
 	// Generate new loader.conf file.
-	$loaderconf .= <<<EOD
+	$loaderconf = <<<EOD
 kernel="kernel"
 bootfile="kernel"
 kernel_options=""
@@ -251,7 +251,7 @@ EOD;
 	}
 
 	// Set the release type.
-	$platform .= <<<EOD
+	$platform = <<<EOD
 {$g['arch']}-full
 
 EOD;
@@ -272,7 +272,7 @@ EOD;
 		write_console("Error: Failed to get UFS ID.\n");
 		return 1;
 	}
-	$fstab .= <<<EOD
+	$fstab = <<<EOD
 # Device                    Mountpoint  FStype  Options         Dump    Pass#
 /dev/ufsid/{$ufsid}     /       ufs     rw              1       1
 
@@ -287,7 +287,7 @@ EOD;
 	// This file is used by the firmware and mount check and is normally
 	// generated with 'liveCD' and 'embedded' during startup, but need to be
 	// created during install of 'full'.
-	$cfdevice .= <<<EOD
+	$cfdevice = <<<EOD
 {$harddrive}s1a
 
 EOD;
