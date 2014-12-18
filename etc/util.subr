@@ -21,7 +21,7 @@ get_if()
 
 	case ${_interface} in
 		[Aa][Uu][Tt][Oo])
-			_interface=`/sbin/ifconfig -l | /usr/bin/awk '{print $1}'`
+			_interface=`/sbin/ifconfig -l | sed -e 's/lo[0-9]*//g' | /usr/bin/awk '{print $1}'`
 			;;
 	esac
 
