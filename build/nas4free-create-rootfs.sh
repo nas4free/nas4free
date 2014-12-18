@@ -86,6 +86,7 @@ mkdir usr/libexec ;
 mkdir usr/local ;
 mkdir usr/local/bin;
 mkdir usr/local/lib ;
+mkdir usr/local/libexec ;
 mkdir usr/local/sbin ;
 mkdir usr/local/share ;
 mkdir usr/local/share/locale ;
