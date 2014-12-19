@@ -300,7 +300,7 @@ function aio_change() {
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline_checkbox("enable", gettext("Common Internet File System"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_combobox("security", gettext("Authentication"), $pconfig['security'], array("user" => gettext("Local User"), "ads" => gettext("Active Directory")), "", true, false, "authentication_change()");?>
-					<?php html_combobox("maxprotocol", gettext("Max Protocol"), $pconfig['maxprotocol'], array("SMB3" => gettext("SMB3"), "SMB2" => gettext("SMB2"), "NT1" => gettext("NT1")), gettext("SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and Vista. NT1 is for legacy OS like XP."), true, false, "");?>
+					<?php html_combobox("maxprotocol", gettext("Max Protocol"), $pconfig['maxprotocol'], array("SMB3" => gettext("SMB3"), "SMB2" => gettext("SMB2"), "NT1" => gettext("NT1")), sprintf("%s<br>%s", gettext("SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and Vista. NT1 is for legacy OS like XP."), gettext("When the negotiation is complete, you will not be able to change the SMB protocol. If you change it, you will need to restart the client connected to this server.")), true, false, "");?>
           <tr>
             <td width="22%" valign="top" class="vncellreq"><?=gettext("NetBIOS name");?></td>
             <td width="78%" class="vtable">
