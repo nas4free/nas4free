@@ -45,7 +45,7 @@ do-install:
 #	@${INSTALL_PROGRAM} -v ${PORTSDIR}/devel/libublio/work/libublio-*/libubl*.so* ${NAS4FREE_ROOTFS}/usr/local/lib
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/devel/libublio/work/libublio-*/libubl*.so ${NAS4FREE_ROOTFS}/usr/local/lib
 
-	@${LN} -s -f -v /usr/local/bin/ntfs-3g ${NAS4FREE_ROOTFS}/bin/mount_ntfs
-	@${LN} -s -f -v /usr/local/bin/ntfs-3g ${NAS4FREE_ROOTFS}/bin/mount_ntfs-3g
+	@${LN} -s -f -v /usr/local/bin/ntfs-3g ${NAS4FREE_ROOTFS}/sbin/mount_ntfs
+	@${LN} -s -f -v /usr/local/bin/ntfs-3g ${NAS4FREE_ROOTFS}/sbin/mount_ntfs-3g
 
 .include <bsd.port.post.mk>
