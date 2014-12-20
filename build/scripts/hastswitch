@@ -111,11 +111,11 @@ shutdown)
 		-b \
 	    ${configxml_file} | /usr/local/bin/xml unesc | \
 	while read _if; do
-		if [ "${PREEMPTION}" = "0" -a  -n "$_if" ]; then
+		if [ "${PREEMPT}" = "0" -a  -n "$_if" ]; then
 		    /usr/bin/logger -p $log -t $name "Change ${_if} state to BACKUP."
 		    /sbin/ifconfig "${_if}" state backup 2>/dev/null
 		    /bin/sleep 1
-		elif [ "${PREEMPTION}" != "0" -a  -n "$_if" ]; then
+		elif [ "${PREEMPT}" != "0" -a  -n "$_if" ]; then
 		    /usr/bin/logger -p $log -t $name "Change ${_if} state to INIT."
 		    /sbin/ifconfig "${_if}" down 2>/dev/null
 		    /bin/sleep 1
