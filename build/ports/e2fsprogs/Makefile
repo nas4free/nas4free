@@ -1,6 +1,6 @@
 PORTNAME=		e2fsprogs
 PORTVERSION=	1.42.12
-PORTREVISION?= 0
+PORTREVISION?= 1
 CATEGORIES=		sysutils
 COMMENT=		Utilities & library to manipulate ext2/3/4 filesystems
 
@@ -103,6 +103,7 @@ post-build:
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/e2fsck/e2fsck ${NAS4FREE_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/misc/badblocks ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/misc/mke2fs ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/misc/dumpe2fs ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/misc/tune2fs ${NAS4FREE_ROOTFS}/usr/local/sbin
