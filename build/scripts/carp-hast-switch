@@ -75,7 +75,7 @@ case "$ARG1" in
 
 	# Wait for the /dev/hast/* devices to appear
 	for disk in ${resources}; do
-	    for I in $( jot 360 ); do
+	    for I in $( jot 240 ); do
 		[ -c "/dev/hast/${disk}" ] && break
 		sleep 0.5
 	    done
