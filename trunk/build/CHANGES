@@ -44,9 +44,10 @@ Changes:
 - Upgrade samba to 4.1.14.
 
 Fixes:
+- Wrong variable in HAST script.
 - /boot/kernel/fuse.ko is missing.
 - /etc/platform is broken on full installation.
-- some DHCP setting of WebGUI does not work. 
+- Some DHCP setting of WebGUI does not work. 
 - xmlrpc is broken.
 - Missing GPT partition in Disks|ZFS|Pools|Tools.
 - Switching DHCP and static IP cause unexpected behavior.
