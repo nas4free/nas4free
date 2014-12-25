@@ -743,7 +743,7 @@ etc/rc.suspend
 etc/network.subr
 etc/pccard_ether
 etc/gettytab
-####### Add custom devd.conf to NAS4Free 9.1.0.1 freebsd 9.1 series, it could use/need modifications
+####### Add modified devd.conf into /etc
 #etc/devd.conf
 etc/devfs.conf
 etc/dhclient.conf
@@ -780,6 +780,7 @@ etc/rc.d/random
 etc/rc.d/swap1
 #etc/rc.d/ip6fw
 etc/rc.d/devd
+#etc/rc.d/devfs
 etc/rc.d/dmesg
 etc/rc.d/hostid
 etc/rc.d/jail
