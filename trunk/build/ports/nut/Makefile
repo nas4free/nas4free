@@ -1,12 +1,12 @@
 PORTNAME=		nut
 PORTVERSION=	2.7.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=		sysutils
 COMMENT=		Network UPS tools
 MAINTAINER=		zoon01@nas4free.org
 
 MASTER_SITES=	http://www.networkupstools.org/source/${PORTVERSION:R}/
-DISTFILES=		${DISTNAME}${EXTRACT_SUFX}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 USE_AUTOTOOLS=  autoconf
@@ -22,12 +22,11 @@ NUT_SYSCONFDIR=	/var/etc
 NUT_DATADIR=		/usr/local/etc/${PORTNAME}
 NUT_DRVDIR=			/usr/local/libexec/${PORTNAME}
 
-OPTIONS=		IPV6		"IPV6 support"  on 
-
-CONFIGURE_ARGS=	--sysconfdir=${NUT_SYSCONFDIR} \
+CONFIGURE_ARGS+=	--sysconfdir=${NUT_SYSCONFDIR} \
 		--program-transform-name="" \
 		--localstatedir=${NUT_STATEDIR} \
 		--datadir=${NUT_DATADIR} \
+		--with-devd-dir=${PREFIX}/etc/devd \
 		--with-drvpath=${NUT_DRVDIR} \
 		--with-statepath=${NUT_STATEDIR} \
 		--with-altpidpath=${NUT_PIDDIR} \
@@ -41,7 +40,6 @@ CONFIGURE_ARGS=	--sysconfdir=${NUT_SYSCONFDIR} \
 		--with-powerman \
 		--with-ipmi \
 		--with-freeipmi \
-		--without-hal \
 		--without-dev \
 		--with-user=${NUT_USER} \
 		--with-group=${NUT_GROUP} \
@@ -49,16 +47,18 @@ CONFIGURE_ARGS=	--sysconfdir=${NUT_SYSCONFDIR} \
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 800069
-LIB_DEPENDS+=	usb-0.1:${PORTSDIR}/devel/libusb
-.endif
 LIB_DEPENDS+=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
 LIB_DEPENDS+=	libneon.so:${PORTSDIR}/www/neon29
 LIB_DEPENDS+=	libpowerman.so:${PORTSDIR}/sysutils/powerman
 LIB_DEPENDS+=	libfreeipmi.so:${PORTSDIR}/sysutils/freeipmi
 
+pre-install:
+	@${REINPLACE_CMD} -e 's/device-name\*/cdev/g' ${WRKSRC}/scripts/devd/nut-usb.conf
 
 do-install:
+	@${MKDIR} -pv ${NAS4FREE_ROOTFS}${PREFIX}/etc/devd
+	@${INSTALL_SCRIPT} -v ${WRKSRC}/scripts/devd/nut-usb.conf ${NAS4FREE_ROOTFS}${PREFIX}/etc/devd/nut-usb.conf
+
 	@${MKDIR} -pv ${NAS4FREE_ROOTFS}/${NUT_DATADIR}
 	@${INSTALL_DATA} -v ${WRKSRC}/data/cmdvartab ${NAS4FREE_ROOTFS}/${NUT_DATADIR}
 	@${INSTALL_DATA} -v ${WRKSRC}/data/driver.list ${NAS4FREE_ROOTFS}/${NUT_DATADIR}
@@ -127,7 +127,6 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/clients/.libs/upslog ${NAS4FREE_ROOTFS}/usr/local/bin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/clients/.libs/upsmon ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/clients/.libs/upsrw ${NAS4FREE_ROOTFS}/usr/local/bin
-	@${INSTALL_SCRIPT} -v ${FILESDIR}/upssched-cmd.in ${NAS4FREE_ROOTFS}/usr/local/bin/upssched-cmd
 
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/server/upsd ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/clients/upssched ${NAS4FREE_ROOTFS}/usr/local/sbin
@@ -135,5 +134,6 @@ do-install:
 	@${INSTALL_SCRIPT} -v ${FILESDIR}/nut.sh.in ${NAS4FREE_ROOTFS}/etc/rc.d/nut
 	@${INSTALL_SCRIPT} -v ${FILESDIR}/nut_upslog.sh.in ${NAS4FREE_ROOTFS}/etc/rc.d/nut_upslog
 	@${INSTALL_SCRIPT} -v ${FILESDIR}/nut_upsmon.sh.in ${NAS4FREE_ROOTFS}/etc/rc.d/nut_upsmon
+	@${INSTALL_SCRIPT} -v ${FILESDIR}/upssched-cmd.in ${NAS4FREE_ROOTFS}/usr/local/bin/upssched-cmd
 
 .include <bsd.port.post.mk>
