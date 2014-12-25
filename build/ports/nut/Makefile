@@ -48,7 +48,7 @@ CONFIGURE_ARGS+=	--sysconfdir=${NUT_SYSCONFDIR} \
 .include <bsd.port.pre.mk>
 
 LIB_DEPENDS+=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
-LIB_DEPENDS+=	libneon.so:${PORTSDIR}/www/neon29
+LIB_DEPENDS+=   libneon.so:${PORTSDIR}/www/neon
 LIB_DEPENDS+=	libpowerman.so:${PORTSDIR}/sysutils/powerman
 LIB_DEPENDS+=	libfreeipmi.so:${PORTSDIR}/sysutils/freeipmi
 
