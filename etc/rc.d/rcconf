@@ -466,10 +466,14 @@ setserialconsole()
     _ttyuonoff=`sed -n "/^${_ttyu}/ s/.*on.*/on/p" /etc/ttys`
     #_sio=`configxml_isset "//system/enableserialconsole"`
     _sio=`kenv console | sed -n 's/.*comconsole.*/on/p'`
+    _uboot=`kenv console | sed -n 's/.*uboot.*/on/p'`
 
-    if [ "$_sio" = "on" ]; then
+    if [ "$_sio" = "on" -o "$_uboot" = "on" ]; then
 	if [ "$_ttyuonoff" != "on" ]; then
 	    sed -i.bak -e "/^${_ttyu}/ s/off/on/" /etc/ttys
+	fi
+	if [ "$_uboot" = "on" ]; then
+	    sed -i.bak -e "/^${_ttyu}/ s/autologin/al.115200/" /etc/ttys
 	fi
     else
 	if [ "$_ttyuonoff" = "on" ]; then
