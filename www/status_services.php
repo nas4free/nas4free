@@ -39,6 +39,9 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Status"), gettext("Services"));
 
+$ups_script = "nut";
+if (isset($config["ups"]["mode"]) && ($config["ups"]["mode"] == "slave")) { $ups_script = "nut_upsmon"; }
+
 $a_service[] = array("desc" => gettext("HAST"), "link" => "services_hast.php", "config" => "hast", "scriptname" => "hastd");
 $a_service[] = array("desc" => gettext("CIFS/SMB"), "link" => "services_samba.php", "config" => "samba", "scriptname" => "samba");
 $a_service[] = array("desc" => gettext("FTP"), "link" => "services_ftp.php", "config" => "ftpd", "scriptname" => "proftpd");
@@ -53,7 +56,7 @@ $a_service[] = array("desc" => gettext("DLNA/UPnP"), "link" => "services_upnp.ph
 $a_service[] = array("desc" => gettext("iTunes/DAAP"), "link" => "services_daap.php", "config" => "daap", "scriptname" => "mt-daapd");
 $a_service[] = array("desc" => gettext("Dynamic DNS"), "link" => "services_dynamicdns.php", "config" => "dynamicdns", "scriptname" => "inadyn");
 $a_service[] = array("desc" => gettext("SNMP"), "link" => "services_snmp.php", "config" => "snmpd", "scriptname" => "bsnmpd");
-$a_service[] = array("desc" => gettext("UPS"), "link" => "services_ups.php", "config" => "ups", "scriptname" => "nut");
+$a_service[] = array("desc" => gettext("UPS"), "link" => "services_ups.php", "config" => "ups", "scriptname" => $ups_script);
 $a_service[] = array("desc" => gettext("Webserver"), "link" => "services_websrv.php", "config" => "websrv", "scriptname" => "websrv");
 $a_service[] = array("desc" => gettext("BitTorrent"), "link" => "services_bittorrent.php", "config" => "bittorrent", "scriptname" => "transmission");
 $a_service[] = array("desc" => gettext("LCDproc"), "link" => "services_lcdproc.php", "config" => "lcdproc", "scriptname" => "LCDd");
