@@ -196,6 +196,43 @@ function get_smbios_info() {
 			$smbios[$match[1]][$match[2]] = $match[3];
 		}
 	}
+	$platform = get_platform_type();
+	if (preg_match('/^rpi-/', $platform)) {
+		// fake data on RPi
+		$smbios['bios']['reldate'] = "12/01/2014";
+		$smbios['bios']['vendor'] = "Raspberry Pi";
+		$smbios['bios']['version'] = "1.0";
+		$smbios['planar']['maker'] = "Raspberry Pi Foundation";
+		$smbios['planar']['product'] = "Raspberry Pi";
+
+		$revision = chop(`/sbin/sysctl -n hw.board.revision`);
+		$revision &= 0xffff;
+		if (!empty($revision)) {
+			$model = "";
+			if ($revision <= 0x0006)
+				$model = "Model B (256MB)";
+			else if ($revision >= 0x0007 && $revision <= 0x0009)
+				$model = "Model A";
+			else if ($revision >= 0x000d && $revision <= 0x000f)
+				$model = "Model B";
+			else if ($revision == 0x0010)
+				$model = "Model B+";
+			else if ($revision == 0x0010)
+				$model = "Model B+";
+			else if ($revision == 0x0011)
+				$model = "Compute Module";
+			else if ($revision == 0x0012)
+				$model = "Model A+";
+			else
+				$model = sprintf("rev. 0x%04x", $revision);
+			if (!empty($model))
+			$smbios['planar']['product'] .= " $model";
+		}
+		$serial = chop(`/sbin/sysctl -n hw.board.serial`);
+		$serial = preg_replace('/^0+/', '', $serial);
+		if (!empty($serial))
+			$smbios['planar']['product'] .= " (S/N: $serial)";
+	}
 	return $smbios;
 }
 
@@ -277,6 +314,13 @@ function system_get_cpu_info() {
 
 	$cpuinfo['number'] = chop(`/sbin/sysctl -n hw.ncpu`);
 	$cpuinfo['model'] = chop(`/sbin/sysctl -n hw.model`);
+	if (empty($cpuinfo['model'])) {
+		$platform = chop(`/sbin/sysctl -n hw.platform`);
+		if ($platform == "bcm2835")
+			$cpuinfo['model'] = "Broadcom BCM2835";
+		else
+			$cpuinfo['model'] = $platform;
+	}
 	$cpuinfo['clockrate'] = chop(`/sbin/sysctl -n hw.clockrate`);
 	$cpuinfo['temperature'] = chop(`/sbin/sysctl -n hw.acpi.thermal.tz0.temperature`);
 	$cpus = system_get_cpus();
