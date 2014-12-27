@@ -47,6 +47,9 @@ if ($?prompt) then
 endif
 
 # Display console menu (only on ttyv0/ttyd0).
+if ("ttyu0" == "$tty" && `kenv console | sed -n 's/.*uboot.*/uboot/p'` == "uboot") then
+	stty clocal
+endif
 if ( "ttyv0" == "$tty" || "ttyu0" == "$tty" ) then
 	/etc/rc.banner
 	/etc/rc.initial
