@@ -70,7 +70,6 @@ LCDPROC_DRIVERS=	bayrad \
 					sed1330 \
 					sed1520 \
 					serialPOS \
-					serialVFD \
 					sli \
 					stv5730 \
 					t6963 \
@@ -84,6 +83,11 @@ LCDPROC_DRIVERS+=	i2500vfd \
 					lis \
 					ula200
 LCDPROC_DRIVERS+=	mdm166a
+
+.include <bsd.port.pre.mk>
+.if (${ARCH} == "amd64" || ${ARCH} == "i386")
+LCDPROC_DRIVERS+=			serialVFD
+.endif
 
 .include <bsd.port.options.mk>
 
@@ -136,4 +140,4 @@ do-install:
 	@${INSTALL_SCRIPT} -v ${FILESDIR}/LCDd.in ${NAS4FREE_ROOTFS}/etc/rc.d/LCDd
 	@${INSTALL_SCRIPT} -v ${FILESDIR}/lcdproc.in ${NAS4FREE_ROOTFS}/etc/rc.d/lcdproc
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
