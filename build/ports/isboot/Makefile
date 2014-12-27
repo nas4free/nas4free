@@ -8,6 +8,7 @@ MASTER_SITES=		http://www.peach.ne.jp/archives/isboot/
 
 WRKSRC=                 ${WRKDIR}/${DISTNAME}/src
 USES=			kmod
+ONLY_FOR_ARCHS=		i386 amd64
 
 .include <bsd.port.pre.mk>
 .if ${ARCH} == "amd64"
