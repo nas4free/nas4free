@@ -1,5 +1,5 @@
 PORTNAME=		xmd
-PORTVERSION=		0.3.2
+PORTVERSION=		0.3.6
 CATEGORIES=		sysutils
 COMMENT=		Experimental memory disk by Daisuke Aoyama (aoyama@peach.ne.jp)
 
