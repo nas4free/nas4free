@@ -81,7 +81,9 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("Space 
 	<?php html_titleline(gettext("Memory usage"));?>
 	<tr>
 	  <td>
-	    <pre><?php unset($rawdata); exec("/sbin/xmdconfig -lv", $rawdata); echo htmlspecialchars(implode("\n", $rawdata));?></pre>
+	    <pre><?php $xmdconfig_header = "Device  Type       Size Comp  Level    Ratio (compressed/allocated/uncompressed)"; // don't translate this header. it will be removed later.
+			echo "$xmdconfig_header\n";
+			unset($rawdata); exec("/sbin/xmdconfig -lv", $rawdata); echo htmlspecialchars(implode("\n", $rawdata));?></pre>
 	  </td>
 	</tr>
 <?php } ?>
