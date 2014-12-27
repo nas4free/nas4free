@@ -56,6 +56,8 @@ export HOME PATH
 
 # Get operating platform
 PLATFORM=`cat /etc/platform`
+XARCH=`/bin/echo ${PLATFORM} | sed -e 's/-.*//'`
+ARCH=`/usr/bin/uname -m`
 
 # Fixed values requested by build/make.sh
 MDLOCALSIZE=768m
@@ -96,7 +98,11 @@ case ${PLATFORM} in
 			*-liveUSB)
 				root=`/sbin/glabel status -s|/usr/bin/awk '/liveboot/{print $3;exit 0}'`
 				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
-				#if [ ! -e "/dev/${swap}" ]; then
+				swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
+				#if [ "${ARCH}" = "arm" -a -e "/dev/${swap2}" ]; then
+				#	# pre-configured swap
+				#	swap=${swap2}
+				#elif [ ! -e "/dev/${swap}" ]; then
 				#	dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
 				#	/sbin/gpart add -s ${SWAPSIZE} -t freebsd-swap ${dev}
 				#fi
@@ -125,8 +131,12 @@ case ${PLATFORM} in
 			*-embedded)
 				root=`/sbin/glabel status -s|/usr/bin/awk '/embboot/{print $3;exit 0}'`
 				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
+				swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
 				# always create swap partition if not exists
-				if [ ! -e "/dev/${swap}" ]; then
+				if [ "${ARCH}" = "arm" -a -e "/dev/${swap2}" ]; then
+					# pre-configured swap
+					swap=${swap2}
+				elif [ ! -e "/dev/${swap}" ]; then
 					dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
 					/sbin/gpart add -s ${SWAPSIZE} -t freebsd-swap ${dev}
 				fi
