@@ -217,8 +217,6 @@ function get_smbios_info() {
 				$model = "Model B";
 			else if ($revision == 0x0010)
 				$model = "Model B+";
-			else if ($revision == 0x0010)
-				$model = "Model B+";
 			else if ($revision == 0x0011)
 				$model = "Compute Module";
 			else if ($revision == 0x0012)
