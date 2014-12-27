@@ -52,7 +52,11 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Routing tables"));
 	list($dummy, $internet, $internet6) = explode("\n\n", shell_exec($netstat));
 
 	foreach (array(&$internet, &$internet6) as $tabindex => $table) {
-		$elements = ($tabindex == 0 ? 8 : 8);
+		$osver = @exec("/usr/bin/uname -U");
+		if ($osver >= 1100000)
+			$elements = ($tabindex == 0 ? 7 : 7);
+		else
+			$elements = ($tabindex == 0 ? 8 : 8);
 		$name = ($tabindex == 0 ? 'IPv4' : 'IPv6');
 ?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
