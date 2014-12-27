@@ -778,6 +778,7 @@ etc/rc.d/FILESYSTEMS
 etc/rc.d/ip6addrctl
 etc/rc.d/random
 etc/rc.d/swap1
+#etc/rc.d/swaplate
 #etc/rc.d/ip6fw
 etc/rc.d/devd
 #etc/rc.d/devfs
@@ -827,7 +828,20 @@ usr/share/doc/legal/intel_wpi/LICENSE
 usr/share/doc/legal/intel_iwi/LICENSE
 usr/share/doc/legal/intel_ipw/LICENSE
 
-
 # XXX need move to ports
 # pkg -- a utility for manipulating packages
 usr/local/sbin/pkg
+
+# casperd
+sbin/casperd
+etc/casper/system.dns
+etc/casper/system.grp
+etc/casper/system.pwd
+etc/casper/system.random
+etc/casper/system.sysctl
+etc/rc.d/casperd
+libexec/casper/dns
+libexec/casper/grp
+libexec/casper/pwd
+libexec/casper/random
+libexec/casper/sysctl
