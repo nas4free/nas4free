@@ -38,8 +38,6 @@ CONFIGURE_ARGS+=	--sysconfdir=${NUT_SYSCONFDIR} \
 		--with-snmp \
 		--with-neon \
 		--with-powerman \
-		--with-ipmi \
-		--with-freeipmi \
 		--without-dev \
 		--with-user=${NUT_USER} \
 		--with-group=${NUT_GROUP} \
@@ -50,7 +48,11 @@ CONFIGURE_ARGS+=	--sysconfdir=${NUT_SYSCONFDIR} \
 LIB_DEPENDS+=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
 LIB_DEPENDS+=   libneon.so:${PORTSDIR}/www/neon
 LIB_DEPENDS+=	libpowerman.so:${PORTSDIR}/sysutils/powerman
+.if (${ARCH} == "amd64" || ${ARCH} == "i386")
 LIB_DEPENDS+=	libfreeipmi.so:${PORTSDIR}/sysutils/freeipmi
+CONFIGURE_ARGS+=--with-ipmi \
+		--with-freeipmi
+.endif
 
 pre-install:
 	@${REINPLACE_CMD} -e 's/device-name\*/cdev/g' ${WRKSRC}/scripts/devd/nut-usb.conf
@@ -96,7 +98,9 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/microdowell ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/netxml-ups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/nutdrv_qx ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+.if (${ARCH} == "amd64" || ${ARCH} == "i386")
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/nut-ipmipsu ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+.endif
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/oldmge-shut ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/oneac ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/optiups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
