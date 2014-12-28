@@ -212,8 +212,15 @@ build_world() {
 
 		# Deal with directories
 		dir=$(dirname $file)
+		if [ ! -d ${NAS4FREE_WORLD}/$dir ]; then
+			echo "skip: $file"
+			continue;
+		fi
 		if [ ! -d $dir ]; then
 		  mkdir -pv $dir
+		fi
+		if [ "$file" != "*" -a ! -f ${NAS4FREE_WORLD}/$file ]; then
+			continue;
 		fi
 
 		# Copy files from world.
