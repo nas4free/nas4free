@@ -20,7 +20,15 @@
 #
 
 SIZE="512M"
-CFDEVICE=`cat /etc/cfdevice | sed -e 's/[a-h]$//'`
+PLATFORM=`cat /etc/platform`
+XARCH=`/bin/echo ${PLATFORM} | sed -e 's/-.*//'`
+ARCH=`/usr/bin/uname -m`
+if [ "${ARCH}" == "arm" ]; then
+	# write to pre-aligned partition
+	CFDEVICE=`cat /etc/cfdevice`
+else
+	CFDEVICE=`cat /etc/cfdevice | sed -e 's/[a-h]$//'`
+fi
 FTMP="/var/tmp/ftmp"
 
 backup_chflags() {
@@ -125,7 +133,7 @@ case $1 in
 		# Remove swap on booting device if any
 		if [ -f /etc/swapdevice ]; then
 			SWAPDEVICE=`cat /etc/swapdevice`
-			if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ]; then
+			if [ "${ARCH}" != "arm" -a "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ]; then
 				echo "swapoff ${SWAPDEVICE}"
 				swapoff -q ${SWAPDEVICE} 2>/dev/null
 			fi
