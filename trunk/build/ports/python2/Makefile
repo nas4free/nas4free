@@ -15,7 +15,7 @@ DEPENDS_TARGET=	clean build stage
 BUILD_DEPENDS=		${NONEXISTENT}:${PORTSDIR}/lang/python27
 DEP_STAGEDIR=		${PORTSDIR}/lang/python27/work/stage
 
-# To test python, run smaba-tool in NAS4Free
+# To test python, run samba-tool in NAS4Free
 
 do-install:
 # NAS4Free install
