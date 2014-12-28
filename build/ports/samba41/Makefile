@@ -542,13 +542,19 @@ post-install:
 	@${LN} -fsv /var/etc/smb4.conf ${NAS4FREE_ROOTFS}/usr/local/etc/smb4.conf
 
 # sbin
-.for file in samba samba_dnsupdate samba_kcc samba_spnupdate samba_upgradedns smbd nmbd winbindd
+.for file in samba smbd nmbd winbindd
 	@${INSTALL_PROGRAM} -v ${STAGEDIR}${PREFIX}/sbin/${file} ${NAS4FREE_ROOTFS}/usr/local/sbin
+.endfor
+.for file in samba samba_dnsupdate samba_kcc samba_spnupdate samba_upgradedns
+	@${INSTALL_SCRIPT} -v ${STAGEDIR}${PREFIX}/sbin/${file} ${NAS4FREE_ROOTFS}/usr/local/sbin
 .endfor
 
 # bin
-.for file in cifsdd dbwrap_tool eventlogadm gentest locktest masktest ndrdump net nmblookup nmblookup4 ntlm_auth oLschema2ldif pdbedit profiles regdiff regpatch regshell regtree rpcclient samba-regedit samba-tool sharesec smbcacls smbclient smbclient4 smbcontrol smbcquotas smbget smbpasswd smbspool smbstatus smbta-util smbtar smbtorture smbtree testparm wbinfo
+.for file in cifsdd dbwrap_tool eventlogadm gentest locktest masktest ndrdump net nmblookup nmblookup4 ntlm_auth oLschema2ldif pdbedit profiles regdiff regpatch regshell regtree rpcclient samba-regedit sharesec smbcacls smbclient smbclient4 smbcontrol smbcquotas smbget smbpasswd smbspool smbstatus smbta-util smbtorture smbtree testparm wbinfo
 	@${INSTALL_PROGRAM} -v ${STAGEDIR}${PREFIX}/bin/${file} ${NAS4FREE_ROOTFS}/usr/local/bin
+.endfor
+.for file in cifsdd samba-tool smbtar
+	@${INSTALL_SCRIPT} -v ${STAGEDIR}${PREFIX}/bin/${file} ${NAS4FREE_ROOTFS}/usr/local/bin
 .endfor
 
 # lib
