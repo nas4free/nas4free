@@ -219,7 +219,8 @@ build_world() {
 		if [ ! -d $dir ]; then
 		  mkdir -pv $dir
 		fi
-		if [ "$file" != "*" -a ! -f ${NAS4FREE_WORLD}/$file ]; then
+		if [ "$(echo $file | grep '*')" == "" -a ! -f ${NAS4FREE_WORLD}/$file ]; then
+			echo "skip: $file"
 			continue;
 		fi
 
