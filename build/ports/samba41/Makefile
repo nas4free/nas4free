@@ -542,14 +542,12 @@ post-install:
 	@${LN} -fsv /var/etc/smb4.conf ${NAS4FREE_ROOTFS}/usr/local/etc/smb4.conf
 
 # sbin
-# disabled options file and leftout install: samba_dnsupdate samba_kcc samba_spnupdate samba_upgradedns
-.for file in samba smbd nmbd winbindd
+.for file in samba samba_dnsupdate samba_kcc samba_spnupdate samba_upgradedns smbd nmbd winbindd
 	@${INSTALL_PROGRAM} -v ${STAGEDIR}${PREFIX}/sbin/${file} ${NAS4FREE_ROOTFS}/usr/local/sbin
 .endfor
 
 # bin
-# disabled options file and leftout install: samba-tool smbtar
-.for file in cifsdd dbwrap_tool eventlogadm gentest locktest masktest ndrdump net nmblookup nmblookup4 ntlm_auth oLschema2ldif pdbedit profiles regdiff regpatch regshell regtree rpcclient samba-regedit sharesec smbcacls smbclient smbclient4 smbcontrol smbcquotas smbget smbpasswd smbspool smbstatus smbta-util smbtorture smbtree testparm wbinfo
+.for file in cifsdd dbwrap_tool eventlogadm gentest locktest masktest ndrdump net nmblookup nmblookup4 ntlm_auth oLschema2ldif pdbedit profiles regdiff regpatch regshell regtree rpcclient samba-regedit samba-tool sharesec smbcacls smbclient smbclient4 smbcontrol smbcquotas smbget smbpasswd smbspool smbstatus smbta-util smbtar smbtorture smbtree testparm wbinfo
 	@${INSTALL_PROGRAM} -v ${STAGEDIR}${PREFIX}/bin/${file} ${NAS4FREE_ROOTFS}/usr/local/bin
 .endfor
 
@@ -568,8 +566,7 @@ post-install:
 	for file in ldb.so ntdb.so talloc.so tdb.so; do \
 		${CP} -pv ${PREFIX}/lib/python2.7/site-packages/$${file} ${NAS4FREE_ROOTFS}/usr/local/lib/python2.7/site-packages; \
 	done
-# samba-nsupdate has left disabled port-options!
-#	@${CP} -pv ${PREFIX}/bin/samba-nsupdate ${NAS4FREE_ROOTFS}/usr/local/bin
+	@${CP} -pv ${PREFIX}/bin/samba-nsupdate ${NAS4FREE_ROOTFS}/usr/local/bin
 
 # ldb/tdb
 	for file in ldbadd ldbdel ldbedit ldbmodify ldbrename ldbsearch; do \
