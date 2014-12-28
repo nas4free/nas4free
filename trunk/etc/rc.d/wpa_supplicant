@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: src/etc/rc.d/wpa_supplicant,v 1.2.2.1 2008/04/25 17:05:42 sam Exp $
-#
 # Part of NAS4Free (http://www.nas4free.org).
 # Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
@@ -9,6 +7,8 @@
 # Portions of freenas (http://www.freenas.org).
 # Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
 # All rights reserved.
+#
+# $FreeBSD: src/etc/rc.d/wpa_supplicant
 #
 
 # PROVIDE: wpa_supplicant
@@ -23,22 +23,27 @@
 
 name="wpa_supplicant"
 rcvar=
-command="/usr/sbin/${name}"
-conf_file="/var/etc/wpa_supplicant.conf"
 
 ifn="$2"
 if [ -z "$ifn" ]; then
 	return 1
 fi
 
-case ${ifn} in
-ndis*)
+is_ndis_interface()
+{
+	case `sysctl -n net.wlan.${1#wlan}.%parent 2>/dev/null` in
+		ndis*) true ;;
+		*) false ;;
+	esac
+}
+
+if is_wired_interface ${ifn} ; then
+	driver="wired"
+elif is_ndis_interface ${ifn} ; then
 	driver="ndis"
-	;;
-*)
+else
 	driver="bsd"
-	;;
-esac
+fi
 
 # Create wpa_supplicant.conf
 /usr/local/bin/xml sel -t -m "//interfaces/*/wireless/wpa[enable]" \
@@ -53,8 +58,11 @@ esac
 
 load_rc_config $name
 
+command=${wpa_supplicant_program}
+conf_file=${wpa_supplicant_conf_file}
 pidfile="/var/run/${name}/${ifn}.pid"
-command_args="-B -q -i $ifn -c $conf_file -D $driver -P $pidfile"
+command_args="-B -i $ifn -c $conf_file -D $driver -P $pidfile"
 required_files=$conf_file
+required_modules="wlan_wep wlan_tkip wlan_ccmp"
 
 run_rc_command "$1"
