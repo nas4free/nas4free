@@ -1,7 +1,5 @@
 #!/bin/sh
 #
-# $FreeBSD: src/etc/rc.d/NETWORKING,v 1.19.2.2.2.1 2011/11/11 04:20:22 kensmith Exp $
-#
 # Part of NAS4Free (http://www.nas4free.org).
 # Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
@@ -9,6 +7,9 @@
 # Portions of freenas (http://www.freenas.org).
 # Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
 # All rights reserved.
+#
+# $FreeBSD: src/etc/rc.d/NETWORKING
+# Changes: added REQUIRE: resolv, Removed REQUIRE: ppp ipfw stf faith REQUIRE: static_arp static_ndp
 #
 
 # PROVIDE: NETWORKING NETWORK

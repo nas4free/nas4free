@@ -1,14 +1,11 @@
 #!/bin/sh
 #
-# $FreeBSD: src/etc/rc.d/sysctl,v 1.17.2.2.4.1 2009/04/15 03:14:26 kensmith Exp $
-#
 # Part of NAS4Free (http://www.nas4free.org).
 # Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-#
-# Changes: 	- Add command mkconf
-# 		- Add full path to command sysctl to fix execution bug
+# Changes: - Add command mkconf
+# 	   - Add full path to command sysctl to fix execution bug
 #
 
 # PROVIDE: sysctl
