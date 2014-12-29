@@ -213,16 +213,16 @@ build_world() {
 		# Deal with directories
 		dir=$(dirname $file)
 		if [ ! -d ${NAS4FREE_WORLD}/$dir ]; then
-			echo "skip: $file"
+			echo "skip: $file ($dir)"
 			continue;
 		fi
 		if [ ! -d $dir ]; then
 		  mkdir -pv $dir
 		fi
-		if [ "$(echo $file | grep '*')" == "" -a ! -f ${NAS4FREE_WORLD}/$file ]; then
-			echo "skip: $file"
-			continue;
-		fi
+		#if [ "$(echo $file | grep '*')" == "" -a ! -f ${NAS4FREE_WORLD}/$file ]; then
+		#	echo "skip: $file ($dir)"
+		#	continue;
+		#fi
 
 		# Copy files from world.
 		cp -Rpv ${NAS4FREE_WORLD}/$file $(echo $file | rev | cut -d "/" -f 2- | rev)
