@@ -123,7 +123,7 @@ case ${PLATFORM} in
 					fi
 				fi
 
-				/sbin/mount /dev/${root} /mnt
+				/sbin/mount -r /dev/${root} /mnt
 				/usr/bin/xz -dcv /mnt/mdlocal.xz | \
 				    /bin/dd of=/dev/${md} bs=1m status=none
 				/sbin/umount /mnt
@@ -157,7 +157,7 @@ case ${PLATFORM} in
 					fi
 				fi
 
-				/sbin/mount /dev/${root} /mnt
+				/sbin/mount -r /dev/${root} /mnt
 				/usr/bin/xz -dcv /mnt/mdlocal.xz | \
 				    /bin/dd of=/dev/${md} bs=1m status=none
 				#if [ -e /mnt/boot/zfs/zpool.cache ]; then
