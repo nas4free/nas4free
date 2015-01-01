@@ -407,12 +407,14 @@ create_mdlocal_mini() {
 
 	cd $NAS4FREE_WORKINGDIR
 
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini.files ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini.files
 	cp $NAS4FREE_SVNDIR/build/nas4free-mdlocal-mini.files $NAS4FREE_WORKINGDIR/mdlocal-mini.files
 
 	# Make mfsroot to have the size of the NAS4FREE_MFSROOT_SIZE variable
-	dd if=/dev/zero of=$NAS4FREE_WORKINGDIR/mdlocal-mini bs=1k count=$(expr ${NAS4FREE_MDLOCAL_MINI_SIZE} \* 1024)
+	#dd if=/dev/zero of=$NAS4FREE_WORKINGDIR/mdlocal-mini bs=1k count=$(expr ${NAS4FREE_MDLOCAL_MINI_SIZE} \* 1024)
+	dd if=/dev/zero of=$NAS4FREE_WORKINGDIR/mdlocal-mini bs=1k seek=$(expr ${NAS4FREE_MDLOCAL_MINI_SIZE} \* 1024) count=0
 	# Configure this file as a memory disk
 	md=`mdconfig -a -t vnode -f $NAS4FREE_WORKINGDIR/mdlocal-mini`
 	# Format memory disk using UFS
@@ -494,14 +496,18 @@ create_mfsroot() {
 
 	cd $NAS4FREE_WORKINGDIR
 
+	[ -f $NAS4FREE_WORKINGDIR/mfsroot ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
 	[ -d $NAS4FREE_SVNDIR ] && use_svn ;
 
 	# Make mfsroot to have the size of the NAS4FREE_MFSROOT_SIZE variable
-	dd if=/dev/zero of=$NAS4FREE_WORKINGDIR/mfsroot bs=1k count=$(expr ${NAS4FREE_MFSROOT_SIZE} \* 1024)
-	dd if=/dev/zero of=$NAS4FREE_WORKINGDIR/mdlocal bs=1k count=$(expr ${NAS4FREE_MDLOCAL_SIZE} \* 1024)
+	#dd if=/dev/zero of=$NAS4FREE_WORKINGDIR/mfsroot bs=1k count=$(expr ${NAS4FREE_MFSROOT_SIZE} \* 1024)
+	#dd if=/dev/zero of=$NAS4FREE_WORKINGDIR/mdlocal bs=1k count=$(expr ${NAS4FREE_MDLOCAL_SIZE} \* 1024)
+	dd if=/dev/zero of=$NAS4FREE_WORKINGDIR/mfsroot bs=1k seek=$(expr ${NAS4FREE_MFSROOT_SIZE} \* 1024) count=0
+	dd if=/dev/zero of=$NAS4FREE_WORKINGDIR/mdlocal bs=1k seek=$(expr ${NAS4FREE_MDLOCAL_SIZE} \* 1024) count=0
 	# Configure this file as a memory disk
 	md=`mdconfig -a -t vnode -f $NAS4FREE_WORKINGDIR/mfsroot`
 	md2=`mdconfig -a -t vnode -f $NAS4FREE_WORKINGDIR/mdlocal`
@@ -583,7 +589,8 @@ create_image() {
 	create_mfsroot;
 
 	echo "===> Creating Empty IMG File"
-	dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/image.bin bs=${NAS4FREE_IMG_SECTS}b count=`expr ${NAS4FREE_IMG_SIZE_SEC} / ${NAS4FREE_IMG_SECTS} + 64`
+	#dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/image.bin bs=${NAS4FREE_IMG_SECTS}b count=`expr ${NAS4FREE_IMG_SIZE_SEC} / ${NAS4FREE_IMG_SECTS} + 64`
+	dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/image.bin bs=${NAS4FREE_IMG_SECTS}b seek=`expr ${NAS4FREE_IMG_SIZE_SEC} / ${NAS4FREE_IMG_SECTS} + 64` count=0
 	echo "===> Use IMG as a memory disk"
 	md=`mdconfig -a -t vnode -f ${NAS4FREE_WORKINGDIR}/image.bin -x ${NAS4FREE_IMG_SECTS} -y ${NAS4FREE_IMG_HEADS}`
 	diskinfo -v ${md}
@@ -833,7 +840,8 @@ create_usb () {
 
 	# 1MB aligned USB stick
 	echo "USB: Creating Empty IMG File"
-	dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/usb-image.bin bs=1m count=${USBIMGSIZEM}
+	#dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/usb-image.bin bs=1m count=${USBIMGSIZEM}
+	dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/usb-image.bin bs=1m seek=${USBIMGSIZEM} count=0
 	echo "USB: Use IMG as a memory disk"
 	md=`mdconfig -a -t vnode -f ${NAS4FREE_WORKINGDIR}/usb-image.bin -x ${USB_SECTS} -y ${USB_HEADS}`
 	diskinfo -v ${md}
