@@ -1,12 +1,9 @@
-# $FreeBSD: src/etc/root/dot.cshrc 242850 2012-11-10 06:05:04Z eadler $
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-# Portions of freenas (http://www.freenas.org).
-# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
-# All rights reserved.
+# $FreeBSD: src/etc/root/dot.cshrc 242850 2012-11-10 06:05:04Z eadler $
 #
 # .cshrc - csh resource script, read at beginning of execution by each shell
 #
