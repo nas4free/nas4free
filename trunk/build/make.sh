@@ -533,10 +533,35 @@ create_mfsroot() {
 
 	mkuzip -s 32768 $NAS4FREE_WORKINGDIR/mfsroot
 	chmod 644 $NAS4FREE_WORKINGDIR/mfsroot.uzip
-	gzip -9fnv $NAS4FREE_WORKINGDIR/mfsroot
-	xz -8v $NAS4FREE_WORKINGDIR/mdlocal
+	gzip -9kfnv $NAS4FREE_WORKINGDIR/mfsroot
+	xz -8kv $NAS4FREE_WORKINGDIR/mdlocal
 
 	create_mdlocal_mini;
+
+	return 0
+}
+
+update_mfsroot() {
+	echo "--------------------------------------------------------------"
+	echo ">>> Generating MFSROOT Filesystem (use existing image)"
+	echo "--------------------------------------------------------------"
+
+	# Check if mfsroot exists.
+	if [ ! -f $NAS4FREE_WORKINGDIR/mfsroot ]; then
+		echo "==> Error: $NAS4FREE_WORKINGDIR/mfsroot does not exist."
+		return 1
+	fi
+
+	# Cleanup.
+	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
+	[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
+	#[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
+
+	cd $NAS4FREE_WORKINGDIR
+	mkuzip -s 32768 $NAS4FREE_WORKINGDIR/mfsroot
+	chmod 644 $NAS4FREE_WORKINGDIR/mfsroot.uzip
+	gzip -9kfnv $NAS4FREE_WORKINGDIR/mfsroot
+	#xz -8kv $NAS4FREE_WORKINGDIR/mdlocal
 
 	return 0
 }
@@ -667,7 +692,7 @@ create_image() {
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
-	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
+	#[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
 	[ -f $NAS4FREE_WORKINGDIR/image.bin ] && rm -f $NAS4FREE_WORKINGDIR/image.bin
 
 	return 0
@@ -706,7 +731,22 @@ create_iso () {
 
 	echo "ISO: Generating temporary folder '$NAS4FREE_TMPDIR'"
 	mkdir $NAS4FREE_TMPDIR
-	create_mfsroot;
+	if [ $TINY_ISO ]; then
+		# Not call create_image if TINY_ISO
+		create_mfsroot;
+	elif [ -z "$FORCE_MFSROOT" -o "$FORCE_MFSROOT" != "0" ]; then
+		# Mount mfsroot/mdlocal created by create_image
+		md=`mdconfig -a -t vnode -f $NAS4FREE_WORKINGDIR/mfsroot`
+		mount /dev/${md} ${NAS4FREE_TMPDIR}
+		# Update mfsroot/mdlocal
+		echo $PLATFORM > ${NAS4FREE_TMPDIR}/etc/platform
+		# Umount and update mfsroot/mdlocal
+		umount $NAS4FREE_TMPDIR
+		mdconfig -d -u ${md}
+		update_mfsroot;
+	else
+		create_mfsroot;
+	fi
 
 	echo "ISO: Copying previously generated MFSROOT file to $NAS4FREE_TMPDIR"
 	cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
@@ -772,10 +812,13 @@ create_iso () {
 
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
+	[ -f $NAS4FREE_WORKINGDIR/mfsroot ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz
+	[ -f $NAS4FREE_WORKINGDIR/image.bin.xz ] && rm -f $NAS4FREE_WORKINGDIR/image.bin.xz
 
 	return 0
 }
@@ -785,6 +828,20 @@ create_iso_tiny() {
 	create_iso;
 	unset TINY_ISO
 	return 0
+}
+
+create_embedded() {
+	create_image;
+
+	# Cleanup.
+	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
+	[ -f $NAS4FREE_WORKINGDIR/mfsroot ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot
+	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
+	[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz
+	[ -f $NAS4FREE_WORKINGDIR/image.bin.xz ] && rm -f $NAS4FREE_WORKINGDIR/image.bin.xz
 }
 
 create_usb () {
@@ -819,7 +876,19 @@ create_usb () {
 
 	echo "USB: Generating temporary folder '$NAS4FREE_TMPDIR'"
 	mkdir $NAS4FREE_TMPDIR
-	create_mfsroot;
+	if [ -z "$FORCE_MFSROOT" -o "$FORCE_MFSROOT" != "0" ]; then
+		# Mount mfsroot/mdlocal created by create_image
+		md=`mdconfig -a -t vnode -f $NAS4FREE_WORKINGDIR/mfsroot`
+		mount /dev/${md} ${NAS4FREE_TMPDIR}
+		# Update mfsroot/mdlocal
+		echo $PLATFORM > ${NAS4FREE_TMPDIR}/etc/platform
+		# Umount and update mfsroot/mdlocal
+		umount $NAS4FREE_TMPDIR
+		mdconfig -d -u ${md}
+		update_mfsroot;
+	else
+		create_mfsroot;
+	fi
 
 	# for 2GB USB stick
 	IMGSIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/image.bin.xz)
@@ -945,8 +1014,10 @@ create_usb () {
 
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
+	[ -f $NAS4FREE_WORKINGDIR/mfsroot ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz
 	[ -f $NAS4FREE_WORKINGDIR/image.bin.xz ] && rm -f $NAS4FREE_WORKINGDIR/image.bin.xz
@@ -1243,7 +1314,7 @@ Press # "
 	case $choice in
 		1)	update_svn;;
 		2)	build_system;;
-		10)	create_image;;
+		10)	create_embedded;;
 		11)	create_usb;;
 		12)	create_iso;;
 		13)	create_iso_tiny;;
