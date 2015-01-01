@@ -4,7 +4,7 @@
 	rc.banner
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -84,7 +84,7 @@
 	echo <<<EOD
     {$productname}: {$version} (revision {$revision})
     Build on: {$buildtime} Platform: {$g['fullplatform']}
-    Copyright (c) 2012-2014 The NAS4Free Project. All Rights Reserved.
+    Copyright (c) 2012-2015 The NAS4Free Project. All Rights Reserved.
     {$esc("\33[1;34m")}Visit: http://www.{$producturl} for system updates!{$esc("\33[0;39m")}\n
 
 	LAN Network IPv4 Address: {$esc("\33[1;33m")}{$ipaddr}{$esc("\33[0;39m")}\n
