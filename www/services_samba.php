@@ -179,7 +179,8 @@ if ($_POST) {
 			$config['samba']['aiowsize'] = $_POST['aiowsize'];
 			$config['samba']['aiowbehind'] = '';
 		}
-		if ($config['samba']['maxprotocol'] == "SMB2") {
+		if (($config['samba']['maxprotocol'] == "SMB2")
+		    || ($config['samba']['maxprotocol'] == "SMB3")) {
 			$config['samba']['usesendfile'] = false;
 			unset($pconfig['usesendfile']);
 		}
