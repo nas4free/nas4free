@@ -47,6 +47,7 @@ Changes:
 - Upgrade xmd to 0.3.6.
 
 Fixes:
+- Never reject SMB3 and sendfile combination.
 - Failed to mount NTFS with read-only.
 - Missing mount_fusefs in /usr/local/sbin.
 - Missing usb device configuration file.
