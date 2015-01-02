@@ -196,7 +196,13 @@ function disks_mount($mount)
 		case "ntfs":
 			// Load the kernel FUSE module
 			mwexec("/sbin/kldload /boot/kernel/fuse.ko");
-			$result = mwexec("/sbin/mount -t ntfs {$readonly} {$devicespecialfile} '{$mountname}'", true); // default options: silent,allow_other
+			$readonly = (isset($mount['readonly'])) ? "-o ro" : "";
+			$osver = @exec("/usr/bin/uname -U");
+			if ($osver >= 1100000) {
+				$result = mwexec("/sbin/mount_ntfs {$readonly} {$devicespecialfile} '{$mountname}'", true); // default options: silent,allow_other
+			} else {
+				$result = mwexec("/sbin/mount -t ntfs {$readonly} {$devicespecialfile} '{$mountname}'", true); // default options: silent,allow_other
+			}
 			if (0 == $result) {
 				write_log("Disk {$devicespecialfile} mounted using NTFS on '{$mountname}'");
 				$result = 0;
