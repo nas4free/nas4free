@@ -29,8 +29,11 @@ BUILD_DEPENDS+=	${NONEXISTENT}:${PORTSDIR}/sysutils/fusefs-libs \
 do-install:
 	@${INSTALL_SCRIPT} -v ${FILESDIR}/fusefs.in ${NAS4FREE_ROOTFS}/etc/rc.d/fusefs
 
-#	mount_fusefs is in basesystem, copy from there
-#	@${INSTALL_PROGRAM} -v ${PORTSDIR}/sysutils/fusefs-kmod/work/fuse4bsd*/mount_fusefs/mount_fusefs ${NAS4FREE_ROOTFS}/usr/local/sbin
+.if ${OSVERSION} < 1000000
+	@${INSTALL_PROGRAM} -v ${PORTSDIR}/sysutils/fusefs-kmod/work/mount_fusefs/mount_fusefs ${NAS4FREE_ROOTFS}/usr/local/sbin
+.else
+	@${CP} -pv /sbin/mount_fusefs ${NAS4FREE_ROOTFS}/sbin
+.endif
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/sysutils/fusefs-ntfs/work/ntfs-3g*/src/.libs/ntfs-3g ${NAS4FREE_ROOTFS}/usr/local/bin
 
 .if ${OSVERSION} < 1000000
