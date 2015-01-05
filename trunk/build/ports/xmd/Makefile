@@ -1,5 +1,5 @@
 PORTNAME=		xmd
-PORTVERSION=		0.3.6
+PORTVERSION=		0.4.1
 CATEGORIES=		sysutils
 COMMENT=		Experimental memory disk by Daisuke Aoyama (aoyama@peach.ne.jp)
 
@@ -25,5 +25,6 @@ do-install:
 	@${INSTALL_KLD} -v ${WRKSRC}/${BASEDIR}/geom_xmd.ko ${NAS4FREE_BOOTDIR}/kernel
 	@${INSTALL_KLD} -v ${WRKSRC}/${BASEDIR}/geom_xmd.ko ${NAS4FREE_ROOTFS}/boot/kernel
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/${BASEDIR}/xmdconfig ${NAS4FREE_ROOTFS}/sbin
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/${BASEDIR}/uncloop ${NAS4FREE_ROOTFS}/usr/bin
 
 .include <bsd.port.post.mk>
