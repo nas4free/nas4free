@@ -27,14 +27,18 @@ if [ -f "${NAS4FREE_SVNDIR}/local.revision" ]; then
 	NAS4FREE_REVISION=$(printf $(cat ${NAS4FREE_SVNDIR}/local.revision) ${NAS4FREE_REVISION})
 fi
 NAS4FREE_ARCH=$(uname -p)
+NAS4FREE_KERNCONF="$(echo ${NAS4FREE_PRODUCTNAME} | tr '[:lower:]' '[:upper:]')-${NAS4FREE_ARCH}"
 if [ "amd64" = ${NAS4FREE_ARCH} ]; then
     NAS4FREE_XARCH="x64"
 elif [ "i386" = ${NAS4FREE_ARCH} ]; then
     NAS4FREE_XARCH="x86"
+elif [ "armv6" = ${NAS4FREE_ARCH} ]; then
+    NAS4FREE_ARCH="arm"
+    NAS4FREE_XARCH="rpi"
+    NAS4FREE_KERNCONF="$(echo ${NAS4FREE_PRODUCTNAME} | tr '[:lower:]' '[:upper:]')-${NAS4FREE_XARCH}"
 else
     NAS4FREE_XARCH=$NAS4FREE_ARCH
 fi
-NAS4FREE_KERNCONF="$(echo ${NAS4FREE_PRODUCTNAME} | tr '[:lower:]' '[:upper:]')-${NAS4FREE_ARCH}"
 NAS4FREE_OBJDIRPREFIX="/usr/obj/$(echo ${NAS4FREE_PRODUCTNAME} | tr '[:upper:]' '[:lower:]')"
 NAS4FREE_BOOTDIR="$NAS4FREE_ROOTDIR/bootloader"
 NAS4FREE_TMPDIR="/tmp/nas4freetmp"
@@ -89,6 +93,15 @@ if [ "amd64" = ${NAS4FREE_ARCH} ]; then
 	NAS4FREE_MDLOCAL_MINI_SIZE=32
 	NAS4FREE_IMG_SIZE=512
 fi
+# xz9->673MB/64MB, 8->369MB/32MB, 7->185MB/16MB, 6->93MB/8MB, 5->47MB/4MB
+# 4->24MB/2.1MB, 3->12.6MB/1.1MB, 2->4.8MB/576KB, 1->1.4MB/128KB
+if [ "arm" = ${NAS4FREE_ARCH} ]; then
+	NAS4FREE_COMPLEVEL=3
+else
+	NAS4FREE_COMPLEVEL=8
+fi
+#NAS4FREE_XMD_SEGLEN=32768
+NAS4FREE_XMD_SEGLEN=65536
 
 # Media geometry, only relevant if bios doesn't understand LBA.
 NAS4FREE_IMG_SIZE_SEC=`expr ${NAS4FREE_IMG_SIZE} \* 2048`
@@ -481,7 +494,7 @@ create_mdlocal_mini() {
 	# Detach memory disk
 	mdconfig -d -u ${md}
 
-	xz -8v $NAS4FREE_WORKINGDIR/mdlocal-mini
+	xz -${NAS4FREE_COMPLEVEL}v $NAS4FREE_WORKINGDIR/mdlocal-mini
 
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini.files ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini.files
 
@@ -501,6 +514,7 @@ create_mfsroot() {
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.uzip
 	[ -d $NAS4FREE_SVNDIR ] && use_svn ;
 
 	# Make mfsroot to have the size of the NAS4FREE_MFSROOT_SIZE variable
@@ -531,10 +545,13 @@ create_mfsroot() {
 	mdconfig -d -u ${md2}
 	mdconfig -d -u ${md}
 
-	mkuzip -s 32768 $NAS4FREE_WORKINGDIR/mfsroot
+	mkuzip -s ${NAS4FREE_XMD_SEGLEN} $NAS4FREE_WORKINGDIR/mfsroot
 	chmod 644 $NAS4FREE_WORKINGDIR/mfsroot.uzip
 	gzip -9kfnv $NAS4FREE_WORKINGDIR/mfsroot
-	xz -8kv $NAS4FREE_WORKINGDIR/mdlocal
+	if [ "arm" = ${NAS4FREE_ARCH} ]; then
+		mkuzip -s ${NAS4FREE_XMD_SEGLEN} $NAS4FREE_WORKINGDIR/mdlocal
+	fi
+	xz -${NAS4FREE_COMPLEVEL}kv $NAS4FREE_WORKINGDIR/mdlocal
 
 	create_mdlocal_mini;
 
@@ -556,9 +573,10 @@ update_mfsroot() {
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
 	#[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
+	#[ -f $NAS4FREE_WORKINGDIR/mdlocal.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.uzip
 
 	cd $NAS4FREE_WORKINGDIR
-	mkuzip -s 32768 $NAS4FREE_WORKINGDIR/mfsroot
+	mkuzip -s ${NAS4FREE_XMD_SEGLEN} $NAS4FREE_WORKINGDIR/mfsroot
 	chmod 644 $NAS4FREE_WORKINGDIR/mfsroot.uzip
 	gzip -9kfnv $NAS4FREE_WORKINGDIR/mfsroot
 	#xz -8kv $NAS4FREE_WORKINGDIR/mdlocal
@@ -685,7 +703,7 @@ create_image() {
 	echo "===> Detach memory disk"
 	mdconfig -d -u ${md}
 	echo "===> Compress the IMG file"
-	xz -8v $NAS4FREE_WORKINGDIR/image.bin
+	xz -${NAS4FREE_COMPLEVEL}v $NAS4FREE_WORKINGDIR/image.bin
 	cp $NAS4FREE_WORKINGDIR/image.bin.xz $NAS4FREE_ROOTDIR/${IMGFILENAME}.xz
 
 	# Cleanup.
@@ -710,6 +728,7 @@ create_iso () {
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.uzip
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz
 
 	if [ ! $TINY_ISO ]; then
@@ -817,6 +836,7 @@ create_iso () {
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.uzip
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz
 	[ -f $NAS4FREE_WORKINGDIR/image.bin.xz ] && rm -f $NAS4FREE_WORKINGDIR/image.bin.xz
 
@@ -840,6 +860,7 @@ create_embedded() {
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.uzip
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz
 	[ -f $NAS4FREE_WORKINGDIR/image.bin.xz ] && rm -f $NAS4FREE_WORKINGDIR/image.bin.xz
 }
@@ -858,6 +879,7 @@ create_usb () {
 	[ -f ${NAS4FREE_WORKINGDIR}/mfsroot.gz ] && rm -f ${NAS4FREE_WORKINGDIR}/mfsroot.gz
 	[ -f ${NAS4FREE_WORKINGDIR}/mfsroot.uzip ] && rm -f ${NAS4FREE_WORKINGDIR}/mfsroot.uzip
 	[ -f ${NAS4FREE_WORKINGDIR}/mdlocal.xz ] && rm -f ${NAS4FREE_WORKINGDIR}/mdlocal.xz
+	[ -f ${NAS4FREE_WORKINGDIR}/mdlocal.uzip ] && rm -f ${NAS4FREE_WORKINGDIR}/mdlocal.uzip
 	[ -f ${NAS4FREE_WORKINGDIR}/mdlocal-mini.xz ] && rm -f ${NAS4FREE_WORKINGDIR}/mdlocal-mini.xz
 	[ -f ${NAS4FREE_WORKINGDIR}/usb-image.bin ] && rm -f ${NAS4FREE_WORKINGDIR}/usb-image.bin
 	[ -f ${NAS4FREE_WORKINGDIR}/usb-image.bin.gz ] && rm -f ${NAS4FREE_WORKINGDIR}/usb-image.bin.gz
@@ -943,7 +965,7 @@ create_usb () {
 	mount /dev/${mdp} $NAS4FREE_TMPDIR
 
 	#echo "USB: Creating swap file on the memory disk"
-	#dd if=/dev/zero of=$NAS4FREE_TMPDIR/swap.dat bs=1m count=${USBSWAPM}
+	#dd if=/dev/zero of=$NAS4FREE_TMPDIR/swap.dat bs=1m seek=${USBSWAPM} count=0
 
 	echo "USB: Copying previously generated MFSROOT file to memory disk"
 	cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
@@ -1019,6 +1041,7 @@ create_usb () {
 	[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.uzip
 	[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz
 	[ -f $NAS4FREE_WORKINGDIR/image.bin.xz ] && rm -f $NAS4FREE_WORKINGDIR/image.bin.xz
 	[ -f $NAS4FREE_WORKINGDIR/usb-image.bin ] && rm -f $NAS4FREE_WORKINGDIR/usb-image.bin
