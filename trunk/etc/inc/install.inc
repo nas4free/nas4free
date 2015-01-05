@@ -388,9 +388,20 @@ function install_upgrade_full($harddrive)
 	if (file_exists("{$sysbackup}/loader.conf.local")) {
 		mwexec("/bin/cp -p {$sysbackup}/loader.conf.local {$mntpath}/boot/");
 	}
-	mwexec("/bin/cp -p {$sysbackup}/platform {$mntpath}/etc");
+	#mwexec("/bin/cp -p {$sysbackup}/platform {$mntpath}/etc");
 	mwexec("/bin/cp -p {$sysbackup}/fstab {$mntpath}/etc");
 	mwexec("/bin/cp -p {$sysbackup}/cfdevice {$mntpath}/etc");
+
+	// Set the release type.
+	$platform = <<<EOD
+{$g['arch']}-full
+
+EOD;
+
+	if (false === file_put_contents("{$mntpath}/etc/platform", $platform)) {
+		write_console("Error: Failed to create '/etc/platform'.\n");
+		return 1;
+	}
 
 	// Cleanup system backup files
 	mwexec("/bin/rm -f -r {$sysbackup}");
