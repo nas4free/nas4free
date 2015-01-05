@@ -99,8 +99,13 @@ case ${PLATFORM} in
 				fi
 
 				/sbin/mount -r /dev/${root} /mnt
-				/usr/bin/xz -dcv /mnt/mdlocal.xz | \
-				    /bin/dd of=/dev/${md} bs=1m status=none
+				if [ -f /mnt/mdlocal.uzip ]; then
+					#echo "Direct loading: /mnt/mdlocal.uzip"
+					/sbin/xmdconfig -ivu ${md} /mnt/mdlocal.uzip
+				else
+					/usr/bin/xz -dcv /mnt/mdlocal.xz | \
+					    /bin/dd of=/dev/${md} bs=1m status=none
+				fi
 				/sbin/umount /mnt
 				;;
 			*-embedded)
@@ -133,8 +138,13 @@ case ${PLATFORM} in
 				fi
 
 				/sbin/mount -r /dev/${root} /mnt
-				/usr/bin/xz -dcv /mnt/mdlocal.xz | \
-				    /bin/dd of=/dev/${md} bs=1m status=none
+				if [ -f /mnt/mdlocal.uzip ]; then
+					#echo "Direct loading: /mnt/mdlocal.uzip"
+					/sbin/xmdconfig -ivu ${md} /mnt/mdlocal.uzip
+				else
+					/usr/bin/xz -dcv /mnt/mdlocal.xz | \
+					    /bin/dd of=/dev/${md} bs=1m status=none
+				fi
 				#if [ -e /mnt/boot/zfs/zpool.cache ]; then
 				#	/bin/cp -p /mnt/boot/zfs/zpool.cache /boot/zfs/
 				#fi
