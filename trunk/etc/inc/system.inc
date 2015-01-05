@@ -405,11 +405,11 @@ function system_get_ram_info() {
 //    [capacity] => "0%"
 //  )
 function system_get_swap_info() {
-	exec("/usr/sbin/swapinfo", $swap);
+	exec("/usr/sbin/swapinfo -k", $swap);
 
 	// blocks
 	$val = 512;
-	if (preg_match("/(?:Device)(?:\s+)(\d+)(?:k-blocks|-blocks)(?:\s+)(?:Used)(?:\s+)(?:Avail)(?:\s)(?:Capacity)/", $swap[0], $matches)) {
+	if (preg_match("/(?:Device)(?:\s+)(\d+)(?:K-blocks|-blocks)(?:\s+)(?:Used)(?:\s+)(?:Avail)(?:\s)(?:Capacity)/", $swap[0], $matches)) {
 		if ($matches[1] == 1) {
 			$val = $matches[1] * 1024;
 		} else {
