@@ -74,6 +74,10 @@ lighttpd_mkconf()
 	if [ "${_ipaddr}" = "dhcp" ]; then
 		_ipaddr=`get_ipaddr inet ${_ifn}`
 		_network=`get_network inet ${_ifn}`
+		if [ "${_ipaddr}" = "0.0.0.0" ]; then
+			echo "can't get DHCP address"
+			_network="0.0.0.0/0"
+		fi
 	fi
 	_ipv6addr=""
 	if configxml_isset "//interfaces/*[enable]/ipv6_enable"; then
