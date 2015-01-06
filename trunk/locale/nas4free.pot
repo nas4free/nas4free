@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
-"POT-Creation-Date: 2014-12-19 19:28+0000\n"
+"POT-Creation-Date: 2015-01-06 20:41+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -882,7 +882,7 @@ msgstr ""
 msgid "Click &quot;Enable firmware upload&quot; below, then choose the embedded image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start the upgrade process."
 msgstr ""
 
-msgid "Click this button to download the server configuration in XML format."
+msgid "Click this button to download the server configuration in encrypted GZIP file or XML format."
 msgstr ""
 
 msgid "Client"
@@ -1067,7 +1067,17 @@ msgstr ""
 msgid "Current Version:"
 msgstr ""
 
+msgid "Current administrator password is used for decryption."
+msgstr ""
+
+#, php-format
+msgid "Current administrator password is used for encryption.<br />Encrypted configuration is automatically gzipped."
+msgstr ""
+
 msgid "Current password"
+msgstr ""
+
+msgid "Current password is default password. You should use your own password."
 msgstr ""
 
 msgid "Current value of apparent power (Volt-Amps)"
@@ -1862,6 +1872,9 @@ msgid "Enable distributed hash table."
 msgstr ""
 
 msgid "Enable domain wildcarding."
+msgstr ""
+
+msgid "Enable encryption."
 msgstr ""
 
 msgid "Enable extended attribute support"
@@ -4385,7 +4398,7 @@ msgid "Select the location closest to you."
 msgstr ""
 
 #, php-format
-msgid "Select the server configuration XML file and click the button below to restore the configuration."
+msgid "Select the server configuration encrypted GZIP file or XML file and click the button below to restore the configuration."
 msgstr ""
 
 msgid "Select which interface to use. (only selectable if your server has more than one)"
@@ -5372,7 +5385,6 @@ msgstr ""
 msgid "The server has been reset to factory defaults and is now rebooting. This may take one minute."
 msgstr ""
 
-#, php-format
 msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
