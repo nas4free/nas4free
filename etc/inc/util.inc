@@ -2659,4 +2659,75 @@ function set_php_timezone()
 	}
 	return TRUE;
 }
+
+// openssl compatible encryption/decryption + base64 encode/decode
+// http://www.openssl.org/docs/crypto/EVP_BytesToKey.html
+function encrypt_aes256cbc($password, $data)
+{
+	// openssl enc -aes-256-cbc -a -k $password < $data
+	$magic = 'Salted__';
+	$method = 'AES-256-CBC';
+	$magic_len = strlen($magic);
+	$salt_len = 8; /* PKCS5_SALT_LEN */
+
+	// generate salt
+	$salt = openssl_random_pseudo_bytes($salt_len);
+	if ($salt === FALSE)
+		return FALSE;
+
+	// key derivation
+	$hash0 = '';
+	$hash1 = md5($hash0.$password.$salt, true);
+	$hash2 = md5($hash1.$password.$salt, true);
+	$hash3 = md5($hash2.$password.$salt, true);
+	$key = $hash1.$hash2;
+	$iv = $hash3;
+
+	// encrypt by $method
+	$enc = openssl_encrypt($data, $method, $key, OPENSSL_RAW_DATA, $iv);
+	if ($enc === FALSE)
+		return FALSE;
+	$b64enc_data = base64_encode($magic . $salt . $enc);
+	if ($b64enc_data === FALSE)
+		return FALSE;
+
+	// insert linefeed
+	$folded_data = chunk_split($b64enc_data, 76, "\n");
+	return $folded_data;
+}
+
+function decrypt_aes256cbc($password, $b64enc_data)
+{
+	// openssl enc -d -aes-256-cbc -a -k $password < $b64enc_config
+	$magic = 'Salted__';
+	$method = 'AES-256-CBC';
+	$magic_len = strlen($magic);
+	$salt_len = 8; /* PKCS5_SALT_LEN */
+
+	// remove extra linefeed
+	$b64enc_data = preg_replace('/\n|\r|\r\n/', '', $b64enc_data);
+
+	// split magic/salt/encrypted data
+	$enc_data = base64_decode($b64enc_data);
+	if ($enc_data === FALSE)
+		return FALSE;
+	if (strcmp(substr($enc_data, 0, $magic_len), $magic) !== 0)
+		return FALSE;
+	$salt = substr($enc_data, $magic_len, $salt_len);
+	$enc = substr($enc_data, $magic_len + $salt_len);
+
+	// key derivation
+	$hash0 = '';
+	$hash1 = md5($hash0.$password.$salt, true);
+	$hash2 = md5($hash1.$password.$salt, true);
+	$hash3 = md5($hash2.$password.$salt, true);
+	$key = $hash1.$hash2;
+	$iv = $hash3;
+
+	// decrypt by $method
+	$dec = openssl_decrypt($enc, $method, $key, OPENSSL_RAW_DATA, $iv);
+	if ($dec === FALSE)
+		return FALSE;
+	return $dec;
+}
 ?>

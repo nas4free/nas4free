@@ -938,4 +938,32 @@ function config_postinit() {
 		write_config();
 	}
 }
+
+// encrypt and gzcompress
+function config_encrypt($password)
+{
+	global $g;
+	$config = file_get_contents("{$g['conf_path']}/config.xml");
+	if ($config === FALSE)
+		return FLASE;
+	$b64enc_config = encrypt_aes256cbc($password, $config);
+	if ($b64enc_config === FALSE)
+		return FALSE;
+	$gz_config = gzencode($b64enc_config, 9);
+	if ($gz_config === FALSE)
+		return FALSE;
+	return $gz_config;
+}
+
+// gzdecompress and decrypt
+function config_decrypt($password, $gz_config)
+{
+	$b64enc_data = gzdecode($gz_config);
+	if ($b64enc_data === FALSE)
+		return FALSE;
+	$config = decrypt_aes256cbc($password, $b64enc_data);
+	if ($config === FALSE)
+		return FALSE;
+	return $config;
+}
 ?>
