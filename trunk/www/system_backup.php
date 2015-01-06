@@ -42,9 +42,23 @@ $pgtitle = array(gettext("System"), gettext("Backup/Restore"));
 /* omit no-cache headers because it confuses IE with file downloads */
 $omit_nocacheheaders = true;
 
+// default is enable encryption
+$pconfig['encryption'] = "yes";
+
+$old_default_password = "freenas";
+$current_password = $config['system']['password'];
+if (strcmp($current_password, $g['default_passwd']) === 0
+   || strcmp($current_password, $old_default_password) === 0) {
+	$errormsg = gettext("Current password is default password. You should use your own password.");
+}
+
 if ($_POST) {
 	unset($errormsg);
+	$pconfig['encryption'] = $_POST['encryption'];
 
+	$encryption = 0;
+	if (!empty($_POST['encryption']))
+		$encryption = 1;
 	if (0 == strcmp($_POST['Submit'], gettext("Restore configuration"))) {
 		$mode = "restore";
 	} else if (0 == strcmp($_POST['Submit'], gettext("Download configuration"))) {
@@ -56,27 +70,57 @@ if ($_POST) {
 			config_lock();
 
 			if(function_exists("date_default_timezone_set") and function_exists("date_default_timezone_get"))
-                 @date_default_timezone_set(@date_default_timezone_get());
-			$fn = "config-{$config['system']['hostname']}.{$config['system']['domain']}-" . date("YmdHis") . ".xml";
-			$fs = get_filesize("{$g['conf_path']}/config.xml");
+			@date_default_timezone_set(@date_default_timezone_get());
+			if ($encryption) {
+				$fn = "config-{$config['system']['hostname']}.{$config['system']['domain']}-" . date("YmdHis") . ".gz";
+				$data = config_encrypt($config['system']['password']);
+				$fs = strlen($data);
+			} else {
+				$fn = "config-{$config['system']['hostname']}.{$config['system']['domain']}-" . date("YmdHis") . ".xml";
+				$data = file_get_contents("{$g['conf_path']}/config.xml");
+				$fs = get_filesize("{$g['conf_path']}/config.xml");
+			}
 
 			header("Content-Type: application/octet-stream");
 			header("Content-Disposition: attachment; filename={$fn}");
 			header("Content-Length: {$fs}");
 			header("Pragma: hack");
-			readfile("{$g['conf_path']}/config.xml");
+			echo $data;
 			config_unlock();
 
 			exit;
 		} else if ($mode === "restore") {
+			$encrypted = 0;
 			if (is_uploaded_file($_FILES['conffile']['tmp_name'])) {
 				// Validate configuration backup
-				if (!validate_xml_config($_FILES['conffile']['tmp_name'], $g['xml_rootobj'])) {
+				$validate = 0;
+				if (pathinfo($_FILES['conffile']['name'], PATHINFO_EXTENSION) == 'gz') {
+					$encrypted = 1;
+					$gz_config = file_get_contents($_FILES['conffile']['tmp_name']);
+					$data = config_decrypt($config['system']['password'], $gz_config);
+					if ($data !== FALSE) {
+						$tempfile = tempnam(sys_get_temp_dir(), 'cnf');
+						file_put_contents($tempfile, $data);
+						$validate = validate_xml_config($tempfile, $g['xml_rootobj']);
+						if (!$validate) {
+							unlink($tempfile);
+						}
+					}
+				} else {
+					$validate = validate_xml_config($_FILES['conffile']['tmp_name'], $g['xml_rootobj']);
+				}
+				if (!$validate) {
 					$errormsg = sprintf(gettext("The configuration could not be restored. %s"),
 						gettext("Invalid file format."));
 				} else {
 					// Install configuration backup
-					if (config_install($_FILES['conffile']['tmp_name']) == 0) {
+					if ($encrypted) {
+						$ret = config_install($tempfile);
+						unlink($tempfile);
+					} else {
+						$ret = config_install($_FILES['conffile']['tmp_name']);
+					}
+					if ($ret == 0) {
 						system_reboot();
 						$savemsg = sprintf(gettext("The configuration has been restored. The server is now rebooting."));
 					} else {
@@ -103,9 +147,18 @@ if ($_POST) {
 			      <td colspan="2" class="listtopic"><?=gettext("Backup configuration");?></td>
 			    </tr>
 			    <tr>
+					<td width="22%" valign="top" class="vncell"><?=gettext("Encryption");?></td>
+					<td width="78%" class="vtable">
+						<input name="encryption" type="checkbox" id="encryption" value="yes" <?php if (!empty($pconfig['encryption'])) echo "checked=\"checked\""; ?> />
+					<?=gettext("Enable encryption.");?></td>
+			    </tr>
+			    <tr>
 					<td width="22%" valign="baseline" class="vncell">&nbsp;</td>
 					<td width="78%" class="vtable">
-						<?=gettext("Click this button to download the server configuration in XML format.");?><br />
+						<?=gettext("Click this button to download the server configuration in encrypted GZIP file or XML format.");?><br />
+						<div id="remarks">
+							<?php html_remark("note", gettext("Note"), sprintf(gettext("Current administrator password is used for encryption.<br />Encrypted configuration is automatically gzipped.")));?>
+						</div>
 						<div id="submit">
 							<input name="Submit" type="submit" class="formbtn" id="download" value="<?=gettext("Download configuration");?>" />
 						</div>
@@ -120,9 +173,9 @@ if ($_POST) {
 			    <tr>
 					<td width="22%" valign="baseline" class="vncell">&nbsp;</td>
 					<td width="78%" class="vtable">
-						<?php echo sprintf(gettext("Select the server configuration XML file and click the button below to restore the configuration."));?><br />
+						<?php echo sprintf(gettext("Select the server configuration encrypted GZIP file or XML file and click the button below to restore the configuration."));?><br />
 						<div id="remarks">
-							<?php html_remark("note", gettext("Note"), sprintf(gettext("The server will reboot after restoring the configuration.")));?>
+							<?php html_remark("note", gettext("Note"), sprintf("%s<br />%s", gettext("Current administrator password is used for decryption."), gettext("The server will reboot after restoring the configuration.")));?>
 						</div>
 						<div id="submit">
 						<input name="conffile" type="file" class="formfld" id="conffile" size="40" />
