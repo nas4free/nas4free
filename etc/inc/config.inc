@@ -945,7 +945,7 @@ function config_encrypt($password)
 	global $g;
 	$config = file_get_contents("{$g['conf_path']}/config.xml");
 	if ($config === FALSE)
-		return FLASE;
+		return FALSE;
 	$b64enc_config = encrypt_aes256cbc($password, $config);
 	if ($b64enc_config === FALSE)
 		return FALSE;
