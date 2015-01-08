@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-19 19:28+0000\n"
-"PO-Revision-Date: 2014-11-17 04:08+0000\n"
-"Last-Translator: NAS4Free Developer <Unknown>\n"
+"POT-Creation-Date: 2015-01-06 20:41+0000\n"
+"PO-Revision-Date: 2015-01-07 16:23+0000\n"
+"Last-Translator: peter <peterswebdesign2010@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-25 18:09+0000\n"
-"X-Generator: Launchpad (build 17286)\n"
+"X-Launchpad-Export-Date: 2015-01-08 07:09+0000\n"
+"X-Generator: Launchpad (build 17298)\n"
 "Language: ro_RO\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -78,7 +78,7 @@ msgstr "%s%d %s este deja utilizat de %s%d."
 
 #, php-format
 msgid "%s: cannot get mirror name."
-msgstr ""
+msgstr "%s: nu se obtine denumirea stocarii"
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -225,7 +225,7 @@ msgstr "Trebuie să introduceți o adresă IP validă."
 
 msgid ""
 "A valid IP address or CIDR notation must be specified for the hosts allow."
-msgstr ""
+msgstr "O adresa IP sau o nota CIDR este necesara pentru fisierul host allow"
 
 msgid ""
 "A valid IPv4 address must be specified for the primary/secondary DNS server."
@@ -531,7 +531,7 @@ msgstr ""
 "Toate directoarele necesită o cale montată, dar Calea %s nu este montată."
 
 msgid "All disks are imported."
-msgstr ""
+msgstr "toate dispozitivele de stocare atasate"
 
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
@@ -541,7 +541,7 @@ msgstr ""
 "care încep cu caracterul '.' nu sunt acceptabile."
 
 msgid "All software raid disks are imported."
-msgstr ""
+msgstr "toate dispozitivele RAID-Soft atasate"
 
 msgid "All users will have the root privilege."
 msgstr "Toți utilizatorii vor avea privilegii de root."
@@ -1039,10 +1039,12 @@ msgstr ""
 "imagine de încărcat.<br />Click pe &quot;Actualizare firmare&quot; pentru a "
 "începe efectiv procesul de actualizare."
 
-msgid "Click this button to download the server configuration in XML format."
+msgid ""
+"Click this button to download the server configuration in encrypted GZIP "
+"file or XML format."
 msgstr ""
-"Selectați acest buton pentru a descărca configuraţia serverului în format "
-"XML."
+"Click pe acest buton pentru a descarca configuratia serverului in format "
+"GZIP codificat sau in format XML"
 
 msgid "Client"
 msgstr "Client"
@@ -1281,8 +1283,25 @@ msgstr "Curent"
 msgid "Current Version:"
 msgstr "Versiune Curentă:"
 
+msgid "Current administrator password is used for decryption."
+msgstr "Codul de acces al administratorului este ulilizat pentru decriptare"
+
+#, php-format
+msgid ""
+"Current administrator password is used for encryption.<br />Encrypted "
+"configuration is automatically gzipped."
+msgstr ""
+"Codul de acces al administratorului este ulilizat pentru codificare.<br "
+"/>Setarile de configurare codificate sant comprimate automat."
+
 msgid "Current password"
 msgstr "Parola curentă"
+
+msgid ""
+"Current password is default password. You should use your own password."
+msgstr ""
+"Codul de acces actual este configurat pentru prima utilizare.Se recomanda "
+"utilizarea unui cod de acces propriu."
 
 msgid "Current value of apparent power (Volt-Amps)"
 msgstr "Valoare curent pentru puterea aparentă (Volți-Amperi)"
@@ -1571,13 +1590,13 @@ msgid "Detected"
 msgstr "Detectat"
 
 msgid "Detected Language:<br />(Change if needed)"
-msgstr ""
+msgstr "Limba detectata:<br />(Schimba daca este necesar)"
 
 msgid "Detected RSYNC remote shares"
 msgstr "Partajări RSYNC la distanță detectate"
 
 msgid "Detected an error while importing."
-msgstr ""
+msgstr "Eroare detectata in timpul importarii."
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -2134,6 +2153,9 @@ msgstr "Activare tabelă  distribuită de asocieri."
 
 msgid "Enable domain wildcarding."
 msgstr "Activare caractere speciale pentru domeniu."
+
+msgid "Enable encryption."
+msgstr "Activeaza codificare."
 
 msgid "Enable extended attribute support"
 msgstr "Activare suport atribute extinse"
@@ -3463,7 +3485,7 @@ msgid "Log (mirror)"
 msgstr "Jurnal (rezervă)"
 
 msgid "Log Device"
-msgstr ""
+msgstr "Dispozitiv pentru jurnal"
 
 msgid "Log Level"
 msgstr "Nivel Jurnal"
@@ -3514,6 +3536,9 @@ msgid ""
 "Lowest value is higher priority. For master node, use 0 or 1. If preempt is "
 "enabled, it is adjusted to 240 on failure."
 msgstr ""
+"Valoarea mai mica are prioritate mai ridicata. Pentru noduri master, "
+"foloseste 0 sau 1. Daca preempt este activat, se reconfigureaza la 240 in "
+"caz de erroare."
 
 msgid "MAC address"
 msgstr "Adresa MAC"
@@ -3977,10 +4002,10 @@ msgid "No file was uploaded."
 msgstr "Niciun fișier nu a fost încărcat."
 
 msgid "No new disk found."
-msgstr ""
+msgstr "Nu exista dispozitive de stocare noi."
 
 msgid "No new software raid disk found."
-msgstr ""
+msgstr "Nu exista dispozitive RAID-Soft  noi."
 
 msgid "No pool was found."
 msgstr "Nu a fost găsită nicio structură (pool)."
@@ -4783,7 +4808,7 @@ msgid "Retry"
 msgstr "Reîncearcă"
 
 msgid "Return to Command page"
-msgstr ""
+msgstr "Inapoi la pgina de comenzi"
 
 msgid "Reverse DNS lookup"
 msgstr "Căutare DNS inversă"
@@ -4867,12 +4892,14 @@ msgid "SMB2"
 msgstr "SMB2"
 
 msgid "SMB3"
-msgstr ""
+msgstr "SMB3"
 
 msgid ""
 "SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and "
 "Vista. NT1 is for legacy OS like XP."
 msgstr ""
+"SMB3 pentru sisteme actuale (Windows 8).SMB2 pentru Windows 7 si Vista. NT1 "
+"este pentru sisteme desactualizate (windows XP)."
 
 msgid "SNMP"
 msgstr "SNMP"
@@ -5004,11 +5031,11 @@ msgstr "Selectați cea mai apropiată locație de dumneavoastră."
 
 #, php-format
 msgid ""
-"Select the server configuration XML file and click the button below to "
-"restore the configuration."
+"Select the server configuration encrypted GZIP file or XML file and click "
+"the button below to restore the configuration."
 msgstr ""
-"Selectați fișierul de configurație XML și utilizați butonul de mai jos "
-"pentru încărcarea acestuia."
+"Selectionati configuratia dispozitivului in format GZIP sau XML si "
+"confirmati cu butonul de mai jos pentru a restaura configuratia."
 
 msgid ""
 "Select which interface to use. (only selectable if your server has more than "
@@ -5278,6 +5305,9 @@ msgid ""
 "Space delimited set of IP or CIDR notation that permitted to access the "
 "WebGUI. (empty is the same network of LAN interface)"
 msgstr ""
+"set de IP sau notari CIDR separate prin spatiu care au dreptul de a accesa "
+"consola de configurare a sistemului.(fara nici o adresa IP sau notare CIDR "
+"se permite accesul din reteaua la care este conectat sistemul)"
 
 msgid "Spanish"
 msgstr "Spaniolă"
@@ -6272,7 +6302,6 @@ msgstr ""
 "Serverul a revenit la setările implicite și va reporni în mod automat. "
 "Procesul poate dura 1-2 minute."
 
-#, php-format
 msgid "The server will reboot after restoring the configuration."
 msgstr "Serverul va reporni în mod automat după restaurarea configurației."
 
@@ -7053,7 +7082,7 @@ msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
 msgid "UFS"
-msgstr ""
+msgstr "UFS"
 
 #, php-format
 msgid ""
@@ -7482,6 +7511,9 @@ msgid ""
 "protocol. If you change it, you will need to restart the client connected to "
 "this server."
 msgstr ""
+"Cand negocierea este complecta, nu mai este posibila schimbarea protocolului "
+"SMB.In cazul modificarii protocolului este necesara reinitierea connexiunii "
+"client-servidor."
 
 msgid "Where to save downloaded data."
 msgstr "Folderul unde vor fi salvate datele descărcate."
