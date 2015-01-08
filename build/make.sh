@@ -1247,6 +1247,13 @@ $DIALOG --title \"$NAS4FREE_PRODUCTNAME - Ports\" \\
 		[ ! -d "$s" ] && continue
 		port=`basename $s`
 		state=`cat $s/pkg-state`
+		if [ "arm" = ${NAS4FREE_ARCH} ]; then
+			for forceoff in arcconf isboot open-vm-tools tw_cli vbox-additions vmxnet3; do
+				if [ "$port" = "$forceoff" ]; then
+					state="OFF"; break;
+				fi
+			done
+		fi
 		case ${state} in
 			[hH][iI][dD][eE])
 				;;
