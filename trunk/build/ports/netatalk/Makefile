@@ -49,7 +49,7 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_guest.so ${NAS4FREE_ROOTFS}/etc/uams
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_pam.so ${NAS4FREE_ROOTFS}/etc/uams
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_passwd.so ${NAS4FREE_ROOTFS}/etc/uams
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_randnum.so ${NAS4FREE_ROOTFS}/etc/uam
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/etc/uams/.libs/uams_randnum.so ${NAS4FREE_ROOTFS}/etc/uams
 
 	@${INSTALL_SCRIPT} -v ${FILESDIR}/afpd.in ${NAS4FREE_ROOTFS}/etc/rc.d/afpd
 

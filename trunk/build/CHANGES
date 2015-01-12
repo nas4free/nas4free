@@ -49,6 +49,7 @@ Changes:
 - Upgrade unison to 2.48.3.
 
 Fixes:
+- Missing /etc/uams/uams_randnum.so
 - Never reject SMB3 and sendfile combination.
 - Failed to mount NTFS with read-only.
 - Missing mount_fusefs in /usr/local/sbin.
