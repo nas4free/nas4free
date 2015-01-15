@@ -52,7 +52,7 @@ if ($_POST) {
 			config_lock();
 			$retval |= rc_update_service("samba");
 			$retval |= rc_update_service("rsyncd");
-			$retval |= rc_update_service("afpd");
+			$retval |= rc_update_service("netatalk");
 			$retval |= rc_update_service("rpcbind"); // !!! Do
 			$retval |= rc_update_service("mountd");  // !!! not
 			$retval |= rc_update_service("nfsd");    // !!! change
@@ -98,7 +98,7 @@ if (isset($_GET['act']) && $_GET['act'] === "retry") {
 		if (0 == disks_mount($config['mounts']['mount'][$index])) {
 			rc_update_service("samba");
 			rc_update_service("rsyncd");
-			rc_update_service("afpd");
+			rc_update_service("netatalk");
 			rc_update_service("rpcbind"); // !!! Do
 			rc_update_service("mountd");  // !!! not
 			rc_update_service("nfsd");    // !!! change

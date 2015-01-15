@@ -30,6 +30,7 @@
     SUBDIR += mt-daapd
     SUBDIR += nano
     SUBDIR += netatalk
+    SUBDIR += netatalk3
     SUBDIR += nss_ldap
     SUBDIR += ntfsprogs
     SUBDIR += nut

@@ -69,6 +69,8 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_share, "uuid")
 	$pconfig['rwlist'] = $a_share[$cnid]['rwlist'];
         if (isset($a_share[$cnid]['auxparam']) && is_array($a_share[$cnid]['auxparam']))
 		$pconfig['auxparam'] = implode("\n", $a_share[$cnid]['auxparam']);
+	$pconfig['timemachine'] = isset($a_share[$cnid]['timemachine']);
+	$pconfig['volsizelimit'] = $a_share[$cnid]['volsizelimit'];
 
 } else {
 	$pconfig['uuid'] = uuid();
@@ -82,6 +84,8 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_share, "uuid")
 	$pconfig['rolist'] = '';
 	$pconfig['rwlist'] = '';
         $pconfig['auxparam'] = "";
+	$pconfig['timemachine'] = false;
+	$pconfig['volsizelimit'] = "";
 	
 }
 
@@ -107,6 +111,11 @@ if ($_POST) {
 	    $input_errors[] = gettext("Share passwords can not be more than 8 characters.");
 	}
 
+	// Check volume size limit
+	if (!empty($_POST['volsizelimit']) && !is_numericint($_POST['volsizelimit'])) {
+		$input_errors[] = sprintf(gettext("The attribute '%s' must be a number."), gettext("Volume Size Limit"));
+	}
+
 	// Check for duplicates.
 	$index = array_search_ex($_POST['name'], $a_share, "name");
 	if (FALSE !== $index) {
@@ -126,9 +135,11 @@ if ($_POST) {
 		$share['allow'] = $_POST['allow'];
 		$share['deny'] = $_POST['deny'];
 		$share['rolist'] = $_POST['rolist'];
-		$share['rwlist'] = $_POST['rwlist'];		
+		$share['rwlist'] = $_POST['rwlist'];
+		$share['timemachine'] = isset($_POST['timemachine']) ? true : false;
+		$share['volsizelimit'] = $_POST['volsizelimit'];
 
-# Write additional parameters.
+		// Write additional parameters.
 		unset($share['auxparam']);
 		foreach (explode("\n", $_POST['auxparam']) as $auxparam) {
 			$auxparam = trim($auxparam, "\t\n\r");
@@ -243,6 +254,18 @@ function adisk_change() {
 			      <td width="78%" class="vtable">
 			        <input name="rwlist" type="text" class="formfld" id="rwlist" size="60" value="<?=htmlspecialchars($pconfig['rwlist']);?>" /><br />
 			        <?=gettext("Allows  certain  users and groups to have read/write access to a share. This follows the allow option format.");?>
+			      </td>
+			    </tr>
+			    <tr>
+			      <td width="22%" valign="top" class="vncell"><?=gettext("Time Machine");?></td>
+			      <td width="78%" class="vtable">
+				<input name="timemachine" type="checkbox" id="timemachine" value="yes" <?php if (!empty($pconfig['timemachine'])) echo "checked=\"checked\""; ?> /> <?=gettext("Enable Time Machine support");?></td>
+			      </td>
+			    </tr>
+			    <tr>
+			      <td width="22%" valign="top" class="vncell"><?=gettext("Volume Size Limit");?></td>
+			      <td width="78%" class="vtable">
+			        <input name='volsizelimit' type='text' class='formfld' id='volsizelimit' size='10' value="<?=htmlspecialchars($pconfig['volsizelimit']);?>" /> <?=gettext("MiB");?>
 			      </td>
 			    </tr>
 				<tr>

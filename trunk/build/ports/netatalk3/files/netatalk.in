@@ -1,0 +1,75 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+
+# PROVIDE: netatalk
+# REQUIRE: DAEMON
+# KEYWORD: shutdown
+# XQUERY: -i "count(//afp/enable) > 0" -o "0" -b
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name=netatalk
+rcvar=netatalk_enable
+
+load_rc_config ${name}
+
+# Custom commands
+start_precmd="netatalk_mkconf"
+mkconf_cmd="netatalk_mkconf"
+extra_commands="mkconf"
+
+# Defaults
+netatalk_enable=${netatalk_enable-"NO"}
+netatalk_config=${netatalk_config-"/var/etc/afp.conf"}
+command="/usr/local/sbin/${name}"
+command_args="-F ${netatalk_config}"
+
+netatalk_mkconf()
+{
+	if [ ! -d /var/db/netatalk/CNID ]; then
+		mkdir -p /var/db/netatalk/CNID
+	fi
+
+	# Create config file
+	/usr/local/bin/xml sel -t -m "//afp" \
+		-o "[Global]" -n \
+		-i "string-length(afpname) > 0" -v "concat('	hostname = ',afpname)" -n -b \
+		-o "	uam list = " \
+		-i "count(guest) > 0" -o "uams_guest.so " -b \
+		-i "count(local) > 0" -o "uams_dhx.so uams_dhx2.so" -b \
+		-n \
+		-o "	guest account = ftp" -n \
+		-o "	vol dbnest = yes" -n \
+		-m "auxparam" \
+			-v "." -n \
+		-b \
+		-n \
+		${configxml_file} | /usr/local/bin/xml unesc > ${netatalk_config}
+
+	# Generate shares
+	/usr/local/bin/xml sel -t -m "//afp/share" \
+		-v "concat('[',name,']')" -n \
+		-v "concat('	path = ',path)" -n \
+		-i "count(timemachine) > 0" -o "	time machine = yes" -n -b \
+		-i "string-length(volsizelimit) > 0" -v "concat('	vol size limit = ',volsizelimit)" -n -b \
+		-i "string-length(volpasswd) > 0" -v "concat('	password = ',volpasswd)" -n -b \
+		-i "string-length(volcharset) > 0" -v "concat('	vol charset = ',volcharset)" -n -b \
+		-i "string-length(allow) > 0" -v "concat('	valid users = ',allow)" -n -b \
+		-i "string-length(deny) > 0" -v "concat('	invalid users = ',deny)" -n -b \
+		-i "string-length(rolist) > 0" -v "concat('	rolist = ',rolist)" -n -b \
+		-i "string-length(rwlist) > 0" -v "concat('	rwlist = ',rwlist)" -n -b \
+		-o "	file perm = 0660" -n \
+		-o "	directory perm = 0770" -n \
+		-m "auxparam" \
+			-v "." -n \
+		-b \
+		-n \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${netatalk_config}
+}
+
+run_rc_command "$1"
