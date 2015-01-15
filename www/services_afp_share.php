@@ -47,7 +47,7 @@ if ($_POST) {
 		if (!file_exists($d_sysrebootreqd_path)) {
 			$retval |= updatenotify_process("afpshare", "afpshare_process_updatenotification");
 		  config_lock();
-			$retval |= rc_update_service("afpd");
+			$retval |= rc_update_service("netatalk");
 			$retval |= rc_update_service("mdnsresponder");
 			config_unlock();
 		}

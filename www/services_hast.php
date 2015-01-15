@@ -172,7 +172,7 @@ if ($_POST) {
 			$retval |= rc_update_service("nfsd");
 			$retval |= rc_update_service("statd");
 			$retval |= rc_update_service("lockd");
-			$retval |= rc_update_service("afpd");
+			$retval |= rc_update_service("netatalk");
 			$retval |= rc_update_service("rsyncd");
 			$retval |= rc_update_service("unison");
 			$retval |= rc_update_service("iscsi_target");

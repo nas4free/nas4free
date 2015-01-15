@@ -48,7 +48,7 @@ $a_service[] = array("desc" => gettext("FTP"), "link" => "services_ftp.php", "co
 $a_service[] = array("desc" => gettext("TFTP"), "link" => "services_tftp.php", "config" => "tftpd", "scriptname" => "tftpd");
 $a_service[] = array("desc" => gettext("SSH"), "link" => "services_sshd.php", "config" => "sshd", "scriptname" => "sshd");
 $a_service[] = array("desc" => gettext("NFS"), "link" => "services_nfs.php", "config" => "nfsd", "scriptname" => "nfsd");
-$a_service[] = array("desc" => gettext("AFP"), "link" => "services_afp.php", "config" => "afp", "scriptname" => "afpd");
+$a_service[] = array("desc" => gettext("AFP"), "link" => "services_afp.php", "config" => "afp", "scriptname" => "netatalk");
 $a_service[] = array("desc" => gettext("RSYNC"), "link" => "services_rsyncd.php", "config" => "rsyncd", "scriptname" => "rsyncd");
 $a_service[] = array("desc" => gettext("Unison"), "link" => "services_unison.php", "config" => "unison", "scriptname" => "unison");
 $a_service[] = array("desc" => gettext("iSCSI Target"), "link" => "services_iscsitarget.php", "config" => "iscsitarget", "scriptname" => "iscsi_target");
