@@ -46,8 +46,13 @@ if ($_POST) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			$retval |= updatenotify_process("smbshare", "smbshare_process_updatenotification");
-		  config_lock();
-			$retval |= rc_update_service("samba");
+			config_lock();
+			// reload config if enabled
+			if (isset($config['samba']['enable']) === true) {
+				$retval |= rc_update_reload_service("samba");
+			} else {
+				$retval |= rc_update_service("samba");
+			}
 			$retval |= rc_update_service("mdnsresponder");
 			config_unlock();
 		}

@@ -15,6 +15,7 @@ Changes:
 - Improved PHP session handle.
 - Replaced /dev/md0 with xmd using LZ4 compression.
 - Replaced the server certificate with 2048bits key and sha256 signature.
+- Changed samba reload when changing the shares. (it takes few secs.)
 - Changed rootfs layout. (2GB USB/CF is required. Full is 4GB or more.)
 - Changed image files to use XZ.
 - Drop SSLv3 support. (HTTPS must use TLS)
