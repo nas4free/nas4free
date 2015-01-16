@@ -56,7 +56,7 @@ $productname = get_product_name();
 // Display information
 $text = <<<EOD
 
-{$productname} 'Embedded' installer for CF, USB Flash Drive or HDD.
+{$productname} 'Embedded' installer for HDD, SSD, CF or USB flash drive.
 
 - Create MBR partition 1, using UFS, {$part1size}MB size for OS image
 - Create MBR partition 2, using UFS, for DATA
