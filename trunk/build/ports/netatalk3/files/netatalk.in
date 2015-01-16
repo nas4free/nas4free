@@ -9,6 +9,7 @@
 # REQUIRE: DAEMON
 # KEYWORD: shutdown
 # XQUERY: -i "count(//afp/enable) > 0" -o "0" -b
+# RCVAR: netatalk
 
 . /etc/rc.subr
 . /etc/configxml.subr
