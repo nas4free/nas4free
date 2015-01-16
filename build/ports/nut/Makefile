@@ -1,6 +1,6 @@
 PORTNAME=		nut
 PORTVERSION=	2.7.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=		sysutils
 COMMENT=		Network UPS tools
 MAINTAINER=		zoon01@nas4free.org
@@ -97,6 +97,7 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/mge-utalk ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/microdowell ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/netxml-ups ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/nutdrv_atcl_usb ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/nutdrv_qx ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
 .if (${ARCH} == "amd64" || ${ARCH} == "i386")
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/drivers/nut-ipmipsu ${NAS4FREE_ROOTFS}/${NUT_DRVDIR}
