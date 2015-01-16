@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-12-19 19:28+0000\n"
-"PO-Revision-Date: 2014-12-23 06:50+0000\n"
+"POT-Creation-Date: 2015-01-16 03:10+0000\n"
+"PO-Revision-Date: 2015-01-10 08:54+0000\n"
 "Last-Translator: Screedo <screedo@outlook.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-25 18:09+0000\n"
-"X-Generator: Launchpad (build 17286)\n"
+"X-Launchpad-Export-Date: 2015-01-16 17:45+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 "X-Poedit-Country: SWEDEN\n"
 "Language: \n"
 "X-Poedit-Language: Swedish\n"
@@ -1026,9 +1026,12 @@ msgstr ""
 "sedan avbildningsfilen,<br />Klicka på &quot;Uppdatera systemprogram&quot; "
 "för att starta uppgraderingen."
 
-msgid "Click this button to download the server configuration in XML format."
+msgid ""
+"Click this button to download the server configuration in encrypted GZIP "
+"file or XML format."
 msgstr ""
-"Klicka på knappen för att ladda ner serverns konfiguration i XML-format."
+"Klicka på knappen för att ladda ner en krypterad server konfigurations fil i "
+"GZIP eller XML format."
 
 msgid "Client"
 msgstr "Klient"
@@ -1263,8 +1266,24 @@ msgstr "Aktuellt"
 msgid "Current Version:"
 msgstr "Nuvarande version:"
 
+msgid "Current administrator password is used for decryption."
+msgstr "Det nuvarande administrator lösenordet används för dekryptering"
+
+#, php-format
+msgid ""
+"Current administrator password is used for encryption.<br />Encrypted "
+"configuration is automatically gzipped."
+msgstr ""
+"Det nuvarande administrator lösenordet används för att kryptering.</br> "
+"Krypterad konfigurations fil är automatiskt gzippad."
+
 msgid "Current password"
 msgstr "Aktuellt lösenord"
+
+msgid ""
+"Current password is default password. You should use your own password."
+msgstr ""
+"Nuvarande lösenord är standard lösenord. Du bör använda ditt eget lösenord."
 
 msgid "Current value of apparent power (Volt-Amps)"
 msgstr "Aktuell skenbar effekt (VA)"
@@ -2084,6 +2103,9 @@ msgstr ""
 msgid "Enable TLS/SSL connections."
 msgstr "Aktivera TLS/SSL anslutningar."
 
+msgid "Enable Time Machine support"
+msgstr ""
+
 msgid "Enable ZFS ACL"
 msgstr "Aktivera ZFS ACL"
 
@@ -2114,6 +2136,9 @@ msgstr "Enable distribuerad hash tabell."
 
 msgid "Enable domain wildcarding."
 msgstr "Aktivera wildcard för domän."
+
+msgid "Enable encryption."
+msgstr "Tillåt kryptering"
 
 msgid "Enable extended attribute support"
 msgstr "Aktivera utöka attributsupport"
@@ -4965,11 +4990,11 @@ msgstr "Välj den plats som är närmast dig."
 
 #, php-format
 msgid ""
-"Select the server configuration XML file and click the button below to "
-"restore the configuration."
+"Select the server configuration encrypted GZIP file or XML file and click "
+"the button below to restore the configuration."
 msgstr ""
-"Välj serverns konfigurations XML-fil och klicka på knappen nedan för att "
-"återställa konfigurationen."
+"Välja krypterad server konfigurations fil, GZIP eller XML, och klicka på "
+"knappen nedan för att återställa konfigurationen."
 
 msgid ""
 "Select which interface to use. (only selectable if your server has more than "
@@ -6231,7 +6256,6 @@ msgstr ""
 "Servern har återställts till fabriksinställningar och startar nu om. Detta "
 "kan ta någon minut."
 
-#, php-format
 msgid "The server will reboot after restoring the configuration."
 msgstr "Servern återstartar efter återställning av konfigurationen."
 
@@ -6806,6 +6830,9 @@ msgstr "TiB"
 msgid "Time"
 msgstr "Tid"
 
+msgid "Time Machine"
+msgstr ""
+
 msgid "Time before the load will be rebooted"
 msgstr "Tid innan lasten kommer att startas om"
 
@@ -7332,6 +7359,9 @@ msgstr "Volym"
 
 msgid "Volume Name"
 msgstr "Volymnamn"
+
+msgid "Volume Size Limit"
+msgstr ""
 
 msgid "Volume label"
 msgstr "Volymetikett"

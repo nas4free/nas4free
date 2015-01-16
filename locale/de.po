@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-12-19 19:28+0000\n"
-"PO-Revision-Date: 2014-11-17 04:03+0000\n"
+"POT-Creation-Date: 2015-01-16 03:10+0000\n"
+"PO-Revision-Date: 2015-01-08 12:02+0000\n"
 "Last-Translator: crest <a.schmidhuber@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-25 18:08+0000\n"
-"X-Generator: Launchpad (build 17286)\n"
+"X-Launchpad-Export-Date: 2015-01-16 17:46+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
 "X-Poedit-Language: German\n"
@@ -80,7 +80,7 @@ msgstr "%s%d %s wird bereits von %s%d verwendet."
 
 #, php-format
 msgid "%s: cannot get mirror name."
-msgstr ""
+msgstr "%s: Mirror Name kann nicht abgerufen werden."
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -233,6 +233,8 @@ msgstr "Es muss eine gültige IP-Adresse angegeben sein."
 msgid ""
 "A valid IP address or CIDR notation must be specified for the hosts allow."
 msgstr ""
+"Eine gültige IP Adresse oder CIDR Notation muss für erlaubte Hosts "
+"spezifiziert werden."
 
 msgid ""
 "A valid IPv4 address must be specified for the primary/secondary DNS server."
@@ -540,7 +542,7 @@ msgstr ""
 "Alle Verzeichnisse erfordern einen festgelegten Pfad, dieser fehlt für %s"
 
 msgid "All disks are imported."
-msgstr ""
+msgstr "Alle Festplatten sind importiert."
 
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
@@ -550,7 +552,7 @@ msgstr ""
 "und alles andere das mit .Apple anfängt unzulässig macht."
 
 msgid "All software raid disks are imported."
-msgstr ""
+msgstr "Alle Software RAID-Festplatten sind importiert."
 
 msgid "All users will have the root privilege."
 msgstr "Alle Benutzer erhalten Administratorrechte."
@@ -1021,7 +1023,7 @@ msgid "Chinese (Traditional)"
 msgstr "Chinesisch (Traditionell)"
 
 msgid "Choose UPS mode."
-msgstr ""
+msgstr "Wähle UPS modus."
 
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
@@ -1052,10 +1054,12 @@ msgstr ""
 "auswählen .<br />Click &quot;Upgrade firmware&quot; um den Upgrade Vorgang "
 "zu starten."
 
-msgid "Click this button to download the server configuration in XML format."
+msgid ""
+"Click this button to download the server configuration in encrypted GZIP "
+"file or XML format."
 msgstr ""
-"Klicken Sie auf diesen Knopf, um die Server-Konfiguration im XML-Format "
-"herunterzuladen."
+"Klicke diesen Button um die Serverkonfiguration in einer verschlüsselten "
+"GZIP-Datei oder XML-Format herunter zu laden."
 
 msgid "Client"
 msgstr "Client"
@@ -1294,8 +1298,26 @@ msgstr "Aktuell"
 msgid "Current Version:"
 msgstr "Aktuelle Version:"
 
+msgid "Current administrator password is used for decryption."
+msgstr "Das aktuelle Administratorpasswort wird zum entschlüsseln benutzt."
+
+#, php-format
+msgid ""
+"Current administrator password is used for encryption.<br />Encrypted "
+"configuration is automatically gzipped."
+msgstr ""
+"Das aktuelle Administratorpasswort wird zum verschlüsseln benutzt.<br/>Die "
+"verschlüsselten Konfigurationen werden automatisch in eine GZIP-Datei "
+"gepackt."
+
 msgid "Current password"
 msgstr "Aktuelles Passwort"
+
+msgid ""
+"Current password is default password. You should use your own password."
+msgstr ""
+"Das aktuelle Passwort ist das Standardpasswort. Sie sollten ein eigenes "
+"Passwort verwenden."
 
 msgid "Current value of apparent power (Volt-Amps)"
 msgstr "Aktuelle Scheinleistung (VA)"
@@ -1586,13 +1608,13 @@ msgid "Detected"
 msgstr "Entdeckt"
 
 msgid "Detected Language:<br />(Change if needed)"
-msgstr ""
+msgstr "Erkannte Sprache:<br/>(falls erforderlich bitte ändern)"
 
 msgid "Detected RSYNC remote shares"
 msgstr "Erkannte RSYNC-Remote-Freigaben"
 
 msgid "Detected an error while importing."
-msgstr ""
+msgstr "Ein Fehler wurde während dem Importier-Vorgang entdeckt."
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -2124,6 +2146,9 @@ msgstr ""
 msgid "Enable TLS/SSL connections."
 msgstr "TLS/SSL-Verbindungen aktivieren."
 
+msgid "Enable Time Machine support"
+msgstr ""
+
 msgid "Enable ZFS ACL"
 msgstr "Aktivierung von ZFS ACL"
 
@@ -2153,6 +2178,9 @@ msgstr "Aktiviere verteilte Hashtabelle."
 
 msgid "Enable domain wildcarding."
 msgstr "Aktiviere Domain Wildcards."
+
+msgid "Enable encryption."
+msgstr "Aktiviere die Verschlüsselung."
 
 msgid "Enable extended attribute support"
 msgstr "Erweiterte Attributunterstützung aktivieren"
@@ -3024,7 +3052,7 @@ msgid "In most cases, 'public' is used here."
 msgstr "In den meisten Fällen wird hier 'public' benutzt."
 
 msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
-msgstr ""
+msgstr "Im Slave Mode ist es der USV Bezeichner (Name) des USV Masters."
 
 msgid "Include basic hardware information."
 msgstr "Beinhalte grundlegende Hardwareinformationen."
@@ -3483,7 +3511,7 @@ msgid "Log (mirror)"
 msgstr "Log (gespiegelt)"
 
 msgid "Log Device"
-msgstr ""
+msgstr "Log Gerät"
 
 msgid "Log Level"
 msgstr "Log Level"
@@ -3536,6 +3564,9 @@ msgid ""
 "Lowest value is higher priority. For master node, use 0 or 1. If preempt is "
 "enabled, it is adjusted to 240 on failure."
 msgstr ""
+"Der niedrigste Wert hat die höchste Priorität. Für den Master Node benutze 0 "
+"oder 1. Wenn preempt eingeschaltet ist, ist es bei Fehlern auf 240 "
+"eingestellt."
 
 msgid "MAC address"
 msgstr "MAC-Adresse"
@@ -4005,10 +4036,10 @@ msgid "No file was uploaded."
 msgstr "Es wurde keine Datei hochgeladen."
 
 msgid "No new disk found."
-msgstr ""
+msgstr "Keine neuen Festplatten gefunden."
 
 msgid "No new software raid disk found."
-msgstr ""
+msgstr "Keine neuen Software-RAID Festplatten gefunden."
 
 msgid "No pool was found."
 msgstr "Keinen Pool gefunden."
@@ -4817,7 +4848,7 @@ msgid "Retry"
 msgstr "Wiederholen"
 
 msgid "Return to Command page"
-msgstr ""
+msgstr "Zurück zur Kommando Seite"
 
 msgid "Reverse DNS lookup"
 msgstr "Umgekehrte DNS Auflösung"
@@ -4901,12 +4932,15 @@ msgid "SMB2"
 msgstr "SMB2"
 
 msgid "SMB3"
-msgstr ""
+msgstr "SMB3"
 
 msgid ""
 "SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and "
 "Vista. NT1 is for legacy OS like XP."
 msgstr ""
+"SMB3 ist für aktuelle Betriebssysteme (z.B. Windows 8). SMB2 ist für ältere "
+"Betriebssysteme(z.B. Windows 7 und Windows Vista). NT1 is für alte "
+"Betriebssysteme(z.B. Windows XP)."
 
 msgid "SNMP"
 msgstr "SNMP"
@@ -5038,11 +5072,11 @@ msgstr "Wählen Sie den Standort, der Ihnen am nächsten liegt."
 
 #, php-format
 msgid ""
-"Select the server configuration XML file and click the button below to "
-"restore the configuration."
+"Select the server configuration encrypted GZIP file or XML file and click "
+"the button below to restore the configuration."
 msgstr ""
-"Wählen Sie die XML-Datei mit der Server-Konfiguration aus und klicken Sie "
-"auf den unten stehenden Knopf, um die Konfiguration wiederherzustellen."
+"Wähle die verschlüsselte GZIP oder XML Server Konfigurationsdatei und drücke "
+"den Knopf unterhalb um die Konfiguration wiederherzustellen."
 
 msgid ""
 "Select which interface to use. (only selectable if your server has more than "
@@ -5311,6 +5345,9 @@ msgid ""
 "Space delimited set of IP or CIDR notation that permitted to access the "
 "WebGUI. (empty is the same network of LAN interface)"
 msgstr ""
+"Ein mit Leerzeichen gertrennter Satz von IP Adressen oder CIDR Notationen "
+"denen der Zugriff auf die Weboberfläche erlaubt wird (leer bedeutet dasselbe "
+"Netzwerk wie die LAN Schnittstelle)."
 
 msgid "Spanish"
 msgstr "Spanisch"
@@ -5689,7 +5726,7 @@ msgstr ""
 "primäre Knoten ist."
 
 msgid "The IP address of the UPS master."
-msgstr ""
+msgstr "Die IP-Adresse vom UPS master."
 
 msgid "The IP address that this hostname represents."
 msgstr "Die IP Adresse, welche diesen Hostnamen repräsentiert."
@@ -5923,6 +5960,10 @@ msgid ""
 "for them to take effect.<br /><b>If this message persist take a look at the "
 "<a href='%s'>system log</a> for more information.</b>"
 msgstr ""
+"Die Konfiguration wurde geändert.<br />Damit die Änderungen wirksam werden, "
+"müssen sie zuerst bestätigt werden.<br /><b>Wenn diese Meldung weiterhin "
+"erscheint kann das <a href='%s'>System Log</a> weitere Informationen "
+"beinhalten.</b>"
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
@@ -6328,7 +6369,6 @@ msgstr ""
 "Der Server wurde auf Werkseinstellungen zurückgesetzt und startet jetzt neu. "
 "Dies kann eine Minute dauern."
 
-#, php-format
 msgid "The server will reboot after restoring the configuration."
 msgstr ""
 "Der Server wird nach dem Wiederherstellen der Konfiguration neu starten."
@@ -6927,6 +6967,9 @@ msgstr "TiB"
 msgid "Time"
 msgstr "Zeit"
 
+msgid "Time Machine"
+msgstr ""
+
 msgid "Time before the load will be rebooted"
 msgstr "Zeit bevor die Last neu gestartet wird"
 
@@ -7121,7 +7164,7 @@ msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
 msgid "UFS"
-msgstr ""
+msgstr "UFS"
 
 #, php-format
 msgid ""
@@ -7454,6 +7497,9 @@ msgstr "Datenträger"
 msgid "Volume Name"
 msgstr "Volume Name"
 
+msgid "Volume Size Limit"
+msgstr ""
+
 msgid "Volume label"
 msgstr "Datenträgeretikett (Volume label)"
 
@@ -7548,6 +7594,9 @@ msgid ""
 "protocol. If you change it, you will need to restart the client connected to "
 "this server."
 msgstr ""
+"Wenn die Abstimmung fertiggestellt wird ist es nicht mehr möglich, das SMB "
+"Protokoll zu ändern. Wenn es geändert wird ist ein Neustart des zu diesem "
+"Server verbundenen Clients erforderlich."
 
 msgid "Where to save downloaded data."
 msgstr "Wo sollen die heruntergeladenen Daten gespeichert werden?"
@@ -7598,6 +7647,8 @@ msgid ""
 "You can also install a package via SSH or console using the the pkg add "
 "command.<br />Example: pkg add packagename"
 msgstr ""
+"Man kann ein Paket auch mittels SSH oder der Konsole mit dem pkg add "
+"Kommando installieren.<br />Beispiel: pkg add packagename"
 
 msgid "You can use the following parameters for substitution:"
 msgstr "Die folgenden Parameter können für die Ersetzung genutzt werden"
@@ -7648,6 +7699,8 @@ msgid ""
 "You must <a href='%s'>reboot</a> the system before you can upgrade the "
 "firmware."
 msgstr ""
+"Vor dem Upgrade der Firmware muss ein <a href='%s'>Neustart</a> des Systems "
+"durchgeführt werden."
 
 msgid "You must add disks first."
 msgstr "Die Festplatten müssen zuerst hinzugefügt werden."
@@ -7716,7 +7769,7 @@ msgstr "adaptiv (geringer Stromverbrauch)"
 
 #, php-format
 msgid "add any supplemental parameters"
-msgstr ""
+msgstr "hinzufügen von zusätzlichen Parametern"
 
 msgid "all encrypted disks are imported."
 msgstr "Alle verschl&uuml;sselten Platten importiert."

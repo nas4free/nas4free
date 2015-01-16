@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-12-19 19:28+0000\n"
+"POT-Creation-Date: 2015-01-16 03:10+0000\n"
 "PO-Revision-Date: 2014-11-17 04:08+0000\n"
 "Last-Translator: NAS4Free Developer <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-25 18:09+0000\n"
-"X-Generator: Launchpad (build 17286)\n"
+"X-Launchpad-Export-Date: 2015-01-16 17:45+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 "X-Poedit-Country: SLOVAKIA\n"
 "Language: \n"
 "X-Poedit-Language: Slovak\n"
@@ -1002,7 +1002,9 @@ msgid ""
 "the upgrade process."
 msgstr ""
 
-msgid "Click this button to download the server configuration in XML format."
+msgid ""
+"Click this button to download the server configuration in encrypted GZIP "
+"file or XML format."
 msgstr ""
 
 msgid "Client"
@@ -1225,7 +1227,20 @@ msgstr "Aktuálne"
 msgid "Current Version:"
 msgstr ""
 
+msgid "Current administrator password is used for decryption."
+msgstr ""
+
+#, php-format
+msgid ""
+"Current administrator password is used for encryption.<br />Encrypted "
+"configuration is automatically gzipped."
+msgstr ""
+
 msgid "Current password"
+msgstr ""
+
+msgid ""
+"Current password is default password. You should use your own password."
 msgstr ""
 
 msgid "Current value of apparent power (Volt-Amps)"
@@ -2035,6 +2050,9 @@ msgstr ""
 msgid "Enable TLS/SSL connections."
 msgstr "Povoliť TLS/SSL spojenia."
 
+msgid "Enable Time Machine support"
+msgstr ""
+
 msgid "Enable ZFS ACL"
 msgstr ""
 
@@ -2064,6 +2082,9 @@ msgstr "Upraviť distrubuovanú hašovaciu tabuľku."
 
 msgid "Enable domain wildcarding."
 msgstr "Zapnúť substitúcie v názvoch domén."
+
+msgid "Enable encryption."
+msgstr ""
 
 msgid "Enable extended attribute support"
 msgstr "Zapnúť podporu rozšírených atribútov."
@@ -4838,8 +4859,8 @@ msgstr "Zvoľte miesto, ktoré je k vám najbližšie"
 
 #, php-format
 msgid ""
-"Select the server configuration XML file and click the button below to "
-"restore the configuration."
+"Select the server configuration encrypted GZIP file or XML file and click "
+"the button below to restore the configuration."
 msgstr ""
 
 msgid ""
@@ -6011,7 +6032,6 @@ msgid ""
 "take one minute."
 msgstr ""
 
-#, php-format
 msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
@@ -6552,6 +6572,9 @@ msgstr ""
 msgid "Time"
 msgstr "Čas"
 
+msgid "Time Machine"
+msgstr ""
+
 msgid "Time before the load will be rebooted"
 msgstr ""
 
@@ -7052,6 +7075,9 @@ msgstr ""
 
 msgid "Volume Name"
 msgstr "Názov zväzku"
+
+msgid "Volume Size Limit"
+msgstr ""
 
 msgid "Volume label"
 msgstr "Názov zväzku."
