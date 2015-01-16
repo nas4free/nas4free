@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2014-12-19 19:28+0000\n"
-"PO-Revision-Date: 2014-12-07 21:48+0000\n"
+"POT-Creation-Date: 2015-01-16 03:10+0000\n"
+"PO-Revision-Date: 2015-01-10 00:39+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-25 18:09+0000\n"
-"X-Generator: Launchpad (build 17286)\n"
+"X-Launchpad-Export-Date: 2015-01-16 17:45+0000\n"
+"X-Generator: Launchpad (build 17304)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -195,7 +195,7 @@ msgstr "請輸入一個有效的IP位址。"
 
 msgid ""
 "A valid IP address or CIDR notation must be specified for the hosts allow."
-msgstr ""
+msgstr "請記為允許主機(host allow) 輸入一個有效的IP 位址或CIDR 標記。"
 
 msgid ""
 "A valid IPv4 address must be specified for the primary/secondary DNS server."
@@ -969,8 +969,10 @@ msgid ""
 "the upgrade process."
 msgstr "點擊以下&quot;啟用韌體升級功能&quot;，然後選擇升级韌體的檔案。<br />點擊 &quot;升级韌體&quot; 開始升级。"
 
-msgid "Click this button to download the server configuration in XML format."
-msgstr "點擊此按鈕下載XML格式的伺服器設定。"
+msgid ""
+"Click this button to download the server configuration in encrypted GZIP "
+"file or XML format."
+msgstr "點擊此按鈕以下載已加密的伺服器配置GZIP文件或XML格式。"
 
 msgid "Client"
 msgstr "客戶端"
@@ -1194,8 +1196,21 @@ msgstr "目前"
 msgid "Current Version:"
 msgstr "目前版本："
 
+msgid "Current administrator password is used for decryption."
+msgstr "以現在的管理員密碼來解密。"
+
+#, php-format
+msgid ""
+"Current administrator password is used for encryption.<br />Encrypted "
+"configuration is automatically gzipped."
+msgstr "以現在的管理員密碼來加密。<br />加密的配置會自動以GZIP壓縮。"
+
 msgid "Current password"
 msgstr "當前密碼"
+
+msgid ""
+"Current password is default password. You should use your own password."
+msgstr "現在的密碼是默認密碼。您應該設定自己的密碼。"
 
 msgid "Current value of apparent power (Volt-Amps)"
 msgstr "當前的視在功率（伏安）"
@@ -1991,6 +2006,9 @@ msgstr "啟用STARTTLS加密。這並不意味著您必須使用TLS，您可以�
 msgid "Enable TLS/SSL connections."
 msgstr "允許使用 TLS/SSL 連接。"
 
+msgid "Enable Time Machine support"
+msgstr ""
+
 msgid "Enable ZFS ACL"
 msgstr "啟用 ZFS 存取控制清單 (ACL)"
 
@@ -2020,6 +2038,9 @@ msgstr "啟用分散式雜湊表。"
 
 msgid "Enable domain wildcarding."
 msgstr "啟用網域通配符。"
+
+msgid "Enable encryption."
+msgstr "啟用加密。"
 
 msgid "Enable extended attribute support"
 msgstr "啟用延伸屬性支援"
@@ -3295,7 +3316,7 @@ msgstr "低電壓微調換乘點"
 msgid ""
 "Lowest value is higher priority. For master node, use 0 or 1. If preempt is "
 "enabled, it is adjusted to 240 on failure."
-msgstr ""
+msgstr "最低值是更優先。對於主節點，使用0或1。如果啟用搶占，失敗時將被調整到240。"
 
 msgid "MAC address"
 msgstr "MAC 位址"
@@ -4712,9 +4733,9 @@ msgstr "請選擇最鄰近的區域。"
 
 #, php-format
 msgid ""
-"Select the server configuration XML file and click the button below to "
-"restore the configuration."
-msgstr "請選擇服務器XML配置文件，然後點擊下面的按鈕來還原配置。"
+"Select the server configuration encrypted GZIP file or XML file and click "
+"the button below to restore the configuration."
+msgstr "選擇已加密的伺服器配置GZIP文件或XML文件，並點擊下面的按鈕來恢復配置。"
 
 msgid ""
 "Select which interface to use. (only selectable if your server has more than "
@@ -4964,7 +4985,7 @@ msgstr "使用空間"
 msgid ""
 "Space delimited set of IP or CIDR notation that permitted to access the "
 "WebGUI. (empty is the same network of LAN interface)"
-msgstr ""
+msgstr "允許訪問WebGUI 的一組以空間分隔的IP 位址或CIDR 標記。 （留空為 LAN 接口的同一網絡）"
 
 msgid "Spanish"
 msgstr "西班牙文"
@@ -5848,7 +5869,6 @@ msgid ""
 "take one minute."
 msgstr "伺服器已被重置到出廠默認設置，現在重新啟動。這可能需要一分鐘的時間。"
 
-#, php-format
 msgid "The server will reboot after restoring the configuration."
 msgstr "還原配置後，伺服器將重新啟動。"
 
@@ -6317,6 +6337,9 @@ msgstr "TiB"
 
 msgid "Time"
 msgstr "時間"
+
+msgid "Time Machine"
+msgstr ""
 
 msgid "Time before the load will be rebooted"
 msgstr "負載將重新啟動之前的時間"
@@ -6811,6 +6834,9 @@ msgstr "卷（Volume）"
 msgid "Volume Name"
 msgstr "卷名"
 
+msgid "Volume Size Limit"
+msgstr ""
+
 msgid "Volume label"
 msgstr "磁盤卷標籤（Volume label）"
 
@@ -6895,7 +6921,7 @@ msgid ""
 "When the negotiation is complete, you will not be able to change the SMB "
 "protocol. If you change it, you will need to restart the client connected to "
 "this server."
-msgstr ""
+msgstr "當交涉完成後，您將無法改變SMB協議。如果改變的話，您將需要重新啟動連接到該服務器的客戶端。"
 
 msgid "Where to save downloaded data."
 msgstr "在哪裡儲存下載的數據。"
