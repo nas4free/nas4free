@@ -72,8 +72,8 @@ case ${PLATFORM} in
 		case ${PLATFORM} in
 			*-liveUSB)
 				root=`/sbin/glabel status -s|/usr/bin/awk '/liveboot/{print $3;exit 0}'`
-				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
-				swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
+				#swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
+				#swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
 				#if [ "${ARCH}" = "arm" -a -e "/dev/${swap2}" ]; then
 				#	# pre-configured swap
 				#	swap=${swap2}
@@ -81,16 +81,28 @@ case ${PLATFORM} in
 				#	dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
 				#	/sbin/gpart add -s ${SWAPSIZE} -t freebsd-swap ${dev}
 				#fi
+
+				# use default swap if exists
+				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/s[1234]a$/s2b/'`
+				rm -f /etc/swapdevice
 				if [ ${BOOT_LOWMEM} -ne 0 ]; then
-					/sbin/swapon /dev/${swap}
-					echo "/dev/${swap}" > /etc/swapdevice
+					if [ -e "/dev/${swap}" ]; then
+						/sbin/swapon /dev/${swap}
+						echo "/dev/${swap}" > /etc/swapdevice
+					else
+						echo "swap device is not found"
+					fi
 					if [ -f /boot/kernel/geom_xmd.ko ]; then
 						/sbin/mdconfig -d -u ${md}
 						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
 						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
 					fi
 				else
-					rm -f /etc/swapdevice
+					# not use LiveUSB
+					#if [ -e "/dev/${swap}" ]; then
+					#	/sbin/swapon /dev/${swap}
+					#	echo "/dev/${swap}" > /etc/swapdevice
+					#fi
 					if [ -f /boot/kernel/geom_xmd.ko ]; then
 						/sbin/mdconfig -d -u ${md}
 						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
@@ -110,26 +122,37 @@ case ${PLATFORM} in
 				;;
 			*-embedded)
 				root=`/sbin/glabel status -s|/usr/bin/awk '/embboot/{print $3;exit 0}'`
-				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
-				swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
+				#swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
+				#swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
 				# always create swap partition if not exists
-				if [ "${ARCH}" = "arm" -a -e "/dev/${swap2}" ]; then
-					# pre-configured swap
-					swap=${swap2}
-				elif [ ! -e "/dev/${swap}" ]; then
-					dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
-					/sbin/gpart add -s ${SWAPSIZE} -t freebsd-swap ${dev}
-				fi
+				#if [ "${ARCH}" = "arm" -a -e "/dev/${swap2}" ]; then
+				#	# pre-configured swap
+				#	swap=${swap2}
+				#elif [ ! -e "/dev/${swap}" ]; then
+				#	dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
+				#	/sbin/gpart add -s ${SWAPSIZE} -t freebsd-swap ${dev}
+				#fi
+
+				# use default swap if exists
+				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/s[1234]a$/s2b/'`
+				rm -f /etc/swapdevice
 				if [ ${BOOT_LOWMEM} -ne 0 ]; then
-					/sbin/swapon /dev/${swap}
-					echo "/dev/${swap}" > /etc/swapdevice
+					if [ -e "/dev/${swap}" ]; then
+						/sbin/swapon /dev/${swap}
+						echo "/dev/${swap}" > /etc/swapdevice
+					else
+						echo "swap device is not found"
+					fi
 					if [ -f /boot/kernel/geom_xmd.ko ]; then
 						/sbin/mdconfig -d -u ${md}
 						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
 						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
 					fi
 				else
-					rm -f /etc/swapdevice
+					if [ -e "/dev/${swap}" ]; then
+						/sbin/swapon /dev/${swap}
+						echo "/dev/${swap}" > /etc/swapdevice
+					fi
 					if [ -f /boot/kernel/geom_xmd.ko ]; then
 						/sbin/mdconfig -d -u ${md}
 						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null

@@ -26,8 +26,11 @@ ARCH=`/usr/bin/uname -m`
 if [ "${ARCH}" == "arm" ]; then
 	# write to pre-aligned partition
 	CFDEVICE=`cat /etc/cfdevice`
+	SKIP=0
 else
-	CFDEVICE=`cat /etc/cfdevice | sed -e 's/[a-h]$//'`
+	#CFDEVICE_SLICE=`cat /etc/cfdevice | sed -e 's/[a-h]$//'`
+	CFDEVICE=`cat /etc/cfdevice`
+	SKIP=`expr \( 1 \* 1024 \* 1024 \) / \( 32 \* 1024 \)`
 fi
 FTMP="/var/tmp/ftmp"
 
@@ -131,24 +134,28 @@ case $1 in
 		fi
 
 		# Remove swap on booting device if any
-		if [ -f /etc/swapdevice ]; then
-			SWAPDEVICE=`cat /etc/swapdevice`
-			if [ "${ARCH}" != "arm" -a "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ]; then
-				echo "swapoff ${SWAPDEVICE}"
-				swapoff -q ${SWAPDEVICE} 2>/dev/null
-			fi
-		fi
+		#if [ -f /etc/swapdevice ]; then
+		#	SWAPDEVICE=`cat /etc/swapdevice`
+		#	if [ "${ARCH}" != "arm" -a "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ]; then
+		#		echo "swapoff ${SWAPDEVICE}"
+		#		swapoff -q ${SWAPDEVICE} 2>/dev/null
+		#	fi
+		#fi
 
 		# dd image onto card
 		result=1
 		if [ -r "$2" ]; then
-			/usr/bin/xz -cdv "$2" | /bin/dd of=/dev/${CFDEVICE} ibs=16k obs=16k > /dev/null 2>&1
+			/usr/bin/xz -cdv "$2" | /bin/dd of=/dev/${CFDEVICE} ibs=32k obs=32k skip=${SKIP} > /dev/null 2>&1
 			result=$?
 			if [ 0 != ${result} ]; then # successfully?
 				msg="ERROR: Failed to install firmware image on '/dev/${CFDEVICE}'!"
 				printf "\33[31m%s\33[0m\n" "${msg}"
 				/usr/bin/logger "UPGRADE ${msg}"
 			else
+				if [ "${ARCH}" != "arm" ]; then
+					# resize boot partition
+					/sbin/growfs -y /dev/${CFDEVICE} > /dev/null 2>&1
+				fi
 				msg="Firmware installed successfully."
 				printf "\33[37;44m%s\33[0m\n" "${msg}"
 				/usr/bin/logger "UPGRADE: ${msg}"

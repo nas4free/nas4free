@@ -41,20 +41,31 @@ require_once("install.inc");
 require_once("util.inc");
 require_once("tui.inc");
 
+// Default size of slice/partition 1 (used for OS)
+$part1size = $g_install['part1size_embedded'];
+$part1min = $g_install['part1min_embedded'];
+$swapsize =  $g_install['default_swap'];
+
+// Default slice/partition layout
+$partlayout = array(
+	array("slice" => 1, "fstype" => "4.2BSD", "size" => $part1size, "volname" => "root")
+);
+
 // Get product information
 $productname = get_product_name();
 
 // Display information
 $text = <<<EOD
 
-{$productname} 'Embedded' installer for HDD, SSD, CF or USB flash drive.
+{$productname} 'Embedded' without swap installer for HDD, SSD, CF or USB flash drive.
 
-- Create 1 partition for OS image
+- Create MBR partition 1, using UFS, {$part1size}MB size for OS image
 - Uses a RAM disk to limit read/write access to the device
 
 WARNING: There will be some limitations:
 1. This will erase ALL partitions and data on the destination disk
 2. You can't use your destination disk for sharing data
+3. If the destination is too small, use limited support size of {$part1min}MB for 500MB disk
 
 Installing on CF or USB Flash Drive is the preferred way:
 It saves you Power and a IDE/SATA/SCSI channel for more storage drives.
@@ -105,22 +116,37 @@ if (disks_ismounted_ex($harddrive, "mdisk")) {
 	exit(0);
 }
 
+// Check destination size
+$diskinfo = disks_get_diskinfo($harddrive);
+if ($diskinfo['mediasize_mbytes'] < $part1size) {
+	// limited for 500MB drive
+	$partlayout[0]['size'] = $part1min;
+}
+
 if (install_mount_cd($cdlist[$cdrom])) {
 	tui_wait_keypress("There was a problem while mounting the CDROM/USB drive.");
 	exit(0);
 }
 
-if (install_dd_image($harddrive)) {
+if (install_init_disk($harddrive, $partlayout)) {
+	install_unmount_cd();
+	tui_wait_keypress("There was a problem during initializing the destination disk.");
+	exit(0);
+}
+
+if (install_dd_image("{$harddrive}s1a")) {
 	install_unmount_cd();
 	tui_wait_keypress("There was a problem while copying files.");
 	exit(0);
 }
 
+/*
 if (add_default_swap($harddrive)) {
 	install_unmount_cd();
 	tui_wait_keypress("There was a problem while adding swap.");
 	exit(0);
 }
+*/
 
 install_unmount_cd();
 

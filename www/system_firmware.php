@@ -45,6 +45,18 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("System"), gettext("Firmware"));
 
+// check boot partition
+$part1size = $g_install['part1size_embedded'];
+$part1min = $g_install['part1min_embedded'];
+$cfdevice = trim(file_get_contents("{$g['etc_path']}/cfdevice"));
+$diskinfo = disks_get_diskinfo($cfdevice);
+unset($errormsg);
+$part1ok = true;
+if ($diskinfo['mediasize_mbytes'] < $part1min) {
+	$part1ok = false;
+	$errormsg = sprintf(gettext("Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or resize boot partition of %s.\n"), $cfdevice);
+}
+
 /* checks with /etc/firm.url to see if a newer firmware version online is available;
    returns any HTML message it gets from the server */
 $locale = $config['system']['language'];
@@ -310,6 +322,7 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
   <tr>
     <td class="tabcont">
 			<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
+			<?php if (!empty($errormsg)) print_error_box($errormsg); ?>
 			<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
 			<?php html_titleline(gettext("Firmware"));?>
@@ -337,6 +350,7 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
 			<?php include("formend.inc");?>
 			</form>
 			<?php else:?>
+			<?php if ($part1ok): ?>
 			<?php if (!file_exists($d_firmwarelock_path)):?>
 			<?=gettext("Click &quot;Enable firmware upload&quot; below, then choose the embedded image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start the upgrade process.");?>
 			<form action="system_firmware.php" method="post" enctype="multipart/form-data">
@@ -364,6 +378,7 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
 				</div>
 				<?php include("formend.inc");?>
 			</form>
+			<?php endif;?>
 			<?php endif; endif;?>
 		</td>
 	</tr>
