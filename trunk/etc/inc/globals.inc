@@ -60,7 +60,8 @@ $g = array(
 
 $g_install = array(
 	"default_swap" => "1024",
-	"part1size_embedded" => "1800",	/* 2000MB=1907MiB ->  768MB + SWAP1024MB */
+	"part1min_embedded" => "466",	/*  500MB= 476MiB ->  470MB - alignment */
+	"part1size_embedded" => "800",	/* 2000MB=1907MiB ->  768MB + SWAP1024MB */
 	"part1size_full" => "2600"	/* 4000MB=3814MiB -> 2560MB + SWAP1024MB */
 );
 

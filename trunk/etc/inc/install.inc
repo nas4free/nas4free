@@ -160,6 +160,7 @@ function install_dd_image($harddrive)
 	global $g;
 
 	$imgfilename=get_product_name(). "-{$g['arch']}-embedded.xz";
+	$skip = (1 * 1024 * 1024) / (32 * 1024); // 1MB alignment / 32k write
 
 	// Test firmware file integrity.
 	if (mwexec("/usr/bin/xz -t /mnt/cdrom/{$imgfilename}")) {
@@ -170,12 +171,18 @@ function install_dd_image($harddrive)
 	set_kern_geom_debugflags(0x10);
 	// dd image file on the destination disk.
 	write_console("Installing system image on device {$harddrive}.\n");
-	if (mwexec("/usr/bin/xz -cdv /mnt/cdrom/{$imgfilename} | /bin/dd of=/dev/{$harddrive} ibs=16k obs=16k > /dev/null 2>&1")) {
+	if (mwexec("/usr/bin/xz -cdv /mnt/cdrom/{$imgfilename} | /bin/dd of=/dev/{$harddrive} ibs=32k obs=32k skip={$skip} > /dev/null 2>&1")) {
 		set_kern_geom_debugflags(0);
 		write_console("Error: Failed to dd image on '/dev/{$harddrive}'!\n");
 		return 1;
 	}
 	set_kern_geom_debugflags(0);
+
+	// resize to partition size
+	if (mwexec("/sbin/growfs -y /dev/{$harddrive}")) {
+		write_console("Error: Failed to grow ufs on '/dev/{$harddrive}'!\n");
+		return 1;
+	}
 
 	return 0;
 }
@@ -609,11 +616,17 @@ function install_restore_config($disk)
 function install_init_disk($disk, $partlayout)
 {
 	set_kern_geom_debugflags(0x10);
+	// force delete existing partitions (error is OK)
+	mwexec("/sbin/gpart destroy -F {$disk}");
 	// Initialize the destination using fdisk.
 	write_console("Create slice/partition table on device {$disk}.\n");
 	$slicesize = array(0, 0, 0, 0);
 	foreach ($partlayout as $partlayoutv) {
-		$slicesize[$partlayoutv['slice'] - 1] = $partlayoutv['size'];
+		// add 1MiB alignment
+		if ($partlayoutv['size'] !== "*")
+			$slicesize[$partlayoutv['slice'] - 1] = $partlayoutv['size'] + 2;
+		else
+			$slicesize[$partlayoutv['slice'] - 1] = $partlayoutv['size'];
 	}
 	if (install_fdisk($disk, $slicesize)) {
 		set_kern_geom_debugflags(0);
@@ -640,6 +653,7 @@ function install_init_disk($disk, $partlayout)
 
 		write_console("  {$diskdevicename}\n");
 
+/*
 		// Do not create partitions for swap.
 		if ("swap" === $partlayoutv['fstype']) {
 			// Completely wipe any prior information
@@ -654,6 +668,38 @@ function install_init_disk($disk, $partlayout)
 		if (install_bsdlabel($diskdevicename, $partlayoutv['fstype'], $startsector, $slicesize, $alignsector)) {
 			set_kern_geom_debugflags(0);
 			write_console("\nError: Failed to create BSD label on {$diskdevicename}!\n");
+			return 1;
+		}
+*/
+
+		// force delete existing partitions (error is OK)
+		mwexec("/sbin/gpart destroy -F {$diskdevicename}");
+		// create BSD partition with alignment (UFS or swap)
+		if (mwexec("/sbin/gpart create -s bsd {$diskdevicename}")) {
+			set_kern_geom_debugflags(0);
+			write_console("\nError: Failed to create BSD label on {$diskdevicename}!\n");
+			return 1;
+		}
+		if ($partlayoutv['slice'] === 1) {
+			// install boot code
+			//write_console("    /sbin/gpart bootcode -b /boot/boot {$diskdevicename}\n");
+			if (mwexec("/sbin/gpart bootcode -b /boot/boot {$diskdevicename}")) {
+				set_kern_geom_debugflags(0);
+				write_console("Error: Failed to install boot on {$diskdevicename}!\n");
+				return 1;
+			}
+		}
+		if ($partlayoutv['fstype'] === "swap") {
+			$flags = "-i2 -a 1m -t freebsd-swap";
+		} else {
+			$flags = "-a 1m -t freebsd-ufs";
+		}
+		if ($partlayoutv['size'] !== "*")
+			$flags .= " -s {$partlayoutv['size']}m";
+		//write_console("    /sbin/gpart add {$flags} {$diskdevicename}\n");
+		if (mwexec("/sbin/gpart add {$flags} {$diskdevicename}")) {
+			set_kern_geom_debugflags(0);
+			write_console("\nError: Failed to add BSD label on {$diskdevicename}!\n");
 			return 1;
 		}
 	}
@@ -710,7 +756,8 @@ function install_fdisk($disk, $slicesize)
 		if (is_numeric($slicesizev)) {
 			$bytes = $slicesizev * 1024 * 1024;
 			$slicetable[$slicesizek]['length'] = $bytes / $diskinfo['sectorsize'];
-			$slicetable[$slicesizek]['length'] = floor($slicetable[$slicesizek]['length'] / $align) * $align;
+			//$slicetable[$slicesizek]['length'] = floor($slicetable[$slicesizek]['length'] / $align) * $align;
+			$slicetable[$slicesizek]['length'] = ceil($slicetable[$slicesizek]['length'] / $align) * $align;
 			if ($slicesizek == 0) {
 				$slicetable[$slicesizek]['length'] -= $diskinfo['sectors'];
 			}

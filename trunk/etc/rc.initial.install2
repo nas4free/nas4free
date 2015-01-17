@@ -43,11 +43,13 @@ require_once("tui.inc");
 
 // Default size of slice/partition 1 (used for OS)
 $part1size = $g_install['part1size_embedded'];
+$swapsize =  $g_install['default_swap'];
 
 // Default slice/partition layout
 $partlayout = array(
 	array("slice" => 1, "fstype" => "4.2BSD", "size" => $part1size, "volname" => "root"),
-	array("slice" => 2, "fstype" => "4.2BSD", "size" => "*", "volname" => "data")
+	array("slice" => 2, "fstype" => "swap", "size" => $swapsize, "volname" => "swap"),
+ 	array("slice" => 3, "fstype" => "4.2BSD", "size" => "*", "volname" => "data")
 );
 
 // Get product information
@@ -59,8 +61,8 @@ $text = <<<EOD
 {$productname} 'Embedded' installer for HDD, SSD, CF or USB flash drive.
 
 - Create MBR partition 1, using UFS, {$part1size}MB size for OS image
-- Create MBR partition 2, using UFS, for DATA
-- Create MBR partition 3, as SWAP, 512MB or more
+- Create MBR partition 2, as SWAP, {$swapsize}MB or more
+- Create MBR partition 3, using UFS, for DATA
 - Uses a RAM disk to limit read/write access to the device
 
 WARNING: There will be some limitations:
@@ -118,16 +120,22 @@ $result = 0; // always adding swap
 if (0 == $result) {
 	do {
 		$raminfo = system_get_ram_info();
-		$swapsize = intval($raminfo['physical'] / 1024 / 1024); // Convert to MB
+		$swapsize = intval(ceil($raminfo['physical'] / 1024 / 1024 / 1024)); // Convert to GB
+		$swapsize *= 1024; /* MB */
+		/*
 		if ($swapsize < 512)
 			$swapsize = 512;
-		$result = tui_display_input("Enter the size of the swap partition in MB. (minimum 512, recommended 1024)", 47, 8, $swapsize);
+		*/
+		if ($swapsize < $g_install['default_swap'])
+			$swapsize = $g_install['default_swap'];
+		$result = tui_display_input("Enter the size of the swap partition in MB. (minimum 512, recommend {$g_install['default_swap']} or more)", 47, 8, $swapsize);
 		if (0 != $result)
 			exit(0);
 	} while (!is_numeric($swapsize) || $swapsize < 512);
 
 	// Add swap slice/partition to the partition layout.
-	$partlayout[] = array("slice" => 3, "fstype" => "swap", "size" => $swapsize, "volname" => "");
+	//$partlayout[] = array("slice" => 3, "fstype" => "swap", "size" => $swapsize, "volname" => "");
+	$partlayout[1]['size'] = $swapsize;
 }
 
 if (install_mount_cd($cdlist[$cdrom])) {
@@ -141,17 +149,19 @@ if (install_init_disk($harddrive, $partlayout)) {
 	exit(0);
 }
 
-if (install_dd_image("{$harddrive}s1")) {
+if (install_dd_image("{$harddrive}s1a")) {
 	install_unmount_cd();
 	tui_wait_keypress("There was a problem while copying files.");
 	exit(0);
 }
 
+/*
 if (add_default_swap("{$harddrive}s1")) {
 	install_unmount_cd();
 	tui_wait_keypress("There was a problem while adding swap.");
 	exit(0);
 }
+*/
 
 install_unmount_cd();
 
@@ -184,20 +194,22 @@ To use the DATA partition:
 - Add the disk {$harddrive} on the 'Disks|Management' page.
 - Add the mount point on the 'Disks|Mount Point|Management' page.
   Use the following parameters:
-  Disk {$harddrive}, Partition 2, Partition type MBR, Filesystem UFS
+  Disk {$harddrive}, Partition 3, Partition type MBR, Filesystem UFS
 
 EOD;
 
+/*
 if (0 < $swapsize) {
 	$text .= <<<EOD
 
 To use the SWAP partition:
 - Enable swap space usage on the 'System|Advanced|Swap' page.
   Use the following parameters:
-  Type: Device, Device: /dev/{$harddrive}s3
+  Type: Device, Device: /dev/{$harddrive}s2b
 
 EOD;
 }
+*/
 
 $text .= <<<EOD
 

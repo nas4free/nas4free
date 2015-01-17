@@ -71,7 +71,7 @@ if ($devinfo['size'] < $minsector) {
 	exit(0);
 }
 
-$result = tui_display_yesno("{$productname} has been detected on device '{$devinfo['device']}{$devinfo['partition']}'.\n\nIs this is correct?", 50, 7);
+$result = tui_display_yesno("{$productname} has been detected on device '{$devinfo['device']}{$devinfo['partition']}'.\n\nIs this is correct?", 50, 8);
 if (0 != $result)
 	exit(0);
 
@@ -113,6 +113,7 @@ if (install_backup_config("{$devinfo['device']}{$devinfo['partition']}")) {
 	exit(0);
 }
 
+/*
 // Must install on ad0s1 if installed on partition 1, but install on ad0 if installed on ad0a.
 if ("s1a" === $devinfo['partition']) {
 	$slice = preg_replace('/(s\d+).$/', '\1', $devinfo['partition']);
@@ -127,6 +128,13 @@ if ("s1a" === $devinfo['partition']) {
 		tui_wait_keypress("There was a problem while copying files.");
 		exit(0);
 	}
+}
+*/
+
+if (install_dd_image("{$devinfo['device']}{$devinfo['partition']}")) {
+	install_unmount_cd();
+	tui_wait_keypress("There was a problem while copying files.");
+	exit(0);
 }
 
 if (install_restore_config("{$devinfo['device']}{$devinfo['partition']}")) {

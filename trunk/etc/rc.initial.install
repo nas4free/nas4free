@@ -20,7 +20,7 @@ while : ; do
 		"1" "Install 'Embedded' OS/MBR on HDD/SSD/CF/USB (preferred)" \
 		"2" "Upgrade 'Embedded' OS from LiveCD/LiveUSB (preferred)" \
 		"-" "---------------------------------------------------------------" \
-		"3" "Install 'Embedded' OS on HDD/SSD/CF/USB (for expert)" \
+		"3" "Install 'Embedded' OS/MBR without SWAP (for expert)" \
 		"4" "Install 'Full' OS on HDD/SSD + DATA + SWAP (for expert)" \
 		"5" "Upgrade 'Full' OS from LiveCD/LiveUSB" \
 		"6" "Upgrade and convert 'Full' OS to 'Embedded'" 2> $tmpfile
