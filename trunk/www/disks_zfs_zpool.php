@@ -90,6 +90,10 @@ function zfszpool_process_updatenotification($mode, $data) {
 				zfs_zpool_destroy($data);
 				unset($config['zfs']['pools']['pool'][$cnid]);
 				write_config();
+				// remove existing pool cache
+				conf_mount_rw();
+				unlink_if_exists("{$g['cf_path']}/boot/zfs/zpool.cache");
+				conf_mount_ro();
 			}
 			break;
 	}
