@@ -15,6 +15,7 @@ Changes:
 - Improved PHP session handle.
 - Replaced /dev/md0 with xmd using LZ4 compression.
 - Replaced the server certificate with 2048bits key and sha256 signature.
+- Change iperf2.x for iperf3.
 - Changed samba reload when changing the shares. (it takes few secs.)
 - Changed rootfs layout. (2GB USB/CF is required. Full is 4GB or more.)
 - Changed image files to use XZ.
@@ -41,7 +42,6 @@ Changes:
 - Upgrade xmlstarlet to 1.6.1.
 - Upgrade inadyn-mt to 02.24.43.
 - Upgrade zoneinfo to 2014j.
-- Change iperf2.x for iperf3.
 - Upgrade php to 5.6.4.
 - Upgrade mDNSResponder to 561.1.1.
 - Upgrade xmd to 0.4.2.
@@ -49,6 +49,7 @@ Changes:
 - Upgrade unison to 2.48.3.
 - Upgrade netatalk to 3.1.7.
 - Upgrade samba to 4.1.16.
+- Upgrade iperf3 to 3.0.11.
 
 Fixes:
 - Missing /etc/uams/uams_randnum.so
