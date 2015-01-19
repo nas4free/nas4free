@@ -1,14 +1,15 @@
 PORTNAME=		iperf
-PORTVERSION=	3.0.9
+PORTVERSION=	3.0.11
 CATEGORIES=		benchmarks ipv6
 COMMENT=		Improved tool to measure TCP and UDP bandwidth
 MAINTAINER=		zoon01@nas4free.org
 
-MASTER_SITES=			SF/${PORTNAME}
+MASTER_SITES=		http://downloads.es.net/pub/iperf/
+PKGNAMESUFFIX=	3
 
 GNU_CONFIGURE=	yes
-USES=		libtool
-USE_LDCONFIG=	yes
+USES=			libtool
+USE_LDCONFIG=		yes
 
 CONFIGURE_ARGS+=	--enable-ipv6 \
 			--enable-multicast
