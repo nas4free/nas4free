@@ -510,6 +510,9 @@ function reset_factory_defaults() {
 	// Modify file permissions
 	@chmod("{$g['cf_conf_path']}/config.xml", 0600);
 
+	// remove existing pool cache
+	unlink_if_exists("{$g['cf_path']}/boot/zfs/zpool.cache");
+
 	$loader_filename = "{$g['cf_path']}/boot/loader.conf.local";
 
 	if (file_exists($loader_filename) && unlink($loader_filename) === FALSE) {
