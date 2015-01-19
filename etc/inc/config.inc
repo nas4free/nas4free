@@ -130,6 +130,14 @@ if (is_booting()) {
 					}
 					// Unmount device
 					mwexec("/sbin/umount -f {$g['cf_path']}");
+				} else if (0 == mwexec("/sbin/mount -r /dev/{$disk}p2 {$g['cf_path']}")) { // Search on GPT/p2
+					if (file_exists("{$g['cf_conf_path']}/config.xml")) {
+						$cfgdevice = $disk;
+						$cfgpartition = "{$cfgdevice}p2";
+						$cfgfstype = "ufs";
+					}
+					// Unmount device
+					mwexec("/sbin/umount -f {$g['cf_path']}");
 				} else if (0 == mwexec("/sbin/mount -r /dev/{$disk}a {$g['cf_path']}")) { // Search on partition 'a'
 					if (file_exists("{$g['cf_conf_path']}/config.xml")) {
 						$cfgdevice = $disk;

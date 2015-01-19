@@ -72,6 +72,7 @@ case ${PLATFORM} in
 		case ${PLATFORM} in
 			*-liveUSB)
 				root=`/sbin/glabel status -s|/usr/bin/awk '/liveboot/{print $3;exit 0}'`
+				gptswap=`/sbin/glabel status -s|/usr/bin/awk '/gptswap/{print $3;exit 0}'`
 				#swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
 				#swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
 				#if [ "${ARCH}" = "arm" -a -e "/dev/${swap2}" ]; then
@@ -84,9 +85,14 @@ case ${PLATFORM} in
 
 				# use default swap if exists
 				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/s[1234]a$/s2b/'`
+				if [ -n "${gptswap}" -a -e "/dev/${gptswap}" ]; then
+					swap=$gptswap
+				elif [ "${swap}" = "${root}" ]; then
+					swap=NONE
+				fi
 				rm -f /etc/swapdevice
 				if [ ${BOOT_LOWMEM} -ne 0 ]; then
-					if [ -e "/dev/${swap}" ]; then
+					if [ "${swap}" != "NONE" -a -e "/dev/${swap}" ]; then
 						/sbin/swapon /dev/${swap}
 						echo "/dev/${swap}" > /etc/swapdevice
 					else
@@ -99,7 +105,7 @@ case ${PLATFORM} in
 					fi
 				else
 					# not use LiveUSB
-					#if [ -e "/dev/${swap}" ]; then
+					#if [ "${swap}" != "NONE" -a -e "/dev/${swap}" ]; then
 					#	/sbin/swapon /dev/${swap}
 					#	echo "/dev/${swap}" > /etc/swapdevice
 					#fi
@@ -122,6 +128,7 @@ case ${PLATFORM} in
 				;;
 			*-embedded)
 				root=`/sbin/glabel status -s|/usr/bin/awk '/embboot/{print $3;exit 0}'`
+				gptswap=`/sbin/glabel status -s|/usr/bin/awk '/gptswap/{print $3;exit 0}'`
 				#swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
 				#swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
 				# always create swap partition if not exists
@@ -135,9 +142,14 @@ case ${PLATFORM} in
 
 				# use default swap if exists
 				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/s[1234]a$/s2b/'`
+				if [ -n "${gptswap}" -a -e "/dev/${gptswap}" ]; then
+					swap=$gptswap
+				elif [ "${swap}" = "${root}" ]; then
+					swap=NONE
+				fi
 				rm -f /etc/swapdevice
 				if [ ${BOOT_LOWMEM} -ne 0 ]; then
-					if [ -e "/dev/${swap}" ]; then
+					if [ "${swap}" != "NONE" -a -e "/dev/${swap}" ]; then
 						/sbin/swapon /dev/${swap}
 						echo "/dev/${swap}" > /etc/swapdevice
 					else
@@ -149,7 +161,7 @@ case ${PLATFORM} in
 						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
 					fi
 				else
-					if [ -e "/dev/${swap}" ]; then
+					if [ "${swap}" != "NONE" -a -e "/dev/${swap}" ]; then
 						/sbin/swapon /dev/${swap}
 						echo "/dev/${swap}" > /etc/swapdevice
 					fi
