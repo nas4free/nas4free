@@ -44,7 +44,7 @@ function interfaces_wireless_get_channellist($if) {
 		$line = trim($line);
 
 		foreach (explode("Channel", $line) as $channelv) {
-			if (preg_match("/(\d+)\s+:\s+(\d+)\s+Mhz\s+(.+)/", $channelv, $matches)) {
+			if (preg_match("/(\d+)\s+:\s+(\d+)\s+MHz\s+(.+)/", $channelv, $matches)) {
 				$info = array();
 				$info['channel'] = $matches[1];
 				$info['freq'] = $matches[2];

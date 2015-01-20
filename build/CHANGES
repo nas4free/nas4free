@@ -25,6 +25,7 @@ Changes:
   Supported minimum spec except LiveCD is 512MB memory + 512MB swap device or partition.
   1024MB swap device or partition is recommended.
   File based swap and ZFS volume swap is not recommended.
+- Add WLAN virtual interface used for wireless device. (OPT only at this time)
 - Add WebGUI access restriction.
 - Add NFS support in HAST service.
 - Add default swap of 512MB for LiveUSB and before user configuration.
@@ -53,6 +54,7 @@ Changes:
 - Upgrade iperf3 to 3.0.11.
 
 Fixes:
+- Broken Wireless support.
 - ZFS pool cache is not removed when deleting or reseting to factory default.
 - Missing /etc/uams/uams_randnum.so
 - Missing nutdrv_atcl_usb nut driver.
@@ -95,5 +97,4 @@ NEED TESTING:
 Help needed:
 - Need help for adding LDAP authentication feature:
   Main services can be easily authenticated using PAM-LDAP, but is harder for Samba.
-
 

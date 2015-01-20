@@ -43,9 +43,9 @@ require("interfaces.inc");
 function wireless_config_init() {
 	global $optcfg, $pconfig;
 
-	$pconfig['standard'] = $optcfg['wireless']['standard'];
-	$pconfig['ssid'] = $optcfg['wireless']['ssid'];
-	$pconfig['channel'] = $optcfg['wireless']['channel'];
+	$pconfig['standard'] = !empty($optcfg['wireless']['standard']) ? $optcfg['wireless']['standard'] : "";
+	$pconfig['ssid'] = !empty($optcfg['wireless']['ssid']) ? $optcfg['wireless']['ssid'] : "";
+	$pconfig['channel'] = !empty($optcfg['wireless']['channel']) ? $optcfg['wireless']['channel'] : "";
 
 	$pconfig['encryption'] = "none";
 	if (isset($optcfg['wireless']['wep']['enable'])) {
@@ -54,11 +54,11 @@ function wireless_config_init() {
 		$pconfig['encryption'] = "wpa";
 	}
 
-	if (is_array($optcfg['wireless']['wep'])) {
+	if (!empty($optcfg['wireless']['wep']) && is_array($optcfg['wireless']['wep'])) {
 		$pconfig['wep_key'] = $optcfg['wireless']['wep']['key'];
 	}
 
-	if (is_array($optcfg['wireless']['wpa'])) {
+	if (!empty($optcfg['wireless']['wpa']) && is_array($optcfg['wireless']['wpa'])) {
 		$pconfig['wpa_keymgmt'] = $optcfg['wireless']['wpa']['keymgmt'];
 		$pconfig['wpa_pairwise'] = $optcfg['wireless']['wpa']['pairwise'];
 		$pconfig['wpa_psk'] = $optcfg['wireless']['wpa']['psk'];
