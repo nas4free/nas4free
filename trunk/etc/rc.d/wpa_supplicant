@@ -45,6 +45,15 @@ else
 	driver="bsd"
 fi
 
+load_rc_config $name
+
+command=${wpa_supplicant_program:-"/usr/sbin/wpa_supplicant"}
+conf_file=${wpa_supplicant_conf_file:-"/etc/wpa_supplicant.conf"}
+pidfile="/var/run/${name}/${ifn}.pid"
+command_args="-B -i $ifn -c $conf_file -D $driver -P $pidfile"
+required_files=$conf_file
+required_modules="wlan_wep wlan_tkip wlan_ccmp wlan_amrr"
+
 # Create wpa_supplicant.conf
 /usr/local/bin/xml sel -t -m "//interfaces/*/wireless/wpa[enable]" \
 	-o "network={" -n \
@@ -55,14 +64,5 @@ fi
 	-v "concat('psk=\"',psk,'\"')" -n \
 	-o "}" -n \
 	${configxml_file} | /usr/local/bin/xml unesc > ${conf_file}
-
-load_rc_config $name
-
-command=${wpa_supplicant_program}
-conf_file=${wpa_supplicant_conf_file}
-pidfile="/var/run/${name}/${ifn}.pid"
-command_args="-B -i $ifn -c $conf_file -D $driver -P $pidfile"
-required_files=$conf_file
-required_modules="wlan_wep wlan_tkip wlan_ccmp"
 
 run_rc_command "$1"

@@ -34,6 +34,7 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
+require_once("globals.inc");
 require_once("array.inc");
 require_once("system.inc");
 
@@ -417,6 +418,8 @@ function is_valid_privatekey($privatekey, $type = "RSA") {
 }
 
 function get_interface_list() {
+	global $g;
+
 	/* build interface list with netstat */
 	exec("/usr/bin/netstat -inW -f link", $linkinfo);
 	array_shift($linkinfo);
@@ -429,8 +432,52 @@ function get_interface_list() {
 
 		if (substr($ifname, -1) === "*")
 			$ifname = substr($ifname, 0, strlen($ifname) - 1);
+		/* skip wireless */
+		if (preg_match($g['wireless_regex'], $ifname))
+			continue;
 		/* add the plip interface to be excluded too */
 		if (!preg_match("/^(ppp|sl|gif|faith|lo|vlan|tun|plip|ipfw|usbus|carp)/", $ifname)) {
+			$iflist[$ifname] = array();
+
+			$iflist[$ifname]['mac'] = chop($alink[3]);
+			$iflist[$ifname]['up'] = false;
+
+			/* find out if the link on this interface is up */
+			unset($ifinfo);
+			exec("/sbin/ifconfig {$ifname}", $ifinfo);
+
+			foreach ($ifinfo as $ifil) {
+				if (preg_match("/status: (.*)$/", $ifil, $matches)) {
+					if ($matches[1] === "active")
+						$iflist[$ifname]['up'] = true;
+					break;
+				}
+			}
+		}
+	}
+
+	return $iflist;
+}
+
+function get_interface_wlist() {
+	global $g;
+
+	/* build interface list with netstat */
+	exec("/usr/bin/netstat -inW -f link", $linkinfo);
+	array_shift($linkinfo);
+
+	$iflist = array();
+
+	foreach ($linkinfo as $link) {
+		$alink = preg_split("/\s+/", $link);
+		$ifname = chop($alink[0]);
+
+		if (substr($ifname, -1) === "*")
+			$ifname = substr($ifname, 0, strlen($ifname) - 1);
+		/* skip lo, wlan */
+		if (preg_match("/^(lo|wlan)/", $ifname))
+			continue;
+		if (preg_match($g['wireless_regex'], $ifname)) {
 			$iflist[$ifname] = array();
 
 			$iflist[$ifname]['mac'] = chop($alink[3]);

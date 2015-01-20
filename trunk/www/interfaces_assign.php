@@ -51,6 +51,14 @@ $pgtitle = array(gettext("Network"), gettext("Interface Management"));
 /* get list without VLAN interfaces */
 $portlist = get_interface_list();
 
+// Add WLAN interfaces.
+if (isset($config['vinterfaces']['wlan']) && is_array($config['vinterfaces']['wlan']) && count($config['vinterfaces']['wlan'])) {
+	foreach ($config['vinterfaces']['wlan'] as $wlanv) {
+		$portlist[$wlanv['if']] = $wlanv;
+		$portlist[$wlanv['if']]['isvirtual'] = true;
+	}
+}
+
 // Add VLAN interfaces.
 if (isset($config['vinterfaces']['vlan']) && is_array($config['vinterfaces']['vlan']) && count($config['vinterfaces']['vlan'])) {
 	foreach ($config['vinterfaces']['vlan'] as $vlanv) {
@@ -202,6 +210,7 @@ if (isset($_GET['act']) && $_GET['act'] == "add") {
 		<td class="tabnavtbl">
 		  <ul id="tabnav">
 				<li class="tabact"><a href="interfaces_assign.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Management");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_wlan.php"><span><?=gettext("WLAN");?></span></a></li>
 				<li class="tabinact"><a href="interfaces_vlan.php"><span><?=gettext("VLAN");?></span></a></li>
 				<li class="tabinact"><a href="interfaces_lagg.php"><span><?=gettext("LAGG");?></span></a></li>
 				<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gettext("Bridge");?></span></a></li>
