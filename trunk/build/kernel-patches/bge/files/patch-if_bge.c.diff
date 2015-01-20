@@ -1,0 +1,154 @@
+--- bge/if_bge.c.orig	2015-01-17 20:11:26.000000000 +0100
++++ bge/if_bge.c	2015-01-20 14:09:14.000000000 +0100
+@@ -32,7 +32,7 @@
+  */
+ 
+ #include <sys/cdefs.h>
+-__FBSDID("$FreeBSD: releng/9.3/sys/dev/bge/if_bge.c 264941 2014-04-25 21:28:41Z marius $");
++__FBSDID("$FreeBSD$");
+ 
+ /*
+  * Broadcom BCM57xx(x)/BCM590x NetXtreme and NetLink family Ethernet driver
+@@ -485,6 +485,7 @@
+ static void bge_stop_fw(struct bge_softc *);
+ static int bge_reset(struct bge_softc *);
+ static void bge_link_upd(struct bge_softc *);
++static void bge_setwol(struct bge_softc *);
+ 
+ static void bge_ape_lock_init(struct bge_softc *);
+ static void bge_ape_read_fw_ver(struct bge_softc *);
+@@ -2908,14 +2909,10 @@
+     bus_addr_t *paddr, const char *msg)
+ {
+ 	struct bge_dmamap_arg ctx;
+-	bus_addr_t lowaddr;
+-	bus_size_t ring_end;
+ 	int error;
+ 
+-	lowaddr = BUS_SPACE_MAXADDR;
+-again:
+ 	error = bus_dma_tag_create(sc->bge_cdata.bge_parent_tag,
+-	    alignment, 0, lowaddr, BUS_SPACE_MAXADDR, NULL,
++	    alignment, 0, BUS_SPACE_MAXADDR, BUS_SPACE_MAXADDR, NULL,
+ 	    NULL, maxsize, 1, maxsize, 0, NULL, NULL, tag);
+ 	if (error != 0) {
+ 		device_printf(sc->bge_dev,
+@@ -2940,25 +2937,6 @@
+ 		return (ENOMEM);
+ 	}
+ 	*paddr = ctx.bge_busaddr;
+-	ring_end = *paddr + maxsize;
+-	if ((sc->bge_flags & BGE_FLAG_4G_BNDRY_BUG) != 0 &&
+-	    BGE_ADDR_HI(*paddr) != BGE_ADDR_HI(ring_end)) {
+-		/*
+-		 * 4GB boundary crossed.  Limit maximum allowable DMA
+-		 * address space to 32bit and try again.
+-		 */
+-		bus_dmamap_unload(*tag, *map);
+-		bus_dmamem_free(*tag, *ring, *map);
+-		bus_dma_tag_destroy(*tag);
+-		if (bootverbose)
+-			device_printf(sc->bge_dev, "4GB boundary crossed, "
+-			    "limit DMA address space to 32bit for %s\n", msg);
+-		*ring = NULL;
+-		*tag = NULL;
+-		*map = NULL;
+-		lowaddr = BUS_SPACE_MAXADDR_32BIT;
+-		goto again;
+-	}
+ 	return (0);
+ }
+ 
+@@ -2966,7 +2944,7 @@
+ bge_dma_alloc(struct bge_softc *sc)
+ {
+ 	bus_addr_t lowaddr;
+-	bus_size_t boundary, sbsz, rxmaxsegsz, txsegsz, txmaxsegsz;
++	bus_size_t rxmaxsegsz, sbsz, txsegsz, txmaxsegsz;
+ 	int i, error;
+ 
+ 	lowaddr = BUS_SPACE_MAXADDR;
+@@ -3053,9 +3031,7 @@
+ 	}
+ 
+ 	/* Create parent tag for buffers. */
+-	boundary = 0;
+ 	if ((sc->bge_flags & BGE_FLAG_4G_BNDRY_BUG) != 0) {
+-		boundary = BGE_DMA_BNDRY;
+ 		/*
+ 		 * XXX
+ 		 * watchdog timeout issue was observed on BCM5704 which
+@@ -3066,10 +3042,10 @@
+ 		if (sc->bge_pcixcap != 0)
+ 			lowaddr = BUS_SPACE_MAXADDR_32BIT;
+ 	}
+-	error = bus_dma_tag_create(bus_get_dma_tag(sc->bge_dev),
+-	    1, boundary, lowaddr, BUS_SPACE_MAXADDR, NULL,
+-	    NULL, BUS_SPACE_MAXSIZE_32BIT, 0, BUS_SPACE_MAXSIZE_32BIT,
+-	    0, NULL, NULL, &sc->bge_cdata.bge_buffer_tag);
++	error = bus_dma_tag_create(bus_get_dma_tag(sc->bge_dev), 1, 0, lowaddr,
++	    BUS_SPACE_MAXADDR, NULL, NULL, BUS_SPACE_MAXSIZE_32BIT, 0,
++	    BUS_SPACE_MAXSIZE_32BIT, 0, NULL, NULL,
++	    &sc->bge_cdata.bge_buffer_tag);
+ 	if (error != 0) {
+ 		device_printf(sc->bge_dev,
+ 		    "could not allocate buffer dma tag\n");
+@@ -3762,7 +3738,7 @@
+ 	IFQ_SET_READY(&ifp->if_snd);
+ 	ifp->if_hwassist = sc->bge_csum_features;
+ 	ifp->if_capabilities = IFCAP_HWCSUM | IFCAP_VLAN_HWTAGGING |
+-	    IFCAP_VLAN_MTU;
++	    IFCAP_VLAN_MTU | IFCAP_WOL_MAGIC;
+ 	if ((sc->bge_flags & (BGE_FLAG_TSO | BGE_FLAG_TSO3)) != 0) {
+ 		ifp->if_hwassist |= CSUM_TSO;
+ 		ifp->if_capabilities |= IFCAP_TSO4 | IFCAP_VLAN_HWTSO;
+@@ -5571,6 +5547,8 @@
+ 	mode = CSR_READ_4(sc, BGE_RX_MODE);
+ 	if (BGE_IS_5755_PLUS(sc))
+ 		mode |= BGE_RXMODE_IPV6_ENABLE;
++	if (sc->bge_asicrev == BGE_ASICREV_BCM5762)
++		mode |= BGE_RXMODE_IPV4_FRAG_FIX;
+ 	CSR_WRITE_4(sc,BGE_RX_MODE, mode | BGE_RXMODE_ENABLE);
+ 	DELAY(10);
+ 
+@@ -6098,6 +6076,7 @@
+ 	sc = device_get_softc(dev);
+ 	BGE_LOCK(sc);
+ 	bge_stop(sc);
++	bge_setwol(sc);
+ 	BGE_UNLOCK(sc);
+ 
+ 	return (0);
+@@ -6796,3 +6775,32 @@
+ 	}
+ 	return (*func == NULL ? ENXIO : 0);
+ }
++
++static void
++bge_setwol(struct bge_softc *sc)
++{
++       struct ifnet *ifp;
++       uint16_t pmstat;
++       int pmc;
++
++       ifp = sc->bge_ifp;
++
++       if ((ifp->if_capenable & IFCAP_WOL_MAGIC) == 0)
++           return;
++
++       if (pci_find_cap(sc->bge_dev, PCIY_PMG, &pmc) != 0)
++           return;
++
++       BGE_SETBIT(sc, BGE_MAC_MODE, BGE_MACMODE_MAGIC_PKT_ENB);
++       BGE_CLRBIT(sc, BGE_MAC_MODE, BGE_MACMODE_PORTMODE);
++       BGE_SETBIT(sc, BGE_MAC_MODE, BGE_PORTMODE_GMII);
++
++       BGE_SETBIT(sc, BGE_RX_MODE, BGE_RXMODE_ENABLE);
++
++       /* Request PME. */
++       pmstat = pci_read_config(sc->bge_dev,
++           pmc + PCIR_POWER_STATUS, 2);
++       pmstat |= PCIM_PSTAT_PME | PCIM_PSTAT_PMEENABLE;
++       pci_write_config(sc->bge_dev,
++           pmc + PCIR_POWER_STATUS, pmstat, 2);
++}
