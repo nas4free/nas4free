@@ -14,7 +14,7 @@
 # PROVIDE: wpa_supplicant
 # REQUIRE: mountcritremote
 # KEYWORD: nojail nostart
-# XQUERY: -i "count(//interfaces/*/wpa/enable) > 0" -o "0" -b
+# XQUERY: -i "count(//interfaces/*/wireless/wpa/enable) > 0" -o "0" -b
 # RCVAR: wpa_supplicant
 
 . /etc/rc.subr
