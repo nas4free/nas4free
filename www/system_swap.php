@@ -45,6 +45,14 @@ $pconfig['mountpoint'] = !empty($config['system']['swap']['mountpoint']) ? $conf
 $pconfig['devicespecialfile'] = !empty($config['system']['swap']['devicespecialfile']) ? $config['system']['swap']['devicespecialfile'] : "";
 $pconfig['size'] = !empty($config['system']['swap']['size']) ? $config['system']['swap']['size'] : "";
 
+$swapdevice = "NONE";
+if (file_exists("{$g['etc_path']}/swapdevice"))
+	$swapdevice = trim(file_get_contents("{$g['etc_path']}/swapdevice"));
+if (empty($_POST) && (empty($pconfig['enable']) || $pconfig['enable'] === false)) {
+	if ($swapdevice != "NONE")
+		$infomsg = sprintf("%s (%s)", gettext("This server uses default swap."), $swapdevice);
+}
+
 if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
@@ -82,6 +90,8 @@ if ($_POST) {
 			config_lock();
 			$retval |= rc_update_service("swap");
 			config_unlock();
+			if (!isset($_POST['enable']) && $swapdevice != "NONE")
+				mwexec("swapon $swapdevice");
 		}
 		$savemsg = get_std_save_message($retval);
 	}
@@ -135,6 +145,7 @@ function type_change() {
 		<td class="tabcont">
 			<form action="system_swap.php" method="post" name="iform" id="iform">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
+				<?php if (!empty($infomsg)) print_info_box($infomsg); ?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline_checkbox("enable", gettext("Swap memory"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>

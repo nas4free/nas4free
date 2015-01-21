@@ -96,6 +96,7 @@ swap_start()
 	# Enable swap
 	echo "Starting ${name}."
 	/sbin/swapon "${_device}"
+	_result=$?
 
 	# Remove swap on booting device if any
 	if [ -f /etc/swapdevice ]; then
@@ -105,6 +106,8 @@ swap_start()
 			/sbin/swapoff -q ${SWAPDEVICE} 2>/dev/null
 		fi
 	fi
+
+	return ${_result}
 }
 
 swap_stop()
