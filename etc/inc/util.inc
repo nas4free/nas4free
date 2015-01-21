@@ -500,6 +500,44 @@ function get_interface_wlist() {
 	return $iflist;
 }
 
+function get_wlan_interface_list() {
+	global $g;
+
+	/* build interface list with netstat */
+	exec("/usr/bin/netstat -inW -f link", $linkinfo);
+	array_shift($linkinfo);
+
+	$iflist = array();
+
+	foreach ($linkinfo as $link) {
+		$alink = preg_split("/\s+/", $link);
+		$ifname = chop($alink[0]);
+
+		if (substr($ifname, -1) === "*")
+			$ifname = substr($ifname, 0, strlen($ifname) - 1);
+		if (preg_match("/^(wlan)/", $ifname)) {
+			$iflist[$ifname] = array();
+
+			$iflist[$ifname]['mac'] = chop($alink[3]);
+			$iflist[$ifname]['up'] = false;
+
+			/* find out if the link on this interface is up */
+			unset($ifinfo);
+			exec("/sbin/ifconfig {$ifname}", $ifinfo);
+
+			foreach ($ifinfo as $ifil) {
+				if (preg_match("/status: (.*)$/", $ifil, $matches)) {
+					if ($matches[1] === "active")
+						$iflist[$ifname]['up'] = true;
+					break;
+				}
+			}
+		}
+	}
+
+	return $iflist;
+}
+
 // Get list of mounted disk
 // example: Array
 //	[0] => Array

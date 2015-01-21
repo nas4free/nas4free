@@ -46,6 +46,9 @@ require_once("rc.inc");
 require_once("tui.inc");
 
 $iflist = get_interface_list();
+$iflist2 = get_wlan_interface_list();
+if (!empty($iflist2))
+	$iflist = array_merge($iflist, $iflist2);
 
 // Display detected interfaces
 $text = "If you don't know the names of your interfaces, you may use auto-detection. In that case, disconnect all interfaces before you begin, and reconnect each one when prompted to do so.";
