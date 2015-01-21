@@ -51,22 +51,33 @@ command=${wpa_supplicant_program:-"/usr/sbin/wpa_supplicant"}
 conf_file=${wpa_supplicant_conf_file:-"/etc/wpa_supplicant.conf"}
 pidfile="/var/run/${name}/${ifn}.pid"
 command_args="-B -i $ifn -c $conf_file -D $driver -P $pidfile"
-required_files=$conf_file
 required_modules="wlan_wep wlan_tkip wlan_ccmp wlan_amrr"
 
-# Create wpa_supplicant.conf
-rm -rf ${conf_file}
-oldmask=`umask`
-umask 077
-/usr/local/bin/xml sel -t -m "//interfaces/*/wireless/wpa[enable]" \
-	-o "network={" -n \
-	-v "concat('ssid=\"',../ssid,'\"')" -n \
-	-v "concat('key_mgmt=',keymgmt)" -n \
-	-v "concat('pairwise=',pairwise)" -n \
-	-v "concat('group=',pairwise)" -n \
-	-v "concat('psk=\"',psk,'\"')" -n \
-	-o "}" -n \
-	${configxml_file} | /usr/local/bin/xml unesc > ${conf_file}
-umask $oldmask
+# Custom commands
+start_precmd="wpa_supplicant_mkconf"
+mkconf_cmd="wpa_supplicant_mkconf"
+extra_commands="mkconf"
+
+wpa_supplicant_mkconf()
+{
+	# Cleanup and set umask for 600
+	rm -rf ${conf_file}
+	oldmask=`umask`
+	umask 077
+
+	# Create wpa_supplicant.conf
+	/usr/local/bin/xml sel -t -m "//interfaces/*/wireless/wpa[enable]" \
+		-o "network={" -n \
+		-v "concat('ssid=\"',../ssid,'\"')" -n \
+		-v "concat('key_mgmt=',keymgmt)" -n \
+		-v "concat('pairwise=',pairwise)" -n \
+		-v "concat('group=',pairwise)" -n \
+		-v "concat('psk=\"',psk,'\"')" -n \
+		-o "}" -n \
+		${configxml_file} | /usr/local/bin/xml unesc > ${conf_file}
+
+	# Restore umask
+	umask $oldmask
+}
 
 run_rc_command "$1"
