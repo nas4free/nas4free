@@ -249,6 +249,20 @@ setifconfig()
 		while read _wlan _wlandev _wlan_args; do
 			[ -n "${_wlan}" ] && eval /usr/local/sbin/rconf attribute set "wlans_${_wlandev}" "${_wlan}"
 		done
+	/usr/local/bin/xml sel -t \
+		-m "//vinterfaces/wlan[apmode]" \
+			-v if \
+			-v "concat(' ssid ',ap_ssid)" \
+			-v "concat(' channel ',ap_channel)" \
+			-v "concat(' ',ap_extraoptions)" \
+			-n \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc | \
+		while read _wlan _ap_args; do
+			_ap_create_args="wlanmode hostap"
+			[ -n "$_wlan" ] && eval /usr/local/sbin/rconf attribute set "create_args_${_wlan}" "${_ap_create_args}"
+			[ -n "$_wlan" ] && eval /usr/local/sbin/rconf attribute set "ifconfig_${_wlan}" "${_ap_args}"
+		done
 
 	# prepare bridge/carp interfaces
 	/usr/local/bin/xml sel -t \
