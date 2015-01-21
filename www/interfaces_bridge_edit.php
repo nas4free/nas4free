@@ -46,6 +46,16 @@ if (!isset($config['vinterfaces']['bridge']) || !is_array($config['vinterfaces']
 $a_bridge = &$config['vinterfaces']['bridge'];
 array_sort_key($a_bridge, "if");
 
+// WLAN interfaces.
+$a_wlans = array();
+if (isset($config['vinterfaces']['wlan']) && is_array($config['vinterfaces']['wlan']) && count($config['vinterfaces']['wlan'])) {
+	foreach ($config['vinterfaces']['wlan'] as $wlanv) {
+		$a_wlans[$wlanv['if']] = array(
+			'wlandev' => $wlanv['wlandev'],
+		);
+	}
+}
+
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_bridge, "uuid")))) {
 	$pconfig['enable'] = isset($a_bridge[$cnid]['enable']);
 	$pconfig['uuid'] = $a_bridge[$cnid]['uuid'];
@@ -137,7 +147,8 @@ function get_nextbridge_id() {
 			<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
 				<?php html_inputbox("if", gettext("Interface"), $pconfig['if'], "", true, 5, true);?>
-				<?php $a_bridgeif = array(); foreach (get_interface_list() as $ifk => $ifv) { if (preg_match('/bridge/i', $ifk)) { continue; } if (!(isset($uuid) && (FALSE !== $cnid)) && false !== array_search_ex($ifk, $a_bridge, "bridgeif")) { continue; } $a_bridgeif[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); } ?>
+				<?php $a_bridgeif = array(); foreach (get_interface_list() as $ifk => $ifv) { if (preg_match('/bridge/i', $ifk)) { continue; } if (!(isset($uuid) && (FALSE !== $cnid)) && false !== array_search_ex($ifk, $a_bridge, "bridgeif")) { continue; } $a_bridgeif[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); }
+				foreach ($a_wlans as $ifk => $ifv) { if (!(isset($uuid) && (FALSE !== $cnid)) && false !== array_search_ex($ifk, $a_bridge, "bridgeif")) { continue; } $a_bridgeif[$ifk] = htmlspecialchars("{$ifk} ({$ifv['wlandev']})"); } ?>
 				<?php html_listbox("bridgeif", gettext("Member Interface"), $pconfig['bridgeif'], $a_bridgeif, gettext("Note: Ctrl-click (or command-click on the Mac) to select multiple entries."), true);?>
 				<?php html_inputbox("mtu", gettext("MTU"), $pconfig['mtu'], gettext("Set the maximum transmission unit of the interface to n, default is interface specific. The MTU is used to limit the size of packets that are transmitted on an interface. Not all interfaces support setting the MTU, and some interfaces have range restrictions."), false, 5);?>
 				<?php html_inputbox("extraoptions", gettext("Extra options"), $pconfig['extraoptions'], gettext("Extra options to ifconfig (usually empty)."), false, 40);?>

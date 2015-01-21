@@ -274,7 +274,14 @@ setifconfig()
 		while read _bridgeif _bridgeif_mtu; do
 			_bridgeif_args="up"
 			[ -n "${_bridgeif_mtu}" ] && _bridgeif_args="${_bridgeif_args} mtu ${_bridgeif_mtu}"
-			[ -n "${_bridgeif}" ] && eval /usr/local/sbin/rconf attribute set "ifconfig_${_bridgeif}" "${_bridgeif_args}"
+			if [ -n "${_bridgeif}" ]; then
+				if configxml_isset "//vinterfaces/wlan[if='${_bridgeif}']/apmode"; then
+					# wlanN AP mode in bridge member
+					sysctl net.link.bridge.inherit_mac=1
+				else
+					eval /usr/local/sbin/rconf attribute set "ifconfig_${_bridgeif}" "${_bridgeif_args}"
+				fi
+			fi
 		done
 	/usr/local/bin/xml sel -t \
 		-m "//vinterfaces/bridge" \
