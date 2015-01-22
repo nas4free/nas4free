@@ -410,6 +410,9 @@ SHEBANG_FILES=		${PATCH_WRKSRC}/source4/scripting/bin/*
 .if ${COMPILER_TYPE} == "clang"
 CFLAGS+=		-fno-color-diagnostics
 .endif
+.if ${OSVERSION} >= 1100000
+LDFLAGS+=		-lncurses -lmenu -lpanel -lform
+.endif
 CONFIGURE_ENV+=		NOCOLOR=yes
 MAKE_ENV+=		NOCOLOR=yes
 
