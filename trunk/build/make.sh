@@ -634,10 +634,12 @@ create_image() {
 
 	echo "===> Creating Empty IMG File"
 	#dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/image.bin bs=${NAS4FREE_IMG_SECTS}b count=`expr ${NAS4FREE_IMG_SIZE_SEC} / ${NAS4FREE_IMG_SECTS} + 64`
-	dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/image.bin bs=${NAS4FREE_IMG_SECTS}b seek=`expr ${NAS4FREE_IMG_SIZE_SEC} / ${NAS4FREE_IMG_SECTS} + 64` count=0
+	dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/image.bin bs=512 seek=`expr ${NAS4FREE_IMG_SIZE_SEC}` count=0
 	echo "===> Use IMG as a memory disk"
 	md=`mdconfig -a -t vnode -f ${NAS4FREE_WORKINGDIR}/image.bin -x ${NAS4FREE_IMG_SECTS} -y ${NAS4FREE_IMG_HEADS}`
 	diskinfo -v ${md}
+
+	IMGSIZEM=450
 
 	# create 1MB aligned MBR image
 	echo "===> Creating MBR partition on this memory disk"
@@ -649,7 +651,7 @@ create_image() {
 	echo "===> Creating BSD partition on this memory disk"
 	gpart create -s bsd ${md}s1
 	gpart bootcode -b ${NAS4FREE_BOOTDIR}/boot ${md}s1
-	gpart add -a 1m -t freebsd-ufs ${md}s1
+	gpart add -a 1m -s ${IMGSIZEM}m -t freebsd-ufs ${md}s1
 	mdp=${md}s1a
 
 	echo "===> Formatting this memory disk using UFS"
