@@ -52,6 +52,8 @@ $cfdevice = trim(file_get_contents("{$g['etc_path']}/cfdevice"));
 $diskinfo = disks_get_diskinfo($cfdevice);
 unset($errormsg);
 $part1ok = true;
+if ($g['arch'] == "rpi")
+	$part1min = 320; /* rpi use 320MB */
 if ($diskinfo['mediasize_mbytes'] < $part1min) {
 	$part1ok = false;
 	$errormsg = sprintf(gettext("Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or resize boot partition of %s.\n"), $cfdevice);
