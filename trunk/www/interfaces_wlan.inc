@@ -91,6 +91,11 @@ function wireless_config_post() {
 		}
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+
+		if ($_POST['encryption'] == "wpa" && !empty($_POST['wpa_psk'])
+		    && (strlen($_POST['wpa_psk']) < 8 || strlen($_POST['wpa_psk']) > 63)) {
+			$input_errors[] = sprintf(gettext("The attribute '%s' is required within %d or more characters to %d characters."), gettext("PSK"), 8, 63);
+		}
 	}
 
 	if (!$input_errors) {
