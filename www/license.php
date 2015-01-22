@@ -51,7 +51,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
               (<a href="mailto:info@nas4free.org">info@nas4free.org</a>).<br />
               All rights reserved.</strong></p>
 
-		<p>NAS4Free use portions of freenas which is Copyright &copy; 2005-2011 by Olivier Cochard (olivier@freenas.org).</p>
+		<p>NAS4Free use legally portions of FreeNAS 7 which is Copyright &copy; 2005-2011 by Olivier Cochard (olivier@freenas.org).</p>
 		<p>NAS4Free use portions of m0n0wall which is Copyright &copy; 2002-2006 by Manuel Kasper (mk@neon1.net).</p>
 		<p>NAS4Free code and documentation are released under the Simplified BSD license, under terms as follows.</p>
             <p> Redistribution and use in source and binary forms, with or without<br />
@@ -66,6 +66,10 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
               notice, this list of conditions and the following disclaimer in
               the<br />
               documentation and/or other materials provided with the distribution.<br />
+              <br />
+              3. Neither the name of the copyright holder nor the names of its contributors<br />
+              may be used to endorse or promote products derived from this software
+              without specific prior written permission.<br />
               <br />
               <strong>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND<br />
               ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,<br />
