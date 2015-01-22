@@ -111,6 +111,9 @@ if ($_POST) {
 			$input_errors[] = sprintf(gettext("The attribute '%s' contains invalid characters."), gettext("SSID"));
 		if (preg_match("/\ |,|\'|\"/", $_POST['ap_channel']))
 			$input_errors[] = sprintf(gettext("The attribute '%s' contains invalid characters."), gettext("Channel"));
+		if (!empty($_POST['ap_psk']) && (strlen($_POST['ap_psk']) < 8 || strlen($_POST['ap_psk']) > 63)) {
+			$input_errors[] = sprintf(gettext("The attribute '%s' is required within %d or more characters to %d characters."), gettext("PSK"), 8, 63);
+		}
 	}
 
 	if (empty($input_errors)) {
