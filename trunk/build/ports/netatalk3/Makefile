@@ -73,6 +73,7 @@ post-install:
 	@${INSTALL_PROGRAM} -v ${STAGEDIR}${PREFIX}/sbin/cnid_dbd ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${STAGEDIR}${PREFIX}/sbin/netatalk ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_LIB} -v ${STAGEDIR}${PREFIX}/lib/libatalk.so.16 ${NAS4FREE_ROOTFS}/usr/local/lib
+	@${INSTALL_DATA} -v ${STAGEDIR}${PREFIX}/etc/extmap.conf.dist ${NAS4FREE_ROOTFS}/usr/local/etc/extmap.conf
 
 	@${MKDIR} -v ${NAS4FREE_ROOTFS}/etc/uams
 	@${INSTALL_PROGRAM} -v ${STAGEDIR}/etc/uams/uams_dhx_pam.so ${NAS4FREE_ROOTFS}/etc/uams
