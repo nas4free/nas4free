@@ -622,9 +622,9 @@ function install_init_disk($disk, $partlayout)
 	write_console("Create slice/partition table on device {$disk}.\n");
 	$slicesize = array(0, 0, 0, 0);
 	foreach ($partlayout as $partlayoutv) {
-		// add 1MiB alignment
+		// add 4MiB alignment
 		if ($partlayoutv['size'] !== "*")
-			$slicesize[$partlayoutv['slice'] - 1] = $partlayoutv['size'] + 2;
+			$slicesize[$partlayoutv['slice'] - 1] = $partlayoutv['size'] + 4;
 		else
 			$slicesize[$partlayoutv['slice'] - 1] = $partlayoutv['size'];
 	}
@@ -690,9 +690,9 @@ function install_init_disk($disk, $partlayout)
 			}
 		}
 		if ($partlayoutv['fstype'] === "swap") {
-			$flags = "-i2 -a 1m -t freebsd-swap";
+			$flags = "-i2 -a 4m -t freebsd-swap";
 		} else {
-			$flags = "-a 1m -t freebsd-ufs";
+			$flags = "-a 4m -t freebsd-ufs";
 		}
 		if ($partlayoutv['size'] !== "*")
 			$flags .= " -s {$partlayoutv['size']}m";
@@ -771,11 +771,11 @@ function install_init_gptdisk($disk, $partlayout)
 		mwexec("/sbin/gpart destroy -F {$diskdevicename}");
 		// create BSD partition with alignment (UFS or swap)
 		if ($partlayoutv['fstype'] === "boot") {
-			$flags = "-t freebsd-boot -l gptboot";
+			$flags = "-a 4k -t freebsd-boot -l gptboot";
 		} else if ($partlayoutv['fstype'] === "swap") {
-			$flags = "-a 1m -t freebsd-swap -l gptswap";
+			$flags = "-a 4m -t freebsd-swap -l gptswap";
 		} else {
-			$flags = "-a 1m -t freebsd-ufs";
+			$flags = "-a 4m -t freebsd-ufs";
 			if ($partlayoutv['partition'] === 2 && $partlayoutv['volname'] === "root")
 				$flags .= " -l gptroot";
 		}
