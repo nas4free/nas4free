@@ -73,6 +73,10 @@ case ${PLATFORM} in
 			*-liveUSB)
 				root=`/sbin/glabel status -s|/usr/bin/awk '/liveboot/{print $3;exit 0}'`
 				gptswap=`/sbin/glabel status -s|/usr/bin/awk '/gptswap/{print $3;exit 0}'`
+				if [ -z "${root}" ]; then
+					echo "can't determine rootfs"
+					sleep 30; halt
+				fi
 				#swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
 				#swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
 				#if [ "${ARCH}" = "arm" -a -e "/dev/${swap2}" ]; then
@@ -120,15 +124,22 @@ case ${PLATFORM} in
 				if [ -f /mnt/mdlocal.uzip ]; then
 					#echo "Direct loading: /mnt/mdlocal.uzip"
 					/sbin/xmdconfig -ivu ${md} /mnt/mdlocal.uzip
-				else
+				elif [ -f /mnt/mdlocal.xz ]; then
 					/usr/bin/xz -dcv /mnt/mdlocal.xz | \
 					    /bin/dd of=/dev/${md} bs=1m status=none
+				else
+					echo "can't find mdlocal"
+					sleep 30; halt
 				fi
 				/sbin/umount /mnt
 				;;
 			*-embedded)
 				root=`/sbin/glabel status -s|/usr/bin/awk '/embboot/{print $3;exit 0}'`
 				gptswap=`/sbin/glabel status -s|/usr/bin/awk '/gptswap/{print $3;exit 0}'`
+				if [ -z "${root}" ]; then
+					echo "can't determine rootfs"
+					sleep 30; halt
+				fi
 				#swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
 				#swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
 				# always create swap partition if not exists
@@ -176,9 +187,12 @@ case ${PLATFORM} in
 				if [ -f /mnt/mdlocal.uzip ]; then
 					#echo "Direct loading: /mnt/mdlocal.uzip"
 					/sbin/xmdconfig -ivu ${md} /mnt/mdlocal.uzip
-				else
+				elif [ -f /mnt/mdlocal.xz ]; then
 					/usr/bin/xz -dcv /mnt/mdlocal.xz | \
 					    /bin/dd of=/dev/${md} bs=1m status=none
+				else
+					echo "can't find mdlocal"
+					sleep 30; halt
 				fi
 				#if [ -e /mnt/boot/zfs/zpool.cache ]; then
 				#	/bin/cp -p /mnt/boot/zfs/zpool.cache /boot/zfs/
@@ -188,6 +202,10 @@ case ${PLATFORM} in
 			*-liveCD)
 				BOOT_LIVECD=1
 				root=`/sbin/glabel status -s|/usr/bin/awk '/LiveCD/{print $3;exit 0}'`
+				if [ -z "${root}" ]; then
+					echo "can't determine rootfs"
+					sleep 30; halt
+				fi
 				swap=NONE
 				#echo "NONE" > /etc/swapdevice
 				rm -f /etc/swapdevice
@@ -195,11 +213,19 @@ case ${PLATFORM} in
 				/sbin/mount -t cd9660 /dev/${root} /mnt
 				if [ ${BOOT_LOWMEM} -ne 0 ]; then
 					# no live mode, installation only
-					/usr/bin/xz -dcv /mnt/mdlocal-mini.xz | \
-					    /bin/dd of=/dev/${md} bs=1m status=none
-				else
+					if [ -f /mnt/mdlocal-mini.xz ]; then
+						/usr/bin/xz -dcv /mnt/mdlocal-mini.xz | \
+						    /bin/dd of=/dev/${md} bs=1m status=none
+					else
+						echo "can't find mdlocal-mini"
+						sleep 30; halt
+					fi
+				elif [ -f /mnt/mdlocal.xz ]; then
 					/usr/bin/xz -dcv /mnt/mdlocal.xz | \
 					    /bin/dd of=/dev/${md} bs=1m status=none
+				else
+					echo "can't find mdlocal"
+					sleep 30; halt
 				fi
 				/sbin/umount /mnt
 				;;
