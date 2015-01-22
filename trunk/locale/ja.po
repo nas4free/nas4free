@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-01-17 20:39+0000\n"
-"PO-Revision-Date: 2015-01-17 11:54+0000\n"
+"POT-Creation-Date: 2015-01-22 23:00+0000\n"
+"PO-Revision-Date: 2015-01-22 16:31+0000\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-17 20:28+0000\n"
-"X-Generator: Launchpad (build 17304)\n"
+"X-Launchpad-Export-Date: 2015-01-22 16:44+0000\n"
+"X-Generator: Launchpad (build 17306)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
 "X-Poedit-Language: Japanese\n"
@@ -272,6 +272,9 @@ msgstr "AIO 書き込みサイズ"
 
 msgid "ALL interfaces"
 msgstr "全てのインターフェース"
+
+msgid "AP mode"
+msgstr "AP モード"
 
 msgid "ARP Tables"
 msgstr "ARP テーブル"
@@ -4042,6 +4045,7 @@ msgstr "PPTP"
 msgid "PPTP clients"
 msgstr "PPTP クライアント"
 
+#, c-format
 msgid "PSK"
 msgstr "PSK"
 
@@ -5521,6 +5525,11 @@ msgid "The attribute '%s' is not a valid time value."
 msgstr "属性 '%s' は有効な時間ではありません。"
 
 #, c-format, php-format
+msgid ""
+"The attribute '%s' is required within %d or more characters to %d characters."
+msgstr "属性 '%s' は %d 文字以上、%d 文字以内である必要があります。"
+
+#, c-format, php-format
 msgid "The attribute '%s' is required."
 msgstr "属性 '%s' は必要とされています。"
 
@@ -6149,6 +6158,10 @@ msgid ""
 msgstr "この VLAN インタフェースは現在も使用されている為、削除する事が出来ませんでした。"
 
 msgid ""
+"This WLAN cannot be deleted because it is still being used as an interface."
+msgstr "この WLAN はインターフェースとして使用されているため、削除できません。"
+
+msgid ""
 "This allows you to lower the power consumption of the drive, at the expense "
 "of performance."
 msgstr "性能を犠牲にする事で、ドライブの消費電力量を下げる事が可能になります。"
@@ -6391,6 +6404,9 @@ msgstr "このプール名は既に存在しています。"
 
 msgid "This rule is triggered whenever the selected event directive occurs."
 msgstr "選択されたイベントが動作する際、このルールが実行されます。"
+
+msgid "This server uses default swap."
+msgstr "このサーバはデフォルトスワップを利用しています。"
 
 msgid "This tag already exists."
 msgstr "このタグはすでに存在しています。"
@@ -6968,6 +6984,9 @@ msgstr "WINS サーバ"
 
 msgid "WINS server IP address (e.g. from MS Active Directory server)."
 msgstr "WINS サーバのIPアドレス (例: ActiveDirectory サーバ等)"
+
+msgid "WLAN"
+msgstr "WLAN"
 
 msgid "WPA"
 msgstr "WPA"
