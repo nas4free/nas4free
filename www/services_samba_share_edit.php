@@ -85,7 +85,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_share, "uuid")
 	$pconfig['browseable'] = true;
 	$pconfig['guest'] = true;
 	$pconfig['inheritpermissions'] = true;
-	$pconfig['recyclebin'] = false;
+	$pconfig['recyclebin'] = true;
 	$pconfig['hidedotfiles'] = true;
 	$pconfig['shadowcopy'] = true;
 	$pconfig['shadowformat'] = $default_shadowformat;
