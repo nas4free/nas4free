@@ -98,6 +98,46 @@ if ($pconfig['shadowformat'] == "") {
 	$pconfig['shadowformat'] = $default_shadowformat;
 }
 
+// get mount info specified path
+function get_mount_info($path){
+	if (file_exists($path) === FALSE)
+		return FALSE;
+
+	// get all mount points
+	$a_mounts = array();
+	mwexec2('/sbin/mount -p', $rawdata);
+	foreach($rawdata as $line) {
+		list($dev,$dir,$fs,$opt,$dump,$pass) = preg_split('/\s+/', $line);
+		$a_mounts[] = array(
+			'dev' => $dev,
+			'dir' => $dir,
+			'fs' => $fs,
+			'opt' => $opt,
+			'dump' => $dump,
+			'pass' => $pass,
+		);
+	}
+	if (empty($a_mounts))
+		return FALSE;
+
+	// check path with mount list
+	do {
+		foreach ($a_mounts as $mountv) {
+			if (strcmp($mountv['dir'], $path) == 0) {
+				// found mount point
+				return $mountv;
+			}
+		}
+		// path don't have parent?
+		if (strpos($path, '/') === FALSE)
+			break;
+		// retry with parent
+		$pathinfo = pathinfo($path);
+		$path = $pathinfo['dirname'];
+	} while (1);
+	return FALSE;
+}
+
 if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
@@ -123,6 +163,16 @@ if ($_POST) {
 		}
 	}
 
+	// Enable ZFS ACL on ZFS mount point
+	$zfsacl = isset($_POST['zfsacl']) ? true : false;
+	$mntinfo = get_mount_info($_POST['path']);
+	if ($mntinfo !== FALSE && $mntinfo['fs'] === "zfs") {
+		if ($cnid === FALSE) {
+			// first creation
+			$zfsacl = true;
+		}
+	}
+
 	if (empty($input_errors)) {
 		$share = array();
 		$share['uuid'] = $_POST['uuid'];
@@ -137,7 +187,8 @@ if ($_POST) {
 		$share['hidedotfiles'] = isset($_POST['hidedotfiles']) ? true : false;
 		$share['shadowcopy'] = isset($_POST['shadowcopy']) ? true : false;
 		$share['shadowformat'] = $_POST['shadowformat'];
-		$share['zfsacl'] = isset($_POST['zfsacl']) ? true : false;
+		//$share['zfsacl'] = isset($_POST['zfsacl']) ? true : false;
+		$share['zfsacl'] = $zfsacl;
 		$share['hostsallow'] = $_POST['hostsallow'];
 		$share['hostsdeny'] = $_POST['hostsdeny'];
 
