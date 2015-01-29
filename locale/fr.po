@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-01-17 20:39+0000\n"
-"PO-Revision-Date: 2015-01-07 21:49+0000\n"
+"POT-Creation-Date: 2015-01-22 23:00+0000\n"
+"PO-Revision-Date: 2015-01-23 22:59+0000\n"
 "Last-Translator: velivole18 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-17 20:28+0000\n"
-"X-Generator: Launchpad (build 17304)\n"
+"X-Launchpad-Export-Date: 2015-01-29 14:28+0000\n"
+"X-Generator: Launchpad (build 17306)\n"
 "X-Poedit-Country: FRANCE\n"
 "Language: \n"
 "X-Poedit-Language: French\n"
@@ -298,6 +298,9 @@ msgstr "Taille en écriture AIO"
 
 msgid "ALL interfaces"
 msgstr "Toutes les interfaces"
+
+msgid "AP mode"
+msgstr "mode AP"
 
 msgid "ARP Tables"
 msgstr "Tables ARP"
@@ -852,6 +855,9 @@ msgid ""
 "Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or "
 "resize boot partition of %s.\n"
 msgstr ""
+"La partition de boot est trop petite. Vous devez refaire une installation à "
+"partir du LiveCD ou du LiveUSB, ou re-dimensionner la partition de boot de "
+"%s.\n"
 
 msgid "Bridge"
 msgstr "Jonction"
@@ -2147,7 +2153,7 @@ msgid "Enable TLS/SSL connections."
 msgstr "Autorise les connexions TLS/SSL."
 
 msgid "Enable Time Machine support"
-msgstr ""
+msgstr "Support du temps machine autorisé"
 
 msgid "Enable ZFS ACL"
 msgstr "Activer ZFS ACL"
@@ -4287,6 +4293,7 @@ msgstr "PPTP"
 msgid "PPTP clients"
 msgstr "Clients PPTP"
 
+#, c-format
 msgid "PSK"
 msgstr "PSK"
 
@@ -5857,6 +5864,12 @@ msgid "The attribute '%s' is not a valid time value."
 msgstr "L'attribut '%s' n'est pas une valeur de temps valide."
 
 #, c-format, php-format
+msgid ""
+"The attribute '%s' is required within %d or more characters to %d characters."
+msgstr ""
+"L'attribut '%s' est utile dans '%d' ou plus de caractères vers %d caractères."
+
+#, c-format, php-format
 msgid "The attribute '%s' is required."
 msgstr "L'attribut '%s' est requis."
 
@@ -6590,6 +6603,12 @@ msgstr ""
 "Ce VLAN ne peut être supprimé car il est encore utilisé comme une interface."
 
 msgid ""
+"This WLAN cannot be deleted because it is still being used as an interface."
+msgstr ""
+"Ce WLAN ne peut pas être supprimé car il a été encore utilisé comme une "
+"interface."
+
+msgid ""
 "This allows you to lower the power consumption of the drive, at the expense "
 "of performance."
 msgstr ""
@@ -6894,6 +6913,9 @@ msgid "This rule is triggered whenever the selected event directive occurs."
 msgstr ""
 "Cette règle est déclenchée à chaque occurrence de l'événement sélectionné."
 
+msgid "This server uses default swap."
+msgstr "Ce serveur utilise le swap par défaut."
+
 msgid "This tag already exists."
 msgstr "Le tag existe déjà."
 
@@ -6952,7 +6974,7 @@ msgid "Time"
 msgstr "Planification"
 
 msgid "Time Machine"
-msgstr ""
+msgstr "temps machine"
 
 msgid "Time before the load will be rebooted"
 msgstr "Temps avant que la charge ne soit réinitialisée"
@@ -7483,7 +7505,7 @@ msgid "Volume Name"
 msgstr "Nom de volume"
 
 msgid "Volume Size Limit"
-msgstr ""
+msgstr "Limite de la taille du volume"
 
 msgid "Volume label"
 msgstr "Étiquette de volume"
@@ -7506,6 +7528,9 @@ msgstr "Serveur WINS"
 msgid "WINS server IP address (e.g. from MS Active Directory server)."
 msgstr ""
 "Adresse IP du serveur WINS (p.ex. depuis le serveur MS Active Directory)."
+
+msgid "WLAN"
+msgstr "WLAN"
 
 msgid "WPA"
 msgstr "WPA"

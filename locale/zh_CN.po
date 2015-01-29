@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-01-17 20:39+0000\n"
-"PO-Revision-Date: 2015-01-10 00:39+0000\n"
+"POT-Creation-Date: 2015-01-22 23:00+0000\n"
+"PO-Revision-Date: 2015-01-18 06:07+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-17 20:29+0000\n"
-"X-Generator: Launchpad (build 17304)\n"
+"X-Launchpad-Export-Date: 2015-01-29 14:29+0000\n"
+"X-Generator: Launchpad (build 17306)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -258,6 +258,9 @@ msgstr "AIO写入大小"
 
 msgid "ALL interfaces"
 msgstr "所有介面"
+
+msgid "AP mode"
+msgstr ""
 
 msgid "ARP Tables"
 msgstr "ARP 表"
@@ -783,7 +786,7 @@ msgstr "数据块大小"
 msgid ""
 "Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or "
 "resize boot partition of %s.\n"
-msgstr ""
+msgstr "启动分区是太小了。您需要从LiveCD 或 LiveUSB 重新安装或调整的 %s 启动分区。\n"
 
 msgid "Bridge"
 msgstr "Bridge"
@@ -2013,7 +2016,7 @@ msgid "Enable TLS/SSL connections."
 msgstr "允许使用 TLS/SSL 连接。"
 
 msgid "Enable Time Machine support"
-msgstr ""
+msgstr "启用Time Machine的支持"
 
 msgid "Enable ZFS ACL"
 msgstr "启用ZFS存取控制清单（ACL）"
@@ -3989,6 +3992,7 @@ msgstr "PPTP"
 msgid "PPTP clients"
 msgstr "PPTP 客户端"
 
+#, c-format
 msgid "PSK"
 msgstr "PSK"
 
@@ -5454,6 +5458,11 @@ msgid "The attribute '%s' is not a valid time value."
 msgstr "'%s' 是无效的时间值。"
 
 #, c-format, php-format
+msgid ""
+"The attribute '%s' is required within %d or more characters to %d characters."
+msgstr ""
+
+#, c-format, php-format
 msgid "The attribute '%s' is required."
 msgstr "'%s' 是必填栏位。"
 
@@ -6063,6 +6072,10 @@ msgid ""
 msgstr "此VLAN 不能被删除，因为它仍然被用来做为一个介面。"
 
 msgid ""
+"This WLAN cannot be deleted because it is still being used as an interface."
+msgstr ""
+
+msgid ""
 "This allows you to lower the power consumption of the drive, at the expense "
 "of performance."
 msgstr "这使您能够以性能为代价，降低驱动器的耗电量。"
@@ -6293,6 +6306,9 @@ msgstr "此池（pool）名称已经存在"
 msgid "This rule is triggered whenever the selected event directive occurs."
 msgstr "此规则在选定的事件发生时会被触发。"
 
+msgid "This server uses default swap."
+msgstr ""
+
 msgid "This tag already exists."
 msgstr "此标签已经存在。"
 
@@ -6343,7 +6359,7 @@ msgid "Time"
 msgstr "时间"
 
 msgid "Time Machine"
-msgstr ""
+msgstr "Time Machine"
 
 msgid "Time before the load will be rebooted"
 msgstr "负载将重新启动之前的时间"
@@ -6838,7 +6854,7 @@ msgid "Volume Name"
 msgstr "卷名"
 
 msgid "Volume Size Limit"
-msgstr ""
+msgstr "卷大小限制"
 
 msgid "Volume label"
 msgstr "磁盘卷标签（Volume label）"
@@ -6860,6 +6876,9 @@ msgstr "WINS 伺服器"
 
 msgid "WINS server IP address (e.g. from MS Active Directory server)."
 msgstr "WINS 伺服器位置 (AD Server)"
+
+msgid "WLAN"
+msgstr ""
 
 msgid "WPA"
 msgstr "WPA"
