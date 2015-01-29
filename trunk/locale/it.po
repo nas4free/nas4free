@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-01-17 20:39+0000\n"
-"PO-Revision-Date: 2015-01-10 10:09+0000\n"
-"Last-Translator: Simone Arinci <arinci@blu.it>\n"
+"POT-Creation-Date: 2015-01-22 23:00+0000\n"
+"PO-Revision-Date: 2015-01-27 12:12+0000\n"
+"Last-Translator: Andrea Uguzzoni <andrea.uguzzoni@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-17 20:28+0000\n"
-"X-Generator: Launchpad (build 17304)\n"
+"X-Launchpad-Export-Date: 2015-01-29 14:29+0000\n"
+"X-Generator: Launchpad (build 17306)\n"
 "X-Poedit-Country: ITALY\n"
 "Language: \n"
 "X-Poedit-Language: Italian\n"
@@ -292,6 +292,9 @@ msgstr "Dimensione scrittura AIO"
 
 msgid "ALL interfaces"
 msgstr "TUTTE le interfacce"
+
+msgid "AP mode"
+msgstr "modalità AP"
 
 msgid "ARP Tables"
 msgstr "Tabelle ARP"
@@ -847,6 +850,8 @@ msgid ""
 "Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or "
 "resize boot partition of %s.\n"
 msgstr ""
+"La partizione d'avvio è troppo piccola. Si rende necessario reinstallare da "
+"LiveCD o LiveUSB oppure ridimensionare la partizione di %s\n"
 
 msgid "Bridge"
 msgstr "Bridge"
@@ -2141,7 +2146,7 @@ msgid "Enable TLS/SSL connections."
 msgstr "Abilita le connessioni TLS/SSL"
 
 msgid "Enable Time Machine support"
-msgstr ""
+msgstr "Abilita il supporto di Time Machine"
 
 msgid "Enable ZFS ACL"
 msgstr "Abilita ZFS ACL"
@@ -4263,6 +4268,7 @@ msgstr "PPTP"
 msgid "PPTP clients"
 msgstr "Client PPTP"
 
+#, c-format
 msgid "PSK"
 msgstr "PSK"
 
@@ -5829,6 +5835,12 @@ msgid "The attribute '%s' is not a valid time value."
 msgstr "L'attributo '%s' non è un valore di tempo valido."
 
 #, c-format, php-format
+msgid ""
+"The attribute '%s' is required within %d or more characters to %d characters."
+msgstr ""
+"L'attributo '%s' dev'essere di lunghezza compresa tra %d e %d caratteri."
+
+#, c-format, php-format
 msgid "The attribute '%s' is required."
 msgstr "L'attributo '%s' è richiesto."
 
@@ -6551,6 +6563,10 @@ msgstr ""
 "Questa VLAN non può essere cancellata perchè è utilizzata come interfaccia."
 
 msgid ""
+"This WLAN cannot be deleted because it is still being used as an interface."
+msgstr "Questa WLAN non può essere cancellata poichè ancora in uso."
+
+msgid ""
 "This allows you to lower the power consumption of the drive, at the expense "
 "of performance."
 msgstr ""
@@ -6860,6 +6876,9 @@ msgid "This rule is triggered whenever the selected event directive occurs."
 msgstr ""
 "Questa regola è attivata ad ogni occorrenza degli eventi selezionati."
 
+msgid "This server uses default swap."
+msgstr "Questo server usa la swap di default."
+
 msgid "This tag already exists."
 msgstr "Questo tag esiste già."
 
@@ -6916,7 +6935,7 @@ msgid "Time"
 msgstr "Ora"
 
 msgid "Time Machine"
-msgstr ""
+msgstr "Time Machine"
 
 msgid "Time before the load will be rebooted"
 msgstr "Tempo prima del riavvio del carico."
@@ -7452,7 +7471,7 @@ msgid "Volume Name"
 msgstr "Nome volume"
 
 msgid "Volume Size Limit"
-msgstr ""
+msgstr "Dimensione massima del Volume"
 
 msgid "Volume label"
 msgstr "Etichetta di volume"
@@ -7475,6 +7494,9 @@ msgstr "Server WINS"
 msgid "WINS server IP address (e.g. from MS Active Directory server)."
 msgstr ""
 "Indirizzo IP del server WINS (ad esempio server MS Active Directory)."
+
+msgid "WLAN"
+msgstr "WLAN"
 
 msgid "WPA"
 msgstr "WPA"

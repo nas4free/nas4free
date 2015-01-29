@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-01-17 20:39+0000\n"
-"PO-Revision-Date: 2015-01-17 13:45+0000\n"
+"POT-Creation-Date: 2015-01-22 23:00+0000\n"
+"PO-Revision-Date: 2015-01-24 16:15+0000\n"
 "Last-Translator: sea1150 <sea1.150@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-17 20:28+0000\n"
-"X-Generator: Launchpad (build 17304)\n"
+"X-Launchpad-Export-Date: 2015-01-29 14:29+0000\n"
+"X-Generator: Launchpad (build 17306)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
 "X-Poedit-Language: Russian\n"
@@ -20,8 +20,8 @@ msgid ""
 "When a client initially connects to the server the ident protocol is used to "
 "attempt to identify the remote username."
 msgstr ""
-"Когда клиент первоначально подключается к серверу, идентификационный "
-"протокол используется для попытки идентификации удаленного пользователя."
+"Идентификационный протокол используется для попытки идентификации удаленного "
+"пользователя когда клиент первоначально подключается к серверу."
 
 msgid " interfaces:"
 msgstr " интерфейсы:"
@@ -299,6 +299,9 @@ msgstr "AIO при записи"
 
 msgid "ALL interfaces"
 msgstr "ВСЕ интерфейсы"
+
+msgid "AP mode"
+msgstr "Режим точки доступа (AP mode)"
 
 msgid "ARP Tables"
 msgstr "Таблицы ARP"
@@ -4270,6 +4273,7 @@ msgstr "PPTP"
 msgid "PPTP clients"
 msgstr "Клиенты PPTP"
 
+#, c-format
 msgid "PSK"
 msgstr "PSK"
 
@@ -5819,6 +5823,11 @@ msgid "The attribute '%s' is not a valid time value."
 msgstr "Атрибут '%s' не является допустимым значением времени."
 
 #, c-format, php-format
+msgid ""
+"The attribute '%s' is required within %d or more characters to %d characters."
+msgstr "Атрибут '%s' должен состоять из %d или более %d символов."
+
+#, c-format, php-format
 msgid "The attribute '%s' is required."
 msgstr "Атрибут '%s' обязателен."
 
@@ -6531,6 +6540,12 @@ msgid ""
 msgstr "VLAN не может быть удален, так как все еще используется интерфейсом."
 
 msgid ""
+"This WLAN cannot be deleted because it is still being used as an interface."
+msgstr ""
+"Это WLAN не может быть удален, потому что он все еще используется в качестве "
+"интерфейса."
+
+msgid ""
 "This allows you to lower the power consumption of the drive, at the expense "
 "of performance."
 msgstr ""
@@ -6831,6 +6846,9 @@ msgstr "Задано существующее имя пула."
 
 msgid "This rule is triggered whenever the selected event directive occurs."
 msgstr "Правило, которое срабатывает при наступлении выбранного события."
+
+msgid "This server uses default swap."
+msgstr "Этот сервер использует устройство подкачки по умолчанию."
 
 msgid "This tag already exists."
 msgstr "Такая метка уже существует."
@@ -7447,6 +7465,9 @@ msgstr "Сервер WINS"
 msgid "WINS server IP address (e.g. from MS Active Directory server)."
 msgstr ""
 "IP-адрес сервера WINS (например, с сервера Microsoft Active Directory)."
+
+msgid "WLAN"
+msgstr "WLAN"
 
 msgid "WPA"
 msgstr "WPA"
