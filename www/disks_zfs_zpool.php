@@ -146,7 +146,7 @@ $a_poolstatus = zfs_get_pool_list();
 					</tr>
 					<?php foreach ($a_pool as $poolk => $poolv):?>
 					<?php
-					$notificationmode = updatenotify_get_mode("zfszpool", $poolv['uuid']);
+					$notificationmode = (isset($poolv['uuid'])) ? updatenotify_get_mode("zfszpool", $poolv['uuid']) : UPDATENOTIFY_MODE_UNKNOWN ;
 					if (UPDATENOTIFY_MODE_NEW == $notificationmode) {
 						$altroot = $cap = $avail = $used = $size = $dedup = $health = gettext("Initializing");
 					} else if (UPDATENOTIFY_MODE_MODIFIED == $notificationmode) {
@@ -165,15 +165,15 @@ $a_poolstatus = zfs_get_pool_list();
 					}
 					?>
 					<tr>
-						<td class="listlr"><?=htmlspecialchars($poolv['name']);?>&nbsp;</td>
+						<td class="listlr"><?= (isset($poolv['name'])) ? htmlspecialchars($poolv['name']) : '' ;?>&nbsp;</td>
 						<td class="listr"><?=$size;?>&nbsp;</td>
 						<td class="listr"><?=$used;?>&nbsp;</td>
 						<td class="listr"><?=$avail;?>&nbsp;</td>
 						<td class="listr"><?=$cap;?>&nbsp;</td>
 						<td class="listr"><?=$dedup;?>&nbsp;</td>
 						<td class="listbg"><a href="disks_zfs_zpool_info.php?pool=<?=$poolv['name']?>"><?=$health;?></a>&nbsp;</td>
-						<td class="listr"><?=$altroot;?>&nbsp;</td>	
-						<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>	
+						<td class="listr"><?=$altroot;?>&nbsp;</td>
+						<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
 						<td valign="middle" nowrap="nowrap" class="list">
 							<a href="disks_zfs_zpool_edit.php?uuid=<?=$poolv['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit pool");?>" border="0" alt="<?=gettext("Edit pool");?>" /></a>&nbsp;
 							<a href="disks_zfs_zpool.php?act=del&amp;uuid=<?=$poolv['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this pool?");?>')"><img src="x.gif" title="<?=gettext("Delete pool");?>" border="0" alt="<?=gettext("Delete pool");?>" /></a>
