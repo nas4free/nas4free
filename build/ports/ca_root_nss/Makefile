@@ -20,6 +20,6 @@ do-install:
 # NAS4Free install
 	@echo "install for ${NAS4FREE_ROOTFS}"
 	@${MKDIR} -p ${NAS4FREE_ROOTFS}/usr/local/etc/ssl
-	@${INSTALL_DATA} -v ${DEP_STAGEDIR}${PREFIX}/etc/ssl/cert.pem ${NAS4FREE_ROOTFS}/usr/local/etc/ssl
+	@${INSTALL_DATA} -v ${DEP_STAGEDIR}${PREFIX}/etc/ssl/cert.pem.sample ${NAS4FREE_ROOTFS}/usr/local/etc/ssl/cert.pem
 
 .include <bsd.port.mk>
