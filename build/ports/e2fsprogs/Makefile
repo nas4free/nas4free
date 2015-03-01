@@ -1,6 +1,6 @@
 PORTNAME=		e2fsprogs
 PORTVERSION=	1.42.12
-PORTREVISION?= 1
+PORTREVISION?= 2
 CATEGORIES=		sysutils
 COMMENT=		Utilities & library to manipulate ext2/3/4 filesystems
 
@@ -9,6 +9,7 @@ MAINTAINER=		zoon01@nas4free.org
 MASTER_SITES=		KERNEL_ORG/linux/kernel/people/tytso/${PORTNAME}/v${PORTVERSION}
 
 USES=		gmake pkgconfig tar:xz
+CPE_VENDOR=     e2fsprogs_project
 USE_CSTD=	  gnu99
 USE_LDCONFIG=	  yes
 GNU_CONFIGURE=  yes
