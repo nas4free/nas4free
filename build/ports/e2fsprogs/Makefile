@@ -8,7 +8,7 @@ MAINTAINER=		zoon01@nas4free.org
 
 MASTER_SITES=		KERNEL_ORG/linux/kernel/people/tytso/${PORTNAME}/v${PORTVERSION}
 
-USES=		gmake pkgconfig tar:xz
+USES=		cpe gmake pkgconfig tar:xz
 CPE_VENDOR=     e2fsprogs_project
 USE_CSTD=	  gnu99
 USE_LDCONFIG=	  yes
@@ -108,9 +108,9 @@ do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/misc/mke2fs ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/misc/dumpe2fs ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/misc/tune2fs ${NAS4FREE_ROOTFS}/usr/local/sbin
-	# @${INSTALL_PROGRAM} -v ${WRKSRC}/fsck_ext2fs ${NAS4FREE_ROOTFS}/usr/local/sbin
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/fsck_ext2fs ${NAS4FREE_ROOTFS}/usr/local/sbin
 
 	@${LN} -s -f -v /usr/local/sbin/e2fsck ${NAS4FREE_ROOTFS}/sbin/e2fsck
-	# @${LN} -s -f -v /usr/local/sbin/fsck_ext2fs ${NAS4FREE_ROOTFS}/sbin/fsck_ext2fs
+	@${LN} -s -f -v /usr/local/sbin/fsck_ext2fs ${NAS4FREE_ROOTFS}/sbin/fsck_ext2fs
 
 .include <bsd.port.post.mk>
