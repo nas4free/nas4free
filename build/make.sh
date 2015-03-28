@@ -34,7 +34,14 @@ elif [ "i386" = ${NAS4FREE_ARCH} ]; then
     NAS4FREE_XARCH="x86"
 elif [ "armv6" = ${NAS4FREE_ARCH} ]; then
     NAS4FREE_ARCH="arm"
-    NAS4FREE_XARCH="rpi"
+    PLATFORM=$(sysctl -n hw.platform)
+    if [ "bcm2835" = ${PLATFORM} ]; then
+	NAS4FREE_XARCH="rpi"
+    elif [ "meson8b" = ${PLATFORM} ]; then
+	NAS4FREE_XARCH="oc1"
+    else
+	NAS4FREE_XARCH=$NAS4FREE_ARCH
+    fi
     NAS4FREE_KERNCONF="$(echo ${NAS4FREE_PRODUCTNAME} | tr '[:lower:]' '[:upper:]')-${NAS4FREE_XARCH}"
 else
     NAS4FREE_XARCH=$NAS4FREE_ARCH
