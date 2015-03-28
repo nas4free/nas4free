@@ -28,6 +28,9 @@ options         MAXSSIZ=(16UL*1024*1024)
 options         DFLDSIZ=(128UL*1024*1024)
 options         DFLSSIZ=(4UL*1024*1024)
 
+options 	VM_KMEM_SIZE=(350*1024*1024)
+options 	VM_KMEM_SIZE_MAX=(450*1024*1024)
+
 options 	HZ=100
 options 	SCHED_4BSD		# 4BSD scheduler
 options 	PREEMPTION		# Enable kernel thread preemption
@@ -129,6 +132,7 @@ device		dwcotg			# DWC OTG controller
 # USB storage support
 device		scbus
 device		da
+device		pass
 device		umass
 
 # USB ethernet support
@@ -160,7 +164,7 @@ device		ch			# SCSI media changers
 #device		da			# Direct Access (disks)
 device		sa			# Sequential Access (tape etc)
 device		cd			# CD
-device		pass			# Passthrough device (direct ATA/SCSI access)
+#device		pass			# Passthrough device (direct ATA/SCSI access)
 device		ses			# Enclosure Services (SES and SAF-TE)
 #device		ctl			# CAM Target Layer
 
