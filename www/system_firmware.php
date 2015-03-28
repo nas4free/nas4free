@@ -52,7 +52,7 @@ $cfdevice = trim(file_get_contents("{$g['etc_path']}/cfdevice"));
 $diskinfo = disks_get_diskinfo($cfdevice);
 unset($errormsg);
 $part1ok = true;
-if ($g['arch'] == "rpi")
+if ($g['arch'] == "rpi" || $g['arch'] == "oc1")
 	$part1min = 320; /* rpi use 320MB */
 if ($diskinfo['mediasize_mbytes'] < $part1min) {
 	$part1ok = false;

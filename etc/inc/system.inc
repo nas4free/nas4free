@@ -226,6 +226,16 @@ function get_smbios_info() {
 		$serial = preg_replace('/^0+/', '', $serial);
 		if (!empty($serial))
 			$smbios['planar']['product'] .= " (S/N: $serial)";
+	} else if (preg_match('/^oc1-/', $platform)) {
+		// fake data on ODROID-C1
+		$smbios['bios']['reldate'] = "01/01/2015";
+		$smbios['bios']['vendor'] = "ODROID-C1";
+		$smbios['bios']['version'] = "1.0";
+		$smbios['planar']['maker'] = "Hardkernel";
+		$smbios['planar']['product'] = "ODROID-C1";
+		$serial = chop(`/sbin/sysctl -n hw.board.serial`);
+		if (!empty($serial))
+			$smbios['planar']['product'] .= " (S/N: $serial)";
 	}
 	return $smbios;
 }
@@ -312,6 +322,8 @@ function system_get_cpu_info() {
 		$platform = chop(`/sbin/sysctl -n hw.platform`);
 		if ($platform == "bcm2835")
 			$cpuinfo['model'] = "Broadcom BCM2835";
+		else if ($platform == "meson8b")
+			$cpuinfo['model'] = "Amlogic S805";
 		else
 			$cpuinfo['model'] = $platform;
 	}

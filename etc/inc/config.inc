@@ -146,7 +146,7 @@ if (is_booting()) {
 					}
 					// Unmount device
 					mwexec("/sbin/umount -f {$g['cf_path']}");
-				} else if ($g['arch'] == "rpi" && (0 == mwexec("/sbin/mount -r /dev/{$disk}s3a {$g['cf_path']}"))) { // Search on slice 3
+				} else if (($g['arch'] == "rpi" || $g['arch'] == "oc1") && (0 == mwexec("/sbin/mount -r /dev/{$disk}s3a {$g['cf_path']}"))) { // Search on slice 3
 					if (file_exists("{$g['cf_conf_path']}/config.xml")) {
 						$cfgdevice = $disk;
 						$cfgpartition = "{$cfgdevice}s3a";
