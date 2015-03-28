@@ -201,7 +201,7 @@ function sysctl_tune($mode) {
 	$a_sysctlvar = &$config['system']['sysctl']['param'];
 
 	$a_mib = array(
-		"net.inet.tcp.delayed_ack" => 0,
+		"net.inet.tcp.delayed_ack" => 1,
 		"net.inet.tcp.rfc1323" => 1,
 		"net.inet.tcp.sendspace" => 131072,
 		"net.inet.tcp.recvspace" => 131072,

@@ -21,6 +21,7 @@ Changes:
 - Changed samba reload when changing the shares. (it takes few secs.)
 - Changed rootfs layout. (2GB USB/CF is required. Full is 4GB or more.)
 - Changed image files to use XZ.
+- Changed net.inet.tcp.delayed_ack to 1.
 - Drop SSLv3 support. (HTTPS must use TLS)
 - Drop LiveCD mode support with less than 2GB memory. (install/upgrade only)
   Supported minimum spec except LiveCD is 512MB memory + 512MB swap device or partition.
