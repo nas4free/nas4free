@@ -55,6 +55,7 @@ require_once("util.inc");
 function zfs_get_pool_list() {
 	$result = array();
 
+	$osver = @exec("/usr/bin/uname -U");
 	mwexec2("zpool list -H", $rawdata);
 	foreach ($rawdata as $line) {
 		$aline = preg_split("/\s+/", $line);
@@ -68,11 +69,20 @@ function zfs_get_pool_list() {
 		$result[$poolname]['size'] = $aline[1];
 		$result[$poolname]['alloc'] = $aline[2];
 		$result[$poolname]['free'] = $aline[3];
-		$result[$poolname]['cap'] = $aline[4];
-		$result[$poolname]['dedup'] = $aline[5];		
-		$result[$poolname]['health'] = $aline[6];
-		$result[$poolname]['altroot'] = $aline[7];
-		//$result[$poolname]['atime'] = $aline[8];
+		if ($osver >= 1100000) {
+                        $result[$poolname]['expandsz'] = $aline[4];
+                        $result[$poolname]['frag'] = $aline[5];
+                        $result[$poolname]['cap'] = $aline[6];
+                        $result[$poolname]['dedup'] = $aline[7];
+                        $result[$poolname]['health'] = $aline[8];
+                        $result[$poolname]['altroot'] = $aline[9];
+		} else {
+			$result[$poolname]['cap'] = $aline[4];
+			$result[$poolname]['dedup'] = $aline[5];		
+			$result[$poolname]['health'] = $aline[6];
+			$result[$poolname]['altroot'] = $aline[7];
+			//$result[$poolname]['atime'] = $aline[8];
+		}
 
 		// Get correct used/available disk space.
 		// See http://bugs.opensolaris.org/bugdatabase/view_bug.do?bug_id=6308817
