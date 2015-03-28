@@ -115,6 +115,21 @@ function disks_mount($mount)
 		write_log("Error: Failed to create directory {$mountname}");
 	}
 
+	// msdosfs does not support some operation
+	if ($mount['fstype'] == 'msdosfs') {
+		$mode = "777";
+		$owner = "root";
+		$group = "wheel";
+		if (is_array($mount['accessrestrictions'])) {
+			$mode = $mount['accessrestrictions']['mode'];
+			$owner = $mount['accessrestrictions']['owner'];
+			$group = $mount['accessrestrictions']['group'][0];
+		}
+		if (!@chmod($mountname, octdec($mode)) || !@chown($mountname, $owner) || !@chgrp($mountname, $group)) {
+			write_log("Error: Failed to set access restrictions on directory '{$mountname}'");
+		}
+	}
+
 	/* Mount the filesystem */
 	/* In booting mode, skip encrypted disk (need to enter the passphrase on the webgui) */
 	if (is_booting()) {
@@ -197,11 +212,31 @@ function disks_mount($mount)
 			// Load the kernel FUSE module
 			mwexec("/sbin/kldload /boot/kernel/fuse.ko");
 			$readonly = (isset($mount['readonly'])) ? "-o ro" : "";
+			$mode = "777";
+			$owner = "root";
+			$group = "wheel";
+			if (is_array($mount['accessrestrictions'])) {
+				$mode = $mount['accessrestrictions']['mode'];
+				$owner = $mount['accessrestrictions']['owner'];
+				$group = $mount['accessrestrictions']['group'][0];
+			}
+			$pw = posix_getpwnam($owner);
+			$gr = posix_getgrnam($group);
+			if ($pw == FALSE || $gr == FALSE) {
+				@rmdir($mountname);
+				write_log("Error: Failed to get uid/gid");
+				$result = 1;
+				break;
+			}
+			$uid = "-o uid={$pw['uid']}";
+			$gid = "-o gid={$gr['gid']}";
+			$mask = decoct(0777 ^ octdec($mode));
+			$umask = "-o umask={$mask}";
 			$osver = @exec("/usr/bin/uname -U");
 			if ($osver >= 1100000) {
-				$result = mwexec("/sbin/mount_ntfs {$readonly} {$devicespecialfile} '{$mountname}'", true); // default options: silent,allow_other
+				$result = mwexec("/sbin/mount_ntfs {$readonly} {$uid} {$gid} {$umask} {$devicespecialfile} '{$mountname}'", true); // default options: silent,allow_other
 			} else {
-				$result = mwexec("/sbin/mount -t ntfs {$readonly} {$devicespecialfile} '{$mountname}'", true); // default options: silent,allow_other
+				$result = mwexec("/sbin/mount -t ntfs {$readonly} {$uid} {$gid} {$umask} {$devicespecialfile} '{$mountname}'", true); // default options: silent,allow_other
 			}
 			if (0 == $result) {
 				write_log("Disk {$devicespecialfile} mounted using NTFS on '{$mountname}'");
