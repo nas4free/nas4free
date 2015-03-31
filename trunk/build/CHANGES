@@ -23,6 +23,7 @@ Changes:
 - Changed image files to use XZ.
 - Changed net.inet.tcp.delayed_ack to 1.
 - Changed boot with advskew=240 on master node. ("Switch VIP to MASTER" button will change the value)
+- Changed default Map to guest in CIFS/SMB is enabled.
 - Drop SSLv3 support. (HTTPS must use TLS)
 - Drop LiveCD mode support with less than 2GB memory. (install/upgrade only)
   Supported minimum spec except LiveCD is 512MB memory + 512MB swap device or partition.
