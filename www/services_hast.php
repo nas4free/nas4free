@@ -96,7 +96,11 @@ if ($_POST) {
 	if (isset($_POST['switch_master']) && $_POST['switch_master']) {
 		// up and set master all carp
 		foreach ($a_carp as $carp) {
-			system("/sbin/ifconfig {$carp['if']} up state master");
+			if ($carp['advskew'] <= 1) {
+				system("/sbin/ifconfig {$carp['if']} up state master advskew {$carp['advskew']}");
+			} else {
+				system("/sbin/ifconfig {$carp['if']} up state master");
+			}
 		}
 		// waits for the secondary disk to disappear
 		$retry = 60;

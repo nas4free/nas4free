@@ -317,8 +317,12 @@ setifconfig()
 			-n \
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc | \
-		while read _carp _carp_args; do
-			_carp_args="up $_carp_args"
+		while read _carp _carp_t1 _carp_t2 _carp_t3 _carp_advskew _carp_args; do
+			if [ -n "${_carp_advskew}" -a ${_carp_advskew} -le 1 ]; then
+				# boot master node with 240(backup)
+				_carp_advskew=240
+			fi
+			_carp_args="up $_carp_t1 $_carp_t2 $_carp_t3 $_carp_advskew $_carp_args"
 			_carp_linkup=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${_carp}']" \
 				-v "linkup" \
 				${configxml_file} | /usr/local/bin/xml unesc`
