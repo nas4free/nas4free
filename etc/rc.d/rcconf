@@ -491,6 +491,10 @@ setoptions()
 		_value=""
 	fi
 	eval /usr/local/sbin/rconf attribute set saver "${_value}";
+
+	# Disable ipfw (enabled by /etc/rc.d/ipfw)
+	sysctl -q net.inet.ip.fw.enable=0 > /dev/null
+	sysctl -q net.inet6.ip6.fw.enable=0 > /dev/null
 }
 
 # Serial console
