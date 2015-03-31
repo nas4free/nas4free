@@ -405,6 +405,11 @@ updateservices()
 
     	_platform=`cat /etc/platform`
 
+	# Update boot params
+	if [ -z "${BOOT_LIVECD}" ]; then BOOT_LIVECD=0; fi
+	if [ -f /etc/boot_lowmem ]; then BOOT_LOWMEM=`cat /etc/boot_lowmem`; fi
+	if [ -z "${BOOT_LOWMEM}" ]; then BOOT_LOWMEM=0; fi
+
 	# Update rcvar's. Use settings from config.xml
 	for _rcscript in /etc/rc.d/*; do
 		_rcscriptname=${_rcscript#/etc/rc.d/}
