@@ -465,6 +465,10 @@ if (isset($_POST['import_config']))
 		$config['geli'] = $cfg['geli'];
 		updatenotify_set('zfs_import_config', UPDATENOTIFY_MODE_UNKNOWN, true);
 		write_config();
+		// remove existing pool cache
+		conf_mount_rw();
+		unlink_if_exists("{$g['cf_path']}/boot/zfs/zpool.cache");
+		conf_mount_ro();
 		header('Location: disks_zfs_config_current.php');
 		exit();
 	}

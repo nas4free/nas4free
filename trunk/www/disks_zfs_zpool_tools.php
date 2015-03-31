@@ -720,6 +720,13 @@ function pool_change() {
 		$spare_device = !empty($pconfig['device_spare']) ? $pconfig['device_spare'] : null;
 		$vdev_device = !empty($pconfig['device_vdev']) ? $pconfig['device_vdev'] : null;
 
+		// remove existing pool cache
+		if ($action != 'clear' && $action != 'history' && $action != 'scrub') {
+			conf_mount_rw();
+			unlink_if_exists("{$g['cf_path']}/boot/zfs/zpool.cache");
+			conf_mount_ro();
+		}
+
 		if (is_array($device)) {
 			$a = array();
 			foreach ($device as $dev) {
