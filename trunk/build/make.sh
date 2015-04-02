@@ -1194,6 +1194,142 @@ create_full() {
 	return 0
 }
 
+custom_rpi() {
+	# RPI settings
+	#echo "vm.pmap.sp_enabled=0" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "hw.bcm2835.sdhci.hs=1" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "hw.bcm2835.cpufreq.verbose=1" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "hw.bcm2835.cpufreq.lowest_freq=400" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "vfs.zfs.arc_max=160m" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#vm.kmem_size=350m" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#vm.kmem_size_max=450m" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "if_axe_load=YES" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#if_axge_load=YES" >>$NAS4FREE_TMPDIR/boot/loader.conf
+}
+
+create_arm_image() {
+	# Check if rootfs (contining OS image) exists.
+	if [ ! -d "$NAS4FREE_ROOTFS" ]; then
+		echo "==> Error: ${NAS4FREE_ROOTFS} does not exist!."
+		return 1
+	fi
+
+	# Cleanup.
+	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
+	[ -f ${NAS4FREE_WORKINGDIR}/image.bin ] && rm -f ${NAS4FREE_WORKINGDIR}/image.bin
+	[ -f ${NAS4FREE_WORKINGDIR}/image.bin.xz ] && rm -f ${NAS4FREE_WORKINGDIR}/image.bin.xz
+	[ -f ${NAS4FREE_WORKINGDIR}/mfsroot.gz ] && rm -f ${NAS4FREE_WORKINGDIR}/mfsroot.gz
+	[ -f ${NAS4FREE_WORKINGDIR}/mfsroot.uzip ] && rm -f ${NAS4FREE_WORKINGDIR}/mfsroot.uzip
+	[ -f ${NAS4FREE_WORKINGDIR}/mdlocal.xz ] && rm -f ${NAS4FREE_WORKINGDIR}/mdlocal.xz
+	[ -f ${NAS4FREE_WORKINGDIR}/mdlocal.uzip ] && rm -f ${NAS4FREE_WORKINGDIR}/mdlocal.uzip
+	[ -f ${NAS4FREE_WORKINGDIR}/mdlocal-mini.xz ] && rm -f ${NAS4FREE_WORKINGDIR}/mdlocal-mini.xz
+
+	# Set Platform Informations.
+	PLATFORM="${NAS4FREE_XARCH}-embedded"
+	echo $PLATFORM > ${NAS4FREE_ROOTFS}/etc/platform
+
+	# Set build time.
+	date > ${NAS4FREE_ROOTFS}/etc/prd.version.buildtime
+
+	# Set Revision.
+	echo ${NAS4FREE_REVISION} > ${NAS4FREE_ROOTFS}/etc/prd.revision
+
+	IMGFILENAME="${NAS4FREE_PRODUCTNAME}-${PLATFORM}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.img"
+	IMGSIZEM=320
+
+	echo "ARM: Generating temporary folder '$NAS4FREE_TMPDIR'"
+	mkdir $NAS4FREE_TMPDIR
+	create_mfsroot;
+
+	echo "ARM: Creating Empty IMG File"
+	dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/image.bin bs=1m seek=${IMGSIZEM} count=0
+	echo "ARM: Use IMG as a memory disk"
+	md=`mdconfig -a -t vnode -f ${NAS4FREE_WORKINGDIR}/image.bin`
+	diskinfo -v ${md}
+
+	echo "ARM: Formatting this memory disk using UFS"
+	newfs -S 4096 -b 32768 -f 4096 -O2 -U -j -o space -m 0 -L "embboot" /dev/${md}
+
+	echo "ARM: Mount this virtual disk on $NAS4FREE_TMPDIR"
+	mount /dev/${md} $NAS4FREE_TMPDIR
+
+	echo "ARM: Copying previously generated MFSROOT file to memory disk"
+	cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
+	cp $NAS4FREE_WORKINGDIR/mfsroot.uzip $NAS4FREE_TMPDIR
+	#cp $NAS4FREE_WORKINGDIR/mdlocal.xz $NAS4FREE_TMPDIR
+	cp $NAS4FREE_WORKINGDIR/mdlocal.uzip $NAS4FREE_TMPDIR
+	echo "${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-embedded-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}" > $NAS4FREE_TMPDIR/version
+
+	echo "ARM: Copying Bootloader File(s) to memory disk"
+	mkdir -p $NAS4FREE_TMPDIR/boot
+	mkdir -p $NAS4FREE_TMPDIR/boot/kernel $NAS4FREE_TMPDIR/boot/defaults $NAS4FREE_TMPDIR/boot/zfs
+	mkdir -p $NAS4FREE_TMPDIR/conf
+	cp $NAS4FREE_ROOTFS/conf.default/config.xml $NAS4FREE_TMPDIR/conf
+	cp $NAS4FREE_BOOTDIR/kernel/kernel.gz $NAS4FREE_TMPDIR/boot/kernel
+	# RPI use uncompressed kernel
+	#gunzip $NAS4FREE_TMPDIR/mfsroot.gz 
+	gunzip $NAS4FREE_TMPDIR/boot/kernel/kernel.gz
+	cp $NAS4FREE_BOOTDIR/kernel/*.ko $NAS4FREE_TMPDIR/boot/kernel
+	#cp $NAS4FREE_BOOTDIR/boot $NAS4FREE_TMPDIR/boot
+	#cp $NAS4FREE_BOOTDIR/loader $NAS4FREE_TMPDIR/boot
+	cp $NAS4FREE_BOOTDIR/loader.conf $NAS4FREE_TMPDIR/boot
+	cp $NAS4FREE_BOOTDIR/loader.rc $NAS4FREE_TMPDIR/boot
+	cp $NAS4FREE_BOOTDIR/loader.4th $NAS4FREE_TMPDIR/boot
+	cp $NAS4FREE_BOOTDIR/support.4th $NAS4FREE_TMPDIR/boot
+	cp $NAS4FREE_BOOTDIR/defaults/loader.conf $NAS4FREE_TMPDIR/boot/defaults/
+	#cp $NAS4FREE_BOOTDIR/device.hints $NAS4FREE_TMPDIR/boot
+	if [ 0 != $OPT_BOOTMENU ]; then
+		cp $NAS4FREE_SVNDIR/boot/menu.4th $NAS4FREE_TMPDIR/boot
+		#cp $NAS4FREE_BOOTDIR/screen.4th $NAS4FREE_TMPDIR/boot
+		#cp $NAS4FREE_BOOTDIR/frames.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/brand.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/check-password.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/color.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/delay.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/frames.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/menu-commands.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/screen.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/shortcuts.4th $NAS4FREE_TMPDIR/boot
+		cp $NAS4FREE_BOOTDIR/version.4th $NAS4FREE_TMPDIR/boot
+	fi
+	if [ 0 != $OPT_BOOTSPLASH ]; then
+		cp $NAS4FREE_SVNDIR/boot/splash.bmp $NAS4FREE_TMPDIR/boot
+		install -v -o root -g wheel -m 555 ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules/splash/bmp/splash_bmp.ko $NAS4FREE_TMPDIR/boot/kernel
+	fi
+
+	# iSCSI driver
+	#install -v -o root -g wheel -m 555 ${NAS4FREE_ROOTFS}/boot/kernel/isboot.ko $NAS4FREE_TMPDIR/boot/kernel
+	# preload kernel drivers
+	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 opensolaris/opensolaris.ko $NAS4FREE_TMPDIR/boot/kernel
+	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
+	# copy kernel modules
+	copy_kmod
+
+	# Platform customize
+	if [ -n "$custom_cmd" ]; then
+		eval "$custom_cmd"
+	fi
+
+	echo "ARM: Unmount memory disk"
+	umount $NAS4FREE_TMPDIR
+	echo "ARM: Detach memory disk"
+	mdconfig -d -u ${md}
+	echo "ARM: Compress the IMG file"
+	xz -${NAS4FREE_COMPLEVEL}v $NAS4FREE_WORKINGDIR/image.bin
+	cp $NAS4FREE_WORKINGDIR/image.bin.xz $NAS4FREE_ROOTDIR/${IMGFILENAME}.xz
+
+	# Cleanup.
+	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
+	#[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
+	#[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
+	#[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
+	#[ -f $NAS4FREE_WORKINGDIR/mdlocal.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.uzip
+	#[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz
+	#[ -f $NAS4FREE_WORKINGDIR/image.bin.xz ] && rm -f $NAS4FREE_WORKINGDIR/image.bin.xz
+
+	return 0
+}
+
 # Update Subversion Sources.
 update_svn() {
 	# Update sources from repository.
@@ -1216,6 +1352,25 @@ use_svn() {
 	cd ${NAS4FREE_SVNDIR}/etc && find . \! -iregex ".*/\.svn.*" -print | cpio -pdumv ${NAS4FREE_ROOTFS}/etc
 	cd ${NAS4FREE_SVNDIR}/www && find . \! -iregex ".*/\.svn.*" -print | cpio -pdumv ${NAS4FREE_ROOTFS}/usr/local/www
 	cd ${NAS4FREE_SVNDIR}/conf && find . \! -iregex ".*/\.svn.*" -print | cpio -pdumv ${NAS4FREE_ROOTFS}/conf.default
+
+	# adjust for arm/11-current
+	if [ "arm" = ${NAS4FREE_ARCH} ]; then
+		if [ -f ${NAS4FREE_ROOTFS}/etc/rc.d/initrandom ]; then
+			rm -f ${NAS4FREE_ROOTFS}/etc/rc.d/initrandom
+		fi
+		if [ ! -f ${NAS4FREE_ROOTFS}/etc/rc.d/swap1 ]; then
+			cat <<EOF > ${NAS4FREE_ROOTFS}/etc/rc.d/swap1
+#!/bin/sh
+
+# PROVIDE: localswap
+# REQUIRE: disks
+# KEYWORD: nojail shutdown
+
+# dummy 
+EOF
+			chmod 755 ${NAS4FREE_ROOTFS}/etc/rc.d/swap1
+		fi
+	fi
 
 	return 0
 }
