@@ -1207,7 +1207,26 @@ custom_rpi() {
 	echo "#if_axge_load=YES" >>$NAS4FREE_TMPDIR/boot/loader.conf
 }
 
+custom_oc1() {
+	# OC1 settings
+	echo "vm.pmap.sp_enabled=0" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#hw.m8b.sdhc.hs=1" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "hw.m8b.sdhc.uhs=2" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "hw.m8b.sdhc.hs200=1" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "hw.m8b.sdhc.max_freq=200000000" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "hw.m8b.cpufreq.verbose=1" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "hw.m8b.cpufreq.lowest_freq=816" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "hw.m8b.cpufreq.highest_freq=1608" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "vfs.zfs.arc_max=550m" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#vm.kmem_size=750m" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#vm.kmem_size_max=800m" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#if_axe_load=YES" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#if_axge_load=YES" >>$NAS4FREE_TMPDIR/boot/loader.conf
+}
+
 create_arm_image() {
+	custom_cmd="$1"
+
 	# Check if rootfs (contining OS image) exists.
 	if [ ! -d "$NAS4FREE_ROOTFS" ]; then
 		echo "==> Error: ${NAS4FREE_ROOTFS} does not exist!."
@@ -1266,7 +1285,7 @@ create_arm_image() {
 	mkdir -p $NAS4FREE_TMPDIR/conf
 	cp $NAS4FREE_ROOTFS/conf.default/config.xml $NAS4FREE_TMPDIR/conf
 	cp $NAS4FREE_BOOTDIR/kernel/kernel.gz $NAS4FREE_TMPDIR/boot/kernel
-	# RPI use uncompressed kernel
+	# ARM use uncompressed kernel
 	#gunzip $NAS4FREE_TMPDIR/mfsroot.gz 
 	gunzip $NAS4FREE_TMPDIR/boot/kernel/kernel.gz
 	cp $NAS4FREE_BOOTDIR/kernel/*.ko $NAS4FREE_TMPDIR/boot/kernel
