@@ -42,6 +42,14 @@ CONFIGURE_ARGS+=	--localstatedir=/var/db
 CONFIGURE_ENV=		CPPFLAGS="-I${LOCALBASE}/include -I${LOCALBASE}/include/ffmpeg ${PTHREAD_CFLAGS}" \
 			LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 
+.include <bsd.port.options.mk>
+.if ${OSVERSION} >= 1100000
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src__lib__Common__Common.cpp \
+		${FILESDIR}/extra-patch-src__lib__Common__Directory.cpp \
+		${FILESDIR}/extra-patch-src__lib__ContentDirectory__DatabaseConnection.cpp \
+		${FILESDIR}/extra-patch-src__plugins__database_sqlite3.cpp
+.endif
+
 pre-configure:
 	@if [ -f "${WRKSRC}/m4/version.sh" ]; then \
 		${REINPLACE_CMD} -e 's,/bin/bash,${LOCALBASE}/bin/bash,' ${WRKSRC}/m4/version.sh; \
