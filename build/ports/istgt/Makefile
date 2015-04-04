@@ -6,7 +6,8 @@ MAINTAINER=		aoyama@nas4free.org
 
 MASTER_SITES=		http://www.peach.ne.jp/archives/istgt/
 
-.if !defined(CC)
+.include <bsd.port.options.mk>
+.if ${OSVERSION} < 1000000 || !defined(CC)
 CC=clang
 .endif
 GNU_CONFIGURE=	yes
