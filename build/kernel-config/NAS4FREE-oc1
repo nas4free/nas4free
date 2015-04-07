@@ -21,7 +21,7 @@
 ident		ODROIDC1
 include		"../amlogic/meson8b/std.s805"
 
-makeoptions	MODULES_EXTRA="smbfs opensolaris zfs"
+makeoptions	MODULES_EXTRA="opensolaris zfs"
 
 options 	KERNBASE=0x80000000
 options 	VM_KMEM_SIZE=(750*1024*1024)
@@ -29,6 +29,7 @@ options 	VM_KMEM_SIZE_MAX=(800*1024*1024)
 options 	VM_KMEM_SIZE_SCALE=2
 options 	KSTACK_PAGES=4
 options 	MAXPHYS=(1024*1024)
+options 	ARM_NEW_PMAP
 
 options 	HZ=100
 options 	SCHED_ULE		# ULE scheduler
