@@ -49,17 +49,25 @@ mountd_mkconf()
 		_network=${_ipaddr%/*}
 		_mask=`get_subnetmask ${_ipaddr}`
 
-		/usr/local/bin/xml sel -t -m "//nfsd/share[position()=${_index}]" \
-			-v "path" \
-			-i "count(options/*) > 0" -o " -" -b \
-			-m "options/*" \
-				-i "position() > 1" -o "," -b \
-				-v "local-name()" \
-			-b \
-			-i "mapall[. = 'yes']" -o " -mapall=root" -b \
-			-i "mapall[. != 'yes']" -o " -maproot=root" -b \
-			-o " -network ${_network} -mask ${_mask}" -n \
+		if configxml_isset "//nfsd/share[position()=${_index}]/v4rootdir"; then
+			/usr/local/bin/xml sel -t -m "//nfsd/share[position()=${_index}]" \
+				-i "count(v4rootdir) > 0" -o "V4: " -b \
+				-v "path" \
+				-o " -network ${_network} -mask ${_mask}" -n \
 			${configxml_file} | /usr/local/bin/xml unesc >> ${mountd_config}
+		else
+			/usr/local/bin/xml sel -t -m "//nfsd/share[position()=${_index}]" \
+				-v "path" \
+				-i "count(options/*) > 0" -o " -" -b \
+				-m "options/*" \
+					-i "position() > 1" -o "," -b \
+					-v "local-name()" \
+				-b \
+				-i "mapall[. = 'yes']" -o " -mapall=root" -b \
+				-i "mapall[. != 'yes']" -o " -maproot=root" -b \
+				-o " -network ${_network} -mask ${_mask}" -n \
+			${configxml_file} | /usr/local/bin/xml unesc >> ${mountd_config}
+		fi
 
 		_index=$(( ${_index} - 1 ))
 	done

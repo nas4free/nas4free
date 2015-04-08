@@ -46,6 +46,7 @@ array_sort_key($config['nfsd']['share'], "path");
 $a_share = &$config['nfsd']['share'];
 
 $pconfig['enable'] = isset($config['nfsd']['enable']);
+$pconfig['v4enable'] = isset($config['nfsd']['v4enable']);
 $pconfig['numproc'] = $config['nfsd']['numproc'];
 
 if ($_POST) {
@@ -64,13 +65,21 @@ if ($_POST) {
 
 	if(empty($input_errors)) {
 		$config['nfsd']['enable'] = isset($_POST['enable']) ? true : false;
+		$config['nfsd']['v4enable'] = isset($_POST['v4enable']) ? true : false;
 		$config['nfsd']['numproc'] = $_POST['numproc'];
+		$v4state = $config['nfsd']['v4enable'] == true ? "enable" : "disable";
 
 		write_config();
 
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			config_lock();
+			rc_exec_script("/etc/rc.d/nfsuserd forcestop");
+			$retval |= mwexec("/usr/local/sbin/rconf service {$v4state} nfsv4_server");
+			$retval |= mwexec("/usr/local/sbin/rconf service {$v4state} nfsuserd");
+			if (isset($config['nfsd']['enable']) && isset($config['nfsd']['v4enable'])) {
+				$retval |= rc_exec_script("/etc/rc.d/nfsuserd start");
+			}
 			$retval |= rc_update_service("rpcbind"); // !!! Do
 			$retval |= rc_update_service("mountd");  // !!! not
 			$retval |= rc_update_service("nfsd");    // !!! change
@@ -90,6 +99,7 @@ if ($_POST) {
 function enable_change(enable_change) {
 	var endis = !(document.iform.enable.checked || enable_change);
 	document.iform.numproc.disabled = endis;
+	document.iform.v4enable.disabled = endis;
 }
 //-->
 </script>
@@ -110,6 +120,7 @@ function enable_change(enable_change) {
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline_checkbox("enable", gettext("Network File System"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_inputbox("numproc", gettext("Number of servers"), $pconfig['numproc'], gettext("Specifies how many servers to create.") . " " . gettext("There should be enough to handle the maximum level of concurrency from its clients, typically four to six."), false, 2);?>
+					<?php html_checkbox("v4enable", gettext("NFSv4"), !empty($pconfig['v4enable']) ? true : false, gettext("Enable NFSv4 server."), "", false);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />

@@ -60,6 +60,7 @@ nfsd_precmd()
 		fi
 
 		if checkyesno nfsv4_server_enable; then
+			/sbin/sysctl vfs.nfsd.server_max_nfsvers=4 > /dev/null
 			if ! checkyesno nfsuserd_enable  && \
 			    ! /etc/rc.d/nfsuserd forcestatus 1>/dev/null 2>&1
 			then
