@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-01-22 23:00+0000\n"
-"PO-Revision-Date: 2015-01-10 12:49+0000\n"
-"Last-Translator: Roger Nordseth <roger.nordseth@gmail.com>\n"
+"POT-Creation-Date: 2015-04-08 22:04+0000\n"
+"PO-Revision-Date: 2015-04-05 17:53+0000\n"
+"Last-Translator: Asbjørn <lordcrc@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-02-08 21:52+0000\n"
-"X-Generator: Launchpad (build 17331)\n"
+"X-Launchpad-Export-Date: 2015-04-11 22:16+0000\n"
+"X-Generator: Launchpad (build 17423)\n"
 "X-Poedit-Country: NORWAY\n"
 "Language: \n"
 "X-Poedit-Language: Norwegian Bokmal\n"
@@ -416,7 +416,7 @@ msgid "Add portal group"
 msgstr "Legg til portalgruppe"
 
 msgid "Add resource"
-msgstr ""
+msgstr "Legg til enhet"
 
 msgid "Add rule"
 msgstr "Legg til regel"
@@ -425,10 +425,10 @@ msgid "Add self-test"
 msgstr "Legg til selv-test"
 
 msgid "Add share"
-msgstr "Legg til deling"
+msgstr "Legg til område for deling"
 
 msgid "Add snapshot"
-msgstr ""
+msgstr "Legg til bildefil"
 
 msgid "Add target"
 msgstr "Legg til mål"
@@ -449,13 +449,13 @@ msgid "Address"
 msgstr "Adresse"
 
 msgid "Address of the remote hastd daemon. It must be a static IP address."
-msgstr ""
+msgstr "Ip adresse for host-daemon. Kun statisc IP-adresse kan benyttes"
 
 msgid "Administration password"
-msgstr "Administrator passord"
+msgstr "Passord for administrasjon (admin password)"
 
 msgid "Administrative WebGUI"
-msgstr "Administrativt WebGUI"
+msgstr "Web grensesnitt for administrasjon"
 
 msgid "Administrator name"
 msgstr "Administrator navn"
@@ -488,6 +488,10 @@ msgid ""
 "IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
+"Når du har klikket på &quot;Lagre&quot; kan det hende at du må gjøre ett "
+"eller flere av følgende stegene før du kan få tilgang til serveren igjen: "
+"<ul><li>endre IP adressen til din datamaskin</li><li>koble til webGUI med "
+"den nye IP adressen</li></ul>"
 
 #, php-format
 msgid ""
@@ -497,6 +501,12 @@ msgid ""
 "class='vexpl'>change the IP address of your server</span></li><li><span "
 "class='vexpl'>access the webGUI with the new IP address</span></li></ul>"
 msgstr ""
+"Når du har klikket på &quot;Lagre&quot; må du kjøre en omstart av serveren "
+"for at endringene skal tre i kraft. Det kan hende at du også må gjøre ett "
+"eller flere av de følgende stegene før du kan få tilgang til "
+"serveren:<ul><li><span class='vexpl'>endre IP adressen til "
+"serveren</span></li><li><span class='vexpl'>koble til webGUI med den nye IP "
+"adressen</span></li></ul>"
 
 msgid "Aggregation protocol"
 msgstr "Aggregerings protokol"
@@ -518,7 +528,7 @@ msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr "Alle kataloger krever en montert sti, men Path %s er ikke montert."
 
 msgid "All disks are imported."
-msgstr ""
+msgstr "Alle diskene er importert."
 
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
@@ -758,7 +768,7 @@ msgid ""
 msgstr "Basisnavn vil bli lagt til automatisk ved start uten 'iqn.'."
 
 msgid "Battery Details"
-msgstr ""
+msgstr "Batteridetaljer"
 
 msgid "Battery Level"
 msgstr ""
@@ -771,19 +781,19 @@ msgid ""
 msgstr ""
 
 msgid "Battery alarm threshold"
-msgstr ""
+msgstr "Terskel for batterialarm"
 
 msgid "Battery capacity"
-msgstr ""
+msgstr "Batterikapasitet"
 
 msgid "Battery change date"
-msgstr ""
+msgstr "Dato for batteribytte"
 
 msgid "Battery chemistry"
 msgstr ""
 
 msgid "Battery current"
-msgstr ""
+msgstr "Batteristrøm"
 
 msgid "Battery level"
 msgstr ""
@@ -795,7 +805,7 @@ msgid "Battery manufacturing date"
 msgstr ""
 
 msgid "Battery temperature"
-msgstr ""
+msgstr "Batteritemperatur"
 
 msgid "Battery voltage"
 msgstr ""
@@ -903,7 +913,7 @@ msgid "CPU frequency"
 msgstr "CPU frekvens"
 
 msgid "CPU frequency:"
-msgstr ""
+msgstr "Prosessor frekvens"
 
 msgid "CPU load"
 msgstr "CPU belastning"
@@ -977,7 +987,7 @@ msgid "Channel"
 msgstr "Kanal"
 
 msgid "Charging Battery"
-msgstr ""
+msgstr "Lader batteri"
 
 msgid "Check interval"
 msgstr "Intervallsjekk"
@@ -1008,7 +1018,7 @@ msgid "Clear"
 msgstr "Tøm"
 
 msgid "Clear config and Import disks"
-msgstr ""
+msgstr "Slett konfigurasjon og importer disker"
 
 msgid "Clear config and Import software raid disks"
 msgstr ""
@@ -1258,6 +1268,7 @@ msgstr ""
 msgid ""
 "Current password is default password. You should use your own password."
 msgstr ""
+"Gjeldende passord er standard passordet. Du bør bruke ditt eget passord."
 
 msgid "Current value of apparent power (Volt-Amps)"
 msgstr ""
@@ -2050,6 +2061,9 @@ msgstr "Aktiver Asynkron I/O (AIO)"
 
 msgid "Enable FXP protocol."
 msgstr "Slå på FXP protokollen."
+
+msgid "Enable NFSv4 server."
+msgstr ""
 
 msgid "Enable NTP"
 msgstr "Slå på NTP"
@@ -3690,6 +3704,9 @@ msgstr ""
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFSv4"
+msgstr ""
+
 msgid "NIS"
 msgstr "NIS"
 
@@ -5110,6 +5127,9 @@ msgid "Sparse"
 msgstr ""
 
 msgid "Sparse Volume"
+msgstr ""
+
+msgid "Specified path is NFSv4 root directory."
 msgstr ""
 
 msgid "Specifies how many servers to create."
