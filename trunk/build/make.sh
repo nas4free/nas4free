@@ -364,7 +364,7 @@ build_kernel() {
 				rm -f -r ${NAS4FREE_OBJDIRPREFIX};
 				# Compiling and compressing the kernel.
 				cd /usr/src;
-				env MAKEOBJDIRPREFIX=${NAS4FREE_OBJDIRPREFIX} make buildkernel KERNCONF=${NAS4FREE_KERNCONF};
+				env MAKEOBJDIRPREFIX=${NAS4FREE_OBJDIRPREFIX} make -j4 buildkernel KERNCONF=${NAS4FREE_KERNCONF};
 				gzip -9cnv ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/kernel > ${NAS4FREE_WORKINGDIR}/kernel.gz;;
 			install)
 				# Installing the modules.
