@@ -1620,6 +1620,12 @@ function disks_try_ntfs($file) {
 	return "NTFS";
 }
 
+function disks_try_ext2($file) {
+	if (0 != mwexec("/usr/local/sbin/tune2fs -l {$file} 2>/dev/null"))
+		return false;
+	return "EXT2";
+}
+
 function disks_import_try_allfs($dev) {
 	$mntpath = "/tmp/disks_import";
 
@@ -1636,6 +1642,9 @@ function disks_import_try_allfs($dev) {
 			$ntfs = disks_try_ntfs($file);
 			if (!empty($ntfs))
 				return "ntfs";
+			$ext2 = disks_try_ext2($file);
+			if (!empty($ext2))
+				return "ext2";
 		}
 	}
 
@@ -1652,6 +1661,9 @@ function disks_import_try_allfs($dev) {
 			$ntfs = disks_try_ntfs($file);
 			if (!empty($ntfs))
 				return "ntfs";
+			$ext2 = disks_try_ext2($file);
+			if (!empty($ext2))
+				return "ext2";
 		}
 	}
 
@@ -1668,6 +1680,9 @@ function disks_import_try_allfs($dev) {
 			$ntfs = disks_try_ntfs($file);
 			if (!empty($ntfs))
 				return "ntfs";
+			$ext2 = disks_try_ext2($file);
+			if (!empty($ext2))
+				return "ext2";
 		}
 	}
 
