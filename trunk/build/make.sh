@@ -1196,7 +1196,7 @@ create_full() {
 
 custom_rpi() {
 	# RPI settings
-	#echo "vm.pmap.sp_enabled=0" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#vm.pmap.sp_enabled=0" >>$NAS4FREE_TMPDIR/boot/loader.conf
 	echo "hw.bcm2835.sdhci.hs=1" >>$NAS4FREE_TMPDIR/boot/loader.conf
 	echo "hw.bcm2835.cpufreq.verbose=1" >>$NAS4FREE_TMPDIR/boot/loader.conf
 	echo "hw.bcm2835.cpufreq.lowest_freq=400" >>$NAS4FREE_TMPDIR/boot/loader.conf
@@ -1209,7 +1209,7 @@ custom_rpi() {
 
 custom_oc1() {
 	# OC1 settings
-	echo "vm.pmap.sp_enabled=0" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#vm.pmap.sp_enabled=0" >>$NAS4FREE_TMPDIR/boot/loader.conf
 	echo "#hw.m8b.sdhc.hs=1" >>$NAS4FREE_TMPDIR/boot/loader.conf
 	echo "hw.m8b.sdhc.uhs=2" >>$NAS4FREE_TMPDIR/boot/loader.conf
 	echo "hw.m8b.sdhc.hs200=1" >>$NAS4FREE_TMPDIR/boot/loader.conf
