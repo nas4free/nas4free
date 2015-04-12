@@ -13,7 +13,7 @@ LIB_DEPENDS+=		libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid \
 							libpcre.so:${PORTSDIR}/devel/pcre
 
 USE_BZIP2=	  yes
-USES=		gmake libtool
+USES=		gmake libtool tar:xz
 GNU_CONFIGURE=  yes
 USE_OPENSSL=	  yes
 USE_GNOME+=	  libxml2
