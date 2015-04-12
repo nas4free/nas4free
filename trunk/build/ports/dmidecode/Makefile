@@ -1,14 +1,12 @@
 PORTNAME=	dmidecode
 PORTVERSION=	2.12
 CATEGORIES=	sysutils
-MASTER_SITES=	${MASTER_SITE_SAVANNAH} \
-		ftp://ftp.nuug.no/pub/anders/distfiles/
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	SAVANNAH
 
 MAINTAINER=	zoon01@nas4free.org
 COMMENT=	A tool for dumping DMI (SMBIOS) contents in human-readable format
 
-USE_BZIP2=	yes
+USES=		tar:bzip2
 LICENSE=	GPLv2
 
 
