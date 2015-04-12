@@ -14,6 +14,7 @@ NO_PKG_REGISTER?=	yes
 # Set default target to execute when a port is calling a dependency.
 ALWAYS_BUILD_DEPENDS=	yes
 DEPENDS_TARGET=	clean build
+DISABLE_VULNERABILITIES=yes
 
 BUILD_DEPENDS=	openssh-portable:${PORTSDIR}/security/openssh-portable
 
