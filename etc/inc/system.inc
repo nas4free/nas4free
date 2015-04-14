@@ -789,6 +789,7 @@ function system_get_sysinfo() {
 			$poolinfo['size'] = $poolv['size'];
 			$poolinfo['used'] = $poolv['alloc'];
 			$poolinfo['avail'] = $poolv['free'];
+			$poolinfo['health'] = $poolv['health'];
 			$poolinfo['tooltip']['used'] = sprintf(gettext("%sB used of %sB"), $poolv['alloc'], $poolv['size']);
 			$poolinfo['tooltip']['available'] = sprintf(gettext("%sB available of %sB"), $poolv['free'], $poolv['size']);
 			$value['poolusage'][] = $poolinfo;

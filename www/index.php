@@ -232,6 +232,7 @@ $(document).ready(function(){
 					$('#diskusage_'+pu.id+'_total').text(pu.size);
 					$('#diskusage_'+pu.id+'_used').text(pu.used);
 					$('#diskusage_'+pu.id+'_free').text(pu.avail);
+					$('#diskusage_'+pu.id+'_state').children().text(pu.health);
 				}
 			}
 		}
