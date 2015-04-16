@@ -1,5 +1,6 @@
 PORTNAME=		rsync
-PORTVERSION=	3.1.0
+PORTVERSION=	3.1.1
+PORTREVISION=	0
 CATEGORIES=		net
 COMMENT=		A network file distribution/sync utility
 MAINTAINER=		zoon01@nas4free.org
@@ -19,10 +20,11 @@ CONFIGURE_ARGS+=		--disable-debug \
 							--enable-ipv6 \
 							--with-rsyncd-conf=/var/etc/rsyncd.conf \
 							--with-included-popt \
+							--with-included-zlib=no \
 							--enable-largefile
 
 # Enable iconv support.
-USE_ICONV=	yes
+ICONV_USES=	iconv
 CFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CFLAGS="${CFLAGS}" \
