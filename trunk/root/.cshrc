@@ -40,6 +40,12 @@ if ($?prompt) then
 		bindkey "^W" backward-delete-word
 		bindkey -k up history-search-backward
 		bindkey -k down history-search-forward
+		bindkey "\e[1~" beginning-of-line       # Home
+                bindkey "\e[2~" overwrite-mode          # Insert
+                bindkey "\e[3~" delete-char             # Delete
+                bindkey "\e[4~" end-of-line             # End
+                bindkey "\e[5~" history-search-backward # Page Up
+                bindkey "\e[6~" history-search-forward  # Page Down
 	endif
 endif
 
