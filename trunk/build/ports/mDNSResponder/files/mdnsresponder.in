@@ -88,11 +88,9 @@ mdnsresponder_mkconf()
 			-o "9" -n \
 			-o "sys=waMA=0,adVF=0x100" -n \
 			-m "//afp/share" \
-				-i "adisk/enable" \
-					-v "concat('dk',position()-1,'=')" \
-					-i "string-length(adisk/advf) > 0" -v "concat('adVF=',adisk/advf,',')" -b \
-					-v "concat('adVN=',name,',adVU=',uuid)" -n \
-				-b \
+				-v "concat('dk',position()-1,'=')" \
+				-i "count(timemachine) > 0" -o "adVF=0xa1," -b \
+				-v "concat('adVN=',name,',adVU=',uuid)" -n \
 			-b \
 			-n \
 		-b \
