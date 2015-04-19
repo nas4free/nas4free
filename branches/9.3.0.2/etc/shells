@@ -1,0 +1,18 @@
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# $FreeBSD: src/etc/shells
+#
+# List of acceptable shells for chpass(1).
+# Ftpd will not allow users to connect who are not using
+# one of these shells.
+
+/bin/sh
+/bin/csh
+/bin/tcsh
+/sbin/nologin
+/usr/bin/scp
+/usr/local/bin/scponly
+/bin/bash

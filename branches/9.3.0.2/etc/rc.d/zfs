@@ -1,0 +1,122 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+# $FreeBSD: src/etc/rc.d/zfs
+# Changes: Add function zfs_init: Import zpool's if necessary
+#
+
+# PROVIDE: zfs
+# REQUIRE: mountcritlocal
+# KEYWORD: shutdown
+# XQUERY: -i "count(//zfs/pools/pool) > 0" -o "0" -b
+# RCVAR: zfs
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="zfs"
+rcvar="zfs_enable"
+start_cmd="zfs_start"
+stop_cmd="zfs_stop"
+init_cmd="zfs_init"
+extra_commands="init"
+required_modules="zfs"
+
+zfs_init()
+{
+	local _aft4kdevs _dev _cmd
+
+	# gnop for 4KB sector
+	if ! /sbin/kldstat -q -m g_nop; then
+		echo "Load NOP GEOM class"
+		/sbin/kldload geom_nop.ko
+	fi
+
+	# Create nop device
+	_aft4kdevs=`/usr/local/bin/xml sel -t \
+	    -m "//zfs/vdevices/vdevice[aft4k]" \
+		-m "device" -v "concat(.,' ')" \
+	    ${configxml_file} | /usr/local/bin/xml unesc`
+	for _dev in $_aft4kdevs
+	do
+		if [ ! -e "${_dev}.nop" ]; then
+			_cmd="gnop create -S 4096 $_dev"
+			eval "$_cmd"
+		fi
+	done
+
+	# Make sure /boot/zfs/zpool.cache exists. On 'embedded' installations
+	# this file is missing after a reboot => zpools are missing, so we
+	# have to import them to be able to use them.
+	if [ ! -e /boot/zfs/zpool.cache ]; then
+		info Importing ZFS pools...
+		zpool import -d /dev -f -a
+		zfs umount -a
+		# if cache is created, write it to boot device
+		if [ -e /boot/zfs/zpool.cache -a -d /cf/boot/zfs ]; then
+			mount -u -o rw /cf
+			cp -p /boot/zfs/zpool.cache /cf/boot/zfs/zpool.cache
+			mount -u -o ro /cf		    
+		fi
+	fi
+}
+
+zfs_start_jail()
+{
+	if [ `$SYSCTL_N security.jail.mount_allowed` -eq 1 ]; then
+		zfs mount -a
+	fi
+}
+
+zfs_start_main()
+{
+	zfs mount -va
+	zfs share -a
+	if [ ! -r /etc/zfs/exports ]; then
+		touch /etc/zfs/exports
+	fi
+	
+}
+
+zfs_start()
+{
+	if [ `$SYSCTL_N security.jail.jailed` -eq 1 ]; then
+		zfs_start_jail
+	else
+		zfs_init
+		zfs_start_main
+	fi
+}
+
+zfs_stop_jail()
+{
+	if [ `$SYSCTL_N security.jail.mount_allowed` -eq 1 ]; then
+		zfs unmount -a
+	fi
+}
+
+zfs_stop_main()
+{
+	
+	zfs unshare -a
+	zfs unmount -a
+}
+
+zfs_stop()
+{
+	if [ `$SYSCTL_N security.jail.jailed` -eq 1 ]; then
+		zfs_stop_jail
+	else
+		zfs_stop_main
+	fi
+}
+
+load_rc_config $name
+run_rc_command "$1"
