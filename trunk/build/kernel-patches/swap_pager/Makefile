@@ -5,4 +5,4 @@ PATCHFILE=patch-sys__vm__swap_pager.c
 all:
 
 install:
-	(cd /usr/src; patch -p < ${.CURDIR}/files/${PATCHFILE})
+	(cd /usr/src; patch < ${.CURDIR}/files/${PATCHFILE})
