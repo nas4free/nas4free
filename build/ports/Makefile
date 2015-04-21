@@ -27,12 +27,9 @@
     SUBDIR += mDNSResponder
     SUBDIR += mkpw
     SUBDIR += msmtp
-    SUBDIR += mt-daapd
     SUBDIR += nano
-    SUBDIR += netatalk
     SUBDIR += netatalk3
     SUBDIR += nss_ldap
-    SUBDIR += ntfsprogs
     SUBDIR += nut
     SUBDIR += open-vm-tools
     SUBDIR += openssh-portable
@@ -43,7 +40,6 @@
     SUBDIR += python2
     SUBDIR += rconf
     SUBDIR += rsync
-    SUBDIR += samba36
     SUBDIR += samba41
     SUBDIR += scponly
     SUBDIR += sipcalc
@@ -53,7 +49,6 @@
     SUBDIR += tw_cli
     SUBDIR += unison
     SUBDIR += vbox-additions
-    SUBDIR += vmxnet3
     SUBDIR += wol
     SUBDIR += xmd
     SUBDIR += xmlstarlet
