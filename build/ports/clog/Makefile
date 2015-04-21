@@ -13,6 +13,9 @@ do-build:
 .if ${OSVERSION} >= 1100000
 	@${TAR} -zxvf ${FILESDIR}/syslogd-clog-11.tar.gz -C /usr/src/usr.bin
 	@${TAR} -zxvf ${FILESDIR}/clog-1.0.1-11.tar.gz -C /usr/src/usr.bin
+.elif ${OSVERSION} >= 1000000
+	@${TAR} -zxvf ${FILESDIR}/syslogd-clog-10.tar.gz -C /usr/src/usr.bin
+	@${TAR} -zxvf ${FILESDIR}/clog-1.0.1-11.tar.gz -C /usr/src/usr.bin
 .else
 	@${TAR} -zxvf ${FILESDIR}/syslogd-clog.tar.gz -C /usr/src/usr.bin
 	@${TAR} -zxvf ${FILESDIR}/clog-1.0.1.tar.gz -C /usr/src/usr.bin
