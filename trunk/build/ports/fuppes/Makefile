@@ -43,7 +43,7 @@ CONFIGURE_ENV=		CPPFLAGS="-I${LOCALBASE}/include -I${LOCALBASE}/include/ffmpeg $
 			LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
 
 .include <bsd.port.options.mk>
-.if ${OSVERSION} >= 1100000
+.if ${OSVERSION} >= 1000000
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src__lib__Common__Common.cpp \
 		${FILESDIR}/extra-patch-src__lib__Common__Directory.cpp \
 		${FILESDIR}/extra-patch-src__lib__ContentDirectory__DatabaseConnection.cpp \
