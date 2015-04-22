@@ -11,8 +11,8 @@
 # Create a swap file. Useful for embedded systems.
 #
 
-# PROVIDE: swap
-# REQUIRE: FILESYSTEMS
+# PROVIDE: swaplate
+# REQUIRE: mountlate
 # KEYWORD: nojail shutdown
 # XQUERY: -i "count(//system/swap/enable) > 0" -o "0" -b
 # RCVAR: swap
