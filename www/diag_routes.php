@@ -53,7 +53,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Routing tables"));
 
 	foreach (array(&$internet, &$internet6) as $tabindex => $table) {
 		$osver = @exec("/usr/bin/uname -U");
-		if ($osver >= 1100000)
+		if ($osver >= 1000000)
 			$elements = ($tabindex == 0 ? 7 : 7);
 		else
 			$elements = ($tabindex == 0 ? 8 : 8);
