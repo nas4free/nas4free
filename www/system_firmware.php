@@ -55,8 +55,10 @@ $part1ok = true;
 if ($g['arch'] == "rpi" || $g['arch'] == "oc1")
 	$part1min = 320; /* rpi use 320MB */
 if ($diskinfo['mediasize_mbytes'] < $part1min) {
-	$part1ok = false;
-	$errormsg = sprintf(gettext("Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or resize boot partition of %s.\n"), $cfdevice);
+	if (in_array($g['platform'], $fwupplatforms)) {
+		$part1ok = false;
+		$errormsg = sprintf(gettext("Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or resize boot partition of %s.\n"), $cfdevice);
+	}
 }
 
 /* checks with /etc/firm.url to see if a newer firmware version online is available;
