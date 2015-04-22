@@ -69,9 +69,14 @@ function zfs_get_pool_list() {
 		$result[$poolname]['size'] = $aline[1];
 		$result[$poolname]['alloc'] = $aline[2];
 		$result[$poolname]['free'] = $aline[3];
-		if ($osver >= 1100000) {
-                        $result[$poolname]['expandsz'] = $aline[4];
-                        $result[$poolname]['frag'] = $aline[5];
+		if ($osver >= 1000000) {
+			if ($osver >= 1100000) {
+                                $result[$poolname]['expandsz'] = $aline[4];
+                                $result[$poolname]['frag'] = $aline[5];
+			} else {
+                                $result[$poolname]['frag'] = $aline[4];
+                                $result[$poolname]['expandsz'] = $aline[5];
+			}
                         $result[$poolname]['cap'] = $aline[6];
                         $result[$poolname]['dedup'] = $aline[7];
                         $result[$poolname]['health'] = $aline[8];

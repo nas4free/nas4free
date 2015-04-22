@@ -233,7 +233,7 @@ function disks_mount($mount)
 			$mask = decoct(0777 ^ octdec($mode));
 			$umask = "-o umask={$mask}";
 			$osver = @exec("/usr/bin/uname -U");
-			if ($osver >= 1100000) {
+			if ($osver >= 1000000) {
 				$result = mwexec("/sbin/mount_ntfs {$readonly} {$uid} {$gid} {$umask} {$devicespecialfile} '{$mountname}'", true); // default options: silent,allow_other
 			} else {
 				$result = mwexec("/sbin/mount -t ntfs {$readonly} {$uid} {$gid} {$umask} {$devicespecialfile} '{$mountname}'", true); // default options: silent,allow_other
