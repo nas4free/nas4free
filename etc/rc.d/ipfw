@@ -77,7 +77,7 @@ ipfw_mkconf()
 		${configxml_file} | /usr/local/bin/xml unesc > ${firewall_script_auxrules}
 
 		# Set verbose logging limit
-		${SYSCTL_W} net.inet.ip.fw.verbose_limit=${firewall_verbose_limit}
+		${SYSCTL_W} -q net.inet.ip.fw.verbose_limit=${firewall_verbose_limit}
 }
 
 ipfw_prestart()
