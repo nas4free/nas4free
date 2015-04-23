@@ -70,13 +70,15 @@ if ($_POST) {
 	if (isset($_POST['switch_backup']) && $_POST['switch_backup']) {
 		// down all carp
 		foreach ($a_carp as $carp) {
-			system("/sbin/ifconfig {$carp['if']} down");
+			//system("/sbin/ifconfig {$carp['if']} down");
+			mwexec("/etc/rc.d/netif stop {$carp['if']}");
 			if ($carp['advskew'] <= 1) {
 				system("/sbin/ifconfig {$carp['if']} vhid {$carp['vhid']} state backup advskew 240");
 			} else {
 				system("/sbin/ifconfig {$carp['if']} vhid {$carp['vhid']} state backup");
 			}
-			system("/sbin/ifconfig {$carp['if']} up");
+			//system("/sbin/ifconfig {$carp['if']} up");
+			mwexec("/etc/rc.d/netif start {$carp['if']}");
 		}
 		// waits for the primary disk to disappear
 		$retry = 60;
