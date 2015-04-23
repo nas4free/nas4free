@@ -161,7 +161,6 @@ device		crypto		# core crypto support
 device		cryptodev	# /dev/crypto for access to h/w
 
 # IP firewall
-options		IPFIREWALL
 options		IPFIREWALL_VERBOSE
 options		IPFIREWALL_VERBOSE_LIMIT=5
 options		IPFIREWALL_DEFAULT_TO_ACCEPT

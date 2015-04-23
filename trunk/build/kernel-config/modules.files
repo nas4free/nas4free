@@ -41,6 +41,11 @@ netgraph/netgraph/netgraph.ko
 netgraph/socket/ng_socket.ko
 netgraph/ether/ng_ether.ko
 
+# IP firewall
+ipfw/ipfw.ko
+ipfw_nat/ipfw_nat.ko
+libalias/libalias/libalias.ko
+
 # Misc.
 iscsi/initiator/iscsi_initiator.ko
 syscons/green/green_saver.ko

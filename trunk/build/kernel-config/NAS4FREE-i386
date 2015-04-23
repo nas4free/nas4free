@@ -64,8 +64,7 @@ device		amdtemp
 # cpuctl: cpuctl pseudo device
 device		cpuctl
 
-# IP firewall
-options		IPFIREWALL
+# IP firewall (ipfw.ko)
 options		IPFIREWALL_VERBOSE
 options		IPFIREWALL_VERBOSE_LIMIT=5
 options		IPFIREWALL_DEFAULT_TO_ACCEPT
