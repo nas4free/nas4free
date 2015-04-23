@@ -1377,18 +1377,6 @@ use_svn() {
 		if [ -f ${NAS4FREE_ROOTFS}/etc/rc.d/initrandom ]; then
 			rm -f ${NAS4FREE_ROOTFS}/etc/rc.d/initrandom
 		fi
-		if [ ! -f ${NAS4FREE_ROOTFS}/etc/rc.d/swap1 ]; then
-			cat <<EOF > ${NAS4FREE_ROOTFS}/etc/rc.d/swap1
-#!/bin/sh
-
-# PROVIDE: localswap
-# REQUIRE: disks
-# KEYWORD: nojail shutdown
-
-# dummy 
-EOF
-			chmod 755 ${NAS4FREE_ROOTFS}/etc/rc.d/swap1
-		fi
 	fi
 
 	return 0
