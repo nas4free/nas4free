@@ -71,6 +71,12 @@ if ($_POST) {
 		// down all carp
 		foreach ($a_carp as $carp) {
 			system("/sbin/ifconfig {$carp['if']} down");
+			if ($carp['advskew'] <= 1) {
+				system("/sbin/ifconfig {$carp['if']} vhid {$carp['vhid']} state backup advskew 240");
+			} else {
+				system("/sbin/ifconfig {$carp['if']} vhid {$carp['vhid']} state backup");
+			}
+			system("/sbin/ifconfig {$carp['if']} up");
 		}
 		// waits for the primary disk to disappear
 		$retry = 60;
@@ -87,7 +93,7 @@ if ($_POST) {
 		// up and set backup all carp
 		if ($preempt == 0 || (isset($a_carp[0]) && $a_carp[0]['advskew'] > 1)) {
 			foreach ($a_carp as $carp) {
-				system("/sbin/ifconfig {$carp['if']} up state backup");
+				//system("/sbin/ifconfig {$carp['if']} up vhid {$carp['vhid']} state backup");
 			}
 		}
 		header("Location: services_hast.php");
@@ -97,9 +103,9 @@ if ($_POST) {
 		// up and set master all carp
 		foreach ($a_carp as $carp) {
 			if ($carp['advskew'] <= 1) {
-				system("/sbin/ifconfig {$carp['if']} up state master advskew {$carp['advskew']}");
+				system("/sbin/ifconfig {$carp['if']} up vhid {$carp['vhid']} state master advskew {$carp['advskew']}");
 			} else {
-				system("/sbin/ifconfig {$carp['if']} up state master");
+				system("/sbin/ifconfig {$carp['if']} up vhid {$carp['vhid']} state master");
 			}
 		}
 		// waits for the secondary disk to disappear

@@ -215,9 +215,6 @@ setifconfig()
 		-m "//vinterfaces/bridge/if" \
 			-v "concat(.,' ')" \
 		-b \
-		-m "//vinterfaces/carp/if" \
-			-v "concat(.,' ')" \
-		-b \
 		${configxml_file} | /usr/local/bin/xml unesc`
 
 	eval /usr/local/sbin/rconf attribute set "cloned_interfaces" "${_cloned_interfaces}"
@@ -312,35 +309,36 @@ setifconfig()
 		-m "//vinterfaces/carp" \
 			-v if \
 			-v "concat(' vhid ',vhid,' advskew ',advskew,' pass ',password)" \
-			-v "concat(' ',vipaddr,'/',vsubnet)" \
+			-v "concat(' alias ',vipaddr,'/',vsubnet)" \
 			-v "concat(' \"', extraoptions,'\"')" \
 			-n \
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc | \
-		while read _carp _carp_t1 _carp_t2 _carp_t3 _carp_advskew _carp_args; do
+		while read _carp _carp_t1 _carp_vhid _carp_t3 _carp_advskew _carp_args; do
 			if [ -n "${_carp_advskew}" -a ${_carp_advskew} -le 1 ]; then
 				# boot master node with 240(backup)
 				_carp_advskew=240
 			fi
-			_carp_args="up $_carp_t1 $_carp_t2 $_carp_t3 $_carp_advskew $_carp_args"
+			_carp_args="$_carp_t1 $_carp_vhid $_carp_t3 $_carp_advskew $_carp_args"
 			_carp_linkup=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${_carp}']" \
 				-v "linkup" \
 				${configxml_file} | /usr/local/bin/xml unesc`
 			_carp_linkdown=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${_carp}']" \
 				-v "linkdown" \
 				${configxml_file} | /usr/local/bin/xml unesc`
-			[ -n "${_carp}" ] && eval /usr/local/sbin/rconf attribute set "ifconfig_${_carp}" "${_carp_args}"
-			[ -n "${_carp}" ] && cat <<EOF > "/etc/devd/${_carp}.conf"
+			[ -n "${_carp}" ] && eval /usr/local/sbin/rconf attribute set "ifconfig_${_carp}_alias${_carp_vhid}" "${_carp_args}"
+			[ -n "${_carp}" ] && kldload -n carp.ko
+			[ -n "${_carp}" ] && cat <<EOF > "/etc/devd/carp_${_carp_vhid}@${_carp}.conf"
 notify 30 {
-	match "system" "IFNET";
-	match "subsystem" "${_carp}";
-	match "type" "LINK_UP";
+	match "system" "CARP";
+	match "subsystem" "${_carp_vhid}@${_carp}";
+	match "type" "MASTER";
 	action "${_carp_linkup}";
 };
 notify 30 {
-	match "system" "IFNET";
-	match "subsystem" "${_carp}";
-	match "type" "LINK_DOWN";
+	match "system" "CARP";
+	match "subsystem" "${_carp_vhid}@${_carp}";
+	match "type" "BACKUP";
 	action "${_carp_linkdown}";
 };
 EOF

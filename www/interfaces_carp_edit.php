@@ -169,7 +169,8 @@ function get_nextcarp_id() {
 		<form action="interfaces_carp_edit.php" method="post" name="iform" id="iform">
 			<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
-				<?php html_inputbox("if", gettext("Interface"), $pconfig['if'], "", true, 5, true);?>
+				<?php $a_if = array(); foreach (get_interface_list() as $ifk => $ifv) { $a_if[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); };?>
+				<?php html_combobox("if", gettext("Interface"), $pconfig['if'], $a_if, "", true);?>
 				<?php html_inputbox("vhid", gettext("Virtual Host ID"), $pconfig['vhid'], "", true, 5);?>
 				<?php html_ipv4addrbox("vipaddr", "vsubnet", gettext("Virtual IP address"), $pconfig['vipaddr'], $pconfig['vsubnet'], "", true);?>
 				<?php html_inputbox("advskew", gettext("Advertisement skew"), $pconfig['advskew'], gettext("Lowest value is higher priority. For master node, use 0 or 1. If preempt is enabled, it is adjusted to 240 on failure."), true, 5);?>
@@ -183,7 +184,6 @@ function get_nextcarp_id() {
 				<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
 				<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
 				<input name="enable" type="hidden" value="<?=$pconfig['enable'];?>" />
-				<input name="if" type="hidden" value="<?=$pconfig['if'];?>" />
 				<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 			</div>
 		<?php include("formend.inc");?>

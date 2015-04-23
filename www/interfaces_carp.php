@@ -68,7 +68,7 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 	$carp = $a_carp[$cnid];
 
 	// Check if still in use.
-	if (carp_inuse($carp['if'])) {
+	if (0 && carp_inuse($carp['if'])) {
 		$input_errors[] = gettext("This CARP cannot be deleted because it is still being used as an interface.");
 	} else {
 		mwexec("/usr/local/sbin/rconf attribute remove 'ifconfig_{$carp['if']}'");
@@ -104,7 +104,7 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 			<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
 			<tr>
-				<td width="17%" class="listhdrlr"><?=gettext("Virtual interface");?></td>
+				<td width="17%" class="listhdrlr"><?=gettext("Interface");?></td>
 				<td width="9%" class="listhdrr"><?=gettext("VHID");?></td>
 				<td width="20%" class="listhdrr"><?=gettext("Virtual IP address");?></td>
 				<td width="9%" class="listhdrr"><?=gettext("Skew");?></td>

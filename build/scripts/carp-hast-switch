@@ -96,9 +96,15 @@ case "$ARG1" in
 	/etc/rc.d/iscsi_target start
 
 	# make sure all carp is master
-	if [ "${PREEMPT}" = "0" -a  -n "${carps}" ]; then
+	if [ -n "${carps}" ]; then
 		for if in ${carps}; do
-			/sbin/ifconfig ${if} up state master
+			vhid=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v vhid -n -b conf/config.xml`
+			advskew=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v advskew -n -b conf/config.xml`
+			if [ "${PREEMPT}" = "0" ]; then
+				/sbin/ifconfig ${if} up vhid ${vhid} state master advskew ${advskew}
+			else
+				/sbin/ifconfig ${if} vhid ${vhid} advskew ${advskew}
+			fi
 		done
 	fi
     ;;
@@ -109,7 +115,10 @@ case "$ARG1" in
 	# make sure all carp is backup
 	if [ "${PREEMPT}" = "0" -a -n "${carps}" ]; then
 		for if in ${carps}; do
-			/sbin/ifconfig ${if} state backup
+			vhid=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v vhid -n -b conf/config.xml`
+			advskew=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v advskew -n -b conf/config.xml`
+			#/sbin/ifconfig ${if} vhid ${vhid} state backup advskew ${advskew}
+			/sbin/ifconfig ${if} vhid ${vhid} state backup
 		done
 	fi
 
