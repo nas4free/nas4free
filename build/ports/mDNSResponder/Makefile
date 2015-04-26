@@ -21,10 +21,6 @@ CPE_PRODUCT=	${PORTNAME:tl}
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 1100000
-EXTRA_PATCHES+=		${FILESDIR}/extra-patch-mDNSPosix_Makefile
-.endif
-
 pre-build:
 	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g' \
 		-e 's|mDNSResponder.8|mDNSResponderPosix.8|g' \
