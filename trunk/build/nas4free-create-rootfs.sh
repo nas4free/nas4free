@@ -69,6 +69,7 @@ mkdir etc/inc ;
 mkdir etc/install ;
 mkdir etc/pam.d ;
 mkdir etc/ssh ;
+mkdir etc/ssl ;
 mkdir etc/rc.d ;
 mkdir etc/rc.d.php ;
 mkdir etc/zfs ;

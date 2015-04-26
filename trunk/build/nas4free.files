@@ -463,6 +463,9 @@ usr/bin/true
 ## nc -- arbitrary TCP and UDP connections and listens
 usr/bin/nc
 
+## openssl -- OpenSSL command line tool
+usr/bin/openssl
+
 ## ssh-keygen -- authentication key generation, management and conversion
 usr/bin/ssh-keygen
 
@@ -756,6 +759,7 @@ etc/network.subr
 etc/pccard_ether
 etc/gettytab
 etc/devd/*
+etc/ssl/openssl.cnf
 ####### Add modified devd.conf into /etc
 #etc/devd.conf
 etc/devfs.conf
