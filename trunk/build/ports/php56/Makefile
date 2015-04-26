@@ -19,6 +19,7 @@ LIB_DEPENDS+=		libonig.so:${PORTSDIR}/devel/oniguruma4
 LIB_DEPENDS+=		libfreetype.so:${PORTSDIR}/print/freetype2
 LIB_DEPENDS+=		libpng16.so:${PORTSDIR}/graphics/png
 LIB_DEPENDS+=		libjpeg.so:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS+=		libgmp.so:${PORTSDIR}/math/gmp
 
 USE_AUTOTOOLS=	 autoconf
 AUTOTOOLSFILES=	 scripts/phpize.in
@@ -31,12 +32,13 @@ GNU_CONFIGURE=	 yes
 NO_PKG_REGISTER=yes
 
 CONFIGURE_ARGS+=	\
-		--without-mysql \
 		--without-pear \
 		--with-openssl \
 		--with-gettext \
 		--enable-libxml \
-		--disable-mysqlnd \
+		--enable-mysqlnd \
+		--with-mysql=mysqlnd \
+		--with-mysqli=mysqlnd \
 		--with-libxml-dir=${LOCALBASE} \
 		--with-pcre-regex=${LOCALBASE} \
 		--with-zlib-dir=/usr \
@@ -57,6 +59,10 @@ CONFIGURE_ARGS+=	\
 		--with-onig=${LOCALBASE} \
 		--with-pcre-dir=${LOCALBASE} \
 		--with-mcrypt=${LOCALBASE} \
+		--with-gmp=${LOCALBASE} \
+		--enable-bcmath \
+		--enable-hash \
+		--with-mhash \
 		--enable-soap \
 		--with-xmlrpc \
 		--enable-zip \
