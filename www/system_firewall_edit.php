@@ -138,7 +138,7 @@ function get_next_rulenumber() {
 	global $config;
 
 	// Set starting rule number
-	$ruleno = 100;
+	$ruleno = 10100;
 
 	$a_rules = $config['system']['firewall']['rule'];
 	if (false !== array_search_ex(strval($ruleno), $a_rules, "ruleno")) {
