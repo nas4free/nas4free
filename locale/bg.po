@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2015-04-08 22:04+0000\n"
-"PO-Revision-Date: 2015-03-09 10:31+0000\n"
-"Last-Translator: acidlord <acidlord_34@abv.bg>\n"
+"PO-Revision-Date: 2015-04-24 14:59+0000\n"
+"Last-Translator: delvago <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-04-11 22:17+0000\n"
-"X-Generator: Launchpad (build 17423)\n"
+"X-Launchpad-Export-Date: 2015-04-26 05:52+0000\n"
+"X-Generator: Launchpad (build 17430)\n"
 "X-Poedit-Country: BULGARIA\n"
 "Language: \n"
 "X-Poedit-Language: Bulgarian\n"
@@ -40,7 +40,7 @@ msgstr "%d година"
 
 #, php-format
 msgid "%d years"
-msgstr ""
+msgstr "%d години"
 
 #, c-format, php-format
 msgid "%d%% of %dMiB"
@@ -181,6 +181,9 @@ msgid ""
 "file (index.php, index.html, index.htm or default.htm) was found in that "
 "directory."
 msgstr ""
+"Списък на директорията се създава  и показва, когато директорията е извикана "
+"и не е намерен индекс файл  в нея. (index.php, index.html, index.htm или "
+"default.htm)"
 
 msgid ""
 "A host name alias. This option can appear multiple times, for each domain "
@@ -196,6 +199,10 @@ msgid ""
 "either as a plain string or as a string of hexadecimal digits preceded by "
 "'0x'."
 msgstr ""
+"Ключът (паролата) ще се състои от 5 или 13 знака (40 или 104 бита) в "
+"зависимост от локалната мрежа и възможностите на мрежовия адаптер. Може да "
+"се зададе под формата на нормален стринг или като шестнадесетична стойност "
+"предхождана от \"0x\"."
 
 msgid "A route to this destination network already exists."
 msgstr "Вече съществува маршрут до мрежата на този получател."
@@ -272,7 +279,7 @@ msgid "ALL interfaces"
 msgstr "ВСИЧКИ интерфейси"
 
 msgid "AP mode"
-msgstr ""
+msgstr "AP (access point) модус (входяща точка)"
 
 msgid "ARP Tables"
 msgstr "ARP Таблици"
@@ -339,7 +346,7 @@ msgid "Add Route"
 msgstr "Добави път"
 
 msgid "Add Rsync job"
-msgstr ""
+msgstr "Добави rsync задача"
 
 msgid "Add URL"
 msgstr "Добавяне на URL"
@@ -372,7 +379,7 @@ msgid "Add group"
 msgstr "Добваи група"
 
 msgid "Add initiator"
-msgstr ""
+msgstr "Добави инициатор"
 
 msgid "Add initiator group"
 msgstr ""
@@ -426,7 +433,7 @@ msgid "Additional group"
 msgstr "Допълнителна група"
 
 msgid "Additional parameters to the hardware-specific part of the driver."
-msgstr ""
+msgstr "Допълнителни параметри за хардуерно специфичната част на драйвера."
 
 msgid "Address"
 msgstr "Адрес"
@@ -438,7 +445,7 @@ msgid "Administration password"
 msgstr "Парола на администратора"
 
 msgid "Administrative WebGUI"
-msgstr ""
+msgstr "Административен уеб интерфейс"
 
 msgid "Administrator name"
 msgstr "Имв на администратора"
@@ -471,6 +478,10 @@ msgid ""
 "IP address of your computer</li><li>access the webGUI with the new IP "
 "address</li></ul>"
 msgstr ""
+"След като натиснете &quot;Запази&quot;, е възможно да са нужни една или "
+"повече от следните стъпки за да възстановите достъпа до сървъра отново: "
+"<ul><li>да смените IP адреса на Вашия компютър</li><li>да заредите уеб "
+"интерфейса с новия IP адрес</li></ul>"
 
 #, php-format
 msgid ""
@@ -480,6 +491,11 @@ msgid ""
 "class='vexpl'>change the IP address of your server</span></li><li><span "
 "class='vexpl'>access the webGUI with the new IP address</span></li></ul>"
 msgstr ""
+"След като натиснете &quot;Запази&quot;, трябва да рестартирате сървъра за да "
+"се изпълнят направените промени. Освен това е възможно да са нужни една или "
+"повече от следните стъпки за да възстановите достъпа до сървъра отново: "
+"<ul><li>да смените IP адреса на Вашия компютър</li><li>да заредите уеб "
+"интерфейса с новия IP адрес</li></ul>"
 
 msgid "Aggregation protocol"
 msgstr ""
@@ -716,10 +732,10 @@ msgid "Balance algorithm"
 msgstr "Balance algorithm"
 
 msgid "Ban list"
-msgstr ""
+msgstr "Забранителен списък"
 
 msgid "Ban list rule"
-msgstr ""
+msgstr "Правило за забранителния списък"
 
 msgid "Banner"
 msgstr "Банер"
@@ -1180,7 +1196,7 @@ msgid "Count"
 msgstr "Броене"
 
 msgid "Create and initialize RAID."
-msgstr ""
+msgstr "Създай и инициализирай RAID"
 
 msgid "Create encrypted volume"
 msgstr "Създай криптиран volume"
@@ -1340,7 +1356,7 @@ msgid "Debug"
 msgstr "Дебъгване"
 
 msgid "Dedup"
-msgstr ""
+msgstr "Премахни дупликатите"
 
 msgid "Default"
 msgstr "По подразбиране"
@@ -1350,7 +1366,7 @@ msgid "Default is %s."
 msgstr "По подразбиране е %s."
 
 msgid "Default root"
-msgstr ""
+msgstr "root по подразбиране"
 
 msgid "Default user name is 'admin'."
 msgstr "По подразбиране потребителското име е 'admin'."
@@ -1389,25 +1405,25 @@ msgid "Delete Route"
 msgstr "Изтрий пътя"
 
 msgid "Delete Rsync job"
-msgstr ""
+msgstr "Изтрий rsync з адача"
 
 msgid "Delete URL"
-msgstr ""
+msgstr "Изтрий URL"
 
 msgid "Delete algorithm"
-msgstr ""
+msgstr "Изтрий алгоритъм"
 
 msgid "Delete all MIBs"
 msgstr ""
 
 msgid "Delete all options"
-msgstr ""
+msgstr "Изтрий всички опции"
 
 msgid "Delete all rules"
-msgstr ""
+msgstr "Изтрий всички правила"
 
 msgid "Delete all self-tests"
-msgstr ""
+msgstr "Изтрий всички тестове"
 
 msgid "Delete auth group"
 msgstr ""
@@ -1416,7 +1432,7 @@ msgid "Delete auto snapshot"
 msgstr ""
 
 msgid "Delete clone"
-msgstr ""
+msgstr "Изтрий клонинг"
 
 msgid "Delete command"
 msgstr "изтрий командата"
@@ -1425,7 +1441,7 @@ msgid "Delete dataset"
 msgstr ""
 
 msgid "Delete device"
-msgstr ""
+msgstr "Изтрий устройството"
 
 msgid "Delete disk"
 msgstr "изтрий диска"
@@ -1435,12 +1451,14 @@ msgstr ""
 
 msgid "Delete files on the receiving side that don't exist on sender."
 msgstr ""
+"Изтрий всички файлове върху приемащата страна, които не съществуват на "
+"изпращащата."
 
 msgid "Delete group"
 msgstr "Изтрий група"
 
 msgid "Delete initiator"
-msgstr ""
+msgstr "Изтрий инициатор"
 
 msgid "Delete initiator group"
 msgstr ""
@@ -1449,16 +1467,16 @@ msgid "Delete interface"
 msgstr "изтрий интерфейса"
 
 msgid "Delete job"
-msgstr ""
+msgstr "Изтрий задачата"
 
 msgid "Delete module"
-msgstr ""
+msgstr "Изтрий модула"
 
 msgid "Delete mount point"
 msgstr ""
 
 msgid "Delete option"
-msgstr ""
+msgstr "Изтрий опцията"
 
 msgid "Delete pool"
 msgstr ""
@@ -1467,10 +1485,10 @@ msgid "Delete portal group"
 msgstr ""
 
 msgid "Delete resource"
-msgstr ""
+msgstr "Изтрий ресурса"
 
 msgid "Delete rule"
-msgstr ""
+msgstr "Изтрий правилото"
 
 msgid "Delete self-test"
 msgstr ""
@@ -1494,7 +1512,7 @@ msgid "Deletes the recursive snapshot."
 msgstr ""
 
 msgid "Deleting"
-msgstr ""
+msgstr "Изтриване на"
 
 msgid "Deleting GEOM metadata"
 msgstr ""
@@ -7230,11 +7248,11 @@ msgid "to"
 msgstr ""
 
 msgid "umask"
-msgstr ""
+msgstr "umask"
 
 msgid "umount"
 msgstr ""
 
 #, php-format
 msgid "version:"
-msgstr ""
+msgstr "версия:"
