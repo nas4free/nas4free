@@ -123,6 +123,7 @@ setifconfig()
 			is_validip inet "${_ipaddr}/${_subnet}"
 			if [ 0 -eq $? ]; then
 				_ifconfig_args="inet ${_ipaddr}/${_subnet} ${_ifconfig_args}"
+				eval /usr/local/sbin/rconf attribute set firewall_client_net "${_ipaddr}/${_subnet}"
 			fi
 		fi
 		if [ -n "${_ifconfig_args}" ]; then
