@@ -1,5 +1,5 @@
 PORTNAME=		msmtp
-PORTVERSION=	1.4.32
+PORTVERSION=	1.6.2
 PORTREVISION=	0
 CATEGORIES=		mail ipv6
 COMMENT=		A SMTP client
@@ -8,7 +8,7 @@ MAINTAINER=		zoon01@nas4free.org
 MASTER_SITES=	SF
  
 GNU_CONFIGURE=  yes 
-USES=           makeinfo pkgconfig tar:bzip2
+USES=           makeinfo pkgconfig tar:xz
 CPPFLAGS+=      -I${LOCALBASE}/include 
 LDFLAGS+=       -L${LOCALBASE}/lib
 
