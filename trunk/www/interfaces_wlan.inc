@@ -148,9 +148,9 @@ function wireless_config_print() {
 										</select>
 									</td>
 								</tr>
-								<?php html_combobox("encryption", gettext("Encryption"), $pconfig['encryption'], array("none" => gettext("None"), "wep" => gettext("WEP"), "wpa" => gettext("WPA")), "", true, false, "encryption_change()");?>
+								<?php html_combobox("encryption", gettext("Encryption"), $pconfig['encryption'], array("none" => gettext("None"), "wep" => gettext("WEP"), "wpa" => sprintf("%s / %s", gettext("WPA"), gettext("WPA2"))), "", true, false, "encryption_change()");?>
 								<?php html_passwordbox("wep_key", gettext("Key"), $pconfig['wep_key'], gettext("A key will be either 5 or 13 characters (40 or 104 bits) depending of the local network and the capabilities of the adaptor. It may be specified either as a plain string or as a string of hexadecimal digits preceded by '0x'."), true, 40);?>
 								<?php html_combobox("wpa_keymgmt", gettext("Key Management Protocol"), $pconfig['wpa_keymgmt'], array("WPA-PSK" => gettext("WPA-PSK (Pre Shared Key)"), "WPA-EAP" => gettext("WPA-EAP (Extensible Authentication Protocol)"), "WPA-PSK WPA-EAP" => gettext("WPA-PSK WPA-EAP")), "", true);?>
-								<?php html_combobox("wpa_pairwise", gettext("Pairwise"), $pconfig['wpa_pairwise'], array("CCMP TKIP" => gettext("CCMP TKIP"), "CCMP" => gettext("CCMP"), "TKIP" => gettext("TKIP")), gettext("List of acceptable pairwise (unicast) ciphers for WPA. One or more of: CCMP (AES in Counter mode with CBC-MAC, RFC 3610, IEEE 802.11i/D7.0), TKIP (Temporal Key Integrity Protocol, IEEE 802.11i/D7.0)."), true);?>
+								<?php html_combobox("wpa_pairwise", gettext("Pairwise"), $pconfig['wpa_pairwise'], array("CCMP" => gettext("CCMP"), "CCMP TKIP" => gettext("CCMP TKIP"), "TKIP" => gettext("TKIP")), gettext("List of acceptable pairwise (unicast) ciphers for WPA. One or more of: CCMP (AES in Counter mode with CBC-MAC, RFC 3610, IEEE 802.11i/D7.0), TKIP (Temporal Key Integrity Protocol, IEEE 802.11i/D7.0)."), true);?>
 								<?php html_passwordbox("wpa_psk", gettext("PSK"), $pconfig['wpa_psk'], gettext("Enter the passphrase that will be used in WPA-PSK mode. This must be between 8 and 63 characters long."), true, 40);?>
 <?php } ?>
