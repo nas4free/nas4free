@@ -3,10 +3,14 @@ NAS4Free 10.1.0.2 - Prescience
 
 Changes:
 - Upgrade to FreeBSD 10.1 RELEASE p9.
+- Add Home, Insert, Delete, End, Page Up/Down keys to shell.
 - Upgrade php to 5.6.8.
 - Upgrade tzdata to 2015d.
 - Upgrade mDNSResponder to 567.
 - Upgrade msmtp to 1.6.2.
+
+Fixes:
+- AFP share is not shown in Time Machine.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
