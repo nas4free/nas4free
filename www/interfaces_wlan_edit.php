@@ -219,7 +219,7 @@ $(document).ready(function(){
 				<?php html_titleline_checkbox("apmode", gettext("AP mode"), !empty($pconfig['apmode']) ? true : false, gettext("Enable"), "apmode_change(false)");?>
 				<?php html_inputbox("ap_ssid", gettext("SSID"), $pconfig['ap_ssid'], gettext("Set the desired Service Set Identifier (aka network name)."), true, 20);?>
 				<?php html_inputbox("ap_channel", gettext("Channel"), $pconfig['ap_channel'], "", true, 10);?>
-				<?php html_combobox("ap_encryption", gettext("Encryption"), $pconfig['ap_encryption'], array("wpa" => gettext("WPA")), "", true, false, "encryption_change()");?>
+				<?php html_combobox("ap_encryption", gettext("Encryption"), $pconfig['ap_encryption'], array("wpa" => sprintf("%s / %s", gettext("WPA"), gettext("WPA2"))), "", true, false, "encryption_change()");?>
 				<?php html_combobox("ap_keymgmt", gettext("Key Management Protocol"), $pconfig['ap_keymgmt'], array("WPA-PSK" => gettext("WPA-PSK (Pre Shared Key)")), "", true);?>
 				<?php html_combobox("ap_pairwise", gettext("Pairwise"), $pconfig['ap_pairwise'], array("CCMP" => gettext("CCMP"), "CCMP TKIP" => gettext("CCMP TKIP")), "", true);?>
 				<?php html_passwordbox("ap_psk", gettext("PSK"), $pconfig['ap_psk'], gettext("Enter the passphrase that will be used in WPA-PSK mode. This must be between 8 and 63 characters long."), true, 40);?>
