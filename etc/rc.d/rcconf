@@ -275,7 +275,7 @@ setifconfig()
 			if [ -n "${_bridgeif}" ]; then
 				if configxml_isset "//vinterfaces/wlan[if='${_bridgeif}']/apmode"; then
 					# wlanN AP mode in bridge member
-					sysctl net.link.bridge.inherit_mac=1
+					sysctl -q net.link.bridge.inherit_mac=1 > /dev/null
 				else
 					eval /usr/local/sbin/rconf attribute set "ifconfig_${_bridgeif}" "${_bridgeif_args}"
 				fi
