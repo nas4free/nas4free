@@ -8,7 +8,7 @@ MAINTAINER=		zoon01@nas4free.org
 MASTER_SITES=	SF
  
 GNU_CONFIGURE=  yes 
-USES=           makeinfo pkgconfig tar:xz
+USES=           gmake makeinfo pkgconfig tar:xz
 CPPFLAGS+=      -I${LOCALBASE}/include 
 LDFLAGS+=       -L${LOCALBASE}/lib
 
