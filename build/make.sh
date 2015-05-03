@@ -1273,7 +1273,7 @@ create_arm_image() {
 	mount /dev/${md} $NAS4FREE_TMPDIR
 
 	echo "ARM: Copying previously generated MFSROOT file to memory disk"
-	cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
+	#cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
 	cp $NAS4FREE_WORKINGDIR/mfsroot.uzip $NAS4FREE_TMPDIR
 	#cp $NAS4FREE_WORKINGDIR/mdlocal.xz $NAS4FREE_TMPDIR
 	cp $NAS4FREE_WORKINGDIR/mdlocal.uzip $NAS4FREE_TMPDIR
