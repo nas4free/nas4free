@@ -364,6 +364,7 @@ $(document).ready(function(){
 					echo "<table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td>\n";
 					$cpus = system_get_cpus();
 					for ($idx = 0; $idx < $cpus; $idx++) {
+						if (empty($cpuinfo['temperature2'][$idx])) continue;
 						echo "<tr><td>";
 						echo "<input style='padding: 0; border: 0;' size='2' name='cputemp${idx}' id='cputemp${idx}' value='".htmlspecialchars($cpuinfo['temperature2'][$idx])."' />";
 					echo $idx['temperature2']."&#176;C";	
