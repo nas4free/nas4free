@@ -26,6 +26,7 @@ ARCH=`/usr/bin/uname -m`
 if [ "${ARCH}" == "arm" ]; then
 	# write to pre-aligned partition
 	CFDEVICE=`cat /etc/cfdevice`
+	BOOTDEVICE=`cat /etc/cfdevice | sed -e 's/[0-9][a-h]$/1/'`
 	SKIP=0
 else
 	#CFDEVICE_SLICE=`cat /etc/cfdevice | sed -e 's/[a-h]$//'`
@@ -187,6 +188,25 @@ case $1 in
 		# Remount /cf read-only
 		/sbin/umount -f /cf
 		/sbin/mount -r /cf
+
+		# Update boot partition
+		if [ "${ARCH}" == "arm" ]; then
+			if [ -f /cf/boot-update.tar.xz ]; then
+				LC_ALL=en_US.UTF-8
+				export LC_ALL
+				rm -rf /tmp/boot /tmp/msdos
+				mkdir /tmp/boot /tmp/msdos
+				tar -C /tmp/boot -jxf /cf/boot-update.tar.xz bootversion
+				NEWVER=`cat /tmp/boot/bootversion 2>/dev/null`
+				/sbin/mount -t msdosfs /dev/${BOOTDEVICE} /tmp/msdos
+				OLDVER=`cat /tmp/msdos/bootversion 2>/dev/null`
+				if [ -n "$NEWVER" -a "$NEWVER" != "$OLDVER" ]; then
+					tar -C /tmp/msdos -jxf /cf/boot-update.tar.xz
+				fi
+				/sbin/umount /tmp/msdos
+				rm -rf /tmp/boot /tmp/msdos
+			fi
+		fi
 
 		# Umount tmpfs
 		/sbin/umount -f ${FTMP} > /dev/null 2>&1

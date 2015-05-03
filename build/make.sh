@@ -1324,6 +1324,11 @@ create_arm_image() {
 	# copy kernel modules
 	copy_kmod
 
+	# copy boot-update
+	if [ -f ${NAS4FREE_WORKINGDIR}/boot-update.tar.xz ]; then
+		cp -p ${NAS4FREE_WORKINGDIR}/boot-update.tar.xz ${NAS4FREE_TMPDIR}
+	fi
+
 	# Platform customize
 	if [ -n "$custom_cmd" ]; then
 		eval "$custom_cmd"
