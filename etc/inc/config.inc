@@ -890,6 +890,37 @@ function config_upgrade() {
 		$config['version'] = "1.8";
 	}
 
+	/* Convert 1.8 -> 1.9 */
+	if ($config['version'] === "1.8") {
+		if ($config['samba']['rcvbuf'] < 128480)
+			$config['samba']['rcvbuf'] = 128480;
+		if ($config['samba']['sndbuf'] < 128480)
+			$config['samba']['sndbuf'] = 128480;
+		$index = array_search_ex("varsize", $config['system']['rcconf']['param'], "name");
+		if ($index === false) {
+			$config['system']['rcconf']['param'][] = array(
+				"uuid" => uuid(),
+				"name" => "varsize",
+				"value" => "256m",
+				"comment" => "Default /var size",
+				"enable" => true );
+		} else {
+			$config['system']['rcconf']['param'][$index]['value'] = "256m";
+		}
+		$index = array_search_ex("vartmpsize", $config['system']['rcconf']['param'], "name");
+		if ($index === false) {
+			$config['system']['rcconf']['param'][] = array(
+				"uuid" => uuid(),
+				"name" => "vartmpsize",
+				"value" => "128m",
+				"comment" => "Default /var/tmp size",
+				"enable" => true );
+		} else {
+			$config['system']['rcconf']['param'][$index]['value'] = "128m";
+		}
+		$config['version'] = "1.9";
+	}
+
 	/* XXX Convert 9.5 -> 9.7 (must skip 9.6) */
 
 	write_config();
