@@ -37,6 +37,8 @@ elif [ "armv6" = ${NAS4FREE_ARCH} ]; then
     PLATFORM=$(sysctl -n hw.platform)
     if [ "bcm2835" = ${PLATFORM} ]; then
 	NAS4FREE_XARCH="rpi"
+    elif [ "bcm2836" = ${PLATFORM} ]; then
+	NAS4FREE_XARCH="rpi2"
     elif [ "meson8b" = ${PLATFORM} ]; then
 	NAS4FREE_XARCH="oc1"
     else
