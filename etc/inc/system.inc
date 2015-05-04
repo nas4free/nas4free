@@ -193,7 +193,7 @@ function get_smbios_info() {
 		}
 	}
 	$platform = get_platform_type();
-	if (preg_match('/^rpi-/', $platform)) {
+	if (preg_match('/^rpi-/', $platform) || preg_match('/^rpi2-/', $platform)) {
 		// fake data on RPi
 		$smbios['bios']['reldate'] = "12/01/2014";
 		$smbios['bios']['vendor'] = "Raspberry Pi";
@@ -202,26 +202,51 @@ function get_smbios_info() {
 		$smbios['planar']['product'] = "Raspberry Pi";
 
 		$revision = chop(`/sbin/sysctl -n hw.board.revision`);
+		$scheme = ($revision & 0x800000) >> 23;
+		$ram = ($revision & 0x700000) >> 20;
 		$revision &= 0xffff;
-		if (!empty($revision)) {
-			$model = "";
+		$model = "";
+		if (!empty($revision) && $scheme == 0) {
 			if ($revision <= 0x0006)
 				$model = "Model B (256MB)";
 			else if ($revision >= 0x0007 && $revision <= 0x0009)
 				$model = "Model A";
 			else if ($revision >= 0x000d && $revision <= 0x000f)
 				$model = "Model B";
-			else if ($revision == 0x0010)
+			else if ($revision == 0x0010 || $revision == 0x0013)
 				$model = "Model B+";
-			else if ($revision == 0x0011)
+			else if ($revision == 0x0011 || $revision == 0x0014)
 				$model = "Compute Module";
 			else if ($revision == 0x0012)
 				$model = "Model A+";
 			else
 				$model = sprintf("rev. 0x%04x", $revision);
-			if (!empty($model))
-			$smbios['planar']['product'] .= " $model";
+		} else if (!empty($revision) && $scheme != 0) {
+			$processor = ($revision & 0xf000) >> 12;
+			$type = ($revision & 0x0ff0) >> 4;
+			if ($type == 0)
+				$model = "Model A";
+			else if ($type == 1)
+				$model = "Model B";
+			else if ($type == 2)
+				$model = "Model A+";
+			else if ($type == 3)
+				$model = "Model B+";
+			else if ($type == 4)
+				$model = "2 Model B";
+			else if ($type == 5)
+				$model = "Alpha";
+			else if ($type == 6)
+				$model = "Compute Module";
+			else
+				$model = sprintf("rev. 0x%04x", $revision);
+			if (!empty($model)) {
+				if ($ram == 0)
+					$model .= " (256MB)";
+			}
 		}
+		if (!empty($model))
+			$smbios['planar']['product'] .= " $model";
 		$serial = chop(`/sbin/sysctl -n hw.board.serial`);
 		$serial = preg_replace('/^0+/', '', $serial);
 		if (!empty($serial))
@@ -322,6 +347,8 @@ function system_get_cpu_info() {
 		$platform = chop(`/sbin/sysctl -n hw.platform`);
 		if ($platform == "bcm2835")
 			$cpuinfo['model'] = "Broadcom BCM2835";
+		else if ($platform == "bcm2836")
+			$cpuinfo['model'] = "Broadcom BCM2836";
 		else if ($platform == "meson8b")
 			$cpuinfo['model'] = "Amlogic S805";
 		else
