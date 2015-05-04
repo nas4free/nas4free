@@ -86,7 +86,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_dataset, "uuid
 	$pconfig['compression'] = "off";
 	$pconfig['dedup'] = "off";
 	$pconfig['sync'] = "standard";
-	$pconfig['atime'] = "on";
+	$pconfig['atime'] = "off";
 	$pconfig['canmount'] = true;
 	$pconfig['readonly'] = false;
 	$pconfig['xattr'] = true;
