@@ -1209,6 +1209,20 @@ custom_rpi() {
 	echo "#if_axge_load=YES" >>$NAS4FREE_TMPDIR/boot/loader.conf
 }
 
+custom_rpi2() {
+	# RPI2 settings
+	echo "#vm.pmap.sp_enabled=0" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "hw.bcm2835.sdhci.hs=1" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "hw.bcm2835.cpufreq.verbose=1" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#hw.bcm2835.cpufreq.lowest_freq=600" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#hw.bcm2835.cpufreq.highest_freq=900" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "vfs.zfs.arc_max=280m" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#vm.kmem_size=450m" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#vm.kmem_size_max=500m" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "if_axe_load=YES" >>$NAS4FREE_TMPDIR/boot/loader.conf
+	echo "#if_axge_load=YES" >>$NAS4FREE_TMPDIR/boot/loader.conf
+}
+
 custom_oc1() {
 	# OC1 settings
 	echo "#vm.pmap.sp_enabled=0" >>$NAS4FREE_TMPDIR/boot/loader.conf
