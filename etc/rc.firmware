@@ -196,12 +196,12 @@ case $1 in
 				export LC_ALL
 				rm -rf /tmp/boot /tmp/msdos
 				mkdir /tmp/boot /tmp/msdos
-				tar -C /tmp/boot -jxf /cf/boot-update.tar.xz bootversion
+				tar -C /tmp/boot -Jxf /cf/boot-update.tar.xz bootversion
 				NEWVER=`cat /tmp/boot/bootversion 2>/dev/null`
 				/sbin/mount -t msdosfs /dev/${BOOTDEVICE} /tmp/msdos
 				OLDVER=`cat /tmp/msdos/bootversion 2>/dev/null`
 				if [ -n "$NEWVER" -a "$NEWVER" != "$OLDVER" ]; then
-					tar -C /tmp/msdos -jxf /cf/boot-update.tar.xz
+					tar -C /tmp/msdos -Jxf /cf/boot-update.tar.xz
 				fi
 				/sbin/umount /tmp/msdos
 				rm -rf /tmp/boot /tmp/msdos
