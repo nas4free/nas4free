@@ -98,8 +98,8 @@ case "$ARG1" in
 	# make sure all carp is master
 	if [ -n "${carps}" ]; then
 		for if in ${carps}; do
-			vhid=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v vhid -n -b conf/config.xml`
-			advskew=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v advskew -n -b conf/config.xml`
+			vhid=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v vhid -n -b /conf/config.xml`
+			advskew=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v advskew -n -b /conf/config.xml`
 			if [ "${PREEMPT}" = "0" ]; then
 				/sbin/ifconfig ${if} up vhid ${vhid} state master advskew ${advskew}
 			else
@@ -115,8 +115,8 @@ case "$ARG1" in
 	# make sure all carp is backup
 	if [ "${PREEMPT}" = "0" -a -n "${carps}" ]; then
 		for if in ${carps}; do
-			vhid=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v vhid -n -b conf/config.xml`
-			advskew=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v advskew -n -b conf/config.xml`
+			vhid=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v vhid -n -b /conf/config.xml`
+			advskew=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v advskew -n -b /conf/config.xml`
 			#/sbin/ifconfig ${if} vhid ${vhid} state backup advskew ${advskew}
 			/sbin/ifconfig ${if} vhid ${vhid} state backup
 		done
