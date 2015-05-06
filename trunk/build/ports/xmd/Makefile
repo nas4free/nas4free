@@ -22,6 +22,10 @@ BASEDIR=armv6
 IGNORE=unsupported on ${ARCH}
 .endif
 
+.if ${OSVERSION} >= 1100000
+EXTRA_PATCHES+= ${FILESDIR}/extra-patch-xmd__xmd.c
+.endif
+
 post-build:
 	cd ${WRKSRC}/../xmdconfig && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS}
 	cd ${WRKSRC}/../uncloop && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS}
