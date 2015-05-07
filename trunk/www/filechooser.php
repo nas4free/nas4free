@@ -58,7 +58,8 @@ class FileChooser
 		$this->cfg['filterHideFiles'] = '.*';
 		$this->cfg['filterShowFolders'] = '*';
 		$this->cfg['filterHideFolders'] = '.,..,.*';
-		$this->cfg['dateFormat'] = 'F d, Y g:i A'; // date format.
+		//$this->cfg['dateFormat'] = 'F d, Y g:i A'; // date format.
+		$this->cfg['dateFormat'] = 'Y/m/d H:i'; // date format.
 		$this->cfg['startDirectory'] = "/";
 
 		// Get path if browsing a tree.
@@ -145,7 +146,7 @@ class FileChooser
 				// store elements of folder in sub array
 				$folderInfo['name']	= $file;
 				$folderInfo['mtime'] = @filemtime("{$dir}/{$file}");
-				$folderInfo['type'] = 'Folder';
+				$folderInfo['type'] = gettext("Directory");
 				// calc folder size ?
 				$folderInfo['size'] =
 					$this->cfg['calcFolderSizes'] ?
@@ -258,7 +259,7 @@ class FileChooser
 		}
 		else
 		{
-			return '0 bytes';
+			return '0 Bytes';
 		}
 	}
 
@@ -440,18 +441,18 @@ class FileChooser
 
 				$row .= $this->cfg['lineNumbers'] ?
 				        '<td class="ln">&nbsp;</td>' : '';
-				$row .= '<td><a href="'.$scriptname.'?N='.$N.'&amp;p=' . urlencode($dir) . '">Name</a></td>';
+				$row .= '<td><a href="'.$scriptname.'?N='.$N.'&amp;p=' . urlencode($dir) . '">'.gettext("Name").'</a></td>';
 				$row .= $this->cfg['showFileSize'] ?
 					    '<td class="sz">
-						 <a href="'.$scriptname.'?S='.$S.'&amp;p=' . urlencode($dir) . '">Size</a>
+						 <a href="'.$scriptname.'?S='.$S.'&amp;p=' . urlencode($dir) . '">'.gettext("Size").'</a>
 						 </td>' : '';
 				$row .= $this->cfg['showFileType'] ?
 				        '<td class="tp">
-				         <a href="'.$scriptname.'?T='.$T.'&amp;p=' . urlencode($dir) . '">Type</a>
+				         <a href="'.$scriptname.'?T='.$T.'&amp;p=' . urlencode($dir) . '">'.gettext("Type").'</a>
 				         </td>' : '';
 				$row .= $this->cfg['showFileModDate'] ?
 					    '<td class="dt">
-					     <a href="'.$scriptname.'?M='.$M.'&amp;p=' . urlencode($dir) . '">Last Modified</a>
+					     <a href="'.$scriptname.'?M='.$M.'&amp;p=' . urlencode($dir) . '">'.gettext("Modified").'</a>
 					     </td>' : '';
 				break;
 
@@ -461,7 +462,7 @@ class FileChooser
 				        '<td class="ln">&laquo;</td>' : '';
 				$row .= '<td class="nm">
 				         <a href="'.$scriptname.'?p=' . urlencode($this->get_valid_parent_dir($dir)) . '">';
-				$row .= 'Parent Directory';
+				$row .= gettext("Parent Directory");
 				$row .= '</a></td>';
 				$row .= $this->cfg['showFileSize'] ?
 				        '<td class="sz">&nbsp;</td>' : '';
@@ -492,14 +493,15 @@ class FileChooser
 
   function navigation_bar($path)
 	{
+    $gettext = "gettext";
     $ret = "";
     $ret .= <<<EOD
 	<tr>
 	<td class="navbar">
 	<form method="get" action="filechooser.php" onSubmit="onSubmit();" onReset="onReset();">
 		<input class="input" name="p" value="{$path}" type="text">
-		<input class="button" type="reset" value="Cancel">
-		<input class="button" type="submit" value="Ok">
+		<input class="button" type="reset" value="{$gettext("Cancel")}">
+		<input class="button" type="submit" value="{$gettext("OK")}">
 EOD;
     ob_start();
     include("formend.inc");
