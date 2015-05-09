@@ -1,11 +1,20 @@
 #!/bin/sh
 
-SESSION_NAME="WS_PHPSESSID"
-MEMORY_LIMIT="512M"
-UPLOAD_MAX="512M"
-POST_MAX="512M"
+# set default maxsize
+eval `/usr/bin/grep websrv_maxrequestsize /etc/rc.conf`
+websrv_maxrequestsize=${websrv_maxrequestsize:-"16777216"}
 
-UPLOADDIR="`cat /var/etc/websrv-uploaddir.conf`"
+# minimum size in kibibytes is 1048576KiB (1GiB)
+if [ ${websrv_maxrequestsize} -lt 1048576 ]; then
+	websrv_maxrequestsize="1048576"
+fi
+
+SESSION_NAME="WS_PHPSESSID"
+MEMORY_LIMIT="${websrv_maxrequestsize}K"
+UPLOAD_MAX="${websrv_maxrequestsize}K"
+POST_MAX="${websrv_maxrequestsize}K"
+
+UPLOADDIR="`/bin/cat /var/etc/websrv-uploaddir.conf`"
 if [ -z "$UPLOADDIR" ]; then
 	UPLOADDIR="/var/tmp/ftmp"
 fi
