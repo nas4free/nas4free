@@ -271,7 +271,7 @@ function encryption_change() {
 					<?php html_inputbox("gateway", gettext("Gateway"), $pconfig['gateway'], "", true, 20);?>
 					<?php html_separator();?>
 					<?php html_titleline_checkbox("ipv6_enable", gettext("IPv6 Configuration"), !empty($pconfig['ipv6_enable']) ? true : false, gettext("Activate"), "enable_change(this)");?>
-					<?php html_combobox("ipv6type", gettext("Type"), $pconfig['ipv6type'], array("Static" => gettext("Static"), "Auto" => "Auto"), "", true, false, "ipv6_type_change()");?>
+					<?php html_combobox("ipv6type", gettext("Type"), $pconfig['ipv6type'], array("Static" => gettext("Static"), "Auto" => gettext("Auto")), "", true, false, "ipv6_type_change()");?>
 					<?php html_ipv6addrbox("ipv6addr", "ipv6subnet", gettext("IP address"), !empty($pconfig['ipv6addr']) ? $pconfig['ipv6addr'] : "", !empty($pconfig['ipv6subnet']) ? $pconfig['ipv6subnet'] : "", "", true);?>
 					<?php html_inputbox("ipv6gateway", gettext("Gateway"), !empty($pconfig['ipv6gateway']) ? $pconfig['ipv6gateway'] : "", "", true, 20);?>
 					<?php html_separator();?>

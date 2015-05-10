@@ -310,12 +310,12 @@ function encryption_change() {
 										<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 										<table width="100%" border="0" cellpadding="6" cellspacing="0">
 											<?php html_titleline_checkbox("enable", gettext("IPv4 Configuration"), !empty($pconfig['enable']) ? true : false, gettext("Activate"), "enable_change(false)");?>
-											<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("Static" => "Static", "DHCP" => "DHCP"), "", true, false, "type_change()");?>
+											<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("Static" => gettext("Static"), "DHCP" => gettext("DHCP")), "", true, false, "type_change()");?>
 											<?php html_inputbox("descr", gettext("Description"), $pconfig['descr'], gettext("You may enter a description here for your reference."), true, 20);?>
 											<?php html_ipv4addrbox("ipaddr", "subnet", gettext("IP address"), !empty($pconfig['ipaddr']) ? $pconfig['ipaddr'] : "", !empty($pconfig['subnet']) ? $pconfig['subnet'] : "", "", true);?>
 											<?php html_separator();?>
 											<?php html_titleline_checkbox("ipv6_enable", gettext("IPv6 Configuration"), !empty($pconfig['ipv6_enable']) ? true : false, gettext("Activate"), "enable_change(this)");?>
-											<?php html_combobox("ipv6type", gettext("Type"), $pconfig['ipv6type'], array("Static" => "Static", "Auto" => "Auto"), "", true, false, "ipv6_type_change()");?>
+											<?php html_combobox("ipv6type", gettext("Type"), $pconfig['ipv6type'], array("Static" => gettext("Static"), "Auto" => gettext("Auto")), "", true, false, "ipv6_type_change()");?>
 											<?php html_ipv6addrbox("ipv6addr", "ipv6subnet", gettext("IP address"), !empty($pconfig['ipv6addr']) ? $pconfig['ipv6addr'] : "", !empty($pconfig['ipv6subnet']) ? $pconfig['ipv6subnet'] : "", "", true);?>
 											<?php html_separator();?>
 											<?php html_titleline(gettext("Advanced Configuration"));?>
@@ -323,7 +323,7 @@ function encryption_change() {
 <!--
 											<?php html_checkbox("polling", gettext("Device polling"), $pconfig['polling'] ? true : false, gettext("Enable device polling"), gettext("Device polling is a technique that lets the system periodically poll network devices for new data instead of relying on interrupts. This can reduce CPU load and therefore increase throughput, at the expense of a slightly higher forwarding delay (the devices are polled 1000 times per second). Not all NICs support polling."), false);?>
 -->
-											<?php html_combobox("media", gettext("Media"), $pconfig['media'], array("autoselect" => "autoselect", "10baseT/UTP" => "10baseT/UTP", "100baseTX" => "100baseTX", "1000baseTX" => "1000baseTX", "1000baseSX" => "1000baseSX",), "", false, false, "media_change()");?>
+											<?php html_combobox("media", gettext("Media"), $pconfig['media'], array("autoselect" => gettext("Autoselect"), "10baseT/UTP" => "10baseT/UTP", "100baseTX" => "100baseTX", "1000baseTX" => "1000baseTX", "1000baseSX" => "1000baseSX",), "", false, false, "media_change()");?>
 											<?php html_combobox("mediaopt", gettext("Duplex"), $pconfig['mediaopt'], array("half-duplex" => "half-duplex", "full-duplex" => "full-duplex"), "", false);?>
 											<?php if (!empty($ifinfo['wolevents'])):?>
 											<?php $wakeonoptions = array("off" => gettext("Off"), "wol" => gettext("On")); foreach ($ifinfo['wolevents'] as $woleventv) { $wakeonoptions[$woleventv] = $woleventv; };?>
