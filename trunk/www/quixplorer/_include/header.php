@@ -290,7 +290,12 @@ function show_header($title, $additional_header_content = null)
 	//-- Begin extension section --//
 	if (Session::isAdmin() && isset($g) && isset($g['www_path']) && is_dir("{$g['www_path']}/ext")):
 		echo "<li>\n";
-			echo "<a href=\"../index.php\" onmouseover=\"mopen('extensions')\" onmouseout=\"mclosetime()\">".gettext("Extensions")."</a>\n";
+			$agent = $_SERVER['HTTP_USER_AGENT']; // Put browser name into local variable for desktop/mobile detection
+			if ((preg_match("/iPhone/i", $agent)) || (preg_match("/android/i", $agent))) {
+				echo "<a href=\"javascript:mopen('extensions');\" onmouseout=\"mclosetime()\">".gettext("Extensions")."</a>\n";
+			} else {
+				echo "<a href=\"../index.php\" onmouseover=\"mopen('extensions')\" onmouseout=\"mclosetime()\">".gettext("Extensions")."</a>\n";
+			}
 			echo "<div id=\"extensions\" onmouseover=\"mcancelclosetime()\" onmouseout=\"mclosetime()\">\n";
 				$dh = @opendir("{$g['www_path']}/ext");
 				if ($dh) {
