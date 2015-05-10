@@ -52,6 +52,7 @@ start)
 	# start services
 	/etc/rc.d/samba start
 
+	/etc/rc.d/nfsuserd start
 	/etc/rc.d/rpcbind start
 	/etc/rc.d/mountd start
 	/etc/rc.d/nfsd start
@@ -65,11 +66,12 @@ stop)
 	# stop services
 	/etc/rc.d/samba forcestop
 
-	/etc/rc.d/rpcbind forcestop
-	/etc/rc.d/mountd forcestop
-	/etc/rc.d/nfsd forcestop
-	/etc/rc.d/statd forcestop
 	/etc/rc.d/lockd forcestop
+	/etc/rc.d/statd forcestop
+	/etc/rc.d/nfsd forcestop
+	/etc/rc.d/mountd forcestop
+	/etc/rc.d/rpcbind forcestop
+	/etc/rc.d/nfsuserd forcestop
 
 	/etc/rc.d/mdnsresponder forcerestart
 
