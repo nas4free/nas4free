@@ -896,6 +896,10 @@ function config_upgrade() {
 			$config['samba']['rcvbuf'] = 128480;
 		if ($config['samba']['sndbuf'] < 128480)
 			$config['samba']['sndbuf'] = 128480;
+		if ($config['samba']['aiorsize'] == 4096)
+			$config['samba']['aiorsize'] = 1024;
+		if ($config['samba']['aiowsize'] == 4096)
+			$config['samba']['aiowsize'] = 1024;
 		$index = array_search_ex("varsize", $config['system']['rcconf']['param'], "name");
 		if ($index === false) {
 			$config['system']['rcconf']['param'][] = array(
