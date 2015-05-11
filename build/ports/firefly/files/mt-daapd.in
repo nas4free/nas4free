@@ -50,6 +50,7 @@ mtdaapd_db_parms=${mtdaapd_db_parms:-"/var/db/mt-daapd"}
 mtdaapd_scan_type=${mtdaapd_scan_type:-"0"}
 mtdaapd_rescan_interval=${mtdaapd_rescan_interval:-"0"}
 mtdaapd_always_scan=${mtdaapd_always_scan:-"0"}
+mtdaapd_compilation_dirs=${mtdaapd_compilation_dirs:-"/Various Artists/"}
 # 'Scanning' section
 mtdaapd_case_sensitive=${mtdaapd_case_sensitive:-"1"}
 mtdaapd_ignore_appledouble=${mtdaapd_ignore_appledouble:-"1"}
@@ -70,7 +71,7 @@ command_args="-m -c ${mtdaapd_config}"
 
 mtdaapd_mkconf()
 {
-	local _port _dbparms _mp3dir _rescaninterval _alwaysscan _scantype _servername _admin_pw
+	local _port _dbparms _mp3dir _rescaninterval _alwaysscan _skipfirst _scantype _servername _admin_pw _concatcomps _compdirs
 
 	# Get setting from configuration file.
 	_servername=`configxml_get "//daap/servername"`
@@ -82,11 +83,22 @@ mtdaapd_mkconf()
 		${configxml_file} | /usr/local/bin/xml unesc`
 	_rescaninterval=`configxml_get "//daap/rescaninterval"`
 	_alwaysscan=0
+	_skipfirst=0
+	_concatcomps=0
 	_scantype=`configxml_get "//daap/scantype"`
 	_admin_pw=`configxml_get "//daap/admin_pw"`
+	_compdirs=`configxml_get "//daap/compdirs"`
 
 	if configxml_isset //daap/alwaysscan; then
 		_alwaysscan=1
+	fi
+
+	if configxml_isset //daap/skipfirst; then
+		_skipfirst=1
+	fi
+
+	if configxml_isset //daap/concatcomps; then
+		_concatcomps=1
 	fi
 
 	# Set default values if necessary.
@@ -96,8 +108,11 @@ mtdaapd_mkconf()
 	_mp3dir=${_mp3dir:-"${mtdaapd_mp3_dir}"}
 	_rescaninterval=${_rescaninterval:-"${mtdaapd_rescan_interval}"}
 	_alwaysscan=${_alwaysscan:-"${mtdaapd_always_scan}"}
+	_skipfirst=${_skipfirst:-"${mtdaapd_skip_first}"}
+	_concatcomps=${_concatcomps:-"${mtdaapd_concat_compilations}"}
 	_scantype=${_scantype:-"${mtdaapd_scan_type}"}
 	_admin_pw=${_admin_pw:-"${mtdaapd_admin_pw}"}
+	_compdirs=${_compdirs:-"${mtdaapd_compliation_dirs}"}
 
 	# Set server name. Use product name as default.
 	[ -z "${_servername}" ] && _servername=`get_product_name`
@@ -128,6 +143,7 @@ db_parms = ${_dbparms}
 scan_type = ${_scantype}
 rescan_interval = ${_rescaninterval}
 always_scan = ${_alwaysscan}
+compdirs = ${_compdirs}
 
 [plugins]
 plugin_dir = ${mtdaapd_plugin_dir}
@@ -136,9 +152,9 @@ plugin_dir = ${mtdaapd_plugin_dir}
 case_sensitive = ${mtdaapd_case_sensitive}
 ignore_appledouble = ${mtdaapd_ignore_appledouble}
 ignore_dotfiles = ${mtdaapd_ignore_dotfiles}
-concat_compilations = ${mtdaapd_concat_compilations}
+concat_compilations = ${_concatcomps}
 follow_symlinks = ${mtdaapd_follow_symlinks}
-skip_first = ${mtdaapd_skip_first}
+skip_first = ${_skipfirst}
 process_playlists = ${mtdaapd_process_playlists}
 process_m3u = ${mtdaapd_process_m3u}
 process_itunes = ${mtdaapd_process_itunes}

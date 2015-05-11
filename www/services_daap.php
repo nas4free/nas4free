@@ -48,8 +48,11 @@ $pconfig['servername'] = !empty($config['daap']['servername']) ? $config['daap']
 $pconfig['port'] = $config['daap']['port'];
 $pconfig['dbdir'] = $config['daap']['dbdir'];
 $pconfig['content'] = !empty($config['daap']['content']) ? $config['daap']['content'] : array();
+$pconfig['compdirs'] = $config['daap']['compdirs'];
+$pconfig['concatcomps'] = isset($config['daap']['concatcomps']);
 $pconfig['rescaninterval'] = $config['daap']['rescaninterval'];
 $pconfig['alwaysscan'] = isset($config['daap']['alwaysscan']);
+$pconfig['skipfirst'] = isset($config['daap']['skipfirst']);
 $pconfig['scantype'] = $config['daap']['scantype'];
 $pconfig['admin_pw'] = $config['daap']['admin_pw'];
 
@@ -58,7 +61,10 @@ if (!$pconfig['servername']) $pconfig['servername'] = $config['system']['hostnam
 if (!$pconfig['port']) $pconfig['port'] = "3689";
 if (!$pconfig['rescaninterval']) $pconfig['rescaninterval'] = "0";
 if (!$pconfig['alwaysscan']) $pconfig['alwaysscan'] = false;
+if (!$pconfig['skipfirst']) $pconfig['skipfirst'] = false;
 if (!$pconfig['scantype']) $pconfig['scantype'] = "0";
+if (!$pconfig['concatcomps']) $pconfig['concatcomps'] = false;
+if (!$pconfig['compdirs']) $pconfig['compdirs'] = "";
 
 if ($_POST) {
 	unset($input_errors);
@@ -89,8 +95,11 @@ if ($_POST) {
 		$config['daap']['port'] = $_POST['port'];
 		$config['daap']['dbdir'] = $_POST['dbdir'];
 		$config['daap']['content'] = !empty($_POST['content']) ? $_POST['content'] : array();
+		$config['daap']['compdirs'] = $_POST['compdirs'];
+		$config['daap']['concatcomps'] = isset($_POST['concatcomps']) ? true : false;
 		$config['daap']['rescaninterval'] = $_POST['rescaninterval'];
 		$config['daap']['alwaysscan'] = isset($_POST['alwaysscan']) ? true : false;
+		$config['daap']['skipfirst'] = isset($_POST['skipfirst']) ? true : false;
 		$config['daap']['scantype'] = $_POST['scantype'];
 		$config['daap']['admin_pw'] = $_POST['admin_pw'];
 
@@ -123,8 +132,11 @@ function enable_change(enable_change) {
 	document.iform.contentdeletebtn.disabled = endis;
 	document.iform.contentdata.disabled = endis;
 	document.iform.contentbrowsebtn.disabled = endis;
+	document.iform.compdirs.disabled = endis;
+	document.iform.concatcomps.disabled = endis;
 	document.iform.rescaninterval.disabled = endis;
 	document.iform.alwaysscan.disabled = endis;
+	document.iform.skipfirst.disabled = endis;
 	document.iform.scantype.disabled = endis;
 	document.iform.admin_pw.disabled = endis;
 }
@@ -143,8 +155,11 @@ function enable_change(enable_change) {
 					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], gettext("Port to listen on. Default iTunes port is 3689."), true, 5);?>
 					<?php html_filechooser("dbdir", gettext("Database directory"), $pconfig['dbdir'], gettext("Location where the content database file will be stored."), $g['media_path'], true, 60);?>
 					<?php html_folderbox("content", gettext("Content"), !empty($pconfig['content']) ? $pconfig['content'] : array(), gettext("Location of the files to share."), $g['media_path'], true);?>
+					<?php html_inputbox("compdirs", gettext("Compilations directories"), $pconfig['compdirs'], gettext("Tracks whose path contains one or more of these comma separated strings will be treated as a compilation."), false, 40);?>
+					<?php html_checkbox("concatcomps", gettext("Group compilations"), !empty($pconfig['concatcomps']) ? true : false, "", gettext("Whether compilations should be shown together under Various Artists."), false);?>
 					<?php html_inputbox("rescaninterval", gettext("Rescan interval"), $pconfig['rescaninterval'], gettext("Scan file system every N seconds to see if any files have been added or removed. Set to 0 to disable background scanning. If background rescanning is disabled, a scan can still be forced from the status page of the administrative web interface."), false, 5);?>
 					<?php html_checkbox("alwaysscan", gettext("Always scan"), !empty($pconfig['alwaysscan']) ? true : false, "", gettext("Whether scans should be skipped if there are no users connected. This allows the drive to spin down when no users are connected."), false);?>
+					<?php html_checkbox("skipfirst", gettext("Skip first scan"), !empty($pconfig['skipfirst']) ? true : false, "", gettext("Whether to skip initial boot-up scan."), false);?>
 					<?php html_combobox("scantype", gettext("Scan type"), $pconfig['scantype'], array("0" => gettext("Normal"), "1" => gettext("Aggressive"), "2" => gettext("Painfully aggressive")), "", false);?>
 					<?php html_separator();?>
 					<?php html_titleline(gettext("Administrative WebGUI"));?>
