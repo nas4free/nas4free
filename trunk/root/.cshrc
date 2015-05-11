@@ -46,6 +46,8 @@ if ($?prompt) then
                 bindkey "\e[4~" end-of-line             # End
                 bindkey "\e[5~" history-search-backward # Page Up
                 bindkey "\e[6~" history-search-forward  # Page Down
+		bindkey "\eOc"  forward-word            # ctrl right
+		bindkey "\eOd"  backward-word           # ctrl left
 	endif
 endif
 
