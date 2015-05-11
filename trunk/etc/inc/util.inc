@@ -427,7 +427,7 @@ function get_interface_list() {
 	$iflist = array();
 
 	foreach ($linkinfo as $link) {
-		$alink = preg_split("/\s+/", $link);
+		$alink = preg_split("/\s+/", ltrim($link));
 		$ifname = chop($alink[0]);
 
 		if (substr($ifname, -1) === "*")
@@ -469,7 +469,7 @@ function get_interface_wlist() {
 	$iflist = array();
 
 	foreach ($linkinfo as $link) {
-		$alink = preg_split("/\s+/", $link);
+		$alink = preg_split("/\s+/", ltrim($link));
 		$ifname = chop($alink[0]);
 
 		if (substr($ifname, -1) === "*")
@@ -510,7 +510,7 @@ function get_wlan_interface_list() {
 	$iflist = array();
 
 	foreach ($linkinfo as $link) {
-		$alink = preg_split("/\s+/", $link);
+		$alink = preg_split("/\s+/", ltrim($link));
 		$ifname = chop($alink[0]);
 
 		if (substr($ifname, -1) === "*")
@@ -1836,7 +1836,7 @@ function get_ipaddr($if)
 
   foreach($inetinfo as $inet)
   {
-    $ainet = preg_split("/\s+/", $inet);
+    $ainet = preg_split("/\s+/", ltrim($inet));
     $ifname = chop($ainet[0]);
 
     if (strncmp($ifname,$if,strlen($if)) == 0)
@@ -1880,7 +1880,7 @@ function get_ipv6addr($if)
 
   foreach($inetinfo as $inet)
   {
-    $ainet = preg_split("/\s+/", $inet);
+    $ainet = preg_split("/\s+/", ltrim($inet));
     $ifname = chop($ainet[0]);
 
     if (strncmp($ifname,$if,strlen($if)) == 0)
@@ -1903,7 +1903,7 @@ function get_macaddr($if)
   array_shift($linkinfo);
 
   foreach($linkinfo as $link)  {
-    $alink = preg_split("/\s+/", $link);
+    $alink = preg_split("/\s+/", ltrim($link));
     $ifname = chop($alink[0]);
 
     if (strncmp($ifname,$if,strlen($if)) == 0) {
@@ -2115,7 +2115,7 @@ function get_interface_info($if) {
 	/* run netstat to determine link info */
 	unset($linkinfo);
 	exec("/usr/bin/netstat -I " . $ifinfo['hwif'] . " -nWb -f link", $linkinfo);
-	$linkinfo = preg_split("/\s+/", $linkinfo[1]);
+	$linkinfo = preg_split("/\s+/", ltrim($linkinfo[1]));
 	if (preg_match("/\*$/", $linkinfo[0]) || preg_match("/^$/", $linkinfo[0])) {
 		$ifinfo['status'] = "down";
 	} else {
