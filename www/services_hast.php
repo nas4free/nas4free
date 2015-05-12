@@ -103,11 +103,18 @@ if ($_POST) {
 	}
 	if (isset($_POST['switch_master']) && $_POST['switch_master']) {
 		// up and set master all carp
+		$role = get_hast_role();
 		foreach ($a_carp as $carp) {
+			$state = @exec("/sbin/ifconfig {$carp['if']} | grep  'carp:' | awk '{ print tolower($2) }'");
 			if ($carp['advskew'] <= 1) {
 				system("/sbin/ifconfig {$carp['if']} up vhid {$carp['vhid']} state master advskew {$carp['advskew']}");
 			} else {
 				system("/sbin/ifconfig {$carp['if']} up vhid {$carp['vhid']} state master");
+			}
+			// if already master, use linkup action
+			if ($state == "master" && $role != "primary") {
+				$action = $carp['linkup'];
+				$result = mwexec($action);
 			}
 		}
 		// waits for the secondary disk to disappear
