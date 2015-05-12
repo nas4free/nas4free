@@ -304,6 +304,11 @@ samba_mkconf_cmd()
 			-o "aio_pthread " \
 			-o "streams_xattr " \
 			-n \
+			-i "count(zfsacl) > 0" \
+				-o "nfs4:mode = special" -n \
+				-o "nfs4:acedup = merge" -n \
+				-o "nfs4:chown = yes" -n \
+			-b \
 			-i "count(recyclebin) > 0" \
 				-o "recycle:repository = ${samba_recycle_repository}" -n \
 				-o "recycle:keeptree = yes" -n \
