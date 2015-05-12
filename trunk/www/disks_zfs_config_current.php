@@ -185,17 +185,21 @@ if (updatenotify_exists('zfs_import_config'))
 			</table>
 			<br />
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
-				<?php html_titleline(gettext('Datasets').' ('.count($zfs['datasets']['dataset']).')', 10);?>
+				<?php html_titleline(gettext('Datasets').' ('.count($zfs['datasets']['dataset']).')', 11);?>
 				<tr>
 					<td width="14%" class="listhdrlr"><?=gettext("Name");?></td>
 					<td width="14%" class="listhdrr"><?=gettext("Pool");?></td>
-					<td width="9%" class="listhdrr"><?=gettext("Compression");?></td>
-					<td width="9%" class="listhdrr"><?=gettext("Dedup");?></td>
+					<td width="7%" class="listhdrr"><?=gettext("Compression");?></td>
+					<td width="7%" class="listhdrr"><?=gettext("Dedup");?></td>
 					<td width="9%" class="listhdrr"><?=gettext("Sync");?></td>
-					<td width="9%" class="listhdrr"><?=gettext("Canmount");?></td>
-					<td width="9%" class="listhdrr"><?=gettext("Quota");?></td>
-					<td width="9%" class="listhdrr"><?=gettext("Extended attributes");?></td>
-					<td width="9%" class="listhdrr"><?=gettext("Readonly");?></td>
+					<td width="9%" class="listhdrr"><?=gettext("ACL inherit");?></td>
+					<td width="9%" class="listhdrr"><?=gettext("ACL mode");?></td>
+					<td width="7%" class="listhdrr"><?=gettext("Canmount");?></td>
+					<td width="8%" class="listhdrr"><?=gettext("Quota");?></td>
+<!--
+					<td width="8%" class="listhdrr"><?=gettext("Extended attributes");?></td>
+-->
+					<td width="7%" class="listhdrr"><?=gettext("Readonly");?></td>
 					<td width="9%" class="listhdrr"><?=gettext("Snapshot Visibility");?></td>
 				</tr>
 				<?php foreach ($zfs['datasets']['dataset'] as $dataset):?>
@@ -205,9 +209,13 @@ if (updatenotify_exists('zfs_import_config'))
 					<td class="listr"><?= $dataset['compression']; ?></td>
 					<td class="listr"><?= $dataset['dedup']; ?></td>
 					<td class="listr"><?= $dataset['sync']; ?></td>
+					<td class="listr"><?= $dataset['aclinherit']; ?></td>
+					<td class="listr"><?= $dataset['aclmode']; ?></td>
 					<td class="listr"><?= isset($dataset['canmount']) ? 'on' : 'off'; ?></td>
 					<td class="listr"><?= empty($dataset['quota']) ? 'none' : $dataset['quota']; ?></td>
+<!--
 					<td class="listr"><?= isset($dataset['xattr']) ? 'on' : 'off'; ?></td>
+-->
 					<td class="listr"><?= isset($dataset['readonly']) ? 'on' : 'off'; ?></td>
 					<td class="listr"><?= isset($dataset['snapdir']) ? 'visible' : 'hidden'; ?></td>
 				</tr>

@@ -388,7 +388,13 @@ function zfs_dataset_configure($uuid) {
 
 	if (!empty($dataset['atime']))
 		$param .= "-o atime={$dataset['atime']} ";
-	
+
+	if (!empty($dataset['aclinherit']))
+		$param .= "-o aclinherit={$dataset['aclinherit']} ";
+
+	if (!empty($dataset['aclmode']))
+		$param .= "-o aclmode={$dataset['aclmode']} ";
+
 	if (!isset($dataset['canmount']))
 		$param .= "-o canmount=off ";
 
@@ -401,8 +407,10 @@ function zfs_dataset_configure($uuid) {
 	if (!empty($dataset['quota']))
 		$param .= "-o quota={$dataset['quota']} ";
 
+/*
 	if (!isset($dataset['xattr']))
 		$param .= "-o xattr=off ";
+*/
 
 	if (isset($dataset['snapdir']))
 		$param .= "-o snapdir=visible ";
@@ -501,7 +509,7 @@ function zfs_dataset_properties($uuid) {
 
 	$result = 0;
 
-	foreach (explode(" ", "compression dedup sync atime canmount readonly reservation quota xattr snapdir") as $attr) {
+	foreach (explode(" ", "compression dedup sync atime aclinherit aclmode canmount readonly reservation quota xattr snapdir") as $attr) {
 		$param = "";
 
 		switch ($attr) {
@@ -523,6 +531,16 @@ function zfs_dataset_properties($uuid) {
 			case "atime":
 				if (!empty($dataset['atime']))
 					$param = "atime={$dataset['atime']}";
+				break;
+
+			case "aclinherit":
+				if (!empty($dataset['aclinherit']))
+					$param = "aclinherit={$dataset['aclinherit']}";
+				break;
+
+			case "aclmode":
+				if (!empty($dataset['aclmode']))
+					$param = "aclmode={$dataset['aclmode']}";
 				break;
 
 			case "canmount":

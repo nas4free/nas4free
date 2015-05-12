@@ -69,6 +69,8 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_dataset, "uuid
 	$pconfig['dedup'] = $a_dataset[$cnid]['dedup'];
 	$pconfig['sync'] = $a_dataset[$cnid]['sync'];
 	$pconfig['atime'] = $a_dataset[$cnid]['atime'];	
+	$pconfig['aclinherit'] = $a_dataset[$cnid]['aclinherit'];
+	$pconfig['aclmode'] = $a_dataset[$cnid]['aclmode'];
 	$pconfig['canmount'] = isset($a_dataset[$cnid]['canmount']);
 	$pconfig['readonly'] = isset($a_dataset[$cnid]['readonly']);
 	$pconfig['xattr'] = isset($a_dataset[$cnid]['xattr']);
@@ -87,6 +89,8 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_dataset, "uuid
 	$pconfig['dedup'] = "off";
 	$pconfig['sync'] = "standard";
 	$pconfig['atime'] = "off";
+	$pconfig['aclinherit'] = "restricted";
+	$pconfig['aclmode'] = "discard";
 	$pconfig['canmount'] = true;
 	$pconfig['readonly'] = false;
 	$pconfig['xattr'] = true;
@@ -129,6 +133,8 @@ if ($_POST) {
 		$dataset['dedup'] = $_POST['dedup'];
 		$dataset['sync'] = $_POST['sync'];
 		$dataset['atime'] = $_POST['atime'];
+		$dataset['aclinherit'] = $_POST['aclinherit'];
+		$dataset['aclmode'] = $_POST['aclmode'];
 		$dataset['canmount'] = isset($_POST['canmount']) ? true : false;
 		$dataset['readonly'] = isset($_POST['readonly']) ? true : false;
 		$dataset['xattr'] = isset($_POST['xattr']) ? true : false;
@@ -263,6 +269,10 @@ function enable_change(enable_change) {
 					<?php html_combobox("sync", gettext("Sync"), $pconfig['sync'], $a_sync, gettext("Controls the behavior of synchronous requests."), true);?>
 					<?php $a_atime = array("on" => gettext("On"), "off" => gettext("Off")); ?>
 					<?php html_combobox("atime", gettext("Access Time (atime)"), $pconfig['atime'], $a_atime, gettext("Turn access time on or off for this dataset."), true);?>
+					<?php $a_aclinherit = array("discard" => "discard", "noallow" => "noallow", "restricted" => "restricted", "passthrough" => "passthrough", "passthrough-x" => "passthrough-x"); ?>
+					<?php html_combobox("aclinherit", gettext("ACL inherit"), $pconfig['aclinherit'], $a_aclinherit, "", true);?>
+					<?php $a_aclmode = array("discard" => "discard", "groupmask" => "groupmask", "passthrough" => "passthrough", "restricted" => "restricted"); ?>
+					<?php html_combobox("aclmode", gettext("ACL mode"), $pconfig['aclmode'], $a_aclmode, "", true);?>
 					<?php html_checkbox("canmount", gettext("Canmount"), !empty($pconfig['canmount']) ? true : false, gettext("If this property is disabled, the file system cannot be mounted."), "", false);?>
 					<?php html_checkbox("readonly", gettext("Readonly"), !empty($pconfig['readonly']) ? true : false, gettext("Controls whether this dataset can be modified."), "", false);?>
 					<?php html_checkbox("xattr", gettext("Extended attributes"), !empty($pconfig['xattr']) ? true : false, gettext("Enable extended attributes for this file system."), "", false);?>

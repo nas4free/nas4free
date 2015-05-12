@@ -59,12 +59,12 @@ $spa = @exec("sysctl -q -n vfs.zfs.version.spa");
 if ($spa == '' || $spa < 21) {
 	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin', $rawdata);
 } else {
-	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin,reservation,dedup,sync,atime', $rawdata);
+	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin,reservation,dedup,sync,atime,aclinherit,aclmode,primarycache,secondarycache', $rawdata);
 }
 foreach($rawdata as $line)
 {
 	if ($line == 'no datasets available') { continue; }
-	list($fname, $mpoint, $compress, $canmount, $quota, $used, $avail, $xattr, $snapdir, $readonly, $origin, $reservation, $dedup, $sync, $atime) = explode("\t", $line);
+	list($fname, $mpoint, $compress, $canmount, $quota, $used, $avail, $xattr, $snapdir, $readonly, $origin, $reservation, $dedup, $sync, $atime, $aclinherit, $aclmode, $primarycache, $secondarycache) = explode("\t", $line);
 	if (strpos($fname, '/') !== false) // dataset
 	{
 		if (empty($origin) || $origin != '-') continue;
@@ -83,6 +83,10 @@ foreach($rawdata as $line)
 			'dedup' => $dedup,
 			'sync' => $sync,
 			'atime' => $atime,
+			'aclinherit' => $aclinherit,
+			'aclmode' => $aclmode,
+			'primarycache' => $primarycache,
+			'secondarycache' => $secondarycache,
 			'desc' => '',
 		);
 		list($mp_owner, $mp_group, $mp_mode) = array('root', 'wheel', 0777);
@@ -567,18 +571,22 @@ if (!$health)
 				</table>
 				<br />
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
-					<?php html_titleline(gettext('Datasets').' ('.count($zfs['datasets']['dataset']).')', 11);?>
+					<?php html_titleline(gettext('Datasets').' ('.count($zfs['datasets']['dataset']).')', 12);?>
 					<tr>
 						<td width="1%" class="listhdrlr">&nbsp;</td>
 						<td width="14%" class="listhdrr"><?=gettext("Name");?></td>
 						<td width="13%" class="listhdrr"><?=gettext("Pool");?></td>
-						<td width="9%" class="listhdrr"><?=gettext("Compression");?></td>
-						<td width="9%" class="listhdrr"><?=gettext("Dedup");?></td>
+						<td width="7%" class="listhdrr"><?=gettext("Compression");?></td>
+						<td width="7%" class="listhdrr"><?=gettext("Dedup");?></td>
 						<td width="9%" class="listhdrr"><?=gettext("Sync");?></td>
-						<td width="9%" class="listhdrr"><?=gettext("Canmount");?></td>
-						<td width="9%" class="listhdrr"><?=gettext("Quota");?></td>
-						<td width="9%" class="listhdrr"><?=gettext("Extended attributes");?></td>
-						<td width="9%" class="listhdrr"><?=gettext("Readonly");?></td>
+						<td width="9%" class="listhdrr"><?=gettext("ACL inherit");?></td>
+						<td width="9%" class="listhdrr"><?=gettext("ACL mode");?></td>
+						<td width="7%" class="listhdrr"><?=gettext("Canmount");?></td>
+						<td width="8%" class="listhdrr"><?=gettext("Quota");?></td>
+<!--
+						<td width="8%" class="listhdrr"><?=gettext("Extended attributes");?></td>
+-->
+						<td width="7%" class="listhdrr"><?=gettext("Readonly");?></td>
 						<td width="9%" class="listhdrr"><?=gettext("Snapshot Visibility");?></td>
 					</tr>
 					<?php foreach ($zfs['datasets']['dataset'] as $dataset):?>
@@ -589,9 +597,13 @@ if (!$health)
 						<td class="listr"><?= $dataset['compression']; ?></td>
 						<td class="listr"><?= $dataset['dedup']; ?></td>
 						<td class="listr"><?= $dataset['sync']; ?></td>
+						<td class="listr"><?= $dataset['aclinherit']; ?></td>
+						<td class="listr"><?= $dataset['aclmode']; ?></td>
 						<td class="listr"><?= empty($dataset['canmount']) ? 'on' : $dataset['canmount']; ?></td>
 						<td class="listr"><?= empty($dataset['quota']) ? 'none' : $dataset['quota']; ?></td>
+<!--
 						<td class="listr"><?= empty($dataset['xattr']) ? 'off' : 'on'; ?></td>
+-->
 						<td class="listr"><?= empty($dataset['readonly']) ? 'off' : 'on'; ?></td>
 						<td class="listr"><?= empty($dataset['snapdir']) ? 'hidden' : 'visible'; ?></td>
 					</tr>
