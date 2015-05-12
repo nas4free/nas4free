@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-05-07 16:04+0000\n"
-"PO-Revision-Date: 2015-05-07 07:17+0000\n"
+"POT-Creation-Date: 2015-05-12 23:32+0000\n"
+"PO-Revision-Date: 2015-05-12 15:48+0000\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-05-07 21:21+0000\n"
-"X-Generator: Launchpad (build 17474)\n"
+"X-Launchpad-Export-Date: 2015-05-12 16:41+0000\n"
+"X-Generator: Launchpad (build 17493)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
 "X-Poedit-Language: Japanese\n"
@@ -251,6 +251,12 @@ msgstr "有効なプレフィックス値 (1-128) を指定してください。
 
 msgid "A valid systctl MIB value."
 msgstr "有効な sysctl MIB の値を入力して下さい。"
+
+msgid "ACL inherit"
+msgstr "ACL 継承"
+
+msgid "ACL mode"
+msgstr "ACL モード"
 
 msgid "AD authentication disabled"
 msgstr "AD 認証は無効です"
@@ -1049,6 +1055,9 @@ msgstr "Common Internet File System"
 
 msgid "Community"
 msgstr "コミュニティー"
+
+msgid "Compilations directories"
+msgstr "コンピレーション ディレクトリ"
 
 msgid "Compliant profile to be used."
 msgstr "使用するプロファイルを選択します。"
@@ -2572,6 +2581,9 @@ msgstr "グループ"
 
 msgid "Group ID"
 msgstr "グループ ID"
+
+msgid "Group compilations"
+msgstr "グループ コンピレーション"
 
 msgid "Group description."
 msgstr "グループの説明"
@@ -5010,6 +5022,9 @@ msgstr "イニシエータに提供するサイズ。(最大8EiB=8388608TiB。�
 msgid "Skew"
 msgstr "スキュー"
 
+msgid "Skip first scan"
+msgstr "初回スキャンのスキップ"
+
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "Sleep - スリープモードで無い場合にデバイスをチェックします。"
 
@@ -6602,6 +6617,11 @@ msgstr ""
 "Traceroute が完了するまで時間がかかるかもしれません。失敗した traceroute "
 "の経過を見るためにブラウザのストップボタンをクリックしても構いません。"
 
+msgid ""
+"Tracks whose path contains one or more of these comma separated strings will "
+"be treated as a compilation."
+msgstr "カンマ区切りのパスをコンピレーションとして取り扱う。"
+
 msgid "Transcoding"
 msgstr "トランスコーディング"
 
@@ -7078,11 +7098,17 @@ msgstr ""
 msgid "Where to save downloaded data."
 msgstr "ダウンロードしたデータを保存する場所"
 
+msgid "Whether compilations should be shown together under Various Artists."
+msgstr "Various Artists としてコンピレーションを表示させるかどうか。"
+
 msgid ""
 "Whether scans should be skipped if there are no users connected. This allows "
 "the drive to spin down when no users are connected."
 msgstr ""
 "接続しているユーザが全くいない場合にスキャンをスキップさせます。ユーザが全く接続されていない場合、ドライブをスピンダウンさせる事が可能になります。"
+
+msgid "Whether to skip initial boot-up scan."
+msgstr "初回起動時のスキャンをスキップするかどうか。"
 
 msgid "Who"
 msgstr "誰が"
