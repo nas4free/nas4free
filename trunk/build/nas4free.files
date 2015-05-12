@@ -687,6 +687,9 @@ usr/sbin/hostapd
 ## tcpdump - dump traffic on a network
 usr/sbin/tcpdump
 
+## getextattr, lsextattr, rmextattr, setextattr -- manipulate extended attributes
+usr/sbin/rmextattr:usr/sbin/getextattr:usr/sbin/setextattr:usr/sbin/lsextattr
+
 ####### contents of /usr/libexec
 # ld-elf.so.1, ld.so, rtld -- run-time link-editor
 libexec/ld-elf.so.1:usr/libexec/ld-elf.so.1
