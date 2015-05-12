@@ -302,6 +302,7 @@ samba_mkconf_cmd()
 				-o "recycle " \
 			-b \
 			-o "aio_pthread " \
+			-o "streams_xattr " \
 			-n \
 			-i "count(recyclebin) > 0" \
 				-o "recycle:repository = ${samba_recycle_repository}" -n \
