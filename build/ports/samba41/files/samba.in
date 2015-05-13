@@ -291,6 +291,9 @@ samba_mkconf_cmd()
 			-i "count(inheritpermissions) > 0" \
 				-o "inherit permissions = yes" -n \
 			-b \
+			-i "count(inheritacls) > 0" \
+				-o "inherit acls = yes" -n \
+			-b \
 			-o "vfs objects = " \
 			-i "count(shadowcopy) > 0" \
 				-o "shadow_copy2 " \
