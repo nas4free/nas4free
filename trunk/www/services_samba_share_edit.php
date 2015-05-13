@@ -66,6 +66,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_share, "uuid")
 	$pconfig['browseable'] = isset($a_share[$cnid]['browseable']);
 	$pconfig['guest'] = isset($a_share[$cnid]['guest']);
 	$pconfig['inheritpermissions'] = isset($a_share[$cnid]['inheritpermissions']);
+	$pconfig['inheritacls'] = isset($a_share[$cnid]['inheritacls']);
 	$pconfig['recyclebin'] = isset($a_share[$cnid]['recyclebin']);
 	$pconfig['hidedotfiles'] = isset($a_share[$cnid]['hidedotfiles']);
 	$pconfig['shadowcopy'] = isset($a_share[$cnid]['shadowcopy']);
@@ -85,6 +86,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_share, "uuid")
 	$pconfig['browseable'] = true;
 	$pconfig['guest'] = true;
 	$pconfig['inheritpermissions'] = true;
+	$pconfig['inheritacls'] = true;
 	$pconfig['recyclebin'] = true;
 	$pconfig['hidedotfiles'] = true;
 	$pconfig['shadowcopy'] = true;
@@ -183,6 +185,7 @@ if ($_POST) {
 		$share['browseable'] = isset($_POST['browseable']) ? true : false;
 		$share['guest'] = isset($_POST['guest']) ? true : false;
 		$share['inheritpermissions'] = isset($_POST['inheritpermissions']) ? true : false;
+		$share['inheritacls'] = isset($_POST['inheritacls']) ? true : false;
 		$share['recyclebin'] = isset($_POST['recyclebin']) ? true : false;
 		$share['hidedotfiles'] = isset($_POST['hidedotfiles']) ? true : false;
 		$share['shadowcopy'] = isset($_POST['shadowcopy']) ? true : false;
@@ -319,6 +322,13 @@ if ($_POST) {
 			        <input name="zfsacl" type="checkbox" id="zfsacl" value="yes" <?php if (isset($pconfig['zfsacl']) && $pconfig['zfsacl']) echo "checked=\"checked\""; ?> />
 			        <?=gettext("Enable ZFS ACL");?><br />
 			        <span class="vexpl"><?=gettext("This will provide ZFS ACL support. (ZFS only)");?></span>
+			      </td>
+			    </tr>
+			    <tr>
+			      <td width="22%" valign="top" class="vncell"><?=gettext("Inherit ACL");?></td>
+			      <td width="78%" class="vtable">
+			        <input name="inheritacls" type="checkbox" id="inheritacls" value="yes" <?php if (isset($pconfig['inheritacls']) && $pconfig['inheritacls']) echo "checked=\"checked\""; ?> />
+			        <?=gettext("Enable ACL inheritance");?>
 			      </td>
 			    </tr>
 			    <tr>
