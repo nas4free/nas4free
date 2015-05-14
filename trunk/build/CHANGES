@@ -2,13 +2,15 @@ NAS4Free 10.1.0.2 - Prescience
 ------------------------------
 
 Changes:
-- Upgrade to FreeBSD 10.1 RELEASE p9.
-- Add Home, Insert, Delete, End, Page Up/Down keys to shell.
-- Increase upload size in Webserver service up to 16GiB. (websrv_maxrequestsize)
-- Support aclinherit/aclmode ZFS properties.
+- Upgrade to FreeBSD 10.1 RELEASE p10.
+- Add Home, Insert, Delete, End, Page Up/Down, ctrl left/right keys to console.
+- Add Daap/Firefly advanced options.
 - Add aio_pthread streams_xattr by default.
 - Add zfsacl default setting.
 - Add inherit acls on SMB share.
+- Increase upload size in Webserver service up to 16GiB. (websrv_maxrequestsize)
+- Store DOS attributes OFF by default.
+- Support aclinherit/aclmode ZFS properties.
 - Upgrade php to 5.6.8.
 - Upgrade tzdata to 2015d.
 - Upgrade mDNSResponder to 567.
