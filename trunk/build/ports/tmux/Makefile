@@ -1,5 +1,5 @@
 PORTNAME=		tmux
-PORTVERSION=	1.9a
+PORTVERSION=	2.0
 PORTREVISION?=  0
 CATEGORIES=		sysutils
 COMMENT=		Terminal Multiplexer
@@ -33,11 +33,13 @@ BACKSPACE_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-tty-keys.c
 LIBEVENT_STATIC_LIB_DEPENDS_OFF=	libevent.so:${PORTSDIR}/devel/libevent2
 LIBEVENT_STATIC_BUILD_DEPENDS=	${LOCALBASE}/lib/libevent.a:${PORTSDIR}/devel/libevent2
 
-# 1.9a was released as an errata to 1.9
-# this port was never updated to 1.9
-PORTSCOUT=	ignore:1.9
-
 .include <bsd.port.options.mk>
+
+.if ${OSVERSION} < 900004
+LIB_DEPENDS+=   libutempter.so:${PORTSDIR}/sysutils/libutempter
+CFLAGS+=        -I${LOCALBASE}/include
+LDFLAGS+=       -L${LOCALBASE}/lib
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/etc/tmux.conf|${PREFIX}/etc/tmux.conf|g' \
