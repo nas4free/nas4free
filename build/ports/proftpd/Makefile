@@ -1,6 +1,6 @@
 PORTNAME=		proftpd
 PORTVERSION=	1.3.5
-PORTREVISION?=  2
+PORTREVISION?=  3
 CATEGORIES=		ftp
 COMMENT=		Highly configurable FTP daemon
 MAINTAINER=		zoon01@nas4free.org
@@ -14,7 +14,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAKE_JOBS_UNSAFE=       yes
-USES=           gmake libtool
+USES+=           cpe gmake libtool
 USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 USE_GETTEXT=		yes
