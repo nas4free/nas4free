@@ -4,8 +4,7 @@ PORTNAME?=		${SAMBA4_BASENAME}41
 PORTVERSION?=		${SAMBA4_VERSION}
 PORTREVISION?=	0
 CATEGORIES?=		net
-MASTER_SITES=		${MASTER_SITE_SAMBA}
-MASTER_SITE_SUBDIR=	samba/stable samba/rc
+MASTER_SITES=		SAMBA/samba/stable SAMBA/samba/rc
 DISTNAME=		${SAMBA4_DISTNAME}
 
 MAINTAINER?=		aoyama@nas4free.org
@@ -41,8 +40,7 @@ SAMBA4_INCLUDEDIR=	${PREFIX}/include/${SAMBA4_PORTNAME}
 SAMBA4_CONFDIR=		${PREFIX}/etc
 SAMBA4_CONFIG=		smb4.conf
 
-CONFIGURE_ARGS+=	--prefix="${PREFIX}" \
-			--exec-prefix="${PREFIX}" \
+CONFIGURE_ARGS+=	--exec-prefix="${PREFIX}" \
 			--mandir="${MANPREFIX}/man" \
 			--sysconfdir="${SAMBA4_CONFDIR}" \
 			--includedir="${SAMBA4_INCLUDEDIR}" \
@@ -61,17 +59,16 @@ CONFIGURE_ARGS+=	--prefix="${PREFIX}" \
 			--with-cachedir="${SAMBA4_LOCKDIR}" \
 			--with-privatedir="${SAMBA4_PRIVATEDIR}" \
 			--with-logfilebase="${SAMBA4_LOGDIR}"
-# Support staging
-DESTDIRNAME=		--destdir
+
 # Flags
 CONFIGURE_ENV+=		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 			PTHREAD_LDFLAGS="${PTHREAD_LIBS}"
 
 USES=			compiler cpe execinfo iconv perl5 pkgconfig \
-			python:2 readline shebangfix
+			python:2 readline shebangfix waf
 USE_PERL5=		build
 USE_LDCONFIG=		${SAMBA4_LIBDIR}
-WAF_TOOL=		buildtools/bin/waf
+WAF_CMD=                buildtools/bin/waf
 CONFIGURE_LOG=		bin/config.log
 
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
@@ -496,7 +493,7 @@ do-configure:
 					INSTALL_LIB="${INSTALL_LIB}" \
 					INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 					INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
-					${CONFIGURE_ENV} ${PYTHON_CMD} ${CONFIGURE_WRKSRC}/${WAF_TOOL} ${CONFIGURE_ARGS} ${CONFIGURE_TARGET}; then \
+					${CONFIGURE_ENV} ${PYTHON_CMD} ${CONFIGURE_WRKSRC}/${WAF_CMD} ${CONFIGURE_ARGS} ${CONFIGURE_TARGET}; then \
 						${ECHO_MSG} "===>  Script \"${CONFIGURE_SCRIPT}\" failed unexpectedly."; \
 						(${ECHO_CMD} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
 						${FALSE}; \
@@ -534,7 +531,7 @@ pre-build:
 
 do-build:
 			@(cd ${BUILD_WRKSRC}; \
-			if ! ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${BUILD_WRKSRC}/${WAF_TOOL} ${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET}; then \
+			if ! ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${BUILD_WRKSRC}/${WAF_CMD} ${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET}; then \
 				if [ x != x${BUILD_FAIL_MESSAGE} ] ; then \
 					${ECHO_MSG} "===> Compilation failed unexpectedly."; \
 					(${ECHO_CMD} ${BUILD_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
@@ -543,7 +540,7 @@ do-build:
 			fi)
 
 do-install:
-			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_TOOL} ${MAKE_ARGS} ${INSTALL_TARGET})
+			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_CMD} ${MAKE_ARGS} ${INSTALL_TARGET})
 
 post-install:
 # NAS4Free install
@@ -602,7 +599,7 @@ post-install:
 
 .if ${PORT_OPTIONS:MDEVELOPER}
 test: build
-			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_TOOL} ${MAKE_ARGS} $@)
+			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_CMD} ${MAKE_ARGS} $@)
 .endif
 
 # !SAMBA4_SUBPORT
