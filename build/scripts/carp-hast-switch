@@ -101,7 +101,7 @@ case "$ARG1" in
 			vhid=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v vhid -n -b /conf/config.xml`
 			advskew=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${if}']" -v advskew -n -b /conf/config.xml`
 			if [ "${PREEMPT}" = "0" ]; then
-				/sbin/ifconfig ${if} up vhid ${vhid} state master advskew ${advskew}
+				/sbin/ifconfig ${if} vhid ${vhid} state master advskew ${advskew}
 			else
 				/sbin/ifconfig ${if} vhid ${vhid} advskew ${advskew}
 			fi
