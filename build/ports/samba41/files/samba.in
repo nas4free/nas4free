@@ -304,8 +304,13 @@ samba_mkconf_cmd()
 			-i "count(recyclebin) > 0" \
 				-o "recycle " \
 			-b \
-			-o "aio_pthread " \
-			-o "streams_xattr " \
+			-v "concat(aiomodule, ' ')" \
+			-i "count(storealternatedatastreams) > 0" \
+				-o "streams_xattr " \
+			-b \
+			-i "count(storentfsacls) > 0" \
+				-o "acl_xattr " \
+			-b \
 			-n \
 			-i "count(zfsacl) > 0" \
 				-o "nfs4:mode = special" -n \
