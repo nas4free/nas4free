@@ -4,8 +4,7 @@ PORTNAME?=		${SAMBA4_BASENAME}41
 PORTVERSION?=		${SAMBA4_VERSION}
 PORTREVISION?=	0
 CATEGORIES?=		net
-MASTER_SITES=		${MASTER_SITE_SAMBA}
-MASTER_SITE_SUBDIR=	samba/stable samba/rc
+MASTER_SITES=		SAMBA/samba/stable SAMBA/samba/rc
 DISTNAME=		${SAMBA4_DISTNAME}
 
 MAINTAINER?=		aoyama@nas4free.org
@@ -21,7 +20,7 @@ CONFLICTS?=		*samba3[2-6]-3.* samba4-4.0.*
 
 SAMBA4_BASENAME=	samba
 SAMBA4_PORTNAME=	${SAMBA4_BASENAME}4
-SAMBA4_VERSION=		4.1.17
+SAMBA4_VERSION=		4.1.18
 SAMBA4_DISTNAME=	${SAMBA4_BASENAME}-${SAMBA4_VERSION:S|.p|pre|:S|.r|rc|:S|.t|tp|:S|.a|alpha|}
 
 WRKSRC?=		${WRKDIR}/${DISTNAME}
@@ -41,8 +40,7 @@ SAMBA4_INCLUDEDIR=	${PREFIX}/include/${SAMBA4_PORTNAME}
 SAMBA4_CONFDIR=		${PREFIX}/etc
 SAMBA4_CONFIG=		smb4.conf
 
-CONFIGURE_ARGS+=	--prefix="${PREFIX}" \
-			--exec-prefix="${PREFIX}" \
+CONFIGURE_ARGS+=	--exec-prefix="${PREFIX}" \
 			--mandir="${MANPREFIX}/man" \
 			--sysconfdir="${SAMBA4_CONFDIR}" \
 			--includedir="${SAMBA4_INCLUDEDIR}" \
@@ -61,17 +59,16 @@ CONFIGURE_ARGS+=	--prefix="${PREFIX}" \
 			--with-cachedir="${SAMBA4_LOCKDIR}" \
 			--with-privatedir="${SAMBA4_PRIVATEDIR}" \
 			--with-logfilebase="${SAMBA4_LOGDIR}"
-# Support staging
-DESTDIRNAME=		--destdir
+
 # Flags
 CONFIGURE_ENV+=		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 			PTHREAD_LDFLAGS="${PTHREAD_LIBS}"
 
-USES=			compiler cpe execinfo iconv perl5 pkgconfig \
-			python:2 readline shebangfix
+USES=			cpe compiler waf fakeroot pkgconfig perl5 python:2 \
+			execinfo readline iconv shebangfix
 USE_PERL5=		build
 USE_LDCONFIG=		${SAMBA4_LIBDIR}
-WAF_TOOL=		buildtools/bin/waf
+WAF_CMD=                buildtools/bin/waf
 CONFIGURE_LOG=		bin/config.log
 
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
@@ -96,8 +93,8 @@ BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}dnspython>=1.9.4:${PORTSDIR}/dns/py-dnspy
 RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dnspython>=1.9.4:${PORTSDIR}/dns/py-dnspython
 PLIST_SUB+=		PY_DNSPYTHON="@comment "
 # talloc
-BUILD_DEPENDS+=		talloc>=2.1.0:${PORTSDIR}/devel/talloc
-RUN_DEPENDS+=		talloc>=2.1.0:${PORTSDIR}/devel/talloc
+BUILD_DEPENDS+=		talloc>=2.1.2:${PORTSDIR}/devel/talloc
+RUN_DEPENDS+=		talloc>=2.1.2:${PORTSDIR}/devel/talloc
 SAMBA4_BUNDLED_LIBS+=	!talloc
 # tevent
 BUILD_DEPENDS+=		tevent>=0.9.18:${PORTSDIR}/devel/tevent
@@ -190,8 +187,11 @@ CONFIGURE_ARGS+=	--enable-debug
 
 # https://bugzilla.samba.org/show_bug.cgi?id=8969
 .if ${PORT_OPTIONS:MDEVELOPER}
-GDB_CMD?=		gdb78
-BUILD_DEPENDS+=		${GDB_CMD}:${PORTSDIR}/devel/gdb
+#GDB_CMD?=		gdb79
+# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=194046
+# XXX: Still may break, if the link isn't installed - blame devel/gdb maintainer then.
+GDB_CMD?=		${LOCALBASE}/bin/gdb
+BUILD_DEPENDS+=	${GDB_CMD}:${PORTSDIR}/devel/gdb
 RUN_DEPENDS+=		${GDB_CMD}:${PORTSDIR}/devel/gdb
 SAMBA4_MODULES+=	auth_skel perfcount_test pdb_test vfs_shadow_copy_test vfs_skel_opaque vfs_skel_transparent vfs_fake_acls
 CONFIGURE_ARGS+=	--enable-developer --enable-socket-wrapper --enable-nss-wrapper --enable-selftest
@@ -225,7 +225,7 @@ WANT_EXP_MODULES=	auth_samba4 auth_script auth_skel auth_unix auth_wbc \
 
 .if ${PORT_OPTIONS:MEXP_MODULES}
 .	if !defined(WANT_EXP_MODULES) || empty(WANT_EXP_MODULES)
-WANT_EXP_MODULES=	idmap_ad vfs_cacheprime gpext_scripts gpext_security gpext_registry
+WANT_EXP_MODULES=	vfs_cacheprime gpext_scripts gpext_security gpext_registry
 .	endif
 .endif
 
@@ -444,7 +444,7 @@ SAMBA_MAN8+=		eventlogadm.8 idmap_ad.8 idmap_autorid.8 idmap_hash.8 \
 			vfs_audit.8 vfs_cacheprime.8 vfs_cap.8 vfs_catia.8 \
 			vfs_commit.8 vfs_crossrename.8 vfs_default_quota.8 \
 			vfs_dirsort.8 vfs_extd_audit.8 vfs_fake_perms.8 vfs_fileid.8 \
-			vfs_full_audit.8 vfs_gpfs.8 vfs_media_harmony.8 \
+			vfs_full_audit.8 vfs_glusterfs.8 vfs_gpfs.8 vfs_media_harmony.8 \
 			vfs_netatalk.8 vfs_notify_fam.8 vfs_prealloc.8 \
 			vfs_preopen.8 vfs_readahead.8 vfs_readonly.8 \
 			vfs_recycle.8 vfs_scannedonly.8 vfs_shadow_copy.8 \
@@ -496,7 +496,7 @@ do-configure:
 					INSTALL_LIB="${INSTALL_LIB}" \
 					INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
 					INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
-					${CONFIGURE_ENV} ${PYTHON_CMD} ${CONFIGURE_WRKSRC}/${WAF_TOOL} ${CONFIGURE_ARGS} ${CONFIGURE_TARGET}; then \
+					${CONFIGURE_ENV} ${PYTHON_CMD} ${CONFIGURE_WRKSRC}/${WAF_CMD} ${CONFIGURE_ARGS} ${CONFIGURE_TARGET}; then \
 						${ECHO_MSG} "===>  Script \"${CONFIGURE_SCRIPT}\" failed unexpectedly."; \
 						(${ECHO_CMD} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
 						${FALSE}; \
@@ -534,7 +534,7 @@ pre-build:
 
 do-build:
 			@(cd ${BUILD_WRKSRC}; \
-			if ! ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${BUILD_WRKSRC}/${WAF_TOOL} ${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET}; then \
+			if ! ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${BUILD_WRKSRC}/${WAF_CMD} ${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET}; then \
 				if [ x != x${BUILD_FAIL_MESSAGE} ] ; then \
 					${ECHO_MSG} "===> Compilation failed unexpectedly."; \
 					(${ECHO_CMD} ${BUILD_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
@@ -543,7 +543,7 @@ do-build:
 			fi)
 
 do-install:
-			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_TOOL} ${MAKE_ARGS} ${INSTALL_TARGET})
+			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_CMD} ${MAKE_ARGS} ${INSTALL_TARGET})
 
 post-install:
 # NAS4Free install
@@ -602,7 +602,7 @@ post-install:
 
 .if ${PORT_OPTIONS:MDEVELOPER}
 test: build
-			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_TOOL} ${MAKE_ARGS} $@)
+			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_CMD} ${MAKE_ARGS} $@)
 .endif
 
 # !SAMBA4_SUBPORT
