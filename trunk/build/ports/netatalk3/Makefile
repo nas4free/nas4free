@@ -1,10 +1,10 @@
-PORTNAME=	netatalk
-PORTVERSION=	3.1.7
-PORTEPOCH=	1
-CATEGORIES=	net
-MASTER_SITES=	SF
-#MASTER_SITE_SUBDIR=${PORTNAME}/${PORTNAME}/3.1
-PKGNAMESUFFIX=	3
+PORTNAME=		netatalk
+PORTVERSION=	 3.1.7
+PORTREVISION=	 1
+PORTEPOCH=	 1
+CATEGORIES=	 net
+MASTER_SITES=	 SF
+PKGNAMESUFFIX= 3
 
 MAINTAINER=	aoyama@nas4free.org
 COMMENT=	File server for Mac OS X
@@ -63,7 +63,6 @@ post-install:
 		${INSTALL_DATA} -c ${STAGEDIR}${PREFIX}/etc/afp.conf.dist ${STAGEDIR}${PREFIX}/etc/afp.conf
 	[ -f ${STAGEDIR}${PREFIX}/etc/extmap.conf ] || \
 		${INSTALL_DATA} -c ${STAGEDIR}${PREFIX}/etc/extmap.conf.dist ${STAGEDIR}${PREFIX}/etc/extmap.conf
-#	@${CAT} ${PKGMESSAGE}
 
 # NAS4Free install
 	@echo "install for ${NAS4FREE_ROOTFS}"
