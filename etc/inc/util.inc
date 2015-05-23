@@ -1831,6 +1831,12 @@ function get_ipaddr($if)
   $if = get_ifname($if);
 
   unset($ipaddr);
+  exec("/sbin/ifconfig {$if} inet | /usr/bin/grep inet | /usr/bin/grep -v vhid", $inetinfo);
+  $inet = $inetinfo[0];
+  $ainet = preg_split("/\s+/", ltrim($inet));
+  $ipaddr = chop($ainet[1]);
+  if (!empty($ipaddr)) return $ipaddr;
+
   exec("/usr/bin/netstat -inW -f inet -I {$if}", $inetinfo);
   array_shift($inetinfo);
 
@@ -1853,6 +1859,18 @@ function get_ipaddr($if)
 function get_subnet_bits($if)
 {
 	$if = get_ifname($if);
+
+	exec("/sbin/ifconfig {$if} inet | /usr/bin/grep inet | /usr/bin/grep -v vhid", $inetinfo);
+	$inet = $inetinfo[0];
+	$ainet = preg_split("/\s+/", ltrim($inet));
+	$ipaddr = chop($ainet[1]);
+	$mask = chop($ainet[3]);
+	if (!empty($ipaddr) && !empty($mask)) {
+		exec("/usr/local/bin/sipcalc $ipaddr $mask", $rawdata);
+		if (preg_match("/.+Network mask \(bits\)	- (\d+).+/", implode($rawdata), $matches)) {
+			return $matches[1];
+		}
+	}
 
 	exec("/usr/local/bin/sipcalc --cidr-addr {$if}", $rawdata);
 	if (preg_match("/.+Network mask \(bits\)	- (\d+).+/", implode($rawdata), $matches)) {
