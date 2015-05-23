@@ -2763,6 +2763,25 @@ function set_php_timezone()
 	return TRUE;
 }
 
+function crypt_sha512($password)
+{
+	$method = '$6$'; // SHA512 (salt=16 chars)
+	$salt_len = 12; // 16*(3/4)
+	$salt_raw = openssl_random_pseudo_bytes($salt_len);
+	if ($salt_raw === FALSE)
+		return FALSE;
+	$salt = base64_encode($salt_raw);
+	if ($salt === FALSE)
+		return FALSE;
+	$hash = crypt($password, $method.$salt);
+	return $hash;
+}
+
+function mkpasswd($password)
+{
+	return crypt_sha512($password);
+}
+
 // openssl compatible encryption/decryption + base64 encode/decode
 // http://www.openssl.org/docs/crypto/EVP_BytesToKey.html
 function encrypt_aes256cbc($password, $data)
