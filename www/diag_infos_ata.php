@@ -3,7 +3,7 @@
 	diag_infos_ata.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -87,6 +87,7 @@ $disk_error = gettext("No disks configured, please add disks to see the diagnost
 							echo "<pre>\n";
 								$name = $diskv['name'];
 								$device = $diskv['devicespecialfile'];
+								$dmamode = trim(preg_replace("/current mode = /", "", exec("/sbin/atacontrol mode {$name}")));
 
 								echo gettext("Disk") . ":		{$name}<br />";
 						

@@ -3,7 +3,7 @@
 	en_US_mimes.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -42,11 +42,10 @@ $GLOBALS["mimes"]=array(
 	"dir"		=> "Directory",
 	"exe"		=> "Executable File",
 	"file"		=> "File",
-	"link"		=> "Link",
 
 	// text
 	"text"		=> "Text File",
-
+	
 	// programming
 	"php"		=> "PHP Script",
 	"sql"		=> "SQL File",
@@ -66,13 +65,13 @@ $GLOBALS["mimes"]=array(
 
 	// Pascal
 	"pas"		=> "Pascal File",
-
+	
 	// images
 	"gif"		=> "GIF Picture",
 	"jpg"		=> "JPG Picture",
 	"bmp"		=> "BMP Picture",
 	"png"		=> "PNG Picture",
-
+	
 	// compressed
 	"zip"		=> "ZIP Archive",
 	"tar"		=> "TAR Archive",
@@ -81,14 +80,14 @@ $GLOBALS["mimes"]=array(
 	"rar"		=> "RAR Archive",
 	"iso"		=> "ISO File",
 	"mds"		=> "MDS File",
-
+	
 	// music
 	"mp3"		=> "MP3 Audio File",
 	"wav"		=> "WAV Audio File",
 	"midi"		=> "MIDI Audio File",
 	"real"		=> "RealAudio File",
 	"flac"		=> "FLAC Audio File",
-
+	
 	// movie
 	"mpg"		=> "MPG File",
 	"mov"		=> "MOV File",
@@ -96,7 +95,7 @@ $GLOBALS["mimes"]=array(
 	"flash"	=> "Flash File",
 	"mkv"		=> "MKV File",
 	"vob"		=> "VOB File",
-
+	
 	// Micosoft / Adobe
 	"word"		=> "Word Document",
 	"excel"	=> "Excel Document",
@@ -105,6 +104,4 @@ $GLOBALS["mimes"]=array(
 	"c"		=> "C File",
 	"psd"		=> "Photoshop File",
 	"point"	=> "PowerPoint Presentation"
-);
-
-?>
+); ?>

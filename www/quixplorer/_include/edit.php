@@ -3,7 +3,7 @@
 	edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -35,9 +35,8 @@
 	either expressed or implied, of the NAS4Free Project.
 */
 require_once("./_include/permissions.php");
-
-// save edited file
-function savefile($file_name) {
+//------------------------------------------------------------------------------
+function savefile($file_name) {			// save edited file
 	//$code = stripslashes($GLOBALS['__POST']["code"]);
 	$code = $GLOBALS['__POST']["code"];
 	$fp = @fopen($file_name, "w");
@@ -45,7 +44,7 @@ function savefile($file_name) {
 	fputs($fp, $code);
 	@fclose($fp);
 }
-
+//------------------------------------------------------------------------------
 // edit file
 function edit_file($dir, $item)
 {
@@ -91,7 +90,7 @@ function edit_file($dir, $item)
 	// Form
 	echo "<BR><FORM name=\"editfrm\" method=\"post\" action=\"".make_link("edit",$dir,$item)."\">\n";
 	echo "<input type=\"hidden\" name=\"dosave\" value=\"yes\">\n";
-	echo "<TEXTAREA NAME=\"code\" rows=\"27\" cols=\"142\" wrap=\"off\">";
+	echo "<TEXTAREA NAME=\"code\" rows=\"25\" cols=\"120\" wrap=\"off\">";
 		
 	// Show File In TextArea
 	$buffer="";
@@ -115,5 +114,5 @@ function edit_file($dir, $item)
 // -->
 </script><?php
 }
-
+//------------------------------------------------------------------------------
 ?>

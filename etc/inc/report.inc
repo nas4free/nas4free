@@ -3,7 +3,7 @@
 	report.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -286,6 +286,7 @@ function report_send_mail() {
 		$statusreport->AddArticle(new StatusReportArticleCmd("Swap usage","/usr/sbin/swapinfo"));
 		$statusreport->AddArticle(new StatusReportArticleCmd("ZFS pool list","/sbin/zpool list"));
 		$statusreport->AddArticle(new StatusReportArticleCmd("ZFS pool status","/sbin/zpool status"));
+		$statusreport->AddArticle(new StatusReportArticleCmd("ATA disk","/sbin/atacontrol list"));
 		$statusreport->AddArticle(new StatusReportArticleCmd("SCSI disk","/sbin/camcontrol devlist"));
 		$disklist = get_physical_disks_list();
 		foreach ($disklist as $disknamek => $disknamev) {
@@ -379,6 +380,7 @@ function report_generate_html() {
 	$statusreport->AddArticle(new StatusReportArticleCmd("Swap usage","/usr/sbin/swapinfo"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("ZFS pool list","/sbin/zpool list"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("ZFS pool status","/sbin/zpool status"));
+	$statusreport->AddArticle(new StatusReportArticleCmd("ATA disk","/sbin/atacontrol list"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("SCSI disk","/sbin/camcontrol devlist"));
 	$disklist = get_physical_disks_list();
 	foreach ($disklist as $disknamek => $disknamev) {
@@ -399,7 +401,7 @@ function report_generate_html() {
 	$statusreport->AddArticle(new StatusReportArticleCmd("crontab","cat /var/etc/crontab"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("dhclient.conf","cat /etc/dhclient.conf"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("hast.conf","cat /var/etc/hast.conf"));
-	$statusreport->AddArticle(new StatusReportArticleCmd("smb4.conf","cat /var/etc/smb4.conf"));
+	$statusreport->AddArticle(new StatusReportArticleCmd("smb.conf","cat /var/etc/smb.conf"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("sshd.conf","cat /var/etc/ssh/sshd_config"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("mdnsresponder.conf","cat /var/etc/mdnsresponder.conf"));
 	$statusreport->AddArticle(new StatusReportArticleCmd("Last 200 system log entries","/usr/sbin/clog {$clogdir}/system.log 2>&1 | tail -n 200"));

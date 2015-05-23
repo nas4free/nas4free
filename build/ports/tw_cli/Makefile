@@ -19,7 +19,6 @@ USE_ZIP=	yes
 WRKSRC=	${WRKDIR}
 NO_BUILD=	yes
 BINSUFFIX=	${ARCH:S,i386,x86,:S,amd64,x86_64,:S,ia64,x86,}
-NO_PKG_REGISTER=yes
 
 .include <bsd.port.options.mk>
 

@@ -3,7 +3,7 @@
 # /etc/rc.initial
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # Portions of freenas (http://www.freenas.org).
@@ -34,14 +34,6 @@ if configxml_isset "//system/disableconsolemenu"; then
 		read tmp
 	done
 else
-	BOOT_LOWMEM=`cat /etc/boot_lowmem`
-	DISABLE_LIVEMODE=0
-	if [ "${BOOT_LOWMEM}" = "1" ]; then
-		case ${PLATFORM} in
-			*-live[cC][dD])
-				DISABLE_LIVEMODE=1 ;;
-		esac
-	fi
 	case ${PLATFORM} in
 		*-live[cC][dD]|*-live[uU][sS][bB])
 			echo
@@ -54,15 +46,11 @@ else
 		echo
 		echo "Console Menu"
 		echo "------------"
-		if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
-			echo "1) Configure Network Interfaces"
-			echo "2) Configure Network IP Address"
-			echo "3) Reset WebGUI Password"
-			echo "4) Reset to Factory Defaults"
-			echo "5) Ping Host"
-		else
-			echo "1-5) Disabled (LiveCD requires 2GB memory)"
-		fi
+		echo "1) Configure Network Interfaces"
+		echo "2) Configure Network IP Address"
+		echo "3) Reset WebGUI Password"
+		echo "4) Reset to Factory Defaults"
+		echo "5) Ping Host"
 		echo "6) Shell"
 		echo "7) Reboot Server"
 		echo "8) Shutdown Server"
@@ -77,29 +65,19 @@ else
 		# see what the user has chosen
 		case ${opmode} in
 			1)
-				if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
-					/etc/rc.initial.setports
-				fi
+				/etc/rc.initial.setports
 			 	;;
 			2)
-				if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
-					/etc/rc.initial.setlanip
-				fi
+				/etc/rc.initial.setlanip
 			 	;;
 			3)
-				if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
-					/etc/rc.initial.password
-				fi
+				/etc/rc.initial.password
 				;;
 			4)
-				if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
-					/etc/rc.initial.defaults
-				fi
+				/etc/rc.initial.defaults
 				;;
 			5)
-				if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
-					/etc/rc.initial.ping
-				fi
+				/etc/rc.initial.ping
 				;;
 			6)
 				exit

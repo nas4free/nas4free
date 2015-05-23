@@ -3,7 +3,7 @@
 	es_mimes.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -42,7 +42,6 @@ $GLOBALS["mimes"]=array(
 	"dir"		=> "Directorio",
 	"exe"		=> "Archivo Ejecutable",
 	"file"		=> "Archivo",
-	"link"		=> "Link",
 
 	// text
 	"text"		=> "Archivo de Texto",
@@ -105,6 +104,4 @@ $GLOBALS["mimes"]=array(
 	"c"		=> "Archivo C",
 	"psd"		=> "Documento Photoshop",
 	"point"	=> "Documento PowerPoint"
-);
-
-?>
+); ?>

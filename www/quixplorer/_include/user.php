@@ -3,7 +3,7 @@
 	user.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -138,9 +138,8 @@ function user_find ($user, $pass = NULL)
 		return $GLOBALS["users"][$idx];
 
 	// check if the password matches
-    $userpw = $GLOBALS["users"][$idx][_idx('password')];
-	if ($pass != $userpw)
-        return;
+	if ($pass != $GLOBALS["users"][$idx][_idx('password')])
+		return;
 
 	// check if the user is active
 	if (!$GLOBALS["users"][$idx][_idx('useractive')])

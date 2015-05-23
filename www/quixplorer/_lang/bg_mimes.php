@@ -3,7 +3,7 @@
 	bg_mimes.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -38,10 +38,9 @@
 
 $GLOBALS["mimes"]=array(
       // dir, exe, file
-	"dir"		=> "Директория",
-	"exe"		=> "Изпълним файл",
-	"file"		=> "Файл",
-	"link"		=> "Link",
+      "dir"		=> "Директория",
+      "exe"		=> "Изпълним файл",
+      "file"		=> "Файл",
 
       // text
       "text"		=> "Текстов файл",
@@ -78,6 +77,7 @@ $GLOBALS["mimes"]=array(
       "iso"		=> "ISO архив",
       "mds"		=> "MDS архив",
 
+
       // music
       "mp3"		=> "MP3 Аудио файл",
       "wav"		=> "WAV Аудио файл",
@@ -101,6 +101,4 @@ $GLOBALS["mimes"]=array(
 	"c"		=> "C архив",
 	"psd"		=> "Photoshop архив",
 	"point"	=> "PowerPoint архив"
-);
-
-?>
+); ?>

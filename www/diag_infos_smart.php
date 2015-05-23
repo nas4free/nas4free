@@ -3,7 +3,7 @@
 	diag_infos_smart.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -78,8 +78,7 @@ $a_disk = get_physical_disks_list();
 				<tr>
 			    <td>
 						<pre><?php
-						$devicetype_arg = "";
-						if(!empty($diskv['smart']['devicetypearg'])){
+						if(!is_null($diskv['smart']['devicetypearg'])){
 							$devicetype_arg = "-d ".$diskv['smart']['devicetypearg'];
 						}
 						exec ("/usr/local/sbin/smartctl -a {$diskv['smart']['devicefilepath']} {$devicetype_arg}",$rawdata);

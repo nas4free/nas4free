@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-05-20 20:17+0000\n"
-"PO-Revision-Date: 2014-11-17 04:06+0000\n"
-"Last-Translator: NAS4Free Developer <Unknown>\n"
+"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"PO-Revision-Date: 2012-03-17 08:48+0000\n"
+"Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-05-22 06:36+0000\n"
-"X-Generator: Launchpad (build 17514)\n"
+"X-Launchpad-Export-Date: 2014-04-21 22:09+0000\n"
+"X-Generator: Launchpad (build 16985)\n"
 "X-Poedit-Country: KOREA\n"
 "Language: \n"
 "X-Poedit-Language: Korean\n"
@@ -77,10 +77,6 @@ msgstr ""
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s은(는) %s%d에 의해 사용중입니다."
-
-#, php-format
-msgid "%s: cannot get mirror name."
-msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -202,10 +198,6 @@ msgid "A valid IP address must be specified."
 msgstr "유효한 IP 주소가 입력 되어야만 합니다."
 
 msgid ""
-"A valid IP address or CIDR notation must be specified for the hosts allow."
-msgstr ""
-
-msgid ""
 "A valid IPv4 address must be specified for the primary/secondary DNS server."
 msgstr "일차/이차 DNS 서버에 유효한 IPv4 주소가 명세 되어야 합니다."
 
@@ -246,12 +238,6 @@ msgstr "유효한 접두사(1-128)이 명세 되어야 합니다."
 msgid "A valid systctl MIB value."
 msgstr "유효한 systctl MIB 값."
 
-msgid "ACL inherit"
-msgstr ""
-
-msgid "ACL mode"
-msgstr ""
-
 msgid "AD authentication disabled"
 msgstr "AD 인증이 비활성화 됨"
 
@@ -264,9 +250,6 @@ msgstr "AFP"
 msgid "AG"
 msgstr "AG"
 
-msgid "AIO module"
-msgstr ""
-
 msgid "AIO read size"
 msgstr "AIO 읽기 크기"
 
@@ -274,9 +257,6 @@ msgid "AIO write size"
 msgstr "AIO 쓰기 크기"
 
 msgid "ALL interfaces"
-msgstr ""
-
-msgid "AP mode"
 msgstr ""
 
 msgid "ARP Tables"
@@ -505,18 +485,12 @@ msgstr "모든 디렉터리"
 msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr "'모든 디렉터리'는 마운트 된 경로를 필요로 하는데 경로 %s은(는) 마운트 되지 않았습니다."
 
-msgid "All disks are imported."
-msgstr ""
-
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "모든 공유는 'usedots' 옵션을 이용하므로 파일 명을 .Parent로 하거나 .Apple로 시작하는 이름으로 하는 것은 합법적이지 "
 "않습니다."
-
-msgid "All software raid disks are imported."
-msgstr ""
 
 msgid "All users will have the root privilege."
 msgstr "모든 사용자가 루트 권한을 가질 것입니다."
@@ -581,6 +555,11 @@ msgstr "항상 켜둠"
 msgid "Always scan"
 msgstr "항상 스캔"
 
+msgid ""
+"Always use 0 for device number, helps when the device number is not constant "
+"across a reboot, cluster, ..."
+msgstr "장치 번호로 항상 0을 사용합니다. 장치 번호가 리붓이나 클러스터 등에서 항상 일정하지 않을 때 도움이 됩니다."
+
 msgid "Ambient Conditions From External Probe Equipment"
 msgstr ""
 
@@ -595,6 +574,9 @@ msgstr "해당 이름을 가지고 있는 호스트가 존재합니다."
 
 msgid "An interface with the specified description already exists."
 msgstr "명세 된 설명을 가지고 있는 인터페이스가 이미 존재합니다"
+
+msgid "Anonymous"
+msgstr "익명"
 
 msgid "Anonymous bind"
 msgstr "익명 bind"
@@ -690,6 +672,12 @@ msgstr "자동 크기"
 
 msgid "AutoScale"
 msgstr "자동 스케일"
+
+msgid "Automatic disk discovery"
+msgstr "자동 디스크 발견"
+
+msgid "Automatic disk discovery mode"
+msgstr "자동 디스크 발견 모드"
 
 msgid "Autoselect"
 msgstr "자동 선택"
@@ -796,12 +784,6 @@ msgid "Blank time"
 msgstr "빈 시간"
 
 msgid "Blocksize"
-msgstr ""
-
-#, php-format
-msgid ""
-"Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or "
-"resize boot partition of %s.\n"
 msgstr ""
 
 msgid "Bridge"
@@ -927,6 +909,9 @@ msgstr "인터페이스에 관한 데이터를 얻을 수 없습니다."
 msgid "Capacity"
 msgstr "용량"
 
+msgid "Case Folding"
+msgstr "대소문자 무시"
+
 msgid ""
 "Causes the server to display the network information for the specified IP "
 "address or DNS hostname to the client, on the assumption that that IP "
@@ -969,9 +954,6 @@ msgstr "중국어(간체)"
 msgid "Chinese (Traditional)"
 msgstr "중국어(번체)"
 
-msgid "Choose UPS mode."
-msgstr ""
-
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr "이 규칙에 일치하기 위해 어떤 인터페이스로 패킷이 들어와야 하는 지를 선택하십시오."
 
@@ -996,13 +978,17 @@ msgid ""
 "the upgrade process."
 msgstr ""
 
-msgid ""
-"Click this button to download the server configuration in encrypted GZIP "
-"file or XML format."
+msgid "Click this button to download the server configuration in XML format."
 msgstr ""
 
 msgid "Client"
 msgstr "클라이언트"
+
+msgid "Client sees lowercase, server sees uppercase"
+msgstr "클라이언트는 소문자, 서버는 대문자로 보기"
+
+msgid "Client sees uppercase, server sees lowercase"
+msgstr "클라이언트는 대문자, 서버는 소문자로 보기"
 
 msgid "Clone"
 msgstr ""
@@ -1041,9 +1027,6 @@ msgstr "Common 인터넷 파일 시스템"
 
 msgid "Community"
 msgstr "커뮤니티"
-
-msgid "Compilations directories"
-msgstr ""
 
 msgid "Compliant profile to be used."
 msgstr "이용될 호환 프로파일."
@@ -1217,20 +1200,7 @@ msgstr "현 설정"
 msgid "Current Version:"
 msgstr ""
 
-msgid "Current administrator password is used for decryption."
-msgstr ""
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr ""
-
 msgid "Current password"
-msgstr ""
-
-msgid ""
-"Current password is default password. You should use your own password."
 msgstr ""
 
 msgid "Current value of apparent power (Volt-Amps)"
@@ -1257,6 +1227,9 @@ msgstr "체코어"
 msgid "DAAP"
 msgstr "DAAP"
 
+msgid "DDP"
+msgstr "DDP"
+
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -1264,6 +1237,9 @@ msgid "DLNA/UPnP"
 msgstr ""
 
 msgid "DLNA/UPnP Media Server"
+msgstr ""
+
+msgid "DNLA/UPnP"
 msgstr ""
 
 msgid "DNS settings"
@@ -1513,14 +1489,8 @@ msgstr "목적지 공유"
 msgid "Detected"
 msgstr "탐지 내용"
 
-msgid "Detected Language:<br />(Change if needed)"
-msgstr ""
-
 msgid "Detected RSYNC remote shares"
 msgstr "RYSNC 원격 공유 탐지됨"
-
-msgid "Detected an error while importing."
-msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -1598,6 +1568,9 @@ msgstr "이동식 미디어를 포함하는 디렉터리.(예 /mnt/iscsi/)"
 msgid "Directory to watch for new .torrent files."
 msgstr "새 .torrent 파일들을 감시할 디렉터리"
 
+msgid "Disable AFP-over-Appletalk to prevent DDP connections."
+msgstr "DDP 연결을 방지하기 위해 AFP-over-Appletalk 비활성화."
+
 msgid "Disable File Manager"
 msgstr "파일 관리자 비활성화"
 
@@ -1618,6 +1591,12 @@ msgstr "기동 시와 끌 때 스피커 울림을 비활성화"
 
 msgid "Disabled"
 msgstr "비활성화됨"
+
+msgid ""
+"Disables :hex translations for anything except dot files. This option makes "
+"the '/' character illegal."
+msgstr ""
+"점으로 시작되는 파일 이외의 모든 것에 대해 :hex 번역을 비활성화 합니다. 이 옵션은 '/' 문자를 비 합법적으로 만듭니다."
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -1814,8 +1793,17 @@ msgstr "도메인 명. 예. example.com."
 msgid "Don't Erase MBR"
 msgstr "MBR을 지우지 않음"
 
+msgid "Don't advertise createfileid, resolveid, deleteid calls."
+msgstr "createfileid, resolveid, deleteid 호출은 공지하지 않습니다."
+
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr "MBR을 지우지 않습니다(몇몇 RAID 컨트롤러 카드에 유용)"
+
+msgid ""
+"Don't stat volume path when enumerating volumes list, useful for "
+"automounting or volumes created by a preexec script."
+msgstr ""
+"볼륨 목록을 열거할 때 볼륨 경로 정보를 얻지 않습니다. 자동 마운팅 시나 볼륨이 preexec 스크립트에 의해 생성될 때 유용합니다."
 
 msgid "Donate"
 msgstr "기증"
@@ -2004,9 +1992,6 @@ msgstr ""
 msgid "Enable"
 msgstr "활성화"
 
-msgid "Enable ACL inheritance"
-msgstr ""
-
 msgid "Enable Advanced Format (4KB sector)"
 msgstr "확장 포맷 활성화(4KB 섹터)"
 
@@ -2015,9 +2000,6 @@ msgstr "비동기적 I/O 활성화(AIO)"
 
 msgid "Enable FXP protocol."
 msgstr "FXP 프로토콜 활성화."
-
-msgid "Enable NFSv4 server."
-msgstr ""
 
 msgid "Enable NTP"
 msgstr "NTP 활성화"
@@ -2033,20 +2015,23 @@ msgstr ""
 msgid "Enable TLS/SSL connections."
 msgstr "TLS/SSL 연결 활성화."
 
-msgid "Enable Time Machine support"
-msgstr ""
-
 msgid "Enable ZFS ACL"
 msgstr ""
 
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "이 장치의 서비스를 공지하기 위해 Zeroconf/Bonjour 활성화"
 
+msgid "Enable administrative DLNA/UPnP WebGUI."
+msgstr ""
+
 msgid "Enable anonymous bind."
 msgstr "익명 bind 활성화."
 
 msgid "Enable authentication."
 msgstr "인증 활성화."
+
+msgid "Enable automatic disk discovery."
+msgstr "자동 디스크 발견 활성화."
 
 msgid "Enable compression."
 msgstr "압축 활성화."
@@ -2065,9 +2050,6 @@ msgstr "분산 해쉬 테이블 활성화"
 
 msgid "Enable domain wildcarding."
 msgstr "도메인 와일드 카드 활성화."
-
-msgid "Enable encryption."
-msgstr ""
 
 msgid "Enable extended attribute support"
 msgstr "확장 속성 지원 활성화"
@@ -2164,6 +2146,17 @@ msgstr ""
 
 msgid "Enabled"
 msgstr "활성화됨"
+
+msgid ""
+"Enables crlf translation for TEXT files, automatically converting macintosh "
+"line breaks into Unix ones. Use of this option might be dangerous since some "
+"older programs store binary data files as type 'TEXT' when saving and switch "
+"the filetype in a second step. Afpd will potentially destroy such files when "
+"'erroneously' changing bytes in order to do line break translation."
+msgstr ""
+"텍스트 파일의 crlf 번역을 활성화하여 매킨토시 줄 바꿈 문자를 유닉스 줄 바꿈 문자로 자동 변환합니다. 몇몇 구형 프로그램들은 이진 "
+"데이터 파일들을 저장 시 '텍스트'로 저장하고 다음 단계에서 파일 타입을 변경하므로 이 옵션을 이용하는 것은 위험할 수도 있습니다. "
+"afpd가 이를 '잘못 인식하고' 줄 바꿈 문자를 변환할 때 이들 파일들을 파괴할 위험성이 있습니다."
 
 msgid "Encrypted"
 msgstr "암호화됨"
@@ -2557,9 +2550,6 @@ msgstr "그룹"
 msgid "Group ID"
 msgstr "그룹 ID"
 
-msgid "Group compilations"
-msgstr ""
-
 msgid "Group description."
 msgstr "그룹 설명."
 
@@ -2800,6 +2790,14 @@ msgstr ""
 "효율적으로 격리하기 위해 이용될 수 있습니다."
 
 msgid ""
+"If set afpd uses the ID information stored in AppleDouble V2 header files to "
+"reduce database load. Don't set this option if the volume is modified by non "
+"AFP clients (NFS/SMB/local)."
+msgstr ""
+"옵션이 설정되면 afpd는 데이터베이스를 읽어 들이는 작업을 줄이기 위해 AppleDouble V2 헤더 파일들에 저장된 ID 정보를 "
+"이용합니다. AFP가 아닌 클라이언트(NFS/SMB/로컬)에 의해 볼륨이 변경된다면 이 옵션을 설정하지 마십시오."
+
+msgid ""
 "If the selected disk/partition is mounted it will be unmounted temporarily "
 "to perform selected command, otherwise the commands work in read-only "
 "mode.<br />Service disruption to users accessing this mount will occur "
@@ -2875,9 +2873,6 @@ msgstr "안"
 msgid "In most cases, 'public' is used here."
 msgstr "대부분의 경우 여기에는 'public'이 이용됩니다."
 
-msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
-msgstr ""
-
 msgid "Include basic hardware information."
 msgstr "기본 하드웨어 정보 포함."
 
@@ -2900,9 +2895,6 @@ msgid "Information & Manual"
 msgstr "정보와 매뉴얼"
 
 msgid "Information & Manuals"
-msgstr ""
-
-msgid "Inherit ACL"
 msgstr ""
 
 msgid "Inherit permissions"
@@ -3308,9 +3300,6 @@ msgstr "로그"
 msgid "Log (mirror)"
 msgstr "로그(미러)"
 
-msgid "Log Device"
-msgstr ""
-
 msgid "Log Level"
 msgstr "로그 수준"
 
@@ -3356,10 +3345,8 @@ msgstr ""
 msgid "Low voltage trimming transfer point"
 msgstr ""
 
-msgid ""
-"Lowest value is higher priority. For master node, use 0 or 1. If preempt is "
-"enabled, it is adjusted to 240 on failure."
-msgstr ""
+msgid "Lowercases names in both directions"
+msgstr "양쪽 모두 소문자 이름"
 
 msgid "MAC address"
 msgstr "MAC 주소"
@@ -3588,9 +3575,6 @@ msgstr "추가 모델"
 msgid "Model name"
 msgstr "모델 명"
 
-msgid "Modified"
-msgstr ""
-
 msgid "Modifying"
 msgstr "변경 중"
 
@@ -3642,9 +3626,6 @@ msgstr ""
 
 msgid "NFS"
 msgstr "NFS"
-
-msgid "NFSv4"
-msgstr ""
 
 msgid "NIS"
 msgstr "NIS"
@@ -3741,6 +3722,9 @@ msgstr ""
 msgid "No RSYNC Client configured"
 msgstr "RSYNC 클라이언트가 구성되지 않았음"
 
+msgid "No case folding"
+msgstr "대소문자 구분"
+
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
@@ -3798,12 +3782,6 @@ msgstr ""
 
 msgid "No file was uploaded."
 msgstr "업로드 된 파일이 없습니다."
-
-msgid "No new disk found."
-msgstr ""
-
-msgid "No new software raid disk found."
-msgstr ""
 
 msgid "No pool was found."
 msgstr "풀을 찾을 수 없습니다."
@@ -3878,6 +3856,11 @@ msgstr "부착되지 않음"
 
 msgid "Note"
 msgstr "참조"
+
+msgid ""
+"Note! Selecting 'Time Machine' on multiple shares will may cause "
+"unpredictable behavior in MacOS."
+msgstr "주의! 다중 공유에서 '시간 머신'을 선택하는 것은 맥 OS에서 예기치 않은 행동을 야기할 수도 있습니다."
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
@@ -4035,7 +4018,6 @@ msgstr "PPTP"
 msgid "PPTP clients"
 msgstr "PPTP 클라이언트"
 
-#, c-format
 msgid "PSK"
 msgstr "PSK"
 
@@ -4061,9 +4043,6 @@ msgid "Pairwise"
 msgstr "Pairwise"
 
 msgid "Parameter xxx (ups.conf or cmdline -x) setting"
-msgstr ""
-
-msgid "Parent Directory"
 msgstr ""
 
 msgid "Partition number"
@@ -4339,6 +4318,9 @@ msgstr "프로토콜"
 msgid "Provider"
 msgstr "공급자"
 
+msgid "Provides compatibility with Apple II clients."
+msgstr "애플 II 클라이언트와의 호환성을 제공합니다."
+
 msgid "Proxy"
 msgstr "프록시"
 
@@ -4576,9 +4558,6 @@ msgstr "다시 진행"
 msgid "Retry"
 msgstr "재시도"
 
-msgid "Return to Command page"
-msgstr ""
-
 msgid "Reverse DNS lookup"
 msgstr "DNS 역 방향 조회"
 
@@ -4660,12 +4639,8 @@ msgstr "S.M.A.R.T. 로그"
 msgid "SMB2"
 msgstr ""
 
-msgid "SMB3"
-msgstr ""
-
 msgid ""
-"SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and "
-"Vista. NT1 is for legacy OS like XP."
+"SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."
 msgstr ""
 
 msgid "SNMP"
@@ -4789,8 +4764,8 @@ msgstr "가장 가까운 위치를 선택하십시오."
 
 #, php-format
 msgid ""
-"Select the server configuration encrypted GZIP file or XML file and click "
-"the button below to restore the configuration."
+"Select the server configuration XML file and click the button below to "
+"restore the configuration."
 msgstr ""
 
 msgid ""
@@ -4870,6 +4845,9 @@ msgstr "읽기 전용으로 설정"
 msgid "Set share password."
 msgstr "공유 암호 설정."
 
+msgid "Set the CNID backend to be used for the volume."
+msgstr "이 볼륨을 위해 CNID 백엔드가 이용되도록 설정합니다."
+
 msgid "Set the account's primary group to the given group."
 msgstr "주어진 그룹으로 계정의 기본 그룹을 설정합니다."
 
@@ -4899,6 +4877,11 @@ msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr "root 데이터 셋을 위한 다른 마운트 지점을 설정합니다. 기본 값은 /mnt입니다."
+
+msgid ""
+"Sets the database information to be stored in path. You have to specifiy a "
+"writable location, even if the volume is read only."
+msgstr "데이터베이스 정보가 경로에 저장되도록 설정합니다. 볼륨이 읽기 전용이더라도 기록 가능한 위치를 명세 해야 합니다."
 
 msgid ""
 "Sets the interval between disk checks to N seconds. The minimum allowed "
@@ -4983,9 +4966,6 @@ msgstr "개시자에게 제공된 크기. (8EiB=8388608TiB까지. 실제 크기 
 msgid "Skew"
 msgstr ""
 
-msgid "Skip first scan"
-msgstr ""
-
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "휴면 - 휴면 모드가 아닐 경우 장치를 check 합니다."
 
@@ -5040,11 +5020,6 @@ msgstr "소스 공유"
 msgid "Space Used"
 msgstr "사용된 공간"
 
-msgid ""
-"Space delimited set of IP or CIDR notation that permitted to access the "
-"WebGUI. (empty is the same network of LAN interface)"
-msgstr ""
-
 msgid "Spanish"
 msgstr "스페인어"
 
@@ -5052,9 +5027,6 @@ msgid "Sparse"
 msgstr ""
 
 msgid "Sparse Volume"
-msgstr ""
-
-msgid "Specified path is NFSv4 root directory."
 msgstr ""
 
 msgid "Specifies how many servers to create."
@@ -5152,18 +5124,6 @@ msgstr "저장 공간"
 
 msgid "Store DOS attributes"
 msgstr "도스 속성 저장"
-
-msgid "Store NTFS acls"
-msgstr ""
-
-msgid "Store NTFS acls in Extended Attributes"
-msgstr ""
-
-msgid "Store alternate data streams"
-msgstr ""
-
-msgid "Store alternate data streams in Extended Attributes"
-msgstr ""
 
 msgid ""
 "String displayed in the dialog presented to the user when accessing the URL."
@@ -5411,9 +5371,6 @@ msgstr "이 옵션을 활성화하기 전에 바이오스에서 COM 포트가 �
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
 
-msgid "The IP address of the UPS master."
-msgstr ""
-
 msgid "The IP address that this hostname represents."
 msgstr "이 호스트 명이 가리키는 IP 주소."
 
@@ -5524,11 +5481,6 @@ msgid "The attribute '%s' is not a valid time value."
 msgstr ""
 
 #, c-format, php-format
-msgid ""
-"The attribute '%s' is required within %d or more characters to %d characters."
-msgstr ""
-
-#, c-format, php-format
 msgid "The attribute '%s' is required."
 msgstr "속성 '%s'이(가) 필요합니다."
 
@@ -5616,12 +5568,10 @@ msgstr "설정이 복원되지 못했습니다. %s"
 msgid "The configuration could not be restored. No file was uploaded!"
 msgstr ""
 
-#, c-format
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
-"for them to take effect.<br /><b>If this message persist take a look at the "
-"<a href='%s'>system log</a> for more information.</b>"
-msgstr ""
+"for them to take effect."
+msgstr "설정 내용이 변경되었습니다.<br />설정 내용이 효과를 발휘하려면 변경 내용을 적용해야 합니다."
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
@@ -5952,6 +5902,7 @@ msgid ""
 "take one minute."
 msgstr ""
 
+#, php-format
 msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
@@ -6144,10 +6095,6 @@ msgid ""
 msgstr "이 VLAN은 인터페이스로서 여전히 이용되고 이으므로 삭제될 수 없습니다."
 
 msgid ""
-"This WLAN cannot be deleted because it is still being used as an interface."
-msgstr ""
-
-msgid ""
 "This allows you to lower the power consumption of the drive, at the expense "
 "of performance."
 msgstr "이것은 성능을 희생하고 드라이브의 전원 소비를 낮추도록 해줍니다."
@@ -6174,11 +6121,22 @@ msgstr ""
 "자세한 내용은 NUT(Network UPS Tools) <a href='%s' target='_blank'>문서</a>를 참조하기 "
 "바랍니다."
 
+msgid "This controls how the case of filenames are viewed and stored."
+msgstr "이것은 파일 명의 대소문자를 보이고 저장하는 방법을 제어합니다."
+
 msgid "This controls the access a remote host has to this module."
 msgstr "이것은 원격 호스트가 이 모듈에 대해 가지는 접근 권한을 제어합니다."
 
 msgid "This controls the access to this share with an access password."
 msgstr "이 공유에 대한 접근을 접근 암호로 제어합니다."
+
+msgid ""
+"This controls whether the .AppleDouble directory gets created unless "
+"absolutely needed. This option should not be used if files are access mostly "
+"by Mac computers."
+msgstr ""
+"이것은 절대적으로 필요하지 않은 한 .AppleDouble 디렉터리를 생성할지 여부를 설정합니다. 파일들이 대부분 맥 컴퓨터에 의해 접근 "
+"된다면 이 옵션이 이용되어서는 안됩니다."
 
 msgid "This controls whether this share is accessible by guest account."
 msgstr ""
@@ -6202,6 +6160,12 @@ msgstr ""
 
 msgid "This extent is used."
 msgstr "이 범위는 이용되고 있습니다."
+
+msgid ""
+"This forces filenames to be restricted to the character set used by Windows. "
+"This is not recommended for shares used principally by Mac computers."
+msgstr ""
+"이것은 윈도우즈에서 이용되는 문자 셋들로 파일 명을 제한하게 합니다. 주로 맥 컴퓨터에 의해 이용되는 공유에는 권장되지 않습니다."
 
 msgid "This function is unsupported. Use it on your own risk!"
 msgstr "이 기능은 지원되지 않습니다. 자기 책임 하에 이용하십시오!"
@@ -6394,9 +6358,6 @@ msgstr "이 풀 이름은 이미 존재합니다."
 msgid "This rule is triggered whenever the selected event directive occurs."
 msgstr "선택된 이벤트 지시자가 발생할 때마다 이 규칙이 작동합니다."
 
-msgid "This server uses default swap."
-msgstr ""
-
 msgid "This tag already exists."
 msgstr "이 태그는 이미 존재합니다."
 
@@ -6449,7 +6410,7 @@ msgid "Time"
 msgstr "시간"
 
 msgid "Time Machine"
-msgstr ""
+msgstr "시간 머신"
 
 msgid "Time before the load will be rebooted"
 msgstr ""
@@ -6575,11 +6536,6 @@ msgstr ""
 "traceroute는 완료할 때까지 시간이 걸릴 수도 있습니다. 브라우저의 정지 버튼을 누르면 언제라도 실패 된 traceroute의 "
 "진행을 볼 수 있습니다."
 
-msgid ""
-"Tracks whose path contains one or more of these comma separated strings will "
-"be treated as a compilation."
-msgstr ""
-
 msgid "Transcoding"
 msgstr "트랜스코딩"
 
@@ -6639,9 +6595,6 @@ msgstr "범위로 이용될 타입."
 
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
-
-msgid "UFS"
-msgstr ""
 
 #, php-format
 msgid ""
@@ -6802,6 +6755,12 @@ msgstr ""
 msgid "Upload directory of the webserver. The default is %s."
 msgstr ""
 
+msgid "Uppercases names in both directions"
+msgstr "양쪽 모두 대문자 이름"
+
+msgid "Use AFP3 unix privileges."
+msgstr "AFP3 유닉스 권한을 이용합니다."
+
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
 "up at least one DNS server if you enter a host name here!"
@@ -6953,9 +6912,6 @@ msgstr ""
 msgid "Volume Name"
 msgstr "볼륨 명"
 
-msgid "Volume Size Limit"
-msgstr ""
-
 msgid "Volume label"
 msgstr "볼륨 라벨"
 
@@ -6977,10 +6933,6 @@ msgstr "WINS 서버"
 msgid "WINS server IP address (e.g. from MS Active Directory server)."
 msgstr "WINS 서버 IP 주소(예컨대 MS 액티브 디렉터리 서버에서)."
 
-msgid "WLAN"
-msgstr ""
-
-#, c-format
 msgid "WPA"
 msgstr "WPA"
 
@@ -6992,9 +6944,6 @@ msgstr "WPA-PSK(사전 공유 키)"
 
 msgid "WPA-PSK WPA-EAP"
 msgstr "WPA-PSK WPA-EAP"
-
-msgid "WPA2"
-msgstr ""
 
 msgid "Wait time"
 msgstr ""
@@ -7043,26 +6992,14 @@ msgid ""
 "attempt to identify the remote username."
 msgstr "클라이언트가 서버에 처음 연결할 때 원격 사용자 명을 확인하기 위한 시도로서 ident 프로토콜이 이용됩니다."
 
-msgid ""
-"When the negotiation is complete, you will not be able to change the SMB "
-"protocol. If you change it, you will need to restart the client connected to "
-"this server."
-msgstr ""
-
 msgid "Where to save downloaded data."
 msgstr "다운로드 한 데이터를 저장하는 곳."
-
-msgid "Whether compilations should be shown together under Various Artists."
-msgstr ""
 
 msgid ""
 "Whether scans should be skipped if there are no users connected. This allows "
 "the drive to spin down when no users are connected."
 msgstr ""
 "아무도 연결되지 않았을 때 스캔을 생략해야 하는 지를 설정. 이것은 아무도 연결되지 않았을 때 드라이브를 멈출 수 있게 해줍니다."
-
-msgid "Whether to skip initial boot-up scan."
-msgstr ""
 
 msgid "Who"
 msgstr "수행자"
@@ -7099,9 +7036,9 @@ msgid "Yes"
 msgstr "예"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg add "
-"command.<br />Example: pkg add packagename"
-msgstr ""
+"You can also install a package via SSH or console using the the pkg_add "
+"command.<br />Example: pkg_add -r packagename"
+msgstr "SSH나 콘솔에서 pkg_add 명령을 이용해서 패키지를 설치할 수도 있습니다.<br />예 : pkg_add -r 패키지"
 
 msgid "You can use the following parameters for substitution:"
 msgstr "치환을 위해 아래의 인자들을 이용할 수 있습니다:"
@@ -7139,12 +7076,6 @@ msgstr "SCSI 조회 데이터로 명세 할 수 있습니다. 비워 두면 기�
 msgid "You may specify logical block length (%d by default)."
 msgstr "논리적 블록 길이를 명세 할 수 있습니다(기본 값은 %d)."
 
-#, php-format
-msgid ""
-"You must <a href='%s'>reboot</a> the system before you can upgrade the "
-"firmware."
-msgstr ""
-
 msgid "You must add disks first."
 msgstr "먼저 디스크를 추가해야 합니다."
 
@@ -7154,6 +7085,9 @@ msgstr "네트워크와 게이트웨이에 동일한 IP 타입을 입력해야 �
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "iSCSI 타젯을 이용하려면 최소 %dMB 이상의 램이 있어야 합니다."
+
+msgid "You must reboot the system before you can upgrade the firmware."
+msgstr "펌웨어를 업그레이드 하기 전에 시스템을 리붓 해야 합니다."
 
 msgid "You must select at least one authentication method."
 msgstr "최소 한 개 이상의 인증 방법을 선택해야 합니다."
@@ -7205,12 +7139,17 @@ msgstr "Zeroconf/Bonjour"
 msgid "adaptive (low power consumption)"
 msgstr ""
 
-#, php-format
-msgid "add any supplemental parameters"
+msgid "all disks are imported."
 msgstr ""
 
 msgid "all encrypted disks are imported."
 msgstr ""
+
+msgid "all software raid disks are imported."
+msgstr ""
+
+msgid "cachecnid"
+msgstr "cachecnid"
 
 msgid "change failed."
 msgstr "변경이 실패되었습니다."
@@ -7218,8 +7157,17 @@ msgstr "변경이 실패되었습니다."
 msgid "chroot() everyone, but root."
 msgstr "root를 제외한 모두에게 chroot()."
 
+msgid "cnidscheme"
+msgstr "cnidscheme"
+
+msgid "crlf"
+msgstr "crlf"
+
 msgid "day(s)"
 msgstr "일"
+
+msgid "dbpath"
+msgstr "dbpath"
 
 msgid "detected an error while importing."
 msgstr ""
@@ -7292,17 +7240,44 @@ msgstr "mirroring"
 msgid "mount"
 msgstr "마운트"
 
+msgid "mswindows"
+msgstr "mswindows"
+
 msgid "n/a"
 msgstr "n/a"
+
+msgid "no new disk found."
+msgstr ""
 
 msgid "no new encrypted disk found."
 msgstr ""
 
+msgid "no new software raid disk found."
+msgstr ""
+
+msgid "noadouble"
+msgstr "noadouble"
+
+msgid "nodev"
+msgstr "nodev"
+
+msgid "nofileid"
+msgstr "nofileid"
+
+msgid "nohex"
+msgstr "nohex"
+
 msgid "none"
 msgstr "없음"
 
+msgid "nostat"
+msgstr "nostat"
+
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "prodos"
+msgstr "prodos"
 
 msgid "rc.conf"
 msgstr "rc.conf"
@@ -7342,6 +7317,9 @@ msgstr "umask"
 
 msgid "umount"
 msgstr "마운트 해제"
+
+msgid "upriv"
+msgstr "upriv"
 
 #, php-format
 msgid "version:"

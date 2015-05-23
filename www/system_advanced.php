@@ -3,7 +3,7 @@
 	system_advanced.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -201,15 +201,15 @@ function sysctl_tune($mode) {
 	$a_sysctlvar = &$config['system']['sysctl']['param'];
 
 	$a_mib = array(
-		"net.inet.tcp.delayed_ack" => 1,
+		"net.inet.tcp.delayed_ack" => 0,
 		"net.inet.tcp.rfc1323" => 1,
-		"net.inet.tcp.sendspace" => 131072,
-		"net.inet.tcp.recvspace" => 131072,
+		"net.inet.tcp.sendspace" => 262144,
+		"net.inet.tcp.recvspace" => 262144,
 		"net.inet.tcp.sendbuf_max" => 4194304,
-		"net.inet.tcp.sendbuf_inc" => 131072,
+		"net.inet.tcp.sendbuf_inc" => 262144,
 		"net.inet.tcp.sendbuf_auto" => 1,
 		"net.inet.tcp.recvbuf_max" => 4194304,
-		"net.inet.tcp.recvbuf_inc" => 131072,
+		"net.inet.tcp.recvbuf_inc" => 262144,
 		"net.inet.tcp.recvbuf_auto" => 1,
 		"net.inet.udp.recvspace" => 65536,
 		"net.inet.udp.maxdgram" => 57344,
@@ -217,12 +217,12 @@ function sysctl_tune($mode) {
 		"net.local.stream.sendspace" => 65536,
 		"kern.ipc.maxsockbuf" => 16777216,
 		"kern.ipc.somaxconn" => 8192,
-		"kern.ipc.nmbclusters" => 131072,
-		"kern.ipc.nmbjumbop" => 131072,
-		"kern.ipc.nmbjumbo9" => 32768,
-		"kern.ipc.nmbjumbo16" => 16384,
+		"kern.ipc.nmbclusters" => 262144,
+		"kern.ipc.nmbjumbop" => 262144,
+		"kern.ipc.nmbjumbo9" => 131072,
+		"kern.ipc.nmbjumbo16" => 65536,
 		"kern.maxfiles" => 65536,
-		"kern.maxfilesperproc" => 60000,
+		"kern.maxfilesperproc" => 32768,
 		"net.inet.icmp.icmplim" => 300,
 		"net.inet.icmp.icmplim_output" => 1,
 		//"net.inet.tcp.inflight.enable" => 0,

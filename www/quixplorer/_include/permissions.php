@@ -3,7 +3,7 @@
 	permissions.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -39,6 +39,7 @@ require_once("./_include/session.php");
 /**
 	This functions creates the list of assignments of
 	permission values and it's logical description (permission name).
+
 	It returns an array with the permission names and it's values
 */
 function permissions_get ()
@@ -62,10 +63,10 @@ function permissions_get ()
   depending the rights of the current user.
 
   @param $dir	Directory in which  the action should happen. If this parameter is
-  		NULL the engine checks the global permissions of the user.
+  		NULL the engine relys on the global permissions of the user.
   		
   @param $file	File on which the action should happen, if this parameter is NULL
-  		the permission engine checks the user permissions on the directory.
+  		the permission engine relys on the permission of the directory.
 
   @param $action
   		One ore more action of the action set (see permissions_get) which sould

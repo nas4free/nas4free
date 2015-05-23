@@ -3,7 +3,7 @@
 	system.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -47,7 +47,6 @@ list($pconfig['ipv6dns1'],$pconfig['ipv6dns2']) = get_ipv6dnsserver();
 $pconfig['username'] = $config['system']['username'];
 $pconfig['webguiproto'] = $config['system']['webgui']['protocol'];
 $pconfig['webguiport'] = !empty($config['system']['webgui']['port']) ? $config['system']['webgui']['port'] : "";
-$pconfig['webguihostsallow'] = !empty($config['system']['webgui']['hostsallow']) ? $config['system']['webgui']['hostsallow'] : "";
 $pconfig['language'] = $config['system']['language'];
 $pconfig['timezone'] = $config['system']['timezone'];
 $pconfig['ntp_enable'] = isset($config['system']['ntp']['enable']);
@@ -80,7 +79,7 @@ if ($_POST) {
 	$reqdfieldsn = array(gettext("Hostname"), gettext("Username"));
 	$reqdfieldst = explode(" ", "hostname alias");
 
-	if (!empty($_POST['domain'])) {
+	if (isset($_POST['domain'])) {
 		$reqdfields = array_merge($reqdfields, array("domain"));
 		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Domain")));
 		$reqdfieldst = array_merge($reqdfieldst, array("domain"));
@@ -106,14 +105,6 @@ if ($_POST) {
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
-	if (!empty($_POST['webguihostsallow'])) {
-		foreach (explode(' ', $_POST['webguihostsallow']) as $a) {
-			list($hp,$np) = explode('/', $a);
-			if (!is_ipaddr($hp) || (!empty($np) && !is_subnet($a))) {
-				$input_errors[] = gettext("A valid IP address or CIDR notation must be specified for the hosts allow.");
-			}
-		}
-	}
 
 	if (($_POST['dns1'] && !is_ipv4addr($_POST['dns1'])) || ($_POST['dns2'] && !is_ipv4addr($_POST['dns2']))) {
 		$input_errors[] = gettext("A valid IPv4 address must be specified for the primary/secondary DNS server.");
@@ -154,7 +145,6 @@ if ($_POST) {
 		$oldkey = $config['system']['webgui']['privatekey'];
 		$oldwebguiproto = $config['system']['webgui']['protocol'];
 		$oldwebguiport = $config['system']['webgui']['port'];
-		$oldwebguihostsallow = $config['system']['webgui']['hostsallow'];
 		$oldlanguage = $config['system']['language'];
 
 		$config['system']['hostname'] = strtolower($_POST['hostname']);
@@ -162,7 +152,6 @@ if ($_POST) {
 		$config['system']['username'] = $_POST['username'];
 		$config['system']['webgui']['protocol'] = $_POST['webguiproto'];
 		$config['system']['webgui']['port'] = $_POST['webguiport'];
-		$config['system']['webgui']['hostsallow'] = $_POST['webguihostsallow'];
 		$config['system']['language'] = $_POST['language'];
 		$config['system']['timezone'] = $_POST['timezone'];
 		$config['system']['ntp']['enable'] = isset($_POST['ntp_enable']) ? true : false;
@@ -198,10 +187,6 @@ if ($_POST) {
 		// Check if a reboot is required.
 		if (($oldwebguiproto != $config['system']['webgui']['protocol']) ||
 			($oldwebguiport != $config['system']['webgui']['port'])) {
-			touch($d_sysrebootreqd_path);
-		}
-		if ($oldwebguihostsallow != $config['system']['webgui']['hostsallow']) {
-			// XXX shoud be fixed for more better way
 			touch($d_sysrebootreqd_path);
 		}
 		if (($config['system']['webgui']['certificate'] != $oldcert) || ($config['system']['webgui']['privatekey'] != $oldkey)) {
@@ -307,10 +292,9 @@ function webguiproto_change() {
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 			    <?php html_separator();?>
 			    <?php html_titleline(gettext("WebGUI"));?>
-					<?php html_inputbox("username", gettext("Username"), $pconfig['username'], gettext("It's recommended to change the default username and password for accessing the WebGUI, enter the username here."), false, 21);?>
+					<?php html_inputbox("username", gettext("Username"), $pconfig['username'], gettext("It's recommended to change the default username and password for accessing the WebGUI, enter the username here."), true, 21);?>
 					<?php html_combobox("webguiproto", gettext("Protocol"), $pconfig['webguiproto'], array("http" => "HTTP", "https" => "HTTPS"), gettext("Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol Secure (HTTPS) for the WebGUI."), false, false, "webguiproto_change()");?>
 					<?php html_inputbox("webguiport", gettext("Port"), $pconfig['webguiport'], gettext("Enter a custom port number for the WebGUI if you want to override the default (80 for HTTP, 443 for HTTPS)."), false, 6);?>
-					<?php html_inputbox("webguihostsallow", gettext("Hosts allow"), $pconfig['webguihostsallow'], gettext("Space delimited set of IP or CIDR notation that permitted to access the WebGUI. (empty is the same network of LAN interface)"), false, 60);?>
 					<?php html_textarea("certificate", gettext("Certificate"), $pconfig['certificate'], gettext("Paste a signed certificate in X.509 PEM format here."), true, 65, 7, false, false);?>
 					<?php html_textarea("privatekey", gettext("Private key"), $pconfig['privatekey'], gettext("Paste an private key in PEM format here."), true, 65, 7, false, false);?>
 					<?php html_languagecombobox("language", gettext("Language"), $pconfig['language'], gettext("Select the language of the WebGUI."), "", false);?>
@@ -319,7 +303,7 @@ function webguiproto_change() {
 						<td colspan="2" valign="top" class="listtopic"><?=gettext("Hostname");?></td>
 					</tr>
 					<?php html_inputbox("hostname", gettext("Hostname"), $pconfig['hostname'], sprintf(gettext("Name of the NAS host, without domain part e.g. %s."), "<em>" . strtolower(get_product_name()) ."</em>"), true, 40);?>
-					<?php html_inputbox("domain", gettext("Domain"), $pconfig['domain'], sprintf(gettext("e.g. %s"), "<em>com, local</em>"), false, 40);?>
+					<?php html_inputbox("domain", gettext("Domain"), $pconfig['domain'], sprintf(gettext("e.g. %s"), "<em>com, local</em>"), true, 40);?>
 					<?php html_separator();?>
 					<?php html_titleline(gettext("DNS settings"));?>
 			    <tr>

@@ -3,7 +3,7 @@
 	services_afp.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -47,8 +47,6 @@ $pconfig['afpname'] = !empty($config['afp']['afpname']) ? $config['afp']['afpnam
 $pconfig['guest'] = isset($config['afp']['guest']);
 $pconfig['local'] = isset($config['afp']['local']);
 $pconfig['noddp'] = isset($config['afp']['noddp']);
-if (is_array($config['afp']['auxparam']))
-	$pconfig['auxparam'] = implode("\n", $config['afp']['auxparam']);
 
 if ($_POST) {
 	unset($input_errors);
@@ -64,21 +62,13 @@ if ($_POST) {
 		$config['afp']['guest'] = isset($_POST['guest']) ? true : false;
 		$config['afp']['local'] = isset($_POST['local']) ? true : false;
 		$config['afp']['noddp'] = isset($_POST['noddp']) ? true : false;
-		
-		# Write additional parameters.
-		unset($config['afp']['auxparam']);
-		foreach (explode("\n", $_POST['auxparam']) as $auxparam) {
-			$auxparam = trim($auxparam, "\t\n\r");
-			if (!empty($auxparam))
-				$config['afp']['auxparam'][] = $auxparam;
-		}
 
 		write_config();
 
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			config_lock();
-			$retval |= rc_update_service("netatalk");
+			$retval |= rc_update_service("afpd");
 			$retval |= rc_update_service("mdnsresponder");
 			config_unlock();
 		}
@@ -130,10 +120,7 @@ function enable_change(enable_change) {
 							<?=gettext("Enable local user authentication.");?>
 						</td>
 					</tr>
-					
-					<tr>
-					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("add any supplemental parameters")) . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://netatalk.sourceforge.net/3.1/htmldocs/afp.conf.5.html"), false, 65, 5, false, false);?>
-                                        </tr>
+					<?php html_checkbox("noddp", gettext("DDP"), !empty($pconfig['noddp']) ? true : false, gettext("Disable AFP-over-Appletalk to prevent DDP connections."));?>
 			  </table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />

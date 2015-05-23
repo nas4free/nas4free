@@ -3,7 +3,7 @@
 	interfaces_carp.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -68,7 +68,7 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 	$carp = $a_carp[$cnid];
 
 	// Check if still in use.
-	if (0 && carp_inuse($carp['if'])) {
+	if (carp_inuse($carp['if'])) {
 		$input_errors[] = gettext("This CARP cannot be deleted because it is still being used as an interface.");
 	} else {
 		mwexec("/usr/local/sbin/rconf attribute remove 'ifconfig_{$carp['if']}'");
@@ -89,7 +89,6 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 	<td class="tabnavtbl">
 		<ul id="tabnav">
 			<li class="tabinact"><a href="interfaces_assign.php"><span><?=gettext("Management");?></span></a></li>
-			<li class="tabinact"><a href="interfaces_wlan.php"><span><?=gettext("WLAN");?></span></a></li>
 			<li class="tabinact"><a href="interfaces_vlan.php"><span><?=gettext("VLAN");?></span></a></li>
 			<li class="tabinact"><a href="interfaces_lagg.php"><span><?=gettext("LAGG");?></span></a></li>
 			<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gettext("Bridge");?></span></a></li>
@@ -104,7 +103,7 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 			<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 			<table width="100%" border="0" cellpadding="0" cellspacing="0">
 			<tr>
-				<td width="17%" class="listhdrlr"><?=gettext("Interface");?></td>
+				<td width="17%" class="listhdrlr"><?=gettext("Virtual interface");?></td>
 				<td width="9%" class="listhdrr"><?=gettext("VHID");?></td>
 				<td width="20%" class="listhdrr"><?=gettext("Virtual IP address");?></td>
 				<td width="9%" class="listhdrr"><?=gettext("Skew");?></td>

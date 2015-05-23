@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 
 . /etc/configxml.subr
@@ -9,8 +9,6 @@
 mountbase=/mnt
 log="user.notice"
 name="hastswitch"
-
-PREEMPT=`/sbin/sysctl -q -n net.inet.carp.preempt`
 
 case "$1" in
 start)
@@ -51,29 +49,11 @@ start)
 
 	# start services
 	/etc/rc.d/samba start
-
-	/etc/rc.d/nfsuserd start
-	/etc/rc.d/rpcbind start
-	/etc/rc.d/mountd start
-	/etc/rc.d/nfsd start
-	/etc/rc.d/statd start
-	/etc/rc.d/lockd start
-
-	/etc/rc.d/mdnsresponder forcerestart
 	;;
 
 stop)
 	# stop services
 	/etc/rc.d/samba forcestop
-
-	/etc/rc.d/lockd forcestop
-	/etc/rc.d/statd forcestop
-	/etc/rc.d/nfsd forcestop
-	/etc/rc.d/mountd forcestop
-	/etc/rc.d/rpcbind forcestop
-	/etc/rc.d/nfsuserd forcestop
-
-	/etc/rc.d/mdnsresponder forcerestart
 
 	# unmount GPT/UFS
 	/usr/local/bin/xml sel -t \
@@ -113,17 +93,13 @@ shutdown)
 		-b \
 	    ${configxml_file} | /usr/local/bin/xml unesc | \
 	while read _if; do
-		if [ "${PREEMPT}" = "0" -a  -n "$_if" ]; then
+		if [ -n "$_if" ]; then
 		    /usr/bin/logger -p $log -t $name "Change ${_if} state to BACKUP."
 		    /sbin/ifconfig "${_if}" state backup 2>/dev/null
 		    /bin/sleep 1
-		elif [ "${PREEMPT}" != "0" -a  -n "$_if" ]; then
-		    /usr/bin/logger -p $log -t $name "Change ${_if} state to INIT."
-		    /sbin/ifconfig "${_if}" down 2>/dev/null
-		    /bin/sleep 1
 		fi
 	done
-	/bin/sleep 5
+	/bin/sleep 3
 	;;
 
 *)

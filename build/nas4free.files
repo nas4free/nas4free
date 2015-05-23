@@ -1,6 +1,6 @@
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # List of files required for NAS4FREE.
@@ -175,9 +175,6 @@ sbin/init
 ## iscontrol -- login/negotiator/control for an iSCSI initiator session
 sbin/iscontrol
 
-## kldconfig -- display or modify the kernel module search path
-sbin/kldconfig
-
 ## kldload -- load a file into the kernel
 sbin/kldload
 
@@ -252,6 +249,9 @@ sbin/tunefs
 
 ## umount -- unmount file systems
 sbin/umount
+
+## atacontrol -- manage IDE disk
+sbin/atacontrol
 
 ## camcontrol -- manage SCSI disk
 sbin/camcontrol
@@ -400,9 +400,6 @@ usr/bin/tr
 ## wc -- word, line, character, and byte count
 usr/bin/wc
 
-## who -- display who is on the system
-usr/bin/who
-
 ## head -- display first lines of a file
 usr/bin/head
 
@@ -454,9 +451,6 @@ usr/bin/diff
 ## bc -- An arbitrary precision calculator language
 usr/bin/bc
 
-## dc -- desk calculator
-usr/bin/dc
-
 ## printf -- formatted output
 usr/bin/printf
 
@@ -465,9 +459,6 @@ usr/bin/true
 
 ## nc -- arbitrary TCP and UDP connections and listens
 usr/bin/nc
-
-## openssl -- OpenSSL command line tool
-usr/bin/openssl
 
 ## ssh-keygen -- authentication key generation, management and conversion
 usr/bin/ssh-keygen
@@ -508,9 +499,6 @@ usr/bin/tty
 ## vi - text editors
 usr/bin/vi
 
-## ee - easy editor
-usr/bin/ee
-
 ## cpuset -- configure processor sets
 usr/bin/cpuset
 
@@ -528,21 +516,6 @@ usr/bin/patch
 
 ## xz,  unxz,  xzcat, lzma, unlzma, lzcat - Compress or decompress .xz and .lzma files
 usr/bin/xz:usr/bin/unxz:usr/bin/xzcat:usr/bin/lzma:usr/bin/unlzma:usr/bin/lzcat
-
-## kinit -- acquire initial tickets
-usr/bin/kinit
-
-## klist -- list Kerberos credentials
-usr/bin/klist
-
-## kdestroy -- remove one credental or destroy the current ticket file
-usr/bin/kdestroy
-
-## mkuzip -- compress disk image for use with geom_uzip(4) class
-usr/bin/mkuzip
-
-##mkulzma -- compress disk image for use with geom_uncompress(4) class
-usr/bin/mkulzma
 
 ####### contents of /usr/sbin
 ## acpiconf -- control ACPI power management
@@ -568,9 +541,6 @@ usr/sbin/cron
 
 ## daemon -- run detached from the controlling terminal
 usr/sbin/daemon
-
-##
-usr/sbin/kldxref
 
 ## pciconf -- diagnostic utility for the PCI bus
 usr/sbin/pciconf
@@ -623,6 +593,15 @@ usr/sbin/rpc.statd
 ## sshd -- OpenSSH SSH daemon
 ## Note: Will be overwritten when openssh-portable package is activated.
 usr/sbin/sshd
+
+## pkg_add -- a utility for installing software package distributions
+usr/sbin/pkg_add
+
+## pkg_info -- dump out information about packages
+usr/sbin/pkg_info
+
+## pkg_delete -- a utility for deleting previously installed software package distributions
+usr/sbin/pkg_delete
 
 ## mtree -- map a directory hierarchy (required by pkg_add)
 usr/sbin/mtree
@@ -681,15 +660,6 @@ usr/sbin/wake
 ## zdb - ZFS debugg
 usr/sbin/zdb
 
-## hostapd -- authenticator for IEEE 802.11 networks
-usr/sbin/hostapd
-
-## tcpdump - dump traffic on a network
-usr/sbin/tcpdump
-
-## getextattr, lsextattr, rmextattr, setextattr -- manipulate extended attributes
-usr/sbin/rmextattr:usr/sbin/getextattr:usr/sbin/setextattr:usr/sbin/lsextattr
-
 ####### contents of /usr/libexec
 # ld-elf.so.1, ld.so, rtld -- run-time link-editor
 libexec/ld-elf.so.1:usr/libexec/ld-elf.so.1
@@ -702,7 +672,6 @@ usr/libexec/sftp-server
 usr/libexec/getty
 
 ####### contents of /usr/share/misc
-usr/share/misc/init.ee
 usr/share/misc/scsi_modes
 usr/share/misc/termcap:etc/termcap
 usr/share/misc/pci_vendors
@@ -764,9 +733,7 @@ etc/rc.suspend
 etc/network.subr
 etc/pccard_ether
 etc/gettytab
-etc/devd/*
-etc/ssl/openssl.cnf
-####### Add modified devd.conf into /etc
+####### Add custom devd.conf to NAS4Free 9.1.0.1 freebsd 9.1 series, it could use/need modifications
 #etc/devd.conf
 etc/devfs.conf
 etc/dhclient.conf
@@ -776,7 +743,6 @@ etc/netconfig
 etc/networks
 etc/protocols
 #etc/rc.firewall6
-etc/regdomain.xml
 etc/remote
 etc/rpc
 
@@ -801,19 +767,12 @@ etc/rc.d/power_profile
 etc/rc.d/FILESYSTEMS
 etc/rc.d/ip6addrctl
 etc/rc.d/random
-etc/rc.d/postrandom
-etc/rc.d/swap
-#etc/rc.d/swaplate
+etc/rc.d/swap1
 #etc/rc.d/ip6fw
 etc/rc.d/devd
-#etc/rc.d/devfs
 etc/rc.d/dmesg
 etc/rc.d/hostid
 etc/rc.d/jail
-etc/rc.d/netif
-etc/rc.d/netwait
-etc/rc.d/nfscbd
-etc/rc.d/nfsuserd
 
 ####### contents of /usr/share/snmp/defs
 usr/share/snmp/defs/atm_freebsd.def
@@ -852,24 +811,3 @@ libexec/resolvconf/unbound
 usr/share/doc/legal/intel_wpi/LICENSE
 usr/share/doc/legal/intel_iwi/LICENSE
 usr/share/doc/legal/intel_ipw/LICENSE
-
-# XXX need move to ports
-# pkg -- a utility for manipulating packages
-usr/local/sbin/pkg
-etc/pkg/FreeBSD.conf
-usr/share/keys/pkg/revoked/*
-usr/share/keys/pkg/trusted/*
-
-# casperd
-sbin/casperd
-etc/casper/system.dns
-etc/casper/system.grp
-etc/casper/system.pwd
-etc/casper/system.random
-etc/casper/system.sysctl
-etc/rc.d/casperd
-libexec/casper/dns
-libexec/casper/grp
-libexec/casper/pwd
-libexec/casper/random
-libexec/casper/sysctl

@@ -3,7 +3,7 @@
 	header.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -36,17 +36,17 @@
 */
 /* NAS4FREE CODE */
 require("/usr/local/www/guiconfig.inc");
-require_once("session.inc");
 
+require_once("session.inc");
 Session::start();
 // Check if session is valid
 if (!Session::isLogin()) {
 	header('Location: /login.php');
 	exit;
 }
-// Navigation level separator string.
+//------------------------------------------------------------------------------
 function gentitle($title) {
-	$navlevelsep = "|";
+	$navlevelsep = "|"; // Navigation level separator string.
 	return join($navlevelsep, $title);
 }
 
@@ -121,7 +121,7 @@ $menu['services']['menuitem'][] = array("desc" => gettext("AFP"), "link" => "../
 $menu['services']['menuitem'][] = array("desc" => gettext("Rsync"), "link" => "../services_rsyncd.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("Unison"), "link" => "../services_unison.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("iSCSI Target"), "link" => "../services_iscsitarget.php", "visible" => TRUE);
-$menu['services']['menuitem'][] = array("desc" => gettext("DLNA/UPnP"), "link" => "../services_upnp.php", "visible" => TRUE);
+$menu['services']['menuitem'][] = array("desc" => gettext("DNLA/UPnP"), "link" => "../services_upnp.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("iTunes/DAAP"), "link" => "../services_daap.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("Dynamic DNS"), "link" => "../services_dynamicdns.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("SNMP"), "link" => "../services_snmp.php", "visible" => TRUE);
@@ -201,13 +201,7 @@ function display_menu($menuid) {
 	$link = $menu[$menuid]['link'];
 	if ($link == '') $link = 'index.php';
 	echo "<li>\n";
-	    $agent = $_SERVER['HTTP_USER_AGENT']; // Put browser name into local variable for desktop/mobile detection
-       if ((preg_match("/iPhone/i", $agent)) || (preg_match("/android/i", $agent))) {
-          echo "<a href=\"javascript:mopen('{$menuid}');\" onmouseout=\"mclosetime()\">".htmlspecialchars($menu[$menuid]['desc'])."</a>\n";
-       }
-       else {
-          echo "<a href=\"{$link}\" onmouseover=\"mopen('{$menuid}')\" onmouseout=\"mclosetime()\">".htmlspecialchars($menu[$menuid]['desc'])."</a>\n";
-       }
+	echo "	<a href=\"{$link}\" onmouseover=\"mopen('{$menuid}')\" onmouseout=\"mclosetime()\">".htmlspecialchars($menu[$menuid]['desc'])."</a>\n";
 	echo "	<div id=\"{$menuid}\" onmouseover=\"mcancelclosetime()\" onmouseout=\"mclosetime()\">\n";
 
 	# Display menu items.
@@ -230,17 +224,15 @@ function display_menu($menuid) {
 	echo "	</div>\n";
 	echo "</li>\n";
 }
+	
 /* QUIXPLORER CODE */
-// header for html-page
-function show_header($title, $additional_header_content = null)
-{
-    global $site_name, $g;
-
+function show_header($title) {			// header for html-page
 	header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 	header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
 	header("Cache-Control: no-cache, must-revalidate");
 	header("Pragma: no-cache");
 	header("Content-Type: text/html; charset=".$GLOBALS["charset"]);
+
 /* NAS4FREE & QUIXPLORER CODE*/
 	// Html & Page Headers
 	echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n";
@@ -290,24 +282,14 @@ function show_header($title, $additional_header_content = null)
 	//-- Begin extension section --//
 	if (Session::isAdmin() && isset($g) && isset($g['www_path']) && is_dir("{$g['www_path']}/ext")):
 		echo "<li>\n";
-			$agent = $_SERVER['HTTP_USER_AGENT']; // Put browser name into local variable for desktop/mobile detection
-			if ((preg_match("/iPhone/i", $agent)) || (preg_match("/android/i", $agent))) {
-				echo "<a href=\"javascript:mopen('extensions');\" onmouseout=\"mclosetime()\">".gettext("Extensions")."</a>\n";
-			} else {
-				echo "<a href=\"../index.php\" onmouseover=\"mopen('extensions')\" onmouseout=\"mclosetime()\">".gettext("Extensions")."</a>\n";
-			}
+			echo "<a href=\"index.php\" onmouseover=\"mopen('extensions')\" onmouseout=\"mclosetime()\">".gettext("Extensions")."</a>\n";
 			echo "<div id=\"extensions\" onmouseover=\"mcancelclosetime()\" onmouseout=\"mclosetime()\">\n";
 				$dh = @opendir("{$g['www_path']}/ext");
 				if ($dh) {
 					while (($extd = readdir($dh)) !== false) {
 						if (($extd === ".") || ($extd === ".."))
 							continue;
-						ob_start();
-						@include("{$g['www_path']}/ext/" . $extd . "/menu.inc");
-						$tmp = trim(ob_get_contents());
-						ob_end_clean();
-						$tmp = preg_replace('/href=\"([^\/\.])/', 'href="../\1', $tmp);
-						echo "$tmp\n";
+						@include("{$g['www_path']}/ext/" . $extd . "../menu.inc");
 					}
 					closedir($dh);
 				}
@@ -347,5 +329,4 @@ function show_header($title, $additional_header_content = null)
 	echo "</center>";
 	echo "<div class=\"main_tbl\">";
 }
-
 ?>

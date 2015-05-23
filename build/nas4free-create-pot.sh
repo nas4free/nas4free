@@ -3,7 +3,7 @@
 # Extract gettext strings from source.
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 
@@ -23,7 +23,7 @@ xgettext ${PARAMETERS} *.*
 cd ${NAS4FREE_SVNDIR}/www
 xgettext ${PARAMETERS} --join-existing *.*
 
-cd ${NAS4FREE_SVNDIR}/www/quixplorer/_include
+cd ${NAS4FREE_SVNDIR}/www/quixplorer/.include
 xgettext ${PARAMETERS} --join-existing *.*
 
 cd ${NAS4FREE_SVNDIR}/etc/inc

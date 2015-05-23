@@ -3,7 +3,7 @@
 	system_firewall_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -138,7 +138,7 @@ function get_next_rulenumber() {
 	global $config;
 
 	// Set starting rule number
-	$ruleno = 10100;
+	$ruleno = 100;
 
 	$a_rules = $config['system']['firewall']['rule'];
 	if (false !== array_search_ex(strval($ruleno), $a_rules, "ruleno")) {

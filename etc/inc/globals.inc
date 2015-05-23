@@ -3,11 +3,15 @@
 	globals.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
 	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	All rights reserved.
+
+	Portions of m0n0wall (http://m0n0.ch/wall).
+	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -51,18 +55,16 @@ $g = array(
 	"www_path" => "/usr/local/www",
 	"xml_rootobj" => "nas4free",
 	"debug" => false,
-	"latest_config" => "1.9",
+	"latest_config" => "1.7",
 	"nopccard_platforms" => array("wrap", "net48xx"),
-	"wireless_regex" => "/^(ndis|wlan|an|ath|bwi|bwn|ipw|iwi|iwn|malo|mwl|ral|wi|wpi|rsu|rum|run|uath|upgt|ural|urtw|urtwn|usie|zyd)/",
+	"wireless_regex" => "/^(ndis|wi|ath|an|ral|ural|wai|iwi|awi|wlan|ipw|wpi|rum|arl|zyd)/",
 	"default_passwd" => "nas4free",
 	"default_ip" => "192.168.1.250"
 );
 
 $g_install = array(
-	"default_swap" => "1024",
-	"part1min_embedded" => "466",	/*  500MB= 476MiB ->  470MB - alignment */
-	"part1size_embedded" => "800",	/* 2000MB=1907MiB ->  768MB + SWAP1024MB */
-	"part1size_full" => "2600"	/* 4000MB=3814MiB -> 2560MB + SWAP1024MB */
+	"part1size_embedded" => "512",
+	"part1size_full" => "1024"
 );
 
 /* Available languages/locales */

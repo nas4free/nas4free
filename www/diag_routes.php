@@ -3,7 +3,7 @@
 	diag_routes.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -52,11 +52,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Routing tables"));
 	list($dummy, $internet, $internet6) = explode("\n\n", shell_exec($netstat));
 
 	foreach (array(&$internet, &$internet6) as $tabindex => $table) {
-		$osver = @exec("/usr/bin/uname -U");
-		if ($osver >= 1000000)
-			$elements = ($tabindex == 0 ? 7 : 7);
-		else
-			$elements = ($tabindex == 0 ? 8 : 8);
+		$elements = ($tabindex == 0 ? 8 : 8);
 		$name = ($tabindex == 0 ? 'IPv4' : 'IPv6');
 ?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">

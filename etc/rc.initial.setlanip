@@ -4,7 +4,7 @@
 	rc.initial.setlanip
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -103,7 +103,6 @@ if (0 == $result) {
 	$config['interfaces']['lan']['subnet'] = $lanbits;
 	$config['interfaces']['lan']['gateway'] = $gatewayip;
 	$config['system']['dnsserver'] = explode(" ", $dnsserverip);
-	$config['system']['webgui']['hostsallow'] = "";
 }
 
 $result = tui_display_yesno("Do you want to configure IPv6 for this interface?", 57, 5, false);
@@ -189,7 +188,6 @@ if ("https" === $config['system']['webgui']['protocol']) {
 
 		$config['system']['webgui']['protocol'] = "http";
 		$config['system']['webgui']['port'] = $port;
-		$config['system']['webgui']['hostsallow'] = "";
 	}
 }
 

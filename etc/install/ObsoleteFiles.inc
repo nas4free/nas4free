@@ -81,4 +81,3 @@ usr/local/www/sajax/sajax.php
 usr/local/www/sajax
 usr/local/www/javascript/navbar.js
 usr/local/www/javascript
-etc/uam

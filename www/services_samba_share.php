@@ -3,7 +3,7 @@
 	services_samba_share.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -46,13 +46,8 @@ if ($_POST) {
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			$retval |= updatenotify_process("smbshare", "smbshare_process_updatenotification");
-			config_lock();
-			// reload config if enabled
-			if (isset($config['samba']['enable']) === true) {
-				$retval |= rc_update_reload_service("samba");
-			} else {
-				$retval |= rc_update_service("samba");
-			}
+		  config_lock();
+			$retval |= rc_update_service("samba");
 			$retval |= rc_update_service("mdnsresponder");
 			config_unlock();
 		}

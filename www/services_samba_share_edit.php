@@ -3,7 +3,7 @@
 	services_samba_share_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -66,15 +66,11 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_share, "uuid")
 	$pconfig['browseable'] = isset($a_share[$cnid]['browseable']);
 	$pconfig['guest'] = isset($a_share[$cnid]['guest']);
 	$pconfig['inheritpermissions'] = isset($a_share[$cnid]['inheritpermissions']);
-	$pconfig['inheritacls'] = isset($a_share[$cnid]['inheritacls']);
 	$pconfig['recyclebin'] = isset($a_share[$cnid]['recyclebin']);
 	$pconfig['hidedotfiles'] = isset($a_share[$cnid]['hidedotfiles']);
 	$pconfig['shadowcopy'] = isset($a_share[$cnid]['shadowcopy']);
 	$pconfig['shadowformat'] = !empty($a_share[$cnid]['shadowformat']) ? $a_share[$cnid]['shadowformat'] : "";
 	$pconfig['zfsacl'] = isset($a_share[$cnid]['zfsacl']);
-	$pconfig['storealternatedatastreams'] = isset($a_share[$cnid]['storealternatedatastreams']);
-	$pconfig['storentfsacls'] = isset($a_share[$cnid]['storentfsacls']);
-	$pconfig['aiomodule'] = $a_share[$cnid]['aiomodule'];
 	$pconfig['hostsallow'] = $a_share[$cnid]['hostsallow'];
 	$pconfig['hostsdeny'] = $a_share[$cnid]['hostsdeny'];
 	$pconfig['auxparam'] = "";
@@ -89,61 +85,17 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_share, "uuid")
 	$pconfig['browseable'] = true;
 	$pconfig['guest'] = true;
 	$pconfig['inheritpermissions'] = true;
-	$pconfig['inheritacls'] = true;
-	$pconfig['recyclebin'] = true;
+	$pconfig['recyclebin'] = false;
 	$pconfig['hidedotfiles'] = true;
 	$pconfig['shadowcopy'] = true;
 	$pconfig['shadowformat'] = $default_shadowformat;
 	$pconfig['zfsacl'] = false;
-	$pconfig['storealternatedatastreams'] = false;
-	$pconfig['storentfsacls'] = false;
-	$pconfig['aiomodule'] = "aio_pthread";
 	$pconfig['hostsallow'] = "";
 	$pconfig['hostsdeny'] = "";
 	$pconfig['auxparam'] = "";
 }
 if ($pconfig['shadowformat'] == "") {
 	$pconfig['shadowformat'] = $default_shadowformat;
-}
-
-// get mount info specified path
-function get_mount_info($path){
-	if (file_exists($path) === FALSE)
-		return FALSE;
-
-	// get all mount points
-	$a_mounts = array();
-	mwexec2('/sbin/mount -p', $rawdata);
-	foreach($rawdata as $line) {
-		list($dev,$dir,$fs,$opt,$dump,$pass) = preg_split('/\s+/', $line);
-		$a_mounts[] = array(
-			'dev' => $dev,
-			'dir' => $dir,
-			'fs' => $fs,
-			'opt' => $opt,
-			'dump' => $dump,
-			'pass' => $pass,
-		);
-	}
-	if (empty($a_mounts))
-		return FALSE;
-
-	// check path with mount list
-	do {
-		foreach ($a_mounts as $mountv) {
-			if (strcmp($mountv['dir'], $path) == 0) {
-				// found mount point
-				return $mountv;
-			}
-		}
-		// path don't have parent?
-		if (strpos($path, '/') === FALSE)
-			break;
-		// retry with parent
-		$pathinfo = pathinfo($path);
-		$path = $pathinfo['dirname'];
-	} while (1);
-	return FALSE;
 }
 
 if ($_POST) {
@@ -171,16 +123,6 @@ if ($_POST) {
 		}
 	}
 
-	// Enable ZFS ACL on ZFS mount point
-	$zfsacl = isset($_POST['zfsacl']) ? true : false;
-	$mntinfo = get_mount_info($_POST['path']);
-	if ($mntinfo !== FALSE && $mntinfo['fs'] === "zfs") {
-		if ($cnid === FALSE) {
-			// first creation
-			$zfsacl = true;
-		}
-	}
-
 	if (empty($input_errors)) {
 		$share = array();
 		$share['uuid'] = $_POST['uuid'];
@@ -191,16 +133,11 @@ if ($_POST) {
 		$share['browseable'] = isset($_POST['browseable']) ? true : false;
 		$share['guest'] = isset($_POST['guest']) ? true : false;
 		$share['inheritpermissions'] = isset($_POST['inheritpermissions']) ? true : false;
-		$share['inheritacls'] = isset($_POST['inheritacls']) ? true : false;
 		$share['recyclebin'] = isset($_POST['recyclebin']) ? true : false;
 		$share['hidedotfiles'] = isset($_POST['hidedotfiles']) ? true : false;
 		$share['shadowcopy'] = isset($_POST['shadowcopy']) ? true : false;
 		$share['shadowformat'] = $_POST['shadowformat'];
-		//$share['zfsacl'] = isset($_POST['zfsacl']) ? true : false;
-		$share['zfsacl'] = $zfsacl;
-		$share['storealternatedatastreams'] = isset($_POST['storealternatedatastreams']) ? true : false;
-		$share['storentfsacls'] = isset($_POST['storentfsacls']) ? true : false;
-		$share['aiomodule'] = $_POST['aiomodule'];
+		$share['zfsacl'] = isset($_POST['zfsacl']) ? true : false;
 		$share['hostsallow'] = $_POST['hostsallow'];
 		$share['hostsdeny'] = $_POST['hostsdeny'];
 
@@ -333,16 +270,6 @@ if ($_POST) {
 			        <span class="vexpl"><?=gettext("This will provide ZFS ACL support. (ZFS only)");?></span>
 			      </td>
 			    </tr>
-			    <tr>
-			      <td width="22%" valign="top" class="vncell"><?=gettext("Inherit ACL");?></td>
-			      <td width="78%" class="vtable">
-			        <input name="inheritacls" type="checkbox" id="inheritacls" value="yes" <?php if (isset($pconfig['inheritacls']) && $pconfig['inheritacls']) echo "checked=\"checked\""; ?> />
-			        <?=gettext("Enable ACL inheritance");?>
-			      </td>
-			    </tr>
-			    <?php html_checkbox("storealternatedatastreams", gettext("Store alternate data streams"), !empty($pconfig['storealternatedatastreams']) ? true : false, gettext("Store alternate data streams in Extended Attributes"), "", false);?>
-			    <?php html_checkbox("storentfsacls", gettext("Store NTFS acls"), !empty($pconfig['storentfsacls']) ? true : false, gettext("Store NTFS acls in Extended Attributes"), "", false);?>
-			    <?php html_combobox("aiomodule", gettext("AIO module"), $pconfig['aiomodule'], array("aio_pthread" => "aio_pthread", "aio_posix" => "aio_posix"), "", false, false, "");?>
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("Hosts allow");?></td>
 			      <td width="78%" class="vtable">

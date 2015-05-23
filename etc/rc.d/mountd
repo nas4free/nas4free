@@ -1,14 +1,15 @@
 #!/bin/sh
 #
+# $FreeBSD: src/etc/rc.d/mountd,v 1.24.2.1.2.1 2011/11/11 04:20:22 kensmith Exp $
+#
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # Portions of freenas (http://www.freenas.org).
 # Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
 # All rights reserved.
 #
-# $FreeBSD: src/etc/rc.d/mountd
 # Changes:	- Remove nfsserver quota
 # 		- Add mkconf command
 #
@@ -49,25 +50,17 @@ mountd_mkconf()
 		_network=${_ipaddr%/*}
 		_mask=`get_subnetmask ${_ipaddr}`
 
-		if configxml_isset "//nfsd/share[position()=${_index}]/v4rootdir"; then
-			/usr/local/bin/xml sel -t -m "//nfsd/share[position()=${_index}]" \
-				-i "count(v4rootdir) > 0" -o "V4: " -b \
-				-v "path" \
-				-o " -network ${_network} -mask ${_mask}" -n \
+		/usr/local/bin/xml sel -t -m "//nfsd/share[position()=${_index}]" \
+			-v "path" \
+			-i "count(options/*) > 0" -o " -" -b \
+			-m "options/*" \
+				-i "position() > 1" -o "," -b \
+				-v "local-name()" \
+			-b \
+			-i "mapall[. = 'yes']" -o " -mapall=root" -b \
+			-i "mapall[. != 'yes']" -o " -maproot=root" -b \
+			-o " -network ${_network} -mask ${_mask}" -n \
 			${configxml_file} | /usr/local/bin/xml unesc >> ${mountd_config}
-		else
-			/usr/local/bin/xml sel -t -m "//nfsd/share[position()=${_index}]" \
-				-v "path" \
-				-i "count(options/*) > 0" -o " -" -b \
-				-m "options/*" \
-					-i "position() > 1" -o "," -b \
-					-v "local-name()" \
-				-b \
-				-i "mapall[. = 'yes']" -o " -mapall=root" -b \
-				-i "mapall[. != 'yes']" -o " -maproot=root" -b \
-				-o " -network ${_network} -mask ${_mask}" -n \
-			${configxml_file} | /usr/local/bin/xml unesc >> ${mountd_config}
-		fi
 
 		_index=$(( ${_index} - 1 ))
 	done

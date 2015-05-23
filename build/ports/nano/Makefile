@@ -1,13 +1,14 @@
 PORTNAME=		nano
-PORTVERSION=	2.4.1
+PORTVERSION=	2.2.6
 CATEGORIES=		editors
 COMMENT=		Nano's ANOther editor, an enhanced free Pico clone
 MAINTAINER=		zoon01@nas4free.org
 
-MASTER_SITES=	http://www.nano-editor.org/dist/v2.4/ \
+MASTER_SITES=	http://www.nano-editor.org/dist/v2.2/ \
 						${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	${PORTNAME}
 
+NO_STAGE=       yes
 GNU_CONFIGURE=	yes
 USE_GETTEXT=    	yes
 CONFIGURE_ARGS=	--enable-all

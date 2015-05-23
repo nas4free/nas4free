@@ -3,7 +3,7 @@
 	services_nfs_share.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -120,7 +120,7 @@ function nfsshare_process_updatenotification($mode, $data) {
   			  <?php foreach ($a_share as $sharev):?>
   			  <?php $notificationmode = updatenotify_get_mode("nfsshare", $sharev['uuid']);?>
           <tr>
-						<td class="listlr"><?=htmlspecialchars(isset($sharev['v4rootdir']) ? "V4: " : "");?><?=htmlspecialchars($sharev['path']);?>&nbsp;</td>
+						<td class="listlr"><?=htmlspecialchars($sharev['path']);?>&nbsp;</td>
 						<td class="listr"><?=htmlspecialchars($sharev['network']);?>&nbsp;</td>
 						<td class="listr"><?=htmlspecialchars($sharev['comment']);?>&nbsp;</td>
 						<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>

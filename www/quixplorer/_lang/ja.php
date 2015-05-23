@@ -3,7 +3,7 @@
 	ja.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -36,7 +36,7 @@
 */
 // Japanese Language Module
 
-$GLOBALS["charset"] = "UTF-8";
+$GLOBALS["charset"] = "utf-8";
 $GLOBALS["text_dir"] = "ltr"; // ('ltr' for left to right, 'rtl' for right to left)
 $GLOBALS["date_fmt"] = "Y/m/d H:i";
 $GLOBALS["error_msg"] = array(
@@ -44,12 +44,12 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"		=> "エラー",
 	"back"			=> "戻る",
-
+	
 	// root
 	"home"			=> "ホームディレクトリがありません。設定を確認してください。",
 	"abovehome"		=> "カレントディレクトリはホームディレクトリの中にありません。",
 	"targetabovehome"	=> "ターゲットディレクトリはホームディレクトリの中にありません。",
-
+	
 	// exist
 	"direxist"		=> "このディレクトリは存在していません。",
 	//"filedoesexist"	=> "このファイルは既に存在しています。",
@@ -58,20 +58,20 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "この項目は存在していません。",
 	"targetexist"		=> "指定されたディレクトリは存在していません。",
 	"targetdoesexist"	=> "指定された項目は既に存在しています。",
-
+	
 	// open
 	"opendir"		=> "ディレクトリを開くことができません。",
 	"readdir"		=> "ディレクトリを読むことができません。",
-
+	
 	// access
 	"accessdir"		=> "このディレクトリへのアクセスが許可されていません。",
 	"accessfile"		=> "このファイルへのアクセスが許可されていません。",
 	"accessitem"		=> "この項目へのアクセスが許可されていません。",
 	"accessfunc"		=> "この機能の利用が許可されていません。",
 	"accesstarget"	=> "指定されたディレクトリへのアクセスが許可されていません。",
-
+	
 	// actions
-	"chmod_not_allowed"  => "パーミッションを NONE に変更する事は許可されていません！",
+	"chmod_not_allowed"  => 'Changing Permissions to NONE is not allowed!',
 	"permread"		=> "権限の取得ができません。",
 	"permchange"		=> "権限の変更ができません。",
 	"openfile"		=> "ファイルのオープンができません。",
@@ -87,7 +87,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "ユーザの追加ができません。",
 	"saveuser"		=> "ユーザの保存ができません。",
 	"searchnothing"	=> "検索するものを入力する必要があります。",
-
+	
 	// misc
 	"miscnofunc"		=> "機能は利用できません。",
 	"miscfilesize"	=> "ファイルは最大サイズを超えています。",
@@ -109,7 +109,7 @@ $GLOBALS["messages"] = array(
 	"permlink"		=> "権限変更",
 	"editlink"		=> "編集",
 	"downlink"		=> "ダウンロード",
-	"download_selected"	=> "選択したファイルをダウンロード",
+	"download_selected"	=> "DOWNLOAD SELECTED FILES",
 	"uplink"			=> "上へ",
 	"homelink"		=> "ホーム",
 	"reloadlink"		=> "リロード",
@@ -121,8 +121,8 @@ $GLOBALS["messages"] = array(
 	"logoutlink"		=> "ログアウト",
 	"uploadlink"		=> "アップロード",
 	"searchlink"		=> "検索",
-	"unziplink"		=> "展開",
-
+	"unziplink"		=> "UNZIP",
+	
 	// list
 	"nameheader"		=> "名前",
 	"sizeheader"		=> "サイズ",
@@ -131,7 +131,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "権限",
 	"actionheader"		=> "動作",
 	"pathheader"		=> "パス",
-
+	
 	// buttons
 	"btncancel"		=> "キャンセル",
 	"btnsave"		=> "保存",
@@ -148,8 +148,8 @@ $GLOBALS["messages"] = array(
 	"btnadd"		=> "追加",
 	"btnedit"		=> "編集",
 	"btnremove"		=> "削除",
-	"btnunzip"		=> "展開",
-
+	"btnunzip"		=> "Unzip",
+	
 	// actions
 	"actdir"		=> "ディレクトリ",
 	"actperms"		=> "権限変更",
@@ -167,7 +167,7 @@ $GLOBALS["messages"] = array(
 	"actarchive"		=> "アーカイブ項目",
 	"actunzipitem"	=> "Extracting",
 	"actupload"		=> "アップロードファイル",
-
+	
 	// misc
 	"miscitems"		=> "項目",
 	"miscfree"		=> "フリー",
@@ -191,15 +191,14 @@ $GLOBALS["messages"] = array(
 	"miscnoresult"	=> "検索結果がありません。",
 	"miscsubdirs"		=> "サブディレクトリの検索",
 	"miscpermissions"	=> array(
-					"read"		=> array("読込", "ユーザーは読込、ダウンロード可能"),
-					"create" 	=> array("作成", "ユーザーは新規ファイルを作成可能"),
-					"change"		=> array("変更", "ユーザーは既存ファイルを変更(アップロード・修正)可能"),
-					"delete"		=> array("削除", "ユーザーは既存ファイルを削除可能"),
-					"password"	=> array("パスワード変更", "ユーザーはパスワード変更可能"),
-					"admin"		=> array("管理者", "フルアクセス"),
+					"read"		=> array("Read", "User may read and download a file"),
+					"create" 	=> array("Write", "User may create a new file"),
+					"change"		=> array("Change", "User may change (upload, modify) an existing file"),
+					"delete"		=> array("Delete", "User may delete an existing file"),
+					"password"	=> array("Change password", "User may change the password"),
+					"admin"		=> array("Administrator", "Full access"),
 			),
 	"miscyesno"		=> array("はい","いいえ","Y","N"),
 	"miscchmod"		=> array("所有者", "グループ", "その他"),
 );
-
 ?>

@@ -3,7 +3,7 @@
 	debug.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -36,7 +36,7 @@
 */
 function _syslog($level, $message)
 {
-    openlog("quixplorer", LOG_PID | LOG_PERROR | LOG_LOCAL0, LOG_USER);
+    openlog("quixplorer", LOG_PERROR | LOG_LOCAL0, LOG_USER);
     syslog($level, $message);
     closelog();
 }
@@ -50,7 +50,7 @@ function _debug ($data)
 {
     global $FD_LOG;
 
-    $debug = 0;
+    $debug = 1;
 
     if ($debug == 0)
       return;

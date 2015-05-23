@@ -3,7 +3,7 @@
 #This script does create the rootfs.
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 
@@ -69,7 +69,6 @@ mkdir etc/inc ;
 mkdir etc/install ;
 mkdir etc/pam.d ;
 mkdir etc/ssh ;
-mkdir etc/ssl ;
 mkdir etc/rc.d ;
 mkdir etc/rc.d.php ;
 mkdir etc/zfs ;
@@ -87,7 +86,6 @@ mkdir usr/libexec ;
 mkdir usr/local ;
 mkdir usr/local/bin;
 mkdir usr/local/lib ;
-mkdir usr/local/libexec ;
 mkdir usr/local/sbin ;
 mkdir usr/local/share ;
 mkdir usr/local/share/locale ;

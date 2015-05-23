@@ -3,7 +3,7 @@
 # /etc/rc.initial
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # Portions of freenas (http://www.freenas.org).
@@ -16,15 +16,13 @@ trap "rm -f $tmpfile" 0 1 2 5 15
 
 # Endless loop
 while : ; do
-	cdialog --clear --title "NAS4Free Install & Upgrade Options Menu" --cancel-label "Exit" --menu "" 14 73 8 \
-		"1" "Install 'Embedded' OS/MBR on HDD/SSD/CF/USB (preferred)" \
-		"2" "Install 'Embedded' OS/GPT for over 2TB bootdisk (experimental)" \
-		"3" "Upgrade 'Embedded' OS from LiveCD/LiveUSB (preferred)" \
-		"-" "---------------------------------------------------------------" \
-		"4" "Install 'Embedded' OS/MBR without SWAP (for expert)" \
-		"5" "Install 'Full' OS on HDD/SSD + DATA + SWAP (for expert)" \
-		"6" "Upgrade 'Full' OS from LiveCD/LiveUSB" \
-		"7" "Upgrade and convert 'Full' OS to 'Embedded'" 2> $tmpfile
+	cdialog --clear --title "NAS4Free Install & Upgrade Options Menu" --cancel-label "Exit" --menu "" 12 73 6 \
+		"1" "Install 'Embedded' OS on CF/USB Flash Drive or Hard Drive" \
+		"2" "Install 'Embedded' OS on HDD/Flash/USB + DATA + SWAP partition" \
+		"3" "Install 'Full' OS on HDD + DATA + SWAP partition" \
+		"4" "Upgrade 'Embedded' OS from LiveCD/LiveUSB" \
+		"5" "Upgrade 'Full' OS from LiveCD/LiveUSB" \
+		"6" "Upgrade and convert 'Full' OS to 'Embedded'" 2> $tmpfile
 
 	if [ 0 -ne $? ]; then
 		exit 0;
@@ -33,24 +31,21 @@ while : ; do
 	choice=`cat ${tmpfile}`
 	case ${choice} in
 		1)
-			/etc/rc.initial.install2
-		 	;;
-		2)
-			/etc/rc.initial.install2gpt
-		 	;;
-		3)
-			/etc/rc.initial.embupgfromcdrom
-			;;
-		4)
 			/etc/rc.initial.install1
 		 	;;
-		5)
+		2)
+			/etc/rc.initial.install2
+		 	;;
+		3)
 			/etc/rc.initial.install3
 			;;
-		6)
+		4)
+			/etc/rc.initial.embupgfromcdrom
+			;;
+		5)
 			/etc/rc.initial.fullupgfromcdrom
 			;;
-		7)
+		6)
 			/etc/rc.initial.full2emb
 			;;
 	esac

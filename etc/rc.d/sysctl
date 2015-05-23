@@ -1,11 +1,14 @@
 #!/bin/sh
 #
+# $FreeBSD: src/etc/rc.d/sysctl,v 1.17.2.2.4.1 2009/04/15 03:14:26 kensmith Exp $
+#
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-# Changes: - Add command mkconf
-# 	   - Add full path to command sysctl to fix execution bug
+#
+# Changes: 	- Add command mkconf
+# 		- Add full path to command sysctl to fix execution bug
 #
 
 # PROVIDE: sysctl
@@ -61,15 +64,6 @@ parse_file()
 					${val})
 						;;
 					*)
-						if [ "${mib}" = "kern.ipc.nmbclusters" -o \
-							"${mib}" = "kern.ipc.nmbjumbop" -o \
-							"${mib}" = "kern.ipc.nmbjumbo9" -o \
-							"${mib}" = "kern.ipc.nmbjumbo16" ]; then
-							if [ ${val} -lt ${current_value} ]; then
-								echo "${mib}: ${current_value} (not updated by the smaller value)"
-								continue
-							fi
-						fi
 						/sbin/sysctl "${var}"
 						;;
 					esac

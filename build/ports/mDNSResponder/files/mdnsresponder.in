@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 # 
 # Portions of freenas (http://www.freenas.org).
@@ -28,14 +28,24 @@ load_rc_config "${name}"
 
 # Custom commands
 start_precmd="mdnsresponder_mkconf"
+stop_cmd="mdnsresponder_stop"
 mkconf_cmd="mdnsresponder_mkconf"
 extra_commands="mkconf"
 
 # Defaults
 mdnsresponder_config=${mdnsresponder_config:-"/var/etc/${name}.conf"}
-pidfile="/var/run/${name}.pid"
+pidfile="/var/run/mDNSResponder.pid"
 command="/usr/local/bin/mDNSResponderPosix"
-command_args=" -b -f ${mdnsresponder_config} -P ${pidfile}"
+command_args="-b -f ${mdnsresponder_config}"
+
+
+mdnsresponder_stop()
+{
+	if [ -f ${pidfile} ]; then
+		kill -s int `cat ${pidfile}`
+		rm ${pidfile}
+	fi
+}
 
 mdnsresponder_mkconf()
 {
@@ -54,7 +64,7 @@ mdnsresponder_mkconf()
 #
 # For types: http://www.dns-sd.org/ServiceTypes.html" > ${mdnsresponder_config}
 	/usr/local/bin/xml sel -t \
--v "//system/hostname" -n \
+		-v "//afp/afpname" -n \
 		-o "_device-info._tcp. local." -n \
 		-o "1" -n \
 		-o "model=Xserve" -n \
@@ -73,24 +83,20 @@ mdnsresponder_mkconf()
 		-o "path=/index.php" -n \
 		-n \
 		-i "count(//afp/enable) > 0" \
-			-i "//afp/afpname[. = '']" \
-			-v "//system/hostname" \
-			-b \
 			-v "//afp/afpname" -n \
 			-o "_afpovertcp._tcp. local." -n \
 			-o "548" -n \
 			-n \
-			-i "//afp/afpname[. = '']" \
-			-v "//system/hostname" \
-			-b \
 			-v "//afp/afpname" -n \
 			-o "_adisk._tcp. local." -n \
 			-o "9" -n \
 			-o "sys=waMA=0,adVF=0x100" -n \
 			-m "//afp/share" \
-				-v "concat('dk',position()-1,'=')" \
-				-i "count(timemachine) > 0" -o "adVF=0xa1," -b \
-				-v "concat('adVN=',name,',adVU=',uuid)" -n \
+				-i "adisk/enable" \
+					-v "concat('dk',position()-1,'=')" \
+					-i "string-length(adisk/advf) > 0" -v "concat('adVF=',adisk/advf,',')" -b \
+					-v "concat('adVN=',name,',adVU=',uuid)" -n \
+				-b \
 			-b \
 			-n \
 		-b \

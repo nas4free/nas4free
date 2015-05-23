@@ -3,7 +3,7 @@
 	session.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -34,12 +34,13 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-
-// This function allows access to session variables
+/**
+	This function allows access to session variables
+*/
 function session_get ($name)
 {
 	$user = $_SESSION["s_user"];
-	if ( ! isset ( $_SESSION ) )
+	if ( !isset ( $_SESSION ) )
 		return;
 
 	if ( ! isset( $_SESSION[$name] ) )
@@ -47,16 +48,5 @@ function session_get ($name)
 	
 	return $_SESSION[$name];
 }
-
-// Return true if the given file name matches the global $no_access pattern configured in _config/conf.php.
-function matches_noaccess_pattern($file)
-{
-    global $no_access;
-    if ( !isset($no_access) || $no_access == "")
-        return false;
-
-    return preg_match( "%$no_access%", $file );
-}
-
 
 ?>

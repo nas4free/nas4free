@@ -3,21 +3,25 @@
 	disks.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
 	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
 	All rights reserved.
 
+	Portions of m0n0wall (http://m0n0.ch/wall).
+	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	All rights reserved.
+
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+	modification, are permitted provided that the following conditions are met: 
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer.
+	   list of conditions and the following disclaimer. 
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+	   and/or other materials provided with the distribution. 
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -31,7 +35,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies,
+	of the authors and should not be interpreted as representing official policies, 
 	either expressed or implied, of the NAS4Free Project.
 */
 require_once("functions.inc");
@@ -115,21 +119,6 @@ function disks_mount($mount)
 		write_log("Error: Failed to create directory {$mountname}");
 	}
 
-	// msdosfs does not support some operation
-	if ($mount['fstype'] == 'msdosfs') {
-		$mode = "777";
-		$owner = "root";
-		$group = "wheel";
-		if (is_array($mount['accessrestrictions'])) {
-			$mode = $mount['accessrestrictions']['mode'];
-			$owner = $mount['accessrestrictions']['owner'];
-			$group = $mount['accessrestrictions']['group'][0];
-		}
-		if (!@chmod($mountname, octdec($mode)) || !@chown($mountname, $owner) || !@chgrp($mountname, $group)) {
-			write_log("Error: Failed to set access restrictions on directory '{$mountname}'");
-		}
-	}
-
 	/* Mount the filesystem */
 	/* In booting mode, skip encrypted disk (need to enter the passphrase on the webgui) */
 	if (is_booting()) {
@@ -211,33 +200,7 @@ function disks_mount($mount)
 		case "ntfs":
 			// Load the kernel FUSE module
 			mwexec("/sbin/kldload /boot/kernel/fuse.ko");
-			$readonly = (isset($mount['readonly'])) ? "-o ro" : "";
-			$mode = "777";
-			$owner = "root";
-			$group = "wheel";
-			if (is_array($mount['accessrestrictions'])) {
-				$mode = $mount['accessrestrictions']['mode'];
-				$owner = $mount['accessrestrictions']['owner'];
-				$group = $mount['accessrestrictions']['group'][0];
-			}
-			$pw = posix_getpwnam($owner);
-			$gr = posix_getgrnam($group);
-			if ($pw == FALSE || $gr == FALSE) {
-				@rmdir($mountname);
-				write_log("Error: Failed to get uid/gid");
-				$result = 1;
-				break;
-			}
-			$uid = "-o uid={$pw['uid']}";
-			$gid = "-o gid={$gr['gid']}";
-			$mask = decoct(0777 ^ octdec($mode));
-			$umask = "-o umask={$mask}";
-			$osver = @exec("/usr/bin/uname -U");
-			if ($osver >= 1000000) {
-				$result = mwexec("/sbin/mount_ntfs {$readonly} {$uid} {$gid} {$umask} {$devicespecialfile} '{$mountname}'", true); // default options: silent,allow_other
-			} else {
-				$result = mwexec("/sbin/mount -t ntfs {$readonly} {$uid} {$gid} {$umask} {$devicespecialfile} '{$mountname}'", true); // default options: silent,allow_other
-			}
+			$result = mwexec("/sbin/mount -t ntfs {$readonly} {$devicespecialfile} '{$mountname}'", true); // default options: silent,allow_other
 			if (0 == $result) {
 				write_log("Disk {$devicespecialfile} mounted using NTFS on '{$mountname}'");
 				$result = 0;
@@ -1460,6 +1423,31 @@ EOD;
  * Rescan disks after a Hotswap has been performed
  */ 
 function disks_rescan() {
+	/*
+	mwexec2("atacontrol list", $devicelist, $return_val);
+	if (true == $return_val) {
+		echo gettext("atacontrol list failed, atacontrol not found !!");
+		return $return_val;
+	}
+	$atachannels = array();
+	$channel = 'NONE';
+	foreach ($devicelist as $item) {
+		if (preg_match("/ATA\s+channel\s+(\d+):/i", $item, $matched)) {
+			$channel = 'ata' . $matched[1];
+			$atachannels[$channel] = 0;
+		} else if (preg_match("/no device present/i", $item, $matched)) {
+			$atachannels[$channel]++;
+		}
+	}
+	foreach ($atachannels as $channel => $count) {
+		if ($count == 2) {
+			echo gettext("Resetting channel ") . "$channel\n";
+			mwexec("atacontrol detach $channel");
+			sleep(1);
+			mwexec("atacontrol attach $channel");
+		}
+	}
+	*/
 	mwexec2("camcontrol rescan all");
 }
 
@@ -1484,14 +1472,12 @@ function disks_verify_all_disks($a_phy_disks) {
                 $disk_exists = 1;
                 $disk_error = 0;
 
-		if ($phy_disk['type'] === "HAST")
-			continue;
-
-		if (($phy_disk['serial'] == "n/a") || ($phy_disk['serial'] == gettext("n/a"))){
-			$phy_disk_serial = "";
-		} else{
-			$phy_disk_serial = $phy_disk['serial'];
-		}
+				if (($phy_disk['serial'] == "n/a") || ($phy_disk['serial'] == gettext("n/a"))){
+					$phy_disk_serial = "";
+				}
+				else{
+					$phy_disk_serial = $phy_disk['serial'];
+				}
 
                 if ($phy_disk_serial !== $conf_disk['serial']){
                     // check if conf_disk is moved
@@ -1620,12 +1606,6 @@ function disks_try_ntfs($file) {
 	return "NTFS";
 }
 
-function disks_try_ext2($file) {
-	if (0 != mwexec("/usr/local/sbin/tune2fs -l {$file} 2>/dev/null"))
-		return false;
-	return "EXT2";
-}
-
 function disks_import_try_allfs($dev) {
 	$mntpath = "/tmp/disks_import";
 
@@ -1642,9 +1622,6 @@ function disks_import_try_allfs($dev) {
 			$ntfs = disks_try_ntfs($file);
 			if (!empty($ntfs))
 				return "ntfs";
-			$ext2 = disks_try_ext2($file);
-			if (!empty($ext2))
-				return "ext2";
 		}
 	}
 
@@ -1661,9 +1638,9 @@ function disks_import_try_allfs($dev) {
 			$ntfs = disks_try_ntfs($file);
 			if (!empty($ntfs))
 				return "ntfs";
-			$ext2 = disks_try_ext2($file);
-			if (!empty($ext2))
-				return "ext2";
+			$zfs = disks_try_zfs($file);
+			if (!empty($zfs))
+				return "zfs";
 		}
 	}
 
@@ -1680,9 +1657,6 @@ function disks_import_try_allfs($dev) {
 			$ntfs = disks_try_ntfs($file);
 			if (!empty($ntfs))
 				return "ntfs";
-			$ext2 = disks_try_ext2($file);
-			if (!empty($ext2))
-				return "ext2";
 		}
 	}
 
@@ -1783,7 +1757,6 @@ function disks_import_all_disks($clean_import) {
 	$num = $error = 0;
 
 	$disks = get_all_disks_list();
-	$disks = array_merge((array)$disks, (array)get_hast_disks_list());
 	if (empty($disks))
 		return $num;
 
@@ -1796,7 +1769,7 @@ function disks_import_all_disks($clean_import) {
 	foreach ($disks as $diskv) {
 		$type = $diskv['type'];
 		$dev = $diskv['devicespecialfile'];
-		if ($type == 'SCSI' || $type == 'RAID' || $type == 'HAST' || $type == 'IDE') {
+		if ($type == 'SCSI' || $type == 'RAID' || $type == 'IDE') {
 			// disk exist in config?
 			$index = array_search_ex($dev, $config['disks']['disk'], "devicespecialfile");
 			if (false === $index) {

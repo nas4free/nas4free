@@ -3,7 +3,7 @@
 	interfaces_carp_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -156,7 +156,6 @@ function get_nextcarp_id() {
 	<td class="tabnavtbl">
 		<ul id="tabnav">
 			<li class="tabinact"><a href="interfaces_assign.php"><span><?=gettext("Management");?></span></a></li>
-			<li class="tabinact"><a href="interfaces_wlan.php"><span><?=gettext("WLAN");?></span></a></li>
 			<li class="tabinact"><a href="interfaces_vlan.php"><span><?=gettext("VLAN");?></span></a></li>
 			<li class="tabinact"><a href="interfaces_lagg.php"><span><?=gettext("LAGG");?></span></a></li>
 			<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gettext("Bridge");?></span></a></li>
@@ -169,11 +168,10 @@ function get_nextcarp_id() {
 		<form action="interfaces_carp_edit.php" method="post" name="iform" id="iform">
 			<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
-				<?php $a_if = array(); foreach (get_interface_list() as $ifk => $ifv) { $a_if[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); };?>
-				<?php html_combobox("if", gettext("Interface"), $pconfig['if'], $a_if, "", true);?>
+				<?php html_inputbox("if", gettext("Interface"), $pconfig['if'], "", true, 5, true);?>
 				<?php html_inputbox("vhid", gettext("Virtual Host ID"), $pconfig['vhid'], "", true, 5);?>
 				<?php html_ipv4addrbox("vipaddr", "vsubnet", gettext("Virtual IP address"), $pconfig['vipaddr'], $pconfig['vsubnet'], "", true);?>
-				<?php html_inputbox("advskew", gettext("Advertisement skew"), $pconfig['advskew'], gettext("Lowest value is higher priority. For master node, use 0 or 1. If preempt is enabled, it is adjusted to 240 on failure."), true, 5);?>
+				<?php html_inputbox("advskew", gettext("Advertisement skew"), $pconfig['advskew'], "", true, 5);?>
 				<?php html_inputbox("password", gettext("Password"), $pconfig['password'], "", true, 20);?>
 				<?php html_inputbox("linkup", gettext("Link up action"), $pconfig['linkup'], sprintf(gettext("Command for LINK_UP event (e.g. %s)."), $default_linkup), false, 60);?>
 				<?php html_inputbox("linkdown", gettext("Link down action"), $pconfig['linkdown'], sprintf(gettext("Command for LINK_DOWN event (e.g. %s)."), $default_linkdown), false, 60);?>
@@ -184,6 +182,7 @@ function get_nextcarp_id() {
 				<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
 				<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
 				<input name="enable" type="hidden" value="<?=$pconfig['enable'];?>" />
+				<input name="if" type="hidden" value="<?=$pconfig['if'];?>" />
 				<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 			</div>
 		<?php include("formend.inc");?>

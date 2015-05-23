@@ -3,11 +3,15 @@
 	util.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
 	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	All rights reserved.
+
+	Portions of m0n0wall (http://m0n0.ch/wall).
+	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -34,7 +38,6 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("globals.inc");
 require_once("array.inc");
 require_once("system.inc");
 
@@ -418,8 +421,6 @@ function is_valid_privatekey($privatekey, $type = "RSA") {
 }
 
 function get_interface_list() {
-	global $g;
-
 	/* build interface list with netstat */
 	exec("/usr/bin/netstat -inW -f link", $linkinfo);
 	array_shift($linkinfo);
@@ -427,95 +428,13 @@ function get_interface_list() {
 	$iflist = array();
 
 	foreach ($linkinfo as $link) {
-		$alink = preg_split("/\s+/", ltrim($link));
+		$alink = preg_split("/\s+/", $link);
 		$ifname = chop($alink[0]);
 
 		if (substr($ifname, -1) === "*")
 			$ifname = substr($ifname, 0, strlen($ifname) - 1);
-		/* skip wireless */
-		if (preg_match($g['wireless_regex'], $ifname))
-			continue;
 		/* add the plip interface to be excluded too */
 		if (!preg_match("/^(ppp|sl|gif|faith|lo|vlan|tun|plip|ipfw|usbus|carp)/", $ifname)) {
-			$iflist[$ifname] = array();
-
-			$iflist[$ifname]['mac'] = chop($alink[3]);
-			$iflist[$ifname]['up'] = false;
-
-			/* find out if the link on this interface is up */
-			unset($ifinfo);
-			exec("/sbin/ifconfig {$ifname}", $ifinfo);
-
-			foreach ($ifinfo as $ifil) {
-				if (preg_match("/status: (.*)$/", $ifil, $matches)) {
-					if ($matches[1] === "active")
-						$iflist[$ifname]['up'] = true;
-					break;
-				}
-			}
-		}
-	}
-
-	return $iflist;
-}
-
-function get_interface_wlist() {
-	global $g;
-
-	/* build interface list with netstat */
-	exec("/usr/bin/netstat -inW -f link", $linkinfo);
-	array_shift($linkinfo);
-
-	$iflist = array();
-
-	foreach ($linkinfo as $link) {
-		$alink = preg_split("/\s+/", ltrim($link));
-		$ifname = chop($alink[0]);
-
-		if (substr($ifname, -1) === "*")
-			$ifname = substr($ifname, 0, strlen($ifname) - 1);
-		/* skip lo, wlan */
-		if (preg_match("/^(lo|wlan)/", $ifname))
-			continue;
-		if (preg_match($g['wireless_regex'], $ifname)) {
-			$iflist[$ifname] = array();
-
-			$iflist[$ifname]['mac'] = chop($alink[3]);
-			$iflist[$ifname]['up'] = false;
-
-			/* find out if the link on this interface is up */
-			unset($ifinfo);
-			exec("/sbin/ifconfig {$ifname}", $ifinfo);
-
-			foreach ($ifinfo as $ifil) {
-				if (preg_match("/status: (.*)$/", $ifil, $matches)) {
-					if ($matches[1] === "active")
-						$iflist[$ifname]['up'] = true;
-					break;
-				}
-			}
-		}
-	}
-
-	return $iflist;
-}
-
-function get_wlan_interface_list() {
-	global $g;
-
-	/* build interface list with netstat */
-	exec("/usr/bin/netstat -inW -f link", $linkinfo);
-	array_shift($linkinfo);
-
-	$iflist = array();
-
-	foreach ($linkinfo as $link) {
-		$alink = preg_split("/\s+/", ltrim($link));
-		$ifname = chop($alink[0]);
-
-		if (substr($ifname, -1) === "*")
-			$ifname = substr($ifname, 0, strlen($ifname) - 1);
-		if (preg_match("/^(wlan)/", $ifname)) {
 			$iflist[$ifname] = array();
 
 			$iflist[$ifname]['mac'] = chop($alink[3]);
@@ -938,7 +857,7 @@ function get_hast_disks_list()
 	$disklist = array();
 
 	/* Send the shell cmd and get the result */
-	exec("/sbin/hastctl list 2>/dev/null",$rawdata);
+	exec("/sbin/hastctl status",$rawdata);
 
 	foreach ($rawdata as $line) {
 		if (preg_match("/^(\S+):$/",$line,$match)) {
@@ -947,7 +866,6 @@ function get_hast_disks_list()
 			$disklist[$diskname]['name'] = $diskname;
 			$disklist[$diskname]['devicespecialfile'] = "/dev/hast/" . $diskname;
 			$disklist[$diskname]['type'] = "HAST";
-			$disklist[$diskname]['model'] = "HAST device";
 			$disklist[$diskname]['desc'] = "HAST device";
 			$disklist[$diskname]['role'] = gettext("Unknown");
 			$disklist[$diskname]['status'] = gettext("Unknown");
@@ -1103,11 +1021,9 @@ function parse_camcontrol_info($devtype){
 
 // Parse controller dependent info
 function parse_controller_config(&$devlist){
-	global $config_disks;
 
 	foreach($devlist as &$device){
 		$devtype = '';
-		$device['desc'] = $config_disks[$device['name']]['desc'];
 		switch( $device['controller']){
 		// Experimental : requires arcmsr to add enclosure support
 		// Areca SATA[/SAS] RAID controller
@@ -1234,13 +1150,7 @@ function parse_controller_config(&$devlist){
 		}else{
 			$device['smart']['smart_support'] = "Unavailable";
 		}
-
-		// retry empty case
-		if(empty($device['model'])) $device['model'] = system_get_volume_model($device['devicespecialfile']);
-		if(empty($device['desc'])) $device['desc'] = $device['model'];
-		if(empty($device['serial'])) $device['serial'] = system_get_volume_serial($device['devicespecialfile']);
 	}
-	unset($device);
 	return $devlist;
 }
 
@@ -1274,62 +1184,45 @@ function get_smartctl_info($device){
 
 	$smartctl_info = array();
 	$type_arg = '';
-	$vendor = '';
-	$product = '';
-	$revision = '';
 
-	if( !empty($device['smart']['devicetypearg']) ){
+	if( !is_null($device['smart']['devicetypearg']) ){
 		$type_arg = "-d ".$device['smart']['devicetypearg'];
 	}
 
 	mwexec2("smartctl -i ".$type_arg." ".$device['smart']['devicefilepath'],$lines);
 
 	foreach($lines as $line){
-        	// trim and convert token to lowercase
-		$str_startswith = strtolower(trim(substr($line, 0, 18)));
+		$str_startswith = substr($line, 0, 18);
 		$matches = array();
 
 		switch ($str_startswith){
-        		// compare always to lowercase and trimmed keywords
-			case 'model family:':
-				preg_match("/(?<=Model Family:).*/",$line, $matches );
-				$smartctl_info['desc'] = trim($matches[0]);
+			case 'Model Family:     ':
+				preg_match("/(?<=Model Family:     ).*/",$line, $matches );
+				$smartctl_info['desc'] = $matches[0];
 				break;
-			case 'device model:':
-				preg_match("/(?<=Device Model:).*/",$line, $matches );
-				$smartctl_info['model'] = trim($matches[0]);
+			case 'Device Model:     ':
+				preg_match("/(?<=Device Model:     ).*/",$line, $matches );
+				$smartctl_info['model'] = $matches[0];
 				break;
-			case 'vendor:':
-				preg_match("/(?<=Vendor:).*/",$line, $matches );
-				$vendor = trim($matches[0]);
+			case 'Serial Number:    ':
+				preg_match("/(?<=Serial Number:    ).*/",$line, $matches );
+				$smartctl_info['serial'] = $matches[0];
 				break;
-			case 'revision:':
-				preg_match("/(?<=Revision:).*/",$line, $matches );
-				$revision = trim($matches[0]);
+			case 'Rotation Rate:    ':
+				preg_match("/(?<=Rotation Rate:    ).*/",$line, $matches );
+				$smartctl_info['rotation_rate'] = $matches[0];
 				break;
-			case 'product:':
-				preg_match("/(?<=Product:).*/",$line, $matches );
-				$product = trim($matches[0]);
-				break;
-			case 'serial number:':
-				preg_match("/(?<=Serial [Nn]umber:).*/",$line, $matches );
-				$smartctl_info['serial'] = trim($matches[0]);
-				break;
-			case 'rotation rate:':
-				preg_match("/(?<=Rotation Rate:).*/",$line, $matches );
-				$smartctl_info['rotation_rate'] = trim($matches[0]);
-				break;
-			case 'sata version is:':
-				if(preg_match("/(?<= \(current:).*(?=\))+/", $line, $matches)){
-					$smartctl_info['transfer_rate'] = trim($matches[0]);
+			case 'SATA Version is:  ':
+				if(preg_match("/(?<= \(current: ).*(?=\))+/", $line, $matches)){
+					$smartctl_info['transfer_rate'] = $matches[0];
 				}
 				else if(preg_match("/(?<=, ).*?(?>\/s)/", $line, $matches)){
-					$smartctl_info['transfer_rate'] = trim($matches[0]);
+					$smartctl_info['transfer_rate'] = $matches[0];
 				}
 				break;
-			case 'smart support is:':
+			case 'SMART support is: ':
 				if(empty($smartctl_info['smart_support'])){
-					if(preg_match("/(?<=SMART support is:).*(?=\-)+/", $line, $matches)){
+					if(preg_match("/(?<=SMART support is: ).*(?=\-)+/", $line, $matches)){
 						$smartctl_info['smart_support'] = ltrim($matches[0]);
 					}
 				}else if( strncmp($smartctl_info['smart_support'], 'Available', 9) == 0 )  {
@@ -1340,10 +1233,6 @@ function get_smartctl_info($device){
 				break;
 			}
 	}
-	// Set model to vendor,product,revision
-	if(empty($smartctl_info['model'])){
-		$smartctl_info['model'] = trim($vendor.' '.$product.' '.$revision);
- 	}
 	return $smartctl_info;
 }
 
@@ -1369,8 +1258,7 @@ function init_device_attributes(&$device){
 function parse_device_desc($device){
 	$matches = array();
 
-	// device order may change, so take latest(last) line 
-	mwexec2("dmesg | grep \"^$device: <\" | tail -r", $lines);
+	mwexec2("dmesg | grep \"^$device: <\"", $lines);
 
 	foreach($lines as $line){
 		// example: da2: <Corsair Voyager 1100> Removable Direct Access SCSI-0 device
@@ -1831,18 +1719,12 @@ function get_ipaddr($if)
   $if = get_ifname($if);
 
   unset($ipaddr);
-  exec("/sbin/ifconfig {$if} inet | /usr/bin/grep inet | /usr/bin/grep -v vhid", $inetinfo);
-  $inet = $inetinfo[0];
-  $ainet = preg_split("/\s+/", ltrim($inet));
-  $ipaddr = chop($ainet[1]);
-  if (!empty($ipaddr)) return $ipaddr;
-
   exec("/usr/bin/netstat -inW -f inet -I {$if}", $inetinfo);
   array_shift($inetinfo);
 
   foreach($inetinfo as $inet)
   {
-    $ainet = preg_split("/\s+/", ltrim($inet));
+    $ainet = preg_split("/\s+/", $inet);
     $ifname = chop($ainet[0]);
 
     if (strncmp($ifname,$if,strlen($if)) == 0)
@@ -1859,18 +1741,6 @@ function get_ipaddr($if)
 function get_subnet_bits($if)
 {
 	$if = get_ifname($if);
-
-	exec("/sbin/ifconfig {$if} inet | /usr/bin/grep inet | /usr/bin/grep -v vhid", $inetinfo);
-	$inet = $inetinfo[0];
-	$ainet = preg_split("/\s+/", ltrim($inet));
-	$ipaddr = chop($ainet[1]);
-	$mask = chop($ainet[3]);
-	if (!empty($ipaddr) && !empty($mask)) {
-		exec("/usr/local/bin/sipcalc $ipaddr $mask", $rawdata);
-		if (preg_match("/.+Network mask \(bits\)	- (\d+).+/", implode($rawdata), $matches)) {
-			return $matches[1];
-		}
-	}
 
 	exec("/usr/local/bin/sipcalc --cidr-addr {$if}", $rawdata);
 	if (preg_match("/.+Network mask \(bits\)	- (\d+).+/", implode($rawdata), $matches)) {
@@ -1898,7 +1768,7 @@ function get_ipv6addr($if)
 
   foreach($inetinfo as $inet)
   {
-    $ainet = preg_split("/\s+/", ltrim($inet));
+    $ainet = preg_split("/\s+/", $inet);
     $ifname = chop($ainet[0]);
 
     if (strncmp($ifname,$if,strlen($if)) == 0)
@@ -1921,7 +1791,7 @@ function get_macaddr($if)
   array_shift($linkinfo);
 
   foreach($linkinfo as $link)  {
-    $alink = preg_split("/\s+/", ltrim($link));
+    $alink = preg_split("/\s+/", $link);
     $ifname = chop($alink[0]);
 
     if (strncmp($ifname,$if,strlen($if)) == 0) {
@@ -2133,7 +2003,7 @@ function get_interface_info($if) {
 	/* run netstat to determine link info */
 	unset($linkinfo);
 	exec("/usr/bin/netstat -I " . $ifinfo['hwif'] . " -nWb -f link", $linkinfo);
-	$linkinfo = preg_split("/\s+/", ltrim($linkinfo[1]));
+	$linkinfo = preg_split("/\s+/", $linkinfo[1]);
 	if (preg_match("/\*$/", $linkinfo[0]) || preg_match("/^$/", $linkinfo[0])) {
 		$ifinfo['status'] = "down";
 	} else {
@@ -2278,7 +2148,7 @@ function get_hvol_info($name)
 	$hvolinfo['error'] = 0;
 	$hvolinfo['status'] = 'unknown';
 
-	exec("/sbin/hastctl list {$name} 2>/dev/null",$rawdata);
+	exec("/sbin/hastctl status {$name}",$rawdata);
 	foreach ($rawdata as $line) {
 		// skip name
 		if (preg_match('/^\S+:/', $line)) continue;
@@ -2761,76 +2631,5 @@ function set_php_timezone()
 		return FALSE;
 	}
 	return TRUE;
-}
-
-// openssl compatible encryption/decryption + base64 encode/decode
-// http://www.openssl.org/docs/crypto/EVP_BytesToKey.html
-function encrypt_aes256cbc($password, $data)
-{
-	// openssl enc -aes-256-cbc -a -k $password < $data
-	$magic = 'Salted__';
-	$method = 'AES-256-CBC';
-	$magic_len = strlen($magic);
-	$salt_len = 8; /* PKCS5_SALT_LEN */
-
-	// generate salt
-	$salt = openssl_random_pseudo_bytes($salt_len);
-	if ($salt === FALSE)
-		return FALSE;
-
-	// key derivation
-	$hash0 = '';
-	$hash1 = md5($hash0.$password.$salt, true);
-	$hash2 = md5($hash1.$password.$salt, true);
-	$hash3 = md5($hash2.$password.$salt, true);
-	$key = $hash1.$hash2;
-	$iv = $hash3;
-
-	// encrypt by $method
-	$enc = openssl_encrypt($data, $method, $key, OPENSSL_RAW_DATA, $iv);
-	if ($enc === FALSE)
-		return FALSE;
-	$b64enc_data = base64_encode($magic . $salt . $enc);
-	if ($b64enc_data === FALSE)
-		return FALSE;
-
-	// insert linefeed
-	$folded_data = chunk_split($b64enc_data, 76, "\n");
-	return $folded_data;
-}
-
-function decrypt_aes256cbc($password, $b64enc_data)
-{
-	// openssl enc -d -aes-256-cbc -a -k $password < $b64enc_config
-	$magic = 'Salted__';
-	$method = 'AES-256-CBC';
-	$magic_len = strlen($magic);
-	$salt_len = 8; /* PKCS5_SALT_LEN */
-
-	// remove extra linefeed
-	$b64enc_data = preg_replace('/\n|\r|\r\n/', '', $b64enc_data);
-
-	// split magic/salt/encrypted data
-	$enc_data = base64_decode($b64enc_data);
-	if ($enc_data === FALSE)
-		return FALSE;
-	if (strcmp(substr($enc_data, 0, $magic_len), $magic) !== 0)
-		return FALSE;
-	$salt = substr($enc_data, $magic_len, $salt_len);
-	$enc = substr($enc_data, $magic_len + $salt_len);
-
-	// key derivation
-	$hash0 = '';
-	$hash1 = md5($hash0.$password.$salt, true);
-	$hash2 = md5($hash1.$password.$salt, true);
-	$hash3 = md5($hash2.$password.$salt, true);
-	$key = $hash1.$hash2;
-	$iv = $hash3;
-
-	// decrypt by $method
-	$dec = openssl_decrypt($enc, $method, $key, OPENSSL_RAW_DATA, $iv);
-	if ($dec === FALSE)
-		return FALSE;
-	return $dec;
 }
 ?>

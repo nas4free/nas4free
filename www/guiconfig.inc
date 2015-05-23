@@ -3,7 +3,7 @@
 	guiconfig.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -239,14 +239,6 @@ function print_input_errors($input_errors) {
 	echo "      </tr>\n";
 	echo "    </table>\n";
 	echo "  </div>\n";
-}
-
-function verify_xz_file($fname) {
-	$returnvar = mwexec("/usr/bin/xz -t " . escapeshellarg($fname), true);
-	if ($returnvar != 0)
-		return 0;
-	else
-		return 1;
 }
 
 function verify_gzip_file($fname) {

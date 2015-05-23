@@ -3,7 +3,7 @@
 	_info.php
 	
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -50,7 +50,7 @@
 		'ru'		=> 'Russian',
 		'zh_CN'	=> 'Chinese (Simplified)',
 		'zh_TW'	=> 'Chinese (Traditional)'
-);
+	);
 
 	//Create the select box and options
 	echo "<SELECT name=\"lang\">\n";
@@ -59,5 +59,5 @@
 			$selected = ($key == $GLOBALS["language"]) ? " selected='selected'" : '';
 			//Now create the <options> list
 			echo "<option value='$key'$selected>$value</option>\n";
-}
+	}
 	echo "</SELECT></TD></TR>\n";

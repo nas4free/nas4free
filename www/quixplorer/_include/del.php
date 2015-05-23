@@ -3,7 +3,7 @@
 	del.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -35,7 +35,7 @@
 	either expressed or implied, of the NAS4Free Project.
 */
 require_once("./_include/permissions.php");
-
+//------------------------------------------------------------------------------
 // delete files/dirs
 function del_items($dir)
 {
@@ -83,5 +83,5 @@ function del_items($dir)
 	
 	header("Location: ".make_link("list",$dir,NULL));
 }
-
+//------------------------------------------------------------------------------
 ?>

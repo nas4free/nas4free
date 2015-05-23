@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # Portions of freenas (http://www.freenas.org).
@@ -40,7 +40,7 @@ websrv_conf=${websrv_conf:-"/var/etc/websrv.conf"}
 websrv_uploaddir_conf=${websrv_uploaddir_conf:-"/var/etc/websrv-uploaddir.conf"}
 websrv_certpem=${websrv_certpem:-"/var/etc/websrvcert.pem"}
 websrv_server_maxwriteidle=${websrv_server_maxwriteidle:-"360"}
-websrv_maxrequestsize=${websrv_maxrequestsize:-"16777216"}
+websrv_maxrequestsize=${websrv_maxrequestsize:-"2097152"}
 pidfile="/var/run/websrv.pid"
 command=/usr/local/sbin/lighttpd
 command_args="-f ${websrv_conf} -m /usr/local/lib/lighttpd"
@@ -78,7 +78,6 @@ websrv_mkconf()
 server.modules = (
   "mod_access",
   "mod_auth",
-  "mod_expire",
   "mod_cgi",
   "mod_rewrite",
   "mod_redirect",
@@ -90,9 +89,6 @@ debug.log-request-handling = "disable"
 server.event-handler = "freebsd-kqueue"
 server.max-write-idle = ${websrv_server_maxwriteidle}
 index-file.names   = ( "index.php", "index.html", "index.htm", "index.shtml", "default.htm" )
-#\$HTTP["url"] =~ "\.(js|css|png|gif|jpg)$" {
-#    expire.url = ( "" => "access plus 1 hours" )
-#}
 # mimetype mapping
 mimetype.assign             = (
   ".pdf"          =>      "application/pdf",
@@ -204,7 +200,6 @@ EOF
 		cat <<EOF >> ${websrv_conf}
 ssl.engine = "enable"
 ssl.pemfile = "${websrv_certpem}"
-ssl.use-sslv3 = "disable"
 EOF
 
 		# Create .pem file (required)

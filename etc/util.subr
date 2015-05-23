@@ -2,7 +2,7 @@
 # 	- functions used by various rc scripts
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # Portions of freenas (http://www.freenas.org).
@@ -21,7 +21,7 @@ get_if()
 
 	case ${_interface} in
 		[Aa][Uu][Tt][Oo])
-			_interface=`/sbin/ifconfig -l | sed -e 's/lo[0-9]*//g' | /usr/bin/awk '{print $1}'`
+			_interface=`/sbin/ifconfig -l | /usr/bin/awk '{print $1}'`
 			;;
 	esac
 
@@ -46,45 +46,9 @@ get_ipaddr()
 		if [ -n "$_ipaddr" ]; then
 			echo "$_ipaddr"; return
 		fi
-	elif [ "$_protocol_family" = "inet" ]; then
-		_ipaddr=`/sbin/ifconfig ${_interface} inet | grep inet | grep -v vhid | /usr/bin/awk '{print $2}'`
-		if [ -n "$_ipaddr" ]; then
-			echo "$_ipaddr"; return
-		fi
 	fi
 
 	echo `/usr/bin/netstat -inW -f ${_protocol_family} -I ${_interface} | /usr/bin/grep ${_interface} | /usr/bin/awk '{print $4}'`
-}
-
-# get_network [protocol_family] [interface]
-get_network()
-{
-	local _protocol_family _interface _ipaddr _prefix _mask
-
-	_protocol_family=$1
-	_interface=`get_if $2`
-
-	if [ "$_protocol_family" = "inet6" ]; then
-		_ipaddr=`/sbin/ifconfig ${_interface} inet6 | grep inet6 | head -n 1 | /usr/bin/awk '{print $2}'`
-		_prefix=`/sbin/ifconfig ${_interface} inet6 | grep inet6 | head -n 1 | /usr/bin/awk '{print $4}'`
-		if [ -n "$_ipaddr" -a -n "$_prefix" ]; then
-			echo "$_ipaddr/$_prefix"; return
-		fi
-	elif [ "$_protocol_family" = "inet" ]; then
-		_ipaddr=`/sbin/ifconfig ${_interface} inet | grep inet | grep -v vhid | /usr/bin/awk '{print $2}'`
-		_mask=`/sbin/ifconfig ${_interface} inet | grep inet | grep -v vhid | /usr/bin/awk '{print $4}'`
-		if [ -n "$_ipaddr" -a -n "$_mask" ]; then
-			_prefix=`/usr/local/bin/sipcalc $_ipaddr $_mask | grep 'Network mask (bits)' | /usr/bin/awk '{print $5}'`
-			echo "$_ipaddr/$_prefix"; return
-		fi
-	fi
-
-	_ipaddr=`/usr/local/bin/sipcalc --cidr-addr ${_interface} | grep 'Network address' | /usr/bin/awk '{print $4}'`
-	_prefix=`/usr/local/bin/sipcalc --cidr-addr ${_interface} | grep 'Network mask (bits)' | /usr/bin/awk '{print $5}'`
-	if [ -n "$_ipaddr" -a -n "$_prefix" ]; then
-		echo "$_ipaddr/$_prefix"; return
-	fi
-	echo ""
 }
 
 # get_macaddr [interface]

@@ -3,11 +3,15 @@
 	install.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
 	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	All rights reserved.
+
+	Portions of m0n0wall (http://m0n0.ch/wall).
+	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -61,11 +65,11 @@ function get_install_source_drive()
 	global $g;
 
 	$mntpath = "/mnt";
-	$imgfile = get_product_name(). "-{$g['arch']}-embedded.xz";
+	$imgfile = get_product_name(). "-{$g['arch']}-embedded.gz";
 
 	$cdlist = get_cdrom_list();
 	$dalist = get_scsi_disks_list();
-	$ptlist = array("a", "s1a", "s4a", "p1", "p2");
+	$ptlist = array("a", "s1a", "p2");
 
 	$disklist = $cdlist;
 	foreach ($dalist as $disk) {
@@ -141,29 +145,16 @@ function install_unmount_cd()
 	return $result;
 }
 
-// Add default swap partition.
-function add_default_swap($harddrive)
-{
-	global $g_install;
-
-	if (mwexec("/sbin/gpart add -s {$g_install['default_swap']}m -t freebsd-swap {$harddrive}")) {
-		write_console("Error: Failed to add swap.\n");
-		return 1;
-	}
-	return 0;
-}
-
 // Install the IMG on the destination harddrive.
 // Return 0 if successful, otherwise 1
 function install_dd_image($harddrive)
 {
 	global $g;
 
-	$imgfilename=get_product_name(). "-{$g['arch']}-embedded.xz";
-	$skip = (1 * 1024 * 1024) / (32 * 1024); // 1MB alignment / 32k write
+	$imgfilename=get_product_name(). "-{$g['arch']}-embedded.gz";
 
 	// Test firmware file integrity.
-	if (mwexec("/usr/bin/xz -t /mnt/cdrom/{$imgfilename}")) {
+	if (mwexec("/usr/bin/gzip -t /mnt/cdrom/{$imgfilename}")) {
 		write_console("Error: Firmware file is corrupted.\n");
 		return 1;
 	}
@@ -171,18 +162,12 @@ function install_dd_image($harddrive)
 	set_kern_geom_debugflags(0x10);
 	// dd image file on the destination disk.
 	write_console("Installing system image on device {$harddrive}.\n");
-	if (mwexec("/usr/bin/xz -cdv /mnt/cdrom/{$imgfilename} | /bin/dd of=/dev/{$harddrive} ibs=32k obs=32k skip={$skip} > /dev/null 2>&1")) {
+	if (mwexec("/usr/bin/gzip -cd /mnt/cdrom/{$imgfilename} | /bin/dd of=/dev/{$harddrive} ibs=16k obs=16k > /dev/null 2>&1")) {
 		set_kern_geom_debugflags(0);
 		write_console("Error: Failed to dd image on '/dev/{$harddrive}'!\n");
 		return 1;
 	}
 	set_kern_geom_debugflags(0);
-
-	// resize to partition size
-	if (mwexec("/sbin/growfs -y /dev/{$harddrive}")) {
-		write_console("Error: Failed to grow ufs on '/dev/{$harddrive}'!\n");
-		return 1;
-	}
 
 	return 0;
 }
@@ -193,8 +178,6 @@ function install_harddrive_image($harddrive)
 {
 	global $g;
 
-	$boot_lowmem = trim(@file_get_contents("/etc/boot_lowmem"));
-	$platform = get_platform_type();
 	$mntpath = "/mnt/inst_{$harddrive}";
 
 	// Mount disk used to install OS.
@@ -207,16 +190,6 @@ function install_harddrive_image($harddrive)
 	// Install system files.
 	write_console("Installing system files on device {$harddrive}s1a.\n");
 	mwexec("/usr/bin/tar --exclude mnt/ --exclude dev/ --exclude var/ --exclude tmp/ --exclude {$g['cf_path']}/ -c -f - -C / . | tar -xvpf - -C {$mntpath}");
-	if ($boot_lowmem === "1" && preg_match('/-liveCD$/i', $platform)) {
-		// under lowmem version
-		mwexec("/usr/bin/xz -dcv /mnt/cdrom/mdlocal.xz | dd of={$mntpath}/ftmp/mdlocal bs=1m status=none");
-		exec("/sbin/mdconfig -a -t vnode -f {$mntpath}/ftmp/mdlocal", $mdid, $result);
-		mwexec("/sbin/mount /dev/{$mdid[0]} {$mntpath}/cf");
-		mwexec("/usr/bin/tar -c -f - -C {$mntpath}/cf . | tar -xvpf - -C {$mntpath}/usr/local");
-		mwexec("/sbin/umount {$mntpath}/cf");
-		mwexec("/sbin/mdconfig -d -u {$mdid[0]}");
-		mwexec("/bin/rm {$mntpath}/ftmp/mdlocal");
-	}
 	mwexec("/bin/mkdir -p {$mntpath}/var");
 	mwexec("/bin/mkdir -p {$mntpath}/dev");
 	mwexec("/bin/mkdir -p {$mntpath}/mnt");
@@ -232,19 +205,19 @@ function install_harddrive_image($harddrive)
 	mwexec("/bin/cp -v {$g['conf_default_path']}/config.xml {$mntpath}{$g['conf_path']}");
 
 	// Generate new loader.conf file.
-	$loaderconf = <<<EOD
+	$loaderconf .= <<<EOD
 kernel="kernel"
 bootfile="kernel"
 kernel_options=""
+kern.hz="100"
 hw.est.msr_info="0"
 hw.hptrr.attach_generic="0"
 kern.maxfiles="65536"
-kern.maxfilesperproc="60000"
+kern.maxfilesperproc="50000"
 kern.cam.boot_delay="8000"
 autoboot_delay="5"
 isboot_load="YES"
 zfs_load="YES"
-geom_xmd_load="YES"
 
 EOD;
 
@@ -254,7 +227,7 @@ EOD;
 	}
 
 	// Set the release type.
-	$platform = <<<EOD
+	$platform .= <<<EOD
 {$g['arch']}-full
 
 EOD;
@@ -275,7 +248,7 @@ EOD;
 		write_console("Error: Failed to get UFS ID.\n");
 		return 1;
 	}
-	$fstab = <<<EOD
+	$fstab .= <<<EOD
 # Device                    Mountpoint  FStype  Options         Dump    Pass#
 /dev/ufsid/{$ufsid}     /       ufs     rw              1       1
 
@@ -290,7 +263,7 @@ EOD;
 	// This file is used by the firmware and mount check and is normally
 	// generated with 'liveCD' and 'embedded' during startup, but need to be
 	// created during install of 'full'.
-	$cfdevice = <<<EOD
+	$cfdevice .= <<<EOD
 {$harddrive}s1a
 
 EOD;
@@ -324,8 +297,6 @@ function install_upgrade_full($harddrive)
 {
 	global $g;
 
-	$boot_lowmem = trim(@file_get_contents("/etc/boot_lowmem"));
-	$platform = get_platform_type();
 	$mntpath = "/mnt/inst_{$harddrive}";
 	$sysbackup = "/tmp/inst_{$harddrive}_bak";
 
@@ -343,7 +314,7 @@ function install_upgrade_full($harddrive)
 	if (file_exists("{$mntpath}/boot.config")) {
 		mwexec("/bin/cp -p {$mntpath}/boot.config {$sysbackup}");
 	}
-	if (file_exists("{$mntpath}/boot/loader.conf.local")) {
+    if (file_exists("{$mntpath}/boot/loader.conf.local")) {
 		mwexec("/bin/cp -p {$mntpath}/boot/loader.conf.local {$sysbackup}");
 	}
 	mwexec("/bin/cp -p {$mntpath}/etc/platform {$sysbackup}");
@@ -359,16 +330,6 @@ function install_upgrade_full($harddrive)
 	// Install system files
 	write_console("Installing system files on device {$harddrive}s1a.\n");
 	mwexec("/usr/bin/tar --exclude mnt/ --exclude dev/ --exclude var/ --exclude tmp/ --exclude {$g['cf_path']}/ -c -f - -C / . | tar -xvpf - -C {$mntpath}");
-	if ($boot_lowmem === "1" && preg_match('/-liveCD$/i', $platform)) {
-		// under lowmem version
-		mwexec("/usr/bin/xz -dcv /mnt/cdrom/mdlocal.xz | dd of={$mntpath}/ftmp/mdlocal bs=1m status=none");
-		exec("/sbin/mdconfig -a -t vnode -f {$mntpath}/ftmp/mdlocal", $mdid, $result);
-		mwexec("/sbin/mount /dev/{$mdid[0]} {$mntpath}/cf");
-		mwexec("/usr/bin/tar -c -f - -C {$mntpath}/cf . | tar -xvpf - -C {$mntpath}/usr/local");
-		mwexec("/sbin/umount {$mntpath}/cf");
-		mwexec("/sbin/mdconfig -d -u {$mdid[0]}");
-		mwexec("/bin/rm {$mntpath}/ftmp/mdlocal");
-	}
 	mwexec("/bin/mkdir -p {$mntpath}/var");
 	mwexec("/bin/mkdir -p {$mntpath}/dev");
 	mwexec("/bin/mkdir -p {$mntpath}/mnt");
@@ -392,23 +353,12 @@ function install_upgrade_full($harddrive)
 	} else {
 		mwexec("/bin/rm -f {$mntpath}/boot.config");
 	}
-	if (file_exists("{$sysbackup}/loader.conf.local")) {
-		mwexec("/bin/cp -p {$sysbackup}/loader.conf.local {$mntpath}/boot/");
+    if (file_exists("{$sysbackup}/loader.conf.local")) {
+    	mwexec("/bin/cp -p {$sysbackup}/loader.conf.local {$mntpath}/boot/");
 	}
-	#mwexec("/bin/cp -p {$sysbackup}/platform {$mntpath}/etc");
+	mwexec("/bin/cp -p {$sysbackup}/platform {$mntpath}/etc");
 	mwexec("/bin/cp -p {$sysbackup}/fstab {$mntpath}/etc");
 	mwexec("/bin/cp -p {$sysbackup}/cfdevice {$mntpath}/etc");
-
-	// Set the release type.
-	$platform = <<<EOD
-{$g['arch']}-full
-
-EOD;
-
-	if (false === file_put_contents("{$mntpath}/etc/platform", $platform)) {
-		write_console("Error: Failed to create '/etc/platform'.\n");
-		return 1;
-	}
 
 	// Cleanup system backup files
 	mwexec("/bin/rm -f -r {$sysbackup}");
@@ -567,12 +517,12 @@ function install_restore_config($disk)
 
 	/* Restore the configuration file */
 	if (1 == mwexec("/bin/cp -p {$tmp_cf_bak}/config.xml {$mnt_cf_disk}/conf")) {
-		write_console("Error: Failed to restore the configuration file! (config.xml)\n");
+		write_console("Error: Failed to restore the configuration file!\n");
 		return 1;
 	}
 	if (file_exists("{$tmp_cf_bak}/boot.config")) {
 		if (1 == mwexec("/bin/cp -p {$tmp_cf_bak}/boot.config {$mnt_cf_disk}/")) {
-			write_console("Error: Failed to restore the configuration file!(boot.config)\n");
+			write_console("Error: Failed to restore the configuration file!\n");
 			return 1;
 		}
 	} else {
@@ -581,11 +531,9 @@ function install_restore_config($disk)
 			return 1;
 		}
 	}
-	if (file_exists("{$tmp_cf_bak}/loader.conf.local")) {
-		if (1 == mwexec("/bin/cp -p {$tmp_cf_bak}/loader.conf.local {$mnt_cf_disk}/boot")) {
-			write_console("Error: Failed to restore the configuration file! (loader.conf.local)\n");
-			return 1;
-		}
+       if (1 == mwexec("/bin/cp -p {$tmp_cf_bak}/loader.conf.local {$mnt_cf_disk}/boot")) {
+		write_console("Error: Failed to restore the configuration file!\n");
+		return 1;
 	}
 
 	/* Unmount the upgraded drive */
@@ -616,17 +564,11 @@ function install_restore_config($disk)
 function install_init_disk($disk, $partlayout)
 {
 	set_kern_geom_debugflags(0x10);
-	// force delete existing partitions (error is OK)
-	mwexec("/sbin/gpart destroy -F {$disk}");
 	// Initialize the destination using fdisk.
 	write_console("Create slice/partition table on device {$disk}.\n");
 	$slicesize = array(0, 0, 0, 0);
 	foreach ($partlayout as $partlayoutv) {
-		// add 4MiB alignment
-		if ($partlayoutv['size'] !== "*")
-			$slicesize[$partlayoutv['slice'] - 1] = $partlayoutv['size'] + 4;
-		else
-			$slicesize[$partlayoutv['slice'] - 1] = $partlayoutv['size'];
+		$slicesize[$partlayoutv['slice'] - 1] = $partlayoutv['size'];
 	}
 	if (install_fdisk($disk, $slicesize)) {
 		set_kern_geom_debugflags(0);
@@ -653,7 +595,6 @@ function install_init_disk($disk, $partlayout)
 
 		write_console("  {$diskdevicename}\n");
 
-/*
 		// Do not create partitions for swap.
 		if ("swap" === $partlayoutv['fstype']) {
 			// Completely wipe any prior information
@@ -670,38 +611,6 @@ function install_init_disk($disk, $partlayout)
 			write_console("\nError: Failed to create BSD label on {$diskdevicename}!\n");
 			return 1;
 		}
-*/
-
-		// force delete existing partitions (error is OK)
-		mwexec("/sbin/gpart destroy -F {$diskdevicename}");
-		// create BSD partition with alignment (UFS or swap)
-		if (mwexec("/sbin/gpart create -s bsd {$diskdevicename}")) {
-			set_kern_geom_debugflags(0);
-			write_console("\nError: Failed to create BSD label on {$diskdevicename}!\n");
-			return 1;
-		}
-		if ($partlayoutv['slice'] === 1) {
-			// install boot code
-			//write_console("    /sbin/gpart bootcode -b /boot/boot {$diskdevicename}\n");
-			if (mwexec("/sbin/gpart bootcode -b /boot/boot {$diskdevicename}")) {
-				set_kern_geom_debugflags(0);
-				write_console("Error: Failed to install boot on {$diskdevicename}!\n");
-				return 1;
-			}
-		}
-		if ($partlayoutv['fstype'] === "swap") {
-			$flags = "-i2 -a 4m -t freebsd-swap";
-		} else {
-			$flags = "-a 4m -t freebsd-ufs";
-		}
-		if ($partlayoutv['size'] !== "*")
-			$flags .= " -s {$partlayoutv['size']}m";
-		//write_console("    /sbin/gpart add {$flags} {$diskdevicename}\n");
-		if (mwexec("/sbin/gpart add {$flags} {$diskdevicename}")) {
-			set_kern_geom_debugflags(0);
-			write_console("\nError: Failed to add BSD label on {$diskdevicename}!\n");
-			return 1;
-		}
 	}
 
 	// Create file systems and set volume label.
@@ -712,101 +621,6 @@ function install_init_disk($disk, $partlayout)
 			continue;
 
 		$diskdevicename = "{$disk}s{$partlayoutv['slice']}a";
-
-		write_console("  {$diskdevicename}\n");
-		if (install_newfs($diskdevicename, $partlayoutv['volname'],
-		   		  $newfs_sector, $newfs_fsize, $newfs_bsize)) {
-			set_kern_geom_debugflags(0);
-			write_console("\nError: Failed to create file system on {$diskdevicename}!\n");
-			return 1;
-		}
-	}
-	set_kern_geom_debugflags(0);
-
-	return 0;
-}
-
-// Create partitions on the destination hard drive.
-// $disk - Disk name (e.g. ad0)
-// $partlayout - The layout description of the disk, e.g.
-// array(
-//   array("partition" => 1, "fstype" => "boot", "size" => "512k", "volname" => "boot"),
-//   array("partition" => 2, "fstype" => "ufs",  "size" => 800, "volname" => "root"),
-//   array("partition" => 3, "fstype" => "swap", "size" => 1024, "volname" => "swap"),
-//   array("partition" => 4, "fstype" => "ufs",  "size" => "*", "volname" => "data")
-// )
-// Return 0 if successful, otherwise 1
-function install_init_gptdisk($disk, $partlayout)
-{
-	set_kern_geom_debugflags(0x10);
-	// force delete existing partitions (error is OK)
-	mwexec("/sbin/gpart destroy -F {$disk}");
-	// Initialize the destination
-	if (mwexec("/sbin/gpart create -s gpt {$disk}")) {
-		set_kern_geom_debugflags(0);
-		write_console("Error: Failed to create GPT partition table!\n");
-		return 1;
-	}
-	if (mwexec("/sbin/gpart bootcode -b /boot/pmbr {$disk}")) {
-		set_kern_geom_debugflags(0);
-		write_console("Error: Failed to install pmbr!\n");
-		return 1;
-	}
-
-	$newfs_sector = 4096;
-	$newfs_fsize = 4096;
-	$newfs_bsize = $newfs_fsize * 8;
-
-	write_console("Create partition table on device {$disk}.\n");
-	foreach ($partlayout as $partlayoutv) {
-		$diskdevicename = "{$disk}p{$partlayoutv['partition']}";
-		$partitionsize = $partlayoutv['size'];
-		// if don't have suffix, assume MB
-		if ($partitionsize !== "*" && !preg_match('/[kmgt]$/i', $partitionsize))
-			$partitionsize .= "m"; /* MB */
-
-		write_console("  {$diskdevicename}\n");
-
-		// force delete existing partitions (error is OK)
-		mwexec("/sbin/gpart destroy -F {$diskdevicename}");
-		// create BSD partition with alignment (UFS or swap)
-		if ($partlayoutv['fstype'] === "boot") {
-			$flags = "-a 4k -t freebsd-boot -l gptboot";
-		} else if ($partlayoutv['fstype'] === "swap") {
-			$flags = "-a 4m -t freebsd-swap -l gptswap";
-		} else {
-			$flags = "-a 4m -t freebsd-ufs";
-			if ($partlayoutv['partition'] === 2 && $partlayoutv['volname'] === "root")
-				$flags .= " -l gptroot";
-		}
-		if ($partitionsize !== "*")
-			$flags .= " -s {$partitionsize}";
-		$flags .= " -i {$partlayoutv['partition']}";
-		//write_console("    /sbin/gpart add {$flags} {$disk}\n");
-		if (mwexec("/sbin/gpart add {$flags} {$disk}")) {
-			set_kern_geom_debugflags(0);
-			write_console("\nError: Failed to add partition on {$disk}!\n");
-			return 1;
-		}
-		if ($partlayoutv['fstype'] === "boot") {
-			// install boot code
-			//write_console("    /sbin/gpart bootcode -p /boot/gptboot -i {$partlayoutv['partition']} {$disk}\n");
-			if (mwexec("/sbin/gpart bootcode -p /boot/gptboot -i {$partlayoutv['partition']} {$disk}")) {
-				set_kern_geom_debugflags(0);
-				write_console("Error: Failed to install gptboot on {$diskdevicename}!\n");
-				return 1;
-			}
-		}
-	}
-
-	// Create file systems and set volume label.
-	write_console("Create file system on partition:\n");
-	foreach ($partlayout as $partlayoutv) {
-		// Do not create a file system for swap/unused partitions.
-		if ("boot" === $partlayoutv['fstype'] || "swap" === $partlayoutv['fstype'] || "unused" === $partlayoutv['fstype'])
-			continue;
-
-		$diskdevicename = "{$disk}p{$partlayoutv['partition']}";
 
 		write_console("  {$diskdevicename}\n");
 		if (install_newfs($diskdevicename, $partlayoutv['volname'],
@@ -851,8 +665,7 @@ function install_fdisk($disk, $slicesize)
 		if (is_numeric($slicesizev)) {
 			$bytes = $slicesizev * 1024 * 1024;
 			$slicetable[$slicesizek]['length'] = $bytes / $diskinfo['sectorsize'];
-			//$slicetable[$slicesizek]['length'] = floor($slicetable[$slicesizek]['length'] / $align) * $align;
-			$slicetable[$slicesizek]['length'] = ceil($slicetable[$slicesizek]['length'] / $align) * $align;
+			$slicetable[$slicesizek]['length'] = floor($slicetable[$slicesizek]['length'] / $align) * $align;
 			if ($slicesizek == 0) {
 				$slicetable[$slicesizek]['length'] -= $diskinfo['sectors'];
 			}
@@ -1051,7 +864,7 @@ function install_newfs($disk, $volname, $sector, $fsize, $bsize) {
 function install_detect_installation($mode, &$devinfo) {
 	global $g;
 
-	$imgfile = get_product_name(). "-{$g['arch']}-embedded.xz";
+	$imgfile = get_product_name(). "-{$g['arch']}-embedded.gz";
 	$result = 1;
 	$devinfo = array();
 
@@ -1082,43 +895,7 @@ function install_detect_installation($mode, &$devinfo) {
 				// Check install mode
 				switch ($mode) {
 					case 'embedded':
-						if (file_exists("{$mnt_cf_disk}/mfsroot.uzip")
-						   && !file_exists("{$mnt_cf_disk}/{$imgfile}")) {
-							$result = 0;
-						}
-						break;
-
-					case 'full':
-						$platform = chop(@file_get_contents("{$mnt_cf_disk}{$g['etc_path']}/platform"));
-						if (FALSE !== ereg("^.*-full", $platform)) {
-							$result = 0;
-						}
-						break;
-				}
-			}
-
-			// Unmount device
-			mwexec("/sbin/umount {$mnt_cf_disk}");
-
-			if (0 == $result)
-				break;
-		}
-
-		// Search on partition 2 for OS installed on disk with install script
-		if (0 == mwexec("/sbin/mount -r /dev/{$diskv}p2 {$mnt_cf_disk}")) {
-			// Check if configuration file exists
-			if (file_exists("{$mnt_cf_disk}/conf/config.xml")) {
-				$devinfo['device'] = $diskv;
-				$devinfo['partition'] = "p2";
-
-				// Get partition information
-				$partinfo = disks_get_partition_info($diskv);
-				$devinfo['size'] = $partinfo[1]['size'];
-
-				// Check install mode
-				switch ($mode) {
-					case 'embedded':
-						if (file_exists("{$mnt_cf_disk}/mfsroot.uzip")
+						if (file_exists("{$mnt_cf_disk}/mfsroot.gz")
 						   && !file_exists("{$mnt_cf_disk}/{$imgfile}")) {
 							$result = 0;
 						}
@@ -1154,7 +931,7 @@ function install_detect_installation($mode, &$devinfo) {
 				// Check install mode
 				switch ($mode) {
 					case 'embedded':
-						if (file_exists("{$mnt_cf_disk}/mfsroot.uzip")
+						if (file_exists("{$mnt_cf_disk}/mfsroot.gz")
 						   && !file_exists("{$mnt_cf_disk}/{$imgfile}")) {
 							$result = 0;
 						}

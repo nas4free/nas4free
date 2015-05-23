@@ -1,6 +1,5 @@
 PORTNAME=		rsync
-PORTVERSION=	3.1.1
-PORTREVISION=	0
+PORTVERSION=	3.1.0
 CATEGORIES=		net
 COMMENT=		A network file distribution/sync utility
 MAINTAINER=		zoon01@nas4free.org
@@ -15,6 +14,7 @@ MASTER_SITE_SUBDIR=	rsync
 DISTFILES=		${DISTNAME}${EXTRACT_SUFX}
 DISTFILES+=		${PORTNAME}-patches-${PORTVERSION}${EXTRACT_SUFX}
 
+NO_STAGE=       	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=		--disable-debug \
 							--enable-ipv6 \
@@ -23,7 +23,7 @@ CONFIGURE_ARGS+=		--disable-debug \
 							--enable-largefile
 
 # Enable iconv support.
-ICONV_USES=	iconv
+USE_ICONV=	yes
 CFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CFLAGS="${CFLAGS}" \

@@ -1,5 +1,5 @@
 PORTNAME=		zoneinfo
-DISTVERSION=	2015d
+DISTVERSION=	2014e
 CATEGORIES=		misc
 COMMENT=		Updated timezone definitions
 MAINTAINER=		zoon01@nas4free.org
@@ -49,6 +49,6 @@ do-install:
 	@${ECHO_CMD} "zone.tab" >> ${WRKSRC}/zoneinfo.exlude
 
 	@${MKDIR} -p ${NAS4FREE_ROOTFS}/usr/share
-	${TAR} -c -v -f - -X ${WRKSRC}/zoneinfo.exlude -C ${WRKSRC}/zoneinfo/ . | ${XZ_CMD} -cv > ${NAS4FREE_ROOTFS}/usr/share/zoneinfo.txz
+	${TAR} -c -v -f - -X ${WRKSRC}/zoneinfo.exlude -C ${WRKSRC}/zoneinfo/ . | ${GZIP_CMD} -cv > ${NAS4FREE_ROOTFS}/usr/share/zoneinfo.tgz
 
 .include <bsd.port.post.mk>

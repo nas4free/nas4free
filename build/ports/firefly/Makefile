@@ -9,14 +9,15 @@ MASTER_SITES=			http://nightlies.fireflymediaserver.org/nightlies/svn-${PORTVERS
 DISTNAME=				mt-daapd-svn-${PORTVERSION}
 
 FORCE_PKG_REGISTER=yes
-LIB_DEPENDS+=				libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
-										libid3tag.so:${PORTSDIR}/audio/libid3tag \
-										libvorbis.so:${PORTSDIR}/audio/libvorbis \
-										libFLAC.so:${PORTSDIR}/audio/flac
+LIB_DEPENDS+=				sqlite3:${PORTSDIR}/databases/sqlite3 \
+										id3tag.0:${PORTSDIR}/audio/libid3tag \
+										vorbis.4:${PORTSDIR}/audio/libvorbis \
+										FLAC.11:${PORTSDIR}/audio/flac
 
+NO_STAGE=		yes
 USE_PKGCONFIG=	yes
 MAKE_JOBS_UNSAFE=	yes
-#USE_GCC=		any
+USE_GCC=		any
 USE_LDCONFIG=		yes
 USE_ICONV=		yes
 GNU_CONFIGURE=	yes
@@ -32,13 +33,6 @@ CONFIGURE_ARGS=			--disable-gdbm \
 										--enable-oggvorbis \
 										--enable-flac
 										
-.include <bsd.port.options.mk>
-.if (${ARCH} == "amd64" || ${ARCH} == "i386")
-USE_GCC=		any
-.endif
-.if ${OSVERSION} >= 1100000
-EXTRA_PATCHES+=		${FILESDIR}/extra-patch-configure
-.endif
 
 do-install:
 	-@${MKDIR} -v ${NAS4FREE_ROOTFS}/${PREFIX}/share/mt-daapd

@@ -8,16 +8,17 @@ MAINTAINER=		zoon01@nas4free.org
 MASTER_SITES=		SF/${PORTNAME}/${PORTNAME}/SVN-660
 DISTNAME=		${PORTNAME}-${PORTVERSION}
 
-LIB_DEPENDS+=		libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
-			libtag.so:${PORTSDIR}/audio/taglib \
-			libcurl.so:${PORTSDIR}/ftp/curl \
-			libpcre.so:${PORTSDIR}/devel/pcre \
-			libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid \
-			libmp3lame.so:${PORTSDIR}/audio/lame \
-			libtwolame.so:${PORTSDIR}/audio/twolame \
-			libvorbis.so:${PORTSDIR}/audio/libvorbis \
-			libavformat.so:${PORTSDIR}/multimedia/ffmpeg
+LIB_DEPENDS+=		sqlite3:${PORTSDIR}/databases/sqlite3 \
+			tag:${PORTSDIR}/audio/taglib \
+			curl:${PORTSDIR}/ftp/curl \
+			pcre:${PORTSDIR}/devel/pcre \
+			uuid.1:${PORTSDIR}/misc/e2fsprogs-libuuid \
+			mp3lame.0:${PORTSDIR}/audio/lame \
+			twolame.0:${PORTSDIR}/audio/twolame \
+			vorbis.4:${PORTSDIR}/audio/libvorbis \
+			avformat:${PORTSDIR}/multimedia/ffmpeg
 
+NO_STAGE=       	yes
 USE_AUTOTOOLS=	autoconf
 USE_GNOME=		libxml2
 USE_ICONV=		yes
@@ -35,20 +36,11 @@ CONFIGURE_ARGS+=	--enable-largefile \
 			--enable-musepack \
 			--enable-flac \
 			--enable-dlna \
-			--disable-exiv2 \
-			--disable-inotify
+			--disable-exiv2
 CONFIGURE_ARGS+=	--localstatedir=/var/db
 
 CONFIGURE_ENV=		CPPFLAGS="-I${LOCALBASE}/include -I${LOCALBASE}/include/ffmpeg ${PTHREAD_CFLAGS}" \
 			LIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}"
-
-.include <bsd.port.options.mk>
-.if ${OSVERSION} >= 1000000
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src__lib__Common__Common.cpp \
-		${FILESDIR}/extra-patch-src__lib__Common__Directory.cpp \
-		${FILESDIR}/extra-patch-src__lib__ContentDirectory__DatabaseConnection.cpp \
-		${FILESDIR}/extra-patch-src__plugins__database_sqlite3.cpp
-.endif
 
 pre-configure:
 	@if [ -f "${WRKSRC}/m4/version.sh" ]; then \

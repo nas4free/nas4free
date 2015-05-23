@@ -3,7 +3,7 @@
 	bg.php
 	
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -56,7 +56,7 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "Такъв обект не съществува",
 	"targetexist"		=> "Целевата директория не съществува",
 	"targetdoesexist"	=> "Целевият обект не съшествува",
-
+      
 	// open
 	"opendir"		=> "Директорията не може да бъде отворена",
 	"readdir"		=> "Директорията не може да бъде прочетена",
@@ -199,5 +199,4 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("Да","Не","Д","Н"),
 	"miscchmod"		=> array("Притежател", "Група", "Общодостъпен"),
 );
-
 ?>

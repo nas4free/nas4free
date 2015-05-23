@@ -1,6 +1,6 @@
 PORTNAME=		proftpd
 PORTVERSION=	1.3.5
-PORTREVISION?=  4
+PORTREVISION?=  2
 CATEGORIES=		ftp
 COMMENT=		Highly configurable FTP daemon
 MAINTAINER=		zoon01@nas4free.org
@@ -14,11 +14,12 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAKE_JOBS_UNSAFE=       yes
-USES+=           cpe gmake libtool
+USES=           gmake libtool
 USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 USE_GETTEXT=		yes
 USE_OPENSSL=		yes
+NO_STAGE=       yes
 
 MODULES=	mod_ratio:mod_readme:mod_rewrite:mod_site_misc:mod_tls:mod_wrap:mod_wrap2:mod_wrap2_file:mod_ban:mod_ctrls_admin:mod_ifsession
 OPTIONS+=       WRAP "Include mod_wrap2" on

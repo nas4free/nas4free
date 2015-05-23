@@ -3,11 +3,15 @@
 	config.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
 	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	All rights reserved.
+
+	Portions of m0n0wall (http://m0n0.ch/wall).
+	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -130,26 +134,10 @@ if (is_booting()) {
 					}
 					// Unmount device
 					mwexec("/sbin/umount -f {$g['cf_path']}");
-				} else if (0 == mwexec("/sbin/mount -r /dev/{$disk}p2 {$g['cf_path']}")) { // Search on GPT/p2
-					if (file_exists("{$g['cf_conf_path']}/config.xml")) {
-						$cfgdevice = $disk;
-						$cfgpartition = "{$cfgdevice}p2";
-						$cfgfstype = "ufs";
-					}
-					// Unmount device
-					mwexec("/sbin/umount -f {$g['cf_path']}");
 				} else if (0 == mwexec("/sbin/mount -r /dev/{$disk}a {$g['cf_path']}")) { // Search on partition 'a'
 					if (file_exists("{$g['cf_conf_path']}/config.xml")) {
 						$cfgdevice = $disk;
 						$cfgpartition = "{$cfgdevice}a";
-						$cfgfstype = "ufs";
-					}
-					// Unmount device
-					mwexec("/sbin/umount -f {$g['cf_path']}");
-				} else if (($g['arch'] == "rpi" || $g['arch'] == "rpi2" || $g['arch'] == "oc1") && (0 == mwexec("/sbin/mount -r /dev/{$disk}s3a {$g['cf_path']}"))) { // Search on slice 3
-					if (file_exists("{$g['cf_conf_path']}/config.xml")) {
-						$cfgdevice = $disk;
-						$cfgpartition = "{$cfgdevice}s3a";
 						$cfgfstype = "ufs";
 					}
 					// Unmount device
@@ -325,15 +313,6 @@ EOD;
 	}
 
 	config_unlock();
-	global $config_disks;
-	// get S.M.A.R.T. arguments from config and store it in a hash to get better performance:
-        if (is_array($config['disks']) && is_array($config['disks']['disk'])) {
-                foreach ($config['disks']['disk'] as $disk) {
-			$config_disks[$disk['devicespecialfile']]['smart']['devicefilepath'] = $disk['smart']['devicefilepath'];
-			$config_disks[$disk['devicespecialfile']]['smart']['devicetypearg'] = $disk['smart']['devicetypearg'];
-			$config_disks[$disk['devicespecialfile']]['desc'] = $disk['desc'];
-		}
-	}
 }
 
 /* mount flash card read/write */
@@ -509,9 +488,6 @@ function reset_factory_defaults() {
 
 	// Modify file permissions
 	@chmod("{$g['cf_conf_path']}/config.xml", 0600);
-
-	// remove existing pool cache
-	unlink_if_exists("{$g['cf_path']}/boot/zfs/zpool.cache");
 
 	$loader_filename = "{$g['cf_path']}/boot/loader.conf.local";
 
@@ -836,94 +812,6 @@ function config_upgrade() {
 		$config['version'] = "1.7";
 	}
 
-	/* Convert 1.7 -> 1.8 */
-	if ($config['version'] === "1.7") {
-		if (!empty($config['system']['sysctl']) && !empty($config['system']['sysctl']['param'])) {
-			$a_mib = array(
-				"net.inet.tcp.sendspace" => 131072,
-				"net.inet.tcp.recvspace" => 131072,
-				"net.inet.tcp.sendbuf_inc" => 131072,
-				"net.inet.tcp.recvbuf_inc" => 131072,
-				"kern.ipc.nmbclusters" => 131072,
-				"kern.ipc.nmbjumbop" => 131072,
-				"kern.ipc.nmbjumbo9" => 32768,
-				"kern.ipc.nmbjumbo16" => 16384,
-				"kern.maxfilesperproc" => 60000,
-			);
-			foreach ($a_mib as $key => $val) {
-				$index = array_search_ex($key, $config['system']['sysctl']['param'], "name");
-				if ($index !== false) {
-					$config['system']['sysctl']['param'][$index]['value'] = $val;
-				}
-			}
-		}
-		$index = array_search_ex("varsize", $config['system']['rcconf']['param'], "name");
-		if ($index === false) {
-			$config['system']['rcconf']['param'][] = array(
-				"uuid" => uuid(),
-				"name" => "varsize",
-				"value" => "128m",
-				"comment" => "Default /var size",
-				"enable" => true );
-		} else {
-			$config['system']['rcconf']['param'][$index]['value'] = "128m";
-		}
-		$index = array_search_ex("vartmpsize", $config['system']['rcconf']['param'], "name");
-		if ($index === false) {
-			$config['system']['rcconf']['param'][] = array(
-				"uuid" => uuid(),
-				"name" => "vartmpsize",
-				"value" => "64m",
-				"comment" => "Default /var/tmp size",
-				"enable" => true );
-		} else {
-			$config['system']['rcconf']['param'][$index]['value'] = "64m";
-		}
-
-		$config['system']['webgui']['certificate'] = "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tDQpNSUlFT1RDQ0F5R2dBd0lCQWdJSkFQUnVoc3FVRWdKcE1BMEdDU3FHU0liM0RRRUJDd1VBTUhBeEN6QUpCZ05WDQpCQVlUQWtwUU1STXdFUVlEVlFRSUV3cFRiMjFsTFZOMFlYUmxNUkV3RHdZRFZRUUtFd2hPUVZNMFJuSmxaVEVYDQpNQlVHQTFVRUF4TU9ibUZ6TkdaeVpXVXViRzlqWVd3eElEQWVCZ2txaGtpRzl3MEJDUUVXRVdsdVptOUFibUZ6DQpOR1p5WldVdWIzSm5NQjRYRFRFME1USXdNekF3TURJd01sb1hEVE0wTVRJd016QXdNREl3TWxvd2NERUxNQWtHDQpBMVVFQmhNQ1NsQXhFekFSQmdOVkJBZ1RDbE52YldVdFUzUmhkR1V4RVRBUEJnTlZCQW9UQ0U1QlV6UkdjbVZsDQpNUmN3RlFZRFZRUURFdzV1WVhNMFpuSmxaUzVzYjJOaGJERWdNQjRHQ1NxR1NJYjNEUUVKQVJZUmFXNW1iMEJ1DQpZWE0wWm5KbFpTNXZjbWN3Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLQW9JQkFRQ3RqVTRnDQpWY1hWSG1BUzBVbW5mRzZ0K050N2JzZ3Y1TytSR3dRa1NSVk0rdTZ0d0dZc2Jmck4zSHpNV3I1elBHUGJxNU9kDQpiN1JZa0plVVBIM1kxRXhoMlUwNVA5YmorWkpXVGxrTXZSbXVJU2hlZWJ2Qlp2WjNlQXhuaC9IWVozWDVabisyDQpibVR0bzVTOVRNMXNoeEFtenNGdVBMZFRuSFhRWjdWZzl4VHZXNFYvUklMWGZNQ3hjVUtwVjZyQjVpN1BjVW9SDQpmNWErNEpWWjBNMlVPdTZSdllHdmQvT09yUkhWbEd0cUpIclBiOVo1ODBkMFFzOCt4cVgzWThHc3l2VmYrTUJtDQpycmQ1UzZqNGdSWlpGeUJzeS9QcGhEcWt0bks2VHBjMlN1VE5xbWtLd0JadTZyZzlDNTB4a011dVp5dFA3UkpRDQpYS3lNVWs3bHg2MU1Na0xSQWdNQkFBR2pnZFV3Z2RJd0hRWURWUjBPQkJZRUZHcEZWMHV6RGJYK3dNc3FjQkVFDQpJOTArMER1dE1JR2lCZ05WSFNNRWdab3dnWmVBRkdwRlYwdXpEYlgrd01zcWNCRUVJOTArMER1dG9YU2tjakJ3DQpNUXN3Q1FZRFZRUUdFd0pLVURFVE1CRUdBMVVFQ0JNS1UyOXRaUzFUZEdGMFpURVJNQThHQTFVRUNoTUlUa0ZUDQpORVp5WldVeEZ6QVZCZ05WQkFNVERtNWhjelJtY21WbExteHZZMkZzTVNBd0hnWUpLb1pJaHZjTkFRa0JGaEZwDQpibVp2UUc1aGN6Um1jbVZsTG05eVo0SUpBUFJ1aHNxVUVnSnBNQXdHQTFVZEV3UUZNQU1CQWY4d0RRWUpLb1pJDQpodmNOQVFFTEJRQURnZ0VCQUQ3aUxLaWVsRHBVVk9BWGVCeDk0MDVmZ0p4ZUtLVXZUMDVBNWtSQVhTanFnYkdjDQp2eWkySUpWaTNadlV4OWJtL3RyME5MclhQaVBMRlU5T3pTd0tQQXJnbGdjY2JKbDlBV0xTN3d3RTdaQzRnTTE5DQpBSmYyR09RcEwzYnoyaXk0TTBkdGJjUnBHdDRHV2szdDZ6NXozZTdJblNaNDdTcWhtbVNIekUwdTlhWTRJUWZwDQovVHJ1ZTBVYTVYNGJsVUhvTnhVb2xmQ1ptdTU3VkZpWlJLSlhEZGhVSHFKbEhMT1BUYmxtZWZtSTg3RVhDTjFBDQo5YWIyVEhWWVZhSnlVM2p5VUo3by9xNmtzYlB5UDlTeFBSZCsvSmszbHVJemp4V1NHRXZoNDhZc0dlWWo2MVN1DQpkVUZoUWZ6S3FzeXNUN21ZQ1NuL1RqUkpnYnZOaWpVaGZiemtMZUE9DQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0t";
-		$config['system']['webgui']['privatekey'] = "LS0tLS1CRUdJTiBSU0EgUFJJVkFURSBLRVktLS0tLQ0KTUlJRXBRSUJBQUtDQVFFQXJZMU9JRlhGMVI1Z0V0RkpwM3h1cmZqYmUyN0lMK1R2a1JzRUpFa1ZUUHJ1cmNCbQ0KTEczNnpkeDh6RnErY3p4ajI2dVRuVyswV0pDWGxEeDkyTlJNWWRsTk9UL1c0L21TVms1WkRMMFpyaUVvWG5tNw0Kd1diMmQzZ01aNGZ4MkdkMStXWi90bTVrN2FPVXZVek5iSWNRSnM3QmJqeTNVNXgxMEdlMVlQY1U3MXVGZjBTQw0KMTN6QXNYRkNxVmVxd2VZdXozRktFWCtXdnVDVldkRE5sRHJ1a2IyQnIzZnpqcTBSMVpScmFpUjZ6Mi9XZWZOSA0KZEVMUFBzYWw5MlBCck1yMVgvakFacTYzZVV1bytJRVdXUmNnYk12ejZZUTZwTFp5dWs2WE5rcmt6YXBwQ3NBVw0KYnVxNFBRdWRNWkRMcm1jclQrMFNVRnlzakZKTzVjZXRUREpDMFFJREFRQUJBb0lCQVFDSWU2NnNDU2dhVU5mMw0KRkhXYTdHVlNGWG50bVJKL2I4ZmkwbDh3ZGZUMVpBVmR5UWZRK3ZDWkFrTjJwZ3BPTDNqTVlTTW1WWmw3YU1KNw0KeGhLbCtWYlVRSUxWZWRueDBPdi9TWUFJWDVJWmVXUDQ0RDBDZklscExKUjh1dEU3Z1NtcTU2dVorVGtRRld1OA0KYnZEQjMzbVpPMUdzOHJ5dFdVYmhqUjE3MHZPNHczR1pOQUk2VHl4K3NuZnE5bklUTkY4VjFPcGxMKzMrUWduQw0KU3JHRjFRek1jTUJnckQ3RGVGeElyN0l1UGZka1czd3dlZzFaL1VjZXVrM3hMaFM2Ly9kcHVOT3dGQjVrK0Nwcg0KdnNpWGFxSTl4cDFhZ0lJaXJOam4vbWlQMGo0Y00zUTFqcDFRZUk4K2h0NWIxaGRsYndwTzJmMit3MkFnWlU3Vg0KNzdjVUF5ZHRBb0dCQU4vV1AxSi9DenAxOG9DcFdudVU0Sk5oYlhpV09ETnYrcDRpbHpFZWh6M1Y1OUtZS3Y2dw0KaXJUSEZaZzR6WEZvNWhxcjY3Yk90SExsRk5SeFNmQWlzNGxFUm9FUWpuemdUeFl3ZFB6cm15dFB2eW8yWndISA0KWnB2Y2x5VU9YUlU5MzRDTnkyMkQwRHNON0Z5eUZEa0FBZ3hhTHY1ZXRETFpCS2ZjaGJ3WWhadDNBb0dCQU1aOQ0KV0szTVdwODQrMkp6VUVpc2ZaMjVPaGZCZVBRdTJ2VmZESklBV3lOMkx1RVpDVGZFSlV1YUdlWWMzcXBneVdZNw0KU1BLdXNVVGhkL0EybFEyU1VFWVlyMTFNYTg1ZVp0Wjd6bGkxS3gvWDhESlEvOTBEQWVNMXkveTFIREx4QkJ6RA0KRHJQNnpoMjRnSDBic0t2KytXdWFYdmc2ak1UMmxlN0k3a1ZuMjVYM0FvR0JBTlplak9TSU1ZdTZuQlltbXphUg0KL1lhSW4xd0dtaXFCQ3dkWjMyeTJiUldHZisvTHRobVhvQy9FSHVWYk9UNXRGVHJqL2VwbENxS2l6SkV0TW4rZA0KN0U0QktuaS9ENGQvRjU4THAyNzJnZlEzK3NBRnZCOFRCaTB0VlQrekF1aXVDaGhITkZWZEVSY05uWm1sSHdMOA0KQS9vcWdLa3lyK2VtdWZPOW1nTHJoVUcvQW9HQVo0YWRLQmo3OHl2L1Fid3ZWWmhSOUYvVnd1b3dNZnYyVENDRg0KSitsem42MVdpaVZLdjRGWWluUVhxZ1BJeDBpd0F0aE5GZmF6a3QrZWRQV2pERzhSMjEyb3FacmdaOFNwRXBtRQ0KYUpRbHAvZ3kyYXVScUM2WFgzQ0JzbzZyNUkzOHZSdW5vWXZnMFhPWDRLaitudGJnTkpWUmoxcktiVGpIdnNHaQ0KTlNVVVRNVUNnWUVBdnZrZFV5UkU0R3IrWDR3V0pOYmZYcEplRFBwSndHS2RrSWJmeXJzUEVSWUg5ejNrclZVNA0KalZrVUtZUjdGYXFzclRMdGFraWs1VXZ2T1V5dzVVYkoxZW54aHVZOWdYdklmMkZUTzhjUEJqUjhDN3RSSTRRQg0KYmRpaTV5THpGQXBaRi85cHptaW15QU5rckp6WldTMFg3MFFtU1V1OS8vMnluNU9vM3VKa2JIVT0NCi0tLS0tRU5EIFJTQSBQUklWQVRFIEtFWS0tLS0t";
-
-		if ($config['samba']['security'] == "share") {
-			$config['samba']['security'] = "user";
-			$config['samba']['maptoguest'] = "Bad User";
-		}
-		$config['version'] = "1.8";
-	}
-
-	/* Convert 1.8 -> 1.9 */
-	if ($config['version'] === "1.8") {
-		if ($config['samba']['rcvbuf'] < 128480)
-			$config['samba']['rcvbuf'] = 128480;
-		if ($config['samba']['sndbuf'] < 128480)
-			$config['samba']['sndbuf'] = 128480;
-		if ($config['samba']['aiorsize'] == 4096)
-			$config['samba']['aiorsize'] = 1024;
-		if ($config['samba']['aiowsize'] == 4096)
-			$config['samba']['aiowsize'] = 1024;
-		$index = array_search_ex("varsize", $config['system']['rcconf']['param'], "name");
-		if ($index === false) {
-			$config['system']['rcconf']['param'][] = array(
-				"uuid" => uuid(),
-				"name" => "varsize",
-				"value" => "256m",
-				"comment" => "Default /var size",
-				"enable" => true );
-		} else {
-			$config['system']['rcconf']['param'][$index]['value'] = "256m";
-		}
-		$index = array_search_ex("vartmpsize", $config['system']['rcconf']['param'], "name");
-		if ($index === false) {
-			$config['system']['rcconf']['param'][] = array(
-				"uuid" => uuid(),
-				"name" => "vartmpsize",
-				"value" => "128m",
-				"comment" => "Default /var/tmp size",
-				"enable" => true );
-		} else {
-			$config['system']['rcconf']['param'][$index]['value'] = "128m";
-		}
-		$config['version'] = "1.9";
-	}
 
 	/* XXX Convert 9.5 -> 9.7 (must skip 9.6) */
 
@@ -979,47 +867,9 @@ function config_postinit() {
 		$need_write_config = true;
 	}
 
-	// save current uuid if not found in config
-	if (stristr($g['platform'], "embedded")) {
-		$uuid = @exec("/bin/kenv -q smbios.system.uuid");
-		$hostuuid = @exec("/sbin/sysctl -qn kern.hostuuid");
-		if (empty($uuid) && !empty($hostuuid) && empty($config['system']['uuid'])) {
-			$config['system']['uuid'] = $hostuuid;
-			$need_write_config = true;
-		}
-	}
-
 	if ($need_write_config) {
 		echo "save config\n";
 		write_config();
 	}
-}
-
-// encrypt and gzcompress
-function config_encrypt($password)
-{
-	global $g;
-	$config = file_get_contents("{$g['conf_path']}/config.xml");
-	if ($config === FALSE)
-		return FALSE;
-	$b64enc_config = encrypt_aes256cbc($password, $config);
-	if ($b64enc_config === FALSE)
-		return FALSE;
-	$gz_config = gzencode($b64enc_config, 9);
-	if ($gz_config === FALSE)
-		return FALSE;
-	return $gz_config;
-}
-
-// gzdecompress and decrypt
-function config_decrypt($password, $gz_config)
-{
-	$b64enc_data = gzdecode($gz_config);
-	if ($b64enc_data === FALSE)
-		return FALSE;
-	$config = decrypt_aes256cbc($password, $b64enc_data);
-	if ($config === FALSE)
-		return FALSE;
-	return $config;
 }
 ?>

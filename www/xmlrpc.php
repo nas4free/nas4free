@@ -3,7 +3,7 @@
 	xmlrpc.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -47,13 +47,13 @@ function xmlrpc_system_getinfo($xmlrpcmsg) {
 
 // When an XML-RPC request is sent to this script, it can be found in the
 // raw post data.
-$request_xml = file_get_contents("php://input");
+$request_xml = $HTTP_RAW_POST_DATA;
 if (empty($request_xml))
 	die;
 
 // Create XMLRPC server.
 $xmlrpc_server = new xmlrpc_server(array(
-	"systemGetInfo" => array(
+	"system.getInfo" => array(
 		"function" => "xmlrpc_system_getinfo",
 		"signature" => array(array($xmlrpcStruct)),
 		"docstring" => "Get various system informations.")), false);

@@ -3,7 +3,7 @@
 	unzip.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -36,9 +36,7 @@
 */
 require_once("./_include/permissions.php");
 require_once("./_include/debug.php");
-//------------------------------------------------------------------------------
-// File Clone of copy_move.php
-//------------------------------------------------------------------------------
+
 function dir_list($dir) {			// make list of directories
 	// this list is used to copy/move items to a specific location
 	$dir_list = array();
@@ -140,11 +138,11 @@ function unzip_item($dir)
 		$s_ndir=$new_dir;	if(strlen($s_ndir)>40) $s_ndir="...".substr($s_ndir,-37);
 		echo "<!-- dirextr = ".$dir_extract." -->\n";
 		echo "<!-- zipname = ".$zip_name." -->\n";
-		echo "<CENTER><BR><BR><IMG SRC=\"".$_img."\" align=\"ABSMIDDLE\" ALT=\"\">&nbsp;";
+		echo "<BR><CENTER><IMG SRC=\"".$_img."\" align=\"ABSMIDDLE\" ALT=\"\">&nbsp;";
 		echo "<IMG SRC=\"".$GLOBALS["baricons"]["unzipto"]."\" align=\"ABSMIDDLE\" ALT=\"\">\n";
 		
 		// Form for Target Directory & New Names
-		echo "<BR><BR><FORM name=\"selform\" method=\"post\" action=\"";
+		echo "<BR><BR><BR><FORM name=\"selform\" method=\"post\" action=\"";
 		echo make_link("post",$dir,NULL)."\"><TABLE>\n";
 		echo "<INPUT type=\"hidden\" name=\"do_action\" value=\"".$GLOBALS["action"]."\">\n";
 		echo "<INPUT type=\"hidden\" name=\"confirm\" value=\"false\">\n";
@@ -167,7 +165,7 @@ function unzip_item($dir)
 		echo "\" onclick=\"javascript:Execute();\"></TD>\n<TD>";
 		echo "<input type=\"button\" value=\"".$GLOBALS["messages"]["btncancel"];
 		echo "\" onClick=\"javascript:location='".make_link("list",$dir,NULL);
-		echo "';\"></TD>\n</TR></FORM></TABLE><BR><BR><BR>\n";
+		echo "';\"></TD>\n</TR></FORM></TABLE><BR><BR></BR></BR>\n";
 		return;
 	}
 	

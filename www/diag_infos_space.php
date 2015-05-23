@@ -3,7 +3,7 @@
 	diag_infos_space.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -70,24 +70,14 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("Space 
 	</tr>
   <tr>
     <td class="tabcont">
-      <table width="100%" border="0">
-	<?php html_titleline(gettext("Free disk space"));?>
-	<tr>
-	  <td>
-	    <pre><?php unset($rawdata); exec("/bin/df -h", $rawdata); echo htmlspecialchars(implode("\n", $rawdata));?></pre>
-	  </td>
-	</tr>
-<?php if (file_exists("/sbin/xmdconfig")) { ?>
-	<?php html_titleline(gettext("Memory usage"));?>
-	<tr>
-	  <td>
-	    <pre><?php $xmdconfig_header = "Device  Type       Size Comp  Level    Ratio (compressed/allocated/uncompressed)"; // don't translate this header. it will be removed later.
-			echo "$xmdconfig_header\n";
-			unset($rawdata); exec("/sbin/xmdconfig -lv", $rawdata); echo htmlspecialchars(implode("\n", $rawdata));?></pre>
-	  </td>
-	</tr>
-<?php } ?>
-      </table>
+    	<table width="100%" border="0">
+				<?php html_titleline(gettext("Free disk space"));?>
+				<tr>
+			    <td>
+			    	<pre><?php unset($rawdata); exec("/bin/df -h", $rawdata); echo htmlspecialchars(implode("\n", $rawdata));?></pre>
+					</td>
+			  </tr>
+    	</table>
     </td>
   </tr>
 </table>

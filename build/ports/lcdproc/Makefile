@@ -10,10 +10,7 @@ USE_AUTOTOOLS=	autoconf automake aclocal
 GNU_CONFIGURE=	yes
 USES=           pkgconfig
 
-# Options
-OPTIONS_DEFINE= USB FTDI HID FREETYPE SERDISP
-
-LIB_DEPENDS+=		libftdi.so:${PORTSDIR}/devel/libftdi
+LIB_DEPENDS+=		ftdi.21:${PORTSDIR}/devel/libftdi
 LIB_DEPENDS+=		libhid.so:${PORTSDIR}/devel/libhid
 
 CONFIGURE_ARGS=	--enable-drivers="${LCDPROC_DRIVERS}" \
@@ -27,20 +24,8 @@ FTDI_DESC=	   Build drivers using libftdi (requires USB)
 HID_DESC=	   Build drivers using libhid (requires USB)
 SERDISP_DESC=	   Build drivers using serdisplib
 
-
 OPTIONS_DEFAULT= USB FREETYPE
 NO_OPTIONS_SORT= yes
-
-FREETYPE_LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2
-FREETYPE_CONFIGURE_ENABLE=	freetype
-
-PNG_LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
-PNG_CONFIGURE_ENABLE=	libpng
-
-SERDISP_LIB_DEPENDS=	libserdisp.so:${PORTSDIR}/devel/serdisplib
-SERDISP_CFLAGS=		-I${LOCALBASE}/include
-SERDISP_LDFLAGS=	-L${LOCALBASE}/lib
-SERDISP_CPPFLAGS=	-I${LOCALBASE}/include
 
 # Empty args to aclocal required!
 ACLOCAL_ARGS=
@@ -70,6 +55,7 @@ LCDPROC_DRIVERS=	bayrad \
 					sed1330 \
 					sed1520 \
 					serialPOS \
+					serialVFD \
 					sli \
 					stv5730 \
 					t6963 \
@@ -83,11 +69,6 @@ LCDPROC_DRIVERS+=	i2500vfd \
 					lis \
 					ula200
 LCDPROC_DRIVERS+=	mdm166a
-
-.include <bsd.port.pre.mk>
-.if (${ARCH} == "amd64" || ${ARCH} == "i386")
-LCDPROC_DRIVERS+=			serialVFD
-.endif
 
 .include <bsd.port.options.mk>
 
@@ -112,6 +93,7 @@ PLIST_SUB+=		FTDI="@comment "
 
 . if ${PORT_OPTIONS:MHID}
 LIB_DEPENDS+=		libhid.so:${PORTSDIR}/devel/libhid
+CONFIGURE_ARGS+=	--enable-libhid
 PLIST_SUB+=		HID=""
 LCDPROC_DRIVERS+=mdm166a
 . else
@@ -124,7 +106,24 @@ CONFIGURE_ARGS+=	--without-libusb --disable-libftdi --disable-libhid
 PLIST_SUB+=		USB="@comment " FTDI="@comment " HID="@comment "
 .endif
 
+.if ${PORT_OPTIONS:MFREETYPE}
+LIB_DEPENDS+=        libfreetype.so:${PORTSDIR}/print/freetype2
+.else
+CONFIGURE_ARGS+=     --disable-freetype
+.endif
 
+.if ${PORT_OPTIONS:MPNG}
+LIB_DEPENDS+=        libpng.so:${PORTSDIR}/graphics/png
+.else
+CONFIGURE_ARGS+=     --disable-libpng
+.endif
+
+.if ${PORT_OPTIONS:MSERDISP}
+SERDISP_LIB_DEPENDS=	libserdisp.so:${PORTSDIR}/devel/serdisplib
+SERDISP_CFLAGS=		-I${LOCALBASE}/include
+SERDISP_LDFLAGS=	-L${LOCALBASE}/lib
+SERDISP_CPPFLAGS=	-I${LOCALBASE}/include
+.endif
 
 
 do-install:
@@ -140,4 +139,4 @@ do-install:
 	@${INSTALL_SCRIPT} -v ${FILESDIR}/LCDd.in ${NAS4FREE_ROOTFS}/etc/rc.d/LCDd
 	@${INSTALL_SCRIPT} -v ${FILESDIR}/lcdproc.in ${NAS4FREE_ROOTFS}/etc/rc.d/lcdproc
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

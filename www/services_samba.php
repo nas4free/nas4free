@@ -3,7 +3,7 @@
 	services_samba.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -103,9 +103,7 @@ if ($_POST) {
 		$reqdfieldsn = array(gettext("Send Buffer Size"),gettext("Receive Buffer Size"));
 		$reqdfieldst = explode(" ", "numericint numericint");
 
-		// samba 4+ does not have "share". you can delete this in future.
-		if (($_POST['security'] == "share" && $_POST['maxprotocol'] == "SMB2")
-		    || ($_POST['security'] == "share" && $_POST['maxprotocol'] == "SMB3")) {
+		if ($_POST['security'] == "share" && $_POST['maxprotocol'] == "SMB2") {
 			$input_errors[] = gettext("It cannot be used combining SMB2 and Anonymous.");
 		}
 		if (!empty($_POST['createmask']) || !empty($_POST['directorymask'])) {
@@ -179,8 +177,7 @@ if ($_POST) {
 			$config['samba']['aiowsize'] = $_POST['aiowsize'];
 			$config['samba']['aiowbehind'] = '';
 		}
-		if (($config['samba']['maxprotocol'] == "SMB2")
-		    || ($config['samba']['maxprotocol'] == "SMB3")) {
+		if ($config['samba']['maxprotocol'] == "SMB2") {
 			$config['samba']['usesendfile'] = false;
 			unset($pconfig['usesendfile']);
 		}
@@ -300,8 +297,8 @@ function aio_change() {
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline_checkbox("enable", gettext("Common Internet File System"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
-					<?php html_combobox("security", gettext("Authentication"), $pconfig['security'], array("user" => gettext("Local User"), "ads" => gettext("Active Directory")), "", true, false, "authentication_change()");?>
-					<?php html_combobox("maxprotocol", gettext("Max Protocol"), $pconfig['maxprotocol'], array("SMB3" => gettext("SMB3"), "SMB2" => gettext("SMB2"), "NT1" => gettext("NT1")), sprintf("%s<br>%s", gettext("SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and Vista. NT1 is for legacy OS like XP."), gettext("When the negotiation is complete, you will not be able to change the SMB protocol. If you change it, you will need to restart the client connected to this server.")), true, false, "");?>
+					<?php html_combobox("security", gettext("Authentication"), $pconfig['security'], array("share" => gettext("Anonymous"), "user" => gettext("Local User"), "ads" => gettext("Active Directory")), "", true, false, "authentication_change()");?>
+					<?php html_combobox("maxprotocol", gettext("Max Protocol"), $pconfig['maxprotocol'], array("SMB2" => gettext("SMB2"), "NT1" => gettext("NT1")), gettext("SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."), true, false, "");?>
           <tr>
             <td width="22%" valign="top" class="vncellreq"><?=gettext("NetBIOS name");?></td>
             <td width="78%" class="vtable">
@@ -401,14 +398,14 @@ function aio_change() {
             <td width="22%" valign="top" class="vncell"><?=gettext("Send Buffer Size"); ?></td>
             <td width="78%" class="vtable">
               <input name="sndbuf" type="text" class="formfld" id="sndbuf" size="30" value="<?=htmlspecialchars($pconfig['sndbuf']);?>" />
-              <br /><?=sprintf(gettext("Size of send buffer (%d by default)."), 128480); ?>
+              <br /><?=sprintf(gettext("Size of send buffer (%d by default)."), 64240); ?>
             </td>
   				</tr>
   				<tr>
             <td width="22%" valign="top" class="vncell"><?=gettext("Receive Buffer Size") ; ?></td>
             <td width="78%" class="vtable">
               <input name="rcvbuf" type="text" class="formfld" id="rcvbuf" size="30" value="<?=htmlspecialchars($pconfig['rcvbuf']);?>" />
-              <br /><?=sprintf(gettext("Size of receive buffer (%d by default)."), 128480); ?>
+              <br /><?=sprintf(gettext("Size of receive buffer (%d by default)."), 64240); ?>
             </td>
   				</tr>
   				<tr>
@@ -444,8 +441,8 @@ function aio_change() {
 						</td>
 					</tr>
 					<?php html_checkbox("aio", gettext("Asynchronous I/O (AIO)"), !empty($pconfig['aio']) ? true : false, gettext("Enable Asynchronous I/O (AIO)"), "", false, "aio_change()");?>
-					<?php html_inputbox("aiorsize", gettext("AIO read size"), $pconfig['aiorsize'], sprintf(gettext("Samba will read from file asynchronously when size of request is bigger than this value. (%d by default)"), 1024), true, 30);?>
-					<?php html_inputbox("aiowsize", gettext("AIO write size"), $pconfig['aiowsize'], sprintf(gettext("Samba will write to file asynchronously when size of request is bigger than this value. (%d by default)"), 1024), true, 30);?>
+					<?php html_inputbox("aiorsize", gettext("AIO read size"), $pconfig['aiorsize'], sprintf(gettext("Samba will read from file asynchronously when size of request is bigger than this value. (%d by default)"), 4096), true, 30);?>
+					<?php html_inputbox("aiowsize", gettext("AIO write size"), $pconfig['aiowsize'], sprintf(gettext("Samba will write to file asynchronously when size of request is bigger than this value. (%d by default)"), 4096), true, 30);?>
 					<?php /*html_inputbox("aiowbehind", gettext("AIO write behind"), $pconfig['aiowbehind'], "", false, 60);*/?>
 					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("These parameters are added to [Global] section of %s."), "smb.conf") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://us1.samba.org/samba/docs/man/manpages-3/smb.conf.5.html"), false, 65, 5, false, false);?>
         </table>

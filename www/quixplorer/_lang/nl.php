@@ -3,7 +3,7 @@
 	nl.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -44,12 +44,12 @@ $GLOBALS["error_msg"] = array(
 	// error
 	"error"		=> "FOUT(EN)",
 	"back"			=> "Ga Terug",
-
+	
 	// root
 	"home"			=> "De hoofdfolder bestaat niet, controleer uw instellingen.",
 	"abovehome"		=> "De huidige map mag niet hoger liggen dan de hoofdfolder.",
 	"targetabovehome"	=> "De doelmap mag niet hoger liggen dan de hoofdfolder.",
-
+	
 	// exist
 	"direxist"		=> "Deze map bestaat niet.",
 	"fileexist"		=> "Dit bestand bestaat niet.",
@@ -57,18 +57,18 @@ $GLOBALS["error_msg"] = array(
 	"itemexist"		=> "Dit item bestaat niet.",
 	"targetexist"		=> "De doel item bestaat niet.",
 	"targetdoesexist"	=> "Het doel item bestaat reeds.",
-
+	
 	// open
 	"opendir"		=> "Kan de map niet openen.",
 	"readdir"		=> "Kan de map niet lezen.",
-
+	
 	// access
 	"accessdir"		=> "U heeft geen toegang tot deze map.",
 	"accessfile"		=> "U heeft geen toegang tot het bestand.",
 	"accessitem"		=> "U heeft geen toegang tot het item.",
 	"accessfunc"		=> "U heeft geen rechten om deze functie te gebruiken.",
 	"accesstarget"	=> "U heeft geen toegang tot de doel.",
-
+	
 	// actions
 	//"chmod_not_allowed"  => 'Rechten veranderen naar GEEN is niet toegestaan!',
 	"permread"		=> "Rechten opvragen mislukt.",
@@ -86,7 +86,7 @@ $GLOBALS["error_msg"] = array(
 	"adduser"		=> "Toevoegen gebruiker is mislukt.",
 	"saveuser"		=> "Opslaan gebruiker is mislukt.",
 	"searchnothing"	=> "U moet om iets te zoeken het juiste opgeven.",
-
+	
 	// misc
 	"miscnofunc"		=> "Deze functie is niet beschikbaar.",
 	"miscfilesize"	=> "Het bestand is groter dan de maximum grootte.",
@@ -121,7 +121,7 @@ $GLOBALS["messages"] = array(
 	"uploadlink"		=> "UPLOADEN",
 	"searchlink"		=> "ZOEKEN",
 	"unziplink"		=> "Uitpakken",
-
+	
 	// list
 	"nameheader"		=> "Naam",
 	"sizeheader"		=> "Grootte",
@@ -130,7 +130,7 @@ $GLOBALS["messages"] = array(
 	"permheader"		=> "Rechten",
 	"actionheader"	=> "Acties",
 	"pathheader"		=> "Pad",
-
+	
 	// buttons
 	"btncancel"		=> "Annuleren",
 	"btnsave"		=> "Opslaan",
@@ -148,8 +148,9 @@ $GLOBALS["messages"] = array(
 	"btnedit"		=> "Bewerken",
 	"btnremove"		=> "Verwijderen",
 	"btnunzip"		=> "Uitpakken",
-
+	
 	// actions
+
 	"actdir"		=> "Map",
 	"actperms"		=> "Rechten wijzigen",
 	"actedit"		=> "Bestand bewerken",
@@ -166,7 +167,7 @@ $GLOBALS["messages"] = array(
 	"actarchive"		=> "Archiveren item(s)",
 	"actunzipitem"	=> "Uitpakken",
 	"actupload"		=> "Bestand(en) uploaden",
-
+	
 	// misc
 	"miscitems"		=> "Item(s)",
 	"miscfree"		=> "Beschikbaar",
@@ -200,5 +201,4 @@ $GLOBALS["messages"] = array(
 	"miscyesno"		=> array("Ja","Nee","J","N"),
 	"miscchmod"		=> array("Eigenaar", "Groep", "Publiek"),
 );
-
 ?>

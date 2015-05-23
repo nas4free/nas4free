@@ -19,7 +19,6 @@ GNU_CONFIGURE=	yes
 CPPFLAGS=	-I${LOCALBASE}/include
 LDFLAGS=	-L${LOCALBASE}/lib
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}"
-LDFLAGS+=	-pthread
 
 CONFIGURE_ARGS+=	--with-zlib=/usr \
 									--enable-largefile \

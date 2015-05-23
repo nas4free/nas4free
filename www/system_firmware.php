@@ -3,7 +3,7 @@
 	system_firmware.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -44,22 +44,6 @@ require("auth.inc");
 require("guiconfig.inc");
 
 $pgtitle = array(gettext("System"), gettext("Firmware"));
-
-// check boot partition
-$part1size = $g_install['part1size_embedded'];
-$part1min = $g_install['part1min_embedded'];
-$cfdevice = trim(file_get_contents("{$g['etc_path']}/cfdevice"));
-$diskinfo = disks_get_diskinfo($cfdevice);
-unset($errormsg);
-$part1ok = true;
-if ($g['arch'] == "rpi" || $g['arch'] == "rpi2" || $g['arch'] == "oc1")
-	$part1min = 320; /* rpi use 320MB */
-if ($diskinfo['mediasize_mbytes'] < $part1min) {
-	if (in_array($g['platform'], $fwupplatforms)) {
-		$part1ok = false;
-		$errormsg = sprintf(gettext("Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or resize boot partition of %s.\n"), $cfdevice);
-	}
-}
 
 /* checks with /etc/firm.url to see if a newer firmware version online is available;
    returns any HTML message it gets from the server */
@@ -158,7 +142,6 @@ function get_latest_file($rss) {
 		$revision = $m[2];
 	}
 	$ext = "img";
-	$ext2 = "xz";
 
 	$resp = "";
 	$xml = @simplexml_load_file($rss);
@@ -166,28 +149,14 @@ function get_latest_file($rss) {
 	foreach ($xml->channel->item as $item) {
 		$link = $item->link;
 		$title = $item->title;
-		$pubdate = $item->pubDate;
+		$date = $item->pubDate;
 		$parts = pathinfo($title);
-
-		// convert to local time
-		$date = preg_replace('/UT$/', 'GMT', $pubdate);
-		$time = strtotime($date);
-		if ($time === FALSE) {
-			// convert error
-			$date = $pubdate;
-		} else {
-			$date = date("D, d M Y H:i:s T", $time);
-		}
-
-		if (empty($parts['extension']))
-			continue;
-		if (strcasecmp($parts['extension'], $ext) != 0
-		    && strcasecmp($parts['extension'], $ext2) != 0)
+		if (empty($parts['extension']) || strcasecmp($parts['extension'], $ext) != 0)
 			continue;
 		$filename = $parts['filename'];
 		$fullname = $parts['filename'].".".$parts['extension'];
 
-		if (preg_match("/^{$product}-{$platform}-(.*?)\.(\d+)(\.img)?$/", $filename, $m)) {
+		if (preg_match("/^{$product}-{$platform}-(.*?)\.(\d+)$/", $filename, $m)) {
 			$filever = $m[1];
 			$filerev = $m[2];
 			if ($version < $filever
@@ -206,10 +175,9 @@ function get_latest_file($rss) {
 }
 
 function check_firmware_version_rss($locale) {
-	$rss_path = "http://sourceforge.net/projects/nas4free/rss?limit=40";
-	$rss_release = "http://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-@@VERSION@@&limit=20";
-	$rss_beta = "http://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-Beta&limit=20";
-	$rss_arm = "http://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-ARM&limit=20";
+	$rss_path = "http://sourceforge.net/api/file/index/project-id/722987/mtime/desc/limit/20/rss";
+	$rss_release = "http://sourceforge.net/api/file/index/project-id/722987/path/NAS4Free-@@VERSION@@/mtime/desc/limit/20/rss";
+	$rss_beta = "http://sourceforge.net/api/file/index/project-id/722987/path/NAS4Free-Beta/mtime/desc/limit/20/rss";
 
 	// replace with existing version
 	$path_version = get_path_version($rss_path);
@@ -220,9 +188,6 @@ function check_firmware_version_rss($locale) {
 
 	$release = get_latest_file($rss_release);
 	$beta = get_latest_file($rss_beta);
-	$hw = @exec("/usr/bin/uname -m");
-	if ($hw == 'arm')
-		$arm = get_latest_file($rss_arm);
 	$resp = "";
 	if (!empty($release)) {
 		$resp .= sprintf(gettext("Latest Release: %s"), $release);
@@ -230,10 +195,6 @@ function check_firmware_version_rss($locale) {
 	}
 	if (!empty($beta)) {
 		$resp .= sprintf(gettext("Latest Beta Build: %s"), $beta);
-		$resp .= "<br />\n";
-	}
-	if (!empty($arm)) {
-		$resp .= sprintf(gettext("Latest Beta Build: %s"), $arm);
 		$resp .= "<br />\n";
 	}
 	return $resp;
@@ -276,7 +237,7 @@ if ($_POST && !file_exists($d_firmwarelock_path)) {
 					/* move the image so PHP won't delete it */
 					move_uploaded_file($_FILES['ulfile']['tmp_name'], "{$g['ftmp_path']}/firmware.img");
 
-					if (!verify_xz_file("{$g['ftmp_path']}/firmware.img")) {
+					if (!verify_gzip_file("{$g['ftmp_path']}/firmware.img")) {
 						$input_errors[] = gettext("The image file is corrupt");
 						unlink("{$g['ftmp_path']}/firmware.img");
 					}
@@ -334,7 +295,6 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
   <tr>
     <td class="tabcont">
 			<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
-			<?php if (!empty($errormsg)) print_error_box($errormsg); ?>
 			<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
 			<?php html_titleline(gettext("Firmware"));?>
@@ -362,7 +322,6 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
 			<?php include("formend.inc");?>
 			</form>
 			<?php else:?>
-			<?php if ($part1ok): ?>
 			<?php if (!file_exists($d_firmwarelock_path)):?>
 			<?=gettext("Click &quot;Enable firmware upload&quot; below, then choose the embedded image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start the upgrade process.");?>
 			<form action="system_firmware.php" method="post" enctype="multipart/form-data">
@@ -390,7 +349,6 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
 				</div>
 				<?php include("formend.inc");?>
 			</form>
-			<?php endif;?>
 			<?php endif; endif;?>
 		</td>
 	</tr>

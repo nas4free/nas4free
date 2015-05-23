@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-05-20 20:17+0000\n"
-"PO-Revision-Date: 2015-05-05 15:09+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"PO-Revision-Date: 2014-01-18 13:45+0000\n"
+"Last-Translator: apollo567 <apollo567@hotmail.de>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-05-22 06:36+0000\n"
-"X-Generator: Launchpad (build 17514)\n"
+"X-Launchpad-Export-Date: 2014-04-21 22:09+0000\n"
+"X-Generator: Launchpad (build 16985)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
 "X-Poedit-Language: German\n"
@@ -64,7 +64,7 @@ msgstr "%s wird benutzt um %s Volumes zu erzeugen."
 
 #, php-format
 msgid "%s of %sB"
-msgstr "%s von %sB"
+msgstr "%s von %s B"
 
 #, php-format
 msgid "%s on %s"
@@ -77,10 +77,6 @@ msgstr "%s%% verfügbar"
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s wird bereits von %s%d verwendet."
-
-#, php-format
-msgid "%s: cannot get mirror name."
-msgstr "%s: Mirror Name kann nicht abgerufen werden."
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -231,12 +227,6 @@ msgid "A valid IP address must be specified."
 msgstr "Es muss eine gültige IP-Adresse angegeben sein."
 
 msgid ""
-"A valid IP address or CIDR notation must be specified for the hosts allow."
-msgstr ""
-"Eine gültige IP Adresse oder CIDR Notation muss für erlaubte Hosts "
-"spezifiziert werden."
-
-msgid ""
 "A valid IPv4 address must be specified for the primary/secondary DNS server."
 msgstr ""
 "Es muss eine gültige IPv4-Adresse für den primären/sekundären DNS-Server "
@@ -281,12 +271,6 @@ msgstr "Ein gültiges Präfix (1-128) muss angegeben werden."
 msgid "A valid systctl MIB value."
 msgstr "Ein gültiger systctl MIB Wert."
 
-msgid "ACL inherit"
-msgstr ""
-
-msgid "ACL mode"
-msgstr ""
-
 msgid "AD authentication disabled"
 msgstr "AD Authentication deaktiviert"
 
@@ -299,9 +283,6 @@ msgstr "AFP"
 msgid "AG"
 msgstr "AG"
 
-msgid "AIO module"
-msgstr ""
-
 msgid "AIO read size"
 msgstr "AIO Lesegröße"
 
@@ -310,9 +291,6 @@ msgstr "AIO schreib-größe"
 
 msgid "ALL interfaces"
 msgstr "Alle Schnittstellen"
-
-msgid "AP mode"
-msgstr "AP Modus"
 
 msgid "ARP Tables"
 msgstr "ARP Tabellen"
@@ -553,18 +531,12 @@ msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr ""
 "Alle Verzeichnisse erfordern einen festgelegten Pfad, dieser fehlt für %s"
 
-msgid "All disks are imported."
-msgstr "Alle Festplatten sind importiert."
-
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "Alle Freigaben benutzen die Option 'usedots', welche die Dateinamen .Parent "
 "und alles andere das mit .Apple anfängt unzulässig macht."
-
-msgid "All software raid disks are imported."
-msgstr "Alle Software RAID-Festplatten sind importiert."
 
 msgid "All users will have the root privilege."
 msgstr "Alle Benutzer erhalten Administratorrechte."
@@ -635,8 +607,15 @@ msgstr "Immer an"
 msgid "Always scan"
 msgstr "Immer prüfen"
 
+msgid ""
+"Always use 0 for device number, helps when the device number is not constant "
+"across a reboot, cluster, ..."
+msgstr ""
+"Benutze immer 0 als Gerätenummer, dies hilft wenn die Gerätenummer nach "
+"einem Neustart, in einem Cluster etc. nicht konstant ist."
+
 msgid "Ambient Conditions From External Probe Equipment"
-msgstr "Umgebungsbedingungen von externen Gerätesensoren"
+msgstr ""
 
 msgid "Ambient relative humidity (percent)"
 msgstr "Luftfeuchte (in%)"
@@ -650,6 +629,9 @@ msgstr "Ein Host mit diesem Namen existiert bereits."
 msgid "An interface with the specified description already exists."
 msgstr ""
 "Eine Schnittstelle mit der angegebenen Beschreibung existiert bereits."
+
+msgid "Anonymous"
+msgstr "Anonym"
 
 msgid "Anonymous bind"
 msgstr "Anomymer Bind"
@@ -751,6 +733,12 @@ msgstr "Automatisches Anpassen"
 
 msgid "AutoScale"
 msgstr "Autom. Skalierung"
+
+msgid "Automatic disk discovery"
+msgstr "Automatische Festplattenerkennung"
+
+msgid "Automatic disk discovery mode"
+msgstr "Automatischer Festplattenwiederherstellungsmodus"
 
 msgid "Autoselect"
 msgstr "Autom. Auswahl"
@@ -860,14 +848,6 @@ msgstr "untätig"
 
 msgid "Blocksize"
 msgstr "Blockgrösse"
-
-#, php-format
-msgid ""
-"Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or "
-"resize boot partition of %s.\n"
-msgstr ""
-"Die Boot Partition ist zu klein. Es muss eine Neuinstallation von LiveCD "
-"oder LiveUSB durchgeführt oder die Boot Partition von %s vergrößert werden.\n"
 
 msgid "Bridge"
 msgstr "Netzwerkbrücke"
@@ -997,6 +977,9 @@ msgstr "Kann von der Schnittstelle keine Daten erfassen"
 msgid "Capacity"
 msgstr "Kapazität"
 
+msgid "Case Folding"
+msgstr "Groß-/Kleinschreibung erzwingen"
+
 msgid ""
 "Causes the server to display the network information for the specified IP "
 "address or DNS hostname to the client, on the assumption that that IP "
@@ -1042,9 +1025,6 @@ msgstr "Chinesisch (Vereinfacht)"
 msgid "Chinese (Traditional)"
 msgstr "Chinesisch (Traditionell)"
 
-msgid "Choose UPS mode."
-msgstr "Wähle UPS modus."
-
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
 "Wählen Sie die Schnittstelle über welche die Pakete ankommen müssen um für "
@@ -1074,15 +1054,19 @@ msgstr ""
 "auswählen .<br />Click &quot;Upgrade firmware&quot; um den Upgrade Vorgang "
 "zu starten."
 
-msgid ""
-"Click this button to download the server configuration in encrypted GZIP "
-"file or XML format."
+msgid "Click this button to download the server configuration in XML format."
 msgstr ""
-"Klicke diesen Button um die Serverkonfiguration in einer verschlüsselten "
-"GZIP-Datei oder XML-Format herunter zu laden."
+"Klicken Sie auf diesen Knopf, um die Server-Konfiguration im XML-Format "
+"herunterzuladen."
 
 msgid "Client"
 msgstr "Client"
+
+msgid "Client sees lowercase, server sees uppercase"
+msgstr "Client sieht Kleinbuchstaben, der Server Großbuchstaben"
+
+msgid "Client sees uppercase, server sees lowercase"
+msgstr "Client sieht Großbuchstaben, der Server Kleinbuchstaben"
 
 msgid "Clone"
 msgstr "Duplizieren"
@@ -1121,9 +1105,6 @@ msgstr "Gemeinsames Internet Dateisystem"
 
 msgid "Community"
 msgstr "Gemeinschaft"
-
-msgid "Compilations directories"
-msgstr ""
 
 msgid "Compliant profile to be used."
 msgstr "Zu benutzendes, kompatibles Profil."
@@ -1321,26 +1302,8 @@ msgstr "Aktuell"
 msgid "Current Version:"
 msgstr "Aktuelle Version:"
 
-msgid "Current administrator password is used for decryption."
-msgstr "Das aktuelle Administratorpasswort wird zum entschlüsseln benutzt."
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr ""
-"Das aktuelle Administratorpasswort wird zum verschlüsseln benutzt.<br/>Die "
-"verschlüsselten Konfigurationen werden automatisch in eine GZIP-Datei "
-"gepackt."
-
 msgid "Current password"
 msgstr "Aktuelles Passwort"
-
-msgid ""
-"Current password is default password. You should use your own password."
-msgstr ""
-"Das aktuelle Passwort ist das Standardpasswort. Sie sollten ein eigenes "
-"Passwort verwenden."
 
 msgid "Current value of apparent power (Volt-Amps)"
 msgstr "Aktuelle Scheinleistung (VA)"
@@ -1366,14 +1329,20 @@ msgstr "Tschechisch"
 msgid "DAAP"
 msgstr "DAAP"
 
+msgid "DDP"
+msgstr "DDP"
+
 msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DLNA/UPnP"
-msgstr "DLNA/UPnP"
+msgstr ""
 
 msgid "DLNA/UPnP Media Server"
-msgstr "DLNA/UPnP Medienserver"
+msgstr ""
+
+msgid "DNLA/UPnP"
+msgstr "DNLA/UPnP"
 
 msgid "DNS settings"
 msgstr "DNS-Einstellungen"
@@ -1630,14 +1599,8 @@ msgstr "Zielfreigabe"
 msgid "Detected"
 msgstr "Entdeckt"
 
-msgid "Detected Language:<br />(Change if needed)"
-msgstr "Erkannte Sprache:<br/>(falls erforderlich bitte ändern)"
-
 msgid "Detected RSYNC remote shares"
 msgstr "Erkannte RSYNC-Remote-Freigaben"
-
-msgid "Detected an error while importing."
-msgstr "Ein Fehler wurde während dem Importier-Vorgang entdeckt."
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -1720,6 +1683,10 @@ msgstr "Verzeichnis, welches wechselbare Medien enthält (bspw. /mnt/iscsi/)"
 msgid "Directory to watch for new .torrent files."
 msgstr "Zu beobachtendes Verzeichnis für neue .torrent Dateien."
 
+msgid "Disable AFP-over-Appletalk to prevent DDP connections."
+msgstr ""
+"Deaktivieren von \"AFP-over-Appletalk\", um DDP Verbindungen zu verhindern."
+
 msgid "Disable File Manager"
 msgstr "deaktiviere Dateimanager"
 
@@ -1740,6 +1707,13 @@ msgstr "Systemlautsprecher beim Start und Shutdown ausschalten"
 
 msgid "Disabled"
 msgstr "Deaktiviert"
+
+msgid ""
+"Disables :hex translations for anything except dot files. This option makes "
+"the '/' character illegal."
+msgstr ""
+"Deaktiviert :hex Übersetzungen für alles ausser dot-Dateien. Diese Option "
+"erklärt das Zeichen '/' für unzulässig."
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -1952,9 +1926,20 @@ msgstr "Domain-Name, z.B. beispiel.de."
 msgid "Don't Erase MBR"
 msgstr "MBR (Master Boot Record) nicht löschen"
 
+msgid "Don't advertise createfileid, resolveid, deleteid calls."
+msgstr "Zeige Aufrufe von createfileid, resolveid, deleteid nicht an."
+
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr ""
 "MBR nicht löschen (bei einigen Hardware RAID Kontrollerkarten empfehlenswert)"
+
+msgid ""
+"Don't stat volume path when enumerating volumes list, useful for "
+"automounting or volumes created by a preexec script."
+msgstr ""
+"Den Volumepfad nicht mit in die Statistik einbeziehen, wenn die Volume-Liste "
+"durchgezählt wird - nützlich, wenn automatisch einghängt oder Volumes "
+"erzeugt werden - durch ein vorausgeführtes Skript."
 
 msgid "Donate"
 msgstr "Spenden"
@@ -2144,9 +2129,6 @@ msgstr "Standard: Leer."
 msgid "Enable"
 msgstr "Freigeben"
 
-msgid "Enable ACL inheritance"
-msgstr ""
-
 msgid "Enable Advanced Format (4KB sector)"
 msgstr "Aktiviere Advanced Format (4K-Sektorgröße)"
 
@@ -2155,9 +2137,6 @@ msgstr "Asynchrones I/O (AIO) aktivieren"
 
 msgid "Enable FXP protocol."
 msgstr "Aktiviere FXP-Protokoll."
-
-msgid "Enable NFSv4 server."
-msgstr "Aktiviere NFSv4 Server."
 
 msgid "Enable NTP"
 msgstr "Aktiviere NTP"
@@ -2175,20 +2154,23 @@ msgstr ""
 msgid "Enable TLS/SSL connections."
 msgstr "TLS/SSL-Verbindungen aktivieren."
 
-msgid "Enable Time Machine support"
-msgstr "Time Machine Unterstützung aktivieren"
-
 msgid "Enable ZFS ACL"
 msgstr "Aktivierung von ZFS ACL"
 
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "Aktiviere Zeroconf/Bonjour zur Ankündigung der Dienste diese Gerätes"
 
+msgid "Enable administrative DLNA/UPnP WebGUI."
+msgstr ""
+
 msgid "Enable anonymous bind."
 msgstr "Anomymes Bind einschalten"
 
 msgid "Enable authentication."
 msgstr "Aktiviere SMTP Authentifizierung."
+
+msgid "Enable automatic disk discovery."
+msgstr "Automatische Festplattenerkennung aktivieren"
 
 msgid "Enable compression."
 msgstr "Datenkomprimierung einschalten."
@@ -2207,9 +2189,6 @@ msgstr "Aktiviere verteilte Hashtabelle."
 
 msgid "Enable domain wildcarding."
 msgstr "Aktiviere Domain Wildcards."
-
-msgid "Enable encryption."
-msgstr "Aktiviere die Verschlüsselung."
 
 msgid "Enable extended attribute support"
 msgstr "Erweiterte Attributunterstützung aktivieren"
@@ -2312,6 +2291,20 @@ msgstr "Schreib-Cache Modus aktivieren."
 
 msgid "Enabled"
 msgstr "Aktiviert"
+
+msgid ""
+"Enables crlf translation for TEXT files, automatically converting macintosh "
+"line breaks into Unix ones. Use of this option might be dangerous since some "
+"older programs store binary data files as type 'TEXT' when saving and switch "
+"the filetype in a second step. Afpd will potentially destroy such files when "
+"'erroneously' changing bytes in order to do line break translation."
+msgstr ""
+"Aktiviert CRLF-Übersetzung für Textdateien. Macintosh-Zeilenenden werden "
+"automatisch in Unix-Format konvertiert. Die Benutzung dieser Option ist "
+"möglicherweise gefährlich, weil einige ältere Programme Binärdaten als Text-"
+"Dateityp speichern und den Dateitypen dann in einem zweiten Schritt ändern. "
+"Afpd wird dann fälschlicherweise bestimmte Bytes vertauschen, um sie zu "
+"übersetzen, und so möglicherweise die Dateien zerstören."
 
 msgid "Encrypted"
 msgstr "Verschlüsselt"
@@ -2730,9 +2723,6 @@ msgstr "Gruppe"
 msgid "Group ID"
 msgstr "Gruppenkennung"
 
-msgid "Group compilations"
-msgstr ""
-
 msgid "Group description."
 msgstr "Gruppenbeschreibung."
 
@@ -2802,13 +2792,13 @@ msgid "Hide dot files"
 msgstr "Dateien verstecken, deren Namen mit einem Punkt beginnen"
 
 msgid "High voltage boosting transfer point"
-msgstr "Eingangspannungserhöhung Schwellwert"
+msgstr ""
 
 msgid "High voltage transfer point"
-msgstr "Maximale Eingangspannung"
+msgstr ""
 
 msgid "High voltage trimming transfer point"
-msgstr "Maximale Eingangspannungerhöhung"
+msgstr ""
 
 msgid "Highlighting"
 msgstr "Hervorheben"
@@ -2988,6 +2978,16 @@ msgstr ""
 "Dateiraums des Hosts zu isolieren."
 
 msgid ""
+"If set afpd uses the ID information stored in AppleDouble V2 header files to "
+"reduce database load. Don't set this option if the volume is modified by non "
+"AFP clients (NFS/SMB/local)."
+msgstr ""
+"Wenn diese Option aktiviert ist, benutzt afpd die Informationen in "
+"AppleDouble V2 Header-Dateien um die Datenbank zu entlasten. Benutzen Sie "
+"sie nicht, wenn andere Clients als AFP (NFS/SMB/lokaler Client) auf den "
+"Datenträger schreiben."
+
+msgid ""
 "If the selected disk/partition is mounted it will be unmounted temporarily "
 "to perform selected command, otherwise the commands work in read-only "
 "mode.<br />Service disruption to users accessing this mount will occur "
@@ -3083,14 +3083,11 @@ msgstr "Ankommend"
 msgid "In most cases, 'public' is used here."
 msgstr "In den meisten Fällen wird hier 'public' benutzt."
 
-msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
-msgstr "Im Slave Mode ist es der USV Bezeichner (Name) des USV Masters."
-
 msgid "Include basic hardware information."
 msgstr "Beinhalte grundlegende Hardwareinformationen."
 
 msgid "Incoming Line/Power Information"
-msgstr "Zuleitungs/ Netz Informationen"
+msgstr ""
 
 msgid "Incomplete directory"
 msgstr "unvollständiges Verzeichnis"
@@ -3109,9 +3106,6 @@ msgstr "Informationen & Anleitung"
 
 msgid "Information & Manuals"
 msgstr "Informationen und Anleitungen"
-
-msgid "Inherit ACL"
-msgstr ""
 
 msgid "Inherit permissions"
 msgstr "Berechtigungen vererben"
@@ -3174,10 +3168,10 @@ msgid "Input line frequency low (Hz)"
 msgstr "mininale eingangseitige Stromfrequenz (in Hz)"
 
 msgid "Input power quality (* opaque)"
-msgstr "Eingangsleistungsqualität"
+msgstr ""
 
 msgid "Input power sensitivity"
-msgstr "Eingangsleistungsempfindlichkeit"
+msgstr ""
 
 msgid "Input voltage"
 msgstr "Eingangsspannung (in V)"
@@ -3477,7 +3471,7 @@ msgid "Load on UPS"
 msgstr "Belastung der UPS"
 
 msgid "Load when UPS switches to overload condition (\"OVER\")"
-msgstr "Last, bei der die USV zur Überlast Bedingung schaltet (\"OVER\")"
+msgstr ""
 
 msgid "Loadbalance"
 msgstr "Loadbalance"
@@ -3545,9 +3539,6 @@ msgstr "Log"
 msgid "Log (mirror)"
 msgstr "Log (gespiegelt)"
 
-msgid "Log Device"
-msgstr "Log Gerät"
-
 msgid "Log Level"
 msgstr "Log Level"
 
@@ -3587,21 +3578,16 @@ msgid "Logout"
 msgstr "Abmelden"
 
 msgid "Low voltage boosting transfer point"
-msgstr "Eingangspannungsverringerung Schwellwert"
+msgstr ""
 
 msgid "Low voltage transfer point"
-msgstr "Minimale Eingangspannung"
+msgstr ""
 
 msgid "Low voltage trimming transfer point"
-msgstr "Maximale Eingangspannungsverringerung"
-
-msgid ""
-"Lowest value is higher priority. For master node, use 0 or 1. If preempt is "
-"enabled, it is adjusted to 240 on failure."
 msgstr ""
-"Der niedrigste Wert hat die höchste Priorität. Für den Master Node benutze 0 "
-"oder 1. Wenn preempt eingeschaltet ist, ist es bei Fehlern auf 240 "
-"eingestellt."
+
+msgid "Lowercases names in both directions"
+msgstr "Kleinschreibung in beiden Verzeichnissen"
 
 msgid "MAC address"
 msgstr "MAC-Adresse"
@@ -3806,7 +3792,7 @@ msgid "Minimum frequency"
 msgstr "Minimale Frequenz"
 
 msgid "Minimum incoming voltage seen"
-msgstr "Aufgetretene minimale Eingangsspannung"
+msgstr ""
 
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Minimale Performance, minimale Geräuschbelastung"
@@ -3840,9 +3826,6 @@ msgstr "zusätzliches Modell"
 
 msgid "Model name"
 msgstr "Modellname"
-
-msgid "Modified"
-msgstr ""
 
 msgid "Modifying"
 msgstr "Verändern"
@@ -3898,9 +3881,6 @@ msgstr "NAS4Free WebGUI Anmeldung"
 msgid "NFS"
 msgstr "NFS"
 
-msgid "NFSv4"
-msgstr "NFSv4"
-
 msgid "NIS"
 msgstr "NIS"
 
@@ -3921,7 +3901,7 @@ msgid "NTP time server"
 msgstr "NTP Zeit Server"
 
 msgid "NUT Internal Driver Information"
-msgstr "NUT interne Treiber Imformation"
+msgstr ""
 
 msgid "Name"
 msgstr "Name"
@@ -4000,6 +3980,9 @@ msgstr "Keine DNS-Einstellung gefunden."
 msgid "No RSYNC Client configured"
 msgstr "Kein RSYNC Client eingerichtet"
 
+msgid "No case folding"
+msgstr "Keine Veränderung der Groß-/Kleinschreibung"
+
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
@@ -4076,12 +4059,6 @@ msgstr ""
 msgid "No file was uploaded."
 msgstr "Es wurde keine Datei hochgeladen."
 
-msgid "No new disk found."
-msgstr "Keine neuen Festplatten gefunden."
-
-msgid "No new software raid disk found."
-msgstr "Keine neuen Software-RAID Festplatten gefunden."
-
 msgid "No pool was found."
 msgstr "Keinen Pool gefunden."
 
@@ -4113,7 +4090,7 @@ msgid "Nominal input current (A)"
 msgstr "Eingangsstromstärke (in A)"
 
 msgid "Nominal input line frequency (Hz)"
-msgstr "Nominelle Eingangsfrequenz (Hz)"
+msgstr ""
 
 msgid "Nominal input voltage"
 msgstr "Spannung (nominal)"
@@ -4128,10 +4105,10 @@ msgid "Nominal output voltage (V)"
 msgstr "Ausgangsspannung (nominal in Volt)"
 
 msgid "Nominal value of apparent power (Volt-Amps)"
-msgstr "Nominalwert der Scheinleistung (VA)"
+msgstr ""
 
 msgid "Nominal value of real power (Watts)"
-msgstr "Nominalwert der Wirkleistung (W)"
+msgstr ""
 
 msgid "None"
 msgstr "Keine"
@@ -4156,6 +4133,13 @@ msgstr "Nicht hinzugefügt"
 
 msgid "Note"
 msgstr "Hinweis"
+
+msgid ""
+"Note! Selecting 'Time Machine' on multiple shares will may cause "
+"unpredictable behavior in MacOS."
+msgstr ""
+"Hinweis: Wenn Time Machine auf mehreren Freigaben ausgewählt ist, kann es zu "
+"unvorhersehbaren Verhalten in Mac OS X führen."
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
@@ -4280,7 +4264,7 @@ msgid "Out"
 msgstr "Abgehend"
 
 msgid "Outgoing Power/Inverter Information"
-msgstr "Ausgangsleistungs/Gleichspannungsinformationen"
+msgstr ""
 
 msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr "Ausgehender SMTP Mailserver; z.B. smtp.meinefirma.com."
@@ -4328,7 +4312,6 @@ msgstr "PPTP"
 msgid "PPTP clients"
 msgstr "PPTP Clients"
 
-#, c-format
 msgid "PSK"
 msgstr "PSK"
 
@@ -4354,9 +4337,6 @@ msgid "Pairwise"
 msgstr "Paarweise"
 
 msgid "Parameter xxx (ups.conf or cmdline -x) setting"
-msgstr "Parameter xxx (ups.conf oder cmdline -x) Einstellung"
-
-msgid "Parent Directory"
 msgstr ""
 
 msgid "Partition number"
@@ -4642,6 +4622,9 @@ msgstr "Protokoll"
 msgid "Provider"
 msgstr "Provider"
 
+msgid "Provides compatibility with Apple II clients."
+msgstr "Stellt Kompatibilität mit Apple II Klienten zur Verfügung"
+
 msgid "Proxy"
 msgstr "Proxy"
 
@@ -4783,7 +4766,7 @@ msgid "Relative humidity alarm (enabled/disabled)"
 msgstr "Alarm für Luftfeuchtigkeit (aktiviert/deaktiviert)"
 
 msgid "Relative humidity threshold high (percent)"
-msgstr "Relativer Luftfeuchtigkeitsschwellwert (Prozent)"
+msgstr ""
 
 msgid "Release Notes"
 msgstr "Versionshinweise"
@@ -4892,9 +4875,6 @@ msgstr "Fortfahren"
 msgid "Retry"
 msgstr "Wiederholen"
 
-msgid "Return to Command page"
-msgstr "Zurück zur Kommando Seite"
-
 msgid "Reverse DNS lookup"
 msgstr "Umgekehrte DNS Auflösung"
 
@@ -4976,16 +4956,11 @@ msgstr "S.M.A.R.T. log"
 msgid "SMB2"
 msgstr "SMB2"
 
-msgid "SMB3"
-msgstr "SMB3"
-
 msgid ""
-"SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and "
-"Vista. NT1 is for legacy OS like XP."
+"SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."
 msgstr ""
-"SMB3 ist für aktuelle Betriebssysteme (z.B. Windows 8). SMB2 ist für ältere "
-"Betriebssysteme(z.B. Windows 7 und Windows Vista). NT1 is für alte "
-"Betriebssysteme(z.B. Windows XP)."
+"SMB2 für aktuelle Betriebssysteme wie Windows 7 und Vista. NT1 für alte "
+"Betriebssysteme wie Windows XP."
 
 msgid "SNMP"
 msgstr "SNMP"
@@ -5117,11 +5092,11 @@ msgstr "Wählen Sie den Standort, der Ihnen am nächsten liegt."
 
 #, php-format
 msgid ""
-"Select the server configuration encrypted GZIP file or XML file and click "
-"the button below to restore the configuration."
+"Select the server configuration XML file and click the button below to "
+"restore the configuration."
 msgstr ""
-"Wähle die verschlüsselte GZIP oder XML Server Konfigurationsdatei und drücke "
-"den Knopf unterhalb um die Konfiguration wiederherzustellen."
+"Wählen Sie die XML-Datei mit der Server-Konfiguration aus und klicken Sie "
+"auf den unten stehenden Knopf, um die Konfiguration wiederherzustellen."
 
 msgid ""
 "Select which interface to use. (only selectable if your server has more than "
@@ -5202,6 +5177,10 @@ msgstr "Schreibschutz einschalten"
 msgid "Set share password."
 msgstr "Setze Passwort für Freigabe."
 
+msgid "Set the CNID backend to be used for the volume."
+msgstr ""
+"Legt die CNID Oberfläche fest, die für dieses Volume verwendet werden soll."
+
 msgid "Set the account's primary group to the given group."
 msgstr "Setzt die primäre Gruppe für das Konto in die vorhandene Gruppe."
 
@@ -5240,6 +5219,14 @@ msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
 "Setzt den alternativen Einhängepunkt für den Wurzeldatensatz. Standard ist "
 "/mnt."
+
+msgid ""
+"Sets the database information to be stored in path. You have to specifiy a "
+"writable location, even if the volume is read only."
+msgstr ""
+"Legt die Datenbank fest, die unterhalb von diesem Pfad gespeichert werden "
+"soll. Sie müssen einen Pfad mit Schreibberechtigung angeben, auch dann, wenn "
+"das Volume nur Leseberechtigung hat."
 
 msgid ""
 "Sets the interval between disk checks to N seconds. The minimum allowed "
@@ -5331,9 +5318,6 @@ msgstr ""
 msgid "Skew"
 msgstr "Skew"
 
-msgid "Skip first scan"
-msgstr ""
-
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr ""
 "Sleep - Überprüfe das Gerät es sei denn es befindet sich im SLEEP Modus."
@@ -5389,14 +5373,6 @@ msgstr "Quell - Freigabe"
 msgid "Space Used"
 msgstr "Benutzter Speicherplatz"
 
-msgid ""
-"Space delimited set of IP or CIDR notation that permitted to access the "
-"WebGUI. (empty is the same network of LAN interface)"
-msgstr ""
-"Ein mit Leerzeichen gertrennter Satz von IP Adressen oder CIDR Notationen "
-"denen der Zugriff auf die Weboberfläche erlaubt wird (leer bedeutet dasselbe "
-"Netzwerk wie die LAN Schnittstelle)."
-
 msgid "Spanish"
 msgstr "Spanisch"
 
@@ -5405,9 +5381,6 @@ msgstr "Karg"
 
 msgid "Sparse Volume"
 msgstr "Karger Datentr&auml;ger"
-
-msgid "Specified path is NFSv4 root directory."
-msgstr "Der eingestellte Pfad ist das NFSv4 Stammverzeichnis."
 
 msgid "Specifies how many servers to create."
 msgstr "Legt fest, wie viele Server erstellt werden sollen."
@@ -5517,18 +5490,6 @@ msgstr "Datenträger"
 
 msgid "Store DOS attributes"
 msgstr "DOS-Attribute speichern"
-
-msgid "Store NTFS acls"
-msgstr ""
-
-msgid "Store NTFS acls in Extended Attributes"
-msgstr ""
-
-msgid "Store alternate data streams"
-msgstr ""
-
-msgid "Store alternate data streams in Extended Attributes"
-msgstr ""
 
 msgid ""
 "String displayed in the dialog presented to the user when accessing the URL."
@@ -5788,9 +5749,6 @@ msgstr ""
 "Auf das HAST Volumen kann erst zugegriffen werden wenn der HAST Knoten der "
 "primäre Knoten ist."
 
-msgid "The IP address of the UPS master."
-msgstr "Die IP-Adresse vom UPS master."
-
 msgid "The IP address that this hostname represents."
 msgstr "Die IP Adresse, welche diesen Hostnamen repräsentiert."
 
@@ -5915,12 +5873,6 @@ msgid "The attribute '%s' is not a valid time value."
 msgstr "Das Eingabefeld '%s' enthält eine ungültige Zeitangabe"
 
 #, c-format, php-format
-msgid ""
-"The attribute '%s' is required within %d or more characters to %d characters."
-msgstr ""
-"Das Attribut '%s' muss zwischen %d oder mehr bis zu %d Zeichen aufweisen."
-
-#, c-format, php-format
 msgid "The attribute '%s' is required."
 msgstr "Das Attribut '%s' wird benötigt."
 
@@ -6023,16 +5975,12 @@ msgstr ""
 "Die Konfiguration konnte nicht wiederhergestellt werden. Es wurde keine "
 "Datei hochgeladen!"
 
-#, c-format
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
-"for them to take effect.<br /><b>If this message persist take a look at the "
-"<a href='%s'>system log</a> for more information.</b>"
+"for them to take effect."
 msgstr ""
 "Die Konfiguration wurde geändert.<br />Damit die Änderungen wirksam werden, "
-"müssen sie zuerst bestätigt werden.<br /><b>Wenn diese Meldung weiterhin "
-"erscheint kann das <a href='%s'>System Log</a> weitere Informationen "
-"beinhalten.</b>"
+"müssen sie zuerst bestätigt werden."
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
@@ -6438,6 +6386,7 @@ msgstr ""
 "Der Server wurde auf Werkseinstellungen zurückgesetzt und startet jetzt neu. "
 "Dies kann eine Minute dauern."
 
+#, php-format
 msgid "The server will reboot after restoring the configuration."
 msgstr ""
 "Der Server wird nach dem Wiederherstellen der Konfiguration neu starten."
@@ -6663,12 +6612,6 @@ msgstr ""
 "Schnittstelle verwendet wird."
 
 msgid ""
-"This WLAN cannot be deleted because it is still being used as an interface."
-msgstr ""
-"Dieses WLAN kann nicht gelöscht werden da es noch als Schnittstelle benutzt "
-"wird."
-
-msgid ""
 "This allows you to lower the power consumption of the drive, at the expense "
 "of performance."
 msgstr ""
@@ -6703,6 +6646,11 @@ msgstr ""
 "zur Konfigurationen Ihres UPS zu bekommen schauen Sie bitte in die NUT "
 "(Network UPS Tools) <a href='%s' target='_blank'>Dokumentation</a>."
 
+msgid "This controls how the case of filenames are viewed and stored."
+msgstr ""
+"Diese Option legt fest, wie die Groß-/Kleinschreibung der Dateinamen "
+"gehandhabt wird."
+
 msgid "This controls the access a remote host has to this module."
 msgstr ""
 "Diese Auswahl bestimmt den Umfang der Zugriffsrechte eines fremden Computers "
@@ -6712,6 +6660,16 @@ msgid "This controls the access to this share with an access password."
 msgstr ""
 "Diese Option legt die Verfügbarkeit auf die Freigabe mit einem "
 "Freigabepasswort fest."
+
+msgid ""
+"This controls whether the .AppleDouble directory gets created unless "
+"absolutely needed. This option should not be used if files are access mostly "
+"by Mac computers."
+msgstr ""
+"Dies legt fest, ob das .AppleDouble - Verzeichnis angelegt werden soll, "
+"außer wenn es absolut notwendig ist. Diese Einstellung sollte nicht "
+"verwendet werden, wenn Dateien hauptsächlich von Mac Computern aus "
+"aufgerufen werden."
 
 msgid "This controls whether this share is accessible by guest account."
 msgstr "Dies steuert, ob diese Freigabe über ein Gastkonto zugänglich ist."
@@ -6740,6 +6698,14 @@ msgstr ""
 
 msgid "This extent is used."
 msgstr "Dieser Bereich wird bereits benutzt."
+
+msgid ""
+"This forces filenames to be restricted to the character set used by Windows. "
+"This is not recommended for shares used principally by Mac computers."
+msgstr ""
+"Dies limitiert Dateinamen auf den unter Windows verwendetet Zeichensatz. "
+"Dies wird nicht für Freigaben empfohlen die hauptsächlich von Mac Computern "
+"benutzt werden."
 
 msgid "This function is unsupported. Use it on your own risk!"
 msgstr ""
@@ -6983,9 +6949,6 @@ msgid "This rule is triggered whenever the selected event directive occurs."
 msgstr ""
 "Diese Regel wird ausgelöst, wenn das ausgelöste Richtlinienereignis eintritt"
 
-msgid "This server uses default swap."
-msgstr "Der Server benutzt die Standard Auslagerungsdatei."
-
 msgid "This tag already exists."
 msgstr "Diese Bezeichnung existiert bereits !"
 
@@ -7049,7 +7012,7 @@ msgid "Time Machine"
 msgstr "Time Machine"
 
 msgid "Time before the load will be rebooted"
-msgstr "Zeit bevor die Last neu gestartet wird"
+msgstr ""
 
 msgid "Time before the load will be shutdown"
 msgstr "Zeit bis der Prozess beendet wird"
@@ -7181,11 +7144,6 @@ msgstr ""
 "Schaltknopf ihres Webbrowsers, um sich den Stand fehlgeschlagener Abfragen "
 "anzeigen zu lassen."
 
-msgid ""
-"Tracks whose path contains one or more of these comma separated strings will "
-"be treated as a compilation."
-msgstr ""
-
 msgid "Transcoding"
 msgstr "Umwandlung"
 
@@ -7246,9 +7204,6 @@ msgstr "Verwendeter Extent-Typ"
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
-msgid "UFS"
-msgstr "UFS"
-
 #, php-format
 msgid ""
 "UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). "
@@ -7303,13 +7258,13 @@ msgid "UPS beeper status"
 msgstr "USV Signalton Status"
 
 msgid "UPS coldstarts from battery"
-msgstr "USV Kaltstart von Batterie"
+msgstr ""
 
 msgid "UPS disabled"
 msgstr "UPS deaktiviert"
 
 msgid "UPS external contact sensors"
-msgstr "USV externer Kontaktsensor"
+msgstr ""
 
 msgid "UPS firmware"
 msgstr "UPS Firmwareversion"
@@ -7325,7 +7280,7 @@ msgstr ""
 "Unterbrecherfreie Stromversorgung hat niedrigen Batteriestand erreicht."
 
 msgid "UPS starts when mains is (re)applied"
-msgstr "USV startet wenn das Netz wieder verfügbar ist"
+msgstr ""
 
 msgid "UPS status"
 msgstr "USV Status"
@@ -7414,6 +7369,12 @@ msgstr "Verzeichnis hochladen"
 #, php-format
 msgid "Upload directory of the webserver. The default is %s."
 msgstr "Verzeichnis des Webservers hochladen. Standard ist %s."
+
+msgid "Uppercases names in both directions"
+msgstr "Großschreibung in beiden Verzeichnissen"
+
+msgid "Use AFP3 unix privileges."
+msgstr "Benutze AFP3 Unix privileges."
 
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
@@ -7580,9 +7541,6 @@ msgstr "Datenträger"
 msgid "Volume Name"
 msgstr "Volume Name"
 
-msgid "Volume Size Limit"
-msgstr "Datenträger Größenbegrenzung"
-
 msgid "Volume label"
 msgstr "Datenträgeretikett (Volume label)"
 
@@ -7604,10 +7562,6 @@ msgstr "WINS Server"
 msgid "WINS server IP address (e.g. from MS Active Directory server)."
 msgstr "WINS Server IP-Adresse (z.B. vom MS Active Directory Server)."
 
-msgid "WLAN"
-msgstr "WLAN"
-
-#, c-format
 msgid "WPA"
 msgstr "WPA"
 
@@ -7619,9 +7573,6 @@ msgstr "WPA-PSK (Pre Shared Key)"
 
 msgid "WPA-PSK WPA-EAP"
 msgstr "WPA-PSK WPA-EAP"
-
-msgid "WPA2"
-msgstr "WPA2"
 
 msgid "Wait time"
 msgstr "Wartezeit"
@@ -7679,20 +7630,8 @@ msgstr ""
 "Wenn ein Client sich mit dem Server verbindet, dann wird versucht durch das "
 "Ident Protokoll den Remote-Benutzernamen zu identifizieren."
 
-msgid ""
-"When the negotiation is complete, you will not be able to change the SMB "
-"protocol. If you change it, you will need to restart the client connected to "
-"this server."
-msgstr ""
-"Wenn die Abstimmung fertiggestellt wird ist es nicht mehr möglich, das SMB "
-"Protokoll zu ändern. Wenn es geändert wird ist ein Neustart des zu diesem "
-"Server verbundenen Clients erforderlich."
-
 msgid "Where to save downloaded data."
 msgstr "Wo sollen die heruntergeladenen Daten gespeichert werden?"
-
-msgid "Whether compilations should be shown together under Various Artists."
-msgstr ""
 
 msgid ""
 "Whether scans should be skipped if there are no users connected. This allows "
@@ -7701,9 +7640,6 @@ msgstr ""
 "Schaltet ein, ob Überprüfungen übersprungen werden sollen, wenn kein "
 "Anwender angemeldet ist. Dies stellt sicher, dass die Festplatten in den "
 "Ruhemodus gehen, wenn keine Benutzer angemeldet sind."
-
-msgid "Whether to skip initial boot-up scan."
-msgstr ""
 
 msgid "Who"
 msgstr "Wer"
@@ -7740,11 +7676,11 @@ msgid "Yes"
 msgstr "Ja"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg add "
-"command.<br />Example: pkg add packagename"
+"You can also install a package via SSH or console using the the pkg_add "
+"command.<br />Example: pkg_add -r packagename"
 msgstr ""
-"Man kann ein Paket auch mittels SSH oder der Konsole mit dem pkg add "
-"Kommando installieren.<br />Beispiel: pkg add packagename"
+"Sie können ebenfalls ein Packet mittels SSH oder Konsole unter Benutzung des "
+"Kommandos pkg_add installieren.<br />Beispiel: pkg_add -r Packetname"
 
 msgid "You can use the following parameters for substitution:"
 msgstr "Die folgenden Parameter können für die Ersetzung genutzt werden"
@@ -7790,14 +7726,6 @@ msgstr ""
 msgid "You may specify logical block length (%d by default)."
 msgstr "Sie können die logische Blocklänge zuweisen (Standard ist %d)"
 
-#, php-format
-msgid ""
-"You must <a href='%s'>reboot</a> the system before you can upgrade the "
-"firmware."
-msgstr ""
-"Vor dem Upgrade der Firmware muss ein <a href='%s'>Neustart</a> des Systems "
-"durchgeführt werden."
-
 msgid "You must add disks first."
 msgstr "Die Festplatten müssen zuerst hinzugefügt werden."
 
@@ -7808,6 +7736,10 @@ msgstr "Sie müssen den selben IP Typ für Netzwek und Gateway eingeben."
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr ""
 "Sie müssen ein Minimum von %d MB an RAM haben um ein iSCSI-Ziel zu nutzen."
+
+msgid "You must reboot the system before you can upgrade the firmware."
+msgstr ""
+"Sie müssen das System neu starten, bevor Sie diese Firmware upgraden können."
 
 msgid "You must select at least one authentication method."
 msgstr "Sie müssen mind. eine Authentifizierungsmethode auswählen."
@@ -7863,12 +7795,17 @@ msgstr "Zeroconf/Bonjour"
 msgid "adaptive (low power consumption)"
 msgstr "adaptiv (geringer Stromverbrauch)"
 
-#, php-format
-msgid "add any supplemental parameters"
-msgstr "hinzufügen von zusätzlichen Parametern"
+msgid "all disks are imported."
+msgstr "Alle Platten importiert."
 
 msgid "all encrypted disks are imported."
 msgstr "Alle verschl&uuml;sselten Platten importiert."
+
+msgid "all software raid disks are imported."
+msgstr "Alle Software-RAID Platten importiert."
+
+msgid "cachecnid"
+msgstr "cachecnid"
 
 msgid "change failed."
 msgstr "Die Änderungen wurden nicht durchgeführt"
@@ -7876,8 +7813,17 @@ msgstr "Die Änderungen wurden nicht durchgeführt"
 msgid "chroot() everyone, but root."
 msgstr "Wurzel-Verzeichnis für alle Benutzer ändern, bis auf den root."
 
+msgid "cnidscheme"
+msgstr "cnidscheme"
+
+msgid "crlf"
+msgstr "crlf"
+
 msgid "day(s)"
 msgstr "Tag(e)"
+
+msgid "dbpath"
+msgstr "dbpath"
 
 msgid "detected an error while importing."
 msgstr "Fehler beim Importieren festgestellt."
@@ -7893,10 +7839,10 @@ msgid "get target info failed."
 msgstr "Keine Info über Ziel erhalten"
 
 msgid "greatest settable high voltage transfer point"
-msgstr "größter einstellbarer maximaler Spannungserhöhungsschwellwert"
+msgstr ""
 
 msgid "greatest settable low voltage transfer point"
-msgstr "größter einstellbarer minimaler Spannungserhöhungsschwellwert"
+msgstr ""
 
 msgid "hiadaptive (high performance)"
 msgstr "hi-adaptiv (hohe Leistung)"
@@ -7950,17 +7896,44 @@ msgstr "mirroring"
 msgid "mount"
 msgstr "Einhängen"
 
+msgid "mswindows"
+msgstr "mswindows"
+
 msgid "n/a"
 msgstr "k.A."
+
+msgid "no new disk found."
+msgstr "keine neue Platte gefunden."
 
 msgid "no new encrypted disk found."
 msgstr "keine neuen verschl&uuml;sselten Platten gefunden."
 
+msgid "no new software raid disk found."
+msgstr "keine neuen Software RAID Platte gefunden."
+
+msgid "noadouble"
+msgstr "noadouble"
+
+msgid "nodev"
+msgstr "nodev"
+
+msgid "nofileid"
+msgstr "nofileid"
+
+msgid "nohex"
+msgstr "nohex"
+
 msgid "none"
 msgstr "keine"
 
+msgid "nostat"
+msgstr "nostat"
+
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "prodos"
+msgstr "prodos"
 
 msgid "rc.conf"
 msgstr "rc.conf"
@@ -7978,10 +7951,10 @@ msgid "second(s)"
 msgstr "Sekunde(n)"
 
 msgid "smallest settable high voltage transfer point"
-msgstr "kleinster einstellbarer maximaler Spannungserhöhungsschwellwert"
+msgstr ""
 
 msgid "smallest settable low voltage transfer point"
-msgstr "kleinster einstellbarer minimaler Spannungserhöhungsschwellwert"
+msgstr ""
 
 msgid "striping"
 msgstr "striping"
@@ -8000,6 +7973,9 @@ msgstr "umask"
 
 msgid "umount"
 msgstr "Aushängen"
+
+msgid "upriv"
+msgstr "upriv"
 
 #, php-format
 msgid "version:"

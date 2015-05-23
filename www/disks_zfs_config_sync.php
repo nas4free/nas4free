@@ -3,7 +3,7 @@
 	disks_zfs_config_sync.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -59,12 +59,12 @@ $spa = @exec("sysctl -q -n vfs.zfs.version.spa");
 if ($spa == '' || $spa < 21) {
 	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin', $rawdata);
 } else {
-	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin,reservation,dedup,sync,atime,aclinherit,aclmode,primarycache,secondarycache', $rawdata);
+	mwexec2('zfs list -H -t filesystem -o name,mountpoint,compression,canmount,quota,used,available,xattr,snapdir,readonly,origin,reservation,dedup,sync,atime', $rawdata);
 }
 foreach($rawdata as $line)
 {
 	if ($line == 'no datasets available') { continue; }
-	list($fname, $mpoint, $compress, $canmount, $quota, $used, $avail, $xattr, $snapdir, $readonly, $origin, $reservation, $dedup, $sync, $atime, $aclinherit, $aclmode, $primarycache, $secondarycache) = explode("\t", $line);
+	list($fname, $mpoint, $compress, $canmount, $quota, $used, $avail, $xattr, $snapdir, $readonly, $origin, $reservation, $dedup, $sync, $atime) = explode("\t", $line);
 	if (strpos($fname, '/') !== false) // dataset
 	{
 		if (empty($origin) || $origin != '-') continue;
@@ -83,10 +83,6 @@ foreach($rawdata as $line)
 			'dedup' => $dedup,
 			'sync' => $sync,
 			'atime' => $atime,
-			'aclinherit' => $aclinherit,
-			'aclmode' => $aclmode,
-			'primarycache' => $primarycache,
-			'secondarycache' => $secondarycache,
 			'desc' => '',
 		);
 		list($mp_owner, $mp_group, $mp_mode) = array('root', 'wheel', 0777);
@@ -220,7 +216,7 @@ foreach ($rawdata as $line)
 		else if ($type == 'log')
 		{
 			$dev = $m[1];
-			if (preg_match("/^mirror-([0-9]+)$/", $dev, $m)) {
+			if ($dev == 'mirror') {
 				$type = "log-mirror";
 			}
 		}
@@ -393,38 +389,20 @@ if (isset($_POST['import_config']))
 				{
 					$disk = array_search_ex($device, $disks, 'devicespecialfile');
 					$disk = $disks[$disk];
-					$serial = "";
-					if (!empty($disk['serial'])) {
-						$serial = $disk['serial'];
-					}
-					if (($serial == "n/a") || ($serial == gettext("n/a"))) {
-						$serial = "";
-					}
 					$cfg['disks']['disk'][] = array(
 						'uuid' => uuid(),
 						'name' => $disk['name'],
-						'id' => $disk['id'],
 						'devicespecialfile' => $disk['devicespecialfile'],
-						'model' => !empty($disk['model']) ? $disk['model'] : "",
-						'desc' => !empty($disk['desc']) ? $disk['desc'] : "",
-						'type' => $disk['type'],
-						'serial' => $serial,
-						'size' => $disk['size'],
 						'harddiskstandby' => 0,
 						'acoustic' => 0,
+						'fstype' => $encrypted ? 'geli' : 'zfs',
 						'apm' => 0,
 						'transfermode' => 'auto',
-						'fstype' => $encrypted ? 'geli' : 'zfs',
-						'controller' => $disk['controller'],
-						'controller_id' => $disk['controller_id'],
-						'controller_desc' => $disk['controller_desc'],
-						'smart' => array(
-							'devicefilepath' => $disk['smart']['devicefilepath'],
-							'devicetype' => $disk['smart']['devicetype'],
-							'devicetypearg' => $disk['smart']['devicetypearg'],
-							'enable' => false,
-							'extraoptions' => "",
-						),
+						'type' => $disk['type'],
+						'desc' => $disk['desc'],
+						'size' => $disk['size'],
+						'serial' => $disk['serial'],
+						'smart' => false,
 					);
 				}
 				else if ($index !== false && isset($_POST['import_disks_overwrite']))
@@ -469,10 +447,6 @@ if (isset($_POST['import_config']))
 		$config['geli'] = $cfg['geli'];
 		updatenotify_set('zfs_import_config', UPDATENOTIFY_MODE_UNKNOWN, true);
 		write_config();
-		// remove existing pool cache
-		conf_mount_rw();
-		unlink_if_exists("{$g['cf_path']}/boot/zfs/zpool.cache");
-		conf_mount_ro();
 		header('Location: disks_zfs_config_current.php');
 		exit();
 	}
@@ -571,22 +545,18 @@ if (!$health)
 				</table>
 				<br />
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
-					<?php html_titleline(gettext('Datasets').' ('.count($zfs['datasets']['dataset']).')', 12);?>
+					<?php html_titleline(gettext('Datasets').' ('.count($zfs['datasets']['dataset']).')', 11);?>
 					<tr>
 						<td width="1%" class="listhdrlr">&nbsp;</td>
 						<td width="14%" class="listhdrr"><?=gettext("Name");?></td>
 						<td width="13%" class="listhdrr"><?=gettext("Pool");?></td>
-						<td width="7%" class="listhdrr"><?=gettext("Compression");?></td>
-						<td width="7%" class="listhdrr"><?=gettext("Dedup");?></td>
+						<td width="9%" class="listhdrr"><?=gettext("Compression");?></td>
+						<td width="9%" class="listhdrr"><?=gettext("Dedup");?></td>
 						<td width="9%" class="listhdrr"><?=gettext("Sync");?></td>
-						<td width="9%" class="listhdrr"><?=gettext("ACL inherit");?></td>
-						<td width="9%" class="listhdrr"><?=gettext("ACL mode");?></td>
-						<td width="7%" class="listhdrr"><?=gettext("Canmount");?></td>
-						<td width="8%" class="listhdrr"><?=gettext("Quota");?></td>
-<!--
-						<td width="8%" class="listhdrr"><?=gettext("Extended attributes");?></td>
--->
-						<td width="7%" class="listhdrr"><?=gettext("Readonly");?></td>
+						<td width="9%" class="listhdrr"><?=gettext("Canmount");?></td>
+						<td width="9%" class="listhdrr"><?=gettext("Quota");?></td>
+						<td width="9%" class="listhdrr"><?=gettext("Extended attributes");?></td>
+						<td width="9%" class="listhdrr"><?=gettext("Readonly");?></td>
 						<td width="9%" class="listhdrr"><?=gettext("Snapshot Visibility");?></td>
 					</tr>
 					<?php foreach ($zfs['datasets']['dataset'] as $dataset):?>
@@ -597,13 +567,9 @@ if (!$health)
 						<td class="listr"><?= $dataset['compression']; ?></td>
 						<td class="listr"><?= $dataset['dedup']; ?></td>
 						<td class="listr"><?= $dataset['sync']; ?></td>
-						<td class="listr"><?= $dataset['aclinherit']; ?></td>
-						<td class="listr"><?= $dataset['aclmode']; ?></td>
 						<td class="listr"><?= empty($dataset['canmount']) ? 'on' : $dataset['canmount']; ?></td>
 						<td class="listr"><?= empty($dataset['quota']) ? 'none' : $dataset['quota']; ?></td>
-<!--
 						<td class="listr"><?= empty($dataset['xattr']) ? 'off' : 'on'; ?></td>
--->
 						<td class="listr"><?= empty($dataset['readonly']) ? 'off' : 'on'; ?></td>
 						<td class="listr"><?= empty($dataset['snapdir']) ? 'hidden' : 'visible'; ?></td>
 					</tr>

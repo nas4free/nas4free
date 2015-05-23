@@ -3,7 +3,7 @@
 	nl_mimes.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -42,11 +42,10 @@ $GLOBALS["mimes"]=array(
 	"dir"		=> "Folder",
 	"exe"		=> "Programma",
 	"file"		=> "Bestand",
-	"link"		=> "Link",
 
 	// text
 	"text"		=> "Tekstbestand",
-
+	
 	// programming
 	"php"		=> "PHP Script",
 	"sql"		=> "SQL Bestand",
@@ -66,13 +65,13 @@ $GLOBALS["mimes"]=array(
 
 	// Pascal
 	"pas"		=> "Pascal Bestand",
-
+	
 	// images
 	"gif"		=> "GIF Afbeelding",
 	"jpg"		=> "JPG Afbeelding",
 	"bmp"		=> "BMP Afbeelding",
 	"png"		=> "PNG Afbeelding",
-
+	
 	// compressed
 	"zip"		=> "ZIP Archief",
 	"tar"		=> "TAR Archief",
@@ -82,13 +81,14 @@ $GLOBALS["mimes"]=array(
 	"iso"		=> "ISO Bestand",
 	"mds"		=> "MDS Bestand",
 
+	
 	// music
 	"mp3"		=> "MP3 Audio Bestand",
 	"wav"		=> "WAV Audio Bestand",
 	"midi"		=> "MIDI Audio Bestand",
 	"real"		=> "RealAudio Bestand",
 	"flac"		=> "FLAC Audio Bestand",
-
+	
 	// movie
 	"mpg"		=> "MPG Bestand",
 	"mov"		=> "MOV Bestand",
@@ -96,7 +96,7 @@ $GLOBALS["mimes"]=array(
 	"flash"	=> "Flash Bestand",
 	"mkv"		=> "MKV Bestand",
 	"vob"		=> "VOB Bestand",
-
+	
 	// Micosoft / Adobe
 	"word"		=> "Word Document",
 	"excel"	=> "Excel Document",
@@ -105,6 +105,4 @@ $GLOBALS["mimes"]=array(
 	"c"		=> "C Bestand",
 	"psd"		=> "Photoshop Bestand",
 	"point"	=> "PowerPoint Presentation"
-);
-
-?>
+); ?>

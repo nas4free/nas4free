@@ -1,15 +1,16 @@
 #!/bin/sh
 #
+# $FreeBSD: src/etc/rc.d/zfs,v 1.5.8.1 2009/04/15 03:14:26 kensmith Exp $
+#
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # Portions of freenas (http://www.freenas.org).
 # Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
 # All rights reserved.
 #
-# $FreeBSD: src/etc/rc.d/zfs
-# Changes: Add function zfs_init: Import zpool's if necessary
+# Changes:	- Add function zfs_init: Import zpool's if necessary
 #
 
 # PROVIDE: zfs
@@ -59,12 +60,6 @@ zfs_init()
 		info Importing ZFS pools...
 		zpool import -d /dev -f -a
 		zfs umount -a
-		# if cache is created, write it to boot device
-		if [ -e /boot/zfs/zpool.cache -a -d /cf/boot/zfs ]; then
-			mount -u -o rw /cf
-			cp -p /boot/zfs/zpool.cache /cf/boot/zfs/zpool.cache
-			mount -u -o ro /cf		    
-		fi
 	fi
 }
 
@@ -77,12 +72,20 @@ zfs_start_jail()
 
 zfs_start_main()
 {
-	zfs mount -va
+	zfs mount -a
 	zfs share -a
 	if [ ! -r /etc/zfs/exports ]; then
 		touch /etc/zfs/exports
 	fi
-	
+	# Enable swap on ZVOLs with property org.freebsd:swap=on.
+	zfs list -H -o org.freebsd:swap,name -t volume | \
+	while read state name; do
+		case "${state}" in
+		[oO][nN])
+			swapon /dev/zvol/${name}
+			;;
+		esac
+	done
 }
 
 zfs_start()
@@ -104,7 +107,15 @@ zfs_stop_jail()
 
 zfs_stop_main()
 {
-	
+	# Disable swap on ZVOLs with property org.freebsd:swap=on.
+	zfs list -H -o org.freebsd:swap,name -t volume | \
+	while read state name; do
+		case "${state}" in
+		[oO][nN])
+			swapoff /dev/zvol/${name}
+			;;
+		esac
+	done
 	zfs unshare -a
 	zfs unmount -a
 }

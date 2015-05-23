@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-05-20 20:17+0000\n"
-"PO-Revision-Date: 2015-01-12 16:36+0000\n"
-"Last-Translator: Mucahid Zeyrek <mucahid.zeyrek@dhl.com>\n"
+"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"PO-Revision-Date: 2012-07-09 19:53+0000\n"
+"Last-Translator: Hasan Yılmaz <iletisim@hasanyilmaz.net>\n"
 "Language-Team: NAS4Free <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-05-22 06:37+0000\n"
-"X-Generator: Launchpad (build 17514)\n"
+"X-Launchpad-Export-Date: 2014-04-21 22:09+0000\n"
+"X-Generator: Launchpad (build 16985)\n"
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-Language: Turkish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -81,10 +81,6 @@ msgstr ""
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s zaten %s%d tarafından kullanılmaktadır."
-
-#, php-format
-msgid "%s: cannot get mirror name."
-msgstr ""
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -203,10 +199,6 @@ msgid "A valid IP address must be specified."
 msgstr "Geçerli bir İP adresinin belirtilmiş olması gerekir."
 
 msgid ""
-"A valid IP address or CIDR notation must be specified for the hosts allow."
-msgstr ""
-
-msgid ""
 "A valid IPv4 address must be specified for the primary/secondary DNS server."
 msgstr "Birincil ve ikincil DNS sunucusu için bir geçerli IPv4 adresi girin"
 
@@ -248,12 +240,6 @@ msgstr "Geçerli bir ön ek (1-128) belirtilmiş olması gerekir."
 msgid "A valid systctl MIB value."
 msgstr "Geçerli bir Systctl MIB değeri."
 
-msgid "ACL inherit"
-msgstr ""
-
-msgid "ACL mode"
-msgstr ""
-
 msgid "AD authentication disabled"
 msgstr "AD doğrulaması devredışı"
 
@@ -266,9 +252,6 @@ msgstr "AFP"
 msgid "AG"
 msgstr "AG"
 
-msgid "AIO module"
-msgstr ""
-
 msgid "AIO read size"
 msgstr "AIO okuma boyutu"
 
@@ -276,9 +259,6 @@ msgid "AIO write size"
 msgstr "AIO yazma boyutu"
 
 msgid "ALL interfaces"
-msgstr "TÜM arayüzler"
-
-msgid "AP mode"
 msgstr ""
 
 msgid "ARP Tables"
@@ -406,7 +386,7 @@ msgid "Add portal group"
 msgstr "Portal grubu ekle"
 
 msgid "Add resource"
-msgstr "Kaynak ekle"
+msgstr ""
 
 msgid "Add rule"
 msgstr "Kural ekle"
@@ -492,7 +472,7 @@ msgid "Aggregation protocol"
 msgstr "Yığın protokolü"
 
 msgid "Aggressive"
-msgstr "Agresif"
+msgstr ""
 
 msgid "Albanian"
 msgstr "Arnavutça"
@@ -508,15 +488,9 @@ msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr ""
 "%s konumu tanımlanmamış.Tüm dizinler tanımlanmış bir konuma ihtiyaç duyuyor."
 
-msgid "All disks are imported."
-msgstr ""
-
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
-msgstr ""
-
-msgid "All software raid disks are imported."
 msgstr ""
 
 msgid "All users will have the root privilege."
@@ -586,6 +560,11 @@ msgstr "Her zaman açık."
 msgid "Always scan"
 msgstr "Her zaman tara"
 
+msgid ""
+"Always use 0 for device number, helps when the device number is not constant "
+"across a reboot, cluster, ..."
+msgstr ""
+
 msgid "Ambient Conditions From External Probe Equipment"
 msgstr ""
 
@@ -600,6 +579,9 @@ msgstr "Bu isim ile zaten bir bilgisayar mevcut"
 
 msgid "An interface with the specified description already exists."
 msgstr "Belirtmiş olduğunuz tanım zaten bir arayüzde tanımlanmış."
+
+msgid "Anonymous"
+msgstr "Anonim"
 
 msgid "Anonymous bind"
 msgstr ""
@@ -621,7 +603,7 @@ msgid "Anonymous users only"
 msgstr "Sadece anonim kullanıcılar"
 
 msgid "Any"
-msgstr "Herhangi"
+msgstr ""
 
 msgid "Apple Filing Protocol"
 msgstr ""
@@ -697,6 +679,12 @@ msgstr "Otomatik boyut"
 
 msgid "AutoScale"
 msgstr "OtomatikÖlçeklendirme"
+
+msgid "Automatic disk discovery"
+msgstr "Otomatik disk kurtarma"
+
+msgid "Automatic disk discovery mode"
+msgstr "Otomatik disk kurtarma modu"
 
 msgid "Autoselect"
 msgstr "Otomatik seçim"
@@ -803,12 +791,6 @@ msgid "Blank time"
 msgstr "Belirsiz zaman"
 
 msgid "Blocksize"
-msgstr ""
-
-#, php-format
-msgid ""
-"Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or "
-"resize boot partition of %s.\n"
 msgstr ""
 
 msgid "Bridge"
@@ -934,6 +916,9 @@ msgstr "Arayüz hakkında veri alınamıyor"
 msgid "Capacity"
 msgstr "Kapasite"
 
+msgid "Case Folding"
+msgstr ""
+
 msgid ""
 "Causes the server to display the network information for the specified IP "
 "address or DNS hostname to the client, on the assumption that that IP "
@@ -974,9 +959,6 @@ msgstr "Çince (Basitleştirilmiş)"
 msgid "Chinese (Traditional)"
 msgstr "Çince (Geleneksel)"
 
-msgid "Choose UPS mode."
-msgstr ""
-
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
 
@@ -1001,13 +983,17 @@ msgid ""
 "the upgrade process."
 msgstr ""
 
-msgid ""
-"Click this button to download the server configuration in encrypted GZIP "
-"file or XML format."
+msgid "Click this button to download the server configuration in XML format."
 msgstr ""
 
 msgid "Client"
 msgstr "İstemci"
+
+msgid "Client sees lowercase, server sees uppercase"
+msgstr "İstemci Küçük Harfleri, Sunucu Büyük Harfleri görür."
+
+msgid "Client sees uppercase, server sees lowercase"
+msgstr "İstemci Büyük Harfleri, Sunucu Küçük Harfleri görür"
 
 msgid "Clone"
 msgstr ""
@@ -1046,9 +1032,6 @@ msgstr "Ortak İnternet Dosya Sistemi"
 
 msgid "Community"
 msgstr "Topluluk"
-
-msgid "Compilations directories"
-msgstr ""
 
 msgid "Compliant profile to be used."
 msgstr "Compliant Profil kullanılmış."
@@ -1220,20 +1203,7 @@ msgstr ""
 msgid "Current Version:"
 msgstr ""
 
-msgid "Current administrator password is used for decryption."
-msgstr ""
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr ""
-
 msgid "Current password"
-msgstr ""
-
-msgid ""
-"Current password is default password. You should use your own password."
 msgstr ""
 
 msgid "Current value of apparent power (Volt-Amps)"
@@ -1260,6 +1230,9 @@ msgstr "Çek"
 msgid "DAAP"
 msgstr "DAAP"
 
+msgid "DDP"
+msgstr "DDP"
+
 msgid "DHCP"
 msgstr "DHCP"
 
@@ -1267,6 +1240,9 @@ msgid "DLNA/UPnP"
 msgstr ""
 
 msgid "DLNA/UPnP Media Server"
+msgstr ""
+
+msgid "DNLA/UPnP"
 msgstr ""
 
 msgid "DNS settings"
@@ -1516,14 +1492,8 @@ msgstr "Hedef Paylaşım"
 msgid "Detected"
 msgstr "Algılandı"
 
-msgid "Detected Language:<br />(Change if needed)"
-msgstr ""
-
 msgid "Detected RSYNC remote shares"
 msgstr "RSYNC Uzak paylaşım algıladı"
-
-msgid "Detected an error while importing."
-msgstr ""
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -1599,6 +1569,10 @@ msgstr "Dizin çıkartılabilir aygıtlar içeriyor. (örn /mnt/iscsi/)"
 msgid "Directory to watch for new .torrent files."
 msgstr ""
 
+msgid "Disable AFP-over-Appletalk to prevent DDP connections."
+msgstr ""
+"DDP bğlantılarını engellemek için AFP-over-Appletalk devre dışı bırakın"
+
 msgid "Disable File Manager"
 msgstr "Dosya Yöneticisini Devredışı Bırak"
 
@@ -1619,6 +1593,11 @@ msgstr "Kapanırken ve Açılırken hoparler Bip sesini Devre Dışı bırak"
 
 msgid "Disabled"
 msgstr "Devre Dışı bırak"
+
+msgid ""
+"Disables :hex translations for anything except dot files. This option makes "
+"the '/' character illegal."
+msgstr ""
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -1824,8 +1803,16 @@ msgstr "Domain adı, örenğin mynet.com."
 msgid "Don't Erase MBR"
 msgstr "MBR silinemez"
 
+msgid "Don't advertise createfileid, resolveid, deleteid calls."
+msgstr "deleteid, resolveid, createfileid çağrılarını bildirme"
+
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr "MBR silinemez (Bazı RAID kontrol kartları için yararlıdır)"
+
+msgid ""
+"Don't stat volume path when enumerating volumes list, useful for "
+"automounting or volumes created by a preexec script."
+msgstr ""
 
 msgid "Donate"
 msgstr "Bağış"
@@ -2014,9 +2001,6 @@ msgstr ""
 msgid "Enable"
 msgstr "Etkinleştir"
 
-msgid "Enable ACL inheritance"
-msgstr ""
-
 msgid "Enable Advanced Format (4KB sector)"
 msgstr "Gelişmiş Format'ı (4KB sector) Etkinleştir"
 
@@ -2025,9 +2009,6 @@ msgstr "Asynchronous I/O (AIO) Etkinleştir"
 
 msgid "Enable FXP protocol."
 msgstr "FXP protocolünü Aktifleştir"
-
-msgid "Enable NFSv4 server."
-msgstr ""
 
 msgid "Enable NTP"
 msgstr "NTP'yi Aktifleştir"
@@ -2043,9 +2024,6 @@ msgstr ""
 msgid "Enable TLS/SSL connections."
 msgstr "TLS/SSL bağlantılarını etkinleştir."
 
-msgid "Enable Time Machine support"
-msgstr ""
-
 msgid "Enable ZFS ACL"
 msgstr ""
 
@@ -2053,11 +2031,17 @@ msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr ""
 "Zeroconf/Bonjour hizmetleri bu aygıt üzerinde yayın yapmasını etkinleştir"
 
+msgid "Enable administrative DLNA/UPnP WebGUI."
+msgstr ""
+
 msgid "Enable anonymous bind."
 msgstr ""
 
 msgid "Enable authentication."
 msgstr "Kimlik doğrulamasını etkinleştir."
+
+msgid "Enable automatic disk discovery."
+msgstr "Otomatik disk kurtarmayı etkinleştir."
 
 msgid "Enable compression."
 msgstr "Sıkıştırmayı Aktifleştir"
@@ -2075,9 +2059,6 @@ msgid "Enable distributed hash table."
 msgstr "Dağıtılabilen hash tablolarını etkinleştir."
 
 msgid "Enable domain wildcarding."
-msgstr ""
-
-msgid "Enable encryption."
 msgstr ""
 
 msgid "Enable extended attribute support"
@@ -2176,6 +2157,14 @@ msgstr ""
 
 msgid "Enabled"
 msgstr "Etkinleştirildi"
+
+msgid ""
+"Enables crlf translation for TEXT files, automatically converting macintosh "
+"line breaks into Unix ones. Use of this option might be dangerous since some "
+"older programs store binary data files as type 'TEXT' when saving and switch "
+"the filetype in a second step. Afpd will potentially destroy such files when "
+"'erroneously' changing bytes in order to do line break translation."
+msgstr ""
 
 msgid "Encrypted"
 msgstr "Şifreli"
@@ -2571,9 +2560,6 @@ msgstr "Grup"
 msgid "Group ID"
 msgstr "Grup Kimliği"
 
-msgid "Group compilations"
-msgstr ""
-
 msgid "Group description."
 msgstr "Grup tanımlaması"
 
@@ -2809,6 +2795,12 @@ msgid ""
 msgstr ""
 
 msgid ""
+"If set afpd uses the ID information stored in AppleDouble V2 header files to "
+"reduce database load. Don't set this option if the volume is modified by non "
+"AFP clients (NFS/SMB/local)."
+msgstr ""
+
+msgid ""
 "If the selected disk/partition is mounted it will be unmounted temporarily "
 "to perform selected command, otherwise the commands work in read-only "
 "mode.<br />Service disruption to users accessing this mount will occur "
@@ -2880,9 +2872,6 @@ msgstr "İçerde"
 msgid "In most cases, 'public' is used here."
 msgstr "Genellikle burada \"public\" kullanılır."
 
-msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
-msgstr ""
-
 msgid "Include basic hardware information."
 msgstr ""
 
@@ -2905,9 +2894,6 @@ msgid "Information & Manual"
 msgstr ""
 
 msgid "Information & Manuals"
-msgstr ""
-
-msgid "Inherit ACL"
 msgstr ""
 
 msgid "Inherit permissions"
@@ -3315,9 +3301,6 @@ msgstr "Günlük"
 msgid "Log (mirror)"
 msgstr ""
 
-msgid "Log Device"
-msgstr ""
-
 msgid "Log Level"
 msgstr "Günlükleme Seviyesi"
 
@@ -3363,10 +3346,8 @@ msgstr ""
 msgid "Low voltage trimming transfer point"
 msgstr ""
 
-msgid ""
-"Lowest value is higher priority. For master node, use 0 or 1. If preempt is "
-"enabled, it is adjusted to 240 on failure."
-msgstr ""
+msgid "Lowercases names in both directions"
+msgstr "Her iki talimatdada küçük harfli isimler"
 
 msgid "MAC address"
 msgstr "MAC adresi"
@@ -3595,9 +3576,6 @@ msgstr ""
 msgid "Model name"
 msgstr ""
 
-msgid "Modified"
-msgstr ""
-
 msgid "Modifying"
 msgstr ""
 
@@ -3649,9 +3627,6 @@ msgstr ""
 
 msgid "NFS"
 msgstr "NFS"
-
-msgid "NFSv4"
-msgstr ""
 
 msgid "NIS"
 msgstr "NIS"
@@ -3746,6 +3721,9 @@ msgstr ""
 msgid "No RSYNC Client configured"
 msgstr "Yapılandırılmış RSYNC Client yok"
 
+msgid "No case folding"
+msgstr ""
+
 #, php-format
 msgid ""
 "No configured Auth Group. Please add new <a href='%s'>Auth Group</a> first."
@@ -3809,12 +3787,6 @@ msgid ""
 msgstr ""
 
 msgid "No file was uploaded."
-msgstr ""
-
-msgid "No new disk found."
-msgstr ""
-
-msgid "No new software raid disk found."
 msgstr ""
 
 msgid "No pool was found."
@@ -3888,6 +3860,11 @@ msgstr "Ekli değil"
 
 msgid "Note"
 msgstr "Not"
+
+msgid ""
+"Note! Selecting 'Time Machine' on multiple shares will may cause "
+"unpredictable behavior in MacOS."
+msgstr ""
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
@@ -4045,7 +4022,6 @@ msgstr "PPTP"
 msgid "PPTP clients"
 msgstr "PPTP istemcileri"
 
-#, c-format
 msgid "PSK"
 msgstr "PSK"
 
@@ -4071,9 +4047,6 @@ msgid "Pairwise"
 msgstr ""
 
 msgid "Parameter xxx (ups.conf or cmdline -x) setting"
-msgstr ""
-
-msgid "Parent Directory"
 msgstr ""
 
 msgid "Partition number"
@@ -4345,6 +4318,9 @@ msgstr "Protokol"
 msgid "Provider"
 msgstr "Sağlayıcı"
 
+msgid "Provides compatibility with Apple II clients."
+msgstr ""
+
 msgid "Proxy"
 msgstr "Proxy"
 
@@ -4582,9 +4558,6 @@ msgstr ""
 msgid "Retry"
 msgstr ""
 
-msgid "Return to Command page"
-msgstr ""
-
 msgid "Reverse DNS lookup"
 msgstr ""
 
@@ -4666,12 +4639,8 @@ msgstr "S.M.A.R.T. günlüğü"
 msgid "SMB2"
 msgstr ""
 
-msgid "SMB3"
-msgstr ""
-
 msgid ""
-"SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and "
-"Vista. NT1 is for legacy OS like XP."
+"SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."
 msgstr ""
 
 msgid "SNMP"
@@ -4793,8 +4762,8 @@ msgstr ""
 
 #, php-format
 msgid ""
-"Select the server configuration encrypted GZIP file or XML file and click "
-"the button below to restore the configuration."
+"Select the server configuration XML file and click the button below to "
+"restore the configuration."
 msgstr ""
 
 msgid ""
@@ -4874,6 +4843,9 @@ msgstr ""
 msgid "Set share password."
 msgstr "Ortak parola ayarla."
 
+msgid "Set the CNID backend to be used for the volume."
+msgstr ""
+
 msgid "Set the account's primary group to the given group."
 msgstr ""
 
@@ -4900,6 +4872,11 @@ msgid ""
 msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
+msgstr ""
+
+msgid ""
+"Sets the database information to be stored in path. You have to specifiy a "
+"writable location, even if the volume is read only."
 msgstr ""
 
 msgid ""
@@ -4985,9 +4962,6 @@ msgstr ""
 msgid "Skew"
 msgstr ""
 
-msgid "Skip first scan"
-msgstr ""
-
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr ""
 
@@ -5042,11 +5016,6 @@ msgstr ""
 msgid "Space Used"
 msgstr "kullanılıyor"
 
-msgid ""
-"Space delimited set of IP or CIDR notation that permitted to access the "
-"WebGUI. (empty is the same network of LAN interface)"
-msgstr ""
-
 msgid "Spanish"
 msgstr "İspanyolca"
 
@@ -5054,9 +5023,6 @@ msgid "Sparse"
 msgstr ""
 
 msgid "Sparse Volume"
-msgstr ""
-
-msgid "Specified path is NFSv4 root directory."
 msgstr ""
 
 msgid "Specifies how many servers to create."
@@ -5149,18 +5115,6 @@ msgid "Storage"
 msgstr ""
 
 msgid "Store DOS attributes"
-msgstr ""
-
-msgid "Store NTFS acls"
-msgstr ""
-
-msgid "Store NTFS acls in Extended Attributes"
-msgstr ""
-
-msgid "Store alternate data streams"
-msgstr ""
-
-msgid "Store alternate data streams in Extended Attributes"
 msgstr ""
 
 msgid ""
@@ -5409,9 +5363,6 @@ msgstr ""
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
 
-msgid "The IP address of the UPS master."
-msgstr ""
-
 msgid "The IP address that this hostname represents."
 msgstr ""
 
@@ -5523,11 +5474,6 @@ msgid "The attribute '%s' is not a valid time value."
 msgstr ""
 
 #, c-format, php-format
-msgid ""
-"The attribute '%s' is required within %d or more characters to %d characters."
-msgstr ""
-
-#, c-format, php-format
 msgid "The attribute '%s' is required."
 msgstr "Öznielik için '%s' gerekli."
 
@@ -5611,11 +5557,9 @@ msgstr ""
 msgid "The configuration could not be restored. No file was uploaded!"
 msgstr ""
 
-#, c-format
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
-"for them to take effect.<br /><b>If this message persist take a look at the "
-"<a href='%s'>system log</a> for more information.</b>"
+"for them to take effect."
 msgstr ""
 
 #, php-format
@@ -5939,6 +5883,7 @@ msgid ""
 "take one minute."
 msgstr ""
 
+#, php-format
 msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
@@ -6129,10 +6074,6 @@ msgid ""
 msgstr ""
 
 msgid ""
-"This WLAN cannot be deleted because it is still being used as an interface."
-msgstr ""
-
-msgid ""
 "This allows you to lower the power consumption of the drive, at the expense "
 "of performance."
 msgstr ""
@@ -6156,11 +6097,20 @@ msgid ""
 "target='_blank'>documentation</a>."
 msgstr ""
 
+msgid "This controls how the case of filenames are viewed and stored."
+msgstr ""
+
 msgid "This controls the access a remote host has to this module."
 msgstr ""
 
 msgid "This controls the access to this share with an access password."
 msgstr "Bu denetleyici bu paylaşıma parola ile ulaşmanızı sağlar."
+
+msgid ""
+"This controls whether the .AppleDouble directory gets created unless "
+"absolutely needed. This option should not be used if files are access mostly "
+"by Mac computers."
+msgstr ""
 
 msgid "This controls whether this share is accessible by guest account."
 msgstr ""
@@ -6183,6 +6133,11 @@ msgid "This email has been sent to validate your email configuration."
 msgstr ""
 
 msgid "This extent is used."
+msgstr ""
+
+msgid ""
+"This forces filenames to be restricted to the character set used by Windows. "
+"This is not recommended for shares used principally by Mac computers."
 msgstr ""
 
 msgid "This function is unsupported. Use it on your own risk!"
@@ -6350,9 +6305,6 @@ msgstr ""
 msgid "This rule is triggered whenever the selected event directive occurs."
 msgstr ""
 
-msgid "This server uses default swap."
-msgstr ""
-
 msgid "This tag already exists."
 msgstr "Etiket kullanılıyor."
 
@@ -6403,7 +6355,7 @@ msgid "Time"
 msgstr "Süre"
 
 msgid "Time Machine"
-msgstr ""
+msgstr "Makine saati"
 
 msgid "Time before the load will be rebooted"
 msgstr ""
@@ -6513,11 +6465,6 @@ msgid ""
 "browser at any time to see the progress of failed traceroutes."
 msgstr ""
 
-msgid ""
-"Tracks whose path contains one or more of these comma separated strings will "
-"be treated as a compilation."
-msgstr ""
-
 msgid "Transcoding"
 msgstr ""
 
@@ -6577,9 +6524,6 @@ msgstr ""
 
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
-
-msgid "UFS"
-msgstr ""
 
 #, php-format
 msgid ""
@@ -6738,6 +6682,12 @@ msgstr ""
 msgid "Upload directory of the webserver. The default is %s."
 msgstr ""
 
+msgid "Uppercases names in both directions"
+msgstr ""
+
+msgid "Use AFP3 unix privileges."
+msgstr ""
+
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
 "up at least one DNS server if you enter a host name here!"
@@ -6884,9 +6834,6 @@ msgstr ""
 msgid "Volume Name"
 msgstr "Birim İsmi"
 
-msgid "Volume Size Limit"
-msgstr ""
-
 msgid "Volume label"
 msgstr "Birim etiketi"
 
@@ -6908,10 +6855,6 @@ msgstr "WINS sunucu"
 msgid "WINS server IP address (e.g. from MS Active Directory server)."
 msgstr "WINS server IP address (e.g. from MS Active Directory server)."
 
-msgid "WLAN"
-msgstr ""
-
-#, c-format
 msgid "WPA"
 msgstr "WPA"
 
@@ -6923,9 +6866,6 @@ msgstr "WPA-PSK (Pre Shared Key)"
 
 msgid "WPA-PSK WPA-EAP"
 msgstr "WPA-PSK WPA-EAP"
-
-msgid "WPA2"
-msgstr ""
 
 msgid "Wait time"
 msgstr ""
@@ -6974,24 +6914,12 @@ msgid ""
 "attempt to identify the remote username."
 msgstr ""
 
-msgid ""
-"When the negotiation is complete, you will not be able to change the SMB "
-"protocol. If you change it, you will need to restart the client connected to "
-"this server."
-msgstr ""
-
 msgid "Where to save downloaded data."
-msgstr ""
-
-msgid "Whether compilations should be shown together under Various Artists."
 msgstr ""
 
 msgid ""
 "Whether scans should be skipped if there are no users connected. This allows "
 "the drive to spin down when no users are connected."
-msgstr ""
-
-msgid "Whether to skip initial boot-up scan."
 msgstr ""
 
 msgid "Who"
@@ -7029,8 +6957,8 @@ msgid "Yes"
 msgstr "Evet"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg add "
-"command.<br />Example: pkg add packagename"
+"You can also install a package via SSH or console using the the pkg_add "
+"command.<br />Example: pkg_add -r packagename"
 msgstr ""
 
 msgid "You can use the following parameters for substitution:"
@@ -7069,12 +6997,6 @@ msgstr ""
 msgid "You may specify logical block length (%d by default)."
 msgstr ""
 
-#, php-format
-msgid ""
-"You must <a href='%s'>reboot</a> the system before you can upgrade the "
-"firmware."
-msgstr ""
-
 msgid "You must add disks first."
 msgstr "Önce diskleri eklemelisin"
 
@@ -7083,6 +7005,9 @@ msgstr ""
 
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
+msgstr ""
+
+msgid "You must reboot the system before you can upgrade the firmware."
 msgstr ""
 
 msgid "You must select at least one authentication method."
@@ -7135,12 +7060,17 @@ msgstr "Zeroconf/Bonjour"
 msgid "adaptive (low power consumption)"
 msgstr ""
 
-#, php-format
-msgid "add any supplemental parameters"
+msgid "all disks are imported."
 msgstr ""
 
 msgid "all encrypted disks are imported."
 msgstr ""
+
+msgid "all software raid disks are imported."
+msgstr ""
+
+msgid "cachecnid"
+msgstr "cachecnid"
 
 msgid "change failed."
 msgstr "değişiklik yapılamadı."
@@ -7148,8 +7078,17 @@ msgstr "değişiklik yapılamadı."
 msgid "chroot() everyone, but root."
 msgstr ""
 
+msgid "cnidscheme"
+msgstr "cnidscheme"
+
+msgid "crlf"
+msgstr "crlf"
+
 msgid "day(s)"
 msgstr "Gün"
+
+msgid "dbpath"
+msgstr "dbpath"
 
 msgid "detected an error while importing."
 msgstr ""
@@ -7222,17 +7161,44 @@ msgstr ""
 msgid "mount"
 msgstr ""
 
+msgid "mswindows"
+msgstr "mswindows"
+
 msgid "n/a"
+msgstr ""
+
+msgid "no new disk found."
 msgstr ""
 
 msgid "no new encrypted disk found."
 msgstr ""
 
+msgid "no new software raid disk found."
+msgstr ""
+
+msgid "noadouble"
+msgstr ""
+
+msgid "nodev"
+msgstr "nodev"
+
+msgid "nofileid"
+msgstr ""
+
+msgid "nohex"
+msgstr ""
+
 msgid "none"
 msgstr ""
 
+msgid "nostat"
+msgstr "nostat"
+
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "prodos"
+msgstr "prodos"
 
 msgid "rc.conf"
 msgstr "rc.conf"
@@ -7272,6 +7238,9 @@ msgstr "umask"
 
 msgid "umount"
 msgstr "umount"
+
+msgid "upriv"
+msgstr "upriv"
 
 #, php-format
 msgid "version:"

@@ -1,12 +1,16 @@
 PORTNAME=	dmidecode
 PORTVERSION=	2.12
 CATEGORIES=	sysutils
-MASTER_SITES=	SAVANNAH
+MASTER_SITES=	${MASTER_SITE_SAVANNAH} \
+		ftp://ftp.nuug.no/pub/anders/distfiles/
+MASTER_SITE_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	zoon01@nas4free.org
 COMMENT=	A tool for dumping DMI (SMBIOS) contents in human-readable format
 
-USES=		tar:bzip2
+NO_STAGE=       yes
+
+USE_BZIP2=	yes
 LICENSE=	GPLv2
 
 
@@ -14,10 +18,8 @@ LICENSE=	GPLv2
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/dmidecode ${NAS4FREE_ROOTFS}/usr/local/sbin
-.if (${ARCH} == "amd64" || ${ARCH} == "i386")
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/biosdecode ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/ownership ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${WRKSRC}/vpddecode ${NAS4FREE_ROOTFS}/usr/local/sbin
-.endif
 
 .include <bsd.port.post.mk>

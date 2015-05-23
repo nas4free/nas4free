@@ -1,5 +1,5 @@
 PORTNAME=		xmlstarlet
-PORTVERSION=	1.6.1
+PORTVERSION=	1.5.0
 CATEGORIES=		textproc
 COMMENT=		Command line XML toolkit
 MAINTAINER=		zoon01@nas4free.org
@@ -9,7 +9,7 @@ MASTER_SITES=		SF/xmlstar/${PORTNAME}/${PORTVERSION}
 USE_GNOME=		libxslt
 USE_ICONV=		yes
 GNU_CONFIGURE=		yes
-NO_PKG_REGISTER=	yes
+NO_STAGE=       yes
 
 CONFIGURE_ARGS=		--with-libxml-prefix=${LOCALBASE} \
 					--with-libxslt-prefix=${LOCALBASE} \

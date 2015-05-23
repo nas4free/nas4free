@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # Portions of freenas (http://www.freenas.org).
@@ -31,30 +31,11 @@ setvar()
 			;;
 		*)
 			# If running from liveCD or embedded use a memory filesystem for /var.
-			if [ ${BOOT_LIVECD} -ne 0 -a ${BOOT_LOWMEM} -ne 0 ]; then
-				eval /usr/local/sbin/rconf attribute set varmfs "NO";
-			else
-				eval /usr/local/sbin/rconf attribute set varmfs "YES";
-			fi
-			eval /usr/local/sbin/rconf attribute set varmfs_flags "-U -t -o noatime -m 2";
+			eval /usr/local/sbin/rconf attribute set varmfs "YES";
+			eval /usr/local/sbin/rconf attribute set varmfs_flags "-S -m 3";
 			eval /usr/local/sbin/rconf attribute set populate_var "YES";
 			;;
 	esac
-}
-
-sethostid()
-{
-	local _uuid _systemuuid
-
-	# set uuid if not exist in smbios
-	_uuid=`/bin/kenv -q smbios.system.uuid`
-	_systemuuid=`configxml_get "//system/uuid"`
-	if [ -z "${_uuid}" -a -n "${_systemuuid}" ]; then
-		#/bin/kenv -q "smbios.system.uuid=${_systemuuid}" > /dev/null
-		if [ ! -f /etc/hostid ]; then
-			echo "${_systemuuid}" > /etc/hostid
-		fi
-	fi
 }
 
 # Set hostname
@@ -79,8 +60,8 @@ setifconfig()
 	local _value _ifn _ifconfig_args _ipaddr _subnet _gateway _cloned_interfaces _id
 	local _ifn_isboot
 
-	# Cleanup ifn and addrs
-	set | grep -E '^(ifconfig_|ipv4_|ipv6_)' | while read _value; do
+	# Cleanup
+	set | grep ^ifconfig_ | while read _value; do
 		_value=${_value%=*}
 		eval /usr/local/sbin/rconf attribute remove "${_value}"
 	done
@@ -111,6 +92,7 @@ setifconfig()
 			-b \
 			-i "count(wep/enable) = 0" -o " wepmode off" -b \
 			-i "count(wpa/enable) > 0" -o " WPA" -b \
+			-o " up" \
 		-b \
 		-i "starts-with(if,'vlan')" \
 			-m "//vinterfaces/vlan[if = '${_ifn}']" \
@@ -132,17 +114,11 @@ setifconfig()
 	if [ "${_ifn}" = "${_ifn_isboot}" ]; then
 		# don't set default for iSCSI booted NIC
 	else
-		# "ifconfig hostname" is valid syntax, so it should not set a string.
-		#  A string causes name resolution.
-		if [ -n "${_ipaddr}" -a -n "${_subnet}" ]; then
-			is_validip inet "${_ipaddr}/${_subnet}"
-			if [ 0 -eq $? ]; then
-				_ifconfig_args="inet ${_ipaddr}/${_subnet} ${_ifconfig_args}"
-				eval /usr/local/sbin/rconf attribute set firewall_client_net "${_ipaddr}/${_subnet}"
-			fi
-		fi
 		if [ -n "${_ifconfig_args}" ]; then
 			eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
+		fi
+		if [ -n "${_ipaddr}" ]; then
+			eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "${_ipaddr}/${_subnet}"
 		fi
 	fi
 
@@ -181,6 +157,7 @@ setifconfig()
 					-b \
 					-i "count(wep/enable) = 0" -o " wepmode off" -b \
 					-i "count(wpa/enable) > 0" -o " WPA" -b \
+					-o " up" \
 				-b \
 				-i "starts-with(if,'vlan')" \
 					-m "//vinterfaces/vlan[if = '${_ifn}']" \
@@ -199,19 +176,13 @@ setifconfig()
 
 			_ipaddr=`configxml_get "//interfaces/*[name() = 'opt${_id}']/ipaddr"`
 			_subnet=`configxml_get "//interfaces/*[name() = 'opt${_id}']/subnet"`
-			# "ifconfig hostname" is valid syntax, so it should not set a string.
-			#  A string causes name resolution.
-			if [ -n "${_ipaddr}" -a -n "${_subnet}" ]; then
-				is_validip inet "${_ipaddr}/${_subnet}"
-				if [ 0 -eq $? ]; then
-					_ifconfig_args="inet ${_ipaddr}/${_subnet} ${_ifconfig_args}"
-				fi
-			fi
 			if [ -n "${_ifconfig_args}" ]; then
 				eval /usr/local/sbin/rconf attribute set "ifconfig_${_ifn}" "${_ifconfig_args}"
 			fi
+			if [ -n "${_ipaddr}" ]; then
+				eval /usr/local/sbin/rconf attribute set "ipv4_addrs_${_ifn}" "${_ipaddr}/${_subnet}"
+			fi
 		else
-			# OPTX is disabled
 			eval /usr/local/sbin/rconf attribute remove "ifconfig_${_ifn}"
 		fi
 
@@ -229,6 +200,9 @@ setifconfig()
 			-v "concat(.,' ')" \
 		-b \
 		-m "//vinterfaces/bridge/if" \
+			-v "concat(.,' ')" \
+		-b \
+		-m "//vinterfaces/carp/if" \
 			-v "concat(.,' ')" \
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc`
@@ -251,32 +225,6 @@ setifconfig()
 			[ -n "${_laggport}" ] && eval /usr/local/sbin/rconf attribute set "ifconfig_${_laggport}" "${_laggport_args}"
 		done
 
-	# wlan interfaces
-	/usr/local/bin/xml sel -t \
-		-m "//vinterfaces/wlan" \
-			-v if \
-			-v "concat(' ',wlandev)" \
-			-n \
-		-b \
-		${configxml_file} | /usr/local/bin/xml unesc | \
-		while read _wlan _wlandev _wlan_args; do
-			[ -n "${_wlan}" ] && eval /usr/local/sbin/rconf attribute set "wlans_${_wlandev}" "${_wlan}"
-		done
-	/usr/local/bin/xml sel -t \
-		-m "//vinterfaces/wlan[apmode]" \
-			-v if \
-			-v "concat(' ssid ',ap_ssid)" \
-			-v "concat(' channel ',ap_channel)" \
-			-v "concat(' ',ap_extraoptions)" \
-			-n \
-		-b \
-		${configxml_file} | /usr/local/bin/xml unesc | \
-		while read _wlan _ap_args; do
-			_ap_create_args="wlanmode hostap"
-			[ -n "$_wlan" ] && eval /usr/local/sbin/rconf attribute set "create_args_${_wlan}" "${_ap_create_args}"
-			[ -n "$_wlan" ] && eval /usr/local/sbin/rconf attribute set "ifconfig_${_wlan}" "${_ap_args}"
-		done
-
 	# prepare bridge/carp interfaces
 	/usr/local/bin/xml sel -t \
 		-m "//vinterfaces/bridge/bridgeif" \
@@ -287,14 +235,7 @@ setifconfig()
 		while read _bridgeif _bridgeif_mtu; do
 			_bridgeif_args="up"
 			[ -n "${_bridgeif_mtu}" ] && _bridgeif_args="${_bridgeif_args} mtu ${_bridgeif_mtu}"
-			if [ -n "${_bridgeif}" ]; then
-				if configxml_isset "//vinterfaces/wlan[if='${_bridgeif}']/apmode"; then
-					# wlanN AP mode in bridge member
-					sysctl -q net.link.bridge.inherit_mac=1 > /dev/null
-				else
-					eval /usr/local/sbin/rconf attribute set "ifconfig_${_bridgeif}" "${_bridgeif_args}"
-				fi
-			fi
+			[ -n "${_bridgeif}" ] && eval /usr/local/sbin/rconf attribute set "ifconfig_${_bridgeif}" "${_bridgeif_args}"
 		done
 	/usr/local/bin/xml sel -t \
 		-m "//vinterfaces/bridge" \
@@ -325,36 +266,31 @@ setifconfig()
 		-m "//vinterfaces/carp" \
 			-v if \
 			-v "concat(' vhid ',vhid,' advskew ',advskew,' pass ',password)" \
-			-v "concat(' alias ',vipaddr,'/',vsubnet)" \
+			-v "concat(' ',vipaddr,'/',vsubnet)" \
 			-v "concat(' \"', extraoptions,'\"')" \
 			-n \
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc | \
-		while read _carp _carp_t1 _carp_vhid _carp_t3 _carp_advskew _carp_args; do
-			if [ -n "${_carp_advskew}" -a ${_carp_advskew} -le 1 ]; then
-				# boot master node with 240(backup)
-				_carp_advskew=240
-			fi
-			_carp_args="$_carp_t1 $_carp_vhid $_carp_t3 $_carp_advskew $_carp_args"
+		while read _carp _carp_args; do
+			_carp_args="up $_carp_args"
 			_carp_linkup=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${_carp}']" \
 				-v "linkup" \
 				${configxml_file} | /usr/local/bin/xml unesc`
 			_carp_linkdown=`/usr/local/bin/xml sel -t -m "//vinterfaces/*[if = '${_carp}']" \
 				-v "linkdown" \
 				${configxml_file} | /usr/local/bin/xml unesc`
-			[ -n "${_carp}" ] && eval /usr/local/sbin/rconf attribute set "ifconfig_${_carp}_alias${_carp_vhid}" "${_carp_args}"
-			[ -n "${_carp}" ] && kldload -n carp.ko
-			[ -n "${_carp}" ] && cat <<EOF > "/etc/devd/carp_${_carp_vhid}@${_carp}.conf"
+			[ -n "${_carp}" ] && eval /usr/local/sbin/rconf attribute set "ifconfig_${_carp}" "${_carp_args}"
+			[ -n "${_carp}" ] && cat <<EOF > "/etc/devd/${_carp}.conf"
 notify 30 {
-	match "system" "CARP";
-	match "subsystem" "${_carp_vhid}@${_carp}";
-	match "type" "MASTER";
+	match "system" "IFNET";
+	match "subsystem" "${_carp}";
+	match "type" "LINK_UP";
 	action "${_carp_linkup}";
 };
 notify 30 {
-	match "system" "CARP";
-	match "subsystem" "${_carp_vhid}@${_carp}";
-	match "type" "BACKUP";
+	match "system" "IFNET";
+	match "subsystem" "${_carp}";
+	match "type" "LINK_DOWN";
 	action "${_carp_linkdown}";
 };
 EOF
@@ -419,15 +355,6 @@ EOF
 # Update services
 updateservices()
 {
-	local _platform
-
-    	_platform=`cat /etc/platform`
-
-	# Update boot params
-	if [ -z "${BOOT_LIVECD}" ]; then BOOT_LIVECD=0; fi
-	if [ -f /etc/boot_lowmem ]; then BOOT_LOWMEM=`cat /etc/boot_lowmem`; fi
-	if [ -z "${BOOT_LOWMEM}" ]; then BOOT_LOWMEM=0; fi
-
 	# Update rcvar's. Use settings from config.xml
 	for _rcscript in /etc/rc.d/*; do
 		_rcscriptname=${_rcscript#/etc/rc.d/}
@@ -443,13 +370,6 @@ updateservices()
 				# Execute query.
 				_queryresult=`configxml_exec_query ${_xquery}`
 
-				# Force off when low memory liveCD
-				if [ ${BOOT_LIVECD} -ne 0 -a ${BOOT_LOWMEM} -ne 0 ]; then
-					if [ "${_rcscriptname}" = "mdnsresponder" ]; then
-						_queryresult=1;
-					fi
-				fi
-
 				# Enable/disable service depending on query result
 				if [ "0" = "${_queryresult}" ]; then
 					eval /usr/local/sbin/rconf service enable ${_rcvar}
@@ -460,27 +380,9 @@ updateservices()
 				fi
 
 				echo -n "."
-			else
-				# Force off when low memory liveCD
-				if [ ${BOOT_LIVECD} -ne 0 -a ${BOOT_LOWMEM} -ne 0 ]; then
-					if [ "${_rcscriptname}" = "lighttpd" ]; then
-						eval /usr/local/sbin/rconf service disable ${_rcscriptname}
-						debug "rcconf: ${_rcscriptname} service disabled"
-						echo -n "."
-					fi
-				fi
 			fi
 		fi
 	done
-
-	# Force on when low memory full
-	case ${_platform} in
-		*-full)
-			if [ ${BOOT_LOWMEM} -ne 0 ]; then
-				eval /usr/local/sbin/rconf service enable lighttpd
-			fi
-			;;
-	esac
 }
 
 # Set additional options.
@@ -509,19 +411,6 @@ setoptions()
 		_value=""
 	fi
 	eval /usr/local/sbin/rconf attribute set saver "${_value}";
-
-	# Enable/disable NFSv4
-	if configxml_isset "//nfsd/v4enable"; then
-		eval /usr/local/sbin/rconf service enable "nfsv4_server"
-		eval /usr/local/sbin/rconf service enable "nfsuserd"
-	else
-		eval /usr/local/sbin/rconf service disable "nfsv4_server"
-		eval /usr/local/sbin/rconf service disable "nfsuserd"
-	fi
-
-	# Disable ipfw (enabled by /etc/rc.d/ipfw)
-	sysctl -q net.inet.ip.fw.enable=0 > /dev/null
-	sysctl -q net.inet6.ip6.fw.enable=0 > /dev/null
 }
 
 # Serial console
@@ -533,14 +422,10 @@ setserialconsole()
     _ttyuonoff=`sed -n "/^${_ttyu}/ s/.*on.*/on/p" /etc/ttys`
     #_sio=`configxml_isset "//system/enableserialconsole"`
     _sio=`kenv console | sed -n 's/.*comconsole.*/on/p'`
-    _uboot=`kenv console | sed -n 's/.*uboot.*/on/p'`
 
-    if [ "$_sio" = "on" -o "$_uboot" = "on" ]; then
+    if [ "$_sio" = "on" ]; then
 	if [ "$_ttyuonoff" != "on" ]; then
 	    sed -i.bak -e "/^${_ttyu}/ s/off/on/" /etc/ttys
-	fi
-	if [ "$_uboot" = "on" ]; then
-	    sed -i.bak -e "/^${_ttyu}/ s/autologin/al.115200/" /etc/ttys
 	fi
     else
 	if [ "$_ttyuonoff" = "on" ]; then
@@ -553,7 +438,6 @@ load_rc_config ${name}
 
 echo -n "Updating rc.conf:"
 
-sethostid
 updateservices
 setvar
 sethostname
@@ -569,4 +453,3 @@ echo
 #load_rc_config ${name}
 
 return 0
-

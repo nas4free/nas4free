@@ -3,7 +3,7 @@
 	disks_zfs_zpool_tools.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -52,7 +52,6 @@ array_sort_key($config['zfs']['vdevices']['vdevice'], "name");
 $a_pool = $config['zfs']['pools']['pool'];
 $a_vdevice = $config['zfs']['vdevices']['vdevice'];
 $a_vdevice_cache = array();
-$a_vdevice_log = array();
 $a_vdevice_spare = array();
 $a_vdevice_vdev = array();
 foreach ($a_vdevice as $vdevicev) {
@@ -65,15 +64,6 @@ foreach ($a_vdevice as $vdevicev) {
 		}
 		$tmp['devs'] = implode(" ", $a_devs);
 		$a_vdevice_cache[] = $tmp;
-	} else if ($vdevicev['type'] == 'log' || $vdevicev['type'] == 'log-mirror') {
-		$tmp = $vdevicev;
-		$a_devs = array();
-		foreach ($vdevicev['device'] as $device) {
-			$name = preg_replace("/^\/dev\//", "", $device);
-			$a_devs[] = $name;
-		}
-		$tmp['devs'] = implode(" ", $a_devs);
-		$a_vdevice_log[] = $tmp;
 	} else if ($vdevicev['type'] == 'spare') {
 		$tmp = $vdevicev;
 		$a_devs = array();
@@ -135,35 +125,6 @@ function get_spare_list($pool) {
 	return $result;
 }
 
-function get_logmirror($pool, $dev) {
-	mwexec2("zpool status {$pool}", $rawdata);
-	$type = "";
-	$mirror = "";
-	$dev = preg_replace('/^\/dev\//', "", $dev);
-	foreach ($rawdata as $line) {
-		if ($line[0] != "\t") continue;
-		if (preg_match('/^\t(\S+)/', $line, $m)) {
-			$mirror = "";
-			if ($m[1] == "logs")
-				$type = "log";
-			else
-				$type = "";
-			continue;
-		} else if ($type != "log") {
-			continue;
-		}
-		if (preg_match('/^\t(\s+)(mirror-(\S+))/', $line, $m)) {
-			$mirror = $m[2];
-		} else if ($mirror == "") {
-			continue;
-		}
-		if (preg_match('/^\t\s+([a-z]+[0-9]+)/', $line, $dev)) {
-			break;
-		}
-	}
-	return $mirror;
-}
-
 function get_device_type($device, &$a_vdevice) {
 	$index = array_search_ex($device, $a_vdevice, "device");
 	if ($index !== false) {
@@ -209,11 +170,6 @@ if (isset($_GET['device_cache']))
 if (isset($_POST['device_cache']))
 	$pconfig['device_cache'] = $_POST['device_cache'];
 
-if (isset($_GET['device_log']))
-	$pconfig['device_log'] = $_GET['device_log'];
-if (isset($_POST['device_log']))
-	$pconfig['device_log'] = $_POST['device_log'];
-
 if (isset($_GET['device_spare']))
 	$pconfig['device_spare'] = $_GET['device_spare'];
 if (isset($_POST['device_spare']))
@@ -241,7 +197,6 @@ if (!isset($do_action)) {
 	$pconfig['device'] = "";
 	$pconfig['device_new'] = "";
 	$pconfig['device_cache'] = "";
-	$pconfig['device_log'] = "";
 	$pconfig['device_spare'] = "";
 	$pconfig['device_vdev'] = "";
 }
@@ -253,13 +208,11 @@ function command_change() {
 	showElementById('device_new_tr','hide');
 	showElementById('device_new2_tr','hide');
 	showElementById('device_cache_tr','hide');
-	showElementById('device_log_tr','hide');
 	showElementById('device_spare_tr','hide');
 	showElementById('device_vdev_tr','hide');
 	document.iform.option.length = 0;
 	document.iform.device_new.length = 0;
 	document.iform.device_cache.length = 0;
-	document.iform.device_log.length = 0;
 	document.iform.device_spare.length = 0;
 	document.iform.device_vdev.length = 0;
 	var action = document.iform.action.value;
@@ -341,20 +294,6 @@ function command_change() {
 			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
 			<?php endif;?>
 			break;
-		case "log add":
-			showElementById('devices_tr','hide');
-			showElementById('device_log_tr','show');
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "log remove":
-			showElementById('devices_tr','hide');
-			showElementById('device_log_tr','show');
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
 		case "spare add":
 			showElementById('devices_tr','hide');
 			showElementById('device_spare_tr','show');
@@ -408,7 +347,6 @@ function option_change() {
 function pool_change() {
 	document.iform.device_new.length = 0;
 	document.iform.device_cache.length = 0;
-	document.iform.device_log.length = 0;
 	document.iform.device_spare.length = 0;
 	document.iform.device_vdev.length = 0;
 	var div = document.getElementById("devices");
@@ -432,21 +370,15 @@ function pool_change() {
 					$first_type = $type;
 				}
 				foreach ($vdevice['device'] as $devicev) {
-					$pnum ='';
-					if (preg_match('/(p[0-9]+)$/', $devicev, $m)) {
-						$pnum = $m[1];
-					}
-					$devicev = preg_replace('/p[0-9]+$/', '', $devicev);
-
 					$a_disk = get_conf_disks_filtered_ex("fstype", "zfs");
 					$a_encrypteddisk = get_conf_encryped_disks_list();
 
 					if (($index = array_search_ex($devicev, $a_disk, "devicespecialfile")) !== false) {
 						$tmp = $a_disk[$index];
 						$tmp['type'] = $type;
-						$tmp['name2'] = $tmp['name'].$pnum;
+						$tmp['name2'] = $tmp['name'];
 						if (($index = array_search_ex($devicev, $a_encrypteddisk, "devicespecialfile")) !== false) {
-							$tmp['name2'] = $tmp['name'].$pnum.".eli";
+							$tmp['name2'] = $tmp['name'].".eli";
 						}
 						$result[] = $tmp;
 					}
@@ -518,34 +450,6 @@ function pool_change() {
 			} else if (action == "cache remove") {
 			<?php $i = 0; foreach ($result_del as $vdevicev) {?>
 				document.iform.device_cache[<?=$i;?>] = new Option('<?="{$vdevicev['name']} ({$vdevicev['devs']})";?>','<?="{$vdevicev['name']}";?>','false');
-			<?php $i++; } ?>
-
-			}
-
-			<?php
-			$result_add = array();
-			$result_del = array();
-			array_sort_key($a_vdevice_log, "name");
-			foreach ($a_vdevice_log as $vdevicev) {
-				$index = array_search_ex($vdevicev['name'], $a_pool, "vdevice");
-				if ($index !== false) {
-					if ($a_pool[$index]['name'] == $pool['name']) {
-						$result_del[] = $vdevicev;
-					}
-				} else {
-					$result_add[] = $vdevicev;
-				}
-			}
-			?>
-
-			if (action == "log add") {
-			<?php $i = 0; foreach ($result_add as $vdevicev) {?>
-				document.iform.device_log[<?=$i;?>] = new Option('<?="{$vdevicev['name']} ({$vdevicev['devs']})";?>','<?="{$vdevicev['name']}";?>','false');
-			<?php $i++; } ?>
-
-			} else if (action == "log remove") {
-			<?php $i = 0; foreach ($result_del as $vdevicev) {?>
-				document.iform.device_log[<?=$i;?>] = new Option('<?="{$vdevicev['name']} ({$vdevicev['devs']})";?>','<?="{$vdevicev['name']}";?>','false');
 			<?php $i++; } ?>
 
 			}
@@ -643,11 +547,7 @@ function pool_change() {
       <form action="disks_zfs_zpool_tools.php" method="post" name="iform" id="iform">
 	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 	<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
-	<?php if (!$do_action) { ?>
 	<table width="100%" border="0" cellpadding="6" cellspacing="0">
-	<?php } else { ?>
-	<table width="100%" border="0" cellpadding="6" cellspacing="0" style="display:none;">
-	<?php } ?>
 	<tr>
 	  <td width="22%" valign="top" class="vncellreq"><?=gettext("Command");?></td>
 	  <td width="78%" class="vtable">
@@ -661,8 +561,6 @@ function pool_change() {
 		if (is_array($a_pool) && !empty($a_pool)) {
 		    $a_cmd[] = "cache add";
 		    $a_cmd[] = "cache remove";
-		    $a_cmd[] = "log add";
-		    $a_cmd[] = "log remove";
 		    $a_cmd[] = "spare add";
 		    $a_cmd[] = "spare remove";
 		    $a_cmd[] = "vdev add";
@@ -691,19 +589,12 @@ function pool_change() {
 	<?php html_combobox("device_new", gettext("New Device"), NULL, NULL, "", true);?>
 	<?php html_combobox("device_new2", gettext("New Device"), NULL, $a_disk_free, "", true);?>
 	<?php html_combobox("device_cache", gettext("Cache Device"), NULL, NULL, "", true);?>
-	<?php html_combobox("device_log", gettext("Log Device"), NULL, NULL, "", true);?>
 	<?php html_combobox("device_spare", gettext("Hot Spare"), NULL, NULL, "", true);?>
 	<?php html_combobox("device_vdev", gettext("Virtual device"), NULL, NULL, gettext("Once you add the virtual device, it becomes impossible to delete again. It recommends adding the same number of drives as the existing virtual device."), true);?>
 	</table>
-	<?php if (!$do_action) { ?>
 	<div id="submit">
 	  <input name="Submit" type="submit" class="formbtn" value="<?=gettext("Send Command!");?>" />
 	</div>
-	<?php } else { ?>
-	<div id="reload">
-	  <input name="reload" type="button" class="formbtn" value="<?=gettext("Return to Command page");?>" onclick="location.href='disks_zfs_zpool_tools.php';" />
-	</div>
-	<?php } ?>
 	<?php if ($do_action) {
 		echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
 		echo('<pre class="cmdoutput">');
@@ -716,16 +607,8 @@ function pool_change() {
 		$new_device = !empty($pconfig['device_new']) ? $pconfig['device_new'] : null;
 		$new2_device = !empty($pconfig['device_new2']) ? $pconfig['device_new2'] : null;
 		$cache_device = !empty($pconfig['device_cache']) ? $pconfig['device_cache'] : null;
-		$log_device = !empty($pconfig['device_log']) ? $pconfig['device_log'] : null;
 		$spare_device = !empty($pconfig['device_spare']) ? $pconfig['device_spare'] : null;
 		$vdev_device = !empty($pconfig['device_vdev']) ? $pconfig['device_vdev'] : null;
-
-		// remove existing pool cache
-		if ($action != 'clear' && $action != 'history' && $action != 'scrub') {
-			conf_mount_rw();
-			unlink_if_exists("{$g['cf_path']}/boot/zfs/zpool.cache");
-			conf_mount_ro();
-		}
 
 		if (is_array($device)) {
 			$a = array();
@@ -1187,118 +1070,6 @@ var_dump($config['zfs']['vdevices']);
 					$new_vdevice = array();
 					foreach ($a_vdevice as $vdevice) {
 						if (strcmp($vdevice, $cache_device) != 0) {
-							$new_vdevice[] = $vdevice;
-						}
-					}
-					$config['zfs']['pools']['pool'][$index]['vdevice'] = $new_vdevice;
-					write_config();
-					echo gettext("Done.")."\n";
-				}
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "log add": {
-		    switch ($option) {
-		    case "d":
-			if ($log_device == '')
-				break;
-			$index = array_search_ex($log_device, $a_vdevice_log, "name");
-			if ($index === false)
-				break;
-			$vdevice = $a_vdevice_log[$index];
-			$device = $vdevice['device'];
-			$result = 0;
-			if (!empty($vdevice['aft4k'])) {
-				$a = array();
-				foreach ($device as $dev) {
-					$gnop_cmd = "gnop create -S 4096 {$dev}";
-					write_log("$gnop_cmd");
-					$result = mwexec($gnop_cmd, true);
-					if ($result != 0)
-						break;
-					$a[] = "${dev}.nop";
-				}
-				$device = $a;
-			}
-			if ($result != 0)
-				break;
-			$devs = implode(" ", $device);
-			if ($vdevice['type'] == "log-mirror") {
-				$devs = "mirror ".$devs;
-			}
-			$result = zfs_zpool_cmd("add", "{$pool} log {$devs}", true);
-			// Update config
-			if ($result == 0) {
-				$index = array_search_ex($pool, $config['zfs']['pools']['pool'], "name");
-				if ($index !== false) {
-					$config['zfs']['pools']['pool'][$index]['vdevice'][] = $log_device;
-					write_config();
-					echo gettext("Done.")."\n";
-				}
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "log remove": {
-		    switch ($option) {
-		    case "d":
-			if ($log_device == '')
-				break;
-			$index = array_search_ex($log_device, $a_vdevice_log, "name");
-			if ($index === false)
-				break;
-			$vdevice = $a_vdevice_log[$index];
-			$device = $vdevice['device'];
-			$result = 0;
-			if (!empty($vdevice['aft4k'])) {
-				$a = array();
-				foreach ($device as $dev) {
-					$a[] = "${dev}.nop";
-				}
-				$device = $a;
-			}
-			$devs = implode(" ", $device);
-			if ($vdevice['type'] == "log-mirror") {
-				$mirror = get_logmirror($pool, $device[0]);
-				if ($mirror == "") {
-					printf(gettext("%s: cannot get mirror name.")."\n", $device[0]);
-					break;
-				}
-				$result = zfs_zpool_cmd("remove", "{$pool} {$mirror}", true);
-			} else {
-				$result = zfs_zpool_cmd("remove", "{$pool} {$devs}", true);
-			}
-
-			// Destroy gnop
-			if ($result == 0) {
-				$device = $vdevice['device'];
-				$result = 0;
-				if (!empty($vdevice['aft4k'])) {
-					foreach ($device as $dev) {
-						$gnop_cmd = "gnop destroy {$dev}.nop";
-						write_log("$gnop_cmd");
-						$result = mwexec($gnop_cmd, true);
-						if ($result != 0)
-							break;
-					}
-				}
-				if ($result != 0)
-					break;
-			}
-
-			// Update config
-			if ($result == 0) {
-				$index = array_search_ex($pool, $config['zfs']['pools']['pool'], "name");
-				if ($index !== false) {
-					$a_vdevice = $config['zfs']['pools']['pool'][$index]['vdevice'];
-					$new_vdevice = array();
-					foreach ($a_vdevice as $vdevice) {
-						if (strcmp($vdevice, $log_device) != 0) {
 							$new_vdevice[] = $vdevice;
 						}
 					}

@@ -3,7 +3,7 @@
 	de_mimes.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -42,7 +42,6 @@ $GLOBALS["mimes"]=array(
 	"dir"		=> "Verzeichnis",
 	"exe"		=> "Programm",
 	"file"		=> "Datei",
-	"link"		=> "Link",
 
 	// text
 	"text"		=> "Text Dokument",
@@ -105,6 +104,4 @@ $GLOBALS["mimes"]=array(
 	"c"		=> "C Datei",
 	"psd"		=> "Photoshop Datei",
 	"point"	=> "PowerPoint Dokument"
-);
-
-?>
+); ?>

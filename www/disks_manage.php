@@ -3,7 +3,7 @@
 	disks_manage.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -48,11 +48,11 @@ if ($_POST) {
 	if (!empty($_POST['import']) || !empty($_POST['clear_import'])) {
 		$retval = disks_import_all_disks($clean_import);
 		if ($retval == 0) {
-			$savemsg = gettext("No new disk found.");
+			$savemsg = gettext("no new disk found.");
 		} else if ($retval > 0) {
-			$savemsg = gettext("All disks are imported.");
+			$savemsg = gettext("all disks are imported.");
 		} else {
-			$input_errors[] = gettext("Detected an error while importing.");
+			$input_errors[] = gettext("detected an error while importing.");
 		}
 		if ($retval >= 0) {
 			disks_update_mounts();
@@ -64,11 +64,11 @@ if ($_POST) {
 	if (!empty($_POST['import_swraid']) || !empty($_POST['clear_import_swraid'])) {
 		$retval = disks_import_all_swraid_disks($clean_import);
 		if ($retval == 0) {
-			$savemsg = gettext("No new software raid disk found.");
+			$savemsg = gettext("no new software raid disk found.");
 		} else if ($retval > 0) {
-			$savemsg = gettext("All software raid disks are imported.");
+			$savemsg = gettext("all software raid disks are imported.");
 		} else {
-			$input_errors[] = gettext("Detected an error while importing.");
+			$input_errors[] = gettext("detected an error while importing.");
 		}
 		if ($retval >= 0) {
 			disks_update_mounts();

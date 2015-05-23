@@ -3,7 +3,7 @@
 	system_swap.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -45,14 +45,6 @@ $pconfig['mountpoint'] = !empty($config['system']['swap']['mountpoint']) ? $conf
 $pconfig['devicespecialfile'] = !empty($config['system']['swap']['devicespecialfile']) ? $config['system']['swap']['devicespecialfile'] : "";
 $pconfig['size'] = !empty($config['system']['swap']['size']) ? $config['system']['swap']['size'] : "";
 
-$swapdevice = "NONE";
-if (file_exists("{$g['etc_path']}/swapdevice"))
-	$swapdevice = trim(file_get_contents("{$g['etc_path']}/swapdevice"));
-if (empty($_POST) && (empty($pconfig['enable']) || $pconfig['enable'] === false)) {
-	if ($swapdevice != "NONE")
-		$infomsg = sprintf("%s (%s)", gettext("This server uses default swap."), $swapdevice);
-}
-
 if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
@@ -90,8 +82,6 @@ if ($_POST) {
 			config_lock();
 			$retval |= rc_update_service("swap");
 			config_unlock();
-			if (!isset($_POST['enable']) && $swapdevice != "NONE")
-				mwexec("swapon $swapdevice");
 		}
 		$savemsg = get_std_save_message($retval);
 	}
@@ -145,14 +135,13 @@ function type_change() {
 		<td class="tabcont">
 			<form action="system_swap.php" method="post" name="iform" id="iform">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
-				<?php if (!empty($infomsg)) print_info_box($infomsg); ?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline_checkbox("enable", gettext("Swap memory"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("file" => gettext("File"), "device" => gettext("Device")), "", true, false, "type_change()");?>
 					<?php html_mountcombobox("mountpoint", gettext("Mount point"), $pconfig['mountpoint'], gettext("Select mount point where to create the swap file."), true);?>
 					<?php html_inputbox("size", gettext("Size"), $pconfig['size'], gettext("The size of the swap file in MB."), true, 10);?>
-					<?php html_inputbox("devicespecialfile", gettext("Device"), $pconfig['devicespecialfile'], sprintf(gettext("Name of the device to use as swap device, e.g. %s."), "/dev/ada0s2b"), true, 20);?>
+					<?php html_inputbox("devicespecialfile", gettext("Device"), $pconfig['devicespecialfile'], sprintf(gettext("Name of the device to use as swap device, e.g. %s."), "/dev/ad0s3"), true, 20);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save");?>" onclick="enable_change(true)" />

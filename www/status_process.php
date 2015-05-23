@@ -3,7 +3,7 @@
 	status_process.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -40,7 +40,7 @@ require("guiconfig.inc");
 $pgtitle = array(gettext("Status"), gettext("Processes"));
 
 function get_process_info() {
-	exec("top -b 20", $result);
+	exec("top -b", $result);
 	return implode("\n", $result);
 }
 

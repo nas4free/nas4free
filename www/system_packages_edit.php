@@ -3,7 +3,7 @@
 	system_packages_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -115,7 +115,7 @@ if(!isset($do_action)) {
 				}
 				?>
 				<div id="remarks">
-					<?php html_remark("note", gettext("Note"), gettext("You can also install a package via SSH or console using the the pkg add command.<br />Example: pkg add packagename"));?>
+					<?php html_remark("note", gettext("Note"), gettext("You can also install a package via SSH or console using the the pkg_add command.<br />Example: pkg_add -r packagename"));?>
 				</div>
 				<?php include("formend.inc");?>
 			</form>

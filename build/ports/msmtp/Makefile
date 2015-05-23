@@ -1,5 +1,5 @@
 PORTNAME=		msmtp
-PORTVERSION=	1.6.2
+PORTVERSION=	1.4.32
 PORTREVISION=	0
 CATEGORIES=		mail ipv6
 COMMENT=		A SMTP client
@@ -8,7 +8,7 @@ MAINTAINER=		zoon01@nas4free.org
 MASTER_SITES=	SF
  
 GNU_CONFIGURE=  yes 
-USES=           gmake makeinfo pkgconfig tar:xz
+USES=           makeinfo pkgconfig tar:bzip2
 CPPFLAGS+=      -I${LOCALBASE}/include 
 LDFLAGS+=       -L${LOCALBASE}/lib
 
@@ -22,6 +22,7 @@ OPTIONS_DEFAULT=        MSMTPQ OPENSSL
 GSASL_DESC=     GSASL support 
 MSMTPQ_DESC=    Install offline messaging scripts 
 
+NO_STAGE=       yes
 .include       <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MGNUTLS} 

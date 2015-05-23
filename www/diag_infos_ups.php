@@ -3,7 +3,7 @@
 	diag_infos_ups.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -197,7 +197,7 @@ function upsc_enable_change() {
 				</tr>
 				<?php else:?>
 				<?php
-					$cmd = "/usr/local/bin/upsc {$config['ups']['upsname']}@{$config['ups']['ip']}";
+					$cmd = "/usr/local/bin/upsc {$config['ups']['upsname']}@localhost";
 					$handle = popen($cmd, 'r');
 					
 					if($handle) {

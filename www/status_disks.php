@@ -3,7 +3,7 @@
 	status_disks.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -41,7 +41,6 @@ $pgtitle = array(gettext("Status"), gettext("Disks"));
 
 // Get all physical disks.
 $a_phy_disk = array_merge((array)get_conf_physical_disks_list());
-$a_phy_hast = array_merge((array)get_hast_disks_list());
 
 $pconfig['temp_info'] = $config['smartd']['temp']['info'];
 $pconfig['temp_crit'] = $config['smartd']['temp']['crit'];
@@ -75,10 +74,9 @@ $raidstatus = get_sraid_disks_list();
 				<?php (($temp = system_get_device_temp($disk['devicespecialfile'])) === FALSE) ? $temp = htmlspecialchars(gettext("n/a")) : $temp = sprintf("%s &deg;C", htmlspecialchars($temp));?>
 				<?php
 					if ($disk['type'] == 'HAST') {
-						$role = $a_phy_hast[$disk['name']]['role'];
-						$size = $a_phy_hast[$disk['name']]['size'];
+						$role = $a_phy_disk[$disk['name']]['role'];
 						$status = sprintf("%s (%s)", (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING"), $role);
-						$disk['size'] = $size;
+						$disk['size'] = $a_phy_disk[$disk['name']]['size'];
 					} else {
 						$status = (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING");
 					}
@@ -93,16 +91,16 @@ $raidstatus = get_sraid_disks_list();
 					<td class="listr"><?=htmlspecialchars($iostat);?>&nbsp;</td>
 					<td class="listr"><?php
 					if ($temp <> htmlspecialchars(gettext("n/a"))){
-						if (!empty($pconfig['temp_crit']) && $temp >= $pconfig['temp_crit']){
+						if ($temp >= $pconfig['temp_crit']){
 							print "<div class=\"errortext\">".$temp."</div>";
-							  }
-						else if (!empty($pconfig['temp_info']) && $temp >= $pconfig['temp_info']){
+						}
+						else if( $temp >= $pconfig['temp_info']){
 							print "<div class=\"warningtext\">".$temp."</div>";
 						}
-						else{
-							print $temp;
-						    }  
-					} else { print htmlspecialchars(gettext("n/a")); }
+					}
+					else{
+						print $temp;
+					}
 					?>&nbsp;</td>
 					<td class="listbg"><?=$status;?>&nbsp;</td>
 				</tr>
@@ -117,20 +115,20 @@ $raidstatus = get_sraid_disks_list();
 					<td class="listr"><?=htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars(gettext("Software RAID"));?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars(gettext("n/a"));?>&nbsp;</td>
-					<td class="listr"><?=($diskv['fstype']) ? htmlspecialchars(get_fstype_shortdesc($diskv['fstype'])) : htmlspecialchars(gettext("UFS"))?>&nbsp;</td>
+					<td class="listr"><?=($diskv['fstype']) ? htmlspecialchars(get_fstype_shortdesc($diskv['fstype'])) : htmlspecialchars(gettext("Unknown or unformatted"))?>&nbsp;</td>
 					<td class="listr"><?=htmlspecialchars($iostat);?>&nbsp;</td>
 					<td class="listr"><?php
 					if ($temp <> htmlspecialchars(gettext("n/a"))){
-						if (!empty($pconfig['temp_crit']) && $temp >= $pconfig['temp_crit']){
+						if ($temp >= $pconfig['temp_crit']){
 							print "<div class=\"errortext\">".$temp."</div>";
-							}		
-						else if (!empty($pconfig['temp_info']) && $temp >= $pconfig['temp_info']){
+						}
+						else if( $temp >= $pconfig['temp_info']){
 							print "<div class=\"warningtext\">".$temp."</div>";
-							}
-						else{
-						      print $temp;
-						      } 
-					} else { print htmlspecialchars(gettext("n/a")); }
+						}
+					}
+					else{
+						print $temp;
+					}
 					?>&nbsp;</td>
 					<td class="listbg"><?=htmlspecialchars($diskv['state']);?>&nbsp;</td>
 				</tr>

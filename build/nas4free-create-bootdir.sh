@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 
@@ -71,8 +71,6 @@ cp -v ${NAS4FREE_WORLD}/boot/defaults/loader.conf $MINIBSD_DIR/defaults
 cp -v ${NAS4FREE_WORLD}/boot/loader $MINIBSD_DIR
 cp -v ${NAS4FREE_WORLD}/boot/boot $MINIBSD_DIR
 cp -v ${NAS4FREE_WORLD}/boot/mbr $MINIBSD_DIR
-cp -v ${NAS4FREE_WORLD}/boot/gptboot $MINIBSD_DIR
-cp -v ${NAS4FREE_WORLD}/boot/pmbr $MINIBSD_DIR
 cp -v ${NAS4FREE_WORLD}/boot/cdboot $MINIBSD_DIR
 cp -v ${NAS4FREE_WORLD}/boot/loader.4th $MINIBSD_DIR
 cp -v ${NAS4FREE_WORLD}/boot/support.4th $MINIBSD_DIR
@@ -105,13 +103,13 @@ fi
 
 # Generate the loader.conf file using by bootloader
 echo "Generate $MINIBSD_DIR/loader.conf"
-echo 'mfsroot_load="NO"' > $MINIBSD_DIR/loader.conf
+echo 'mfsroot_load="YES"' > $MINIBSD_DIR/loader.conf
 echo 'mfsroot_type="mfs_root"' >> $MINIBSD_DIR/loader.conf
 echo 'mfsroot_name="/mfsroot"' >> $MINIBSD_DIR/loader.conf
 echo 'hw.est.msr_info="0"' >> $MINIBSD_DIR/loader.conf
 echo 'hw.hptrr.attach_generic="0"' >> $MINIBSD_DIR/loader.conf
 echo 'kern.maxfiles="65536"' >> $MINIBSD_DIR/loader.conf
-echo 'kern.maxfilesperproc="60000"' >> $MINIBSD_DIR/loader.conf
+echo 'kern.maxfilesperproc="50000"' >> $MINIBSD_DIR/loader.conf
 echo 'kern.cam.boot_delay="8000"' >> $MINIBSD_DIR/loader.conf
 # Enable bootsplash?
 if [ 0 != $opt_b ]; then
@@ -145,11 +143,6 @@ echo 'isboot_load="YES"' >> $MINIBSD_DIR/loader.conf
 echo 'zfs_load="YES"' >> $MINIBSD_DIR/loader.conf
 #echo 'geom_mirror_load="YES"' >> $MINIBSD_DIR/loader.conf
 #echo 'geom_stripe_load="YES"' >> $MINIBSD_DIR/loader.conf
-# xmd
-echo 'xmfsroot_load="YES"' >> $MINIBSD_DIR/loader.conf
-echo 'xmfsroot_type="xmd_root"' >> $MINIBSD_DIR/loader.conf
-echo 'xmfsroot_name="/mfsroot.uzip"' >> $MINIBSD_DIR/loader.conf
-echo 'geom_xmd_load="YES"' >> $MINIBSD_DIR/loader.conf
 
 # Copy kernel.
 if [ -e "${NAS4FREE_WORKINGDIR}/kernel.gz" ] ; then

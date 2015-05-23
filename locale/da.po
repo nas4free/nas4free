@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-05-20 20:17+0000\n"
-"PO-Revision-Date: 2015-02-21 03:45+0000\n"
-"Last-Translator: Aputsiaĸ Niels Janussen <aj@isit.gl>\n"
+"POT-Creation-Date: 2014-04-16 00:50+0000\n"
+"PO-Revision-Date: 2012-09-05 08:21+0000\n"
+"Last-Translator: Carsten Matzon <carsten@matzon.dk>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-05-22 06:36+0000\n"
-"X-Generator: Launchpad (build 17514)\n"
+"X-Launchpad-Export-Date: 2014-04-21 22:09+0000\n"
+"X-Generator: Launchpad (build 16985)\n"
 "X-Poedit-Country: DENMARK\n"
 "Language: \n"
 "X-Poedit-Language: Danish\n"
@@ -72,15 +72,11 @@ msgstr "%s på %s"
 
 #, php-format
 msgid "%s%% available"
-msgstr "%s%% til rådighed"
+msgstr ""
 
 #, php-format
 msgid "%s%d %s is already used by %s%d."
 msgstr "%s%d %s er allerede brugt af %s%d."
-
-#, php-format
-msgid "%s: cannot get mirror name."
-msgstr "%s: kan ikke få navn på spejl."
 
 #, c-format, php-format
 msgid "%sB available of %sB"
@@ -133,7 +129,7 @@ msgstr ""
 msgid ""
 "<div id='enumeration'><ul><li>The new password is also the default root "
 "password of the system!</li></ul></div>"
-msgstr "Det nye password er det samme som standard root password på systemet"
+msgstr ""
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -216,12 +212,6 @@ msgid "A valid IP address must be specified."
 msgstr "En gyldig IP-adresse skal angives"
 
 msgid ""
-"A valid IP address or CIDR notation must be specified for the hosts allow."
-msgstr ""
-"En gyldig IP adresse eller CIDR notation skal specificeres for tilladte "
-"værter."
-
-msgid ""
 "A valid IPv4 address must be specified for the primary/secondary DNS server."
 msgstr ""
 "En gyldig IPv4 addresse skal angives for den primære/sekundære DNS server."
@@ -264,12 +254,6 @@ msgstr "Et gyldigt præfiks (1-128) skal angives."
 msgid "A valid systctl MIB value."
 msgstr "En gyldig sysctl MIB værdi."
 
-msgid "ACL inherit"
-msgstr ""
-
-msgid "ACL mode"
-msgstr ""
-
 msgid "AD authentication disabled"
 msgstr "AD godkendelse deaktiveret"
 
@@ -282,9 +266,6 @@ msgstr "AFP"
 msgid "AG"
 msgstr "AG"
 
-msgid "AIO module"
-msgstr ""
-
 msgid "AIO read size"
 msgstr "AIO læse størrelse"
 
@@ -292,9 +273,6 @@ msgid "AIO write size"
 msgstr "AIO skrive størrelse"
 
 msgid "ALL interfaces"
-msgstr "ALLE grænseflader"
-
-msgid "AP mode"
 msgstr ""
 
 msgid "ARP Tables"
@@ -338,10 +316,10 @@ msgid "Active Directory"
 msgstr "Active Directory"
 
 msgid "Active Directory List"
-msgstr "Active Directory List"
+msgstr ""
 
 msgid "Active Shares"
-msgstr "Aktive netværksdelinger"
+msgstr ""
 
 msgid "Active Users"
 msgstr "Aktive brugere"
@@ -422,7 +400,7 @@ msgid "Add portal group"
 msgstr "Tilføj Portal gruppe"
 
 msgid "Add resource"
-msgstr "Tilføj resource"
+msgstr ""
 
 msgid "Add rule"
 msgstr "Tilføj regel"
@@ -455,7 +433,7 @@ msgid "Address"
 msgstr "Adresse"
 
 msgid "Address of the remote hastd daemon. It must be a static IP address."
-msgstr "Adresse på remote hastd daemon. Det skal være en fast IP adresse."
+msgstr ""
 
 msgid "Administration password"
 msgstr "Administrations kodeord"
@@ -485,7 +463,7 @@ msgid "Advanced settings"
 msgstr "Advancerede indstillinger"
 
 msgid "Advertisement skew"
-msgstr "Meddelelse forvansket"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -523,18 +501,12 @@ msgstr "Alle mapper"
 msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr "Alle mapper kræver en monteret sti, men stien %s er ikke monteret."
 
-msgid "All disks are imported."
-msgstr "Alle diske er importeret."
-
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
 "anything beginning with .Apple illegal."
 msgstr ""
 "Alle shares bruger indstillinger 'usedots' og gør derfor filnavnene .Parent "
 "og alt hvad der begynder med .Apple ulovlige."
-
-msgid "All software raid disks are imported."
-msgstr "Alle software raid diske er importeret."
 
 msgid "All users will have the root privilege."
 msgstr "Alle brugere vil have root rettigheder."
@@ -563,10 +535,10 @@ msgid "Allow new files to be created."
 msgstr "Tillad oprettelse af nye filer."
 
 msgid "Allow to start UPS from battery"
-msgstr "Tillad start af UPS fra batteri"
+msgstr ""
 
 msgid "Allow trusted domains."
-msgstr "Tillad godkendte domæner."
+msgstr ""
 
 msgid ""
 "Allows  certain  users and groups to have read/write access to a share. This "
@@ -584,7 +556,7 @@ msgstr ""
 
 #, php-format
 msgid "Allows the server to try and become a local master browser."
-msgstr "Tilladder serveren at forsøge at blive local master browser"
+msgstr ""
 
 msgid "AltRoot"
 msgstr "AltRoot"
@@ -604,20 +576,30 @@ msgstr "Altid tændt"
 msgid "Always scan"
 msgstr "Skan altid"
 
+msgid ""
+"Always use 0 for device number, helps when the device number is not constant "
+"across a reboot, cluster, ..."
+msgstr ""
+"Brug altid 0 som enhedsnummer, hjælper når enhedsnummeret ikke er kontant "
+"efter genstart eller i cluster osv."
+
 msgid "Ambient Conditions From External Probe Equipment"
-msgstr "Betingelser for omgivelser fra ekstern probe"
+msgstr ""
 
 msgid "Ambient relative humidity (percent)"
-msgstr "Relativ fugtighed i omgivelserne (procent)"
+msgstr ""
 
 msgid "Ambient temperature (degrees C)"
-msgstr "Temperatur i omgivelserne (grader Celsius)"
+msgstr ""
 
 msgid "An host with this name already exists."
 msgstr "En vært med dette navn eksisterer allerede."
 
 msgid "An interface with the specified description already exists."
 msgstr "En grænseflade med den angivne beskrivelse eksisterer allerede."
+
+msgid "Anonymous"
+msgstr "Anonym"
 
 msgid "Anonymous bind"
 msgstr "Anonym bind"
@@ -718,17 +700,23 @@ msgstr "Automatisk størrelse"
 msgid "AutoScale"
 msgstr "AutoScale"
 
+msgid "Automatic disk discovery"
+msgstr "Automatisk disk gendannelse"
+
+msgid "Automatic disk discovery mode"
+msgstr "Automatiks disk gendannelses tilstand"
+
 msgid "Autoselect"
 msgstr "Vælg automatisk"
 
 msgid "Auxiliary device firmware"
-msgstr "Ekstern enhed firmware"
+msgstr ""
 
 msgid "Auxiliary parameters"
 msgstr "Ekstra parametre"
 
 msgid "Available"
-msgstr "Ledig"
+msgstr ""
 
 msgid "Backup configuration"
 msgstr "Backup konfiguration"
@@ -765,48 +753,47 @@ msgid ""
 msgstr "Base navn bliver automatisk tilføjet når der startes uden 'iqn.'."
 
 msgid "Battery Details"
-msgstr "Batteri detaljer"
+msgstr ""
 
 msgid "Battery Level"
-msgstr "Batteriniveau"
+msgstr ""
 
 msgid "Battery Low"
-msgstr "Lavt batteriniveau"
+msgstr ""
 
 msgid ""
 "Battery Remaining level when UPS switches to Shutdown mode (Low Battery)"
 msgstr ""
-"Batteri reserve kapacitet når UPS initierer nedlukning (lavt batteri)"
 
 msgid "Battery alarm threshold"
-msgstr "Batteri alarm grænse"
+msgstr ""
 
 msgid "Battery capacity"
-msgstr "Batteri kapacitet"
+msgstr ""
 
 msgid "Battery change date"
-msgstr "Dato for batteri udskiftning"
+msgstr ""
 
 msgid "Battery chemistry"
 msgstr ""
 
 msgid "Battery current"
-msgstr "Batteri strøm"
+msgstr ""
 
 msgid "Battery level"
-msgstr "Batteriniveau"
+msgstr ""
 
 msgid "Battery level when UPS switches to \"Warning\" state"
-msgstr "Batteri niveu når UPS skifter til \"Advarsel\" tilstand"
+msgstr ""
 
 msgid "Battery manufacturing date"
-msgstr "Batteri fremstillings dato"
+msgstr ""
 
 msgid "Battery temperature"
-msgstr "Batteri temperatur"
+msgstr ""
 
 msgid "Battery voltage"
-msgstr "Battery spænding"
+msgstr ""
 
 msgid "Best available"
 msgstr "Bedst tilgængelige"
@@ -824,22 +811,16 @@ msgid "Blank time"
 msgstr "Blank tid"
 
 msgid "Blocksize"
-msgstr "Blok størrelse"
-
-#, php-format
-msgid ""
-"Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or "
-"resize boot partition of %s.\n"
 msgstr ""
 
 msgid "Bridge"
-msgstr "Bro"
+msgstr ""
 
 msgid "Browseable"
 msgstr "Kan gennemses"
 
 msgid "Build date"
-msgstr "Fremstillingsdato"
+msgstr ""
 
 msgid "Bulgarian"
 msgstr "Bulgarsk"
@@ -848,10 +829,10 @@ msgid "By default, only already existing files can be uploaded."
 msgstr "Som standard, kan kun eksisterende filer uploades."
 
 msgid "CARP"
-msgstr "CARP"
+msgstr ""
 
 msgid "CARP only"
-msgstr "kun CARP"
+msgstr ""
 
 msgid "CCMP"
 msgstr "CCMP"
@@ -863,7 +844,7 @@ msgid "CD/DVD"
 msgstr "CD/DVD"
 
 msgid "CHANGED"
-msgstr "ÆNDRET"
+msgstr ""
 
 msgid "CHAP"
 msgstr "CHAP"
@@ -911,7 +892,7 @@ msgid "CPU frequency"
 msgstr "CPU frekens"
 
 msgid "CPU frequency:"
-msgstr "CPU-frekvens:"
+msgstr ""
 
 msgid "CPU load"
 msgstr "CPU belastning"
@@ -929,7 +910,7 @@ msgid "Cache Device"
 msgstr "Cache enhed"
 
 msgid "Calibration Battery"
-msgstr "Kalibreringsbatteri"
+msgstr ""
 
 msgid "Can't format the OS origin disk!"
 msgstr "Kan ikke formatere OS kilde disken!"
@@ -947,13 +928,16 @@ msgid "Canmount"
 msgstr "Kan montere"
 
 msgid "Cannot get CPU load"
-msgstr "Kan ikke læse CPU belastning"
+msgstr ""
 
 msgid "Cannot get data about interface"
 msgstr "Kan ikke hente data om grænsefladen"
 
 msgid "Capacity"
 msgstr "Kapacitet"
+
+msgid "Case Folding"
+msgstr "Skift mellem små og store bogstaver"
 
 msgid ""
 "Causes the server to display the network information for the specified IP "
@@ -985,7 +969,7 @@ msgid "Channel"
 msgstr "Kanal"
 
 msgid "Charging Battery"
-msgstr "Oplader batteri"
+msgstr ""
 
 msgid "Check interval"
 msgstr "Kontrol interval"
@@ -998,9 +982,6 @@ msgstr "Kinesisk (forenklet)"
 
 msgid "Chinese (Traditional)"
 msgstr "Kinesisk (traditionelt)"
-
-msgid "Choose UPS mode."
-msgstr "Vælg UPS tiulstand"
 
 msgid "Choose on which interface packets must come in to match this rule."
 msgstr ""
@@ -1016,10 +997,10 @@ msgid "Clear"
 msgstr "Ryd"
 
 msgid "Clear config and Import disks"
-msgstr "Slet konfiguration og importer diske"
+msgstr ""
 
 msgid "Clear config and Import software raid disks"
-msgstr "Slet konfiguration og importer software raid diske"
+msgstr ""
 
 msgid ""
 "Click &quot;Enable firmware upload&quot; below, then choose the embedded "
@@ -1027,14 +1008,17 @@ msgid ""
 "the upgrade process."
 msgstr ""
 
-msgid ""
-"Click this button to download the server configuration in encrypted GZIP "
-"file or XML format."
+msgid "Click this button to download the server configuration in XML format."
 msgstr ""
-"Klik her for at gemme server konfiguration i krypteret GZIP eller XML format."
 
 msgid "Client"
 msgstr "Klient"
+
+msgid "Client sees lowercase, server sees uppercase"
+msgstr "Klient ser små bogstaver, server ser store bogstaver"
+
+msgid "Client sees uppercase, server sees lowercase"
+msgstr "Klient ser store bogstaver, server ser små bogstaver"
 
 msgid "Clone"
 msgstr "Klone"
@@ -1053,11 +1037,11 @@ msgstr "Kommando"
 
 #, php-format
 msgid "Command for LINK_DOWN event (e.g. %s)."
-msgstr "Kommando for LINK_DOWN situation (f. eks. %s)."
+msgstr ""
 
 #, php-format
 msgid "Command for LINK_UP event (e.g. %s)."
-msgstr "Kommando for LINK_UP situation (f. eks. %s)."
+msgstr ""
 
 msgid "Command output:"
 msgstr "Kommando resultat."
@@ -1073,9 +1057,6 @@ msgstr "Common Internet Fil System"
 
 msgid "Community"
 msgstr "Forum"
-
-msgid "Compilations directories"
-msgstr ""
 
 msgid "Compliant profile to be used."
 msgstr "Overholdelses profil der skal bruges."
@@ -1133,7 +1114,7 @@ msgid "Content"
 msgstr "Indhold"
 
 msgid "Controller"
-msgstr "Styreenhed"
+msgstr ""
 
 msgid "Controller Auth Group"
 msgstr "Controller Auth Gruppe"
@@ -1151,13 +1132,13 @@ msgid "Controller TCP Port"
 msgstr "Controller TCP port"
 
 msgid "Controller model"
-msgstr "Styreenhed model"
+msgstr ""
 
 msgid "Controls power consumption."
-msgstr "Styrer strømforbrug"
+msgstr ""
 
 msgid "Controls the behavior of synchronous requests."
-msgstr "Styrer indstillinger ved synkrone forespørgsler"
+msgstr ""
 
 msgid ""
 "Controls the compression algorithm used for this dataset. The 'lzjb' "
@@ -1196,11 +1177,6 @@ msgid ""
 ":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
 "wiki article BEFORE using this feature.</b></br>"
 msgstr ""
-"Styrer de-dublikerings metode. <br><b><font color='red'>NOTE/WARNING</font>: "
-"Se <a "
-"href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
-":disks-zfs-volumes-volume' target='_blank'>ZFS & de-dublikering</a> wiki "
-"article FØR anvendelse.</b></br>"
 
 msgid ""
 "Controls the dedup method. <br><b><font color='red'>NOTE/WARNING</font>: See "
@@ -1267,31 +1243,14 @@ msgstr "Nuværende"
 msgid "Current Version:"
 msgstr "Nuværende Version"
 
-msgid "Current administrator password is used for decryption."
-msgstr "Nuværende administrator adgangskode anvendes til kryptering."
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr ""
-"Nuværende administrator adgangskode anvendes til kryptering.<br />Krypteret "
-"konfiguration pakkes automatisk som gzip."
-
 msgid "Current password"
-msgstr "Aktuel adgangskode"
-
-msgid ""
-"Current password is default password. You should use your own password."
 msgstr ""
-"Nuværende adgangskode er standard adgangskode. Du bør anvende din egen "
-"adgangskode."
 
 msgid "Current value of apparent power (Volt-Amps)"
 msgstr ""
 
 msgid "Current value of real power (Watts)"
-msgstr "Nuværende måling af aktuelt forbrug (Watt)"
+msgstr ""
 
 msgid "Custom"
 msgstr "Brugerdefineret"
@@ -1311,14 +1270,20 @@ msgstr "Tjekkisk"
 msgid "DAAP"
 msgstr "DAAP"
 
+msgid "DDP"
+msgstr "DDP"
+
 msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DLNA/UPnP"
-msgstr "DLNA/UPnP"
+msgstr ""
 
 msgid "DLNA/UPnP Media Server"
-msgstr "DLNA/UPnP Media Server"
+msgstr ""
+
+msgid "DNLA/UPnP"
+msgstr ""
 
 msgid "DNS settings"
 msgstr "DNS indstillinger"
@@ -1331,11 +1296,6 @@ msgid ""
 "the upgrade.<br />It is strongly recommended that you <a "
 "href='%s'>Backup</a> the server configuration before doing a upgrade."
 msgstr ""
-"AFBRYD IKKE denne firmware opgradering når først den er startet. Når "
-"opgraderingen er genneført, vil serveren automatisk genstarte. Nuværende "
-"konfiguration er bevaret.<br />Du behøver minimum %d MiB ledig hukommelse "
-"for at gennemføre opgraderingen.<br />Det anbefales kraftigt at gemme en <a "
-"href='%s'>kopi</a> af server konfigurationen før opgradering."
 
 msgid "DVD"
 msgstr "DVD"
@@ -1505,7 +1465,7 @@ msgid "Delete portal group"
 msgstr "Slet Portal gruppe"
 
 msgid "Delete resource"
-msgstr "Slet ressource"
+msgstr ""
 
 msgid "Delete rule"
 msgstr "Slet regel"
@@ -1573,14 +1533,8 @@ msgstr "Destinations share"
 msgid "Detected"
 msgstr "Fundet"
 
-msgid "Detected Language:<br />(Change if needed)"
-msgstr "Skønnet sprog:<br />(Ændres efter behov)"
-
 msgid "Detected RSYNC remote shares"
 msgstr "Fundne fjerne RSYNC shares"
-
-msgid "Detected an error while importing."
-msgstr "Registrerede en fejl ved importering."
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -1603,7 +1557,7 @@ msgid "Device Pass-through"
 msgstr "Device Pass-through"
 
 msgid "Device Serial"
-msgstr "Enhed serienummer"
+msgstr ""
 
 msgid "Device model"
 msgstr "Device model"
@@ -1647,7 +1601,7 @@ msgid "Directory"
 msgstr "Mappe"
 
 msgid "Directory for incomplete files. An empty field means disable."
-msgstr "Folder for u-fuldstændige filer. Tomt felt betyder \"anvendes ikke\""
+msgstr ""
 
 msgid "Directory listing"
 msgstr "Indholdsliste"
@@ -1661,11 +1615,14 @@ msgstr "Mappe der indeholder flytbare medier. (F.eks. /mnt/iscsi/)"
 msgid "Directory to watch for new .torrent files."
 msgstr "Mappe der skal overvåges for nye .torrent-filer."
 
+msgid "Disable AFP-over-Appletalk to prevent DDP connections."
+msgstr "Deaktiver AFP-over-Appletalk for at forhindre DDP forbindelser."
+
 msgid "Disable File Manager"
 msgstr "Deaktiver Filhåndtering"
 
 msgid "Disable TCP wrapper (mod_wrap module)."
-msgstr "TCP wrapper anvendes ikke (mod_wrap module)."
+msgstr ""
 
 msgid "Disable console menu"
 msgstr "Deaktiver konsol menuen"
@@ -1681,6 +1638,13 @@ msgstr "Deaktiver højttaler bip ved opstart og nedlukning"
 
 msgid "Disabled"
 msgstr "Deaktiveret"
+
+msgid ""
+"Disables :hex translations for anything except dot files. This option makes "
+"the '/' character illegal."
+msgstr ""
+"Deaktiverer :hex oversættelser for alt andet end punktum-filer. Denne "
+"indstillinger gør '/'-tegnet ulovligt."
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -1717,8 +1681,6 @@ msgid ""
 "Do you really want to clear and import?\\nThe existing config will be "
 "cleared and overwritten."
 msgstr ""
-"Vil du virkelig at slette og importere?\\Eksisterende konfiguration bliver "
-"overskrevet."
 
 msgid "Do you really want to delete all MIBs?"
 msgstr "Vil du virkelig slette alle MIBer?"
@@ -1811,7 +1773,7 @@ msgid "Do you really want to delete this portal group?"
 msgstr "Vil du virkelig slette denne Portal gruppe?"
 
 msgid "Do you really want to delete this resource?"
-msgstr "Vil du virkelig slette denne ressource?"
+msgstr ""
 
 msgid "Do you really want to delete this route?"
 msgstr "Vil du virkelig slette denne rute?"
@@ -1850,7 +1812,6 @@ msgstr "Vil du virkelig formatere denne disk? Alt data går tabt!"
 msgid ""
 "Do you really want to import?\\nThe existing config may be overwritten."
 msgstr ""
-"Vil du virkelig importere?\\Eksisterende konfiguration kan blive overskrevet."
 
 msgid "Do you really want to remove the selected item from the list?"
 msgstr "Vil du virkelig fjerne det valgte element fra listen?"
@@ -1888,8 +1849,18 @@ msgstr "Domænenavn, f.eks. example.com."
 msgid "Don't Erase MBR"
 msgstr "Slet ikke MBR"
 
+msgid "Don't advertise createfileid, resolveid, deleteid calls."
+msgstr "Benyt ikke createfileid, resolveid og deleteid kald."
+
 msgid "Don't erase the MBR (useful for some RAID controller cards)"
 msgstr "Slet ikke MBR (nyttig med nogle RAID controller kort)"
+
+msgid ""
+"Don't stat volume path when enumerating volumes list, useful for "
+"automounting or volumes created by a preexec script."
+msgstr ""
+"Brug ikke stat på volume stien, når volume listen optælles, nyttig til "
+"automontering og volumer oprettet af et preexec script."
 
 msgid "Donate"
 msgstr "Donér"
@@ -1931,13 +1902,13 @@ msgid "Driver parameters"
 msgstr "Driver parametre"
 
 msgid "Driver used"
-msgstr "Anvendt driver"
+msgstr ""
 
 msgid "Driver version"
-msgstr "Driver version"
+msgstr ""
 
 msgid "Driver version internal"
-msgstr "Driver version intern"
+msgstr ""
 
 msgid "Duplex"
 msgstr "Dupleks"
@@ -1952,7 +1923,7 @@ msgid "Dynamic DNS"
 msgstr "Dynamisk DNS"
 
 msgid "Dynamic IP (DHCP) can not be used for HAST resources."
-msgstr "Dynamisk IP (DHCP) kan ikke anvendes for HAST ressourcer."
+msgstr ""
 
 msgid "EA support"
 msgstr "EA understøttelse"
@@ -2033,7 +2004,7 @@ msgid "Edit portal group"
 msgstr "Reduger Portal gruppe"
 
 msgid "Edit resource"
-msgstr "Rediger resource"
+msgstr ""
 
 msgid "Edit rule"
 msgstr "Rediger regel"
@@ -2058,7 +2029,7 @@ msgstr "Rediger enhed"
 
 msgid ""
 "Efficiency of the UPS (Ratio of the output current on the input current)"
-msgstr "UPS effektivitet (udgangsstrøm i forhold til indgangsstrøm)"
+msgstr ""
 
 msgid "Email"
 msgstr "Email"
@@ -2073,13 +2044,10 @@ msgid "Email report"
 msgstr "Email rapport"
 
 msgid "Empty as default."
-msgstr "Normalt tom."
+msgstr ""
 
 msgid "Enable"
 msgstr "Aktiver"
-
-msgid "Enable ACL inheritance"
-msgstr ""
 
 msgid "Enable Advanced Format (4KB sector)"
 msgstr "Aktiver avanceret formatering (4KB sektorer)"
@@ -2089,9 +2057,6 @@ msgstr "Aktiver Asynkron I/O (AIO)"
 
 msgid "Enable FXP protocol."
 msgstr "Aktiver FXP protokol."
-
-msgid "Enable NFSv4 server."
-msgstr ""
 
 msgid "Enable NTP"
 msgstr "Aktiver NTP"
@@ -2103,13 +2068,9 @@ msgid ""
 "Enable STARTTLS encryption. This doesn't mean you have to use TLS, you can "
 "use SSL."
 msgstr ""
-"Anvend STARTTLS kryptering. Dette kræver ikke brug af TLS, du kan bruge SSL."
 
 msgid "Enable TLS/SSL connections."
 msgstr "Aktiver TLS/SSL forbindelser."
-
-msgid "Enable Time Machine support"
-msgstr "Time Machine understøttelse"
 
 msgid "Enable ZFS ACL"
 msgstr "Aktiver ZFS ACL"
@@ -2117,11 +2078,17 @@ msgstr "Aktiver ZFS ACL"
 msgid "Enable Zeroconf/Bonjour to advertise services of this device"
 msgstr "Aktiver Zeroconf/Bonjour til at proklamere denne enheds tjenester"
 
+msgid "Enable administrative DLNA/UPnP WebGUI."
+msgstr ""
+
 msgid "Enable anonymous bind."
 msgstr "Aktiver anonym bind."
 
 msgid "Enable authentication."
 msgstr "Aktiver godkendelse."
+
+msgid "Enable automatic disk discovery."
+msgstr "Aktiver automatisk disk gendannelse."
 
 msgid "Enable compression."
 msgstr "Aktiver komprimering."
@@ -2140,9 +2107,6 @@ msgstr "Aktiver distribueret hash tabel."
 
 msgid "Enable domain wildcarding."
 msgstr "Aktiver domæne jokertegn."
-
-msgid "Enable encryption."
-msgstr "Kryptering."
 
 msgid "Enable extended attribute support"
 msgstr "Aktiver understøttelse for udvidede attributter"
@@ -2236,10 +2200,24 @@ msgid "Enable use sendfile."
 msgstr "Aktiver brug af sendfile."
 
 msgid "Enable write cache mode."
-msgstr "Anvend skrive cache."
+msgstr ""
 
 msgid "Enabled"
 msgstr "Aktiveret"
+
+msgid ""
+"Enables crlf translation for TEXT files, automatically converting macintosh "
+"line breaks into Unix ones. Use of this option might be dangerous since some "
+"older programs store binary data files as type 'TEXT' when saving and switch "
+"the filetype in a second step. Afpd will potentially destroy such files when "
+"'erroneously' changing bytes in order to do line break translation."
+msgstr ""
+"Aktiverer crlf oversættelse for TEKST filer, og konverterer automatisk "
+"macintosh linjeskift til Unix linjeskift. Det kan være farligt at bruge "
+"denne indstillinger, da nogle ældre programmer gemmer binære data filer som "
+"typen 'TEKST' når de gemmer, og skifter filtypen i et ekstra skridt. Afpd "
+"vil muligvis ødelægge sådanne filer når de 'fejlagtigt' ændrer bytes for at "
+"udføre linjeskift oversættelsen."
 
 msgid "Encrypted"
 msgstr "Krypteret"
@@ -2264,8 +2242,6 @@ msgid ""
 "Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
-"Angiv valgfri port nummer for WebGUI hvis du ikke ønsker at anvende "
-"standarden (80 for HTTP, 443 for HTTPS)."
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Indtast et gyldigt sysctl MIB navn."
@@ -2330,16 +2306,16 @@ msgid "Export"
 msgstr "Eksporter"
 
 msgid "Export all the directories in the specified path."
-msgstr "Eksporter alle foldere i den angivne sti."
+msgstr ""
 
 msgid "Extended attributes"
 msgstr "Udvidede attributter"
 
 msgid "Extended input frequency range"
-msgstr "Udvidet input frekvens område"
+msgstr ""
 
 msgid "Extended input voltage range"
-msgstr "Udvidet input spændingsområde"
+msgstr ""
 
 msgid "Extensions"
 msgstr "Udvidelser"
@@ -2511,7 +2487,7 @@ msgid "Filter"
 msgstr "Filtrer"
 
 msgid "Finnish"
-msgstr "Finsk"
+msgstr ""
 
 msgid "Firewall"
 msgstr "Firewall"
@@ -2529,7 +2505,7 @@ msgid "Firmware uploading is not supported on this platform."
 msgstr "Upload af firmware er ikke understøttet på denne platform."
 
 msgid "Firmware version"
-msgstr "Firmware version"
+msgstr ""
 
 msgid "Firmware version check"
 msgstr "Firmware versions kontrol"
@@ -2547,7 +2523,7 @@ msgid "Follow"
 msgstr "Følg"
 
 msgid "Force use"
-msgstr "Tvunget brug"
+msgstr ""
 
 msgid "Forced update period"
 msgstr "Tvunget opdaterings periode"
@@ -2556,8 +2532,6 @@ msgid ""
 "Forces use of vdevs, even if they appear in use or specify different size. "
 "(This is not recommended.)"
 msgstr ""
-"Gennemtving brug af vdevs, selvom de synes i brug, eller specificer "
-"størrelse (anbefales ikke)."
 
 msgid "Format"
 msgstr "Formater"
@@ -2629,7 +2603,7 @@ msgid "Give only local users access to the web page."
 msgstr "Giv kun lokale brugere adgang til hjemmesiden."
 
 msgid "Give your media library a friendly name."
-msgstr "Angiv brugervenligt navn for dit medie-bibliotek."
+msgstr ""
 
 msgid "Grant access to the user portal."
 msgstr "Giv adgang til bruger portalen."
@@ -2654,9 +2628,6 @@ msgstr "Gruppe"
 msgid "Group ID"
 msgstr "Gruppe ID"
 
-msgid "Group compilations"
-msgstr ""
-
 msgid "Group description."
 msgstr "Gruppe beskrivelse."
 
@@ -2679,13 +2650,13 @@ msgid "Guest account"
 msgstr "Gæste konto"
 
 msgid "HAST"
-msgstr "HAST"
+msgstr ""
 
 msgid "HAST (Highly Available Storage)"
-msgstr "HAST (Highly Available Storage)"
+msgstr ""
 
 msgid "HAST disabled"
-msgstr "HAST slået fra"
+msgstr ""
 
 msgid "HAST resource"
 msgstr ""
@@ -2795,7 +2766,7 @@ msgstr ""
 "Perioden er i sekunder (maks. er 10 dage)."
 
 msgid "Hungarian"
-msgstr "Ungarsk"
+msgstr "Ungarnsk"
 
 msgid "I/O Timeout"
 msgstr "I/O timeout"
@@ -2892,7 +2863,6 @@ msgstr ""
 
 msgid "If allowed, a user of the trusted domains can access the share."
 msgstr ""
-"Hvis tilladt, en bruger fra godkendt domæne kan tilgå dette delte drev."
 
 msgid ""
 "If default root is enabled, a chroot operation is performed immediately "
@@ -2902,6 +2872,15 @@ msgstr ""
 "Hvis standard roden er aktiveret, vil en chroot handling blive udført "
 "øjeblikkeligt efter en klient bliver godkendt. Dette kan bruges til at "
 "effektivt isolere klienten fra en del af værtens filsystem område."
+
+msgid ""
+"If set afpd uses the ID information stored in AppleDouble V2 header files to "
+"reduce database load. Don't set this option if the volume is modified by non "
+"AFP clients (NFS/SMB/local)."
+msgstr ""
+"Hvis sat, bruger afpd ID informationen der er gemt i AppleDouble V2 header "
+"filer, for at reducere database belastningen. Angiv ikke denne indstilling "
+"hvis volumen bliver ændret af ikke-AFP klienter (NFS/SMB/Lokal)."
 
 msgid ""
 "If the selected disk/partition is mounted it will be unmounted temporarily "
@@ -2918,8 +2897,6 @@ msgid ""
 "If the server is behind a proxy set these parameters to give local services "
 "access to the internet via proxy."
 msgstr ""
-"Hvis serveren er bag en proxy, angiv disse parametre for at give internet "
-"adgang til lokale tjenester via proxy."
 
 msgid ""
 "If this parameter is set, Samba attempts to first read DOS attributes "
@@ -2980,16 +2957,13 @@ msgid "Import on-disk ZFS config"
 msgstr "Importer on-disk ZFS konfiguration"
 
 msgid "Import software raid disks"
-msgstr "Importer software raid diske"
+msgstr ""
 
 msgid "In"
 msgstr "Ind"
 
 msgid "In most cases, 'public' is used here."
 msgstr "I de fleste tilfælde bliver 'public' brugt her."
-
-msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
-msgstr ""
 
 msgid "Include basic hardware information."
 msgstr "Inkluder basal hardware information."
@@ -3014,9 +2988,6 @@ msgstr "Information & Manual"
 
 msgid "Information & Manuals"
 msgstr "Information & Manualer"
-
-msgid "Inherit ACL"
-msgstr ""
 
 msgid "Inherit permissions"
 msgstr "Arv tilladelser"
@@ -3063,10 +3034,10 @@ msgid "Initiators"
 msgstr "Initiatorer"
 
 msgid "Input current (A)"
-msgstr "Input strøm (Amp.)"
+msgstr ""
 
 msgid "Input frequency"
-msgstr "Input frekvens"
+msgstr ""
 
 msgid "Input line frequency (Hz)"
 msgstr ""
@@ -3084,7 +3055,7 @@ msgid "Input power sensitivity"
 msgstr ""
 
 msgid "Input voltage"
-msgstr "Indgang spænding"
+msgstr ""
 
 msgid "Inquiry Product"
 msgstr "Forespørg produkt"
@@ -3111,31 +3082,31 @@ msgid "Interface Management"
 msgstr "Grænseflade håndtering"
 
 msgid "Interface selection"
-msgstr "Interface valg"
+msgstr ""
 
 msgid "Interfaces"
 msgstr "Grænseflader"
 
 msgid "Internal Server Information"
-msgstr "Intern server information"
+msgstr ""
 
 msgid "Internal UPS clock date"
-msgstr "Intern UPS dato"
+msgstr ""
 
 msgid "Internal UPS clock time"
-msgstr "Intern UPS tid"
+msgstr ""
 
 msgid "Interval between self tests"
-msgstr "Interval mellem selv-tests"
+msgstr ""
 
 msgid "Interval must be greater or equal than 10 seconds."
 msgstr "Intervallet skal være større end eller lig med 10 sekunder."
 
 msgid "Interval to wait after shutdown with delay command"
-msgstr "Ventetid ved brug af forsinket nedlukning"
+msgstr ""
 
 msgid "Interval to wait before rebooting the UPS)"
-msgstr "Ventetid før UPS genstart"
+msgstr ""
 
 msgid "Interval to wait before restarting the load"
 msgstr ""
@@ -3148,12 +3119,12 @@ msgid "Invalid max. block size! It must be in the range from %d to %d."
 msgstr "Ugyldig maks. blok størrelse! Den skal være i området fra %d til %d."
 
 msgid "Invalid username or password. Please try again."
-msgstr "Ugyldigt brugernavn eller adgangskode. Prøv igen."
+msgstr ""
 
 msgid ""
 "It can be changed from the client side by standard SCSI mode page at any "
 "time."
-msgstr "Kan ændres når som helst af bruger med standard SCSI mode page."
+msgstr ""
 
 msgid "It cannot be used combining SMB2 and Anonymous."
 msgstr "Det kan ikke bruges samtidig med SMB2 og Anonymt."
@@ -3222,7 +3193,7 @@ msgid "LAN net"
 msgstr "LAN net"
 
 msgid "LAN only"
-msgstr "Kun LAN"
+msgstr ""
 
 msgid "LCDproc"
 msgstr "LCDproc"
@@ -3243,7 +3214,7 @@ msgid "Language"
 msgstr "Sprog"
 
 msgid "Language to use on front panel"
-msgstr "Anvendt sprog på front panel"
+msgstr ""
 
 msgid "Large read/write"
 msgstr "Stor læsning/skrivning"
@@ -3330,10 +3301,10 @@ msgid "Link Aggregation and Failover"
 msgstr "Link Aggregering og Failover"
 
 msgid "Link down action"
-msgstr "Link nede hændelse"
+msgstr ""
 
 msgid "Link up action"
-msgstr "Link oppe hændelse"
+msgstr ""
 
 msgid "List"
 msgstr "Liste"
@@ -3366,10 +3337,10 @@ msgid "Load averages"
 msgstr "Gennemsnits belastning"
 
 msgid "Load file"
-msgstr "Åbn fil"
+msgstr ""
 
 msgid "Load on UPS"
-msgstr "Belastning på UPS"
+msgstr ""
 
 msgid "Load when UPS switches to overload condition (\"OVER\")"
 msgstr ""
@@ -3422,7 +3393,7 @@ msgid "Location where the content database file will be stored."
 msgstr "Placering hvor indholds database filen skal gemmes."
 
 msgid "Location where the database with media contents will be stored."
-msgstr "Placering hvor databasen over medie indhold bliver gemt."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -3434,9 +3405,6 @@ msgstr "Log"
 
 msgid "Log (mirror)"
 msgstr "Log (spejl)"
-
-msgid "Log Device"
-msgstr "Log enhed"
 
 msgid "Log Level"
 msgstr "Log niveau"
@@ -3483,10 +3451,8 @@ msgstr ""
 msgid "Low voltage trimming transfer point"
 msgstr ""
 
-msgid ""
-"Lowest value is higher priority. For master node, use 0 or 1. If preempt is "
-"enabled, it is adjusted to 240 on failure."
-msgstr ""
+msgid "Lowercases names in both directions"
+msgstr "Navne med små bogstaver i begge retninger"
 
 msgid "MAC address"
 msgstr "MAC adresse"
@@ -3504,7 +3470,7 @@ msgid "MOTD"
 msgstr "Dagens meddelelse"
 
 msgid "MOVED TO"
-msgstr "FLYTTET TIL"
+msgstr ""
 
 msgid "MS Active Directory"
 msgstr "MS Active Directory"
@@ -3538,7 +3504,7 @@ msgid "Manufacturer"
 msgstr "Producent"
 
 msgid "Manufacturing date"
-msgstr "Fremstillingsdato"
+msgstr ""
 
 msgid "Map all users to root"
 msgstr "Kortlæg alle brugere som root"
@@ -3596,7 +3562,7 @@ msgid "Maximum connections"
 msgstr "Maksimum antal forbindelser"
 
 msgid "Maximum frequency"
-msgstr "Maksimal frekvens"
+msgstr ""
 
 msgid "Maximum idle time in seconds."
 msgstr "Maksimum ledig tid i sekunder."
@@ -3639,7 +3605,7 @@ msgid "Maximum relative humidity seen (percent)"
 msgstr ""
 
 msgid "Maximum temperature seen (degrees C)"
-msgstr "Maksimum temperatur detekteret (grader C)"
+msgstr ""
 
 msgid "Media"
 msgstr "Medie"
@@ -3648,7 +3614,7 @@ msgid "Media Directory"
 msgstr "Medie mappe"
 
 msgid "Media library"
-msgstr "Medie bibliotek"
+msgstr ""
 
 msgid "Medium acoustic output"
 msgstr "Medium akustisk output"
@@ -3684,16 +3650,16 @@ msgid "Minimum frequency"
 msgstr ""
 
 msgid "Minimum incoming voltage seen"
-msgstr "Mindste spænding detekteret"
+msgstr ""
 
 msgid "Minimum performance, Minimum acoustic output"
 msgstr "Minimum ydelse, minimum akustisk output"
 
 msgid "Minimum relative humidity seen (percent)"
-msgstr "Mindst detekteret fugtighed (procent)"
+msgstr ""
 
 msgid "Minimum temperature seen (degrees C)"
-msgstr "Mindste temperatur detekteret (grader C)"
+msgstr ""
 
 msgid "Minutes"
 msgstr "Minutter"
@@ -3711,16 +3677,13 @@ msgid "Mode"
 msgstr "Tilstand"
 
 msgid "Model"
-msgstr "Model"
+msgstr ""
 
 msgid "Model extra"
 msgstr "Model ekstra"
 
 msgid "Model name"
 msgstr "Model navn"
-
-msgid "Modified"
-msgstr ""
 
 msgid "Modifying"
 msgstr "Modificerer"
@@ -3732,7 +3695,7 @@ msgid "Modules"
 msgstr "Moduler"
 
 msgid "Monday Tuesday Wednesday Thursday Friday Saturday Sunday"
-msgstr "Mandag Tirsdag Onsdag Torsdag Fredag Lørdag Søndag"
+msgstr ""
 
 msgid "Months"
 msgstr "Måneder"
@@ -3775,9 +3738,6 @@ msgstr "Nas4Free WebGUI Adgang"
 
 msgid "NFS"
 msgstr "NFS"
-
-msgid "NFSv4"
-msgstr ""
 
 msgid "NIS"
 msgstr "NIS"
@@ -3866,16 +3826,19 @@ msgid "New Device"
 msgstr "Ny enhed"
 
 msgid "New password"
-msgstr "Ny adgangskode"
+msgstr ""
 
 msgid "No"
 msgstr "Nej"
 
 msgid "No DNS setting found."
-msgstr "Ingen DNS indstillinger fundet"
+msgstr ""
 
 msgid "No RSYNC Client configured"
 msgstr "Ingen RSYNC klient konfigureret"
+
+msgid "No case folding"
+msgstr "Ingen skift mellem store og små bogstaver"
 
 #, php-format
 msgid ""
@@ -3885,15 +3848,13 @@ msgstr ""
 "Gruppe</a> først."
 
 msgid "No configured CARP interfaces."
-msgstr "Ingen netkort konfigureret til CARP"
+msgstr ""
 
 #, php-format
 msgid ""
 "No configured CARP interfaces. Please add new <a href='%s'>CARP "
 "interface</a> first."
 msgstr ""
-"Ingen netkort konfigureret til CARP. Tildel nyt <a href='%s'>CARP "
-"netkort</a> først."
 
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
@@ -3952,26 +3913,20 @@ msgstr ""
 msgid "No file was uploaded."
 msgstr "Ingen fil blev oploaded."
 
-msgid "No new disk found."
-msgstr "Ingen ny disk fundet"
-
-msgid "No new software raid disk found."
-msgstr "Ingen nye software raid disk fundet."
-
 msgid "No pool was found."
 msgstr "Ingen pulje fundet."
 
 msgid "Node A IP address"
-msgstr "Node A IP adresse"
+msgstr ""
 
 msgid "Node A settings"
-msgstr "Node A indstillinger"
+msgstr ""
 
 msgid "Node B IP address"
-msgstr "Node B IP adresse"
+msgstr ""
 
 msgid "Node B settings"
-msgstr "Node B indstillinger"
+msgstr ""
 
 msgid "Node Base"
 msgstr "Node Base"
@@ -4007,7 +3962,7 @@ msgid "Nominal value of apparent power (Volt-Amps)"
 msgstr ""
 
 msgid "Nominal value of real power (Watts)"
-msgstr "Nominel værdi for netto forbrug (Watt)"
+msgstr ""
 
 msgid "None"
 msgstr "Ingen"
@@ -4032,6 +3987,13 @@ msgstr "Ikke tilsluttet"
 
 msgid "Note"
 msgstr "Bemærk"
+
+msgid ""
+"Note! Selecting 'Time Machine' on multiple shares will may cause "
+"unpredictable behavior in MacOS."
+msgstr ""
+"Bemærk! Hvis 'Time Machine' vælges på flere shares, kan det resultere i "
+"uforudsigelig adfærd i MacOS."
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and de-select "
@@ -4065,10 +4027,10 @@ msgid "Null passwords"
 msgstr "Tomme kodeord"
 
 msgid "Number of bad battery packs"
-msgstr "Antal dårlige batteri pakker"
+msgstr ""
 
 msgid "Number of battery packs"
-msgstr "Antal batteri pakker"
+msgstr ""
 
 msgid "Number of clients"
 msgstr "Antal klienter"
@@ -4093,7 +4055,7 @@ msgid "ONLINE"
 msgstr "TILSLUTTET"
 
 msgid "OPT only"
-msgstr "Kun OPT"
+msgstr ""
 
 msgid "Object name"
 msgstr "Objekt navn"
@@ -4162,19 +4124,19 @@ msgid "Outgoing mail server"
 msgstr "Udgående mailserver"
 
 msgid "Output current (A)"
-msgstr "Udgangsstrøm (A)"
+msgstr ""
 
 msgid "Output frequency (Hz)"
-msgstr "Udgangsfrekvens (Hz)"
+msgstr ""
 
 msgid "Output voltage"
-msgstr "Udgangsspænding"
+msgstr ""
 
 msgid "Output voltage (V)"
-msgstr "Udgangsspænding (V)"
+msgstr ""
 
 msgid "Overload"
-msgstr "Overbelastning"
+msgstr ""
 
 msgid "Overwrite already configured disks (only affects filesystem value)."
 msgstr ""
@@ -4201,7 +4163,6 @@ msgstr "PPTP"
 msgid "PPTP clients"
 msgstr "PPTP klienter"
 
-#, c-format
 msgid "PSK"
 msgstr "PSK"
 
@@ -4227,9 +4188,6 @@ msgid "Pairwise"
 msgstr "Parvis"
 
 msgid "Parameter xxx (ups.conf or cmdline -x) setting"
-msgstr ""
-
-msgid "Parent Directory"
 msgstr ""
 
 msgid "Partition number"
@@ -4318,7 +4276,7 @@ msgstr "Sti der skal deles."
 
 #, php-format
 msgid "Path to the local device. (e.g. %s)"
-msgstr "Sti til lokal enhed (f. eks. %s)."
+msgstr ""
 
 msgid "Peer Secret"
 msgstr "Peer hemmelighed"
@@ -4471,7 +4429,7 @@ msgid "Prevent deep discharge of battery"
 msgstr ""
 
 msgid "Primary"
-msgstr "Primær"
+msgstr ""
 
 msgid "Primary Group"
 msgstr "Primær Gruppe"
@@ -4498,7 +4456,7 @@ msgid "Processes information"
 msgstr "Proces information"
 
 msgid "Product ID"
-msgstr "Produkt ID"
+msgstr ""
 
 msgid "Profile"
 msgstr "Profil"
@@ -4511,6 +4469,9 @@ msgstr "Protokol"
 
 msgid "Provider"
 msgstr "Udbyder"
+
+msgid "Provides compatibility with Apple II clients."
+msgstr "Giver kompatibilitet til Apple II klienter."
 
 msgid "Proxy"
 msgstr "Proxy"
@@ -4626,7 +4587,7 @@ msgid "Realm"
 msgstr "Område"
 
 msgid "Reason for last transfer to battery (* opaque)"
-msgstr "Årsag for sidste skift til batteri (* gennemsigtig)"
+msgstr ""
 
 msgid "Reboot"
 msgstr "Genstart"
@@ -4689,7 +4650,7 @@ msgid "Remove all entries from ARP table"
 msgstr "Fjern alle posteringer i ARP tabellen"
 
 msgid "Replace Battery UPS"
-msgstr "Udskift batteri UPS"
+msgstr ""
 
 msgid "Report Generator"
 msgstr "Rapport Generator"
@@ -4724,7 +4685,7 @@ msgid "Rescan interval"
 msgstr "Genscan interal"
 
 msgid "Reservation"
-msgstr "Reservation"
+msgstr ""
 
 msgid "Resolve"
 msgstr "Løs"
@@ -4733,13 +4694,13 @@ msgid "Resolve IP addresses to hostnames"
 msgstr "Løs IP-adresser til værtsnavne"
 
 msgid "Resource"
-msgstr "Ressource"
+msgstr ""
 
 msgid "Resource name"
-msgstr "Ressourcenavn"
+msgstr ""
 
 msgid "Resources"
-msgstr "Ressourcer"
+msgstr ""
 
 msgid "Restore configuration"
 msgstr "Gendan konfigurationen"
@@ -4751,16 +4712,13 @@ msgid "Results for net rpc testjoin:"
 msgstr "Resultat fra net rpc testjoin:"
 
 msgid "Results of last self test"
-msgstr "Resultat af sidste selv-test"
+msgstr ""
 
 msgid "Resume"
 msgstr "Genoptag"
 
 msgid "Retry"
 msgstr "Forsøg igen"
-
-msgid "Return to Command page"
-msgstr "Retur til kommando side"
 
 msgid "Reverse DNS lookup"
 msgstr "Omvendt DNS opslag"
@@ -4769,7 +4727,7 @@ msgid "Reverse direction"
 msgstr "Modsat retning"
 
 msgid "Role"
-msgstr "Rolle"
+msgstr ""
 
 msgid "Romanian"
 msgstr "Rumænsk"
@@ -4784,7 +4742,7 @@ msgid "Root bind password"
 msgstr "Rod bind kodeord"
 
 msgid "Rotation rate"
-msgstr "Rotations rate"
+msgstr ""
 
 msgid "Round-robin read"
 msgstr "Round-robin læsning"
@@ -4843,16 +4801,11 @@ msgstr "S.M.A.R.T. log"
 msgid "SMB2"
 msgstr "SMB2"
 
-msgid "SMB3"
-msgstr "SMB3"
-
 msgid ""
-"SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and "
-"Vista. NT1 is for legacy OS like XP."
+"SMB2 is for recent OS like Windows 7 and Vista. NT1 is for legacy OS like XP."
 msgstr ""
-"SMB3 er for nyere operativsystemer som Windows 8. SMB2 er for "
-"operativsystemer som Windows 7 og Vista. NT1 er for ældre operativsystemer "
-"som Windows XP."
+"SMB2 er for nyere OS som feks Windows 7 og Vista. NT1 er for ældre OS som "
+"feks XP."
 
 msgid "SNMP"
 msgstr "SNMP"
@@ -4901,7 +4854,7 @@ msgid "Save and Restart"
 msgstr "Gem og genstart"
 
 msgid "Save file"
-msgstr "Gem fil"
+msgstr ""
 
 msgid "Save login information in configuration file."
 msgstr "Gem login information i konfigurations filen."
@@ -4946,7 +4899,7 @@ msgid "Scheduled shutdown"
 msgstr "Planlagt nedlukning"
 
 msgid "Secondary"
-msgstr "Sekundær"
+msgstr ""
 
 msgid "Secret"
 msgstr "Hemmelighed"
@@ -4961,8 +4914,6 @@ msgid ""
 "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
 "Secure (HTTPS) for the WebGUI."
 msgstr ""
-"Vælg Hypertext Transfer Protocol (HTTP) eller Hypertext Transfer Protocol "
-"Secure (HTTPS) for WebGUI."
 
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr "Vælg en disk der har aktiveret S.M.A.R.T. overvågning"
@@ -4977,15 +4928,15 @@ msgid "Select the FreeBSD package to be installed."
 msgstr "Vælg den FreeBSD pakke der skal installeres."
 
 msgid "Select the language of the WebGUI."
-msgstr "Vælg sprog for WebGUI"
+msgstr ""
 
 msgid "Select the location closest to you."
 msgstr "Vælg den nærmeste placering."
 
 #, php-format
 msgid ""
-"Select the server configuration encrypted GZIP file or XML file and click "
-"the button below to restore the configuration."
+"Select the server configuration XML file and click the button below to "
+"restore the configuration."
 msgstr ""
 
 msgid ""
@@ -5039,13 +4990,13 @@ msgid "Server description. This can usually be left blank."
 msgstr "Server beskrivelse. Dette kan som regel efterlades tomt."
 
 msgid "Server information"
-msgstr "Server information"
+msgstr ""
 
 msgid "Server name"
 msgstr "Server navn"
 
 msgid "Server version"
-msgstr "Server version"
+msgstr ""
 
 msgid "Service"
 msgstr "Tjeneste"
@@ -5065,11 +5016,14 @@ msgstr "Skrivebeskyttet"
 msgid "Set share password."
 msgstr "Share kodeord"
 
+msgid "Set the CNID backend to be used for the volume."
+msgstr "Vælg CNID backend der skal bruges til dette volume."
+
 msgid "Set the account's primary group to the given group."
 msgstr "Sæt kontoens primære gruppe til den givne gruppe."
 
 msgid "Set the content location(s) to or from the media library."
-msgstr "Angiv placering(er) for indhold til og fra medie biblioteket."
+msgstr ""
 
 msgid "Set the desired Service Set Identifier (aka network name)."
 msgstr "Vælg den ønskede Service Set Identifier (også kalder netværksnavn)."
@@ -5097,6 +5051,13 @@ msgstr ""
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
 "Sætter et alternativt monterings punkt for rod datasættet. Standard er /mnt."
+
+msgid ""
+"Sets the database information to be stored in path. You have to specifiy a "
+"writable location, even if the volume is read only."
+msgstr ""
+"Vælg stien hvor database informationen skal gemmes. Du skal angive en "
+"skrivbar placering, selv om volumen er skrivebeskyttet."
 
 msgid ""
 "Sets the interval between disk checks to N seconds. The minimum allowed "
@@ -5140,7 +5101,7 @@ msgid "Shell"
 msgstr "Skal"
 
 msgid "Show RAW UPS Info"
-msgstr "Vis RAW UPS information"
+msgstr ""
 
 msgid "Show log entries in reverse order (newest entries on top)"
 msgstr "Vis log posteringer i omvendt rækkefølge (nyeste posteringer øverst)"
@@ -5149,7 +5110,7 @@ msgid "Show process information"
 msgstr "Vis proces informationer"
 
 msgid "Show ups information"
-msgstr "Vis UPS information"
+msgstr ""
 
 msgid "Shutdown"
 msgstr "Luk ned"
@@ -5185,9 +5146,6 @@ msgstr ""
 "afhængeg af dine diske.)"
 
 msgid "Skew"
-msgstr "Forvansket"
-
-msgid "Skip first scan"
 msgstr ""
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
@@ -5200,10 +5158,10 @@ msgid "Slovenian"
 msgstr "Slovensk"
 
 msgid "SmartBoost"
-msgstr "SmartBoost"
+msgstr ""
 
 msgid "SmartTrim"
-msgstr "SmartTrim"
+msgstr ""
 
 msgid "Snapshot"
 msgstr "Snapshot"
@@ -5244,21 +5202,13 @@ msgstr "Kilde share"
 msgid "Space Used"
 msgstr "Brugt plads"
 
-msgid ""
-"Space delimited set of IP or CIDR notation that permitted to access the "
-"WebGUI. (empty is the same network of LAN interface)"
-msgstr ""
-
 msgid "Spanish"
 msgstr "Spansk"
 
 msgid "Sparse"
-msgstr "Spredt"
-
-msgid "Sparse Volume"
 msgstr ""
 
-msgid "Specified path is NFSv4 root directory."
+msgid "Sparse Volume"
 msgstr ""
 
 msgid "Specifies how many servers to create."
@@ -5366,18 +5316,6 @@ msgstr "Lagring"
 msgid "Store DOS attributes"
 msgstr "Gem DOS attributter"
 
-msgid "Store NTFS acls"
-msgstr ""
-
-msgid "Store NTFS acls in Extended Attributes"
-msgstr ""
-
-msgid "Store alternate data streams"
-msgstr ""
-
-msgid "Store alternate data streams in Extended Attributes"
-msgstr ""
-
 msgid ""
 "String displayed in the dialog presented to the user when accessing the URL."
 msgstr "Tekst der vises i dialogen der vises når brugeren tilgår URLen."
@@ -5447,7 +5385,7 @@ msgid "Switch to %s/s"
 msgstr "Skift til %s/s"
 
 msgid "Sync"
-msgstr "Synk."
+msgstr ""
 
 msgid "Synchronization time"
 msgstr "Synkroniserings tid"
@@ -5469,7 +5407,7 @@ msgid "System Beep"
 msgstr "Systembip"
 
 msgid "System bios"
-msgstr "System bios"
+msgstr ""
 
 msgid "System events"
 msgstr "Systemhændelser"
@@ -5484,7 +5422,7 @@ msgid "System information"
 msgstr "System information"
 
 msgid "System load"
-msgstr "System belastning"
+msgstr ""
 
 msgid "System log"
 msgstr "System log"
@@ -5511,7 +5449,7 @@ msgid "TCP port to bind the server to."
 msgstr "TCP port serveren skal bindes til."
 
 msgid "TCP wrapper"
-msgstr "TCP wrapper"
+msgstr ""
 
 msgid "TFTP"
 msgstr "TFTP"
@@ -5520,7 +5458,7 @@ msgid "TKIP"
 msgstr "TKIP"
 
 msgid "TLS mode"
-msgstr "TLS tilstand"
+msgstr ""
 
 msgid "Tag"
 msgstr "Mærkat"
@@ -5627,9 +5565,6 @@ msgstr "COM-porten skal aktiveres i BIOS, inden denne indstilling aktiveres."
 msgid "The HAST volumes can not be accessed until HAST node becomes Primary."
 msgstr ""
 
-msgid "The IP address of the UPS master."
-msgstr "UPS master IP adresse"
-
 msgid "The IP address that this hostname represents."
 msgstr "IP-adressen som dette værtsnavn repræsenterer."
 
@@ -5673,16 +5608,12 @@ msgid ""
 "The attribute '%s' contains invalid characters and is not a valid NetBIOS "
 "name."
 msgstr ""
-"Beskrivelsen '%s' indeholder ugyldige tegn, og er ikke et gyldigt NetBIOS "
-"navn."
 
 #, c-format
 msgid ""
 "The attribute '%s' contains invalid characters and is not a valid domain "
 "name."
 msgstr ""
-"Beskrivelsen '%s' indeholder ugyldige tegn, og er ikke et gyldigt domæne "
-"navn."
 
 #, c-format
 msgid ""
@@ -5694,8 +5625,6 @@ msgid ""
 "The attribute '%s' contains invalid characters and is not a valid workgroup "
 "name."
 msgstr ""
-"Beskrivelsen '%s' indeholder ugyldige tegn, og er ikke et gyldigt "
-"Arbejdsgruppe navn."
 
 #, c-format, php-format
 msgid "The attribute '%s' contains invalid characters."
@@ -5706,8 +5635,6 @@ msgid ""
 "The attribute '%s' contains the illegal character ':' and is not a valid "
 "password."
 msgstr ""
-"Beskrivelsen '%s' indeholder ugyldigt tegn ':', og er ikke en gyldig "
-"adgangskode."
 
 #, c-format
 msgid "The attribute '%s' does not appear to be a valid certificate."
@@ -5731,11 +5658,11 @@ msgstr "Attributten '%s' er ugyldig."
 
 #, c-format
 msgid "The attribute '%s' is not a valid IP address."
-msgstr "Beskrivelsen '%s' er ikke en gyldig IP adresse."
+msgstr ""
 
 #, c-format
 msgid "The attribute '%s' is not a valid MAC address."
-msgstr "Beskrivelsen '%s' er ikke en gyldig MAC adresse."
+msgstr ""
 
 #, c-format
 msgid "The attribute '%s' is not a valid file mode mask."
@@ -5747,11 +5674,6 @@ msgstr ""
 
 #, c-format
 msgid "The attribute '%s' is not a valid time value."
-msgstr ""
-
-#, c-format, php-format
-msgid ""
-"The attribute '%s' is required within %d or more characters to %d characters."
 msgstr ""
 
 #, c-format, php-format
@@ -5847,18 +5769,18 @@ msgstr "Konfigurationen kunne ikke gendannes. %s."
 
 #, php-format
 msgid "The configuration could not be restored. No file was uploaded!"
-msgstr "Konfigurationen kunne ikke gendannes. Ingen fil var gemt!"
+msgstr ""
 
-#, c-format
 msgid ""
 "The configuration has been changed.<br />You must apply the changes in order "
-"for them to take effect.<br /><b>If this message persist take a look at the "
-"<a href='%s'>system log</a> for more information.</b>"
+"for them to take effect."
 msgstr ""
+"Konfigurationen er blevet ændret.<br />Du skal anvende ændringer inden de "
+"bliver taget i brug."
 
 #, php-format
 msgid "The configuration has been restored. The server is now rebooting."
-msgstr "Konfigurationen blev gendannet. Serveren genstarter nu."
+msgstr ""
 
 msgid ""
 "The confimed password does not match. Please ensure the passwords match "
@@ -5874,7 +5796,7 @@ msgid "The cron job has been executed successfully."
 msgstr "Cron opgaven blev udført korrekt."
 
 msgid "The current password is incorrectly entered."
-msgstr "Nuværende adgangskode ikke korrekt angivet."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -5978,7 +5900,7 @@ msgstr "Extent navnet eksisterer allerede."
 #, php-format
 msgid ""
 "The firmware is now being installed. The server will reboot automatically."
-msgstr "Firmware installeres nu. Serveren genstarter automatisk."
+msgstr ""
 
 msgid "The following input errors were detected"
 msgstr "Følgende indtastnings fejl blev fundet"
@@ -6230,6 +6152,7 @@ msgid ""
 "take one minute."
 msgstr ""
 
+#, php-format
 msgid "The server will reboot after restoring the configuration."
 msgstr ""
 
@@ -6438,10 +6361,6 @@ msgstr ""
 "Dette VLAN kan ikke slettes, fordi den stadig bruges af en grænseflade."
 
 msgid ""
-"This WLAN cannot be deleted because it is still being used as an interface."
-msgstr ""
-
-msgid ""
 "This allows you to lower the power consumption of the drive, at the expense "
 "of performance."
 msgstr ""
@@ -6477,11 +6396,24 @@ msgstr ""
 "informationer om hvordan din UPS konfigureres, kan du finde det i NUT "
 "(Network UPS Tools) <a href='%s' target='_blank'>dokumentationen</a>."
 
+msgid "This controls how the case of filenames are viewed and stored."
+msgstr ""
+"Dette styrer hvordan store og små bogstaver i filnavne vises og gemmes."
+
 msgid "This controls the access a remote host has to this module."
 msgstr "Dette styrer om en fjern vært har adgang til dette modul."
 
 msgid "This controls the access to this share with an access password."
 msgstr "Dette styrer adgangen til dette share med en adgangskode."
+
+msgid ""
+"This controls whether the .AppleDouble directory gets created unless "
+"absolutely needed. This option should not be used if files are access mostly "
+"by Mac computers."
+msgstr ""
+"Dette styrer om .AppleDouble mappen bliver oprettet, når den ikke er absolut "
+"nødvendig. Denne indstilling bør ikke bruges, hvis filerne oftest tilgås af "
+"Mac computere."
 
 msgid "This controls whether this share is accessible by guest account."
 msgstr ""
@@ -6510,6 +6442,14 @@ msgstr ""
 
 msgid "This extent is used."
 msgstr "Denne extent er brugt."
+
+msgid ""
+"This forces filenames to be restricted to the character set used by Windows. "
+"This is not recommended for shares used principally by Mac computers."
+msgstr ""
+"Dette tvinger tilnavne til at være begrænset af tegnsættet der bruges af "
+"Windows. Dette er ikke anbefalet for shares der oftest tilgås af Mac "
+"computere."
 
 msgid "This function is unsupported. Use it on your own risk!"
 msgstr "Denne funktion er ikke understøttet. Brug den på eget ansvar!"
@@ -6742,9 +6682,6 @@ msgstr "Pulje navnet eksisterer allerede."
 msgid "This rule is triggered whenever the selected event directive occurs."
 msgstr "Denne regel aktiveres når det valgte hændelses direktiv opstår."
 
-msgid "This server uses default swap."
-msgstr ""
-
 msgid "This tag already exists."
 msgstr "Mærkatet eksisterer allerede."
 
@@ -6801,7 +6738,7 @@ msgid "Time"
 msgstr "Tid"
 
 msgid "Time Machine"
-msgstr ""
+msgstr "Time Machine"
 
 msgid "Time before the load will be rebooted"
 msgstr ""
@@ -6936,11 +6873,6 @@ msgstr ""
 "Traceroute kan tage tid at fuldføre. Du kan trykke på din browsers Stop-knap "
 "når som helst, for at se fremskridtet for fejletede traceroutes."
 
-msgid ""
-"Tracks whose path contains one or more of these comma separated strings will "
-"be treated as a compilation."
-msgstr ""
-
 msgid "Transcoding"
 msgstr "Omkodning"
 
@@ -7000,9 +6932,6 @@ msgstr "Type brugt som Extent."
 
 msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
-
-msgid "UFS"
-msgstr ""
 
 #, php-format
 msgid ""
@@ -7163,6 +7092,12 @@ msgstr ""
 #, php-format
 msgid "Upload directory of the webserver. The default is %s."
 msgstr ""
+
+msgid "Uppercases names in both directions"
+msgstr "Store bogstavs navne i begge retninger"
+
+msgid "Use AFP3 unix privileges."
+msgstr "Brug AFP3 unix rettigheder."
 
 msgid ""
 "Use a space to separate multiple hosts (only one required). Remember to set "
@@ -7327,9 +7262,6 @@ msgstr "Diskenhed"
 msgid "Volume Name"
 msgstr "Volume navn"
 
-msgid "Volume Size Limit"
-msgstr ""
-
 msgid "Volume label"
 msgstr "Volume mærkat"
 
@@ -7351,10 +7283,6 @@ msgstr "WINS server"
 msgid "WINS server IP address (e.g. from MS Active Directory server)."
 msgstr "WINS server IP-adresse (f.eks. fra en MS Active Directory server)."
 
-msgid "WLAN"
-msgstr ""
-
-#, c-format
 msgid "WPA"
 msgstr "WPA"
 
@@ -7366,9 +7294,6 @@ msgstr "WPA-PSK (Pre Shared Key)"
 
 msgid "WPA-PSK WPA-EAP"
 msgstr "WPA-PSK WPA-EAP"
-
-msgid "WPA2"
-msgstr ""
 
 msgid "Wait time"
 msgstr "Vente tid"
@@ -7423,17 +7348,8 @@ msgstr ""
 "Når en klient først opretter forbindelse til serveren, vil ident protokollen "
 "forsøge at identificere det fjerne brugernavn."
 
-msgid ""
-"When the negotiation is complete, you will not be able to change the SMB "
-"protocol. If you change it, you will need to restart the client connected to "
-"this server."
-msgstr ""
-
 msgid "Where to save downloaded data."
 msgstr "Hvor de downloadede data skal gemmes."
-
-msgid "Whether compilations should be shown together under Various Artists."
-msgstr ""
 
 msgid ""
 "Whether scans should be skipped if there are no users connected. This allows "
@@ -7442,9 +7358,6 @@ msgstr ""
 "Om undersøgelsen skal springes over, hvis der ikke er forbundet nogen "
 "brugere. Dette tillader at drevet kan stoppe, når der ikke er nogen brugere "
 "forbundet."
-
-msgid "Whether to skip initial boot-up scan."
-msgstr ""
 
 msgid "Who"
 msgstr "Hvem"
@@ -7481,9 +7394,11 @@ msgid "Yes"
 msgstr "Ja"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg add "
-"command.<br />Example: pkg add packagename"
+"You can also install a package via SSH or console using the the pkg_add "
+"command.<br />Example: pkg_add -r packagename"
 msgstr ""
+"Du kan også installere en pakke via SSH eller konsollen, ved at bruge "
+"pkg_add kommandoen.<br />Eksempel: pkg_add -r pakkenavn"
 
 msgid "You can use the following parameters for substitution:"
 msgstr "Du kan bruge følgende parametre for erstatning:"
@@ -7527,12 +7442,6 @@ msgstr ""
 msgid "You may specify logical block length (%d by default)."
 msgstr "Du kan angive den logiske blok størrelse (%d som standard)."
 
-#, php-format
-msgid ""
-"You must <a href='%s'>reboot</a> the system before you can upgrade the "
-"firmware."
-msgstr ""
-
 msgid "You must add disks first."
 msgstr "Du skal tilføje diske først."
 
@@ -7542,6 +7451,9 @@ msgstr "Du skal indtaste den samme IP type for netværk og gateway."
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "Du skal have mindst %dMB RAM for at bruge iSCSI mål."
+
+msgid "You must reboot the system before you can upgrade the firmware."
+msgstr "Du skal genstarte systemet, inden du kan opgradere firmwaren."
 
 msgid "You must select at least one authentication method."
 msgstr "Du skal vælge mindst en godkendelses metode."
@@ -7595,12 +7507,17 @@ msgstr "Zeroconf/Bonjour"
 msgid "adaptive (low power consumption)"
 msgstr ""
 
-#, php-format
-msgid "add any supplemental parameters"
+msgid "all disks are imported."
 msgstr ""
 
 msgid "all encrypted disks are imported."
 msgstr ""
+
+msgid "all software raid disks are imported."
+msgstr ""
+
+msgid "cachecnid"
+msgstr "cachecnid"
 
 msgid "change failed."
 msgstr "ændring fejlede."
@@ -7608,8 +7525,17 @@ msgstr "ændring fejlede."
 msgid "chroot() everyone, but root."
 msgstr "chroot() alle, undtagen root."
 
+msgid "cnidscheme"
+msgstr "cnidscheme"
+
+msgid "crlf"
+msgstr "crlf"
+
 msgid "day(s)"
 msgstr "dag(e)"
+
+msgid "dbpath"
+msgstr "dbpath"
 
 msgid "detected an error while importing."
 msgstr ""
@@ -7682,17 +7608,44 @@ msgstr "spejling"
 msgid "mount"
 msgstr "mount"
 
+msgid "mswindows"
+msgstr "mswindows"
+
 msgid "n/a"
 msgstr "Ikke tilgængelig"
+
+msgid "no new disk found."
+msgstr ""
 
 msgid "no new encrypted disk found."
 msgstr ""
 
+msgid "no new software raid disk found."
+msgstr ""
+
+msgid "noadouble"
+msgstr "noadouble"
+
+msgid "nodev"
+msgstr "nodev"
+
+msgid "nofileid"
+msgstr "nofileid"
+
+msgid "nohex"
+msgstr "nohex"
+
 msgid "none"
 msgstr "ingen"
 
+msgid "nostat"
+msgstr "nostat"
+
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "prodos"
+msgstr "prodos"
 
 msgid "rc.conf"
 msgstr "rc.conf"
@@ -7725,7 +7678,7 @@ msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
 msgid "to"
-msgstr "til"
+msgstr ""
 
 msgid "umask"
 msgstr "umask"
@@ -7733,6 +7686,9 @@ msgstr "umask"
 msgid "umount"
 msgstr "umount"
 
+msgid "upriv"
+msgstr "upriv"
+
 #, php-format
 msgid "version:"
-msgstr "version:"
+msgstr ""

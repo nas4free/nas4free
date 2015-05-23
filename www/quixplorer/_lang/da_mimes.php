@@ -3,7 +3,7 @@
 	da_mimes.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -42,7 +42,6 @@ $GLOBALS["mimes"]=array(
 	"dir"		=> "Mappe",
 	"exe"		=> "Kørbar fil",
 	"file"		=> "Fil",
-	"link"		=> "Link",
 
 	// text
 	"text"		=> "Tekst Fil",
@@ -105,6 +104,4 @@ $GLOBALS["mimes"]=array(
 	"c"		=> "C Fil",
 	"psd"		=> "Photoshop File",
 	"point"	=> "PowerPoint Dokument"
-);
-
-?>
+); ?>

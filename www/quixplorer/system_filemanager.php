@@ -3,7 +3,7 @@
 	system_filemanager.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -35,7 +35,7 @@
 	either expressed or implied, of the NAS4Free Project.
 */
 /*------------------------------------------------------------------------------
-			QuiXplorer v2.5.7 Modified for NAS4Free
+                  This is QuiXplorer v2.5.4 Modified for NAS4Free
 ------------------------------------------------------------------------------*/
 
 umask(002); // Added to make created files/dirs group writable
@@ -57,26 +57,25 @@ case "edit":
 	require "./_include/edit_editarea.php";
 	edit_file($current_dir, $GLOBALS["item"]);
 break;
+//------------------------------------------------------------------------------
 // DELETE FILE(S)/DIR(S)
 case "delete":
 	require "./_include/del.php";
 	del_items($current_dir);
 break;
+//------------------------------------------------------------------------------
 // COPY/MOVE FILE(S)/DIR(S)
 case "copy":	case "move":
 	require "./_include/copy_move.php";
 	copy_move_items($current_dir);
 break;
+//------------------------------------------------------------------------------
 // DOWNLOAD FILE
 case "download":
 	ob_start(); // prevent unwanted output
 	require "./_include/down.php";
 	ob_end_clean(); // get rid of cached unwanted output
-    global $item;
-    _debug("download item: $current_dir/$item");
-    if ($item == '' )
-        show_error($GLOBALS["error_msg"]["miscselitems"]);
-	download_item($current_dir, $item);
+	download_item($current_dir, $GLOBALS["item"]);
 	ob_start(false); // prevent unwanted output
 	exit;
 break;
@@ -88,31 +87,37 @@ case "download_selected":
 	ob_start(false); // prevent unwanted output
 	exit;
 break;
-// UNZIP ZIP FILE
+//------------------------------------------------------------------------------
+// UNZIP ZIP FILE added by laurenceHR
 case "unzip":
 	require "./_include/unzip.php";
 	unzip_item($current_dir);
 break;
+//------------------------------------------------------------------------------
 // CREATE DIR/FILE
 case "mkitem":
 	require "./_include/mkitem.php";
 	make_item($current_dir);
 break;
+//------------------------------------------------------------------------------
 // CHMOD FILE/DIR
 case "chmod":
 	require "./_include/chmod.php";
 	chmod_item($current_dir, $GLOBALS["item"]);
 break;
+//------------------------------------------------------------------------------
 // SEARCH FOR FILE(S)/DIR(S)
 case "search":
 	require "./_include/search.php";
 	search_items($current_dir);
 break;
+//------------------------------------------------------------------------------
 // CREATE ARCHIVE
 case "arch":
 	require "./_include/archive.php";
 	archive_items($current_dir);
 break;
+//------------------------------------------------------------------------------
 // USER-ADMINISTRATION
 case "admin":
 	require "./_include/admin.php";
@@ -133,6 +138,9 @@ case "list":
 default:
 	require "./_include/list.php";
 	list_dir($current_dir);
-}
+//------------------------------------------------------------------------------
+}				// end switch-statement
+//------------------------------------------------------------------------------
 show_footer();
+//------------------------------------------------------------------------------
 ?>

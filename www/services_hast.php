@@ -3,7 +3,7 @@
 	services_hast.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -66,19 +66,10 @@ if ($_POST) {
 
 	$pconfig = $_POST;
 
-	$preempt = @exec("/sbin/sysctl -q -n net.inet.carp.preempt");
 	if (isset($_POST['switch_backup']) && $_POST['switch_backup']) {
 		// down all carp
 		foreach ($a_carp as $carp) {
-			//system("/sbin/ifconfig {$carp['if']} down");
-			mwexec("/etc/rc.d/netif stop {$carp['if']}");
-			if ($carp['advskew'] <= 1) {
-				system("/sbin/ifconfig {$carp['if']} vhid {$carp['vhid']} state backup advskew 240");
-			} else {
-				system("/sbin/ifconfig {$carp['if']} vhid {$carp['vhid']} state backup");
-			}
-			//system("/sbin/ifconfig {$carp['if']} up");
-			mwexec("/etc/rc.d/netif start {$carp['if']}");
+			system("/sbin/ifconfig {$carp['if']} down");
 		}
 		// waits for the primary disk to disappear
 		$retry = 60;
@@ -93,29 +84,16 @@ if ($_POST) {
 			write_log("error: still hasted primary exists!");
 		}
 		// up and set backup all carp
-		if ($preempt == 0 || (isset($a_carp[0]) && $a_carp[0]['advskew'] > 1)) {
-			foreach ($a_carp as $carp) {
-				//system("/sbin/ifconfig {$carp['if']} up vhid {$carp['vhid']} state backup");
-			}
+		foreach ($a_carp as $carp) {
+			system("/sbin/ifconfig {$carp['if']} up state backup");
 		}
 		header("Location: services_hast.php");
 		exit;
 	}
 	if (isset($_POST['switch_master']) && $_POST['switch_master']) {
 		// up and set master all carp
-		$role = get_hast_role();
 		foreach ($a_carp as $carp) {
-			$state = @exec("/sbin/ifconfig {$carp['if']} | grep  'carp:' | awk '{ print tolower($2) }'");
-			if ($carp['advskew'] <= 1) {
-				system("/sbin/ifconfig {$carp['if']} up vhid {$carp['vhid']} state master advskew {$carp['advskew']}");
-			} else {
-				system("/sbin/ifconfig {$carp['if']} up vhid {$carp['vhid']} state master");
-			}
-			// if already master, use linkup action
-			if ($state == "master" && $role != "primary") {
-				$action = $carp['linkup'];
-				$result = mwexec($action);
-			}
+			system("/sbin/ifconfig {$carp['if']} up state master");
 		}
 		// waits for the secondary disk to disappear
 		$retry = 60;
@@ -191,7 +169,7 @@ if ($_POST) {
 			$retval |= rc_update_service("nfsd");
 			$retval |= rc_update_service("statd");
 			$retval |= rc_update_service("lockd");
-			$retval |= rc_update_service("netatalk");
+			$retval |= rc_update_service("afpd");
 			$retval |= rc_update_service("rsyncd");
 			$retval |= rc_update_service("unison");
 			$retval |= rc_update_service("iscsi_target");
@@ -271,7 +249,7 @@ $(document).ready(function(){
 	<tr id="control_btn">
 	  <td colspan="2">
 	    <input id="switch_backup" name="switch_backup" type="submit" class="formbtn" value="<?php echo gettext("Switch VIP to BACKUP"); ?>" />
-	    <?php if (isset($a_carp[0]) && $a_carp[0]['advskew'] <= 1) { ?>
+	    <?php if (isset($a_carp[0]) && $a_carp[0]['advskew'] == 0) { ?>
 	    &nbsp;<input id="switch_master" name="switch_master" type="submit" class="formbtn" value="<?php echo gettext("Switch VIP to MASTER"); ?>" />
 	    <?php } ?>
 	  </td>

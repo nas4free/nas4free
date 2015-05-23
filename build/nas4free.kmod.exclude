@@ -1,6 +1,6 @@
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # Excluding list of kernel modules
@@ -45,3 +45,19 @@ cam/cam.ko
 
 # UFS
 ufs/ufs.ko
+
+# 10GbE within kernel
+cxgb/cxgb/if_cxgb.ko
+cxgb/cxgb_t3fw/cxgb_t3fw.ko
+cxgbe/if_cxgbe/if_cxgbe.ko
+ixgb/if_ixgb.ko
+ixgbe/ixgbe.ko
+mxge/mxge/if_mxge.ko
+mxge/mxge_eth_z8e/mxge_eth_z8e.ko
+mxge/mxge_ethp_z8e/mxge_ethp_z8e.ko
+mxge/mxge_rss_eth_z8e/mxge_rss_eth_z8e.ko
+mxge/mxge_rss_ethp_z8e/mxge_rss_ethp_z8e.ko
+nxge/if_nxge.ko
+qlxgb/if_qlxgb.ko
+sfxge/sfxge.ko
+vxge/vxge.ko

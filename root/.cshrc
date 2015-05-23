@@ -1,9 +1,12 @@
+# $FreeBSD: src/etc/root/dot.cshrc 242850 2012-11-10 06:05:04Z eadler $
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-# $FreeBSD: src/etc/root/dot.cshrc 242850 2012-11-10 06:05:04Z eadler $
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
 #
 # .cshrc - csh resource script, read at beginning of execution by each shell
 #
@@ -40,21 +43,10 @@ if ($?prompt) then
 		bindkey "^W" backward-delete-word
 		bindkey -k up history-search-backward
 		bindkey -k down history-search-forward
-		bindkey "\e[1~" beginning-of-line       # Home
-                bindkey "\e[2~" overwrite-mode          # Insert
-                bindkey "\e[3~" delete-char             # Delete
-                bindkey "\e[4~" end-of-line             # End
-                bindkey "\e[5~" history-search-backward # Page Up
-                bindkey "\e[6~" history-search-forward  # Page Down
-		bindkey "\eOc"  forward-word            # ctrl right
-		bindkey "\eOd"  backward-word           # ctrl left
 	endif
 endif
 
 # Display console menu (only on ttyv0/ttyd0).
-if ("ttyu0" == "$tty" && `kenv console | sed -n 's/.*uboot.*/uboot/p'` == "uboot") then
-	stty clocal
-endif
 if ( "ttyv0" == "$tty" || "ttyu0" == "$tty" ) then
 	/etc/rc.banner
 	/etc/rc.initial

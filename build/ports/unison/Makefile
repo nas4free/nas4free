@@ -1,5 +1,5 @@
 PORTNAME=		unison
-PORTVERSION=	2.48.3
+PORTVERSION=	2.40.102
 CATEGORIES=		net
 COMMENT=		A user-level file synchronization tool
 MAINTAINER=		zoon01@nas4free.org
@@ -12,7 +12,7 @@ EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}.tar.gz
 BUILD_DEPENDS=	ocamlc:${PORTSDIR}/lang/ocaml-nox11
 PATCH_DEPENDS=	${BUILD_DEPENDS}
 
-NO_PKG_REGISTER=yes
+NO_STAGE=       yes
 USES=         gmake
 MAKE_ARGS=	CFLAGS=""
 MAKE_ARGS+=	UISTYLE=text

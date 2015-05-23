@@ -3,21 +3,21 @@
 	zfs.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
+	All rights reserved..
 
 	Portions of freenas (http://www.freenas.org).
 	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
-	modification, are permitted provided that the following conditions are met:
+	modification, are permitted provided that the following conditions are met: 
 
 	1. Redistributions of source code must retain the above copyright notice, this
-	   list of conditions and the following disclaimer.
+	   list of conditions and the following disclaimer. 
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
-	   and/or other materials provided with the distribution.
+	   and/or other materials provided with the distribution. 
 
 	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
@@ -31,7 +31,7 @@
 	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 	The views and conclusions contained in the software and documentation are those
-	of the authors and should not be interpreted as representing official policies,
+	of the authors and should not be interpreted as representing official policies, 
 	either expressed or implied, of the NAS4Free Project.
 */
 require_once("config.inc");
@@ -55,7 +55,6 @@ require_once("util.inc");
 function zfs_get_pool_list() {
 	$result = array();
 
-	$osver = @exec("/usr/bin/uname -U");
 	mwexec2("zpool list -H", $rawdata);
 	foreach ($rawdata as $line) {
 		$aline = preg_split("/\s+/", $line);
@@ -67,27 +66,13 @@ function zfs_get_pool_list() {
 		$result[$poolname] = array();
 		$result[$poolname]['name'] = $aline[0];
 		$result[$poolname]['size'] = $aline[1];
-		$result[$poolname]['alloc'] = $aline[2];
-		$result[$poolname]['free'] = $aline[3];
-		if ($osver >= 1000000) {
-			if ($osver >= 1100000) {
-                                $result[$poolname]['expandsz'] = $aline[4];
-                                $result[$poolname]['frag'] = $aline[5];
-			} else {
-                                $result[$poolname]['frag'] = $aline[4];
-                                $result[$poolname]['expandsz'] = $aline[5];
-			}
-                        $result[$poolname]['cap'] = $aline[6];
-                        $result[$poolname]['dedup'] = $aline[7];
-                        $result[$poolname]['health'] = $aline[8];
-                        $result[$poolname]['altroot'] = $aline[9];
-		} else {
-			$result[$poolname]['cap'] = $aline[4];
-			$result[$poolname]['dedup'] = $aline[5];		
-			$result[$poolname]['health'] = $aline[6];
-			$result[$poolname]['altroot'] = $aline[7];
-			//$result[$poolname]['atime'] = $aline[8];
-		}
+		$result[$poolname]['used'] = $aline[2];
+		$result[$poolname]['avail'] = $aline[3];
+		$result[$poolname]['cap'] = $aline[4];
+		$result[$poolname]['dedup'] = $aline[5];		
+		$result[$poolname]['health'] = $aline[6];
+		$result[$poolname]['altroot'] = $aline[7];
+		//$result[$poolname]['atime'] = $aline[8];
 
 		// Get correct used/available disk space.
 		// See http://bugs.opensolaris.org/bugdatabase/view_bug.do?bug_id=6308817
@@ -388,13 +373,7 @@ function zfs_dataset_configure($uuid) {
 
 	if (!empty($dataset['atime']))
 		$param .= "-o atime={$dataset['atime']} ";
-
-	if (!empty($dataset['aclinherit']))
-		$param .= "-o aclinherit={$dataset['aclinherit']} ";
-
-	if (!empty($dataset['aclmode']))
-		$param .= "-o aclmode={$dataset['aclmode']} ";
-
+	
 	if (!isset($dataset['canmount']))
 		$param .= "-o canmount=off ";
 
@@ -407,10 +386,8 @@ function zfs_dataset_configure($uuid) {
 	if (!empty($dataset['quota']))
 		$param .= "-o quota={$dataset['quota']} ";
 
-/*
 	if (!isset($dataset['xattr']))
 		$param .= "-o xattr=off ";
-*/
 
 	if (isset($dataset['snapdir']))
 		$param .= "-o snapdir=visible ";
@@ -509,7 +486,7 @@ function zfs_dataset_properties($uuid) {
 
 	$result = 0;
 
-	foreach (explode(" ", "compression dedup sync atime aclinherit aclmode canmount readonly reservation quota xattr snapdir") as $attr) {
+	foreach (explode(" ", "compression dedup sync atime canmount readonly reservation quota xattr snapdir") as $attr) {
 		$param = "";
 
 		switch ($attr) {
@@ -531,16 +508,6 @@ function zfs_dataset_properties($uuid) {
 			case "atime":
 				if (!empty($dataset['atime']))
 					$param = "atime={$dataset['atime']}";
-				break;
-
-			case "aclinherit":
-				if (!empty($dataset['aclinherit']))
-					$param = "aclinherit={$dataset['aclinherit']}";
-				break;
-
-			case "aclmode":
-				if (!empty($dataset['aclmode']))
-					$param = "aclmode={$dataset['aclmode']}";
 				break;
 
 			case "canmount":

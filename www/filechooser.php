@@ -3,7 +3,7 @@
 	filechooser.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -58,8 +58,7 @@ class FileChooser
 		$this->cfg['filterHideFiles'] = '.*';
 		$this->cfg['filterShowFolders'] = '*';
 		$this->cfg['filterHideFolders'] = '.,..,.*';
-		//$this->cfg['dateFormat'] = 'F d, Y g:i A'; // date format.
-		$this->cfg['dateFormat'] = 'Y/m/d H:i'; // date format.
+		$this->cfg['dateFormat'] = 'F d, Y g:i A'; // date format.
 		$this->cfg['startDirectory'] = "/";
 
 		// Get path if browsing a tree.
@@ -146,7 +145,7 @@ class FileChooser
 				// store elements of folder in sub array
 				$folderInfo['name']	= $file;
 				$folderInfo['mtime'] = @filemtime("{$dir}/{$file}");
-				$folderInfo['type'] = gettext("Directory");
+				$folderInfo['type'] = 'Folder';
 				// calc folder size ?
 				$folderInfo['size'] =
 					$this->cfg['calcFolderSizes'] ?
@@ -259,7 +258,7 @@ class FileChooser
 		}
 		else
 		{
-			return '0 Bytes';
+			return '0 bytes';
 		}
 	}
 
@@ -441,18 +440,18 @@ class FileChooser
 
 				$row .= $this->cfg['lineNumbers'] ?
 				        '<td class="ln">&nbsp;</td>' : '';
-				$row .= '<td><a href="'.$scriptname.'?N='.$N.'&amp;p=' . urlencode($dir) . '">'.gettext("Name").'</a></td>';
+				$row .= '<td><a href="'.$scriptname.'?N='.$N.'&amp;p=' . urlencode($dir) . '">Name</a></td>';
 				$row .= $this->cfg['showFileSize'] ?
 					    '<td class="sz">
-						 <a href="'.$scriptname.'?S='.$S.'&amp;p=' . urlencode($dir) . '">'.gettext("Size").'</a>
+						 <a href="'.$scriptname.'?S='.$S.'&amp;p=' . urlencode($dir) . '">Size</a>
 						 </td>' : '';
 				$row .= $this->cfg['showFileType'] ?
 				        '<td class="tp">
-				         <a href="'.$scriptname.'?T='.$T.'&amp;p=' . urlencode($dir) . '">'.gettext("Type").'</a>
+				         <a href="'.$scriptname.'?T='.$T.'&amp;p=' . urlencode($dir) . '">Type</a>
 				         </td>' : '';
 				$row .= $this->cfg['showFileModDate'] ?
 					    '<td class="dt">
-					     <a href="'.$scriptname.'?M='.$M.'&amp;p=' . urlencode($dir) . '">'.gettext("Modified").'</a>
+					     <a href="'.$scriptname.'?M='.$M.'&amp;p=' . urlencode($dir) . '">Last Modified</a>
 					     </td>' : '';
 				break;
 
@@ -462,7 +461,7 @@ class FileChooser
 				        '<td class="ln">&laquo;</td>' : '';
 				$row .= '<td class="nm">
 				         <a href="'.$scriptname.'?p=' . urlencode($this->get_valid_parent_dir($dir)) . '">';
-				$row .= gettext("Parent Directory");
+				$row .= 'Parent Directory';
 				$row .= '</a></td>';
 				$row .= $this->cfg['showFileSize'] ?
 				        '<td class="sz">&nbsp;</td>' : '';
@@ -493,15 +492,14 @@ class FileChooser
 
   function navigation_bar($path)
 	{
-    $gettext = "gettext";
     $ret = "";
     $ret .= <<<EOD
 	<tr>
 	<td class="navbar">
 	<form method="get" action="filechooser.php" onSubmit="onSubmit();" onReset="onReset();">
 		<input class="input" name="p" value="{$path}" type="text">
-		<input class="button" type="reset" value="{$gettext("Cancel")}">
-		<input class="button" type="submit" value="{$gettext("OK")}">
+		<input class="button" type="reset" value="Cancel">
+		<input class="button" type="submit" value="Ok">
 EOD;
     ob_start();
     include("formend.inc");
@@ -583,13 +581,7 @@ EOD;
 		<!--
 			function onSubmit()
 			{
-				var slash = eval("opener.slash_"+opener.ifield.id);
-				if (typeof slash === "undefined" || slash == 0) {
-					opener.ifield.value = document.forms[0].p.value.replace(/\/$/, '');
-				} else {
-					// slash != 0
-					opener.ifield.value = document.forms[0].p.value;
-				}
+				opener.ifield.value = document.forms[0].p.value;
 				close();
 			}
 			function onReset()

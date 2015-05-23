@@ -3,7 +3,7 @@
 	services_afp_share.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -47,7 +47,7 @@ if ($_POST) {
 		if (!file_exists($d_sysrebootreqd_path)) {
 			$retval |= updatenotify_process("afpshare", "afpshare_process_updatenotification");
 		  config_lock();
-			$retval |= rc_update_service("netatalk");
+			$retval |= rc_update_service("afpd");
 			$retval |= rc_update_service("mdnsresponder");
 			config_unlock();
 		}

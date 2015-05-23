@@ -3,7 +3,7 @@
 	interfaces_lagg_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2014 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -134,7 +134,6 @@ function get_nextlagg_id() {
 		<td class="tabnavtbl">
 		  <ul id="tabnav">
 				<li class="tabinact"><a href="interfaces_assign.php"><span><?=gettext("Management");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_wlan.php"><span><?=gettext("WLAN");?></span></a></li>
 				<li class="tabinact"><a href="interfaces_vlan.php"><span><?=gettext("VLAN");?></span></a></li>
 				<li class="tabact"><a href="interfaces_lagg.php" title="<?=gettext("Reload page");?>"><span><?=gettext("LAGG");?></span></a></li>
 				<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gettext("Bridge");?></span></a></li>

@@ -16,12 +16,12 @@ if_tap/if_tap.ko
 if_tun/if_tun.ko
 #if_bridge/if_bridge.ko
 #bridgestp/bridgestp.ko
-carp/carp.ko
+if_carp/if_carp.ko
 
 # File systems
 ext2fs/ext2fs.ko
 nullfs/nullfs.ko
-#unionfs/unionfs.ko
+unionfs/unionfs.ko
 smbfs/smbfs.ko
 udf/udf.ko
 udf_iconv/udf_iconv.ko
@@ -41,17 +41,12 @@ netgraph/netgraph/netgraph.ko
 netgraph/socket/ng_socket.ko
 netgraph/ether/ng_ether.ko
 
-# IP firewall
-ipfw/ipfw.ko
-ipfw_nat/ipfw_nat.ko
-libalias/libalias/libalias.ko
-
 # Misc.
 iscsi/initiator/iscsi_initiator.ko
 syscons/green/green_saver.ko
-#ata/atapicam/atapicam.ko
+ata/atapicam/atapicam.ko
 aio/aio.ko
-#iscsi/isboot/isboot.ko
+iscsi/isboot/isboot.ko
 ipmi/ipmi.ko
 arcsas/arcsas.ko
 

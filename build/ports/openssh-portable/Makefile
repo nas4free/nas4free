@@ -1,6 +1,7 @@
 PORTNAME=		openssh-portable
 PORTVERSION=	1.0
 PORTREVISION=	0
+PORTEPOCH=	3
 CATEGORIES=		security
 COMMENT=		The portable version of OpenBSD's OpenSSH
 MAINTAINER=		zoon01@nas4free.org
@@ -14,7 +15,7 @@ NO_PKG_REGISTER?=	yes
 # Set default target to execute when a port is calling a dependency.
 ALWAYS_BUILD_DEPENDS=	yes
 DEPENDS_TARGET=	clean build
-DISABLE_VULNERABILITIES=yes
+NO_STAGE=       yes
 
 BUILD_DEPENDS=	openssh-portable:${PORTSDIR}/security/openssh-portable
 
