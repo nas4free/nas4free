@@ -245,6 +245,9 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
       <p>tmux: tmux is a terminal multiplexer. (<a href="http://sourceforge.net/projects/tmux/" target="_blank">http://sourceforge.net/projects/tmux/</a>)<br />
 	 Copyright &copy; 2010 Nicholas Marriott. All Rights Reserved.</p>
 
+      <p>iperf3: An tool to measure TCP and UDP bandwidth. (<a href="http://software.es.net/iperf/" target="_blank">http://software.es.net/iperf/</a>)<br />
+	 Copyright &copy; 2014 The Regents of the University of California. All Rights Reserved.</p>
+
       <p>Some of the software used for NAS4Free are under the <a href="gpl-license.txt">GNU General Public License</a> (<a href="gpl-license.txt">GPLv2</a>, <a href="gpl3-license.txt">GPLv3</a>), <a href="lgpl-license.txt">GNU Lesser General Public License (LGPL)</a>, <a href="apple-license.txt">Apple Public Source License</a> and <a href="php-license.txt">PHP License</a>.</p>
 
 					</td>
