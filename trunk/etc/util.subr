@@ -46,6 +46,11 @@ get_ipaddr()
 		if [ -n "$_ipaddr" ]; then
 			echo "$_ipaddr"; return
 		fi
+	elif [ "$_protocol_family" = "inet" ]; then
+		_ipaddr=`/sbin/ifconfig ${_interface} inet | grep inet | grep -v vhid | /usr/bin/awk '{print $2}'`
+		if [ -n "$_ipaddr" ]; then
+			echo "$_ipaddr"; return
+		fi
 	fi
 
 	echo `/usr/bin/netstat -inW -f ${_protocol_family} -I ${_interface} | /usr/bin/grep ${_interface} | /usr/bin/awk '{print $4}'`
@@ -54,7 +59,7 @@ get_ipaddr()
 # get_network [protocol_family] [interface]
 get_network()
 {
-	local _protocol_family _interface _ipaddr _prefix
+	local _protocol_family _interface _ipaddr _prefix _mask
 
 	_protocol_family=$1
 	_interface=`get_if $2`
@@ -63,6 +68,13 @@ get_network()
 		_ipaddr=`/sbin/ifconfig ${_interface} inet6 | grep inet6 | head -n 1 | /usr/bin/awk '{print $2}'`
 		_prefix=`/sbin/ifconfig ${_interface} inet6 | grep inet6 | head -n 1 | /usr/bin/awk '{print $4}'`
 		if [ -n "$_ipaddr" -a -n "$_prefix" ]; then
+			echo "$_ipaddr/$_prefix"; return
+		fi
+	elif [ "$_protocol_family" = "inet" ]; then
+		_ipaddr=`/sbin/ifconfig ${_interface} inet | grep inet | grep -v vhid | /usr/bin/awk '{print $2}'`
+		_mask=`/sbin/ifconfig ${_interface} inet | grep inet | grep -v vhid | /usr/bin/awk '{print $4}'`
+		if [ -n "$_ipaddr" -a -n "$_mask" ]; then
+			_prefix=`/usr/local/bin/sipcalc $_ipaddr $_mask | grep 'Network mask (bits)' | /usr/bin/awk '{print $5}'`
 			echo "$_ipaddr/$_prefix"; return
 		fi
 	fi
