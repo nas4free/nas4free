@@ -42,6 +42,21 @@ setvar()
 	esac
 }
 
+sethostid()
+{
+	local _uuid _systemuuid
+
+	# set uuid if not exist in smbios
+	_uuid=`/bin/kenv -q smbios.system.uuid`
+	_systemuuid=`configxml_get "//system/uuid"`
+	if [ -z "${_uuid}" -a -n "${_systemuuid}" ]; then
+		#/bin/kenv -q "smbios.system.uuid=${_systemuuid}" > /dev/null
+		if [ ! -f /etc/hostid ]; then
+			echo "${_systemuuid}" > /etc/hostid
+		fi
+	fi
+}
+
 # Set hostname
 sethostname()
 {
@@ -538,6 +553,7 @@ load_rc_config ${name}
 
 echo -n "Updating rc.conf:"
 
+sethostid
 updateservices
 setvar
 sethostname

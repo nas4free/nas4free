@@ -979,6 +979,16 @@ function config_postinit() {
 		$need_write_config = true;
 	}
 
+	// save current uuid if not found in config
+	if (stristr($g['platform'], "embedded")) {
+		$uuid = @exec("/bin/kenv -q smbios.system.uuid");
+		$hostuuid = @exec("/sbin/sysctl -qn kern.hostuuid");
+		if (empty($uuid) && !empty($hostuuid) && empty($config['system']['uuid'])) {
+			$config['system']['uuid'] = $hostuuid;
+			$need_write_config = true;
+		}
+	}
+
 	if ($need_write_config) {
 		echo "save config\n";
 		write_config();
