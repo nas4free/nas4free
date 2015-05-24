@@ -64,7 +64,8 @@ function login ()
     if ( isset( $_SESSION["s_user"] ) )
     {
         _debug("login(): session detected");
-        if ( ! user_activate( $_SESSION["s_user"], $_SESSION["s_pass"] ))
+        //if ( ! user_activate( $_SESSION["s_user"], $_SESSION["s_pass"] ))
+        if ( ! user_activate( $_SESSION["s_user"], base64_decode($_SESSION["s_pass"]) ))
         {
             _debug("Failed to activate user " . $_SESSION['s_user']);
             logout();
@@ -81,7 +82,8 @@ function login ()
         {
             _debug("login(): login authentication");
             // Check Login
-            if ( ! user_activate( stripslashes( $_POST["p_user"] ), md5( stripslashes( $p_pass ) ) ) )
+            //if ( ! user_activate( stripslashes( $_POST["p_user"] ), md5( stripslashes( $p_pass ) ) ) )
+            if ( ! user_activate( stripslashes( $_POST["p_user"] ), $p_pass ) )
             {
                 global $error_msg;
                 show_error( $error_msg["login_failed"] . ": " . $_POST["p_user"] );

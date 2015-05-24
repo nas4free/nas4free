@@ -139,7 +139,8 @@ function user_find ($user, $pass = NULL)
 
 	// check if the password matches
     $userpw = $GLOBALS["users"][$idx][_idx('password')];
-	if ($pass != $userpw)
+	//if ($pass != $userpw)
+	if (!password_verify($pass, $userpw))
         return;
 
 	// check if the user is active
@@ -178,7 +179,8 @@ function user_activate($user, $pass)
 
 	// store the user data in the globals variable
 	$_SESSION["s_user"]	= $data[0];
-	$_SESSION["s_pass"]	= $data[1];
+	//$_SESSION["s_pass"]	= $data[1];
+	$_SESSION["s_pass"]	= base64_encode($pass);
 	$GLOBALS["home_dir"]	= $data[2];
 	$GLOBALS["home_url"]	= $data[3];
 	$GLOBALS["show_hidden"]	= $data[4];
