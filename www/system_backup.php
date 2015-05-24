@@ -73,7 +73,9 @@ if ($_POST) {
 			@date_default_timezone_set(@date_default_timezone_get());
 			if ($encryption) {
 				$fn = "config-{$config['system']['hostname']}.{$config['system']['domain']}-" . date("YmdHis") . ".gz";
-				$data = config_encrypt($config['system']['password']);
+				//$password = $_POST['encrypt_password'];
+				$password = $config['system']['password'];
+				$data = config_encrypt($password);
 				$fs = strlen($data);
 			} else {
 				$fn = "config-{$config['system']['hostname']}.{$config['system']['domain']}-" . date("YmdHis") . ".xml";
@@ -97,7 +99,9 @@ if ($_POST) {
 				if (pathinfo($_FILES['conffile']['name'], PATHINFO_EXTENSION) == 'gz') {
 					$encrypted = 1;
 					$gz_config = file_get_contents($_FILES['conffile']['tmp_name']);
-					$data = config_decrypt($config['system']['password'], $gz_config);
+					$password = $_POST['decrypt_password'];
+					//$password = $config['system']['password'];
+					$data = config_decrypt($password, $gz_config);
 					if ($data !== FALSE) {
 						$tempfile = tempnam(sys_get_temp_dir(), 'cnf');
 						file_put_contents($tempfile, $data);
@@ -111,7 +115,7 @@ if ($_POST) {
 				}
 				if (!$validate) {
 					$errormsg = sprintf(gettext("The configuration could not be restored. %s"),
-						gettext("Invalid file format."));
+						$encrypted ? gettext("Invalid file format or incorrect password.") : gettext("Invalid file format."));
 				} else {
 					// Install configuration backup
 					if ($encrypted) {
@@ -170,12 +174,18 @@ if ($_POST) {
 			    <tr>
 			      <td colspan="2" class="listtopic"><?=gettext("Restore configuration");?></td>
 			    </tr>
+			    <tr id="decrypt_password_tr">
+				<td width="22%" valign="top" class="vncell"><label for="decrypt_password"><?=gettext("Decrypt password");?></label></td>
+				<td width="78%" class="vtable">
+					<input name="decrypt_password" type="password" class="formfld" id="decrypt_password" size="25" value="" />
+				</td>
+			    </tr>
 			    <tr>
 					<td width="22%" valign="baseline" class="vncell">&nbsp;</td>
 					<td width="78%" class="vtable">
 						<?php echo sprintf(gettext("Select the server configuration encrypted GZIP file or XML file and click the button below to restore the configuration."));?><br />
 						<div id="remarks">
-							<?php html_remark("note", gettext("Note"), sprintf("%s<br />%s", gettext("Current administrator password is used for decryption."), gettext("The server will reboot after restoring the configuration.")));?>
+							<?php html_remark("note", gettext("Note"), sprintf("%s", /*gettext("Current administrator password is used for decryption.")*/ gettext("The server will reboot after restoring the configuration.")));?>
 						</div>
 						<div id="submit">
 						<input name="conffile" type="file" class="formfld" id="conffile" size="40" />
