@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-13 13:18+0000\n"
-"PO-Revision-Date: 2015-01-22 20:27+0000\n"
+"POT-Creation-Date: 2015-05-24 10:56+0000\n"
+"PO-Revision-Date: 2015-05-21 11:36+0000\n"
 "Last-Translator: peter <peterswebdesign2010@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-05-13 05:16+0000\n"
-"X-Generator: Launchpad (build 17493)\n"
+"X-Launchpad-Export-Date: 2015-05-25 06:04+0000\n"
+"X-Generator: Launchpad (build 17514)\n"
 "Language: ro_RO\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -273,10 +273,10 @@ msgid "A valid systctl MIB value."
 msgstr "O valoare validă systctl MIB."
 
 msgid "ACL inherit"
-msgstr ""
+msgstr "permis ACL mostenit"
 
 msgid "ACL mode"
-msgstr ""
+msgstr "mod ACL"
 
 msgid "AD authentication disabled"
 msgstr "Autentificare AD dezactivată"
@@ -289,6 +289,9 @@ msgstr "AFP"
 
 msgid "AG"
 msgstr "AG"
+
+msgid "AIO module"
+msgstr "modul AIO"
 
 msgid "AIO read size"
 msgstr "Mărimea buffer citire AIO"
@@ -1105,7 +1108,7 @@ msgid "Community"
 msgstr "Comunitate"
 
 msgid "Compilations directories"
-msgstr ""
+msgstr "Directoriu colectii"
 
 msgid "Compliant profile to be used."
 msgstr "Profilul folosit implicit."
@@ -1303,9 +1306,6 @@ msgstr "Curent"
 msgid "Current Version:"
 msgstr "Versiune Curentă:"
 
-msgid "Current administrator password is used for decryption."
-msgstr "Codul de acces al administratorului este ulilizat pentru decriptare"
-
 #, php-format
 msgid ""
 "Current administrator password is used for encryption.<br />Encrypted "
@@ -1412,6 +1412,9 @@ msgstr "Zile"
 
 msgid "Debug"
 msgstr "Depanare"
+
+msgid "Decrypt password"
+msgstr ""
 
 msgid "Dedup"
 msgstr "Dedup"
@@ -2118,7 +2121,7 @@ msgid "Enable"
 msgstr "Activare"
 
 msgid "Enable ACL inheritance"
-msgstr ""
+msgstr "Activeaza mostenirea permiselor ACL"
 
 msgid "Enable Advanced Format (4KB sector)"
 msgstr "Activare Format Avansat (sector 4KB)"
@@ -2130,7 +2133,7 @@ msgid "Enable FXP protocol."
 msgstr "Activare protocol FXP."
 
 msgid "Enable NFSv4 server."
-msgstr ""
+msgstr "Activeaza server NFSv4."
 
 msgid "Enable NTP"
 msgstr "Activare NTP"
@@ -2701,7 +2704,7 @@ msgid "Group ID"
 msgstr "ID Grup"
 
 msgid "Group compilations"
-msgstr ""
+msgstr "Colectii Grupuri"
 
 msgid "Group description."
 msgstr "Descriere grup."
@@ -3080,7 +3083,7 @@ msgid "Information & Manuals"
 msgstr "Informații & Manuale"
 
 msgid "Inherit ACL"
-msgstr ""
+msgstr "permise mostenite ACL"
 
 msgid "Inherit permissions"
 msgstr "Permisiuni ierarhice"
@@ -3204,6 +3207,9 @@ msgstr "Timp de așteptare pînă la repornirea UPS-ului"
 
 msgid "Interval to wait before restarting the load"
 msgstr "Timp de așteptare pînă la repornirea sarcinii"
+
+msgid "Invalid file format or incorrect password."
+msgstr ""
 
 msgid "Invalid file format."
 msgstr "Format invalid fișier."
@@ -3811,7 +3817,7 @@ msgid "Model name"
 msgstr "Nume Model"
 
 msgid "Modified"
-msgstr ""
+msgstr "Modificat"
 
 msgid "Modifying"
 msgstr "Modificare"
@@ -3866,7 +3872,7 @@ msgid "NFS"
 msgstr "NFS"
 
 msgid "NFSv4"
-msgstr ""
+msgstr "NFSv4"
 
 msgid "NIS"
 msgstr "NIS"
@@ -4324,7 +4330,7 @@ msgid "Parameter xxx (ups.conf or cmdline -x) setting"
 msgstr "Setările pentru parametrul xxx (ups.conf sau cmdline -x)"
 
 msgid "Parent Directory"
-msgstr ""
+msgstr "Director principal"
 
 msgid "Partition number"
 msgstr "Numărul partiției"
@@ -5293,7 +5299,7 @@ msgid "Skew"
 msgstr "Skew"
 
 msgid "Skip first scan"
-msgstr ""
+msgstr "Salta prima scanare"
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "Sleep - Verificare dispozitiv doar dacă nu este deja în modul Sleep."
@@ -5367,7 +5373,7 @@ msgid "Sparse Volume"
 msgstr "Volum Imagine"
 
 msgid "Specified path is NFSv4 root directory."
-msgstr ""
+msgstr "Ruta specificata este directorul root"
 
 msgid "Specifies how many servers to create."
 msgstr "Specifică câte servere vor fi create."
@@ -5476,6 +5482,18 @@ msgstr "Spațiu stocare"
 
 msgid "Store DOS attributes"
 msgstr "Salvare atribute DOS"
+
+msgid "Store NTFS acls"
+msgstr "Salveaza NTFS acls"
+
+msgid "Store NTFS acls in Extended Attributes"
+msgstr "Salveaza NTFS in Atribute Extinse"
+
+msgid "Store alternate data streams"
+msgstr "Salveaza stream de date alternative"
+
+msgid "Store alternate data streams in Extended Attributes"
+msgstr "Salveaza stream de date in Atribute Extinse"
 
 msgid ""
 "String displayed in the dialog presented to the user when accessing the URL."
@@ -5862,6 +5880,7 @@ msgstr "Atributul '%s' nu reprezintă o valoare de timp validă."
 msgid ""
 "The attribute '%s' is required within %d or more characters to %d characters."
 msgstr ""
+"Atributul '%s' este necesar cu %d caractere sau pana la %d caractere."
 
 #, c-format, php-format
 msgid "The attribute '%s' is required."
@@ -7092,6 +7111,8 @@ msgid ""
 "Tracks whose path contains one or more of these comma separated strings will "
 "be treated as a compilation."
 msgstr ""
+"Localizarea rutelor care contin unul sau mai multe din urmatoarele linii "
+"separate de virgula se va considera compilare."
 
 msgid "Transcoding"
 msgstr "Transcodare"
@@ -7531,7 +7552,7 @@ msgid "WPA-PSK WPA-EAP"
 msgstr "WPA-PSK WPA-EAP"
 
 msgid "WPA2"
-msgstr ""
+msgstr "WPA2"
 
 msgid "Wait time"
 msgstr "Timp de așteptare"
@@ -7601,7 +7622,7 @@ msgid "Where to save downloaded data."
 msgstr "Folderul unde vor fi salvate datele descărcate."
 
 msgid "Whether compilations should be shown together under Various Artists."
-msgstr ""
+msgstr "Daca colectiile ar trebui listate in Artisti Diversi."
 
 msgid ""
 "Whether scans should be skipped if there are no users connected. This allows "
@@ -7611,7 +7632,7 @@ msgstr ""
 "conectați, permțînd discurilor să oprească rotirea platanelor."
 
 msgid "Whether to skip initial boot-up scan."
-msgstr ""
+msgstr "Daca se salta scanarea initiala in boot-up."
 
 msgid "Who"
 msgstr "Utilizator"
