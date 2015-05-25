@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-05-20 20:17+0000\n"
-"PO-Revision-Date: 2015-05-21 11:37+0000\n"
-"Last-Translator: peter <peterswebdesign2010@gmail.com>\n"
+"POT-Creation-Date: 2015-05-24 10:56+0000\n"
+"PO-Revision-Date: 2015-05-24 19:40+0000\n"
+"Last-Translator: raul fernandez garcia <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-05-22 06:36+0000\n"
+"X-Launchpad-Export-Date: 2015-05-25 06:04+0000\n"
 "X-Generator: Launchpad (build 17514)\n"
 "X-Poedit-Country: SPAIN\n"
 "Language: \n"
@@ -277,10 +277,10 @@ msgid "A valid systctl MIB value."
 msgstr "Un valor MIB sysctl válido."
 
 msgid "ACL inherit"
-msgstr ""
+msgstr "Heredar ACL"
 
 msgid "ACL mode"
-msgstr ""
+msgstr "Modo ACL"
 
 msgid "AD authentication disabled"
 msgstr "autentificacion AD desactivada"
@@ -295,7 +295,7 @@ msgid "AG"
 msgstr "AG"
 
 msgid "AIO module"
-msgstr ""
+msgstr "Modulo AIO"
 
 msgid "AIO read size"
 msgstr "AIO Tamaño Lectura"
@@ -1111,7 +1111,7 @@ msgid "Community"
 msgstr "Comunidad"
 
 msgid "Compilations directories"
-msgstr ""
+msgstr "Directorios de compilación"
 
 msgid "Compliant profile to be used."
 msgstr "Perfil compatible a ser usado"
@@ -1310,11 +1310,6 @@ msgstr "Actual"
 msgid "Current Version:"
 msgstr "Versión Actual:"
 
-msgid "Current administrator password is used for decryption."
-msgstr ""
-"La actual contraseña de administrador es usada para la "
-"encriptación/desencriptado."
-
 #, php-format
 msgid ""
 "Current administrator password is used for encryption.<br />Encrypted "
@@ -1421,6 +1416,9 @@ msgstr "Días"
 
 msgid "Debug"
 msgstr "Depurar"
+
+msgid "Decrypt password"
+msgstr "Contraseña para desencriptar"
 
 msgid "Dedup"
 msgstr "Deduplicado"
@@ -2131,7 +2129,7 @@ msgid "Enable"
 msgstr "Permitir"
 
 msgid "Enable ACL inheritance"
-msgstr ""
+msgstr "Habilitar herencia ACL"
 
 msgid "Enable Advanced Format (4KB sector)"
 msgstr "Habilitar formateo avanzado (Sector de 4KB)"
@@ -2714,7 +2712,7 @@ msgid "Group ID"
 msgstr "ID de grupo"
 
 msgid "Group compilations"
-msgstr ""
+msgstr "Grupo de compilación"
 
 msgid "Group description."
 msgstr "Descripción del Grupo."
@@ -3094,7 +3092,7 @@ msgid "Information & Manuals"
 msgstr "Información y manuales"
 
 msgid "Inherit ACL"
-msgstr ""
+msgstr "Heredar ACL"
 
 msgid "Inherit permissions"
 msgstr "Heredar permisos"
@@ -3219,6 +3217,9 @@ msgstr "Intervalo de espera antes de reiniciar la SAI"
 
 msgid "Interval to wait before restarting the load"
 msgstr "Intervalo de espera antes de reiniciar la carga"
+
+msgid "Invalid file format or incorrect password."
+msgstr "Formato de archivo incorrecto o contraseña erronea"
 
 msgid "Invalid file format."
 msgstr "Formato de archivo inválido."
@@ -5313,7 +5314,7 @@ msgid "Skew"
 msgstr "Skew"
 
 msgid "Skip first scan"
-msgstr ""
+msgstr "Saltarse el primer escaneo"
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "Sleep - Controla el disco a menos que este dormido (Sleep)"
@@ -5496,16 +5497,16 @@ msgid "Store DOS attributes"
 msgstr "Almacenar atributos DOS"
 
 msgid "Store NTFS acls"
-msgstr ""
+msgstr "Almacenar ACLs de NTFS"
 
 msgid "Store NTFS acls in Extended Attributes"
-msgstr ""
+msgstr "Almacenar ACLs de NTFS como atributos extendidos"
 
 msgid "Store alternate data streams"
-msgstr ""
+msgstr "Almacenar stream de datos alternativos"
 
 msgid "Store alternate data streams in Extended Attributes"
-msgstr ""
+msgstr "Almacenar stream de datos alternativos como atributos extendidos"
 
 msgid ""
 "String displayed in the dialog presented to the user when accessing the URL."
@@ -7141,6 +7142,8 @@ msgid ""
 "Tracks whose path contains one or more of these comma separated strings will "
 "be treated as a compilation."
 msgstr ""
+"Las pistas cuya ruta contenga uno o más de estas palabras separadas por "
+"coma, serán tratadas como compilación"
 
 msgid "Transcoding"
 msgstr "Transcodificación"
@@ -7651,6 +7654,7 @@ msgstr "Donde guardar datos descargados."
 
 msgid "Whether compilations should be shown together under Various Artists."
 msgstr ""
+"Cualquier compilación debe mostrarse junta, bajo el epigrafe Artistas Varios."
 
 msgid ""
 "Whether scans should be skipped if there are no users connected. This allows "
@@ -7661,7 +7665,7 @@ msgstr ""
 "habilitada la opcion sleep en el disco duro)."
 
 msgid "Whether to skip initial boot-up scan."
-msgstr ""
+msgstr "Saltarse el escaneado inicial al arrancar."
 
 msgid "Who"
 msgstr "Quien"
