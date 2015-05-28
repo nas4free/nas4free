@@ -69,6 +69,7 @@ $g_install = array(
 $g_languages = array (
 	"sq"    => array("codeset" => "UTF-8", "desc" => gettext("Albanian")),
 	"bg"    => array("codeset" => "UTF-8", "desc" => gettext("Bulgarian")),
+	"cs"    => array("codeset" => "UTF-8", "desc" => gettext("Czech")),
 	"zh_CN" => array("codeset" => "UTF-8", "desc" => gettext("Chinese (Simplified)")),
 	"zh_TW" => array("codeset" => "UTF-8", "desc" => gettext("Chinese (Traditional)")),
 	"nl"    => array("codeset" => "UTF-8", "desc" => gettext("Dutch")),
@@ -90,11 +91,11 @@ $g_languages = array (
 	"ro"    => array("codeset" => "UTF-8", "desc" => gettext("Romanian")),
 	"ru"    => array("codeset" => "UTF-8", "desc" => gettext("Russian")),
 	"sl"    => array("codeset" => "UTF-8", "desc" => gettext("Slovenian")),
-	"tr"    => array("codeset" => "UTF-8", "desc" => gettext("Turkish")),
 	"es"    => array("codeset" => "UTF-8", "desc" => gettext("Spanish")),
 	"sv"    => array("codeset" => "UTF-8", "desc" => gettext("Swedish")),
 	"sk"    => array("codeset" => "UTF-8", "desc" => gettext("Slovak")),
-	"cs"    => array("codeset" => "UTF-8", "desc" => gettext("Czech"))
+	"tr"    => array("codeset" => "UTF-8", "desc" => gettext("Turkish")),
+	"uk"    => array("codeset" => "UTF-8", "desc" => gettext("Ukrainian"))
 );
 
 /* Supported filesystems */
