@@ -212,7 +212,7 @@ function upsc_enable_change() {
 						}
 
 						if(count($lines) == 1)
-							tblrow('ERROR:', 'Data stale!');
+							tblrow(gettext('ERROR:'), 'Data stale!');
 
 						tblrow(gettext('Manufacturer'), $ups['device.mfr']);
 						tblrow(gettext('Model'), $ups['device.model']);
@@ -262,7 +262,7 @@ function upsc_enable_change() {
 									break;
 							}
 						}
-						tblrow('Status', $disp_status);
+						tblrow(gettext('Status'), $disp_status);
 
 						tblrowbar(gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
 						tblrowbar(gettext('Battery level'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
@@ -452,7 +452,7 @@ function upsc_enable_change() {
 						html_separator();
 
 						html_titleline_checkbox('raw_upsc_enable', 'NUT', $upsc_enable ? true : false, (gettext('Show RAW UPS Info')), 'upsc_enable_change()');
-						tblrow('RAW info', htmlspecialchars($read), 'pre', 'upsc_raw_command');
+						tblrow(gettext('RAW info'), htmlspecialchars($read), 'pre', 'upsc_raw_command');
 
 						unset($handle);
 						unset($read);
