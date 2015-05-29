@@ -36,36 +36,36 @@
 */
 require("auth.inc");
 require("guiconfig.inc");
-require_once("XML/Serializer.php");
-require_once("XML/Unserializer.php");
 
 $pgtitle = array(gettext("Network"), gettext("Firewall"));
 
 $pconfig['enable'] = isset($config['system']['firewall']['enable']);
 
 if (isset($_POST['export']) && $_POST['export']) {
-	$options = array(
-		XML_SERIALIZER_OPTION_XML_DECL_ENABLED => true,
-		XML_SERIALIZER_OPTION_INDENT           => "\t",
-		XML_SERIALIZER_OPTION_LINEBREAKS       => "\n",
-		XML_SERIALIZER_OPTION_XML_ENCODING     => "UTF-8",
-		XML_SERIALIZER_OPTION_ROOT_NAME        => get_product_name(),
-		XML_SERIALIZER_OPTION_ROOT_ATTRIBS     => array("version" => get_product_version(), "revision" => get_product_revision()),
-		XML_SERIALIZER_OPTION_DEFAULT_TAG      => "rule",
-		XML_SERIALIZER_OPTION_MODE             => XML_SERIALIZER_MODE_DEFAULT,
-		XML_SERIALIZER_OPTION_IGNORE_FALSE     => true,
-		XML_SERIALIZER_OPTION_CONDENSE_BOOLS   => true,
-	);
+	$doc = new DOMDocument('1.0', 'UTF-8');
+	$doc->formatOutput = true;
+	$elm = $doc->createElement(get_product_name());
+	$elm->setAttribute('version', get_product_version());
+	$elm->setAttribute('revision', get_product_revision());
+	$node = $doc->appendChild($elm);
 
-	$serializer = new XML_Serializer($options);
-	$status = $serializer->serialize($config['system']['firewall']['rule']);
-
-	if (@PEAR::isError($status)) {
-		$errormsg = $status->getMessage();
+	// export as XML
+	array_sort_key($config['system']['firewall']['rule'], "ruleno");
+	foreach ($config['system']['firewall']['rule'] as $k => $v) {
+		$elm = $doc->createElement('rule');
+		foreach ($v as $k2 => $v2) {
+			$elm2 = $doc->createElement($k2, $v2);
+			$elm->appendChild($elm2);
+		}
+		$node->appendChild($elm);
+	}
+	$xml = $doc->saveXML();
+	if ($xml === FALSE) {
+		$errormsg = gettext("Invalid file format.");
 	} else {
 		$ts = date("YmdHis");
 		$fn = "firewall-{$config['system']['hostname']}.{$config['system']['domain']}-{$ts}.rules";
-		$data = $serializer->getSerializedData();
+		$data = $xml;
 		$fs = strlen($data);
 
 		header("Content-Type: application/octet-stream");
@@ -78,23 +78,34 @@ if (isset($_POST['export']) && $_POST['export']) {
 	}
 } else if (isset($_POST['import']) && $_POST['import']) {
 	if (is_uploaded_file($_FILES['rulesfile']['tmp_name'])) {
-		$options = array(
-			XML_UNSERIALIZER_OPTION_COMPLEXTYPE => 'array',
-			XML_UNSERIALIZER_OPTION_ATTRIBUTES_PARSE => true,
-			XML_UNSERIALIZER_OPTION_FORCE_ENUM  => $listtags,
-		);
+		// import from XML
+		$xml = file_get_contents($_FILES['rulesfile']['tmp_name']);
+		$doc = new DOMDocument();
+		$data = array();
+		$data['rule'] = array();
+		if ($doc->loadXML($xml) != FALSE) {
+			$doc->normalizeDocument();
+			$rules = $doc->getElementsByTagName('rule');
+			foreach ($rules as $rule) {
+				$a = array();
+				foreach ($rule->childNodes as $node) {
+					if ($node->nodeType != XML_ELEMENT_NODE)
+						continue;
+					$name = !empty($node->nodeName) ? (string)$node->nodeName : '';
+					$value = !empty($node->nodeValue) ? (string)$node->nodeValue : '';
+					if (!empty($name))
+						$a[$name] = $value;
+				}
+				$data['rule'][] = $a;
+			}
+		}
 
-		$unserializer = new XML_Unserializer($options);
-		$status = $unserializer->unserialize($_FILES['rulesfile']['tmp_name'], true);
-
-		if (@PEAR::isError($status)) {
-			$errormsg = $status->getMessage();
+		if (empty($data['rule'])) {
+			$errormsg = gettext("Invalid file format.");
 		} else {
 			// Take care array already exists.
 			if (!isset($config['system']['firewall']['rule']) || !is_array($config['system']['firewall']['rule']))
 				$config['system']['firewall']['rule'] = array();
-
-			$data = $unserializer->getUnserializedData();
 
 			// Import rules.
 			foreach ($data['rule'] as $rule) {
