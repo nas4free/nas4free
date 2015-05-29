@@ -1,11 +1,11 @@
 PORTNAME=		mkpw
-PORTVERSION=	1.0
-PORTEPOCH=		1
+PORTVERSION=		1.1
 CATEGORIES=		sysutils
 COMMENT=		Password generation tool
 MAINTAINER=		zoon01@nas4free.org
 
 DISTFILES?=
+NO_PKG_REGISTER=	yes
 
 do-build:
 	@${MKDIR} -p ${WRKSRC}
