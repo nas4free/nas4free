@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		Session::start();
 
 		if ($_POST['username'] === $config['system']['username'] &&
-			$_POST['password'] === $config['system']['password']) {
+			password_verify($_POST['password'], $config['system']['password'])) {
 			Session::initAdmin();
 			header('Location: index.php');
 			exit;
