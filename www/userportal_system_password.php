@@ -102,7 +102,7 @@ if ($_POST) {
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_passwordbox("password_old", gettext("Current password"), "", "", true);?>
-					<?php html_passwordconfbox("password_new", "password_confirm", gettext("Set new password"), "", "", "", true);?>
+					<?php html_passwordconfbox("password_new", "password_confirm", gettext("New password"), "", "", "", true);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save");?>" />
