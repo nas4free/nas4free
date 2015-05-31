@@ -925,6 +925,48 @@ function config_upgrade() {
 		$config['version'] = "1.9";
 	}
 
+	/* Convert 1.9 -> 2.0 */
+	if ($config['version'] === "1.9") {
+		if (isset($config['system']['firewall'])
+		    && isset($config['system']['firewall']['rule'])
+		    && is_array($config['system']['firewall']['rule'])) {
+			array_sort_key($config['system']['firewall']['rule'], "ruleno");
+			$ruleno = 10100;
+			if ($config['system']['firewall']['rule'][0]['ruleno'] < $ruleno) {
+				foreach ($config['system']['firewall']['rule'] as $k => &$v) {
+					$v['ruleno'] = $ruleno;
+					$ruleno += 100;
+				}
+				unset($v);
+			}
+		}
+		if (isset($config['afp']) && isset($config['afp']['share'])
+		    && is_array($config['afp']['share'])) {
+			foreach ($config['afp']['share'] as &$a) {
+				if (isset($a['adisk']) && isset($a['adisk']['advf'])) {
+					$a['timemachine'] = true;
+				}
+				unset($a['cnidscheme']);
+				unset($a['options']);
+				unset($a['adisk']);
+			}
+			unset($a);
+		}
+		if (isset($config['samba']) && isset($config['samba']['share'])
+		    && is_array($config['samba']['share'])) {
+			foreach ($config['samba']['share'] as &$a) {
+				if (empty($a['aiomodule'])) {
+					$a['aiomodule'] = "aio_pthread";
+				}
+			}
+			unset($a);
+		}
+		if (!preg_match('/^\$6\$/', $config['system']['password'])) {
+			$config['system']['password'] = mkpasswd($config['system']['password']);
+		}
+		$config['version'] = "2.0";
+	}
+
 	/* XXX Convert 9.5 -> 9.7 (must skip 9.6) */
 
 	write_config();
