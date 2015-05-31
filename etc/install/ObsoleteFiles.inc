@@ -82,3 +82,4 @@ usr/local/www/sajax
 usr/local/www/javascript/navbar.js
 usr/local/www/javascript
 etc/uam
+etc/inc/XML
