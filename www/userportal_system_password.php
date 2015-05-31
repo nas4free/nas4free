@@ -59,7 +59,7 @@ if ($_POST) {
 	unset($input_errors);
 
 	$reqdfields = explode(" ", "password_old password_new password_confirm");
-	$reqdfieldsn = array(gettext("Old password"), gettext("Password"), gettext("Password (confirmed)"));
+	$reqdfieldsn = array(gettext("Current password"), gettext("New password"), gettext("Password (confirmed)"));
 	$reqdfieldst = explode(" ", "password password password");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -72,7 +72,7 @@ if ($_POST) {
 
 	// Validate new password.
 	if ($_POST['password_new'] !== $_POST['password_confirm']) {
-		$input_errors[] = gettext("The confimed password does not match. Please ensure the passwords match exactly.");
+		$input_errors[] = gettext("The confirmation password does not match. Please ensure the passwords match exactly.");
 	}
 
 	if (empty($input_errors)) {
@@ -101,8 +101,8 @@ if ($_POST) {
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_passwordbox("password_old", gettext("Old password"), "", "", true);?>
-					<?php html_passwordconfbox("password_new", "password_confirm", gettext("Password"), "", "", "", true);?>
+					<?php html_passwordbox("password_old", gettext("Current password"), "", "", true);?>
+					<?php html_passwordconfbox("password_new", "password_confirm", gettext("Set new password"), "", "", "", true);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save");?>" />
