@@ -50,7 +50,7 @@ if ($_POST) {
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	// Validate old password.
-	if ($_POST['password_old'] !== $config['system']['password']) {
+	if (!password_verify($_POST['password_old'], $config['system']['password'])) {
 		$input_errors[] = gettext("The current password is incorrectly entered.");
 	}
 
@@ -67,7 +67,7 @@ if ($_POST) {
 	}
 
 	if (empty($input_errors)) {
-		$config['system']['password'] = $_POST['password_new'];
+		$config['system']['password'] = mkpasswd($_POST['password_new']);
 
 		write_config();
 

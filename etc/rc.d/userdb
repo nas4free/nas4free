@@ -73,9 +73,10 @@ cat /dev/null > ${userdb_passwd}
 # Encrypt password
 _password=`configxml_get "//system/password"`
 _password_md5=`/usr/sbin/mkpw -e md5 "${_password}"`
+_password_sha=`configxml_get "//system/password"`
 
 # Create the /etc/master.passwd file
-echo "root:${_password_md5}:0:0::0:0:Charlie &:/root:/bin/tcsh
+echo "root:${_password_sha}:0:0::0:0:Charlie &:/root:/bin/tcsh
 toor:*:0:0::0:0:Bourne-again Superuser:/root:
 daemon:*:1:1::0:0:Owner of many system processes:/root:/usr/sbin/nologin
 operator:*:2:5::0:0:System &:/:/usr/sbin/nologin
