@@ -898,6 +898,7 @@
 			<inheritpermissions/>
 			<recyclebin/>
 			<hidedotfiles/>
+			<aiomodule>aio_pthread</aiomodule>
 			<hostsallow>xxx<hostsallow> // Comma, space, or tab delimited set of hosts which are permitted to access a service.
 			<hostsdeny>xxx<hostsdeny> // Hosts listed here are NOT permitted to access a services. Where the lists conflict, the allow list takes precedence.
 			<auxparam></auxparam> // Can be defined multiple times.
@@ -969,23 +970,6 @@
 			<rolist/>
 			<rwlist/>
 			<dbpath>xxx<dbpath>
-			<cnidscheme>cdb|dbd|last</cnidscheme>
-			<options>
-				<cachecnid/>
-				<crlf/>
-				<mswindows/>
-				<noadouble/>
-				<nodev/>
-				<nofileid/>
-				<nohex/>
-				<prodos/>
-				<nostat/>
-				<upriv/>
-			</options>
-			<adisk>
-				<enable/>
-				<advf>0x83</advf>
-			</adisk>
 		</share>
 		-->
 	</afp>
