@@ -39,24 +39,26 @@ _index=`configxml_get_count "//access/user"`
 while [ ${_index} -gt 0 ]
 do
 	_password=`configxml_get "//access/user[${_index}]/password"`
-	_password_md5=`/usr/sbin/mkpw -e md5 "${_password}"`
+	#_password_md5=`/usr/sbin/mkpw -e md5 "${_password}"`
+	_password_sha=`/usr/sbin/mkpw -e sha512 "${_password}"`
 	_homedir=`configxml_get "//access/user[${_index}]/homedir"`
 	[ -z "${_homedir}" ] && _homedir=/mnt
 
 	/usr/local/bin/xml sel -t -m "//access/user[${_index}]" \
-		-v "concat('array(\"',login,'\",',\"'${_password_md5}'\",',\"${_homedir}\",\"http://localhost\",0,\"^.ht\",${fmperm_user_permissions},${fmperm_user_active}),')" \
+		-v "concat('array(\"',login,'\",',\"'${_password_sha}'\",',\"${_homedir}\",\"http://localhost\",0,\"^.ht\",${fmperm_user_permissions},${fmperm_user_active}),')" \
 		${configxml_file} | /usr/local/bin/xml unesc >> ${fmperm_htusers}
 
 	_index=$(( ${_index} - 1 ))
 done
 
 # Export and set Administrator and Root account
-	_password=`configxml_get "//system/password"`
-	_password_md5=`/usr/sbin/mkpw -e md5 "${_password}"`
+	#_password=`configxml_get "//system/password"`
+	#_password_md5=`/usr/sbin/mkpw -e md5 "${_password}"`
+	_password_sha=`configxml_get "//system/password"`
 
 	/usr/local/bin/xml sel -t -m "//system" \
-		-v "concat('array(\"',username,'\",',\"'${_password_md5}'\",',\"/\",\"http://localhost\",1,\"\",32847,1),')" -n \
-		-o "array(\"root\",'${_password_md5}',\"/\",\"http://localhost\",1,\"\",32847,1)," \
+		-v "concat('array(\"',username,'\",',\"'${_password_sha}'\",',\"/\",\"http://localhost\",1,\"\",32847,1),')" -n \
+		-o "array(\"root\",'${_password_sha}',\"/\",\"http://localhost\",1,\"\",32847,1)," \
 	${configxml_file} | /usr/local/bin/xml unesc >> ${fmperm_htusers}
 
 echo ');?>' >> ${fmperm_htusers}
