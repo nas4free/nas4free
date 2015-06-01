@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-05-29 21:34+0000\n"
-"PO-Revision-Date: 2015-05-29 08:33+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2015-06-01 01:53+0000\n"
+"PO-Revision-Date: 2015-06-01 08:49+0000\n"
+"Last-Translator: Robert Wildgruber <robert@wildgruber.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-05-30 22:12+0000\n"
+"X-Launchpad-Export-Date: 2015-06-01 23:28+0000\n"
 "X-Generator: Launchpad (build 17532)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
@@ -282,10 +282,10 @@ msgid "A valid systctl MIB value."
 msgstr "Ein gültiger systctl MIB Wert."
 
 msgid "ACL inherit"
-msgstr ""
+msgstr "ACL Vererbung"
 
 msgid "ACL mode"
-msgstr ""
+msgstr "ACL Modus"
 
 msgid "AD authentication disabled"
 msgstr "AD Authentication deaktiviert"
@@ -300,7 +300,7 @@ msgid "AG"
 msgstr "AG"
 
 msgid "AIO module"
-msgstr ""
+msgstr "AIO Modul"
 
 msgid "AIO read size"
 msgstr "AIO Lesegröße"
@@ -1431,7 +1431,7 @@ msgid "Debug"
 msgstr "Debug"
 
 msgid "Decrypt password"
-msgstr ""
+msgstr "Passwort entschlüsseln"
 
 msgid "Dedup"
 msgstr "Deduplizieren"
@@ -2027,7 +2027,7 @@ msgid "EFI/GPT partition can be use with UFS only."
 msgstr "EFI/GPT-Partition kann nur in Verbindung mit UFS genutzt werden."
 
 msgid "ERROR:"
-msgstr ""
+msgstr "FEHLER:"
 
 msgid "Edit"
 msgstr "Ändern"
@@ -2148,7 +2148,7 @@ msgid "Enable"
 msgstr "Freigeben"
 
 msgid "Enable ACL inheritance"
-msgstr ""
+msgstr "ACL Vererbung aktivieren"
 
 msgid "Enable Advanced Format (4KB sector)"
 msgstr "Aktiviere Advanced Format (4K-Sektorgröße)"
@@ -3114,7 +3114,7 @@ msgid "Information & Manuals"
 msgstr "Informationen und Anleitungen"
 
 msgid "Inherit ACL"
-msgstr ""
+msgstr "Vererbe ACL"
 
 msgid "Inherit permissions"
 msgstr "Berechtigungen vererben"
@@ -3240,18 +3240,19 @@ msgid "Interval to wait before restarting the load"
 msgstr "Warteintervall bis zum Wiederanlauf der Leistung"
 
 msgid "Invalid file format or incorrect password."
-msgstr ""
+msgstr "Ungültiges Dateiformat oder falsches Passwort"
 
 msgid "Invalid file format."
 msgstr "Ungültiges Dateiformat."
 
 #, php-format
 msgid "Invalid max. block size! It must be in the range from %d to %d."
-msgstr "Ungültige Blockgröße! Sie muss im Bereich von %d bis %d sein."
+msgstr ""
+"Ungültigemaximale Blockgröße! Sie muss im Bereich von %d bis %d sein."
 
 msgid "Invalid username or password. Please try again."
 msgstr ""
-"ungülter Username oder falsches Passwort. Bitte nochmals korrekt eingeben !"
+"Ungülter Benutzername oder falsches Passwort. Bitte nochmals korrekt eingeben"
 
 msgid ""
 "It can be changed from the client side by standard SCSI mode page at any "
@@ -3261,7 +3262,7 @@ msgstr ""
 "Zeit ge&auml;ndert werden."
 
 msgid "It cannot be used combining SMB2 and Anonymous."
-msgstr "Es kann nicht genutzt werden, wenn SMB2 und Anonym kombiniert werden"
+msgstr "Die Kombination SMB2 und Anonymous kann nicht verwendet werden"
 
 msgid ""
 "It is impossible to enable 'Anonymous users only' and 'Local users only' "
@@ -3848,7 +3849,7 @@ msgid "Model name"
 msgstr "Modellname"
 
 msgid "Modified"
-msgstr ""
+msgstr "Verändert"
 
 msgid "Modifying"
 msgstr "Verändern"
@@ -4363,7 +4364,7 @@ msgid "Parameter xxx (ups.conf or cmdline -x) setting"
 msgstr "Parameter xxx (ups.conf oder cmdline -x) Einstellung"
 
 msgid "Parent Directory"
-msgstr ""
+msgstr "Übergeordnetes Verzeichnis"
 
 msgid "Partition number"
 msgstr "Partitionsnummer"
@@ -4689,7 +4690,7 @@ msgid "RAID5"
 msgstr "RAID5"
 
 msgid "RAW info"
-msgstr ""
+msgstr "RAW Informationen"
 
 msgid "RSYNC"
 msgstr "RSYNC"
@@ -5341,7 +5342,7 @@ msgid "Skew"
 msgstr "Skew"
 
 msgid "Skip first scan"
-msgstr ""
+msgstr "Überspringe den ersten Scan"
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr ""
@@ -5528,16 +5529,16 @@ msgid "Store DOS attributes"
 msgstr "DOS-Attribute speichern"
 
 msgid "Store NTFS acls"
-msgstr ""
+msgstr "NTFS acls speichern"
 
 msgid "Store NTFS acls in Extended Attributes"
-msgstr ""
+msgstr "NTFS acls in erweiterten Attributen speichern"
 
 msgid "Store alternate data streams"
-msgstr ""
+msgstr "ADS (alternate data streams) speichern"
 
 msgid "Store alternate data streams in Extended Attributes"
-msgstr ""
+msgstr "ADS (alternate data streams) in den erweiterten Attributen speichern"
 
 msgid ""
 "String displayed in the dialog presented to the user when accessing the URL."
@@ -6054,6 +6055,13 @@ msgid ""
 msgstr ""
 "Das eingegebene Passwort stimmt nicht überein. Stellen Sie bitte sicher, "
 "dass das Passwort exakt übereinstimmt."
+
+msgid ""
+"The confirmation password does not match. Please ensure the passwords match "
+"exactly."
+msgstr ""
+"Das Bestätigungs Passwort stimmt nicht ünberein. Bitte stellen Sie sicher, "
+"dass beide Passwörter übereinstimmen"
 
 msgid "The credentials with which to bind."
 msgstr "Die Referenzen, auf die verwiesen werden soll."
