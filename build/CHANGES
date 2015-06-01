@@ -11,7 +11,8 @@ Changes:
 - Add Ukrainian translation to webgui.
 - Increase upload size in Webserver service up to 16GiB. (websrv_maxrequestsize)
 - Support aclinherit/aclmode ZFS properties.
-- Use crypt password instead of md5 value.
+- Use SHA-512 crypt password for admin. (WebGUI login and all services)
+- Use SHA-512 crypt password instead of md5 value. (File Manager)
 - Upgrade tzdata to 2015d.
 - Upgrade mDNSResponder to 567.
 - Upgrade msmtp to 1.6.2.
