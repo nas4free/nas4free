@@ -43,7 +43,7 @@ $pgtitle = array(gettext("System"), gettext("Backup/Restore"));
 $omit_nocacheheaders = true;
 
 // default is enable encryption
-$pconfig['encryption'] = "yes";
+//$pconfig['encryption'] = "yes";
 
 $old_default_password = "freenas";
 $current_password = $config['system']['password'];
