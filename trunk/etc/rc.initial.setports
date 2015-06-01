@@ -75,9 +75,9 @@ do {
 
 // Optional interfaces
 // skip OPT selection if there is only one interface detected
+$optif = array();
 if (1 != count($iflist)) {
     $i = 0;
-    $optif = array();
     while (1) {
 	    if ($optif[$i])
 		    $i++;
