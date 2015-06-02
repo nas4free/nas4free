@@ -151,21 +151,21 @@ $GLOBALS["messages"] = array(
 
 	// actions
 	"actdir"		=> "Map",
-	"actperms"		=> "Rechten wijzigen",
-	"actedit"		=> "Bestand bewerken",
+	"actperms"		=> "Rechten Wijzigen",
+	"actedit"		=> "Bestand Bewerken",
 	"actsearchresults"	=> "Zoek resultaten",
-	"actcopyitems"	=> "Item(s)Kopiëren",
+	"actcopyitems"	=> "Item(s) Kopiëren",
 	"actcopyfrom"		=> "Kopie maken van /%s naar /%s ",
 	"actmoveitems"	=> "Verplaats item(s)",
 	"actmovefrom"		=> "Verplaats van /%s naar /%s ",
 	"actlogin"		=> "Aanmelden",
-	"actloginheader"	=> "Aanmelden om Bestands Manager te gebruiken",
+	"actloginheader"	=> "Inloggen Bestands Manager",
 	"actadmin"		=> "Beheer",
-	"actchpwd"		=> "Wachtwoord wijzigen",
+	"actchpwd"		=> "Wachtwoord Wijzigen",
 	"actusers"		=> "Gebruikers",
-	"actarchive"		=> "Archiveren item(s)",
+	"actarchive"		=> "Archiveren Item(s)",
 	"actunzipitem"	=> "Uitpakken",
-	"actupload"		=> "Bestand(en) uploaden",
+	"actupload"		=> "Bestand(en) Uploaden",
 
 	// misc
 	"miscitems"		=> "Item(s)",
