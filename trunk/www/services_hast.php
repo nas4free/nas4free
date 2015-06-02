@@ -225,8 +225,8 @@ if ($_POST) {
 <script type="text/javascript">//<![CDATA[
 $(document).ready(function(){
 	function enable_change(enable_change) {
-		var val = !($('#enable').attr('checked') || enable_change);
-		$('#auxparam').attr('disabled', val);
+		var val = !($('#enable').prop('checked') || enable_change);
+		$('#auxparam').prop('disabled', val);
 	}
 	$('#enable').click(function(){
 		enable_change(false);

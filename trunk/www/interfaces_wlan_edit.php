@@ -174,15 +174,15 @@ function get_nextwlan_id() {
 <script type="text/javascript">//<![CDATA[
 $(document).ready(function(){
 	function apmode_change(apmode_change) {
-		var val = !($('#apmode').attr('checked') || apmode_change);
-		$('#ap_ssid').attr('disabled', val);
-		$('#ap_channel').attr('disabled', val);
-		$('#ap_encryption').attr('disabled', val);
-		$('#ap_keymgmt').attr('disabled', val);
-		$('#ap_pairwise').attr('disabled', val);
-		$('#ap_psk').attr('disabled', val);
-		$('#ap_extraoptions').attr('disabled', val);
-		$('#auxparam').attr('disabled', val);
+		var val = !($('#apmode').prop('checked') || apmode_change);
+		$('#ap_ssid').prop('disabled', val);
+		$('#ap_channel').prop('disabled', val);
+		$('#ap_encryption').prop('disabled', val);
+		$('#ap_keymgmt').prop('disabled', val);
+		$('#ap_pairwise').prop('disabled', val);
+		$('#ap_psk').prop('disabled', val);
+		$('#ap_extraoptions').prop('disabled', val);
+		$('#auxparam').prop('disabled', val);
 	}
 	$('#apmode').click(function(){
 		apmode_change(false);
@@ -216,7 +216,7 @@ $(document).ready(function(){
 				<?php html_combobox("wlandev", gettext("Physical interface"), $pconfig['wlandev'], $a_if, "", true);?>
 				<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
 				<?php html_separator();?>
-				<?php html_titleline_checkbox("apmode", gettext("AP mode"), !empty($pconfig['apmode']) ? true : false, gettext("Enable"), "apmode_change(false)");?>
+				<?php html_titleline_checkbox("apmode", gettext("AP mode"), !empty($pconfig['apmode']) ? true : false, gettext("Enable"), "");?>
 				<?php html_inputbox("ap_ssid", gettext("SSID"), $pconfig['ap_ssid'], gettext("Set the desired Service Set Identifier (aka network name)."), true, 20);?>
 				<?php html_inputbox("ap_channel", gettext("Channel"), $pconfig['ap_channel'], "", true, 10);?>
 				<?php html_combobox("ap_encryption", gettext("Encryption"), $pconfig['ap_encryption'], array("wpa" => sprintf("%s / %s", gettext("WPA"), gettext("WPA2"))), "", true, false, "encryption_change()");?>
