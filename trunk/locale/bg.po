@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-01 01:53+0000\n"
+"POT-Creation-Date: 2015-06-04 21:26+0000\n"
 "PO-Revision-Date: 2015-04-24 14:59+0000\n"
 "Last-Translator: delvago <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-01 23:29+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-04 18:12+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 "X-Poedit-Country: BULGARIA\n"
 "Language: \n"
 "X-Poedit-Language: Bulgarian\n"
@@ -102,6 +102,9 @@ msgid ""
 msgstr ""
 "1. Използвайте тези действия само за отстраняване на грешки! <br /> 2. Няма "
 "нужда от това меню за стартиране на RAID  раздела(стартира автоматично)."
+
+msgid "4KB wrapper"
+msgstr ""
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN етикет (между 1 и 4094)."
@@ -1207,6 +1210,12 @@ msgstr "Определя дали този набор от данни може �
 msgid "Count"
 msgstr "Броене"
 
+msgid "Create 4KB wrapper (nop device)."
+msgstr ""
+
+msgid "Create ZFS on GPT partition"
+msgstr ""
+
 msgid "Create and initialize RAID."
 msgstr "Създай и инициализирай RAID"
 
@@ -1257,14 +1266,6 @@ msgstr "Текущ"
 
 msgid "Current Version:"
 msgstr "Текуща версия:"
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr ""
-"Настоящата  администраторска парола се използва за криптиране. <br /> "
-"Криптираната конфигурация автоматично е gzipped-ната."
 
 msgid "Current password"
 msgstr "Настояща парола"
@@ -2221,7 +2222,16 @@ msgstr ""
 msgid "Enabled"
 msgstr "Позволи"
 
+msgid "Encrypt password"
+msgstr ""
+
+msgid "Encrypt password (confirmed)"
+msgstr ""
+
 msgid "Encrypted"
+msgstr ""
+
+msgid "Encrypted configuration is automatically gzipped."
 msgstr ""
 
 #, php-format
@@ -5658,12 +5668,12 @@ msgid "The configuration has been restored. The server is now rebooting."
 msgstr ""
 
 msgid ""
-"The confimed password does not match. Please ensure the passwords match "
+"The confirmation password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 
 msgid ""
-"The confirmation password does not match. Please ensure the passwords match "
+"The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 
@@ -6434,6 +6444,9 @@ msgstr ""
 msgid ""
 "This will erase ALL data on your disk! Do not use this option if you want to "
 "add an existing encrypted disk."
+msgstr ""
+
+msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
 msgstr ""
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
@@ -7330,3 +7343,11 @@ msgstr ""
 #, php-format
 msgid "version:"
 msgstr "версия:"
+
+#, php-format
+#~ msgid ""
+#~ "Current administrator password is used for encryption.<br />Encrypted "
+#~ "configuration is automatically gzipped."
+#~ msgstr ""
+#~ "Настоящата  администраторска парола се използва за криптиране. <br /> "
+#~ "Криптираната конфигурация автоматично е gzipped-ната."

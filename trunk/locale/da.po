@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-01 01:53+0000\n"
+"POT-Creation-Date: 2015-06-04 21:26+0000\n"
 "PO-Revision-Date: 2015-02-21 03:45+0000\n"
 "Last-Translator: Aputsiaĸ Niels Janussen <aj@isit.gl>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-01 23:28+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-04 18:12+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 "X-Poedit-Country: DENMARK\n"
 "Language: \n"
 "X-Poedit-Language: Danish\n"
@@ -102,6 +102,9 @@ msgid ""
 msgstr ""
 "1. Brug kun disse specielle funktioner til fejlfinding!<br />2. RAID volumen "
 "starter automatisk, der er ingen grund til at bruge menuen til dette."
+
+msgid "4KB wrapper"
+msgstr ""
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN mærkat (mellem 1 og 4094)."
@@ -1216,6 +1219,12 @@ msgstr "Styrer om dette datasæt kan redigeres."
 msgid "Count"
 msgstr "Antal"
 
+msgid "Create 4KB wrapper (nop device)."
+msgstr ""
+
+msgid "Create ZFS on GPT partition"
+msgstr ""
+
 msgid "Create and initialize RAID."
 msgstr "Opret og initialiser RAID."
 
@@ -1266,14 +1275,6 @@ msgstr "Nuværende"
 
 msgid "Current Version:"
 msgstr "Nuværende Version"
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr ""
-"Nuværende administrator adgangskode anvendes til kryptering.<br />Krypteret "
-"konfiguration pakkes automatisk som gzip."
 
 msgid "Current password"
 msgstr "Aktuel adgangskode"
@@ -2244,8 +2245,17 @@ msgstr "Anvend skrive cache."
 msgid "Enabled"
 msgstr "Aktiveret"
 
+msgid "Encrypt password"
+msgstr ""
+
+msgid "Encrypt password (confirmed)"
+msgstr ""
+
 msgid "Encrypted"
 msgstr "Krypteret"
+
+msgid "Encrypted configuration is automatically gzipped."
+msgstr ""
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -5870,14 +5880,12 @@ msgid "The configuration has been restored. The server is now rebooting."
 msgstr "Konfigurationen blev gendannet. Serveren genstarter nu."
 
 msgid ""
-"The confimed password does not match. Please ensure the passwords match "
+"The confirmation password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
-"Det bekræftede kodeord passer ikke. Sørg venligst for at kodeordene passer "
-"præcist sammen."
 
 msgid ""
-"The confirmation password does not match. Please ensure the passwords match "
+"The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 
@@ -6801,6 +6809,9 @@ msgid ""
 msgstr ""
 "Dette vil slette ALT data på din disk! Brug ikke denne valgmulighed, hvis du "
 "vil tilføje en eksisterende krypteret disk."
+
+msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
+msgstr ""
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr "Dette vil tilføje ZFS ACL udvidelse. (Kun ZFS)"
@@ -7753,3 +7764,18 @@ msgstr "umount"
 #, php-format
 msgid "version:"
 msgstr "version:"
+
+#~ msgid ""
+#~ "The confimed password does not match. Please ensure the passwords match "
+#~ "exactly."
+#~ msgstr ""
+#~ "Det bekræftede kodeord passer ikke. Sørg venligst for at kodeordene passer "
+#~ "præcist sammen."
+
+#, php-format
+#~ msgid ""
+#~ "Current administrator password is used for encryption.<br />Encrypted "
+#~ "configuration is automatically gzipped."
+#~ msgstr ""
+#~ "Nuværende administrator adgangskode anvendes til kryptering.<br />Krypteret "
+#~ "konfiguration pakkes automatisk som gzip."
