@@ -199,7 +199,7 @@ $(document).ready(function(){
 					<td width="22%" valign="top" class="vncell"><label for="encrypt_password"><?=gettext("Encrypt password");?></label></td>
 					<td width="78%" class="vtable">
 						<input name="encrypt_password" type="password" class="formfld" id="encrypt_password" size="25" value="" /><br />
-						<input name="encrypt_password_confirm" type="password" class="formfld" id="encrypt_password_confirm" size="25" value="" />&nbsp;<?=gettext("(Confirmation)");?>
+						<input name="encrypt_password_confirm" type="password" class="formfld" id="encrypt_password_confirm" size="25" value="" />&nbsp;(<?=gettext("Confirmation");?>)
 					</td>
 			    </tr>
 			    <tr>
