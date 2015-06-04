@@ -54,6 +54,7 @@ if (strcmp($current_password, $g['default_passwd']) === 0
 
 if ($_POST) {
 	unset($errormsg);
+	unset($input_errors);
 	$pconfig['encryption'] = $_POST['encryption'];
 
 	$encryption = 0;
@@ -65,7 +66,20 @@ if ($_POST) {
 		$mode = "download";
 	}
 
-	if ($mode) {
+	if ($encryption) {
+		$reqdfields = explode(" ", "encrypt_password encrypt_password_confirm");
+		$reqdfieldsn = array(gettext("Encrypt Password"), gettext("Encrypt Password (confirmed)"));
+		$reqdfieldst = explode(" ", "password password");
+
+		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
+
+		if ($_POST['encrypt_password'] !== $_POST['encrypt_password_confirm']) {
+			$input_errors[] = gettext("The encrypt password does not match. Please ensure the passwords match exactly.");
+		}
+	}
+
+	if (empty($input_errors) && $mode) {
 		if ($mode === "download") {
 			config_lock();
 
@@ -73,8 +87,8 @@ if ($_POST) {
 			@date_default_timezone_set(@date_default_timezone_get());
 			if ($encryption) {
 				$fn = "config-{$config['system']['hostname']}.{$config['system']['domain']}-" . date("YmdHis") . ".gz";
-				//$password = $_POST['encrypt_password'];
-				$password = $config['system']['password'];
+				$password = $_POST['encrypt_password'];
+				//$password = $config['system']['password'];
 				$data = config_encrypt($password);
 				$fs = strlen($data);
 			} else {
@@ -140,10 +154,35 @@ if ($_POST) {
 }
 ?>
 <?php include("fbegin.inc");?>
+<script type="text/javascript">//<![CDATA[
+$(document).ready(function(){
+	function encrypt_change(encrypt_change) {
+		var val = !($('#encryption').prop('checked') || encrypt_change);
+		$('#encrypt_password').prop('disabled', val);
+		$('#encrypt_password_confirm').prop('disabled', val);
+		if (val) {
+			// disabled
+			$('#encrypt_password_tr td:first').removeClass('vncellreq').addClass('vncell');
+		} else {
+			// enabled
+			$('#encrypt_password_tr td:first').removeClass('vncell').addClass('vncellreq');
+		}
+	}
+	$('#encryption').click(function(){
+		encrypt_change(false);
+	});
+	$('input:submit').click(function(){
+		encrypt_change(true);
+	});
+	encrypt_change(false);
+});
+//]]>
+</script>
 <form action="system_backup.php" method="post" enctype="multipart/form-data">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td class="tabcont">
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 			  <table width="100%" border="0" cellspacing="0" cellpadding="6">
@@ -156,12 +195,19 @@ if ($_POST) {
 						<input name="encryption" type="checkbox" id="encryption" value="yes" <?php if (!empty($pconfig['encryption'])) echo "checked=\"checked\""; ?> />
 					<?=gettext("Enable encryption.");?></td>
 			    </tr>
+			    <tr id="encrypt_password_tr">
+					<td width="22%" valign="top" class="vncell"><label for="encrypt_password"><?=gettext("Encrypt password");?></label></td>
+					<td width="78%" class="vtable">
+						<input name="encrypt_password" type="password" class="formfld" id="encrypt_password" size="25" value="" /><br />
+						<input name="encrypt_password_confirm" type="password" class="formfld" id="encrypt_password_confirm" size="25" value="" />&nbsp;<?=gettext("(Confirmation)");?>
+					</td>
+			    </tr>
 			    <tr>
 					<td width="22%" valign="baseline" class="vncell">&nbsp;</td>
 					<td width="78%" class="vtable">
 						<?=gettext("Click this button to download the server configuration in encrypted GZIP file or XML format.");?><br />
 						<div id="remarks">
-							<?php html_remark("note", gettext("Note"), sprintf(gettext("Current administrator password is used for encryption.<br />Encrypted configuration is automatically gzipped.")));?>
+							<?php html_remark("note", gettext("Note"), sprintf("%s", /*gettext("Current administrator password is used for encryption.")*/ gettext("Encrypted configuration is automatically gzipped.")));?>
 						</div>
 						<div id="submit">
 							<input name="Submit" type="submit" class="formbtn" id="download" value="<?=gettext("Download configuration");?>" />
