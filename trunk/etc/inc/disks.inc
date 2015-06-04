@@ -915,7 +915,7 @@ function disks_geli_setkey($devicespecialfile, $oldpassphrase, $passphrase, $ver
 
 // Format disk. Error and warning messages are redirected to stdout.
 // Return none
-function disks_format($disk, $type, $notinitmbr, $minspace, $volumelabel, $aft4k)
+function disks_format($disk, $type, $notinitmbr, $minspace, $volumelabel, $aft4k, $zfsgpt)
 {
 	global $g;
 
@@ -925,6 +925,7 @@ function disks_format($disk, $type, $notinitmbr, $minspace, $volumelabel, $aft4k
 	set_kern_geom_debugflags(0x10);
 	if (!$notinitmbr) {
 		echo gettext("Deleting MBR and partition table")."...\n";
+		system("/sbin/gpart destroy -F {$disk} 1>/dev/null 2>&1");
 		$count = (1024*1024) / $diskinfo['sectorsize'];
 		system("/bin/dd if=/dev/zero of={$disk} bs={$diskinfo['sectorsize']} count={$count} 2>&1");
 		$oseek = $diskinfo['mediasize_sectors'] - $count;
@@ -952,7 +953,7 @@ function disks_format($disk, $type, $notinitmbr, $minspace, $volumelabel, $aft4k
 	switch ($type) {
 		case "ufsgpt":
 			echo gettext("Creating partition")."...\n";
-			// Destroy old GTP partition
+			// Destroy old GPT partition
 			//system("/sbin/gpt destroy {$disk} 1>/dev/null 2>&1");
 			system("/sbin/gpart destroy -F {$disk} 1>/dev/null 2>&1");
 			// Create new GPT partition
@@ -991,13 +992,18 @@ function disks_format($disk, $type, $notinitmbr, $minspace, $volumelabel, $aft4k
 			// Calculate last sector of disk containing GEOM metadata.
 			$oseek = $diskinfo['mediasize_sectors'] - 1;
 
-			// Destroy old GTP partition
+			// Destroy old GPT partition
 			system("/sbin/gpart destroy -F {$disk} 1>/dev/null 2>&1");
 
 			// Initialize disk
 			// Ensure that existing GEOM metadata is completely removed.
 			echo gettext("Deleting GEOM metadata")."...\n";
 			system("/bin/dd if=/dev/zero of={$disk} bs={$diskinfo['sectorsize']} oseek={$oseek} count=1 2>&1");
+			if ($zfsgpt) {
+				echo gettext("Creating partition")."...\n";
+				system("/sbin/gpart create -s gpt {$disk} 2>&1");
+				system("/sbin/gpart add -a4m -t freebsd-zfs {$disk} 2>&1");
+			}
 			break;
 
 		case "msdos":
