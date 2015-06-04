@@ -341,7 +341,7 @@ if ($_POST) {
 			      </td>
 			    </tr>
 			    <?php html_checkbox("storealternatedatastreams", gettext("Store alternate data streams"), !empty($pconfig['storealternatedatastreams']) ? true : false, gettext("Store alternate data streams in Extended Attributes"), "", false);?>
-			    <?php html_checkbox("storentfsacls", gettext("Store NTFS acls"), !empty($pconfig['storentfsacls']) ? true : false, gettext("Store NTFS acls in Extended Attributes"), "", false);?>
+			    <?php html_checkbox("storentfsacls", gettext("Store NTFS acls"), !empty($pconfig['storentfsacls']) ? true : false, gettext("Store NTFS acls in Extended Attributes"), gettext("This will provide NTFS acls without ZFS ACL support such as UFS."), false);?>
 			    <?php html_combobox("aiomodule", gettext("AIO module"), $pconfig['aiomodule'], array("aio_pthread" => "aio_pthread", "aio_posix" => "aio_posix"), "", false, false, "");?>
 			    <tr>
 			      <td width="22%" valign="top" class="vncell"><?=gettext("Hosts allow");?></td>
