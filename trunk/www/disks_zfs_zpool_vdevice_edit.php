@@ -255,7 +255,7 @@ function enable_change(enable_change) {
 					    }
 					?>
 					<?php html_listbox("device", gettext("Devices"), !empty($pconfig['device']) ? $pconfig['device'] : array(), $a_device, "", true, isset($uuid) && false !== $cnid);?>
-					<?php html_checkbox("aft4k", gettext("Advanced Format"), !empty($pconfig['aft4k']) ? true : false, gettext("Enable Advanced Format (4KB sector)"), "", false, "");?>
+					<?php html_checkbox("aft4k", gettext("4KB wrapper"), !empty($pconfig['aft4k']) ? true : false, gettext("Create 4KB wrapper (nop device)."), "", false, "");?>
 					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
 				</table>
 				<div id="submit">
