@@ -75,7 +75,7 @@ if ($_POST) {
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 		if ($_POST['encrypt_password'] !== $_POST['encrypt_password_confirm']) {
-			$input_errors[] = gettext("The encrypt password does not match. Please ensure the passwords match exactly.");
+			$input_errors[] = gettext("The confirmed password does not match. Please ensure the passwords match exactly.");
 		}
 	}
 
