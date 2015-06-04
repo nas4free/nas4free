@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-01 01:53+0000\n"
-"PO-Revision-Date: 2015-05-28 18:13+0000\n"
-"Last-Translator: Anatoliy Pavlyuchenko <anatoly.pavluchenko@googlemail.com>\n"
+"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"PO-Revision-Date: 2015-06-04 08:46+0000\n"
+"Last-Translator: Balabuha <balabuha@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-01 23:28+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-04 18:13+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 "Language: uk\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -101,6 +101,9 @@ msgstr ""
 "1. Використовуйте ці спеціальні дії лише для налагодження!<br />2. Немає "
 "потреби використовувати це меню для запуску пристрою RAID (стартує "
 "автоматично)."
+
+msgid "4KB wrapper"
+msgstr ""
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN тег (між 1 і 4094)."
@@ -1248,6 +1251,12 @@ msgstr "Керує можливістю змінювати цей набір д�
 msgid "Count"
 msgstr "Кількість"
 
+msgid "Create 4KB wrapper (nop device)."
+msgstr ""
+
+msgid "Create ZFS on GPT partition"
+msgstr ""
+
 msgid "Create and initialize RAID."
 msgstr "Створити та ініціалізувати RAID."
 
@@ -1298,14 +1307,6 @@ msgstr "Поточний"
 
 msgid "Current Version:"
 msgstr "Поточна версія:"
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr ""
-"Поточний пароль адміністратора використовуваний для шифрування. <br /> "
-"Зашифрована конфігурація автоматично стиснута."
 
 msgid "Current password"
 msgstr "Поточний пароль"
@@ -2283,8 +2284,17 @@ msgstr "Увімкнути режим кешування запису."
 msgid "Enabled"
 msgstr "Увімкнено"
 
+msgid "Encrypt password"
+msgstr ""
+
+msgid "Encrypt password (confirmed)"
+msgstr ""
+
 msgid "Encrypted"
 msgstr "Зашифровано"
+
+msgid "Encrypted configuration is automatically gzipped."
+msgstr ""
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -5761,12 +5771,12 @@ msgid "The configuration has been restored. The server is now rebooting."
 msgstr "Конфігурацію відновлено. Сервер перезавантажується."
 
 msgid ""
-"The confimed password does not match. Please ensure the passwords match "
+"The confirmation password does not match. Please ensure the passwords match "
 "exactly."
-msgstr "Паролі не однакові, повинні повністю співпадати."
+msgstr ""
 
 msgid ""
-"The confirmation password does not match. Please ensure the passwords match "
+"The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 
@@ -6554,6 +6564,9 @@ msgid ""
 "add an existing encrypted disk."
 msgstr ""
 
+msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
+msgstr ""
+
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr ""
 
@@ -7165,40 +7178,42 @@ msgid ""
 "Whether scans should be skipped if there are no users connected. This allows "
 "the drive to spin down when no users are connected."
 msgstr ""
+"Чи пропускати сканування якщо немає під'єднаних користувачів. Це дозволить "
+"зупинити диски за відсутності під'єднаних користувачів."
 
 msgid "Whether to skip initial boot-up scan."
-msgstr ""
+msgstr "Чи пропускати перевірку при завантаженні."
 
 msgid "Who"
-msgstr ""
+msgstr "Хто"
 
 msgid "Wildcard"
-msgstr ""
+msgstr "Шаблон"
 
 msgid "Wireless configuration"
-msgstr ""
+msgstr "Безпровідна конфігурація"
 
 msgid "Workgroup"
 msgstr "Робоча група"
 
 msgid "Working directory"
-msgstr ""
+msgstr "Робоча директорія"
 
 msgid "Write"
 msgstr "Запис"
 
 msgid "Write Cache"
-msgstr ""
+msgstr "Кеш запису"
 
 msgid "Write only"
 msgstr "Лише запис"
 
 msgid "Wrong partition type or partition number."
-msgstr ""
+msgstr "Невірний тип або номер розділу"
 
 #, php-format
 msgid "Wrong permission on %s."
-msgstr ""
+msgstr "Невірні атрибути дозволу на %s."
 
 msgid "Yes"
 msgstr "Так"
@@ -7232,7 +7247,7 @@ msgid "You have to select at least one item for '%s'."
 msgstr ""
 
 msgid "You may enter a description here for your reference."
-msgstr ""
+msgstr "Тут можна ввести описання для зручності."
 
 #, php-format
 msgid ""
@@ -7242,7 +7257,7 @@ msgstr ""
 
 #, php-format
 msgid "You may specify logical block length (%d by default)."
-msgstr ""
+msgstr "Ви можете вказати логічний розмір блока (за замовчуванням %d)."
 
 #, php-format
 msgid ""
@@ -7251,17 +7266,17 @@ msgid ""
 msgstr ""
 
 msgid "You must add disks first."
-msgstr ""
+msgstr "Спочатку треба додати диски."
 
 msgid "You must enter the same IP type for network and gateway."
-msgstr ""
+msgstr "Треба ввести однаковий тип ІР для мережі і для шлюза."
 
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr ""
 
 msgid "You must select at least one authentication method."
-msgstr ""
+msgstr "Треба вибрати принаймні один метод авторизації."
 
 msgid "You should use HTTPS as WebGUI protocol for sending passphrase."
 msgstr ""
@@ -7453,3 +7468,16 @@ msgstr "umount"
 #, php-format
 msgid "version:"
 msgstr "версія:"
+
+#, php-format
+#~ msgid ""
+#~ "Current administrator password is used for encryption.<br />Encrypted "
+#~ "configuration is automatically gzipped."
+#~ msgstr ""
+#~ "Поточний пароль адміністратора використовуваний для шифрування. <br /> "
+#~ "Зашифрована конфігурація автоматично стиснута."
+
+#~ msgid ""
+#~ "The confimed password does not match. Please ensure the passwords match "
+#~ "exactly."
+#~ msgstr "Паролі не однакові, повинні повністю співпадати."

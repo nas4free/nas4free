@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-01 01:53+0000\n"
-"PO-Revision-Date: 2015-02-03 23:23+0000\n"
-"Last-Translator: Chao-Lin Cho <chaoman@chaoman.com>\n"
+"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"PO-Revision-Date: 2015-06-04 01:02+0000\n"
+"Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-01 23:28+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-04 18:13+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -98,6 +98,9 @@ msgid ""
 "1. Use these specials actions for debugging only!<br />2. There is no need "
 "of using this menu for starting a RAID volume (start automaticaly)."
 msgstr "1.这些特殊操作仅适用于调试（debugging）！<br />2.无需操作此选单来启动RAID卷（系统自动启动）。"
+
+msgid "4KB wrapper"
+msgstr ""
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN 标签 （介于1和4094之间）。"
@@ -239,10 +242,10 @@ msgid "A valid systctl MIB value."
 msgstr "有效的systctl MIB值"
 
 msgid "ACL inherit"
-msgstr ""
+msgstr "ACL继承"
 
 msgid "ACL mode"
-msgstr ""
+msgstr "ACL模式"
 
 msgid "AD authentication disabled"
 msgstr "关闭 AD 认证"
@@ -257,7 +260,7 @@ msgid "AG"
 msgstr "AG"
 
 msgid "AIO module"
-msgstr ""
+msgstr "AIO模块"
 
 msgid "AIO read size"
 msgstr "AIO 读取大小"
@@ -1166,6 +1169,12 @@ msgstr "控制此数据集能否被修改。"
 msgid "Count"
 msgstr "次数"
 
+msgid "Create 4KB wrapper (nop device)."
+msgstr ""
+
+msgid "Create ZFS on GPT partition"
+msgstr ""
+
 msgid "Create and initialize RAID."
 msgstr "建立并初始 RAID。"
 
@@ -1216,12 +1225,6 @@ msgstr "目前"
 
 msgid "Current Version:"
 msgstr "目前版本："
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr "以现在的管理员密码来加密。<br />加密的配置会自动以 gzip 压缩。"
 
 msgid "Current password"
 msgstr "当前密码"
@@ -1317,7 +1320,7 @@ msgid "Debug"
 msgstr "调试"
 
 msgid "Decrypt password"
-msgstr ""
+msgstr "解码"
 
 msgid "Dedup"
 msgstr "重复数据删除（Dedup）"
@@ -1887,7 +1890,7 @@ msgid "EFI/GPT partition can be use with UFS only."
 msgstr "EFI/GPT 只相容于 UFS 文件系统。"
 
 msgid "ERROR:"
-msgstr ""
+msgstr "错误："
 
 msgid "Edit"
 msgstr "编辑"
@@ -2008,7 +2011,7 @@ msgid "Enable"
 msgstr "启动"
 
 msgid "Enable ACL inheritance"
-msgstr ""
+msgstr "启用ACL继承"
 
 msgid "Enable Advanced Format (4KB sector)"
 msgstr "启用先进格式化（4KB扇区）"
@@ -2020,7 +2023,7 @@ msgid "Enable FXP protocol."
 msgstr "启用 FXP 协议。"
 
 msgid "Enable NFSv4 server."
-msgstr ""
+msgstr "启用NFSv4的伺服器。"
 
 msgid "Enable NTP"
 msgstr "启用 NTP"
@@ -2167,8 +2170,17 @@ msgstr "开启写入缓存模式。"
 msgid "Enabled"
 msgstr "已启用"
 
+msgid "Encrypt password"
+msgstr ""
+
+msgid "Encrypt password (confirmed)"
+msgstr ""
+
 msgid "Encrypted"
 msgstr "已加密"
+
+msgid "Encrypted configuration is automatically gzipped."
+msgstr ""
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -2897,7 +2909,7 @@ msgid "Information & Manuals"
 msgstr "资讯和手册"
 
 msgid "Inherit ACL"
-msgstr ""
+msgstr "继承ACL"
 
 msgid "Inherit permissions"
 msgstr "权限继承"
@@ -3019,7 +3031,7 @@ msgid "Interval to wait before restarting the load"
 msgstr "重新启动负载之前的等待间隔"
 
 msgid "Invalid file format or incorrect password."
-msgstr ""
+msgstr "文件格式无效或密码不正确。"
 
 msgid "Invalid file format."
 msgstr "文件格式无效。"
@@ -3584,7 +3596,7 @@ msgid "Model name"
 msgstr "型号名称"
 
 msgid "Modified"
-msgstr ""
+msgstr "已修改"
 
 msgid "Modifying"
 msgstr "更改中"
@@ -3639,7 +3651,7 @@ msgid "NFS"
 msgstr "NFS"
 
 msgid "NFSv4"
-msgstr ""
+msgstr "NFSv4"
 
 msgid "NIS"
 msgstr "NIS"
@@ -4057,7 +4069,7 @@ msgid "Parameter xxx (ups.conf or cmdline -x) setting"
 msgstr "参数xxx（ups.conf 或 cmdline -x）的设置"
 
 msgid "Parent Directory"
-msgstr ""
+msgstr "上层目录"
 
 msgid "Partition number"
 msgstr "分割区编号"
@@ -4369,7 +4381,7 @@ msgid "RAID5"
 msgstr "RAID5"
 
 msgid "RAW info"
-msgstr ""
+msgstr "RAW 信息"
 
 msgid "RSYNC"
 msgstr "RSYNC"
@@ -4980,7 +4992,7 @@ msgid "Skew"
 msgstr "级值"
 
 msgid "Skip first scan"
-msgstr ""
+msgstr "跳过第一次扫描"
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "睡眠 - 除了睡眠模式之外的设备都将检查。"
@@ -5621,12 +5633,12 @@ msgid "The configuration has been restored. The server is now rebooting."
 msgstr "已还原配置。现在重新启动伺服器。"
 
 msgid ""
-"The confimed password does not match. Please ensure the passwords match "
+"The confirmation password does not match. Please ensure the passwords match "
 "exactly."
-msgstr "确认密码并不符合，请确认输入的密码是否一致。"
+msgstr ""
 
 msgid ""
-"The confirmation password does not match. Please ensure the passwords match "
+"The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 
@@ -6411,6 +6423,9 @@ msgid ""
 "add an existing encrypted disk."
 msgstr "这将删除所选磁盘上的所有数据！如果您想再次添加已存在的加密磁盘，请不要使用这个选项。"
 
+msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
+msgstr ""
+
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr "这将提供ZFS ACL 支持。（只是 ZFS）"
 
@@ -6712,7 +6727,7 @@ msgid "URL"
 msgstr "URL"
 
 msgid "Ukrainian"
-msgstr ""
+msgstr "乌克兰语"
 
 msgid "Unavailable"
 msgstr "无法使用"
@@ -6967,7 +6982,7 @@ msgid "WPA-PSK WPA-EAP"
 msgstr "WPA-PSK WPA-EAP"
 
 msgid "WPA2"
-msgstr ""
+msgstr "WPA2"
 
 msgid "Wait time"
 msgstr "等待时间"
@@ -7319,3 +7334,14 @@ msgstr "卸载"
 #, php-format
 msgid "version:"
 msgstr "版本："
+
+#~ msgid ""
+#~ "The confimed password does not match. Please ensure the passwords match "
+#~ "exactly."
+#~ msgstr "确认密码并不符合，请确认输入的密码是否一致。"
+
+#, php-format
+#~ msgid ""
+#~ "Current administrator password is used for encryption.<br />Encrypted "
+#~ "configuration is automatically gzipped."
+#~ msgstr "以现在的管理员密码来加密。<br />加密的配置会自动以 gzip 压缩。"

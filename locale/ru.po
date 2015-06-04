@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-01 01:53+0000\n"
-"PO-Revision-Date: 2015-06-01 05:49+0000\n"
+"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"PO-Revision-Date: 2015-06-04 14:24+0000\n"
 "Last-Translator: sea1150 <sea1.150@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-01 23:28+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-04 18:12+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
 "X-Poedit-Language: Russian\n"
@@ -110,6 +110,9 @@ msgid ""
 msgstr ""
 "1. Используйте эти действия только с целью отладки!<br />2. Чтобы запустить "
 "RAID-массив, данное меню не требуется (старт происходит автоматически)."
+
+msgid "4KB wrapper"
+msgstr "4KB оболочка"
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "Метка 802.1Q VLAN (между 1 и 4094)."
@@ -1262,6 +1265,12 @@ msgstr "Запретить модификацию текущего dataset'а"
 msgid "Count"
 msgstr "Счетчик"
 
+msgid "Create 4KB wrapper (nop device)."
+msgstr "Создать 4KB оболочку (nop устройство)."
+
+msgid "Create ZFS on GPT partition"
+msgstr "Создать ZFS на GPT разделах"
+
 msgid "Create and initialize RAID."
 msgstr "Создать и инициализировать RAID"
 
@@ -1312,14 +1321,6 @@ msgstr "Текущая"
 
 msgid "Current Version:"
 msgstr "Текущая Версия:"
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr ""
-"Для шифрования используется текущий пароль администратора.<br "
-"/>Зашифрованная конфигурация будет автоматически сжата GZIP."
 
 msgid "Current password"
 msgstr "Текущий пароль"
@@ -2303,8 +2304,17 @@ msgstr "Включить кеширование записи."
 msgid "Enabled"
 msgstr "Разрешено"
 
+msgid "Encrypt password"
+msgstr "Пароль для шифрования"
+
+msgid "Encrypt password (confirmed)"
+msgstr "Пароль для шифрования (подтверждение)"
+
 msgid "Encrypted"
 msgstr "Зашифровано"
+
+msgid "Encrypted configuration is automatically gzipped."
+msgstr "Зашифрованная конфигурация будет автоматически сжата."
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -5999,14 +6009,13 @@ msgid "The configuration has been restored. The server is now rebooting."
 msgstr "Настройки были восстановлены. Сервер выполнит перезагрузку."
 
 msgid ""
-"The confimed password does not match. Please ensure the passwords match "
+"The confirmation password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
-"Введенные пароли не совпадают. Пожалуйста, проверьте, введенные пароли еще "
-"раз."
+"Пароли не совпадают. Пожалуйста, убедитесь в правильности ввода пароля."
 
 msgid ""
-"The confirmation password does not match. Please ensure the passwords match "
+"The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 "Пароли не совпадают. Пожалуйста, убедитесь в правильности ввода пароля."
@@ -6958,6 +6967,9 @@ msgid ""
 msgstr ""
 "Внимание! Все данные на вашем диске будут УДАЛЕНЫ! Не используйте эту опцию, "
 "если вы просто хотите добавить уже зашифрованный диск."
+
+msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
+msgstr "Это обеспечит NTFS ACL без поддержки ZFS ACL, такие как UFS."
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr "Это обеспечит поддержку ZFS ACL (только для ZFS)."
@@ -7939,3 +7951,28 @@ msgstr "размонтировать"
 #, php-format
 msgid "version:"
 msgstr "версия:"
+
+#~ msgid ""
+#~ "The confimed password does not match. Please ensure the passwords match "
+#~ "exactly."
+#~ msgstr ""
+#~ "Введенные пароли не совпадают. Пожалуйста, проверьте, введенные пароли еще "
+#~ "раз."
+
+#, php-format
+#~ msgid ""
+#~ "Current administrator password is used for encryption.<br />Encrypted "
+#~ "configuration is automatically gzipped."
+#~ msgstr ""
+#~ "Для шифрования используется текущий пароль администратора.<br "
+#~ "/>Зашифрованная конфигурация будет автоматически сжата GZIP."
+
+#~ msgid "(Confirmation)"
+#~ msgstr "(Подтверждение)"
+
+#~ msgid ""
+#~ "The encrypt password does not match. Please ensure the passwords match "
+#~ "exactly."
+#~ msgstr ""
+#~ "Пароли для шифрования не совпадают. Пожалуйста, убедитесь в правильности "
+#~ "ввода пароля."

@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-06-01 01:53+0000\n"
+"POT-Creation-Date: 2015-06-04 21:26+0000\n"
 "PO-Revision-Date: 2015-01-12 16:36+0000\n"
 "Last-Translator: Mucahid Zeyrek <mucahid.zeyrek@dhl.com>\n"
 "Language-Team: NAS4Free <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-01 23:28+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-04 18:13+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 "X-Poedit-Country: TURKEY\n"
 "X-Poedit-Language: Turkish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -107,6 +107,9 @@ msgstr ""
 "1. Bu özel eylemi sadece hata ayıklama için kullanın!<br />1.  Raid birimini "
 "çalıştırmak için bu menünün kullanımına gerek yoktur (otomatik olarak "
 "çalışır )."
+
+msgid "4KB wrapper"
+msgstr ""
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN etiketi (1 ve 4094 arası)."
@@ -1169,6 +1172,12 @@ msgstr ""
 msgid "Count"
 msgstr "Sayı"
 
+msgid "Create 4KB wrapper (nop device)."
+msgstr ""
+
+msgid "Create ZFS on GPT partition"
+msgstr ""
+
 msgid "Create and initialize RAID."
 msgstr "RAID oluştur ve başlat"
 
@@ -1218,12 +1227,6 @@ msgid "Current"
 msgstr ""
 
 msgid "Current Version:"
-msgstr ""
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
 msgstr ""
 
 msgid "Current password"
@@ -2180,8 +2183,17 @@ msgstr ""
 msgid "Enabled"
 msgstr "Etkinleştirildi"
 
+msgid "Encrypt password"
+msgstr ""
+
+msgid "Encrypt password (confirmed)"
+msgstr ""
+
 msgid "Encrypted"
 msgstr "Şifreli"
+
+msgid "Encrypted configuration is automatically gzipped."
+msgstr ""
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -5632,12 +5644,12 @@ msgid "The configuration has been restored. The server is now rebooting."
 msgstr ""
 
 msgid ""
-"The confimed password does not match. Please ensure the passwords match "
+"The confirmation password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 
 msgid ""
-"The confirmation password does not match. Please ensure the passwords match "
+"The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 
@@ -6402,6 +6414,9 @@ msgstr ""
 msgid ""
 "This will erase ALL data on your disk! Do not use this option if you want to "
 "add an existing encrypted disk."
+msgstr ""
+
+msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
 msgstr ""
 
 msgid "This will provide ZFS ACL support. (ZFS only)"

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-01 01:53+0000\n"
+"POT-Creation-Date: 2015-06-04 21:26+0000\n"
 "PO-Revision-Date: 2014-11-17 04:08+0000\n"
 "Last-Translator: NAS4Free Developer <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-01 23:28+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-04 18:12+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 "X-Poedit-Country: SLOVAKIA\n"
 "Language: \n"
 "X-Poedit-Language: Slovak\n"
@@ -100,6 +100,9 @@ msgstr ""
 msgid ""
 "1. Use these specials actions for debugging only!<br />2. There is no need "
 "of using this menu for starting a RAID volume (start automaticaly)."
+msgstr ""
+
+msgid "4KB wrapper"
 msgstr ""
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
@@ -1197,6 +1200,12 @@ msgstr "Riadi, či možno skupinu dát zmeniť."
 msgid "Count"
 msgstr "Počet"
 
+msgid "Create 4KB wrapper (nop device)."
+msgstr ""
+
+msgid "Create ZFS on GPT partition"
+msgstr ""
+
 msgid "Create and initialize RAID."
 msgstr "Vytvoriť a inicializovať RAID."
 
@@ -1246,12 +1255,6 @@ msgid "Current"
 msgstr "Aktuálne"
 
 msgid "Current Version:"
-msgstr ""
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
 msgstr ""
 
 msgid "Current password"
@@ -2215,8 +2218,17 @@ msgstr ""
 msgid "Enabled"
 msgstr "Zapnuté"
 
+msgid "Encrypt password"
+msgstr ""
+
+msgid "Encrypt password (confirmed)"
+msgstr ""
+
 msgid "Encrypted"
 msgstr "Šifrované"
+
+msgid "Encrypted configuration is automatically gzipped."
+msgstr ""
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -5770,13 +5782,12 @@ msgid "The configuration has been restored. The server is now rebooting."
 msgstr ""
 
 msgid ""
-"The confimed password does not match. Please ensure the passwords match "
+"The confirmation password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
-"Zadané heslá sa nezhodujú. Potvrdenie hesla sa musí presne zhodovať s heslom."
 
 msgid ""
-"The confirmation password does not match. Please ensure the passwords match "
+"The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 
@@ -6646,6 +6657,9 @@ msgid ""
 msgstr ""
 "Týmto sa vymažú VŠETKY údaje na vašom disku! Nepoužívajte túto voľbu ak "
 "chcete pridať existujúci šifrovaný disk."
+
+msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
+msgstr ""
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr ""
@@ -7573,3 +7587,9 @@ msgstr "odpojiť"
 #, php-format
 msgid "version:"
 msgstr ""
+
+#~ msgid ""
+#~ "The confimed password does not match. Please ensure the passwords match "
+#~ "exactly."
+#~ msgstr ""
+#~ "Zadané heslá sa nezhodujú. Potvrdenie hesla sa musí presne zhodovať s heslom."

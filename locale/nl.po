@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-01 01:53+0000\n"
-"PO-Revision-Date: 2015-06-02 06:18+0000\n"
+"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"PO-Revision-Date: 2015-06-04 17:57+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-03 17:12+0000\n"
+"X-Launchpad-Export-Date: 2015-06-04 18:12+0000\n"
 "X-Generator: Launchpad (build 17540)\n"
 "X-Poedit-Country: Netherlands\n"
 "Language: \n"
@@ -105,6 +105,9 @@ msgstr ""
 "1. Gebruik deze speciale opdrachten alléén voor fout opsporing!<br />2. Het "
 "is niet nodig om dit menu te gebruiken om een RAID volume te starten. (start "
 "automatisch)."
+
+msgid "4KB wrapper"
+msgstr "4KB wrapper"
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN markering (tussen 1 en 4094)."
@@ -1268,6 +1271,12 @@ msgstr "Controleert of deze dataset kan worden gewijzigd."
 msgid "Count"
 msgstr "Aantal"
 
+msgid "Create 4KB wrapper (nop device)."
+msgstr "Creëer 4KB wrapper (nop device)."
+
+msgid "Create ZFS on GPT partition"
+msgstr "Creëer ZFS op GPT-partitie"
+
 msgid "Create and initialize RAID."
 msgstr "Creëer en initialiseer de RAID."
 
@@ -1318,14 +1327,6 @@ msgstr "Huidig"
 
 msgid "Current Version:"
 msgstr "Huidige Versie:"
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr ""
-"Het huidige beheerderswachtwoord wordt gebruikt voor de versleuteling.<br "
-"/>De versleutelde configuratie wordt automatisch gzipped."
 
 msgid "Current password"
 msgstr "Huidig wachtwoord"
@@ -2319,8 +2320,17 @@ msgstr "Inschakelen schrijf cache mode."
 msgid "Enabled"
 msgstr "Ingeschakeld"
 
+msgid "Encrypt password"
+msgstr "Wachtwoord versleutelen"
+
+msgid "Encrypt password (confirmed)"
+msgstr "Wachtwoord versleutelen (Bevestiging)"
+
 msgid "Encrypted"
 msgstr "Versleuteld"
+
+msgid "Encrypted configuration is automatically gzipped."
+msgstr "Versleutelde configuratie wordt automatisch gzipped."
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -6049,14 +6059,14 @@ msgid "The configuration has been restored. The server is now rebooting."
 msgstr "De configuratie is hersteld. De server is nu aan het herstarten."
 
 msgid ""
-"The confimed password does not match. Please ensure the passwords match "
+"The confirmation password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
-"Het bevestigings wachtwoord komt niet overeen. Verzeker u er van dat het "
-"wachtwoord exact gelijk is."
+"Wachtwoord komt niet overeen met verificatie. Verzeker u er van dat de "
+"wachtwoorden gelijk zijn."
 
 msgid ""
-"The confirmation password does not match. Please ensure the passwords match "
+"The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 "Wachtwoord komt niet overeen met verificatie. Verzeker u er van dat de "
@@ -7033,6 +7043,10 @@ msgid ""
 msgstr ""
 "Dit zal ALLE data op de schijf wissen! Gebruik deze optie niet als u een "
 "bestaande reeds versleutelde schijf wil toevoegen."
+
+msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
+msgstr ""
+"Dit zal zorgen voor NTFS ACL's zonder ZFS ACL ondersteuning, zoals UFS."
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr "Deze optie zorgt voor ZFS ACL ondersteuing (alleen ZFS)"
@@ -8015,3 +8029,18 @@ msgstr "loskoppelen"
 #, php-format
 msgid "version:"
 msgstr "versie:"
+
+#~ msgid ""
+#~ "The confimed password does not match. Please ensure the passwords match "
+#~ "exactly."
+#~ msgstr ""
+#~ "Het bevestigings wachtwoord komt niet overeen. Verzeker u er van dat het "
+#~ "wachtwoord exact gelijk is."
+
+#, php-format
+#~ msgid ""
+#~ "Current administrator password is used for encryption.<br />Encrypted "
+#~ "configuration is automatically gzipped."
+#~ msgstr ""
+#~ "Het huidige beheerderswachtwoord wordt gebruikt voor de versleuteling.<br "
+#~ "/>De versleutelde configuratie wordt automatisch gzipped."

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-01 01:53+0000\n"
-"PO-Revision-Date: 2015-06-01 06:32+0000\n"
+"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"PO-Revision-Date: 2015-06-04 10:32+0000\n"
 "Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-01 23:28+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-04 18:12+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
 "X-Poedit-Language: Greek\n"
@@ -104,6 +104,9 @@ msgstr ""
 "1. Χρησιμοποιήστε αυτές τις ειδικές ενέργειες για αποσφαλμάτωση μόνο! <br /> "
 "2. Δεν χρειάζεται να χρησιμοποιήσετε αυτό το μενού  για την εκκίνηση ενός "
 "τόμου RAID (ξεκινάει αυτόματα)."
+
+msgid "4KB wrapper"
+msgstr ""
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "ετικέτα 802.1Q VLAN  (μεταξύ  1 και 4094)."
@@ -1275,6 +1278,12 @@ msgstr "Ελέγχει αν αυτό το dataset μπορεί να τροποπ
 msgid "Count"
 msgstr "Αριθμός πακέτων"
 
+msgid "Create 4KB wrapper (nop device)."
+msgstr ""
+
+msgid "Create ZFS on GPT partition"
+msgstr ""
+
 msgid "Create and initialize RAID."
 msgstr "Δημιουργία και αρχικοποίηση RAID."
 
@@ -1325,14 +1334,6 @@ msgstr "Τρέχον"
 
 msgid "Current Version:"
 msgstr "Τρέχουσα έκδοση:"
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr ""
-"Ο τρέχων κωδικός  του διαχειριστή χρησιμοποιείται για την κρυπτογράφηση.<br "
-"/>Το κρυπτογραφημένο αρχείο ρυθμίσεων συμπιέζεται αυτόματα σε μορφή gzip."
 
 msgid "Current password"
 msgstr "Τρέχων κωδικός"
@@ -2323,8 +2324,18 @@ msgstr "Ενεργοποίηση προσωρινής μνήμης για την
 msgid "Enabled"
 msgstr "Ενεργοποιημένο"
 
+msgid "Encrypt password"
+msgstr "Κρυπτογράφηση κωδικού"
+
+msgid "Encrypt password (confirmed)"
+msgstr "Κρυπτογράφηση κωδικού (επιβεβαίωση)"
+
 msgid "Encrypted"
 msgstr "Κρυπτογραφημένο"
+
+msgid "Encrypted configuration is automatically gzipped."
+msgstr ""
+"Το κρυπτογραφημένο αρχείο ρυθμίσεων συμπιέζεται αυτόματα σε μορφή gzip."
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -6083,18 +6094,16 @@ msgstr ""
 "Οι ρυθμίσεις έχουν επαναφερθεί. Ο διακομιστής κάνει τώρα επανεκκίνηση."
 
 msgid ""
-"The confimed password does not match. Please ensure the passwords match "
-"exactly."
-msgstr ""
-"Η κωδικός επιβεβαίωσης δεν ταιριάζει. Παρακαλούμε βεβαιωθείτε ότι οι κωδικοί "
-"ταιριάζουν απόλυτα."
-
-msgid ""
 "The confirmation password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 "Ο κωδικός επιβεβαίωσης δεν ταιριάζει. Παρακαλώ βεβαιωθείτε ότι οι κωδικοί "
 "ταιριάζουν ακριβώς."
+
+msgid ""
+"The confirmed password does not match. Please ensure the passwords match "
+"exactly."
+msgstr ""
 
 msgid "The credentials with which to bind."
 msgstr "Τα διαπιστευτήρια με την οποία να δεσμεύει."
@@ -7093,6 +7102,9 @@ msgid ""
 msgstr ""
 "Αυτό θα διαγράψει ΟΛΑ τα δεδομένα του δίσκου σας! Μην χρησιμοποιείτε αυτή "
 "την επιλογή αν θέλετε να προσθέσετε έναν υπάρχον κρυπτογραφημένο δίσκο."
+
+msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
+msgstr ""
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr "Αυτό παρέχει υποστήριξη ZFS ACL. (για ZFS μόνο)"
@@ -8094,3 +8106,28 @@ msgstr "αποπροσάρτηση"
 #, php-format
 msgid "version:"
 msgstr "έκδοση:"
+
+#~ msgid ""
+#~ "The confimed password does not match. Please ensure the passwords match "
+#~ "exactly."
+#~ msgstr ""
+#~ "Η κωδικός επιβεβαίωσης δεν ταιριάζει. Παρακαλούμε βεβαιωθείτε ότι οι κωδικοί "
+#~ "ταιριάζουν απόλυτα."
+
+#, php-format
+#~ msgid ""
+#~ "Current administrator password is used for encryption.<br />Encrypted "
+#~ "configuration is automatically gzipped."
+#~ msgstr ""
+#~ "Ο τρέχων κωδικός  του διαχειριστή χρησιμοποιείται για την κρυπτογράφηση.<br "
+#~ "/>Το κρυπτογραφημένο αρχείο ρυθμίσεων συμπιέζεται αυτόματα σε μορφή gzip."
+
+#~ msgid ""
+#~ "The encrypt password does not match. Please ensure the passwords match "
+#~ "exactly."
+#~ msgstr ""
+#~ "Ο κωδικός κρυπτογράφησης δεν ταιριάζει. Παρακαλώ βεβαιωθείτε ότι οι κωδικοί "
+#~ "ταιριάζουν ακριβώς."
+
+#~ msgid "(Confirmation)"
+#~ msgstr "(Επιβεβαίωση)"

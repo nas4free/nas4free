@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-01 01:53+0000\n"
-"PO-Revision-Date: 2015-05-31 19:54+0000\n"
+"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"PO-Revision-Date: 2015-06-02 19:01+0000\n"
 "Last-Translator: Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-01 23:28+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-04 18:12+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 "Language: hu_HU\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -109,6 +109,9 @@ msgstr ""
 "1. Ezeket csak speciális hibakeresésre használd!<br />2. Nincs szükség ennek "
 "a menünek a használatára RAID-kötet létrehozásához (az automatikusan "
 "létrejön)."
+
+msgid "4KB wrapper"
+msgstr ""
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN címke (1 és 4094 közötti érték)."
@@ -1251,6 +1254,12 @@ msgstr "Azt szabályozza, hogy az adattárat lehessen-e módosítani."
 msgid "Count"
 msgstr "Számláló"
 
+msgid "Create 4KB wrapper (nop device)."
+msgstr ""
+
+msgid "Create ZFS on GPT partition"
+msgstr ""
+
 msgid "Create and initialize RAID."
 msgstr "RAID létrehozása és inicializálása."
 
@@ -1301,14 +1310,6 @@ msgstr "Aktuális"
 
 msgid "Current Version:"
 msgstr "Jelenlegi verzió:"
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr ""
-"Titkosításhoz  a jelenlegi rendszergazdai jelszót használjuk.<br />A "
-"titkosított beállításokat automatikusan tömörítjük gzip-el ."
 
 msgid "Current password"
 msgstr "Jelenlegi jelszó"
@@ -2282,8 +2283,17 @@ msgstr "Írás cache engedélyezése."
 msgid "Enabled"
 msgstr "Engedélyezve"
 
+msgid "Encrypt password"
+msgstr ""
+
+msgid "Encrypt password (confirmed)"
+msgstr ""
+
 msgid "Encrypted"
 msgstr "Titkosított"
+
+msgid "Encrypted configuration is automatically gzipped."
+msgstr ""
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -5965,12 +5975,13 @@ msgid "The configuration has been restored. The server is now rebooting."
 msgstr "A beállítások visszaálltak. A szerver most újraindul."
 
 msgid ""
-"The confimed password does not match. Please ensure the passwords match "
+"The confirmation password does not match. Please ensure the passwords match "
 "exactly."
-msgstr "A megerősített jelszó nem egyezik. Kérem ellenőrizze."
+msgstr ""
+"A megerősítő jelszó nem egyezik. Fontos, hogy a jelszavak pontosan egyeznek."
 
 msgid ""
-"The confirmation password does not match. Please ensure the passwords match "
+"The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 
@@ -6917,6 +6928,9 @@ msgid ""
 msgstr ""
 "Ez törli az ÖSSZES adatot a lemezen! Ne használd ezt az opciót, ha egy "
 "meglévő titkosított lemezt szeretnél hozzáadni."
+
+msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
+msgstr ""
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr "Ez ZFS ACL támogatást biztosít (csak ZFS esetén)."
@@ -7884,3 +7898,16 @@ msgstr "leválasztás"
 #, php-format
 msgid "version:"
 msgstr "verzió:"
+
+#~ msgid ""
+#~ "The confimed password does not match. Please ensure the passwords match "
+#~ "exactly."
+#~ msgstr "A megerősített jelszó nem egyezik. Kérem ellenőrizze."
+
+#, php-format
+#~ msgid ""
+#~ "Current administrator password is used for encryption.<br />Encrypted "
+#~ "configuration is automatically gzipped."
+#~ msgstr ""
+#~ "Titkosításhoz  a jelenlegi rendszergazdai jelszót használjuk.<br />A "
+#~ "titkosított beállításokat automatikusan tömörítjük gzip-el ."

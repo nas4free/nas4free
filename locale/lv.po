@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-01 01:53+0000\n"
+"POT-Creation-Date: 2015-06-04 21:26+0000\n"
 "PO-Revision-Date: 2014-11-17 04:06+0000\n"
 "Last-Translator: Jānis Marks Gailis <jm-gailis@fai-vianet.fr>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-01 23:28+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-04 18:12+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 "X-Poedit-Country: LATVIA\n"
 "Language: \n"
 "X-Poedit-Language: Latvian\n"
@@ -102,6 +102,9 @@ msgid ""
 msgstr ""
 "1. Lietojiet šīs speciālās iespējas tikai atkļūdošanai!<br />2. Nav iemesla "
 "izmantot šo izvēlni, lai uzsāktu RAID sējumu (iespēkojas automātiski)."
+
+msgid "4KB wrapper"
+msgstr ""
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN birka (starp 1 un 4094)."
@@ -1205,6 +1208,12 @@ msgstr "Kontrolē vai datu kopa var tikt modificēta."
 msgid "Count"
 msgstr "Skaits"
 
+msgid "Create 4KB wrapper (nop device)."
+msgstr ""
+
+msgid "Create ZFS on GPT partition"
+msgstr ""
+
 msgid "Create and initialize RAID."
 msgstr "Veidot un inicializēt RAID."
 
@@ -1255,12 +1264,6 @@ msgstr "Tekošais"
 
 msgid "Current Version:"
 msgstr "Pašreizējā versija:"
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr ""
 
 msgid "Current password"
 msgstr "Pašreizējā parole"
@@ -2222,8 +2225,17 @@ msgstr ""
 msgid "Enabled"
 msgstr "Iespējots"
 
+msgid "Encrypt password"
+msgstr ""
+
+msgid "Encrypt password (confirmed)"
+msgstr ""
+
 msgid "Encrypted"
 msgstr "Šifrēts"
+
+msgid "Encrypted configuration is automatically gzipped."
+msgstr ""
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -5838,13 +5850,12 @@ msgid "The configuration has been restored. The server is now rebooting."
 msgstr ""
 
 msgid ""
-"The confimed password does not match. Please ensure the passwords match "
+"The confirmation password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
-"Apstiprinātā parole nesakrīt. Lūdzu pārbaudi, ka paroles precīzi sakrīt."
 
 msgid ""
-"The confirmation password does not match. Please ensure the passwords match "
+"The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 
@@ -6751,6 +6762,9 @@ msgid ""
 msgstr ""
 "Šis izdzēsīs VISU informāciju uz diska! Nelietojiet šo iespēju, ja vēlaties "
 "pievienot jau šifrētu disku."
+
+msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
+msgstr ""
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr ""
@@ -7702,3 +7716,9 @@ msgstr "aitsaistīt"
 #, php-format
 msgid "version:"
 msgstr ""
+
+#~ msgid ""
+#~ "The confimed password does not match. Please ensure the passwords match "
+#~ "exactly."
+#~ msgstr ""
+#~ "Apstiprinātā parole nesakrīt. Lūdzu pārbaudi, ka paroles precīzi sakrīt."
