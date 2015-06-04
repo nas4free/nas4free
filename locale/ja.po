@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-01 01:53+0000\n"
-"PO-Revision-Date: 2015-06-01 16:15+0000\n"
+"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"PO-Revision-Date: 2015-06-04 12:56+0000\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-01 23:28+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-04 13:04+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
 "X-Poedit-Language: Japanese\n"
@@ -102,6 +102,9 @@ msgid ""
 msgstr ""
 "1. この特殊な作業はデバッグ時のみに使用して下さい！<br />2. "
 "RAIDボリュームの使用を開始する為にこのメニューを使用する必要はありません。(自動的に開始されます)"
+
+msgid "4KB wrapper"
+msgstr "4KBラッパー"
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN タグ (1 から 4094 まで)。"
@@ -1194,6 +1197,12 @@ msgstr "このデータセットが修正可能かどうか制御します。"
 msgid "Count"
 msgstr "カウント"
 
+msgid "Create 4KB wrapper (nop device)."
+msgstr "4KBラッパー (nop デバイス) を作成する"
+
+msgid "Create ZFS on GPT partition"
+msgstr "GPTパーティション上にZFSを作成する"
+
 msgid "Create and initialize RAID."
 msgstr "RAIDの作成と初期化"
 
@@ -1244,12 +1253,6 @@ msgstr "現在"
 
 msgid "Current Version:"
 msgstr "現在のバージョン:"
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr "現在の管理者パスワードが暗号化に使用されます。<br />暗号化された設定ファイルは自動的にgzip圧縮されます。"
 
 msgid "Current password"
 msgstr "現在のパスワード"
@@ -2200,8 +2203,17 @@ msgstr "書き込みキャッシュモードを有効にします。"
 msgid "Enabled"
 msgstr "有効"
 
+msgid "Encrypt password"
+msgstr "暗号化パスワード"
+
+msgid "Encrypt password (confirmed)"
+msgstr "暗号化パスワード(確認)"
+
 msgid "Encrypted"
 msgstr "暗号化"
+
+msgid "Encrypted configuration is automatically gzipped."
+msgstr "暗号化された設定ファイルは自動的にgzip圧縮されます。"
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -5691,14 +5703,14 @@ msgid "The configuration has been restored. The server is now rebooting."
 msgstr "設定情報はリストアされました。サーバーをリブートしています。"
 
 msgid ""
-"The confimed password does not match. Please ensure the passwords match "
-"exactly."
-msgstr "入力したパスワードが一致しません。パスワードを再度確認して下さい。"
-
-msgid ""
 "The confirmation password does not match. Please ensure the passwords match "
 "exactly."
 msgstr "確認パスワードが一致しません。パスワードを再度確認して下さい。"
+
+msgid ""
+"The confirmed password does not match. Please ensure the passwords match "
+"exactly."
+msgstr "入力したパスワードが一致しません。パスワードを再度確認して下さい。"
 
 msgid "The credentials with which to bind."
 msgstr "バインドする際に使用するパスワードを入力して下さい。"
@@ -6509,6 +6521,9 @@ msgid ""
 "This will erase ALL data on your disk! Do not use this option if you want to "
 "add an existing encrypted disk."
 msgstr "既存の暗号化されたディスクを追加するのに、このオプションは使用しないでください。(ディスク上のデータが消去されてしまいます)"
+
+msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
+msgstr "これは、UFS など ZFS ACLサポートなしで NTFS ACL を提供します。"
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr "ZFS ACLサポートを提供します。(ZFS専用)"
@@ -7433,3 +7448,22 @@ msgstr "アンマウント"
 #, php-format
 msgid "version:"
 msgstr "バージョン:"
+
+#~ msgid ""
+#~ "The confimed password does not match. Please ensure the passwords match "
+#~ "exactly."
+#~ msgstr "入力したパスワードが一致しません。パスワードを再度確認して下さい。"
+
+#, php-format
+#~ msgid ""
+#~ "Current administrator password is used for encryption.<br />Encrypted "
+#~ "configuration is automatically gzipped."
+#~ msgstr "現在の管理者パスワードが暗号化に使用されます。<br />暗号化された設定ファイルは自動的にgzip圧縮されます。"
+
+#~ msgid "(Confirmation)"
+#~ msgstr "(確認)"
+
+#~ msgid ""
+#~ "The encrypt password does not match. Please ensure the passwords match "
+#~ "exactly."
+#~ msgstr "確認パスワードが一致しません。パスワードを再度確認して下さい。"
