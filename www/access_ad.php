@@ -67,7 +67,7 @@ if ($_POST) {
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 		if (($_POST['password'] !== $_POST['password2'])) {
-			$input_errors[] = gettext("The confimed password does not match. Please ensure the passwords match exactly.");
+			$input_errors[] = gettext("The confirmed password does not match. Please ensure the passwords match exactly.");
 		}
 	}
 
