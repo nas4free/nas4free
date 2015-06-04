@@ -3,12 +3,15 @@ NAS4Free 10.1.0.2 - Prescience
 
 Changes:
 - Upgrade to FreeBSD 10.1 RELEASE p10.
+- Add ability to create ZFS on GPT.
 - Add Home, Insert, Delete, End, Page Up/Down, ctrl left/right keys to console.
 - Add Daap/Firefly advanced options.
 - Add aio_pthread streams_xattr acl_xattr.
 - Add zfsacl default setting.
 - Add inherit acls on SMB share.
 - Add Ukrainian translation to webgui.
+- Add encrypt/decrypt password in System|Backup/Restore.
+- Create 4KB(ashift=12) ZFS pool by default.
 - Increase upload size in Webserver service up to 16GiB. (websrv_maxrequestsize)
 - Support aclinherit/aclmode ZFS properties.
 - Use SHA-512 crypt password for admin. (WebGUI login and all services)
