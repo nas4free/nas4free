@@ -144,6 +144,12 @@ function zfs_zpool_configure($uuid) {
 		@mwexec("/sbin/kldload geom_nop.ko");
 	}
 
+	// Set minimum ashift=12 (4KB)
+	if (isset($pool['ashift']) && $pool['ashift'] == 9)
+		@mwexec("/sbin/sysctl -q vfs.zfs.min_auto_ashift=9");
+	else
+		@mwexec("/sbin/sysctl -q vfs.zfs.min_auto_ashift=12");
+
 	$dev_cache = "";
 	$dev_log = "";
 	foreach ($pool['vdevice'] as $vdevicev) {
