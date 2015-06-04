@@ -92,7 +92,7 @@ if ($_POST) {
 	}
 
 	if (($_POST['bindpw'] !== $_POST['bindpw2'])) {
-		$input_errors[] = gettext("The confimed password does not match. Please ensure the passwords match exactly.");
+		$input_errors[] = gettext("The confirmed password does not match. Please ensure the passwords match exactly.");
 	}
 
 	if (empty($input_errors)) {
