@@ -68,7 +68,7 @@ if ($_POST) {
 
 	if ($encryption) {
 		$reqdfields = explode(" ", "encrypt_password encrypt_password_confirm");
-		$reqdfieldsn = array(gettext("Encrypt Password"), gettext("Encrypt Password (confirmed)"));
+		$reqdfieldsn = array(gettext("Encrypt password"), gettext("Encrypt password (confirmed)"));
 		$reqdfieldst = explode(" ", "password password");
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
