@@ -2588,18 +2588,18 @@ function get_conf_disks_filtered_ex($key, $pattern) {
 
 // Set the given file system type in configuration.
 // Return 0 if successful, otherwise 1.
-function set_conf_disk_fstype($disk, $fstype)
+function set_conf_disk_fstype_opt($disk, $fstype, $opt)
 {
 	global $config;
 
 	$result = 1;
 	$diskconf = array("disks"   => "disk",
-										"gconcat" => "vdisk",
-										"gmirror" => "vdisk",
-										"graid5"  => "vdisk",
-										"gstripe" => "vdisk",
-										"gvinum"  => "vdisk",
-										"geli"    => "vdisk");
+			"gconcat" => "vdisk",
+			"gmirror" => "vdisk",
+			"graid5"  => "vdisk",
+			"gstripe" => "vdisk",
+			"gvinum"  => "vdisk",
+			"geli"    => "vdisk");
 
 	while (list($class, $val) = each($diskconf)) {
 		if (empty($config[$class][$val]) || !is_array($config[$class][$val]))
@@ -2608,6 +2608,8 @@ function set_conf_disk_fstype($disk, $fstype)
 		$id = array_search_ex($disk, $config[$class][$val], "devicespecialfile");
 		if ($id !== false) {
 			$config[$class][$val][$id]['fstype'] = $fstype;
+			if (!empty($opt) && $fstype == "zfs" && isset($opt['zfsgpt']))
+				$config[$class][$val][$id]['zfsgpt'] = $opt['zfsgpt'];
 			$result = 0;
 //		echo "Set \$config['$class']['$val'][$id]['fstype'] = $fstype\n";
 			break;
@@ -2615,6 +2617,9 @@ function set_conf_disk_fstype($disk, $fstype)
 	}
 
 	return $result;
+}
+function set_conf_disk_fstype($disk, $fstype) {
+	 return set_conf_disk_fstype_opt($disk, $fstype, null);
 }
 
 // Convert bytes into best unit.
