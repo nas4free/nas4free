@@ -1,6 +1,6 @@
---- src/dyndns.h.orig	2014-06-01 08:01:18.000000000 -0700
-+++ src/dyndns.h	2014-06-12 16:00:14.303836986 -0700
-@@ -107,11 +107,11 @@
+--- src/dyndns.h.orig	2015-05-26 19:25:30.000000000 +0200
++++ src/dyndns.h	2015-06-05 09:37:00.000000000 +0200
+@@ -110,11 +110,11 @@
  
  /*test values*/
  #define DYNDNS_DEFAULT_DEBUG_LEVEL		LOG_WARNING
