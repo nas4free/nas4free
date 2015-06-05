@@ -2,17 +2,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-01 01:53+0000\n"
-"PO-Revision-Date: 2015-05-21 11:36+0000\n"
-"Last-Translator: peter <peterswebdesign2010@gmail.com>\n"
+"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"PO-Revision-Date: 2015-06-05 07:14+0000\n"
+"Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-01 23:28+0000\n"
-"X-Generator: Launchpad (build 17532)\n"
+"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
+"X-Generator: Launchpad (build 17540)\n"
 "Language: ro_RO\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "Status"
+msgstr "Info"
 
 msgid " interfaces:"
 msgstr " interfețe:"
@@ -58,7 +61,7 @@ msgstr "%s este prea lung."
 
 #, php-format
 msgid "%s is used to create %s volumes."
-msgstr "Pachetul software %s este utilizat pentru a creea volumul %s."
+msgstr "%s este utilizat pentru a creea volumul %s."
 
 #, php-format
 msgid "%s of %sB"
@@ -89,7 +92,7 @@ msgid "%sB used of %sB"
 msgstr "%sB utilizați din %sB"
 
 msgid "*** Imported duplicate ***"
-msgstr "*** Duplicat detectat ***"
+msgstr "*** Duplicat importat ***"
 
 msgid "0=disabled, 1-255=enabled command queuing with specified depth."
 msgstr "0=dezactivat, 1-255=listă activă de comenzi cu lungimea specificată."
@@ -101,6 +104,9 @@ msgstr ""
 "1. Folosiți aceste comenzi speciale doar pentru depanare!<br />2. Nu este "
 "nevoie să folosiți acest meniu pentru a porni un volum RAID (volumul va fi "
 "pornit automat)"
+
+msgid "4KB wrapper"
+msgstr ""
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "Etichetă VLAN 802.1Q (între 1 și 4094)."
@@ -1255,6 +1261,12 @@ msgstr "Controlează dacă acest set de date poate fi modificat."
 msgid "Count"
 msgstr "Numărul de pachete"
 
+msgid "Create 4KB wrapper (nop device)."
+msgstr ""
+
+msgid "Create ZFS on GPT partition"
+msgstr ""
+
 msgid "Create and initialize RAID."
 msgstr "Creare și inițializare RAID."
 
@@ -1305,14 +1317,6 @@ msgstr "Curent"
 
 msgid "Current Version:"
 msgstr "Versiune Curentă:"
-
-#, php-format
-msgid ""
-"Current administrator password is used for encryption.<br />Encrypted "
-"configuration is automatically gzipped."
-msgstr ""
-"Codul de acces al administratorului este ulilizat pentru codificare.<br "
-"/>Setarile de configurare codificate sant comprimate automat."
 
 msgid "Current password"
 msgstr "Parola curentă"
@@ -1414,7 +1418,7 @@ msgid "Debug"
 msgstr "Depanare"
 
 msgid "Decrypt password"
-msgstr ""
+msgstr "Decriptare parolă"
 
 msgid "Dedup"
 msgstr "Dedup"
@@ -1672,7 +1676,7 @@ msgid "Devices"
 msgstr "Dispozitive"
 
 msgid "Diagnostics"
-msgstr "Diagnostice"
+msgstr "Diagnoză"
 
 msgid "Difference"
 msgstr "Diferență"
@@ -2003,7 +2007,7 @@ msgid "EFI/GPT partition can be use with UFS only."
 msgstr "Partitiile EFI/GPT pot fi folosite doar cu UFS."
 
 msgid "ERROR:"
-msgstr ""
+msgstr "EROARE:"
 
 msgid "Edit"
 msgstr "Editare"
@@ -2292,8 +2296,17 @@ msgstr "Activare mod cache la scriere."
 msgid "Enabled"
 msgstr "Activat"
 
+msgid "Encrypt password"
+msgstr ""
+
+msgid "Encrypt password (confirmed)"
+msgstr ""
+
 msgid "Encrypted"
 msgstr "Criptat"
+
+msgid "Encrypted configuration is automatically gzipped."
+msgstr ""
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -2661,10 +2674,10 @@ msgstr ""
 "Poartă de Acces de utilizat pentru a ajunge la rețeaua de destinație."
 
 msgid "General"
-msgstr "Generale"
+msgstr "Setări generale"
 
 msgid "General Setup"
-msgstr "Setări Generale"
+msgstr "Setări generale"
 
 msgid "Generate"
 msgstr "Generare"
@@ -3212,7 +3225,7 @@ msgid "Interval to wait before restarting the load"
 msgstr "Timp de așteptare pînă la repornirea sarcinii"
 
 msgid "Invalid file format or incorrect password."
-msgstr ""
+msgstr "Format invalid de fișier sau parolă incorectă."
 
 msgid "Invalid file format."
 msgstr "Format invalid fișier."
@@ -4655,7 +4668,7 @@ msgid "RAID5"
 msgstr "RAID5"
 
 msgid "RAW info"
-msgstr ""
+msgstr "Informații brute"
 
 msgid "RSYNC"
 msgstr "RSYNC"
@@ -5464,9 +5477,6 @@ msgstr "Rute Statice"
 msgid "Static routes"
 msgstr "Rute Statice"
 
-msgid "Status"
-msgstr "Stare"
-
 #, c-format
 msgid "Status report successfully sent to: %s."
 msgstr "Raportul de stare a fost trimis cu succes la: %s."
@@ -5997,12 +6007,14 @@ msgid "The configuration has been restored. The server is now rebooting."
 msgstr "Configurația a fost restaurată și serverul va reporni automat."
 
 msgid ""
-"The confimed password does not match. Please ensure the passwords match "
+"The confirmation password does not match. Please ensure the passwords match "
 "exactly."
-msgstr "Parolele nu coincid. Reintroduceți parolele!"
+msgstr ""
+"Parola de confirmare nu coincide. Verificați ca cele două parole să fie "
+"identice."
 
 msgid ""
-"The confirmation password does not match. Please ensure the passwords match "
+"The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
 
@@ -6965,6 +6977,9 @@ msgstr ""
 "Această opțiune determină ştergerea TUTUROR datelelor de pe disc! Nu "
 "folosiți această opțiune dacă doriți să adăugați un disc criptat existent."
 
+msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
+msgstr ""
+
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr ""
 "Aceasta opțiune va oferi suport ACL pentru ZFS (doar pentru sisteme cu ZFS)."
@@ -7290,7 +7305,7 @@ msgid "URL"
 msgstr "URL"
 
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ucraineană"
 
 msgid "Unavailable"
 msgstr "Indisponibil"

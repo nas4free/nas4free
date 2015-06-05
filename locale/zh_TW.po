@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2015-06-04 21:26+0000\n"
-"PO-Revision-Date: 2015-06-04 01:02+0000\n"
+"PO-Revision-Date: 2015-06-05 07:11+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-04 18:13+0000\n"
+"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
 "X-Generator: Launchpad (build 17540)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -1173,7 +1173,7 @@ msgid "Create 4KB wrapper (nop device)."
 msgstr ""
 
 msgid "Create ZFS on GPT partition"
-msgstr ""
+msgstr "在GPT分區上創建ZFS"
 
 msgid "Create and initialize RAID."
 msgstr "建立並初始 RAID。"
@@ -2171,16 +2171,16 @@ msgid "Enabled"
 msgstr "已啟用"
 
 msgid "Encrypt password"
-msgstr ""
+msgstr "加密密碼"
 
 msgid "Encrypt password (confirmed)"
-msgstr ""
+msgstr "加密密碼（確認）"
 
 msgid "Encrypted"
 msgstr "已加密"
 
 msgid "Encrypted configuration is automatically gzipped."
-msgstr ""
+msgstr "加密的配置會自動以gzip壓縮。"
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -5160,10 +5160,10 @@ msgid "Store DOS attributes"
 msgstr "儲存 DOS 屬性"
 
 msgid "Store NTFS acls"
-msgstr ""
+msgstr "儲存NTFS ACL"
 
 msgid "Store NTFS acls in Extended Attributes"
-msgstr ""
+msgstr "將NTFS ACL儲存在擴展屬性"
 
 msgid "Store alternate data streams"
 msgstr ""
@@ -5637,12 +5637,12 @@ msgstr "已還原配置。現在重新啟動伺服器。"
 msgid ""
 "The confirmation password does not match. Please ensure the passwords match "
 "exactly."
-msgstr ""
+msgstr "確認密碼不匹配。請確保密碼完全匹配。"
 
 msgid ""
 "The confirmed password does not match. Please ensure the passwords match "
 "exactly."
-msgstr ""
+msgstr "確認密碼並不匹配。請確保密碼完全匹配。"
 
 msgid "The credentials with which to bind."
 msgstr "綁定密碼。"
@@ -6426,7 +6426,7 @@ msgid ""
 msgstr "這將刪除所選磁盤上的所有數據！如果您想再次添加已存在的加密磁盤，請不要使用這個選項。"
 
 msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
-msgstr ""
+msgstr "這將提供NTFS ACL支援，而不是ZFS ACL的支援，例如UFS。"
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr "這將提供ZFS ACL 支持。（只是 ZFS）"
@@ -7052,7 +7052,7 @@ msgid ""
 msgstr "如果沒有用戶連線的話，是否該略過掃描。這樣會讓磁盤在沒有用戶連線的時候降速運轉。"
 
 msgid "Whether to skip initial boot-up scan."
-msgstr ""
+msgstr "是否跳過最初的開機掃描。"
 
 msgid "Who"
 msgstr "執行用戶"
@@ -7337,14 +7337,3 @@ msgstr "卸載"
 #, php-format
 msgid "version:"
 msgstr "版本："
-
-#~ msgid ""
-#~ "The confimed password does not match. Please ensure the passwords match "
-#~ "exactly."
-#~ msgstr "確認密碼並不符合，請確認輸入的密碼是否一致。"
-
-#, php-format
-#~ msgid ""
-#~ "Current administrator password is used for encryption.<br />Encrypted "
-#~ "configuration is automatically gzipped."
-#~ msgstr "以現在的管理員密碼來加密。<br />加密的配置會自動以GZIP壓縮。"

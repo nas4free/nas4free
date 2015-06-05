@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2015-06-04 21:26+0000\n"
-"PO-Revision-Date: 2015-06-04 08:46+0000\n"
+"PO-Revision-Date: 2015-06-05 11:15+0000\n"
 "Last-Translator: Balabuha <balabuha@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-04 18:13+0000\n"
+"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
 "X-Generator: Launchpad (build 17540)\n"
 "Language: uk\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -1255,7 +1255,7 @@ msgid "Create 4KB wrapper (nop device)."
 msgstr ""
 
 msgid "Create ZFS on GPT partition"
-msgstr ""
+msgstr "Створити ZFS на розділі GPT"
 
 msgid "Create and initialize RAID."
 msgstr "Створити та ініціалізувати RAID."
@@ -1997,7 +1997,7 @@ msgid "EFI/GPT partition can be use with UFS only."
 msgstr "EFI/GPT розділ може використовуватись лише з UFS."
 
 msgid "ERROR:"
-msgstr ""
+msgstr "ПОМИЛКА:"
 
 msgid "Edit"
 msgstr "Редагувати"
@@ -2261,7 +2261,7 @@ msgid "Enable syslog'ing to remote syslog server"
 msgstr "Увімкнути логування через syslog на віддалений сервер"
 
 msgid "Enable the ident protocol (RFC1413)."
-msgstr ""
+msgstr "Увімкнути протокол ідентифікації (RFC1413)."
 
 msgid "Enable the system power control utility"
 msgstr "Увімкнути утиліту контролю системного живлення"
@@ -2285,16 +2285,16 @@ msgid "Enabled"
 msgstr "Увімкнено"
 
 msgid "Encrypt password"
-msgstr ""
+msgstr "Зашифрувати пароль"
 
 msgid "Encrypt password (confirmed)"
-msgstr ""
+msgstr "Зашифрувати пароль (підтверджено)"
 
 msgid "Encrypted"
 msgstr "Зашифровано"
 
 msgid "Encrypted configuration is automatically gzipped."
-msgstr ""
+msgstr "Зашифрована конфігурація автоматично пакується gzip."
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -2332,7 +2332,7 @@ msgstr ""
 msgid ""
 "Enter the passphrase that will be used in WPA-PSK mode. This must be between "
 "8 and 63 characters long."
-msgstr ""
+msgstr "Введіть пароль для  режиму WPA-PSK. Довжина від 8 до 63 символів."
 
 msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
@@ -2375,7 +2375,7 @@ msgid "Expire"
 msgstr ""
 
 msgid "Export"
-msgstr ""
+msgstr "Експорт"
 
 msgid "Export all the directories in the specified path."
 msgstr "Експортувати всі папки за вказаним шляхом."
@@ -2384,22 +2384,22 @@ msgid "Extended attributes"
 msgstr "Розширені атрибути"
 
 msgid "Extended input frequency range"
-msgstr ""
+msgstr "Розширений діапазон частот"
 
 msgid "Extended input voltage range"
-msgstr ""
+msgstr "Розширений діапазон напруг"
 
 msgid "Extensions"
 msgstr "Розширення"
 
 msgid "Extent"
-msgstr ""
+msgstr "Розширений"
 
 msgid "Extent Name"
-msgstr ""
+msgstr "Назва розширення"
 
 msgid "Extent name"
-msgstr ""
+msgstr "Назва розширення"
 
 msgid ""
 "Extents must be defined before they can be used, and extents cannot be used "
@@ -2410,12 +2410,14 @@ msgid "Extra options"
 msgstr "Додаткові варіанти"
 
 msgid "Extra options (usually empty)."
-msgstr ""
+msgstr "Додаткові опції (зазвичай - пусто)."
 
 msgid ""
 "Extra options to /etc/ssh/sshd_config (usually empty). Note, incorrect "
 "entered options prevent SSH service to be started."
 msgstr ""
+"Додаткові опції для /etc/ssh/sshd_config (зазвичай - пусто). Зауважте, "
+"неправильні опції призведуть до неможливості запустити сервіс SSH."
 
 msgid "Extra options to ifconfig (usually empty)."
 msgstr "Додаткові опції для ifconfig"
@@ -2423,6 +2425,8 @@ msgstr "Додаткові опції для ifconfig"
 msgid ""
 "Extra options to pass over rpc using transmission-remote (usually empty)."
 msgstr ""
+"Додаткові опції для передачі по RPC для transmission-remote (зазвичай - "
+"пусто)."
 
 msgid "Extra options to rsync (usually empty)."
 msgstr "Додаткові опції rsync (зазвичай порожні)."
@@ -2584,16 +2588,16 @@ msgid "Flag xxx (ups.conf or cmdline -x) status"
 msgstr ""
 
 msgid "Flags"
-msgstr ""
+msgstr "Прапорці"
 
 msgid "Follow"
 msgstr "Стежити"
 
 msgid "Force use"
-msgstr ""
+msgstr "Примусове використання"
 
 msgid "Forced update period"
-msgstr ""
+msgstr "Період примусового оновлення"
 
 msgid ""
 "Forces use of vdevs, even if they appear in use or specify different size. "
@@ -2604,7 +2608,7 @@ msgid "Format"
 msgstr "Формат"
 
 msgid "Format disk"
-msgstr ""
+msgstr "Форматувати диск"
 
 msgid "Format the report for phpBB forum."
 msgstr ""
@@ -2613,7 +2617,7 @@ msgid "Forum"
 msgstr "Форум"
 
 msgid "Free"
-msgstr ""
+msgstr "Вільно"
 
 msgid "Free disk space"
 msgstr "Вільний дисковий простір"
@@ -2625,13 +2629,13 @@ msgid "Frequency"
 msgstr "Періодичність"
 
 msgid "From email"
-msgstr ""
+msgstr "З пошти"
 
 msgid "Fsck"
 msgstr "Fsck"
 
 msgid "Full"
-msgstr ""
+msgstr "Повний"
 
 msgid "Full Name"
 msgstr "Повне ім'я"
@@ -2646,10 +2650,10 @@ msgid "Gateway"
 msgstr "Шлюз"
 
 msgid "Gateway to be used to reach the destination network."
-msgstr ""
+msgstr "Шлюз до підмережі призначення."
 
 msgid "General"
-msgstr ""
+msgstr "Загальні"
 
 msgid "General Setup"
 msgstr "Загальне налаштування"
@@ -2670,7 +2674,7 @@ msgid "Give only local users access to the web page."
 msgstr "Надати доступ до веб сторінки тільки локальним користувачам."
 
 msgid "Give your media library a friendly name."
-msgstr ""
+msgstr "Вкажіть зручне ім'я для медіа бібліотеки."
 
 msgid "Grant access to the user portal."
 msgstr "Надати доступ до порталу користувачів."
@@ -2686,6 +2690,7 @@ msgstr "Грецька"
 
 msgid "Greeting banner displayed by FTP when a connection first comes in."
 msgstr ""
+"Привітальне повідомлення, що буде показано FTP сервером при з'єднанні."
 
 msgid "Group"
 msgstr "Група"
@@ -2760,19 +2765,19 @@ msgid "Help"
 msgstr "Допомога"
 
 msgid "Hide dot files"
-msgstr ""
+msgstr "Приховати файли, що починаються з крапки."
 
 msgid "High voltage boosting transfer point"
 msgstr ""
 
 msgid "High voltage transfer point"
-msgstr ""
+msgstr "Верхня межа напруги перемикання"
 
 msgid "High voltage trimming transfer point"
 msgstr ""
 
 msgid "Highlighting"
-msgstr ""
+msgstr "Підсвічування"
 
 msgid "Hint"
 msgstr "Підказка"
@@ -2785,34 +2790,34 @@ msgid ""
 msgstr ""
 
 msgid "Home directory"
-msgstr ""
+msgstr "Домашня директорія"
 
 msgid "Host"
-msgstr ""
+msgstr "Хост"
 
 msgid "Host access control"
-msgstr ""
+msgstr "Контроль доступу до хоста"
 
 msgid "Host name"
 msgstr "Ім'я комп'ютера"
 
 msgid "Host resources"
-msgstr ""
+msgstr "Ресурси хоста"
 
 msgid "Hostname"
 msgstr "Ім'я комп'ютера"
 
 msgid "Hostname database"
-msgstr ""
+msgstr "База даних імен хостів"
 
 msgid "Hosts"
-msgstr ""
+msgstr "Хости"
 
 msgid "Hosts allow"
-msgstr ""
+msgstr "Дозволені хости"
 
 msgid "Hosts deny"
-msgstr ""
+msgstr "Заборонені хости"
 
 msgid "Hot Spare"
 msgstr ""
@@ -2833,20 +2838,20 @@ msgid "Hungarian"
 msgstr "Венгерський"
 
 msgid "I/O Timeout"
-msgstr ""
+msgstr "Таймаут вводу/виводу"
 
 msgid "I/O errors"
-msgstr ""
+msgstr "Помилок вводу/виводу"
 
 msgid "I/O packets"
-msgstr ""
+msgstr "Пакетів прийнято/відіслано"
 
 msgid "I/O statistics"
-msgstr ""
+msgstr "Статистика вводу/виводу"
 
 #, php-format
 msgid "I/O timeout in seconds (%d by default)."
-msgstr ""
+msgstr "Таймаут вводу/виводу в секундах (за замовчуванням %d)."
 
 msgid "IG"
 msgstr "IG"
@@ -2870,7 +2875,7 @@ msgid "IP or FQDN address of remote Rsync server."
 msgstr ""
 
 msgid "IP type mismatch for network and gateway."
-msgstr ""
+msgstr "Не співпадає тип ІР для підмережі і шлюза."
 
 msgid "IPv4 Configuration"
 msgstr "Конфігурація IPv4"
@@ -2909,7 +2914,7 @@ msgid "ISP DNS servers"
 msgstr "DNS сервери інтернет провайдера"
 
 msgid "Ident protocol"
-msgstr ""
+msgstr "Протокол ідентифікації"
 
 msgid "Identifier"
 msgstr "Ідентифікатор"
@@ -2955,6 +2960,8 @@ msgid ""
 "If this parameter is set, then users may not create or modify files in the "
 "share."
 msgstr ""
+"Якщо цей параметер встановлено, користувачі не зможуть створювати чи "
+"змінювати файли в цій спільній папці."
 
 msgid "If this property is disabled, the file system cannot be mounted."
 msgstr ""
@@ -2977,6 +2984,7 @@ msgid ""
 "If you want to change the password for accessing the WebGUI, enter it here "
 "twice."
 msgstr ""
+"Якщо ви хочете змінити пароль для доступу до WebGUI, введіть його тут двіччі."
 
 msgid "Image upload failed (out of memory?)"
 msgstr "Помилка завантаження зображення (недостатньо пам'яті?)"
@@ -3000,7 +3008,7 @@ msgid "Import software raid disks"
 msgstr "Імпортувати диски програмного RAID-масиву"
 
 msgid "In"
-msgstr ""
+msgstr "В"
 
 msgid "In most cases, 'public' is used here."
 msgstr "В більшості випадків тут використовується 'публічний'."
@@ -3033,7 +3041,7 @@ msgid "Information & Manuals"
 msgstr "Інформація та інструкції"
 
 msgid "Inherit ACL"
-msgstr ""
+msgstr "Успадкувати ACL"
 
 msgid "Inherit permissions"
 msgstr "Наслідувати дозволи"
@@ -7303,7 +7311,7 @@ msgid "ZFS snapshot information and status"
 msgstr ""
 
 msgid "ZFS snapshot properties"
-msgstr ""
+msgstr "властивості образу ZFS"
 
 msgid "ZFS volume"
 msgstr "Том ZFS"
@@ -7344,7 +7352,7 @@ msgid "day(s)"
 msgstr "день(днів)"
 
 msgid "detected an error while importing."
-msgstr ""
+msgstr "під час імпорту виявлено помилку."
 
 #, php-format
 msgid "e.g. %s"
@@ -7388,7 +7396,7 @@ msgid "iTunes/DAAP"
 msgstr "iTunes/DAAP"
 
 msgid "infinity"
-msgstr ""
+msgstr "безкінечно"
 
 msgid "load/unload failed."
 msgstr "сбій завантаження / розвантаження."
@@ -7457,7 +7465,7 @@ msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
 msgid "to"
-msgstr ""
+msgstr "до"
 
 msgid "umask"
 msgstr "umask"
@@ -7468,16 +7476,3 @@ msgstr "umount"
 #, php-format
 msgid "version:"
 msgstr "версія:"
-
-#, php-format
-#~ msgid ""
-#~ "Current administrator password is used for encryption.<br />Encrypted "
-#~ "configuration is automatically gzipped."
-#~ msgstr ""
-#~ "Поточний пароль адміністратора використовуваний для шифрування. <br /> "
-#~ "Зашифрована конфігурація автоматично стиснута."
-
-#~ msgid ""
-#~ "The confimed password does not match. Please ensure the passwords match "
-#~ "exactly."
-#~ msgstr "Паролі не однакові, повинні повністю співпадати."
