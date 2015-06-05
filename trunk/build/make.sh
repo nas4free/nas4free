@@ -757,8 +757,8 @@ create_iso () {
 		echo "ISO: Generating the $NAS4FREE_PRODUCTNAME Image file:"
 		create_image;
 	else
-		LABEL="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveCD-Tiny-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}"
-		VOLUMEID="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveCD-Tiny-${NAS4FREE_VERSION}"
+		LABEL="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveCD-Tin-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}"
+		VOLUMEID="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveCD-Tin-${NAS4FREE_VERSION}"
 	fi
 
 	# Set Platform Informations.
@@ -847,7 +847,7 @@ create_iso () {
 
 	echo "Generating SHA256 CHECKSUM File"
 	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.checksum"
-	cd ${NAS4FREE_ROOTDIR} && sha256 *.img *.xz *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
+	cd ${NAS4FREE_ROOTDIR} && sha256 *.img.gz *.xz *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
 
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
@@ -1071,14 +1071,13 @@ create_usb () {
 	umount $NAS4FREE_TMPDIR
 	echo "USB: Detach memory disk"
 	mdconfig -d -u ${md}
-	#echo "USB: Compress the IMG file"
-	#gzip -9n $NAS4FREE_WORKINGDIR/usb-image.bin
-	#cp $NAS4FREE_WORKINGDIR/usb-image.bin.gz $NAS4FREE_ROOTDIR/$IMGFILENAME
 	cp $NAS4FREE_WORKINGDIR/usb-image.bin $NAS4FREE_ROOTDIR/$IMGFILENAME
+	echo "Compress LiveUSB.img to LiveUSB.img.gz"
+	gzip -9n $NAS4FREE_ROOTDIR/$IMGFILENAME
 
 	echo "Generating SHA256 CHECKSUM File"
 	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.checksum"
-	cd ${NAS4FREE_ROOTDIR} && sha256 *.img *.xz *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
+	cd ${NAS4FREE_ROOTDIR} && sha256 *.img.gz *.xz > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
 
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
@@ -1190,8 +1189,12 @@ create_full() {
 	tar cvfz $FULLFILENAME -C $NAS4FREE_TMPDIR ./
 
 	# Cleanup.
-	echo "Cleaning tempo file"
+	echo "Cleaning temp .o file(s)"
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
+
+	echo "Generating SHA256 CHECKSUM File"
+	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.checksum"
+	cd ${NAS4FREE_ROOTDIR} && sha256 *.img.gz *.xz *.iso *.tgz > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
 
 	return 0
 }
@@ -1542,7 +1545,8 @@ echo -n '
 -----------------------------
 Compile NAS4FREE from Scratch
 -----------------------------
-Menu Options:
+
+	Menu Options:
 
 1 - Update FreeBSD Source Tree and Ports Collections.
 2 - Create Filesystem Structure.
@@ -1553,6 +1557,7 @@ Menu Options:
 7 - Add Necessary Libraries.
 8 - Modify File Permissions.
 * - Exit.
+
 Press # '
 		read choice
 		case $choice in
@@ -1689,14 +1694,15 @@ main() {
 --------------------------
 ${NAS4FREE_PRODUCTNAME} Build Environment
 --------------------------
-Menu Options:
+
+     Menu Options:
 
 1  - Update NAS4FREE Source Files to CURRENT.
-2  - Compile NAS4FREE from Scratch.
-10 - Create 'Embedded' (IMG) File (rawrite to CF/USB/DD).
-11 - Create 'LiveUSB' (IMG) File.
+2  - NAS4Free Compile Menu.
+10 - Create 'Embedded.img.xz' File. (Firmware Update for Embedded Systems)
+11 - Create 'LiveUSB.img.gz' File. (Rawrite to USB Key)
 12 - Create 'LiveCD' (ISO) File.
-13 - Create 'LiveCD-Tiny' (ISO) File without 'Embedded' File.
+13 - Create 'LiveCD-Tin' (ISO) without 'Embedded' File.
 14 - Create 'Full' (TGZ) Update File."
 	if [ "arm" = ${NAS4FREE_ARCH} ]; then
 		echo -n "
@@ -1704,6 +1710,7 @@ Menu Options:
 	fi
 	echo -n "
 *  - Exit.
+
 Press # "
 	read choice
 	case $choice in
