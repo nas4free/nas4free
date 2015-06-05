@@ -461,7 +461,7 @@ samba_cmd() {
  		if [ 0 -eq ${samba_ldap} ]; then
 			local _password=`configxml_get "//ldap/rootbindpw"`
 			local _p=`safe_shellquote "${_password}"`
-			#/usr/local/bin/smbpasswd -w "${_p}"
+			/usr/local/bin/smbpasswd -w "${_p}"
 		fi
 	fi
 
