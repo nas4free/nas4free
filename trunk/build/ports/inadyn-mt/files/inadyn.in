@@ -41,9 +41,14 @@ inadyn_prestart()
 		-i "provider[. = 'freedns.afraid.org']" -o "--dyndns_system default@freedns.afraid.org" -n -b \
 		-i "provider[. = 'zoneedit.com']" -o "--dyndns_system default@zoneedit.com" -n -b \
 		-i "provider[. = 'no-ip.com']" -o "--dyndns_system default@no-ip.com" -n -b \
-		-i "provider[. = 'easydns.com']" -o "--dyndns_system default@easydns.com" -n -b \
 		-i "provider[. = '3322.org']" -o "--dyndns_system dyndns@3322.org" -n -b \
+		-i "provider[. = 'easydns.com']" -o "--dyndns_system default@easydns.com" -n -b \
+		-i "provider[. = 'dnsdynamic.org']" -o "--dyndns_system default@dnsdynamic.org" -n -b \
 		-i "provider[. = 'dhis.org']" -o "--dyndns_system default@dhis.org" -n -b \
+		-i "provider[. = 'dnsexit.com']" -o "--dyndns_system default@dnsexit.com" -n -b \
+		-i "provider[. = 'ipv6tb.he.net']" -o "--dyndns_system ipv6tb@he.net" -n -b \
+		-i "provider[. = 'tzo.com']" -o "--dyndns_system default@tzo.com" -n -b \
+		-i "provider[. = 'dynsip.org']" -o "--dyndns_system default@dynsip.org" -n -b \
 		-o "--background" -n \
 		-o "--syslog" -n \
 		-v "concat('--username ',username)" -n \
