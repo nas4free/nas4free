@@ -160,12 +160,14 @@ $(document).ready(function(){
 		var val = !($('#encryption').prop('checked') || encrypt_change);
 		$('#encrypt_password').prop('disabled', val);
 		$('#encrypt_password_confirm').prop('disabled', val);
-		if (val) {
-			// disabled
-			$('#encrypt_password_tr td:first').removeClass('vncellreq').addClass('vncell');
-		} else {
-			// enabled
-			$('#encrypt_password_tr td:first').removeClass('vncell').addClass('vncellreq');
+		if (!encrypt_change) {
+			if (val) {
+				// disabled
+				$('#encrypt_password_tr td:first').removeClass('vncellreq').addClass('vncell');
+			} else {
+				// enabled
+				$('#encrypt_password_tr td:first').removeClass('vncell').addClass('vncellreq');
+			}
 		}
 	}
 	$('#encryption').click(function(){
