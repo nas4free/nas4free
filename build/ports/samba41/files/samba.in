@@ -229,8 +229,8 @@ samba_mkconf_cmd()
 				-o "ldap passwd sync = yes" -n \
 				-o "ldap ssl = no" -n \
 				-o "ldapsam:trusted = yes" -n \
-				-o "idmap uid = ${samba_idmap_uid}" -n \
-				-o "idmap gid = ${samba_idmap_gid}" -n \
+				-o "idmap config * : backend = tdb" -n \
+				-o "idmap config * : range = ${samba_idmap_range}" -n \
 			-b \
 		-b \
 		-i "count(//samba/aio) > 0" \
