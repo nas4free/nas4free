@@ -183,7 +183,7 @@ function anonymousbind_change() {
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Lightweight Directory Access Protocol"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", sprintf("%s (%s)",gettext("Lightweight Directory Access Protocol"),gettext("Client")), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
 					<?php html_inputbox("hostname", gettext("URI"), $pconfig['hostname'], gettext("The space-separated list of URIs for the LDAP server."), true, 60);?>
 					<?php html_inputbox("base", gettext("Base DN"), $pconfig['base'], sprintf(gettext("The default base distinguished name (DN) to use for searches, e.g. %s"), "dc=test,dc=org"), true, 40);?>
 					<?php html_checkbox("anonymousbind", gettext("Anonymous bind"), !empty($pconfig['anonymousbind']) ? true : false, gettext("Enable anonymous bind."), "", true, "anonymousbind_change()");?>
