@@ -38,6 +38,10 @@ require("auth.inc");
 require("guiconfig.inc");
 
 $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("Swap"));
+
+$swapdevice = "NONE";
+if (file_exists("{$g['etc_path']}/swapdevice"))
+	$swapdevice = trim(file_get_contents("{$g['etc_path']}/swapdevice"));
 ?>
 <?php include("fbegin.inc");?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -74,7 +78,7 @@ $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("Swap")
 				<?php html_titleline(gettext("Swap status"));?>
 				<tr>
 			    <td>
-			    	<?php if (!isset($config['system']['swap']['enable'])):?>
+			    	<?php if ($swapdevice == "NONE" && !isset($config['system']['swap']['enable'])):?>
 			    	<pre><?=gettext("Swap disabled");?></pre>
 			    	<?php else:?>
 			    	<pre><?php
