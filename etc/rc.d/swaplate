@@ -101,7 +101,7 @@ swap_start()
 	# Remove swap on booting device if any
 	if [ -f /etc/swapdevice ]; then
 		SWAPDEVICE=`/bin/cat /etc/swapdevice`
-		if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ]; then
+		if [ "${SWAPDEVICE}" != "NONE" -a "${SWAPDEVICE}" != "${_device}" -a -e "${SWAPDEVICE}" ]; then
 			echo "swapoff ${SWAPDEVICE}"
 			/sbin/swapoff -q ${SWAPDEVICE} 2>/dev/null
 		fi
