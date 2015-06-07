@@ -1,8 +1,8 @@
-# $FreeBSD: head/net/samba41/Makefile 372128 2014-11-03 22:53:24Z timur $
+# $FreeBSD: head/net/samba41/Makefile 386869 2015-05-20 17:15:10Z timur $
 
 PORTNAME?=		${SAMBA4_BASENAME}41
 PORTVERSION?=		${SAMBA4_VERSION}
-PORTREVISION?=	0
+PORTREVISION?=		0
 CATEGORIES?=		net
 MASTER_SITES=		SAMBA/samba/stable SAMBA/samba/rc
 DISTNAME=		${SAMBA4_DISTNAME}
@@ -59,21 +59,20 @@ CONFIGURE_ARGS+=	--exec-prefix="${PREFIX}" \
 			--with-cachedir="${SAMBA4_LOCKDIR}" \
 			--with-privatedir="${SAMBA4_PRIVATEDIR}" \
 			--with-logfilebase="${SAMBA4_LOGDIR}"
-
 # Flags
-CONFIGURE_ENV+=		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-			PTHREAD_LDFLAGS="${PTHREAD_LIBS}"
+CONFIGURE_ENV+=		PTHREAD_LDFLAGS="-lpthread"
 
 USES=			cpe compiler waf fakeroot pkgconfig perl5 python:2 \
 			execinfo readline iconv shebangfix
 USE_PERL5=		build
 USE_LDCONFIG=		${SAMBA4_LIBDIR}
-WAF_CMD=                buildtools/bin/waf
+WAF_CMD=		buildtools/bin/waf
 CONFIGURE_LOG=		bin/config.log
 
 PKGCONFIGDIR?=		${PREFIX}/libdata/pkgconfig
 PLIST_SUB+=		PKGCONFIGDIR=${PKGCONFIGDIR:S;${PREFIX}/;;}
-# XXX: Unconditional dependencies which can't be switched off(if present in the system)
+# XXX: Unconditional dependencies which can't be switched off (if present
+# in the system)
 # popt
 LIB_DEPENDS+=		libpopt.so:${PORTSDIR}/devel/popt
 # inotify
@@ -88,8 +87,8 @@ LIB_DEPENDS+=		libsunacl.so:${PORTSDIR}/sysutils/libsunacl
 # External Samba dependencies
 # IDL compiler
 BUILD_DEPENDS+=		p5-Parse-Pidl>=4.0.0:${PORTSDIR}/devel/p5-Parse-Pidl
-#
-BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}dnspython>=1.9.4:${PORTSDIR}/dns/py-dnspython
+# 
+BUILD_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dnspython>=1.9.4:${PORTSDIR}/dns/py-dnspython
 RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}dnspython>=1.9.4:${PORTSDIR}/dns/py-dnspython
 PLIST_SUB+=		PY_DNSPYTHON="@comment "
 # talloc
@@ -120,16 +119,17 @@ OPTIONS_DEFINE=		ACL_SUPPORT AD_DC ADS AIO_SUPPORT CUPS DEBUG \
 			DNSUPDATE DOCS FAM LDAP PAM_SMBPASS \
 			PTHREADPOOL QUOTAS SYSLOG UTMP
 
-OPTIONS_DEFAULT:=	ACL_SUPPORT AD_DC ADS AIO_SUPPORT DEBUG \
+OPTIONS_DEFAULT=	ACL_SUPPORT AD_DC ADS AIO_SUPPORT DEBUG \
 			DNSUPDATE DOCS FAM LDAP \
-			PTHREADPOOL QUOTAS SYSLOG UTMP \
-			PAM_SMBPASS NSUPDATE
+			PTHREADPOOL QUOTAS SYSLOG UTMP
+# NAS4Free
+OPTIONS_DEFAULT+=	PAM_SMBPASS NSUPDATE
 
 ACL_SUPPORT_DESC=	File system ACL support
 AD_DC_DESC=		Active Directory Domain Controller support
 ADS_DESC=		Active Directory client support
 AIO_SUPPORT_DESC=	Asynchronous IO support
-DNSUPDATE_DESC=	Dynamic DNS update (requires ADS)
+DNSUPDATE_DESC=		Dynamic DNS update (requires ADS)
 EXP_MODULES_DESC=	Experimental modules
 DEBUG_DESC=		With debug information in the binaries
 LDAP_DESC=		LDAP client support
@@ -144,11 +144,11 @@ DEVELOPER_DESC=		With development support
 MANPAGES_DESC=		Build manpages from DOCBOOK templates
 
 OPTIONS_RADIO=		DNS ZEROCONF
-OPTIONS_RADIO_DNS=      	NSUPDATE BIND99 BIND910
+OPTIONS_RADIO_DNS=	NSUPDATE BIND99 BIND910
 OPTIONS_RADIO_ZEROCONF=	AVAHI MDNSRESPONDER
 
 BIND99_DESC=		Use bind99 as AD DC DNS server frontend
-BIND910_DESC=           Use bind910 as AD DC DNS server frontend
+BIND910_DESC=		Use bind910 as AD DC DNS server frontend
 NSUPDATE_DESC=		Use samba NSUPDATE utility for AD DC
 
 .include <bsd.port.options.mk>
@@ -171,8 +171,8 @@ CFLAGS+=		-fno-omit-frame-pointer
 RUN_DEPENDS+=		bind99>=9.9.0.0:${PORTSDIR}/dns/bind99
 SUB_LIST+=		NSUPDATE="@comment "
 .elif ${PORT_OPTIONS:MBIND910}
-RUN_DEPENDS+=           bind910>=9.10.0.0:${PORTSDIR}/dns/bind910
-SUB_LIST+=              NSUPDATE="@comment "
+RUN_DEPENDS+=		bind910>=9.10.0.0:${PORTSDIR}/dns/bind910
+SUB_LIST+=		NSUPDATE="@comment "
 .elif ${PORT_OPTIONS:MNSUPDATE}
 RUN_DEPENDS+=		samba-nsupdate:${PORTSDIR}/dns/samba-nsupdate
 SUB_LIST+=		NSUPDATE=""
@@ -181,7 +181,7 @@ SUB_LIST+=		NSUPDATE=""
 .if ${PORT_OPTIONS:MDEBUG}
 WITH_DEBUG=		yes
 CONFIGURE_ARGS+=	--verbose
-_MAKE_JOBS+=		--verbose
+MAKE_ARGS+=		--verbose
 CONFIGURE_ARGS+=	--enable-debug
 .endif
 
@@ -191,7 +191,7 @@ CONFIGURE_ARGS+=	--enable-debug
 # https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=194046
 # XXX: Still may break, if the link isn't installed - blame devel/gdb maintainer then.
 GDB_CMD?=		${LOCALBASE}/bin/gdb
-BUILD_DEPENDS+=	${GDB_CMD}:${PORTSDIR}/devel/gdb
+BUILD_DEPENDS+=		${GDB_CMD}:${PORTSDIR}/devel/gdb
 RUN_DEPENDS+=		${GDB_CMD}:${PORTSDIR}/devel/gdb
 SAMBA4_MODULES+=	auth_skel perfcount_test pdb_test vfs_shadow_copy_test vfs_skel_opaque vfs_skel_transparent vfs_fake_acls
 CONFIGURE_ARGS+=	--enable-developer --enable-socket-wrapper --enable-nss-wrapper --enable-selftest
@@ -230,11 +230,9 @@ WANT_EXP_MODULES=	vfs_cacheprime gpext_scripts gpext_security gpext_registry
 .endif
 
 .if ${PORT_OPTIONS:MACL_SUPPORT}
-.	if ${OSVERSION} > 800000
 LIB_DEPENDS+=		libsunacl.so:${PORTSDIR}/sysutils/libsunacl
 WANT_EXP_MODULES+=	vfs_zfsacl
 SAMBA4_MODULES+=	vfs_zfsacl
-.	endif
 CONFIGURE_ARGS+=	--with-acl-support
 .else
 CONFIGURE_ARGS+=	--without-acl-support
@@ -250,6 +248,9 @@ PLIST_SUB+=		AD_DC=""
 .if ${PORT_OPTIONS:MADS}
 SAMBA4_WANT_ADS=	yes
 SAMBA4_WANT_LDAP=	yes
+# List of extra modules taken from RHEL build
+# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=197320
+SAMBA4_MODULES+=	idmap_rid idmap_ad idmap_hash idmap_adex idmap_tdb2
 .endif
 
 .if ${PORT_OPTIONS:MAIO_SUPPORT}
@@ -363,9 +364,11 @@ CONFIGURE_ARGS+=	--bundled-libraries="${SAMBA4_BUNDLED_LIBS:Q:C|(\\\\ )+|,|g:S|\
 
 .if defined(WANT_EXP_MODULES) && !empty(WANT_EXP_MODULES)
 SAMBA4_MODULES+=	${WANT_EXP_MODULES}
-CONFIGURE_ARGS+=	--with-shared-modules="${WANT_EXP_MODULES:Q:C|(\\\\ )+|,|g:S|\\||g}"
 .endif
 
+.if defined(SAMBA4_MODULES) && !empty(SAMBA4_MODULES)
+CONFIGURE_ARGS+=	--with-shared-modules="${SAMBA4_MODULES:Q:C|(\\\\ )+|,|g:S|\\||g}"
+.endif
 # XXX: Dirty
 .for module in	auth_samba4 auth_skel auth_unix auth_wbc gpext_registry gpext_scripts \
 		gpext_security idmap_ad idmap_ldap idmap_nss idmap_passdb idmap_tdb \
@@ -410,16 +413,12 @@ SHEBANG_FILES=		${PATCH_WRKSRC}/source4/scripting/bin/*
 .if ${COMPILER_TYPE} == "clang"
 CFLAGS+=		-fno-color-diagnostics
 .endif
+# NAS4Free
 .if ${OSVERSION} >= 1100000
 LDFLAGS+=		-lncurses -lmenu -lpanel -lform
 .endif
 CONFIGURE_ENV+=		NOCOLOR=yes
 MAKE_ENV+=		NOCOLOR=yes
-
-.if !defined(DISABLE_MAKE_JOBS) && !defined(MAKE_JOBS_UNSAFE)
-CONFIGURE_ARGS+=	--jobs=${MAKE_JOBS_NUMBER}
-_MAKE_JOBS+=		--jobs=${MAKE_JOBS_NUMBER}
-.endif
 
 SAMBA_MAN1+=		dbwrap_tool.1 findsmb.1 gentest.1 locktest.1 \
 			log2pcap.1 masktest.1 ndrdump.1 nmblookup.1 \
@@ -456,10 +455,6 @@ SAMBA_MAN8+=		eventlogadm.8 idmap_ad.8 idmap_autorid.8 idmap_hash.8 \
 # NAS4Free
 #PORTDOCS=		README.FreeBSD
 
-CONFIGURE_TARGET=	configure
-ALL_TARGET=		build
-INSTALL_TARGET=		install
-
 IGNORE_NONTHREAD_PYTHON=needs port lang/python${PYTHON_SUFFIX} to be build with THREADS support
 
 post-extract:
@@ -484,23 +479,6 @@ pre-configure:
 				${ECHO_CMD}; \
 				${FALSE}; \
 			fi
-
-do-configure:
-			@(cd ${CONFIGURE_WRKSRC} && \
-			    ${SET_LATE_CONFIGURE_ARGS} \
-				if ! ${SETENV} CC="${CC}" CPP="${CPP}" CXX="${CXX}" \
-					CFLAGS="${CFLAGS}" CPPFLAGS="${CPPFLAGS}" CXXFLAGS="${CXXFLAGS}" \
-					LDFLAGS="${LDFLAGS}" \
-					INSTALL="/usr/bin/install -c ${_BINOWNGRP}" \
-					INSTALL_DATA="${INSTALL_DATA}" \
-					INSTALL_LIB="${INSTALL_LIB}" \
-					INSTALL_PROGRAM="${INSTALL_PROGRAM}" \
-					INSTALL_SCRIPT="${INSTALL_SCRIPT}" \
-					${CONFIGURE_ENV} ${PYTHON_CMD} ${CONFIGURE_WRKSRC}/${WAF_CMD} ${CONFIGURE_ARGS} ${CONFIGURE_TARGET}; then \
-						${ECHO_MSG} "===>  Script \"${CONFIGURE_SCRIPT}\" failed unexpectedly."; \
-						(${ECHO_CMD} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
-						${FALSE}; \
-				fi)
 
 # XXX: Gross hack to allow build newer Samba while old one is installed.
 # This implies that LINKFLAGS_PYEMBED contains flags which are already
@@ -531,19 +509,6 @@ pre-build:
 			-@${INSTALL_MAN} ${BUILD_WRKSRC}/docs/manpages/${man} ${BUILD_WRKSRC}/bin/default/docs-xml/manpages
 .	endfor
 .endif
-
-do-build:
-			@(cd ${BUILD_WRKSRC}; \
-			if ! ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${BUILD_WRKSRC}/${WAF_CMD} ${_MAKE_JOBS} ${MAKE_ARGS} ${ALL_TARGET}; then \
-				if [ x != x${BUILD_FAIL_MESSAGE} ] ; then \
-					${ECHO_MSG} "===> Compilation failed unexpectedly."; \
-					(${ECHO_CMD} ${BUILD_FAIL_MESSAGE}) | ${FMT} 75 79 ; \
-				fi; \
-			${FALSE}; \
-			fi)
-
-do-install:
-			@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${INSTALL_WRKSRC}/${WAF_CMD} ${MAKE_ARGS} ${INSTALL_TARGET})
 
 post-install:
 # NAS4Free install
