@@ -191,6 +191,7 @@ set-vmguest
 		dup 32 = if nip 0 swap then
 		dup -1 = if 0 boot then
 		dup 13 = if 0 boot then
+		dup 255 = if 0 boot then
 		dup bootkey @ = if 0 boot then
 		dup bootacpikey @ = if
 			acpienabled? if
