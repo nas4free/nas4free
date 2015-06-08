@@ -62,7 +62,7 @@ $pgtitle = array(gettext("Status"), gettext("Interfaces"));
 		        </td>
 		      </tr>
 		      <tr>
-		        <td width="22%" class="vncellt"><?=gettext("Name");?></td>
+		        <td width="22%" class="vncellt"><?=gettext("Interface");?></td>
 		        <td width="78%" class="listr">
 		          <?=htmlspecialchars($ifinfo['hwif']);?>
 		        </td>
@@ -186,14 +186,14 @@ $pgtitle = array(gettext("Status"), gettext("Interfaces"));
 		        </td>
 		      </tr>
 		      <tr>
-		        <td width="22%" class="vncellt"><?=gettext("I/O packets");?></td>
+		        <td width="22%" class="vncellt"><?=gettext("In/Out packets");?></td>
 		        <td width="78%" class="listr">
 		          <?=htmlspecialchars($ifinfo['inpkts'] . "/" . $ifinfo['outpkts'] . " (" . format_bytes($ifinfo['inbytes']) . "/" . format_bytes($ifinfo['outbytes']) . ")");?>
 		        </td>
 		      </tr>
 		      <?php if (isset($ifinfo['inerrs'])): ?>
 		      <tr>
-		        <td width="22%" class="vncellt"><?=gettext("I/O errors");?></td>
+		        <td width="22%" class="vncellt"><?=gettext("In/Out errors");?></td>
 		        <td width="78%" class="listr">
 		          <?=htmlspecialchars($ifinfo['inerrs'] . "/" . $ifinfo['outerrs']);?>
 		        </td>
