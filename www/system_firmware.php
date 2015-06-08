@@ -126,6 +126,7 @@ function get_path_version($rss) {
 
 	$xml = @simplexml_load_file($rss);
 	if (empty($xml)) return $resp;
+	if (empty($xml->channel)) return $resp;
 	foreach ($xml->channel->item as $item) {
 		$title = $item->title;
 		$parts = pathinfo($title);
@@ -163,6 +164,7 @@ function get_latest_file($rss) {
 	$resp = "";
 	$xml = @simplexml_load_file($rss);
 	if (empty($xml)) return $resp;
+	if (empty($xml->channel)) return $resp;
 	foreach ($xml->channel->item as $item) {
 		$link = $item->link;
 		$title = $item->title;
