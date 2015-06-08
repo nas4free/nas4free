@@ -258,6 +258,10 @@ build_world() {
 		fi
 	done
 
+	# iconv files
+	(cd ${NAS4FREE_WORLD}/; find -x usr/lib/i18n | cpio -pdv ${NAS4FREE_ROOTFS})
+	(cd ${NAS4FREE_WORLD}/; find -x usr/share/i18n | cpio -pdv ${NAS4FREE_ROOTFS})
+
 	# Cleanup
 	chflags -R noschg $NAS4FREE_TMPDIR
 	chflags -R noschg $NAS4FREE_ROOTFS
