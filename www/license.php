@@ -97,7 +97,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer & Project leader</font></em></div><br />
             <hr size="1" />
             <p>The following persons have contributed to NAS4Free support:</p>
-            <div>Samuel Tunis alias killermist (<a href="mailto:killermist@nas4free.org">killermist@nas4free.org</a>)<br />
+            <div>Samuel Tunis alias killermist (<a href="mailto:killermist@gmail.com">killermist@gmail.com</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
             <div>Rhett Hillary alias SIFTU (<a href="mailto:siftu@nas4free.org">siftu@nas4free.org</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
