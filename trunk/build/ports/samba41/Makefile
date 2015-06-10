@@ -548,6 +548,7 @@ post-install:
 	for file in ldb.so ntdb.so talloc.so tdb.so; do \
 		${CP} -pv ${PREFIX}/lib/python2.7/site-packages/$${file} ${NAS4FREE_ROOTFS}/usr/local/lib/python2.7/site-packages; \
 	done
+	@${CP} -Rpv ${PREFIX}/lib/python2.7/site-packages/dns ${NAS4FREE_ROOTFS}/usr/local/lib/python2.7/site-packages
 	@${CP} -pv ${PREFIX}/bin/samba-nsupdate ${NAS4FREE_ROOTFS}/usr/local/bin
 
 # ldb/tdb

@@ -25,6 +25,13 @@ load_rc_config "$name"
 passdb_file=${passdb_file:-"/var/etc/private/passdb"}
 passdb_minuid=${passdb_minuid:-"1000"}
 
+# Check Samba AD
+configxml_isset //sambaad/enable
+sambaad=$?
+if [ 0 -eq ${sambaad} ]; then
+	exit 0
+fi
+
 # Display message
 echo "Updating passdb."
 
