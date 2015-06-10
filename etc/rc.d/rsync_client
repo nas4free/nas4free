@@ -68,18 +68,40 @@ if [ 0 -lt ${_scriptnum} ]; then
 			-b \
 			-i "count(options/reversedirection) = 0" \
 				-i "not(contains(rsyncserverip,':'))" \
+				-i "count(options/nodaemonreq) = 0" \
 					-v "concat('\"rsync://',rsyncserverip,'/',remoteshare,'\" \"',localshare,'\"')" -n \
 				-b \
-				-i "contains(rsyncserverip,':')" \
-					-v "concat('\"rsync://\\[',rsyncserverip,'\\]/',remoteshare,'\" \"',localshare,'\"')" -n \
+				-i "count(options/nodaemonreq) > 0" \
+					-v "concat('\"',rsyncserverip,'/',remoteshare,'\" \"',localshare,'\"')" -n \
 				-b \
 			-b \
+			-i "contains(rsyncserverip,':')" \
+				-v "concat('\"rsync://\\[',rsyncserverip,'\\]/',remoteshare,'\" \"',localshare,'\"')" -n \
+			-i "count(options/nodaemonreq) = 0" \
+				-v "concat('\"rsync://\\[',rsyncserverip,'\\]/',remoteshare,'\" \"',localshare,'\"')" -n \
+			-b \
+			-i "count(options/nodaemonreq) > 0" \
+				-v "concat('\"\\[',rsyncserverip,'\\]/',remoteshare,'\" \"',localshare,'\"')" -n \
+				-b \
+			-b \
+			-b \
 			-i "count(options/reversedirection) > 0" \
-				-i "not(contains(rsyncserverip,':'))" \
+			-i "not(contains(rsyncserverip,':'))" \
+			-i "count(options/nodaemonreq) = 0" \
+				-v "concat('\"',localshare,'\" \"rsync://',rsyncserverip,'/',remoteshare,'\"')" -n \
+				-b \
+				-i "count(options/nodaemonreq) > 0" \
+					-v "concat('\"',localshare,'\" \"',rsyncserverip,'/',remoteshare,'\"')" -n \
+				-b \
 					-v "concat('\"',localshare,'\" \"rsync://',rsyncserverip,'/',remoteshare,'\"')" -n \
 				-b \
 				-i "contains(rsyncserverip,':')" \
+				-i "count(options/nodaemonreq) = 0" \
 					-v "concat('\"',localshare,'\" \"rsync://\\[',rsyncserverip,'\\]/',remoteshare,'\"')" -n \
+				-b \
+				-i "count(options/nodaemonreq) > 0" \
+					-v "concat('\"',localshare,'\" \"\\[',rsyncserverip,'\\]/',remoteshare,'\"')" -n \
+					-b \
 				-b \
 			-b \
 			-o "/bin/rm -f ${_rsyncflag}" -n \

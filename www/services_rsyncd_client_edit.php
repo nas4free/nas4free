@@ -76,6 +76,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_rsyncclient, "
 	$pconfig['description'] = $a_rsyncclient[$cnid]['description'];
 	$pconfig['who'] = $a_rsyncclient[$cnid]['who'];
 	$pconfig['recursive'] = isset($a_rsyncclient[$cnid]['options']['recursive']);
+	$pconfig['nodaemonreq'] = isset($a_rsyncclient[$cnid]['options']['nodaemonreq']);
 	$pconfig['times'] = isset($a_rsyncclient[$cnid]['options']['times']);
 	$pconfig['compress'] = isset($a_rsyncclient[$cnid]['options']['compress']);
 	$pconfig['archive'] = isset($a_rsyncclient[$cnid]['options']['archive']);
@@ -106,6 +107,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_rsyncclient, "
 	$pconfig['description'] = "";
 	$pconfig['who'] = "root";
 	$pconfig['recursive'] = true;
+	$pconfig['nodaemonreq'] = false;
 	$pconfig['times'] = true;
 	$pconfig['compress'] = true;
 	$pconfig['archive'] = false;
@@ -158,6 +160,7 @@ if ($_POST) {
 		$rsyncclient['description'] = $_POST['description'];
 		$rsyncclient['who'] = $_POST['who'];
 		$rsyncclient['options']['recursive'] = isset($_POST['recursive']) ? true : false;
+		$rsyncclient['options']['nodaemonreq'] = isset($_POST['nodaemonreq']) ? true : false;
 		$rsyncclient['options']['times'] = isset($_POST['times']) ? true : false;
 		$rsyncclient['options']['compress'] = isset($_POST['compress']) ? true : false;
 		$rsyncclient['options']['archive'] = isset($_POST['archive']) ? true : false;
@@ -427,6 +430,7 @@ function delete_change() {
 						<td colspan="2" valign="top" class="listtopic"><?=gettext("Advanced Options");?></td>
 					</tr>
 					<?php html_checkbox("recursive", gettext("Recursive"), !empty($pconfig['recursive']) ? true : false, gettext("Recurse into directories."), "", false);?>
+					<?php html_checkbox("nodaemonreq", gettext("Remote rsync daemon"), !empty($pconfig['nodaemonreq']) ? true : false, gettext("Run without requiring remote rsync daemon. (Disabled by default)"), "", false);?>
 					<?php html_checkbox("times", gettext("Times"), !empty($pconfig['times']) ? true : false, gettext("Preserve modification times."), "", false);?>
 					<?php html_checkbox("compress", gettext("Compress"), !empty($pconfig['compress']) ? true : false, gettext("Compress file data during the transfer."), "", false);?>
 					<?php html_checkbox("archive", gettext("Archive"), !empty($pconfig['archive']) ? true : false, gettext("Archive mode."), "", false);?>
