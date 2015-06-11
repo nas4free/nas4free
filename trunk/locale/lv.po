@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"POT-Creation-Date: 2015-06-11 09:44+0000\n"
 "PO-Revision-Date: 2014-11-17 04:06+0000\n"
 "Last-Translator: Jānis Marks Gailis <jm-gailis@fai-vianet.fr>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
-"X-Generator: Launchpad (build 17540)\n"
+"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 "X-Poedit-Country: LATVIA\n"
 "Language: \n"
 "X-Poedit-Language: Latvian\n"
@@ -460,6 +460,9 @@ msgstr "Adrese"
 msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr ""
 
+msgid "Admin password"
+msgstr ""
+
 msgid "Administration password"
 msgstr "Administratora parole"
 
@@ -518,6 +521,11 @@ msgstr "Albāņu"
 
 msgid "All"
 msgstr "Viss"
+
+msgid ""
+"All data in path is overwritten. Dedicated ZFS dataset is strongly "
+"recommended."
+msgstr ""
 
 msgid "All dirs"
 msgstr "Visas direktorijas"
@@ -885,6 +893,9 @@ msgstr "CIFS/SMB atspējots"
 msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB informācija"
 
+msgid "CIFS/SMB is enabled."
+msgstr ""
+
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Kirilica)"
 
@@ -957,6 +968,9 @@ msgstr ""
 msgid "Cannot get data about interface"
 msgstr "Nevar iegūt datus par interfeisu"
 
+msgid "Cannot use DHCP for LAN interface."
+msgstr ""
+
 msgid "Capacity"
 msgstr "Ietilpība"
 
@@ -989,6 +1003,10 @@ msgid "Channel"
 msgstr "Kanāls"
 
 msgid "Charging Battery"
+msgstr ""
+
+#, php-format
+msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
 msgstr ""
 
 msgid "Check interval"
@@ -1116,8 +1134,8 @@ msgstr "Apstiprinājums"
 msgid "Connected FTP users"
 msgstr "Pievienojušies FTP lietotāji"
 
-msgid "Console menu"
-msgstr "Konsoles izvēlne"
+msgid "Console Menu"
+msgstr ""
 
 msgid "Console screensaver"
 msgstr "Konsoles ekrānsaudzētājs"
@@ -1299,10 +1317,22 @@ msgstr "DAAP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DHCP cannot be used for LAN interface."
+msgstr ""
+
 msgid "DLNA/UPnP"
 msgstr ""
 
 msgid "DLNA/UPnP Media Server"
+msgstr ""
+
+msgid "DNS domain"
+msgstr ""
+
+msgid "DNS forwarder"
+msgstr ""
+
+msgid "DNS server is empty."
 msgstr ""
 
 msgid "DNS settings"
@@ -1848,6 +1878,9 @@ msgstr "Domēns"
 
 msgid "Domain controller name"
 msgstr "Domēna kontroliera vārds"
+
+msgid "Domain have no 2nd level name."
+msgstr ""
 
 msgid "Domain name"
 msgstr "Domēna nosaukums"
@@ -2420,6 +2453,10 @@ msgstr "Neizdevās izveidot iekš-atmiņas datņu sistēmu."
 msgid "Failed to execute cron job."
 msgstr "Neizdevās izpildīt cron job."
 
+#, php-format
+msgid "Failed to remove: %s"
+msgstr ""
+
 #, c-format
 msgid "Failed to send status report to: %s."
 msgstr "Neizdevās nosūtīt pārskatu uz: %s."
@@ -2604,6 +2641,9 @@ msgstr "Pamata iestatījumi"
 msgid "Generate"
 msgstr "Ģenerēt"
 
+msgid "Generate password if leave empty."
+msgstr ""
+
 msgid "German"
 msgstr "Vācu"
 
@@ -2785,12 +2825,6 @@ msgstr "Ungāru"
 
 msgid "I/O Timeout"
 msgstr "I/O noildze"
-
-msgid "I/O errors"
-msgstr "I/O kļūdas"
-
-msgid "I/O packets"
-msgstr "I/O paketes"
 
 msgid "I/O statistics"
 msgstr "I/O statistika"
@@ -2974,6 +3008,12 @@ msgstr "Vairumā gadījumu, 'public' tiek šeit lietots."
 msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr ""
 
+msgid "In/Out errors"
+msgstr ""
+
+msgid "In/Out packets"
+msgstr ""
+
 msgid "Include basic hardware information."
 msgstr "Iekļaut vienkāršu aparatūras informāciju."
 
@@ -3019,6 +3059,9 @@ msgstr "Inicializēt un šifrēt disku."
 
 msgid "Initializing"
 msgstr "Notiek inicializācija"
+
+msgid "Initializing..."
+msgstr ""
 
 msgid "Initiator Group"
 msgstr "Iniciatoru Grupa"
@@ -3793,6 +3836,12 @@ msgstr "PAšLAIK NAV PIEEJAMS"
 msgid "NT1"
 msgstr ""
 
+msgid "NTP is not enabled."
+msgstr ""
+
+msgid "NTP must be enabled."
+msgstr ""
+
 msgid "NTP time server"
 msgstr "NTP laika serveris"
 
@@ -3819,6 +3868,9 @@ msgstr ""
 
 msgid "Name of the variable."
 msgstr "Mainīgā vērtība."
+
+msgid "NetBIOS domain"
+msgstr ""
 
 msgid "NetBIOS name"
 msgstr "NetBIOS naosaukums"
@@ -4024,6 +4076,9 @@ msgstr ""
 
 msgid "Not attached"
 msgstr "Nav pievienots"
+
+msgid "Not found path."
+msgstr ""
 
 msgid "Note"
 msgstr "Piezīme"
@@ -4325,6 +4380,10 @@ msgstr "Vienranga apmaiņa"
 
 msgid "Peer port"
 msgstr "Pēra ports"
+
+#, php-format
+msgid "Permanent samba data path (e.g. %s)."
+msgstr ""
 
 msgid "Permit root login"
 msgstr "Atļaut saknes autorizāciju"
@@ -4676,6 +4735,9 @@ msgstr "Attālinātā moduļa nosuakums"
 msgid "Remote monitoring"
 msgstr "Attālinātā pārraudzība"
 
+msgid "Remote rsync daemon"
+msgstr ""
+
 msgid "Remote syslog server"
 msgstr "Attālināts syslog serveris"
 
@@ -4819,6 +4881,9 @@ msgstr ""
 msgid "Run now"
 msgstr "Izpildīt tagad"
 
+msgid "Run without requiring remote rsync daemon. (Disabled by default)"
+msgstr ""
+
 msgid "Running"
 msgstr "Palaists"
 
@@ -4871,6 +4936,12 @@ msgstr "SSL/TLS"
 
 msgid "SSL/TLS only"
 msgstr "SSL/TLS tikai"
+
+msgid "Samba AD"
+msgstr ""
+
+msgid "Samba Active Directory Domain Controller"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -7393,6 +7464,11 @@ msgid ""
 "additional packages which do not support HAST volume cannot be used."
 msgstr ""
 
+msgid ""
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
+"together."
+msgstr ""
+
 msgid "When UPS switches to Low Battery"
 msgstr ""
 
@@ -7523,6 +7599,9 @@ msgstr "Tev vajag ievadīt to pašu IP tipu tīklam un vartējai."
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "Tev ir minimums %dMB no RAM, lai lietotu iSCSI mērķi."
+
+msgid "You must initialize data before enabling."
+msgstr ""
 
 msgid "You must select at least one authentication method."
 msgstr "Tev vajag izvēlēties vismaz vienu autentifikācijas metodi."
@@ -7703,6 +7782,9 @@ msgstr "veiksmīgi."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "sysvol exist in path."
+msgstr ""
 
 msgid "to"
 msgstr ""

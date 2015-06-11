@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-04 21:26+0000\n"
-"PO-Revision-Date: 2015-06-04 14:24+0000\n"
+"POT-Creation-Date: 2015-06-11 09:44+0000\n"
+"PO-Revision-Date: 2015-06-10 17:05+0000\n"
 "Last-Translator: sea1150 <sea1.150@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
-"X-Generator: Launchpad (build 17540)\n"
+"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
 "X-Poedit-Language: Russian\n"
@@ -475,6 +475,9 @@ msgstr "Адрес"
 msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "Адрес удалённой службы hastd. Это должен быть статический IP-адрес."
 
+msgid "Admin password"
+msgstr "Пароль администратора"
+
 msgid "Administration password"
 msgstr "Пароль администратора"
 
@@ -544,6 +547,13 @@ msgstr "Албанский"
 
 msgid "All"
 msgstr "Все"
+
+msgid ""
+"All data in path is overwritten. Dedicated ZFS dataset is strongly "
+"recommended."
+msgstr ""
+"Все данные будут перезаписаны. Настоятельно рекомендуется выделенный ZFS "
+"dataset."
 
 msgid "All dirs"
 msgstr "Все каталоги"
@@ -870,7 +880,7 @@ msgid ""
 "resize boot partition of %s.\n"
 msgstr ""
 "Загрузочный раздел слишком мал. Вы должны сделать переустановку с LiveCD или "
-"LiveUSB, или изменить загрузочный раздел для %s.\n"
+"LiveUSB, или увеличить загрузочный раздел  %s.\n"
 
 msgid "Bridge"
 msgstr "Мост"
@@ -919,6 +929,9 @@ msgstr "CIFS/SMB отключен"
 
 msgid "CIFS/SMB informations"
 msgstr "Информация CIFS/SMB"
+
+msgid "CIFS/SMB is enabled."
+msgstr "CIFS/SMB включен."
 
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Кириллица Windows)"
@@ -992,6 +1005,9 @@ msgstr "Информация о загрузке процессора недос
 msgid "Cannot get data about interface"
 msgstr "Невозможно получить информацию об интерфейсе"
 
+msgid "Cannot use DHCP for LAN interface."
+msgstr "Нельзя использовать DHCP для интерфейса LAN."
+
 msgid "Capacity"
 msgstr "Объем"
 
@@ -1025,6 +1041,10 @@ msgstr "Канал"
 
 msgid "Charging Battery"
 msgstr "Зарядка батареи"
+
+#, php-format
+msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
+msgstr "Проверьте <a href=\"%s\">Система|Общие</a> перед инициализацией."
 
 msgid "Check interval"
 msgstr "Интервал проверки"
@@ -1157,7 +1177,7 @@ msgstr "подтверждение"
 msgid "Connected FTP users"
 msgstr "Подключенные пользователи FTP"
 
-msgid "Console menu"
+msgid "Console Menu"
 msgstr "Консольное меню"
 
 msgid "Console screensaver"
@@ -1357,11 +1377,23 @@ msgstr "DAAP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DHCP cannot be used for LAN interface."
+msgstr ""
+
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Медиа Сервер"
+
+msgid "DNS domain"
+msgstr "Домен DNS"
+
+msgid "DNS forwarder"
+msgstr "DNS forwarder"
+
+msgid "DNS server is empty."
+msgstr "DNS сервер пуст."
 
 msgid "DNS settings"
 msgstr "Настройки DNS"
@@ -1922,6 +1954,9 @@ msgstr "Домен"
 
 msgid "Domain controller name"
 msgstr "Имя контролера домена"
+
+msgid "Domain have no 2nd level name."
+msgstr "Домен не имеет имя 2 уровня."
 
 msgid "Domain name"
 msgstr "Доменное имя"
@@ -2504,6 +2539,10 @@ msgstr "Сбой при создании файловой системы в па
 msgid "Failed to execute cron job."
 msgstr "Сбой при выполнении задания Сron'а."
 
+#, php-format
+msgid "Failed to remove: %s"
+msgstr "Не удалось удалить: %s"
+
 #, c-format
 msgid "Failed to send status report to: %s."
 msgstr "Отправка отчета состояния для %s завершилась неудачно."
@@ -2692,6 +2731,9 @@ msgstr "Общие параметры"
 msgid "Generate"
 msgstr "Создать"
 
+msgid "Generate password if leave empty."
+msgstr "Если оставить пустым пароль будет сгенерирован."
+
 msgid "German"
 msgstr "Немецкий"
 
@@ -2875,12 +2917,6 @@ msgstr "Венгерский"
 
 msgid "I/O Timeout"
 msgstr "Таймаут ввода/вывода"
-
-msgid "I/O errors"
-msgstr "Ошибок ввода/вывода"
-
-msgid "I/O packets"
-msgstr "Пакетов ввода/вывода"
 
 msgid "I/O statistics"
 msgstr "Статистика ввода/вывода"
@@ -3070,6 +3106,12 @@ msgstr "В большинстве случаев здесь использует
 msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr "В режиме ведомого это имя (идентификатор) ведущего  ИБП."
 
+msgid "In/Out errors"
+msgstr "Ошибок ввода/вывода"
+
+msgid "In/Out packets"
+msgstr "Пакетов ввода/вывода"
+
 msgid "Include basic hardware information."
 msgstr "Включить базовые сведения об аппаратном обеспечении"
 
@@ -3115,6 +3157,9 @@ msgstr "Инициализация и шифрование диска"
 
 msgid "Initializing"
 msgstr "Инициализация"
+
+msgid "Initializing..."
+msgstr "Инициализация…"
 
 msgid "Initiator Group"
 msgstr "Группа инициаторов"
@@ -3907,6 +3952,12 @@ msgstr "Временно недоступно"
 msgid "NT1"
 msgstr "NT1"
 
+msgid "NTP is not enabled."
+msgstr "NTP не включен."
+
+msgid "NTP must be enabled."
+msgstr "NTP должен быть включен."
+
 msgid "NTP time server"
 msgstr "Сервер времени NTP"
 
@@ -3934,6 +3985,9 @@ msgstr ""
 
 msgid "Name of the variable."
 msgstr "Имя переменной."
+
+msgid "NetBIOS domain"
+msgstr "Домен NetBIOS"
 
 msgid "NetBIOS name"
 msgstr "NetBIOS-имя"
@@ -4145,6 +4199,9 @@ msgstr ""
 
 msgid "Not attached"
 msgstr "Не присоедиен"
+
+msgid "Not found path."
+msgstr "Путь не найден."
 
 msgid "Note"
 msgstr "Примечание"
@@ -4451,6 +4508,10 @@ msgstr "Обмен списками участников"
 
 msgid "Peer port"
 msgstr "Порт входящих соединений"
+
+#, php-format
+msgid "Permanent samba data path (e.g. %s)."
+msgstr "Постоянный путь данных Samba (например %s)."
 
 msgid "Permit root login"
 msgstr "Разрешать вход с учетной записью root"
@@ -4802,6 +4863,9 @@ msgstr "Имя удаленного модуля"
 msgid "Remote monitoring"
 msgstr "Удаленный мониторинг"
 
+msgid "Remote rsync daemon"
+msgstr "Удаленный rsync"
+
 msgid "Remote syslog server"
 msgstr "Удаленный syslog-сервер"
 
@@ -4945,6 +5009,9 @@ msgstr "Запустить как"
 msgid "Run now"
 msgstr "Выполнить сейчас"
 
+msgid "Run without requiring remote rsync daemon. (Disabled by default)"
+msgstr "Запуск без  необходимости удаленного rsync. (Выключено по умолчанию)"
+
 msgid "Running"
 msgstr "Выполняется"
 
@@ -4999,6 +5066,12 @@ msgstr "SSL/TLS"
 
 msgid "SSL/TLS only"
 msgstr "Только SSL/TLS"
+
+msgid "Samba AD"
+msgstr "Samba AD"
+
+msgid "Samba Active Directory Domain Controller"
+msgstr "Контроллер домена Samba Active Directory"
 
 #, php-format
 msgid ""
@@ -7619,6 +7692,11 @@ msgstr ""
 "дополнительные пакеты, которые не поддерживают том(volume) HAST, не могут "
 "быть использованы."
 
+msgid ""
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
+"together."
+msgstr ""
+
 msgid "When UPS switches to Low Battery"
 msgstr "когда ИБП переключается в режим \"Низкий заряд батареи\""
 
@@ -7751,6 +7829,9 @@ msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr ""
 "У вас должно быть минимум %dMбайт оперативной памяти для использования iSCSI "
 "target."
+
+msgid "You must initialize data before enabling."
+msgstr "Вы должны инициализировать данные перед включением."
 
 msgid "You must select at least one authentication method."
 msgstr "Вы должны выбрать как минимум один из способов аутентификации."
@@ -7939,6 +8020,9 @@ msgstr "успешно."
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
+msgid "sysvol exist in path."
+msgstr "SYSVOL существует в пути."
+
 msgid "to"
 msgstr "к"
 
@@ -7951,3 +8035,18 @@ msgstr "размонтировать"
 #, php-format
 msgid "version:"
 msgstr "версия:"
+
+#~ msgid "DHCP can not be used for LAN interface."
+#~ msgstr "DHCP не может быть использован для LAN интерфейса."
+
+#~ msgid ""
+#~ "The admin password does not match. Please ensure the passwords match exactly."
+#~ msgstr ""
+#~ "Пароли администратора не совпадают. Убедитесь в правильности ввода паролей."
+
+#~ msgid ""
+#~ "When Samba AD is enabled, stand-alone CIFS/SMB file sharing can not use "
+#~ "together."
+#~ msgstr ""
+#~ "Когда Samba AD включен, автономный CIFS/SMB файловый обменник не может "
+#~ "использоваться совместно."

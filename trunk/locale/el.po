@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-04 21:26+0000\n"
-"PO-Revision-Date: 2015-06-05 07:26+0000\n"
+"POT-Creation-Date: 2015-06-11 09:44+0000\n"
+"PO-Revision-Date: 2015-06-09 06:42+0000\n"
 "Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
-"X-Generator: Launchpad (build 17540)\n"
+"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
 "X-Poedit-Language: Greek\n"
@@ -477,6 +477,9 @@ msgstr ""
 "Διεύθυνση του απομακρυσμένου δαίμονα hastd. Πρέπει να είναι στατική "
 "διεύθυνση IP."
 
+msgid "Admin password"
+msgstr ""
+
 msgid "Administration password"
 msgstr "Κωδικός διαχειριστή"
 
@@ -546,6 +549,11 @@ msgstr "Αλβανικά"
 
 msgid "All"
 msgstr "Όλα"
+
+msgid ""
+"All data in path is overwritten. Dedicated ZFS dataset is strongly "
+"recommended."
+msgstr ""
 
 msgid "All dirs"
 msgstr "Όλοι οι κατάλογοι"
@@ -927,6 +935,9 @@ msgstr "CIFS/SMB απενεργοποιημένο"
 msgid "CIFS/SMB informations"
 msgstr "Πληροφορίες CIFS/SMB"
 
+msgid "CIFS/SMB is enabled."
+msgstr ""
+
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Κυριλλικά)"
 
@@ -1000,6 +1011,9 @@ msgstr "Δεν μπορεί να εμφανιστεί ο φόρτος της CPU
 msgid "Cannot get data about interface"
 msgstr "Αδυναμία παραλαβής δεδομένων σχετικά με την διεπαφή"
 
+msgid "Cannot use DHCP for LAN interface."
+msgstr ""
+
 msgid "Capacity"
 msgstr "Χωρητικότητα"
 
@@ -1034,6 +1048,10 @@ msgstr "Κανάλι"
 
 msgid "Charging Battery"
 msgstr "Μπαταρία σε φόρτιση"
+
+#, php-format
+msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
+msgstr ""
 
 msgid "Check interval"
 msgstr "Διαστήματα ελέγχου"
@@ -1168,7 +1186,7 @@ msgstr "Επιβεβαίωση"
 msgid "Connected FTP users"
 msgstr "Συνδεδεμένοι χρήστες FTP"
 
-msgid "Console menu"
+msgid "Console Menu"
 msgstr "Μενού κονσόλας"
 
 msgid "Console screensaver"
@@ -1371,11 +1389,23 @@ msgstr "DAAP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DHCP cannot be used for LAN interface."
+msgstr ""
+
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Media Server"
+
+msgid "DNS domain"
+msgstr ""
+
+msgid "DNS forwarder"
+msgstr ""
+
+msgid "DNS server is empty."
+msgstr ""
 
 msgid "DNS settings"
 msgstr "Ρυθμίσεις DNS"
@@ -1939,6 +1969,9 @@ msgstr "Τομέας"
 
 msgid "Domain controller name"
 msgstr "Όνομα ελεγκτή τομέα"
+
+msgid "Domain have no 2nd level name."
+msgstr ""
 
 msgid "Domain name"
 msgstr "Όνομα τομέα"
@@ -2527,6 +2560,10 @@ msgstr "Αποτυχία δημιουργίας συστήματος αρχεί�
 msgid "Failed to execute cron job."
 msgstr "Αποτυχία εκτέλεσης προγραμματισμένης εργασίας."
 
+#, php-format
+msgid "Failed to remove: %s"
+msgstr ""
+
 #, c-format
 msgid "Failed to send status report to: %s."
 msgstr "Αποτυχία αποστολής αναφοράς κατάστασης στο: %s."
@@ -2716,6 +2753,9 @@ msgstr "Γενικές Ρυθμίσεις"
 msgid "Generate"
 msgstr "Δημιουργία"
 
+msgid "Generate password if leave empty."
+msgstr ""
+
 msgid "German"
 msgstr "Γερμανικά"
 
@@ -2903,12 +2943,6 @@ msgstr "Ουγγρικά"
 
 msgid "I/O Timeout"
 msgstr "Λήξη χρόνου I/O"
-
-msgid "I/O errors"
-msgstr "Σφάλματα I/O"
-
-msgid "I/O packets"
-msgstr "Πακέτα I/O"
 
 msgid "I/O statistics"
 msgstr "Στατιστικά I/O"
@@ -3113,6 +3147,12 @@ msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr ""
 "Σε λειτουργία slave είναι το όνομα UPS (Αναγνωριστικό) κατά το master UPS."
 
+msgid "In/Out errors"
+msgstr "Σφάλματα εισόδου/εξόδου"
+
+msgid "In/Out packets"
+msgstr "Εισερχόμενα/εξερχόμενα πακέτα"
+
 msgid "Include basic hardware information."
 msgstr "Να συμπεριληφθούν βασικές πληροφορίες υλικού."
 
@@ -3159,6 +3199,9 @@ msgstr "Αρχικοποίηση και κρυπτογράφηση δίσκου.
 
 msgid "Initializing"
 msgstr "Γίνεται αρχικοποίηση"
+
+msgid "Initializing..."
+msgstr ""
 
 msgid "Initiator Group"
 msgstr "Ομάδα Εκκινητή"
@@ -3952,6 +3995,12 @@ msgstr "ΔΕΝ ΕΙΝΑΙ ΑΚΟΜΗ ΔΙΑΘΕΣΙΜΟ"
 msgid "NT1"
 msgstr "NT1"
 
+msgid "NTP is not enabled."
+msgstr ""
+
+msgid "NTP must be enabled."
+msgstr ""
+
 msgid "NTP time server"
 msgstr "Διακομιστής ώρας NTP"
 
@@ -3978,6 +4027,9 @@ msgstr ""
 
 msgid "Name of the variable."
 msgstr "Το όνομα της μεταβλητής."
+
+msgid "NetBIOS domain"
+msgstr ""
 
 msgid "NetBIOS name"
 msgstr "Όνομα NetBIOS"
@@ -4190,6 +4242,9 @@ msgstr ""
 
 msgid "Not attached"
 msgstr "Μη συνημμένος"
+
+msgid "Not found path."
+msgstr ""
 
 msgid "Note"
 msgstr "Σημείωση"
@@ -4503,6 +4558,10 @@ msgstr "Συναλλαγή ομότιμου χρήστη"
 
 msgid "Peer port"
 msgstr "Θύρα σύνδεσης ομότιμων χρηστών"
+
+#, php-format
+msgid "Permanent samba data path (e.g. %s)."
+msgstr ""
 
 msgid "Permit root login"
 msgstr "Να επιτρέπεται είσοδος ως root"
@@ -4856,6 +4915,9 @@ msgstr "Όνομα απομακρυσμένου αρθρώματος"
 msgid "Remote monitoring"
 msgstr "Απομακρυσμένη εποπτεία"
 
+msgid "Remote rsync daemon"
+msgstr ""
+
 msgid "Remote syslog server"
 msgstr "Απομακρυσμένος διακομιστής syslog"
 
@@ -4999,6 +5061,9 @@ msgstr "Εκτέλεση ως"
 msgid "Run now"
 msgstr "Εκτέλεση τώρα"
 
+msgid "Run without requiring remote rsync daemon. (Disabled by default)"
+msgstr ""
+
 msgid "Running"
 msgstr "Εκτελείται"
 
@@ -5054,6 +5119,12 @@ msgstr "SSL/TLS"
 
 msgid "SSL/TLS only"
 msgstr "SSL/TLS μόνο"
+
+msgid "Samba AD"
+msgstr ""
+
+msgid "Samba Active Directory Domain Controller"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -7767,6 +7838,11 @@ msgstr ""
 "και τα πρόσθετα πακέτα που δεν υποστηρίζουν τόμο HAST δεν μπορούν να "
 "χρησιμοποιηθούν."
 
+msgid ""
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
+"together."
+msgstr ""
+
 msgid "When UPS switches to Low Battery"
 msgstr "Πότε το UPS θα μεταπέφτει σε Χαμηλή Μπαταρία"
 
@@ -7912,6 +7988,9 @@ msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr ""
 "Πρέπει να έχετε το ελάχιστο %dMB RAM για να χρησιμοποιήσετε έναν προορισμό "
 "iSCSI."
+
+msgid "You must initialize data before enabling."
+msgstr ""
 
 msgid "You must select at least one authentication method."
 msgstr "Πρέπει να επιλέξετε τουλάχιστον μία μεθοδο πιστοποίησης."
@@ -8096,6 +8175,9 @@ msgstr "επιτυχώς."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "sysvol exist in path."
+msgstr ""
 
 msgid "to"
 msgstr "σε"

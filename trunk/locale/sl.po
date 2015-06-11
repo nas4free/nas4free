@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"POT-Creation-Date: 2015-06-11 09:44+0000\n"
 "PO-Revision-Date: 2014-11-17 04:08+0000\n"
 "Last-Translator: jure <jure.medved@amis.net>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
-"X-Generator: Launchpad (build 17540)\n"
+"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 "X-Poedit-Country: SLOVENIA\n"
 "Language: \n"
 "X-Poedit-Language: Slovenian\n"
@@ -455,6 +455,9 @@ msgstr "Naslov"
 msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr ""
 
+msgid "Admin password"
+msgstr ""
+
 msgid "Administration password"
 msgstr "Skrbniško geslo"
 
@@ -513,6 +516,11 @@ msgstr "Albanščina"
 
 msgid "All"
 msgstr "Vse"
+
+msgid ""
+"All data in path is overwritten. Dedicated ZFS dataset is strongly "
+"recommended."
+msgstr ""
 
 msgid "All dirs"
 msgstr "Vse mape"
@@ -874,6 +882,9 @@ msgstr "CIFS/SMB onemogočen"
 msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB informacije"
 
+msgid "CIFS/SMB is enabled."
+msgstr ""
+
 msgid "CP1251 (Cyrillic)"
 msgstr ""
 
@@ -947,6 +958,9 @@ msgstr ""
 msgid "Cannot get data about interface"
 msgstr "Ne morem pridobiti podatkov o vmesniku"
 
+msgid "Cannot use DHCP for LAN interface."
+msgstr ""
+
 msgid "Capacity"
 msgstr "Kapaciteta"
 
@@ -979,6 +993,10 @@ msgid "Channel"
 msgstr "Kanal"
 
 msgid "Charging Battery"
+msgstr ""
+
+#, php-format
+msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
 msgstr ""
 
 msgid "Check interval"
@@ -1106,8 +1124,8 @@ msgstr "Potrditev"
 msgid "Connected FTP users"
 msgstr "Priklopljeni uporabniki FTP"
 
-msgid "Console menu"
-msgstr "Menu konzole"
+msgid "Console Menu"
+msgstr ""
 
 msgid "Console screensaver"
 msgstr "Ohranjevalnik zaslona na konzoli"
@@ -1287,10 +1305,22 @@ msgstr "DAAP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DHCP cannot be used for LAN interface."
+msgstr ""
+
 msgid "DLNA/UPnP"
 msgstr ""
 
 msgid "DLNA/UPnP Media Server"
+msgstr ""
+
+msgid "DNS domain"
+msgstr ""
+
+msgid "DNS forwarder"
+msgstr ""
+
+msgid "DNS server is empty."
 msgstr ""
 
 msgid "DNS settings"
@@ -1836,6 +1866,9 @@ msgstr "Domena"
 
 msgid "Domain controller name"
 msgstr "Ime domenskega kontrolerja"
+
+msgid "Domain have no 2nd level name."
+msgstr ""
 
 msgid "Domain name"
 msgstr "Ime domene"
@@ -2405,6 +2438,10 @@ msgstr "Ne morem ustvariti datotečnega sistema v spominu."
 msgid "Failed to execute cron job."
 msgstr "Ne morem zagnati časovnega opravila."
 
+#, php-format
+msgid "Failed to remove: %s"
+msgstr ""
+
 #, c-format
 msgid "Failed to send status report to: %s."
 msgstr "Ne morem poslati poročila na: %s."
@@ -2586,6 +2623,9 @@ msgstr "Splošne nastavitve"
 
 msgid "Generate"
 msgstr "Ustvari"
+
+msgid "Generate password if leave empty."
+msgstr ""
 
 msgid "German"
 msgstr "Nemščina"
@@ -2769,12 +2809,6 @@ msgstr "Madžarščina"
 msgid "I/O Timeout"
 msgstr "I/O čas"
 
-msgid "I/O errors"
-msgstr "I/O napake"
-
-msgid "I/O packets"
-msgstr "I/O paketi"
-
 msgid "I/O statistics"
 msgstr "I/O statistike"
 
@@ -2957,6 +2991,12 @@ msgstr "V večini primerov je tukaj uporabljen 'javno'"
 msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr ""
 
+msgid "In/Out errors"
+msgstr ""
+
+msgid "In/Out packets"
+msgstr ""
+
 msgid "Include basic hardware information."
 msgstr "Vsebuje glavne informacije strojne opreme"
 
@@ -3001,6 +3041,9 @@ msgstr "Pripravvi in kriptiraj disk"
 
 msgid "Initializing"
 msgstr "Pripravljanje"
+
+msgid "Initializing..."
+msgstr ""
 
 msgid "Initiator Group"
 msgstr "Initiator skupina"
@@ -3768,6 +3811,12 @@ msgstr "ŠE NI NA VOLJO"
 msgid "NT1"
 msgstr ""
 
+msgid "NTP is not enabled."
+msgstr ""
+
+msgid "NTP must be enabled."
+msgstr ""
+
 msgid "NTP time server"
 msgstr "NTP časovni strežnik"
 
@@ -3792,6 +3841,9 @@ msgstr "Ime strežnika. Če je polje prazno, bo izbran privzet strežnik."
 
 msgid "Name of the variable."
 msgstr "Ime spremenljivke"
+
+msgid "NetBIOS domain"
+msgstr ""
 
 msgid "NetBIOS name"
 msgstr "NetBIOS ime"
@@ -3992,6 +4044,9 @@ msgstr ""
 
 msgid "Not attached"
 msgstr "Ni pripet"
+
+msgid "Not found path."
+msgstr ""
 
 msgid "Note"
 msgstr "Opombe"
@@ -4286,6 +4341,10 @@ msgstr "Izmenjava pijavk"
 
 msgid "Peer port"
 msgstr "Peer port"
+
+#, php-format
+msgid "Permanent samba data path (e.g. %s)."
+msgstr ""
 
 msgid "Permit root login"
 msgstr "Dovoli root prijavo"
@@ -4635,6 +4694,9 @@ msgstr "Ime oddaljenega modula"
 msgid "Remote monitoring"
 msgstr "Oddaljen nadzor"
 
+msgid "Remote rsync daemon"
+msgstr ""
+
 msgid "Remote syslog server"
 msgstr "Oddaljeni syslog strežnik"
 
@@ -4778,6 +4840,9 @@ msgstr ""
 msgid "Run now"
 msgstr "Zaženi sedaj"
 
+msgid "Run without requiring remote rsync daemon. (Disabled by default)"
+msgstr ""
+
 msgid "Running"
 msgstr "V teku"
 
@@ -4830,6 +4895,12 @@ msgstr "SSL/TLS"
 
 msgid "SSL/TLS only"
 msgstr "Samo SSL/TLS"
+
+msgid "Samba AD"
+msgstr ""
+
+msgid "Samba Active Directory Domain Controller"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -7158,6 +7229,11 @@ msgid ""
 "additional packages which do not support HAST volume cannot be used."
 msgstr ""
 
+msgid ""
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
+"together."
+msgstr ""
+
 msgid "When UPS switches to Low Battery"
 msgstr ""
 
@@ -7275,6 +7351,9 @@ msgstr ""
 
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
+msgstr ""
+
+msgid "You must initialize data before enabling."
 msgstr ""
 
 msgid "You must select at least one authentication method."
@@ -7455,6 +7534,9 @@ msgid "successfully."
 msgstr ""
 
 msgid "sysctl.conf"
+msgstr ""
+
+msgid "sysvol exist in path."
 msgstr ""
 
 msgid "to"

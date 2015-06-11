@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-04 21:26+0000\n"
-"PO-Revision-Date: 2015-06-02 17:43+0000\n"
+"POT-Creation-Date: 2015-06-11 09:44+0000\n"
+"PO-Revision-Date: 2015-06-10 17:11+0000\n"
 "Last-Translator: apollo567 <apollo567@hotmail.de>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
-"X-Generator: Launchpad (build 17540)\n"
+"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
 "X-Poedit-Language: German\n"
@@ -107,7 +107,7 @@ msgstr ""
 "automatisch)."
 
 msgid "4KB wrapper"
-msgstr ""
+msgstr "4k Anpassung"
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN tag (zwischen 1 und 4094)."
@@ -479,6 +479,9 @@ msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr ""
 "Adresse des Remote HAST Dienstes. Es muss eine statische IP Adresse sein"
 
+msgid "Admin password"
+msgstr "Administratorpasswort"
+
 msgid "Administration password"
 msgstr "Administrationspasswort"
 
@@ -547,6 +550,11 @@ msgstr "Albanisch"
 
 msgid "All"
 msgstr "Alle"
+
+msgid ""
+"All data in path is overwritten. Dedicated ZFS dataset is strongly "
+"recommended."
+msgstr ""
 
 msgid "All dirs"
 msgstr "Alle Verzeichnisse"
@@ -921,6 +929,9 @@ msgstr "CIFS/SMB deaktiviert"
 msgid "CIFS/SMB informations"
 msgstr "Informationen über CIFS/SMB"
 
+msgid "CIFS/SMB is enabled."
+msgstr "Samba (CIFS/SMB) ist aktiviert"
+
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Kyrillisch)"
 
@@ -997,6 +1008,9 @@ msgstr "CPU-Last nicht verfügbar"
 msgid "Cannot get data about interface"
 msgstr "Kann von der Schnittstelle keine Daten erfassen"
 
+msgid "Cannot use DHCP for LAN interface."
+msgstr "DHCP kann für die Netzwerkschnittstelle nicht genutzt werden"
+
 msgid "Capacity"
 msgstr "Kapazität"
 
@@ -1032,6 +1046,10 @@ msgstr "Kanal"
 
 msgid "Charging Battery"
 msgstr "Akku wird geladen"
+
+#, php-format
+msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
+msgstr ""
 
 msgid "Check interval"
 msgstr "Überprüfungsintervall"
@@ -1164,7 +1182,7 @@ msgstr "Bestätigung"
 msgid "Connected FTP users"
 msgstr "Verbundene FTP Benutzer"
 
-msgid "Console menu"
+msgid "Console Menu"
 msgstr "Konsolenmenü"
 
 msgid "Console screensaver"
@@ -1274,10 +1292,10 @@ msgid "Count"
 msgstr "Zähler"
 
 msgid "Create 4KB wrapper (nop device)."
-msgstr ""
+msgstr "4k Anpassung erstellen (nop Laufwerk)"
 
 msgid "Create ZFS on GPT partition"
-msgstr ""
+msgstr "ZFS in GPT Partition erstellen"
 
 msgid "Create and initialize RAID."
 msgstr "RAID erstellen und initialisieren."
@@ -1366,11 +1384,23 @@ msgstr "DAAP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DHCP cannot be used for LAN interface."
+msgstr ""
+
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Medienserver"
+
+msgid "DNS domain"
+msgstr "DNS Domäne"
+
+msgid "DNS forwarder"
+msgstr ""
+
+msgid "DNS server is empty."
+msgstr ""
 
 msgid "DNS settings"
 msgstr "DNS-Einstellungen"
@@ -1934,6 +1964,9 @@ msgstr "Domäne"
 msgid "Domain controller name"
 msgstr "Name des Domain-Controllers"
 
+msgid "Domain have no 2nd level name."
+msgstr ""
+
 msgid "Domain name"
 msgstr "Domänenname"
 
@@ -2317,16 +2350,16 @@ msgid "Enabled"
 msgstr "Aktiviert"
 
 msgid "Encrypt password"
-msgstr ""
+msgstr "Passwort verschlüsseln"
 
 msgid "Encrypt password (confirmed)"
-msgstr ""
+msgstr "Passwort verschlüsseln (bestätigt)"
 
 msgid "Encrypted"
 msgstr "Verschlüsselt"
 
 msgid "Encrypted configuration is automatically gzipped."
-msgstr ""
+msgstr "Verschlüsselte Konfiguration wird automatisch komprimiert (gzip)"
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -2519,6 +2552,10 @@ msgstr "Das Erstellen des RAM-Dateisystem ist fehlgeschlagen"
 msgid "Failed to execute cron job."
 msgstr "cron Job wurde nicht ausgeführt."
 
+#, php-format
+msgid "Failed to remove: %s"
+msgstr "%s kann nicht entfernt werden"
+
 #, c-format
 msgid "Failed to send status report to: %s."
 msgstr "Konnte keine Statusreport an %s senden."
@@ -2704,6 +2741,9 @@ msgstr "Allgemeine Einstellungen"
 
 msgid "Generate"
 msgstr "Erzeugen"
+
+msgid "Generate password if leave empty."
+msgstr ""
 
 msgid "German"
 msgstr "Deutsch"
@@ -2893,12 +2933,6 @@ msgstr "Ungarisch"
 
 msgid "I/O Timeout"
 msgstr "I/O Timeout"
-
-msgid "I/O errors"
-msgstr "I/O-Fehler"
-
-msgid "I/O packets"
-msgstr "I/O-Pakete"
 
 msgid "I/O statistics"
 msgstr "I/O Statistik"
@@ -3098,6 +3132,12 @@ msgstr "In den meisten Fällen wird hier 'public' benutzt."
 msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr "Im Slave Mode ist es der USV Bezeichner (Name) des USV Masters."
 
+msgid "In/Out errors"
+msgstr "In / Out Fehler"
+
+msgid "In/Out packets"
+msgstr "In / Out Pakete"
+
 msgid "Include basic hardware information."
 msgstr "Beinhalte grundlegende Hardwareinformationen."
 
@@ -3143,6 +3183,9 @@ msgstr "Festplatte initialisieren und verschlüsseln."
 
 msgid "Initializing"
 msgstr "Initialisieren"
+
+msgid "Initializing..."
+msgstr "Initialisierung läuft …"
 
 msgid "Initiator Group"
 msgstr "Initiatorgruppe"
@@ -3933,6 +3976,12 @@ msgstr "Noch nicht verfügbar"
 msgid "NT1"
 msgstr "NT1"
 
+msgid "NTP is not enabled."
+msgstr "NTP ist deaktiviert"
+
+msgid "NTP must be enabled."
+msgstr "NTP muss aktiviert werden"
+
 msgid "NTP time server"
 msgstr "NTP Zeit Server"
 
@@ -3959,6 +4008,9 @@ msgstr ""
 
 msgid "Name of the variable."
 msgstr "Name der Variablen."
+
+msgid "NetBIOS domain"
+msgstr "NetBIOS Domäne"
 
 msgid "NetBIOS name"
 msgstr "NetBIOS-Name"
@@ -4169,6 +4221,9 @@ msgstr ""
 
 msgid "Not attached"
 msgstr "Nicht hinzugefügt"
+
+msgid "Not found path."
+msgstr "PFad nicht gefunden"
 
 msgid "Note"
 msgstr "Hinweis"
@@ -4477,6 +4532,10 @@ msgstr "Peer-Austausch"
 
 msgid "Peer port"
 msgstr "Peer-Port"
+
+#, php-format
+msgid "Permanent samba data path (e.g. %s)."
+msgstr ""
 
 msgid "Permit root login"
 msgstr "Root Login zulassen"
@@ -4828,6 +4887,9 @@ msgstr "Remote Modulname"
 msgid "Remote monitoring"
 msgstr "Fernüberwachung"
 
+msgid "Remote rsync daemon"
+msgstr ""
+
 msgid "Remote syslog server"
 msgstr "Remote Syslog Server"
 
@@ -4974,6 +5036,9 @@ msgstr "Ausführen als"
 msgid "Run now"
 msgstr "Jetzt ausführen"
 
+msgid "Run without requiring remote rsync daemon. (Disabled by default)"
+msgstr ""
+
 msgid "Running"
 msgstr "Läuft"
 
@@ -5029,6 +5094,12 @@ msgstr "SSL/TLS"
 
 msgid "SSL/TLS only"
 msgstr "Nur SSL/TLS"
+
+msgid "Samba AD"
+msgstr ""
+
+msgid "Samba Active Directory Domain Controller"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -6069,6 +6140,8 @@ msgid ""
 "The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
+"Die Passwörter stimmen nicht überein. Bitte stellen Sie sicher, dass die "
+"Passwörter identisch sind."
 
 msgid "The credentials with which to bind."
 msgstr "Die Referenzen, auf die verwiesen werden soll."
@@ -7057,6 +7130,7 @@ msgstr ""
 
 msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
 msgstr ""
+"Dies stellt NTFS acls bereit ohne ZFS ACL Unterstützung, wie bei UFS."
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr "Dies wird ZFS ACL-Unterstützung bereitstellen. (Nur ZFS)"
@@ -7701,6 +7775,11 @@ msgstr ""
 "zusätzlichen Pakete, die von HAST Volumen nicht unterstützt werden, nicht "
 "genutzt werden"
 
+msgid ""
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
+"together."
+msgstr ""
+
 msgid "When UPS switches to Low Battery"
 msgstr "USV niedriger Batteriestatus ab"
 
@@ -7842,6 +7921,9 @@ msgstr "Sie müssen den selben IP Typ für Netzwek und Gateway eingeben."
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr ""
 "Sie müssen ein Minimum von %d MB an RAM haben um ein iSCSI-Ziel zu nutzen."
+
+msgid "You must initialize data before enabling."
+msgstr ""
 
 msgid "You must select at least one authentication method."
 msgstr "Sie müssen mind. eine Authentifizierungsmethode auswählen."
@@ -8026,6 +8108,9 @@ msgstr "erfolgreich."
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
+msgid "sysvol exist in path."
+msgstr ""
+
 msgid "to"
 msgstr "an"
 
@@ -8038,3 +8123,12 @@ msgstr "Aushängen"
 #, php-format
 msgid "version:"
 msgstr "Version:"
+
+#~ msgid "DHCP can not be used for LAN interface."
+#~ msgstr "DHCP kann für die Netzwerkschnittstelle nicht genutzt werden"
+
+#~ msgid ""
+#~ "The admin password does not match. Please ensure the passwords match exactly."
+#~ msgstr ""
+#~ "Die Administrationspasswörter stimmen nicht überein. Überprüfen sie die "
+#~ "zwingend notwendige exakte Übereinstimmung der Passwörter !"

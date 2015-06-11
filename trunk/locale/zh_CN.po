@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"POT-Creation-Date: 2015-06-11 09:44+0000\n"
 "PO-Revision-Date: 2015-06-05 07:11+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
-"X-Generator: Launchpad (build 17540)\n"
+"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -432,6 +432,9 @@ msgstr "位址"
 msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "hastd 远程守护进程的位址。它必须是一个静态IP位址。"
 
+msgid "Admin password"
+msgstr ""
+
 msgid "Administration password"
 msgstr "管理员密码"
 
@@ -495,6 +498,11 @@ msgstr "阿尔巴尼亚文"
 
 msgid "All"
 msgstr "全部"
+
+msgid ""
+"All data in path is overwritten. Dedicated ZFS dataset is strongly "
+"recommended."
+msgstr ""
 
 msgid "All dirs"
 msgstr "所有目录"
@@ -848,6 +856,9 @@ msgstr "CIFS/SMB 伺服器关闭中"
 msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB 资讯"
 
+msgid "CIFS/SMB is enabled."
+msgstr ""
+
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (斯拉夫文)"
 
@@ -920,6 +931,9 @@ msgstr "无法读取 CPU 负载"
 msgid "Cannot get data about interface"
 msgstr "无法获得介面的资料"
 
+msgid "Cannot use DHCP for LAN interface."
+msgstr ""
+
 msgid "Capacity"
 msgstr "容量"
 
@@ -950,6 +964,10 @@ msgstr "频道"
 
 msgid "Charging Battery"
 msgstr "充电中"
+
+#, php-format
+msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
+msgstr ""
 
 msgid "Check interval"
 msgstr "检查间隔"
@@ -1073,8 +1091,8 @@ msgstr "确认"
 msgid "Connected FTP users"
 msgstr "已连接 FTP 用户"
 
-msgid "Console menu"
-msgstr "控制台选单"
+msgid "Console Menu"
+msgstr ""
 
 msgid "Console screensaver"
 msgstr "控制台屏幕保护程序"
@@ -1260,11 +1278,23 @@ msgstr "DAAP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DHCP cannot be used for LAN interface."
+msgstr ""
+
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP 媒体伺服器"
+
+msgid "DNS domain"
+msgstr ""
+
+msgid "DNS forwarder"
+msgstr ""
+
+msgid "DNS server is empty."
+msgstr ""
 
 msgid "DNS settings"
 msgstr "DNS 设置"
@@ -1798,6 +1828,9 @@ msgstr "网域"
 
 msgid "Domain controller name"
 msgstr "网域控制器名称"
+
+msgid "Domain have no 2nd level name."
+msgstr ""
 
 msgid "Domain name"
 msgstr "网域名称"
@@ -2351,6 +2384,10 @@ msgstr "无法创建 RAM Disk"
 msgid "Failed to execute cron job."
 msgstr "执行定时任务失败。"
 
+#, php-format
+msgid "Failed to remove: %s"
+msgstr ""
+
 #, c-format
 msgid "Failed to send status report to: %s."
 msgstr "发送状态报告电邮给：%s 失败。"
@@ -2530,6 +2567,9 @@ msgstr "一般设定"
 
 msgid "Generate"
 msgstr "生成"
+
+msgid "Generate password if leave empty."
+msgstr ""
 
 msgid "German"
 msgstr "德语"
@@ -2711,12 +2751,6 @@ msgstr "匈牙利语(Hungarian)"
 msgid "I/O Timeout"
 msgstr "I/O 超时"
 
-msgid "I/O errors"
-msgstr "I/O错误"
-
-msgid "I/O packets"
-msgstr "I/O封包"
-
 msgid "I/O statistics"
 msgstr "I/O 统计资料"
 
@@ -2884,6 +2918,12 @@ msgstr "大多数的情况下，这里应该是'public'"
 msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr "在从模式(Slave mode)下，它是主模式UPS (UPS master) 的 UPS 名称（标识）。"
 
+msgid "In/Out errors"
+msgstr ""
+
+msgid "In/Out packets"
+msgstr ""
+
 msgid "Include basic hardware information."
 msgstr "包括基本的硬件资讯。"
 
@@ -2928,6 +2968,9 @@ msgstr "初始化及加密磁碟"
 
 msgid "Initializing"
 msgstr "初始化"
+
+msgid "Initializing..."
+msgstr ""
 
 msgid "Initiator Group"
 msgstr "启动器组"
@@ -3669,6 +3712,12 @@ msgstr "尚未公布"
 msgid "NT1"
 msgstr "NT1"
 
+msgid "NTP is not enabled."
+msgstr ""
+
+msgid "NTP must be enabled."
+msgstr ""
+
 msgid "NTP time server"
 msgstr "NTP 时间伺服器"
 
@@ -3693,6 +3742,9 @@ msgstr "伺服器名称。如果空白则会使用预设的伺服器名称。"
 
 msgid "Name of the variable."
 msgstr "改名名称。"
+
+msgid "NetBIOS domain"
+msgstr ""
 
 msgid "NetBIOS name"
 msgstr "NetBIOS 名称"
@@ -3880,6 +3932,9 @@ msgstr ""
 
 msgid "Not attached"
 msgstr "尚未连结"
+
+msgid "Not found path."
+msgstr ""
 
 msgid "Note"
 msgstr "提示"
@@ -4165,6 +4220,10 @@ msgstr "对等交流（Peer exchange）"
 
 msgid "Peer port"
 msgstr "对等端口（Peer port）"
+
+#, php-format
+msgid "Permanent samba data path (e.g. %s)."
+msgstr ""
 
 msgid "Permit root login"
 msgstr "允许root登录"
@@ -4506,6 +4565,9 @@ msgstr "远端模组名称"
 msgid "Remote monitoring"
 msgstr "远端监控"
 
+msgid "Remote rsync daemon"
+msgstr ""
+
 msgid "Remote syslog server"
 msgstr "远端 syslog 伺服器"
 
@@ -4645,6 +4707,9 @@ msgstr "执行为"
 msgid "Run now"
 msgstr "立刻执行"
 
+msgid "Run without requiring remote rsync daemon. (Disabled by default)"
+msgstr ""
+
 msgid "Running"
 msgstr "执行中"
 
@@ -4699,6 +4764,12 @@ msgstr "SSL/TLS"
 
 msgid "SSL/TLS only"
 msgstr "只是 SSL/TLS"
+
+msgid "Samba AD"
+msgstr ""
+
+msgid "Samba Active Directory Domain Controller"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -7023,6 +7094,11 @@ msgid ""
 "additional packages which do not support HAST volume cannot be used."
 msgstr "当HAST 启用时，不支援HAST 卷的本地装置、本地服务和附加套件将不能使用。"
 
+msgid ""
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
+"together."
+msgstr ""
+
 msgid "When UPS switches to Low Battery"
 msgstr "当UPS切换到电池低电量"
 
@@ -7142,6 +7218,9 @@ msgstr "您必须输入与网络和网关相同的 IP 类型。"
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "要使用iSCSI目标的话，您必须最少有 %d 的 RAM。"
+
+msgid "You must initialize data before enabling."
+msgstr ""
 
 msgid "You must select at least one authentication method."
 msgstr "请至少选择一种认证方式。"
@@ -7321,6 +7400,9 @@ msgstr "成功。"
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "sysvol exist in path."
+msgstr ""
 
 msgid "to"
 msgstr "到"
