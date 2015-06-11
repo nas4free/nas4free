@@ -69,10 +69,14 @@ if ($_POST) {
 			$input_errors[] = gettext("You must initialize data before enabling.");
 		}
 	}
+	if ($_POST['dns_forwarder'] == "") {
+		$input_errors[] = gettext("DNS server is empty.");
+	}
 
 	if (empty($input_errors)) {
 		$config['sambaad']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['samba']['enable'] = isset($_POST['enable']) ? true : false;
+		$config['sambaad']['dns_forwarder'] = $_POST['dns_forwarder'];
 
 		write_config();
 		$retval = 0;
@@ -132,7 +136,7 @@ $(document).ready(function(){
 	<?php html_titleline_checkbox("enable", gettext("Samba Active Directory Domain Controller"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "");?>
 	<?php html_text("hostname", gettext("Hostname"), htmlspecialchars($hostname));?>
 	<?php html_text("netniosname", gettext("NetBIOS name"), htmlspecialchars($netbiosname));?>
-	<?php html_text("dns_forwarder", gettext("DNS forwarder"), htmlspecialchars($pconfig['dns_forwarder']));?>
+	<?php html_inputbox("dns_forwarder", gettext("DNS forwarder"), $pconfig['dns_forwarder'], "", false, 40);?>
 	<?php html_text("dns_domain", gettext("DNS domain"), htmlspecialchars($pconfig['dns_domain']));?>
 	<?php html_text("netbios_domain", gettext("NetBIOS domain"), htmlspecialchars($pconfig['netbios_domain']));?>
 	<?php html_text("path", gettext("Path"), htmlspecialchars($pconfig['path']));?>
