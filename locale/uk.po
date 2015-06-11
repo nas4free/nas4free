@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-11 09:44+0000\n"
-"PO-Revision-Date: 2015-06-06 22:34+0000\n"
-"Last-Translator: Yuriy <kvasnitsky@gmail.com>\n"
+"POT-Creation-Date: 2015-06-11 23:41+0000\n"
+"PO-Revision-Date: 2015-06-11 15:37+0000\n"
+"Last-Translator: Balabuha <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
-"X-Generator: Launchpad (build 17549)\n"
+"X-Launchpad-Export-Date: 2015-06-11 19:13+0000\n"
+"X-Generator: Launchpad (build 17557)\n"
 "Language: uk\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -2591,6 +2591,9 @@ msgstr "Завантаження файла зупинено розширенн�
 msgid "Filename"
 msgstr "Ім'я файла"
 
+msgid "Fileserver"
+msgstr ""
+
 msgid "Filter"
 msgstr "Фільтр"
 
@@ -3051,10 +3054,10 @@ msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr ""
 
 msgid "In/Out errors"
-msgstr ""
+msgstr "Помилки вводу/виводу"
 
 msgid "In/Out packets"
-msgstr ""
+msgstr "Пакетів прийнято/відіслано"
 
 msgid "Include basic hardware information."
 msgstr "Включити загальну інформацію про апаратне забезпечення."
@@ -3090,19 +3093,19 @@ msgid "Inhibit some of the syslog diagnostics for bad lines in /etc/exports."
 msgstr ""
 
 msgid "Initial Digest"
-msgstr ""
+msgstr "Початковий дайджест"
 
 msgid "Initialize"
 msgstr "Ініціалізувати"
 
 msgid "Initialize and encrypt disk."
-msgstr ""
+msgstr "Ініціалізувати і зашифрувати диск."
 
 msgid "Initializing"
 msgstr "Ініціалізація"
 
 msgid "Initializing..."
-msgstr ""
+msgstr "Ініціалізація…"
 
 msgid "Initiator Group"
 msgstr ""
@@ -3146,7 +3149,7 @@ msgid "Input power quality (* opaque)"
 msgstr ""
 
 msgid "Input power sensitivity"
-msgstr ""
+msgstr "Чутливість вхідної напруги"
 
 msgid "Input voltage"
 msgstr "Вхідна напруга"
@@ -3185,16 +3188,16 @@ msgid "Internal Server Information"
 msgstr "Внутрішня інформація про сервер"
 
 msgid "Internal UPS clock date"
-msgstr ""
+msgstr "Дата на внутрішньому годиннику ДБЖ"
 
 msgid "Internal UPS clock time"
-msgstr ""
+msgstr "Час на внутрішньому годиннику ДБЖ"
 
 msgid "Interval between self tests"
 msgstr "Інтервал між самотестуваннями"
 
 msgid "Interval must be greater or equal than 10 seconds."
-msgstr ""
+msgstr "Інтервал повинен бути більший або рівний ніж 10 секунд."
 
 msgid "Interval to wait after shutdown with delay command"
 msgstr ""
@@ -3206,17 +3209,18 @@ msgid "Interval to wait before restarting the load"
 msgstr ""
 
 msgid "Invalid file format or incorrect password."
-msgstr ""
+msgstr "Неправильний формат файла або пароль."
 
 msgid "Invalid file format."
-msgstr ""
+msgstr "Неправильний формат файла."
 
 #, php-format
 msgid "Invalid max. block size! It must be in the range from %d to %d."
 msgstr ""
+"Неправильний макс. розмір блоку! Повинен бути в діапазоні від %d до %d."
 
 msgid "Invalid username or password. Please try again."
-msgstr ""
+msgstr "Неправильне ім'я користувача або пароль. Спробуйте ще раз."
 
 msgid ""
 "It can be changed from the client side by standard SCSI mode page at any "
@@ -3224,7 +3228,7 @@ msgid ""
 msgstr ""
 
 msgid "It cannot be used combining SMB2 and Anonymous."
-msgstr ""
+msgstr "Не можна одночаслно використовувати SMB2 і Anonymous."
 
 msgid ""
 "It is impossible to enable 'Anonymous users only' and 'Local users only' "
@@ -3237,6 +3241,8 @@ msgid ""
 "It is not recommanded to import non healthy pools nor virtual devices that "
 "are part of a non healthy pool."
 msgstr ""
+"Не рекомендується імпортувати пошкоджені пули або пристрої, що є частиною "
+"таких пулів."
 
 msgid ""
 "It's recommended to change the default username and password for accessing "
@@ -3296,7 +3302,7 @@ msgid "LCDproc"
 msgstr "LCDproc"
 
 msgid "LCDproc (client)"
-msgstr ""
+msgstr "LCDproc (клієнт)"
 
 msgid "LDAP"
 msgstr "LDAP"
@@ -3305,7 +3311,7 @@ msgid "LUN"
 msgstr "LUN"
 
 msgid "LUNs"
-msgstr ""
+msgstr "LUN-и"
 
 msgid "Language"
 msgstr "Мова"
@@ -3337,16 +3343,18 @@ msgid ""
 msgstr ""
 
 msgid "Leave already configured auto snapshots."
-msgstr ""
+msgstr "Залишити вже сконфігуровані знімки."
 
 msgid "Leave auto snapshot configuration"
-msgstr ""
+msgstr "Залишити автоматичну конфігурацію знімків"
 
 msgid "Leave this field empty to use default settings."
 msgstr ""
+"Залишіть це поле пустим для використання налаштувань за замовчуванням."
 
 msgid "Level 1 - Minimum power usage with Standby (spindown)"
 msgstr ""
+"Рівень 1 - Мінімальне використання енергії із сплячим режимом (зупинка диска)"
 
 msgid "Level 127 - Intermediate power usage with Standby"
 msgstr "Рівень 127 - Середнє використання енергії із засинанням"
@@ -3451,7 +3459,7 @@ msgid "Local share (destination)"
 msgstr ""
 
 msgid "Local shares to be synchronized"
-msgstr ""
+msgstr "Локальні ресурси, що будуть синхронізовані"
 
 msgid "Local user bandwidth"
 msgstr "Пропускна здатність для локального користувача"
@@ -3484,7 +3492,7 @@ msgid "Location where the content database file will be stored."
 msgstr ""
 
 msgid "Location where the database with media contents will be stored."
-msgstr ""
+msgstr "Місце, де буде збережена база даних мультимедіа."
 
 #, php-format
 msgid ""
@@ -7234,8 +7242,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
-"together."
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot be used."
 msgstr ""
 
 msgid "When UPS switches to Low Battery"
