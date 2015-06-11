@@ -50,6 +50,7 @@ if (preg_match('/^([^\.]+)\./', $pconfig['dns_domain'], $m)) {
 	$errormsg .= "<br/>";
 }
 $pconfig['path'] = "";
+$pconfig['fstype'] = "s3fs";
 $realm = strtoupper($pconfig['dns_domain']);
 $hostname = $config['system']['hostname'];
 $netbiosname = strtoupper($config['system']['hostname']);
@@ -97,6 +98,7 @@ if ($_POST) {
 		$do_init = true;
 		$config['sambaad']['enable'] = false;
 		$config['sambaad']['path'] = $_POST['path'];
+		$config['sambaad']['fstype'] = $_POST['fstype'];
 		$config['sambaad']['dns_forwarder'] = $_POST['dns_forwarder'];
 		$config['sambaad']['dns_domain'] = $_POST['dns_domain'];
 		$config['sambaad']['netbios_domain'] = $_POST['netbios_domain'];
@@ -109,7 +111,8 @@ if ($_POST) {
 		$cmd = "/usr/local/bin/samba-tool domain provision";
 		$cmsargs = array();
 		$cmdargs[] = escapeshellarg("--use-rfc2307");
-		$cmdargs[] = escapeshellarg("--use-ntvfs");
+		if ($config['sambaad']['fstype'] == "ntvfs")
+			$cmdargs[] = escapeshellarg("--use-ntvfs");
 		$cmdargs[] = escapeshellarg("--function-level=2008_R2");
 		$cmdargs[] = escapeshellarg("--realm=${realm}");
 		$cmdargs[] = escapeshellarg("--domain=${domain}");
@@ -188,6 +191,7 @@ $(document).ready(function(){
 	<?php //html_text("realm", gettext("Kerberos realm"), htmlspecialchars($realm));?>
 	<?php html_passwordconfbox("password", "password_confirm", gettext("Admin password"), "", "", gettext("Generate password if leave empty."), true);?>
 	<?php html_filechooser("path", gettext("Path"), $pconfig['path'], sprintf(gettext("Permanent samba data path (e.g. %s)."), "/mnt/samba4"), $g['media_path'], true);?>
+	<?php html_combobox("fstype", gettext("Fileserver"), $pconfig['fstype'], array("s3fs" => "s3fs", "ntvfs" => "ntvfs"), "", true);?>
 	</table>
 	<div id="submit">
 	  <input name="Submit" type="submit" class="formbtn" value="<?=gettext("Initialize");?>" />
