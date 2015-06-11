@@ -141,7 +141,7 @@ $(document).ready(function(){
 	  <input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" />
 	</div>
 	<div id="remarks">
-	  <?php html_remark("note", gettext("Note"), sprintf("<div id='enumeration'><ul><li>%s</li><li>%s</li><li>%s</li></ul></div>", gettext("When Samba AD is enabled, stand-alone CIFS/SMB file sharing can not use together."), gettext("NTP must be enabled."), gettext("DHCP can not be used for LAN interface.")));?>
+	  <?php html_remark("note", gettext("Note"), sprintf("<div id='enumeration'><ul><li>%s</li><li>%s</li><li>%s</li></ul></div>", gettext("When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use together."), gettext("NTP must be enabled."), gettext("DHCP cannot be used for LAN interface.")));?>
 	</div>
 	<?php include("formend.inc");?>
       </form>

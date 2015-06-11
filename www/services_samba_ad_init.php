@@ -85,7 +85,7 @@ if ($_POST) {
 		$input_errors[] = gettext("sysvol exist in path.");
 	}
 	if ($_POST['password'] != $_POST['password_confirm']) {
-		$input_errors[] = gettext("The admin password does not match. Please ensure the passwords match exactly.");
+		$input_errors[] = gettext("The confirmed password does not match. Please ensure the passwords match exactly.");
 	} else if ($_POST['password'] == "") {
 		//$input_errors[] = gettext("The admin password is empty.");
 	}
