@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-04 21:26+0000\n"
-"PO-Revision-Date: 2015-06-04 18:43+0000\n"
+"POT-Creation-Date: 2015-06-11 09:44+0000\n"
+"PO-Revision-Date: 2015-06-11 00:43+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
-"X-Generator: Launchpad (build 17540)\n"
+"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 "X-Poedit-Country: Netherlands\n"
 "Language: \n"
 "X-Poedit-Language: Dutch\n"
@@ -479,6 +479,9 @@ msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr ""
 "Adres van de remote hastd daemon. Het moet een statisch IP-adres zijn."
 
+msgid "Admin password"
+msgstr "Admin wachtwoord"
+
 msgid "Administration password"
 msgstr "Administrator wachtwoord"
 
@@ -547,6 +550,13 @@ msgstr "Albanees"
 
 msgid "All"
 msgstr "Alle"
+
+msgid ""
+"All data in path is overwritten. Dedicated ZFS dataset is strongly "
+"recommended."
+msgstr ""
+"Alle data in pad wordt overschreven. Het toewijden van een ZFS dataset is "
+"sterk aanbevolen."
 
 msgid "All dirs"
 msgstr "Alle mappen"
@@ -921,6 +931,9 @@ msgstr "CIFS/SMB uitgeschakeld"
 msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB informatie"
 
+msgid "CIFS/SMB is enabled."
+msgstr "CIFS/SMB is ingeschakeld."
+
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Cyrillisch)"
 
@@ -994,6 +1007,9 @@ msgstr "Kan geen CPU-belasting ophalen"
 msgid "Cannot get data about interface"
 msgstr "Kan geen data krijgen van de netwerkkaart"
 
+msgid "Cannot use DHCP for LAN interface."
+msgstr "Kan DHCP niet gebruiken voor de LAN-interface."
+
 msgid "Capacity"
 msgstr "Capaciteit"
 
@@ -1029,6 +1045,11 @@ msgstr "Kanaal"
 
 msgid "Charging Battery"
 msgstr "Opladen Batterij"
+
+#, php-format
+msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
+msgstr ""
+"Controleer <a href=\"%s\">System|General Setup</a> voor het initialiseren."
 
 msgid "Check interval"
 msgstr "Controle interval"
@@ -1162,7 +1183,7 @@ msgstr "Bevestiging"
 msgid "Connected FTP users"
 msgstr "Verbonden FTP gebruikers"
 
-msgid "Console menu"
+msgid "Console Menu"
 msgstr "Console Menu"
 
 msgid "Console screensaver"
@@ -1364,11 +1385,23 @@ msgstr "DAAP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DHCP cannot be used for LAN interface."
+msgstr ""
+
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Media Server"
+
+msgid "DNS domain"
+msgstr "DNS-domein"
+
+msgid "DNS forwarder"
+msgstr "DNS forwarder"
+
+msgid "DNS server is empty."
+msgstr "DNS server is leeg."
 
 msgid "DNS settings"
 msgstr "DNS instellingen"
@@ -1932,6 +1965,9 @@ msgstr "Domein"
 
 msgid "Domain controller name"
 msgstr "Naam domeinbeheerder"
+
+msgid "Domain have no 2nd level name."
+msgstr "Domein heeft geen 2e level naam."
 
 msgid "Domain name"
 msgstr "Domeinnaam"
@@ -2520,6 +2556,10 @@ msgstr "Mislukt om het in-geheugen bestandsysteem te maken."
 msgid "Failed to execute cron job."
 msgstr "Mislukt om de cron taak uit te voeren."
 
+#, php-format
+msgid "Failed to remove: %s"
+msgstr "Mislukt te verwijderen: %s"
+
 #, c-format
 msgid "Failed to send status report to: %s."
 msgstr "Mislukt om het statusrapport te verzenden naar: %s."
@@ -2705,6 +2745,9 @@ msgstr "Algemene instellingen"
 
 msgid "Generate"
 msgstr "Aanmaken"
+
+msgid "Generate password if leave empty."
+msgstr "Genereer wachtwoord indien leeg gelaten."
 
 msgid "German"
 msgstr "Duits"
@@ -2893,12 +2936,6 @@ msgstr "Hongaars"
 
 msgid "I/O Timeout"
 msgstr "In/Uit Onderbreking"
-
-msgid "I/O errors"
-msgstr "In/Uitgaande fouten"
-
-msgid "I/O packets"
-msgstr "In/Uitgaande pakketten"
 
 msgid "I/O statistics"
 msgstr "In/Uitgaande statistieken"
@@ -3100,6 +3137,12 @@ msgstr "In de meeste gevallen, wordt 'publiek' hier gebruikt."
 msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr "In slave mode is het de UPS naam (Identifier) op de UPS master."
 
+msgid "In/Out errors"
+msgstr "In/Uitgaande fouten"
+
+msgid "In/Out packets"
+msgstr "In/Uitgaande pakketten"
+
 msgid "Include basic hardware information."
 msgstr "Basis hardware informatie bijsluiten."
 
@@ -3144,6 +3187,9 @@ msgstr "Initialiseer en versleutel de schijf."
 
 msgid "Initializing"
 msgstr "Aan het initialiseren"
+
+msgid "Initializing..."
+msgstr "Initialiseren…"
 
 msgid "Initiator Group"
 msgstr "Initiator Groep"
@@ -3936,6 +3982,12 @@ msgstr "NOG NIET BESCHIKBAAR"
 msgid "NT1"
 msgstr "NT1"
 
+msgid "NTP is not enabled."
+msgstr "NTP is niet ingeschakeld."
+
+msgid "NTP must be enabled."
+msgstr "NTP moet ingeschakeld worden."
+
 msgid "NTP time server"
 msgstr "NTP Tijdservers"
 
@@ -3964,6 +4016,9 @@ msgstr ""
 
 msgid "Name of the variable."
 msgstr "Naam van de variable."
+
+msgid "NetBIOS domain"
+msgstr "NetBIOS domein"
 
 msgid "NetBIOS name"
 msgstr "NetBIOS naam"
@@ -4175,6 +4230,9 @@ msgstr ""
 
 msgid "Not attached"
 msgstr "Niet verbonden"
+
+msgid "Not found path."
+msgstr "Niet gevonden pad."
 
 msgid "Note"
 msgstr "Opmerking"
@@ -4484,6 +4542,10 @@ msgstr "Peer exchange"
 
 msgid "Peer port"
 msgstr "Peer poort"
+
+#, php-format
+msgid "Permanent samba data path (e.g. %s)."
+msgstr "Permanente samba datapad (bijv. %s)."
 
 msgid "Permit root login"
 msgstr "Root aanmeldingen toelaten"
@@ -4835,6 +4897,9 @@ msgstr "Remote module naam"
 msgid "Remote monitoring"
 msgstr "Remote monitoring"
 
+msgid "Remote rsync daemon"
+msgstr "Remote rsync daemon"
+
 msgid "Remote syslog server"
 msgstr "Externe syslog server"
 
@@ -4979,6 +5044,10 @@ msgstr "Uitvoeren als"
 msgid "Run now"
 msgstr "Nu uitvoeren"
 
+msgid "Run without requiring remote rsync daemon. (Disabled by default)"
+msgstr ""
+"Uitvoeren zonder remote rsync daemon te vereisen. (Standaard uitgeschakeld)"
+
 msgid "Running"
 msgstr "Uitvoerend"
 
@@ -5033,6 +5102,12 @@ msgstr "SSL/TLS"
 
 msgid "SSL/TLS only"
 msgstr "Alleen SSL/TLS"
+
+msgid "Samba AD"
+msgstr "Samba AD"
+
+msgid "Samba Active Directory Domain Controller"
+msgstr "Samba Active Directory Domain Controller"
 
 #, php-format
 msgid ""
@@ -5420,8 +5495,8 @@ msgid ""
 "Space delimited set of IP or CIDR notation that permitted to access the "
 "WebGUI. (empty is the same network of LAN interface)"
 msgstr ""
-"Spaties gescheiden set IP of CIDR notatie die is toegestaan voor toegang tot "
-"de WebGUI. (leeg is hetzelfde netwerk LAN interface)"
+"Spaties gescheiden set IP of CIDR notatie die wordt toegestaan voor de "
+"toegang tot de WebGUI. (leeg is hetzelfde netwerk als de LAN interface)"
 
 msgid "Spanish"
 msgstr "Spaans"
@@ -7693,6 +7768,11 @@ msgstr ""
 "diensten met aanvullende pakketten die geen ondersteuning voor HAST volumes "
 "bieden niet worden gebruikt."
 
+msgid ""
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
+"together."
+msgstr ""
+
 msgid "When UPS switches to Low Battery"
 msgstr "Wanneer de UPS schakelt naar Laag Batterij Niveau"
 
@@ -7833,6 +7913,9 @@ msgstr ""
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr ""
 "U heeft minimaal %dMB RAM geheugen nodig om een iSCSI doel te gebruiken."
+
+msgid "You must initialize data before enabling."
+msgstr "U moet de data eerst initialiseren alvorens in te schakelen."
 
 msgid "You must select at least one authentication method."
 msgstr "U dient tenminste één verificatie methode te selecteren."
@@ -8017,6 +8100,9 @@ msgstr "succes."
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
+msgid "sysvol exist in path."
+msgstr "sysvol bestaat in pad."
+
 msgid "to"
 msgstr "naar"
 
@@ -8029,3 +8115,12 @@ msgstr "loskoppelen"
 #, php-format
 msgid "version:"
 msgstr "versie:"
+
+#~ msgid "DHCP can not be used for LAN interface."
+#~ msgstr "DHCP kan niet gebruikt worden voor de LAN interface."
+
+#~ msgid ""
+#~ "The admin password does not match. Please ensure the passwords match exactly."
+#~ msgstr ""
+#~ "De admin wachtwoord komt niet overeen. Zorg ervoor dat de wachtwoorden exact "
+#~ "overeenkomen."

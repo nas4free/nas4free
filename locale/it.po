@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"POT-Creation-Date: 2015-06-11 09:44+0000\n"
 "PO-Revision-Date: 2015-05-25 17:08+0000\n"
 "Last-Translator: Matteo <matteoangio5@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
-"X-Generator: Launchpad (build 17540)\n"
+"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 "X-Poedit-Country: ITALY\n"
 "Language: \n"
 "X-Poedit-Language: Italian\n"
@@ -470,6 +470,9 @@ msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr ""
 "Indirizzo del daemon remoto hastd. Deve essere un indirizzo IP statico."
 
+msgid "Admin password"
+msgstr ""
+
 msgid "Administration password"
 msgstr "Password di amministrazione"
 
@@ -537,6 +540,11 @@ msgstr "Albanese"
 
 msgid "All"
 msgstr "Tutto"
+
+msgid ""
+"All data in path is overwritten. Dedicated ZFS dataset is strongly "
+"recommended."
+msgstr ""
 
 msgid "All dirs"
 msgstr "Tutte le directory"
@@ -916,6 +924,9 @@ msgstr "CIFS/SMB disabilitato"
 msgid "CIFS/SMB informations"
 msgstr "Informazioni CIFS/SMB"
 
+msgid "CIFS/SMB is enabled."
+msgstr ""
+
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Cirillico)"
 
@@ -988,6 +999,9 @@ msgstr "Carico della CPU non ottenuto"
 msgid "Cannot get data about interface"
 msgstr "Non è possibile ottenere dati sull'interfaccia"
 
+msgid "Cannot use DHCP for LAN interface."
+msgstr ""
+
 msgid "Capacity"
 msgstr "Capacità"
 
@@ -1021,6 +1035,10 @@ msgstr "Canale"
 
 msgid "Charging Battery"
 msgstr "Batteria in carica"
+
+#, php-format
+msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
+msgstr ""
 
 msgid "Check interval"
 msgstr "Controlla l'intervallo"
@@ -1153,8 +1171,8 @@ msgstr "Conferma"
 msgid "Connected FTP users"
 msgstr "Utenti FTP connessi"
 
-msgid "Console menu"
-msgstr "Console menu"
+msgid "Console Menu"
+msgstr ""
 
 msgid "Console screensaver"
 msgstr "Screensaver della console"
@@ -1355,11 +1373,23 @@ msgstr "DAAP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DHCP cannot be used for LAN interface."
+msgstr ""
+
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Media Server"
+
+msgid "DNS domain"
+msgstr ""
+
+msgid "DNS forwarder"
+msgstr ""
+
+msgid "DNS server is empty."
+msgstr ""
 
 msgid "DNS settings"
 msgstr "Impostazioni DNS"
@@ -1922,6 +1952,9 @@ msgstr "Dominio"
 
 msgid "Domain controller name"
 msgstr "Nome del controllore del dominio"
+
+msgid "Domain have no 2nd level name."
+msgstr ""
 
 msgid "Domain name"
 msgstr "Nome Dominio"
@@ -2503,6 +2536,10 @@ msgstr "Creazione del file system in memoria fallita."
 msgid "Failed to execute cron job."
 msgstr "Esecuzione del job di cron fallita."
 
+#, php-format
+msgid "Failed to remove: %s"
+msgstr ""
+
 #, c-format
 msgid "Failed to send status report to: %s."
 msgstr "Invio fallito del report di stato a: %s."
@@ -2689,6 +2726,9 @@ msgstr "Impostazioni generali"
 msgid "Generate"
 msgstr "Genera"
 
+msgid "Generate password if leave empty."
+msgstr ""
+
 msgid "German"
 msgstr "Tedesco"
 
@@ -2874,12 +2914,6 @@ msgstr "Ungherese"
 
 msgid "I/O Timeout"
 msgstr "Timeout I/O"
-
-msgid "I/O errors"
-msgstr "Errori I/O"
-
-msgid "I/O packets"
-msgstr "Pacchetti I/O"
 
 msgid "I/O statistics"
 msgstr "Statistiche I/O"
@@ -3078,6 +3112,12 @@ msgstr "Nella maggior parte dei casi qui si utilizza 'public'."
 msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr "In modalità 'slave' è il nome (Identifier) dell'UPS 'master'."
 
+msgid "In/Out errors"
+msgstr ""
+
+msgid "In/Out packets"
+msgstr ""
+
 msgid "Include basic hardware information."
 msgstr "Includi informazioni semplici sull'hardware"
 
@@ -3124,6 +3164,9 @@ msgstr "Inizializza e cripta disco."
 
 msgid "Initializing"
 msgstr "Inizializzazione"
+
+msgid "Initializing..."
+msgstr ""
 
 msgid "Initiator Group"
 msgstr "Gruppo iniziatore"
@@ -3906,6 +3949,12 @@ msgstr "NON ANCORA DISPONIBILE"
 msgid "NT1"
 msgstr "NT1"
 
+msgid "NTP is not enabled."
+msgstr ""
+
+msgid "NTP must be enabled."
+msgstr ""
+
 msgid "NTP time server"
 msgstr "NTP time server"
 
@@ -3932,6 +3981,9 @@ msgstr ""
 
 msgid "Name of the variable."
 msgstr "Nome della variabile"
+
+msgid "NetBIOS domain"
+msgstr ""
 
 msgid "NetBIOS name"
 msgstr "Nome NetBIOS"
@@ -4142,6 +4194,9 @@ msgstr ""
 
 msgid "Not attached"
 msgstr "Non agganciato"
+
+msgid "Not found path."
+msgstr ""
 
 msgid "Note"
 msgstr "Nota"
@@ -4447,6 +4502,10 @@ msgstr "Scambio peer"
 
 msgid "Peer port"
 msgstr "Porta peer"
+
+#, php-format
+msgid "Permanent samba data path (e.g. %s)."
+msgstr ""
 
 msgid "Permit root login"
 msgstr "Consentire login a root"
@@ -4800,6 +4859,9 @@ msgstr "Mome del modulo remoto"
 msgid "Remote monitoring"
 msgstr "Monitoraggio remoto"
 
+msgid "Remote rsync daemon"
+msgstr ""
+
 msgid "Remote syslog server"
 msgstr "Server syslog remoto"
 
@@ -4943,6 +5005,9 @@ msgstr "Esegui come:"
 msgid "Run now"
 msgstr "Esegui ora"
 
+msgid "Run without requiring remote rsync daemon. (Disabled by default)"
+msgstr ""
+
 msgid "Running"
 msgstr "In Esecuzione"
 
@@ -4997,6 +5062,12 @@ msgstr "SSL/TLS"
 
 msgid "SSL/TLS only"
 msgstr "Solo SSL/TLS"
+
+msgid "Samba AD"
+msgstr ""
+
+msgid "Samba Active Directory Domain Controller"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -7646,6 +7717,11 @@ msgstr ""
 "pacchetti addizionali che non supportano un volume HAST non possono essere "
 "utilizzati."
 
+msgid ""
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
+"together."
+msgstr ""
+
 msgid "When UPS switches to Low Battery"
 msgstr "Quando l'UPS passa a batteria scarica"
 
@@ -7786,6 +7862,9 @@ msgstr "Si deve inserire lo stesso tipo di IP per rete e gateway."
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "Sono necessari almeno %dMB di RAM per utilizzare iSCSI target."
+
+msgid "You must initialize data before enabling."
+msgstr ""
 
 msgid "You must select at least one authentication method."
 msgstr "è necessario scegliere almeno un metodo di autenticazione."
@@ -7969,6 +8048,9 @@ msgstr "con successo."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "sysvol exist in path."
+msgstr ""
 
 msgid "to"
 msgstr "verso"

@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"POT-Creation-Date: 2015-06-11 09:44+0000\n"
 "PO-Revision-Date: 2015-05-12 18:52+0000\n"
 "Last-Translator: Anders Malm <anders.malm@brevet.se>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
-"X-Generator: Launchpad (build 17540)\n"
+"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 "X-Poedit-Country: SWEDEN\n"
 "Language: \n"
 "X-Poedit-Language: Swedish\n"
@@ -464,6 +464,9 @@ msgstr "Adress"
 msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "Adress till fjärr hastd demonen. Det måste vara en fast IP-adress."
 
+msgid "Admin password"
+msgstr ""
+
 msgid "Administration password"
 msgstr "Administrations lösenord"
 
@@ -530,6 +533,11 @@ msgstr "Albanien"
 
 msgid "All"
 msgstr "Alla"
+
+msgid ""
+"All data in path is overwritten. Dedicated ZFS dataset is strongly "
+"recommended."
+msgstr ""
 
 msgid "All dirs"
 msgstr "Alla kataloger"
@@ -899,6 +907,9 @@ msgstr "CIFS/SMB avaktiverad"
 msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB information"
 
+msgid "CIFS/SMB is enabled."
+msgstr ""
+
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Kyrilliskt)"
 
@@ -971,6 +982,9 @@ msgstr "Kan inte läsa CPU belastning"
 msgid "Cannot get data about interface"
 msgstr "Kan inte få data om gränssnittet"
 
+msgid "Cannot use DHCP for LAN interface."
+msgstr ""
+
 msgid "Capacity"
 msgstr "Kapacitet"
 
@@ -1005,6 +1019,10 @@ msgstr "Kanal"
 
 msgid "Charging Battery"
 msgstr "Laddar batteri"
+
+#, php-format
+msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
+msgstr ""
 
 msgid "Check interval"
 msgstr "Kontrollera intervall"
@@ -1136,8 +1154,8 @@ msgstr "Bekräftelse"
 msgid "Connected FTP users"
 msgstr "Anslutna FTP-användare"
 
-msgid "Console menu"
-msgstr "Konsollmeny"
+msgid "Console Menu"
+msgstr ""
 
 msgid "Console screensaver"
 msgstr "Konsollskärmsläckare"
@@ -1333,11 +1351,23 @@ msgstr "DAAP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DHCP cannot be used for LAN interface."
+msgstr ""
+
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Mediaserver"
+
+msgid "DNS domain"
+msgstr ""
+
+msgid "DNS forwarder"
+msgstr ""
+
+msgid "DNS server is empty."
+msgstr ""
 
 msgid "DNS settings"
 msgstr "DNS inställningar"
@@ -1893,6 +1923,9 @@ msgstr "Domän"
 
 msgid "Domain controller name"
 msgstr "Domänkontrollernamn"
+
+msgid "Domain have no 2nd level name."
+msgstr ""
 
 msgid "Domain name"
 msgstr "Domännamn"
@@ -2471,6 +2504,10 @@ msgstr "Misslyckades att skapa filsystemet i minnet."
 msgid "Failed to execute cron job."
 msgstr "Misslyckades med att köra cron-jobb."
 
+#, php-format
+msgid "Failed to remove: %s"
+msgstr ""
+
 #, c-format
 msgid "Failed to send status report to: %s."
 msgstr "Misslyckades att sända statusrapport till %s."
@@ -2655,6 +2692,9 @@ msgstr "Allmän Inställning"
 
 msgid "Generate"
 msgstr "Generera"
+
+msgid "Generate password if leave empty."
+msgstr ""
 
 msgid "German"
 msgstr "Tyska"
@@ -2842,12 +2882,6 @@ msgstr "Ungerska"
 
 msgid "I/O Timeout"
 msgstr "I/O Timeout"
-
-msgid "I/O errors"
-msgstr "In/ut-fel"
-
-msgid "I/O packets"
-msgstr "In/ut-paket"
 
 msgid "I/O statistics"
 msgstr "I/O statistik"
@@ -3039,6 +3073,12 @@ msgstr "I dom flesta fallen så används 'public' här."
 msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr "I slav läge är det UPS namnet (Identifier) från UPS mastern."
 
+msgid "In/Out errors"
+msgstr ""
+
+msgid "In/Out packets"
+msgstr ""
+
 msgid "Include basic hardware information."
 msgstr "Inkludera grundläggande hårdvaruinformation."
 
@@ -3085,6 +3125,9 @@ msgstr "Initiera och kryptera disk."
 
 msgid "Initializing"
 msgstr "Initierar"
+
+msgid "Initializing..."
+msgstr ""
 
 msgid "Initiator Group"
 msgstr "Initieringsgruppen"
@@ -3862,6 +3905,12 @@ msgstr "INTE TILLGÄNGLIG ÄN"
 msgid "NT1"
 msgstr "NT1"
 
+msgid "NTP is not enabled."
+msgstr ""
+
+msgid "NTP must be enabled."
+msgstr ""
+
 msgid "NTP time server"
 msgstr "NTP-tidsserver"
 
@@ -3888,6 +3937,9 @@ msgstr ""
 
 msgid "Name of the variable."
 msgstr "Namn på variabeln."
+
+msgid "NetBIOS domain"
+msgstr ""
 
 msgid "NetBIOS name"
 msgstr "NetBIOS namn"
@@ -4097,6 +4149,9 @@ msgstr ""
 
 msgid "Not attached"
 msgstr "Inte tillkopplad"
+
+msgid "Not found path."
+msgstr ""
 
 msgid "Note"
 msgstr "Observera"
@@ -4400,6 +4455,10 @@ msgstr "Klient/Part utväxling"
 
 msgid "Peer port"
 msgstr "Klient/Part port"
+
+#, php-format
+msgid "Permanent samba data path (e.g. %s)."
+msgstr ""
 
 msgid "Permit root login"
 msgstr "Tillåt root inloggning"
@@ -4751,6 +4810,9 @@ msgstr "Namn för fjärrmodul"
 msgid "Remote monitoring"
 msgstr "Fjärrövervakning"
 
+msgid "Remote rsync daemon"
+msgstr ""
+
 msgid "Remote syslog server"
 msgstr "Fjärrsyslogserver"
 
@@ -4894,6 +4956,9 @@ msgstr "Kör som"
 msgid "Run now"
 msgstr "Kör nu"
 
+msgid "Run without requiring remote rsync daemon. (Disabled by default)"
+msgstr ""
+
 msgid "Running"
 msgstr "Kör"
 
@@ -4948,6 +5013,12 @@ msgstr "SSL/TLS"
 
 msgid "SSL/TLS only"
 msgstr "Endast SSL/TLS"
+
+msgid "Samba AD"
+msgstr ""
+
+msgid "Samba Active Directory Domain Controller"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -7556,6 +7627,11 @@ msgstr ""
 "När HAST är aktiverat kan lokala enheter, lokala tjänster och extra paket "
 "som inte stödjer HAST-volymer inte användas."
 
+msgid ""
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
+"together."
+msgstr ""
+
 msgid "When UPS switches to Low Battery"
 msgstr "När UPS växlar till lågt batteri"
 
@@ -7693,6 +7769,9 @@ msgstr "Du måste ange samma IP-typ för nät och gateway."
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "Du måste ha minst %d MB RAM-minne för att använda iSCSI-mål."
+
+msgid "You must initialize data before enabling."
+msgstr ""
 
 msgid "You must select at least one authentication method."
 msgstr "Du måste välja åtminstone en autentiseringsmetod."
@@ -7876,6 +7955,9 @@ msgstr "lyckades"
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "sysvol exist in path."
+msgstr ""
 
 msgid "to"
 msgstr "till"

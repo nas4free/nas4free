@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-04 21:26+0000\n"
-"PO-Revision-Date: 2015-06-04 12:56+0000\n"
+"POT-Creation-Date: 2015-06-11 09:44+0000\n"
+"PO-Revision-Date: 2015-06-11 00:54+0000\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
-"X-Generator: Launchpad (build 17540)\n"
+"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
 "X-Poedit-Language: Japanese\n"
@@ -448,6 +448,9 @@ msgstr "アドレス"
 msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "リモート hastd デーモンのアドレス。固定IPアドレスでなければいけません。"
 
+msgid "Admin password"
+msgstr "管理者パスワード"
+
 msgid "Administration password"
 msgstr "管理者パスワード"
 
@@ -513,6 +516,11 @@ msgstr "アルバニア語"
 
 msgid "All"
 msgstr "全て"
+
+msgid ""
+"All data in path is overwritten. Dedicated ZFS dataset is strongly "
+"recommended."
+msgstr "パス内のすべてのデータが上書きされます。専用のZFSデータセットを強くお勧めします。"
 
 msgid "All dirs"
 msgstr "すべてのディレクトリ"
@@ -869,6 +877,9 @@ msgstr "CIFS/SMB は無効です"
 msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB の情報"
 
+msgid "CIFS/SMB is enabled."
+msgstr "CIFS/SMB が有効になっています。"
+
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (キリル)"
 
@@ -941,6 +952,9 @@ msgstr "CPUロードを取得できません"
 msgid "Cannot get data about interface"
 msgstr "インタフェースのデータを取得出来ません"
 
+msgid "Cannot use DHCP for LAN interface."
+msgstr "LANインタフェースに DHCP は利用できません。"
+
 msgid "Capacity"
 msgstr "容量"
 
@@ -973,6 +987,10 @@ msgstr "チャネル"
 
 msgid "Charging Battery"
 msgstr "バッテリー充電中"
+
+#, php-format
+msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
+msgstr "初期化前に <a href=\"%s\">システム|基本設定</a> を確認してください。"
 
 msgid "Check interval"
 msgstr "チェック間隔"
@@ -1099,7 +1117,7 @@ msgstr "確認"
 msgid "Connected FTP users"
 msgstr "FTP 接続中のユーザ"
 
-msgid "Console menu"
+msgid "Console Menu"
 msgstr "コンソールメニュー"
 
 msgid "Console screensaver"
@@ -1288,11 +1306,23 @@ msgstr "DAAP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DHCP cannot be used for LAN interface."
+msgstr "DHCPはLANインタフェースに使用することはできません。"
+
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP メディアサーバー"
+
+msgid "DNS domain"
+msgstr "DNS ドメイン"
+
+msgid "DNS forwarder"
+msgstr "DNS フォワーダ"
+
+msgid "DNS server is empty."
+msgstr "DNS サーバが空欄です。"
 
 msgid "DNS settings"
 msgstr "DNS の設定"
@@ -1830,6 +1860,9 @@ msgstr "ドメイン"
 
 msgid "Domain controller name"
 msgstr "ドメインコントローラ名"
+
+msgid "Domain have no 2nd level name."
+msgstr "ドメインにセカンドレベル名がありません。"
 
 msgid "Domain name"
 msgstr "ドメイン名"
@@ -2387,6 +2420,10 @@ msgstr "インメモリファイルシステムの作成に失敗しました。
 msgid "Failed to execute cron job."
 msgstr "Cron ジョブの実行に失敗しました。"
 
+#, php-format
+msgid "Failed to remove: %s"
+msgstr "削除に失敗しました: %s"
+
 #, c-format
 msgid "Failed to send status report to: %s."
 msgstr "ステータスレポートの送信に失敗しました。宛て先: %s"
@@ -2566,6 +2603,9 @@ msgstr "基本設定"
 
 msgid "Generate"
 msgstr "生成"
+
+msgid "Generate password if leave empty."
+msgstr "空欄のままにしておくと、パスワードを生成します。"
 
 msgid "German"
 msgstr "ドイツ語"
@@ -2747,12 +2787,6 @@ msgstr "ハンガリー語"
 msgid "I/O Timeout"
 msgstr "I/O タイムアウト"
 
-msgid "I/O errors"
-msgstr "I/O エラー"
-
-msgid "I/O packets"
-msgstr "I/O パケット"
-
 msgid "I/O statistics"
 msgstr "I/O 統計"
 
@@ -2928,6 +2962,12 @@ msgstr "ほとんどの場合 'public' が使われます。"
 msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr "スレーブモードではマスターでのUPS名(識別子)になります。"
 
+msgid "In/Out errors"
+msgstr "In/Out エラー"
+
+msgid "In/Out packets"
+msgstr "In/Out パケット"
+
 msgid "Include basic hardware information."
 msgstr "基本的なハードウェア情報を含む。"
 
@@ -2972,6 +3012,9 @@ msgstr "ディスクの初期化と暗号化"
 
 msgid "Initializing"
 msgstr "初期化中"
+
+msgid "Initializing..."
+msgstr "初期化しています..."
 
 msgid "Initiator Group"
 msgstr "イニシエータグループ"
@@ -3718,6 +3761,12 @@ msgstr "まだ利用可能ではありません"
 msgid "NT1"
 msgstr "NT1"
 
+msgid "NTP is not enabled."
+msgstr "NTP が有効になっていません。"
+
+msgid "NTP must be enabled."
+msgstr "NTP を有効にする必要があります。"
+
 msgid "NTP time server"
 msgstr "NTP サーバ"
 
@@ -3742,6 +3791,9 @@ msgstr "サーバ名。フィールドが空の場合はデフォルトのサー
 
 msgid "Name of the variable."
 msgstr "変数の名前"
+
+msgid "NetBIOS domain"
+msgstr "NetBIOS ドメイン"
 
 msgid "NetBIOS name"
 msgstr "NetBIOS 名"
@@ -3931,6 +3983,9 @@ msgstr ""
 
 msgid "Not attached"
 msgstr "接続されていません"
+
+msgid "Not found path."
+msgstr "パスが見つかりません。"
 
 msgid "Note"
 msgstr "注意"
@@ -4220,6 +4275,10 @@ msgstr "ピアエクスチェンジ"
 
 msgid "Peer port"
 msgstr "ピアポート"
+
+#, php-format
+msgid "Permanent samba data path (e.g. %s)."
+msgstr "恒久的な Sambaデータのパス。(例 %s)"
 
 msgid "Permit root login"
 msgstr "root ログインを許可"
@@ -4561,6 +4620,9 @@ msgstr "リモートモジュール名"
 msgid "Remote monitoring"
 msgstr "リモートモニタリング"
 
+msgid "Remote rsync daemon"
+msgstr "リモート rsync デーモン"
+
 msgid "Remote syslog server"
 msgstr "リモート syslog サーバ"
 
@@ -4700,6 +4762,9 @@ msgstr "実行ユーザ"
 msgid "Run now"
 msgstr "今すぐ実行"
 
+msgid "Run without requiring remote rsync daemon. (Disabled by default)"
+msgstr "リモート rsync デーモンを必要とせずに実行します。(デフォルトは無効)"
+
 msgid "Running"
 msgstr "動作中"
 
@@ -4754,6 +4819,12 @@ msgstr "SSL/TLS"
 
 msgid "SSL/TLS only"
 msgstr "SSL/TLS 専用"
+
+msgid "Samba AD"
+msgstr "Samba AD"
+
+msgid "Samba Active Directory Domain Controller"
+msgstr "Samba Active Directory ドメインコントローラ"
 
 #, php-format
 msgid ""
@@ -7132,6 +7203,11 @@ msgid ""
 msgstr ""
 "HASTを有効にすると、HASTボリュームをサポートしていないローカルデバイス、ローカルサービス、追加パッケージは利用することが出来なくなります。"
 
+msgid ""
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
+"together."
+msgstr "Samba ADを有効にすると、スタンドアローンのCIFS/ SMBファイル共有を一緒に使用することはできません。"
+
 msgid "When UPS switches to Low Battery"
 msgstr "バッテリー切れになるまでの残り時間"
 
@@ -7256,6 +7332,9 @@ msgstr "ネットワークとゲートウェイには同じ IP 形式を入力�
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "iSCSI ターゲット機能を有効にするには最低 %dMB の RAM が必要になります。"
+
+msgid "You must initialize data before enabling."
+msgstr "有効にする前にデータを初期化する必要があります。"
 
 msgid "You must select at least one authentication method."
 msgstr "少なくとも 1つの認証方法を選択して下さい。"
@@ -7436,6 +7515,9 @@ msgstr "成功しました。"
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
+msgid "sysvol exist in path."
+msgstr "パスの中にすでに sysvol が存在します。"
+
 msgid "to"
 msgstr "から"
 
@@ -7448,3 +7530,15 @@ msgstr "アンマウント"
 #, php-format
 msgid "version:"
 msgstr "バージョン:"
+
+#~ msgid "DHCP can not be used for LAN interface."
+#~ msgstr "LANインタフェースに DHCP は利用できません。"
+
+#~ msgid ""
+#~ "The admin password does not match. Please ensure the passwords match exactly."
+#~ msgstr "入力したパスワードが一致しません。パスワードを再度確認して下さい。"
+
+#~ msgid ""
+#~ "When Samba AD is enabled, stand-alone CIFS/SMB file sharing can not use "
+#~ "together."
+#~ msgstr "Samba AD を有効にすると、スタンドアローンの CIFS/SMB ファイル共有は一緒に利用できなくなります。"

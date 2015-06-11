@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-04 21:26+0000\n"
-"PO-Revision-Date: 2015-06-02 19:01+0000\n"
+"POT-Creation-Date: 2015-06-11 09:44+0000\n"
+"PO-Revision-Date: 2015-06-08 19:05+0000\n"
 "Last-Translator: Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
-"X-Generator: Launchpad (build 17540)\n"
+"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 "Language: hu_HU\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -111,7 +111,7 @@ msgstr ""
 "létrejön)."
 
 msgid "4KB wrapper"
-msgstr ""
+msgstr "4KB wrapper"
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN címke (1 és 4094 közötti érték)."
@@ -470,6 +470,9 @@ msgstr "Cím"
 msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "Remote hastd daemon címe. Statikus IP címnek kell lennie."
 
+msgid "Admin password"
+msgstr ""
+
 msgid "Administration password"
 msgstr "Rendszergazdai jelszó"
 
@@ -537,6 +540,11 @@ msgstr "Albán"
 
 msgid "All"
 msgstr "Minden"
+
+msgid ""
+"All data in path is overwritten. Dedicated ZFS dataset is strongly "
+"recommended."
+msgstr ""
 
 msgid "All dirs"
 msgstr "Minden könyvtár"
@@ -909,6 +917,9 @@ msgstr "CIFS/SMB kikapcsolva"
 msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB információk"
 
+msgid "CIFS/SMB is enabled."
+msgstr ""
+
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (cirill)"
 
@@ -981,6 +992,9 @@ msgstr "Nincs CPU töltés"
 msgid "Cannot get data about interface"
 msgstr "Nem lehet adatot nyerni az interfészről"
 
+msgid "Cannot use DHCP for LAN interface."
+msgstr ""
+
 msgid "Capacity"
 msgstr "Kapacitás"
 
@@ -1015,6 +1029,10 @@ msgstr "Csatorna"
 
 msgid "Charging Battery"
 msgstr "Akkumulátor töltése"
+
+#, php-format
+msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
+msgstr ""
 
 msgid "Check interval"
 msgstr "Időköz ellenőrzése"
@@ -1146,8 +1164,8 @@ msgstr "Megerősítés"
 msgid "Connected FTP users"
 msgstr "Kapcsolódott FTP felhasználók"
 
-msgid "Console menu"
-msgstr "Konzol menü"
+msgid "Console Menu"
+msgstr "Kozol menü"
 
 msgid "Console screensaver"
 msgstr "Konzol képernyőkímélő"
@@ -1255,10 +1273,10 @@ msgid "Count"
 msgstr "Számláló"
 
 msgid "Create 4KB wrapper (nop device)."
-msgstr ""
+msgstr "4KB wrapper létrehozása (nop eszköz)"
 
 msgid "Create ZFS on GPT partition"
-msgstr ""
+msgstr "ZFS létrehozása GPT partíción"
 
 msgid "Create and initialize RAID."
 msgstr "RAID létrehozása és inicializálása."
@@ -1347,11 +1365,23 @@ msgstr "DAAP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DHCP cannot be used for LAN interface."
+msgstr ""
+
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
 
 msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Média zzerver"
+
+msgid "DNS domain"
+msgstr ""
+
+msgid "DNS forwarder"
+msgstr ""
+
+msgid "DNS server is empty."
+msgstr ""
 
 msgid "DNS settings"
 msgstr "DNS beállítások"
@@ -1907,6 +1937,9 @@ msgstr "Tartomány"
 msgid "Domain controller name"
 msgstr "Tartományvezérlő neve"
 
+msgid "Domain have no 2nd level name."
+msgstr ""
+
 msgid "Domain name"
 msgstr "Tartománynév"
 
@@ -2284,16 +2317,16 @@ msgid "Enabled"
 msgstr "Engedélyezve"
 
 msgid "Encrypt password"
-msgstr ""
+msgstr "Titkosító jelszó"
 
 msgid "Encrypt password (confirmed)"
-msgstr ""
+msgstr "Titkosító jelszó (megerősítő)"
 
 msgid "Encrypted"
 msgstr "Titkosított"
 
 msgid "Encrypted configuration is automatically gzipped."
-msgstr ""
+msgstr "Titkosított konfigurációt automatikusan gzip-pel tömörítjük."
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -2482,6 +2515,10 @@ msgstr "Memória fájlrendszer létrehozása sikertelen."
 msgid "Failed to execute cron job."
 msgstr "Hiba az ütemezett feladat végrehajtása közben."
 
+#, php-format
+msgid "Failed to remove: %s"
+msgstr ""
+
 #, c-format
 msgid "Failed to send status report to: %s."
 msgstr "Az állapot jelentés küldése meghiúsult ehhez: %s."
@@ -2668,6 +2705,9 @@ msgstr "Általános beállítások"
 msgid "Generate"
 msgstr "Generálás"
 
+msgid "Generate password if leave empty."
+msgstr ""
+
 msgid "German"
 msgstr "Német"
 
@@ -2852,12 +2892,6 @@ msgstr "Magyar"
 
 msgid "I/O Timeout"
 msgstr "I/O időtúllépés"
-
-msgid "I/O errors"
-msgstr "I/O hibák"
-
-msgid "I/O packets"
-msgstr "I/O csomagok"
 
 msgid "I/O statistics"
 msgstr "I/O statisztika"
@@ -3052,6 +3086,12 @@ msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr ""
 "A szünetmentes neve (azonosítója) szolga mód esetén az szünetmentes mesteren."
 
+msgid "In/Out errors"
+msgstr "Be/Ki hibák"
+
+msgid "In/Out packets"
+msgstr "Be/Ki csomagok"
+
 msgid "Include basic hardware information."
 msgstr "A jelentés tartalmazza az alap hardverinfromációkat."
 
@@ -3091,6 +3131,9 @@ msgstr "Lemez inicializálása és titkosítása."
 
 msgid "Initializing"
 msgstr "Inicializálás"
+
+msgid "Initializing..."
+msgstr ""
 
 msgid "Initiator Group"
 msgstr "Kezdeményező csoport"
@@ -3867,6 +3910,12 @@ msgstr "MÉG NEM ELÉRHETŐ"
 msgid "NT1"
 msgstr "NT1"
 
+msgid "NTP is not enabled."
+msgstr ""
+
+msgid "NTP must be enabled."
+msgstr ""
+
 msgid "NTP time server"
 msgstr "NTP idő szerver"
 
@@ -3892,6 +3941,9 @@ msgstr ""
 
 msgid "Name of the variable."
 msgstr "A változó neve."
+
+msgid "NetBIOS domain"
+msgstr ""
 
 msgid "NetBIOS name"
 msgstr "NetBIOS név"
@@ -4102,6 +4154,9 @@ msgstr ""
 
 msgid "Not attached"
 msgstr "Nem csatolt"
+
+msgid "Not found path."
+msgstr ""
 
 msgid "Note"
 msgstr "Megjegyzés"
@@ -4409,6 +4464,10 @@ msgstr "Peer csere"
 
 msgid "Peer port"
 msgstr "Peer port"
+
+#, php-format
+msgid "Permanent samba data path (e.g. %s)."
+msgstr ""
 
 msgid "Permit root login"
 msgstr "root bejelentkezés engedélyezése"
@@ -4761,6 +4820,9 @@ msgstr "Távoli modul neve"
 msgid "Remote monitoring"
 msgstr "Távoli megfigyelés"
 
+msgid "Remote rsync daemon"
+msgstr ""
+
 msgid "Remote syslog server"
 msgstr "Távoli napló szerver"
 
@@ -4905,6 +4967,9 @@ msgstr "Futtatás mint"
 msgid "Run now"
 msgstr "Futtatás most"
 
+msgid "Run without requiring remote rsync daemon. (Disabled by default)"
+msgstr ""
+
 msgid "Running"
 msgstr "Fut"
 
@@ -4960,6 +5025,12 @@ msgstr "SSL/TLS"
 
 msgid "SSL/TLS only"
 msgstr "Csak SSL/TLS"
+
+msgid "Samba AD"
+msgstr ""
+
+msgid "Samba Active Directory Domain Controller"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -5984,6 +6055,8 @@ msgid ""
 "The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
+"A megerősítő jelszó nem ugyanaz. Kérem ellenőrizze, hogy a jelszavak "
+"pontosan megegyezzenek."
 
 msgid "The credentials with which to bind."
 msgstr "A hitelesítő, amellyel kötés megvalósul."
@@ -6931,6 +7004,7 @@ msgstr ""
 
 msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
 msgstr ""
+"Ez NTFS acl-eket biztosít ZFS acl támogatás nélkül, például UFS számára."
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr "Ez ZFS ACL támogatást biztosít (csak ZFS esetén)."
@@ -7568,6 +7642,11 @@ msgstr ""
 "szolgáltatások és további csomagokat, amelyek nem támogatják HAST kötet "
 "használatát, nem lehet használni."
 
+msgid ""
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
+"together."
+msgstr ""
+
 msgid "When UPS switches to Low Battery"
 msgstr "Amikor a szünetmentes alacsony tápellátásra kapcsol."
 
@@ -7703,6 +7782,9 @@ msgstr "Ugyanazt az IP-t kell beállítanod a hálózathoz és az átjáróhoz"
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "Legalább %dMB RAM-ra van szükség iSCSI target használatához"
+
+msgid "You must initialize data before enabling."
+msgstr ""
 
 msgid "You must select at least one authentication method."
 msgstr "Legalább egy hitelesítési eljárást ki kell választanod."
@@ -7885,6 +7967,9 @@ msgstr "sikeresen."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "sysvol exist in path."
+msgstr ""
 
 msgid "to"
 msgstr "eddig:"

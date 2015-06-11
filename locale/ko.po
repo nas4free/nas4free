@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-04 21:26+0000\n"
+"POT-Creation-Date: 2015-06-11 09:44+0000\n"
 "PO-Revision-Date: 2014-11-17 04:06+0000\n"
 "Last-Translator: NAS4Free Developer <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-05 17:28+0000\n"
-"X-Generator: Launchpad (build 17540)\n"
+"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
+"X-Generator: Launchpad (build 17549)\n"
 "X-Poedit-Country: KOREA\n"
 "Language: \n"
 "X-Poedit-Language: Korean\n"
@@ -442,6 +442,9 @@ msgstr "주소"
 msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr ""
 
+msgid "Admin password"
+msgstr ""
+
 msgid "Administration password"
 msgstr "관리 비밀번호"
 
@@ -500,6 +503,11 @@ msgstr "알바니아어"
 
 msgid "All"
 msgstr "모두"
+
+msgid ""
+"All data in path is overwritten. Dedicated ZFS dataset is strongly "
+"recommended."
+msgstr ""
 
 msgid "All dirs"
 msgstr "모든 디렉터리"
@@ -855,6 +863,9 @@ msgstr "CIFS/SMB 비활성화"
 msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB 정보"
 
+msgid "CIFS/SMB is enabled."
+msgstr ""
+
 msgid "CP1251 (Cyrillic)"
 msgstr ""
 
@@ -927,6 +938,9 @@ msgstr ""
 msgid "Cannot get data about interface"
 msgstr "인터페이스에 관한 데이터를 얻을 수 없습니다."
 
+msgid "Cannot use DHCP for LAN interface."
+msgstr ""
+
 msgid "Capacity"
 msgstr "용량"
 
@@ -958,6 +972,10 @@ msgid "Channel"
 msgstr "채널"
 
 msgid "Charging Battery"
+msgstr ""
+
+#, php-format
+msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
 msgstr ""
 
 msgid "Check interval"
@@ -1082,8 +1100,8 @@ msgstr "확인"
 msgid "Connected FTP users"
 msgstr "연결된 FTP 사용자들"
 
-msgid "Console menu"
-msgstr "콘솔 메뉴"
+msgid "Console Menu"
+msgstr ""
 
 msgid "Console screensaver"
 msgstr "콘솔 스크린세이버"
@@ -1260,10 +1278,22 @@ msgstr "DAAP"
 msgid "DHCP"
 msgstr "DHCP"
 
+msgid "DHCP cannot be used for LAN interface."
+msgstr ""
+
 msgid "DLNA/UPnP"
 msgstr ""
 
 msgid "DLNA/UPnP Media Server"
+msgstr ""
+
+msgid "DNS domain"
+msgstr ""
+
+msgid "DNS forwarder"
+msgstr ""
+
+msgid "DNS server is empty."
 msgstr ""
 
 msgid "DNS settings"
@@ -1798,6 +1828,9 @@ msgstr "도메인"
 
 msgid "Domain controller name"
 msgstr "도메인 컨트롤러 명"
+
+msgid "Domain have no 2nd level name."
+msgstr ""
 
 msgid "Domain name"
 msgstr "도메인 명"
@@ -2356,6 +2389,10 @@ msgstr "in-memory 파일 시스템을 생성하는 데에 실패했습니다."
 msgid "Failed to execute cron job."
 msgstr "cron 작업 실행에 실패함."
 
+#, php-format
+msgid "Failed to remove: %s"
+msgstr ""
+
 #, c-format
 msgid "Failed to send status report to: %s."
 msgstr "%s에 상태 보고서를 전송하는 데에 실패했습니다."
@@ -2536,6 +2573,9 @@ msgstr "일반 설정"
 msgid "Generate"
 msgstr "생성하기"
 
+msgid "Generate password if leave empty."
+msgstr ""
+
 msgid "German"
 msgstr "독일어"
 
@@ -2714,12 +2754,6 @@ msgstr "헝가리어"
 msgid "I/O Timeout"
 msgstr "I/O 타임아웃"
 
-msgid "I/O errors"
-msgstr "I/O 에러"
-
-msgid "I/O packets"
-msgstr "I/O 패킷"
-
 msgid "I/O statistics"
 msgstr "I/O 통계"
 
@@ -2893,6 +2927,12 @@ msgstr "대부분의 경우 여기에는 'public'이 이용됩니다."
 msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr ""
 
+msgid "In/Out errors"
+msgstr ""
+
+msgid "In/Out packets"
+msgstr ""
+
 msgid "Include basic hardware information."
 msgstr "기본 하드웨어 정보 포함."
 
@@ -2937,6 +2977,9 @@ msgstr "디스크를 초기화하고 암호화합니다."
 
 msgid "Initializing"
 msgstr "초기화 중"
+
+msgid "Initializing..."
+msgstr ""
 
 msgid "Initiator Group"
 msgstr "개시자 그룹"
@@ -3680,6 +3723,12 @@ msgstr "아직 이용할 수 없음"
 msgid "NT1"
 msgstr ""
 
+msgid "NTP is not enabled."
+msgstr ""
+
+msgid "NTP must be enabled."
+msgstr ""
+
 msgid "NTP time server"
 msgstr "NTP 타임 서버"
 
@@ -3704,6 +3753,9 @@ msgstr "서버의 이름. 이 난이 비어 있으면 기본 서버가 명세 �
 
 msgid "Name of the variable."
 msgstr "변수의 이름."
+
+msgid "NetBIOS domain"
+msgstr ""
 
 msgid "NetBIOS name"
 msgstr "NetBIOS 명"
@@ -3893,6 +3945,9 @@ msgstr ""
 
 msgid "Not attached"
 msgstr "부착되지 않음"
+
+msgid "Not found path."
+msgstr ""
 
 msgid "Note"
 msgstr "참조"
@@ -4180,6 +4235,10 @@ msgstr "피어 교환"
 
 msgid "Peer port"
 msgstr "피어 포트"
+
+#, php-format
+msgid "Permanent samba data path (e.g. %s)."
+msgstr ""
 
 msgid "Permit root login"
 msgstr "root 로그인 허용"
@@ -4521,6 +4580,9 @@ msgstr "원격 모듈 명"
 msgid "Remote monitoring"
 msgstr "원격 모니터링"
 
+msgid "Remote rsync daemon"
+msgstr ""
+
 msgid "Remote syslog server"
 msgstr "원격 syslog 서버"
 
@@ -4660,6 +4722,9 @@ msgstr ""
 msgid "Run now"
 msgstr "지금 실행"
 
+msgid "Run without requiring remote rsync daemon. (Disabled by default)"
+msgstr ""
+
 msgid "Running"
 msgstr "실행 중"
 
@@ -4712,6 +4777,12 @@ msgstr "SSL/TLS"
 
 msgid "SSL/TLS only"
 msgstr "SSL/TLS만"
+
+msgid "Samba AD"
+msgstr ""
+
+msgid "Samba Active Directory Domain Controller"
+msgstr ""
 
 #, php-format
 msgid ""
@@ -7067,6 +7138,11 @@ msgid ""
 "additional packages which do not support HAST volume cannot be used."
 msgstr ""
 
+msgid ""
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
+"together."
+msgstr ""
+
 msgid "When UPS switches to Low Battery"
 msgstr ""
 
@@ -7186,6 +7262,9 @@ msgstr "네트워크와 게이트웨이에 동일한 IP 타입을 입력해야 �
 #, php-format
 msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "iSCSI 타젯을 이용하려면 최소 %dMB 이상의 램이 있어야 합니다."
+
+msgid "You must initialize data before enabling."
+msgstr ""
 
 msgid "You must select at least one authentication method."
 msgstr "최소 한 개 이상의 인증 방법을 선택해야 합니다."
@@ -7365,6 +7444,9 @@ msgstr "성공적으로."
 
 msgid "sysctl.conf"
 msgstr "sysctl.conf"
+
+msgid "sysvol exist in path."
+msgstr ""
 
 msgid "to"
 msgstr ""
