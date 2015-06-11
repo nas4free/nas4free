@@ -386,8 +386,10 @@ sambaad_mkconf_cmd()
 		-o "smb passwd file = ${_path}/private/smbpasswd" -n \
 		-o "usershare path = ${_path}/usersharesmbpasswd" -n \
 		-v "concat('dns forwarder = ',//sambaad/dns_forwarder)" -n \
-		-o "server services = rpc, nbt, wrepl, ldap, cldap, kdc, drepl, winbind, ntp_signd, kcc, dnsupdate, dns, smb" -n \
-		-o "dcerpc endpoint servers = epmapper, wkssvc, rpcecho, samr, netlogon, lsarpc, spoolss, drsuapi, dssetup, unixinfo, browser, eventlog6, backupkey, dnsserver, winreg, srvsvc" -n \
+		-i "//sambaad/fstype[. = 'ntvfs']" \
+			-o "server services = rpc, nbt, wrepl, ldap, cldap, kdc, drepl, winbind, ntp_signd, kcc, dnsupdate, dns, smb" -n \
+			-o "dcerpc endpoint servers = epmapper, wkssvc, rpcecho, samr, netlogon, lsarpc, spoolss, drsuapi, dssetup, unixinfo, browser, eventlog6, backupkey, dnsserver, winreg, srvsvc" -n \
+		-b \
 		-o "idmap_ldb:use rfc2307 = yes" -n \
 		-o "nsupdate command = /usr/local/bin/samba-nsupdate -g" -n \
 		-n \

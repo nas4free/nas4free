@@ -96,6 +96,7 @@ $pconfig['dns_domain'] = $config['sambaad']['dns_domain'];
 $pconfig['netbios_domain'] = $config['sambaad']['netbios_domain'];
 $pconfig['dns_forwarder'] = $config['sambaad']['dns_forwarder'];
 $pconfig['path'] = $config['sambaad']['path'];
+$pconfig['fstype'] = $config['sambaad']['fstype'];
 $realm = strtoupper($pconfig['dns_domain']);
 $hostname = $config['system']['hostname'];
 $netbiosname = strtoupper($config['system']['hostname']);
@@ -140,6 +141,7 @@ $(document).ready(function(){
 	<?php html_text("dns_domain", gettext("DNS domain"), htmlspecialchars($pconfig['dns_domain']));?>
 	<?php html_text("netbios_domain", gettext("NetBIOS domain"), htmlspecialchars($pconfig['netbios_domain']));?>
 	<?php html_text("path", gettext("Path"), htmlspecialchars($pconfig['path']));?>
+	<?php html_text("fstype", gettext("Fileserver"), htmlspecialchars($pconfig['fstype']));?>
 	</table>
 	<div id="submit">
 	  <input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" />
