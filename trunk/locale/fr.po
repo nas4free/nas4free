@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-11 09:44+0000\n"
-"PO-Revision-Date: 2015-06-08 10:15+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2015-06-11 23:41+0000\n"
+"PO-Revision-Date: 2015-06-11 15:09+0000\n"
+"Last-Translator: sleid <jeanluc.fraysse@orange.fr>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
-"X-Generator: Launchpad (build 17549)\n"
+"X-Launchpad-Export-Date: 2015-06-11 19:12+0000\n"
+"X-Generator: Launchpad (build 17557)\n"
 "X-Poedit-Country: FRANCE\n"
 "Language: \n"
 "X-Poedit-Language: French\n"
@@ -476,7 +476,7 @@ msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "Adresse du daemon hastd distant. Doit être un adresse IP statique."
 
 msgid "Admin password"
-msgstr ""
+msgstr "Mot de passe de l'administrateur"
 
 msgid "Administration password"
 msgstr "Mot de passe administratif"
@@ -552,6 +552,8 @@ msgid ""
 "All data in path is overwritten. Dedicated ZFS dataset is strongly "
 "recommended."
 msgstr ""
+"Toutes les données du répertoire sont écrasées. Un jeu de données ZFS dédié "
+"est fortement recommandé."
 
 msgid "All dirs"
 msgstr "Tous les répertoires"
@@ -929,7 +931,7 @@ msgid "CIFS/SMB informations"
 msgstr "Informations CIFS/SMB"
 
 msgid "CIFS/SMB is enabled."
-msgstr ""
+msgstr "CIFS/SMB est activé"
 
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Cyrillique)"
@@ -1006,7 +1008,7 @@ msgid "Cannot get data about interface"
 msgstr "Impossible de collecter des données sur cette interface"
 
 msgid "Cannot use DHCP for LAN interface."
-msgstr ""
+msgstr "Ne peut utiliser DHCP pour l'interface réseau"
 
 msgid "Capacity"
 msgstr "Capacité"
@@ -1045,6 +1047,7 @@ msgstr "Charge de Batterie"
 #, php-format
 msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
 msgstr ""
+"Vérifier <a href=\"%s\">Système|Général Setup</a> avant d'initialiser."
 
 msgid "Check interval"
 msgstr "Périodicité de contrôle"
@@ -1382,7 +1385,7 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DHCP cannot be used for LAN interface."
-msgstr ""
+msgstr "DHCP ne peut être utilisé pour l'interface réseau."
 
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
@@ -1391,13 +1394,13 @@ msgid "DLNA/UPnP Media Server"
 msgstr "Serveur de médias DLNA/UPnP"
 
 msgid "DNS domain"
-msgstr ""
+msgstr "Domaine DNS"
 
 msgid "DNS forwarder"
-msgstr ""
+msgstr "Prestataire de DNS"
 
 msgid "DNS server is empty."
-msgstr ""
+msgstr "Seveur DNS est vide"
 
 msgid "DNS settings"
 msgstr "Configuration DNS"
@@ -1961,7 +1964,7 @@ msgid "Domain controller name"
 msgstr "Nom du contrôleur de domaine"
 
 msgid "Domain have no 2nd level name."
-msgstr ""
+msgstr "Le domaine n'a pas de nom de second niveau"
 
 msgid "Domain name"
 msgstr "Nom de domaine"
@@ -2544,7 +2547,7 @@ msgstr "Erreur à l'éxécution d'une tâche cron."
 
 #, php-format
 msgid "Failed to remove: %s"
-msgstr ""
+msgstr "Impossible de supprimer: %s"
 
 #, c-format
 msgid "Failed to send status report to: %s."
@@ -2623,6 +2626,9 @@ msgstr "Upload du fichier arrêté par l'extension"
 
 msgid "Filename"
 msgstr "Nom de fichier"
+
+msgid "Fileserver"
+msgstr ""
 
 msgid "Filter"
 msgstr "Filtre"
@@ -2734,7 +2740,7 @@ msgid "Generate"
 msgstr "Générer"
 
 msgid "Generate password if leave empty."
-msgstr ""
+msgstr "Un mot de passe est généré si laissé vide."
 
 msgid "German"
 msgstr "Allemand"
@@ -3124,10 +3130,10 @@ msgstr ""
 "maître."
 
 msgid "In/Out errors"
-msgstr ""
+msgstr "erreurs d'entrée/sortie"
 
 msgid "In/Out packets"
-msgstr ""
+msgstr "Paquets en entrée/sortie"
 
 msgid "Include basic hardware information."
 msgstr "Inclure des informations basiques sur le hardware"
@@ -3177,7 +3183,7 @@ msgid "Initializing"
 msgstr "Initialisation"
 
 msgid "Initializing..."
-msgstr ""
+msgstr "Initialisation en cours..."
 
 msgid "Initiator Group"
 msgstr "Groupe Initiateur"
@@ -3971,10 +3977,10 @@ msgid "NT1"
 msgstr "NT 1"
 
 msgid "NTP is not enabled."
-msgstr ""
+msgstr "NTP n'est pas activé"
 
 msgid "NTP must be enabled."
-msgstr ""
+msgstr "NTP doit être activé"
 
 msgid "NTP time server"
 msgstr "Serveur de temps NTP"
@@ -4004,7 +4010,7 @@ msgid "Name of the variable."
 msgstr "Nom de la variable."
 
 msgid "NetBIOS domain"
-msgstr ""
+msgstr "Domaine NetBios"
 
 msgid "NetBIOS name"
 msgstr "Nom NetBIOS"
@@ -4217,7 +4223,7 @@ msgid "Not attached"
 msgstr "Non attaché"
 
 msgid "Not found path."
-msgstr ""
+msgstr "Chemin non trouvé"
 
 msgid "Note"
 msgstr "Note"
@@ -4528,7 +4534,7 @@ msgstr "Peer port"
 
 #, php-format
 msgid "Permanent samba data path (e.g. %s)."
-msgstr ""
+msgstr "Chemin permanent des données pour SAMBA (e.g. %s)."
 
 msgid "Permit root login"
 msgstr "Autoriser le login root"
@@ -4886,7 +4892,7 @@ msgid "Remote monitoring"
 msgstr "Contrôle à distance"
 
 msgid "Remote rsync daemon"
-msgstr ""
+msgstr "Démon rsync distant."
 
 msgid "Remote syslog server"
 msgstr "Serveur syslog distant"
@@ -5034,6 +5040,7 @@ msgstr "Exécuter maintenant"
 
 msgid "Run without requiring remote rsync daemon. (Disabled by default)"
 msgstr ""
+"Fonctionnement sans démon rsync distant requis . (Désactivé par défaut)"
 
 msgid "Running"
 msgstr "En cours"
@@ -5092,10 +5099,10 @@ msgid "SSL/TLS only"
 msgstr "SSL/TLS seulement"
 
 msgid "Samba AD"
-msgstr ""
+msgstr "Samba Active Directory"
 
 msgid "Samba Active Directory Domain Controller"
-msgstr ""
+msgstr "Controleur de domaine Samba Active Directory"
 
 #, php-format
 msgid ""
@@ -7754,9 +7761,10 @@ msgstr ""
 "additionnels ne supportant pas le volume HAST ne pourront pas être utilisés."
 
 msgid ""
-"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
-"together."
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot be used."
 msgstr ""
+"Quand Samba Active Directory est activé le partage local CIFS/SMB ne peut "
+"être utilisé."
 
 msgid "When UPS switches to Low Battery"
 msgstr "Quand UPS passe en mode batterie faible"
