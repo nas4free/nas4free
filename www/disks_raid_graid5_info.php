@@ -38,10 +38,27 @@ require("auth.inc");
 require("guiconfig.inc");
 
 $pgtitle = array(gettext("Disks"), gettext("Software RAID"), gettext("RAID5"), gettext("Information"));
-$pgrefresh = 5; // Refresh every 5 seconds.
 
+function get_raidinfo() {
+	exec("/sbin/graid5 list",$rawdata);
+	return implode("\n", $rawdata);
+}
+
+if (is_ajax()) {
+	$raidinfo = get_raidinfo();
+	render_ajax($raidinfo);
+}
 ?>
 <?php include("fbegin.inc");?>
+<script type="text/javascript">//<![CDATA[
+$(document).ready(function(){
+	var gui = new GUI;
+	gui.recall(0, 5000, 'disks_raid_graid5_info.php', null, function(data) {
+		$('#raidinfo').text(data.data);
+	});
+});
+//]]>
+</script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr><td class="tabnavtbl">
   <ul id="tabnav">
@@ -61,17 +78,15 @@ $pgrefresh = 5; // Refresh every 5 seconds.
   </td></tr>
   <tr> 
     <td class="tabcont">
-			<?php
-			echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Software RAID information and status")));
-			echo "<pre class='cmdoutput'>";
-			exec("/sbin/graid5 list",$rawdata);
-			foreach ($rawdata as $line) {
-				echo htmlspecialchars($line) . "<br />";
-			}
-			unset ($rawdata);
-			echo "</pre>";
-			?>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	    <?php html_titleline(gettext("Software RAID information and status"));?>
+	    <tr>
+		<td class="listt">
+		    <pre><span id="raidinfo"></span></pre>
 		</td>
-	</tr>
+	    </tr>
+    	</table>
+    </td>
+  </tr>
 </table>
 <?php include("fend.inc");?>
