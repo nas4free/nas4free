@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-11 09:44+0000\n"
-"PO-Revision-Date: 2015-06-10 17:11+0000\n"
-"Last-Translator: apollo567 <apollo567@hotmail.de>\n"
+"POT-Creation-Date: 2015-06-11 03:52+0000\n"
+"PO-Revision-Date: 2015-06-11 08:19+0000\n"
+"Last-Translator: Robert Wildgruber <robert@wildgruber.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-11 01:01+0000\n"
+"X-Launchpad-Export-Date: 2015-06-11 10:08+0000\n"
 "X-Generator: Launchpad (build 17549)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
@@ -555,6 +555,8 @@ msgid ""
 "All data in path is overwritten. Dedicated ZFS dataset is strongly "
 "recommended."
 msgstr ""
+"Alle Daten im Pfad werden überschrieben. Ein zugeordnetes ZFS Dataset wird "
+"unbedingt empfohlen."
 
 msgid "All dirs"
 msgstr "Alle Verzeichnisse"
@@ -1050,6 +1052,7 @@ msgstr "Akku wird geladen"
 #, php-format
 msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
 msgstr ""
+"Vord er Initialisierung <a href=\"%s\">System|General Setup</a> überprüfen"
 
 msgid "Check interval"
 msgstr "Überprüfungsintervall"
@@ -1385,7 +1388,7 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DHCP cannot be used for LAN interface."
-msgstr ""
+msgstr "Für die LAN Schnittstelle kann DHCP nicht verwendet werden"
 
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
@@ -1397,10 +1400,10 @@ msgid "DNS domain"
 msgstr "DNS Domäne"
 
 msgid "DNS forwarder"
-msgstr ""
+msgstr "DNS Absender"
 
 msgid "DNS server is empty."
-msgstr ""
+msgstr "Der DNS Server ist leer"
 
 msgid "DNS settings"
 msgstr "DNS-Einstellungen"
@@ -1965,7 +1968,7 @@ msgid "Domain controller name"
 msgstr "Name des Domain-Controllers"
 
 msgid "Domain have no 2nd level name."
-msgstr ""
+msgstr "Die Domäne hat keinen 2nd Level Namen"
 
 msgid "Domain name"
 msgstr "Domänenname"
@@ -2743,7 +2746,7 @@ msgid "Generate"
 msgstr "Erzeugen"
 
 msgid "Generate password if leave empty."
-msgstr ""
+msgstr "Passwort wird automatisch erzeugt, wenn das Feld leer bleibt."
 
 msgid "German"
 msgstr "Deutsch"
@@ -4535,7 +4538,7 @@ msgstr "Peer-Port"
 
 #, php-format
 msgid "Permanent samba data path (e.g. %s)."
-msgstr ""
+msgstr "Dauerhafter Samba Datenpfad (z.B. %s)."
 
 msgid "Permit root login"
 msgstr "Root Login zulassen"
@@ -4888,7 +4891,7 @@ msgid "Remote monitoring"
 msgstr "Fernüberwachung"
 
 msgid "Remote rsync daemon"
-msgstr ""
+msgstr "Remote-rsync-Daemon"
 
 msgid "Remote syslog server"
 msgstr "Remote Syslog Server"
@@ -5037,7 +5040,7 @@ msgid "Run now"
 msgstr "Jetzt ausführen"
 
 msgid "Run without requiring remote rsync daemon. (Disabled by default)"
-msgstr ""
+msgstr "Ohne Remote-rsync-Daemon ausführen. (Voreinstellung: ausgeschaltet)."
 
 msgid "Running"
 msgstr "Läuft"
@@ -5096,10 +5099,10 @@ msgid "SSL/TLS only"
 msgstr "Nur SSL/TLS"
 
 msgid "Samba AD"
-msgstr ""
+msgstr "Samba AD"
 
 msgid "Samba Active Directory Domain Controller"
-msgstr ""
+msgstr "Samba Active Directory Domänencontroller"
 
 #, php-format
 msgid ""
@@ -7776,9 +7779,10 @@ msgstr ""
 "genutzt werden"
 
 msgid ""
-"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
-"together."
+"When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot be used."
 msgstr ""
+"Ein eigenständiger CIFS/SMB Dateizugriff kann nicht verwendet werden, wenn "
+"Samba AD eingeschaltet ist."
 
 msgid "When UPS switches to Low Battery"
 msgstr "USV niedriger Batteriestatus ab"
@@ -7923,7 +7927,7 @@ msgstr ""
 "Sie müssen ein Minimum von %d MB an RAM haben um ein iSCSI-Ziel zu nutzen."
 
 msgid "You must initialize data before enabling."
-msgstr ""
+msgstr "Die Daten müssen vor der Aktivieruing initialisert  werden."
 
 msgid "You must select at least one authentication method."
 msgstr "Sie müssen mind. eine Authentifizierungsmethode auswählen."
@@ -8109,7 +8113,7 @@ msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
 msgid "sysvol exist in path."
-msgstr ""
+msgstr "sysvol ist im Pfad vorhanden"
 
 msgid "to"
 msgstr "an"
