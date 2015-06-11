@@ -2,7 +2,7 @@ NAS4Free 10.1.0.2 - Prescience
 ------------------------------
 
 Changes:
-- Upgrade to FreeBSD 10.1 RELEASE p10.
+- Upgrade to FreeBSD 10.1 RELEASE p11.
 - Add ability to create ZFS on GPT.
 - Add Home, Insert, Delete, End, Page Up/Down, ctrl left/right keys to console.
 - Add Daap/Firefly advanced options.
@@ -11,11 +11,13 @@ Changes:
 - Add inherit acls on SMB share.
 - Add Ukrainian translation to webgui.
 - Add encrypt/decrypt password in System|Backup/Restore.
+- Add service Samba Active Directory Domain Controller.
 - Create 4KB(ashift=12) ZFS pool by default.
+- Improve software raid info pages with Ajax.
 - Increase upload size in Webserver service up to 16GiB. (websrv_maxrequestsize)
 - Support aclinherit/aclmode ZFS properties.
 - Use SHA-512 crypt password for admin. (WebGUI login and all services)
-- Use SHA-512 crypt password instead of md5 value. (File Manager)
+- Use SHA-512 crypt password File Manager.
 - Upgrade tzdata to 2015d.
 - Upgrade mDNSResponder to 567.
 - Upgrade msmtp to 1.6.2.
@@ -36,6 +38,10 @@ Fixes:
 - broken extension menu in filemanager.
 - missing translation in OPT/LAN interface.
 - AFP share is not shown in Time Machine.
+- don't remove user swap on same location of default swap.
+- start service ntpdate.
+- don't remove user swap on same location of default swap.
+- show default swap on Diagnostics|Information|Swap.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
