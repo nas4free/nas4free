@@ -338,7 +338,7 @@ $(document).ready(function(){
 			  <tr>
 			    <td width="25%" class="vncellt"><?=gettext("System time");?></td>
 			    <td width="75%" class="listr">
-			      <input style="padding: 0; border: 0;" size="30" name="date" id="date" value="<?=htmlspecialchars(shell_exec("date"));?>" />
+			      <input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="date" id="date" value="<?=htmlspecialchars(shell_exec("date"));?>" />
 			    </td>
 			  </tr>
 			  <tr>
@@ -353,7 +353,7 @@ $(document).ready(function(){
 		    <tr>
 		      <td width="25%" class="vncellt"><?=gettext("Last config change");?></td>
 		      <td width="75%" class="listr">
-						<input style="padding: 0; border: 0;" size="30" name="lastchange" id="lastchange" value="<?=htmlspecialchars(date("D M j G:i:s T Y", $config['lastchange']));?>" />
+						<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="lastchange" id="lastchange" value="<?=htmlspecialchars(date("D M j G:i:s T Y", $config['lastchange']));?>" />
 		      </td>
 		    </tr>
 				<?php endif;?>
@@ -366,7 +366,7 @@ $(document).ready(function(){
 					for ($idx = 0; $idx < $cpus; $idx++) {
 						if (empty($cpuinfo['temperature2'][$idx])) continue;
 						echo "<tr><td>";
-						echo "<input style='padding: 0; border: 0;' size='2' name='cputemp${idx}' id='cputemp${idx}' value='".htmlspecialchars($cpuinfo['temperature2'][$idx])."' />";
+						echo "<input style='padding: 0; border: 0; background-color:#FCFCFC;' size='2' name='cputemp${idx}' id='cputemp${idx}' value='".htmlspecialchars($cpuinfo['temperature2'][$idx])."' />";
 					echo $idx['temperature2']."&#176;C";	
 					echo "</td></tr>";
 					}
@@ -377,7 +377,7 @@ $(document).ready(function(){
 				<tr>
 					<td width="25%" class="vncellt"><?=gettext("CPU temperature");?></td>
 					<td width="75%" class="listr">
-						<input style="padding: 0; border: 0;" size="30" name="cputemp" id="cputemp" value="<?=htmlspecialchars($cpuinfo['temperature']);?>" />
+						<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="cputemp" id="cputemp" value="<?=htmlspecialchars($cpuinfo['temperature']);?>" />
 					</td>
 				</tr>
 				<?php endif;?>
@@ -385,7 +385,7 @@ $(document).ready(function(){
 				<tr>
 					<td width="25%" class="vncellt"><?=gettext("CPU frequency");?></td>
 					<td width="75%" class="listr">
-						<input style="padding: 0; border: 0;" size="30" name="cpufreq" id="cpufreq" value="<?=htmlspecialchars($cpuinfo['freq']);?>MHz" title="<?=sprintf(gettext("Levels (MHz/mW): %s"), $cpuinfo['freqlevels']);?>" />
+						<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="cpufreq" id="cpufreq" value="<?=htmlspecialchars($cpuinfo['freq']);?>MHz" title="<?=sprintf(gettext("Levels (MHz/mW): %s"), $cpuinfo['freqlevels']);?>" />
 					</td>
 				</tr>
 				<?php endif;?>
@@ -400,7 +400,7 @@ $(document).ready(function(){
 						echo "<img src='bar_gray.gif' name='cpuusagef' id='cpuusagef' width='" . (100 - $percentage) . "' class='progbarc' alt='' />";
 						echo "<img src='bar_right.gif' class='progbarr' alt='' /> ";
 						?>
-						<input style="padding: 0; border: 0;" size="30" name="cpuusage" id="cpuusage" value="<?=gettext("Updating in 5 seconds.");?>" />
+						<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="cpuusage" id="cpuusage" value="<?=gettext("Updating in 5 seconds.");?>" />
 					</td></tr>
 						<?php
 						$cpus = system_get_cpus();
@@ -413,7 +413,7 @@ $(document).ready(function(){
 								echo "<img src='bar_blue.gif' name='cpuusageu${idx}' id='cpuusageu${idx}' width='" . $percentage . "' class='progbarcf' alt='' />";
 								echo "<img src='bar_gray.gif' name='cpuusagef${idx}' id='cpuusagef${idx}' width='" . (100 - $percentage) . "' class='progbarc' alt='' />";
 								echo "<img src='bar_right.gif' class='progbarr' alt='' /> ";
-								echo "<input style='padding: 0; border: 0;' size='30' name='cpuusage${idx}' id='cpuusage${idx}' value=\"".gettext("Updating in 5 seconds.")."\" />";
+								echo "<input style='padding: 0; border: 0; background-color:#FCFCFC;' size='30' name='cpuusage${idx}' id='cpuusage${idx}' value=\"".gettext("Updating in 5 seconds.")."\" />";
 								echo "</td></tr>";
 							}
 						}
@@ -432,7 +432,7 @@ $(document).ready(function(){
 						echo "<img src='bar_gray.gif' name='memusagef' id='memusagef' width='" . (100 - $percentage) . "' class='progbarc' alt='' />";
 						echo "<img src='bar_right.gif' class='progbarr' alt='' /> ";
 						?>
-						<input style="padding: 0; border: 0;" size="30" name="memusage" id="memusage" value="<?=sprintf(gettext("%d%% of %dMiB"), $percentage, round($raminfo['physical'] / 1024 / 1024));?>" />
+						<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="memusage" id="memusage" value="<?=sprintf(gettext("%d%% of %dMiB"), $percentage, round($raminfo['physical'] / 1024 / 1024));?>" />
 			    </td>
 			  </tr>
 				<?php $swapinfo = system_get_swap_info(); if (!empty($swapinfo)):?>
@@ -479,7 +479,7 @@ $(document).ready(function(){
 						exec("uptime", $result);
 						$loadaverage = substr(strrchr($result[0], "load averages:"), 15);
 						?>
-						<input style="padding: 0; border: 0;" size="14" name="loadaverage" id="loadaverage" value="<?=$loadaverage;?>" />
+						<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="14" name="loadaverage" id="loadaverage" value="<?=$loadaverage;?>" />
 						<?="<small>[<a href='status_process.php'>".gettext("Show process information")."</a></small>]";?>
 			    </td>
 			  </tr>
@@ -572,8 +572,7 @@ $(document).ready(function(){
 							<?php if (!isset($config['ups']['enable'])):?>
 								<tr>
 									<td>
-										<input style="padding: 0; border: 0;" size="17" name="upsstatus" id="upsstatus" value="<?=gettext("UPS disabled");?>" />
-										<?=" <small> [<a href='diag_infos_ups.php'>".gettext("Show ups information")."</a></small>]";?>
+										<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="18" name="upsstatus" id="upsstatus" value="<?=gettext("UPS disabled");?>" />
 									</td>
 								</tr>
 							<?php else:?>
@@ -637,7 +636,7 @@ $(document).ready(function(){
 												break;
 									}
 								}
-									tblrow(gettext('Status'), $disp_status. " <small>[<a href='diag_infos_ups.php'>".gettext("Show ups information")."</a></small>]");
+									tblrow(gettext('Status'), $disp_status. "  <small>[<a href='diag_infos_ups.php'>" . gettext("Show ups information")."</a></small>]");
 									tblrowbar(gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
 									tblrowbar(gettext('Battery Level'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
 								}
