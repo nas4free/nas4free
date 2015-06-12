@@ -401,6 +401,106 @@ sambaad_mkconf_cmd()
 		-o "path = ${_path}/sysvol" -n \
 		-o "read only = No" -n \
 		${configxml_file} | /usr/local/bin/xml unesc > ${samba_config}
+
+	# Append shares to smb4.conf
+	configxml_isset //sambaad/user_shares
+	user_share=$?
+	if [ 0 -eq $user_share ]; then
+		/usr/local/bin/xml sel -t \
+			-n \
+			-m "//samba/share" \
+				-v "concat('[',name,']')" -n \
+				-v "concat('comment = ',comment)" -n \
+				-v "concat('path = ',path)" -n \
+				-i "count(readonly) = 0" \
+					-o "writeable = yes" -n \
+				-b \
+				-o "printable = no" -n \
+				-o "veto files = /.snap/.sujournal/" -n \
+				-i "count(hidedotfiles) > 0" \
+					-o "hide dot files = yes" -n \
+				-b \
+				-i "count(hidedotfiles) = 0" \
+					-o "hide dot files = no" -n \
+				-b \
+				-i "//samba/security[. = 'share']" \
+					-o "guest ok = yes" -n \
+				-b \
+				-i "//samba/security[. != 'share']" \
+					-i "count(guest) = 0" \
+						-o "guest ok = no" -n \
+					-b \
+					-i "count(guest) > 0" \
+						-o "guest ok = yes" -n \
+					-b \
+				-b \
+				-i "count(browseable) = 0" \
+					-o "browseable = no" -n \
+				-b \
+				-i "count(inheritpermissions) > 0" \
+					-o "inherit permissions = yes" -n \
+				-b \
+				-i "count(inheritacls) > 0" \
+					-o "inherit acls = yes" -n \
+				-b \
+				-o "vfs objects = " \
+				-i "count(shadowcopy) > 0" \
+					-o "shadow_copy2 " \
+				-b \
+				-i "count(zfsacl) > 0" \
+					-o "zfsacl " \
+				-b \
+				-i "count(recyclebin) > 0" \
+					-o "recycle " \
+				-b \
+				-v "concat(aiomodule, ' ')" \
+				-i "count(storealternatedatastreams) > 0" \
+					-o "streams_xattr " \
+				-b \
+				-i "count(storentfsacls) > 0" \
+					-o "acl_xattr " \
+				-b \
+				-n \
+				-i "count(zfsacl) > 0" \
+					-o "nfs4:mode = special" -n \
+					-o "nfs4:acedup = merge" -n \
+					-o "nfs4:chown = yes" -n \
+				-b \
+				-i "count(recyclebin) > 0" \
+					-o "recycle:repository = ${samba_recycle_repository}" -n \
+					-o "recycle:keeptree = yes" -n \
+					-o "recycle:versions = yes" -n \
+					-o "recycle:touch = yes" -n \
+					-o "recycle:directory_mode = ${samba_recycle_directory_mode}" -n \
+					-o "recycle:subdir_mode = ${samba_recycle_subdir_mode}" -n \
+				-b \
+				-i "count(shadowcopy) > 0" \
+					-i "string-length(shadowformat) > 0" \
+						-v "concat('shadow:format = ', shadowformat)" -n \
+					-b \
+					-o "shadow:snapdir = .zfs/snapshot" -n \
+					-o "shadow:sort = desc" -n \
+					-o "shadow:localtime = yes" -n \
+				-b \
+				-i "count(zfsacl) > 0" \
+					-o "veto files = /.zfs/" -n \
+				-b \
+				-i "count(//afp/enable) > 0" \
+					-o "#vfs objects = netatalk" -n \
+				-b \
+				-m "auxparam" \
+					-v "." -n \
+				-b \
+				-i "string-length(hostsallow) > 0" \
+					-v "concat('hosts allow = ',hostsallow)" -n \
+				-b \
+				-i "string-length(hostsdeny) > 0" \
+					-v "concat('hosts deny = ',hostsdeny)" -n \
+				-b \
+				-n \
+			-b \
+			${configxml_file} | /usr/local/bin/xml unesc >> ${samba_config}
+	fi
 }
 
 samba_start_precmd() {

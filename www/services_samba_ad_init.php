@@ -51,6 +51,7 @@ if (preg_match('/^([^\.]+)\./', $pconfig['dns_domain'], $m)) {
 }
 $pconfig['path'] = "";
 $pconfig['fstype'] = "s3fs";
+$pconfig['user_shares'] = false;
 $realm = strtoupper($pconfig['dns_domain']);
 $hostname = $config['system']['hostname'];
 $netbiosname = strtoupper($config['system']['hostname']);
@@ -102,6 +103,7 @@ if ($_POST) {
 		$config['sambaad']['dns_forwarder'] = $_POST['dns_forwarder'];
 		$config['sambaad']['dns_domain'] = $_POST['dns_domain'];
 		$config['sambaad']['netbios_domain'] = $_POST['netbios_domain'];
+		$config['sambaad']['user_shares'] = isset($_POST['user_shares']) ? true : false;
 
 		$realm = strtoupper($config['sambaad']['dns_domain']);
 		$domain = strtoupper($config['sambaad']['netbios_domain']);
@@ -192,6 +194,7 @@ $(document).ready(function(){
 	<?php html_passwordconfbox("password", "password_confirm", gettext("Admin password"), "", "", gettext("Generate password if leave empty."), true);?>
 	<?php html_filechooser("path", gettext("Path"), $pconfig['path'], sprintf(gettext("Permanent samba data path (e.g. %s)."), "/mnt/data/samba4"), $g['media_path'], true);?>
 	<?php html_combobox("fstype", gettext("Fileserver"), $pconfig['fstype'], array("s3fs" => "s3fs", "ntvfs" => "ntvfs"), "", true);?>
+	<?php html_checkbox("user_shares", gettext("User shares"), !empty($pconfig['user_shares']) ? true : false, gettext("Append user defined shares"), "", false);?>
 	</table>
 	<div id="submit">
 	  <input name="Submit" type="submit" class="formbtn" value="<?=gettext("Initialize");?>" />
