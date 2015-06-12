@@ -65,6 +65,54 @@ function get_vip_status() {
 	return join(', ', $a_vipaddrs);
 }
 
+function get_ups_disp_status($ups_status) {
+	if (empty($ups_status))
+		return "";
+	$status = explode(' ', $ups_status);
+	foreach ($status as $condition) {
+		if ($disp_status) $disp_status .= ', ';
+		switch ($condition) {
+		case 'WAIT':
+			$disp_status .= gettext('UPS Waiting');
+			break;
+		case 'OFF':
+			$disp_status .= gettext('UPS Off Line');
+			break;
+		case 'OL':
+			$disp_status .= gettext('UPS On Line');
+			break;
+		case 'OB':
+			$disp_status .= gettext('UPS On Battery');
+			break;
+		case 'TRIM':
+			$disp_status .= gettext('SmartTrim');
+			break;
+		case 'BOOST':
+			$disp_status .= gettext('SmartBoost');
+			break;
+		case 'OVER':
+			$disp_status .= gettext('Overload');
+			break;
+		case 'LB':
+			$disp_status .= gettext('Battery Low');
+			break;
+		case 'RB':
+			$disp_status .= gettext('Replace Battery UPS');
+			break;
+		case 'CAL':
+			$disp_status .= gettext('Calibration Battery');
+			break;
+		case 'CHRG':
+			$disp_status .= gettext('Charging Battery');
+			break;
+		default:
+			$disp_status .= $condition;
+			break;
+		}
+	}
+	return $disp_status;
+}
+
 function get_upsinfo() {
 	global $config;
 
@@ -77,6 +125,8 @@ function get_upsinfo() {
 		$line = explode(':', $line);
 		$ups[$line[0]] = trim($line[1]);
 	}
+	$disp_status = get_ups_disp_status($ups['ups.status']);
+	$ups['disp_status'] = $disp_status;
 	$value = !empty($ups['ups.load']) ? $ups['ups.load'] : 0;
 	$ups['load'] = array(
 		"percentage" => $value,
@@ -283,6 +333,8 @@ $(document).ready(function(){
 			}
 		}
 		if (typeof(data.upsinfo) != 'undefined' && data.upsinfo !== null) {
+			if ($('#ups_status_disp_status').size() > 0)
+				$('#ups_status_disp_status').text(data.upsinfo.disp_status);
 			var ups_id = "load";
 			var ui = data.upsinfo[ups_id];
 			if ($('#ups_status_'+ups_id+'_bar_used').size() > 0) {
@@ -645,49 +697,8 @@ $(document).ready(function(){
 									if(count($lines) == 1)
 										tblrow('ERROR:', 'Data stale!');
 
-									$status = explode(' ', $ups['ups.status']);
-									foreach($status as $condition) {
-										if($disp_status) $disp_status .= ', ';
-										switch ($condition) {
-											case 'WAIT':
-												$disp_status .= gettext('UPS Waiting');
-												break;
-										case 'OFF':
-												$disp_status .= gettext('UPS Off Line');
-												break;
-										case 'OL':
-												$disp_status .= gettext('UPS On Line');
-												break;
-										case 'OB':
-												$disp_status .= gettext('UPS On Battery');
-												break;
-										case 'TRIM':
-												$disp_status .= gettext('SmartTrim');
-												break;
-										case 'BOOST':
-												$disp_status .= gettext('SmartBoost');
-												break;
-										case 'OVER':
-												$disp_status .= gettext('Overload');
-												break;
-										case 'LB':
-												$disp_status .= gettext('Battery Low');
-												break;
-										case 'RB':
-												$disp_status .= gettext('Replace Battery UPS');
-												break;
-										case 'CAL':
-												$disp_status .= gettext('Calibration Battery');
-												break;
-										case 'CHRG':
-												$disp_status .= gettext('Charging Battery');
-												break;
-										default:
-												$disp_status .= $condition;
-												break;
-									}
-								}
-									tblrow(gettext('Status'), $disp_status. "  <small>[<a href='diag_infos_ups.php'>" . gettext("Show ups information")."</a></small>]");
+									$disp_status = get_ups_disp_status($ups['ups.status']);
+									tblrow(gettext('Status'), '<span id="ups_status_disp_status">'.$disp_status."</span>". "  <small>[<a href='diag_infos_ups.php'>" . gettext("Show ups information")."</a></small>]");
 									tblrowbar("load", gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
 									tblrowbar("battery", gettext('Battery Level'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
 								}
