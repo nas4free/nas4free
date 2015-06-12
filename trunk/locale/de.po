@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-11 23:41+0000\n"
-"PO-Revision-Date: 2015-06-11 15:32+0000\n"
+"POT-Creation-Date: 2015-06-12 20:41+0000\n"
+"PO-Revision-Date: 2015-06-12 12:45+0000\n"
 "Last-Translator: Robert Wildgruber <robert@wildgruber.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-11 19:12+0000\n"
+"X-Launchpad-Export-Date: 2015-06-12 17:13+0000\n"
 "X-Generator: Launchpad (build 17557)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
@@ -552,11 +552,11 @@ msgid "All"
 msgstr "Alle"
 
 msgid ""
-"All data in path is overwritten. Dedicated ZFS dataset is strongly "
-"recommended."
+"All data in the path is overwritten. To avoid invalid data/permission, using "
+"empty UFS directory is recommended."
 msgstr ""
-"Alle Daten im Pfad werden überschrieben. Ein zugeordnetes ZFS Dataset wird "
-"unbedingt empfohlen."
+"Alle Daten im Pfad werden überschrieben. Es wird empfohlen, ein leeres USF-"
+"Verzeichnis zu verwenden, um ungültige Daten/ZUgriffsrechte zu vermeiden."
 
 msgid "All dirs"
 msgstr "Alle Verzeichnisse"
@@ -687,6 +687,9 @@ msgstr "Nur anonyme Benutzer zulassen"
 
 msgid "Any"
 msgstr "Alle"
+
+msgid "Append user defined shares"
+msgstr "Benutzerdefinierte Freigaben hinzufügen."
 
 msgid "Apple Filing Protocol"
 msgstr "Apple Filing Protocol"
@@ -1369,6 +1372,9 @@ msgstr "Aktuelle Wirkleistung (W)"
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
+msgid "Custom device"
+msgstr "Eigenes Gerät"
+
 msgid "Custom script"
 msgstr "angepaßtes Befehlsscript"
 
@@ -1681,6 +1687,9 @@ msgstr ""
 
 msgid "Device"
 msgstr "Gerät"
+
+msgid "Device / Label"
+msgstr "Gerät / Bezeichnung"
 
 #, php-format
 msgid "Device /dev/%s - %s"
@@ -5232,6 +5241,9 @@ msgstr "Auswahl des 'Read Balance Algorithmus'."
 msgid "Selected"
 msgstr "Ausgewählt"
 
+msgid "Selected device or label does not exist."
+msgstr "Das ausgewählte Gerät oder die Bezeichnung existieren nicht."
+
 msgid "Selected file isn't an valid ISO file."
 msgstr "Gewählte Datei ist keine gültige ISO-Datei"
 
@@ -7625,6 +7637,9 @@ msgstr "Benutzerpasswort."
 msgid "User portal"
 msgstr "Benutzerportal"
 
+msgid "User shares"
+msgstr "Benutzerfreigaben"
+
 msgid "User suffix"
 msgstr "Benutzersuffix"
 
@@ -7898,6 +7913,9 @@ msgstr "Sie müssen mindestens einen Eintrag für '%s' auswählen."
 msgid "You may enter a description here for your reference."
 msgstr "Sie können hier eine Beschreibung für Ihre Referenz eintragen."
 
+msgid "You may enter a device file or label path."
+msgstr "Gerätedateo oder Pfad zur Bezeichnung können hinzugefügt werden."
+
 #, php-format
 msgid ""
 "You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII "
@@ -8131,11 +8149,9 @@ msgstr "Aushängen"
 msgid "version:"
 msgstr "Version:"
 
-#~ msgid "DHCP can not be used for LAN interface."
-#~ msgstr "DHCP kann für die Netzwerkschnittstelle nicht genutzt werden"
-
 #~ msgid ""
-#~ "The admin password does not match. Please ensure the passwords match exactly."
+#~ "All data in path is overwritten. Dedicated ZFS dataset is strongly "
+#~ "recommended."
 #~ msgstr ""
-#~ "Die Administrationspasswörter stimmen nicht überein. Überprüfen sie die "
-#~ "zwingend notwendige exakte Übereinstimmung der Passwörter !"
+#~ "Alle Daten im Pfad werden überschrieben. Ein zugeordnetes ZFS Dataset wird "
+#~ "unbedingt empfohlen."

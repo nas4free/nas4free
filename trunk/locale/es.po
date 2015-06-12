@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-11 23:41+0000\n"
-"PO-Revision-Date: 2015-06-06 11:06+0000\n"
+"POT-Creation-Date: 2015-06-12 20:41+0000\n"
+"PO-Revision-Date: 2015-06-11 19:54+0000\n"
 "Last-Translator: raul fernandez garcia <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-11 19:12+0000\n"
+"X-Launchpad-Export-Date: 2015-06-12 17:13+0000\n"
 "X-Generator: Launchpad (build 17557)\n"
 "X-Poedit-Country: SPAIN\n"
 "Language: \n"
@@ -475,7 +475,7 @@ msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "Dirección del demonio hastd remoto. Debe ser una IP estática."
 
 msgid "Admin password"
-msgstr ""
+msgstr "Contraseña de administrador"
 
 msgid "Administration password"
 msgstr "Contraseña del administrador"
@@ -546,8 +546,8 @@ msgid "All"
 msgstr "Todos"
 
 msgid ""
-"All data in path is overwritten. Dedicated ZFS dataset is strongly "
-"recommended."
+"All data in the path is overwritten. To avoid invalid data/permission, using "
+"empty UFS directory is recommended."
 msgstr ""
 
 msgid "All dirs"
@@ -677,6 +677,9 @@ msgstr "Usuarios anónimos solamente"
 
 msgid "Any"
 msgstr "Cualquiera"
+
+msgid "Append user defined shares"
+msgstr ""
 
 msgid "Apple Filing Protocol"
 msgstr "Apple Filing Protocol"
@@ -922,7 +925,7 @@ msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB info."
 
 msgid "CIFS/SMB is enabled."
-msgstr ""
+msgstr "Habilitado CIFS/SMB"
 
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Cirílico)"
@@ -999,7 +1002,7 @@ msgid "Cannot get data about interface"
 msgstr "No es posible obtener informacion sobre el interfaz"
 
 msgid "Cannot use DHCP for LAN interface."
-msgstr ""
+msgstr "No se puede usar DHCP para la interfaz LAN"
 
 msgid "Capacity"
 msgstr "Capacidad"
@@ -1039,6 +1042,7 @@ msgstr "Cargando Batería"
 #, php-format
 msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
 msgstr ""
+"Revise <a href=\"%s\">Sistema|Opciones Generales</a> antes de inicializar."
 
 msgid "Check interval"
 msgstr "Intervalo de pruebas"
@@ -1171,7 +1175,7 @@ msgid "Connected FTP users"
 msgstr "Usuarios de FTP conectados"
 
 msgid "Console Menu"
-msgstr ""
+msgstr "Menú de consola"
 
 msgid "Console screensaver"
 msgstr "Salvapantallas de consola"
@@ -1355,6 +1359,9 @@ msgstr "Potencia actual en (W)"
 msgid "Custom"
 msgstr "Personalizado"
 
+msgid "Custom device"
+msgstr ""
+
 msgid "Custom script"
 msgstr "Script personalizado"
 
@@ -1374,7 +1381,7 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DHCP cannot be used for LAN interface."
-msgstr ""
+msgstr "No se puede usar DHCP para la interfaz LAN."
 
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
@@ -1383,13 +1390,13 @@ msgid "DLNA/UPnP Media Server"
 msgstr "Servidor DLNA/UPnP"
 
 msgid "DNS domain"
-msgstr ""
+msgstr "Dominio DNS"
 
 msgid "DNS forwarder"
-msgstr ""
+msgstr "Retransmisor DNS"
 
 msgid "DNS server is empty."
-msgstr ""
+msgstr "El servidor DNS está en blanco"
 
 msgid "DNS settings"
 msgstr "Configuración de DNS"
@@ -1665,6 +1672,9 @@ msgstr ""
 
 msgid "Device"
 msgstr "Dispositivo"
+
+msgid "Device / Label"
+msgstr ""
 
 #, php-format
 msgid "Device /dev/%s - %s"
@@ -1949,7 +1959,7 @@ msgid "Domain controller name"
 msgstr "Nombre del controlador de dominio"
 
 msgid "Domain have no 2nd level name."
-msgstr ""
+msgstr "El dominio , no tiene nombre de 2º nivel."
 
 msgid "Domain name"
 msgstr "Nombre del Dominio"
@@ -2536,7 +2546,7 @@ msgstr "Fallo al ejecutar el proceso cron."
 
 #, php-format
 msgid "Failed to remove: %s"
-msgstr ""
+msgstr "Error al eliminar: %s"
 
 #, c-format
 msgid "Failed to send status report to: %s."
@@ -2616,7 +2626,7 @@ msgid "Filename"
 msgstr "Nombre de archivo"
 
 msgid "Fileserver"
-msgstr ""
+msgstr "Servidor de Archivos"
 
 msgid "Filter"
 msgstr "Filtro"
@@ -2728,7 +2738,7 @@ msgid "Generate"
 msgstr "Generar"
 
 msgid "Generate password if leave empty."
-msgstr ""
+msgstr "Se generará una contraseña nueva si se deja en blanco"
 
 msgid "German"
 msgstr "Alemán"
@@ -3118,10 +3128,10 @@ msgstr ""
 "En modo esclavo, este es el nombre del SAI (Identificador) en la SAI Maestra"
 
 msgid "In/Out errors"
-msgstr ""
+msgstr "Errores de E/S"
 
 msgid "In/Out packets"
-msgstr ""
+msgstr "Paquetes de E/S"
 
 msgid "Include basic hardware information."
 msgstr "Incluir información básica del hardware."
@@ -3170,7 +3180,7 @@ msgid "Initializing"
 msgstr "Inicializando"
 
 msgid "Initializing..."
-msgstr ""
+msgstr "Inicializando…"
 
 msgid "Initiator Group"
 msgstr "Grupo Iniciador"
@@ -3958,10 +3968,10 @@ msgid "NT1"
 msgstr "NT1"
 
 msgid "NTP is not enabled."
-msgstr ""
+msgstr "NTP no está habilitado"
 
 msgid "NTP must be enabled."
-msgstr ""
+msgstr "NTP debe estar habilitado."
 
 msgid "NTP time server"
 msgstr "Servidor de fecha y hora NTP"
@@ -3991,7 +4001,7 @@ msgid "Name of the variable."
 msgstr "Nombre de la variable"
 
 msgid "NetBIOS domain"
-msgstr ""
+msgstr "Dominio NetBIOS"
 
 msgid "NetBIOS name"
 msgstr "Nombre NetBIOS"
@@ -4202,7 +4212,7 @@ msgid "Not attached"
 msgstr "Sin agregar"
 
 msgid "Not found path."
-msgstr ""
+msgstr "No se encuentra la ruta."
 
 msgid "Note"
 msgstr "Nota"
@@ -4514,7 +4524,7 @@ msgstr "Puerto escucha Peer"
 
 #, php-format
 msgid "Permanent samba data path (e.g. %s)."
-msgstr ""
+msgstr "Ruta permanente de SAMBA (ej: %s)."
 
 msgid "Permit root login"
 msgstr "Permitir el acceso a root"
@@ -4870,7 +4880,7 @@ msgid "Remote monitoring"
 msgstr "Monitorización remota"
 
 msgid "Remote rsync daemon"
-msgstr ""
+msgstr "Demonio remoto de rsync"
 
 msgid "Remote syslog server"
 msgstr "Servidor syslog remoto"
@@ -5017,6 +5027,8 @@ msgstr "Ejecutar ahora"
 
 msgid "Run without requiring remote rsync daemon. (Disabled by default)"
 msgstr ""
+"Ejecutar sin que se requiera un demonio remoto rsync. (deshabilitado por "
+"defecto)"
 
 msgid "Running"
 msgstr "En ejecución"
@@ -5074,10 +5086,10 @@ msgid "SSL/TLS only"
 msgstr "Solo SSL/TLS"
 
 msgid "Samba AD"
-msgstr ""
+msgstr "Directorio Activo Samba"
 
 msgid "Samba Active Directory Domain Controller"
-msgstr ""
+msgstr "Controlador de dominio del AD Samba"
 
 #, php-format
 msgid ""
@@ -5202,6 +5214,9 @@ msgstr "Selecciones su algoritmo de balanceo de lectura."
 
 msgid "Selected"
 msgstr "Seleccionado"
+
+msgid "Selected device or label does not exist."
+msgstr ""
 
 msgid "Selected file isn't an valid ISO file."
 msgstr "El archivo seleccionado no es un archivo válido ISO."
@@ -7577,6 +7592,9 @@ msgstr "Contraseña del Usuario"
 msgid "User portal"
 msgstr "Portal de usuario"
 
+msgid "User shares"
+msgstr ""
+
 msgid "User suffix"
 msgstr "Sufijo de usuario"
 
@@ -7737,6 +7755,8 @@ msgstr ""
 msgid ""
 "When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot be used."
 msgstr ""
+"Cuando el AD de Samba sea habilitado, la compartición básica CIFS/SMB no "
+"podrá ser usada."
 
 msgid "When UPS switches to Low Battery"
 msgstr "Cuando el SAI conmute a estado de batería baja"
@@ -7848,6 +7868,9 @@ msgstr "Debes seleccionar por lo menos un item de '%s'"
 msgid "You may enter a description here for your reference."
 msgstr "Puede introducir una descripción aquí para su referencia."
 
+msgid "You may enter a device file or label path."
+msgstr ""
+
 #, php-format
 msgid ""
 "You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII "
@@ -7878,7 +7901,7 @@ msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "Debe de tener un minimo de %dMB de RAM para usar un destino iSCSI."
 
 msgid "You must initialize data before enabling."
-msgstr ""
+msgstr "Debe inicializar los datos antes de habilitarlos."
 
 msgid "You must select at least one authentication method."
 msgstr "Se debe seleccionar al menos un metodo de autentificacion."
@@ -8063,7 +8086,7 @@ msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
 msgid "sysvol exist in path."
-msgstr ""
+msgstr "el sysvol existe en la ruta."
 
 msgid "to"
 msgstr "hasta"
@@ -8077,3 +8100,10 @@ msgstr "Desmontar"
 #, php-format
 msgid "version:"
 msgstr "versión:"
+
+#~ msgid ""
+#~ "All data in path is overwritten. Dedicated ZFS dataset is strongly "
+#~ "recommended."
+#~ msgstr ""
+#~ "Los datos en la ruta serán sobre-escritos. Un Dataset ZFS es la opción "
+#~ "recomendada."

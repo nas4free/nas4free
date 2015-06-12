@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-11 23:41+0000\n"
-"PO-Revision-Date: 2015-06-11 10:51+0000\n"
+"POT-Creation-Date: 2015-06-12 20:41+0000\n"
+"PO-Revision-Date: 2015-06-12 09:44+0000\n"
 "Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-11 19:12+0000\n"
+"X-Launchpad-Export-Date: 2015-06-12 17:13+0000\n"
 "X-Generator: Launchpad (build 17557)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
@@ -551,11 +551,11 @@ msgid "All"
 msgstr "Όλα"
 
 msgid ""
-"All data in path is overwritten. Dedicated ZFS dataset is strongly "
-"recommended."
+"All data in the path is overwritten. To avoid invalid data/permission, using "
+"empty UFS directory is recommended."
 msgstr ""
-"Όλα τα δεδομένα στη διαδρομή θα αντικατασταθούν.  Συνιστάται να "
-"χρησιμοποιήσετε ένα αφιερωμένο ZFS dataset."
+"Όλα τα δεδομένα στη διαδρομή θα αντικατασταθούν. Για να αποφύγετε μη έγκυρα "
+"δεδομένα/δικαιώματα, συνιστάται να χρησιμοποιήσετε έναν άδειο κατάλογο UFS."
 
 msgid "All dirs"
 msgstr "Όλοι οι κατάλογοι"
@@ -692,6 +692,9 @@ msgstr "Μόνο ανώνυμοι χρήστες"
 
 msgid "Any"
 msgstr "Οποιοδήποτε"
+
+msgid "Append user defined shares"
+msgstr ""
 
 msgid "Apple Filing Protocol"
 msgstr "Πρωτοκόλλο Αρχειοθέτησης Apple"
@@ -1375,6 +1378,9 @@ msgstr "Τρέχουσα τιμή πραγματικής ισχύος (Watts)"
 msgid "Custom"
 msgstr "Προσαρμοσμένο"
 
+msgid "Custom device"
+msgstr "Προσαρμοσμένη συσκευή"
+
 msgid "Custom script"
 msgstr "Προσαρμοσμένο αρχείο εντολών"
 
@@ -1687,6 +1693,9 @@ msgstr ""
 
 msgid "Device"
 msgstr "Συσκευή"
+
+msgid "Device / Label"
+msgstr "Συσκευή / Ετικέτα"
 
 #, php-format
 msgid "Device /dev/%s - %s"
@@ -2649,7 +2658,7 @@ msgid "Filename"
 msgstr "Όνομα αρχείου"
 
 msgid "Fileserver"
-msgstr ""
+msgstr "Διακομιστής αρχείων"
 
 msgid "Filter"
 msgstr "Φίλτρο"
@@ -5263,6 +5272,9 @@ msgstr "Επιλέξτε τον αλγόριθμο ισορροπίας ανάγ
 msgid "Selected"
 msgstr "Επιλεγμένο"
 
+msgid "Selected device or label does not exist."
+msgstr "Η επιλεγμένη συσκευή ή ετικέτα δεν υπάρχουν."
+
 msgid "Selected file isn't an valid ISO file."
 msgstr "Το επιλεγμένο αρχείο δεν είναι ένα έγκυρο αρχείο ISO."
 
@@ -7689,6 +7701,9 @@ msgstr "Κωδικός χρήστη."
 msgid "User portal"
 msgstr "Πύλη χρηστών"
 
+msgid "User shares"
+msgstr ""
+
 msgid "User suffix"
 msgstr "Επίθεμα χρήστη"
 
@@ -7967,6 +7982,9 @@ msgstr "Θα πρέπει να επιλέξετε τουλάχιστον ένα 
 msgid "You may enter a description here for your reference."
 msgstr "Μπορείτε να εισάγετε εδώ μια περιγραφή για δικιά σας εξυπηρέτηση."
 
+msgid "You may enter a device file or label path."
+msgstr "Μπορείτε να εισάγετε ένα αρχείο συσκευής ή διαδρομή ετικέτας."
+
 #, php-format
 msgid ""
 "You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII "
@@ -8201,3 +8219,10 @@ msgstr "αποπροσάρτηση"
 #, php-format
 msgid "version:"
 msgstr "έκδοση:"
+
+#~ msgid ""
+#~ "All data in path is overwritten. Dedicated ZFS dataset is strongly "
+#~ "recommended."
+#~ msgstr ""
+#~ "Όλα τα δεδομένα στη διαδρομή θα αντικατασταθούν.  Συνιστάται να "
+#~ "χρησιμοποιήσετε ένα αφιερωμένο ZFS dataset."
