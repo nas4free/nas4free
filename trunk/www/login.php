@@ -255,7 +255,7 @@ function display_menu($menuid) {
 															</tbody>
 														</table>
 													</div>
-												</duv>
+												</div>
 											</td>
 										</tr>
 									</tbody>
@@ -267,7 +267,7 @@ function display_menu($menuid) {
 			</table>
         </div>
         <div id="pagefooter">
-			<span><p><a title="www.<?=get_product_url();?>" href="http://<?=get_product_url();?>" target="_blank"></a> <?=str_replace("Copyright (C)","&copy;",get_product_copyright());?></a></p></span>
+			<span><p><a title="www.<?=get_product_url();?>" href="http://<?=get_product_url();?>" target="_blank"></a> <?=str_replace("Copyright (C)","&copy;",get_product_copyright());?></p></span>
 		</div>
     </body>
 </html>
