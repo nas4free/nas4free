@@ -65,10 +65,41 @@ function get_vip_status() {
 	return join(', ', $a_vipaddrs);
 }
 
+function get_upsinfo() {
+	global $config;
+
+	if (!isset($config['ups']['enable']))
+		return NULL;
+	$ups = array();
+	$cmd = "/usr/local/bin/upsc {$config['ups']['upsname']}@{$config['ups']['ip']}";
+	exec($cmd,$rawdata);
+	foreach($rawdata as $line) {
+		$line = explode(':', $line);
+		$ups[$line[0]] = trim($line[1]);
+	}
+	$value = !empty($ups['ups.load']) ? $ups['ups.load'] : 0;
+	$ups['load'] = array(
+		"percentage" => $value,
+		"used" => sprintf("%.1f", $value),
+		"tooltip_used" => sprintf("%s%%", $value),
+		"tooltip_available" => sprintf(gettext("%s%% available"), 100 - $value),
+	);
+	$value = !empty($ups['battery.charge']) ? $ups['battery.charge'] : 0;
+	$ups['battery'] = array(
+		"percentage" => $value,
+		"used" => sprintf("%.1f", $value),
+		"tooltip_used" => sprintf("%s%%", $value),
+		"tooltip_available" => sprintf(gettext("%s%% available"), 100 - $value),
+	);
+	return $ups;
+}
+
 if (is_ajax()) {
 	$sysinfo = system_get_sysinfo();
 	$vipstatus = get_vip_status();
 	$sysinfo['vipstatus'] = $vipstatus;
+	$upsinfo = get_upsinfo();
+	$sysinfo['upsinfo'] = $upsinfo;
 	render_ajax($sysinfo);
 }
 
@@ -100,8 +131,8 @@ EOD
 	."\n");
 }
 
-function tblrowbar ($name, $value, $symbol, $red, $yellow, $green) {
-	if(!$value) return;
+function tblrowbar ($id, $name, $value, $symbol, $red, $yellow, $green) {
+	if(is_null($value)) return;
 
 	$value = sprintf("%.1f", $value);
 
@@ -137,14 +168,14 @@ function tblrowbar ($name, $value, $symbol, $red, $yellow, $green) {
 	$available = 100 - $value;
 	$tooltip_used = sprintf("%s%%", $value);
 	$tooltip_available = sprintf(gettext("%s%% available"), $available);
-	$span_used = sprintf("%s%%", "<span name='ups_status_used' id='ups_status_used' class='capacity'>".$value."</span>");
+	$span_used = sprintf("%s%%", "<span name='ups_status_used' id='ups_status_{$id}_used' class='capacity'>".$value."</span>");
 	
 	print(<<<EOD
 <tr>
   <td>
 	<div id='ups_status'>
-		<span name='ups_status_name' id='ups_status_name' class='name'><b>{$name}</b></span><br />
-		<img src="bar_left.gif" class="progbarl" alt="" /><img src="bar_blue.gif" name="ups_status_bar_used" id="ups_status_bar_used" width="{$value}" class="progbarcf" title="{$tooltip_used}" alt="" /><img src="bar_gray.gif" name="ups_status_bar_free" id="ups_status_bar_free" width="{$available}" class="progbarc" title="{$tooltip_available}" alt="" /><img src="bar_right.gif" class="progbarr" alt="" />
+		<span name='ups_status_name' id='ups_status_{$id}_name' class='name'><b>{$name}</b></span><br />
+		<img src="bar_left.gif" class="progbarl" alt="" /><img src="bar_blue.gif" name="ups_status_bar_used" id="ups_status_{$id}_bar_used" width="{$value}" class="progbarcf" title="{$tooltip_used}" alt="" /><img src="bar_gray.gif" name="ups_status_bar_free" id="ups_status_{$id}_bar_free" width="{$available}" class="progbarc" title="{$tooltip_available}" alt="" /><img src="bar_right.gif" class="progbarr" alt="" />
 		{$span_used}
 	</div>
   </td>
@@ -249,6 +280,26 @@ $(document).ready(function(){
 					$('#swapusage_'+su.id+'_used').text(su.used);
 					$('#swapusage_'+su.id+'_free').text(su.avail);
 				}
+			}
+		}
+		if (typeof(data.upsinfo) != 'undefined' && data.upsinfo !== null) {
+			var ups_id = "load";
+			var ui = data.upsinfo[ups_id];
+			if ($('#ups_status_'+ups_id+'_bar_used').size() > 0) {
+				$('#ups_status_'+ups_id+'_bar_used').attr('width', ui.percentage + 'px');
+				$('#ups_status_'+ups_id+'_bar_used').attr('title', ui.tooltip_used);
+				$('#ups_status_'+ups_id+'_bar_free').attr('width', (100 - ui.percentage) + 'px');
+				$('#ups_status_'+ups_id+'_bar_free').attr('title', ui.tooltip_available);
+				$('#ups_status_'+ups_id+'_used').text(ui.used);
+			}
+			var ups_id = "battery";
+			var ui = data.upsinfo[ups_id];
+			if ($('#ups_status_'+ups_id+'_bar_used').size() > 0) {
+				$('#ups_status_'+ups_id+'_bar_used').attr('width', ui.percentage + 'px');
+				$('#ups_status_'+ups_id+'_bar_used').attr('title', ui.tooltip_used);
+				$('#ups_status_'+ups_id+'_bar_free').attr('width', (100 - ui.percentage) + 'px');
+				$('#ups_status_'+ups_id+'_bar_free').attr('title', ui.tooltip_available);
+				$('#ups_status_'+ups_id+'_used').text(ui.used);
 			}
 		}
 	});
@@ -637,8 +688,8 @@ $(document).ready(function(){
 									}
 								}
 									tblrow(gettext('Status'), $disp_status. "  <small>[<a href='diag_infos_ups.php'>" . gettext("Show ups information")."</a></small>]");
-									tblrowbar(gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
-									tblrowbar(gettext('Battery Level'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
+									tblrowbar("load", gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
+									tblrowbar("battery", gettext('Battery Level'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
 								}
 								
 								unset($handle);
