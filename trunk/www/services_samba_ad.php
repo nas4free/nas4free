@@ -77,6 +77,7 @@ if ($_POST) {
 		$config['sambaad']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['samba']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['sambaad']['dns_forwarder'] = $_POST['dns_forwarder'];
+		$config['sambaad']['user_shares'] = isset($_POST['user_shares']) ? true : false;
 
 		write_config();
 		$retval = 0;
@@ -97,6 +98,7 @@ $pconfig['netbios_domain'] = $config['sambaad']['netbios_domain'];
 $pconfig['dns_forwarder'] = $config['sambaad']['dns_forwarder'];
 $pconfig['path'] = $config['sambaad']['path'];
 $pconfig['fstype'] = $config['sambaad']['fstype'];
+$pconfig['user_shares'] = isset($config['sambaad']['user_shares']);
 $realm = strtoupper($pconfig['dns_domain']);
 $hostname = $config['system']['hostname'];
 $netbiosname = strtoupper($config['system']['hostname']);
@@ -142,6 +144,7 @@ $(document).ready(function(){
 	<?php html_text("netbios_domain", gettext("NetBIOS domain"), htmlspecialchars($pconfig['netbios_domain']));?>
 	<?php html_text("path", gettext("Path"), htmlspecialchars($pconfig['path']));?>
 	<?php html_text("fstype", gettext("Fileserver"), htmlspecialchars($pconfig['fstype']));?>
+	<?php html_checkbox("user_shares", gettext("User shares"), !empty($pconfig['user_shares']) ? true : false, gettext("Append user defined shares"), "", false);?>
 	</table>
 	<div id="submit">
 	  <input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" />
