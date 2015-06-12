@@ -107,7 +107,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Chinese translator of the WebGUI</font></em></div><br />
             <div>Carsten Vinkler (<a href="mailto:carsten@indysign.dk">carsten@indysign.dk</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Danish translator of the WebGUI</font></em></div><br />
-            <div>Christophe Lherieau (<a href="skimpax+freenas@gmail.com">skimpax+freenas@gmail.com</a>)<br />
+            <div>Christophe Lherieau (<a href="mailto:skimpax@gmail.com">skimpax@gmail.com</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">French translator of the WebGUI</font></em></div><br />
             <div>Edouard Richard (<a href="mailto:richard.edouard84@gmail.com">richard.edouard84@gmail.com</a>)<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">French translator of the WebGUI</font></em></div><br />
@@ -125,6 +125,8 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Romanian translator of the WebGUI</font></em></div><br />
             <div>Raul Fernandez Garcia (<a href="mailto:raulfg3@gmail.com">raulfg3@gmail.com</a>)<br />
 	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Spanish translator of the WebGUI</font></em></div><br />
+            <div>Mucahid Zeyrek (<a href="mailto:mucahid.zeyrek@dhl.com">mucahid.zeyrek@dhl.com</a>)<br />
+	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Turkish translator of the WebGUI</font></em></div><br />
 						</td></tr>
             <?php html_separator();?>
             <?php html_titleline(gettext("Software used"));?>
