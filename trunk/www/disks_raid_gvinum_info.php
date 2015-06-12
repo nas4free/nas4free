@@ -79,7 +79,7 @@ $(document).ready(function(){
   <tr>
     <td class="tabcont">
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-	    <?php html_titleline(gettext("Software RAID information and status"));?>
+	    <?php html_titleline(gettext("RAID 0/1/5 information and status"));?>
 	    <tr>
 		<td class="listt">
 		    <pre><span id="raidinfo"></span></pre>
