@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-11 23:41+0000\n"
-"PO-Revision-Date: 2015-06-11 15:09+0000\n"
-"Last-Translator: sleid <jeanluc.fraysse@orange.fr>\n"
+"POT-Creation-Date: 2015-06-12 20:41+0000\n"
+"PO-Revision-Date: 2015-06-12 14:54+0000\n"
+"Last-Translator: velivole18 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-11 19:12+0000\n"
+"X-Launchpad-Export-Date: 2015-06-12 17:13+0000\n"
 "X-Generator: Launchpad (build 17557)\n"
 "X-Poedit-Country: FRANCE\n"
 "Language: \n"
@@ -549,11 +549,11 @@ msgid "All"
 msgstr "Tous"
 
 msgid ""
-"All data in path is overwritten. Dedicated ZFS dataset is strongly "
-"recommended."
+"All data in the path is overwritten. To avoid invalid data/permission, using "
+"empty UFS directory is recommended."
 msgstr ""
-"Toutes les données du répertoire sont écrasées. Un jeu de données ZFS dédié "
-"est fortement recommandé."
+"Toutes les données du répertoire sont écrasées. Pour éviter des données / "
+"droits invalides, l'utilisation d'un répertoire vide UFS est recommandée."
 
 msgid "All dirs"
 msgstr "Tous les répertoires"
@@ -685,6 +685,9 @@ msgstr "Utilisateurs anonymes seulement"
 
 msgid "Any"
 msgstr "Tous"
+
+msgid "Append user defined shares"
+msgstr "Ajout d'actions définies par l'utilisateur"
 
 msgid "Apple Filing Protocol"
 msgstr "Apple Filing Protocol (AFP)"
@@ -1366,6 +1369,9 @@ msgstr "Valeur courante de la puissance réelle (Watts)"
 msgid "Custom"
 msgstr "Personnaliser"
 
+msgid "Custom device"
+msgstr "périphérique adapté"
+
 msgid "Custom script"
 msgstr "Script personnalisé"
 
@@ -1678,6 +1684,9 @@ msgstr ""
 
 msgid "Device"
 msgstr "Périphérique"
+
+msgid "Device / Label"
+msgstr "Périphérique / Label"
 
 #, php-format
 msgid "Device /dev/%s - %s"
@@ -2628,7 +2637,7 @@ msgid "Filename"
 msgstr "Nom de fichier"
 
 msgid "Fileserver"
-msgstr ""
+msgstr "Serveur de fichiers"
 
 msgid "Filter"
 msgstr "Filtre"
@@ -5231,6 +5240,9 @@ msgstr "Sélectionnez un algorithme d'équilibrage de lecture."
 msgid "Selected"
 msgstr "Sélectionné"
 
+msgid "Selected device or label does not exist."
+msgstr "Le périphérique ou le label sélectionné est inexistant"
+
 msgid "Selected file isn't an valid ISO file."
 msgstr "Le fichier sélectionné n'est pas un fichier ISO valide."
 
@@ -7604,6 +7616,9 @@ msgstr "Mot de passe."
 msgid "User portal"
 msgstr "Portail utilisateur"
 
+msgid "User shares"
+msgstr "Actions utilisateur"
+
 msgid "User suffix"
 msgstr "Suffixe utilisateur"
 
@@ -7876,6 +7891,9 @@ msgstr "Vous devez sélectionner au moins un élément pour '%s'."
 msgid "You may enter a description here for your reference."
 msgstr "Vous pouvez saisir ici une description pour votre référence."
 
+msgid "You may enter a device file or label path."
+msgstr "Vous devez entrer un fichier de périphérique ou un chemin de label."
+
 #, php-format
 msgid ""
 "You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII "
@@ -7909,7 +7927,7 @@ msgstr ""
 "Un minimum de %d MO de RAM est requis pour pouvoir utiliser les cibles iSCSI."
 
 msgid "You must initialize data before enabling."
-msgstr ""
+msgstr "Vous devez initialiser les données avant de les activer."
 
 msgid "You must select at least one authentication method."
 msgstr "Vous devez sélectionner au moins une méthode d'authentification."
@@ -8097,7 +8115,7 @@ msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
 msgid "sysvol exist in path."
-msgstr ""
+msgstr "sysvol existe dans le chemin."
 
 msgid "to"
 msgstr "à"
@@ -8111,3 +8129,10 @@ msgstr "démontage"
 #, php-format
 msgid "version:"
 msgstr "version:"
+
+#~ msgid ""
+#~ "All data in path is overwritten. Dedicated ZFS dataset is strongly "
+#~ "recommended."
+#~ msgstr ""
+#~ "Toutes les données du répertoire sont écrasées. Un jeu de données ZFS dédié "
+#~ "est fortement recommandé."

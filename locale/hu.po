@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-11 23:41+0000\n"
-"PO-Revision-Date: 2015-06-08 19:05+0000\n"
+"POT-Creation-Date: 2015-06-12 20:41+0000\n"
+"PO-Revision-Date: 2015-06-12 12:35+0000\n"
 "Last-Translator: Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-11 19:12+0000\n"
+"X-Launchpad-Export-Date: 2015-06-12 17:13+0000\n"
 "X-Generator: Launchpad (build 17557)\n"
 "Language: hu_HU\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -99,8 +99,8 @@ msgstr "*** duplikátum importálva ***"
 
 msgid "0=disabled, 1-255=enabled command queuing with specified depth."
 msgstr ""
-"0=nem engedélyezett, 1-255=engedélyezett parancsok sorba állítása a "
-"meghatározott tartományban."
+"0=nem engedélyezett, 1-255=parancsok sorba fűzésének engedélyezése "
+"meghatározott mélységgel."
 
 msgid ""
 "1. Use these specials actions for debugging only!<br />2. There is no need "
@@ -124,8 +124,8 @@ msgid ""
 "<a href='%s'>SSHD</a> must be enabled for Unison to work, and the <a "
 "href='%s'>user</a> must have shell access."
 msgstr ""
-"<a href='%s'>SSHD</a>-t engedélyezni kell Unison használatához, és a <a "
-"href='%s'>felhasználó</a>-nak szüksége van shell hozzáférésre."
+"<a href='%s'>SSHD</a>-t engedélyezni kell Unison működéséhez, és a <a "
+"href='%s'>felhasználó</a>nak szüksége van shell hozzáférésre."
 
 msgid ""
 "<b>EFI GPT partition</b> if you want to mount a GPT formatted drive "
@@ -133,10 +133,10 @@ msgid ""
 "UFS formatted drive or do imported disks from other OS.<br/><b>CD/DVD "
 "volume</b> if you want to mount a CD/DVD volume."
 msgstr ""
-"<b>EFI GPT partíció</b> ha GPT formázott meghjatót szeretnél mountolni "
+"<b>EFI GPT partíció</b> ha GPT formázott meghajtót szeretnél becsatolni "
 "(<b>alapértelmezett partíció</b>). <br/>\r\n"
-"<b>MBR partíció</b> ha UFS formázott meghajtót vagy másik OS-ből importált "
-"lemezt szeretnél.<br/>\r\n"
+"<b>MBR partíció</b> ha UFS formázott meghajtót vagy másik operációs "
+"rendszerből importált lemezt szeretnél becsatolni.<br/>\r\n"
 "<b>CD/DVD meghajtó</b> ha CD/DVD-kötetet szeretnél becsatolni."
 
 msgid ""
@@ -164,21 +164,21 @@ msgstr ""
 "3.0.0 vagy újabbal, és az 'előtte' algoritmust amikor egy régebbi rsync-kel "
 "beszélget.</li><li>Előtte - Fájl-törlések a transzfer előtt kezdődik el. "
 "</li><li>Alatta - Fájl törlések inkrementálisan zajlik a "
-"transzferrrel.</li><li>Késleltetett - Fájl törlések a transzfer alatt "
+"transzferrel.</li><li>Késleltetett - Fájl törlések a transzfer alatt "
 "számolódnak, , és a transzfer végén fejeződik be.</li><li>Utána - Fájl-"
 "törlések transzfer befejezése után kezdődnek.</li>"
 
 msgid ""
 "A Auth Group contains authorised users and secrets for additional security."
 msgstr ""
-"A Auth csoport authentikált felhasználókat és titkosításokat tartalmaz a "
+"Az Auth csoport hitelesített felhasználókat és titkosításokat tartalmaz a "
 "nagyobb biztonság érdekében."
 
 msgid ""
 "A Initiator Group contains authorised initiator names and networks to access "
 "the target."
 msgstr ""
-"A kezdeményező csoport tartalmazza az authentikált kezdeményező "
+"A kezdeményező csoport tartalmazza az hitelesített kezdeményező "
 "felhasználókat és hálózatok a cél eléréséhez."
 
 msgid ""
@@ -348,10 +348,10 @@ msgstr ""
 "szeretnél egy esetleges hibáról vagy a merevlemez S.M.A.R.T. hibaüzeneteiről."
 
 msgid "Active Directory"
-msgstr "Címtár szolgáltatás (AD)"
+msgstr "Címtárszolgáltatás (AD)"
 
 msgid "Active Directory List"
-msgstr "Aktív könyvtártak listája"
+msgstr "Címtárszolgáltatók felsorolása"
 
 msgid "Active Shares"
 msgstr "Aktív megosztások"
@@ -471,7 +471,7 @@ msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "Remote hastd daemon címe. Statikus IP címnek kell lennie."
 
 msgid "Admin password"
-msgstr ""
+msgstr "Admin jelszava"
 
 msgid "Administration password"
 msgstr "Rendszergazdai jelszó"
@@ -489,13 +489,13 @@ msgid "Advanced Configuration"
 msgstr "Részletes beállítás"
 
 msgid "Advanced Format"
-msgstr "Advanced Format"
+msgstr "Fejlett formázás"
 
 msgid "Advanced Options"
 msgstr "Haladó beállítások"
 
 msgid "Advanced Power Management"
-msgstr "Haladó energia kezelés (APM)"
+msgstr "Fejlett energiakezelés (APM)"
 
 msgid "Advanced settings"
 msgstr "Speciális beállítások"
@@ -542,9 +542,11 @@ msgid "All"
 msgstr "Minden"
 
 msgid ""
-"All data in path is overwritten. Dedicated ZFS dataset is strongly "
-"recommended."
+"All data in the path is overwritten. To avoid invalid data/permission, using "
+"empty UFS directory is recommended."
 msgstr ""
+"Az útvonalon lévő összes adat felülíródik.  Érvénytelen adatok/jogosultságok "
+"elkerülés érdekében üres UFS könyvtár használat ajánlott."
 
 msgid "All dirs"
 msgstr "Minden könyvtár"
@@ -552,8 +554,8 @@ msgstr "Minden könyvtár"
 #, php-format
 msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr ""
-"Az összes könyvtárhoz kell hogy legyen becsatolt útvonal, de a(z) %s útvonal "
-"nincs becsatolva."
+"Az összes könyvtárhoz kell, hogy legyen becsatolt útvonal, de a(z) %s "
+"útvonal nincs becsatolva."
 
 msgid "All disks are imported."
 msgstr "Összes lemez importálva."
@@ -676,6 +678,9 @@ msgstr "Csak névtelen felhasználók"
 msgid "Any"
 msgstr "Bármely"
 
+msgid "Append user defined shares"
+msgstr "Felhasználó által létrehozott megosztás hozzáfűzése"
+
 msgid "Apple Filing Protocol"
 msgstr "Apple Filing Protokoll"
 
@@ -745,7 +750,7 @@ msgid "Auto"
 msgstr "Automatikus"
 
 msgid "Auto Snapshot"
-msgstr "Auto snapshot"
+msgstr "Automatikus pillanatkép"
 
 msgid "Auto size"
 msgstr "Automatikus méret"
@@ -918,7 +923,7 @@ msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB információk"
 
 msgid "CIFS/SMB is enabled."
-msgstr ""
+msgstr "CIFS/SMB engedélyezve van."
 
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (cirill)"
@@ -978,7 +983,7 @@ msgid "Can't get UFS ID."
 msgstr "Nincs UFS ID."
 
 msgid "Can't mount the system partition 1, the DATA partition is the 2."
-msgstr "Nem csatolható a rendszer partíció 1, az ADAT partíció a 2."
+msgstr "Nem csatolható be a rendszer partíció 1, az ADAT partíció a 2."
 
 msgid "Cancel"
 msgstr "Mégsem"
@@ -993,7 +998,7 @@ msgid "Cannot get data about interface"
 msgstr "Nem lehet adatot nyerni az interfészről"
 
 msgid "Cannot use DHCP for LAN interface."
-msgstr ""
+msgstr "LAN interfészhez nem használható DHCP."
 
 msgid "Capacity"
 msgstr "Kapacitás"
@@ -1033,6 +1038,8 @@ msgstr "Akkumulátor töltése"
 #, php-format
 msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
 msgstr ""
+"Inicializálás előtt ellenőrizze a <a href=\"%s\">Rendszer|Általános "
+"beállítások</a>at."
 
 msgid "Check interval"
 msgstr "Időköz ellenőrzése"
@@ -1208,7 +1215,7 @@ msgid "Controls power consumption."
 msgstr "Ez szabályozza az energiafogyasztást."
 
 msgid "Controls the behavior of synchronous requests."
-msgstr "Szinkron kérések viselkedésénk szabályozása."
+msgstr "Egyidejű kérések viselkedésének szabályozása."
 
 msgid ""
 "Controls the compression algorithm used for this dataset. The 'lzjb' "
@@ -1247,7 +1254,7 @@ msgid ""
 ":disks-zfs-volumes-volume' target='_blank'>ZFS volumes & deduplication</a> "
 "wiki article BEFORE using this feature.</b></br>"
 msgstr ""
-"A dedup módot állítja. <br><b><font color='red'>FONTOS "
+"Az egyszeresítés (dedup) módot állítja. <br><b><font color='red'>FONTOS "
 "FIGYELMEZTETÉS</font>: Olvasd el a <a "
 "href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
 ":disks-zfs-volumes-volume' target='_blank'>ZFS kötetek & deduplikáció</a> "
@@ -1260,7 +1267,7 @@ msgid ""
 ":disks_zfs_datasets_dataset' target='_blank'>ZFS datasets & "
 "deduplication</a> wiki article BEFORE using this feature.</b></br>"
 msgstr ""
-"A dedup módot állítja. <br><b><font color='red'>FONTOS "
+"Az egyszeresítés (dedup) módot állítja. <br><b><font color='red'>FONTOS "
 "FIGYELMEZTETÉS</font>: Olvasd el a <a "
 "href='http://wiki.nas4free.org/doku.php?id=documentation:setup_and_user_guide"
 ":disks-zfs-volumes-volume' target='_blank'>ZFS adattárak & deduplikáció</a> "
@@ -1347,6 +1354,9 @@ msgstr "A valós teljesítmény aktuális értéke (Volt-Amper)"
 msgid "Custom"
 msgstr "Egyéni"
 
+msgid "Custom device"
+msgstr "Egyéni eszköz"
+
 msgid "Custom script"
 msgstr "Egyéni script"
 
@@ -1366,7 +1376,7 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DHCP cannot be used for LAN interface."
-msgstr ""
+msgstr "LAN interfészhez nem használható DHCP."
 
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
@@ -1375,13 +1385,13 @@ msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Média zzerver"
 
 msgid "DNS domain"
-msgstr ""
+msgstr "DNS domain"
 
 msgid "DNS forwarder"
-msgstr ""
+msgstr "DNS továbbító"
 
 msgid "DNS server is empty."
-msgstr ""
+msgstr "DNS szerver üres."
 
 msgid "DNS settings"
 msgstr "DNS beállítások"
@@ -1443,7 +1453,7 @@ msgid "Decrypt password"
 msgstr "Dekódoló jelszó"
 
 msgid "Dedup"
-msgstr "Dedup"
+msgstr "Egyszeresítés"
 
 msgid "Default"
 msgstr "Alapértelmezett"
@@ -1516,7 +1526,7 @@ msgid "Delete auth group"
 msgstr "Auth csoport törlése"
 
 msgid "Delete auto snapshot"
-msgstr "Auto pillanatkép törlése"
+msgstr "Automatikus pillanatkép törlése"
 
 msgid "Delete clone"
 msgstr "Clone törlése"
@@ -1582,7 +1592,7 @@ msgid "Delete share"
 msgstr "Megosztás törlése"
 
 msgid "Delete snapshot"
-msgstr "Snapshot törlése"
+msgstr "Pillanatkép törlése"
 
 msgid "Delete target"
 msgstr "Cél törlése"
@@ -1594,7 +1604,7 @@ msgid "Delete volume"
 msgstr "Kötet törlése"
 
 msgid "Deletes the recursive snapshot."
-msgstr "Rekurzív snapshot törlése"
+msgstr "Rekurzív snapshot törlése."
 
 msgid "Deleting"
 msgstr "Törlés"
@@ -1657,6 +1667,9 @@ msgstr ""
 
 msgid "Device"
 msgstr "Eszköz"
+
+msgid "Device / Label"
+msgstr "Eszköz / Címke"
 
 #, php-format
 msgid "Device /dev/%s - %s"
@@ -1812,7 +1825,7 @@ msgid "Do you really want to delete this auth group?"
 msgstr "Biztos, hogy törli ezt az auth csoportot?"
 
 msgid "Do you really want to delete this auto snapshot?"
-msgstr "Valóban törölni kívánja ezt az auto snapshot-ot?"
+msgstr "Valóban törölni kívánja ezt az automatikus pillanatképet?"
 
 msgid "Do you really want to delete this clone?"
 msgstr "Valóban törölni kívánja ezt a clone-t?"
@@ -1866,7 +1879,7 @@ msgid ""
 "it will become invalid (e.g. share)!"
 msgstr ""
 "Biztos, hogy törlöd ezt a csatolási pontot? Minden erre hivatkozó elem "
-"érvénytelenné válik (pl.: megosztás)!"
+"érvénytelenné válik (pl. megosztás)!"
 
 msgid "Do you really want to delete this option?"
 msgstr "Biztos, hogy törlöd ezt a beállítást?"
@@ -1893,7 +1906,7 @@ msgid "Do you really want to delete this share?"
 msgstr "Valóban törölni akarja ezt a megosztást?"
 
 msgid "Do you really want to delete this snapshot?"
-msgstr "Biztos, hogy törlöd ezt a snapshot-ot?"
+msgstr "Biztos, hogy törlöd ezt a pillanatképet?"
 
 msgid "Do you really want to delete this target?"
 msgstr "Valóban törölni akarja ezt a célt?"
@@ -1938,7 +1951,7 @@ msgid "Domain controller name"
 msgstr "Tartományvezérlő neve"
 
 msgid "Domain have no 2nd level name."
-msgstr ""
+msgstr "Domainnek nincs 2. szitnű neve."
 
 msgid "Domain name"
 msgstr "Tartománynév"
@@ -2058,7 +2071,7 @@ msgid "Edit auth group"
 msgstr "Auth csoport szerkesztése"
 
 msgid "Edit auto snapshot"
-msgstr "Auto pillanatkép beállításai"
+msgstr "Automatikus pillanatkép beállításai"
 
 msgid "Edit command"
 msgstr "Parancs szerkesztése"
@@ -2118,7 +2131,7 @@ msgid "Edit share"
 msgstr "Magosztás szerkesztése"
 
 msgid "Edit snapshot"
-msgstr "Snapshot szerkesztése"
+msgstr "Pillanatkép beállításai"
 
 msgid "Edit target"
 msgstr "Cél szerkesztése"
@@ -2155,10 +2168,10 @@ msgid "Enable ACL inheritance"
 msgstr "ACL öröklődés engedélyezése"
 
 msgid "Enable Advanced Format (4KB sector)"
-msgstr "Advanced Format engedélyezése (4KB sector)"
+msgstr "Fejlett formázás bekapcsolása (4KB-os szektor)"
 
 msgid "Enable Asynchronous I/O (AIO)"
-msgstr "Asynchronous I/O (AIO) engedélyezése"
+msgstr "Aszinkron I/O (AIO) engedélyezése"
 
 msgid "Enable FXP protocol."
 msgstr "FXP protokol engedélyezve."
@@ -2240,7 +2253,7 @@ msgid "Enable guest access."
 msgstr "Vendég hozzáférés engedélyezése."
 
 msgid "Enable keyboard-interactive authentication."
-msgstr "Billentyű-interaktív authentikáció engedélyezése"
+msgstr "Billentyű-interaktív authentikáció hitelesítés"
 
 msgid "Enable large read/write"
 msgstr "Nagy olvasás/írás engedélyezése"
@@ -2517,7 +2530,7 @@ msgstr "Hiba az ütemezett feladat végrehajtása közben."
 
 #, php-format
 msgid "Failed to remove: %s"
-msgstr ""
+msgstr "Nem sikerült eltávolítani: %s"
 
 #, c-format
 msgid "Failed to send status report to: %s."
@@ -2597,7 +2610,7 @@ msgid "Filename"
 msgstr "Fájlnév"
 
 msgid "Fileserver"
-msgstr ""
+msgstr "Fájlszerver"
 
 msgid "Filter"
 msgstr "Szűrő"
@@ -2709,7 +2722,7 @@ msgid "Generate"
 msgstr "Generálás"
 
 msgid "Generate password if leave empty."
-msgstr ""
+msgstr "Jelszó generálásához hagyd üresen."
 
 msgid "German"
 msgstr "Német"
@@ -2924,7 +2937,7 @@ msgstr ""
 "feloldás címek gépnevekre&quot;</a> engedélyezve van."
 
 msgid "IP or FQDN address of remote Rsync server."
-msgstr "IP vagy FQDN-címét távoli rsync szerverre."
+msgstr "Távoli rsync szerver IP vagy FQDN címe."
 
 msgid "IP type mismatch for network and gateway."
 msgstr "IP típusú eltérés a hálózathoz és az átjáróhoz."
@@ -3001,8 +3014,8 @@ msgid ""
 "during this process."
 msgstr ""
 "Ha a kiválasztott lemez/partíció be van csatolva, akkor leválasztásra kerül "
-"ideiglenesen kiválasztott parancs elvégzéséhez, különben a parancs munka "
-"csak olvasható módban fut le. <br />Szolgáltatás leállást okoz azoknak a "
+"ideiglenesen kiválasztott parancs elvégzéséhez, különben a parancs "
+"csakolvasható módban fut. <br />Szolgáltatásleállást okoz azoknak a "
 "felhasználóknak, akik használják ezt a csatolást."
 
 msgid ""
@@ -3035,11 +3048,12 @@ msgstr ""
 "vagy módosíthatnak fájlokat a megosztásban."
 
 msgid "If this property is disabled, the file system cannot be mounted."
-msgstr "Ha ez tiltva van, a fájlrendszer nem csatolható be."
+msgstr "Ha ez a tulajdonság  tiltva van, a fájlrendszer nem csatolható be."
 
 msgid ""
 "If this property is enabled, the snapshots are displayed into .zfs directory."
-msgstr "Ha engedélyzve van, a snaphot-ok a .zfs könyvtárban megjelennek."
+msgstr ""
+"Ha engedélyezve van, a pillanatképek a .zfs könyvtárban jelennek meg."
 
 #, php-format
 msgid ""
@@ -3136,7 +3150,7 @@ msgid "Initializing"
 msgstr "Inicializálás"
 
 msgid "Initializing..."
-msgstr ""
+msgstr "Inicializálás..."
 
 msgid "Initiator Group"
 msgstr "Kezdeményező csoport"
@@ -3381,10 +3395,10 @@ msgstr ""
 "href='%s'>format</a> menüvel."
 
 msgid "Leave already configured auto snapshots."
-msgstr "Maradjanak a már meglévő auto pillanatkép beállítások."
+msgstr "Ne módosuljanak a már meglévő automatikus pillanatkép beállításai."
 
 msgid "Leave auto snapshot configuration"
-msgstr "Maradjon az auto pillantkép beállítás"
+msgstr "Ne módosuljanak az automatikus pillanatkép beállításai."
 
 msgid "Leave this field empty to use default settings."
 msgstr "Az alapértelmezett beállításokhoz hagyd üresen."
@@ -3435,7 +3449,7 @@ msgstr ""
 "Egy adattár és leszármazottjai által használt méret korlátozása. Ez a "
 "tulajdonság erős korlátot állít a használható hely mennyiségére. Magába "
 "foglalja a leszármazottaknak szánt összes helyet, beleértve a fájlrendszert "
-"és a snapshot-okat. Megadásához használd a hagyományos utótag formátumokat "
+"és a pilanatképeket. Megadásához használd a hagyományos utótag formátumokat "
 "(pl. 'k', 'KB', 'M', 'Gb', stb.)."
 
 msgid "Link Aggregation and Failover"
@@ -3624,10 +3638,10 @@ msgid "MOVED TO"
 msgstr "ÁTHELYEZVE:"
 
 msgid "MS Active Directory"
-msgstr "MS Active Directory"
+msgstr "MS Címtárszolgáltatás"
 
 msgid "MS Active Directory informations"
-msgstr "MS Active Directory információk"
+msgstr "MS Címtárszolgáltatás információk"
 
 msgid "MS Domain"
 msgstr "MS tartomány"
@@ -3818,7 +3832,7 @@ msgid "Minutes"
 msgstr "Perc"
 
 msgid "Minutes between network time sync."
-msgstr "Időszinkronizálások között eltelt percek."
+msgstr "Hálózati időszinkronizálások közötti percek száma."
 
 msgid "Mirror"
 msgstr "Tükör"
@@ -3857,7 +3871,7 @@ msgid "Months"
 msgstr "Hónap"
 
 msgid "Mount Point"
-msgstr "Csatlakoztatási pont (Mount Point)"
+msgstr "Csatolási pont (Mount Point)"
 
 msgid "Mount point"
 msgstr "Csatolási pont"
@@ -3914,10 +3928,10 @@ msgid "NT1"
 msgstr "NT1"
 
 msgid "NTP is not enabled."
-msgstr ""
+msgstr "NTP nincs bekapcsolva."
 
 msgid "NTP must be enabled."
-msgstr ""
+msgstr "NTP-t be kell kapcsolni."
 
 msgid "NTP time server"
 msgstr "NTP idő szerver"
@@ -3946,7 +3960,7 @@ msgid "Name of the variable."
 msgstr "A változó neve."
 
 msgid "NetBIOS domain"
-msgstr ""
+msgstr "NetBIOS domain."
 
 msgid "NetBIOS name"
 msgstr "NetBIOS név"
@@ -4159,7 +4173,7 @@ msgid "Not attached"
 msgstr "Nem csatolt"
 
 msgid "Not found path."
-msgstr ""
+msgstr "Útvonal nem található."
 
 msgid "Note"
 msgstr "Megjegyzés"
@@ -4184,7 +4198,7 @@ msgstr ""
 "bejegyzést."
 
 msgid "Nothing to synchronize"
-msgstr "Nincs szinkronizálni való."
+msgstr "Nincs mit szinkronizálni."
 
 #, php-format
 msgid "Notification email from host: %s"
@@ -4429,7 +4443,7 @@ msgstr "Jelszó szerver"
 msgid ""
 "Password server name or IP address (e.g. Active Directory domain controller)."
 msgstr ""
-"Jelszó szerver neve vagy IP címe (pl. Active Directory Domain kontroller)."
+"Jelszószerver neve vagy IP címe (pl. Címtárszolgáltató Tartományvezérlő)."
 
 msgid "Password suffix"
 msgstr "Jelszó utótag"
@@ -4470,7 +4484,7 @@ msgstr "Peer port"
 
 #, php-format
 msgid "Permanent samba data path (e.g. %s)."
-msgstr ""
+msgstr "Állandó Samba adatúvonal (pl. %s)."
 
 msgid "Permit root login"
 msgstr "root bejelentkezés engedélyezése"
@@ -4635,7 +4649,7 @@ msgid "Processes"
 msgstr "Folyamatok"
 
 msgid "Processes information"
-msgstr "Folyamat információ"
+msgstr "Folyamatokról információ"
 
 msgid "Product ID"
 msgstr "Termékazonosító"
@@ -4659,8 +4673,8 @@ msgid ""
 "Puts the hard disk into standby mode when the selected amount of time after "
 "the last hard disk access has been elapsed."
 msgstr ""
-"Készenléti módban helyezi a merevlemezt amikor a kiválasztott idő után az "
-"utolsó a merevlemez-használat már letelt."
+"Készenléti módba helyezi a merevlemezt, amikor az utolsó merevlemezelérés "
+"után a kiválasztott idő eltelt."
 
 msgid "Queue Depth"
 msgstr "Sor mélység"
@@ -4824,7 +4838,7 @@ msgid "Remote monitoring"
 msgstr "Távoli megfigyelés"
 
 msgid "Remote rsync daemon"
-msgstr ""
+msgstr "Távoli rsync démon"
 
 msgid "Remote syslog server"
 msgstr "Távoli napló szerver"
@@ -4972,6 +4986,8 @@ msgstr "Futtatás most"
 
 msgid "Run without requiring remote rsync daemon. (Disabled by default)"
 msgstr ""
+"Távoli rsync démon megkövetelése nélkül fusson. (Alapértelmezetten ki van "
+"kapcsolva)"
 
 msgid "Running"
 msgstr "Fut"
@@ -5030,17 +5046,17 @@ msgid "SSL/TLS only"
 msgstr "Csak SSL/TLS"
 
 msgid "Samba AD"
-msgstr ""
+msgstr "Samba AD"
 
 msgid "Samba Active Directory Domain Controller"
-msgstr ""
+msgstr "Samba Címtárszolgáltató Tartományvezérlő"
 
 #, php-format
 msgid ""
 "Samba will read from file asynchronously when size of request is bigger than "
 "this value. (%d by default)"
 msgstr ""
-"Samba aszinkronosan fog olvasni amikor a kérés mérete nagyobb mint ez az "
+"Samba aszinkron módon fog olvasni amikor a kérés mérete nagyobb, mint ez az "
 "érték (%d alapértelmezetten)"
 
 #, php-format
@@ -5048,8 +5064,8 @@ msgid ""
 "Samba will write to file asynchronously when size of request is bigger than "
 "this value. (%d by default)"
 msgstr ""
-"Samba aszinkronosan fog írni amikor a kérés mérete nagyobb mint ez az érték "
-"(%d alapértelmezetten)"
+"Samba aszinkron módon fog írni amikor a kérés mérete nagyobb, mint ez az "
+"érték (%d alapértelmezetten)"
 
 msgid "Save"
 msgstr "Mentés"
@@ -5158,6 +5174,9 @@ msgstr "Válassz olvasási mérlegelési algoritmust."
 msgid "Selected"
 msgstr "Kiválasztott"
 
+msgid "Selected device or label does not exist."
+msgstr "A kiválasztott eszköz vagy címke nem létezik."
+
 msgid "Selected file isn't an valid ISO file."
 msgstr "A kiválasztott fájl nem érvényes ISO fájl."
 
@@ -5259,8 +5278,8 @@ msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr ""
-"Állítja egy másik csatolási pontot a gyökér adattár részére. Az "
-"alapértelmezett a /mnt"
+"A gyökér adattárnak egy másik csatolási pont beállítása. Az alapértelmezett "
+"a /mnt"
 
 msgid ""
 "Sets the interval between disk checks to N seconds. The minimum allowed "
@@ -5311,7 +5330,7 @@ msgstr ""
 "Napló bejegyzések megjelenítése fordított sorrendben (az újak vannak felül)"
 
 msgid "Show process information"
-msgstr "Információ a futó folyamatokról"
+msgstr "Folyamatinformáció megjelenítése"
 
 msgid "Show ups information"
 msgstr "Információ a szüntementesről"
@@ -5374,10 +5393,10 @@ msgid "Snapshot"
 msgstr "Pillanatkép"
 
 msgid "Snapshot Visibility"
-msgstr "Pillanatkép láthatóság"
+msgstr "Pillanatkép láthatósága"
 
 msgid "Snapshots"
-msgstr "Pillanatkép"
+msgstr "Pillanatképek"
 
 msgid "Sockets"
 msgstr "Csatlakozások (Sockets)"
@@ -5474,9 +5493,9 @@ msgid ""
 "lowering the threshold can adversely affect performance and auto-"
 "defragmentation."
 msgstr ""
-"Határozd meg a normál felhasználótól visszatartott hely százalékát. A "
-"küszöbérték csökkentése befolyásolja az automatikus-töredezettségmentesítési "
-"folyamat lefutását."
+"Határozd meg a normál felhasználóktól visszatartott hely százalékát. A "
+"küszöbérték csökkentése hátrányosan befolyásolhatja a teljesítményt és az "
+"automatikus-töredezettségmentesítést."
 
 msgid "Split request"
 msgstr "Osztott kérés"
@@ -5617,7 +5636,7 @@ msgid "Switch to %s/s"
 msgstr "Váltás erre: %s/s"
 
 msgid "Sync"
-msgstr "Sync"
+msgstr "Szinkronizálás"
 
 msgid "Synchronization time"
 msgstr "Szinkronizációs idő"
@@ -5836,7 +5855,7 @@ msgid ""
 msgstr "A művelet típusa, ha a csomag megfelelnek az alábbi feltételeknek."
 
 msgid "The administrator has been notified to apply your changes."
-msgstr "A rendszergazda értesítést kapott a módosítások alkalmazásához."
+msgstr "A rendszergazda értesítést kapott, hogy módosításaidat alkalmazza."
 
 #, php-format
 msgid "The associated MIB files can be found at %s."
@@ -6075,9 +6094,8 @@ msgid ""
 "The custom format of the snapshot for shadow copy service can be specified. "
 "The default format is %s used for ZFS auto snapshot."
 msgstr ""
-"Az árnyékmásolat szolgáltatás pillanatfelvételének egyéni formátumot lehet "
-"adni. Az alapértelmezett formátum a ZFS automatikus pillanatfelvételéhez az "
-"%s."
+"Az árnyékmásolat szolgáltatás pillanatképének egyéni formátumot lehet adni. "
+"Az alapértelmezett formátum a ZFS automatikus pillanatképhez az %s."
 
 msgid "The default SMTP mail server port, e.g. 25 or 587."
 msgstr "Az alapértelmezett SMTP levelező szerver port, például 25 vagy 587."
@@ -6124,7 +6142,7 @@ msgid ""
 "The disk is currently mounted! <a href='%s'>Unmount</a> this disk first "
 "before proceeding."
 msgstr ""
-"A lemez jelenleg be van csatolva! A folytatás előtt <a href='%s'>csatold "
+"A lemez jelenleg be van csatolva! A folytatás előtt <a href='%s'>válaszd "
 "le</a> ezt a lemezt."
 
 msgid ""
@@ -6139,12 +6157,12 @@ msgstr "A lemez/partíció már konfigurálva van."
 
 #, php-format
 msgid "The distinguished name to bind to the directory server, e.g. %s"
-msgstr "A címtár kiszolgálóhoz kötéshez használt megkülönböztető név, pl. %s"
+msgstr "A címtárkiszolgáló kötéséhez használt megkülönböztető név, pl. %s"
 
 #, php-format
 msgid ""
 "The distinguished name with which to bind to the directory server, e.g. %s"
-msgstr "A megkülönböztető név amivel kötődik a címtár kiszolgálóhoz, pl. %s"
+msgstr "A megkülönböztető név, amivel kötődik a címtárkiszolgálóhoz, pl. %s"
 
 #, php-format
 msgid ""
@@ -6168,7 +6186,7 @@ msgid ""
 "disk first before proceeding."
 msgstr ""
 "A titkosított eszköz jelenleg be van csatolva! A folytatás előtt <a "
-"href='%s'>csatold le</a> ezt a lemezt."
+"href='%s'>válaszd le</a> ezt a lemezt."
 
 msgid "The extent name already exists."
 msgstr "A extent már létezik"
@@ -6795,21 +6813,21 @@ msgstr ""
 
 msgid "This option causes rsync to copy the local data to the remote server."
 msgstr ""
-"Ez az opció hatására rsync másolja a helyi adatokat a távoli szerverre."
+"Ezen opció hatására másolja az rsync a helyi adatokat a távoli szerverre."
 
 msgid ""
 "This option causes rsync to update the remote extended attributes to be the "
 "same as the local ones."
 msgstr ""
-"Ez az opció hatására rsync frissíti a távoli kiterjesztett attribútumokat, "
+"Ezen opció hatására frissíti az rsync a távoli kiterjesztett attribútumokat, "
 "hogy megegyezzenek a helyi attribútumokkal."
 
 msgid ""
 "This option causes the receiving rsync to set the destination permissions to "
 "be the same as the source permissions."
 msgstr ""
-"Ez az opció hatására a fogadó rsync beállítja a cél jogosultságokat ugyan "
-"olanra, mint a forrás jogsultságok."
+"Ezen opció hatására beállítja a fogadó rsync  a cél jogosultságokat ugyan "
+"olyanra, mint a forrás jogosultságok."
 
 msgid ""
 "This option determines if this module should be listed when the client asks "
@@ -7013,7 +7031,8 @@ msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr "Ez ZFS ACL támogatást biztosít (csak ZFS esetén)."
 
 msgid "This will provide shadow copy created by auto snapshot. (ZFS only)"
-msgstr "Árnyékmásoltatot hoz létre az auto pillantképből. (csak ZFS esetén)"
+msgstr ""
+"Árnyékmásolatot hoz létre az automatikus pillanatképből. (csak ZFS esetén)"
 
 msgid "TiB"
 msgstr "TiB"
@@ -7123,7 +7142,7 @@ msgid ""
 "id='enumeration'><ul><li>CIFS/SMB</li><li>SSH</li><li>FTP</li><li>AFP</li><li"
 ">System</li></ul></div>"
 msgstr ""
-"Az Active Directory használatához a CIFS/SMB szolgáltatás is engedélyezésre "
+"A Címtárszolgáltató használatához a CIFS/SMB szolgáltatás is engedélyezésre "
 "kerül. A következő szolgáltatások használnak még AD hitelesítést:<div "
 "id='enumeration'><ul><li>CIFS/SMB</li><li>SSH</li><li>FTP</li><li>AFP</li><li"
 ">System</li></ul></div>"
@@ -7131,7 +7150,7 @@ msgstr ""
 #, php-format
 msgid "To use subdirectories, you must mount each directories. (e.g. %s)"
 msgstr ""
-"Az alkönyvtárk használatához minden könyvátrat be kell csatolni (pl. %s)"
+"Alkönyvtárak használatához minden könyvtárat be kell csatolni (pl. %s)."
 
 msgid "Tolerated"
 msgstr "Hibajavított"
@@ -7154,8 +7173,8 @@ msgid ""
 "Traceroute may take a while to complete. You may hit the Stop button on your "
 "browser at any time to see the progress of failed traceroutes."
 msgstr ""
-"A Traceroute eltarthat egy ideig. Bármikor lenyomhatod a böngésződ stop "
-"gombját, ha hibás Traceroute folyamatot látsz."
+"Traceroute eltarthat egy ideig. Bármikor lenyomhatod a böngésződ stop "
+"gombját, hogy megnézd a hibás Traceroute folyamatát."
 
 msgid ""
 "Tracks whose path contains one or more of these comma separated strings will "
@@ -7347,7 +7366,7 @@ msgid "Unison"
 msgstr "Unison"
 
 msgid "Unison File Synchronisation"
-msgstr "Unison fájlszinkronizáció"
+msgstr "Unison fájlszinkronizálás"
 
 msgid "Unix Command"
 msgstr "Unix parancs"
@@ -7365,10 +7384,10 @@ msgid "Unload"
 msgstr "Nem töltött"
 
 msgid "Unmount disk/partition"
-msgstr "Lemez/partíció lecsatlakoztatása (unmount)"
+msgstr "Lemez/partíció leválasztása (unmount)"
 
 msgid "Unmounting..."
-msgstr "Lecsatolás..."
+msgstr "Leválasztás..."
 
 msgid "Up"
 msgstr "Fel"
@@ -7462,7 +7481,7 @@ msgstr ""
 "hogy legyen neki érvényes login-ja."
 
 msgid "Used"
-msgstr "Felhasznál"
+msgstr "Felhasznált"
 
 msgid "User"
 msgstr "Felhasználó"
@@ -7488,6 +7507,9 @@ msgstr "A felhasználó jelszava."
 
 msgid "User portal"
 msgstr "Felhasználó portal"
+
+msgid "User shares"
+msgstr "Felhasználói megosztások"
 
 msgid "User suffix"
 msgstr "Felhasználó utótag"
@@ -7578,7 +7600,7 @@ msgid "WINS server"
 msgstr "WINS szerver"
 
 msgid "WINS server IP address (e.g. from MS Active Directory server)."
-msgstr "WINS kiszolgáló IP címe (pl. MS Active Directory kiszolgáló)."
+msgstr "WINS kiszolgáló IP címe (pl. MS Címtárszolgáltató kiszolgáló)."
 
 msgid "WLAN"
 msgstr "WLAN"
@@ -7648,6 +7670,8 @@ msgstr ""
 msgid ""
 "When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot be used."
 msgstr ""
+"Amennyiben a Samba  AD be van kapcsolva, különálló CIFS/SMB fájlmegosztás "
+"nem használható."
 
 msgid "When UPS switches to Low Battery"
 msgstr "Amikor a szünetmentes alacsony tápellátásra kapcsol."
@@ -7732,13 +7756,13 @@ msgstr "Használhatja a következő paraméterek helyettesítésre:"
 msgid ""
 "You can't mount the partition '%s' where the config file is stored.<br />"
 msgstr ""
-"Nem csatolhatod le a(z) '%s' partíciót ahol a konfig fájl van tárolva.<br />"
+"Nem választhatod le a(z) '%s' partíciót ahol a konfig fájl található.<br />"
 
 msgid ""
 "You can't unmount a drive which is used by swap file, a iSCSI-target file or "
 "any other running process!"
 msgstr ""
-"Nem csatolható le az a lemez, amelyiken a cserefájl vagy a iSCSI-cél fájl "
+"Nem választható le az a lemez, amelyiken a cserefájl vagy a iSCSI-cél fájl "
 "található, illetve valamely futó folyamat használja!"
 
 #, php-format
@@ -7755,6 +7779,9 @@ msgstr "Legalább egy elemet választania kell ehhez: '%s'."
 
 msgid "You may enter a description here for your reference."
 msgstr "Rövid leírást készíthetsz ide."
+
+msgid "You may enter a device file or label path."
+msgstr "Megadhatod az eszközfájlt vagy a címke útvonalát."
 
 #, php-format
 msgid ""
@@ -7786,7 +7813,7 @@ msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "Legalább %dMB RAM-ra van szükség iSCSI target használatához"
 
 msgid "You must initialize data before enabling."
-msgstr ""
+msgstr "Engedélyezés előtt szükséges az adat inicializálása."
 
 msgid "You must select at least one authentication method."
 msgstr "Legalább egy hitelesítési eljárást ki kell választanod."
@@ -7814,10 +7841,10 @@ msgid "ZFS dataset properties"
 msgstr "ZFS adattár tulajdonságok"
 
 msgid "ZFS snapshot information and status"
-msgstr "ZFS snapshot információ és állapot"
+msgstr "ZFS pillanatkép-információ és -állapot"
 
 msgid "ZFS snapshot properties"
-msgstr "ZFS snapshot tulajdonságok"
+msgstr "ZFS pillanatkép tulajdonságok"
 
 msgid "ZFS volume"
 msgstr "ZFS kötet"
@@ -7971,7 +7998,7 @@ msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
 msgid "sysvol exist in path."
-msgstr ""
+msgstr "sysvol létezik az útvonalban."
 
 msgid "to"
 msgstr "eddig:"
@@ -7985,3 +8012,10 @@ msgstr "leválasztás"
 #, php-format
 msgid "version:"
 msgstr "verzió:"
+
+#~ msgid ""
+#~ "All data in path is overwritten. Dedicated ZFS dataset is strongly "
+#~ "recommended."
+#~ msgstr ""
+#~ "Az összes adat az útvonalban felülíródott. Dedikált ZFS dataset használata "
+#~ "ajánlott."

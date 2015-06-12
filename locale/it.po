@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-11 23:41+0000\n"
-"PO-Revision-Date: 2015-05-25 17:08+0000\n"
-"Last-Translator: Matteo <matteoangio5@gmail.com>\n"
+"POT-Creation-Date: 2015-06-12 20:41+0000\n"
+"PO-Revision-Date: 2015-06-12 15:40+0000\n"
+"Last-Translator: misterredman <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-11 19:12+0000\n"
+"X-Launchpad-Export-Date: 2015-06-12 17:13+0000\n"
 "X-Generator: Launchpad (build 17557)\n"
 "X-Poedit-Country: ITALY\n"
 "Language: \n"
@@ -107,7 +107,7 @@ msgstr ""
 "automaticamente)."
 
 msgid "4KB wrapper"
-msgstr ""
+msgstr "4KB wrapper"
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN tag (tra 1 e 4094)"
@@ -277,10 +277,10 @@ msgid "A valid systctl MIB value."
 msgstr "Un valore valido per sysctl MIB"
 
 msgid "ACL inherit"
-msgstr ""
+msgstr "Eredita ACL"
 
 msgid "ACL mode"
-msgstr ""
+msgstr "Modalità ACL"
 
 msgid "AD authentication disabled"
 msgstr "Autenticazione AD disattivata"
@@ -295,7 +295,7 @@ msgid "AG"
 msgstr "AG"
 
 msgid "AIO module"
-msgstr ""
+msgstr "Modulo AIO"
 
 msgid "AIO read size"
 msgstr "Dimensione lettura AIO"
@@ -471,7 +471,7 @@ msgstr ""
 "Indirizzo del daemon remoto hastd. Deve essere un indirizzo IP statico."
 
 msgid "Admin password"
-msgstr ""
+msgstr "Password amministratore"
 
 msgid "Administration password"
 msgstr "Password di amministrazione"
@@ -542,9 +542,11 @@ msgid "All"
 msgstr "Tutto"
 
 msgid ""
-"All data in path is overwritten. Dedicated ZFS dataset is strongly "
-"recommended."
+"All data in the path is overwritten. To avoid invalid data/permission, using "
+"empty UFS directory is recommended."
 msgstr ""
+"Tutti i dati nel percorso verranno sovrascritti. Per evitare problemi ai "
+"dati e ai permessi si raccomanda l'utilizzo di una directory UFS vuota."
 
 msgid "All dirs"
 msgstr "Tutte le directory"
@@ -676,6 +678,9 @@ msgstr "Solo utenti anonimi"
 
 msgid "Any"
 msgstr "Qualsiasi"
+
+msgid "Append user defined shares"
+msgstr "Aggiungi le condivisioni definite dall'utente."
 
 msgid "Apple Filing Protocol"
 msgstr "Apple Filing Protocol"
@@ -925,7 +930,7 @@ msgid "CIFS/SMB informations"
 msgstr "Informazioni CIFS/SMB"
 
 msgid "CIFS/SMB is enabled."
-msgstr ""
+msgstr "CIFS/SMB è  attivato."
 
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Cirillico)"
@@ -1000,7 +1005,7 @@ msgid "Cannot get data about interface"
 msgstr "Non è possibile ottenere dati sull'interfaccia"
 
 msgid "Cannot use DHCP for LAN interface."
-msgstr ""
+msgstr "Non puoi usare DHCP per l'interfaccia LAN."
 
 msgid "Capacity"
 msgstr "Capacità"
@@ -1039,6 +1044,8 @@ msgstr "Batteria in carica"
 #, php-format
 msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
 msgstr ""
+"Controlla <a href=\"%s\">Sistema|Impostazione Generale</a> prima di "
+"inizializzare."
 
 msgid "Check interval"
 msgstr "Controlla l'intervallo"
@@ -1172,7 +1179,7 @@ msgid "Connected FTP users"
 msgstr "Utenti FTP connessi"
 
 msgid "Console Menu"
-msgstr ""
+msgstr "Menu console"
 
 msgid "Console screensaver"
 msgstr "Screensaver della console"
@@ -1281,10 +1288,10 @@ msgid "Count"
 msgstr "Quantita'"
 
 msgid "Create 4KB wrapper (nop device)."
-msgstr ""
+msgstr "Crea wrapper 4KB (dispositivo nop)."
 
 msgid "Create ZFS on GPT partition"
-msgstr ""
+msgstr "Crea ZFS su partizione GPT"
 
 msgid "Create and initialize RAID."
 msgstr "Crea e inizializza un RAID"
@@ -1355,6 +1362,9 @@ msgstr "Valore corrente di potenza reale (Watts)"
 msgid "Custom"
 msgstr "Personalizzato"
 
+msgid "Custom device"
+msgstr "DIspositivo personalizzato"
+
 msgid "Custom script"
 msgstr "Script personalizzato"
 
@@ -1374,7 +1384,7 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DHCP cannot be used for LAN interface."
-msgstr ""
+msgstr "DHCP non può essere utilizzato per l'interfaccia LAN."
 
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
@@ -1383,13 +1393,13 @@ msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Media Server"
 
 msgid "DNS domain"
-msgstr ""
+msgstr "Dominio DNS"
 
 msgid "DNS forwarder"
-msgstr ""
+msgstr "Forwarder DNS"
 
 msgid "DNS server is empty."
-msgstr ""
+msgstr "Server DNS vuoto."
 
 msgid "DNS settings"
 msgstr "Impostazioni DNS"
@@ -1668,6 +1678,9 @@ msgstr ""
 
 msgid "Device"
 msgstr "Dispositivo"
+
+msgid "Device / Label"
+msgstr "Dispositivo / Etichetta."
 
 #, php-format
 msgid "Device /dev/%s - %s"
@@ -1954,7 +1967,7 @@ msgid "Domain controller name"
 msgstr "Nome del controllore del dominio"
 
 msgid "Domain have no 2nd level name."
-msgstr ""
+msgstr "Il domain non ha il nome di secondo livello."
 
 msgid "Domain name"
 msgstr "Nome Dominio"
@@ -2048,7 +2061,7 @@ msgid "EFI/GPT partition can be use with UFS only."
 msgstr "La partizione EFI/GPT puo' essere usata solo con UFS."
 
 msgid "ERROR:"
-msgstr ""
+msgstr "ERRORE:"
 
 msgid "Edit"
 msgstr "Modifica"
@@ -2170,7 +2183,7 @@ msgid "Enable"
 msgstr "Abilita"
 
 msgid "Enable ACL inheritance"
-msgstr ""
+msgstr "Attiva eredità ACL"
 
 msgid "Enable Advanced Format (4KB sector)"
 msgstr "Attivare il formato avanzato (settori da 4KB)"
@@ -2337,16 +2350,17 @@ msgid "Enabled"
 msgstr "Abilitato"
 
 msgid "Encrypt password"
-msgstr ""
+msgstr "Codifica la password"
 
 msgid "Encrypt password (confirmed)"
-msgstr ""
+msgstr "Codifica la password (confermata)."
 
 msgid "Encrypted"
 msgstr "Cifrato"
 
 msgid "Encrypted configuration is automatically gzipped."
 msgstr ""
+"La configurazione codificata viene compressa con gzip automaticamente."
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -2538,7 +2552,7 @@ msgstr "Esecuzione del job di cron fallita."
 
 #, php-format
 msgid "Failed to remove: %s"
-msgstr ""
+msgstr "Problema nella rimozione di: %s"
 
 #, c-format
 msgid "Failed to send status report to: %s."
@@ -2618,7 +2632,7 @@ msgid "Filename"
 msgstr "Nome file"
 
 msgid "Fileserver"
-msgstr ""
+msgstr "Fileserver"
 
 msgid "Filter"
 msgstr "Filtro"
@@ -2730,7 +2744,7 @@ msgid "Generate"
 msgstr "Genera"
 
 msgid "Generate password if leave empty."
-msgstr ""
+msgstr "Genera una password se vuoto."
 
 msgid "German"
 msgstr "Tedesco"
@@ -3116,10 +3130,10 @@ msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr "In modalità 'slave' è il nome (Identifier) dell'UPS 'master'."
 
 msgid "In/Out errors"
-msgstr ""
+msgstr "Errori di input/output"
 
 msgid "In/Out packets"
-msgstr ""
+msgstr "Pacchetti input/output"
 
 msgid "Include basic hardware information."
 msgstr "Includi informazioni semplici sull'hardware"
@@ -3146,7 +3160,7 @@ msgid "Information & Manuals"
 msgstr "Informazioni e Manuali"
 
 msgid "Inherit ACL"
-msgstr ""
+msgstr "Eredità ACL"
 
 msgid "Inherit permissions"
 msgstr "Ereditare i permessi"
@@ -3169,7 +3183,7 @@ msgid "Initializing"
 msgstr "Inizializzazione"
 
 msgid "Initializing..."
-msgstr ""
+msgstr "Inizializzazione in corso..."
 
 msgid "Initiator Group"
 msgstr "Gruppo iniziatore"
@@ -3953,10 +3967,10 @@ msgid "NT1"
 msgstr "NT1"
 
 msgid "NTP is not enabled."
-msgstr ""
+msgstr "NTP non è attivato."
 
 msgid "NTP must be enabled."
-msgstr ""
+msgstr "NTP deve essere attivato."
 
 msgid "NTP time server"
 msgstr "NTP time server"
@@ -3986,7 +4000,7 @@ msgid "Name of the variable."
 msgstr "Nome della variabile"
 
 msgid "NetBIOS domain"
-msgstr ""
+msgstr "Domain NetBIOS"
 
 msgid "NetBIOS name"
 msgstr "Nome NetBIOS"
@@ -4199,7 +4213,7 @@ msgid "Not attached"
 msgstr "Non agganciato"
 
 msgid "Not found path."
-msgstr ""
+msgstr "Percorso non trovato."
 
 msgid "Note"
 msgstr "Nota"
@@ -4508,7 +4522,7 @@ msgstr "Porta peer"
 
 #, php-format
 msgid "Permanent samba data path (e.g. %s)."
-msgstr ""
+msgstr "Percorso dati samba permantente (es. %s)."
 
 msgid "Permit root login"
 msgstr "Consentire login a root"
@@ -4733,7 +4747,7 @@ msgid "RAID5"
 msgstr "RAID5"
 
 msgid "RAW info"
-msgstr ""
+msgstr "Informazione RAW"
 
 msgid "RSYNC"
 msgstr "RSYNC"
@@ -4863,7 +4877,7 @@ msgid "Remote monitoring"
 msgstr "Monitoraggio remoto"
 
 msgid "Remote rsync daemon"
-msgstr ""
+msgstr "Daemon rsync remoto"
 
 msgid "Remote syslog server"
 msgstr "Server syslog remoto"
@@ -5010,6 +5024,7 @@ msgstr "Esegui ora"
 
 msgid "Run without requiring remote rsync daemon. (Disabled by default)"
 msgstr ""
+"Esegui senza richiedere il daemon rsync remoto. (Disattivato per default)"
 
 msgid "Running"
 msgstr "In Esecuzione"
@@ -5067,10 +5082,10 @@ msgid "SSL/TLS only"
 msgstr "Solo SSL/TLS"
 
 msgid "Samba AD"
-msgstr ""
+msgstr "AD samba"
 
 msgid "Samba Active Directory Domain Controller"
-msgstr ""
+msgstr "Controller domain Active Directory di Samba"
 
 #, php-format
 msgid ""
@@ -5198,6 +5213,9 @@ msgstr "Selezionare un algoritmo di bilanciamento."
 
 msgid "Selected"
 msgstr "Selezionato"
+
+msgid "Selected device or label does not exist."
+msgstr "Il dispositivo o l'etichetta scelti non esistono."
 
 msgid "Selected file isn't an valid ISO file."
 msgstr "Il file selezionato non è un file ISO valido."
@@ -5584,16 +5602,16 @@ msgid "Store DOS attributes"
 msgstr "Archivia gli attributi DOS"
 
 msgid "Store NTFS acls"
-msgstr ""
+msgstr "Registra ACL di NTFS"
 
 msgid "Store NTFS acls in Extended Attributes"
-msgstr ""
+msgstr "Registra ACL di NTFS negli attributi estesi"
 
 msgid "Store alternate data streams"
-msgstr ""
+msgstr "Registra flussi dati alternativi"
 
 msgid "Store alternate data streams in Extended Attributes"
-msgstr ""
+msgstr "Registra flussi dati alternativi negli attributi estesi"
 
 msgid ""
 "String displayed in the dialog presented to the user when accessing the URL."
@@ -6106,11 +6124,15 @@ msgid ""
 "The confirmation password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
+"La password di conferma non corrisponde. Per favore assicurarsi che le "
+"password siano esattamente uguali."
 
 msgid ""
 "The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
+"La password confermata non corrisponde. Per favore assicurarsi che le "
+"password siano esattamente uguali."
 
 msgid "The credentials with which to bind."
 msgstr "Parola chiave utilizzata per il bind."
@@ -7229,7 +7251,7 @@ msgstr ""
 msgid ""
 "Tracks whose path contains one or more of these comma separated strings will "
 "be treated as a compilation."
-msgstr ""
+msgstr "Tracce il cui percorso contiene uno o più di queste"
 
 msgid "Transcoding"
 msgstr "Transcodifica"
@@ -7396,7 +7418,7 @@ msgid "URL"
 msgstr "URL"
 
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ucraino"
 
 msgid "Unavailable"
 msgstr "Non disponibile"
@@ -7563,6 +7585,9 @@ msgstr "Password utente."
 msgid "User portal"
 msgstr "Portale utente"
 
+msgid "User shares"
+msgstr "Condivisioni utenti"
+
 msgid "User suffix"
 msgstr "Suffisso utente"
 
@@ -7723,6 +7748,8 @@ msgstr ""
 msgid ""
 "When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot be used."
 msgstr ""
+"Se Samba AD è attivato, non si può utilizzare la condivisione CIFS/SMB stand-"
+"alone."
 
 msgid "When UPS switches to Low Battery"
 msgstr "Quando l'UPS passa a batteria scarica"
@@ -7759,7 +7786,7 @@ msgstr ""
 "sono utenti connessi."
 
 msgid "Whether to skip initial boot-up scan."
-msgstr ""
+msgstr "Salta scansione all'avvio."
 
 msgid "Who"
 msgstr "Chi"
@@ -7834,6 +7861,9 @@ msgstr "Deve essere selezionato almeno un oggetto per '%s'."
 msgid "You may enter a description here for your reference."
 msgstr "Inserire qui una descrizione per riferimento."
 
+msgid "You may enter a device file or label path."
+msgstr ""
+
 #, php-format
 msgid ""
 "You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII "
@@ -7866,7 +7896,7 @@ msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "Sono necessari almeno %dMB di RAM per utilizzare iSCSI target."
 
 msgid "You must initialize data before enabling."
-msgstr ""
+msgstr "Inizializza i dati prima di attivare."
 
 msgid "You must select at least one authentication method."
 msgstr "è necessario scegliere almeno un metodo di autenticazione."

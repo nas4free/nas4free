@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-11 23:41+0000\n"
-"PO-Revision-Date: 2015-02-21 03:45+0000\n"
-"Last-Translator: Aputsiaĸ Niels Janussen <aj@isit.gl>\n"
+"POT-Creation-Date: 2015-06-12 20:41+0000\n"
+"PO-Revision-Date: 2015-06-12 07:01+0000\n"
+"Last-Translator: Carsten Matzon <carsten@matzon.dk>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-11 19:12+0000\n"
+"X-Launchpad-Export-Date: 2015-06-12 17:13+0000\n"
 "X-Generator: Launchpad (build 17557)\n"
 "X-Poedit-Country: DENMARK\n"
 "Language: \n"
@@ -104,7 +104,7 @@ msgstr ""
 "starter automatisk, der er ingen grund til at bruge menuen til dette."
 
 msgid "4KB wrapper"
-msgstr ""
+msgstr "4KB wrapper"
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN mærkat (mellem 1 og 4094)."
@@ -461,7 +461,7 @@ msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "Adresse på remote hastd daemon. Det skal være en fast IP adresse."
 
 msgid "Admin password"
-msgstr ""
+msgstr "Admin kodeord"
 
 msgid "Administration password"
 msgstr "Administrations kodeord"
@@ -523,8 +523,8 @@ msgid "All"
 msgstr "Alle"
 
 msgid ""
-"All data in path is overwritten. Dedicated ZFS dataset is strongly "
-"recommended."
+"All data in the path is overwritten. To avoid invalid data/permission, using "
+"empty UFS directory is recommended."
 msgstr ""
 
 msgid "All dirs"
@@ -651,6 +651,9 @@ msgstr "Kun anonyme brugere"
 
 msgid "Any"
 msgstr "Alle"
+
+msgid "Append user defined shares"
+msgstr ""
 
 msgid "Apple Filing Protocol"
 msgstr "Apple Filing Protokol"
@@ -799,7 +802,7 @@ msgid "Battery change date"
 msgstr "Dato for batteri udskiftning"
 
 msgid "Battery chemistry"
-msgstr ""
+msgstr "Batteri kemi"
 
 msgid "Battery current"
 msgstr "Batteri strøm"
@@ -892,7 +895,7 @@ msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB informationer"
 
 msgid "CIFS/SMB is enabled."
-msgstr ""
+msgstr "CIFS/SMB er aktiveret"
 
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Kyrillisk)"
@@ -967,7 +970,7 @@ msgid "Cannot get data about interface"
 msgstr "Kan ikke hente data om grænsefladen"
 
 msgid "Cannot use DHCP for LAN interface."
-msgstr ""
+msgstr "Kan ikke bruge DHCP for LAN grænseflade."
 
 msgid "Capacity"
 msgstr "Kapacitet"
@@ -1096,7 +1099,7 @@ msgid "Community"
 msgstr "Forum"
 
 msgid "Compilations directories"
-msgstr ""
+msgstr "Kompilerings mapper"
 
 msgid "Compliant profile to be used."
 msgstr "Overholdelses profil der skal bruges."
@@ -1135,7 +1138,7 @@ msgid "Connected FTP users"
 msgstr "Forbundne FTP brugere"
 
 msgid "Console Menu"
-msgstr ""
+msgstr "Konsol Menu"
 
 msgid "Console screensaver"
 msgstr "Konsol pauseskærm"
@@ -1312,6 +1315,9 @@ msgstr "Nuværende måling af aktuelt forbrug (Watt)"
 msgid "Custom"
 msgstr "Brugerdefineret"
 
+msgid "Custom device"
+msgstr ""
+
 msgid "Custom script"
 msgstr "Brugerdefineret script"
 
@@ -1340,13 +1346,13 @@ msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Media Server"
 
 msgid "DNS domain"
-msgstr ""
+msgstr "DNS domæne"
 
 msgid "DNS forwarder"
 msgstr ""
 
 msgid "DNS server is empty."
-msgstr ""
+msgstr "DNS server er tom"
 
 msgid "DNS settings"
 msgstr "DNS indstillinger"
@@ -1405,7 +1411,7 @@ msgid "Debug"
 msgstr "Fejlsøgning"
 
 msgid "Decrypt password"
-msgstr ""
+msgstr "Dekryptere kodeord"
 
 msgid "Dedup"
 msgstr "Dedup"
@@ -1622,6 +1628,9 @@ msgstr ""
 
 msgid "Device"
 msgstr "Enhed"
+
+msgid "Device / Label"
+msgstr ""
 
 #, php-format
 msgid "Device /dev/%s - %s"
@@ -1995,7 +2004,7 @@ msgid "EFI/GPT partition can be use with UFS only."
 msgstr "EFI/GPT partition kan kun bruges med UFS."
 
 msgid "ERROR:"
-msgstr ""
+msgstr "FEJL:"
 
 msgid "Edit"
 msgstr "Rediger"
@@ -2128,7 +2137,7 @@ msgid "Enable FXP protocol."
 msgstr "Aktiver FXP protokol."
 
 msgid "Enable NFSv4 server."
-msgstr ""
+msgstr "Aktiver NFSv4 server."
 
 msgid "Enable NTP"
 msgstr "Aktiver NTP"
@@ -2279,16 +2288,16 @@ msgid "Enabled"
 msgstr "Aktiveret"
 
 msgid "Encrypt password"
-msgstr ""
+msgstr "Krypter kodeord"
 
 msgid "Encrypt password (confirmed)"
-msgstr ""
+msgstr "Krypter kodeord (godkend)"
 
 msgid "Encrypted"
 msgstr "Krypteret"
 
 msgid "Encrypted configuration is automatically gzipped."
-msgstr ""
+msgstr "Krypteret konfiguration er automatisk gzippet."
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -2477,7 +2486,7 @@ msgstr "Kunne ikke udføre cron opgaven."
 
 #, php-format
 msgid "Failed to remove: %s"
-msgstr ""
+msgstr "Fejlet ved at fjerne: %s"
 
 #, c-format
 msgid "Failed to send status report to: %s."
@@ -2558,7 +2567,7 @@ msgid "Filename"
 msgstr "Filnavn"
 
 msgid "Fileserver"
-msgstr ""
+msgstr "Filserver"
 
 msgid "Filter"
 msgstr "Filtrer"
@@ -2670,7 +2679,7 @@ msgid "Generate"
 msgstr "Generér"
 
 msgid "Generate password if leave empty."
-msgstr ""
+msgstr "Generer kodeord hvis tomt"
 
 msgid "German"
 msgstr "Tysk"
@@ -2711,7 +2720,7 @@ msgid "Group ID"
 msgstr "Gruppe ID"
 
 msgid "Group compilations"
-msgstr ""
+msgstr "Gruppe kompileringer"
 
 msgid "Group description."
 msgstr "Gruppe beskrivelse."
@@ -2744,16 +2753,16 @@ msgid "HAST disabled"
 msgstr "HAST slået fra"
 
 msgid "HAST resource"
-msgstr ""
+msgstr "HAST resource"
 
 msgid "HAST status of the configured resources"
 msgstr ""
 
 msgid "HAST volume"
-msgstr ""
+msgstr "HAST volume"
 
 msgid "HAST volume can be use with GPT/UFS only."
-msgstr ""
+msgstr "HAST volume kan kun blive brugt med GPT/UFS."
 
 msgid "HTTP Proxy"
 msgstr "HTTP proxy"
@@ -3042,10 +3051,10 @@ msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr ""
 
 msgid "In/Out errors"
-msgstr ""
+msgstr "Ind/Ud fejl"
 
 msgid "In/Out packets"
-msgstr ""
+msgstr "Ind/Ud pakker."
 
 msgid "Include basic hardware information."
 msgstr "Inkluder basal hardware information."
@@ -3094,7 +3103,7 @@ msgid "Initializing"
 msgstr "Initialiserer"
 
 msgid "Initializing..."
-msgstr ""
+msgstr "Initialiserering..."
 
 msgid "Initiator Group"
 msgstr "Initiator gruppe"
@@ -3128,19 +3137,19 @@ msgid "Input frequency"
 msgstr "Input frekvens"
 
 msgid "Input line frequency (Hz)"
-msgstr ""
+msgstr "Ingang signal frekvens (Hz)"
 
 msgid "Input line frequency high (Hz)"
-msgstr ""
+msgstr "Ingang signal frekvens høj (Hz)"
 
 msgid "Input line frequency low (Hz)"
-msgstr ""
+msgstr "Ingang signal frekvens lav (Hz)"
 
 msgid "Input power quality (* opaque)"
-msgstr ""
+msgstr "Indgangs strøm kvalitet (* opaque)"
 
 msgid "Input power sensitivity"
-msgstr ""
+msgstr "Ingangs strøm følsomhed"
 
 msgid "Input voltage"
 msgstr "Indgang spænding"
@@ -3540,15 +3549,17 @@ msgid "Low voltage boosting transfer point"
 msgstr ""
 
 msgid "Low voltage transfer point"
-msgstr ""
+msgstr "Lav volt overførsels punkt"
 
 msgid "Low voltage trimming transfer point"
-msgstr ""
+msgstr "Lav volt trimnings overførsels punkt"
 
 msgid ""
 "Lowest value is higher priority. For master node, use 0 or 1. If preempt is "
 "enabled, it is adjusted to 240 on failure."
 msgstr ""
+"Lavest værdi er højere priotet. For master node, brug 0 eller 1. Hvis "
+"preempt er aktiveret, det er justeret til 240 ved fejl."
 
 msgid "MAC address"
 msgstr "MAC adresse"
@@ -3737,13 +3748,13 @@ msgid "Minimum"
 msgstr "Minimum"
 
 msgid "Minimum battery level for UPS restart after power-off"
-msgstr ""
+msgstr "Minimums batteri niveau for UPS genstart efter nedlukning"
 
 msgid "Minimum free space"
 msgstr "Minimum ledig plads"
 
 msgid "Minimum frequency"
-msgstr ""
+msgstr "Minimums frekvens"
 
 msgid "Minimum incoming voltage seen"
 msgstr "Mindste spænding detekteret"
@@ -3782,7 +3793,7 @@ msgid "Model name"
 msgstr "Model navn"
 
 msgid "Modified"
-msgstr ""
+msgstr "Ændret"
 
 msgid "Modifying"
 msgstr "Modificerer"
@@ -3839,7 +3850,7 @@ msgid "NFS"
 msgstr "NFS"
 
 msgid "NFSv4"
-msgstr ""
+msgstr "NFSv4"
 
 msgid "NIS"
 msgstr "NIS"
@@ -3861,7 +3872,7 @@ msgid "NTP is not enabled."
 msgstr ""
 
 msgid "NTP must be enabled."
-msgstr ""
+msgstr "NTP skal være aktiveret"
 
 msgid "NTP time server"
 msgstr "NTP tidsserver"
@@ -3890,7 +3901,7 @@ msgid "Name of the variable."
 msgstr "Variablens navn"
 
 msgid "NetBIOS domain"
-msgstr ""
+msgstr "NetBIOS domæne"
 
 msgid "NetBIOS name"
 msgstr "NetBIOS navn"
@@ -4048,31 +4059,31 @@ msgid "Node Base"
 msgstr "Node Base"
 
 msgid "Node ID"
-msgstr ""
+msgstr "Node ID"
 
 msgid "Node Name"
-msgstr ""
+msgstr "Node Navn"
 
 msgid "Nominal battery voltage"
-msgstr ""
+msgstr "Nominel batteri spænding"
 
 msgid "Nominal input current (A)"
-msgstr ""
+msgstr "Nominel indgangs strøm (A)"
 
 msgid "Nominal input line frequency (Hz)"
-msgstr ""
+msgstr "Nominel indgangs frekvens (HZ)"
 
 msgid "Nominal input voltage"
-msgstr ""
+msgstr "Nominel indgangs spænding"
 
 msgid "Nominal output current (A)"
-msgstr ""
+msgstr "Nominel udgangs strøm (A)"
 
 msgid "Nominal output frequency (Hz)"
-msgstr ""
+msgstr "Nominel udgangs frekvens (Hz)"
 
 msgid "Nominal output voltage (V)"
-msgstr ""
+msgstr "Nominel udgangs spænding (V)"
 
 msgid "Nominal value of apparent power (Volt-Amps)"
 msgstr ""
@@ -4102,7 +4113,7 @@ msgid "Not attached"
 msgstr "Ikke tilsluttet"
 
 msgid "Not found path."
-msgstr ""
+msgstr "Sti ikke fundet."
 
 msgid "Note"
 msgstr "Bemærk"
@@ -4304,7 +4315,7 @@ msgid "Parameter xxx (ups.conf or cmdline -x) setting"
 msgstr ""
 
 msgid "Parent Directory"
-msgstr ""
+msgstr "Overmappe"
 
 msgid "Partition number"
 msgstr "Partitions nummer"
@@ -4515,7 +4526,7 @@ msgid "Power Daemon"
 msgstr "Strøm Daemon"
 
 msgid "Power Mode"
-msgstr ""
+msgstr "Power tilstand"
 
 msgid "Power mode"
 msgstr "Strømtilstand"
@@ -4546,7 +4557,7 @@ msgid "Preserve permissions"
 msgstr "Bevar tilladelser"
 
 msgid "Prevent deep discharge of battery"
-msgstr ""
+msgstr "Forhindrer dyb afladning af batteri"
 
 msgid "Primary"
 msgstr "Primær"
@@ -4631,7 +4642,7 @@ msgid "RAID5"
 msgstr "RAID5"
 
 msgid "RAW info"
-msgstr ""
+msgstr "RAW info"
 
 msgid "RSYNC"
 msgstr "RSYNC"
@@ -4966,7 +4977,7 @@ msgid "SSL/TLS only"
 msgstr "Kun SSL/TLS"
 
 msgid "Samba AD"
-msgstr ""
+msgstr "Samba AD"
 
 msgid "Samba Active Directory Domain Controller"
 msgstr ""
@@ -5091,6 +5102,9 @@ msgstr "Vælg din læse balance algoritme."
 
 msgid "Selected"
 msgstr "Valgt"
+
+msgid "Selected device or label does not exist."
+msgstr ""
 
 msgid "Selected file isn't an valid ISO file."
 msgstr "Den valgte fil er ikke en gyldig ISO fil."
@@ -5281,7 +5295,7 @@ msgid "Skew"
 msgstr "Forvansket"
 
 msgid "Skip first scan"
-msgstr ""
+msgstr "Hop over første skanning"
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "Sov - Kontroller enheden medmindre den er i SOV tilstand."
@@ -5460,13 +5474,13 @@ msgid "Store DOS attributes"
 msgstr "Gem DOS attributter"
 
 msgid "Store NTFS acls"
-msgstr ""
+msgstr "Gem NTFS acls"
 
 msgid "Store NTFS acls in Extended Attributes"
 msgstr ""
 
 msgid "Store alternate data streams"
-msgstr ""
+msgstr "Gem alternative data strømme"
 
 msgid "Store alternate data streams in Extended Attributes"
 msgstr ""
@@ -5524,10 +5538,10 @@ msgid "Swedish"
 msgstr "Svensk"
 
 msgid "Switch VIP to BACKUP"
-msgstr ""
+msgstr "Skift VIP til BACKUP"
 
 msgid "Switch VIP to MASTER"
-msgstr ""
+msgstr "Skift VIP til MASTER"
 
 msgid "Switch off when running on battery and no/low load"
 msgstr ""
@@ -5673,16 +5687,16 @@ msgid "Temperature"
 msgstr "Temperatur"
 
 msgid "Temperature alarm (enabled/disabled)"
-msgstr ""
+msgstr "Temperatur alarm (aktiveret/deaktiveret)"
 
 msgid "Temperature monitoring"
 msgstr "Temperatur overvågning"
 
 msgid "Temperature threshold high (degrees C)"
-msgstr ""
+msgstr "Temperatur setpunkt høj (grader C)"
 
 msgid "Temperature threshold low (degrees C)"
-msgstr ""
+msgstr "Temperatur setpunkt lav (grader C)"
 
 msgid "Temporary Device"
 msgstr "Midlertidig enhed"
@@ -5840,7 +5854,7 @@ msgstr ""
 
 #, c-format
 msgid "The attribute '%s' is not a valid time value."
-msgstr ""
+msgstr "Atribut '%s' er ikke en gyldig tids værdi"
 
 #, c-format, php-format
 msgid ""
@@ -6210,7 +6224,7 @@ msgstr "Netværket '%s' er ugyldigt."
 
 msgid ""
 "The new password does not match. Please ensure the passwords match exactly."
-msgstr ""
+msgstr "Det nye kodeord er ikke ens. Kontroller venligst at kodeord er ens."
 
 msgid "The number of clients must be between 1 and 50."
 msgstr "Antallet af klienter skal være mellem 1 og 50."
@@ -6327,7 +6341,7 @@ msgid ""
 msgstr ""
 
 msgid "The server will reboot after restoring the configuration."
-msgstr ""
+msgstr "Serveren vil genstarte efter gendannelse af konfiguration"
 
 msgid "The share name is already used."
 msgstr "Share navnet er allerede i brug."
@@ -6602,7 +6616,7 @@ msgid "This disk already exists in the disk list."
 msgstr "Denne disk eksisterer allerede i disk listen."
 
 msgid "This email has been sent to validate your email configuration."
-msgstr ""
+msgstr "Denne email er sendt for at validere din email konfiguration"
 
 msgid "This extent is used."
 msgstr "Denne extent er brugt."
@@ -6839,7 +6853,7 @@ msgid "This rule is triggered whenever the selected event directive occurs."
 msgstr "Denne regel aktiveres når det valgte hændelses direktiv opstår."
 
 msgid "This server uses default swap."
-msgstr ""
+msgstr "Denne server anvender standard swap."
 
 msgid "This tag already exists."
 msgstr "Mærkatet eksisterer allerede."
@@ -6900,7 +6914,7 @@ msgid "Time"
 msgstr "Tid"
 
 msgid "Time Machine"
-msgstr ""
+msgstr "Time Machine"
 
 msgid "Time before the load will be rebooted"
 msgstr ""
@@ -7047,7 +7061,7 @@ msgid "Transfer mode"
 msgstr "Overførsels tilstand"
 
 msgid "Transfer rate"
-msgstr ""
+msgstr "Overførsel hastighed"
 
 msgid "Trap host"
 msgstr "Trap vært"
@@ -7071,7 +7085,7 @@ msgid "Trivial File Transfer Protocol"
 msgstr "Trivial File Transfer Protokol"
 
 msgid "Trusted domains"
-msgstr ""
+msgstr "Sikre domæner"
 
 msgid "Try to force import."
 msgstr "Prøv at gennemtvinge import."
@@ -7083,7 +7097,7 @@ msgid "Tuning"
 msgstr "Finjustering"
 
 msgid "Turkish"
-msgstr ""
+msgstr "Tyrkisk"
 
 msgid "Turn access time on or off for this dataset."
 msgstr ""
@@ -7101,7 +7115,7 @@ msgid "UCD-SNMP-MIB"
 msgstr "UCD-SNMP-MIB"
 
 msgid "UFS"
-msgstr ""
+msgstr "UFS"
 
 #, php-format
 msgid ""
@@ -7128,46 +7142,46 @@ msgid "UPS"
 msgstr "UPS"
 
 msgid "UPS Off Line"
-msgstr ""
+msgstr "UPS ikke oppe"
 
 msgid "UPS On Battery"
-msgstr ""
+msgstr "UPS på batteri"
 
 msgid "UPS On Line"
-msgstr ""
+msgstr "UPS oppe"
 
 msgid "UPS Status"
-msgstr ""
+msgstr "UPS Status"
 
 msgid "UPS Unit General Information"
 msgstr ""
 
 msgid "UPS Waiting"
-msgstr ""
+msgstr "UPS venter"
 
 msgid "UPS alarms"
-msgstr ""
+msgstr "UPS alarmer"
 
 msgid "UPS beeper status"
-msgstr ""
+msgstr "UPS lydenhed status"
 
 msgid "UPS coldstarts from battery"
-msgstr ""
+msgstr "UPS koldstarter fra batteri"
 
 msgid "UPS disabled"
 msgstr "UPS deaktiveret"
 
 msgid "UPS external contact sensors"
-msgstr ""
+msgstr "UPS eksterne kontakt følere"
 
 msgid "UPS firmware"
-msgstr ""
+msgstr "UPS firmware"
 
 msgid "UPS goes on battery"
 msgstr "UPS slået over på batteri"
 
 msgid "UPS model"
-msgstr ""
+msgstr "UPS model"
 
 msgid "UPS reaches low battery"
 msgstr "UPS har lavt batteri"
@@ -7182,10 +7196,10 @@ msgid "UPS system identifier"
 msgstr ""
 
 msgid "UPS temperature"
-msgstr ""
+msgstr "UPS temperatur"
 
 msgid "UPS type"
-msgstr ""
+msgstr "UPS type"
 
 msgid "UPS watchdog status"
 msgstr ""
@@ -7194,16 +7208,16 @@ msgid "UPnP"
 msgstr "UPnP"
 
 msgid "URI"
-msgstr ""
+msgstr "URI"
 
 msgid "URL"
 msgstr "URL"
 
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukrainsk"
 
 msgid "Unavailable"
-msgstr ""
+msgstr "Utilgængelig"
 
 msgid "Unformated"
 msgstr "Uformateret"
@@ -7362,6 +7376,9 @@ msgstr "Bruger adgangskode"
 msgid "User portal"
 msgstr "Bruger potal"
 
+msgid "User shares"
+msgstr ""
+
 msgid "User suffix"
 msgstr "Bruger endelse"
 
@@ -7388,7 +7405,7 @@ msgid "Using %s bytes fragment size."
 msgstr "Bruger %s bytes fragment størrelse."
 
 msgid "VHID"
-msgstr ""
+msgstr "VHID"
 
 msgid "VLAN"
 msgstr "VLAN"
@@ -7403,7 +7420,7 @@ msgid "Variable"
 msgstr "Variabel"
 
 msgid "Vendor ID"
-msgstr ""
+msgstr "Fabrikant ID"
 
 msgid "Version"
 msgstr "Version"
@@ -7412,7 +7429,7 @@ msgid "Virtual Host ID"
 msgstr ""
 
 msgid "Virtual IP address"
-msgstr ""
+msgstr "Virtuel IP adresse"
 
 msgid "Virtual device"
 msgstr "Virtuel enhed"
@@ -7454,7 +7471,7 @@ msgid "WINS server IP address (e.g. from MS Active Directory server)."
 msgstr "WINS server IP-adresse (f.eks. fra en MS Active Directory server)."
 
 msgid "WLAN"
-msgstr ""
+msgstr "WLAN"
 
 #, c-format
 msgid "WPA"
@@ -7470,7 +7487,7 @@ msgid "WPA-PSK WPA-EAP"
 msgstr "WPA-PSK WPA-EAP"
 
 msgid "WPA2"
-msgstr ""
+msgstr "WPA2"
 
 msgid "Wait time"
 msgstr "Vente tid"
@@ -7520,7 +7537,7 @@ msgid ""
 msgstr ""
 
 msgid "When UPS switches to Low Battery"
-msgstr ""
+msgstr "Når UPS skifter til lavt batteri"
 
 msgid ""
 "When a client initially connects to the server the ident protocol is used to "
@@ -7571,7 +7588,7 @@ msgid "Write"
 msgstr "Skrive"
 
 msgid "Write Cache"
-msgstr ""
+msgstr "Skrive Cache"
 
 msgid "Write only"
 msgstr "Kun skrive"
@@ -7621,6 +7638,9 @@ msgstr "Du skal vælge mindst et element til '%s'."
 
 msgid "You may enter a description here for your reference."
 msgstr "Du kan indtaste en beskrivelse her til din reference."
+
+msgid "You may enter a device file or label path."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -7702,14 +7722,14 @@ msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
 
 msgid "adaptive (low power consumption)"
-msgstr ""
+msgstr "adaptive (lav strøm forbrug)"
 
 #, php-format
 msgid "add any supplemental parameters"
 msgstr ""
 
 msgid "all encrypted disks are imported."
-msgstr ""
+msgstr "alle krypterede diske er importeret"
 
 msgid "change failed."
 msgstr "ændring fejlede."
@@ -7740,7 +7760,7 @@ msgid "greatest settable low voltage transfer point"
 msgstr ""
 
 msgid "hiadaptive (high performance)"
-msgstr ""
+msgstr "hiadaptive (høj ydelse)"
 
 msgid "hour(s)"
 msgstr "time(r)"
@@ -7771,13 +7791,13 @@ msgid "load/unload failed."
 msgstr "Indlæsning/Udlæsning fejlede."
 
 msgid "loader.conf"
-msgstr ""
+msgstr "loader.conf"
 
 msgid "maximum (highest performance)"
-msgstr ""
+msgstr "maksimum (højeste ydelse)"
 
 msgid "minimum (power saving)"
-msgstr ""
+msgstr "minimum (strøm besparelse)"
 
 msgid "minute(s)"
 msgstr "minut(ter)"
@@ -7795,7 +7815,7 @@ msgid "n/a"
 msgstr "Ikke tilgængelig"
 
 msgid "no new encrypted disk found."
-msgstr ""
+msgstr "ingen ny krypteret disk fundet"
 
 msgid "none"
 msgstr "ingen"
@@ -7834,7 +7854,7 @@ msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
 msgid "sysvol exist in path."
-msgstr ""
+msgstr "sysvol eksisterer i stien."
 
 msgid "to"
 msgstr "til"
