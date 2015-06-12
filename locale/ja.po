@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-11 23:41+0000\n"
-"PO-Revision-Date: 2015-06-11 14:57+0000\n"
+"POT-Creation-Date: 2015-06-12 18:14+0000\n"
+"PO-Revision-Date: 2015-06-12 09:24+0000\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-11 19:12+0000\n"
+"X-Launchpad-Export-Date: 2015-06-12 09:32+0000\n"
 "X-Generator: Launchpad (build 17557)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
@@ -518,9 +518,9 @@ msgid "All"
 msgstr "全て"
 
 msgid ""
-"All data in path is overwritten. Dedicated ZFS dataset is strongly "
-"recommended."
-msgstr "パス内のすべてのデータが上書きされます。専用のZFSデータセットを強くお勧めします。"
+"All data in the path is overwritten. To avoid invalid data/permission, using "
+"empty UFS directory is recommended."
+msgstr "パス内のすべてのデータが上書きされます。無効なデータ/パーミッションを避けるため、空のUFSディレクトリを使用することをお勧めします。"
 
 msgid "All dirs"
 msgstr "すべてのディレクトリ"
@@ -1288,6 +1288,9 @@ msgstr "現在の有効電力(W)"
 msgid "Custom"
 msgstr "カスタム"
 
+msgid "Custom device"
+msgstr "カスタムデバイス"
+
 msgid "Custom script"
 msgstr "カスタムスクリプト"
 
@@ -1593,6 +1596,9 @@ msgstr "パケットが再送されるまでのデフォルトタイムアウト
 
 msgid "Device"
 msgstr "デバイス"
+
+msgid "Device / Label"
+msgstr "デバイス / ラベル"
 
 #, php-format
 msgid "Device /dev/%s - %s"
@@ -4944,6 +4950,9 @@ msgstr "読込み時のバランスアルゴリズムを選択して下さい。
 msgid "Selected"
 msgstr "選択"
 
+msgid "Selected device or label does not exist."
+msgstr "選択したデバイスまたはラベルが存在しません。"
+
 msgid "Selected file isn't an valid ISO file."
 msgstr "選択されたファイルは有効な ISOファイルではありません。"
 
@@ -7309,6 +7318,9 @@ msgstr "'%s' の項目は最低1つは選択してください。"
 msgid "You may enter a description here for your reference."
 msgstr "参考の為の説明をここに入力できます。"
 
+msgid "You may enter a device file or label path."
+msgstr "デバイスファイル名またはラベルパスを入力することができます。"
+
 #, php-format
 msgid ""
 "You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII "
@@ -7533,19 +7545,7 @@ msgstr "アンマウント"
 msgid "version:"
 msgstr "バージョン:"
 
-#~ msgid "DHCP can not be used for LAN interface."
-#~ msgstr "LANインタフェースに DHCP は利用できません。"
-
 #~ msgid ""
-#~ "The admin password does not match. Please ensure the passwords match exactly."
-#~ msgstr "入力したパスワードが一致しません。パスワードを再度確認して下さい。"
-
-#~ msgid ""
-#~ "When Samba AD is enabled, stand-alone CIFS/SMB file sharing can not use "
-#~ "together."
-#~ msgstr "Samba AD を有効にすると、スタンドアローンの CIFS/SMB ファイル共有は一緒に利用できなくなります。"
-
-#~ msgid ""
-#~ "When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot use "
-#~ "together."
-#~ msgstr "Samba ADを有効にすると、スタンドアローンのCIFS/ SMBファイル共有を一緒に使用することはできません。"
+#~ "All data in path is overwritten. Dedicated ZFS dataset is strongly "
+#~ "recommended."
+#~ msgstr "パス内のすべてのデータが上書きされます。専用のZFSデータセットを強くお勧めします。"
