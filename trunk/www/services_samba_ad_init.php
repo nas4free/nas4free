@@ -190,7 +190,7 @@ $(document).ready(function(){
 	<?php html_inputbox("netbios_domain", gettext("NetBIOS domain"), $pconfig['netbios_domain'], "", true, 40);?>
 	<?php //html_text("realm", gettext("Kerberos realm"), htmlspecialchars($realm));?>
 	<?php html_passwordconfbox("password", "password_confirm", gettext("Admin password"), "", "", gettext("Generate password if leave empty."), true);?>
-	<?php html_filechooser("path", gettext("Path"), $pconfig['path'], sprintf(gettext("Permanent samba data path (e.g. %s)."), "/mnt/samba4"), $g['media_path'], true);?>
+	<?php html_filechooser("path", gettext("Path"), $pconfig['path'], sprintf(gettext("Permanent samba data path (e.g. %s)."), "/mnt/data/samba4"), $g['media_path'], true);?>
 	<?php html_combobox("fstype", gettext("Fileserver"), $pconfig['fstype'], array("s3fs" => "s3fs", "ntvfs" => "ntvfs"), "", true);?>
 	</table>
 	<div id="submit">
@@ -223,7 +223,7 @@ $(document).ready(function(){
 		}
 	}?>
 	<div id="remarks">
-	  <?php html_remark("note", gettext("Note"), sprintf("<div id='enumeration'><ul><li>%s</li><li>%s</li><li>%s</li></ul></div>", gettext("All data in path is overwritten. Dedicated ZFS dataset is strongly recommended."), sprintf(gettext("Check <a href=\"%s\">System|General Setup</a> before initializing."), "system.php"), ""));?>
+	  <?php html_remark("note", gettext("Note"), sprintf("<div id='enumeration'><ul><li>%s</li><li>%s</li><li>%s</li></ul></div>", gettext("All data in the path is overwritten. To avoid invalid data/permission, using empty UFS directory is recommended."), sprintf(gettext("Check <a href=\"%s\">System|General Setup</a> before initializing."), "system.php"), ""));?>
 	</div>
 	<?php include("formend.inc");?>
       </form>
