@@ -199,14 +199,24 @@ $(document).ready(function(){
 	<?php if ($do_init) {
 		echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
 		echo('<pre class="cmdoutput">');
-		//ob_end_flush();
+		ob_end_flush();
 		$cmd .= " ".implode(" ", $cmdargs);
 		//echo "$cmd\n";
 		echo gettext("Initializing...")."\n";
+/*
 		mwexec2("$cmd 2>&1", $rawdata, $result);
 		foreach ($rawdata as $line) {
 			echo htmlspecialchars($line)."\n";
 		}
+*/
+		$handle = popen("$cmd 2>&1", "r");
+		while (!feof($handle)) {
+			$line = fgets($handle);
+			echo htmlspecialchars($line);
+			ob_flush();
+			flush();
+		}
+		$result = pclose($handle);
 		echo('</pre>');
 		if ($result == 0) {
 			rename("/var/etc/smb4.conf", "${path}/smb4.conf.created");
