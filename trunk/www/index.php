@@ -181,44 +181,12 @@ EOD
 	."\n");
 }
 
-function tblrowbar ($id, $name, $value, $symbol, $red, $yellow, $green) {
-	if(is_null($value)) return;
-
-	$value = sprintf("%.1f", $value);
-
-	$red = explode('-', $red);
-	$yellow = explode('-', $yellow);
-	$green = explode('-', $green);
-
-	sort($red);
-	sort($yellow);
-	sort($green);
-
-	if($value >= $red[0] && $value <= ($red[0]+9)) {
-		$color = 'black';
-		$bgcolor = 'red';
-	}
-	if($value >= ($red[0]+10) && $value <= $red[1]) {
-		$color = 'white';
-		$bgcolor = 'red';
-	}
-	if($value >= $yellow[0] && $value <= $yellow[1]) {
-		$color = 'black';
-		$bgcolor = 'yellow';
-	}
-	if($value >= $green[0] && $value <= ($green[0]+9)) {
-		$color = 'black';
-		$bgcolor = 'green';
-	}	
-	if($value >= ($green[0]+10) && $value <= $green[1]) {
-		$color = 'white';
-		$bgcolor = 'green';
-	}
-
-	$available = 100 - $value;
-	$tooltip_used = sprintf("%s%%", $value);
-	$tooltip_available = sprintf(gettext("%s%% available"), $available);
-	$span_used = sprintf("%s%%", "<span name='ups_status_used' id='ups_status_{$id}_used' class='capacity'>".$value."</span>");
+function tblrowbar ($id, $name, $value) {
+		if(is_null($value)) return;
+		$available = 100 - $value;
+		$tooltip_used = sprintf("%s%%", $value);
+		$tooltip_available = sprintf(gettext("%s%% available"), $available);
+		$span_used = sprintf("%s%%", "<span name='ups_status_used' id='ups_status_{$id}_used' class='capacity'>".$value."</span>");
 	
 	print(<<<EOD
 <tr>
