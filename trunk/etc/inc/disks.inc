@@ -163,6 +163,10 @@ function disks_mount($mount)
 			}
 			$devicespecialfile = "/dev/{$mdid[0]}";
 			break;
+
+		case "custom":
+			$devicespecialfile = $mount['devicespecialfile'];
+			break;
 	}
 
 	/* Check if filesystem should be mounted read-only */

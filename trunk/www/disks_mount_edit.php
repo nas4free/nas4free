@@ -100,9 +100,11 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_mount, "uuid")
 	$pconfig['mode'] = $a_mount[$cnid]['accessrestrictions']['mode'];
 	$pconfig['filename'] = !empty($a_mount[$cnid]['filename']) ? $a_mount[$cnid]['filename'] : "";
 	$pconfig['hvol'] = $pconfig['mdisk'];
+	$pconfig['devname'] = $pconfig['mdisk'];
 } else {
 	$pconfig['uuid'] = uuid();
 	$pconfig['type'] = "disk";
+	$pconfig['devname'] = "";
 	$pconfig['partition'] = "p1";
 	$pconfig['readonly'] = false;
 	$pconfig['fsck'] = true;
@@ -172,6 +174,12 @@ if ($_POST) {
 			$reqdfields = explode(" ", "filename sharename");
 			$reqdfieldsn = array(gettext("Filename"), gettext("Mount point name"));
 			$reqdfieldst = explode(" ", "string string");
+			break;
+
+		case "custom":
+			$reqdfields = explode(" ", "devname fstype sharename");
+			$reqdfieldsn = array(gettext("Device / Label"), gettext("File system"), gettext("Mount point name"));
+			$reqdfieldst = explode(" ", "string string string");
 			break;
 	}
 
@@ -264,6 +272,11 @@ if ($_POST) {
 		$input_errors[] = gettext("Selected file isn't an valid ISO file.");
 	}
 
+	// Check if custom device exists.
+	if (("custom" === $_POST['type']) && !file_exists($_POST['devname'])) {
+		$input_errors[] = gettext("Selected device or label does not exist.");
+	}
+
 	// Check for duplicates.
 	if ("disk" === $_POST['type']) {
 		foreach ($a_mount as $mount) {
@@ -335,6 +348,17 @@ if ($_POST) {
 			case "iso":
 				$mount['filename'] = $_POST['filename'];
 				$mount['fstype'] = util_is_iso_image($_POST['filename']);
+				break;
+
+			case "custom":
+				$mount['mdisk'] = $_POST['devname'];
+				$mount['partition'] = "";
+				$mount['fstype'] = $_POST['fstype'];
+				$mount['gpt'] = false;
+				$mount['rawuuid'] = "";
+				$mount['devicespecialfile'] = trim("{$mount['mdisk']}");
+				$mount['readonly'] = isset($_POST['readonly']) ? true : false;
+				$mount['fsck'] = isset($_POST['fsck']) ? true : false;
 				break;
 		}
 
@@ -427,6 +451,7 @@ function type_change() {
     case 0: /* Disk */
       showElementById('mdisk_tr','show');
       showElementById('hvol_tr','hide');
+      showElementById('devname_tr','hide');
       showElementById('partitiontype_tr','show');
       showElementById('partitionnum_tr','show');
       showElementById('fstype_tr','show');
@@ -439,6 +464,7 @@ function type_change() {
     case 1: /* HAST volume */
       showElementById('mdisk_tr','hide');
       showElementById('hvol_tr','show');
+      showElementById('devname_tr','hide');
       showElementById('partitiontype_tr','show');
       showElementById('partitionnum_tr','show');
       showElementById('fstype_tr','show');
@@ -451,12 +477,26 @@ function type_change() {
     case 2: /* ISO */
       showElementById('mdisk_tr','hide');
       showElementById('hvol_tr','hide');
+      showElementById('devname_tr','hide');
       showElementById('partitiontype_tr','hide');
       showElementById('partitionnum_tr','hide');
       showElementById('fstype_tr','hide');
       showElementById('filename_tr','show');
       showElementById('readonly_tr','hide');
       showElementById('fsck_tr','hide');
+      break;
+
+    case 3: /* Custom device / label */
+      showElementById('mdisk_tr','hide');
+      showElementById('hvol_tr','hide');
+      showElementById('devname_tr','show');
+      showElementById('partitiontype_tr','hide');
+      showElementById('partitionnum_tr','hide');
+      showElementById('fstype_tr','show');
+      showElementById('filename_tr','hide');
+      showElementById('readonly_tr','show');
+      showElementById('fsck_tr','show');
+      //partitiontype_change();
       break;
   }
 }
@@ -504,7 +544,7 @@ function enable_change(enable_change) {
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline(gettext("Settings"));?>
-					<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("disk" => gettext("Disk"), "hvol" => gettext("HAST volume"), "iso" => "ISO"), "", true, false, "type_change()");?>
+					<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("disk" => gettext("Disk"), "hvol" => gettext("HAST volume"), "iso" => "ISO", "custom" => gettext("Custom device")), "", true, false, "type_change()");?>
 					<tr id="mdisk_tr">
 			      <td width="22%" valign="top" class="vncellreq"><?=gettext("Disk");?></td>
 			      <td class="vtable">
@@ -520,6 +560,7 @@ function enable_change(enable_change) {
 			      </td>
 			    </tr>
 			    <?php html_combobox("hvol", gettext("HAST volume"), $pconfig['hvol'], $a_hast, "", true);?>
+			    <?php html_inputbox("devname", gettext("Device / Label"), !empty($pconfig['devname']) ? $pconfig['devname'] : "", gettext("You may enter a device file or label path."), true, 60);?>
 			    <tr id="partitiontype_tr">
 			      <td width="22%" valign="top" class="vncellreq"><?=gettext("Partition type");?></td>
 			      <td class="vtable">
