@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-12 20:41+0000\n"
-"PO-Revision-Date: 2015-06-11 19:54+0000\n"
+"POT-Creation-Date: 2015-06-13 15:06+0000\n"
+"PO-Revision-Date: 2015-06-13 15:32+0000\n"
 "Last-Translator: raul fernandez garcia <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-12 17:13+0000\n"
+"X-Launchpad-Export-Date: 2015-06-13 17:48+0000\n"
 "X-Generator: Launchpad (build 17557)\n"
 "X-Poedit-Country: SPAIN\n"
 "Language: \n"
@@ -549,6 +549,8 @@ msgid ""
 "All data in the path is overwritten. To avoid invalid data/permission, using "
 "empty UFS directory is recommended."
 msgstr ""
+"Todos los datos en la ruta serán sobrescritos. Para impedir errores de "
+"permisos, use un directorio UFS vacio."
 
 msgid "All dirs"
 msgstr "Todos los directorios"
@@ -679,7 +681,7 @@ msgid "Any"
 msgstr "Cualquiera"
 
 msgid "Append user defined shares"
-msgstr ""
+msgstr "Añadir compartidos definidos por el usuario"
 
 msgid "Apple Filing Protocol"
 msgstr "Apple Filing Protocol"
@@ -1360,7 +1362,7 @@ msgid "Custom"
 msgstr "Personalizado"
 
 msgid "Custom device"
-msgstr ""
+msgstr "Dispositivo propietario"
 
 msgid "Custom script"
 msgstr "Script personalizado"
@@ -1674,7 +1676,7 @@ msgid "Device"
 msgstr "Dispositivo"
 
 msgid "Device / Label"
-msgstr ""
+msgstr "Dispositivo/Etiqueta"
 
 #, php-format
 msgid "Device /dev/%s - %s"
@@ -3337,6 +3339,9 @@ msgstr "Italiano"
 msgid "JBOD"
 msgstr "JBOD"
 
+msgid "JBOD information and status"
+msgstr "Información y estado JBOD"
+
 msgid ""
 "January February March April May June July August September October November "
 "December"
@@ -4730,14 +4735,26 @@ msgstr "Cuota"
 msgid "RAID 0"
 msgstr "RAID 0"
 
+msgid "RAID 0 information and status"
+msgstr "Información y estado RAID 0"
+
 msgid "RAID 0/1/5"
 msgstr "RAID 0/1/5"
+
+msgid "RAID 0/1/5 information and status"
+msgstr "Información y estado  RAID 0/1/5"
 
 msgid "RAID 1"
 msgstr "RAID 1"
 
+msgid "RAID 1 information and status"
+msgstr "Información y estado RAID 1"
+
 msgid "RAID 5"
 msgstr "RAID 5"
+
+msgid "RAID 5 information and status"
+msgstr "Información y estado RAID 5"
 
 msgid "RAID0"
 msgstr "RAID 0"
@@ -5216,7 +5233,7 @@ msgid "Selected"
 msgstr "Seleccionado"
 
 msgid "Selected device or label does not exist."
-msgstr ""
+msgstr "El dispositivo o la etiqueta , no existe."
 
 msgid "Selected file isn't an valid ISO file."
 msgstr "El archivo seleccionado no es un archivo válido ISO."
@@ -5453,9 +5470,6 @@ msgstr "SoftRaid"
 
 msgid "Software RAID"
 msgstr "Software RAID"
-
-msgid "Software RAID information and status"
-msgstr "Información y estado del RAID por software"
 
 msgid "Software used"
 msgstr "Software usado"
@@ -7593,7 +7607,7 @@ msgid "User portal"
 msgstr "Portal de usuario"
 
 msgid "User shares"
-msgstr ""
+msgstr "Compartidos de usuario"
 
 msgid "User suffix"
 msgstr "Sufijo de usuario"
@@ -7869,7 +7883,7 @@ msgid "You may enter a description here for your reference."
 msgstr "Puede introducir una descripción aquí para su referencia."
 
 msgid "You may enter a device file or label path."
-msgstr ""
+msgstr "Debe introducir la ruta del dispositivo o de la etiqueta"
 
 #, php-format
 msgid ""
@@ -8101,9 +8115,5 @@ msgstr "Desmontar"
 msgid "version:"
 msgstr "versión:"
 
-#~ msgid ""
-#~ "All data in path is overwritten. Dedicated ZFS dataset is strongly "
-#~ "recommended."
-#~ msgstr ""
-#~ "Los datos en la ruta serán sobre-escritos. Un Dataset ZFS es la opción "
-#~ "recomendada."
+#~ msgid "Software RAID information and status"
+#~ msgstr "Información y estado del RAID por software"
