@@ -33,7 +33,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Services"), gettext("Samba AD"));
+$pgtitle = array(gettext("Services"), gettext("Samba AD"), gettext("Initialize"));
 
 $errormsg="";
 $do_init = false;
