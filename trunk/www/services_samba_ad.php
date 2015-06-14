@@ -92,13 +92,23 @@ if ($_POST) {
 	}
 }
 
-$pconfig['enable'] = isset($config['sambaad']['enable']);
-$pconfig['dns_domain'] = $config['sambaad']['dns_domain'];
-$pconfig['netbios_domain'] = $config['sambaad']['netbios_domain'];
-$pconfig['dns_forwarder'] = $config['sambaad']['dns_forwarder'];
-$pconfig['path'] = $config['sambaad']['path'];
-$pconfig['fstype'] = $config['sambaad']['fstype'];
-$pconfig['user_shares'] = isset($config['sambaad']['user_shares']);
+if (!empty($config['sambaad']['path'])) {
+	$pconfig['enable'] = isset($config['sambaad']['enable']);
+	$pconfig['dns_domain'] = $config['sambaad']['dns_domain'];
+	$pconfig['netbios_domain'] = $config['sambaad']['netbios_domain'];
+	$pconfig['dns_forwarder'] = $config['sambaad']['dns_forwarder'];
+	$pconfig['path'] = $config['sambaad']['path'];
+	$pconfig['fstype'] = $config['sambaad']['fstype'];
+	$pconfig['user_shares'] = isset($config['sambaad']['user_shares']);
+} else {
+	$pconfig['enable'] = false;
+	$pconfig['dns_domain'] = "";
+	$pconfig['netbios_domain'] = "";
+	$pconfig['dns_forwarder'] = "";
+	$pconfig['path'] = "";
+	$pconfig['fstype'] = "";
+	$pconfig['user_shares'] = false;
+}
 $realm = strtoupper($pconfig['dns_domain']);
 $hostname = $config['system']['hostname'];
 $netbiosname = strtoupper($config['system']['hostname']);
