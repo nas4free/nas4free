@@ -1,7 +1,7 @@
 #!/usr/local/bin/php-cgi -f
 <?php
 /*
-	mountcritremote - script to mount iscsi-based configured filesystems
+	mountzfs - script to mount all files on ZFS
 
 	Part of NAS4Free (http://www.nas4free.org).
 	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
@@ -34,45 +34,14 @@
 	require_once("config.inc");
 	require_once("functions.inc");
 
-	if (!isset($_GET["cmd"]) || empty($_GET["cmd"]))
-		return -1;
-	if (!isset($config['mounts']) || !is_array($config['mounts']))
-		return -1;
-	if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
-		return -1;
-
-	// mount/umount iSCSI disks
-	$iscsi = @exec("/sbin/sysctl -q -n net.iscsi_initiator.driver_version");
-	if ($_GET["cmd"] == "start") {
-		/* XXX iscsi loaded */
-		if (!empty($iscsi)) {
-			sleep(1);
-		}
-		/* XXX should take iscsi only */
-		//disks_mount_all();
-		foreach ($config['mounts']['mount'] as $mount) {
-			// skip mounted entry
-			if (disks_ismounted($mount))
-				continue;
-			disks_mount($mount);
-		}
-	} else if ($_GET["cmd"] == "stop") {
-		$a_disks = get_iscsi_disks_list();
-		foreach ($a_disks as $diskv) {
-			$mdisk = $diskv["devicespecialfile"];
-			$index = array_search_ex($mdisk, $config['mounts']['mount'], "mdisk");
-			if ($index !== false) {
-				$mount = $config['mounts']['mount'][$index];
-				if (disks_ismounted($mount)) {
-					$dev = $mount['devicespecialfile'];
-					system("/bin/sync");
-					system("/sbin/umount $dev");
-				}
-			}
-		}
-		if (!empty($iscsi)) {
-			sleep(1);
-		}
+	if (!is_array($config['mounts']) || !is_array($config['mounts']['mount']))
+		return 0;
+	// remount all
+	foreach ($config['mounts']['mount'] as $mount) {
+		// skip mounted entry
+		if (disks_ismounted($mount))
+			continue;
+		disks_mount($mount);
 	}
 	return 0;
 ?>

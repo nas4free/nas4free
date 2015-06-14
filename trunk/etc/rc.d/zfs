@@ -82,7 +82,9 @@ zfs_start_main()
 	if [ ! -r /etc/zfs/exports ]; then
 		touch /etc/zfs/exports
 	fi
-	
+	if [ -f /etc/rc.d.php/mountzfs ]; then
+		eval /etc/rc.d.php/mountzfs
+	fi
 }
 
 zfs_start()

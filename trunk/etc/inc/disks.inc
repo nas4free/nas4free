@@ -56,6 +56,8 @@ function disks_mount_all()
 		foreach ($config['mounts']['mount'] as $mount) {
 			if ("disk" !== $mount['type'])
 				continue;
+			if (is_booting() && disks_ismounted($mount))
+				continue;
 
 			// Advanced unmount filesystem if not in booting mode (mount edition).
 			// Background: 'disks_umount' can't be used in the case the mount point
@@ -70,6 +72,8 @@ function disks_mount_all()
 		// Then mount ISOs
 		foreach ($config['mounts']['mount'] as $mount) {
 			if ("iso" !== $mount['type'])
+				continue;
+			if (is_booting() && disks_ismounted($mount))
 				continue;
 
 			// Advanced unmount filesystem if not in booting mode (mount edition)
@@ -155,6 +159,8 @@ function disks_mount($mount)
 			break;
 
 		case "iso":
+			if (!file_exists($mount['filename']))
+				return 0;
 			// Create memory disk. 'mdconfig' returns the ID of this disk
 			exec("/sbin/mdconfig -a -t vnode -f '{$mount['filename']}'", $mdid, $result);
 			if (0 !== $result) {
@@ -166,6 +172,8 @@ function disks_mount($mount)
 
 		case "custom":
 			$devicespecialfile = $mount['devicespecialfile'];
+			if (!file_exists($devicespecialfile))
+				return 0;
 			break;
 	}
 
@@ -374,6 +382,8 @@ function disks_ismounted($mount)
 {
 	// MUST CHECK IF IT'S NTFS filesystem
 	if (0 == strcmp($mount['fstype'],"ntfs")) {
+		return disks_ismounted_ex($mount['sharename'], "sharename");
+	} else if (0 == strcmp($mount['type'],"iso")) {
 		return disks_ismounted_ex($mount['sharename'], "sharename");
 	} else {
 		return disks_ismounted_ex($mount['devicespecialfile'], "devicespecialfile");
