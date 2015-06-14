@@ -223,6 +223,7 @@ $(document).ready(function(){
 		echo('</pre>');
 		if ($result == 0) {
 			rename("/var/etc/smb4.conf", "${path}/smb4.conf.created");
+			rc_exec_service("resolv");
 		}
 	}?>
 	<div id="remarks">
