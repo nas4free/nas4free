@@ -62,6 +62,7 @@ mkdir ftmp ;
 mkdir conf.default ;
 mkdir dev ;
 mkdir etc ;
+mkdir etc/gss ;
 mkdir etc/mail ;
 mkdir etc/defaults ;
 mkdir etc/devd ;
