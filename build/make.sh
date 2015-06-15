@@ -419,6 +419,9 @@ add_libs() {
 
 	# for compatibility
 	install -c -s -v ${NAS4FREE_WORLD}/lib/libreadline.* ${NAS4FREE_ROOTFS}/lib
+	install -c -s -v ${NAS4FREE_WORLD}/usr/lib/libgssapi_krb5.so.* ${NAS4FREE_ROOTFS}/usr/lib
+	install -c -s -v ${NAS4FREE_WORLD}/usr/lib/libgssapi_ntlm.so.* ${NAS4FREE_ROOTFS}/usr/lib
+	install -c -s -v ${NAS4FREE_WORLD}/usr/lib/libgssapi_spnego.so.* ${NAS4FREE_ROOTFS}/usr/lib
 
 	# Cleanup.
 	rm -f /tmp/lib.list
