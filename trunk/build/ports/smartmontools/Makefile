@@ -13,7 +13,7 @@ NO_PKG_REGISTER=yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-docdir=${DOCSDIR} --disable-sample \
-			--disable-dependency-tracking --disable-drivedb
+			--disable-dependency-tracking
 
 
 CFLAGS:=		${CFLAGS:S/-O2/-O/} -Wno-write-strings
