@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-12 20:41+0000\n"
-"PO-Revision-Date: 2015-06-05 07:14+0000\n"
-"Last-Translator: zoon01 <Unknown>\n"
+"POT-Creation-Date: 2015-06-13 15:06+0000\n"
+"PO-Revision-Date: 2015-06-21 08:02+0000\n"
+"Last-Translator: Laurentiu Bubuianu <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-12 17:13+0000\n"
-"X-Generator: Launchpad (build 17557)\n"
+"X-Launchpad-Export-Date: 2015-06-25 11:36+0000\n"
+"X-Generator: Launchpad (build 17578)\n"
 "Language: ro_RO\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -106,7 +106,7 @@ msgstr ""
 "pornit automat)"
 
 msgid "4KB wrapper"
-msgstr ""
+msgstr "4KB wrapper"
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "Etichetă VLAN 802.1Q (între 1 și 4094)."
@@ -472,7 +472,7 @@ msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "Adresa daemon-ului hastd (trebuie să fie o adresă IP statică)."
 
 msgid "Admin password"
-msgstr ""
+msgstr "Parola Admin"
 
 msgid "Administration password"
 msgstr "Parola Administrare"
@@ -547,6 +547,8 @@ msgid ""
 "All data in the path is overwritten. To avoid invalid data/permission, using "
 "empty UFS directory is recommended."
 msgstr ""
+"Toate datele din calea specificată vor fi suprascrise. Pentru a evita "
+"date/permisiuni invalide se recomandă utilizarea folderelor UFS goale."
 
 msgid "All dirs"
 msgstr "Toate directoarele"
@@ -678,7 +680,7 @@ msgid "Any"
 msgstr "Oricare"
 
 msgid "Append user defined shares"
-msgstr ""
+msgstr "Adaugă partajările utilizator definite"
 
 msgid "Apple Filing Protocol"
 msgstr "Protocol Apple Filing"
@@ -924,7 +926,7 @@ msgid "CIFS/SMB informations"
 msgstr "Informații CIFS/SMS"
 
 msgid "CIFS/SMB is enabled."
-msgstr ""
+msgstr "Serviciu CIFS/SMS activat."
 
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Chirilică)"
@@ -1000,7 +1002,7 @@ msgid "Cannot get data about interface"
 msgstr "Nicio informație disponibilă despre interfață"
 
 msgid "Cannot use DHCP for LAN interface."
-msgstr ""
+msgstr "Nu se poate utilza DHCP pentru interfața."
 
 msgid "Capacity"
 msgstr "Capacitate"
@@ -1040,6 +1042,7 @@ msgstr "Încărcare acumulator"
 #, php-format
 msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
 msgstr ""
+"Verificați <a href=\"%s\">Sistem|Setări generale</a> înainte de inițializare."
 
 msgid "Check interval"
 msgstr "Interval de verificare"
@@ -1174,7 +1177,7 @@ msgid "Connected FTP users"
 msgstr "Utilizatori FTP conectați"
 
 msgid "Console Menu"
-msgstr ""
+msgstr "Meniu consolă"
 
 msgid "Console screensaver"
 msgstr "Screensaver consolă"
@@ -1283,10 +1286,10 @@ msgid "Count"
 msgstr "Numărul de pachete"
 
 msgid "Create 4KB wrapper (nop device)."
-msgstr ""
+msgstr "Creare wrapper 4KB (dispozitiv nop)."
 
 msgid "Create ZFS on GPT partition"
-msgstr ""
+msgstr "Creare ZFS în partiție GPT"
 
 msgid "Create and initialize RAID."
 msgstr "Creare și inițializare RAID."
@@ -1358,7 +1361,7 @@ msgid "Custom"
 msgstr "Personalizat"
 
 msgid "Custom device"
-msgstr ""
+msgstr "Dispozitiv utilizator"
 
 msgid "Custom script"
 msgstr "Script personalizat"
@@ -1379,7 +1382,7 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DHCP cannot be used for LAN interface."
-msgstr ""
+msgstr "DHCP nu poate fi utilizat pentru interfața LAN."
 
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
@@ -1388,13 +1391,13 @@ msgid "DLNA/UPnP Media Server"
 msgstr "Server media DLNA/UPnP"
 
 msgid "DNS domain"
-msgstr ""
+msgstr "Domeniu DNS"
 
 msgid "DNS forwarder"
-msgstr ""
+msgstr "Forwarder DNS"
 
 msgid "DNS server is empty."
-msgstr ""
+msgstr "Serverul DNS este nul."
 
 msgid "DNS settings"
 msgstr "Setări DNS"
@@ -1672,7 +1675,7 @@ msgid "Device"
 msgstr "Dispozitiv"
 
 msgid "Device / Label"
-msgstr ""
+msgstr "Dispozitiv / Etichetă"
 
 #, php-format
 msgid "Device /dev/%s - %s"
@@ -1955,7 +1958,7 @@ msgid "Domain controller name"
 msgstr "Numele controlerului de domeniu"
 
 msgid "Domain have no 2nd level name."
-msgstr ""
+msgstr "Domeniul nu are definit numele de nivel 2."
 
 msgid "Domain name"
 msgstr "Nume Domeniu"
@@ -2339,16 +2342,16 @@ msgid "Enabled"
 msgstr "Activat"
 
 msgid "Encrypt password"
-msgstr ""
+msgstr "Criptare parola"
 
 msgid "Encrypt password (confirmed)"
-msgstr ""
+msgstr "Criptare parolă (confirmat)"
 
 msgid "Encrypted"
 msgstr "Criptat"
 
 msgid "Encrypted configuration is automatically gzipped."
-msgstr ""
+msgstr "Configurația criptată este automat comprimată (gzip)."
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -2539,7 +2542,7 @@ msgstr "Eroare execuție acțiune din lista cron."
 
 #, php-format
 msgid "Failed to remove: %s"
-msgstr ""
+msgstr "Eroare eliminare: %s"
 
 #, c-format
 msgid "Failed to send status report to: %s."
@@ -2619,7 +2622,7 @@ msgid "Filename"
 msgstr "Nume fișier"
 
 msgid "Fileserver"
-msgstr ""
+msgstr "Server de fișiere"
 
 msgid "Filter"
 msgstr "Filtru"
@@ -2732,7 +2735,7 @@ msgid "Generate"
 msgstr "Generare"
 
 msgid "Generate password if leave empty."
-msgstr ""
+msgstr "Generare parolă pentru câmp nul."
 
 msgid "German"
 msgstr "Germană"
@@ -3121,10 +3124,10 @@ msgstr ""
 "În modul slave reprezintă numele (identificatorul) pentru UPS-ul master."
 
 msgid "In/Out errors"
-msgstr ""
+msgstr "Erori In/Out"
 
 msgid "In/Out packets"
-msgstr ""
+msgstr "Packete In/Out"
 
 msgid "Include basic hardware information."
 msgstr "Include informații de bază hardware."
@@ -3172,7 +3175,7 @@ msgid "Initializing"
 msgstr "Inițializare"
 
 msgid "Initializing..."
-msgstr ""
+msgstr "Inițializare..."
 
 msgid "Initiator Group"
 msgstr "Grup Inițiator"
@@ -3332,6 +3335,9 @@ msgstr "Italiană"
 
 msgid "JBOD"
 msgstr "JBOD"
+
+msgid "JBOD information and status"
+msgstr "Informații și stare JBOD"
 
 msgid ""
 "January February March April May June July August September October November "
@@ -3963,10 +3969,10 @@ msgid "NT1"
 msgstr "NT1"
 
 msgid "NTP is not enabled."
-msgstr ""
+msgstr "NTP nu este activ."
 
 msgid "NTP must be enabled."
-msgstr ""
+msgstr "NTP trebuie activat."
 
 msgid "NTP time server"
 msgstr "Server NTP"
@@ -3996,7 +4002,7 @@ msgid "Name of the variable."
 msgstr "Numele variabilei."
 
 msgid "NetBIOS domain"
-msgstr ""
+msgstr "Domeniu NetBIOS"
 
 msgid "NetBIOS name"
 msgstr "Nume NetBIOS"
@@ -4208,7 +4214,7 @@ msgid "Not attached"
 msgstr "Neatașat"
 
 msgid "Not found path."
-msgstr ""
+msgstr "Calea nu a fost găsită."
 
 msgid "Note"
 msgstr "Obs."
@@ -4517,7 +4523,7 @@ msgstr "Port grup"
 
 #, php-format
 msgid "Permanent samba data path (e.g. %s)."
-msgstr ""
+msgstr "Cale permanentă samba (ex. %s)."
 
 msgid "Permit root login"
 msgstr "Permisiune autentificare directă root"
@@ -4720,14 +4726,26 @@ msgstr "Cotă"
 msgid "RAID 0"
 msgstr "RAID 0"
 
+msgid "RAID 0 information and status"
+msgstr "Informații și stare RAID 0"
+
 msgid "RAID 0/1/5"
 msgstr "RAID 0/1/5"
+
+msgid "RAID 0/1/5 information and status"
+msgstr "Informații și stare RAID 0/1/5"
 
 msgid "RAID 1"
 msgstr "RAID 1"
 
+msgid "RAID 1 information and status"
+msgstr "Informații și stare RAID 1"
+
 msgid "RAID 5"
 msgstr "RAID 5"
+
+msgid "RAID 5 information and status"
+msgstr "Informații și stare RAID 5"
 
 msgid "RAID0"
 msgstr "RAID0"
@@ -4869,7 +4887,7 @@ msgid "Remote monitoring"
 msgstr "Monitorizare destinație"
 
 msgid "Remote rsync daemon"
-msgstr ""
+msgstr "Daemon reomote sync"
 
 msgid "Remote syslog server"
 msgstr "Serverul Remote syslog"
@@ -5015,7 +5033,7 @@ msgid "Run now"
 msgstr "Execută acum"
 
 msgid "Run without requiring remote rsync daemon. (Disabled by default)"
-msgstr ""
+msgstr "Rulare fără activare daemon remote sync. (Implicit dezactivat)"
 
 msgid "Running"
 msgstr "În execuție"
@@ -5073,10 +5091,10 @@ msgid "SSL/TLS only"
 msgstr "Doar SSL/TLS"
 
 msgid "Samba AD"
-msgstr ""
+msgstr "AD Samba"
 
 msgid "Samba Active Directory Domain Controller"
-msgstr ""
+msgstr "Samba Active Directory Domain Controller"
 
 #, php-format
 msgid ""
@@ -5204,7 +5222,7 @@ msgid "Selected"
 msgstr "Selectat"
 
 msgid "Selected device or label does not exist."
-msgstr ""
+msgstr "Dispozitivele/etichetele specificate nu există."
 
 msgid "Selected file isn't an valid ISO file."
 msgstr "Fișierul selectat nu este un fișier ISO valid."
@@ -5438,9 +5456,6 @@ msgstr "Raid Software"
 
 msgid "Software RAID"
 msgstr "RAID Software"
-
-msgid "Software RAID information and status"
-msgstr "Informații despre volumul RAID Software și starea acestuia"
 
 msgid "Software used"
 msgstr "Software utilizat"
@@ -6102,7 +6117,7 @@ msgstr ""
 msgid ""
 "The confirmed password does not match. Please ensure the passwords match "
 "exactly."
-msgstr ""
+msgstr "Parolele introduse nu coincid. Verificați parolele introduse."
 
 msgid "The credentials with which to bind."
 msgstr "Creditele folosite pentru asociere (bind)."
@@ -7065,6 +7080,7 @@ msgstr ""
 
 msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
 msgstr ""
+"Vor fi activate permisiunile NTFS acls fără suport ZFS ACL (ex. UFS)."
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr ""
@@ -7559,7 +7575,7 @@ msgid "User portal"
 msgstr "Portal utilizator"
 
 msgid "User shares"
-msgstr ""
+msgstr "Partajări utilizator."
 
 msgid "User suffix"
 msgstr "Sufix user"
@@ -7720,6 +7736,8 @@ msgstr ""
 msgid ""
 "When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot be used."
 msgstr ""
+"Când se activează modul Samba AD partajările de sine-stătătoare CIFS/SMB nu "
+"pot fi utilizate."
 
 msgid "When UPS switches to Low Battery"
 msgstr "Cînd comută UPS-ul pe Acumulator Descărcat"
@@ -7830,6 +7848,7 @@ msgstr "Puteți introduce aici o scurtă descriere pentru referință."
 
 msgid "You may enter a device file or label path."
 msgstr ""
+"Va trebui să introduceți numele unui dispozitiv sau o etichetă de cale."
 
 #, php-format
 msgid ""
@@ -7865,7 +7884,7 @@ msgstr ""
 "Trebuie să aveți cel puțin %dMB RAM pentru a putea folosi destinații iSCSI."
 
 msgid "You must initialize data before enabling."
-msgstr ""
+msgstr "Va trebui să inițializați datele înainte de activare."
 
 msgid "You must select at least one authentication method."
 msgstr "Trebuie să selectați cel puțin o metodă de autentificare."
@@ -8049,7 +8068,7 @@ msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
 msgid "sysvol exist in path."
-msgstr ""
+msgstr "sysvol există în cale."
 
 msgid "to"
 msgstr "către"
