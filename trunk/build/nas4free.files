@@ -853,6 +853,12 @@ usr/share/doc/legal/intel_wpi/LICENSE
 usr/share/doc/legal/intel_iwi/LICENSE
 usr/share/doc/legal/intel_ipw/LICENSE
 
+####### iSCSI initiator daemon / management utility
+etc/rc.d/iscsid
+#etc/rc.d/iscsictl
+usr/sbin/iscsid
+usr/bin/iscsictl
+
 # XXX need move to ports
 # pkg -- a utility for manipulating packages
 usr/local/sbin/pkg
