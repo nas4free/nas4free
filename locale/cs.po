@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2015-06-13 15:06+0000\n"
-"PO-Revision-Date: 2015-02-08 21:46+0000\n"
+"PO-Revision-Date: 2015-06-26 13:34+0000\n"
 "Last-Translator: Tomáš Bednář <bednto@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-06-25 11:36+0000\n"
+"X-Launchpad-Export-Date: 2015-06-26 13:37+0000\n"
 "X-Generator: Launchpad (build 17578)\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 "Language: \n"
@@ -468,7 +468,7 @@ msgstr ""
 "tato adresa neměnila."
 
 msgid "Admin password"
-msgstr ""
+msgstr "heslo Administrátora"
 
 msgid "Administration password"
 msgstr "Heslo správce"
@@ -674,7 +674,7 @@ msgid "Any"
 msgstr "Libovolný"
 
 msgid "Append user defined shares"
-msgstr ""
+msgstr "Připojit uživatelsky definované sdílení."
 
 msgid "Apple Filing Protocol"
 msgstr "Apple Filling Protokol"
@@ -921,7 +921,7 @@ msgid "CIFS/SMB informations"
 msgstr "Informace CIFS/SMB"
 
 msgid "CIFS/SMB is enabled."
-msgstr ""
+msgstr "CIFS/SMB je povoleno."
 
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Cyrillice)"
@@ -998,7 +998,7 @@ msgid "Cannot get data about interface"
 msgstr "Nelze získat údaje o rozhraní"
 
 msgid "Cannot use DHCP for LAN interface."
-msgstr ""
+msgstr "Nelze použít DHCP pro LAN rozhraní."
 
 msgid "Capacity"
 msgstr "Kapacita"
@@ -1036,7 +1036,7 @@ msgstr "Nabíjení akumulátoru"
 
 #, php-format
 msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
-msgstr ""
+msgstr "Ověřte <a href=\"%s\">System|General Setup</a> před inicializací."
 
 msgid "Check interval"
 msgstr "Interval kontroly stavu"
@@ -1285,7 +1285,7 @@ msgid "Create 4KB wrapper (nop device)."
 msgstr ""
 
 msgid "Create ZFS on GPT partition"
-msgstr ""
+msgstr "Vytvořit ZFS na GPT oddílu"
 
 msgid "Create and initialize RAID."
 msgstr "Vytvořit a inicializovat RAID."
@@ -1357,7 +1357,7 @@ msgid "Custom"
 msgstr "Vlastní"
 
 msgid "Custom device"
-msgstr ""
+msgstr "Vlasní zařízení"
 
 msgid "Custom script"
 msgstr "Vlastní skript"
@@ -1378,7 +1378,7 @@ msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DHCP cannot be used for LAN interface."
-msgstr ""
+msgstr "DHCP nemůže být použito pro LAN rozhraní."
 
 msgid "DLNA/UPnP"
 msgstr "DLNA / UPnP"
@@ -1387,13 +1387,13 @@ msgid "DLNA/UPnP Media Server"
 msgstr "Multimediální server DLNA/UPnP"
 
 msgid "DNS domain"
-msgstr ""
+msgstr "DNS doména"
 
 msgid "DNS forwarder"
-msgstr ""
+msgstr "DNS přeposílání"
 
 msgid "DNS server is empty."
-msgstr ""
+msgstr "DNS server je prázdný."
 
 msgid "DNS settings"
 msgstr "Nastavení DNS"
@@ -1452,7 +1452,7 @@ msgid "Debug"
 msgstr "Režim ladění"
 
 msgid "Decrypt password"
-msgstr ""
+msgstr "Dešifrovat heslo"
 
 msgid "Dedup"
 msgstr "Deduplikace"
@@ -1671,7 +1671,7 @@ msgid "Device"
 msgstr "Zařízení"
 
 msgid "Device / Label"
-msgstr ""
+msgstr "Zařízení / Jmenovka"
 
 #, php-format
 msgid "Device /dev/%s - %s"
@@ -1956,7 +1956,7 @@ msgid "Domain controller name"
 msgstr "Název řadiče domény"
 
 msgid "Domain have no 2nd level name."
-msgstr ""
+msgstr "Doména nemá název druhé úrovně."
 
 msgid "Domain name"
 msgstr "Název domény"
@@ -2049,7 +2049,7 @@ msgid "EFI/GPT partition can be use with UFS only."
 msgstr "EFI/GPT oddíl může být použit pouze s UFS"
 
 msgid "ERROR:"
-msgstr ""
+msgstr "CHYBA:"
 
 msgid "Edit"
 msgstr "Upravit"
@@ -2182,7 +2182,7 @@ msgid "Enable FXP protocol."
 msgstr "Povolit FXP protokol."
 
 msgid "Enable NFSv4 server."
-msgstr ""
+msgstr "Povolit NFSv4 server."
 
 msgid "Enable NTP"
 msgstr "Povolit NTP"
@@ -2337,16 +2337,16 @@ msgid "Enabled"
 msgstr "Povoleno"
 
 msgid "Encrypt password"
-msgstr ""
+msgstr "Zašifrovat heslo"
 
 msgid "Encrypt password (confirmed)"
-msgstr ""
+msgstr "Zašifrovat heslo (potvrzeno)"
 
 msgid "Encrypted"
 msgstr "Zašifrováno"
 
 msgid "Encrypted configuration is automatically gzipped."
-msgstr ""
+msgstr "Zašifrovaná konfigurace je automaticky zkomprimována (gzip)"
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -2538,7 +2538,7 @@ msgstr "Nezdařilo se vykonat cron úlohu."
 
 #, php-format
 msgid "Failed to remove: %s"
-msgstr ""
+msgstr "Nezdařilo se odstranit: %s"
 
 #, c-format
 msgid "Failed to send status report to: %s."
@@ -2620,7 +2620,7 @@ msgid "Filename"
 msgstr "Název souboru"
 
 msgid "Fileserver"
-msgstr ""
+msgstr "Souborový server"
 
 msgid "Filter"
 msgstr "Filtr"
@@ -2732,7 +2732,7 @@ msgid "Generate"
 msgstr "Vytvořit"
 
 msgid "Generate password if leave empty."
-msgstr ""
+msgstr "Vygeneruje heslo, pokud zanecháte prázdné."
 
 msgid "German"
 msgstr "Němčina"
@@ -2771,7 +2771,7 @@ msgid "Group ID"
 msgstr "ID skupiny"
 
 msgid "Group compilations"
-msgstr ""
+msgstr "Skupinové kompilace"
 
 msgid "Group description."
 msgstr "Popis skupiny."
@@ -3115,10 +3115,10 @@ msgstr ""
 "ovládajícího stroje."
 
 msgid "In/Out errors"
-msgstr ""
+msgstr "Vstupně/Výstupní chyby"
 
 msgid "In/Out packets"
-msgstr ""
+msgstr "Vstupně/Výstupní pakety"
 
 msgid "Include basic hardware information."
 msgstr "Zahrnout základní údaje o hardware."
@@ -3166,7 +3166,7 @@ msgid "Initializing"
 msgstr "Inicializace"
 
 msgid "Initializing..."
-msgstr ""
+msgstr "Inicializace..."
 
 msgid "Initiator Group"
 msgstr "Skupina iniciátoru"
@@ -3272,7 +3272,7 @@ msgid "Interval to wait before restarting the load"
 msgstr "Prodleva obnovení napájení do připojených zařízení"
 
 msgid "Invalid file format or incorrect password."
-msgstr ""
+msgstr "Neplatný formát souboru nebo špatné heslo."
 
 msgid "Invalid file format."
 msgstr "Neplatný formát souboru."
@@ -3324,7 +3324,7 @@ msgid "JBOD"
 msgstr "JBOD"
 
 msgid "JBOD information and status"
-msgstr ""
+msgstr "JBOD informace a stav"
 
 msgid ""
 "January February March April May June July August September October November "
@@ -3882,7 +3882,7 @@ msgid "Model name"
 msgstr "Název modelu"
 
 msgid "Modified"
-msgstr ""
+msgstr "Upraveno"
 
 msgid "Modifying"
 msgstr "Probíhá úprava"
@@ -3939,7 +3939,7 @@ msgid "NFS"
 msgstr "NFS"
 
 msgid "NFSv4"
-msgstr ""
+msgstr "NFSv4"
 
 msgid "NIS"
 msgstr "NIS"
@@ -3960,10 +3960,10 @@ msgid "NT1"
 msgstr "NT1"
 
 msgid "NTP is not enabled."
-msgstr ""
+msgstr "NTP není zapnuto."
 
 msgid "NTP must be enabled."
-msgstr ""
+msgstr "NTP musí být zapnuto."
 
 msgid "NTP time server"
 msgstr "NTP časový server"
@@ -3993,7 +3993,7 @@ msgid "Name of the variable."
 msgstr "Název proměnné."
 
 msgid "NetBIOS domain"
-msgstr ""
+msgstr "NetBIOS doména"
 
 msgid "NetBIOS name"
 msgstr "NetBIOS název"
@@ -4207,7 +4207,7 @@ msgid "Not attached"
 msgstr "Nepřipojeno"
 
 msgid "Not found path."
-msgstr ""
+msgstr "Cesta nebyla nalezena."
 
 msgid "Note"
 msgstr "Poznámka"
@@ -4410,7 +4410,7 @@ msgid "Parameter xxx (ups.conf or cmdline -x) setting"
 msgstr "Nastavení parametru xxx (ups.conf nebo cmdline -x)"
 
 msgid "Parent Directory"
-msgstr ""
+msgstr "Nadřazený adresář"
 
 msgid "Partition number"
 msgstr "Číslo diskového oddílu"
@@ -4720,25 +4720,25 @@ msgid "RAID 0"
 msgstr "RAID 0"
 
 msgid "RAID 0 information and status"
-msgstr ""
+msgstr "RAID 0 informace a stav"
 
 msgid "RAID 0/1/5"
 msgstr "RAID 0/1/5"
 
 msgid "RAID 0/1/5 information and status"
-msgstr ""
+msgstr "RAID 0/1/5 informace a stav"
 
 msgid "RAID 1"
 msgstr "RAID 1"
 
 msgid "RAID 1 information and status"
-msgstr ""
+msgstr "RAID 1 informace a stav"
 
 msgid "RAID 5"
 msgstr "RAID 5"
 
 msgid "RAID 5 information and status"
-msgstr ""
+msgstr "RAID 5 informace a stav"
 
 msgid "RAID0"
 msgstr "RAID0"
@@ -4750,7 +4750,7 @@ msgid "RAID5"
 msgstr "RAID5"
 
 msgid "RAW info"
-msgstr ""
+msgstr "RAW info"
 
 msgid "RSYNC"
 msgstr "RSYNC"
@@ -4880,7 +4880,7 @@ msgid "Remote monitoring"
 msgstr "Vzdálený dohled"
 
 msgid "Remote rsync daemon"
-msgstr ""
+msgstr "Vzdálený rsync démon"
 
 msgid "Remote syslog server"
 msgstr "Vzdálený protokolovací (syslog) server"
@@ -4972,7 +4972,7 @@ msgid "Reverse direction"
 msgstr "Opačný směr"
 
 msgid "Role"
-msgstr ""
+msgstr "Úloha"
 
 msgid "Romanian"
 msgstr "Rumunština"
@@ -5085,7 +5085,7 @@ msgid "SSL/TLS only"
 msgstr "pouze SSL/TLS"
 
 msgid "Samba AD"
-msgstr ""
+msgstr "Samba AD"
 
 msgid "Samba Active Directory Domain Controller"
 msgstr ""
@@ -5210,13 +5210,13 @@ msgstr ""
 "stroj vybaven vícero rozhraními)"
 
 msgid "Select your read balance algorithm."
-msgstr ""
+msgstr "Vyberte algoritmus vyvažování čtení."
 
 msgid "Selected"
 msgstr "Vybráno"
 
 msgid "Selected device or label does not exist."
-msgstr ""
+msgstr "Vybrané zařízení nebo označení neexistuje."
 
 msgid "Selected file isn't an valid ISO file."
 msgstr "Vybraný soubor není platným ISO souborem."
@@ -5410,7 +5410,7 @@ msgid "Skew"
 msgstr "Posun"
 
 msgid "Skip first scan"
-msgstr ""
+msgstr "Přeskočit první kontrolu."
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "Sleep - Kontrolovat stav zařízení pouze pokud není ve SLEEP režimu."
@@ -5482,7 +5482,7 @@ msgid "Sparse Volume"
 msgstr "Řídký svazek"
 
 msgid "Specified path is NFSv4 root directory."
-msgstr ""
+msgstr "Specifikované cesta je NFSv4 kořenový adresář."
 
 msgid "Specifies how many servers to create."
 msgstr "Určuje kolik serverů má být vytvořeno."
@@ -5593,10 +5593,10 @@ msgid "Store NTFS acls in Extended Attributes"
 msgstr ""
 
 msgid "Store alternate data streams"
-msgstr ""
+msgstr "Uložit alternativní datové proudy."
 
 msgid "Store alternate data streams in Extended Attributes"
-msgstr ""
+msgstr "Uložit alternativní datové proudy v Rozšířených atributech."
 
 msgid ""
 "String displayed in the dialog presented to the user when accessing the URL."
@@ -6094,11 +6094,13 @@ msgid ""
 "The confirmation password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
+"Potvrzovací heslo nesouhlasí. Ujistěte se prosím, že hesla přesně odpovídají."
 
 msgid ""
 "The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
+"Potvrzené heslo nesouhlasí. Ujistěte se prosím, že hesla přesně odpovídají."
 
 msgid "The credentials with which to bind."
 msgstr "Přihlašovací údaje pro navázání spojení."
@@ -7191,6 +7193,8 @@ msgid ""
 "Tracks whose path contains one or more of these comma separated strings will "
 "be treated as a compilation."
 msgstr ""
+"Sledovat které cesty obsahují jednu nebo více těchto textových řetězců "
+"oddělených čárkou, bude s nimi zacházeno jako s kompilací."
 
 msgid "Transcoding"
 msgstr "Překódování"
@@ -7357,7 +7361,7 @@ msgid "URL"
 msgstr "URL adresa"
 
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukrajinské."
 
 msgid "Unavailable"
 msgstr "Nedostupné"
@@ -7522,7 +7526,7 @@ msgid "User portal"
 msgstr "Portál uživatele"
 
 msgid "User shares"
-msgstr ""
+msgstr "Uživatelské sdílení"
 
 msgid "User suffix"
 msgstr "Přípona uživatele"
@@ -7632,7 +7636,7 @@ msgid "WPA-PSK WPA-EAP"
 msgstr "WPA-PSK WPA-EAP"
 
 msgid "WPA2"
-msgstr ""
+msgstr "WPA 2"
 
 msgid "Wait time"
 msgstr "Čas čekání"
@@ -7682,6 +7686,7 @@ msgstr ""
 msgid ""
 "When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot be used."
 msgstr ""
+"Pokud je Samba AD zapnuto, CIFS/SMB sdílení souborů nemůže být použito."
 
 msgid "When UPS switches to Low Battery"
 msgstr "Kdy UPS zdroj začne hlásit téměř vybité akumulátory"
@@ -7791,7 +7796,7 @@ msgid "You may enter a description here for your reference."
 msgstr "Zde můžete připojit popisek pro své potřeby."
 
 msgid "You may enter a device file or label path."
-msgstr ""
+msgstr "Můžete vložit soubor zařízení nebo jmenovku cesty."
 
 #, php-format
 msgid ""
@@ -7824,7 +7829,7 @@ msgid "You must have a minimum of %dMB of RAM for using iSCSI target."
 msgstr "Použití iSCSI cíle vyžaduje alespoň %dMB RAM."
 
 msgid "You must initialize data before enabling."
-msgstr ""
+msgstr "Před zapnutím musíte inicializovat data."
 
 msgid "You must select at least one authentication method."
 msgstr "Je třeba vybrat alespoň jeden ze způsobů ověřování."
@@ -8009,7 +8014,7 @@ msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
 msgid "sysvol exist in path."
-msgstr ""
+msgstr "sysvol existuje v cestě."
 
 msgid "to"
 msgstr "na"
