@@ -6,7 +6,6 @@
 # 
 # Portions of freenas (http://www.freenas.org).
 # Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-# Copyright (c) 2006-2010 Volker Theile (votdev@gmx.de)
 # All rights reserved.
 #
 # Service types definition: http://www.dns-sd.org/ServiceTypes.html
@@ -119,7 +118,7 @@ mdnsresponder_mkconf()
 		-i "count(//samba/enable) > 0" \
 			-v "//system/hostname" -n \
 			-o "_smb._tcp. ${_domain}" -n \
-			-o "139" -n \
+			-o "445" -n \
 			-n \
 		-b \
 		-i "count(//nfsd/enable) > 0" \
