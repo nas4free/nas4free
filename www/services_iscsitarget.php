@@ -327,7 +327,7 @@ function uctlenable_change(enable_change) {
 	  <input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />
 	</div>
 	<div id="remarks">
-	  <?php html_remark("note", gettext("Note"), sprintf(gettext("You must have a minimum of %dMB of RAM for using iSCSI target."), 512));?>
+	  <?php html_remark("note", gettext("Note"), sprintf(gettext("You must have a minimum of %dMiB RAM for using iSCSI target."), 512));?>
 	</div>
 	<?php include("formend.inc");?>
       </form>
