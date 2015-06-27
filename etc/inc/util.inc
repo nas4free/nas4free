@@ -1239,6 +1239,11 @@ function parse_controller_config(&$devlist){
 		if(empty($device['model'])) $device['model'] = system_get_volume_model($device['devicespecialfile']);
 		if(empty($device['desc'])) $device['desc'] = $device['model'];
 		if(empty($device['serial'])) $device['serial'] = system_get_volume_serial($device['devicespecialfile']);
+
+		// final fixup
+		$device['model'] = str_replace('"', '', $device['model']);
+		$device['desc'] = str_replace('"', '', $device['desc']);
+		$device['serial'] = str_replace('"', '', $device['serial']);
 	}
 	unset($device);
 	return $devlist;
@@ -1344,6 +1349,10 @@ function get_smartctl_info($device){
 	if(empty($smartctl_info['model'])){
 		$smartctl_info['model'] = trim($vendor.' '.$product.' '.$revision);
  	}
+	// final fixup
+	$smartctl_info['model'] = str_replace('"', '', $smartctl_info['model']);
+	$smartctl_info['desc'] = str_replace('"', '', $smartctl_info['desc']);
+	$smartctl_info['serial'] = str_replace('"', '', $smartctl_info['serial']);
 	return $smartctl_info;
 }
 
