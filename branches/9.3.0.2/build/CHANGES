@@ -70,10 +70,11 @@ Changes:
 - Upgrade samba to 4.1.19.
 
 Fixes:
+- Cannot install to Toshiba drive.
 - Missing libftdi in lcdproc.
 - Newly created AFP share is not shown in Time Machine.
 - Pool state on index.php is not a live state.
-- Can not mount(readonly) ext2/ext3/ext4 on GPT.
+- Cannot mount(readonly) ext2/ext3/ext4 on GPT.
 - Remove ZFS pool cache in ZFS pool tools and sync.
 - FAT/NTFS mount does not use access restriction.
 - Broken Wireless support.
