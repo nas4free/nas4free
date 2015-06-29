@@ -14,7 +14,7 @@ NO_PKG_REGISTER?=	 yes
 #ALWAYS_BUILD_DEPENDS= yes
 DEPENDS_TARGET=	 clean build
 
-BUILD_DEPENDS=	pam_mkhomedir:${PORTSDIR}/security/pam_mkhomedir
+BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/security/pam_mkhomedir
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/security/pam_mkhomedir/work/pam_mkhomedir-*/pam_mkhomedir.so ${NAS4FREE_ROOTFS}/usr/local/lib
