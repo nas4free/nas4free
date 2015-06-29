@@ -41,6 +41,7 @@
     SUBDIR += rconf
     SUBDIR += rsync
     SUBDIR += samba41
+    SUBDIR += samba42
     SUBDIR += scponly
     SUBDIR += sipcalc
     SUBDIR += smartmontools
