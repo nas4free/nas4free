@@ -1514,6 +1514,138 @@ create_rpisd() {
 	return 0
 }
 
+create_rpi2sd() {
+	# Check if rootfs (contining OS image) exists.
+	if [ ! -d "$NAS4FREE_ROOTFS" ]; then
+		echo "==> Error: ${NAS4FREE_ROOTFS} does not exist!."
+		return 1
+	fi
+
+	# Prepare boot files
+	RPI_BOOTFILES=${NAS4FREE_SVNDIR}/build/arm/boot-rpi2.tar.xz
+	RPI_BOOTDIR=${NAS4FREE_WORKINGDIR}/boot
+	rm -rf ${RPI_BOOTDIR} ${NAS4FREE_WORKINGDIR}/boot-update.tar.xz
+	tar -C ${NAS4FREE_WORKINGDIR} -Jxvf ${RPI_BOOTFILES}
+
+	# Create boot-update
+	tar -C ${RPI_BOOTDIR} -Jcvf ${NAS4FREE_WORKINGDIR}/boot-update.tar.xz \
+	    bootversion bootcode.bin config.txt fixup.dat fixup_cd.dat fixup_x.dat \
+	    rpi2.dtb start.elf start_cd.elf start_x.elf u-boot.bin ubldr uboot.env
+
+	# Create embedded image
+	create_arm_image custom_rpi2;
+
+	[ -f ${NAS4FREE_WORKINGDIR}/sd-image.bin ] && rm -f ${NAS4FREE_WORKINGDIR}/sd-image.bin
+	[ -f ${NAS4FREE_WORKINGDIR}/sd-image.bin.gz ] && rm -f ${NAS4FREE_WORKINGDIR}/sd-image.bin.gz
+	mkdir -p ${NAS4FREE_TMPDIR}
+	mkdir -p ${NAS4FREE_TMPDIR}/usr/local
+
+	IMGFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-SD-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.img"
+	FIRMWARENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-embedded-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.img"
+
+	# for 2GB SD card
+	IMGSIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/image.bin.xz)
+	MFSSIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/mfsroot.uzip)
+	MDLSIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/mdlocal.xz)
+	IMGSIZEM=$(expr \( $IMGSIZE + $MFSSIZE + $MDLSIZE - 1 + 1024 \* 1024 \) / 1024 / 1024)
+	SDROOTM=320
+	SDSWAPM=1024
+	SDDATAM=12
+
+	SDFATSIZEM=19
+	# 4MB alignment
+	#SDSYSSIZEM=$(expr $SDROOTM + $IMGSIZEM + 4)
+	SDSYSSIZEM=$(expr $SDROOTM + 4)
+	SDIMGSIZEM=$(expr $SDFATSIZEM + 4 + $SDSYSSIZEM + $SDSWAPM + 4)
+	SDSWPSIZEM=$(expr $SDSWAPM + 4)
+	SDDATSIZEM=$(expr $SDDATAM + 4)
+
+	#SDIMGSIZE=3768320
+	SDIMGSIZE=$(expr 8192 \* 20 \* 18)
+
+	# 4MB aligned SD card
+	echo "RPISD: Creating Empty IMG File"
+	dd if=/dev/zero of=${NAS4FREE_WORKINGDIR}/sd-image.bin bs=512 seek=${SDIMGSIZE} count=0
+	echo "RPISD: Use IMG as a memory disk"
+	md=`mdconfig -a -t vnode -f ${NAS4FREE_WORKINGDIR}/sd-image.bin`
+	diskinfo -v ${md}
+
+	echo "RPISD: Creating BSD partition on this memory disk"
+	gpart create -s mbr ${md}
+	gpart add -b 63 -s ${SDFATSIZEM}m -t '!12' ${md}
+	gpart add -s ${SDSWPSIZEM}m -t freebsd ${md}
+	gpart add -s ${SDSYSSIZEM}m -t freebsd ${md}
+	gpart add -s ${SDDATSIZEM}m -t freebsd ${md}
+	gpart set -a active -i 1 ${md}
+
+	# mmcsd0s1 (FAT16)
+	newfs_msdos -L "BOOT" -F 16 ${md}s1
+	mount -t msdosfs /dev/${md}s1 ${NAS4FREE_TMPDIR}
+
+	# Install boot files
+	for f in bootcode.bin config.txt fixup.dat fixup_cd.dat fixup_x.dat rpi2.dtb \
+	    start.elf start_cd.elf start_x.elf u-boot.bin uboot.env; do
+		cp -p ${RPI_BOOTDIR}/$f ${NAS4FREE_TMPDIR}
+	done
+
+	# Install bootversion/ubldr
+	cp -p ${RPI_BOOTDIR}/bootversion ${NAS4FREE_TMPDIR}
+	cp -p ${RPI_BOOTDIR}/ubldr ${NAS4FREE_TMPDIR}
+
+	sync
+	cd ${NAS4FREE_WORKINGDIR}
+	umount ${NAS4FREE_TMPDIR}
+	rm -rf ${RPI_BOOTDIR}
+
+	# mmcsd0s2 (SWAP)
+	gpart create -s bsd ${md}s2
+	gpart add -i2 -a 4m -s ${SDSWAPM}m -t freebsd-swap ${md}s2
+
+	# mmcsd0s3 (UFS/SYSTEM)
+	gpart create -s bsd ${md}s3
+	gpart add -a 4m -s ${SDROOTM}m -t freebsd-ufs ${md}s3
+
+	# mmcsd0s4 (UFS/DATA)
+	gpart create -s bsd ${md}s4
+	gpart add -a 4m -s ${SDDATAM}m -t freebsd-ufs ${md}s4
+
+	# SYSTEM partition
+	mdp=${md}s3a
+
+	#echo "RPISD: Formatting this memory disk using UFS"
+	#newfs -S 4096 -b 32768 -f 4096 -O2 -U -j -o space -m 0 -L "embboot" /dev/${mdp}
+	echo "RPISD: Installing embedded image"
+	xz -dcv ${NAS4FREE_ROOTDIR}/${FIRMWARENAME}.xz | dd of=/dev/${mdp} bs=1m status=none
+
+	echo "RPISD: Mount this virtual disk on $NAS4FREE_TMPDIR"
+	mount /dev/${mdp} $NAS4FREE_TMPDIR
+
+	echo "RPISD: Unmount memory disk"
+	umount $NAS4FREE_TMPDIR
+	echo "RPISD: Detach memory disk"
+	mdconfig -d -u ${md}
+	echo "RPISD: Copy SD image"
+	cp $NAS4FREE_WORKINGDIR/sd-image.bin $NAS4FREE_ROOTDIR/${IMGFILENAME}
+
+	echo "Generating SHA256 CHECKSUM File"
+	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.checksum"
+	cd ${NAS4FREE_ROOTDIR} && sha256 *.img *.xz *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
+
+	# Cleanup.
+	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
+	[ -f $NAS4FREE_WORKINGDIR/mfsroot ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot
+	[ -f $NAS4FREE_WORKINGDIR/mfsroot.gz ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.gz
+	[ -f $NAS4FREE_WORKINGDIR/mfsroot.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mfsroot.uzip
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.xz
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.uzip
+	[ -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal-mini.xz
+	[ -f $NAS4FREE_WORKINGDIR/image.bin.xz ] && rm -f $NAS4FREE_WORKINGDIR/image.bin.xz
+	[ -f $NAS4FREE_WORKINGDIR/sd-image.bin ] && rm -f $NAS4FREE_WORKINGDIR/sd-image.bin
+
+	return 0
+}
+
 # Update Subversion Sources.
 update_svn() {
 	# Update sources from repository.
@@ -1714,7 +1846,8 @@ ${NAS4FREE_PRODUCTNAME} Build Environment
 14 - Create 'Full' (TGZ) Update File."
 	if [ "arm" = ${NAS4FREE_ARCH} ]; then
 		echo -n "
-20 - Create 'RPI SD (IMG) File."
+20 - Create 'RPI SD (IMG) File.
+21 - Create 'RPI2 SD (IMG) File."
 	fi
 	echo -n "
 *  - Exit.
@@ -1730,6 +1863,7 @@ Press # "
 		13)	create_iso_tiny;;
 		14)	create_full;;
 		20)	if [ "arm" = ${NAS4FREE_ARCH} ]; then create_rpisd; fi;;
+		21)	if [ "arm" = ${NAS4FREE_ARCH} ]; then create_rpi2sd; fi;;
 		*)	exit 0;;
 	esac
 
