@@ -1,0 +1,35 @@
+--- msk/if_msk.c.orig	2015-06-27 23:18:55.000000000 +0200
++++ msk/if_msk.c	2015-07-01 10:11:00.000000000 +0200
+@@ -1638,6 +1638,7 @@
+ 	}
+ 	ifp->if_softc = sc_if;
+ 	if_initname(ifp, device_get_name(dev), device_get_unit(dev));
++	ifp->if_mtu = ETHERMTU;
+ 	ifp->if_flags = IFF_BROADCAST | IFF_SIMPLEX | IFF_MULTICAST;
+ 	ifp->if_capabilities = IFCAP_TXCSUM | IFCAP_TSO4;
+ 	/*
+@@ -3535,7 +3536,7 @@
+ 		 * On PCI Express bus bridges are called root complexes (RC).
+ 		 * PCI Express errors are recognized by the root complex too,
+ 		 * which requests the system to handle the problem. After
+-		 * error occurrence it may be that no access to the adapter
++		 * error occurence it may be that no access to the adapter
+ 		 * may be performed any longer.
+ 		 */
+ 
+@@ -4067,12 +4068,12 @@
+ 	CSR_WRITE_4(sc, B0_IMSK, sc->msk_intrmask);
+ 	CSR_READ_4(sc, B0_IMSK);
+ 
+-	ifp->if_drv_flags |= IFF_DRV_RUNNING;
+-	ifp->if_drv_flags &= ~IFF_DRV_OACTIVE;
+-
+ 	sc_if->msk_flags &= ~MSK_FLAG_LINK;
+ 	mii_mediachg(mii);
+ 
++	ifp->if_drv_flags |= IFF_DRV_RUNNING;
++	ifp->if_drv_flags &= ~IFF_DRV_OACTIVE;
++
+ 	callout_reset(&sc_if->msk_tick_ch, hz, msk_tick, sc_if);
+ }
+ 
