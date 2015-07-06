@@ -1,0 +1,38 @@
+--- msk/if_mskreg.h.orig	2015-06-27 23:18:55.000000000 +0200
++++ msk/if_mskreg.h	2015-07-01 13:37:46.000000000 +0200
+@@ -156,7 +156,7 @@
+ #define DEVICEID_DLINK_DGE560SX	0x4002
+ #define DEVICEID_DLINK_DGE560T	0x4b00
+ 
+-#define BIT_31		(1U << 31)
++#define BIT_31		(1 << 31)
+ #define BIT_30		(1 << 30)
+ #define BIT_29		(1 << 29)
+ #define BIT_28		(1 << 28)
+@@ -2181,7 +2181,7 @@
+  * bytes boundary alignment constraints.
+  */
+ #define MSK_RING_ALIGN	4096
+-#define	MSK_STAT_ALIGN	4096
++#define	MSK_STAT_ALIGN	8192
+ 
+ /* Rx descriptor data structure */
+ struct msk_rx_desc {
+@@ -2338,7 +2338,7 @@
+ #endif
+ #define	MSK_RX_BUF_ALIGN	8
+ #define MSK_JUMBO_RX_RING_CNT	MSK_RX_RING_CNT
+-#define MSK_MAXTXSEGS		35
++#define MSK_MAXTXSEGS		32
+ #define	MSK_TSO_MAXSGSIZE	4096
+ #define	MSK_TSO_MAXSIZE		(65535 + sizeof(struct ether_vlan_header))
+ 
+@@ -2447,7 +2447,7 @@
+ 
+ #define	MSK_INT_HOLDOFF_DEFAULT	100
+ 
+-#define	MSK_TX_TIMEOUT		5
++#define	MSK_TX_TIMEOUT		10
+ #define	MSK_PUT_WM	10
+ 
+ struct msk_mii_data {
