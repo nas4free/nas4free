@@ -2642,6 +2642,9 @@ function decode_size($bytes) {
 // Get the Internet host name corresponding to a given IP address.
 // Returns the host name or the unmodified ip_address  on failure.
 function get_hostbyaddr($ip_address) {
+	$host = gethostbyaddr($ip_address);
+	if ($host != FALSE)
+		return $host;
 	exec("/usr/bin/host {$ip_address}", $rawdata);
 	if (preg_match("/^Name: (\S+)/", $rawdata[0], $matches)) {
 		return $matches[1];
