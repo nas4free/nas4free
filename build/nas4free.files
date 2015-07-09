@@ -541,8 +541,29 @@ usr/bin/kdestroy
 ## mkuzip -- compress disk image for use with geom_uzip(4) class
 usr/bin/mkuzip
 
-##mkulzma -- compress disk image for use with geom_uncompress(4) class
+## mkulzma -- compress disk image for use with geom_uncompress(4) class
 usr/bin/mkulzma
+
+## bspatch -- apply a patch built with bsdiff(1)
+usr/bin/bspatch
+
+## comm -- select or reject lines common to two files
+usr/bin/comm
+
+## host -- DNS lookup utility
+usr/bin/host
+
+## join -- relational database operator
+usr/bin/join
+
+## lam -- laminate files
+usr/bin/lam
+
+## look -- display lines beginning with a given string
+usr/bin/look
+
+## which -- locate a program file in the user's path
+usr/bin/which
 
 ####### contents of /usr/sbin
 ## acpiconf -- control ACPI power management
@@ -690,6 +711,9 @@ usr/sbin/tcpdump
 ## getextattr, lsextattr, rmextattr, setextattr -- manipulate extended attributes
 usr/sbin/rmextattr:usr/sbin/getextattr:usr/sbin/setextattr:usr/sbin/lsextattr
 
+## portsnap -- fetch and extract compressed snapshots of the ports tree
+usr/sbin/portsnap
+
 ####### contents of /usr/libexec
 # ld-elf.so.1, ld.so, rtld -- run-time link-editor
 libexec/ld-elf.so.1:usr/libexec/ld-elf.so.1
@@ -700,6 +724,12 @@ usr/libexec/sftp-server
 
 ## getty -- set terminal mode
 usr/libexec/getty
+
+## make_index
+usr/libexec/make_index
+
+## phttpget
+usr/libexec/phttpget
 
 ####### contents of /usr/share/misc
 usr/share/misc/init.ee
