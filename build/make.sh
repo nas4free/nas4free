@@ -675,7 +675,7 @@ create_image() {
 	echo "===> Mount this virtual disk on $NAS4FREE_TMPDIR"
 	mount /dev/${mdp} $NAS4FREE_TMPDIR
 	echo "===> Copying previously generated MFSROOT file to memory disk"
-	cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
+	#cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
 	cp $NAS4FREE_WORKINGDIR/mfsroot.uzip $NAS4FREE_TMPDIR
 	cp $NAS4FREE_WORKINGDIR/mdlocal.xz $NAS4FREE_TMPDIR
 	#cp $NAS4FREE_WORKINGDIR/mdlocal.uzip $NAS4FREE_TMPDIR
@@ -1021,7 +1021,7 @@ create_usb () {
 	#dd if=/dev/zero of=$NAS4FREE_TMPDIR/swap.dat bs=1m seek=${USBSWAPM} count=0
 
 	echo "USB: Copying previously generated MFSROOT file to memory disk"
-	cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
+	#cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
 	cp $NAS4FREE_WORKINGDIR/mfsroot.uzip $NAS4FREE_TMPDIR
 	cp $NAS4FREE_WORKINGDIR/mdlocal.xz $NAS4FREE_TMPDIR
 	cp $NAS4FREE_WORKINGDIR/mdlocal-mini.xz $NAS4FREE_TMPDIR
