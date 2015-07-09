@@ -1806,6 +1806,9 @@ $DIALOG --title \"$NAS4FREE_PRODUCTNAME - Ports\" \\
 			done;
 			;;
 		install)
+			if [ -f /var/db/pkg/local.sqlite ]; then
+				cp -p /var/db/pkg/local.sqlite $NAS4FREE_WORKINGDIR/pkg
+			fi
 			for port in $(cat ${ports} | tr -d '"'); do
 				echo;
 				echo "--------------------------------------------------------------";
