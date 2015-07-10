@@ -1,14 +1,13 @@
 PORTNAME=		lcdproc
 PORTVERSION=	0.5.7
-PORTREVISION= 0
+PORTREVISION= 1
 CATEGORIES=		sysutils
 MASTER_SITES=		SF
 COMMENT=		Client/server suite for LCD devices
 MAINTAINER=		zoon01@nas4free.org
 
-USE_AUTOTOOLS=	autoconf automake aclocal
 GNU_CONFIGURE=	yes
-USES=           pkgconfig
+USES=           autoreconf pkgconfig
 
 # Options
 OPTIONS_DEFINE= USB FTDI HID FREETYPE SERDISP
