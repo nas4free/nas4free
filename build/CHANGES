@@ -53,6 +53,7 @@ Fixes:
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
 - It is not possible to encrypt a disk partition, only complete disks are supported.
+- AFP shares with TimeMachine support are limited to max. 4 shares.
 
 Known bugs:
 - If DHCP for IPv4 is used, the IPv6 statically configured DNS server will be
