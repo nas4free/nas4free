@@ -99,7 +99,7 @@ if ($_POST) {
 			if (file_exists("/$bootconfig")) {
 				unlink("/$bootconfig");
 			}
-			if (file_exists("{$g['cf_path']}/mfsroot.gz")
+			if (file_exists("{$g['cf_path']}/mfsroot.uzip")
 			    && file_exists("{$g['cf_path']}/$bootconfig")) {
 				config_lock();
 				conf_mount_rw();
@@ -112,7 +112,7 @@ if ($_POST) {
 				unlink("/$bootconfig");
 			}
 			file_put_contents("/$bootconfig", "-Dh\n");
-			if (file_exists("{$g['cf_path']}/mfsroot.gz")) {
+			if (file_exists("{$g['cf_path']}/mfsroot.uzip")) {
 				config_lock();
 				conf_mount_rw();
 				if (file_exists("{$g['cf_path']}/$bootconfig")) {
