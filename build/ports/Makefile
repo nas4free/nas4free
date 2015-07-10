@@ -46,6 +46,7 @@
     SUBDIR += sipcalc
     SUBDIR += smartmontools
     SUBDIR += spindown
+    SUBDIR += sudo
     SUBDIR += tftp-hpa
     SUBDIR += tmux
     SUBDIR += transmission
