@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-27 00:58+0000\n"
-"PO-Revision-Date: 2015-06-28 15:26+0000\n"
-"Last-Translator: Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>\n"
+"POT-Creation-Date: 2015-07-11 00:20+0000\n"
+"PO-Revision-Date: 2015-07-10 22:48+0000\n"
+"Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-10 14:37+0000\n"
+"X-Launchpad-Export-Date: 2015-07-10 22:52+0000\n"
 "X-Generator: Launchpad (build 17620)\n"
 "Language: hu_HU\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -576,8 +576,8 @@ msgstr "Az összes felhasználónak root privilégiuma lesz."
 msgid "Allow"
 msgstr "Engedélyez"
 
-msgid "Allow TLS/SSL connections only."
-msgstr "Csak TLS/SSL kapcsolatok engedélyezése."
+msgid "Allow TLS connections only."
+msgstr ""
 
 msgid "Allow client access to accounts that have null passwords."
 msgstr "Engedélyezés a klienseknek a jelszó nélküli hozzáféréshez."
@@ -2192,8 +2192,8 @@ msgstr ""
 "STARTTLS titkosítás engedélyezése. Ez nem azt jelenti, hogy TLS-t kell "
 "használni, lehet SSL-t is."
 
-msgid "Enable TLS/SSL connections."
-msgstr "TLS/SSL kapcsolatok engedélyezése"
+msgid "Enable TLS connections."
+msgstr ""
 
 msgid "Enable Time Machine support"
 msgstr "Időkiszolgáló támogatásának engedélyezése"
@@ -5054,12 +5054,6 @@ msgstr "SSHD napló"
 msgid "SSID"
 msgstr "SSID"
 
-msgid "SSL/TLS"
-msgstr "SSL/TLS"
-
-msgid "SSL/TLS only"
-msgstr "Csak SSL/TLS"
-
 msgid "Samba AD"
 msgstr "Samba AD"
 
@@ -5723,8 +5717,14 @@ msgstr "TFTP"
 msgid "TKIP"
 msgstr "TKIP"
 
+msgid "TLS"
+msgstr "TLS"
+
 msgid "TLS mode"
 msgstr "TLS mód"
+
+msgid "TLS only"
+msgstr ""
 
 msgid "Tag"
 msgstr "Címke"
@@ -8024,3 +8024,15 @@ msgstr "leválasztás"
 #, php-format
 msgid "version:"
 msgstr "verzió:"
+
+#~ msgid "Allow TLS/SSL connections only."
+#~ msgstr "Csak TLS/SSL kapcsolatok engedélyezése."
+
+#~ msgid "Enable TLS/SSL connections."
+#~ msgstr "TLS/SSL kapcsolatok engedélyezése"
+
+#~ msgid "SSL/TLS"
+#~ msgstr "SSL/TLS"
+
+#~ msgid "SSL/TLS only"
+#~ msgstr "Csak SSL/TLS"

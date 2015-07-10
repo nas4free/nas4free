@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-27 00:58+0000\n"
+"POT-Creation-Date: 2015-07-11 00:20+0000\n"
 "PO-Revision-Date: 2015-06-26 13:34+0000\n"
 "Last-Translator: Tomáš Bednář <bednto@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-10 14:36+0000\n"
+"X-Launchpad-Export-Date: 2015-07-10 22:52+0000\n"
 "X-Generator: Launchpad (build 17620)\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 "Language: \n"
@@ -571,8 +571,8 @@ msgstr "Všichni uživatelé budou mít práva správce systému (root)."
 msgid "Allow"
 msgstr "Povolit"
 
-msgid "Allow TLS/SSL connections only."
-msgstr "Povolit pouze TLS/SSL spojení."
+msgid "Allow TLS connections only."
+msgstr ""
 
 msgid "Allow client access to accounts that have null passwords."
 msgstr "Povolit klientům přístup k účtům, nechráněným heslem."
@@ -2197,8 +2197,8 @@ msgstr ""
 "Zapnout šifrování rozšířením protokolu STARTTLS. Neznamená to ovšem, že bude "
 "třeba použít výhradně protokol TLS, SSL bude fungovat též."
 
-msgid "Enable TLS/SSL connections."
-msgstr "Zapnout TLS/SSL spojení."
+msgid "Enable TLS connections."
+msgstr ""
 
 msgid "Enable Time Machine support"
 msgstr "Zapnout podporu pro aplikaci Apple Time Machine"
@@ -5078,12 +5078,6 @@ msgstr "protokol služby ssh"
 msgid "SSID"
 msgstr "Název bezdrátové sítě (SSID)"
 
-msgid "SSL/TLS"
-msgstr "SSL / TLS"
-
-msgid "SSL/TLS only"
-msgstr "pouze SSL/TLS"
-
 msgid "Samba AD"
 msgstr "Samba AD"
 
@@ -5744,8 +5738,14 @@ msgstr "TFTP"
 msgid "TKIP"
 msgstr "TKIP"
 
+msgid "TLS"
+msgstr ""
+
 msgid "TLS mode"
 msgstr "Režim TLS"
+
+msgid "TLS only"
+msgstr ""
 
 msgid "Tag"
 msgstr "Značka"
@@ -8028,3 +8028,15 @@ msgstr "odpojit"
 #, php-format
 msgid "version:"
 msgstr "verze:"
+
+#~ msgid "Allow TLS/SSL connections only."
+#~ msgstr "Povolit pouze TLS/SSL spojení."
+
+#~ msgid "SSL/TLS only"
+#~ msgstr "pouze SSL/TLS"
+
+#~ msgid "Enable TLS/SSL connections."
+#~ msgstr "Zapnout TLS/SSL spojení."
+
+#~ msgid "SSL/TLS"
+#~ msgstr "SSL / TLS"

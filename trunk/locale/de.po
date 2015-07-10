@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-27 00:58+0000\n"
-"PO-Revision-Date: 2015-06-29 20:49+0000\n"
-"Last-Translator: apollo567 <apollo567@hotmail.de>\n"
+"POT-Creation-Date: 2015-07-11 00:20+0000\n"
+"PO-Revision-Date: 2015-07-10 22:43+0000\n"
+"Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-10 14:37+0000\n"
+"X-Launchpad-Export-Date: 2015-07-10 22:52+0000\n"
 "X-Generator: Launchpad (build 17620)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
@@ -585,8 +585,8 @@ msgstr "Alle Benutzer erhalten Administratorrechte."
 msgid "Allow"
 msgstr "Erlauben"
 
-msgid "Allow TLS/SSL connections only."
-msgstr "Erlauben Sie nur TLS/SSL Anschlüsse."
+msgid "Allow TLS connections only."
+msgstr ""
 
 msgid "Allow client access to accounts that have null passwords."
 msgstr ""
@@ -2220,8 +2220,8 @@ msgstr ""
 "STARTTLS Verschlüsselung aktivieren. TLS muss nicht benutzt werden,  SSL ist "
 "weiterhin möglich."
 
-msgid "Enable TLS/SSL connections."
-msgstr "TLS/SSL-Verbindungen aktivieren."
+msgid "Enable TLS connections."
+msgstr "SSL-Verbindungen aktivieren."
 
 msgid "Enable Time Machine support"
 msgstr "Time Machine Unterstützung aktivieren"
@@ -5119,12 +5119,6 @@ msgstr "SSHD Logfile"
 msgid "SSID"
 msgstr "SSID"
 
-msgid "SSL/TLS"
-msgstr "SSL/TLS"
-
-msgid "SSL/TLS only"
-msgstr "Nur SSL/TLS"
-
 msgid "Samba AD"
 msgstr "Samba AD"
 
@@ -5795,8 +5789,14 @@ msgstr "TFTP"
 msgid "TKIP"
 msgstr "TKIP"
 
+msgid "TLS"
+msgstr "TLS"
+
 msgid "TLS mode"
 msgstr "TLS Modus"
+
+msgid "TLS only"
+msgstr ""
 
 msgid "Tag"
 msgstr "Tag"
@@ -8161,3 +8161,15 @@ msgstr "Aushängen"
 #, php-format
 msgid "version:"
 msgstr "Version:"
+
+#~ msgid "Allow TLS/SSL connections only."
+#~ msgstr "Erlauben Sie nur TLS/SSL Anschlüsse."
+
+#~ msgid "Enable TLS/SSL connections."
+#~ msgstr "TLS/SSL-Verbindungen aktivieren."
+
+#~ msgid "SSL/TLS"
+#~ msgstr "SSL/TLS"
+
+#~ msgid "SSL/TLS only"
+#~ msgstr "Nur SSL/TLS"
