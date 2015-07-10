@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-27 00:58+0000\n"
-"PO-Revision-Date: 2015-06-05 07:11+0000\n"
+"POT-Creation-Date: 2015-07-11 00:20+0000\n"
+"PO-Revision-Date: 2015-07-10 15:50+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-10 14:37+0000\n"
+"X-Launchpad-Export-Date: 2015-07-10 22:52+0000\n"
 "X-Generator: Launchpad (build 17620)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -433,7 +433,7 @@ msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "hastd 远程守护进程的位址。它必须是一个静态IP位址。"
 
 msgid "Admin password"
-msgstr ""
+msgstr "管理员密码"
 
 msgid "Administration password"
 msgstr "管理员密码"
@@ -528,8 +528,8 @@ msgstr "让所有的用户都有 root 权限。"
 msgid "Allow"
 msgstr "允许"
 
-msgid "Allow TLS/SSL connections only."
-msgstr "只允许 TLS/SSL 连接."
+msgid "Allow TLS connections only."
+msgstr ""
 
 msgid "Allow client access to accounts that have null passwords."
 msgstr "允许没有设置密码的帐号连接。"
@@ -621,7 +621,7 @@ msgid "Any"
 msgstr "任何"
 
 msgid "Append user defined shares"
-msgstr ""
+msgstr "追加用户自定义的用户共享"
 
 msgid "Apple Filing Protocol"
 msgstr "苹果文件协议（Apple Filing Protocol）"
@@ -860,7 +860,7 @@ msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB 资讯"
 
 msgid "CIFS/SMB is enabled."
-msgstr ""
+msgstr "CIFS/ SMB 已启用。"
 
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (斯拉夫文)"
@@ -935,7 +935,7 @@ msgid "Cannot get data about interface"
 msgstr "无法获得介面的资料"
 
 msgid "Cannot use DHCP for LAN interface."
-msgstr ""
+msgstr "LAN 的网络介面不能使用DHCP。"
 
 msgid "Capacity"
 msgstr "容量"
@@ -1095,7 +1095,7 @@ msgid "Connected FTP users"
 msgstr "已连接 FTP 用户"
 
 msgid "Console Menu"
-msgstr ""
+msgstr "控制台菜单"
 
 msgid "Console screensaver"
 msgstr "控制台屏幕保护程序"
@@ -1264,7 +1264,7 @@ msgid "Custom"
 msgstr "自定"
 
 msgid "Custom device"
-msgstr ""
+msgstr "自定义设备"
 
 msgid "Custom script"
 msgstr "自定义脚本"
@@ -1294,13 +1294,13 @@ msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP 媒体伺服器"
 
 msgid "DNS domain"
-msgstr ""
+msgstr "DNS域名"
 
 msgid "DNS forwarder"
 msgstr ""
 
 msgid "DNS server is empty."
-msgstr ""
+msgstr "DNS伺服器是空白的。"
 
 msgid "DNS settings"
 msgstr "DNS 设置"
@@ -1572,7 +1572,7 @@ msgid "Device"
 msgstr "设备"
 
 msgid "Device / Label"
-msgstr ""
+msgstr "设备/标签"
 
 #, php-format
 msgid "Device /dev/%s - %s"
@@ -2078,8 +2078,8 @@ msgid ""
 "use SSL."
 msgstr "启用STARTTLS加密。这并不意味着你必须使用TLS，您可以使用SSL。"
 
-msgid "Enable TLS/SSL connections."
-msgstr "允许使用 TLS/SSL 连接。"
+msgid "Enable TLS connections."
+msgstr ""
 
 msgid "Enable Time Machine support"
 msgstr "启用Time Machine的支持"
@@ -2471,7 +2471,7 @@ msgid "Filename"
 msgstr "文件名称"
 
 msgid "Fileserver"
-msgstr ""
+msgstr "文件伺服器"
 
 msgid "Filter"
 msgstr "过滤"
@@ -2931,10 +2931,10 @@ msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr "在从模式(Slave mode)下，它是主模式UPS (UPS master) 的 UPS 名称（标识）。"
 
 msgid "In/Out errors"
-msgstr ""
+msgstr "输入/输出错误"
 
 msgid "In/Out packets"
-msgstr ""
+msgstr "输入/输出数据包"
 
 msgid "Include basic hardware information."
 msgstr "包括基本的硬件资讯。"
@@ -2982,7 +2982,7 @@ msgid "Initializing"
 msgstr "初始化"
 
 msgid "Initializing..."
-msgstr ""
+msgstr "初始化中..."
 
 msgid "Initiator Group"
 msgstr "启动器组"
@@ -3128,7 +3128,7 @@ msgid "JBOD"
 msgstr "JBOD"
 
 msgid "JBOD information and status"
-msgstr ""
+msgstr "JBOD 信息和状态"
 
 msgid ""
 "January February March April May June July August September October November "
@@ -3728,7 +3728,7 @@ msgid "NT1"
 msgstr "NT1"
 
 msgid "NTP is not enabled."
-msgstr ""
+msgstr "必须启用NTP。"
 
 msgid "NTP must be enabled."
 msgstr ""
@@ -3759,7 +3759,7 @@ msgid "Name of the variable."
 msgstr "改名名称。"
 
 msgid "NetBIOS domain"
-msgstr ""
+msgstr "NetBIOS域名"
 
 msgid "NetBIOS name"
 msgstr "NetBIOS 名称"
@@ -3949,7 +3949,7 @@ msgid "Not attached"
 msgstr "尚未连结"
 
 msgid "Not found path."
-msgstr ""
+msgstr "找不到路径。"
 
 msgid "Note"
 msgstr "提示"
@@ -4437,25 +4437,25 @@ msgid "RAID 0"
 msgstr "RAID 0"
 
 msgid "RAID 0 information and status"
-msgstr ""
+msgstr "RAID 0 信息和状态"
 
 msgid "RAID 0/1/5"
 msgstr "RAID 0/1/5"
 
 msgid "RAID 0/1/5 information and status"
-msgstr ""
+msgstr "RAID 0/1/5 信息和状态"
 
 msgid "RAID 1"
 msgstr "RAID 1"
 
 msgid "RAID 1 information and status"
-msgstr ""
+msgstr "RAID 1 信息和状态"
 
 msgid "RAID 5"
 msgstr "RAID 5"
 
 msgid "RAID 5 information and status"
-msgstr ""
+msgstr "RAID 5 信息和状态"
 
 msgid "RAID0"
 msgstr "RAID0"
@@ -4786,12 +4786,6 @@ msgstr "SSHD 记录"
 msgid "SSID"
 msgstr "SSID"
 
-msgid "SSL/TLS"
-msgstr "SSL/TLS"
-
-msgid "SSL/TLS only"
-msgstr "只是 SSL/TLS"
-
 msgid "Samba AD"
 msgstr ""
 
@@ -4910,7 +4904,7 @@ msgid "Selected"
 msgstr "已选择"
 
 msgid "Selected device or label does not exist."
-msgstr ""
+msgstr "选定的设备或标签不存在。"
 
 msgid "Selected file isn't an valid ISO file."
 msgstr "所选择的文件不是一个有效的 ISO 文件。"
@@ -5411,8 +5405,14 @@ msgstr "TFTP"
 msgid "TKIP"
 msgstr "TKIP"
 
+msgid "TLS"
+msgstr ""
+
 msgid "TLS mode"
 msgstr "TLS模式"
+
+msgid "TLS only"
+msgstr ""
 
 msgid "Tag"
 msgstr "标签"
@@ -6973,7 +6973,7 @@ msgid "User portal"
 msgstr "用户门户网站"
 
 msgid "User shares"
-msgstr ""
+msgstr "用户共享"
 
 msgid "User suffix"
 msgstr "用户名称后缀"
@@ -7223,7 +7223,7 @@ msgid "You may enter a description here for your reference."
 msgstr "您可以在此输入说明，以供参考。"
 
 msgid "You may enter a device file or label path."
-msgstr ""
+msgstr "您可以输入一个设备文件或标签路径。"
 
 #, php-format
 msgid ""
@@ -7448,3 +7448,15 @@ msgstr "卸载"
 #, php-format
 msgid "version:"
 msgstr "版本："
+
+#~ msgid "Allow TLS/SSL connections only."
+#~ msgstr "只允许 TLS/SSL 连接."
+
+#~ msgid "SSL/TLS"
+#~ msgstr "SSL/TLS"
+
+#~ msgid "Enable TLS/SSL connections."
+#~ msgstr "允许使用 TLS/SSL 连接。"
+
+#~ msgid "SSL/TLS only"
+#~ msgstr "只是 SSL/TLS"

@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-27 00:58+0000\n"
+"POT-Creation-Date: 2015-07-11 00:20+0000\n"
 "PO-Revision-Date: 2015-06-26 12:35+0000\n"
 "Last-Translator: Balabuha <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-10 14:37+0000\n"
+"X-Launchpad-Export-Date: 2015-07-10 22:53+0000\n"
 "X-Generator: Launchpad (build 17620)\n"
 "Language: uk\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -570,8 +570,8 @@ msgstr "Усі користувачі мають root дозволи."
 msgid "Allow"
 msgstr "Дозволити"
 
-msgid "Allow TLS/SSL connections only."
-msgstr "Дозволити тільки TLS/SSL з'єднання."
+msgid "Allow TLS connections only."
+msgstr ""
 
 msgid "Allow client access to accounts that have null passwords."
 msgstr "Дозволити клієнтський доступ для аккаунтів, що мають пустий пароль."
@@ -2187,8 +2187,8 @@ msgstr ""
 "Дозволити шифрування STARTTLS. Це не вимагає обов'язкового використання TLS, "
 "можна використовувати і SSL."
 
-msgid "Enable TLS/SSL connections."
-msgstr "Дозволити TLS/SSL з'єднання"
+msgid "Enable TLS connections."
+msgstr ""
 
 msgid "Enable Time Machine support"
 msgstr "Увімкнути підтримку Time Machine"
@@ -4950,12 +4950,6 @@ msgstr "Журнал SSHD"
 msgid "SSID"
 msgstr "SSID"
 
-msgid "SSL/TLS"
-msgstr "SSL/TLS"
-
-msgid "SSL/TLS only"
-msgstr "SSL/TLS тільки"
-
 msgid "Samba AD"
 msgstr ""
 
@@ -5569,8 +5563,14 @@ msgstr "TFTP"
 msgid "TKIP"
 msgstr "TKIP"
 
+msgid "TLS"
+msgstr ""
+
 msgid "TLS mode"
 msgstr "TLS режим"
+
+msgid "TLS only"
+msgstr ""
 
 msgid "Tag"
 msgstr "Мітка"
@@ -7601,3 +7601,15 @@ msgstr "umount"
 #, php-format
 msgid "version:"
 msgstr "версія:"
+
+#~ msgid "Allow TLS/SSL connections only."
+#~ msgstr "Дозволити тільки TLS/SSL з'єднання."
+
+#~ msgid "SSL/TLS"
+#~ msgstr "SSL/TLS"
+
+#~ msgid "SSL/TLS only"
+#~ msgstr "SSL/TLS тільки"
+
+#~ msgid "Enable TLS/SSL connections."
+#~ msgstr "Дозволити TLS/SSL з'єднання"

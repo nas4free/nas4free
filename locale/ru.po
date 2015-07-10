@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-06-27 00:58+0000\n"
-"PO-Revision-Date: 2015-06-27 04:13+0000\n"
-"Last-Translator: sea1150 <sea1.150@gmail.com>\n"
+"POT-Creation-Date: 2015-07-11 00:20+0000\n"
+"PO-Revision-Date: 2015-07-10 22:46+0000\n"
+"Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-10 14:37+0000\n"
+"X-Launchpad-Export-Date: 2015-07-10 22:52+0000\n"
 "X-Generator: Launchpad (build 17620)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
@@ -576,8 +576,8 @@ msgstr "Все пользователи будут иметь права уче�
 msgid "Allow"
 msgstr "Разрешить"
 
-msgid "Allow TLS/SSL connections only."
-msgstr "Разрешить только TLS/SSL соединения"
+msgid "Allow TLS connections only."
+msgstr ""
 
 msgid "Allow client access to accounts that have null passwords."
 msgstr "Разрешить клиентский доступ к учетным записям без пароля"
@@ -2204,8 +2204,8 @@ msgstr ""
 "Включить шифрование STARTTLS. Это не означает, что Вы должны использовать "
 "TLS, Вы можете использовать SSL."
 
-msgid "Enable TLS/SSL connections."
-msgstr "Разрешить TLS/SSL соединения"
+msgid "Enable TLS connections."
+msgstr ""
 
 msgid "Enable Time Machine support"
 msgstr "Включить поддержку Time Machine"
@@ -5086,12 +5086,6 @@ msgstr "Журнал SSHD"
 msgid "SSID"
 msgstr "SSID"
 
-msgid "SSL/TLS"
-msgstr "SSL/TLS"
-
-msgid "SSL/TLS only"
-msgstr "Только SSL/TLS"
-
 msgid "Samba AD"
 msgstr "Samba AD"
 
@@ -5755,8 +5749,14 @@ msgstr "TFTP"
 msgid "TKIP"
 msgstr "TKIP"
 
+msgid "TLS"
+msgstr "TLS"
+
 msgid "TLS mode"
 msgstr "Режим TLS"
+
+msgid "TLS only"
+msgstr ""
 
 msgid "Tag"
 msgstr "Метка"
@@ -8075,3 +8075,15 @@ msgstr "размонтировать"
 #, php-format
 msgid "version:"
 msgstr "версия:"
+
+#~ msgid "Allow TLS/SSL connections only."
+#~ msgstr "Разрешить только TLS/SSL соединения"
+
+#~ msgid "Enable TLS/SSL connections."
+#~ msgstr "Разрешить TLS/SSL соединения"
+
+#~ msgid "SSL/TLS"
+#~ msgstr "SSL/TLS"
+
+#~ msgid "SSL/TLS only"
+#~ msgstr "Только SSL/TLS"
