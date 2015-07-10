@@ -311,10 +311,10 @@ function anonymousonly_change() {
 					<?php html_inputbox("userbandwidthdown", "&nbsp;", $pconfig['userbandwidthdown'], gettext("Local user download bandwith in KB/s. An empty field means infinity."), false, 5);?>
 					<?php html_inputbox("anonymousbandwidthup", gettext("Anonymous user bandwidth"), $pconfig['anonymousbandwidthup'], gettext("Anonymous user upload bandwith in KB/s. An empty field means infinity."), false, 5);?>
 					<?php html_inputbox("anonymousbandwidthdown", "&nbsp;", $pconfig['anonymousbandwidthdown'], gettext("Anonymous user download bandwith in KB/s. An empty field means infinity."), false, 5);?>
-					<?php html_checkbox("tls", gettext("SSL/TLS"), !empty($pconfig['tls']) ? true : false, gettext("Enable TLS/SSL connections."), "", false, "tls_change()");?>
+					<?php html_checkbox("tls", gettext("TLS"), !empty($pconfig['tls']) ? true : false, gettext("Enable TLS connections."), "", false, "tls_change()");?>
 					<?php html_textarea("certificate", gettext("Certificate"), $pconfig['certificate'], gettext("Paste a signed certificate in X.509 PEM format here."), true, 65, 7, false, false);?>
 					<?php html_textarea("privatekey", gettext("Private key"), $pconfig['privatekey'], gettext("Paste an private key in PEM format here."), true, 65, 7, false, false);?>
-					<?php html_checkbox("tlsrequired", gettext("SSL/TLS only"), !empty($pconfig['tlsrequired']) ? true : false, gettext("Allow TLS/SSL connections only."), "", false);?>
+					<?php html_checkbox("tlsrequired", gettext("TLS only"), !empty($pconfig['tlsrequired']) ? true : false, gettext("Allow TLS connections only."), "", false);?>
 					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gettext("These parameters are added to %s."), "proftpd.conf") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://www.proftpd.org/docs/directives/linked/configuration.html"), false, 65, 5, false, false);?>
 				</table>
 				<div id="submit">
