@@ -97,9 +97,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer & Project leader</font></em></div><br />
             <hr size="1" />
             <p>The following persons have contributed to NAS4Free support:</p>
-            <div>Samuel Tunis alias killermist (<a href="mailto:killermist@gmail.com">killermist@gmail.com</a>)<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
-            <div>Rhett Hillary alias SIFTU (<a href="mailto:siftu@nas4free.org">siftu@nas4free.org</a>)<br />
+            <div>Rhett Hillary (<a href="mailto:siftu@nas4free.org">siftu@nas4free.org</a>) irc alias SIFTU<br />
               &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
 	     <hr size="1" />
             <p>The following persons have contributed to NAS4Free documentation and/or webgui translations:</p>
@@ -127,6 +125,10 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
 	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Spanish translator of the WebGUI</font></em></div><br />
             <div>Mucahid Zeyrek (<a href="mailto:mucahid.zeyrek@dhl.com">mucahid.zeyrek@dhl.com</a>)<br />
 	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Turkish translator of the WebGUI</font></em></div><br />
+            <hr size="1" />
+            <p>The following persons have contributed to NAS4Free in the past:</p>
+            <div>Samuel Tunis (<a href="mailto:killermist@gmail.com">killermist@gmail.com</a>) irc alias killermist<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
 						</td></tr>
             <?php html_separator();?>
             <?php html_titleline(gettext("Software used"));?>
@@ -249,6 +251,9 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
 
       <p>iperf3: An tool to measure TCP and UDP bandwidth. (<a href="http://software.es.net/iperf/" target="_blank">http://software.es.net/iperf/</a>)<br />
 	 Copyright &copy; 2014 The Regents of the University of California. All Rights Reserved.</p>
+
+      <p>sudo: An tool to allow a sysadmin to give limited root privileges. (<a href="http://www.sudo.ws/" target="_blank">http://www.sudo.ws/</a>)<br />
+	 Copyright &copy; 1994-1996, 1998-2015 Todd C. Miller. All Rights Reserved.</p>
 
       <p>Some of the software used for NAS4Free are under the <a href="gpl-license.txt">GNU General Public License</a> (<a href="gpl-license.txt">GPLv2</a>, <a href="gpl3-license.txt">GPLv3</a>), <a href="lgpl-license.txt">GNU Lesser General Public License (LGPL)</a>, <a href="apple-license.txt">Apple Public Source License</a> and <a href="php-license.txt">PHP License</a>.</p>
 
