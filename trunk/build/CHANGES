@@ -33,7 +33,8 @@ Changes:
 - Upgrade proftpd to 1.3.5a.
 - Upgrade tzdata to 2015e.
 - Upgrade samba to 4.2.2.
-- Upgrade php to 5.6.11.
+- Upgrade php56 to 5.6.11.
+- Upgrade virtualbox to 4.3.30.
 
 Fixes:
 - multiple AFP shares cannot be handled by mdnsresponder.conf.
@@ -49,6 +50,10 @@ Fixes:
 - show default swap on Diagnostics|Information|Swap.
 - advertises CIFS to be running on port 445 instead of 139.
 - patch msk (marvell) ethernet driver.
+
+Note:
+- iperf2 has been replaced for iperf3 because of inconsistent results for UDP above 2Gbps.
+- iperf3 is not backwards compatible with iperf2.x.
 
 Permanent restrictions:
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
