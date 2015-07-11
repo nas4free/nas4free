@@ -212,10 +212,10 @@ $(document).ready(function(){
 	gui.recall(5000, 5000, 'index.php', null, function(data) {
 		if ($('#vipstatus').size() > 0)
 			$('#vipstatus').text(data.vipstatus);
-		if ($('#uptime').size() > 0)
-			$('#uptime').text(data.uptime);
-		if ($('#date').size() > 0)
-			$('#date').val(data.date);
+		if ($('#system_uptime').size() > 0)
+			$('#system_uptime').text(data.uptime);
+		if ($('#system_datetime').size() > 0)
+			$('#system_datetime').text(data.date);
 		if ($('#memusage').size() > 0) {
 			$('#memusage').val(data.memusage.caption);
 			$('#memusageu').attr('width', data.memusage.percentage + 'px');
@@ -357,335 +357,282 @@ $(document).ready(function(){
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="tabcont">
-    	<table width="100%" border="0" cellspacing="0" cellpadding="0">
- 			  <tr>
-			    <td colspan="2" class="listtopic"><?=gettext("System information");?></td>
-			  </tr>
-			  <?php if (!empty($config['vinterfaces']['carp'])):?>
-			  <tr>
-			    <td width="25%" class="vncellt"><?=gettext("Virtual IP address");?></td>
-			    <td width="75%" class="listr"><span id="vipstatus"><?php echo htmlspecialchars(get_vip_status()); ?></vip></td>
-			  </tr>
-			  <?php endif;?>
-			  <tr>
-			    <td width="25%" class="vncellt"><?=gettext("Hostname");?></td>
-			    <td width="75%" class="listr"><?=system_get_hostname();?></td>
-			  </tr>
-			  <tr>
-			    <td width="25%" valign="top" class="vncellt"><?=gettext("Version");?></td>
-			    <td width="75%" class="listr"><strong><?=get_product_version();?> <?=get_product_versionname();?></strong> (<?=gettext("revision");?> <?=get_product_revision();?>)</td>
-			  </tr>
-			  <tr>
-			    <td width="25%" valign="top" class="vncellt"><?=gettext("Build date");?></td>
-			    <td width="75%" class="listr"><?=get_product_buildtime();?>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td width="25%" valign="top" class="vncellt"><?=gettext("Platform OS");?></td>
-			    <td width="75%" class="listr">
-			      <?
-				 exec("/sbin/sysctl -n kern.osrevision", $osrevision);
-			        exec("/sbin/sysctl -n kern.version", $osversion);
-			        echo("FreeBSD Revision: $osrevision[0]<br>$osversion[0]</br>");
-			      ?>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td width="25%" class="vncellt"><?=gettext("Platform");?></td>
-			    <td width="75%" class="listr">
-			    	<?=sprintf(gettext("%s on %s"), $g['fullplatform'], $cpuinfo['model']);?>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td width="25%" class="vncellt"><?=gettext("System");?></td>
-			    <td width="75%" class="listr"><?=htmlspecialchars($smbios['planar']['maker']);?> <?=htmlspecialchars($smbios['planar']['product']);?></td>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td width="25%" class="vncellt"><?=gettext("System bios");?></td>
-			    <td width="75%" class="listr"><?=htmlspecialchars($smbios['bios']['vendor']);?> <?=sprintf(gettext("version:"));?> <?=htmlspecialchars($smbios['bios']['version']);?> <?=htmlspecialchars($smbios['bios']['reldate']);?></td>
-			    </td>
-			  </tr>
-			  <tr>
-			    <td width="25%" class="vncellt"><?=gettext("System time");?></td>
-			    <td width="75%" class="listr">
-			      <input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="date" id="date" value="<?=htmlspecialchars(shell_exec("date"));?>" />
-			    </td>
-			  </tr>
-			  <tr>
-			    <td width="25%" class="vncellt"><?=gettext("System uptime");?></td>
-			    <td width="75%" class="listr">
-						<?php $uptime = system_get_uptime();?>
-						<span name="uptime" id="uptime"><?=htmlspecialchars($uptime);?></span>
-			    </td>
-			  </tr>
-			  <?php if (Session::isAdmin()):?>
-			  <?php if ($config['lastchange']):?>
-		    <tr>
-		      <td width="25%" class="vncellt"><?=gettext("Last config change");?></td>
-		      <td width="75%" class="listr">
-						<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="lastchange" id="lastchange" value="<?=htmlspecialchars(date("D M j G:i:s T Y", $config['lastchange']));?>" />
-		      </td>
-		    </tr>
-				<?php endif;?>
-				<?php if (!empty($cpuinfo['temperature2'])):
-					echo "<tr>";
-					echo "<td width='25%' class='vncellt'>".gettext("CPU temperature")."</td>";
-					echo "<td width='75%' class='listr'>";
-					echo "<table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td>\n";
-					$cpus = system_get_cpus();
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<?php html_titleline(gettext("System information"));?>
+	<?php if (!empty($config['vinterfaces']['carp'])):?>
+	<?php html_textinfo("vipstatus", gettext("Virtual IP address"), htmlspecialchars(get_vip_status()));?>
+	<?php endif;?>
+	<?php html_textinfo("hostname", gettext("Hostname"), system_get_hostname());?>
+	<?php html_textinfo("version", gettext("Version"), sprintf("<strong>%s %s</strong> (%s %s)", get_product_version(), get_product_versionname(), gettext("revision"), get_product_revision()));?>
+	<?php html_textinfo("builddate", gettext("Build date"), get_product_buildtime());?>
+	<?php
+		exec("/sbin/sysctl -n kern.osrevision", $osrevision);
+		exec("/sbin/sysctl -n kern.version", $osversion);
+	?>
+	<?php html_textinfo("platform_os", gettext("Platform OS"), sprintf("FreeBSD Revision: %s<br/>%s",  $osrevision[0], $osversion[0]));?>
+	<?php html_textinfo("platform", gettext("Platform"), sprintf(gettext("%s on %s"), $g['fullplatform'], $cpuinfo['model']));?>
+	<?php html_textinfo("system", gettext("System"), sprintf("%s %s", htmlspecialchars($smbios['planar']['maker']), htmlspecialchars($smbios['planar']['product'])));?>
+	<?php html_textinfo("system_bios", gettext("System bios"), sprintf("%s %s %s %s", htmlspecialchars($smbios['bios']['vendor']), gettext("version:"), htmlspecialchars($smbios['bios']['version']), htmlspecialchars($smbios['bios']['reldate'])));?>
+	<?php html_textinfo("system_datetime", gettext("System time"), htmlspecialchars(shell_exec("date")));?>
+	<?php html_textinfo("system_uptime", gettext("System uptime"), htmlspecialchars(system_get_uptime()));?>
+	<?php if (Session::isAdmin()):?>
+		<?php if ($config['lastchange']):?>
+			<?php html_textinfo("last_config_change", gettext("Last config change"), htmlspecialchars(date("D M j G:i:s T Y", $config['lastchange'])));?>
+		<?php endif;?>
+		<?php if (!empty($cpuinfo['temperature2'])):
+			echo "<tr>";
+			echo "<td width='25%' class='vncellt'>".gettext("CPU temperature")."</td>";
+			echo "<td width='75%' class='listr'>";
+			echo "<table width='100%' border='0' cellspacing='0' cellpadding='0'><tr><td>\n";
+			$cpus = system_get_cpus();
+			for ($idx = 0; $idx < $cpus; $idx++) {
+				if (empty($cpuinfo['temperature2'][$idx])) continue;
+				echo "<tr><td>";
+				echo "<input style='padding: 0; border: 0; background-color:#FCFCFC;' size='2' name='cputemp${idx}' id='cputemp${idx}' value='".htmlspecialchars($cpuinfo['temperature2'][$idx])."' />";
+				echo $idx['temperature2']."&#176;C";
+				echo "</td></tr>";
+			}
+			echo "</table></td>";
+			echo "</tr>\n";
+		?>
+		<?php elseif (!empty($cpuinfo['temperature'])):?>
+			<tr>
+				<td width="25%" class="vncellt"><?=gettext("CPU temperature");?></td>
+				<td width="75%" class="listr">
+					<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="cputemp" id="cputemp" value="<?=htmlspecialchars($cpuinfo['temperature']);?>" />
+				</td>
+			</tr>
+		<?php endif;?>
+		<?php if (!empty($cpuinfo['freq'])):?>
+			<tr>
+				<td width="25%" class="vncellt"><?=gettext("CPU frequency");?></td>
+				<td width="75%" class="listr">
+					<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="cpufreq" id="cpufreq" value="<?=htmlspecialchars($cpuinfo['freq']);?>MHz" title="<?=sprintf(gettext("Levels (MHz/mW): %s"), $cpuinfo['freqlevels']);?>" />
+				</td>
+			</tr>
+		<?php endif;?>
+		<tr>
+			<td width="25%" class="vncellt"><?=gettext("CPU usage");?></td>
+			<td width="75%" class="listr">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td>
+			<?php
+				$percentage = 0;
+				echo "<img src='bar_left.gif' class='progbarl' alt='' />";
+				echo "<img src='bar_blue.gif' name='cpuusageu' id='cpuusageu' width='" . $percentage . "' class='progbarcf' alt='' />";
+				echo "<img src='bar_gray.gif' name='cpuusagef' id='cpuusagef' width='" . (100 - $percentage) . "' class='progbarc' alt='' />";
+				echo "<img src='bar_right.gif' class='progbarr' alt='' /> ";
+			?>
+				<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="cpuusage" id="cpuusage" value="<?=gettext("Updating in 5 seconds.");?>" />
+			</td></tr>
+			<?php
+				$cpus = system_get_cpus();
+				if ($cpus > 1) {
+					echo "<tr><td><hr size='1' /></td></tr>";
 					for ($idx = 0; $idx < $cpus; $idx++) {
-						if (empty($cpuinfo['temperature2'][$idx])) continue;
-						echo "<tr><td>";
-						echo "<input style='padding: 0; border: 0; background-color:#FCFCFC;' size='2' name='cputemp${idx}' id='cputemp${idx}' value='".htmlspecialchars($cpuinfo['temperature2'][$idx])."' />";
-					echo $idx['temperature2']."&#176;C";	
-					echo "</td></tr>";
-					}
-					echo "</table></td>";
-					echo "</tr>\n";
-				?>
-				<?php elseif (!empty($cpuinfo['temperature'])):?>
-				<tr>
-					<td width="25%" class="vncellt"><?=gettext("CPU temperature");?></td>
-					<td width="75%" class="listr">
-						<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="cputemp" id="cputemp" value="<?=htmlspecialchars($cpuinfo['temperature']);?>" />
-					</td>
-				</tr>
-				<?php endif;?>
-				<?php if (!empty($cpuinfo['freq'])):?>
-				<tr>
-					<td width="25%" class="vncellt"><?=gettext("CPU frequency");?></td>
-					<td width="75%" class="listr">
-						<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="cpufreq" id="cpufreq" value="<?=htmlspecialchars($cpuinfo['freq']);?>MHz" title="<?=sprintf(gettext("Levels (MHz/mW): %s"), $cpuinfo['freqlevels']);?>" />
-					</td>
-				</tr>
-				<?php endif;?>
-				<tr>
-					<td width="25%" class="vncellt"><?=gettext("CPU usage");?></td>
-					<td width="75%" class="listr">
-				    	<table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td>
-						<?php
 						$percentage = 0;
+						echo "<tr><td>";
 						echo "<img src='bar_left.gif' class='progbarl' alt='' />";
-						echo "<img src='bar_blue.gif' name='cpuusageu' id='cpuusageu' width='" . $percentage . "' class='progbarcf' alt='' />";
-						echo "<img src='bar_gray.gif' name='cpuusagef' id='cpuusagef' width='" . (100 - $percentage) . "' class='progbarc' alt='' />";
+						echo "<img src='bar_blue.gif' name='cpuusageu${idx}' id='cpuusageu${idx}' width='" . $percentage . "' class='progbarcf' alt='' />";
+						echo "<img src='bar_gray.gif' name='cpuusagef${idx}' id='cpuusagef${idx}' width='" . (100 - $percentage) . "' class='progbarc' alt='' />";
 						echo "<img src='bar_right.gif' class='progbarr' alt='' /> ";
-						?>
-						<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="cpuusage" id="cpuusage" value="<?=gettext("Updating in 5 seconds.");?>" />
-					</td></tr>
-						<?php
-						$cpus = system_get_cpus();
-						if ($cpus > 1) {
+						echo "<input style='padding: 0; border: 0; background-color:#FCFCFC;' size='30' name='cpuusage${idx}' id='cpuusage${idx}' value=\"".gettext("Updating in 5 seconds.")."\" />";
+						echo "</td></tr>";
+					}
+				}
+			?>
+			</table></td>
+		</tr>
+		<tr>
+			<td width="25%" class="vncellt"><?=gettext("Memory usage");?></td>
+			<td width="75%" class="listr">
+			<?php
+				$raminfo = system_get_ram_info();
+				$percentage = round(($raminfo['used'] * 100) / $raminfo['total'], 0);
+				echo "<img src='bar_left.gif' class='progbarl' alt='' />";
+				echo "<img src='bar_blue.gif' name='memusageu' id='memusageu' width='" . $percentage . "' class='progbarcf' alt='' />";
+				echo "<img src='bar_gray.gif' name='memusagef' id='memusagef' width='" . (100 - $percentage) . "' class='progbarc' alt='' />";
+				echo "<img src='bar_right.gif' class='progbarr' alt='' /> ";
+			?>
+			<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="memusage" id="memusage" value="<?=sprintf(gettext("%d%% of %dMiB"), $percentage, round($raminfo['physical'] / 1024 / 1024));?>" />
+			</td>
+		</tr>
+		<?php $swapinfo = system_get_swap_info(); if (!empty($swapinfo)):?>
+		<tr>
+			<td width="25%" class="vncellt"><?=gettext("Swap usage");?></td>
+			<td width="75%" class="listr">
+			<table width="100%" border="0" cellspacing="0" cellpadding="1">
+			<?php
+				array_sort_key($swapinfo, "device");
+				$ctrlid = 0;
+				foreach ($swapinfo as $swapk => $swapv) {
+					$percent_used = rtrim($swapv['capacity'], "%");
+					$tooltip_used = sprintf(gettext("%sB used of %sB"), $swapv['used'], $swapv['total']);
+					$tooltip_available = sprintf(gettext("%sB available of %sB"), $swapv['avail'], $swapv['total']);
+
+					echo "<tr><td><div id='swapusage'>";
+					echo "<img src='bar_left.gif' class='progbarl' alt='' />";
+					echo "<img src='bar_blue.gif' name='swapusage_{$ctrlid}_bar_used' id='swapusage_{$ctrlid}_bar_used' width='{$percent_used}' class='progbarcf' title='{$tooltip_used}' alt='' />";
+					echo "<img src='bar_gray.gif' name='swapusage_{$ctrlid}_bar_free' id='swapusage_{$ctrlid}_bar_free' width='" . (100 - $percent_used) . "' class='progbarc' title='{$tooltip_available}' alt='' />";
+					echo "<img src='bar_right.gif' class='progbarr' alt='' /> ";
+					echo sprintf(gettext("%s of %sB"),
+						"<span name='swapusage_{$ctrlid}_capacity' id='swapusage_{$ctrlid}_capacity' class='capacity'>{$swapv['capacity']}</span>",
+						$swapv['total']);
+					echo "<br />";
+					echo sprintf(gettext("Device: %s | Total: %s | Used: %s | Free: %s"),
+						"<span name='swapusage_{$ctrlid}_device' id='swapusage_{$ctrlid}_device' class='device'>{$swapv['device']}</span>",
+						"<span name='swapusage_{$ctrlid}_total' id='swapusage_{$ctrlid}_total' class='total'>{$swapv['total']}</span>",
+						"<span name='swapusage_{$ctrlid}_used' id='swapusage_{$ctrlid}_used' class='used'>{$swapv['used']}</span>",
+						"<span name='swapusage_{$ctrlid}_free' id='swapusage_{$ctrlid}_free' class='free'>{$swapv['avail']}</span>");
+					echo "</div></td></tr>";
+
+					$ctrlid++;
+					if ($ctrlid < count($swapinfo))
+						echo "<tr><td><hr size='1' /></td></tr>";
+				}
+			?>
+			</table></td>
+		</tr>
+		<?php endif;?>
+		<tr>
+			<td width="25%" class="vncellt"><?=gettext("Load averages");?></td>
+			<td width="75%" class="listr">
+			<?php
+				exec("uptime", $result);
+				$loadaverage = substr(strrchr($result[0], "load averages:"), 15);
+				?>
+				<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="14" name="loadaverage" id="loadaverage" value="<?=$loadaverage;?>" />
+				<?="<small>[<a href='status_process.php'>".gettext("Show process information")."</a></small>]";?>
+			</td>
+		</tr>
+		<tr>
+			<td width="25%" class="vncellt"><?=gettext("Disk space usage");?></td>
+			<td width="75%" class="listr">
+			<table width="100%" border="0" cellspacing="0" cellpadding="1">
+			<?php
+				$diskusage = system_get_mount_usage();
+				if (!empty($diskusage)) {
+					array_sort_key($diskusage, "name");
+					$index = 0;
+					foreach ($diskusage as $diskusagek => $diskusagev) {
+						$ctrlid = get_mount_fsid($diskusagev['filesystem'], $diskusagek);
+						$percent_used = rtrim($diskusagev['capacity'],"%");
+						$tooltip_used = sprintf(gettext("%sB used of %sB"), $diskusagev['used'], $diskusagev['size']);
+						$tooltip_available = sprintf(gettext("%sB available of %sB"), $diskusagev['avail'], $diskusagev['size']);
+
+						echo "<tr><td><div id='diskusage'>";
+						echo "<span name='diskusage_{$ctrlid}_name' id='diskusage_{$ctrlid}_name' class='name'>{$diskusagev['name']}</span><br />";
+						echo "<img src='bar_left.gif' class='progbarl' alt='' />";
+						echo "<img src='bar_blue.gif' name='diskusage_{$ctrlid}_bar_used' id='diskusage_{$ctrlid}_bar_used' width='{$percent_used}' class='progbarcf' title='{$tooltip_used}' alt='' />";
+						echo "<img src='bar_gray.gif' name='diskusage_{$ctrlid}_bar_free' id='diskusage_{$ctrlid}_bar_free' width='" . (100 - $percent_used) . "' class='progbarc' title='{$tooltip_available}' alt='' />";
+						echo "<img src='bar_right.gif' class='progbarr' alt='' /> ";
+						echo sprintf(gettext("%s of %sB"),
+							"<span name='diskusage_{$ctrlid}_capacity' id='diskusage_{$ctrlid}_capacity' class='capacity'>{$diskusagev['capacity']}</span>",
+							$diskusagev['size']);
+						echo "<br />";
+						echo sprintf(gettext("Total: %s | Used: %s | Free: %s"),
+							"<span name='diskusage_{$ctrlid}_total' id='diskusage_{$ctrlid}_total' class='total'>{$diskusagev['size']}</span>",
+							"<span name='diskusage_{$ctrlid}_used' id='diskusage_{$ctrlid}_used' class='used'>{$diskusagev['used']}</span>",
+							"<span name='diskusage_{$ctrlid}_free' id='diskusage_{$ctrlid}_free' class='free'>{$diskusagev['avail']}</span>");
+						echo "</div></td></tr>";
+
+						if (++$index < count($diskusage))
 							echo "<tr><td><hr size='1' /></td></tr>";
-							for ($idx = 0; $idx < $cpus; $idx++) {
-								$percentage = 0;
-								echo "<tr><td>";
-								echo "<img src='bar_left.gif' class='progbarl' alt='' />";
-								echo "<img src='bar_blue.gif' name='cpuusageu${idx}' id='cpuusageu${idx}' width='" . $percentage . "' class='progbarcf' alt='' />";
-								echo "<img src='bar_gray.gif' name='cpuusagef${idx}' id='cpuusagef${idx}' width='" . (100 - $percentage) . "' class='progbarc' alt='' />";
-								echo "<img src='bar_right.gif' class='progbarr' alt='' /> ";
-								echo "<input style='padding: 0; border: 0; background-color:#FCFCFC;' size='30' name='cpuusage${idx}' id='cpuusage${idx}' value=\"".gettext("Updating in 5 seconds.")."\" />";
-								echo "</td></tr>";
-							}
-						}
-						?>
-					</table>
-					</td>
-				</tr>
-			  <tr>
-			    <td width="25%" class="vncellt"><?=gettext("Memory usage");?></td>
-			    <td width="75%" class="listr">
-						<?php
-						$raminfo = system_get_ram_info();
-						$percentage = round(($raminfo['used'] * 100) / $raminfo['total'], 0);
+					}
+				}
+
+				$zfspools = zfs_get_pool_list();
+				if (!empty($zfspools)) {
+					array_sort_key($zfspools, "name");
+					$index = 0;
+
+					if (!empty($diskusage))
+						echo "<tr><td><hr size='1' /></td></tr>";
+
+					foreach ($zfspools as $poolk => $poolv) {
+						$ctrlid = $poolv['name'];
+						$ctrlid = preg_replace('/[-\.: ]/', '_', $ctrlid);
+						$percent_used = rtrim($poolv['cap'],"%");
+						$tooltip_used = sprintf(gettext("%sB used of %sB"), $poolv['alloc'], $poolv['size']);
+						$tooltip_available = sprintf(gettext("%sB available of %sB"), $poolv['free'], $poolv['size']);
+
+						echo "<tr><td><div id='diskusage'>";
+						echo "<span name='diskusage_{$ctrlid}_name' id='diskusage_{$ctrlid}_name' class='name'>{$poolv['name']}</span><br />";
 						echo "<img src='bar_left.gif' class='progbarl' alt='' />";
-						echo "<img src='bar_blue.gif' name='memusageu' id='memusageu' width='" . $percentage . "' class='progbarcf' alt='' />";
-						echo "<img src='bar_gray.gif' name='memusagef' id='memusagef' width='" . (100 - $percentage) . "' class='progbarc' alt='' />";
+						echo "<img src='bar_blue.gif' name='diskusage_{$ctrlid}_bar_used' id='diskusage_{$ctrlid}_bar_used' width='{$percent_used}' class='progbarcf' title='{$tooltip_used}' alt='' />";
+						echo "<img src='bar_gray.gif' name='diskusage_{$ctrlid}_bar_free' id='diskusage_{$ctrlid}_bar_free' width='" . (100 - $percent_used) . "' class='progbarc' title='{$tooltip_available}' alt='' />";
 						echo "<img src='bar_right.gif' class='progbarr' alt='' /> ";
-						?>
-						<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="30" name="memusage" id="memusage" value="<?=sprintf(gettext("%d%% of %dMiB"), $percentage, round($raminfo['physical'] / 1024 / 1024));?>" />
-			    </td>
-			  </tr>
-				<?php $swapinfo = system_get_swap_info(); if (!empty($swapinfo)):?>
+						echo sprintf(gettext("%s of %sB"),
+							"<span name='diskusage_{$ctrlid}_capacity' id='diskusage_{$ctrlid}_capacity' class='capacity'>{$poolv['cap']}</span>",
+							$poolv['size']);
+						echo "<br />";
+						echo sprintf(gettext("Total: %s | Used: %s | Free: %s | State: %s"),
+							"<span name='diskusage_{$ctrlid}_total' id='diskusage_{$ctrlid}_total' class='total'>{$poolv['size']}</span>",
+							"<span name='diskusage_{$ctrlid}_used' id='diskusage_{$ctrlid}_used' class='used'>{$poolv['alloc']}</span>",
+							"<span name='diskusage_{$ctrlid}_free' id='diskusage_{$ctrlid}_free' class='free'>{$poolv['free']}</span>",
+							"<span name='diskusage_{$ctrlid}_state' id='diskusage_{$ctrlid}_state' class='state'><a href='disks_zfs_zpool_info.php?pool={$poolv['name']}'>{$poolv['health']}</a></span>");
+						echo "</div></td></tr>";
+
+						if (++$index < count($zfspools))
+							echo "<tr><td><hr size='1' /></td></tr>";
+					}
+				}
+
+				if (empty($diskusage) && empty($zfspools)) {
+					echo "<tr><td>";
+					echo gettext("No disk configured");
+					echo "</td></tr>";
+				}
+			?>
+			</table></td>
+		</tr>
+		<tr>
+			<td width="25%" class="vncellt"><?=gettext("UPS Status");?></td>
+			<td width="75%" class="listr">
+			<table width="100%" border="0" cellspacing="0" cellpadding="2">
+			<?php if (!isset($config['ups']['enable'])):?>
 				<tr>
-					<td width="25%" class="vncellt"><?=gettext("Swap usage");?></td>
-					<td width="75%" class="listr">
-						<table width="100%" border="0" cellspacing="0" cellpadding="1">
-							<?php
-							array_sort_key($swapinfo, "device");
-							$ctrlid = 0;
-							foreach ($swapinfo as $swapk => $swapv) {
-								$percent_used = rtrim($swapv['capacity'], "%");
-								$tooltip_used = sprintf(gettext("%sB used of %sB"), $swapv['used'], $swapv['total']);
-								$tooltip_available = sprintf(gettext("%sB available of %sB"), $swapv['avail'], $swapv['total']);
-
-								echo "<tr><td><div id='swapusage'>";
-								echo "<img src='bar_left.gif' class='progbarl' alt='' />";
-								echo "<img src='bar_blue.gif' name='swapusage_{$ctrlid}_bar_used' id='swapusage_{$ctrlid}_bar_used' width='{$percent_used}' class='progbarcf' title='{$tooltip_used}' alt='' />";
-								echo "<img src='bar_gray.gif' name='swapusage_{$ctrlid}_bar_free' id='swapusage_{$ctrlid}_bar_free' width='" . (100 - $percent_used) . "' class='progbarc' title='{$tooltip_available}' alt='' />";
-								echo "<img src='bar_right.gif' class='progbarr' alt='' /> ";
-								echo sprintf(gettext("%s of %sB"),
-									"<span name='swapusage_{$ctrlid}_capacity' id='swapusage_{$ctrlid}_capacity' class='capacity'>{$swapv['capacity']}</span>",
-									$swapv['total']);
-								echo "<br />";
-								echo sprintf(gettext("Device: %s | Total: %s | Used: %s | Free: %s"),
-									"<span name='swapusage_{$ctrlid}_device' id='swapusage_{$ctrlid}_device' class='device'>{$swapv['device']}</span>",
-									"<span name='swapusage_{$ctrlid}_total' id='swapusage_{$ctrlid}_total' class='total'>{$swapv['total']}</span>",
-									"<span name='swapusage_{$ctrlid}_used' id='swapusage_{$ctrlid}_used' class='used'>{$swapv['used']}</span>",
-									"<span name='swapusage_{$ctrlid}_free' id='swapusage_{$ctrlid}_free' class='free'>{$swapv['avail']}</span>");
-								echo "</div></td></tr>";
-
-								$ctrlid++;
-								if ($ctrlid < count($swapinfo))
-										echo "<tr><td><hr size='1' /></td></tr>";
-							}?>
-						</table>
+					<td>
+						<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="18" name="upsstatus" id="upsstatus" value="<?=gettext("UPS disabled");?>" />
 					</td>
 				</tr>
-				<?php endif;?>
-				<tr>
-			  	<td width="25%" class="vncellt"><?=gettext("Load averages");?></td>
-					<td width="75%" class="listr">
-						<?php
-						exec("uptime", $result);
-						$loadaverage = substr(strrchr($result[0], "load averages:"), 15);
-						?>
-						<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="14" name="loadaverage" id="loadaverage" value="<?=$loadaverage;?>" />
-						<?="<small>[<a href='status_process.php'>".gettext("Show process information")."</a></small>]";?>
-			    </td>
-			  </tr>
-				<tr>
-			    <td width="25%" class="vncellt"><?=gettext("Disk space usage");?></td>
-			    <td width="75%" class="listr">
-				    <table width="100%" border="0" cellspacing="0" cellpadding="1">
-				      <?php
-				      $diskusage = system_get_mount_usage();
-				      if (!empty($diskusage)) {
-				      	array_sort_key($diskusage, "name");
-				      	$index = 0;
-								foreach ($diskusage as $diskusagek => $diskusagev) {
-									$ctrlid = get_mount_fsid($diskusagev['filesystem'], $diskusagek);
-									$percent_used = rtrim($diskusagev['capacity'],"%");
-									$tooltip_used = sprintf(gettext("%sB used of %sB"), $diskusagev['used'], $diskusagev['size']);
-									$tooltip_available = sprintf(gettext("%sB available of %sB"), $diskusagev['avail'], $diskusagev['size']);
+			<?php else:?>
+			<?php
+				$cmd = "/usr/local/bin/upsc {$config['ups']['upsname']}@{$config['ups']['ip']}";
+				$handle = popen($cmd, 'r');
 
-									echo "<tr><td><div id='diskusage'>";
-									echo "<span name='diskusage_{$ctrlid}_name' id='diskusage_{$ctrlid}_name' class='name'>{$diskusagev['name']}</span><br />";
-									echo "<img src='bar_left.gif' class='progbarl' alt='' />";
-									echo "<img src='bar_blue.gif' name='diskusage_{$ctrlid}_bar_used' id='diskusage_{$ctrlid}_bar_used' width='{$percent_used}' class='progbarcf' title='{$tooltip_used}' alt='' />";
-									echo "<img src='bar_gray.gif' name='diskusage_{$ctrlid}_bar_free' id='diskusage_{$ctrlid}_bar_free' width='" . (100 - $percent_used) . "' class='progbarc' title='{$tooltip_available}' alt='' />";
-									echo "<img src='bar_right.gif' class='progbarr' alt='' /> ";
-									echo sprintf(gettext("%s of %sB"),
-										"<span name='diskusage_{$ctrlid}_capacity' id='diskusage_{$ctrlid}_capacity' class='capacity'>{$diskusagev['capacity']}</span>",
-										$diskusagev['size']);
-									echo "<br />";
-									echo sprintf(gettext("Total: %s | Used: %s | Free: %s"),
-										"<span name='diskusage_{$ctrlid}_total' id='diskusage_{$ctrlid}_total' class='total'>{$diskusagev['size']}</span>",
-										"<span name='diskusage_{$ctrlid}_used' id='diskusage_{$ctrlid}_used' class='used'>{$diskusagev['used']}</span>",
-										"<span name='diskusage_{$ctrlid}_free' id='diskusage_{$ctrlid}_free' class='free'>{$diskusagev['avail']}</span>");
-									echo "</div></td></tr>";
+				if ($handle) {
+					$read = fread($handle, 4096);
+					pclose($handle);
 
-									if (++$index < count($diskusage))
-										echo "<tr><td><hr size='1' /></td></tr>";
-								}
-							}
+					$lines = explode("\n", $read);
+					$ups = array();
+					foreach($lines as $line) {
+						$line = explode(':', $line);
+						$ups[$line[0]] = trim($line[1]);
+					}
 
-							$zfspools = zfs_get_pool_list();
-							if (!empty($zfspools)) {
-								array_sort_key($zfspools, "name");
-								$index = 0;
+					if (count($lines) == 1)
+						tblrow('ERROR:', 'Data stale!');
 
-								if (!empty($diskusage))
-										echo "<tr><td><hr size='1' /></td></tr>";
+					$disp_status = get_ups_disp_status($ups['ups.status']);
+					tblrow(gettext('Status'), '<span id="ups_status_disp_status">'.$disp_status."</span>". "  <small>[<a href='diag_infos_ups.php'>" . gettext("Show ups information")."</a></small>]");
+					tblrowbar("load", gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
+					tblrowbar("battery", gettext('Battery Level'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
+				}
 
-								foreach ($zfspools as $poolk => $poolv) {
-									$ctrlid = $poolv['name'];
-									$ctrlid = preg_replace('/[-\.: ]/', '_', $ctrlid);
-									$percent_used = rtrim($poolv['cap'],"%");
-									$tooltip_used = sprintf(gettext("%sB used of %sB"), $poolv['alloc'], $poolv['size']);
-									$tooltip_available = sprintf(gettext("%sB available of %sB"), $poolv['free'], $poolv['size']);
-
-									echo "<tr><td><div id='diskusage'>";
-									echo "<span name='diskusage_{$ctrlid}_name' id='diskusage_{$ctrlid}_name' class='name'>{$poolv['name']}</span><br />";
-									echo "<img src='bar_left.gif' class='progbarl' alt='' />";
-									echo "<img src='bar_blue.gif' name='diskusage_{$ctrlid}_bar_used' id='diskusage_{$ctrlid}_bar_used' width='{$percent_used}' class='progbarcf' title='{$tooltip_used}' alt='' />";
-									echo "<img src='bar_gray.gif' name='diskusage_{$ctrlid}_bar_free' id='diskusage_{$ctrlid}_bar_free' width='" . (100 - $percent_used) . "' class='progbarc' title='{$tooltip_available}' alt='' />";
-									echo "<img src='bar_right.gif' class='progbarr' alt='' /> ";
-									echo sprintf(gettext("%s of %sB"),
-										"<span name='diskusage_{$ctrlid}_capacity' id='diskusage_{$ctrlid}_capacity' class='capacity'>{$poolv['cap']}</span>",
-										$poolv['size']);
-									echo "<br />";
-									echo sprintf(gettext("Total: %s | Used: %s | Free: %s | State: %s"),
-										"<span name='diskusage_{$ctrlid}_total' id='diskusage_{$ctrlid}_total' class='total'>{$poolv['size']}</span>",
-										"<span name='diskusage_{$ctrlid}_used' id='diskusage_{$ctrlid}_used' class='used'>{$poolv['alloc']}</span>",
-										"<span name='diskusage_{$ctrlid}_free' id='diskusage_{$ctrlid}_free' class='free'>{$poolv['free']}</span>",
-										"<span name='diskusage_{$ctrlid}_state' id='diskusage_{$ctrlid}_state' class='state'><a href='disks_zfs_zpool_info.php?pool={$poolv['name']}'>{$poolv['health']}</a></span>");
-									echo "</div></td></tr>";
-
-									if (++$index < count($zfspools))
-										echo "<tr><td><hr size='1' /></td></tr>";
-								}
-							}
-
-							if (empty($diskusage) && empty($zfspools)) {
-								echo "<tr><td>";
-								echo gettext("No disk configured");
-								echo "</td></tr>";
-							}
-							?>
-						</table>
-					</td>
-				</tr>
-				<tr>
-					<td width="25%" class="vncellt"><?=gettext("UPS Status");?></td>
-					<td width="75%" class="listr">
-						<table width="100%" border="0" cellspacing="0" cellpadding="2">
-							<?php if (!isset($config['ups']['enable'])):?>
-								<tr>
-									<td>
-										<input style="padding: 0; border: 0; background-color:#FCFCFC;" size="18" name="upsstatus" id="upsstatus" value="<?=gettext("UPS disabled");?>" />
-									</td>
-								</tr>
-							<?php else:?>
-								<?php
-								$cmd = "/usr/local/bin/upsc {$config['ups']['upsname']}@{$config['ups']['ip']}";
-								$handle = popen($cmd, 'r');
-								
-								if($handle) {
-									$read = fread($handle, 4096);
-									pclose($handle);
-
-									$lines = explode("\n", $read);
-									$ups = array();
-									foreach($lines as $line) {
-										$line = explode(':', $line);
-										$ups[$line[0]] = trim($line[1]);
-									}
-
-									if(count($lines) == 1)
-										tblrow('ERROR:', 'Data stale!');
-
-									$disp_status = get_ups_disp_status($ups['ups.status']);
-									tblrow(gettext('Status'), '<span id="ups_status_disp_status">'.$disp_status."</span>". "  <small>[<a href='diag_infos_ups.php'>" . gettext("Show ups information")."</a></small>]");
-									tblrowbar("load", gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
-									tblrowbar("battery", gettext('Battery Level'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
-								}
-								
-								unset($handle);
-								unset($read);
-								unset($lines);
-								unset($status);
-								unset($disp_status);
-								unset($ups);
-								unset($cmd);
-								?>
-							<?php endif;?>
-						</table>
-					</td>
-				</tr>
-				<?php endif;?>
-			</table>
-		</td>
-	</tr>
+				unset($handle);
+				unset($read);
+				unset($lines);
+				unset($status);
+				unset($disp_status);
+				unset($ups);
+				unset($cmd);
+			?>
+			<?php endif;?>
+			</table></td>
+		</tr>
+	<?php endif;?>
+	</table></td>
+    </tr>
 </table>
 <?php include("fend.inc");?>
