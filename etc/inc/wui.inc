@@ -732,6 +732,27 @@ class HTMLText extends HTMLBaseControl {
 	}
 }
 
+class HTMLTextInfo extends HTMLBaseControl {
+	function __construct($ctrlname, $title, $text) {
+		$this->SetCtrlName($ctrlname);
+		$this->SetTitle($title);
+		$this->SetValue($text);
+	}
+
+	function Render() {
+		$ctrlname = $this->GetCtrlName();
+		$title = $this->GetTitle();
+		$class1 = "vncellt";
+		$class2 = "listr";
+		$text = $this->GetValue();
+
+		echo "<tr id='{$ctrlname}_tr'>\n";
+		echo "	<td width='22%' class='{$class1}'>{$title}</td>\n";
+		echo "	<td width='78%' class='{$class2}'><span id='{$ctrlname}'>{$text}</span></td>\n";
+		echo "</tr>\n";
+	}
+}
+
 class HTMLRemark extends HTMLBaseControl {
 	function __construct($ctrlname, $title, $text) {
 		$this->SetCtrlName($ctrlname);

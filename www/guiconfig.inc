@@ -436,6 +436,11 @@ function html_text($ctrlname, $title, $text) {
 	$ctrl->Render();
 }
 
+function html_textinfo($ctrlname, $title, $text) {
+	$ctrl = new HTMLTextInfo($ctrlname, $title, $text);
+	$ctrl->Render();
+}
+
 function html_remark($ctrlname, $title, $text) {
 	$ctrl = new HTMLRemark($ctrlname, $title, $text);
 	$ctrl->Render();
