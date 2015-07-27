@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-11 00:20+0000\n"
-"PO-Revision-Date: 2015-07-10 15:50+0000\n"
+"POT-Creation-Date: 2015-07-16 03:45+0000\n"
+"PO-Revision-Date: 2015-07-14 10:32+0000\n"
 "Last-Translator: Alex Lin <linuxant@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-13 21:24+0000\n"
+"X-Launchpad-Export-Date: 2015-07-27 22:01+0000\n"
 "X-Generator: Launchpad (build 17628)\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -88,6 +88,42 @@ msgstr "%sB有效，於%sB"
 msgid "%sB used of %sB"
 msgstr "%sB 已用，於%sB"
 
+msgid "(Found in a Maxtor 6B200M0 200GB and Maxtor 2R015H1 15GB disks)."
+msgstr ""
+
+msgid ""
+"(Kingston)Counts the number of flash erase failures. This Attribute returns "
+"the total number of Flash erase operation failures since the drive was "
+"deployed. This Attribute is identical to Attribute 182."
+msgstr ""
+
+msgid ""
+"(Kingston)Counts the number of flash program failures. This Attribute "
+"returns the total number of Flash program operation failures since the drive "
+"was deployed. This attribute is identical to attribute 181."
+msgstr ""
+
+msgid ""
+"(Vendor specific raw value.) Rate of seek errors of the magnetic heads. If "
+"there is a partial failure in the mechanical positioning system, then seek "
+"errors will arise. Such a failure may be due to numerous factors, such as "
+"damage to a servo, or thermal widening of the hard disk. The raw value has "
+"different structure for different vendors and is often not meaningful as a "
+"decimal number."
+msgstr ""
+
+msgid ""
+"(Vendor specific raw value.) Stores data related to the rate of hardware "
+"read errors that occurred when reading data from a disk surface. The raw "
+"value has different structure for different vendors and is often not "
+"meaningful as a decimal number."
+msgstr ""
+
+msgid ""
+"(Vendor-specific raw value.) The raw value has different structure for "
+"different vendors and is often not meaningful as a decimal number."
+msgstr ""
+
 msgid "*** Imported duplicate ***"
 msgstr "*** 重複導入 ***"
 
@@ -100,7 +136,7 @@ msgid ""
 msgstr "1. 這些特殊操作僅適用於調試（debuging）！<br />2. 無需操作此選單來啟動RAID卷(系統自動啟動)。"
 
 msgid "4KB wrapper"
-msgstr ""
+msgstr "4KB封套"
 
 msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN 標籤（介於 1 和 4094 之間）。"
@@ -193,6 +229,13 @@ msgstr "密鑰可能是5或13個字符（40或104位），這取決於本地網�
 msgid "A route to this destination network already exists."
 msgstr "到目標網段的路由設置已經存在。"
 
+msgid ""
+"A tally of spindle start/stop cycles. The spindle turns on, and hence the "
+"count is increased, both when the hard disk is turned on after having before "
+"been turned entirely off (disconnected from power source) and when the hard "
+"disk returns from having previously been put to sleep mode."
+msgstr ""
+
 msgid "A valid IP address must be specified."
 msgstr "請輸入一個有效的IP位址。"
 
@@ -279,6 +322,9 @@ msgstr "ARP 表"
 
 msgid "ARP tables"
 msgstr "ARP 表"
+
+msgid "ATTRIBUTE NAME"
+msgstr ""
 
 msgid "Access"
 msgstr "權限"
@@ -493,6 +539,11 @@ msgstr "聚合協議"
 msgid "Aggressive"
 msgstr "積極模式"
 
+msgid ""
+"Airflow temperature on Western Digital HDs (Same as temp. , but current "
+"value is 50 less for some models. Marked as obsolete.)"
+msgstr ""
+
 msgid "Albanian"
 msgstr "阿爾巴尼亞文"
 
@@ -502,7 +553,7 @@ msgstr "全部"
 msgid ""
 "All data in the path is overwritten. To avoid invalid data/permission, using "
 "empty UFS directory is recommended."
-msgstr ""
+msgstr "在路徑上的所有數據將被覆蓋。為了避免無效的數據/權限，建議使用空的UFS目錄。"
 
 msgid "All dirs"
 msgstr "所有目錄"
@@ -529,7 +580,7 @@ msgid "Allow"
 msgstr "允許"
 
 msgid "Allow TLS connections only."
-msgstr ""
+msgstr "只允許TLS連接。"
 
 msgid "Allow client access to accounts that have null passwords."
 msgstr "允許未設置密碼的帳號連線。"
@@ -567,6 +618,14 @@ msgstr "允許特定用戶與群組可唯讀某個分享區。此選項和允許
 msgid "Allows the server to try and become a local master browser."
 msgstr "允許伺服器嘗試成為本區域網路瀏覽器（local master browser）。"
 
+msgid ""
+"Also known as 'Power-off Retract Count' per conventional HDD terminology. "
+"Raw value reports the number of unclean shutdowns, cumulative over the life "
+"of an SSD, where an 'unclean shutdown' is the removal of power without "
+"STANDBY IMMEDIATE as the last command (regardless of PLI activity using "
+"capacitor power). Normalized value is always 100."
+msgstr ""
+
 msgid "AltRoot"
 msgstr "AltRoot"
 
@@ -593,6 +652,14 @@ msgstr "環境相對濕度（％）"
 
 msgid "Ambient temperature (degrees C)"
 msgstr "環境溫度（攝氏度）"
+
+msgid "Amount of surge current used to spin up the drive."
+msgstr ""
+
+msgid ""
+"Amplitude of 'thrashing' (distance of repetitive forward/reverse head "
+"motion)."
+msgstr ""
 
 msgid "An host with this name already exists."
 msgstr "已經有一個相同的主機名稱存在了。"
@@ -709,6 +776,15 @@ msgstr "輔助參數"
 
 msgid "Available"
 msgstr "可用"
+
+msgid ""
+"Average performance of seek operations of the magnetic heads. If this "
+"attribute is decreasing, it is a sign of problems in the mechanical "
+"subsystem."
+msgstr ""
+
+msgid "Average time of spindle spin up (from zero RPM to fully operational)."
+msgstr ""
 
 msgid "Backup configuration"
 msgstr "備份設定"
@@ -970,6 +1046,9 @@ msgstr "充電中"
 
 #, php-format
 msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
+msgstr "初始化前檢查<a href=\"%s\">系統|一般設定</a>。"
+
+msgid "Check and replace cable"
 msgstr ""
 
 msgid "Check interval"
@@ -1093,6 +1172,9 @@ msgstr "確認"
 msgid "Connected FTP users"
 msgstr "已連線 FTP用戶"
 
+msgid "Consider replacing this drive"
+msgstr ""
+
 msgid "Console Menu"
 msgstr "控制台菜單"
 
@@ -1190,8 +1272,105 @@ msgstr "控制此數據集能否被修改。"
 msgid "Count"
 msgstr "次數"
 
-msgid "Create 4KB wrapper (nop device)."
+msgid "Count of 'Free Fall Events' detected."
 msgstr ""
+
+msgid ""
+"Count of 'unstable' sectors (waiting to be remapped, because of "
+"unrecoverable read errors). If an unstable sector is subsequently read "
+"successfully, the sector is remapped and this value is decreased. Read "
+"errors on a sector will not remap the sector immediately (since the correct "
+"value cannot be read and so the value to remap is not known, and also it "
+"might become readable later); instead, the drive firmware remembers that the "
+"sector needs to be remapped, and will remap it the next time it's written. "
+"However some drives will not immediately remap such sectors when written; "
+"instead the drive will first attempt to write to the problem sector and if "
+"the write operation is successful then the sector will be marked good (in "
+"this case, the 'Reallocation Event Count' (0xC4) will not be increased). "
+"This is a serious shortcoming, for if such a drive contains marginal sectors "
+"that consistently fail only after some time has passed following a "
+"successful write operation, then the drive will never remap these problem "
+"sectors."
+msgstr ""
+
+msgid "Count of Data Address Mark errors (or vendor-specific)."
+msgstr ""
+
+msgid "Count of attempts to compensate for platter speed variations."
+msgstr ""
+
+msgid ""
+"Count of buzz routines needed to spin up the drive due to insufficient power."
+msgstr ""
+
+msgid "Count of errors corrected by software ECC."
+msgstr ""
+
+msgid "Count of errors due to high temperature."
+msgstr ""
+
+msgid "Count of errors while reading from a disk."
+msgstr ""
+
+msgid ""
+"Count of hours in power-on state. The raw value of this attribute shows "
+"total count of hours (or minutes, or seconds, depending on manufacturer) in "
+"power-on state."
+msgstr ""
+
+msgid "Count of load/unload cycles into head landing zone position."
+msgstr ""
+
+msgid "Count of off-track errors."
+msgstr ""
+
+msgid ""
+"Count of reallocated sectors. When the hard drive finds a "
+"read/write/verification error, it marks that sector as 'reallocated' and "
+"transfers data to a special reserved area (spare area). This process is also "
+"known as remapping, and reallocated sectors are called 'remaps'. The raw "
+"value normally represents a count of the bad sectors that have been found "
+"and remapped. Thus, the higher the attribute value, the more sectors the "
+"drive has had to reallocate. This allows a drive with bad sectors to "
+"continue operation; however, a drive which has had any reallocations at all "
+"is significantly more likely to fail in the near future. While primarily "
+"used as a metric of the life expectancy of the drive, this number also "
+"affects performance. As the count of reallocated sectors increases, the "
+"read/write speed tends to become worse because the drive head is forced to "
+"seek to the reserved area whenever a remap is accessed. If sequential access "
+"speed is critical, the remapped sectors can be manually marked as bad blocks "
+"in the file system in order to prevent their use."
+msgstr ""
+
+msgid ""
+"Count of remap operations. The raw value of this attribute shows the total "
+"count of attempts to transfer data from reallocated sectors to a spare area. "
+"Both successful & unsuccessful attempts are counted."
+msgstr ""
+
+msgid ""
+"Count of retry of spin start attempts. This attribute stores a total count "
+"of the spin start attempts to reach the fully operational speed (under the "
+"condition that the first attempt was unsuccessful). An increase of this "
+"attribute value is a sign of problems in the hard disk mechanical subsystem."
+msgstr ""
+
+msgid "Count of times head changes position."
+msgstr ""
+
+msgid ""
+"Count of times the heads are loaded off the media. Heads can be unloaded "
+"without actually powering off."
+msgstr ""
+
+msgid "Count of times the link is reset during a data transfer."
+msgstr ""
+
+msgid "Counts the maximum worst erase count on any block."
+msgstr ""
+
+msgid "Create 4KB wrapper (nop device)."
+msgstr "創建4KB封套（NOP裝置）。"
 
 msgid "Create ZFS on GPT partition"
 msgstr "在GPT分區上創建ZFS"
@@ -1247,12 +1426,18 @@ msgstr "目前"
 msgid "Current Version:"
 msgstr "目前版本："
 
+msgid "Current internal temperature."
+msgstr ""
+
 msgid "Current password"
 msgstr "當前密碼"
 
 msgid ""
 "Current password is default password. You should use your own password."
 msgstr "現在的密碼是默認密碼。您應該設定自己的密碼。"
+
+msgid "Current state of drive operation based upon the Life Curve."
+msgstr ""
 
 msgid "Current value of apparent power (Volt-Amps)"
 msgstr "當前的視在功率（伏安）"
@@ -1281,11 +1466,14 @@ msgstr "捷克文"
 msgid "DAAP"
 msgstr "DAAP"
 
+msgid "DESCRIPTION"
+msgstr ""
+
 msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DHCP cannot be used for LAN interface."
-msgstr ""
+msgstr "DHCP不能用於LAN接口。"
 
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
@@ -1297,7 +1485,7 @@ msgid "DNS domain"
 msgstr "DNS域名"
 
 msgid "DNS forwarder"
-msgstr ""
+msgstr "DNS轉發器"
 
 msgid "DNS server is empty."
 msgstr "DNS伺服器是空白的。"
@@ -1354,6 +1542,11 @@ msgstr "天"
 
 msgid "Debug"
 msgstr "調試"
+
+msgid ""
+"Decoded as: byte 0-1-2 = average erase count (big endian) and byte 3-4-5 = "
+"max erase count (big endian)."
+msgstr ""
 
 msgid "Decrypt password"
 msgstr "解碼"
@@ -1520,6 +1713,11 @@ msgstr "刪除 GEOM 元數據中"
 
 msgid "Deleting MBR and partition table"
 msgstr "刪除 MBR 和分區表中"
+
+msgid ""
+"Delta between most-worn and least-worn Flash blocks. It describes how "
+"good/bad the wearleveling of the SSD works on a more technical way."
+msgstr ""
 
 msgid "Deny"
 msgstr "拒絕"
@@ -1689,6 +1887,11 @@ msgstr "磁碟（ATA）資訊"
 msgid "Display"
 msgstr "顯示"
 
+msgid ""
+"Distance the disk has shifted relative to the spindle (usually due to shock "
+"or temperature). Unit of measure is unknown."
+msgstr ""
+
 msgid "Distributed hash table"
 msgstr "分佈式雜湊表"
 
@@ -1839,7 +2042,7 @@ msgid "Domain controller name"
 msgstr "網域控制器名稱"
 
 msgid "Domain have no 2nd level name."
-msgstr ""
+msgstr "域名沒有二級域名。"
 
 msgid "Domain name"
 msgstr "網域名稱"
@@ -1891,6 +2094,12 @@ msgstr "下載目錄"
 
 msgid "Download firewall rules."
 msgstr "下載防火牆規則"
+
+msgid "Drive Temperature."
+msgstr ""
+
+msgid "Drive's seek performance during its internal tests."
+msgstr ""
 
 msgid "Driver"
 msgstr "驅動程式"
@@ -2079,7 +2288,7 @@ msgid ""
 msgstr "啟用STARTTLS加密。這並不意味著您必須使用TLS，您可以使用SSL。"
 
 msgid "Enable TLS connections."
-msgstr ""
+msgstr "啟用TLS連接。"
 
 msgid "Enable Time Machine support"
 msgstr "啟用 Time Machine 的支持"
@@ -2395,7 +2604,7 @@ msgstr "執行定時任務失敗。"
 
 #, php-format
 msgid "Failed to remove: %s"
-msgstr ""
+msgstr "無法刪除：%s"
 
 #, c-format
 msgid "Failed to send status report to: %s."
@@ -2581,7 +2790,7 @@ msgid "Generate"
 msgstr "生成"
 
 msgid "Generate password if leave empty."
-msgstr ""
+msgstr "如果保留為空白的話，自動生成密碼。"
 
 msgid "German"
 msgstr "德文"
@@ -2664,6 +2873,16 @@ msgstr "HAST卷"
 msgid "HAST volume can be use with GPT/UFS only."
 msgstr "HAST 卷只可用於 GPT/UFS 。"
 
+msgid ""
+"HDD producers implement a Fly Height Monitor that attempts to provide "
+"additional protections for write operations by detecting when a recording "
+"head is flying outside its normal operating range. If an unsafe fly height "
+"condition is encountered, the write process is stopped, and the information "
+"is rewritten or reallocated to a safe region of the hard drive. This "
+"attribute indicates the count of these errors detected over the lifetime of "
+"the drive. This feature is implemented in most modern Seagate drives."
+msgstr ""
+
 msgid "HTTP Proxy"
 msgstr "HTTP 代理伺服器"
 
@@ -2681,6 +2900,12 @@ msgstr "頭摘要"
 
 msgid "Health"
 msgstr "健康狀態"
+
+msgid ""
+"Height of heads above the disk surface. A flying height that's too low "
+"increases the chances of a head crash while a flying height that's too high "
+"increases the chances of a read/write error."
+msgstr ""
 
 msgid "Help"
 msgstr "說明"
@@ -2769,6 +2994,9 @@ msgstr "I/O 統計資料"
 #, php-format
 msgid "I/O timeout in seconds (%d by default)."
 msgstr "I/O 逾時（秒）（默認值是 %d ）"
+
+msgid "ID"
+msgstr ""
 
 msgid "IG"
 msgstr "IG"
@@ -2946,6 +3174,11 @@ msgstr "輸入線/電源信息"
 msgid "Incomplete directory"
 msgstr "未完畢檔案的目錄"
 
+msgid ""
+"Indicates the approximate SSD life left, in terms of program/erase cycles or "
+"Flash blocks currently available for use."
+msgstr ""
+
 msgid "Info"
 msgstr "資訊"
 
@@ -3049,6 +3282,17 @@ msgstr "安裝"
 
 msgid "Install package"
 msgstr "安裝套件"
+
+msgid ""
+"Intel SSD reports a normalized value of 100 (when the SSD is new) and "
+"declines to a minimum value of 1. It decreases while the NAND erase cycles "
+"increase from 0 to the maximum-rated cycles."
+msgstr ""
+
+msgid ""
+"Intel SSD reports the number of available reserved space as a percentage of "
+"reserved space in a brand new SSD."
+msgstr ""
 
 msgid "Interface"
 msgstr "介面"
@@ -3198,6 +3442,18 @@ msgstr "大筆資料讀／寫"
 
 msgid "Last config change"
 msgstr "上次配置更改時間"
+
+msgid ""
+"Last test result as microseconds to discharge cap, saturated at its maximum "
+"value. Also logs minutes since last test and lifetime number of tests. Raw "
+"value contains the following data: Bytes 0-1: Last test result as "
+"microseconds to discharge cap, saturates at max value. Test result expected "
+"in range 25 <= result <= 5000000, lower indicates specific error code. Bytes "
+"2-3: Minutes since last test, saturates at max value. Bytes 4-5: Lifetime "
+"number of tests, not incremented on power cycle, saturates at max value. "
+"Normalized value is set to one on test failure or 11 if the capacitor has "
+"been tested in an excessive temperature condition, otherwise 100."
+msgstr ""
 
 #, php-format
 msgid "Latest Beta Build: %s"
@@ -3485,6 +3741,11 @@ msgstr "對應為訪客（guest）"
 
 msgid "Map to user"
 msgstr "對應為用戶"
+
+msgid ""
+"Margin of a channel while reading data. The function of this attribute is "
+"not specified."
+msgstr ""
 
 msgid "Masquerade address"
 msgstr "偽裝位址"
@@ -3990,11 +4251,19 @@ msgstr "電池組的數量"
 msgid "Number of clients"
 msgstr "連線數目"
 
+msgid "Number of hours elapsed in the power-on state."
+msgstr ""
+
 msgid "Number of log entries to show"
 msgstr "顯示記錄的數量"
 
 msgid "Number of log entries to show must be between 5 and 1000."
 msgstr "一次要顯示多少記錄（5-100）"
+
+msgid ""
+"Number of physical erase cycles completed on the drive as a percentage of "
+"the maximum physical erase cycles the drive is designed to endure."
+msgstr ""
 
 msgid "Number of servers"
 msgstr "伺服器數量"
@@ -4083,6 +4352,12 @@ msgstr "輸出電壓"
 
 msgid "Output voltage (V)"
 msgstr "輸出電壓（V）"
+
+msgid ""
+"Overall (general) throughput performance of a hard disk drive. If the value "
+"of this attribute is decreasing there is a high probability that there is a "
+"problem with the disk."
+msgstr ""
 
 msgid "Overload"
 msgstr "負載"
@@ -4239,7 +4514,7 @@ msgstr "對等端口（Peer port）"
 
 #, php-format
 msgid "Permanent samba data path (e.g. %s)."
-msgstr ""
+msgstr "永久Samba 數據路徑（如 %s）。"
 
 msgid "Permit root login"
 msgstr "允許 root 登入"
@@ -4346,6 +4621,12 @@ msgstr "電源模式"
 
 msgid "Power mode"
 msgstr "電源模式"
+
+msgid "Pre-Fail' Attribute used at least in HP devices."
+msgstr ""
+
+msgid "Pre-Fail' Attribute used at least in Samsung devices."
+msgstr ""
 
 msgid "PreInit"
 msgstr "前置初始動作（PreInit）"
@@ -4466,6 +4747,9 @@ msgstr "RAID1"
 
 msgid "RAID5"
 msgstr "RAID5"
+
+msgid "RAW VALUE"
+msgstr ""
 
 msgid "RAW info"
 msgstr "RAW 信息"
@@ -4594,7 +4878,7 @@ msgid "Remote monitoring"
 msgstr "遠端監控"
 
 msgid "Remote rsync daemon"
-msgstr ""
+msgstr "遠程rsync的進程"
 
 msgid "Remote syslog server"
 msgstr "遠端 syslog 伺服器"
@@ -4638,6 +4922,9 @@ msgstr "重新掃描間隔"
 
 msgid "Reservation"
 msgstr "預留"
+
+msgid "Resistance caused by friction in mechanical parts while operating."
+msgstr ""
 
 msgid "Resolve"
 msgstr "解析"
@@ -4736,7 +5023,7 @@ msgid "Run now"
 msgstr "立刻執行"
 
 msgid "Run without requiring remote rsync daemon. (Disabled by default)"
-msgstr ""
+msgstr "運行而不需要遠程rsync進程。 （默認禁用）"
 
 msgid "Running"
 msgstr "執行中"
@@ -4788,10 +5075,10 @@ msgid "SSID"
 msgstr "SSID"
 
 msgid "Samba AD"
-msgstr ""
+msgstr "Samba AD"
 
 msgid "Samba Active Directory Domain Controller"
-msgstr ""
+msgstr "Samba Active Directory域控制器"
 
 #, php-format
 msgid ""
@@ -4863,6 +5150,9 @@ msgstr "安全系統殼(Secure Shell)"
 
 msgid "Security"
 msgstr "安全選項"
+
+msgid "See attribute E8."
+msgstr ""
 
 msgid ""
 "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
@@ -5041,6 +5331,9 @@ msgstr "分享區（Shares）"
 msgid "Shell"
 msgstr "命令殼 (shell)"
 
+msgid "Shock During Write."
+msgstr ""
+
 msgid "Show RAW UPS Info"
 msgstr "顯示RAW UPS的信息"
 
@@ -5155,8 +5448,15 @@ msgstr "稀疏"
 msgid "Sparse Volume"
 msgstr "稀疏卷（Sparse Volume）"
 
-msgid "Specified path is NFSv4 root directory."
+msgid ""
+"Specific to He8 drives from HGST. The Helium, so says the literature, allows "
+"the drives to run cooler and quieter, and reduces power consumption. This is "
+"the status of the Helium in the drive. It is a pre-fail attribute that trips "
+"once the drive detects that the internal environment is out of specification."
 msgstr ""
+
+msgid "Specified path is NFSv4 root directory."
+msgstr "指定的路徑是NFSv4的根目錄。"
 
 msgid "Specifies how many servers to create."
 msgstr "輸入預建立伺服器的數量。"
@@ -5258,10 +5558,10 @@ msgid "Store NTFS acls in Extended Attributes"
 msgstr "將NTFS ACL儲存在擴展屬性"
 
 msgid "Store alternate data streams"
-msgstr ""
+msgstr "存儲交換數據流"
 
 msgid "Store alternate data streams in Extended Attributes"
-msgstr ""
+msgstr "存儲交換數據流於擴展屬性"
 
 msgid ""
 "String displayed in the dialog presented to the user when accessing the URL."
@@ -5407,13 +5707,13 @@ msgid "TKIP"
 msgstr "TKIP"
 
 msgid "TLS"
-msgstr ""
+msgstr "TLS"
 
 msgid "TLS mode"
 msgstr "TLS模式"
 
 msgid "TLS only"
-msgstr ""
+msgstr "只是TLS"
 
 msgid "Tag"
 msgstr "標籤"
@@ -5530,6 +5830,17 @@ msgstr "MIB '%s' 已經存在。"
 #, php-format
 msgid "The MIB '%s' doesn't exist in sysctl."
 msgstr "MIB '%s' 不存在 sysctl 中。"
+
+msgid ""
+"The Minimum Spares Remaining attribute indicates the number of remaining "
+"spare blocks as a percentage of the total number of spare blocks available."
+msgstr ""
+
+msgid ""
+"The Newly Added Bad Flash Block attribute indicates the total number of bad "
+"flash blocks the drive detected since it was first initialized in "
+"manufacturing."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -5741,6 +6052,37 @@ msgid ""
 "The confirmed password does not match. Please ensure the passwords match "
 "exactly."
 msgstr "確認密碼並不匹配。請確保密碼完全匹配。"
+
+msgid ""
+"The count of aborted operations due to HDD timeout. Normally this attribute "
+"value should be equal to zero and if the value is far above zero, then most "
+"likely there will be some serious problems with power supply or an oxidized "
+"data cable."
+msgstr ""
+
+msgid ""
+"The count of errors found when writing a sector. The higher the value, the "
+"worse the disk's mechanical condition is."
+msgstr ""
+
+msgid ""
+"The count of errors in data transfer via the interface cable as determined "
+"by ICRC (Interface Cyclic Redundancy Check)."
+msgstr ""
+
+msgid ""
+"The count of errors resulting from externally induced shock & vibration."
+msgstr ""
+
+msgid ""
+"The count of errors that could not be recovered using hardware ECC (see "
+"attribute 195)."
+msgstr ""
+
+msgid ""
+"The count of times the magnetic armature was retracted automatically as a "
+"result of cutting power."
+msgstr ""
 
 msgid "The credentials with which to bind."
 msgstr "綁定密碼。"
@@ -5957,6 +6299,11 @@ msgstr "新密碼不相符。請確保密碼完全相符。"
 msgid "The number of clients must be between 1 and 50."
 msgstr "客戶端上限必須介於 1 至 50。"
 
+msgid ""
+"The number of errors caused by incorrect checksum during the error "
+"correction."
+msgstr ""
+
 msgid "The old password is not correct."
 msgstr "舊的密碼不正確。"
 
@@ -6097,6 +6444,15 @@ msgstr "直到關機的時間（秒）。如果時間到前 UPS 恢復，則取�
 
 msgid "The time update interval must be either between 6 and 1440."
 msgstr "時間更新間隔必需為 6 到 1440 之間。"
+
+msgid "The total count of errors when writing a sector."
+msgstr ""
+
+msgid ""
+"The total count of uncorrectable errors when reading/writing a sector. A "
+"rise in the value of this attribute indicates defects of the disk surface "
+"and/or problems in the mechanical subsystem."
+msgstr ""
 
 msgid "The unique group ID is already used."
 msgstr "這個 GID 已經被使用。"
@@ -6267,6 +6623,23 @@ msgstr "此選項讓您可以設置已經格式化，包含數據的硬盤的檔
 
 msgid "This allows you to set the transfer mode for ATA/IDE hard drives."
 msgstr "這是磁碟的 ATA 傳輸模式選項。"
+
+msgid ""
+"This attribute indicates the count of full hard disk power on/off cycles."
+msgstr ""
+
+msgid ""
+"This attribute indicates the count that recalibration was requested (under "
+"the condition that the first attempt was unsuccessful). An increase of this "
+"attribute value is a sign of problems in the hard disk mechanical subsystem."
+msgstr ""
+
+msgid ""
+"This attribute is a part of Hewlett-Packard's SMART IV technology, as well "
+"as part of other vendors' IO Error Detection and Correction schemas, and it "
+"contains a count of parity errors which occur in the data path to the media "
+"via the drive's cache RAM."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -6556,6 +6929,13 @@ msgstr "時間間隔"
 msgid "Time server"
 msgstr "時間伺服器"
 
+msgid "Time spent during the positioning of the drive heads."
+msgstr ""
+
+msgid ""
+"Time spent operating under data load (movement of magnetic head armature)."
+msgstr ""
+
 msgid "Time update interval"
 msgstr "時間同步間隔"
 
@@ -6644,6 +7024,32 @@ msgstr "容許"
 
 msgid "Tools"
 msgstr "工具"
+
+msgid ""
+"Total NAND Writes. Raw value reports the number of writes to NAND in 1GB "
+"increments."
+msgstr ""
+
+msgid ""
+"Total count of LBAs read. Some S.M.A.R.T. utilities will report a negative "
+"number for the raw value since in reality it has 48 bits rather than 32."
+msgstr ""
+
+msgid "Total count of LBAs written."
+msgstr ""
+
+msgid "Total count of load cycles."
+msgstr ""
+
+msgid ""
+"Total number of Flash program operation failures since the drive was "
+"deployed."
+msgstr ""
+
+msgid ""
+"Total time of loading on the magnetic heads actuator (time not spent in "
+"parking area)."
+msgstr ""
 
 #, php-format
 msgid "Total: %s | Used: %s | Free: %s"
@@ -6833,6 +7239,9 @@ msgstr "烏克蘭語"
 msgid "Unavailable"
 msgstr "無法使用"
 
+msgid "Uncorrected read errors reported to the operating system."
+msgstr ""
+
 msgid "Unformated"
 msgstr "尚未格式化"
 
@@ -7015,6 +7424,11 @@ msgstr "VLAN標籤"
 msgid "Value"
 msgstr "數值"
 
+msgid ""
+"Value is equal to (100-temp. &deg;C), allowing manufacturer to set a minimum "
+"threshold which corresponds to a maximum temperature."
+msgstr ""
+
 msgid "Variable"
 msgstr "變數"
 
@@ -7023,6 +7437,9 @@ msgstr "供應商 ID"
 
 msgid "Version"
 msgstr "版本"
+
+msgid "Vibration During Write."
+msgstr ""
 
 msgid "Virtual Host ID"
 msgstr "虛擬主機 ID"
@@ -7121,6 +7538,14 @@ msgstr "找不到網頁伺服器的文檔根目錄。"
 
 msgid "Week days"
 msgstr "平日"
+
+msgid "Western Digital attribute."
+msgstr ""
+
+msgid ""
+"Western Digital, Samsung or Seagate attribute: Total number of data blocks "
+"with detected, uncorrectable errors encountered during normal operation."
+msgstr ""
 
 msgid ""
 "When HAST is enabled, the local devices, the local services and the "
@@ -7252,10 +7677,10 @@ msgstr "你必須在網路與閘道輸入相同的 IP 類型。"
 
 #, php-format
 msgid "You must have a minimum of %dMiB RAM for using iSCSI target."
-msgstr ""
+msgstr "要使用iSCSI目標的話，您必須有至少%d MiB RAM。"
 
 msgid "You must initialize data before enabling."
-msgstr ""
+msgstr "啟用之前，必須先初始化數據。"
 
 msgid "You must select at least one authentication method."
 msgstr "請至少選擇一種認證方式。"
@@ -7322,6 +7747,11 @@ msgstr "chroot() 所有用戶，除了 root。"
 
 msgid "day(s)"
 msgstr "天"
+
+msgid ""
+"decoded as: byte 0-1-2 = good block count (big endian) and byte 3-4 = "
+"system(free) block count."
+msgstr ""
 
 msgid "detected an error while importing."
 msgstr "在導入時檢測到一個錯誤。"
@@ -7437,7 +7867,7 @@ msgid "sysctl.conf"
 msgstr "sysctl.conf"
 
 msgid "sysvol exist in path."
-msgstr ""
+msgstr "路徑已有 sysvol。"
 
 msgid "to"
 msgstr "到"
@@ -7448,6 +7878,5 @@ msgstr "umask 檔案預設權限"
 msgid "umount"
 msgstr "卸載"
 
-#, php-format
 msgid "version:"
 msgstr "版本："

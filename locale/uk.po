@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-11 00:20+0000\n"
+"POT-Creation-Date: 2015-07-16 03:45+0000\n"
 "PO-Revision-Date: 2015-06-26 12:35+0000\n"
 "Last-Translator: Balabuha <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-13 21:25+0000\n"
+"X-Launchpad-Export-Date: 2015-07-27 22:01+0000\n"
 "X-Generator: Launchpad (build 17628)\n"
 "Language: uk\n"
 "X-Poedit-SourceCharset: UTF-8\n"
@@ -87,6 +87,42 @@ msgstr "%sбайт доступно з %sбайт"
 #, c-format, php-format
 msgid "%sB used of %sB"
 msgstr "%sбайт зайнято з %sбайт"
+
+msgid "(Found in a Maxtor 6B200M0 200GB and Maxtor 2R015H1 15GB disks)."
+msgstr ""
+
+msgid ""
+"(Kingston)Counts the number of flash erase failures. This Attribute returns "
+"the total number of Flash erase operation failures since the drive was "
+"deployed. This Attribute is identical to Attribute 182."
+msgstr ""
+
+msgid ""
+"(Kingston)Counts the number of flash program failures. This Attribute "
+"returns the total number of Flash program operation failures since the drive "
+"was deployed. This attribute is identical to attribute 181."
+msgstr ""
+
+msgid ""
+"(Vendor specific raw value.) Rate of seek errors of the magnetic heads. If "
+"there is a partial failure in the mechanical positioning system, then seek "
+"errors will arise. Such a failure may be due to numerous factors, such as "
+"damage to a servo, or thermal widening of the hard disk. The raw value has "
+"different structure for different vendors and is often not meaningful as a "
+"decimal number."
+msgstr ""
+
+msgid ""
+"(Vendor specific raw value.) Stores data related to the rate of hardware "
+"read errors that occurred when reading data from a disk surface. The raw "
+"value has different structure for different vendors and is often not "
+"meaningful as a decimal number."
+msgstr ""
+
+msgid ""
+"(Vendor-specific raw value.) The raw value has different structure for "
+"different vendors and is often not meaningful as a decimal number."
+msgstr ""
 
 msgid "*** Imported duplicate ***"
 msgstr "*** Імпортований дублікат ***"
@@ -220,6 +256,13 @@ msgstr ""
 msgid "A route to this destination network already exists."
 msgstr "Маршрут до цієї підмережі вже існує."
 
+msgid ""
+"A tally of spindle start/stop cycles. The spindle turns on, and hence the "
+"count is increased, both when the hard disk is turned on after having before "
+"been turned entirely off (disconnected from power source) and when the hard "
+"disk returns from having previously been put to sleep mode."
+msgstr ""
+
 msgid "A valid IP address must be specified."
 msgstr "Повинна бути вказана правильна IP адреса"
 
@@ -312,6 +355,9 @@ msgstr "ARP таблиці"
 
 msgid "ARP tables"
 msgstr "ARP таблиці"
+
+msgid "ATTRIBUTE NAME"
+msgstr ""
 
 msgid "Access"
 msgstr "Доступ"
@@ -532,6 +578,11 @@ msgstr "Агрегаційний протокол"
 msgid "Aggressive"
 msgstr "Агресивний"
 
+msgid ""
+"Airflow temperature on Western Digital HDs (Same as temp. , but current "
+"value is 50 less for some models. Marked as obsolete.)"
+msgstr ""
+
 msgid "Albanian"
 msgstr "Албанська"
 
@@ -615,6 +666,14 @@ msgid "Allows the server to try and become a local master browser."
 msgstr ""
 "Дозволяє серверу спробувати стати локальним головним браузером мережі"
 
+msgid ""
+"Also known as 'Power-off Retract Count' per conventional HDD terminology. "
+"Raw value reports the number of unclean shutdowns, cumulative over the life "
+"of an SSD, where an 'unclean shutdown' is the removal of power without "
+"STANDBY IMMEDIATE as the last command (regardless of PLI activity using "
+"capacitor power). Normalized value is always 100."
+msgstr ""
+
 msgid "AltRoot"
 msgstr "AltRoot"
 
@@ -641,6 +700,14 @@ msgstr "Відносна вологість (у відсотках)"
 
 msgid "Ambient temperature (degrees C)"
 msgstr "Зовнішня температура (градуси С)"
+
+msgid "Amount of surge current used to spin up the drive."
+msgstr ""
+
+msgid ""
+"Amplitude of 'thrashing' (distance of repetitive forward/reverse head "
+"motion)."
+msgstr ""
 
 msgid "An host with this name already exists."
 msgstr "Хост із таким іменем вже існує"
@@ -763,6 +830,15 @@ msgstr "Допоміжні параметри"
 
 msgid "Available"
 msgstr "Доступний"
+
+msgid ""
+"Average performance of seek operations of the magnetic heads. If this "
+"attribute is decreasing, it is a sign of problems in the mechanical "
+"subsystem."
+msgstr ""
+
+msgid "Average time of spindle spin up (from zero RPM to fully operational)."
+msgstr ""
 
 msgid "Backup configuration"
 msgstr "Конфігурація резервування"
@@ -1034,6 +1110,9 @@ msgstr "Батарея заряджається"
 msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
 msgstr ""
 
+msgid "Check and replace cable"
+msgstr ""
+
 msgid "Check interval"
 msgstr "Інтервал перевіряння"
 
@@ -1164,6 +1243,9 @@ msgstr "Підтвердждення"
 msgid "Connected FTP users"
 msgstr "Підключенні FTP користувачі"
 
+msgid "Consider replacing this drive"
+msgstr ""
+
 msgid "Console Menu"
 msgstr ""
 
@@ -1272,6 +1354,103 @@ msgstr "Керує можливістю змінювати цей набір д�
 msgid "Count"
 msgstr "Кількість"
 
+msgid "Count of 'Free Fall Events' detected."
+msgstr ""
+
+msgid ""
+"Count of 'unstable' sectors (waiting to be remapped, because of "
+"unrecoverable read errors). If an unstable sector is subsequently read "
+"successfully, the sector is remapped and this value is decreased. Read "
+"errors on a sector will not remap the sector immediately (since the correct "
+"value cannot be read and so the value to remap is not known, and also it "
+"might become readable later); instead, the drive firmware remembers that the "
+"sector needs to be remapped, and will remap it the next time it's written. "
+"However some drives will not immediately remap such sectors when written; "
+"instead the drive will first attempt to write to the problem sector and if "
+"the write operation is successful then the sector will be marked good (in "
+"this case, the 'Reallocation Event Count' (0xC4) will not be increased). "
+"This is a serious shortcoming, for if such a drive contains marginal sectors "
+"that consistently fail only after some time has passed following a "
+"successful write operation, then the drive will never remap these problem "
+"sectors."
+msgstr ""
+
+msgid "Count of Data Address Mark errors (or vendor-specific)."
+msgstr ""
+
+msgid "Count of attempts to compensate for platter speed variations."
+msgstr ""
+
+msgid ""
+"Count of buzz routines needed to spin up the drive due to insufficient power."
+msgstr ""
+
+msgid "Count of errors corrected by software ECC."
+msgstr ""
+
+msgid "Count of errors due to high temperature."
+msgstr ""
+
+msgid "Count of errors while reading from a disk."
+msgstr ""
+
+msgid ""
+"Count of hours in power-on state. The raw value of this attribute shows "
+"total count of hours (or minutes, or seconds, depending on manufacturer) in "
+"power-on state."
+msgstr ""
+
+msgid "Count of load/unload cycles into head landing zone position."
+msgstr ""
+
+msgid "Count of off-track errors."
+msgstr ""
+
+msgid ""
+"Count of reallocated sectors. When the hard drive finds a "
+"read/write/verification error, it marks that sector as 'reallocated' and "
+"transfers data to a special reserved area (spare area). This process is also "
+"known as remapping, and reallocated sectors are called 'remaps'. The raw "
+"value normally represents a count of the bad sectors that have been found "
+"and remapped. Thus, the higher the attribute value, the more sectors the "
+"drive has had to reallocate. This allows a drive with bad sectors to "
+"continue operation; however, a drive which has had any reallocations at all "
+"is significantly more likely to fail in the near future. While primarily "
+"used as a metric of the life expectancy of the drive, this number also "
+"affects performance. As the count of reallocated sectors increases, the "
+"read/write speed tends to become worse because the drive head is forced to "
+"seek to the reserved area whenever a remap is accessed. If sequential access "
+"speed is critical, the remapped sectors can be manually marked as bad blocks "
+"in the file system in order to prevent their use."
+msgstr ""
+
+msgid ""
+"Count of remap operations. The raw value of this attribute shows the total "
+"count of attempts to transfer data from reallocated sectors to a spare area. "
+"Both successful & unsuccessful attempts are counted."
+msgstr ""
+
+msgid ""
+"Count of retry of spin start attempts. This attribute stores a total count "
+"of the spin start attempts to reach the fully operational speed (under the "
+"condition that the first attempt was unsuccessful). An increase of this "
+"attribute value is a sign of problems in the hard disk mechanical subsystem."
+msgstr ""
+
+msgid "Count of times head changes position."
+msgstr ""
+
+msgid ""
+"Count of times the heads are loaded off the media. Heads can be unloaded "
+"without actually powering off."
+msgstr ""
+
+msgid "Count of times the link is reset during a data transfer."
+msgstr ""
+
+msgid "Counts the maximum worst erase count on any block."
+msgstr ""
+
 msgid "Create 4KB wrapper (nop device)."
 msgstr "створити 4KB оболонку (пристрій nop)"
 
@@ -1329,6 +1508,9 @@ msgstr "Поточний"
 msgid "Current Version:"
 msgstr "Поточна версія:"
 
+msgid "Current internal temperature."
+msgstr ""
+
 msgid "Current password"
 msgstr "Поточний пароль"
 
@@ -1337,6 +1519,9 @@ msgid ""
 msgstr ""
 "Поточний пароль - це пароль за умовчанням. Ви повинні використати свій "
 "пароль."
+
+msgid "Current state of drive operation based upon the Life Curve."
+msgstr ""
 
 msgid "Current value of apparent power (Volt-Amps)"
 msgstr "Поточне значення повної потужності (ВА)"
@@ -1364,6 +1549,9 @@ msgstr "Чеський"
 
 msgid "DAAP"
 msgstr "DAAP"
+
+msgid "DESCRIPTION"
+msgstr ""
 
 msgid "DHCP"
 msgstr "DHCP"
@@ -1441,6 +1629,11 @@ msgstr "Днів"
 
 msgid "Debug"
 msgstr "Відладка"
+
+msgid ""
+"Decoded as: byte 0-1-2 = average erase count (big endian) and byte 3-4-5 = "
+"max erase count (big endian)."
+msgstr ""
 
 msgid "Decrypt password"
 msgstr "Пароль для розшифрування"
@@ -1608,6 +1801,11 @@ msgstr "Видалення метаданих GEOM"
 
 msgid "Deleting MBR and partition table"
 msgstr "Видалення MBR і таблицю розділів"
+
+msgid ""
+"Delta between most-worn and least-worn Flash blocks. It describes how "
+"good/bad the wearleveling of the SSD works on a more technical way."
+msgstr ""
 
 msgid "Deny"
 msgstr "Заборонити"
@@ -1782,6 +1980,11 @@ msgstr "Інформація про диски (ATA)"
 
 msgid "Display"
 msgstr "Дисплей"
+
+msgid ""
+"Distance the disk has shifted relative to the spindle (usually due to shock "
+"or temperature). Unit of measure is unknown."
+msgstr ""
 
 msgid "Distributed hash table"
 msgstr "Розподілена таблиця хешування"
@@ -1998,6 +2201,12 @@ msgstr "Директорія для завантаження"
 
 msgid "Download firewall rules."
 msgstr "Завантажити правила брандмауера."
+
+msgid "Drive Temperature."
+msgstr ""
+
+msgid "Drive's seek performance during its internal tests."
+msgstr ""
 
 msgid "Driver"
 msgstr "Драйвер"
@@ -2795,6 +3004,16 @@ msgstr "HAST диск"
 msgid "HAST volume can be use with GPT/UFS only."
 msgstr ""
 
+msgid ""
+"HDD producers implement a Fly Height Monitor that attempts to provide "
+"additional protections for write operations by detecting when a recording "
+"head is flying outside its normal operating range. If an unsafe fly height "
+"condition is encountered, the write process is stopped, and the information "
+"is rewritten or reallocated to a safe region of the hard drive. This "
+"attribute indicates the count of these errors detected over the lifetime of "
+"the drive. This feature is implemented in most modern Seagate drives."
+msgstr ""
+
 msgid "HTTP Proxy"
 msgstr "HTTP проксі"
 
@@ -2812,6 +3031,12 @@ msgstr ""
 
 msgid "Health"
 msgstr "Здоров'я"
+
+msgid ""
+"Height of heads above the disk surface. A flying height that's too low "
+"increases the chances of a head crash while a flying height that's too high "
+"increases the chances of a read/write error."
+msgstr ""
 
 msgid "Help"
 msgstr "Допомога"
@@ -2898,6 +3123,9 @@ msgstr "Статистика вводу/виводу"
 #, php-format
 msgid "I/O timeout in seconds (%d by default)."
 msgstr "Таймаут вводу/виводу в секундах (за замовчуванням %d)."
+
+msgid "ID"
+msgstr ""
 
 msgid "IG"
 msgstr "IG"
@@ -3077,6 +3305,11 @@ msgstr "Інформація про вхідну лінію/потужність
 msgid "Incomplete directory"
 msgstr "Неповна директорія"
 
+msgid ""
+"Indicates the approximate SSD life left, in terms of program/erase cycles or "
+"Flash blocks currently available for use."
+msgstr ""
+
 msgid "Info"
 msgstr "Інформація"
 
@@ -3180,6 +3413,17 @@ msgstr "Інсталювати"
 
 msgid "Install package"
 msgstr "Інсталювати пакет"
+
+msgid ""
+"Intel SSD reports a normalized value of 100 (when the SSD is new) and "
+"declines to a minimum value of 1. It decreases while the NAND erase cycles "
+"increase from 0 to the maximum-rated cycles."
+msgstr ""
+
+msgid ""
+"Intel SSD reports the number of available reserved space as a percentage of "
+"reserved space in a brand new SSD."
+msgstr ""
 
 msgid "Interface"
 msgstr "Інтерфейс"
@@ -3336,6 +3580,18 @@ msgstr ""
 
 msgid "Last config change"
 msgstr "Остання зміна в конфігурації"
+
+msgid ""
+"Last test result as microseconds to discharge cap, saturated at its maximum "
+"value. Also logs minutes since last test and lifetime number of tests. Raw "
+"value contains the following data: Bytes 0-1: Last test result as "
+"microseconds to discharge cap, saturates at max value. Test result expected "
+"in range 25 <= result <= 5000000, lower indicates specific error code. Bytes "
+"2-3: Minutes since last test, saturates at max value. Bytes 4-5: Lifetime "
+"number of tests, not incremented on power cycle, saturates at max value. "
+"Normalized value is set to one on test failure or 11 if the capacitor has "
+"been tested in an excessive temperature condition, otherwise 100."
+msgstr ""
 
 #, php-format
 msgid "Latest Beta Build: %s"
@@ -3628,6 +3884,11 @@ msgid "Map to guest"
 msgstr ""
 
 msgid "Map to user"
+msgstr ""
+
+msgid ""
+"Margin of a channel while reading data. The function of this attribute is "
+"not specified."
 msgstr ""
 
 msgid "Masquerade address"
@@ -4142,11 +4403,19 @@ msgstr ""
 msgid "Number of clients"
 msgstr "Кількість клієнтів"
 
+msgid "Number of hours elapsed in the power-on state."
+msgstr ""
+
 msgid "Number of log entries to show"
 msgstr "Кількість записів журналу, яку показувати"
 
 msgid "Number of log entries to show must be between 5 and 1000."
 msgstr "Кількість записів журналу, яку показувати має бути між 5 і 1000"
+
+msgid ""
+"Number of physical erase cycles completed on the drive as a percentage of "
+"the maximum physical erase cycles the drive is designed to endure."
+msgstr ""
 
 msgid "Number of servers"
 msgstr "Кількість серверів"
@@ -4238,6 +4507,12 @@ msgstr "Вихідна напруга"
 
 msgid "Output voltage (V)"
 msgstr "Вихідна напруга (В)"
+
+msgid ""
+"Overall (general) throughput performance of a hard disk drive. If the value "
+"of this attribute is decreasing there is a high probability that there is a "
+"problem with the disk."
+msgstr ""
 
 msgid "Overload"
 msgstr "Перевантаження"
@@ -4500,6 +4775,12 @@ msgstr "Режим живлення"
 msgid "Power mode"
 msgstr "Режим живлення"
 
+msgid "Pre-Fail' Attribute used at least in HP devices."
+msgstr ""
+
+msgid "Pre-Fail' Attribute used at least in Samsung devices."
+msgstr ""
+
 msgid "PreInit"
 msgstr ""
 
@@ -4621,6 +4902,9 @@ msgstr "RAID1"
 
 msgid "RAID5"
 msgstr "RAID5"
+
+msgid "RAW VALUE"
+msgstr ""
 
 msgid "RAW info"
 msgstr ""
@@ -4803,6 +5087,9 @@ msgstr "Інтервал пересканування"
 
 msgid "Reservation"
 msgstr "Резервування"
+
+msgid "Resistance caused by friction in mechanical parts while operating."
+msgstr ""
 
 msgid "Resolve"
 msgstr ""
@@ -5026,6 +5313,9 @@ msgstr ""
 msgid "Security"
 msgstr "Безпека"
 
+msgid "See attribute E8."
+msgstr ""
+
 msgid ""
 "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
 "Secure (HTTPS) for the WebGUI."
@@ -5200,6 +5490,9 @@ msgstr "Спільне"
 msgid "Shell"
 msgstr "Командна оболонка"
 
+msgid "Shock During Write."
+msgstr ""
+
 msgid "Show RAW UPS Info"
 msgstr "Показати необроблену інформацію БДЖ"
 
@@ -5312,6 +5605,13 @@ msgid "Sparse"
 msgstr ""
 
 msgid "Sparse Volume"
+msgstr ""
+
+msgid ""
+"Specific to He8 drives from HGST. The Helium, so says the literature, allows "
+"the drives to run cooler and quieter, and reduces power consumption. This is "
+"the status of the Helium in the drive. It is a pre-fail attribute that trips "
+"once the drive detects that the internal environment is out of specification."
 msgstr ""
 
 msgid "Specified path is NFSv4 root directory."
@@ -5688,6 +5988,17 @@ msgstr "MIB '%s' вже існує."
 msgid "The MIB '%s' doesn't exist in sysctl."
 msgstr "MIB '%s' не існує в sysctl."
 
+msgid ""
+"The Minimum Spares Remaining attribute indicates the number of remaining "
+"spare blocks as a percentage of the total number of spare blocks available."
+msgstr ""
+
+msgid ""
+"The Newly Added Bad Flash Block attribute indicates the total number of bad "
+"flash blocks the drive detected since it was first initialized in "
+"manufacturing."
+msgstr ""
+
 #, php-format
 msgid ""
 "The RAID volume is currently mounted! Remove the <a href='%s'>mount "
@@ -5895,6 +6206,37 @@ msgstr ""
 msgid ""
 "The confirmed password does not match. Please ensure the passwords match "
 "exactly."
+msgstr ""
+
+msgid ""
+"The count of aborted operations due to HDD timeout. Normally this attribute "
+"value should be equal to zero and if the value is far above zero, then most "
+"likely there will be some serious problems with power supply or an oxidized "
+"data cable."
+msgstr ""
+
+msgid ""
+"The count of errors found when writing a sector. The higher the value, the "
+"worse the disk's mechanical condition is."
+msgstr ""
+
+msgid ""
+"The count of errors in data transfer via the interface cable as determined "
+"by ICRC (Interface Cyclic Redundancy Check)."
+msgstr ""
+
+msgid ""
+"The count of errors resulting from externally induced shock & vibration."
+msgstr ""
+
+msgid ""
+"The count of errors that could not be recovered using hardware ECC (see "
+"attribute 195)."
+msgstr ""
+
+msgid ""
+"The count of times the magnetic armature was retracted automatically as a "
+"result of cutting power."
 msgstr ""
 
 msgid "The credentials with which to bind."
@@ -6119,6 +6461,11 @@ msgstr ""
 msgid "The number of clients must be between 1 and 50."
 msgstr "Кількість клієнтів повинна бути від 1 до 50."
 
+msgid ""
+"The number of errors caused by incorrect checksum during the error "
+"correction."
+msgstr ""
+
 msgid "The old password is not correct."
 msgstr "Старий пароль не правильний."
 
@@ -6258,6 +6605,15 @@ msgstr ""
 
 msgid "The time update interval must be either between 6 and 1440."
 msgstr "Інтервал повинен бути в межах від 6 до 1440."
+
+msgid "The total count of errors when writing a sector."
+msgstr ""
+
+msgid ""
+"The total count of uncorrectable errors when reading/writing a sector. A "
+"rise in the value of this attribute indicates defects of the disk surface "
+"and/or problems in the mechanical subsystem."
+msgstr ""
 
 msgid "The unique group ID is already used."
 msgstr ""
@@ -6432,6 +6788,23 @@ msgstr ""
 
 msgid "This allows you to set the transfer mode for ATA/IDE hard drives."
 msgstr "Це дозволяє встановити режим передачі для ATA/IDE жорстких дисків."
+
+msgid ""
+"This attribute indicates the count of full hard disk power on/off cycles."
+msgstr ""
+
+msgid ""
+"This attribute indicates the count that recalibration was requested (under "
+"the condition that the first attempt was unsuccessful). An increase of this "
+"attribute value is a sign of problems in the hard disk mechanical subsystem."
+msgstr ""
+
+msgid ""
+"This attribute is a part of Hewlett-Packard's SMART IV technology, as well "
+"as part of other vendors' IO Error Detection and Correction schemas, and it "
+"contains a count of parity errors which occur in the data path to the media "
+"via the drive's cache RAM."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -6714,6 +7087,13 @@ msgstr "Проміжок часу"
 msgid "Time server"
 msgstr "Сервер часу"
 
+msgid "Time spent during the positioning of the drive heads."
+msgstr ""
+
+msgid ""
+"Time spent operating under data load (movement of magnetic head armature)."
+msgstr ""
+
 msgid "Time update interval"
 msgstr "Інтервал оновлення часу"
 
@@ -6796,6 +7176,32 @@ msgstr "Припустимо"
 
 msgid "Tools"
 msgstr "Інструменти"
+
+msgid ""
+"Total NAND Writes. Raw value reports the number of writes to NAND in 1GB "
+"increments."
+msgstr ""
+
+msgid ""
+"Total count of LBAs read. Some S.M.A.R.T. utilities will report a negative "
+"number for the raw value since in reality it has 48 bits rather than 32."
+msgstr ""
+
+msgid "Total count of LBAs written."
+msgstr ""
+
+msgid "Total count of load cycles."
+msgstr ""
+
+msgid ""
+"Total number of Flash program operation failures since the drive was "
+"deployed."
+msgstr ""
+
+msgid ""
+"Total time of loading on the magnetic heads actuator (time not spent in "
+"parking area)."
+msgstr ""
 
 #, php-format
 msgid "Total: %s | Used: %s | Free: %s"
@@ -6982,6 +7388,9 @@ msgstr ""
 msgid "Unavailable"
 msgstr "Недоступний"
 
+msgid "Uncorrected read errors reported to the operating system."
+msgstr ""
+
 msgid "Unformated"
 msgstr "Неформатований"
 
@@ -7162,6 +7571,11 @@ msgstr ""
 msgid "Value"
 msgstr ""
 
+msgid ""
+"Value is equal to (100-temp. &deg;C), allowing manufacturer to set a minimum "
+"threshold which corresponds to a maximum temperature."
+msgstr ""
+
 msgid "Variable"
 msgstr ""
 
@@ -7169,6 +7583,9 @@ msgid "Vendor ID"
 msgstr ""
 
 msgid "Version"
+msgstr ""
+
+msgid "Vibration During Write."
 msgstr ""
 
 msgid "Virtual Host ID"
@@ -7267,6 +7684,14 @@ msgid "Webserver document root is missing."
 msgstr ""
 
 msgid "Week days"
+msgstr ""
+
+msgid "Western Digital attribute."
+msgstr ""
+
+msgid ""
+"Western Digital, Samsung or Seagate attribute: Total number of data blocks "
+"with detected, uncorrectable errors encountered during normal operation."
 msgstr ""
 
 msgid ""
@@ -7473,6 +7898,11 @@ msgstr ""
 msgid "day(s)"
 msgstr "день(днів)"
 
+msgid ""
+"decoded as: byte 0-1-2 = good block count (big endian) and byte 3-4 = "
+"system(free) block count."
+msgstr ""
+
 msgid "detected an error while importing."
 msgstr "під час імпорту виявлено помилку."
 
@@ -7598,6 +8028,5 @@ msgstr "umask"
 msgid "umount"
 msgstr "umount"
 
-#, php-format
 msgid "version:"
 msgstr "версія:"
