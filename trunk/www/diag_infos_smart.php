@@ -38,7 +38,6 @@ require("auth.inc");
 require("guiconfig.inc");
 
 $pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("S.M.A.R.T."));
-
 $a_disk = get_physical_disks_list();
 
 $smartValueInfo = array(
@@ -126,13 +125,13 @@ $smartValueInfo = array(
 	"250" => array(False,"",gettext("Count of errors while reading from a disk.")),
 	"251" => array(False,"",gettext("The Minimum Spares Remaining attribute indicates the number of remaining spare blocks as a percentage of the total number of spare blocks available.")),
 	"252" => array(False,"",gettext("The Newly Added Bad Flash Block attribute indicates the total number of bad flash blocks the drive detected since it was first initialized in manufacturing.")),
-	"254" => array(False,"",gettext("Count of 'Free Fall Events' detected.")),
+	"254" => array(False,"",gettext("Count of 'Free Fall Events' detected."))
 );
 
+include("fbegin.inc");
 ?>
-<?php include("fbegin.inc");?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
+	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
 				<li class="tabinact"><a href="diag_infos.php"><span><?=gettext("Disks");?></span></a></li>
@@ -142,12 +141,12 @@ $smartValueInfo = array(
 				<li class="tabinact"><a href="diag_infos_space.php"><span><?=gettext("Space Used");?></span></a></li>
 				<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gettext("Mounts");?></span></a></li>
 				<li class="tabinact"><a href="diag_infos_raid.php"><span><?=gettext("Software RAID");?></span></a></li>
-		  </ul>
-	  </td>
+			</ul>
+		</td>
 	</tr>
-  <tr>
+	<tr>
 		<td class="tabnavtbl">
-		  <ul id="tabnav2">
+			<ul id="tabnav2">
 				<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gettext("iSCSI Initiator");?></span></a></li>
 				<li class="tabinact"><a href="diag_infos_ad.php"><span><?=gettext("MS Domain");?></span></a></li>
 				<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gettext("CIFS/SMB");?></span></a></li>
@@ -157,87 +156,81 @@ $smartValueInfo = array(
 				<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gettext("Sockets");?></span></a></li>
 				<li class="tabinact"><a href="diag_infos_ups.php"><span><?=gettext("UPS");?></span></a></li>
 			</ul>
-  	</td>
+		</td>
 	</tr>
-  <tr>
-    <td class="tabcont">
-    	<table width="100%" border="0">
-  			<?php foreach($a_disk as $diskk => $diskv):?>
+	<tr>
+		<td class="tabcont">
+		    <table width="100%" border="0">
+			  <?php foreach($a_disk as $diskk => $diskv) { ?>
 				<?php html_titleline(sprintf(gettext("Device /dev/%s - %s"), $diskk, $diskv['desc']));?>
 				<tr>
-			    <td>
+					<td>
 						<pre><?php
-						$devicetype_arg = "";
-						if(!empty($diskv['smart']['devicetypearg'])){
-							$devicetype_arg = "-d ".$diskv['smart']['devicetypearg'];
-						}
+						$devicetype_arg = (!empty($diskv['smart']['devicetypearg']))
+							? sprintf('-d %s',$diskv['smart']['devicetypearg'])
+							: "";
 						exec ("/usr/local/sbin/smartctl -i {$diskv['smart']['devicefilepath']} {$devicetype_arg}",$rawdata);
-						$rawdata = array_slice($rawdata, 3);
+						$rawdata = array_slice($rawdata,3);
 						echo htmlspecialchars(implode("\n", $rawdata));
 						unset($rawdata);
 						?></pre>
-						<pre><?php
-						$devicetype_arg = "";
-						$hasdata = False;
-						if(!empty($diskv['smart']['devicetypearg'])){
-							$devicetype_arg = "-d ".$diskv['smart']['devicetypearg'];
-						}
+						<?php $hasdata = False;
+							$devicetype_arg = (!empty($diskv['smart']['devicetypearg']))
+							? sprintf('-d %s',$diskv['smart']['devicetypearg'])
+							: '';
 						exec ("/usr/local/sbin/smartctl -a {$diskv['smart']['devicefilepath']} {$devicetype_arg}",$rawdata);
-						$rawdata = array_slice($rawdata, 3);
-						
-						$tabledata = array("<table width=\"100%\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\">",
-											"<tr>",
-											"<td class=\"listhdrlr\" width=\"10%\">ID</td>",
-											"<td class=\"listhdrlr\" width=\"10%\">ATTRIBUTE NAME</td>",
-											"<td class=\"listhdrlr\" width=\"10%\">VALUE</td>",
-											"<td class=\"listhdrlr\" width=\"70%\">Description</td>",
-											"</tr>");
-						foreach ($rawdata as $line){
-							if (preg_match('/^\s*(\d+)\s+([A-Za-z0-9_\-]+)\s+(0x[0-9a-fA-F]+)\s+(\d+)\s+(\d+)\s+(\d+).*\s+\-\s+(\d+)/',$line,$match)) {
-								$showRedValue = "listbg";
-								$action = "";
-								$info = $smartValueInfo[$match[1]][2];
-								$haserror = $smartValueInfo[$match[1]][0] && $match[7] >0;
-								if ($haserror){
-									$showRedValue = "listbg errortext";
-									$action = "<td class=\"listbg errortext\">".$smartValueInfo[$match[1]][1]."</td>";
-								}
-								
-								array_push($tabledata, "<tr>",
-													   "<td class=\"listlr\">$match[1]</td>",
-													   "<td class=\"listr\">$match[2]</td>",
-													   "<td class=\"$showRedValue\">$match[7]</td>",
-													   "<td class=\"listr\">$info</td>",
-													   $action,
-													   "</tr>");
-								$hasdata = True;
-							}
-						}
-						array_push($tabledata, "<tr></table>");
-						
-						if ($hasdata){
-							echo implode("\n", $tabledata);
-						}
-						
-						unset($hasdata);
-						unset($tabledata);
-						unset($rawdata);
-						?></pre>
+							$rawdata = array_slice($rawdata, 3);
+							$regex = '/^\s*(\d+)\s+([A-Za-z0-9_\-]+)\s+(0x[0-9a-fA-F]+)\s+(\d+)\s+(\d+)\s+(\d+).*\s+\-\s+(\d+)/';?>
+						<table width="100%" border="0" cellpadding="0" cellspacing="0">
+							<tr>
+								<td class="listhdrlr" width="10%"><?=gettext("ID");?></td>
+								<td class="listhdrlr" width="10%"><?=gettext("ATTRIBUTE NAME");?></td>
+								<td class="listhdrlr" width="10%"><?=gettext("RAW VALUE");?></td>
+								<td class="listhdrlr" width="70%"><?=gettext("DESCRIPTION");?></td>
+							</tr>
+						<?php $hasdata = false;
+							foreach($rawdata as $line) {
+								if(preg_match($regex,$line,$match)!==1)
+								{ continue; }
+								$hasdata      = true;
+								$info         = $smartValueInfo[$match[1]][2];
+								$haserror     = $smartValueInfo[$match[1]][0] && $match[7] >0;
+								$showRedValue = ($haserror)
+								? 'listbg errortext'
+								: 'listbg';
+								?>
+							<tr>
+								<td class="listlr"><?= $match[1]; ?></td>
+								<td class="listr"><?= $match[2]; ?></td>
+								<td class="<?= $showRedValue; ?>"><?= $match[7]; ?></td>
+								<td class="listr"><?= $info; ?></td>
+						<?php if($haserror) { ?>
+							</tr>
+						<tr>
+						<td class="listbg errortext"><?= $smartValueInfo[$match[1]][1]; ?></td><?php } ?>
+							</tr>
+						<?php }
+							if(!$hasdata) { ?>
+						<tr>
+						<td colspan="4">no data</td>
+							</tr>
+						<?php } ?>
+						</table>
+						<?php unset($rawdata); ?>
 						<pre><?php
-						$devicetype_arg = "";
-						if(!empty($diskv['smart']['devicetypearg'])){
-							$devicetype_arg = "-d ".$diskv['smart']['devicetypearg'];
-						}
-						exec ("/usr/local/sbin/smartctl -AcH -l selftest -l error -l selective {$diskv['smart']['devicefilepath']} {$devicetype_arg}",$rawdata);
+						$devicetype_arg = (!empty($diskv['smart']['devicetypearg']))
+							? sprintf('-d %s',$diskv['smart']['devicetypearg'])
+							: '';
+						exec("/usr/local/sbin/smartctl -AcH -l selftest -l error -l selective {$diskv['smart']['devicefilepath']} {$devicetype_arg}",$rawdata);
 						$rawdata = array_slice($rawdata, 3);
 						echo htmlspecialchars(implode("\n", $rawdata));
 						unset($rawdata);
 						?></pre>
 					</td>
-			  </tr>
-    		<?php endforeach;?>
-    	</table>
-    </td>
-  </tr>
+				</tr>
+			<?php } ?>
+		</table>
+	   </td>
+	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include("fend.inc");
