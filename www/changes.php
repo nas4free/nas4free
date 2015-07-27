@@ -51,7 +51,7 @@ $pgtitle = array(gettext("Help"), gettext("Release Notes"));
 				<tr>
 					<td class="listt">
 						<div>
-							<textarea style="width: 98%;" id="content" name="content" class="listcontent" cols="10" rows="33" readonly="readonly"><?php unset($lines); exec("/bin/cat {$g['www_path']}/CHANGES", $lines); foreach ($lines as $line) { echo htmlspecialchars($line)."\n"; }?></textarea>
+							<textarea style="width: 98%;" id="content" name="content" class="listcontent" cols="10" rows="42" readonly="readonly"><?php unset($lines); exec("/bin/cat {$g['www_path']}/CHANGES", $lines); foreach ($lines as $line) { echo htmlspecialchars($line)."\n"; }?></textarea>
 						</div>
 					</td>
 				</tr>
