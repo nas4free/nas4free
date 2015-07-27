@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-11 00:20+0000\n"
-"PO-Revision-Date: 2015-05-12 18:52+0000\n"
+"POT-Creation-Date: 2015-07-16 03:45+0000\n"
+"PO-Revision-Date: 2015-07-23 14:00+0000\n"
 "Last-Translator: Anders Malm <anders.malm@brevet.se>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-07-13 21:24+0000\n"
+"X-Launchpad-Export-Date: 2015-07-27 22:01+0000\n"
 "X-Generator: Launchpad (build 17628)\n"
 "X-Poedit-Country: SWEDEN\n"
 "Language: \n"
@@ -89,6 +89,58 @@ msgstr "%sB tillgängligt av %sB"
 #, c-format, php-format
 msgid "%sB used of %sB"
 msgstr "%sB använt av %sB"
+
+msgid "(Found in a Maxtor 6B200M0 200GB and Maxtor 2R015H1 15GB disks)."
+msgstr "(Hittat i Maxtor 6B200M0 200GB och 2R015H1 15GB diskar)"
+
+msgid ""
+"(Kingston)Counts the number of flash erase failures. This Attribute returns "
+"the total number of Flash erase operation failures since the drive was "
+"deployed. This Attribute is identical to Attribute 182."
+msgstr ""
+"(Kingston) Räknar antal felaktiga flashraderingar. Detta attribut returnerar "
+"det totala antalet felaktiga Flashraderingar sedan disken togs i drift. "
+"Attributet är det samma som attribut 182."
+
+msgid ""
+"(Kingston)Counts the number of flash program failures. This Attribute "
+"returns the total number of Flash program operation failures since the drive "
+"was deployed. This attribute is identical to attribute 181."
+msgstr ""
+"(Kingston) Räknar antal felaktiga flashprogrameringar. Detta attribut "
+"returnerar det totala antalet felaktiga Flashprogrameringar sedan disken "
+"togs i drift. Attributet är det samma som attribut 181."
+
+msgid ""
+"(Vendor specific raw value.) Rate of seek errors of the magnetic heads. If "
+"there is a partial failure in the mechanical positioning system, then seek "
+"errors will arise. Such a failure may be due to numerous factors, such as "
+"damage to a servo, or thermal widening of the hard disk. The raw value has "
+"different structure for different vendors and is often not meaningful as a "
+"decimal number."
+msgstr ""
+"(Tillverkarspecifikt råvärde.) Frekvens av sökfel för magnethuvud. Om det är "
+"ett mindre fel i det mekaniska positioneringsystemet kommer antalet sökfel "
+"öka. Ett sånt fel kan bero på olika saker, som skador på servot, eller "
+"termisk påverkan på disken. Råvärdet har olika struktur för olika "
+"tillverkare och är ofta inte meningsfullt som decimaltal."
+
+msgid ""
+"(Vendor specific raw value.) Stores data related to the rate of hardware "
+"read errors that occurred when reading data from a disk surface. The raw "
+"value has different structure for different vendors and is often not "
+"meaningful as a decimal number."
+msgstr ""
+"(Tillverkarspecifikt råvärde.) Lagrar data kopplade till frekvensen av "
+"hårdvaruläsfel vid läsning från diskytan Råvärdet har olika struktur för "
+"olika tillverkare och är ofta inte meningsfullt som decimaltal."
+
+msgid ""
+"(Vendor-specific raw value.) The raw value has different structure for "
+"different vendors and is often not meaningful as a decimal number."
+msgstr ""
+"(Tillverkarspecifikt råvärde.)  Råvärdet har olika struktur för olika "
+"tillverkare och är ofta inte meningsfullt som decimaltal."
 
 msgid "*** Imported duplicate ***"
 msgstr "*** Importerad dubblett ***"
@@ -219,6 +271,15 @@ msgstr ""
 msgid "A route to this destination network already exists."
 msgstr "Nätverks destinationen finns redan."
 
+msgid ""
+"A tally of spindle start/stop cycles. The spindle turns on, and hence the "
+"count is increased, both when the hard disk is turned on after having before "
+"been turned entirely off (disconnected from power source) and when the hard "
+"disk returns from having previously been put to sleep mode."
+msgstr ""
+"Ett värde för antal start/stopp cykler. Värdet ökar både vid kallstart och "
+"vid start från viloläge."
+
 msgid "A valid IP address must be specified."
 msgstr "En giltig IP-adress måste anges."
 
@@ -270,10 +331,10 @@ msgid "A valid systctl MIB value."
 msgstr "Ett giltigt systctl MIB värde."
 
 msgid "ACL inherit"
-msgstr ""
+msgstr "Ärv ACL"
 
 msgid "ACL mode"
-msgstr ""
+msgstr "ACL läge"
 
 msgid "AD authentication disabled"
 msgstr "AD autentisering avaktiverad"
@@ -288,7 +349,7 @@ msgid "AG"
 msgstr "AG"
 
 msgid "AIO module"
-msgstr ""
+msgstr "AIO modul"
 
 msgid "AIO read size"
 msgstr "AIO läs storlek"
@@ -308,11 +369,14 @@ msgstr "ARP Tabeller"
 msgid "ARP tables"
 msgstr "ARP Tabeller"
 
+msgid "ATTRIBUTE NAME"
+msgstr "ATTRIBUTNAMN"
+
 msgid "Access"
 msgstr "Åtkomst"
 
 msgid "Access Restrictions"
-msgstr "Åtkomst begränsningar"
+msgstr "Åtkomstbegränsningar"
 
 msgid "Access Time (atime)"
 msgstr "Åtkomst tid (atime)"
@@ -465,10 +529,10 @@ msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "Adress till fjärr hastd demonen. Det måste vara en fast IP-adress."
 
 msgid "Admin password"
-msgstr ""
+msgstr "Administratörslösenord"
 
 msgid "Administration password"
-msgstr "Administrations lösenord"
+msgstr "Administrationslösenord"
 
 msgid "Administrative WebGUI"
 msgstr "Anministrativt webbgränssnitt"
@@ -528,6 +592,13 @@ msgstr "Sammanslagning av protokoll"
 msgid "Aggressive"
 msgstr "Aggressivt"
 
+msgid ""
+"Airflow temperature on Western Digital HDs (Same as temp. , but current "
+"value is 50 less for some models. Marked as obsolete.)"
+msgstr ""
+"Luftflödestemperatur på Western Digital HDs (Samma som temperatur men "
+"aktuellt värde är 50 lägre för vissa modeller. Märkt som föråldrat)"
+
 msgid "Albanian"
 msgstr "Albanien"
 
@@ -538,6 +609,8 @@ msgid ""
 "All data in the path is overwritten. To avoid invalid data/permission, using "
 "empty UFS directory is recommended."
 msgstr ""
+"Alla data i sökvägen skrivs över. För att undvika felaktiga data/rättigheter "
+"rekommenderas att en tom UFS katalog används."
 
 msgid "All dirs"
 msgstr "Alla kataloger"
@@ -566,7 +639,7 @@ msgid "Allow"
 msgstr "Tillåt"
 
 msgid "Allow TLS connections only."
-msgstr ""
+msgstr "Tillåt endast TLS anslutningar."
 
 msgid "Allow client access to accounts that have null passwords."
 msgstr "Ge klienter tillgång till konton utan lösenord."
@@ -610,6 +683,18 @@ msgstr ""
 msgid "Allows the server to try and become a local master browser."
 msgstr "Tillåter att servern försöker bli en \"local master browser\""
 
+msgid ""
+"Also known as 'Power-off Retract Count' per conventional HDD terminology. "
+"Raw value reports the number of unclean shutdowns, cumulative over the life "
+"of an SSD, where an 'unclean shutdown' is the removal of power without "
+"STANDBY IMMEDIATE as the last command (regardless of PLI activity using "
+"capacitor power). Normalized value is always 100."
+msgstr ""
+"Även känt som \"Power-off Retract Count\" i normal HDD terminologi. Råvärdet "
+"visar antalet orena nedstängningar under SSD-diskens livstid. Orena "
+"avstängningar är såna där spänningen brutits utan att kommandot \"STANDBY "
+"IMMEDIATE\" gets. Normaliserat värde är alltid 100."
+
 msgid "AltRoot"
 msgstr "AltRoot"
 
@@ -636,6 +721,16 @@ msgstr "Relativ luftfuktighet (procent)"
 
 msgid "Ambient temperature (degrees C)"
 msgstr "Omgivningstemperatur (grader C)"
+
+msgid "Amount of surge current used to spin up the drive."
+msgstr "Mängd ström som använts för att varva upp disken."
+
+msgid ""
+"Amplitude of 'thrashing' (distance of repetitive forward/reverse head "
+"motion)."
+msgstr ""
+"Amplitud för \"thrashing\" (sträcka för upprepade fram- och tillbakarörelser "
+"för magnethuvudet)"
 
 msgid "An host with this name already exists."
 msgstr "En värd med det här namnet finns redan."
@@ -668,10 +763,10 @@ msgid "Any"
 msgstr "Vilken som helst"
 
 msgid "Append user defined shares"
-msgstr ""
+msgstr "Lägg till användardefinierade delningar"
 
 msgid "Apple Filing Protocol"
-msgstr "Apple Fil protokoll"
+msgstr "Apple Filprotokoll"
 
 msgid "Apply"
 msgstr "Tillämpa"
@@ -758,6 +853,17 @@ msgstr "Yttre parametrar"
 
 msgid "Available"
 msgstr "Tillgänglig"
+
+msgid ""
+"Average performance of seek operations of the magnetic heads. If this "
+"attribute is decreasing, it is a sign of problems in the mechanical "
+"subsystem."
+msgstr ""
+"Medelprestanda för magnethuvudenas sökoperationer. Om detta värde sjunker är "
+"det ett tecken på mekaniska problem."
+
+msgid "Average time of spindle spin up (from zero RPM to fully operational)."
+msgstr "Medeluppvarvningstid (från 0 RPM till fullt drift)"
 
 msgid "Backup configuration"
 msgstr "Konfiguration för säkerhetskopior"
@@ -911,7 +1017,7 @@ msgid "CIFS/SMB informations"
 msgstr "CIFS/SMB information"
 
 msgid "CIFS/SMB is enabled."
-msgstr ""
+msgstr "CIFS/SMB är aktiverat."
 
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Kyrilliskt)"
@@ -986,7 +1092,7 @@ msgid "Cannot get data about interface"
 msgstr "Kan inte få data om gränssnittet"
 
 msgid "Cannot use DHCP for LAN interface."
-msgstr ""
+msgstr "Kan inte använda DHCP för nätverksgränssnittet."
 
 msgid "Capacity"
 msgstr "Kapacitet"
@@ -1026,6 +1132,10 @@ msgstr "Laddar batteri"
 #, php-format
 msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
 msgstr ""
+"Kontrollera <a href=\"%s\">System|General Setup</a> innan initiering."
+
+msgid "Check and replace cable"
+msgstr "Kontrollera och byt kabel"
 
 msgid "Check interval"
 msgstr "Kontrollera intervall"
@@ -1104,7 +1214,7 @@ msgid "Command for LINK_UP event (e.g. %s)."
 msgstr "Kommando för LINK_UP händelse (ex. %s)."
 
 msgid "Command output:"
-msgstr "Kommando utmatning"
+msgstr "Kommandoutmatning:"
 
 msgid "Command scripts"
 msgstr "Kommandoskript"
@@ -1119,7 +1229,7 @@ msgid "Community"
 msgstr "Community"
 
 msgid "Compilations directories"
-msgstr ""
+msgstr "Katalog för samlingar"
 
 msgid "Compliant profile to be used."
 msgstr "Kompatibel profil som skall användas"
@@ -1157,8 +1267,11 @@ msgstr "Bekräftelse"
 msgid "Connected FTP users"
 msgstr "Anslutna FTP-användare"
 
+msgid "Consider replacing this drive"
+msgstr "Överväg att byta denna disk"
+
 msgid "Console Menu"
-msgstr ""
+msgstr "Konsolmeny"
 
 msgid "Console screensaver"
 msgstr "Konsollskärmsläckare"
@@ -1262,11 +1375,144 @@ msgstr "Kontrollerar huruvida detta Dataset kan modifieras"
 msgid "Count"
 msgstr "Antal"
 
+msgid "Count of 'Free Fall Events' detected."
+msgstr "Antal upptäkta \"Free Fall Events\""
+
+msgid ""
+"Count of 'unstable' sectors (waiting to be remapped, because of "
+"unrecoverable read errors). If an unstable sector is subsequently read "
+"successfully, the sector is remapped and this value is decreased. Read "
+"errors on a sector will not remap the sector immediately (since the correct "
+"value cannot be read and so the value to remap is not known, and also it "
+"might become readable later); instead, the drive firmware remembers that the "
+"sector needs to be remapped, and will remap it the next time it's written. "
+"However some drives will not immediately remap such sectors when written; "
+"instead the drive will first attempt to write to the problem sector and if "
+"the write operation is successful then the sector will be marked good (in "
+"this case, the 'Reallocation Event Count' (0xC4) will not be increased). "
+"This is a serious shortcoming, for if such a drive contains marginal sectors "
+"that consistently fail only after some time has passed following a "
+"successful write operation, then the drive will never remap these problem "
+"sectors."
+msgstr ""
+"Antal \"instabila\" sektorer (väntar på att flyttas på grund av olösbara "
+"läsfel) Om en instabil sektor framgångsrikt kan läsas ett flertal gång "
+"återanvänds sektorn och värdet minskar. Läsfel på en sektor kommer inte att "
+"innebära att data flyttas direkt (eftersom det rätta värdet inte kan läsas "
+"och därmed är okänt, och också kan bli läsbart senare); istället noterar "
+"diskens mjukvara att sektorn måste flyttas och gör detta nästa gång "
+"skrivning sker. En del diskar gör dock ett försök att skriva till sektorn "
+"och om detta lyckas markeras sektorn som ok ( i detta fall ökas inte "
+"värdet). Detta är en nackdel då sektorer som ligger på gränsen till att "
+"sluta fungera aldrig blir borttagna."
+
+msgid "Count of Data Address Mark errors (or vendor-specific)."
+msgstr "Antal \"Data Adress Mark\" fel (eller tillverkarspecifikt)"
+
+msgid "Count of attempts to compensate for platter speed variations."
+msgstr "Antal försök att kompensera för hastighetsvariationer på skivorna."
+
+msgid ""
+"Count of buzz routines needed to spin up the drive due to insufficient power."
+msgstr ""
+"Antal \"Buzz\" rutiner som behövs för att varva upp disken på grund av "
+"otillräcklig kraftförsörjning."
+
+msgid "Count of errors corrected by software ECC."
+msgstr "Antal fel som rättats med mjukvaru ECC."
+
+msgid "Count of errors due to high temperature."
+msgstr "Antal fel som beror på hög temperatur."
+
+msgid "Count of errors while reading from a disk."
+msgstr "Antal fel vid läsning från disk."
+
+msgid ""
+"Count of hours in power-on state. The raw value of this attribute shows "
+"total count of hours (or minutes, or seconds, depending on manufacturer) in "
+"power-on state."
+msgstr ""
+"Antal timmar i påläge. Råvärdet av detta attribut visar totalt antal timmar "
+"(eller minuter eller sekunder, beroende på tillverkare) i påläge."
+
+msgid "Count of load/unload cycles into head landing zone position."
+msgstr "Antal gånger magnethuvudet ställts i landningszonen."
+
+msgid "Count of off-track errors."
+msgstr "Antal ur spår fel."
+
+msgid ""
+"Count of reallocated sectors. When the hard drive finds a "
+"read/write/verification error, it marks that sector as 'reallocated' and "
+"transfers data to a special reserved area (spare area). This process is also "
+"known as remapping, and reallocated sectors are called 'remaps'. The raw "
+"value normally represents a count of the bad sectors that have been found "
+"and remapped. Thus, the higher the attribute value, the more sectors the "
+"drive has had to reallocate. This allows a drive with bad sectors to "
+"continue operation; however, a drive which has had any reallocations at all "
+"is significantly more likely to fail in the near future. While primarily "
+"used as a metric of the life expectancy of the drive, this number also "
+"affects performance. As the count of reallocated sectors increases, the "
+"read/write speed tends to become worse because the drive head is forced to "
+"seek to the reserved area whenever a remap is accessed. If sequential access "
+"speed is critical, the remapped sectors can be manually marked as bad blocks "
+"in the file system in order to prevent their use."
+msgstr ""
+"Antal omflyttade sektorer. När en hårddisk hittar ett "
+"läs/skriv/verifikationsfel markerar den sektorn som omflyttad och flyttar "
+"data till en reserverad area (reservarea). Denna process är också känd som "
+"\"remappning\" och flyttade sektorer sektorer kallas \"remaps\". Råvärdet "
+"visar normal antalet dåliga sektorer som flyttats. Ju högre värde desto fler "
+"sektorer har behövts flyttas. Detta låter en disk med dåliga sektorer att "
+"fortsätta fungera men en disk med många felaktiga sektorer har större risk "
+"att sluta fungera i framtiden. Även om värdet framför allt indikerar diskens "
+"framtida livslängd så påverkas disken prestanda. När antalet omflyttade "
+"sektorer ökar försämras läs/skrivprestanda då magnethuvudet måste flyttas "
+"till reservarean. Om sekventiell accesshastighet är kritiskt kan de "
+"omflyttade sektorerna markeras som dåliga i operativsystemet för att undvika "
+"att de används."
+
+msgid ""
+"Count of remap operations. The raw value of this attribute shows the total "
+"count of attempts to transfer data from reallocated sectors to a spare area. "
+"Both successful & unsuccessful attempts are counted."
+msgstr ""
+"Antal omflyttningsoperationer. Råvärdet av detta attribut visar det totala "
+"antalet försök att flytta data till reservarean. Både lyckade och "
+"misslyckade försök räknas."
+
+msgid ""
+"Count of retry of spin start attempts. This attribute stores a total count "
+"of the spin start attempts to reach the fully operational speed (under the "
+"condition that the first attempt was unsuccessful). An increase of this "
+"attribute value is a sign of problems in the hard disk mechanical subsystem."
+msgstr ""
+"Antal förnyade försök att varva upp disken. Detta attribut lagrar totalt "
+"antal försök att varva upp disken till full hastighet (under förutsättning "
+"att första försöket misslyckats). En ökning av detta värde tyder på ett "
+"mekaniskt problem."
+
+msgid "Count of times head changes position."
+msgstr "Antal gånger huvudet flyttats."
+
+msgid ""
+"Count of times the heads are loaded off the media. Heads can be unloaded "
+"without actually powering off."
+msgstr ""
+"Antal gånger huvudet lyfts från mediat. Huvuden kan lyftas utan att "
+"spänningen slagits ifrån."
+
+msgid "Count of times the link is reset during a data transfer."
+msgstr "Antal gånger länken återställts under en dataöverföring."
+
+msgid "Counts the maximum worst erase count on any block."
+msgstr "Räknar max raderingar på något block."
+
 msgid "Create 4KB wrapper (nop device)."
 msgstr ""
 
 msgid "Create ZFS on GPT partition"
-msgstr ""
+msgstr "Skapa ZFS på en GPT-partition"
 
 msgid "Create and initialize RAID."
 msgstr "Skapa och initialisera RAID."
@@ -1319,6 +1565,9 @@ msgstr "Aktuellt"
 msgid "Current Version:"
 msgstr "Nuvarande version:"
 
+msgid "Current internal temperature."
+msgstr "Aktuell innertemperatur"
+
 msgid "Current password"
 msgstr "Aktuellt lösenord"
 
@@ -1326,6 +1575,9 @@ msgid ""
 "Current password is default password. You should use your own password."
 msgstr ""
 "Nuvarande lösenord är standard lösenord. Du bör använda ditt eget lösenord."
+
+msgid "Current state of drive operation based upon the Life Curve."
+msgstr "Aktuell status på diskfunktion baserat på livskurvan."
 
 msgid "Current value of apparent power (Volt-Amps)"
 msgstr "Aktuell skenbar effekt (VA)"
@@ -1337,7 +1589,7 @@ msgid "Custom"
 msgstr "Anpassad"
 
 msgid "Custom device"
-msgstr ""
+msgstr "Anpassad enhet"
 
 msgid "Custom script"
 msgstr "Specialskript"
@@ -1354,11 +1606,14 @@ msgstr "Tjeckiska"
 msgid "DAAP"
 msgstr "DAAP"
 
+msgid "DESCRIPTION"
+msgstr "BESKRIVNING"
+
 msgid "DHCP"
 msgstr "DHCP"
 
 msgid "DHCP cannot be used for LAN interface."
-msgstr ""
+msgstr "DHCP kan inte användas för LAN gränssnittet."
 
 msgid "DLNA/UPnP"
 msgstr "DLNA/UPnP"
@@ -1367,13 +1622,13 @@ msgid "DLNA/UPnP Media Server"
 msgstr "DLNA/UPnP Mediaserver"
 
 msgid "DNS domain"
-msgstr ""
+msgstr "DNS-domän"
 
 msgid "DNS forwarder"
 msgstr ""
 
 msgid "DNS server is empty."
-msgstr ""
+msgstr "DNS-server är tom."
 
 msgid "DNS settings"
 msgstr "DNS inställningar"
@@ -1431,8 +1686,15 @@ msgstr "Dagar"
 msgid "Debug"
 msgstr "Felsök"
 
-msgid "Decrypt password"
+msgid ""
+"Decoded as: byte 0-1-2 = average erase count (big endian) and byte 3-4-5 = "
+"max erase count (big endian)."
 msgstr ""
+"Kodat som: byte 0-1-2 = medel antal raderingar (big endian) och byte 3-4-5 = "
+"max antal raderingar (big endian)."
+
+msgid "Decrypt password"
+msgstr "Dekryptera lösenord"
 
 msgid "Dedup"
 msgstr "Deduplicering"
@@ -1597,6 +1859,13 @@ msgstr "Ta bort GEOM metadata"
 msgid "Deleting MBR and partition table"
 msgstr "Raderar MBR och partitionstabell"
 
+msgid ""
+"Delta between most-worn and least-worn Flash blocks. It describes how "
+"good/bad the wearleveling of the SSD works on a more technical way."
+msgstr ""
+"Skillnaden mellan mest och minst använda Flashblocken. Detta beskriver hur "
+"bra/dålig användningsspridningen på SSDn fungerar i tekniskt avseende."
+
 msgid "Deny"
 msgstr "Neka"
 
@@ -1637,7 +1906,7 @@ msgid "Detected RSYNC remote shares"
 msgstr "Upptäckte fjärranslutna RSYNC utdelningar"
 
 msgid "Detected an error while importing."
-msgstr "Ett fel har upptäckts vid imprteringen."
+msgstr "Ett fel har upptäckts vid importeringen."
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -1650,7 +1919,7 @@ msgid "Device"
 msgstr "Enhet"
 
 msgid "Device / Label"
-msgstr ""
+msgstr "Enhet / Etikett"
 
 #, php-format
 msgid "Device /dev/%s - %s"
@@ -1771,6 +2040,13 @@ msgstr "Diskar (ATA) information"
 
 msgid "Display"
 msgstr "Visa"
+
+msgid ""
+"Distance the disk has shifted relative to the spindle (usually due to shock "
+"or temperature). Unit of measure is unknown."
+msgstr ""
+"Avståndet skivan har flyttats relativt axeln (vanligtvis beroende på slag "
+"eller temperatur). Enheten på mätvärdet är okänt."
 
 msgid "Distributed hash table"
 msgstr "Distribuerad hashtabell"
@@ -1934,7 +2210,7 @@ msgid "Domain controller name"
 msgstr "Domänkontrollernamn"
 
 msgid "Domain have no 2nd level name."
-msgstr ""
+msgstr "Domänen har inget nivå 2 namn."
 
 msgid "Domain name"
 msgstr "Domännamn"
@@ -1987,6 +2263,12 @@ msgstr "Nedladdningsmapp"
 msgid "Download firewall rules."
 msgstr "Ladda ner brandväggsregler."
 
+msgid "Drive Temperature."
+msgstr "Disktemperatur"
+
+msgid "Drive's seek performance during its internal tests."
+msgstr "Diskens sökprestanda vid dess interntest."
+
 msgid "Driver"
 msgstr "Drivrutin"
 
@@ -2027,7 +2309,7 @@ msgid "EFI/GPT partition can be use with UFS only."
 msgstr "EFI/GPT partition kan enbart användas med UFS."
 
 msgid "ERROR:"
-msgstr ""
+msgstr "FEL:"
 
 msgid "Edit"
 msgstr "Redigera"
@@ -2148,7 +2430,7 @@ msgid "Enable"
 msgstr "Aktivera"
 
 msgid "Enable ACL inheritance"
-msgstr ""
+msgstr "Aktivera ärvning av ACL"
 
 msgid "Enable Advanced Format (4KB sector)"
 msgstr "Aktivera 'Advanced Format' (4KB sektor)"
@@ -2176,7 +2458,7 @@ msgstr ""
 "du kan använda SSL."
 
 msgid "Enable TLS connections."
-msgstr ""
+msgstr "Aktivera TLS-anslutningar."
 
 msgid "Enable Time Machine support"
 msgstr "Aktivera stöd för Time Machine"
@@ -2315,16 +2597,16 @@ msgid "Enabled"
 msgstr "Aktiverad"
 
 msgid "Encrypt password"
-msgstr ""
+msgstr "Kryptera lösenord"
 
 msgid "Encrypt password (confirmed)"
-msgstr ""
+msgstr "Kryptering av lösenord (bekräftat)"
 
 msgid "Encrypted"
 msgstr "Krypterad"
 
 msgid "Encrypted configuration is automatically gzipped."
-msgstr ""
+msgstr "Krypterad konfiguration komprimeras automatisk till gzip"
 
 #, php-format
 msgid "Encrypting '%s'... Please wait"
@@ -2515,7 +2797,7 @@ msgstr "Misslyckades med att köra cron-jobb."
 
 #, php-format
 msgid "Failed to remove: %s"
-msgstr ""
+msgstr "Misslyckades att ta bort: %s"
 
 #, c-format
 msgid "Failed to send status report to: %s."
@@ -2594,7 +2876,7 @@ msgid "Filename"
 msgstr "Filnamn"
 
 msgid "Fileserver"
-msgstr ""
+msgstr "Filserver"
 
 msgid "Filter"
 msgstr "Filtrera"
@@ -2706,7 +2988,7 @@ msgid "Generate"
 msgstr "Generera"
 
 msgid "Generate password if leave empty."
-msgstr ""
+msgstr "Skapa lösenord om fältet lämnas tomt."
 
 msgid "German"
 msgstr "Tyska"
@@ -2746,7 +3028,7 @@ msgid "Group ID"
 msgstr "Grupp ID"
 
 msgid "Group compilations"
-msgstr ""
+msgstr "Gruppsamlingar"
 
 msgid "Group description."
 msgstr "Gruppbeskrivning."
@@ -2790,6 +3072,22 @@ msgstr "HAST volym"
 msgid "HAST volume can be use with GPT/UFS only."
 msgstr "HAST volym kan endast användas med GPT/UFS."
 
+msgid ""
+"HDD producers implement a Fly Height Monitor that attempts to provide "
+"additional protections for write operations by detecting when a recording "
+"head is flying outside its normal operating range. If an unsafe fly height "
+"condition is encountered, the write process is stopped, and the information "
+"is rewritten or reallocated to a safe region of the hard drive. This "
+"attribute indicates the count of these errors detected over the lifetime of "
+"the drive. This feature is implemented in most modern Seagate drives."
+msgstr ""
+"HDD tillverkare lägger till en flyghöjdsmonitor som försöker ge ett extra "
+"skydd för skrivoperationer genom att detektera när huvudet flyger utanför "
+"sitt normala område. Om en osäker flyghöjd detekteras stoppas skrivningen "
+"och informationen skrivs eller flyttas till ett säkert område på disken. "
+"Detta attribut indikerar antalet av dessa fel under diskens livslängd. Denna "
+"funktion är implementerad i de modernaste Seagatediskarna."
+
 msgid "HTTP Proxy"
 msgstr "HTTP-proxy"
 
@@ -2807,6 +3105,14 @@ msgstr "Sidhuvuds klassificering"
 
 msgid "Health"
 msgstr "Hälsa"
+
+msgid ""
+"Height of heads above the disk surface. A flying height that's too low "
+"increases the chances of a head crash while a flying height that's too high "
+"increases the chances of a read/write error."
+msgstr ""
+"Höjd för huvuden ovanför diskytan. En för låg flyghöjd ökar risken för en "
+"huvudkrasch medan en för hög ökar risken för läs-/skrivfel."
 
 msgid "Help"
 msgstr "Hjälp"
@@ -2901,6 +3207,9 @@ msgstr "I/O statistik"
 #, php-format
 msgid "I/O timeout in seconds (%d by default)."
 msgstr "I/O avbrott i sekunder (%d som standard)"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "IG"
 msgstr "IG"
@@ -3086,10 +3395,10 @@ msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr "I slav läge är det UPS namnet (Identifier) från UPS mastern."
 
 msgid "In/Out errors"
-msgstr ""
+msgstr "In/Ut fel"
 
 msgid "In/Out packets"
-msgstr ""
+msgstr "In/Ut paket"
 
 msgid "Include basic hardware information."
 msgstr "Inkludera grundläggande hårdvaruinformation."
@@ -3099,6 +3408,14 @@ msgstr "Nätdata"
 
 msgid "Incomplete directory"
 msgstr "Ofullständig katalog"
+
+msgid ""
+"Indicates the approximate SSD life left, in terms of program/erase cycles or "
+"Flash blocks currently available for use."
+msgstr ""
+"Visar uppskattad kvarvarande SSD livslängd, i form av "
+"programmerings/raderingscykler eller Flashblock tillgängliga för användning "
+"för tillfället."
 
 msgid "Info"
 msgstr "Info"
@@ -3116,7 +3433,7 @@ msgid "Information & Manuals"
 msgstr "Information och Manualer"
 
 msgid "Inherit ACL"
-msgstr ""
+msgstr "Ärv ACL"
 
 msgid "Inherit permissions"
 msgstr "Ärv rättigheter"
@@ -3139,7 +3456,7 @@ msgid "Initializing"
 msgstr "Initierar"
 
 msgid "Initializing..."
-msgstr ""
+msgstr "Initierar..."
 
 msgid "Initiator Group"
 msgstr "Initieringsgruppen"
@@ -3208,6 +3525,22 @@ msgstr "Installera"
 msgid "Install package"
 msgstr "Installera paket"
 
+msgid ""
+"Intel SSD reports a normalized value of 100 (when the SSD is new) and "
+"declines to a minimum value of 1. It decreases while the NAND erase cycles "
+"increase from 0 to the maximum-rated cycles."
+msgstr ""
+"Intel SSD rapporterar ett värde på 100 (när disken är ny) och minskar detta "
+"till minimum 1. Värdet minskar när antalet NAND raderingscykler ökar från 0 "
+"till maximalt angivet antal cykler."
+
+msgid ""
+"Intel SSD reports the number of available reserved space as a percentage of "
+"reserved space in a brand new SSD."
+msgstr ""
+"Intel SSD rapporterar tillgängligt reservutrymme som en procentsiffra av "
+"reservutrymmet i en helt ny SSD."
+
 msgid "Interface"
 msgstr "Gränssnitt"
 
@@ -3245,7 +3578,7 @@ msgid "Interval to wait before restarting the load"
 msgstr "Fördröjning innan återinkoppling av last"
 
 msgid "Invalid file format or incorrect password."
-msgstr ""
+msgstr "Felaktigt filformat eller felaktigt lösenord."
 
 msgid "Invalid file format."
 msgstr "Ogiltigt filformat."
@@ -3298,7 +3631,7 @@ msgid "JBOD"
 msgstr "JBOD"
 
 msgid "JBOD information and status"
-msgstr ""
+msgstr "JBOD information och status"
 
 msgid ""
 "January February March April May June July August September October November "
@@ -3369,6 +3702,18 @@ msgstr "Stor läs/skriv (read/write)"
 
 msgid "Last config change"
 msgstr "Senaste konfigurationsändring"
+
+msgid ""
+"Last test result as microseconds to discharge cap, saturated at its maximum "
+"value. Also logs minutes since last test and lifetime number of tests. Raw "
+"value contains the following data: Bytes 0-1: Last test result as "
+"microseconds to discharge cap, saturates at max value. Test result expected "
+"in range 25 <= result <= 5000000, lower indicates specific error code. Bytes "
+"2-3: Minutes since last test, saturates at max value. Bytes 4-5: Lifetime "
+"number of tests, not incremented on power cycle, saturates at max value. "
+"Normalized value is set to one on test failure or 11 if the capacitor has "
+"been tested in an excessive temperature condition, otherwise 100."
+msgstr ""
 
 #, php-format
 msgid "Latest Beta Build: %s"
@@ -3672,6 +4017,11 @@ msgstr "Länka till gäst"
 msgid "Map to user"
 msgstr "Koppla till användare"
 
+msgid ""
+"Margin of a channel while reading data. The function of this attribute is "
+"not specified."
+msgstr ""
+
 msgid "Masquerade address"
 msgstr "Maskerad adress"
 
@@ -3921,10 +4271,10 @@ msgid "NT1"
 msgstr "NT1"
 
 msgid "NTP is not enabled."
-msgstr ""
+msgstr "NTP är inte aktiverat"
 
 msgid "NTP must be enabled."
-msgstr ""
+msgstr "NTF måste aktiveras"
 
 msgid "NTP time server"
 msgstr "NTP-tidsserver"
@@ -3954,7 +4304,7 @@ msgid "Name of the variable."
 msgstr "Namn på variabeln."
 
 msgid "NetBIOS domain"
-msgstr ""
+msgstr "NetBios domän"
 
 msgid "NetBIOS name"
 msgstr "NetBIOS namn"
@@ -4166,7 +4516,7 @@ msgid "Not attached"
 msgstr "Inte tillkopplad"
 
 msgid "Not found path."
-msgstr ""
+msgstr "Ej funnen sökväg."
 
 msgid "Note"
 msgstr "Observera"
@@ -4211,11 +4561,21 @@ msgstr "Antal batteripack"
 msgid "Number of clients"
 msgstr "Antal klienter"
 
+msgid "Number of hours elapsed in the power-on state."
+msgstr "Antal timmar i påslaget läge."
+
 msgid "Number of log entries to show"
 msgstr "Antal loggposter att visa"
 
 msgid "Number of log entries to show must be between 5 and 1000."
 msgstr "Antalet logg-poster att visa måste vara mellan 5 och 1000."
+
+msgid ""
+"Number of physical erase cycles completed on the drive as a percentage of "
+"the maximum physical erase cycles the drive is designed to endure."
+msgstr ""
+"Antal fysiska raderingscykler utförda på disken som procent av det maximala "
+"antal raderingar som disken är designad att klara."
 
 msgid "Number of servers"
 msgstr "Antal servrar"
@@ -4310,6 +4670,14 @@ msgstr "Utspänning"
 
 msgid "Output voltage (V)"
 msgstr "Utspänning (V)"
+
+msgid ""
+"Overall (general) throughput performance of a hard disk drive. If the value "
+"of this attribute is decreasing there is a high probability that there is a "
+"problem with the disk."
+msgstr ""
+"Genomsnittlig (allmän) genomströmningsprestanda för en hårddisk. Om värdet "
+"minskar är det en stor sannolikhet för att det är problem med disken."
 
 msgid "Overload"
 msgstr "Överlast"
@@ -4473,7 +4841,7 @@ msgstr "Klient/Part port"
 
 #, php-format
 msgid "Permanent samba data path (e.g. %s)."
-msgstr ""
+msgstr "Permanent samba datasökväg (ex. %s)."
 
 msgid "Permit root login"
 msgstr "Tillåt root inloggning"
@@ -4585,6 +4953,12 @@ msgstr "Effektläge"
 msgid "Power mode"
 msgstr "Effektläge"
 
+msgid "Pre-Fail' Attribute used at least in HP devices."
+msgstr "Pre-Fail attribut som används åtminstonne i HP enheter."
+
+msgid "Pre-Fail' Attribute used at least in Samsung devices."
+msgstr "Pre-Fail attribut som används åtminstonne i Samsung enheter."
+
 msgid "PreInit"
 msgstr "Förinitiering"
 
@@ -4678,25 +5052,25 @@ msgid "RAID 0"
 msgstr "RAID 0"
 
 msgid "RAID 0 information and status"
-msgstr ""
+msgstr "RAID 0 information och status"
 
 msgid "RAID 0/1/5"
 msgstr "RAID 0/1/5"
 
 msgid "RAID 0/1/5 information and status"
-msgstr ""
+msgstr "RAID 0/1/5 information och status"
 
 msgid "RAID 1"
 msgstr "RAID 1"
 
 msgid "RAID 1 information and status"
-msgstr ""
+msgstr "RAID 1 information och status"
 
 msgid "RAID 5"
 msgstr "RAID 5"
 
 msgid "RAID 5 information and status"
-msgstr ""
+msgstr "RAID 5 information och status"
 
 msgid "RAID0"
 msgstr "RAID0"
@@ -4707,8 +5081,11 @@ msgstr "RAID1"
 msgid "RAID5"
 msgstr "RAID5"
 
+msgid "RAW VALUE"
+msgstr "RAW VÄRDE"
+
 msgid "RAW info"
-msgstr ""
+msgstr "RAW information"
 
 msgid "RSYNC"
 msgstr "RSYNC"
@@ -4838,7 +5215,7 @@ msgid "Remote monitoring"
 msgstr "Fjärrövervakning"
 
 msgid "Remote rsync daemon"
-msgstr ""
+msgstr "Fjärr rsync demon"
 
 msgid "Remote syslog server"
 msgstr "Fjärrsyslogserver"
@@ -4886,6 +5263,9 @@ msgstr "Intervall för omskanning"
 
 msgid "Reservation"
 msgstr "Reservation"
+
+msgid "Resistance caused by friction in mechanical parts while operating."
+msgstr "Motstånd orsakat av friktion i mekaniska delar vid drift."
 
 msgid "Resolve"
 msgstr "Åtgärda"
@@ -4984,7 +5364,7 @@ msgid "Run now"
 msgstr "Kör nu"
 
 msgid "Run without requiring remote rsync daemon. (Disabled by default)"
-msgstr ""
+msgstr "Kör utan att kräva fjärr rsync demon. (Normalt inaktiverat)"
 
 msgid "Running"
 msgstr "Kör"
@@ -5036,10 +5416,10 @@ msgid "SSID"
 msgstr "SSID"
 
 msgid "Samba AD"
-msgstr ""
+msgstr "Samba AD"
 
 msgid "Samba Active Directory Domain Controller"
-msgstr ""
+msgstr "Samba Active Directory Domänkontrollant"
 
 #, php-format
 msgid ""
@@ -5119,6 +5499,9 @@ msgstr "Säkert Skal"
 msgid "Security"
 msgstr "Säkerhet"
 
+msgid "See attribute E8."
+msgstr "Se attribut E8."
+
 msgid ""
 "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
 "Secure (HTTPS) for the WebGUI."
@@ -5166,7 +5549,7 @@ msgid "Selected"
 msgstr "Markerade"
 
 msgid "Selected device or label does not exist."
-msgstr ""
+msgstr "Vald enhet eller etikett existerar inte."
 
 msgid "Selected file isn't an valid ISO file."
 msgstr "Den valda filen är inte en giltig ISO fil."
@@ -5311,6 +5694,9 @@ msgstr "Utdelningar"
 msgid "Shell"
 msgstr "Skal"
 
+msgid "Shock During Write."
+msgstr ""
+
 msgid "Show RAW UPS Info"
 msgstr "Visa UPS-info i råformat"
 
@@ -5431,6 +5817,17 @@ msgstr "Gles"
 msgid "Sparse Volume"
 msgstr "Gles volym"
 
+msgid ""
+"Specific to He8 drives from HGST. The Helium, so says the literature, allows "
+"the drives to run cooler and quieter, and reduces power consumption. This is "
+"the status of the Helium in the drive. It is a pre-fail attribute that trips "
+"once the drive detects that the internal environment is out of specification."
+msgstr ""
+"Specifikt för He8 diskar från HGST. Heliumet skall enligt dokumentationen "
+"göra disken kallare och tystare och minska effektförbrukningen. Detta är "
+"statusen för Heliumet i disken. Det är en förvarning som utlöses när den "
+"interna miljön är utanför specifikationerna."
+
 msgid "Specified path is NFSv4 root directory."
 msgstr "Angiven sökvög är NFSv4 rotkatalog."
 
@@ -5545,16 +5942,16 @@ msgid "Store DOS attributes"
 msgstr "Lagra DOS attribut"
 
 msgid "Store NTFS acls"
-msgstr ""
+msgstr "Lagra NTFS acls"
 
 msgid "Store NTFS acls in Extended Attributes"
-msgstr ""
+msgstr "Lagra NTFS acls i Extended Attributes"
 
 msgid "Store alternate data streams"
-msgstr ""
+msgstr "Lagra alternativa dataströmmar"
 
 msgid "Store alternate data streams in Extended Attributes"
-msgstr ""
+msgstr "Lagra alternativa dataströmmar i Extended Attributes"
 
 msgid ""
 "String displayed in the dialog presented to the user when accessing the URL."
@@ -5703,13 +6100,13 @@ msgid "TKIP"
 msgstr "TKIP"
 
 msgid "TLS"
-msgstr ""
+msgstr "TLS"
 
 msgid "TLS mode"
 msgstr "TLS mode"
 
 msgid "TLS only"
-msgstr ""
+msgstr "Endast TLS"
 
 msgid "Tag"
 msgstr "Ettikett"
@@ -5830,6 +6227,21 @@ msgstr "MIB '%s' finns redan."
 msgid "The MIB '%s' doesn't exist in sysctl."
 msgstr "MIB '%s' finns inte i sysctrl."
 
+msgid ""
+"The Minimum Spares Remaining attribute indicates the number of remaining "
+"spare blocks as a percentage of the total number of spare blocks available."
+msgstr ""
+"Minsta kvarvarande reserv attributet visar antalet kvarvarande reservblock i "
+"procent av totala antalet reservblock."
+
+msgid ""
+"The Newly Added Bad Flash Block attribute indicates the total number of bad "
+"flash blocks the drive detected since it was first initialized in "
+"manufacturing."
+msgstr ""
+"Det nyligen tillagda \"Bad Flash Block\" attributet visar totala antalet "
+"dåliga flashblock sedan disken först initierades."
+
 #, php-format
 msgid ""
 "The RAID volume is currently mounted! Remove the <a href='%s'>mount "
@@ -5942,6 +6354,7 @@ msgstr "Värdet '%s' är inte en giltigt tid"
 msgid ""
 "The attribute '%s' is required within %d or more characters to %d characters."
 msgstr ""
+"Attributet \"%s\" krävs med %d eller flera tecken upp till %d tecken."
 
 #, c-format, php-format
 msgid "The attribute '%s' is required."
@@ -6060,10 +6473,52 @@ msgid ""
 "The confirmation password does not match. Please ensure the passwords match "
 "exactly."
 msgstr ""
+"Bekräftelselösenordet stämmer ej. Försäkra dig om att lösenorden är "
+"identiska."
 
 msgid ""
 "The confirmed password does not match. Please ensure the passwords match "
 "exactly."
+msgstr ""
+"Det bekräftade lösenordet stämmer ej. Försäkra dig om att lösenorden är "
+"identiska."
+
+msgid ""
+"The count of aborted operations due to HDD timeout. Normally this attribute "
+"value should be equal to zero and if the value is far above zero, then most "
+"likely there will be some serious problems with power supply or an oxidized "
+"data cable."
+msgstr ""
+"Antalet avbrutna operationer på grund av HDD timeout. Normalt skall detta "
+"värde vara noll och om värdet är långt över noll är det troligt att det är "
+"problem med spänningsförsörjningen eller en oxiderad datakabel."
+
+msgid ""
+"The count of errors found when writing a sector. The higher the value, the "
+"worse the disk's mechanical condition is."
+msgstr ""
+"Antal fel som hittats vid skrivning av en sektor. Ju högre värde desto sämre "
+"är diskens mekaniska kondition."
+
+msgid ""
+"The count of errors in data transfer via the interface cable as determined "
+"by ICRC (Interface Cyclic Redundancy Check)."
+msgstr ""
+"Antal fel i dataöverföringen via gränssnittskabeln som upptäckts med ICRC "
+"(Interface Cyclic Redundancy Check)."
+
+msgid ""
+"The count of errors resulting from externally induced shock & vibration."
+msgstr "Antal fel på grund av externa slag och vibrationer."
+
+msgid ""
+"The count of errors that could not be recovered using hardware ECC (see "
+"attribute 195)."
+msgstr "Antal fel som inte kunde rättas av hårdvaru ECC (se attribut 195)."
+
+msgid ""
+"The count of times the magnetic armature was retracted automatically as a "
+"result of cutting power."
 msgstr ""
 
 msgid "The credentials with which to bind."
@@ -6330,6 +6785,11 @@ msgstr ""
 msgid "The number of clients must be between 1 and 50."
 msgstr "Antalet klienter måste vara mellan 1 och 50"
 
+msgid ""
+"The number of errors caused by incorrect checksum during the error "
+"correction."
+msgstr "Antal fel orsakade av felaktig checksumma vid felkorrigeringen."
+
 msgid "The old password is not correct."
 msgstr "Det gamla lösenordet stämmer ej."
 
@@ -6484,6 +6944,18 @@ msgstr ""
 
 msgid "The time update interval must be either between 6 and 1440."
 msgstr "Tidsintervallet måste vara mellan 6 och 1440."
+
+msgid "The total count of errors when writing a sector."
+msgstr "Totalt antal fel vid skrivning av en sektor."
+
+msgid ""
+"The total count of uncorrectable errors when reading/writing a sector. A "
+"rise in the value of this attribute indicates defects of the disk surface "
+"and/or problems in the mechanical subsystem."
+msgstr ""
+"Totalt antal okorrigerbara fel vid läsning/skrivning av en sektor. En ökning "
+"av detta värde indikerar felaktigheter på diskytan och/eller mekaniska "
+"problem."
 
 msgid "The unique group ID is already used."
 msgstr "Detta unika grupp-ID används redan."
@@ -6684,6 +7156,26 @@ msgid "This allows you to set the transfer mode for ATA/IDE hard drives."
 msgstr ""
 "Detta låter dig ställa in överföringsläget (transfer mode) för ATA/IDE "
 "hårddiskar."
+
+msgid ""
+"This attribute indicates the count of full hard disk power on/off cycles."
+msgstr "Antal gånger disken spänningssatts."
+
+msgid ""
+"This attribute indicates the count that recalibration was requested (under "
+"the condition that the first attempt was unsuccessful). An increase of this "
+"attribute value is a sign of problems in the hard disk mechanical subsystem."
+msgstr ""
+"Detta attribut visar antal gånger omkalibrering begärdes (under "
+"förutsättning att första försöket misslyckades). En ökning av värdet är ett "
+"tecken på mekaniska problem i disken."
+
+msgid ""
+"This attribute is a part of Hewlett-Packard's SMART IV technology, as well "
+"as part of other vendors' IO Error Detection and Correction schemas, and it "
+"contains a count of parity errors which occur in the data path to the media "
+"via the drive's cache RAM."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -7012,7 +7504,7 @@ msgstr ""
 "vill lägga till en existerande krypterad disk."
 
 msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
-msgstr ""
+msgstr "Detta vill ge NTFS acls utan ZFS ACL stöd som UFS."
 
 msgid "This will provide ZFS ACL support. (ZFS only)"
 msgstr "Detta aktiverar tillgång till ZFS ACL support. (endast ZFS)"
@@ -7045,6 +7537,13 @@ msgstr "Tidsintervall"
 
 msgid "Time server"
 msgstr "Tidsserver"
+
+msgid "Time spent during the positioning of the drive heads."
+msgstr ""
+
+msgid ""
+"Time spent operating under data load (movement of magnetic head armature)."
+msgstr ""
 
 msgid "Time update interval"
 msgstr "Intervall för tidsuppdatering"
@@ -7145,6 +7644,38 @@ msgstr "Tolererat"
 
 msgid "Tools"
 msgstr "Verktyg"
+
+msgid ""
+"Total NAND Writes. Raw value reports the number of writes to NAND in 1GB "
+"increments."
+msgstr ""
+"Totalt antal NAND skrivningar. Råvärdet anger antal skrivningar till NAND i "
+"1GB delar."
+
+msgid ""
+"Total count of LBAs read. Some S.M.A.R.T. utilities will report a negative "
+"number for the raw value since in reality it has 48 bits rather than 32."
+msgstr ""
+"Totalt antal LBA:s som lästs. Några S.M.A.R.T verktyg kommer att visa "
+"negativa värden på råvärdet eftersom det i verkligen har 48 bitar i stället "
+"för 32."
+
+msgid "Total count of LBAs written."
+msgstr "Totalt antal LBA:s som skrivits."
+
+msgid "Total count of load cycles."
+msgstr "Totalt antal laddningscykler."
+
+msgid ""
+"Total number of Flash program operation failures since the drive was "
+"deployed."
+msgstr ""
+"Totlat antal misslyckade Flashprogrammeringar sedan disken togs i drift."
+
+msgid ""
+"Total time of loading on the magnetic heads actuator (time not spent in "
+"parking area)."
+msgstr ""
 
 #, php-format
 msgid "Total: %s | Used: %s | Free: %s"
@@ -7334,10 +7865,13 @@ msgid "URL"
 msgstr "URL"
 
 msgid "Ukrainian"
-msgstr ""
+msgstr "Ukrainska"
 
 msgid "Unavailable"
 msgstr "Otillgänglig"
+
+msgid "Uncorrected read errors reported to the operating system."
+msgstr "Okorrigerade läsfel som rapporterats till operativsystemet."
 
 msgid "Unformated"
 msgstr "Oformaterad"
@@ -7500,7 +8034,7 @@ msgid "User portal"
 msgstr "Användarportal"
 
 msgid "User shares"
-msgstr ""
+msgstr "Användarutdelningar"
 
 msgid "User suffix"
 msgstr "Användareändelse"
@@ -7539,6 +8073,13 @@ msgstr "VLAN-tagg"
 msgid "Value"
 msgstr "Värde"
 
+msgid ""
+"Value is equal to (100-temp. &deg;C), allowing manufacturer to set a minimum "
+"threshold which corresponds to a maximum temperature."
+msgstr ""
+"Värdet är lika med (100-temp. &deg;C), tillåter tillverkaren att sätta ett "
+"minsta tröskelvärde som motsvarar en maximal temperatur."
+
 msgid "Variable"
 msgstr "Variabel"
 
@@ -7547,6 +8088,9 @@ msgstr "Leverantörs-id"
 
 msgid "Version"
 msgstr "Version"
+
+msgid "Vibration During Write."
+msgstr "Vibration under skrivning."
 
 msgid "Virtual Host ID"
 msgstr "ID för virtuell värd"
@@ -7650,6 +8194,16 @@ msgstr "Webbserver dokumentrot saknas."
 msgid "Week days"
 msgstr "Veckodagar"
 
+msgid "Western Digital attribute."
+msgstr "Western Digital attribut."
+
+msgid ""
+"Western Digital, Samsung or Seagate attribute: Total number of data blocks "
+"with detected, uncorrectable errors encountered during normal operation."
+msgstr ""
+"Western Digital, Samsung eller Seagate attribut: Totalt antal datablock med "
+"upptäckta okorrigerbara fel som uppstått under normal drift."
+
 msgid ""
 "When HAST is enabled, the local devices, the local services and the "
 "additional packages which do not support HAST volume cannot be used."
@@ -7660,6 +8214,7 @@ msgstr ""
 msgid ""
 "When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot be used."
 msgstr ""
+"När Samba AD är aktiverat kan inte fristående CIFS/SMB fildelning användas."
 
 msgid "When UPS switches to Low Battery"
 msgstr "När UPS växlar till lågt batteri"
@@ -7684,7 +8239,7 @@ msgid "Where to save downloaded data."
 msgstr "Var nedladdade filer sparas."
 
 msgid "Whether compilations should be shown together under Various Artists."
-msgstr ""
+msgstr "Om samlingar skall visas tillsammans under Blandade Artister."
 
 msgid ""
 "Whether scans should be skipped if there are no users connected. This allows "
@@ -7695,7 +8250,7 @@ msgstr ""
 "anslutna."
 
 msgid "Whether to skip initial boot-up scan."
-msgstr ""
+msgstr "Om scanning vid uppstart skall hoppas över."
 
 msgid "Who"
 msgstr "Vem"
@@ -7800,10 +8355,10 @@ msgstr "Du måste ange samma IP-typ för nät och gateway."
 
 #, php-format
 msgid "You must have a minimum of %dMiB RAM for using iSCSI target."
-msgstr ""
+msgstr "Du måste ha minst %dMiB RAM för att använda iSCSI mål."
 
 msgid "You must initialize data before enabling."
-msgstr ""
+msgstr "Du måste initiera datat innan aktivering."
 
 msgid "You must select at least one authentication method."
 msgstr "Du måste välja åtminstone en autentiseringsmetod."
@@ -7874,6 +8429,13 @@ msgstr "chroot() för alla, förutom root."
 
 msgid "day(s)"
 msgstr "dag(ar)"
+
+msgid ""
+"decoded as: byte 0-1-2 = good block count (big endian) and byte 3-4 = "
+"system(free) block count."
+msgstr ""
+"kodat som: byte 0-1-2 = antal bra block (big endian) och byte 3-4 = antal "
+"systemblock (lediga)."
 
 msgid "detected an error while importing."
 msgstr "ett fel upptäcktes vid importen"
@@ -8000,6 +8562,5 @@ msgstr "umask"
 msgid "umount"
 msgstr "umount"
 
-#, php-format
 msgid "version:"
 msgstr "version:"
