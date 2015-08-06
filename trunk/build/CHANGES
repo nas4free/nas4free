@@ -1,58 +1,10 @@
-NAS4Free 10.1.0.2 - Prescience
+NAS4Free 10.2.0.2 - Prescience
 ------------------------------
 
 Changes:
-- Upgrade to FreeBSD 10.1 RELEASE p14.
-- Add ability to create ZFS on GPT.
-- Add Home, Insert, Delete, End, Page Up/Down, ctrl left/right keys to console.
-- Add Daap/Firefly advanced options.
-- Add aio_pthread streams_xattr acl_xattr.
-- Add zfsacl default setting.
-- Add inherit acls on SMB share.
-- Add Ukrainian translation to webgui.
-- Add encrypt/decrypt password in System|Backup/Restore.
-- Add service Samba Active Directory Domain Controller.
-- Add custom mount for GPT label and UFS formatted ZFS volume.
-- Add portsnap and related commands.
-- Add sudo utility.
-- Create 4KB(ashift=12) ZFS pool by default.
-- Improve software raid info pages with Ajax.
-- Increase upload size in Webserver service up to 16GiB. (websrv_maxrequestsize)
-- dropp SSL support proftpd.  (TLS connections are supported)
-- Support aclinherit/aclmode ZFS properties.
-- Use SHA-512 crypt password for admin. (WebGUI login and all services)
-- Use SHA-512 crypt password File Manager.
-- Upgrade mDNSResponder to 567.
-- Upgrade msmtp to 1.6.2.
-- Upgrade tmux to 2.0.
-- Upgrade bash 4.3 to patch 39.
-- Upgrade nut to 2.7.3.
-- Upgrade jQuery to 1.11.3.
-- Upgrade inadyn-mt to 02.24.46.
-- Upgrade smartmontools to 6.4.
-- Upgrade proftpd to 1.3.5a.
-- Upgrade tzdata to 2015e.
-- Upgrade samba to 4.2.2.
-- Upgrade php56 to 5.6.11.
-- Upgrade virtualbox to 4.3.30.
-- Upgrade nano to 2.4.2.
-- Upgrade istgt to 20150713.
-- Upgrade isboot to 0.2.9.
+- Upgrade to FreeBSD 10.2 RC.
 
 Fixes:
-- multiple AFP shares cannot be handled by mdnsresponder.conf.
-- segmentation fault on mDNSResponderPosix.
-- cannot install to Toshiba drive.
-- missing iconv related files.
-- don't remove user swap on same location of default swap.
-- missing libftdi in lcdproc.
-- broken extension menu in filemanager.
-- missing translation in OPT/LAN interface.
-- AFP share is not shown in Time Machine.
-- start service ntpdate.
-- show default swap on Diagnostics|Information|Swap.
-- advertises CIFS to be running on port 445 instead of 139.
-- patch msk (marvell) ethernet driver.
 
 Note:
 - iperf2 has been replaced for iperf3 because of inconsistent results for UDP above 2Gbps.
