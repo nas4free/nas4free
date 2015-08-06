@@ -1,0 +1,74 @@
+--- configure.orig	2007-10-29 15:03:14.000000000 +0900
++++ configure	2014-12-29 20:52:43.000000000 +0900
+@@ -22215,7 +22215,7 @@
+ 
+ 	if test "$withval" != "no" -a "$withval" != "yes"; then
+ 	 Z_DIR=$withval
+-         LDFLAGS="${LDFLAGS} -L$withval -R$withval"
++         LDFLAGS="${LDFLAGS} -L$withval -Wl,-R$withval"
+ 	fi
+ 
+ fi;
+@@ -22239,7 +22239,7 @@
+ 
+ 	if test "$withval" != "no" -a "$withval" != "yes"; then
+ 	 Z_DIR=$withval
+-         LDFLAGS="${LDFLAGS} -L$withval -R$withval"
++         LDFLAGS="${LDFLAGS} -L$withval -Wl,-R$withval"
+ 	fi
+ 
+ fi;
+@@ -22263,7 +22263,7 @@
+ 
+ 	if test "$withval" != "no" -a "$withval" != "yes"; then
+ 	 Z_DIR=$withval
+-         LDFLAGS="${LDFLAGS} -L$withval -R$withval"
++         LDFLAGS="${LDFLAGS} -L$withval -Wl,-R$withval"
+ 	fi
+ 
+ fi;
+@@ -22275,7 +22275,7 @@
+ 
+ 	if test "$withval" != "no" -a "$withval" != "yes"; then
+ 	 Z_DIR=$withval
+-         CPPFLAGS="${CPPFLAGS} -I$withval -R$withval"
++         CPPFLAGS="${CPPFLAGS} -I$withval -Wl,-R$withval"
+ 	fi
+ 
+ fi;
+@@ -22287,7 +22287,7 @@
+ 
+ 	if test "$withval" != "no" -a "$withval" != "yes"; then
+ 	 Z_DIR=$withval
+-         LDFLAGS="${LDFLAGS} -L$withval -R$withval"
++         LDFLAGS="${LDFLAGS} -L$withval -Wl,-R$withval"
+ 	fi
+ 
+ fi;
+@@ -22311,7 +22311,7 @@
+ 
+ 	if test "$withval" != "no" -a "$withval" != "yes"; then
+ 	 Z_DIR=$withval
+-         LDFLAGS="${LDFLAGS} -L$withval -R$withval"
++         LDFLAGS="${LDFLAGS} -L$withval -Wl,-R$withval"
+ 	fi
+ 
+ fi;
+@@ -22335,7 +22335,7 @@
+ 
+ 	if test "$withval" != "no" -a "$withval" != "yes"; then
+ 	 Z_DIR=$withval
+-         LDFLAGS="${LDFLAGS} -L$withval -R$withval"
++         LDFLAGS="${LDFLAGS} -L$withval -Wl,-R$withval"
+ 	fi
+ 
+ fi;
+@@ -22348,7 +22348,7 @@
+ 	if test "$withval" != "no" -a "$withval" != "yes"; then
+ 	  Z_DIR=$withval
+ 	  CPPFLAGS="${CPPFLAGS} -I$withval/include"
+-	  LDFLAGS="${LDFLAGS} -L$withval/lib -R$withval/lib"
++	  LDFLAGS="${LDFLAGS} -L$withval/lib -Wl,-R$withval/lib"
+ 	fi
+ 
+ fi;

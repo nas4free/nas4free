@@ -1,0 +1,75 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+
+# PROVIDE: hostapd
+# REQUIRE: mountcritremote
+# KEYWORD: nojail shutdown
+# XQUERY: -i "count(//vinterfaces/wlan[apmode]) > 0" -o "0" -b
+# RCVAR: hostapd
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="hostapd"
+command="/usr/sbin/${name}"
+
+ifn="$2"
+if [ -z "$ifn" ]; then
+	rcvar="hostapd_enable"
+	conf_file="/etc/${name}.conf"
+	pidfile="/var/run/${name}.pid"
+else
+	rcvar=
+	conf_file="/etc/${name}-${ifn}.conf"
+	pidfile="/var/run/${name}-${ifn}.pid"
+fi
+
+command_args="-P ${pidfile} -B ${conf_file}"
+required_modules="wlan_xauth wlan_wep wlan_tkip wlan_ccmp wlan_amrr"
+
+load_rc_config ${name}
+
+# Custom commands
+start_precmd="hostapd_mkconf"
+mkconf_cmd="hostapd_mkconf"
+extra_commands="reload mkconf"
+
+hostapd_mkconf()
+{
+	# Cleanup and set umask for 600
+	rm -rf ${conf_file}
+	oldmask=`umask`
+	umask 077
+
+	# Create hostapd.conf
+	/usr/local/bin/xml sel -t -m "//vinterfaces/wlan[apmode][1]" \
+		-v "concat('interface=',if)" -n \
+		-v "concat('ssid=',ap_ssid)" -n \
+		-v "concat('channel=',ap_channel)" -n \
+		-o "logger_syslog=-1" -n \
+		-o "logger_syslog_level=2" -n \
+		-o "logger_stdout=-1" -n \
+		-o "logger_stdout_level=2" -n \
+		-o "ctrl_interface=/var/run/hostapd" -n \
+		-o "ctrl_interface_group=0" -n \
+		-o "#hw_mode=g" -n \
+		-o "macaddr_acl=0" -n \
+		-o "auth_algs=1" -n \
+		-o "wpa=2" -n \
+		-v "concat('wpa_passphrase=',ap_psk)" -n \
+		-v "concat('wpa_key_mgmt=',ap_keymgmt)" -n \
+		-v "concat('wpa_pairwise=',ap_pairwise)" -n \
+		-m "auxparam" \
+			-v "." -n \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc > ${conf_file}
+
+	# Restore umask
+	umask $oldmask
+}
+
+run_rc_command "$1"

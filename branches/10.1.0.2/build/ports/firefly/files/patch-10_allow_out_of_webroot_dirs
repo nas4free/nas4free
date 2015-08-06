@@ -1,0 +1,22 @@
+--- src/configfile.c.orig	2008-09-13 13:12:01.000000000 +0200
++++ src/configfile.c	2008-09-13 13:13:02.876422506 +0200
+@@ -476,7 +476,8 @@
+     DPRINTF(E_DBG,L_CONF|L_WS,"Thread %d: Preparing to serve %s\n",
+             ws_threadno(pwsc), resolved_path);
+ 
+-    if(strncmp(resolved_path,web_root,strlen(web_root))) {
++    if(strncmp(resolved_path,web_root,strlen(web_root))
++       && strncmp(resolved_path, "/usr/share/javascript", strlen("/usr/share/javascript"))) {
+         pwsc->error=EINVAL;
+         DPRINTF(E_WARN,L_CONF|L_WS,"Thread %d: Requested file %s out of root\n",
+                 ws_threadno(pwsc),resolved_path);
+@@ -985,7 +986,8 @@
+     DPRINTF(E_DBG,L_CONF|L_WS,"Thread %d: Preparing to serve %s\n",
+             ws_threadno(pwsc), resolved_path);
+ 
+-    if(strncmp(resolved_path,web_root,strlen(web_root))) {
++    if(strncmp(resolved_path,web_root,strlen(web_root))
++       && strncmp(resolved_path, "/usr/share/common-licenses", strlen("/usr/share/common-licenses"))) {
+         pwsc->error=EINVAL;
+         DPRINTF(E_LOG,L_CONF|L_WS,"Thread %d: Requested file %s out of root\n",
+                 ws_threadno(pwsc),resolved_path);

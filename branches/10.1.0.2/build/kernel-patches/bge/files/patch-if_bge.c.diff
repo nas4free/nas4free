@@ -1,0 +1,60 @@
+--- bge/if_bge.c.orig	2015-04-20 10:28:13.000000000 +0900
++++ bge/if_bge.c	2015-04-20 18:22:11.000000000 +0900
+@@ -485,6 +485,7 @@
+ static void bge_stop_fw(struct bge_softc *);
+ static int bge_reset(struct bge_softc *);
+ static void bge_link_upd(struct bge_softc *);
++static void bge_setwol(struct bge_softc *);
+ 
+ static void bge_ape_lock_init(struct bge_softc *);
+ static void bge_ape_read_fw_ver(struct bge_softc *);
+@@ -3737,7 +3738,7 @@
+ 	IFQ_SET_READY(&ifp->if_snd);
+ 	ifp->if_hwassist = sc->bge_csum_features;
+ 	ifp->if_capabilities = IFCAP_HWCSUM | IFCAP_VLAN_HWTAGGING |
+-	    IFCAP_VLAN_MTU;
++	    IFCAP_VLAN_MTU | IFCAP_WOL_MAGIC;
+ 	if ((sc->bge_flags & (BGE_FLAG_TSO | BGE_FLAG_TSO3)) != 0) {
+ 		ifp->if_hwassist |= CSUM_TSO;
+ 		ifp->if_capabilities |= IFCAP_TSO4 | IFCAP_VLAN_HWTSO;
+@@ -6075,6 +6076,7 @@
+ 	sc = device_get_softc(dev);
+ 	BGE_LOCK(sc);
+ 	bge_stop(sc);
++	bge_setwol(sc);
+ 	BGE_UNLOCK(sc);
+ 
+ 	return (0);
+@@ -6773,3 +6775,32 @@
+ 	}
+ 	return (*func == NULL ? ENXIO : 0);
+ }
++
++static void
++bge_setwol(struct bge_softc *sc)
++{
++       struct ifnet *ifp;
++       uint16_t pmstat;
++       int pmc;
++
++       ifp = sc->bge_ifp;
++
++       if ((ifp->if_capenable & IFCAP_WOL_MAGIC) == 0)
++           return;
++
++       if (pci_find_cap(sc->bge_dev, PCIY_PMG, &pmc) != 0)
++           return;
++
++       BGE_SETBIT(sc, BGE_MAC_MODE, BGE_MACMODE_MAGIC_PKT_ENB);
++       BGE_CLRBIT(sc, BGE_MAC_MODE, BGE_MACMODE_PORTMODE);
++       BGE_SETBIT(sc, BGE_MAC_MODE, BGE_PORTMODE_GMII);
++
++       BGE_SETBIT(sc, BGE_RX_MODE, BGE_RXMODE_ENABLE);
++
++       /* Request PME. */
++       pmstat = pci_read_config(sc->bge_dev,
++           pmc + PCIR_POWER_STATUS, 2);
++       pmstat |= PCIM_PSTAT_PME | PCIM_PSTAT_PMEENABLE;
++       pci_write_config(sc->bge_dev,
++           pmc + PCIR_POWER_STATUS, pmstat, 2);
++}

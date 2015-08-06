@@ -1,0 +1,21 @@
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# $FreeBSD: src/etc/pam.d/su
+#
+# PAM configuration for the "su" service
+#
+
+# auth
+auth		sufficient	pam_rootok.so		no_warn
+auth		sufficient	pam_self.so		no_warn
+auth		requisite	pam_group.so		no_warn group=wheel root_only fail_safe ruser
+auth		include		system
+
+# account
+account		include		system
+
+# session
+session		required	pam_permit.so

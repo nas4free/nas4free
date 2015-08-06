@@ -1,0 +1,136 @@
+#
+# ODROIDC1 -- Custom configuration for the ODROID-C1
+#
+# For more information on this file, please read the config(5) manual page,
+# and/or the handbook section on Kernel Configuration Files:
+#
+#    http://www.FreeBSD.org/doc/en_US.ISO8859-1/books/handbook/kernelconfig-config.html
+#
+# The handbook is also available locally in /usr/share/doc/handbook
+# if you've installed the doc distribution, otherwise always see the
+# FreeBSD World Wide Web server (http://www.FreeBSD.org/) for the
+# latest information.
+#
+# An exhaustive list of options and more detailed explanations of the
+# device lines is also present in the ../../conf/NOTES and NOTES files.
+# If you are in doubt as to the purpose or necessity of a line, check first
+# in NOTES.
+#
+# $FreeBSD$
+
+ident		ODROIDC1
+include 	"std.armv6"
+include 	"../amlogic/meson8b/std.s805"
+
+makeoptions	MODULES_EXTRA="opensolaris zfs"
+
+options 	KERNBASE=0x80000000
+options 	VM_KMEM_SIZE=(750*1024*1024)
+options 	VM_KMEM_SIZE_MAX=(800*1024*1024)
+options 	VM_KMEM_SIZE_SCALE=2
+options 	KSTACK_PAGES=4
+options 	MAXPHYS=(1024*1024)
+
+options 	NFSD			# Network Filesystem Server
+options 	GEOM_ELI		# Disk encryption.
+#options 	GEOM_UZIP		# Read-only compressed disks
+options 	NULLFS			# NULL filesystem
+options 	UNIONFS			# Union filesystem
+
+options 	HZ=100
+options 	SCHED_ULE		# ULE scheduler
+options 	PLATFORM
+options 	SMP			# Enable multiple cores
+
+# Debugging for use in -current
+makeoptions	DEBUG=-g		# Build kernel with gdb(1) debug symbols
+options 	BREAK_TO_DEBUGGER
+options 	ALT_BREAK_TO_DEBUGGER
+#options 	VERBOSE_SYSINIT		# Enable verbose sysinit messages
+options 	KDB			# Enable kernel debugger support
+# For minimum debugger support (stable branch) use:
+#options 	KDB_TRACE		# Print a stack trace for a panic
+# For full debugger support use this instead:
+options 	DDB			# Enable the kernel debugger
+#options 	INVARIANTS		# Enable calls of extra sanity checking
+#options 	INVARIANT_SUPPORT	# Extra sanity checks of internal structures, required by INVARIANTS
+#options 	WITNESS			# Enable checks to detect deadlocks and cycles
+#options 	WITNESS_SKIPSPIN	# Don't run witness on spinlocks for speed
+#options 	DIAGNOSTIC
+
+# NFS root from boopt/dhcp
+#options 	BOOTP
+#options 	BOOTP_NFSROOT
+#options 	BOOTP_COMPAT
+#options 	BOOTP_NFSV3
+#options 	BOOTP_WIRED_TO=ue0
+
+#options 	ROOTDEVNAME=\"ufs:/dev/mmcsd0s3\"
+
+device		bpf
+device		loop
+device		random
+device		pty
+device		md
+device		gpio
+device		pl310			# PL310 L2 cache controller
+
+device		vt
+device		kbdmux
+device		ukbd
+
+# MMC/SD support
+device		mmc
+device		mmcsd
+
+# USB support
+options 	USB_HOST_ALIGN=64	# Align usb buffers to cache line size.
+device		usb
+options 	USB_DEBUG
+device		dwcotg			# DWC OTG controller
+# static drivers for easy debug
+device		axe
+device		axge
+
+# USB storage support
+device		scbus
+device		da
+device		pass
+device		umass
+
+# USB ethernet support
+device		ether
+device		mii
+
+# Serial port
+device		uart
+
+# Flattened Device Tree
+options 	FDT
+#makeoptions	FDT_DTS_FILE=odroidc1.dts
+
+# NAS4Free
+device		vlan			# 802.1Q VLAN support
+device		tun			# Packet tunnel.
+device		gif			# IPv6 and IPv4 tunneling
+device		lagg			# Link aggregation interface.
+device		if_bridge		# Bridge interface.
+
+# ATA/SCSI peripherals
+#device		scbus			# SCSI bus (required for ATA/SCSI)
+device		ch			# SCSI media changers
+#device		da			# Direct Access (disks)
+device		sa			# Sequential Access (tape etc)
+device		cd			# CD
+#device		pass			# Passthrough device (direct ATA/SCSI access)
+device		ses			# Enclosure Services (SES and SAF-TE)
+#device		ctl			# CAM Target Layer
+
+# Hardware crypto acceleration
+device		crypto		# core crypto support
+device		cryptodev	# /dev/crypto for access to h/w
+
+# IP firewall
+options		IPFIREWALL_VERBOSE
+options		IPFIREWALL_VERBOSE_LIMIT=5
+options		IPFIREWALL_DEFAULT_TO_ACCEPT

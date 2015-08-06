@@ -1,0 +1,93 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Changes: - Add command mkconf
+# 	   - Add full path to command sysctl to fix execution bug
+#
+
+# PROVIDE: sysctl
+# REQUIRE: root
+# BEFORE:  DAEMON mountcritlocal
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="sysctl"
+stop_cmd=":"
+start_precmd="sysctl_mkconf"
+start_cmd="sysctl_start"
+reload_cmd="sysctl_start"
+lastload_cmd="sysctl_start last"
+mkconf_cmd="sysctl_mkconf"
+extra_commands="reload lastload mkconf"
+
+# Defaults
+sysctl_config=${sysctl_config:-"/etc/sysctl.conf"}
+
+sysctl_mkconf()
+{
+	# Clear /etc/sysctl.conf
+	cat /dev/null > ${sysctl_config}
+
+	# Generate /etc/sysctl.conf
+	/usr/local/bin/xml sel -t -m "//system/sysctl/param[enable]" \
+		-i "string-length(comment) > 0" \
+			-v "concat('# ',comment)" -n \
+		-b \
+		-v "concat(name,'=',value)" -n \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${sysctl_config}
+}
+
+#
+# Read in a file containing sysctl settings and set things accordingly.
+#
+parse_file()
+{
+	if [ -f $1 ]; then
+		while read var comments
+		do
+			case ${var} in
+			\#*|'')
+				;;
+			*)
+				mib=${var%=*}
+				val=${var#*=}
+
+				if current_value=`${SYSCTL} -n ${mib} 2>/dev/null`; then
+					case ${current_value} in
+					${val})
+						;;
+					*)
+						if [ "${mib}" = "kern.ipc.nmbclusters" -o \
+							"${mib}" = "kern.ipc.nmbjumbop" -o \
+							"${mib}" = "kern.ipc.nmbjumbo9" -o \
+							"${mib}" = "kern.ipc.nmbjumbo16" ]; then
+							if [ ${val} -lt ${current_value} ]; then
+								echo "${mib}: ${current_value} (not updated by the smaller value)"
+								continue
+							fi
+						fi
+						/sbin/sysctl "${var}"
+						;;
+					esac
+				elif [ "$2" = "last" ]; then
+					warn "sysctl ${mib} does not exist."
+				fi
+				;;
+			esac
+		done < $1
+	fi
+}
+
+sysctl_start()
+{
+
+	parse_file /etc/sysctl.conf $1
+	parse_file /etc/sysctl.conf.local $1
+}
+
+load_rc_config $name
+run_rc_command "$1"

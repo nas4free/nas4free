@@ -1,0 +1,11 @@
+--- configure.ac.orig	2015-05-25 10:55:12.000000000 +0900
++++ configure.ac	2015-05-25 10:56:11.000000000 +0900
+@@ -351,7 +351,7 @@
+ 
+ if test "$enable_libftdi" = "yes"; then
+ 	ifdef([PKG_CHECK_MODULES],
+-	 	[PKG_CHECK_MODULES(LIBFTDI, libftdi >= 0.8,
++	 	[PKG_CHECK_MODULES(LIBFTDI, libftdi,
+ 			[AC_DEFINE(HAVE_LIBFTDI, [1], [Define to 1 if you have libftdi])],
+ 			[ enable_libftdi=no ])],
+ 		[AC_MSG_WARN([pkg-config not (fully) installed; drivers requiring libftdi may not be built])])

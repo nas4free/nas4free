@@ -1,0 +1,342 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# $FreeBSD: src/etc/rc
+#
+
+# System startup script run by init on autoboot
+# or after single-user.
+# Output and error are redirected to console by init,
+# and the console is the controlling terminal.
+
+# Note that almost all of the user-configurable behavior is no longer in
+# this file, but rather in /etc/defaults/rc.conf.  Please check that file
+# first before contemplating any changes here.  If you do need to change
+# this file for some reason, we would like to know about it.
+
+stty status '^T'
+
+# Set shell to ignore SIGINT (2), but not children;
+# shell catches SIGQUIT (3) and returns to single user.
+#
+trap : 2
+trap "echo 'Boot interrupted'; exit 1" 3
+
+HOME=/
+PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin
+export HOME PATH
+
+# Get operating platform
+PLATFORM=`cat /etc/platform`
+XARCH=`/bin/echo ${PLATFORM} | sed -e 's/-.*//'`
+ARCH=`/usr/bin/uname -m`
+
+# Fixed values requested by build/make.sh
+MDLOCALSIZE=768m
+SWAPSIZE=512m
+
+# NAS4Free request 2GB for swapless running
+mem=`/sbin/sysctl -n hw.physmem`
+mem=`/bin/expr ${mem} / 1024 / 1024`
+BOOT_LOWMEM=0
+BOOT_LIVECD=0
+if [ ${mem} -le 1536 ]; then
+	# less than or equal to 1.5GB
+	echo "Booting with low memory"
+	BOOT_LOWMEM=1
+fi
+export BOOT_LOWMEM BOOT_LIVECD
+#/bin/kenv -q boot_lowmem=${BOOT_LOWMEM} > /dev/null
+
+case ${PLATFORM} in
+	*-full)
+		# Do a fsck on root file system.
+		/etc/rc.d/fsck root;
+
+		# If running from full, mount the root (/) in read-write.
+		/sbin/mount -u -o rw /;
+		;;
+	*)
+		# If running from liveCD or embedded, mount the root (ramdisk) in read-write.
+		if [ -e /dev/xmd0 ]; then
+			/sbin/mount -u -o rw,noatime,acls /dev/xmd0 /;
+		else
+			/sbin/mount -u -o rw,noatime,acls /dev/md0 /;
+		fi
+
+		/bin/echo "Creating 2nd memory disk for ${PLATFORM}"
+		md=`/sbin/mdconfig -t swap -s ${MDLOCALSIZE}`
+		case ${PLATFORM} in
+			*-liveUSB)
+				root=`/sbin/glabel status -s|/usr/bin/awk '/liveboot/{print $3;exit 0}'`
+				gptswap=`/sbin/glabel status -s|/usr/bin/awk '/gptswap/{print $3;exit 0}'`
+				if [ -z "${root}" ]; then
+					echo "can't determine rootfs"
+					sleep 30; halt
+				fi
+				#swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
+				#swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
+				#if [ "${ARCH}" = "arm" -a -e "/dev/${swap2}" ]; then
+				#	# pre-configured swap
+				#	swap=${swap2}
+				#elif [ ! -e "/dev/${swap}" ]; then
+				#	dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
+				#	/sbin/gpart add -s ${SWAPSIZE} -t freebsd-swap ${dev}
+				#fi
+
+				# use default swap if exists
+				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/s[1234]a$/s2b/'`
+				if [ -n "${gptswap}" -a -e "/dev/${gptswap}" ]; then
+					swap=$gptswap
+				elif [ "${swap}" = "${root}" ]; then
+					swap=NONE
+				fi
+				rm -f /etc/swapdevice
+				if [ ${BOOT_LOWMEM} -ne 0 ]; then
+					if [ "${swap}" != "NONE" -a -e "/dev/${swap}" ]; then
+						/sbin/swapon /dev/${swap}
+						echo "/dev/${swap}" > /etc/swapdevice
+					else
+						echo "swap device is not found"
+					fi
+					if [ -f /boot/kernel/geom_xmd.ko ]; then
+						/sbin/mdconfig -d -u ${md}
+						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
+						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
+					fi
+				else
+					# not use LiveUSB
+					#if [ "${swap}" != "NONE" -a -e "/dev/${swap}" ]; then
+					#	/sbin/swapon /dev/${swap}
+					#	echo "/dev/${swap}" > /etc/swapdevice
+					#fi
+					if [ -f /boot/kernel/geom_xmd.ko ]; then
+						/sbin/mdconfig -d -u ${md}
+						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
+						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
+					fi
+				fi
+
+				/sbin/mount -r /dev/${root} /mnt
+				if [ -f /mnt/mdlocal.uzip ]; then
+					#echo "Direct loading: /mnt/mdlocal.uzip"
+					/sbin/xmdconfig -ivu ${md} /mnt/mdlocal.uzip
+				elif [ -f /mnt/mdlocal.xz ]; then
+					/usr/bin/xz -dcv /mnt/mdlocal.xz | \
+					    /bin/dd of=/dev/${md} bs=1m status=none
+				else
+					echo "can't find mdlocal"
+					sleep 30; halt
+				fi
+				/sbin/umount /mnt
+				;;
+			*-embedded)
+				root=`/sbin/glabel status -s|/usr/bin/awk '/embboot/{print $3;exit 0}'`
+				gptswap=`/sbin/glabel status -s|/usr/bin/awk '/gptswap/{print $3;exit 0}'`
+				if [ -z "${root}" ]; then
+					echo "can't determine rootfs"
+					sleep 30; halt
+				fi
+				#swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
+				#swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
+				# always create swap partition if not exists
+				#if [ "${ARCH}" = "arm" -a -e "/dev/${swap2}" ]; then
+				#	# pre-configured swap
+				#	swap=${swap2}
+				#elif [ ! -e "/dev/${swap}" ]; then
+				#	dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
+				#	/sbin/gpart add -s ${SWAPSIZE} -t freebsd-swap ${dev}
+				#fi
+
+				# use default swap if exists
+				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/s[1234]a$/s2b/'`
+				if [ -n "${gptswap}" -a -e "/dev/${gptswap}" ]; then
+					swap=$gptswap
+				elif [ "${swap}" = "${root}" ]; then
+					swap=NONE
+				fi
+				rm -f /etc/swapdevice
+				if [ ${BOOT_LOWMEM} -ne 0 ]; then
+					if [ "${swap}" != "NONE" -a -e "/dev/${swap}" ]; then
+						/sbin/swapon /dev/${swap}
+						echo "/dev/${swap}" > /etc/swapdevice
+					else
+						echo "swap device is not found"
+					fi
+					if [ -f /boot/kernel/geom_xmd.ko ]; then
+						/sbin/mdconfig -d -u ${md}
+						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
+						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
+					fi
+				else
+					if [ "${swap}" != "NONE" -a -e "/dev/${swap}" ]; then
+						/sbin/swapon /dev/${swap}
+						echo "/dev/${swap}" > /etc/swapdevice
+					fi
+					if [ -f /boot/kernel/geom_xmd.ko ]; then
+						/sbin/mdconfig -d -u ${md}
+						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
+						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
+					fi
+				fi
+
+				/sbin/mount -r /dev/${root} /mnt
+				if [ -f /mnt/mdlocal.uzip ]; then
+					#echo "Direct loading: /mnt/mdlocal.uzip"
+					/sbin/xmdconfig -ivu ${md} /mnt/mdlocal.uzip
+				elif [ -f /mnt/mdlocal.xz ]; then
+					/usr/bin/xz -dcv /mnt/mdlocal.xz | \
+					    /bin/dd of=/dev/${md} bs=1m status=none
+				else
+					echo "can't find mdlocal"
+					sleep 30; halt
+				fi
+				#if [ -e /mnt/boot/zfs/zpool.cache ]; then
+				#	/bin/cp -p /mnt/boot/zfs/zpool.cache /boot/zfs/
+				#fi
+				/sbin/umount /mnt
+				;;
+			*-liveCD)
+				BOOT_LIVECD=1
+				root=`/sbin/glabel status -s|/usr/bin/awk '/LiveCD/{print $3;exit 0}'`
+				if [ -z "${root}" ]; then
+					echo "can't determine rootfs"
+					sleep 30; halt
+				fi
+				swap=NONE
+				#echo "NONE" > /etc/swapdevice
+				rm -f /etc/swapdevice
+
+				/sbin/mount -t cd9660 /dev/${root} /mnt
+				if [ ${BOOT_LOWMEM} -ne 0 ]; then
+					# no live mode, installation only
+					if [ -f /mnt/mdlocal-mini.xz ]; then
+						/usr/bin/xz -dcv /mnt/mdlocal-mini.xz | \
+						    /bin/dd of=/dev/${md} bs=1m status=none
+					else
+						echo "can't find mdlocal-mini"
+						sleep 30; halt
+					fi
+				elif [ -f /mnt/mdlocal.xz ]; then
+					/usr/bin/xz -dcv /mnt/mdlocal.xz | \
+					    /bin/dd of=/dev/${md} bs=1m status=none
+				else
+					echo "can't find mdlocal"
+					sleep 30; halt
+				fi
+				/sbin/umount /mnt
+				;;
+			*)
+				;;
+		esac
+		/sbin/mount -o noatime,acls /dev/${md} /usr/local
+		;;
+esac
+echo "${BOOT_LOWMEM}" > /etc/boot_lowmem
+
+# Create required directories in /var
+for dir in /var/run /var/log /var/etc /var/etc/ssh /var/etc/ssl/private /var/etc/private /var/etc/iscsi /var/etc/netatalk /var/db /var/mount /var/empty /var/backups /var/cron /var/cron/tabs /var/spool /var/spool/lock; do
+	[ ! -d "${dir}" ] && mkdir -p ${dir} 
+done
+chmod 0750 /var/backups /var/cron /var/cron/tabs
+if [ ! -d /var/tmp ]; then
+	mkdir -p /var/tmp
+	chmod 1777 /var/tmp
+fi
+
+# Make writable tmp for www
+chown 0:0 /tmp
+chmod 1777 /tmp
+chown 0:0 /var/tmp
+chmod 1777 /var/tmp
+
+# Remove existing cache and notify
+/bin/rm -f /tmp/config.cache
+/bin/rm -f /var/db/updatenotify.db
+
+# Configure the shared library cache
+/sbin/ldconfig -elf /usr/lib /usr/local/lib /lib
+# Add the path of embedded boot disk
+/sbin/kldconfig -m /cf/boot/kernel
+
+# Let the PHP functions know we're booting
+BOOTING=1
+export BOOTING
+
+if [ "$1" = autoboot ]; then
+	autoboot=yes
+	_boot="faststart"
+	rc_fast=yes        # run_rc_command(): do fast booting
+else
+	autoboot=no
+	_boot="start"
+fi
+
+# Run these after determining whether we are booting diskless in order
+# to minimize the number of files that are needed on a diskless system,
+# and to make the configuration file variables available to rc itself.
+#
+. /etc/rc.subr
+echo "Loading configuration files."
+load_rc_config 'XXX'
+
+skip="-s nostart"
+if [ `/sbin/sysctl -n security.jail.jailed` -eq 1 ]; then
+	skip="$skip -s nojail"
+	if [ "$early_late_divider" = "FILESYSTEMS" ]; then
+		early_late_divider=NETWORKING
+	fi
+fi
+
+# Do a first pass to get everything up to $early_late_divider so that
+# we can do a second pass that includes $local_startup directories
+#
+files=`rcorder ${skip} /etc/rc.d/* 2>/dev/null`
+
+for _rc_elem in ${files}; do
+	run_rc_script ${_rc_elem} ${_boot}
+
+	# Force reloading of rc.conf file
+	if [ "${_rc_elem}" = "/etc/rc.d/rcconf" ]; then
+	    _rc_conf_loaded=false
+	    load_rc_config ${_rc_elem}
+	fi
+
+	case "$_rc_elem" in
+	*/${early_late_divider})	break ;;
+	esac
+done
+
+unset files local_rc
+
+# Now that disks are mounted, for each dir in $local_startup
+# search for init scripts that use the new rc.d semantics.
+#
+case ${local_startup} in
+[Nn][Oo] | '') ;;
+*)	find_local_scripts_new ;;
+esac
+
+files=`rcorder ${skip} /etc/rc.d/* ${local_rc} 2>/dev/null`
+_skip_early=1
+for _rc_elem in ${files}; do
+	case "$_skip_early" in
+	1)	case "$_rc_elem" in
+		*/${early_late_divider})	_skip_early=0 ;;
+		esac
+		continue
+		;;
+	esac
+
+	run_rc_script ${_rc_elem} ${_boot}
+done
+
+# Let the PHP functions know we've finished booting
+BOOTING=0
+
+echo ''
+date
+exit 0

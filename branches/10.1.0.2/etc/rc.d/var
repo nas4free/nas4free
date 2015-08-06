@@ -1,0 +1,121 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# $FreeBSD: src/etc/rc.d/var
+# Changes: - Remove useless code
+#    ToDo: - Relocate code to populate /var from /etc/rc to this file ASAP
+#
+
+# PROVIDE: var
+# REQUIRE: mountcritlocal zfs
+
+# NFS /var is not supported, unless NFS /var is part of diskless NFS /
+
+. /etc/rc.subr
+
+name="var"
+stop_cmd=':'
+
+load_rc_config $name
+
+populate_var()
+{
+	# Create required directories in /var
+	/usr/sbin/mtree -deU -f /etc/mtree/BSD.var.dist -p /var > /dev/null
+	# Configure the shared library cache
+	/sbin/ldconfig -elf /usr/lib /usr/local/lib /lib
+}
+
+# If we do not have a writable /var, create a memory filesystem for /var
+# unless told otherwise by rc.conf.  We don't have /usr yet so use mkdir
+# instead of touch to test.  We want mount to record its mounts so we
+# have to make sure /var/db exists before doing the mount -a.
+#
+BOOT_LOWMEM=0
+if [ -f /etc/boot_lowmem ]; then
+	BOOT_LOWMEM=`/bin/cat /etc/boot_lowmem`
+fi
+PLATFORM=`/bin/cat /etc/platform`
+case "${varmfs}" in
+[Yy][Ee][Ss])
+	if [ ${BOOT_LOWMEM} -ne 0 ]; then
+		xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 6`
+		#/sbin/newfs -U -t -m2 -o space /dev/${xmd} >/dev/null
+		/sbin/newfs -U -t /dev/${xmd} >/dev/null
+		/sbin/mount -o noatime,acls /dev/${xmd} /var
+		/sbin/xmdconfig -m -c 6 -u ${xmd}
+	else
+		case ${PLATFORM} in
+		*-embedded)
+			xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 6`
+			/sbin/newfs -U -t /dev/${xmd} >/dev/null
+			/sbin/mount -o noatime,acls /dev/${xmd} /var
+			/sbin/xmdconfig -m -c 1 -u ${xmd}
+			;;
+		*)
+			mount_md ${varsize} /var "${varmfs_flags}"
+			;;
+		esac
+	fi
+	mkdir /var/tmp
+	/sbin/mount -t tmpfs -o mode=1777,size=${vartmpsize} tmpfs /var/tmp
+	;;
+[Nn][Oo])
+	;;
+*)
+	if /bin/mkdir -p /var/.diskless 2> /dev/null; then
+		rmdir /var/.diskless
+	else
+		if [ ${BOOT_LOWMEM} -ne 0 ]; then
+			xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 9`
+			/sbin/newfs -U -t /dev/${xmd} >/dev/null
+			/sbin/mount -o noatime,acls /dev/${xmd} /var
+			/sbin/xmdconfig -m -c 6 -u ${xmd}
+		else
+			case ${PLATFORM} in
+			*-embedded)
+				xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 9`
+				/sbin/newfs -U -t /dev/${xmd} >/dev/null
+				/sbin/mount -o noatime,acls /dev/${xmd} /var
+				/sbin/xmdconfig -m -c 1 -u ${xmd}
+				;;
+			*)
+				mount_md ${varsize} /var "${varmfs_flags}"
+				;;
+			esac
+		fi
+		mkdir /var/tmp
+		/sbin/mount -t tmpfs -o mode=1777,size=${vartmpsize} tmpfs /var/tmp
+	fi
+esac
+
+case "${populate_var}" in
+[Yy][Ee][Ss])
+	populate_var
+	;;
+[Nn][Oo])
+	;;
+*)
+	if [ -d /var/run -a -d /var/db -a -d /var/empty ] ; then
+		true
+	else
+		if [ ! -x /usr/sbin/mtree ] ; then
+			exit 1
+		fi
+		populate_var
+	fi
+	;;
+esac
+
+# Make sure we have /var/log/utx.lastlogin and /var/log/utx.log files
+if [ ! -f /var/log/utx.lastlogin ]; then
+	cp /dev/null /var/log/utx.lastlogin
+	chmod 644 /var/log/utx.lastlogin
+fi
+if [ ! -f /var/log/utx.log ]; then
+	cp /dev/null /var/log/utx.log
+	chmod 644 /var/log/utx.log
+fi

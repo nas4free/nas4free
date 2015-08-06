@@ -1,0 +1,223 @@
+#!/usr/local/bin/php-cgi -f
+<?php
+/*
+	rc.initial.install2gpt
+
+	Part of NAS4Free (http://www.nas4free.org).
+	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	All rights reserved.
+
+	Portions of freenas (http://www.freenas.org).
+	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
+
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer.
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies,
+	either expressed or implied, of the NAS4Free Project.
+*/
+require_once("config.inc");
+require_once("functions.inc");
+require_once("install.inc");
+require_once("util.inc");
+require_once("tui.inc");
+
+// Default size of slice/partition 1 (used for OS)
+$part1size = $g_install['part1size_embedded'];
+$swapsize =  $g_install['default_swap'];
+
+// Default partition layout
+$partlayout = array(
+	array("partition" => 1, "fstype" => "boot", "size" => "512k", "volname" => "boot"),
+	array("partition" => 2, "fstype" => "ufs",  "size" => $part1size, "volname" => "root"),
+	array("partition" => 3, "fstype" => "swap", "size" => $swapsize, "volname" => "swap"),
+ 	array("partition" => 4, "fstype" => "ufs",  "size" => "*", "volname" => "data")
+);
+
+// Get product information
+$productname = get_product_name();
+
+// Display information
+$text = <<<EOD
+
+{$productname} 'Embedded' installer for HDD, SSD, CF or USB flash drive.
+
+- Create GPT partition 1, for bootcode
+- Create GPT partition 2, using UFS, {$part1size}MB size for OS image
+- Create GPT partition 3, as SWAP, {$swapsize}MB or more
+- Create GPT partition 4, using UFS, for DATA
+- Uses a RAM disk to limit read/write access to the device
+
+WARNING: There will be some limitations:
+1. This will erase ALL partitions and data on the destination disk
+
+EOD;
+$result = tui_display_message_ex("{$productname} Embedded Installation", $text, 74, 15);
+if (0 != $result)
+	exit(0);
+
+// Detect hardware
+$cdlist = get_install_source_drive();
+$disklist = get_physical_disks_list();
+
+if (0 == count($cdlist)) {
+	tui_wait_keypress("Failed to detect any CDROM/USB.");
+	exit(0);
+}
+
+// Display installation medias
+$amenuitem = array();
+foreach ($cdlist as $cdromk => $cdromv) {
+	$menuitem = array();
+	$menuitem['tag'] = $cdromk;
+	$menuitem['item'] = $cdromv['desc'];
+	$amenuitem[] = $menuitem;
+}
+$result = tui_display_menu("Choose installation media", "Select CD/DVD/USB drive for installation source.", 60, 10, 6, $amenuitem, $cdrom);
+if (0 != $result)
+	exit(0);
+
+// Display destination medias
+$amenuitem = array();
+foreach ($disklist as $diskk => $diskv) {
+	if ($diskk === $cdrom)
+		continue;
+	$menuitem = array();
+	$menuitem['tag'] = $diskk;
+	$menuitem['item'] = "{$diskv['size']} <{$diskv['desc']}>";
+	$amenuitem[] = $menuitem;
+}
+$result = tui_display_menu("Choose destination media", "Select media where {$productname} OS should be installed.", 60, 14, 10, $amenuitem, $harddrive);
+if (0 != $result)
+	exit(0);
+
+// Check if destination drive is mounted
+if (disks_ismounted_ex($harddrive, "mdisk")) {
+	tui_wait_keypress("The destination drive is already in usage!");
+	exit(0);
+}
+
+// Add swap partition?
+//$result = tui_display_yesno("Do you want to add a swap partition?", 40, 5, false);
+$result = 0; // always adding swap
+if (0 == $result) {
+	do {
+		$raminfo = system_get_ram_info();
+		$swapsize = intval(ceil($raminfo['physical'] / 1024 / 1024 / 1024)); // Convert to GB
+		$swapsize *= 1024; /* MB */
+		/*
+		if ($swapsize < 512)
+			$swapsize = 512;
+		*/
+		if ($swapsize < $g_install['default_swap'])
+			$swapsize = $g_install['default_swap'];
+		$result = tui_display_input("Enter the size of the swap partition in MB. (minimum 512, recommend {$g_install['default_swap']} or more)", 47, 8, $swapsize);
+		if (0 != $result)
+			exit(0);
+	} while (!is_numeric($swapsize) || $swapsize < 512);
+
+	// Add swap slice/partition to the partition layout.
+	//$partlayout[] = array("partition" => 3, "fstype" => "swap", "size" => $swapsize, "volname" => "");
+	$partlayout[2]['size'] = $swapsize;
+}
+
+if (install_mount_cd($cdlist[$cdrom])) {
+	tui_wait_keypress("There was a problem while mounting the CDROM/USB drive.");
+	exit(0);
+}
+
+if (install_init_gptdisk($harddrive, $partlayout)) {
+	install_unmount_cd();
+	tui_wait_keypress("There was a problem during initializing the destination disk.");
+	exit(0);
+}
+
+if (install_dd_image("{$harddrive}p2")) {
+	install_unmount_cd();
+	tui_wait_keypress("There was a problem while copying files.");
+	exit(0);
+}
+
+/*
+if (add_default_swap("{$harddrive}p3")) {
+	install_unmount_cd();
+	tui_wait_keypress("There was a problem while adding swap.");
+	exit(0);
+}
+*/
+
+install_unmount_cd();
+
+// Display final message
+$text = <<<EOD
+
+{$productname} has been installed on {$harddrive}p2.
+
+EOD;
+
+$boot_lowmem = trim(@file_get_contents("/etc/boot_lowmem"));
+if ($boot_lowmem === "1") {
+	// The lowmem version uses swap on it. Should not remove!!
+	$text .= <<<EOD
+
+You can now reboot the server.
+
+EOD;
+} else {
+	$text .= <<<EOD
+
+You can now safely remove the LiveCD/USB and reboot the server.
+
+EOD;
+}
+
+$text .= <<<EOD
+
+To use the DATA partition:
+- Add the disk {$harddrive} on the 'Disks|Management' page.
+- Add the mount point on the 'Disks|Mount Point|Management' page.
+  Use the following parameters:
+  Disk {$harddrive}, Partition 4, Partition type GPT, Filesystem UFS
+
+EOD;
+
+/*
+if (0 < $swapsize) {
+	$text .= <<<EOD
+
+To use the SWAP partition:
+- Enable swap space usage on the 'System|Advanced|Swap' page.
+  Use the following parameters:
+  Type: Device, Device: /dev/{$harddrive}p3
+
+EOD;
+}
+*/
+
+$text .= <<<EOD
+
+DO NOT format the drive {$harddrive}! The DATA partition has already been
+formated for you as part of the installation!
+EOD;
+
+tui_wait_keypress($text);
+?>

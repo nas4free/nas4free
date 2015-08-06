@@ -1,0 +1,57 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# Portions of freenas (http://www.freenas.org).
+# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
+# All rights reserved.
+#
+
+# PROVIDE: resolv
+# REQUIRE: netif FILESYSTEMS
+# KEYWORD: nojail
+
+. /etc/rc.subr
+. /etc/configxml.subr
+
+name="resolv"
+stop_cmd=':'
+
+load_rc_config $name
+
+# if the info is available via dhcp/kenv
+# build the resolv.conf
+#
+if [ ! -e /etc/resolv.conf -a \
+	-n "`/bin/kenv dhcp.domain-name-servers 2> /dev/null`" ]; then
+		> /etc/resolv.conf
+
+		if [ -n "`/bin/kenv dhcp.domain-name 2> /dev/null`" ]; then
+			echo domain `/bin/kenv dhcp.domain-name` > /etc/resolv.conf
+		fi
+
+		set -- `/bin/kenv dhcp.domain-name-servers`
+		for ns in `IFS=','; echo $*`; do
+			echo nameserver $ns >> /etc/resolv.conf;
+		done
+else
+	# Update resolv.conf if DHCP is not configured. Use configuration values from config.xml.
+	_ipaddress=`configxml_get "//interfaces/lan/ipaddr"`
+	if [ "dhcp" != "${_ipaddress}" ]; then
+		echo "Updating resolv.conf."
+
+		# Set the domain, IP4 and IP6 DNS servers.
+		/usr/local/bin/xml sel -t -o "domain " -v "//system/domain" -n \
+			-m "//system/dnsserver" \
+				-i "string-length() > 0" -o "nameserver " -v "." -n -b \
+			-b \
+			-i "count(//interfaces/*[enable]/ipv6_enable) > 0" \
+				-m "//system/ipv6dnsserver" \
+					-i "string-length() > 0" -o "nameserver " -v "." -n -b \
+				-b \
+			-b \
+			${configxml_file} | /usr/local/bin/xml unesc > /etc/resolv.conf
+	fi
+fi
