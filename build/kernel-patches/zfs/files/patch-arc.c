@@ -1,13 +1,13 @@
---- src/sys/cddl/contrib/opensolaris/uts/common/fs/zfs/arc.c.orig	2015-04-20 10:28:00.000000000 +0900
-+++ src/sys/cddl/contrib/opensolaris/uts/common/fs/zfs/arc.c	2015-04-20 16:50:26.000000000 +0900
-@@ -4037,12 +4037,37 @@
+--- src/sys/cddl/contrib/opensolaris/uts/common/fs/zfs/arc.c.orig	2015-07-12 15:29:17.258890000 +0900
++++ src/sys/cddl/contrib/opensolaris/uts/common/fs/zfs/arc.c	2015-07-12 15:41:25.622642000 +0900
+@@ -4163,12 +4163,37 @@
  #endif	/* sun */
  	/* set min cache to 1/32 of all memory, or 16MB, whichever is more */
- 	arc_c_min = MAX(arc_c / 4, 64<<18);
+ 	arc_c_min = MAX(arc_c / 4, 16 << 20);
 +#if 0
  	/* set max to 1/2 of all memory, or all but 1GB, whichever is more */
- 	if (arc_c * 8 >= 1<<30)
- 		arc_c_max = (arc_c * 8) - (1<<30);
+ 	if (arc_c * 8 >= 1 << 30)
+ 		arc_c_max = (arc_c * 8) - (1 << 30);
  	else
  		arc_c_max = arc_c_min;
  	arc_c_max = MAX(arc_c * 5, arc_c_max);
@@ -38,7 +38,7 @@
  
  #ifdef _KERNEL
  	/*
-@@ -4077,6 +4102,19 @@
+@@ -4203,6 +4228,19 @@
  	if (zfs_arc_p_min_shift > 0)
  		arc_p_min_shift = zfs_arc_p_min_shift;
  
