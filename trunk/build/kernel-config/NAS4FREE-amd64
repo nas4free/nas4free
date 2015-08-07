@@ -1,6 +1,8 @@
 include         GENERIC
 ident		NAS4FREE-x64
 
+makeoptions	MODULES_EXTRA="mlx4 mlxen"
+
 #####################################################################
 # NAS4FREE
 #####################################################################
@@ -31,21 +33,22 @@ device		mxge		# Myricom Myri-10G 10GbE NIC
 device		nxge		# Neterion Xframe 10GbE Server/Storage Adapter
 device		qlxge		# QLogic 8100 10GbE/CNA Adapter
 device		qlxgb		# QLogic 3200 and 8200 10GbE/CNA Adapter
-device		qlxgbe		# QLogic 8300 10GbE/CNA Adapter
+#device		qlxgbe		# QLogic 8300 10GbE/CNA Adapter
 device		vxge		# Exar/Neterion XFrame 3100 10GbE
 device		oce		# Emulex 10Gbe Ethernet
 device		sfxge		# Solarflare 10Gb Ethernet Adapters
 
 # InfiniBand support
-#options	OFED		# InfiniBand support
-#options	SDP		# SDP protocol
-#options	IPOIB		# IPoIB
-#options	IPOIB_CM	# IPoIB connected mode
+options		OFED		# InfiniBand support
+options		SDP		# SDP protocol
+options		IPOIB		# IPoIB
+options		IPOIB_CM	# IPoIB connected mode
+device		ipoib
 
 # InfiniBand Adapters
-#device		mlx4ib
-#device		mlxen
-#device		mthca
+#device		mlx4ib		# Mellanox ConnectX HCA InfiniBand
+#device		mlxen		# Mellanox ConnectX HCA Ethernet
+#device		mthca		# Mellanox HCA InfiniBand
 
 # Hardware crypto acceleration
 device		crypto		# core crypto support
@@ -71,5 +74,3 @@ options		NKPT=165
 # vnet jails
 options 	VIMAGE
 device		epair
-options 	RACCT		# Resource Accounting
-options 	RCTL		# Resource Limits

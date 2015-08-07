@@ -725,6 +725,11 @@ create_image() {
 	# copy kernel modules
 	copy_kmod
 
+	# Mellanox ConnectX EN
+	if [ "amd64" == ${NAS4FREE_ARCH} ]; then
+		echo 'mlxen_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	fi
+
 	echo "===> Unmount memory disk"
 	umount $NAS4FREE_TMPDIR
 	echo "===> Detach memory disk"
@@ -842,6 +847,11 @@ create_iso () {
 	cd ${NAS4FREE_OBJDIRPREFIX}/usr/src/sys/${NAS4FREE_KERNCONF}/modules/usr/src/sys/modules && install -v -o root -g wheel -m 555 zfs/zfs.ko $NAS4FREE_TMPDIR/boot/kernel
 	# copy kernel modules
 	copy_kmod
+
+	# Mellanox ConnectX EN
+	if [ "amd64" == ${NAS4FREE_ARCH} ]; then
+		echo 'mlxen_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	fi
 
 	if [ ! $TINY_ISO ]; then
 		echo "ISO: Copying IMG file to $NAS4FREE_TMPDIR"
@@ -1071,6 +1081,11 @@ create_usb () {
 	# copy kernel modules
 	copy_kmod
 
+	# Mellanox ConnectX EN
+	if [ "amd64" == ${NAS4FREE_ARCH} ]; then
+		echo 'mlxen_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	fi
+
 	echo "USB: Copying IMG file to $NAS4FREE_TMPDIR"
 	cp ${NAS4FREE_WORKINGDIR}/image.bin.xz ${NAS4FREE_TMPDIR}/${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-embedded.xz
 
@@ -1185,6 +1200,11 @@ create_full() {
 	echo 'isboot_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'zfs_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'geom_xmd_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+
+	# Mellanox ConnectX EN
+	if [ "amd64" == ${NAS4FREE_ARCH} ]; then
+		echo 'mlxen_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	fi
 
 	#Check that there is no /etc/fstab file! This file can be generated only during install, and must be kept
 	[ -f $NAS4FREE_TMPDIR/etc/fstab ] && rm -f $NAS4FREE_TMPDIR/etc/fstab
