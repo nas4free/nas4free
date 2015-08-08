@@ -16,7 +16,6 @@
     SUBDIR += fusefs-ntfs
     SUBDIR += geom_raid5
     SUBDIR += gzip
-    SUBDIR += host
     SUBDIR += inadyn-mt
     SUBDIR += iperf3
     SUBDIR += isboot
@@ -40,7 +39,6 @@
     SUBDIR += python2
     SUBDIR += rconf
     SUBDIR += rsync
-    SUBDIR += samba41
     SUBDIR += samba42
     SUBDIR += scponly
     SUBDIR += sipcalc
