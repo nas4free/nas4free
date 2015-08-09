@@ -1,6 +1,6 @@
 PORTNAME=		lighttpd
-PORTVERSION=	1.4.36
-PORTREVISION= 1
+PORTVERSION=	1.4.35
+PORTREVISION= 0
 CATEGORIES=		www
 COMMENT=		A secure, fast, compliant, and very flexible Web Server
 MAINTAINER=		zoon01@nas4free.org
@@ -12,11 +12,16 @@ LIB_DEPENDS+=		libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid \
 							libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
 							libpcre.so:${PORTSDIR}/devel/pcre
 
-GNU_CONFIGURE=	yes
-USES=			autoreconf gmake libtool tar:xz
-OPTIONS_DEFAULT=	OPENSSL
+USE_BZIP2=	  yes
+USES=		gmake libtool tar:xz
+GNU_CONFIGURE=  yes
+USE_OPENSSL=	  yes
 USE_GNOME+=	  libxml2
+MAKE_JOBS_SAFE= yes
 
+USE_AUTOTOOLS=	autoconf autoheader aclocal automake
+ACLOCAL_ARGS=	-I m4
+AUTOMAKE_ARGS=	--add-missing
 
 CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd --enable-static \
 						                     --sysconfdir=/var/etc/ \
@@ -26,7 +31,6 @@ CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd --enable-static \
 									--with-openssl \
 									--without-lua \
 									--with-bzip2 \
-									--enable-ipv6 \
 									--with-webdav-props \
 									--with-webdav-locks
 
