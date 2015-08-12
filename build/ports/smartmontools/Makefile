@@ -1,5 +1,5 @@
 PORTNAME=		smartmontools
-PORTVERSION=	6.3
+PORTVERSION=	6.4
 CATEGORIES=		sysutils
 COMMENT=		S.M.A.R.T. disk monitoring tools
 MAINTAINER=		zoon01@nas4free.org
@@ -13,7 +13,7 @@ NO_PKG_REGISTER=yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-docdir=${DOCSDIR} --disable-sample \
-			--disable-dependency-tracking --disable-drivedb
+			--disable-dependency-tracking
 
 
 CFLAGS:=		${CFLAGS:S/-O2/-O/} -Wno-write-strings
