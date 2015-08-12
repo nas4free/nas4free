@@ -7,16 +7,12 @@ COMMENT=		GEOM RAID5 filesystem
 MAINTAINER=		zoon01@nas4free.org
 
 DISTFILES?=
-
 NO_BUILD?=	yes
-
 NO_PKG_REGISTER?=	yes
-
 #ALWAYS_BUILD_DEPENDS=	yes
-
 DEPENDS_TARGET=	clean build
 
-BUILD_DEPENDS=	graid5:${PORTSDIR}/sysutils/graid5
+BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/sysutils/graid5
 
 
 do-install:
