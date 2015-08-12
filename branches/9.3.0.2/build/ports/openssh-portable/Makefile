@@ -12,11 +12,11 @@ NO_BUILD?=	yes
 # Don't register a port installation as a package.
 NO_PKG_REGISTER?=	yes
 # Set default target to execute when a port is calling a dependency.
-ALWAYS_BUILD_DEPENDS=	yes
+#ALWAYS_BUILD_DEPENDS=	yes
 DEPENDS_TARGET=	clean build
 DISABLE_VULNERABILITIES=yes
 
-BUILD_DEPENDS=	openssh-portable:${PORTSDIR}/security/openssh-portable
+BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/security/openssh-portable
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/security/openssh-portable/work/openssh-*/sshd ${NAS4FREE_ROOTFS}/usr/sbin
