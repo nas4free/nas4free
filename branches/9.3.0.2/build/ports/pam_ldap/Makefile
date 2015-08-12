@@ -15,7 +15,7 @@ NO_PKG_REGISTER?=	 yes
 DEPENDS_TARGET=	clean build
 DISABLE_VULNERABILITIES=yes
 
-BUILD_DEPENDS=	pam_ldap:${PORTSDIR}/security/pam_ldap
+BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/security/pam_ldap
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/security/pam_ldap/work/pam_ldap-*/pam_ldap.so ${NAS4FREE_ROOTFS}/usr/local/lib
