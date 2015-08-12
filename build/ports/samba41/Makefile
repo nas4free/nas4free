@@ -404,8 +404,7 @@ SUB_LIST+=		${SAMBA4_SUB}
 SUB_FILES=		pkg-message README.FreeBSD
 # Make sure that the right version of Python is used by the tools
 # https://bugzilla.samba.org/show_bug.cgi?id=7305
-python_CMD=		${PYTHON_CMD}
-python_OLD_CMD=		${SETENV} python
+python_OLD_CMD=         /usr/bin/env python
 SHEBANG_FILES=		${PATCH_WRKSRC}/source4/scripting/bin/*
 # No fancy color error messages
 .if ${COMPILER_TYPE} == "clang"
