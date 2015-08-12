@@ -14,7 +14,7 @@ NO_PKG_REGISTER?=	yes
 #ALWAYS_BUILD_DEPENDS=	yes
 DEPENDS_TARGET=	clean build
 
-BUILD_DEPENDS=	nss_ldap:${PORTSDIR}/net/nss_ldap
+BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/net/nss_ldap
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/net/nss_ldap/work/nss_ldap-*/nss_ldap.so ${NAS4FREE_ROOTFS}/usr/local/lib/nss_ldap.so.1
