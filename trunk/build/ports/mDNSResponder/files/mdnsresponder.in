@@ -40,10 +40,7 @@ mdnsresponder_mkconf()
 {
 	local _if _domain
 
-	_domain=`configxml_get "//system/domain"`
-	if [ -z ${_domain} ]; then
-	    _domain="local"
-	fi
+	_domain="local."
 	echo "" > ${mdnsresponder_config}
 #
 # This file contains the services to be announced to other Rendezvous aware
