@@ -207,7 +207,8 @@ include("fbegin.inc");
 						<?php if($haserror) { ?>
 							</tr>
 						<tr>
-						<td class="listbg errortext"><?= $smartValueInfo[$match[1]][1]; ?></td><?php } ?>
+						<td class="listlr"></td>
+						<td colspan="3" class="listbg errortext"><?= $smartValueInfo[$match[1]][1]; ?></td><?php } ?>
 							</tr>
 						<?php }
 							if(!$hasdata) { ?>
