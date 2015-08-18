@@ -10,6 +10,7 @@ device		speaker
 
 # for ZFS tuning
 options		VM_KMEM_SIZE_SCALE=1
+options 	KSTACK_PAGES=6
 
 # Networking options
 #options		DEVICE_POLLING

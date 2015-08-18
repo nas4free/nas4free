@@ -11,6 +11,7 @@ options		KVA_PAGES=512
 # for ZFS tuning
 options		VM_KMEM_SIZE_SCALE=2
 options		VM_KMEM_SIZE_MAX=(1280UL*1024*1024)
+options 	KSTACK_PAGES=4
 
 # Networking options
 #options		DEVICE_POLLING
