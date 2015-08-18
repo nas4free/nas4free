@@ -2,7 +2,12 @@
 
 # set default maxsize
 eval `/usr/bin/grep websrv_maxrequestsize /etc/rc.conf`
-websrv_maxrequestsize=${websrv_maxrequestsize:-"16777216"}
+ARCH=`uname -p`
+if [ "$ARCH" = "amd64" ]; then
+	websrv_maxrequestsize=${websrv_maxrequestsize:-"16777216"}
+else
+	websrv_maxrequestsize=${websrv_maxrequestsize:-"2097152"}
+fi
 
 # minimum size in kibibytes is 1048576KiB (1GiB)
 if [ ${websrv_maxrequestsize} -lt 1048576 ]; then
