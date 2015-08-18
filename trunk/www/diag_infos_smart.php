@@ -118,7 +118,7 @@ $smartValueInfo = array(
 	"234" => array(False,"",gettext("Decoded as: byte 0-1-2 = average erase count (big endian) and byte 3-4-5 = max erase count (big endian).")),
 	"235" => array(False,"",gettext("decoded as: byte 0-1-2 = good block count (big endian) and byte 3-4 = system(free) block count.")),
 	"240" => array(False,"",gettext("Time spent during the positioning of the drive heads.")),
-	"240" => array(False,"",gettext("Count of times the link is reset during a data transfer.")),
+	"240a" => array(False,"",gettext("Count of times the link is reset during a data transfer.")),
 	"241" => array(False,"",gettext("Total count of LBAs written.")),
 	"242" => array(False,"",gettext("Total count of LBAs read. Some S.M.A.R.T. utilities will report a negative number for the raw value since in reality it has 48 bits rather than 32.")),
 	"249" => array(False,"",gettext("Total NAND Writes. Raw value reports the number of writes to NAND in 1GB increments.")),
