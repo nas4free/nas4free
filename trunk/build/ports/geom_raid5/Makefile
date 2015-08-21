@@ -1,4 +1,4 @@
-# wgboome.homepage.t-online.de/geom_raid5.tbz
+# http://lev.serebryakov.spb.ru/download/graid5/
 PORTNAME=		geom_raid5
 PORTVERSION=	1.3
 PORTREVISION?=  1
