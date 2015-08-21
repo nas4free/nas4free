@@ -18,6 +18,7 @@ GNU_CONFIGURE=  yes
 USE_OPENSSL=	  yes
 USE_GNOME+=	  libxml2
 MAKE_JOBS_SAFE= yes
+DISABLE_VULNERABILITIES=yes
 
 USE_AUTOTOOLS=	autoconf autoheader aclocal automake
 ACLOCAL_ARGS=	-I m4
