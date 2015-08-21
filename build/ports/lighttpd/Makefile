@@ -1,39 +1,41 @@
-PORTNAME=		lighttpd
-PORTVERSION=	1.4.35
-PORTREVISION= 0
+PORTNAME=	lighttpd
+PORTVERSION=	1.4.36
+PORTREVISION=	0
 CATEGORIES=		www
 COMMENT=		A secure, fast, compliant, and very flexible Web Server
 MAINTAINER=		zoon01@nas4free.org
 
-MASTER_SITES=	http://download.lighttpd.net/lighttpd/releases-1.4.x/ \
-							http://mirrors.cat.pdx.edu/lighttpd/
+MASTER_SITES=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
 
-LIB_DEPENDS+=		libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid \
-							libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
-							libpcre.so:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre
+LIB_DEPENDS+=	libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid \
+		libsqlite3.so:${PORTSDIR}/databases/sqlite3
+LIB_DEPENDS+=	libev.so:${PORTSDIR}/devel/libev
 
-USE_BZIP2=	  yes
-USES=		gmake libtool tar:xz
-GNU_CONFIGURE=  yes
-USE_OPENSSL=	  yes
-USE_GNOME+=	  libxml2
-MAKE_JOBS_SAFE= yes
-DISABLE_VULNERABILITIES=yes
+GNU_CONFIGURE=	yes
+USES=		autoreconf gmake libtool pkgconfig tar:xz
+USE_BZIP2=	yes
+USE_OPENSSL=	yes
+USE_GNOME+=	libxml2
 
-USE_AUTOTOOLS=	autoconf autoheader aclocal automake
-ACLOCAL_ARGS=	-I m4
-AUTOMAKE_ARGS=	--add-missing
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+
+.include <bsd.port.options.mk>
 
 CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd --enable-static \
-						                     --sysconfdir=/var/etc/ \
-									--enable-lfs \
-									--without-mysql \
-									--without-ldap \
-									--with-openssl \
-									--without-lua \
-									--with-bzip2 \
-									--with-webdav-props \
-									--with-webdav-locks
+			--sysconfdir=/var/etc/ \
+			--enable-lfs \
+			--with-libev \
+			--without-mysql \
+			--without-ldap \
+			--with-openssl \
+			--with-openssl-includes=${OPENSSLINC} \
+			--with-openssl-libs=${OPENSSLLIB} \
+			--without-lua \
+			--with-bzip2 \
+			--with-webdav-props \
+			--with-webdav-locks
 
 do-install:
 		@${INSTALL_PROGRAM} -v ${WRKSRC}/src/lighttpd ${NAS4FREE_ROOTFS}/usr/local/sbin

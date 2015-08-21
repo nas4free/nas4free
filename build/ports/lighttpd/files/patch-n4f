@@ -1,0 +1,19 @@
+--- src/chunk.c.orig	2015-07-26 19:36:36.000000000 +0900
++++ src/chunk.c	2015-08-21 20:56:02.651973000 +0900
+@@ -432,14 +432,14 @@
+ 	 * */
+ 
+ 	if (NULL != dest->last
+-		&& FILE_CHUNK != dest->last->type
++		&& FILE_CHUNK == dest->last->type
+ 		&& dest->last->file.is_temp
+ 		&& -1 != dest->last->file.fd
+ 		&& 0 == dest->last->offset) {
+ 		/* ok, take the last chunk for our job */
+ 		dst_c = dest->last;
+ 
+-		if (dest->last->file.length >= 1 * 1024 * 1024) {
++		if (dest->last->file.length >= 16 * 1024 * 1024) {
+ 			/* the chunk is too large now, close it */
+ 			if (-1 != dst_c->file.fd) {
+ 				close(dst_c->file.fd);
