@@ -92,7 +92,8 @@ server.modules = (
 server.errorlog-use-syslog = "enable"
 # debugmode ° debug.log-request-handling enable/disable
 debug.log-request-handling = "disable"
-server.event-handler = "freebsd-kqueue"
+#server.event-handler = "freebsd-kqueue"
+server.event-handler = "libev"
 server.max-write-idle = ${websrv_server_maxwriteidle}
 index-file.names   = ( "index.php", "index.html", "index.htm", "index.shtml", "default.htm" )
 #\$HTTP["url"] =~ "\.(js|css|png|gif|jpg)$" {
