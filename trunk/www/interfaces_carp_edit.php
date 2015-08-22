@@ -68,7 +68,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_carp, "uuid"))
 	$pconfig['if'] = "carp" . get_nextcarp_id();
 	$pconfig['vhid'] = "";
 	$pconfig['vipaddr'] = "";
-	$pconfig['vsubnet'] = "24";
+	$pconfig['vsubnet'] = "32";
 	$pconfig['advskew'] = "100";
 	$pconfig['password'] = "";
 	$pconfig['linkup'] = "";
