@@ -1,6 +1,6 @@
 PORTNAME=	lighttpd
 PORTVERSION=	1.4.36
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=		www
 COMMENT=		A secure, fast, compliant, and very flexible Web Server
 MAINTAINER=		zoon01@nas4free.org
@@ -16,7 +16,8 @@ GNU_CONFIGURE=	yes
 USES=		autoreconf gmake libtool pkgconfig tar:xz
 USE_BZIP2=	yes
 USE_OPENSSL=	yes
-USE_GNOME+=	libxml2
+# Only used for webdav
+#USE_GNOME+=	libxml2
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
