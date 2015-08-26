@@ -30,6 +30,7 @@ extra_commands="reload mkconf"
 # Defaults
 sshd_enable=${sshd_enable:-"NO"}
 sshd_config=${sshd_config:-"/var/etc/ssh/sshd_config"}
+sshd_hostrsakey=${sshd_hostrsakey:-"/var/etc/ssh/ssh_host_rsa_key"}
 sshd_hostdsakey=${sshd_hostdsakey:-"/var/etc/ssh/ssh_host_dsa_key"}
 command="/usr/sbin/${name}"
 command_args="-f /var/etc/ssh/sshd_config -h /var/etc/ssh/ssh_host_dsa_key"
@@ -42,6 +43,7 @@ sshd_mkconf()
 	# Create sshd_config file
 	/usr/local/bin/xml sel -t \
 		-o "HostKeyAlgorithms ssh-ed25519,ssh-rsa,ssh-dss" -n \
+		-o "HostKey /var/etc/ssh/ssh_host_rsa_key" -n \
 		-o "HostKey /var/etc/ssh/ssh_host_dsa_key" -n \
 		-o "SyslogFacility LOCAL3" -n \
 		-o "Protocol 2" -n \
@@ -70,6 +72,33 @@ sshd_mkconf()
 		/usr/bin/uudecode -m -p -r ${sshd_hostdsakey}.tmp > ${sshd_hostdsakey}
 		/bin/rm -f ${sshd_hostdsakey}.tmp
 	else
+		echo "-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAvzenPFTj9cOw+30GhPpNk8OJ8prhW27iT3zbOXP+vSIxkLnS
+6lXnr9t5ZdrD15zXWs3HP0jRymQOJMAzOgmVTc1BSkwH82hdaIsN5sAJ1oZQcvwN
+2D4wcAKsNzZDf1QHmie8g4+GYDYri+Mdmz5ZwIHSgKb6put+l3b4JoJUl3JyCm0m
+W8nc4lRfyfS+cC63YebyMQ6X3fsx/E/hFShQ0FY6qgclpIJCcTTabqeTc9vC9DTX
+dqH8huyy6PRWdINieUb0t4dBGXSSmoDmjdYqj9L8wRawavF2U4biDvofCE0GcgR9
+Mhrc1HFwnyx5ovN6pvYcxlx3X9Jxa8ftHJCdTwIDAQABAoIBADo+P2g3C0B+nNfd
+WzEB9MM/WjNVTbNF8RT5GOVFGaCOW76Te1T5WZrNJQsLOX/hPA9igoAaNByLoWs8
+R94zsRCDppF02y8e6OTBBjj04YpAWxzK/YSSXLqhdcdTdffAppgj5l3ER8/icB0p
+zojM0xW59V5OfiZ9sI9+I1PHevCt2pZBOhJNHohit2+hyDWVsSsgpR+qaWRJtsfW
+p+AJOpxmgcvmeVnmFipb4gi3PdRN8WCM/lh1wdv8vNlsNBe1X3T6C9Lqfb3PP25u
+mg9uAX6z2/MAhUuqV1Gxaj0GWVMH6OMFat6rdaIm+Zs7nJ49sdnUHlpOze/U8tOp
+vn8vjWECgYEA4IeF+UXxmQRfZmiT59BPq9yqd3/mUbnDj9QZfqfJWcRkbu5+wzcS
+YLhHPQmOqn2Le8s51X/qJ/6mLqgMZrMJLtqQ59o+XC2O/5Kzx7CjLH2GqwASn3tZ
+WV3/6zC13SciOXkZfvFgw/13xQqT4/2tDCpfeYDs7AbY8jskjUCt4rcCgYEA2gTX
+hrVDFNVmXpX33DLJ2Xgh07b8TGqb4XAwpJECL21lNm0R3wzGMFsNnpErzl7IpsxB
+bXbvTefInzVTLhvlX2xrm3wSbvwYFiAQhOTxuvCNfAMUu+hxXvPtdSGc1/VPr0JY
+qyZbFxnBu8MbckCS/eul2FvP7dsujjzqpnU9IikCgYAKu8/Wy9Yx53icD7HKajX0
+1Fa94bpj+8pyjMQvPtwsU2wttW8P7AkP4J9fNp7AXcIWR+/a2gOap9zP7C6zlimB
+OOemfdNvWqo0Y5H+oN4cGWAfuqApSZ9K22iJmMmI6f8D2lsyq11h4TMhk1DgnFby
+dvAbgeNRoT4rzlIAArCNXwKBgGlD6zhMbq4xdzL2H+2+y/znZxXNBTZ0Rv1raOEc
+brytii/kK7vRdCPG4uWL3GXRF/qJJpIO2e54mkJcwePCblZLiA1Ts6bIq2yLYM55
+qEmFehrFdg5gZdTd2+oxJ4SSGj5Zv2wrodGeiw74Xlkk2pQlYjb75YJH0Mu2l+l1
+M+Y5AoGAHoAq4xow56hcQd3re3eLWWEG+3m+Y9KO0Wen87Q9TP1sLDXFON4etF+v
+jDOTXoR8UbcVDcayJ4D6Ngc+tBl7f6GGyRfjRP8y4sqz1WF99nD/W0aI0fA6jBz0
+/oxl/XHd2xpJps+/hLdRrTCRF0tzeeNmefmAXEmwMdEOO9TpWg4=
+-----END RSA PRIVATE KEY-----" > ${sshd_hostrsakey}
 		echo "-----BEGIN DSA PRIVATE KEY-----
 MIIDPwIBAAKCAQEA8fkdytzZDMiLspAt/Xs35pS4V/Bvu4rG6iPOY7eTJvecx2fe
 z6t9MIktZMl4cJ4pvrIykMXVcZdnBU36iZZXwKwD22K84djNnCzdvRAH8kQ2NiaE
@@ -92,6 +121,7 @@ j2nICMgv/gj3zzuk7zcMpnbvGyA3W8VWb6IjJDvww4rJ21Q2gHBC5XCohJsCFQCD
 -----END DSA PRIVATE KEY-----" > ${sshd_hostdsakey}
 	fi
 
+	/bin/chmod 0600 ${sshd_hostrsakey}
 	/bin/chmod 0600 ${sshd_hostdsakey}
 }
 
