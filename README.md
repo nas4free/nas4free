@@ -1,3 +1,3 @@
 IMPORTANT NOTE: 
 
-This is the HEAD master branch of NAS4Free 10.2.0.2
+This is the HEAD master branch of NAS4Free 10.x
