@@ -52,7 +52,6 @@ $g = array(
 	"xml_rootobj" => "nas4free",
 	"debug" => false,
 	"latest_config" => "2.0",
-	"nopccard_platforms" => array("wrap", "net48xx"),
 	"wireless_regex" => "/^(ndis|wlan|an|ath|bwi|bwn|ipw|iwi|iwn|malo|mwl|ral|wi|wpi|rsu|rum|run|uath|upgt|ural|urtw|urtwn|usie|zyd)/",
 	"default_passwd" => "nas4free",
 	"default_ip" => "192.168.1.250"

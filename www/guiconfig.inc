@@ -80,7 +80,7 @@ $reservedlogin = array("root", "toor", "daemon", "operator", "bin", "tty", "kmem
 $tcpflags = array("fin", "syn", "rst", "psh", "ack", "urg");
 
 /* platforms that support firmware updating */
-$fwupplatforms = array('net45xx', 'net48xx', 'embedded', 'wrap', 'full');
+$fwupplatforms = array('embedded', 'full');
 
 /* default setting */
 $input_errors = array();
