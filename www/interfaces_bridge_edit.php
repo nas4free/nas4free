@@ -63,6 +63,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_bridge, "uuid"
 	$pconfig['bridgeif'] = $a_bridge[$cnid]['bridgeif'];
 	$pconfig['mtu'] = !empty($a_bridge[$cnid]['mtu']) ? $a_bridge[$cnid]['mtu'] : "";
 	$pconfig['extraoptions'] = !empty($a_bridge[$cnid]['extraoptions']) ? $a_bridge[$cnid]['extraoptions'] : "";
+	$pconfig['taplist'] = !empty($a_bridge[$cnid]['taplist']) ? $a_bridge[$cnid]['taplist'] : "";
 	$pconfig['desc'] = $a_bridge[$cnid]['desc'];
 } else {
 	$pconfig['enable'] = true;
@@ -71,6 +72,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_bridge, "uuid"
 	$pconfig['bridgeif'] = array();
 	$pconfig['mtu'] = "";
 	$pconfig['extraoptions'] = "";
+	$pconfig['taplist'] = "";
 	$pconfig['desc'] = "";
 }
 
@@ -96,6 +98,7 @@ if ($_POST) {
 		$bridge['bridgeif'] = $_POST['bridgeif'];
 		$bridge['mtu'] = $_POST['mtu'];
 		$bridge['extraoptions'] = $_POST['extraoptions'];
+		$bridge['taplist'] = $_POST['taplist'];
 		$bridge['desc'] = $_POST['desc'];
 
 		if (isset($uuid) && (FALSE !== $cnid)) {
@@ -152,6 +155,7 @@ function get_nextbridge_id() {
 				<?php html_listbox("bridgeif", gettext("Member Interface"), $pconfig['bridgeif'], $a_bridgeif, gettext("Note: Ctrl-click (or command-click on the Mac) to select multiple entries."), true);?>
 				<?php html_inputbox("mtu", gettext("MTU"), $pconfig['mtu'], gettext("Set the maximum transmission unit of the interface to n, default is interface specific. The MTU is used to limit the size of packets that are transmitted on an interface. Not all interfaces support setting the MTU, and some interfaces have range restrictions."), false, 5);?>
 				<?php html_inputbox("extraoptions", gettext("Extra options"), $pconfig['extraoptions'], gettext("Extra options to ifconfig (usually empty)."), false, 40);?>
+				<?php html_inputbox("taplist", gettext("Tap device"), $pconfig['taplist'], gettext("Enter a space-separated list of tap devices. The devices will be created and automatically added it to the bridge."), false, 40);?>
 				<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
 			</table>
 			<div id="submit">

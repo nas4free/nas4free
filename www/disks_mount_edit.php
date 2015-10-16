@@ -117,6 +117,10 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_mount, "uuid")
 $pconfig['partitiontype'] = substr($pconfig['partition'], 0, 1);
 $pconfig['partitionnum'] = substr($pconfig['partition'], 1);
 $pconfig['partitionnum'] = preg_replace('/(\d+).*/', '\1', $pconfig['partitionnum']);
+if ($pconfig['fstype'] == "exfat" && $pconfig['partitiontype'] == "") {
+	$pconfig['partitiontype'] = "p";
+	$pconfig['partitionnum'] = 1;
+}
 
 initmodectrl($pconfig, $pconfig['mode']);
 
@@ -212,7 +216,13 @@ if ($_POST) {
 			$input_errors[] = gettext("Can't mount the system partition 1, the DATA partition is the 2.");
 		}
 		//Check if partition exist
-		if (!file_exists($device)) {
+		if (($_POST['fstype'] == "exfat") && (($_POST['partition'] == "p1") || ($_POST['partition'] == "s1"))) {
+			// no partition is OK
+			if (!file_exists($device)) {
+				$_POST['partition'] = "";
+				$device = "{$_POST['mdisk']}{$_POST['partition']}";
+			}
+		} else if (!file_exists($device)) {
 			$input_errors[] = gettext("Wrong partition type or partition number.");
 		}
 
@@ -520,6 +530,21 @@ function partitiontype_change() {
 	}
 }
 
+var first_fstype_changed = 0;
+function fstype_change() {
+	var sel = document.iform.fstype.selectedIndex;
+	switch (document.iform.fstype.selectedIndex) {
+	case 5: /* exFAT */
+		if (!first_fstype_changed) {
+<?php if (!isset($uuid)):?>
+			document.iform.partitiontype.value = "s";
+<?php endif;?>
+			first_fstype_changed = 1;
+		}
+		break;
+	}
+}
+
 function enable_change(enable_change) {
 	document.iform.type.disabled = !enable_change;
 	document.iform.mdisk.disabled = !enable_change;
@@ -573,7 +598,7 @@ function enable_change(enable_change) {
 			      </td>
 			    </tr>
 					<?php html_inputbox("partitionnum", gettext("Partition number"), $pconfig['partitionnum'], "", true, 3);?>
-					<?php html_combobox("fstype", gettext("File system"), !empty($pconfig['fstype']) ? $pconfig['fstype'] : "", array("ufs" => "UFS", "msdosfs" => "FAT", "cd9660" => "CD/DVD", "ntfs" => "NTFS", "ext2fs" => "EXT2"), "", true);?>
+					<?php html_combobox("fstype", gettext("File system"), !empty($pconfig['fstype']) ? $pconfig['fstype'] : "", array("ufs" => "UFS", "msdosfs" => "FAT", "cd9660" => "CD/DVD", "ntfs" => "NTFS", "ext2fs" => "EXT2", "exfat" => "exFAT"), "", true, false, "fstype_change()");?>
 					<?php html_filechooser("filename", "Filename", !empty($pconfig['filename']) ? $pconfig['filename'] : "", gettext("ISO file to be mounted."), $g['media_path'], true);?>
 					<?php html_inputbox("sharename", gettext("Mount point name"), !empty($pconfig['sharename']) ? $pconfig['sharename'] : "", "", true, 20);?>
 					<?php html_inputbox("desc", gettext("Description"), !empty($pconfig['desc']) ? $pconfig['desc'] : "", gettext("You may enter a description here for your reference."), false, 40);?>

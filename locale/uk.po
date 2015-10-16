@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-16 03:45+0000\n"
-"PO-Revision-Date: 2015-06-26 12:35+0000\n"
+"POT-Creation-Date: 2015-10-10 16:28+0000\n"
+"PO-Revision-Date: 2015-10-06 15:14+0000\n"
 "Last-Translator: Balabuha <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-22 00:13+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-10 13:41+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 "Language: uk\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -176,8 +176,8 @@ msgid ""
 "<div id='enumeration'><ul><li>The new password is also the default root "
 "password of the system!</li></ul></div>"
 msgstr ""
-"<div id='enumeration'><ul><li>Новий пароль також є паролем користувача root "
-"за замовчуванням!</li></ul></div>"
+"<div id='enumeration'><ul><li>Новий пароль також є типовим паролем "
+"користувача root!</li></ul></div>"
 
 msgid ""
 "<li>Default - Rsync will choose the 'during' algorithm when talking to rsync "
@@ -357,7 +357,7 @@ msgid "ARP tables"
 msgstr "ARP таблиці"
 
 msgid "ATTRIBUTE NAME"
-msgstr ""
+msgstr "Ім'я атрибута"
 
 msgid "Access"
 msgstr "Доступ"
@@ -391,7 +391,7 @@ msgstr ""
 "виявлені помилки або у випадку невдалого виконяння команди S.M.A.R.T."
 
 msgid "Active Directory"
-msgstr "Active Directory"
+msgstr "Активна Директорія"
 
 msgid "Active Directory List"
 msgstr "Список Active Directory"
@@ -514,7 +514,7 @@ msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "Адреса віддаленого hastd демона. Повинна бути статична IP адреса."
 
 msgid "Admin password"
-msgstr ""
+msgstr "Пароль адміністратора"
 
 msgid "Administration password"
 msgstr "Адміністративний пароль"
@@ -616,7 +616,7 @@ msgid "All software raid disks are imported."
 msgstr "Всі програмні RAID масиви імпортовано."
 
 msgid "All users will have the root privilege."
-msgstr "Усі користувачі мають root дозволи."
+msgstr "Усі користувачі мають root права."
 
 msgid "Allow"
 msgstr "Дозволити"
@@ -794,6 +794,9 @@ msgstr "Спосіб авторизації"
 
 msgid "Authenticate URL"
 msgstr "URL аутентифікації"
+
+msgid "Authenticate path & realm"
+msgstr ""
 
 msgid "Authentication"
 msgstr "Автентифікація"
@@ -995,7 +998,7 @@ msgid "CIFS/SMB informations"
 msgstr "Інформація CIFS/SMB"
 
 msgid "CIFS/SMB is enabled."
-msgstr ""
+msgstr "CIFS/SMB увімкнено."
 
 msgid "CP1251 (Cyrillic)"
 msgstr "CP1251 (Кирилиця)"
@@ -1070,7 +1073,7 @@ msgid "Cannot get data about interface"
 msgstr "Неможливо отримати дані про інтерфейс"
 
 msgid "Cannot use DHCP for LAN interface."
-msgstr ""
+msgstr "Не можливо використати DHCP для інтерфейсу LAN."
 
 msgid "Capacity"
 msgstr "Ємність"
@@ -1111,7 +1114,7 @@ msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
 msgstr ""
 
 msgid "Check and replace cable"
-msgstr ""
+msgstr "Перевірити і замінити кабель"
 
 msgid "Check interval"
 msgstr "Інтервал перевіряння"
@@ -1247,7 +1250,7 @@ msgid "Consider replacing this drive"
 msgstr ""
 
 msgid "Console Menu"
-msgstr ""
+msgstr "Консольне меню"
 
 msgid "Console screensaver"
 msgstr "Консольний скрін-сейвер"
@@ -1516,9 +1519,7 @@ msgstr "Поточний пароль"
 
 msgid ""
 "Current password is default password. You should use your own password."
-msgstr ""
-"Поточний пароль - це пароль за умовчанням. Ви повинні використати свій "
-"пароль."
+msgstr "Поточний пароль - є типовим. Ви повинні використати свій пароль."
 
 msgid "Current state of drive operation based upon the Life Curve."
 msgstr ""
@@ -1616,10 +1617,10 @@ msgid "Database directory"
 msgstr "Каталог бази даних"
 
 msgid "Dataset"
-msgstr "Датасет"
+msgstr "Набір даних"
 
 msgid "Datasets"
-msgstr "Датасети"
+msgstr "Набір даних"
 
 msgid "Date & Time"
 msgstr "Дата і час"
@@ -1652,13 +1653,13 @@ msgid "Default root"
 msgstr "Кореневий каталог за замовчуванням"
 
 msgid "Default user name is 'admin'."
-msgstr "Ім'я користувача за замовчуванням - 'admin'."
+msgstr "Типове ім'я користувача - 'admin'."
 
 msgid "DefaultTime2Retain"
-msgstr "Час зберігання за замовчуванням"
+msgstr "Час зберігання типово"
 
 msgid "DefaultTime2Wait"
-msgstr "Час очікування за замовчуванням"
+msgstr "Час очікування типовий"
 
 msgid "Define directories/URL's that require authentication."
 msgstr "Вкажіть каталоги та адреси URL, що потребують авторизації."
@@ -1811,7 +1812,7 @@ msgid "Deny"
 msgstr "Заборонити"
 
 msgid "Description"
-msgstr "Описання"
+msgstr "Опис"
 
 msgid "Destination"
 msgstr "Призначення"
@@ -2363,7 +2364,7 @@ msgid "Email report"
 msgstr "Звіт електронною поштою"
 
 msgid "Empty as default."
-msgstr "Пустий за замовчуванням"
+msgstr "Пустий типово"
 
 msgid "Enable"
 msgstr "Дозволити"
@@ -2526,9 +2527,6 @@ msgstr ""
 msgid "Enable tuning of some kernel variables"
 msgstr "Дозволити налаштування деяких параметрів ядра"
 
-msgid "Enable use sendfile."
-msgstr "Дозволити використання sendfile."
-
 msgid "Enable write cache mode."
 msgstr "Увімкнути режим кешування запису."
 
@@ -2567,8 +2565,13 @@ msgid ""
 "Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
-"Введіть номер порта для Цуи-інтерфейсу, якщо ви хочете змінити значення за "
-"замовчуванням (80 для HTTP, 443 для HTTPS)."
+"Введіть номер порта для WebGUI-інтерфейсу, якщо ви хочете змінити значення "
+"на типове (80 для HTTP, 443 для HTTPS)."
+
+msgid ""
+"Enter a space-separated list of tap devices. The devices will be created and "
+"automatically added it to the bridge."
+msgstr ""
 
 msgid "Enter a valid sysctl MIB name."
 msgstr "Введіть правильне ім'я sysctl MIB."
@@ -2586,11 +2589,16 @@ msgid ""
 msgstr "Введіть пароль для  режиму WPA-PSK. Довжина від 8 до 63 символів."
 
 msgid ""
+"Enter the path to the home directory of VirtualBox. VM config and HDD image "
+"will be created under the specified directory."
+msgstr ""
+
+msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
 "use default path /mnt."
 msgstr ""
 "Введіть шлях додомашньої директорії цього користувача. Залишіть поле пустим "
-"для використання шляху за замовчуванням /mnt."
+"для використання типового шляху /mnt."
 
 msgid "Enter the port to send the traps to (default 162)."
 msgstr ""
@@ -3122,7 +3130,7 @@ msgstr "Статистика вводу/виводу"
 
 #, php-format
 msgid "I/O timeout in seconds (%d by default)."
-msgstr "Таймаут вводу/виводу в секундах (за замовчуванням %d)."
+msgstr "Таймаут вводу/виводу в секундах (типово %d)."
 
 msgid "ID"
 msgstr ""
@@ -3370,7 +3378,7 @@ msgid "Initiator side user name. (for mutual CHAP authentication)"
 msgstr ""
 
 msgid "Initiators"
-msgstr ""
+msgstr "Ініціатори"
 
 msgid "Input current (A)"
 msgstr "Вхідний струм (A)"
@@ -3388,7 +3396,7 @@ msgid "Input line frequency low (Hz)"
 msgstr ""
 
 msgid "Input power quality (* opaque)"
-msgstr ""
+msgstr "Якість вхідного живлення (* відносна)"
 
 msgid "Input power sensitivity"
 msgstr "Чутливість вхідної напруги"
@@ -3456,7 +3464,7 @@ msgid "Interval to wait after shutdown with delay command"
 msgstr ""
 
 msgid "Interval to wait before rebooting the UPS)"
-msgstr ""
+msgstr "Інтервал очікування перед перезапуском ББЖ"
 
 msgid "Interval to wait before restarting the load"
 msgstr ""
@@ -3501,6 +3509,8 @@ msgid ""
 "It's recommended to change the default username and password for accessing "
 "the WebGUI, enter the username here."
 msgstr ""
+"Рекомендуємо змінити стандартне ім'я користувача і пароль для доступу до веб "
+"інтерфейсу. введіть ім'я користувача."
 
 msgid "Italian"
 msgstr "Італійска"
@@ -3509,7 +3519,7 @@ msgid "JBOD"
 msgstr "JBOD"
 
 msgid "JBOD information and status"
-msgstr ""
+msgstr "Інформація і статус JBOD"
 
 msgid ""
 "January February March April May June July August September October November "
@@ -3576,7 +3586,7 @@ msgid "Language to use on front panel"
 msgstr "Мова, яку використовувати на передній панелі"
 
 msgid "Large read/write"
-msgstr ""
+msgstr "Читання/запис великими блоками"
 
 msgid "Last config change"
 msgstr "Остання зміна в конфігурації"
@@ -3617,8 +3627,7 @@ msgid "Leave auto snapshot configuration"
 msgstr "Залишити автоматичну конфігурацію знімків"
 
 msgid "Leave this field empty to use default settings."
-msgstr ""
-"Залишіть це поле пустим для використання налаштувань за замовчуванням."
+msgstr "Залишіть це поле пустим для використання типових налаштувань."
 
 msgid "Level 1 - Minimum power usage with Standby (spindown)"
 msgstr ""
@@ -3650,13 +3659,13 @@ msgid "License"
 msgstr "Ліцензія"
 
 msgid "License & Credits"
-msgstr ""
+msgstr "Ліцензія і список розробників"
 
 msgid "Life time"
 msgstr "Пожиттєвий"
 
 msgid "Lightweight Directory Access Protocol"
-msgstr ""
+msgstr "Спрощений протокол доступу до каталогів"
 
 msgid ""
 "Limits the amount of space a dataset and its descendants can consume. This "
@@ -3691,7 +3700,7 @@ msgid "List of detected disks"
 msgstr "Список виявлених дисків"
 
 msgid "List of imported users"
-msgstr ""
+msgstr "Список імпортованих користувачів"
 
 msgid "List of mount points"
 msgstr "Список точок монтування"
@@ -3754,7 +3763,7 @@ msgid ""
 msgstr ""
 
 msgid "Location of the files to share."
-msgstr ""
+msgstr "Розміщення файлів для спільного доступу."
 
 msgid "Location where the content database file will be stored."
 msgstr ""
@@ -3774,7 +3783,7 @@ msgid "Log (mirror)"
 msgstr "Журнал (копія)"
 
 msgid "Log Device"
-msgstr ""
+msgstr "Пристрій для журналу"
 
 msgid "Log Level"
 msgstr "Рівень запису до журналу"
@@ -3791,11 +3800,11 @@ msgstr ""
 
 #, php-format
 msgid "Logical Unit Controller IP address (%s by default)"
-msgstr "IP-адреса Logical Unit Controller (за замовчуванням %s)"
+msgstr "IP-адреса Logical Unit Controller (типово %s)"
 
 #, php-format
 msgid "Logical Unit Controller TCP port (%d by default)"
-msgstr "TCP-порт Logical Unit Controller (за замовчуванням %d)"
+msgstr "TCP-порт Logical Unit Controller (типово %d)"
 
 msgid "Logical Unit Controller login information"
 msgstr ""
@@ -3816,7 +3825,7 @@ msgid "Low voltage boosting transfer point"
 msgstr ""
 
 msgid "Low voltage transfer point"
-msgstr ""
+msgstr "Нижня межа напруги переключення"
 
 msgid "Low voltage trimming transfer point"
 msgstr ""
@@ -3881,10 +3890,10 @@ msgid "Map all users to root"
 msgstr ""
 
 msgid "Map to guest"
-msgstr ""
+msgstr "Як гість"
 
 msgid "Map to user"
-msgstr ""
+msgstr "Як користувач"
 
 msgid ""
 "Margin of a channel while reading data. The function of this attribute is "
@@ -3923,7 +3932,7 @@ msgstr "Макс. к-ть сесій"
 
 msgid ""
 "Max. time-to-live (max. number of hops) used in outgoing probe packets."
-msgstr ""
+msgstr "Максимальний TTL у вихідних пакетах."
 
 msgid "MaxBurstLength"
 msgstr "MaxBurstLength"
@@ -3932,7 +3941,7 @@ msgid "MaxOutstandingR2T"
 msgstr "MaxOutstandingR2T"
 
 msgid "MaxRecvDataSegmentLength"
-msgstr ""
+msgstr "MaxRecvDataSegmentLength"
 
 msgid "Maximum connections"
 msgstr "Максимальна кількість з'єднань"
@@ -3951,7 +3960,7 @@ msgstr "Максимальна кількість спроб вводу паро
 
 #, php-format
 msgid "Maximum number of connections in each session (%d by default)."
-msgstr "Максимальна кількість з'єднань в кожній сесії (за замовчуванням %d)."
+msgstr "Максимальна кількість з'єднань в кожній сесії (типово %d)."
 
 msgid "Maximum number of connections per IP address (0 = unlimited)."
 msgstr "Максимальна кількість  IP адрес (0 = без обмежень)."
@@ -3964,7 +3973,7 @@ msgstr ""
 
 #, php-format
 msgid "Maximum number of sessions holding at same time (%d by default)."
-msgstr "Максимальна кількість одночасних сесій (за замовчуванням %d)."
+msgstr "Максимальна кількість одночасних сесій (типово %d)."
 
 msgid "Maximum number of simultaneous clients."
 msgstr "Максимальна кількість одочасних клієнтів."
@@ -4110,7 +4119,7 @@ msgid "Mutual CHAP"
 msgstr "Взаємна CHAP"
 
 msgid "Mutual CHAP Users"
-msgstr ""
+msgstr "Користувачі взаємного CHAP"
 
 msgid "NAS4Free WebGUI Login"
 msgstr "Логін до веб-інтерфейсу NAS4Free"
@@ -4129,7 +4138,7 @@ msgstr "Інтервал NOPIN"
 
 #, php-format
 msgid "NOPIN sending interval in seconds (%d by default)."
-msgstr ""
+msgstr "Інтервал посилання NOPIN в секундах (типово %d)."
 
 msgid "NOT YET AVAILABLE"
 msgstr "ЩЕ НЕ ДОСТУПНО"
@@ -4164,8 +4173,7 @@ msgid ""
 "Name of the server. If this field is left empty the default server is "
 "specified."
 msgstr ""
-"Ім'я сервера. Якщо поле пусте, буде використовуватись сервер за "
-"замовчуванням."
+"Ім'я сервера. Якщо поле пусте, буде використовуватись стандартний сервер."
 
 msgid "Name of the variable."
 msgstr "Ім'я змінної."
@@ -4208,7 +4216,7 @@ msgid ""
 msgstr ""
 
 msgid "Never - default"
-msgstr ""
+msgstr "Ніколи - типово"
 
 msgid "New Device"
 msgstr "Новий пристрій"
@@ -4231,13 +4239,15 @@ msgid ""
 msgstr ""
 
 msgid "No configured CARP interfaces."
-msgstr ""
+msgstr "Нема налаштованих CARP інтерфейсів."
 
 #, php-format
 msgid ""
 "No configured CARP interfaces. Please add new <a href='%s'>CARP "
 "interface</a> first."
 msgstr ""
+"Нема налаштованих CARP інтерфейсів. Будь ласка спочатку додайте новий <a "
+"href='%s'>CARP інтерфейс</a>."
 
 #, php-format
 msgid "No configured Extent. Please add new <a href='%s'>Extent</a> first."
@@ -4269,7 +4279,7 @@ msgid "No device selected."
 msgstr "Не вибрано пристрій."
 
 msgid "No disk configured"
-msgstr ""
+msgstr "Диск не зконфігурований"
 
 #, php-format
 msgid "No disks available. Please add new <a href='%s'>disk</a> first."
@@ -4363,7 +4373,7 @@ msgid "Not attached"
 msgstr "Не під'єднано"
 
 msgid "Not found path."
-msgstr ""
+msgstr "Шлях не знайдено."
 
 msgid "Note"
 msgstr "Примітка"
@@ -4376,17 +4386,21 @@ msgstr ""
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select and deselect groups."
 msgstr ""
+"Підказка: за допомогою Ctrl-click (або Command-click на Maку) можна виділити "
+"чи зняти виділення групи."
 
 msgid ""
 "Note: Ctrl-click (or command-click on the Mac) to select multiple entries."
 msgstr ""
+"Підказка: за допомогою Ctrl-click (або Command-click на Maку) можна виділити "
+"декілька елементів."
 
 msgid "Nothing to synchronize"
 msgstr "Синхронізувати нічого"
 
 #, php-format
 msgid "Notification email from host: %s"
-msgstr ""
+msgstr "Поштове повідомлення  від хоста: %s"
 
 msgid "Now"
 msgstr "Зараз"
@@ -4395,10 +4409,10 @@ msgid "Null passwords"
 msgstr "Пусті паролі"
 
 msgid "Number of bad battery packs"
-msgstr ""
+msgstr "Кількість поганих блоків батареї"
 
 msgid "Number of battery packs"
-msgstr ""
+msgstr "Кількість блоків батареї"
 
 msgid "Number of clients"
 msgstr "Кількість клієнтів"
@@ -4494,7 +4508,7 @@ msgid "Outgoing SMTP mail server address, e.g. smtp.mycorp.com."
 msgstr ""
 
 msgid "Outgoing mail server"
-msgstr ""
+msgstr "Сервер вихідної пошти"
 
 msgid "Output current (A)"
 msgstr ""
@@ -5525,11 +5539,11 @@ msgstr "Розмір"
 
 #, php-format
 msgid "Size of receive buffer (%d by default)."
-msgstr "Розмір буфера на прийом (за замовчуванням %d)."
+msgstr "Розмір буфера на прийом (типово %d)."
 
 #, php-format
 msgid "Size of send buffer (%d by default)."
-msgstr "Розмір буфера на відправку (за замовчуванням %d)."
+msgstr "Розмір буфера на відправку (типово %d)."
 
 msgid ""
 "Size offered to the initiator. (up to 8EiB=8388608TiB. actual size is depend "
@@ -5810,7 +5824,7 @@ msgid "System"
 msgstr "Система"
 
 msgid "System Beep"
-msgstr ""
+msgstr "Системний сигнал"
 
 msgid "System bios"
 msgstr "BIOS"
@@ -5886,6 +5900,9 @@ msgstr "Мітка%d"
 msgid "Tag%d (%s)"
 msgstr "Мітка%d (%s)"
 
+msgid "Tap device"
+msgstr ""
+
 msgid "Tape"
 msgstr "Стрічка"
 
@@ -5950,7 +5967,7 @@ msgid "Temporary directory to store transcoded files."
 msgstr "Тимчасова директорія для файлів перекодування"
 
 msgid "Test email"
-msgstr "Терстувати email"
+msgstr "Тестувати email"
 
 #, php-format
 msgid "Test email from host: %s"
@@ -6255,7 +6272,7 @@ msgid ""
 msgstr ""
 
 msgid "The default SMTP mail server port, e.g. 25 or 587."
-msgstr "Порт SMTP сервера за замовчуванням, напр. 25 або 587."
+msgstr "Порт SMTP сервера типово, напр. 25 або 587."
 
 #, php-format
 msgid "The default base distinguished name (DN) to use for searches, e.g. %s"
@@ -6265,11 +6282,11 @@ msgid ""
 "The default key lengths are: 128 for AES, 128 for Blowfish, 128 for Camellia "
 "and 192 for 3DES."
 msgstr ""
-"Довжина ключа за замовчуванням: 128 для AES, 128 для Blowfish, 128 для "
-"Camellia і 192 для 3DES."
+"Довжина ключа типово: 128 для AES, 128 для Blowfish, 128 для Camellia і 192 "
+"для 3DES."
 
 msgid "The default time in seconds to display a screen."
-msgstr "Час, протягом якогопоказавати екран за замовчуванням."
+msgstr "Час, протягом якого показавати екран типово."
 
 msgid "The device name may only consist of the characters a-z, A-Z, 0-9."
 msgstr "Ім'я пристрою може містити лише символи a-z, A-Z, 0-9."
@@ -6867,12 +6884,6 @@ msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr ""
 
 msgid ""
-"This may make more efficient use of the system CPU's and cause Samba to be "
-"faster. Samba automatically turns this off for clients that use protocol "
-"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
-msgstr ""
-
-msgid ""
 "This means that the image you uploaded is not an official/supported image "
 "and may lead to unexpected behavior or security compromises. Only install "
 "images that come from sources that you trust, and make sure that the image "
@@ -7015,7 +7026,7 @@ msgid "This rule is triggered whenever the selected event directive occurs."
 msgstr ""
 
 msgid "This server uses default swap."
-msgstr "Цей сервер використовує файл підкачки за замовчуванням."
+msgstr "Цей сервер типово використовує файл підкачки."
 
 msgid "This tag already exists."
 msgstr "Така мітка вже існує."
@@ -7338,7 +7349,7 @@ msgid "UPS coldstarts from battery"
 msgstr "Холодний старт від батареї ДБЖ"
 
 msgid "UPS disabled"
-msgstr ""
+msgstr "ДБЖ вимкнено"
 
 msgid "UPS external contact sensors"
 msgstr "Сенсор зовнішнього контакти ДБЖ"
@@ -7460,9 +7471,6 @@ msgstr ""
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr ""
 
-msgid "Use sendfile"
-msgstr "Використовувати sendfile"
-
 msgid ""
 "Use the following IP address as the source address in outgoing packets."
 msgstr "Використовувати цю IP адресу як вихідну в пакетах, що відсилаються."
@@ -7507,29 +7515,29 @@ msgid "Used"
 msgstr ""
 
 msgid "User"
-msgstr ""
+msgstr "Користувач"
 
 msgid "User ID"
-msgstr ""
+msgstr "Ідентифікатор користувача"
 
 #, php-format
 msgid "User defined groups"
 msgstr ""
 
 msgid "User full name."
-msgstr ""
+msgstr "Повне ім'я користувача."
 
 msgid "User mask"
-msgstr ""
+msgstr "Маска користувача"
 
 msgid "User numeric id."
-msgstr ""
+msgstr "Ідентифікаційний номер користувача"
 
 msgid "User password."
-msgstr ""
+msgstr "Пароль користувача."
 
 msgid "User portal"
-msgstr ""
+msgstr "Портал користувач"
 
 msgid "User shares"
 msgstr ""
@@ -7538,7 +7546,7 @@ msgid "User suffix"
 msgstr ""
 
 msgid "Username"
-msgstr ""
+msgstr "Ім'я користувача"
 
 msgid "Username contains invalid character(s) : "
 msgstr ""
@@ -7550,10 +7558,10 @@ msgid "Username of a domain administrator account."
 msgstr ""
 
 msgid "Users"
-msgstr ""
+msgstr "Користувачі"
 
 msgid "Users and Groups"
-msgstr ""
+msgstr "Користувачі та групи"
 
 #, c-format
 msgid "Using %s bytes fragment size."
@@ -7566,6 +7574,9 @@ msgid "VLAN"
 msgstr "VLAN"
 
 msgid "VLAN tag"
+msgstr ""
+
+msgid "VM"
 msgstr ""
 
 msgid "Value"
@@ -7583,7 +7594,7 @@ msgid "Vendor ID"
 msgstr ""
 
 msgid "Version"
-msgstr ""
+msgstr "Версія"
 
 msgid "Vibration During Write."
 msgstr ""
@@ -7594,6 +7605,9 @@ msgstr ""
 msgid "Virtual IP address"
 msgstr ""
 
+msgid "Virtual Machine"
+msgstr ""
+
 msgid "Virtual device"
 msgstr ""
 
@@ -7601,6 +7615,9 @@ msgid "Virtual devices"
 msgstr ""
 
 msgid "Virtual interface"
+msgstr ""
+
+msgid "VirtualBox"
 msgstr ""
 
 msgid "Volume"
@@ -7659,7 +7676,7 @@ msgid "Wake On LAN"
 msgstr "Wake On LAN (WoL)"
 
 msgid "Warning"
-msgstr ""
+msgstr "Попередження"
 
 msgid ""
 "Warning: You are going to delete a RAID volume. All data will get lost and "
@@ -7684,7 +7701,7 @@ msgid "Webserver document root is missing."
 msgstr ""
 
 msgid "Week days"
-msgstr ""
+msgstr "Днів тижня"
 
 msgid "Western Digital attribute."
 msgstr ""
@@ -7796,7 +7813,7 @@ msgid "You have to select at least one item for '%s'."
 msgstr ""
 
 msgid "You may enter a description here for your reference."
-msgstr "Тут можна ввести описання для зручності."
+msgstr "Тут можна ввести опис для зручності."
 
 msgid "You may enter a device file or label path."
 msgstr ""
@@ -7809,7 +7826,7 @@ msgstr ""
 
 #, php-format
 msgid "You may specify logical block length (%d by default)."
-msgstr "Ви можете вказати логічний розмір блока (за замовчуванням %d)."
+msgstr "Ви можете вказати логічний розмір блока (типово %d)."
 
 #, php-format
 msgid ""
@@ -7980,11 +7997,17 @@ msgstr "не визначено"
 msgid "no new encrypted disk found."
 msgstr "нових зашифрованих дисків не знайдено."
 
+msgid "noVNC"
+msgstr ""
+
 msgid "none"
 msgstr "немає"
 
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "phpVirtualBox"
+msgstr ""
 
 msgid "rc.conf"
 msgstr "rc.conf"

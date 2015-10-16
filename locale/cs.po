@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-16 03:45+0000\n"
-"PO-Revision-Date: 2015-07-14 10:57+0000\n"
-"Last-Translator: noclaf <Unknown>\n"
+"POT-Creation-Date: 2015-10-10 16:28+0000\n"
+"PO-Revision-Date: 2015-10-10 20:12+0000\n"
+"Last-Translator: Pavel Borecki <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-22 00:12+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-11 13:08+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 "X-Poedit-Country: CZECH REPUBLIC\n"
 "Language: \n"
 "X-Poedit-Language: Czech\n"
@@ -355,7 +355,7 @@ msgid "ARP tables"
 msgstr "ARP tabulky"
 
 msgid "ATTRIBUTE NAME"
-msgstr ""
+msgstr "NÁZEV ATRIBUTU"
 
 msgid "Access"
 msgstr "Přístup"
@@ -389,7 +389,7 @@ msgstr ""
 "nezdařeném SMART příkazu na disku, zapněte hlášení e-mailem."
 
 msgid "Active Directory"
-msgstr "Aktivní adresář"
+msgstr ""
 
 msgid "Active Directory List"
 msgstr "Seznam Active Directory"
@@ -798,6 +798,9 @@ msgstr "Způsob ověřování"
 msgid "Authenticate URL"
 msgstr "Ověřená URL adresa"
 
+msgid "Authenticate path & realm"
+msgstr ""
+
 msgid "Authentication"
 msgstr "Ověření"
 
@@ -1117,7 +1120,7 @@ msgid "Check <a href=\"%s\">System|General Setup</a> before initializing."
 msgstr "Ověřte <a href=\"%s\">System|General Setup</a> před inicializací."
 
 msgid "Check and replace cable"
-msgstr ""
+msgstr "Zkontrolujte a nahraďte kabel"
 
 msgid "Check interval"
 msgstr "Interval kontroly stavu"
@@ -1254,7 +1257,7 @@ msgid "Connected FTP users"
 msgstr "Připojení FTP uživatelé"
 
 msgid "Consider replacing this drive"
-msgstr ""
+msgstr "Zvažte výměnu této jednotky"
 
 msgid "Console Menu"
 msgstr "Menu konzole"
@@ -1366,7 +1369,7 @@ msgid "Count"
 msgstr "Počet"
 
 msgid "Count of 'Free Fall Events' detected."
-msgstr ""
+msgstr "Počet 'Free Fall Events' záznamů."
 
 msgid ""
 "Count of 'unstable' sectors (waiting to be remapped, because of "
@@ -1397,13 +1400,13 @@ msgid ""
 msgstr ""
 
 msgid "Count of errors corrected by software ECC."
-msgstr ""
+msgstr "Počet chyb opravených softwarovým ECC."
 
 msgid "Count of errors due to high temperature."
-msgstr ""
+msgstr "Počet chyb způsobených vysokou teplotou."
 
 msgid "Count of errors while reading from a disk."
-msgstr ""
+msgstr "Počet chyb při čtení z disku."
 
 msgid ""
 "Count of hours in power-on state. The raw value of this attribute shows "
@@ -1521,7 +1524,7 @@ msgid "Current Version:"
 msgstr "Současná verze:"
 
 msgid "Current internal temperature."
-msgstr ""
+msgstr "Vnitřní teplota v tomto okamžiku."
 
 msgid "Current password"
 msgstr "Stávající heslo"
@@ -1562,7 +1565,7 @@ msgid "DAAP"
 msgstr "DAAP"
 
 msgid "DESCRIPTION"
-msgstr ""
+msgstr "POPIS"
 
 msgid "DHCP"
 msgstr "DHCP"
@@ -2215,7 +2218,7 @@ msgid "Download firewall rules."
 msgstr "Stáhnout pravidla firewallu."
 
 msgid "Drive Temperature."
-msgstr ""
+msgstr "Teplota disku"
 
 msgid "Drive's seek performance during its internal tests."
 msgstr ""
@@ -2538,9 +2541,6 @@ msgstr "Zapnout SNMP hlášení."
 msgid "Enable tuning of some kernel variables"
 msgstr "Povolit ladění některých proměnných jádra systému"
 
-msgid "Enable use sendfile."
-msgstr "Povolit použití funkce sendfile."
-
 msgid "Enable write cache mode."
 msgstr "Zapnout režim zápisu s mezipamětí."
 
@@ -2582,6 +2582,11 @@ msgstr ""
 "Nevyhovují-li výchozí, zadejte vlastní čísla portů pro webové rozhraní "
 "namísto standardních 80 pro HTTP a 443 pro HTTPS."
 
+msgid ""
+"Enter a space-separated list of tap devices. The devices will be created and "
+"automatically added it to the bridge."
+msgstr ""
+
 msgid "Enter a valid sysctl MIB name."
 msgstr "Zadejte platný název sysctl MIB."
 
@@ -2598,6 +2603,11 @@ msgid ""
 msgstr ""
 "Zadejte heslo, které bude použito v režimu WPA-PSK. Požadovaná délka je 8 až "
 "63 znaků."
+
+msgid ""
+"Enter the path to the home directory of VirtualBox. VM config and HDD image "
+"will be created under the specified directory."
+msgstr ""
 
 msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
@@ -4285,7 +4295,7 @@ msgid "Network port"
 msgstr "Síťový port"
 
 msgid "Network that is authorised to access the NFS share."
-msgstr "Síť s oprávněním přístupu ke sdílenému NFS"
+msgstr "Síť, ze které umožnit přístup k NFS sdílení."
 
 msgid "Networks"
 msgstr "Sítě"
@@ -4470,7 +4480,7 @@ msgid "Not attached"
 msgstr "Nepřipojeno"
 
 msgid "Not found path."
-msgstr "Cesta nebyla nalezena."
+msgstr "Umístění nebylo nalezeno."
 
 msgid "Note"
 msgstr "Poznámka"
@@ -4538,7 +4548,7 @@ msgid "Numeric identifier of the group."
 msgstr "Číselný identifikátor skupiny."
 
 msgid "OK"
-msgstr "OK"
+msgstr ""
 
 msgid "ONLINE"
 msgstr "ZAPNUTO"
@@ -4601,7 +4611,7 @@ msgid "Others"
 msgstr "Ostatní"
 
 msgid "Out"
-msgstr "Ven"
+msgstr "Výstup"
 
 msgid "Outgoing Power/Inverter Information"
 msgstr "Informace o výstupu napájení (invertoru)"
@@ -4629,6 +4639,8 @@ msgid ""
 "of this attribute is decreasing there is a high probability that there is a "
 "problem with the disk."
 msgstr ""
+"Celková výkonnost disku. V případě, že se hodnota tohoto atributu snižuje, "
+"je vysoce pravděpodobné, že disk má problém."
 
 msgid "Overload"
 msgstr "Přetížení"
@@ -4644,23 +4656,23 @@ msgid "Owner"
 msgstr "Vlastník"
 
 msgid "PG"
-msgstr "PG"
+msgstr ""
 
 msgid "PHP Command"
 msgstr "PHP příkaz"
 
 msgid "PPPoE"
-msgstr "PPPoE"
+msgstr ""
 
 msgid "PPTP"
-msgstr "PPTP"
+msgstr ""
 
 msgid "PPTP clients"
 msgstr "PPTP klienti"
 
 #, c-format
 msgid "PSK"
-msgstr "PSK"
+msgstr ""
 
 msgid "Package Name"
 msgstr "Název balíčku"
@@ -4687,7 +4699,7 @@ msgid "Parameter xxx (ups.conf or cmdline -x) setting"
 msgstr "Nastavení parametru xxx (ups.conf nebo cmdline -x)"
 
 msgid "Parent Directory"
-msgstr "Nadřazený adresář"
+msgstr "Nadřazená složka"
 
 msgid "Partition number"
 msgstr "Číslo diskového oddílu"
@@ -5033,7 +5045,7 @@ msgid "RAID5"
 msgstr "RAID5"
 
 msgid "RAW VALUE"
-msgstr ""
+msgstr "NEZPRACOVANÁ HODNOTA"
 
 msgid "RAW info"
 msgstr "RAW info"
@@ -5316,6 +5328,8 @@ msgstr "Spustit nyní"
 
 msgid "Run without requiring remote rsync daemon. (Disabled by default)"
 msgstr ""
+"Spustit aniž by byl vyžadována služba rsync na protistraně. (Ve výchozím "
+"stavu vypnuto)"
 
 msgid "Running"
 msgstr "Spuštěno"
@@ -5336,10 +5350,10 @@ msgid "S.M.A.R.T. log"
 msgstr "protokol SMART"
 
 msgid "SMB2"
-msgstr "SMB2"
+msgstr ""
 
 msgid "SMB3"
-msgstr "SMB3"
+msgstr ""
 
 msgid ""
 "SMB3 is for recent OS like Windows 8. SMB2 is for OS like Windows 7 and "
@@ -5350,25 +5364,25 @@ msgstr ""
 "jako je Windows XP."
 
 msgid "SNMP"
-msgstr "SNMP"
+msgstr ""
 
 msgid "SNMP Modules"
 msgstr "SNMP moduly"
 
 msgid "SSH"
-msgstr "SSH"
+msgstr ""
 
 msgid "SSH events"
 msgstr "SSH události"
 
 msgid "SSHD log"
-msgstr "protokol služby ssh"
+msgstr "Protokol událostí služby ssh"
 
 msgid "SSID"
 msgstr "Název bezdrátové sítě (SSID)"
 
 msgid "Samba AD"
-msgstr "Samba AD"
+msgstr ""
 
 msgid "Samba Active Directory Domain Controller"
 msgstr "Samba Active Directory doménový řadič"
@@ -5405,7 +5419,7 @@ msgid "Saved file to"
 msgstr "Uložit soubor do"
 
 msgid "Scan Targets"
-msgstr "Provést sken cíle"
+msgstr "Provést sken cílů"
 
 msgid ""
 "Scan file system every N seconds to see if any files have been added or "
@@ -5452,7 +5466,7 @@ msgid "Security"
 msgstr "Zabezpečení"
 
 msgid "See attribute E8."
-msgstr ""
+msgstr "Viz atribut E8"
 
 msgid ""
 "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
@@ -5535,7 +5549,7 @@ msgid "Serial number"
 msgstr "Sériové číslo"
 
 msgid "Server"
-msgstr "Server"
+msgstr ""
 
 msgid "Server Name"
 msgstr "Název serveru"
@@ -5645,10 +5659,10 @@ msgid "Shares"
 msgstr "Sdílení"
 
 msgid "Shell"
-msgstr "Shell"
+msgstr "Terminál"
 
 msgid "Shock During Write."
-msgstr ""
+msgstr "Otřes v průběhu zápisu."
 
 msgid "Show RAW UPS Info"
 msgstr "Zobrazit informace z UPS v nezpracované podobě"
@@ -5708,7 +5722,7 @@ msgid "Slovak"
 msgstr "Slovenština"
 
 msgid "Slovenian"
-msgstr "Slovinsky"
+msgstr "Slovinština"
 
 msgid "SmartBoost"
 msgstr "ChytrePosileni"
@@ -5778,7 +5792,7 @@ msgid ""
 msgstr ""
 
 msgid "Specified path is NFSv4 root directory."
-msgstr "Specifikované cesta je NFSv4 kořenový adresář."
+msgstr "Zadané umístění je NFSv4 kořenová složka."
 
 msgid "Specifies how many servers to create."
 msgstr "Určuje kolik serverů má být vytvořeno."
@@ -5883,10 +5897,12 @@ msgid "Store DOS attributes"
 msgstr "Ukládat atributy systému DOS"
 
 msgid "Store NTFS acls"
-msgstr ""
+msgstr "Ukládat seznamy řízení přístupu (acl) souborového systému NTFS"
 
 msgid "Store NTFS acls in Extended Attributes"
 msgstr ""
+"Ukládat seznamy řízení přístupu (acl) souborového systému NTFS v rozšířených "
+"atributech souboru/složky"
 
 msgid "Store alternate data streams"
 msgstr "Uložit alternativní datové proudy."
@@ -5996,7 +6012,7 @@ msgid "System events"
 msgstr "Systémové události"
 
 msgid "System firewall"
-msgstr "Firewall systému"
+msgstr "Brána firewall systému"
 
 msgid "System info"
 msgstr "Informace o systému"
@@ -6005,7 +6021,7 @@ msgid "System information"
 msgstr "Informace o systému"
 
 msgid "System load"
-msgstr "Zatížení systému"
+msgstr "Vytížení systému"
 
 msgid "System log"
 msgstr "Protokol systému"
@@ -6020,7 +6036,7 @@ msgid "System tuning"
 msgstr "Vyladění systému"
 
 msgid "System uptime"
-msgstr "Doba běhu systému"
+msgstr "Doba běhu systému od posledního zapnutí (uptime)"
 
 msgid "TCP forwarding"
 msgstr "Přesměrování TCP"
@@ -6035,13 +6051,13 @@ msgid "TCP wrapper"
 msgstr "TCP zprostředkovávající služba (wrapper)"
 
 msgid "TFTP"
-msgstr "TFTP"
+msgstr ""
 
 msgid "TKIP"
-msgstr "TKIP"
+msgstr ""
 
 msgid "TLS"
-msgstr "TLS"
+msgstr ""
 
 msgid "TLS mode"
 msgstr "Režim TLS"
@@ -6062,6 +6078,9 @@ msgstr "Značka%d"
 #, php-format
 msgid "Tag%d (%s)"
 msgstr "Značka%d (%s)"
+
+msgid "Tap device"
+msgstr "Tap zařízení"
 
 msgid "Tape"
 msgstr "Páska"
@@ -6158,7 +6177,7 @@ msgstr ""
 "hlavním."
 
 msgid "The IP address of the UPS master."
-msgstr "IP adresa stroje, ovládajícího UPS zdroj."
+msgstr "IP adresa stroje, ovládajícího zdroj nepřerušovaného napájení (UPS)."
 
 msgid "The IP address that this hostname represents."
 msgstr "IP adresa, příslušející k tomuto názvu stroje."
@@ -6191,7 +6210,7 @@ msgstr ""
 "href='%s'>přípojný bod</a>."
 
 msgid "The TCP port must be a valid port number."
-msgstr "TCP port musí být platné číslo portu."
+msgstr "Je třeba, aby číslo TCP portu bylo platné."
 
 msgid "The VLAN ID must be between 1 and 4094."
 msgstr "Označení virtuální sítě musí být číslo z rozsahu 1 až 4094."
@@ -7154,15 +7173,6 @@ msgstr ""
 "Toto je pouze informativní (nepoužívá se během navazování iSCSI spojení)."
 
 msgid ""
-"This may make more efficient use of the system CPU's and cause Samba to be "
-"faster. Samba automatically turns this off for clients that use protocol "
-"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
-msgstr ""
-"Může zefektivnit využívání procesoru a zrychlit Sambu. Samba automaticky "
-"vypne sendfile pro klienty, kteří používají protokol starší než NT LM 0.12 "
-"nebo když zjistí, že klient je Windows 9x."
-
-msgid ""
 "This means that the image you uploaded is not an official/supported image "
 "and may lead to unexpected behavior or security compromises. Only install "
 "images that come from sources that you trust, and make sure that the image "
@@ -7775,7 +7785,7 @@ msgid "Unavailable"
 msgstr "Nedostupné"
 
 msgid "Uncorrected read errors reported to the operating system."
-msgstr ""
+msgstr "Neopravené chyby, nahlášené operačnímu systému."
 
 msgid "Unformated"
 msgstr "Nenaformátovaný"
@@ -7848,9 +7858,6 @@ msgstr ""
 
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr "Použít jako řídký svazek. (přidělování zdrojů dle potřeby)"
-
-msgid "Use sendfile"
-msgstr "Použít sendfile"
 
 msgid ""
 "Use the following IP address as the source address in outgoing packets."
@@ -7973,6 +7980,9 @@ msgstr "VLAN"
 msgid "VLAN tag"
 msgstr "VLAN tag"
 
+msgid "VM"
+msgstr ""
+
 msgid "Value"
 msgstr "Hodnota"
 
@@ -7999,6 +8009,9 @@ msgstr "Identifikátor virtuálního stroje"
 msgid "Virtual IP address"
 msgstr "Virtuální IP adresa"
 
+msgid "Virtual Machine"
+msgstr "Virtuální stroj"
+
 msgid "Virtual device"
 msgstr "Virtuální zařízení"
 
@@ -8007,6 +8020,9 @@ msgstr "Virtuální zařízení"
 
 msgid "Virtual interface"
 msgstr "Virtuální rozhraní"
+
+msgid "VirtualBox"
+msgstr ""
 
 msgid "Volume"
 msgstr "Svazek"
@@ -8254,9 +8270,11 @@ msgstr "Pro síť i bránu je třeba zadat IP adresu stejného typu."
 #, php-format
 msgid "You must have a minimum of %dMiB RAM for using iSCSI target."
 msgstr ""
+"K používání iSCSI cíle je třeba, aby bylo k dispozici přinejmenším %dMiB "
+"operační paměti."
 
 msgid "You must initialize data before enabling."
-msgstr "Před zapnutím musíte inicializovat data."
+msgstr "Před zapnutím je třeba inicializovat data."
 
 msgid "You must select at least one authentication method."
 msgstr "Je třeba vybrat alespoň jeden ze způsobů ověřování."
@@ -8272,7 +8290,7 @@ msgid "Your own email address."
 msgstr "Vaše vlastní e-mailová adresa."
 
 msgid "ZFS"
-msgstr "ZFS"
+msgstr ""
 
 msgid "ZFS ACL"
 msgstr "ACL seznamy ZFS"
@@ -8383,7 +8401,7 @@ msgid "load/unload failed."
 msgstr "nahrání/uvolnění se nezdařilo."
 
 msgid "loader.conf"
-msgstr "loader.conf"
+msgstr ""
 
 msgid "maximum (highest performance)"
 msgstr "maximum (nejvyšší výkon)"
@@ -8401,7 +8419,7 @@ msgid "mirroring"
 msgstr "zrcadlení"
 
 msgid "mount"
-msgstr "připojit"
+msgstr "připojit (mount)"
 
 msgid "n/a"
 msgstr "není k dispozici"
@@ -8409,14 +8427,20 @@ msgstr "není k dispozici"
 msgid "no new encrypted disk found."
 msgstr "nebyl nalezen žádný nový šifrovaný disk."
 
+msgid "noVNC"
+msgstr ""
+
 msgid "none"
 msgstr "žádný"
 
 msgid "phpBB"
-msgstr "phpBB"
+msgstr ""
+
+msgid "phpVirtualBox"
+msgstr ""
 
 msgid "rc.conf"
-msgstr "rc.conf"
+msgstr ""
 
 msgid "revision"
 msgstr "revize"
@@ -8437,13 +8461,13 @@ msgid "smallest settable low voltage transfer point"
 msgstr "Nejižší nastavitelný práh přepnutí při podpětí"
 
 msgid "striping"
-msgstr "striping"
+msgstr "prokládání"
 
 msgid "successfully."
 msgstr "úspěšně."
 
 msgid "sysctl.conf"
-msgstr "sysctl.conf"
+msgstr ""
 
 msgid "sysvol exist in path."
 msgstr "sysvol existuje v cestě."
@@ -8452,10 +8476,10 @@ msgid "to"
 msgstr "na"
 
 msgid "umask"
-msgstr "umask"
+msgstr ""
 
 msgid "umount"
-msgstr "odpojit"
+msgstr "odpojit (umount)"
 
 msgid "version:"
 msgstr "verze:"

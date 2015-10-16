@@ -38,9 +38,9 @@ options 	VM_KMEM_SIZE_SCALE=2
 options 	KSTACK_PAGES=4
 
 options 	NFSD			# Network Filesystem Server
-#options 	GEOM_ELI		# Disk encryption.
+options 	GEOM_ELI		# Disk encryption.
 #options 	GEOM_UZIP		# Read-only compressed disks
-#options 	NULLFS			# NULL filesystem
+options 	NULLFS			# NULL filesystem
 options 	UNIONFS			# Union filesystem
 
 options 	HZ=100
@@ -49,7 +49,7 @@ options 	PLATFORM
 
 # Debugging for use in -current
 makeoptions	DEBUG=-g		# Build kernel with gdb(1) debug symbols
-options 	BREAK_TO_DEBUGGER
+#options 	BREAK_TO_DEBUGGER
 options 	ALT_BREAK_TO_DEBUGGER
 #options 	VERBOSE_SYSINIT		# Enable verbose sysinit messages
 options 	KDB			# Enable kernel debugger support

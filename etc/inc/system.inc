@@ -261,6 +261,12 @@ function get_smbios_info() {
 		$serial = chop(`/sbin/sysctl -n hw.board.serial`);
 		if (!empty($serial))
 			$smbios['planar']['product'] .= " (S/N: $serial)";
+	} else if ($smbios['bios']['vendor'] == 'BHYVE') {
+		$smbios['bios']['reldate'] = "01/01/2015";
+		$smbios['bios']['vendor'] = "BHyVe";
+		$smbios['bios']['version'] = "1.0";
+		$smbios['planar']['maker'] = "";
+		$smbios['planar']['product'] = "BHyVe";
 	}
 	return $smbios;
 }
@@ -520,7 +526,7 @@ function system_get_device_temp($devicespecialfile) {
 
 
 	/* without smart */
-	mwexec2("ataidle {$devicespecialfile} | grep 'SMART Enabled'", $rawdata);
+	mwexec2("ataidle {$devicespecialfile} 2>/dev/null | grep 'SMART Enabled'", $rawdata);
 	if (!empty($rawdata) && 1 === preg_match("/^SMART Enabled:\s+(\S+)/", $rawdata[0], $matches)) {
 		if (strcasecmp($matches[1], "no") == 0) {
 			/* SMART disabled */
@@ -630,7 +636,7 @@ function system_get_volume_serial($devicespecialfile) {
 	}
 
 	/* without smart */
-	mwexec2("ataidle {$devicespecialfile} | grep 'Serial'", $rawdata);
+	mwexec2("ataidle {$devicespecialfile} 2>/dev/null | grep 'Serial'", $rawdata);
 	if (!empty($rawdata) && 1 === preg_match("/^Serial:\s+(.+)$/", $rawdata[0], $matches)) {
 		$serial = preg_replace("/[\x01-\x1f\x7f]/", "", $matches[1]);
 		if (!empty($serial))
@@ -638,7 +644,7 @@ function system_get_volume_serial($devicespecialfile) {
 	}
 
 	/* get serial from CAM */
-	mwexec2("camcontrol inquiry {$devicespecialfile} -S", $rawdata2);
+	mwexec2("camcontrol inquiry {$devicespecialfile} -S 2>/dev/null", $rawdata2);
 	if (!empty($rawdata2) && !empty($rawdata2[0])) {
 		$serial = preg_replace("/[\x01-\x1f\x7f]/", "", $rawdata2[0]);
 		if (!empty($serial))
@@ -672,7 +678,7 @@ function system_get_volume_model($devicespecialfile) {
 	}
 
 	/* without smart */
-	mwexec2("ataidle {$devicespecialfile} | grep 'Model'", $rawdata);
+	mwexec2("ataidle {$devicespecialfile} 2>/dev/null | grep 'Model'", $rawdata);
 	if (!empty($rawdata) && 1 === preg_match("/^Model:\s+(.+)$/", $rawdata[0], $matches)) {
 		$model = preg_replace("/[\x01-\x1f\x7f]/", "", $matches[1]);
 		if (!empty($model))
@@ -680,7 +686,7 @@ function system_get_volume_model($devicespecialfile) {
 	}
 
 	/* get device model from CAM */
-	mwexec2("camcontrol inquiry {$devicespecialfile} -D", $rawdata2);
+	mwexec2("camcontrol inquiry {$devicespecialfile} -D 2>/dev/null", $rawdata2);
 	if (!empty($rawdata2) && 1 === preg_match("/<([^>]+)>/", $rawdata2[0], $matches)) {
 		$model = preg_replace("/[\x01-\x1f\x7f]/", "", $matches[1]);
 		if (!empty($model))

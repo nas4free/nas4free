@@ -271,6 +271,41 @@ function disks_mount($mount)
 				$result = 1;
 			}
 			break;
+
+		case "exfat":
+			// Load the kernel FUSE module
+			mwexec("/sbin/kldload /boot/kernel/fuse.ko");
+			$readonly = (isset($mount['readonly'])) ? "-o ro" : "";
+			$mode = "777";
+			$owner = "root";
+			$group = "wheel";
+			if (is_array($mount['accessrestrictions'])) {
+				$mode = $mount['accessrestrictions']['mode'];
+				$owner = $mount['accessrestrictions']['owner'];
+				$group = $mount['accessrestrictions']['group'][0];
+			}
+			$pw = posix_getpwnam($owner);
+			$gr = posix_getgrnam($group);
+			if ($pw == FALSE || $gr == FALSE) {
+				@rmdir($mountname);
+				write_log("Error: Failed to get uid/gid");
+				$result = 1;
+				break;
+			}
+			$uid = "-o uid={$pw['uid']}";
+			$gid = "-o gid={$gr['gid']}";
+			$mask = decoct(0777 ^ octdec($mode));
+			$umask = "-o umask={$mask}";
+			$result = mwexec("/usr/local/bin/mount.exfat {$readonly} {$uid} {$gid} {$umask} {$devicespecialfile} '{$mountname}'", true);
+			if (0 == $result) {
+				write_log("Disk {$devicespecialfile} mounted using exFAT on '{$mountname}'");
+				$result = 0;
+			} else {
+				@rmdir($mountname);
+				write_log("Error: Failed to mount {$devicespecialfile} using exFAT");
+				$result = 1;
+			}
+			break;
 	}
 
 	// Set access restrictions. Use the following default values.
@@ -288,7 +323,9 @@ function disks_mount($mount)
 	// For ISO's this may be 'chmod: /mnt/xxx: Read-only file system)'
 	if (file_exists($mountname) && is_writable($mountname)) {
 		if (!@chmod($mountname, octdec($mode)) || !@chown($mountname, $owner) || !@chgrp($mountname, $group)) {
-			write_log("Error: Failed to set access restrictions on directory '{$mountname}'");
+			if ($mount['fstype'] != "ntfs" && $mount['fstype'] != "exfat") {
+				write_log("Error: Failed to set access restrictions on directory '{$mountname}'");
+			}
 		}
 	}
 
@@ -1114,6 +1151,7 @@ function disks_fsck($device,$umount = false)
 	switch($mount['fstype']) {
 		case "cd9660":
 		case "ntfs":
+		case "exfat":
 			break;
 		default:
 			system("/sbin/fsck -t {$mount['fstype']} -y -f " . escapeshellarg($device));
@@ -1646,6 +1684,15 @@ function disks_try_ext2($file) {
 	return "EXT2";
 }
 
+function disks_try_exfat($file) {
+	$mntpath = "/tmp/disks_import";
+	if (0 != mwexec("/usr/local/bin/mount.exfat -o ro {$file} {$mntpath} 2>/dev/null"))
+		return false;
+	if (1 == mwexec("/sbin/umount {$mntpath}"))
+		return false;
+	return "EXFAT";
+}
+
 function disks_import_try_allfs($dev) {
 	$mntpath = "/tmp/disks_import";
 
@@ -1665,6 +1712,9 @@ function disks_import_try_allfs($dev) {
 			$ext2 = disks_try_ext2($file);
 			if (!empty($ext2))
 				return "ext2";
+			$exfat = disks_try_exfat($file);
+			if (!empty($exfat))
+				return "exfat";
 		}
 	}
 
@@ -1684,6 +1734,9 @@ function disks_import_try_allfs($dev) {
 			$ext2 = disks_try_ext2($file);
 			if (!empty($ext2))
 				return "ext2";
+			$exfat = disks_try_exfat($file);
+			if (!empty($exfat))
+				return "exfat";
 		}
 	}
 
@@ -1703,6 +1756,9 @@ function disks_import_try_allfs($dev) {
 			$ext2 = disks_try_ext2($file);
 			if (!empty($ext2))
 				return "ext2";
+			$exfat = disks_try_exfat($file);
+			if (!empty($exfat))
+				return "exfat";
 		}
 	}
 
@@ -1801,6 +1857,9 @@ function disks_import_all_disks($clean_import) {
 
 	$need_write_config = false;
 	$num = $error = 0;
+
+	// FUSE for NTFS/exFAT
+	mwexec("/sbin/kldload /boot/kernel/fuse.ko");
 
 	$disks = get_all_disks_list();
 	$disks = array_merge((array)$disks, (array)get_hast_disks_list());

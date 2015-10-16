@@ -83,3 +83,4 @@ usr/local/www/javascript/navbar.js
 usr/local/www/javascript
 etc/uam
 etc/inc/XML
+usr/local/www/services_upnp.php

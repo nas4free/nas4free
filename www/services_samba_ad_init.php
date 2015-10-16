@@ -127,7 +127,7 @@ if ($_POST) {
 		$cmdargs[] = escapeshellarg("--option=state directory = ${path}");
 		$cmdargs[] = escapeshellarg("--option=private dir = ${path}/private");
 		$cmdargs[] = escapeshellarg("--option=smb passwd file = ${path}/private/smbpasswd");
-		$cmdargs[] = escapeshellarg("--option=usershare path = ${path}/usersharesmbpasswd");
+		$cmdargs[] = escapeshellarg("--option=usershare path = ${path}/usershares");
 		$cmdargs[] = escapeshellarg("--option=nsupdate command = /usr/local/bin/samba-nsupdate -g");
 
 		// adjust DNS server

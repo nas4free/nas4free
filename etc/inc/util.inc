@@ -462,11 +462,23 @@ function get_interface_list() {
 function get_interface_wlist() {
 	global $g;
 
+	$iflist = array();
+
+	$osver = @exec("/usr/bin/uname -U");
+	if ($osver >= 1100000) {
+		$devs = @exec("/sbin/sysctl -n net.wlan.devices");
+		$ifs = explode(" ", $devs);
+		foreach ($ifs as $ifname) {
+			$iflist[$ifname] = array();
+			$iflist[$ifname]['mac'] = "00:00:00:00:00:00";
+			$iflist[$ifname]['up'] = false;
+		}
+		return $iflist;
+	}
+
 	/* build interface list with netstat */
 	exec("/usr/bin/netstat -inW -f link", $linkinfo);
 	array_shift($linkinfo);
-
-	$iflist = array();
 
 	foreach ($linkinfo as $link) {
 		$alink = preg_split("/\s+/", ltrim($link));
@@ -2063,41 +2075,57 @@ function get_fstype_list() {
 }
 
 function get_fstype_shortdesc($fstype) {
-  $shortdesc = "";
+	$shortdesc = "";
 
-  switch($fstype)
-  {
-    case "":              $shortdesc = gettext("Unformated");
-                          break;
-    case "ufs":
-    case "ufs_no_su":
-    case "ufsgpt":
-    case "ufsgpt_no_su":  $shortdesc = "UFS";
-                          break;
-    case "msdos":         $shortdesc = "FAT32";
-                          break;
-    case "cd9660":				$shortdesc = "CD/DVD";
-                          break;
-    case "ntfs":          $shortdesc = "NTFS";
-                          break;
-    case "gmirror":       $shortdesc = "gmirror";
-                          break;
-    case "gconcat":       $shortdesc = "gconcat";
-                          break;
-    case "gstripe":       $shortdesc = "gstripe";
-                          break;
-    case "graid5":				$shortdesc = "graid5";
-                          break;
-    case "gvinum":        $shortdesc = "gvinum";
-                          break;
-    case "softraid":      $shortdesc = gettext("SoftRaid");
-                          break;
-		case "geli":					$shortdesc = gettext("Encrypted");
-                          break;
-    case "ext2":					$shortdesc = "EXT2";
-    											break;
-		case "zfs":						$shortdesc = "ZFS storage pool device";
-    											break;
+	switch($fstype) {
+		case "":
+			$shortdesc = gettext("Unformated");
+			break;
+		case "ufs":
+		case "ufs_no_su":
+		case "ufsgpt":
+		case "ufsgpt_no_su":
+			$shortdesc = "UFS";
+			break;
+		case "msdos":
+			$shortdesc = "FAT32";
+			break;
+		case "cd9660":
+			$shortdesc = "CD/DVD";
+			break;
+		case "ntfs":
+			$shortdesc = "NTFS";
+			break;
+		case "gmirror":
+			$shortdesc = "gmirror";
+			break;
+		case "gconcat":
+			$shortdesc = "gconcat";
+			break;
+		case "gstripe":
+			$shortdesc = "gstripe";
+			break;
+		case "graid5":
+			$shortdesc = "graid5";
+			break;
+		case "gvinum":
+			$shortdesc = "gvinum";
+			break;
+		case "softraid":
+			$shortdesc = gettext("SoftRaid");
+			break;
+		case "geli":
+			$shortdesc = gettext("Encrypted");
+			break;
+		case "ext2":
+			$shortdesc = "EXT2";
+			break;
+		case "exfat":
+			$shortdesc = "exFAT";
+			break;
+		case "zfs":
+			$shortdesc = "ZFS storage pool device";
+			break;
   }
 
   return $shortdesc;

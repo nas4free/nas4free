@@ -144,6 +144,22 @@ function get_upsinfo() {
 	return $ups;
 }
 
+function get_vbox_vminfo($user, $uuid) {
+	$vminfo = array();
+	unset($rawdata);
+	mwexec2("/usr/local/bin/sudo -u {$user} /usr/local/bin/VBoxManage showvminfo --machinereadable {$uuid}", $rawdata);
+	foreach ($rawdata as $line) {
+		if (preg_match("/^([^=]+)=(\"([^\"]+)\"|[^\"]+)/", $line, $match)) {
+			$a = array();
+			$a['raw'] = $match[0];
+			$a['key'] = $match[1];
+			$a['value'] = isset($match[3]) ? $match[3] : $match[2];
+			$vminfo[$a['key']] = $a;
+		}
+	}
+	return $vminfo;
+}
+
 if (is_ajax()) {
 	$sysinfo = system_get_sysinfo();
 	$vipstatus = get_vip_status();
@@ -631,6 +647,66 @@ $(document).ready(function(){
 			<?php endif;?>
 			</table></td>
 		</tr>
+		<?php
+			unset($vmlist);
+			mwexec2("/usr/bin/find /dev/vmm -type c", $vmlist);
+			unset($vmlist2);
+			$vbox_user = "vboxusers";
+			$vbox_if = get_ifname($config['interfaces']['lan']['if']);
+			$vbox_ipaddr = get_ipaddr($vbox_if);
+			if (isset($config['vbox']['enable'])) {
+				mwexec2("/usr/local/bin/sudo -u {$vbox_user} /usr/local/bin/VBoxManage list runningvms", $vmlist2);
+			}
+			if (!empty($vmlist) || !empty($vmlist2)):
+		?>
+		<tr>
+			<td width="25%" class="vncellt"><?=gettext("Virtual Machine");?></td>
+			<td width="75%" class="listr">
+			<table width="100%" border="0" cellspacing="0" cellpadding="1">
+			<?php
+				$vmtype = "BHyVe";
+				$index = 0;
+				foreach ($vmlist as $vmpath) {
+					$vm = basename($vmpath);
+					unset($temp);
+					exec("/usr/sbin/bhyvectl ".escapeshellarg("--vm=$vm")." --get-lowmem | sed -e 's/.*\\///'", $temp);
+					$vram = $temp[0] / 1024 / 1024;
+					echo "<tr><td><div id='vminfo_$index'>";
+					echo htmlspecialchars("$vmtype: $vm ($vram MiB)");
+					echo "</div></td></tr>\n";
+					if (++$index < count($vmlist))
+						echo "<tr><td><hr size='1' /></td></tr>\n";
+				}
+
+				$vmtype = "VBox";
+				$index = 0;
+				foreach ($vmlist2 as $vmline) {
+					$vm = "";
+					if (preg_match("/^\"(.+)\"\s*\{(\S+)\}$/", $vmline, $match)) {
+						$vm = $match[1];
+						$uuid = $match[2];
+					}
+					if ($vm == "")
+						continue;
+					$vminfo = get_vbox_vminfo($vbox_user, $uuid);
+					$vram = $vminfo['memory']['value'];
+					echo "<tr><td><div id='vminfo2_$index'>";
+					echo htmlspecialchars("$vmtype: $vm ($vram MiB)");
+					if (isset($vminfo['vrde']) && $vminfo['vrde']['value'] == "on") {
+						$vncport = $vminfo['vrdeport']['value'];
+						$url = htmlspecialchars("/novnc/vnc.html?host={$vbox_ipaddr}&port={$vncport}");
+						echo " <a href='{$url}' target=_blank>";
+						echo htmlspecialchars("vnc://{$vbox_ipaddr}:{$vncport}/");
+						echo "</a>";
+					}
+					echo "</div></td></tr>\n";
+					if (++$index < count($vmlist2))
+						echo "<tr><td><hr size='1' /></td></tr>\n";
+				}
+			?>
+			</table></td>
+		</tr>
+		<?php endif;?>
 	<?php endif;?>
 	</table></td>
     </tr>

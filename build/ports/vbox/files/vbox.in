@@ -1,0 +1,95 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+
+# PROVIDE: vbox
+# REQUIRE: LOGIN
+# KEYWORD: nojail shutdown
+# XQUERY: -i "count(//vbox/enable) > 0" -o "0" -b
+# RCVAR: vbox
+
+. /etc/rc.subr
+. /etc/util.subr
+. /etc/configxml.subr
+
+name="vbox"
+rcvar="vbox_enable"
+
+start_precmd="vbox_mkconf"
+start_cmd="vbox_start"
+stop_cmd="vbox_stop"
+mkconf_cmd="vbox_mkconf"
+extra_commands="mkconf"
+
+phpvbox_conf=${phpvbox_conf:-"/usr/local/www/phpvirtualbox/config.php"}
+vbox_user=${vbox_user:-"vboxusers"}
+vbox_group=${vbox_group:-"vboxusers"}
+vbox_ipaddr=${vbox_ipaddr:-"127.0.0.1"}
+vbox_port=${vbox_port:-"18083"}
+vbox_vrdeports=${vbox_vrdeports:-"9000-9100"}
+
+vbox_mkconf()
+{
+	local _user _group _homedir
+
+	_user=${vbox_user}
+	_group=${vbox_group}
+	_homedir=`configxml_get "//vbox/homedir"`
+	if [ "$_homedir" = "" ]; then
+	    _homedir="/nonexistent"
+	fi
+
+	# Create phpVirtualBox config
+	rm -f ${phpvbox_conf}
+	cat <<EOF > ${phpvbox_conf}
+<?php
+class phpVBoxConfig {
+var \$username = '${_user}';
+var \$password = 'NOTUSE';
+var \$location = 'http://${vbox_ipaddr}:${vbox_port}/';
+var \$language = 'en';
+var \$vrdeports = '${vbox_vrdeports}';
+var \$maxProgressList = 5;
+var \$deleteOnRemove = true;
+var \$browserRestrictFiles = array('.iso','.vdi','.vmdk','.img','.bin','.vhd','.hdd','.ovf','.ova','.xml','.vbox','.cdr','.dmg','.ima','.dsk','.vfd');
+var \$hostMemInfoRefreshInterval = 5;
+var \$disableTabVMConsole = true;
+var \$consoleResolutions = array('640x480','800x600','1024x768','1280x720','1440x900');
+var \$consoleKeyboardLayout = 'EN';
+var \$nicMax = 4;
+}
+EOF
+
+	# Create devfs rules for tap devices
+	grep "vbox_tap" /etc/devfs.rules > /dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		echo "[vbox_tap=10]" >> /etc/devfs.rules
+		echo "add path 'tap*' mode 0660 group ${vbox_group}" >> /etc/devfs.rules
+		/usr/local/sbin/rconf attribute set devfs_system_ruleset vbox_tap
+		/etc/rc.d/devfs start
+	fi
+}
+
+vbox_start()
+{
+	echo "VBox start..."
+	if ! /sbin/kldstat -q -m if_tap; then
+		/sbin/kldload if_tap > /dev/null 2>&1
+	fi
+	/sbin/sysctl -q net.link.tap.user_open=1 > /dev/null
+	/sbin/sysctl -q net.link.tap.up_on_open=1 > /dev/null
+	/usr/local/etc/rc.d/vboxnet onestart
+	/usr/local/etc/rc.d/vboxwebsrv onestart
+}
+
+vbox_stop()
+{
+	echo "VBox stop..."
+	/usr/local/etc/rc.d/vboxwebsrv onestop
+}
+
+load_rc_config "${name}"
+run_rc_command "$1"

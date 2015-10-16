@@ -1,0 +1,20 @@
+--- configure.orig	2015-10-06 13:22:07.630555000 +0900
++++ configure	2015-10-06 13:22:33.225653000 +0900
+@@ -19283,7 +19283,7 @@
+   $as_echo_n "(cached) " >&6
+ else
+   ac_check_lib_save_LIBS=$LIBS
+-LIBS="-lresolv  $LIBS"
++LIBS="$LIBS"
+ cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+ /* end confdefs.h.  */
+ 
+@@ -22053,7 +22053,7 @@
+ 	with_websockets=""
+ fi
+ if test "x$with_websockets" = "xyes"; then
+-	LIBS="$LIBS -lresolv $SSL_LIBS"
++	LIBS="$LIBS $SSL_LIBS"
+ 	$as_echo "#define WITH_WEBSOCKETS 1" >>confdefs.h
+ 
+ fi

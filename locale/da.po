@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-16 03:45+0000\n"
+"POT-Creation-Date: 2015-10-10 16:28+0000\n"
 "PO-Revision-Date: 2015-06-15 08:06+0000\n"
 "Last-Translator: Carsten Matzon <carsten@matzon.dk>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-22 00:12+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-10 13:41+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 "X-Poedit-Country: DENMARK\n"
 "Language: \n"
 "X-Poedit-Language: Danish\n"
@@ -774,6 +774,9 @@ msgstr "Auth metode"
 
 msgid "Authenticate URL"
 msgstr "Godkend URL"
+
+msgid "Authenticate path & realm"
+msgstr ""
 
 msgid "Authentication"
 msgstr "Godkendelse"
@@ -2487,9 +2490,6 @@ msgstr "Aktiver traps."
 msgid "Enable tuning of some kernel variables"
 msgstr "Aktiver finjustering af nogle kernel variabler"
 
-msgid "Enable use sendfile."
-msgstr "Aktiver brug af sendfile."
-
 msgid "Enable write cache mode."
 msgstr "Anvend skrive cache."
 
@@ -2531,6 +2531,11 @@ msgstr ""
 "Angiv valgfri port nummer for WebGUI hvis du ikke ønsker at anvende "
 "standarden (80 for HTTP, 443 for HTTPS)."
 
+msgid ""
+"Enter a space-separated list of tap devices. The devices will be created and "
+"automatically added it to the bridge."
+msgstr ""
+
 msgid "Enter a valid sysctl MIB name."
 msgstr "Indtast et gyldigt sysctl MIB navn."
 
@@ -2547,6 +2552,11 @@ msgid ""
 msgstr ""
 "Indtast kodeordet der skal bruges til WPA-PSK tilstanden. Dette skal være "
 "mellem 8 og 63 tegn langt."
+
+msgid ""
+"Enter the path to the home directory of VirtualBox. VM config and HDD image "
+"will be created under the specified directory."
+msgstr ""
 
 msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
@@ -5955,6 +5965,9 @@ msgstr "Mærkat%d"
 msgid "Tag%d (%s)"
 msgstr "Mærkat%d (%s)"
 
+msgid "Tap device"
+msgstr ""
+
 msgid "Tape"
 msgstr "Bånd"
 
@@ -7032,15 +7045,6 @@ msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr ""
 
 msgid ""
-"This may make more efficient use of the system CPU's and cause Samba to be "
-"faster. Samba automatically turns this off for clients that use protocol "
-"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
-msgstr ""
-"Dette kan bruge systemets CPU mere effektivt, og øge ydelsen på Samba. Samba "
-"deaktiverer automatisk dette for klienter der bruger protokol niveauer "
-"mindre en NT LM 0.12, og når det opdager en klient der bruger Windows 9x."
-
-msgid ""
 "This means that the image you uploaded is not an official/supported image "
 "and may lead to unexpected behavior or security compromises. Only install "
 "images that come from sources that you trust, and make sure that the image "
@@ -7715,9 +7719,6 @@ msgstr ""
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr ""
 
-msgid "Use sendfile"
-msgstr "Brug sendfile"
-
 msgid ""
 "Use the following IP address as the source address in outgoing packets."
 msgstr "Brug den følgende IP-adresse som kilde adressen i udgående pakker."
@@ -7838,6 +7839,9 @@ msgstr "VLAN"
 msgid "VLAN tag"
 msgstr "VLAN mærkat"
 
+msgid "VM"
+msgstr ""
+
 msgid "Value"
 msgstr "Værdi"
 
@@ -7864,6 +7868,9 @@ msgstr "Virtuel Vært ID"
 msgid "Virtual IP address"
 msgstr "Virtuel IP adresse"
 
+msgid "Virtual Machine"
+msgstr ""
+
 msgid "Virtual device"
 msgstr "Virtuel enhed"
 
@@ -7872,6 +7879,9 @@ msgstr "Virtuelle enheder"
 
 msgid "Virtual interface"
 msgstr "Virtuel grænseflade"
+
+msgid "VirtualBox"
+msgstr ""
 
 msgid "Volume"
 msgstr "Diskenhed"
@@ -8263,11 +8273,17 @@ msgstr "Ikke tilgængelig"
 msgid "no new encrypted disk found."
 msgstr "ingen ny krypteret disk fundet"
 
+msgid "noVNC"
+msgstr ""
+
 msgid "none"
 msgstr "ingen"
 
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "phpVirtualBox"
+msgstr ""
 
 msgid "rc.conf"
 msgstr "rc.conf"

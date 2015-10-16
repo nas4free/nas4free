@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-16 03:45+0000\n"
+"POT-Creation-Date: 2015-10-10 16:28+0000\n"
 "PO-Revision-Date: 2014-11-17 04:08+0000\n"
 "Last-Translator: NAS4Free Developer <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-22 00:13+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-10 13:41+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 "X-Poedit-Country: SLOVAKIA\n"
 "Language: \n"
 "X-Poedit-Language: Slovak\n"
@@ -768,6 +768,9 @@ msgstr "Metóda autentifikácie"
 
 msgid "Authenticate URL"
 msgstr "URL na overenie"
+
+msgid "Authenticate path & realm"
+msgstr ""
 
 msgid "Authentication"
 msgstr "Autentifikácia"
@@ -2460,9 +2463,6 @@ msgstr ""
 msgid "Enable tuning of some kernel variables"
 msgstr "Zapnúť ladenie niektorých premenných jadra"
 
-msgid "Enable use sendfile."
-msgstr "Zapnúť použitie sendfile"
-
 msgid "Enable write cache mode."
 msgstr ""
 
@@ -2502,6 +2502,11 @@ msgid ""
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
 
+msgid ""
+"Enter a space-separated list of tap devices. The devices will be created and "
+"automatically added it to the bridge."
+msgstr ""
+
 msgid "Enter a valid sysctl MIB name."
 msgstr "Zadajte platný názov sysctl MIB."
 
@@ -2518,6 +2523,11 @@ msgid ""
 msgstr ""
 "Zadajte heslo, ktoré sa použije v režime WPA-PSK. Musí mať dĺžku medzi 8 a "
 "63 znakmi."
+
+msgid ""
+"Enter the path to the home directory of VirtualBox. VM config and HDD image "
+"will be created under the specified directory."
+msgstr ""
 
 msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
@@ -5871,6 +5881,9 @@ msgstr ""
 msgid "Tag%d (%s)"
 msgstr ""
 
+msgid "Tap device"
+msgstr ""
+
 msgid "Tape"
 msgstr ""
 
@@ -6885,15 +6898,6 @@ msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr ""
 
 msgid ""
-"This may make more efficient use of the system CPU's and cause Samba to be "
-"faster. Samba automatically turns this off for clients that use protocol "
-"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
-msgstr ""
-"Týmto sa umožní efektívnejšie využitie CPU systému a zrýchlenie Samby. Samba "
-"toto automaticky vypína pre všetkých klientov, ktorí používajú úrovne "
-"protokolu nižšie ako NT LM 0.12 a ak zistí, že klient je Windows 9x."
-
-msgid ""
 "This means that the image you uploaded is not an official/supported image "
 "and may lead to unexpected behavior or security compromises. Only install "
 "images that come from sources that you trust, and make sure that the image "
@@ -7544,9 +7548,6 @@ msgstr ""
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr ""
 
-msgid "Use sendfile"
-msgstr "Použiť sendfile"
-
 msgid ""
 "Use the following IP address as the source address in outgoing packets."
 msgstr ""
@@ -7662,6 +7663,9 @@ msgstr "VLAN"
 msgid "VLAN tag"
 msgstr "štítok VLAN"
 
+msgid "VM"
+msgstr ""
+
 msgid "Value"
 msgstr "Hodnota"
 
@@ -7688,6 +7692,9 @@ msgstr ""
 msgid "Virtual IP address"
 msgstr ""
 
+msgid "Virtual Machine"
+msgstr ""
+
 msgid "Virtual device"
 msgstr ""
 
@@ -7696,6 +7703,9 @@ msgstr ""
 
 msgid "Virtual interface"
 msgstr "Virtuálne rozhranie"
+
+msgid "VirtualBox"
+msgstr ""
 
 msgid "Volume"
 msgstr ""
@@ -8080,10 +8090,16 @@ msgstr "n/a"
 msgid "no new encrypted disk found."
 msgstr ""
 
+msgid "noVNC"
+msgstr ""
+
 msgid "none"
 msgstr ""
 
 msgid "phpBB"
+msgstr ""
+
+msgid "phpVirtualBox"
 msgstr ""
 
 msgid "rc.conf"

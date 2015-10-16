@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-16 03:45+0000\n"
-"PO-Revision-Date: 2015-08-18 23:42+0000\n"
+"POT-Creation-Date: 2015-10-10 16:28+0000\n"
+"PO-Revision-Date: 2015-10-10 21:19+0000\n"
 "Last-Translator: Kiss-Kálmán Dániel <kisskalmandaniel@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-22 00:12+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-11 13:08+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 "Language: hu_HU\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
@@ -829,6 +829,9 @@ msgstr "Auth eljárás"
 
 msgid "Authenticate URL"
 msgstr "Autentikációs URL"
+
+msgid "Authenticate path & realm"
+msgstr "Hitelesítő útvonal & terület"
 
 msgid "Authentication"
 msgstr "Hitelesítés"
@@ -2600,9 +2603,6 @@ msgstr "Csapdák engedélyezése."
 msgid "Enable tuning of some kernel variables"
 msgstr "Néhány kernel változó finomhangolásának engedélyezése."
 
-msgid "Enable use sendfile."
-msgstr "Sendfile engedélyezése."
-
 msgid "Enable write cache mode."
 msgstr "Írás cache engedélyezése."
 
@@ -2644,6 +2644,13 @@ msgstr ""
 "WebGUI port száma, amennyiben ez az alapértelmezettől eltér (80 a HTTP, 443 "
 "a HTTPS esetén)."
 
+msgid ""
+"Enter a space-separated list of tap devices. The devices will be created and "
+"automatically added it to the bridge."
+msgstr ""
+"Add meg az érintőeszközöket szóközökkel elválasztva. Az eszközöket "
+"létrehozzuk és automatikusan a hídhoz adjuk."
+
 msgid "Enter a valid sysctl MIB name."
 msgstr "Valós sysctl MIB nevet adj meg."
 
@@ -2660,6 +2667,13 @@ msgid ""
 msgstr ""
 "Adja meg a jelszót a WPA-PSK módhoz. Hosszának 8 és 63 karakter között kell "
 "lennie."
+
+msgid ""
+"Enter the path to the home directory of VirtualBox. VM config and HDD image "
+"will be created under the specified directory."
+msgstr ""
+"Add meg a VirtualBox home könyvtárának útvonalát. A VM konfiguráció és a HDD "
+"képfájl a megadott könyvtárba kerül."
 
 msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
@@ -6156,6 +6170,9 @@ msgstr "%d. címke"
 msgid "Tag%d (%s)"
 msgstr "%d. címke (%s)"
 
+msgid "Tap device"
+msgstr "Érintőeszköz"
+
 msgid "Tape"
 msgstr "Szalag"
 
@@ -7291,15 +7308,6 @@ msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr "Ez csak leíró információ (nem kerül használatra iSCSI esetén)"
 
 msgid ""
-"This may make more efficient use of the system CPU's and cause Samba to be "
-"faster. Samba automatically turns this off for clients that use protocol "
-"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
-msgstr ""
-"Ez hatékonyabbá teheti a rendszer CPU használatát, ami gyorsítja a Samba-t. "
-"A Samba automatikusan kikapcsolja ezt, amikor a ügyfelek protokollja kisebb "
-"mint NT LM 0.12 és amikor érzékelt kliens Windows 9x."
-
-msgid ""
 "This means that the image you uploaded is not an official/supported image "
 "and may lead to unexpected behavior or security compromises. Only install "
 "images that come from sources that you trust, and make sure that the image "
@@ -7990,9 +7998,6 @@ msgstr ""
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr "Sparse kötetként használd. (thin provisioning)"
 
-msgid "Use sendfile"
-msgstr "Sendfile használata"
-
 msgid ""
 "Use the following IP address as the source address in outgoing packets."
 msgstr "A következő IP cím használata mint forráscím a kimenő csomagoknál."
@@ -8111,6 +8116,9 @@ msgstr "VLAN"
 msgid "VLAN tag"
 msgstr "VLAN címke"
 
+msgid "VM"
+msgstr "VM"
+
 msgid "Value"
 msgstr "Érték"
 
@@ -8140,6 +8148,9 @@ msgstr "Virtuális gép ID"
 msgid "Virtual IP address"
 msgstr "Virtuális IP címek"
 
+msgid "Virtual Machine"
+msgstr "Virtuális gép"
+
 msgid "Virtual device"
 msgstr "Virtuális eszköz"
 
@@ -8148,6 +8159,9 @@ msgstr "Virtuális eszközök"
 
 msgid "Virtual interface"
 msgstr "Virtuális interfész"
+
+msgid "VirtualBox"
+msgstr "VirtualBox"
 
 msgid "Volume"
 msgstr "Kötet"
@@ -8556,11 +8570,17 @@ msgstr "nem elérhető"
 msgid "no new encrypted disk found."
 msgstr "nincs új encrypted lemez."
 
+msgid "noVNC"
+msgstr "noVNC"
+
 msgid "none"
 msgstr "nincs"
 
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "phpVirtualBox"
+msgstr "phpVirtualBox"
 
 msgid "rc.conf"
 msgstr "rc.conf"

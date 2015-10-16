@@ -77,7 +77,7 @@ sethostname()
 setifconfig()
 {
 	local _value _ifn _ifconfig_args _ipaddr _subnet _gateway _cloned_interfaces _id
-	local _ifn_isboot
+	local _ifn_isboot _tap _taplist
 
 	# Cleanup ifn and addrs
 	set | grep -E '^(ifconfig_|ipv4_|ipv6_)' | while read _value; do
@@ -231,6 +231,9 @@ setifconfig()
 		-m "//vinterfaces/bridge/if" \
 			-v "concat(.,' ')" \
 		-b \
+		-m "//vinterfaces/bridge/taplist" \
+			-v "concat(.,' ')" \
+		-b \
 		${configxml_file} | /usr/local/bin/xml unesc`
 
 	eval /usr/local/sbin/rconf attribute set "cloned_interfaces" "${_cloned_interfaces}"
@@ -261,6 +264,11 @@ setifconfig()
 		${configxml_file} | /usr/local/bin/xml unesc | \
 		while read _wlan _wlandev _wlan_args; do
 			[ -n "${_wlan}" ] && eval /usr/local/sbin/rconf attribute set "wlans_${_wlandev}" "${_wlan}"
+			_wdev=`echo $_wlandev | sed -e 's/[0-9]*$//'`
+			#if [ -f "/cf/boot/kernel/if_${_wdev}.ko" ]; then
+			#	/sbin/kldload "/cf/boot/kernel/if_${_wdev}.ko" > /dev/null 2>&1
+			#fi
+			/sbin/kldload "if_${_wdev}.ko" > /dev/null 2>&1
 		done
 	/usr/local/bin/xml sel -t \
 		-m "//vinterfaces/wlan[apmode]" \
@@ -313,6 +321,13 @@ setifconfig()
 				-i "ipaddr[. != 'dhcp']" -v "concat(ipaddr,'/',subnet)" -b \
 				-b \
 				${configxml_file} | /usr/local/bin/xml unesc`
+			_taplist=`/usr/local/bin/xml sel -t -m "//vinterfaces/bridge[if = '${_bridge}']" \
+				-v taplist -n \
+				-b \
+				${configxml_file} | /usr/local/bin/xml unesc`
+			for _tap in $_taplist; do
+				_bridge_args="${_bridge_args} addm ${_tap}"
+			done
 			if [ "${_bridge_addr}" = "syncdhcp" ]; then
 				_bridge_args="${_bridge_args} ${_bridge_addr}"
 			else
@@ -544,7 +559,10 @@ setserialconsole()
 	fi
     else
 	if [ "$_ttyuonoff" = "on" ]; then
-	    sed -i.bak -e "/^${_ttyu}/ s/on/off/" /etc/ttys
+	    #sed -i.bak -e "/^${_ttyu}/ s/on/off/" /etc/ttys
+	    sed -i.bak -e "/^${_ttyu}/ s/on/onifconsole/" /etc/ttys
+	else
+	    sed -i.bak -e "/^${_ttyu}/ s/off/onifconsole/" /etc/ttys
 	fi
     fi
 }

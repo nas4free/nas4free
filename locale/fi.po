@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-07-16 03:45+0000\n"
+"POT-Creation-Date: 2015-10-10 16:28+0000\n"
 "PO-Revision-Date: 2014-12-01 00:17+0000\n"
 "Last-Translator: nomizfs <nomisma@fastmail.fm>\n"
 "Language-Team: NAS4Free <fi@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-22 00:13+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-10 13:41+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 "X-Poedit-Country: FINLAND\n"
 "X-Poedit-Language: Finnish\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -768,6 +768,9 @@ msgstr ""
 
 msgid "Authenticate URL"
 msgstr "URL todennus"
+
+msgid "Authenticate path & realm"
+msgstr ""
 
 msgid "Authentication"
 msgstr "Todennus"
@@ -2427,9 +2430,6 @@ msgstr ""
 msgid "Enable tuning of some kernel variables"
 msgstr "Käytä hienosäädössä joitakin kernel muuttujia"
 
-msgid "Enable use sendfile."
-msgstr ""
-
 msgid "Enable write cache mode."
 msgstr ""
 
@@ -2469,6 +2469,11 @@ msgid ""
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
 
+msgid ""
+"Enter a space-separated list of tap devices. The devices will be created and "
+"automatically added it to the bridge."
+msgstr ""
+
 msgid "Enter a valid sysctl MIB name."
 msgstr ""
 
@@ -2482,6 +2487,11 @@ msgstr ""
 msgid ""
 "Enter the passphrase that will be used in WPA-PSK mode. This must be between "
 "8 and 63 characters long."
+msgstr ""
+
+msgid ""
+"Enter the path to the home directory of VirtualBox. VM config and HDD image "
+"will be created under the specified directory."
 msgstr ""
 
 msgid ""
@@ -5737,6 +5747,9 @@ msgstr ""
 msgid "Tag%d (%s)"
 msgstr ""
 
+msgid "Tap device"
+msgstr ""
+
 msgid "Tape"
 msgstr ""
 
@@ -6695,12 +6708,6 @@ msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr ""
 
 msgid ""
-"This may make more efficient use of the system CPU's and cause Samba to be "
-"faster. Samba automatically turns this off for clients that use protocol "
-"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
-msgstr ""
-
-msgid ""
 "This means that the image you uploaded is not an official/supported image "
 "and may lead to unexpected behavior or security compromises. Only install "
 "images that come from sources that you trust, and make sure that the image "
@@ -7278,9 +7285,6 @@ msgstr ""
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr ""
 
-msgid "Use sendfile"
-msgstr ""
-
 msgid ""
 "Use the following IP address as the source address in outgoing packets."
 msgstr ""
@@ -7386,6 +7390,9 @@ msgstr "VLAN"
 msgid "VLAN tag"
 msgstr "VLAN tunniste"
 
+msgid "VM"
+msgstr ""
+
 msgid "Value"
 msgstr "Arvo"
 
@@ -7412,6 +7419,9 @@ msgstr ""
 msgid "Virtual IP address"
 msgstr ""
 
+msgid "Virtual Machine"
+msgstr ""
+
 msgid "Virtual device"
 msgstr ""
 
@@ -7420,6 +7430,9 @@ msgstr ""
 
 msgid "Virtual interface"
 msgstr "Virtuaalinen liitäntä"
+
+msgid "VirtualBox"
+msgstr ""
 
 msgid "Volume"
 msgstr ""
@@ -7797,11 +7810,17 @@ msgstr "Ei ole"
 msgid "no new encrypted disk found."
 msgstr ""
 
+msgid "noVNC"
+msgstr ""
+
 msgid "none"
 msgstr "ei mikään"
 
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "phpVirtualBox"
+msgstr ""
 
 msgid "rc.conf"
 msgstr ""

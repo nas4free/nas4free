@@ -24,6 +24,7 @@ load_rc_config "$name"
 # Defaults
 passdb_file=${passdb_file:-"/var/etc/private/passdb"}
 passdb_minuid=${passdb_minuid:-"1000"}
+passdb_mingid=${passdb_mingid:-"1000"}
 
 # Check Samba AD
 configxml_isset //sambaad/enable
@@ -52,4 +53,25 @@ do
 	fi
 
 	_usernum=$(( ${_usernum} - 1 ))
+done
+
+# Generate samba local group
+_logname=${LOGNAME}
+if [ -z "${_logname}" ]; then
+	_logname=`/usr/bin/id -un`
+fi
+# builtin admin
+LOGNAME="${_logname}" net groupmap add ntgroup="admin" unixgroup="admin" type=l > /dev\null
+# all configured groups
+_groupnum=`configxml_get_count "//access/group"`
+while [ ${_groupnum} -gt 0 ]
+do
+	_groupname=`configxml_get "//access/group[position()=${_groupnum}]/name"`
+	_gid=`configxml_get "//access/group[position()=${_groupnum}]/id"`
+
+	if [ ${_gid} -ge ${passdb_mingid} ]; then
+		LOGNAME="${_logname}" net groupmap add ntgroup="${_groupname}" unixgroup="${_groupname}" type=l > /dev\null
+	fi
+
+	_groupnum=$(( ${_groupnum} - 1 ))
 done

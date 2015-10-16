@@ -1772,7 +1772,13 @@ $DIALOG --title \"$NAS4FREE_PRODUCTNAME - Ports\" \\
 		port=`basename $s`
 		state=`cat $s/pkg-state`
 		if [ "arm" = ${NAS4FREE_ARCH} ]; then
-			for forceoff in arcconf isboot open-vm-tools tw_cli vbox-additions vmxnet3; do
+			for forceoff in arcconf isboot grub2-bhyve open-vm-tools tw_cli vbox vbox-additions vmxnet3; do
+				if [ "$port" = "$forceoff" ]; then
+					state="OFF"; break;
+				fi
+			done
+		elif [ "i386" = ${NAS4FREE_ARCH} ]; then
+			for forceoff in grub2-bhyve; do
 				if [ "$port" = "$forceoff" ]; then
 					state="OFF"; break;
 				fi
@@ -1814,6 +1820,10 @@ $DIALOG --title \"$NAS4FREE_PRODUCTNAME - Ports\" \\
 				cd ${NAS4FREE_SVNDIR}/build/ports/${port};
 				make clean;
 			done;
+			if [ "i386" = ${NAS4FREE_ARCH} ]; then
+				# workaround patch
+				cp ${NAS4FREE_SVNDIR}/build/ports/vbox/files/extra-patch-src-VBox-Devices-Graphics-DevVGA.h /usr/ports/emulators/virtualbox-ose/files/patch-src-VBox-Devices-Graphics-DevVGA.h
+			fi
 			# Build ports.
 			for port in $(cat $ports | tr -d '"'); do
 				echo;

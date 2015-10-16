@@ -967,6 +967,38 @@ function config_upgrade() {
 		$config['version'] = "2.0";
 	}
 
+	/* Convert 2.0 -> 2.1 */
+	if ($config['version'] === "2.0") {
+		$config['system']['usermanagement']['user'][] = array(
+			"uuid" => uuid(),
+			"name" => "dlna",
+			"id" => "933",
+			"primarygroup" => "933",
+			"extraoptions" => '-c "DLNA Daemon" -d /nonexistent -s /usr/sbin/nologin' );
+		$config['system']['usermanagement']['group'][] = array(
+			"uuid" => uuid(),
+			"name" => "dlna",
+			"id" => "933" );
+		unset($config['samba']['usesendfile']);
+		$config['version'] = "2.1";
+	}
+
+	/* Convert 2.1 -> 2.2 */
+	if ($config['version'] === "2.1") {
+		$config['system']['usermanagement']['user'][] = array(
+			"uuid" => uuid(),
+			"name" => "vboxusers",
+			"id" => "920",
+			"primarygroup" => "920",
+			"extraoptions" => '-c "Virtualbox user" -d /nonexistent -s /usr/sbin/nologin' );
+		$config['system']['usermanagement']['group'][] = array(
+			"uuid" => uuid(),
+			"name" => "vboxusers",
+			"id" => "920" );
+		$config['vbox']['homedir'] = "";
+		$config['version'] = "2.2";
+	}
+
 	/* XXX Convert 9.5 -> 9.7 (must skip 9.6) */
 
 	write_config();

@@ -39,7 +39,15 @@ if [ ! -e /etc/resolv.conf -a \
 else
 	# Update resolv.conf if DHCP is not configured. Use configuration values from config.xml.
 	_ipaddress=`configxml_get "//interfaces/lan/ipaddr"`
-	if [ "dhcp" != "${_ipaddress}" ]; then
+	configxml_isset //sambaad/enable
+	sambaad=$?
+	if [ 0 -eq ${sambaad} -a "${BOOTING}" = "1" ]; then
+		# Use DNS forwarder at booting time
+		_dns_forwarder=`configxml_get "//sambaad/dns_forwarder" | awk '{ print $1 }'`
+		/usr/local/bin/xml sel -t -o "domain " -v "//system/domain" -n \
+			-o "nameserver ${_dns_forwarder}" -n \
+			${configxml_file} | /usr/local/bin/xml unesc > /etc/resolv.conf
+	elif [ "dhcp" != "${_ipaddress}" ]; then
 		echo "Updating resolv.conf."
 
 		# Set the domain, IP4 and IP6 DNS servers.

@@ -2,14 +2,36 @@ NAS4Free 10.2.0.2 - Prester
 ---------------------------
 
 Changes:
-- Upgrade to FreeBSD 10.2-RELEASE-P2.
+- Upgrade to FreeBSD 10.2-RELEASE-P5.
 - Add Mellanox ConnectX-2 EN driver module. (x64 only)
+- Add Auxiliary parameters in Samba AD.
+- Add bhyve and related files. (CLI only)
+- Add hint.acpi_throttle.0.disabled="0", hint.p4tcc.0.disabled="0".
+- Add dlna user and group.
+- Add minidlna. (CLI only)
+- Add VirtualBox with WebSocket VNC server. (x86 and x64 only)
+- Add phpVirtualBox and noVNC(HTML5/WebSocket VNC client) for VM management.
+- Add ability to mount exFAT disk.
+- Add samba local group.
+- Add ability to add tap device on bridge interface.
+- Remove usesendfile on CIFS/SMB.
 - Upgrade bash 4.3 to patch 42.
 - Upgrade lighttpd to 1.4.37.
+- Upgrade samba to 4.2.4.
+- Upgrade isboot to 0.2.11.
+- Upgrade tzdata to 2015g.
+- Upgrade php to 5.6.14.
 
 Fixes:
+- Fix NTFS is not detected on Import disks.
+- Fix SSL certificate link. (ticket #239)
+- Fix NFS share network. (ticket #238)
+- Fix boot time ntpdate fail when AD DC enabled.
+- Fix wrong path in Samba AD. (ticket #228, #232)
 - Undefined symbol "av_find_stream_info" in fuppes/libmetadata_libavformat.so.
 - AFP share is not advised.
+- Fix webserver user logins.
+- Fix wrong path ticket 228.
 
 Note:
 - iperf2 has been replaced for iperf3 because of inconsistent results for UDP above 2Gbps.

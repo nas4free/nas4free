@@ -112,7 +112,7 @@ $menu['services']['menuitem'][] = array("desc" => gettext("AFP"), "link" => "ser
 $menu['services']['menuitem'][] = array("desc" => gettext("Rsync"), "link" => "services_rsyncd.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("Unison"), "link" => "services_unison.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("iSCSI Target"), "link" => "services_iscsitarget.php", "visible" => TRUE);
-$menu['services']['menuitem'][] = array("desc" => gettext("DLNA/UPnP"), "link" => "services_upnp.php", "visible" => TRUE);
+$menu['services']['menuitem'][] = array("desc" => gettext("DLNA/UPnP"), "link" => "services_fuppes.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("iTunes/DAAP"), "link" => "services_daap.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("Dynamic DNS"), "link" => "services_dynamicdns.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("SNMP"), "link" => "services_snmp.php", "visible" => TRUE);
@@ -155,6 +155,8 @@ if (!isset($config['system']['disablefm'])) {
 }
 $menu['advanced']['menuitem'][] = array("type" => "separator", "visible" => Session::isAdmin());
 $menu['advanced']['menuitem'][] = array("desc" => gettext("Command"), "link" => "exec.php", "visible" => Session::isAdmin());
+$menu['advanced']['menuitem'][] = array("type" => "separator", "visible" => Session::isAdmin());
+$menu['advanced']['menuitem'][] = array("desc" => gettext("VirtualBox"), "link" => "vm_vbox.php", "visible" => Session::isAdmin());
 
 // Diagnostics
 $menu['diagnostics']['desc'] = gettext("Diagnostics");

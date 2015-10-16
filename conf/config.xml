@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- NAS4Free default system configuration -->
 <nas4free>
-	<version>2.0</version>
+	<version>2.2</version>
 	<lastchange></lastchange>
 	<system>
 		<hostname>nas4free</hostname>
@@ -398,12 +398,36 @@
 				<id>999</id>
 				<primarygroup>999</primarygroup>
 				<group>50</group>
-				<extraoptions>-m -w random</extraoptions>
+				<extraoptions>-m -w random -c &quot;Transmission Daemon&quot;</extraoptions>
+			</user>
+			<user>
+				<uuid>132a0a60-a16d-4244-ba04-09312adda744</uuid>
+				<name>dlna</name>
+				<id>933</id>
+				<primarygroup>933</primarygroup>
+				<extraoptions>-c &quot;DLNA Daemon&quot; -d /nonexistent -s /usr/sbin/nologin</extraoptions>
+			</user>
+			<user>
+				<uuid>715997e1-b2eb-493d-86cf-c7d217998a67</uuid>
+				<name>vboxusers</name>
+				<id>920</id>
+				<primarygroup>920</primarygroup>
+				<extraoptions>-c &quot;Virtualbox user&quot; -d /nonexistent -s /usr/sbin/nologin</extraoptions>
 			</user>
 			<group>
 				<uuid>e8cc78b8-7c3d-46de-a34c-11b1c260a37e</uuid>
 				<id>999</id>
 				<name>transmission</name>
+			</group>
+			<group>
+				<uuid>ab0ee675-e8d1-4052-b7c2-e6b46c918eb8</uuid>
+				<id>933</id>
+				<name>dlna</name>
+			</group>
+			<group>
+				<uuid>235a1033-f7ee-443a-8c55-6bea64d5139e</uuid>
+				<id>920</id>
+				<name>vboxusers</name>
 			</group>
 			<group>
 				<uuid>e504881b-c8dc-43d7-9ca4-74552f9b405b</uuid>
@@ -872,11 +896,14 @@
 		<guestaccount>ftp</guestaccount>
 		<maptoguest>Bad User</maptoguest>
 		<localmaster>yes</localmaster>
+		<timesrv>yes</timesrv>
+		<doscharset>CP437</doscharset>
+		<unixcharset>UTF-8</unixcharset>
+		<loglevel>1</loglevel>
 		<rcvbuf>128480</rcvbuf>
 		<sndbuf>128480</sndbuf>
 		<storedosattributes/>
 		<largereadwrite/>
-		<!-- <usesendfile/> -->
 		<!-- <aio/> -->
 		<aiorsize>1024</aiorsize>
 		<aiowsize>1024</aiowsize>
@@ -1523,4 +1550,8 @@
 			<!-- <auxparam></auxparam> -->
 		</lcdproc>
 	</lcdproc>
+	<vbox>
+		<!-- <enable/> -->
+		<homedir></homedir>
+	</vbox>
 </nas4free>

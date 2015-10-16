@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-16 03:45+0000\n"
-"PO-Revision-Date: 2015-07-31 16:15+0000\n"
+"POT-Creation-Date: 2015-10-10 16:28+0000\n"
+"PO-Revision-Date: 2015-10-10 14:35+0000\n"
 "Last-Translator: sea1150 <sea1.150@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-22 00:13+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-11 13:08+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 "X-Poedit-Country: RUSSIAN FEDERATION\n"
 "Language: \n"
 "X-Poedit-Language: Russian\n"
@@ -830,7 +830,10 @@ msgid "Auth Method"
 msgstr "Способ аутентификации"
 
 msgid "Authenticate URL"
-msgstr "Авторизованный URL"
+msgstr "URL с аутентификацией"
+
+msgid "Authenticate path & realm"
+msgstr "Путь с аутентификацией и область (Realm)"
 
 msgid "Authentication"
 msgstr "Аутентификация"
@@ -1755,7 +1758,7 @@ msgid "DefaultTime2Wait"
 msgstr "Время ожидания по умолчанию"
 
 msgid "Define directories/URL's that require authentication."
-msgstr "Укажите каталоги или адреса URL, требующие авторизации."
+msgstr "Укажите каталоги или адреса URL требующие аутентификации."
 
 msgid "Defines when the shutdown is initiated."
 msgstr "Определяет, когда будет инициировано выключение."
@@ -2518,7 +2521,7 @@ msgid "Enable anonymous bind."
 msgstr "Разрешить анонимный доступ"
 
 msgid "Enable authentication."
-msgstr "Включить авторизацию"
+msgstr "Включить аутентификацию."
 
 msgid "Enable compression."
 msgstr "Включить сжатие"
@@ -2634,9 +2637,6 @@ msgstr "Разрешить отправку сообщений (traps)"
 msgid "Enable tuning of some kernel variables"
 msgstr "Включить возможность настройки некоторых переменных ядра"
 
-msgid "Enable use sendfile."
-msgstr "Включить использование 'sendfile'"
-
 msgid "Enable write cache mode."
 msgstr "Включить кеширование записи."
 
@@ -2678,6 +2678,13 @@ msgstr ""
 "Укажите номер порта вебинтерфейса, если не желаете использовать значение по "
 "умолчанию (80 для HTTP, 443 для HTTPS)"
 
+msgid ""
+"Enter a space-separated list of tap devices. The devices will be created and "
+"automatically added it to the bridge."
+msgstr ""
+"Введите через пробел список tap устройств. Устройства будут созданы и "
+"автоматически добавлены к мосту."
+
 msgid "Enter a valid sysctl MIB name."
 msgstr "Введите рабочее имя sysctl MIB."
 
@@ -2694,6 +2701,13 @@ msgid ""
 msgstr ""
 "Введите парольную фразу для режима WPA-PSK. Длина должна быть в интервале "
 "между 8 и 63 символами."
+
+msgid ""
+"Enter the path to the home directory of VirtualBox. VM config and HDD image "
+"will be created under the specified directory."
+msgstr ""
+"Введите путь к домашней папке VirtualBox. Конфигурация Виртуальных Машин и "
+"образы дисков будут созданы в этой папке."
 
 msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
@@ -6037,7 +6051,8 @@ msgstr "Хранить альтернативные потоки данных в
 msgid ""
 "String displayed in the dialog presented to the user when accessing the URL."
 msgstr ""
-"Строки, указанные в диалоге, будут показаны пользователю при открытии URL."
+"Строка отображается в диалоговом окне, представленном пользователю при "
+"доступе к URL."
 
 msgid "String identifier of the extent."
 msgstr "Строковый идентификатор экстента."
@@ -6201,6 +6216,9 @@ msgstr "С меткой '%d'"
 #, php-format
 msgid "Tag%d (%s)"
 msgstr "С меткой '%d' (%s)"
+
+msgid "Tap device"
+msgstr "Tap устройства"
 
 msgid "Tape"
 msgstr "Магнитная лента"
@@ -7349,15 +7367,6 @@ msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr "Только для информации (не используется при согласовании iSCSI)."
 
 msgid ""
-"This may make more efficient use of the system CPU's and cause Samba to be "
-"faster. Samba automatically turns this off for clients that use protocol "
-"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
-msgstr ""
-"Это может сделать более эффективным использование CPU и ускорить работу "
-"Samba. Samba автоматически выключит данный параметр для клиентов Windows 9x "
-"и тех, кто использует протокол ниже чем NT LM 0.12."
-
-msgid ""
 "This means that the image you uploaded is not an official/supported image "
 "and may lead to unexpected behavior or security compromises. Only install "
 "images that come from sources that you trust, and make sure that the image "
@@ -8063,9 +8072,6 @@ msgstr ""
 "Использовать, как разреженный том(sparse volume) - тонкое "
 "резервирование(thin provisioning)"
 
-msgid "Use sendfile"
-msgstr "Использовать параметр 'sendfile'"
-
 msgid ""
 "Use the following IP address as the source address in outgoing packets."
 msgstr "Использовать следующий IP-адрес как источник в исходящих пакетах."
@@ -8187,6 +8193,9 @@ msgstr "VLAN"
 msgid "VLAN tag"
 msgstr "Метка VLAN"
 
+msgid "VM"
+msgstr "VM"
+
 msgid "Value"
 msgstr "Значение"
 
@@ -8216,6 +8225,9 @@ msgstr "Идентификатор виртуального узла"
 msgid "Virtual IP address"
 msgstr "Виртуальный IP-адрес"
 
+msgid "Virtual Machine"
+msgstr "Виртуальная машина"
+
 msgid "Virtual device"
 msgstr "Виртуальные устройства"
 
@@ -8224,6 +8236,9 @@ msgstr "Виртуальные устройства"
 
 msgid "Virtual interface"
 msgstr "Виртуальный интерфейс"
+
+msgid "VirtualBox"
+msgstr "VirtualBox"
 
 msgid "Volume"
 msgstr "Раздел"
@@ -8639,11 +8654,17 @@ msgstr "n/a"
 msgid "no new encrypted disk found."
 msgstr "новый диск использующий шифрование не найден."
 
+msgid "noVNC"
+msgstr "noVNC"
+
 msgid "none"
 msgstr "none"
 
 msgid "phpBB"
 msgstr "Отчет для phpBB"
+
+msgid "phpVirtualBox"
+msgstr "phpVirtualBox"
 
 msgid "rc.conf"
 msgstr "rc.conf"

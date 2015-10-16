@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-16 03:45+0000\n"
+"POT-Creation-Date: 2015-10-10 16:28+0000\n"
 "PO-Revision-Date: 2015-07-16 18:28+0000\n"
 "Last-Translator: Andrea Uguzzoni <andrea.uguzzoni@gmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-22 00:13+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-10 13:41+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 "X-Poedit-Country: ITALY\n"
 "Language: \n"
 "X-Poedit-Language: Italian\n"
@@ -826,6 +826,9 @@ msgstr "Metodo di Autenticazione"
 
 msgid "Authenticate URL"
 msgstr "Autentica URL"
+
+msgid "Authenticate path & realm"
+msgstr ""
 
 msgid "Authentication"
 msgstr "Autenticazione"
@@ -2576,9 +2579,6 @@ msgstr "Attivare traps"
 msgid "Enable tuning of some kernel variables"
 msgstr "Abilita l'ottimizzazione di alcune variabili del kernel"
 
-msgid "Enable use sendfile."
-msgstr "Attiva l'uso di sendfile."
-
 msgid "Enable write cache mode."
 msgstr "Abilità la modalità write cache."
 
@@ -2621,6 +2621,11 @@ msgstr ""
 "Inserisci una numero di porta personalizzato per la webGUI se vuoi "
 "modificare quella di default (80 per HTTP, 443 per HTTPS)."
 
+msgid ""
+"Enter a space-separated list of tap devices. The devices will be created and "
+"automatically added it to the bridge."
+msgstr ""
+
 msgid "Enter a valid sysctl MIB name."
 msgstr "Inserire un nome sysctl MIB valido."
 
@@ -2637,6 +2642,11 @@ msgid ""
 msgstr ""
 "Inserisci la passphrase che sarà utilizzata nella modalità WPA-PSK. Dovrà "
 "essere compresa tra gli 8 e i 63 caratteri."
+
+msgid ""
+"Enter the path to the home directory of VirtualBox. VM config and HDD image "
+"will be created under the specified directory."
+msgstr ""
 
 msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
@@ -6117,6 +6127,9 @@ msgstr "Tag%d"
 msgid "Tag%d (%s)"
 msgstr "Tag%d (%s)"
 
+msgid "Tap device"
+msgstr ""
+
 msgid "Tape"
 msgstr "Nastro"
 
@@ -7245,16 +7258,6 @@ msgstr ""
 "Solo per informazione (non viene utilizzato per la negoziazione iSCSI)."
 
 msgid ""
-"This may make more efficient use of the system CPU's and cause Samba to be "
-"faster. Samba automatically turns this off for clients that use protocol "
-"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
-msgstr ""
-"Questo può permettere un utilizzo più efficiente della CPU di sistema e una "
-"maggiore velocità di Samba. Samba disattiva automaticamente questa opzione "
-"per i client che usano livelli di protocollo inferiori a NT LM 0.12 e quando "
-"rileva un client Windows 9x."
-
-msgid ""
 "This means that the image you uploaded is not an official/supported image "
 "and may lead to unexpected behavior or security compromises. Only install "
 "images that come from sources that you trust, and make sure that the image "
@@ -7942,9 +7945,6 @@ msgstr ""
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr "Utilizza come volume sparse. (thin provisioning)"
 
-msgid "Use sendfile"
-msgstr "Usa sendfile"
-
 msgid ""
 "Use the following IP address as the source address in outgoing packets."
 msgstr ""
@@ -8070,6 +8070,9 @@ msgstr "VLAN"
 msgid "VLAN tag"
 msgstr "Tag VLAN"
 
+msgid "VM"
+msgstr ""
+
 msgid "Value"
 msgstr "Valore"
 
@@ -8096,6 +8099,9 @@ msgstr "ID Host Virtuale"
 msgid "Virtual IP address"
 msgstr "Indirizzo IP Virtuale"
 
+msgid "Virtual Machine"
+msgstr ""
+
 msgid "Virtual device"
 msgstr "Periferica virtuale"
 
@@ -8104,6 +8110,9 @@ msgstr "Periferiche virtuali"
 
 msgid "Virtual interface"
 msgstr "Interfaccia virtuale"
+
+msgid "VirtualBox"
+msgstr ""
 
 msgid "Volume"
 msgstr "Volume"
@@ -8514,11 +8523,17 @@ msgstr "n.d."
 msgid "no new encrypted disk found."
 msgstr "nessun nuovo disco criptato trovato."
 
+msgid "noVNC"
+msgstr ""
+
 msgid "none"
 msgstr "nessuno"
 
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "phpVirtualBox"
+msgstr ""
 
 msgid "rc.conf"
 msgstr "rc.conf"

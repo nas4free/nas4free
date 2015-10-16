@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-16 03:45+0000\n"
+"POT-Creation-Date: 2015-10-10 16:28+0000\n"
 "PO-Revision-Date: 2014-11-17 04:09+0000\n"
 "Last-Translator: NAS4Free Developer <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-22 00:13+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-10 13:41+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 "X-Poedit-Country: ALBANIA\n"
 "Language: \n"
 "X-Poedit-Language: Albanian\n"
@@ -777,6 +777,9 @@ msgstr "Lloji i autorizimit"
 
 msgid "Authenticate URL"
 msgstr "Autentiko URL-ne"
+
+msgid "Authenticate path & realm"
+msgstr ""
 
 msgid "Authentication"
 msgstr "Autentikim"
@@ -2453,9 +2456,6 @@ msgstr "Aktivo kurthat."
 msgid "Enable tuning of some kernel variables"
 msgstr ""
 
-msgid "Enable use sendfile."
-msgstr "Aktivizo perdorimin per dergimin e skedareve."
-
 msgid "Enable write cache mode."
 msgstr ""
 
@@ -2495,6 +2495,11 @@ msgid ""
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
 
+msgid ""
+"Enter a space-separated list of tap devices. The devices will be created and "
+"automatically added it to the bridge."
+msgstr ""
+
 msgid "Enter a valid sysctl MIB name."
 msgstr "Vendosni nje emer sysctl MIB te vlefshem."
 
@@ -2511,6 +2516,11 @@ msgid ""
 msgstr ""
 "Vendosni fjalekalimin qe do te perdoret ne modalitetin WPA-PSK. Ky "
 "fjalekalim duhet te jete nga 8 deri ne 63 karaktere i gjate."
+
+msgid ""
+"Enter the path to the home directory of VirtualBox. VM config and HDD image "
+"will be created under the specified directory."
+msgstr ""
 
 msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
@@ -5802,6 +5812,9 @@ msgstr ""
 msgid "Tag%d (%s)"
 msgstr ""
 
+msgid "Tap device"
+msgstr ""
+
 msgid "Tape"
 msgstr ""
 
@@ -6759,12 +6772,6 @@ msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr ""
 
 msgid ""
-"This may make more efficient use of the system CPU's and cause Samba to be "
-"faster. Samba automatically turns this off for clients that use protocol "
-"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
-msgstr ""
-
-msgid ""
 "This means that the image you uploaded is not an official/supported image "
 "and may lead to unexpected behavior or security compromises. Only install "
 "images that come from sources that you trust, and make sure that the image "
@@ -7344,9 +7351,6 @@ msgstr ""
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr ""
 
-msgid "Use sendfile"
-msgstr ""
-
 msgid ""
 "Use the following IP address as the source address in outgoing packets."
 msgstr "Perdor kete adrese IP-je si adrese burimi per paketat ne dalje."
@@ -7452,6 +7456,9 @@ msgstr "VLAN"
 msgid "VLAN tag"
 msgstr ""
 
+msgid "VM"
+msgstr ""
+
 msgid "Value"
 msgstr "Vlere"
 
@@ -7478,6 +7485,9 @@ msgstr ""
 msgid "Virtual IP address"
 msgstr ""
 
+msgid "Virtual Machine"
+msgstr ""
+
 msgid "Virtual device"
 msgstr "Pasije virtuale"
 
@@ -7486,6 +7496,9 @@ msgstr "Psje virtuale"
 
 msgid "Virtual interface"
 msgstr "Nderfaqja virtuale"
+
+msgid "VirtualBox"
+msgstr ""
 
 msgid "Volume"
 msgstr ""
@@ -7869,11 +7882,17 @@ msgstr "n/a"
 msgid "no new encrypted disk found."
 msgstr ""
 
+msgid "noVNC"
+msgstr ""
+
 msgid "none"
 msgstr "asnje"
 
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "phpVirtualBox"
+msgstr ""
 
 msgid "rc.conf"
 msgstr "rc.conf"

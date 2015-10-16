@@ -1,0 +1,22 @@
+--- libav.h.orig	2015-09-11 04:24:09.000000000 +0900
++++ libav.h	2015-10-05 05:29:52.938590000 +0900
+@@ -121,8 +121,18 @@
+ 	int ret;
+ #if LIBAVFORMAT_VERSION_INT >= ((53<<16)+(17<<8)+0)
+ 	ret = avformat_open_input(ctx, filename, NULL, NULL);
+-	if (ret == 0)
++	if (ret == 0) {
++#ifdef __arm__
++#ifdef FF_API_PROBESIZE_32
++		(*ctx)->max_analyze_duration2 = 500000;
++		(*ctx)->probesize2 = 1000000;
++#else
++		(*ctx)->max_analyze_duration = 500000;
++		(*ctx)->probesize = 1000000;
++#endif
++#endif /* __arm__ */
+ 		avformat_find_stream_info(*ctx, NULL);
++	}
+ #else
+ 	ret = av_open_input_file(ctx, filename, NULL, 0, NULL);
+ 	if (ret == 0)

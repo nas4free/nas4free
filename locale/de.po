@@ -2,19 +2,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-16 03:45+0000\n"
-"PO-Revision-Date: 2015-08-13 21:06+0000\n"
+"POT-Creation-Date: 2015-10-10 16:28+0000\n"
+"PO-Revision-Date: 2015-09-30 00:13+0000\n"
 "Last-Translator: zoon01 <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-22 00:12+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-10 13:41+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 "X-Poedit-Country: GERMANY\n"
 "Language: \n"
 "X-Poedit-Language: German\n"
 "X-Poedit-SourceCharset: utf-8\n"
+
+msgid "Load"
+msgstr "Last"
 
 msgid " interfaces:"
 msgstr " Schnittstellen:"
@@ -819,6 +822,9 @@ msgstr "Authentifikationsmethode"
 msgid "Authenticate URL"
 msgstr "URL bestätigen"
 
+msgid "Authenticate path & realm"
+msgstr ""
+
 msgid "Authentication"
 msgstr "Authentifizierung"
 
@@ -1487,7 +1493,7 @@ msgid ""
 msgstr ""
 
 msgid "Count of times the link is reset during a data transfer."
-msgstr ""
+msgstr "Anzahl der 'Verbindungsresets während des Datentransfers."
 
 msgid "Counts the maximum worst erase count on any block."
 msgstr ""
@@ -1550,7 +1556,7 @@ msgid "Current Version:"
 msgstr "Aktuelle Version:"
 
 msgid "Current internal temperature."
-msgstr ""
+msgstr "Aktuelle intere Temperatur."
 
 msgid "Current password"
 msgstr "Aktuelles Passwort"
@@ -2580,9 +2586,6 @@ msgstr "Traps aktivieren."
 msgid "Enable tuning of some kernel variables"
 msgstr "Das Anpassen einiger Kernel-Variablen zulassen."
 
-msgid "Enable use sendfile."
-msgstr "Die Benutzung von Sendfile einschalten"
-
 msgid "Enable write cache mode."
 msgstr "Schreib-Cache Modus aktivieren."
 
@@ -2625,6 +2628,11 @@ msgstr ""
 "von NAS4Free nur ein, wenn Sie den Standardwert überschreiben wollen (80 für "
 "HTTP, 443 für HTTPS)"
 
+msgid ""
+"Enter a space-separated list of tap devices. The devices will be created and "
+"automatically added it to the bridge."
+msgstr ""
+
 msgid "Enter a valid sysctl MIB name."
 msgstr "Geben Sie einen gültigen sysctl MIB Namen an."
 
@@ -2641,6 +2649,11 @@ msgid ""
 msgstr ""
 "Geben sie das Passwort ein welches für WPA-PSK benutzt werden soll. Es muss "
 "zwischen 8 und 63 Zeichen lang sein."
+
+msgid ""
+"Enter the path to the home directory of VirtualBox. VM config and HDD image "
+"will be created under the specified directory."
+msgstr ""
 
 msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
@@ -3817,9 +3830,6 @@ msgstr "Liste der importierten Benutzer"
 
 msgid "List of mount points"
 msgstr "Liste von Einhängepunkten"
-
-msgid "Load"
-msgstr "Laden"
 
 msgid "Load averages"
 msgstr "Durchschnittliche Last"
@@ -5514,7 +5524,7 @@ msgid "Security"
 msgstr "Sicherheit"
 
 msgid "See attribute E8."
-msgstr ""
+msgstr "Verweis auf Attribut E8"
 
 msgid ""
 "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
@@ -5842,6 +5852,8 @@ msgid ""
 "the status of the Helium in the drive. It is a pre-fail attribute that trips "
 "once the drive detects that the internal environment is out of specification."
 msgstr ""
+"Status der Helium-Athmosphäre in HGST - Festplatten. Status ausserhalb der "
+"Spezifikation indiziert einen nahenden Festplattenausfall."
 
 msgid "Specified path is NFSv4 root directory."
 msgstr "Der eingestellte Pfad ist das NFSv4 Stammverzeichnis."
@@ -6134,6 +6146,9 @@ msgstr "Tag%d"
 #, php-format
 msgid "Tag%d (%s)"
 msgstr "Tag%d (%s)"
+
+msgid "Tap device"
+msgstr ""
 
 msgid "Tape"
 msgstr "Band"
@@ -6513,6 +6528,9 @@ msgid ""
 "likely there will be some serious problems with power supply or an oxidized "
 "data cable."
 msgstr ""
+"anzahl abgebrochener Festplattenzugriffe wg HDD-Timeouts. Normaler Wert ist "
+"Null, ein darüberliegender Wert indiziert Probleme mit dem Netzteil oder dem "
+"Datenkabel (z.B. lose Stecker oder oxidierte Kontakte)"
 
 msgid ""
 "The count of errors found when writing a sector. The higher the value, the "
@@ -6530,12 +6548,12 @@ msgstr ""
 
 msgid ""
 "The count of errors resulting from externally induced shock & vibration."
-msgstr ""
+msgstr "Fehlerzahl aufgrund externer Schocks oder Vibrationen."
 
 msgid ""
 "The count of errors that could not be recovered using hardware ECC (see "
 "attribute 195)."
-msgstr ""
+msgstr "Fehleranzahl, die nicht durch ECC behoben werden konnten."
 
 msgid ""
 "The count of times the magnetic armature was retracted automatically as a "
@@ -6986,13 +7004,16 @@ msgid "The time update interval must be either between 6 and 1440."
 msgstr "Das Zeitupdateintervall mus zwischen 6 und 1440 liegen."
 
 msgid "The total count of errors when writing a sector."
-msgstr ""
+msgstr "gesamte Fehlerzahl während des Schreibens eines Sektors."
 
 msgid ""
 "The total count of uncorrectable errors when reading/writing a sector. A "
 "rise in the value of this attribute indicates defects of the disk surface "
 "and/or problems in the mechanical subsystem."
 msgstr ""
+"Gesamtzahl unkorrigierbarer Fehler während Lese-/Schreiboperationen. Eine "
+"ansteigende Zahl indiziert Fehler auf der Plattenoberfläche oder der "
+"Festplattenmechanik."
 
 msgid "The unique group ID is already used."
 msgstr "Die eindeutige Gruppen ID wird schon verwendet."
@@ -7203,7 +7224,7 @@ msgstr ""
 
 msgid ""
 "This attribute indicates the count of full hard disk power on/off cycles."
-msgstr ""
+msgstr "Gesamtzahl vollständiger An-und Ausschaltzyklen."
 
 msgid ""
 "This attribute indicates the count that recalibration was requested (under "
@@ -7292,16 +7313,6 @@ msgstr ""
 
 msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr "Nur als Info (wird nicht für iSCSI Kommunikation verwendet)."
-
-msgid ""
-"This may make more efficient use of the system CPU's and cause Samba to be "
-"faster. Samba automatically turns this off for clients that use protocol "
-"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
-msgstr ""
-"Dies könnte die System-CPU besser ausnutzen und als Folge kann Samba "
-"schneller sein. Samba schaltet dies automatisch ab, wenn ein Klient das "
-"Protokoll mit der Versionsnummer niedriger als NT LM 0.12 verwendet und wenn "
-"Windows 9x erkannt wird."
 
 msgid ""
 "This means that the image you uploaded is not an official/supported image "
@@ -7998,9 +8009,6 @@ msgstr ""
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr "Verwende karge Datenträger. (magere Bereitstellung)"
 
-msgid "Use sendfile"
-msgstr "Verwende Sendfile"
-
 msgid ""
 "Use the following IP address as the source address in outgoing packets."
 msgstr "Benutze folgende IP als Quelladresse für ausgehende Pakete."
@@ -8122,6 +8130,9 @@ msgstr "VLAN"
 msgid "VLAN tag"
 msgstr "VLAN Tag"
 
+msgid "VM"
+msgstr ""
+
 msgid "Value"
 msgstr "Wert"
 
@@ -8148,6 +8159,9 @@ msgstr "Virtuelle Host ID"
 msgid "Virtual IP address"
 msgstr "Virtuelle IP Adresse"
 
+msgid "Virtual Machine"
+msgstr "Virtuelle Maschine"
+
 msgid "Virtual device"
 msgstr "Virtuelles Gerät"
 
@@ -8156,6 +8170,9 @@ msgstr "Virtuelle Geräte"
 
 msgid "Virtual interface"
 msgstr "Virtuelle Schnittstelle"
+
+msgid "VirtualBox"
+msgstr ""
 
 msgid "Volume"
 msgstr "Datenträger"
@@ -8567,11 +8584,17 @@ msgstr "k.A."
 msgid "no new encrypted disk found."
 msgstr "keine neuen verschl&uuml;sselten Platten gefunden."
 
+msgid "noVNC"
+msgstr ""
+
 msgid "none"
 msgstr "keine"
 
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "phpVirtualBox"
+msgstr ""
 
 msgid "rc.conf"
 msgstr "rc.conf"

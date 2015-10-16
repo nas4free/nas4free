@@ -122,7 +122,7 @@ $menu['services']['menuitem'][] = array("desc" => gettext("AFP"), "link" => "../
 $menu['services']['menuitem'][] = array("desc" => gettext("Rsync"), "link" => "../services_rsyncd.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("Unison"), "link" => "../services_unison.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("iSCSI Target"), "link" => "../services_iscsitarget.php", "visible" => TRUE);
-$menu['services']['menuitem'][] = array("desc" => gettext("DLNA/UPnP"), "link" => "../services_upnp.php", "visible" => TRUE);
+$menu['services']['menuitem'][] = array("desc" => gettext("DLNA/UPnP"), "link" => "../services_fuppes.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("iTunes/DAAP"), "link" => "../services_daap.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("Dynamic DNS"), "link" => "../services_dynamicdns.php", "visible" => TRUE);
 $menu['services']['menuitem'][] = array("desc" => gettext("SNMP"), "link" => "../services_snmp.php", "visible" => TRUE);
@@ -165,6 +165,8 @@ if (!isset($config['system']['disablefm'])) {
 }
 $menu['advanced']['menuitem'][] = array("type" => "separator", "visible" => Session::isAdmin());
 $menu['advanced']['menuitem'][] = array("desc" => gettext("Command"), "link" => "../exec.php", "visible" => Session::isAdmin());
+$menu['advanced']['menuitem'][] = array("type" => "separator", "visible" => Session::isAdmin());
+$menu['advanced']['menuitem'][] = array("desc" => gettext("VirtualBox"), "link" => "../vm_vbox.php", "visible" => Session::isAdmin());
 
 // Diagnostics
 $menu['diagnostics']['desc'] = gettext("Diagnostics");
@@ -230,6 +232,23 @@ function display_menu($menuid) {
 
 	echo "	</div>\n";
 	echo "</li>\n";
+}
+function include_ext_menu() {
+	global $g;
+	$dh = @opendir("{$g['www_path']}/ext");
+	if ($dh) {
+		while (($extd = readdir($dh)) !== false) {
+			if (($extd === ".") || ($extd === ".."))
+				continue;
+			ob_start();
+			@include("{$g['www_path']}/ext/" . $extd . "/menu.inc");
+			$tmp = trim(ob_get_contents());
+			ob_end_clean();
+			$tmp = preg_replace('/href=\"([^\/\.])/', 'href="../\1', $tmp);
+			echo "$tmp\n";
+		}
+		closedir($dh);
+	}
 }
 /* QUIXPLORER CODE */
 // header for html-page
@@ -298,20 +317,7 @@ function show_header($title, $additional_header_content = null)
 				echo "<a href=\"../index.php\" onmouseover=\"mopen('extensions')\" onmouseout=\"mclosetime()\">".gettext("Extensions")."</a>\n";
 			}
 			echo "<div id=\"extensions\" onmouseover=\"mcancelclosetime()\" onmouseout=\"mclosetime()\">\n";
-				$dh = @opendir("{$g['www_path']}/ext");
-				if ($dh) {
-					while (($extd = readdir($dh)) !== false) {
-						if (($extd === ".") || ($extd === ".."))
-							continue;
-						ob_start();
-						@include("{$g['www_path']}/ext/" . $extd . "/menu.inc");
-						$tmp = trim(ob_get_contents());
-						ob_end_clean();
-						$tmp = preg_replace('/href=\"([^\/\.])/', 'href="../\1', $tmp);
-						echo "$tmp\n";
-					}
-					closedir($dh);
-				}
+			include_ext_menu();
 			echo "</div>\n";
 		echo "</li>\n";
 	endif;

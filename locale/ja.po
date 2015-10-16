@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-16 03:45+0000\n"
-"PO-Revision-Date: 2015-08-19 10:52+0000\n"
+"POT-Creation-Date: 2015-10-10 16:28+0000\n"
+"PO-Revision-Date: 2015-10-10 07:52+0000\n"
 "Last-Translator: Daisuke Aoyama <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-22 00:13+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-10 13:41+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: \n"
 "X-Poedit-Language: Japanese\n"
@@ -768,6 +768,9 @@ msgstr "認証方法"
 msgid "Authenticate URL"
 msgstr "認証 URL"
 
+msgid "Authenticate path & realm"
+msgstr "認証パスとレルム"
+
 msgid "Authentication"
 msgstr "認証"
 
@@ -1335,7 +1338,7 @@ msgid "Count of Data Address Mark errors (or vendor-specific)."
 msgstr "データアドレスマークのエラー数 (またはベンダー固有)"
 
 msgid "Count of attempts to compensate for platter speed variations."
-msgstr ""
+msgstr "プラッタの回転速度変動を補償しようと試みた数。"
 
 msgid ""
 "Count of buzz routines needed to spin up the drive due to insufficient power."
@@ -1408,10 +1411,10 @@ msgid ""
 msgstr "ヘッドがメディアからアンロードされた回数。ヘッドは、実際に電源を切らずにアンロードすることができます。"
 
 msgid "Count of times the link is reset during a data transfer."
-msgstr ""
+msgstr "データ転送中にリセットされたリンクの回数。"
 
 msgid "Counts the maximum worst erase count on any block."
-msgstr ""
+msgstr "過去最悪のブロック消去回数。"
 
 msgid "Create 4KB wrapper (nop device)."
 msgstr "4KBラッパー (nop デバイス) を作成する"
@@ -1481,7 +1484,7 @@ msgid ""
 msgstr "現在のパスワードはデフォルトのパスワードです。自分のパスワードを使用する必要があります。"
 
 msgid "Current state of drive operation based upon the Life Curve."
-msgstr ""
+msgstr "ライフ曲線に基づいたドライブ運用の現在の状態。"
 
 msgid "Current value of apparent power (Volt-Amps)"
 msgstr "現在の皮相電力(VA)"
@@ -2147,7 +2150,7 @@ msgid "Drive Temperature."
 msgstr "ドライブ温度。"
 
 msgid "Drive's seek performance during its internal tests."
-msgstr ""
+msgstr "内部テスト中のドライブのシークパフォーマンス。"
 
 msgid "Driver"
 msgstr "ドライバ"
@@ -2461,9 +2464,6 @@ msgstr "トラップを有効にします。"
 msgid "Enable tuning of some kernel variables"
 msgstr "いくつかのカーネル変数のチューニングを許可する"
 
-msgid "Enable use sendfile."
-msgstr "sendfile を有効にします。"
-
 msgid "Enable write cache mode."
 msgstr "書き込みキャッシュモードを有効にします。"
 
@@ -2503,6 +2503,11 @@ msgid ""
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr "WebGUIデフォルトポート(HTTP 80, HTTPS 443)を変更したい場合は、カスタムポート番号を入力してください。"
 
+msgid ""
+"Enter a space-separated list of tap devices. The devices will be created and "
+"automatically added it to the bridge."
+msgstr "スペース区切りのtapデバイスのリストを入力してください。デバイスが作成され、自動的にブリッジに追加されます。"
+
 msgid "Enter a valid sysctl MIB name."
 msgstr "有効な sysctl MIB 名を入力して下さい。"
 
@@ -2515,6 +2520,11 @@ msgid ""
 "Enter the passphrase that will be used in WPA-PSK mode. This must be between "
 "8 and 63 characters long."
 msgstr "WPA-PSK モードで使用するパスフレーズを8文字以上63文字以内で入力してください。"
+
+msgid ""
+"Enter the path to the home directory of VirtualBox. VM config and HDD image "
+"will be created under the specified directory."
+msgstr "VirtualBoxのホームディレクトリへのパスを入力します。VMの設定とHDDイメージは、指定したディレクトリの下に作成されます。"
 
 msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
@@ -4997,7 +5007,7 @@ msgid "Reservation"
 msgstr "予約"
 
 msgid "Resistance caused by friction in mechanical parts while operating."
-msgstr ""
+msgstr "操作中の機械的な部分で摩擦によって生じた抵抗。"
 
 msgid "Resolve"
 msgstr "逆引き"
@@ -5227,7 +5237,7 @@ msgid "Security"
 msgstr "セキュリティー"
 
 msgid "See attribute E8."
-msgstr ""
+msgstr "E8属性を参照してください。"
 
 msgid ""
 "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
@@ -5411,7 +5421,7 @@ msgid "Shell"
 msgstr "シェル"
 
 msgid "Shock During Write."
-msgstr ""
+msgstr "書き込み中の衝撃。"
 
 msgid "Show RAW UPS Info"
 msgstr "無加工UPS情報の表示"
@@ -5813,6 +5823,9 @@ msgstr "タグ%d"
 msgid "Tag%d (%s)"
 msgstr "タグ%d (%s)"
 
+msgid "Tap device"
+msgstr "Tapデバイス"
+
 msgid "Tape"
 msgstr "テープ"
 
@@ -6152,7 +6165,7 @@ msgstr ""
 msgid ""
 "The count of errors found when writing a sector. The higher the value, the "
 "worse the disk's mechanical condition is."
-msgstr ""
+msgstr "セクターを書くときに検出されたエラーの数。値が高いほどディスクの機械的な条件がより悪い。"
 
 msgid ""
 "The count of errors in data transfer via the interface cable as determined "
@@ -6171,7 +6184,7 @@ msgstr "ハードウェアECCを用いて修復することができなかった
 msgid ""
 "The count of times the magnetic armature was retracted automatically as a "
 "result of cutting power."
-msgstr ""
+msgstr "電源を切断した結果として自動的にリトラクトされた磁気アーマチュアの回数。"
 
 msgid "The credentials with which to bind."
 msgstr "バインドする際に使用するパスワードを入力して下さい。"
@@ -6401,7 +6414,7 @@ msgstr "クライアント数は 1 から 50 の範囲で指定してくださ�
 msgid ""
 "The number of errors caused by incorrect checksum during the error "
 "correction."
-msgstr ""
+msgstr "エラー訂正の際に間違ったチェックサムにより生じたエラーの数。"
 
 msgid "The old password is not correct."
 msgstr "古いパスワードは正しくありません。"
@@ -6808,14 +6821,6 @@ msgstr ""
 
 msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr "この内容は iSCSI ネゴシエーションには使用されません。"
-
-msgid ""
-"This may make more efficient use of the system CPU's and cause Samba to be "
-"faster. Samba automatically turns this off for clients that use protocol "
-"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
-msgstr ""
-"このオプションを有効にすると、より効率的にシステム CPU が使用され、Samba の高速化が行われます。NT LM 0.12 "
-"より低いプロトコルレベルを使うクライアント及びWindows 9x を検出した場合、自動的に無効になります。"
 
 msgid ""
 "This means that the image you uploaded is not an official/supported image "
@@ -7368,7 +7373,7 @@ msgid "Unavailable"
 msgstr "利用不可"
 
 msgid "Uncorrected read errors reported to the operating system."
-msgstr ""
+msgstr "オペレーティングシステムに報告された未修正の読み取りエラー。"
 
 msgid "Unformated"
 msgstr "フォーマットしない"
@@ -7439,9 +7444,6 @@ msgstr ""
 
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr "スパースボリュームとして利用する。（シン・プロビジョニング）"
-
-msgid "Use sendfile"
-msgstr "sendfile を使用"
 
 msgid ""
 "Use the following IP address as the source address in outgoing packets."
@@ -7551,6 +7553,9 @@ msgstr "VLAN"
 msgid "VLAN tag"
 msgstr "VLAN タグ"
 
+msgid "VM"
+msgstr "VM"
+
 msgid "Value"
 msgstr "値"
 
@@ -7569,13 +7574,16 @@ msgid "Version"
 msgstr "バージョン"
 
 msgid "Vibration During Write."
-msgstr ""
+msgstr "書き込み中の振動。"
 
 msgid "Virtual Host ID"
 msgstr "仮想ホストID"
 
 msgid "Virtual IP address"
 msgstr "仮想IPアドレス"
+
+msgid "Virtual Machine"
+msgstr "仮想マシン"
 
 msgid "Virtual device"
 msgstr "仮想デバイス"
@@ -7585,6 +7593,9 @@ msgstr "仮想デバイス"
 
 msgid "Virtual interface"
 msgstr "仮想インタフェース"
+
+msgid "VirtualBox"
+msgstr "VirtualBox"
 
 msgid "Volume"
 msgstr "ボリューム"
@@ -7670,7 +7681,7 @@ msgid "Week days"
 msgstr "曜日"
 
 msgid "Western Digital attribute."
-msgstr ""
+msgstr "ウエスタンデジタルの属性。"
 
 msgid ""
 "Western Digital, Samsung or Seagate attribute: Total number of data blocks "
@@ -7966,11 +7977,17 @@ msgstr "n/a"
 msgid "no new encrypted disk found."
 msgstr "新しい暗号化ディスクは見つかりません。"
 
+msgid "noVNC"
+msgstr "noVNC"
+
 msgid "none"
 msgstr "none"
 
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "phpVirtualBox"
+msgstr "phpVirtualBox"
 
 msgid "rc.conf"
 msgstr "rc.conf"

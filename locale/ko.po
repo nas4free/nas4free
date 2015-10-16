@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2015-07-16 03:45+0000\n"
+"POT-Creation-Date: 2015-10-10 16:28+0000\n"
 "PO-Revision-Date: 2014-11-17 04:06+0000\n"
 "Last-Translator: NAS4Free Developer <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-22 00:13+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-10 13:41+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 "X-Poedit-Country: KOREA\n"
 "Language: \n"
 "X-Poedit-Language: Korean\n"
@@ -747,6 +747,9 @@ msgstr "인증 방법"
 
 msgid "Authenticate URL"
 msgstr "URL 인증하기"
+
+msgid "Authenticate path & realm"
+msgstr ""
 
 msgid "Authentication"
 msgstr "인증"
@@ -2413,9 +2416,6 @@ msgstr "트랩 활성화."
 msgid "Enable tuning of some kernel variables"
 msgstr "몇몇 커널 변수들의 미세 조정 활성화"
 
-msgid "Enable use sendfile."
-msgstr "전송 파일 이용 활성화."
-
 msgid "Enable write cache mode."
 msgstr ""
 
@@ -2455,6 +2455,11 @@ msgid ""
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr ""
 
+msgid ""
+"Enter a space-separated list of tap devices. The devices will be created and "
+"automatically added it to the bridge."
+msgstr ""
+
 msgid "Enter a valid sysctl MIB name."
 msgstr "유효한 sysctl MIB 이름을 입력하십시오."
 
@@ -2467,6 +2472,11 @@ msgid ""
 "Enter the passphrase that will be used in WPA-PSK mode. This must be between "
 "8 and 63 characters long."
 msgstr "WPA-PSK 모드에서 이용될 비밀번호를 입력하십시오. 이것은 8자에서 63자 사이의 길이여야 합니다."
+
+msgid ""
+"Enter the path to the home directory of VirtualBox. VM config and HDD image "
+"will be created under the specified directory."
+msgstr ""
 
 msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
@@ -5742,6 +5752,9 @@ msgstr "태그 %d"
 msgid "Tag%d (%s)"
 msgstr "태그 %d(%s)"
 
+msgid "Tap device"
+msgstr ""
+
 msgid "Tape"
 msgstr "테이프"
 
@@ -6722,14 +6735,6 @@ msgid "This is for information only (not using during iSCSI negotiation)."
 msgstr ""
 
 msgid ""
-"This may make more efficient use of the system CPU's and cause Samba to be "
-"faster. Samba automatically turns this off for clients that use protocol "
-"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
-msgstr ""
-"이것은 시스템 CPU를 좀 더 효율적으로 이용하여 삼바를 더 빠르게 만들 수도 있습니다. 삼바는 NT LM 0.12 이전의 프로토콜 "
-"레벨을 가진 클라이언트일 경우나 클라이언트가 윈도우즈 9x라고 탐지했을 때 이것을 자동으로 끕니다."
-
-msgid ""
 "This means that the image you uploaded is not an official/supported image "
 "and may lead to unexpected behavior or security compromises. Only install "
 "images that come from sources that you trust, and make sure that the image "
@@ -7351,9 +7356,6 @@ msgstr ""
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr ""
 
-msgid "Use sendfile"
-msgstr "전송 파일 이용"
-
 msgid ""
 "Use the following IP address as the source address in outgoing packets."
 msgstr "아래의 IP 주소를 나가는 패킷의 소스 주소로 이용합니다."
@@ -7462,6 +7464,9 @@ msgstr "VLAN"
 msgid "VLAN tag"
 msgstr "VLAN 태그"
 
+msgid "VM"
+msgstr ""
+
 msgid "Value"
 msgstr "값"
 
@@ -7488,6 +7493,9 @@ msgstr ""
 msgid "Virtual IP address"
 msgstr ""
 
+msgid "Virtual Machine"
+msgstr ""
+
 msgid "Virtual device"
 msgstr "가상 장치"
 
@@ -7496,6 +7504,9 @@ msgstr "가상 장치"
 
 msgid "Virtual interface"
 msgstr "가상 인터페이스"
+
+msgid "VirtualBox"
+msgstr ""
 
 msgid "Volume"
 msgstr ""
@@ -7871,11 +7882,17 @@ msgstr "n/a"
 msgid "no new encrypted disk found."
 msgstr ""
 
+msgid "noVNC"
+msgstr ""
+
 msgid "none"
 msgstr "없음"
 
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "phpVirtualBox"
+msgstr ""
 
 msgid "rc.conf"
 msgstr "rc.conf"

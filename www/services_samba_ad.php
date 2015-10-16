@@ -35,6 +35,9 @@ require("guiconfig.inc");
 
 $pgtitle = array(gettext("Services"), gettext("Samba AD"));
 
+if (!isset($config['sambaad']['auxparam']) || !is_array($config['sambaad']['auxparam']))
+	$config['sambaad']['auxparam'] = array();
+
 $errormsg="";
 
 if ($config['interfaces']['lan']['ipaddr'] == "dhcp") {
@@ -79,6 +82,13 @@ if ($_POST) {
 		$config['sambaad']['dns_forwarder'] = $_POST['dns_forwarder'];
 		$config['sambaad']['user_shares'] = isset($_POST['user_shares']) ? true : false;
 
+		unset($config['sambaad']['auxparam']);
+		foreach (explode("\n", $_POST['auxparam']) as $auxparam) {
+			$auxparam = trim($auxparam, "\t\n\r");
+			if (!empty($auxparam))
+				$config['sambaad']['auxparam'][] = $auxparam;
+		}
+
 		write_config();
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
@@ -113,6 +123,9 @@ $realm = strtoupper($pconfig['dns_domain']);
 $hostname = $config['system']['hostname'];
 $netbiosname = strtoupper($config['system']['hostname']);
 
+$pconfig['auxparam'] = "";
+if (is_array($config['sambaad']['auxparam']))
+	$pconfig['auxparam'] = implode("\n", $config['sambaad']['auxparam']);
 ?>
 <?php include("fbegin.inc");?>
 <script type="text/javascript">//<![CDATA[
@@ -155,6 +168,7 @@ $(document).ready(function(){
 	<?php html_text("path", gettext("Path"), htmlspecialchars($pconfig['path']));?>
 	<?php html_text("fstype", gettext("Fileserver"), htmlspecialchars($pconfig['fstype']));?>
 	<?php html_checkbox("user_shares", gettext("User shares"), !empty($pconfig['user_shares']) ? true : false, gettext("Append user defined shares"), "", false);?>
+	<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("These parameters are added to [Global] section of %s."), "smb4.conf") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://us1.samba.org/samba/docs/man/manpages-3/smb.conf.5.html"), false, 65, 5, false, false);?>
 	</table>
 	<div id="submit">
 	  <input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" />

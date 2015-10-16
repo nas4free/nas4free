@@ -607,7 +607,7 @@ class HTMLInterfaceComboBox extends HTMLComboBox {
 		// Generate options.
 		$options = array('lan' => 'LAN');
 		for ($i = 1; isset($config['interfaces']['opt' . $i]); $i++) {
-			if (isset($config['interfaces']['opt' . $i]['enable']) && isset($config['interfaces']['opt' . $i]['bridge']) && !$config['interfaces']['opt' . $i]['bridge']) {
+			if (isset($config['interfaces']['opt' . $i]['enable'])) {
 				$options['opt' . $i] = $config['interfaces']['opt' . $i]['descr'];
 			}
 		}

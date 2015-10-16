@@ -191,7 +191,7 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
         Copyright &copy; 2005-2011 Daniel Braniss (<a href="mailto:danny@cs.huji.ac.il">danny@cs.huji.ac.il</a>). All Rights Reserved.</p>
 
       <p>istgt - iSCSI target for FreeBSD (<a href="http://shell.peach.ne.jp/aoyama" target="_blank">http://shell.peach.ne.jp/aoyama</a>)<br />
-        Copyright &copy; 2008-2014 Daisuke Aoyama (<a href="mailto:aoyama@peach.ne.jp">aoyama@peach.ne.jp</a>). All Rights Reserved.</p>
+        Copyright &copy; 2008-2015 Daisuke Aoyama (<a href="mailto:aoyama@peach.ne.jp">aoyama@peach.ne.jp</a>). All Rights Reserved.</p>
 
       <p>FUPPES - Free UPnP Entertainment Service (<a href="http://fuppes.ulrich-voelkel.de" target="_blank">http://fuppes.ulrich-voelkel.de</a>)<br />
         Copyright &copy; 2005 - 2011 Ulrich V&ouml;lkel (<a href="mailto:mail@ulrich-voelkel.de">mail@ulrich-voelkel.de</a>). All Rights Reserved.</p>
@@ -242,6 +242,10 @@ $pgtitle = array(gettext("Help"), gettext("License & Credits"));
       <p>Open Virtual Machine Tools (<a href="http://sourceforge.net/projects/open-vm-tools/" target="_blank">http://sourceforge.net/projects/open-vm-tools/</a>)</p>
 
       <p>VirtualBox Open Source Edition (OSE) (guest additions) (<a href="http://www.virtualbox.org/" target="_blank">http://www.virtualbox.org/</a>)</p>
+
+      <p>phpVirtualBox (<a href="http://sourceforge.net/projects/phpvirtualbox/" target="_blank">http://sourceforge.net/projects/phpvirtualbox/</a>)</p>
+
+      <p>noVNC (<a href="http://kanaka.github.io/noVNC/" target="_blank">http://kanaka.github.io/noVNC/</a>)</p>
 
       <p>LCDproc: A client/server suite for LCD devices (<a href="http://lcdproc.org/" target="_blank">http://lcdproc.org</a>)<br />
 	 Copyright &copy; 1998-2006 William Ferrell, Selene Scriven and many other contributors. All Rights Reserved.</p>

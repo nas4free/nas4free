@@ -565,6 +565,12 @@ usr/bin/look
 ## which -- locate a program file in the user's path
 usr/bin/which
 
+## file -- determine file type
+usr/bin/file
+
+## truncate -- truncate or extend the length of files
+usr/bin/truncate
+
 ####### contents of /usr/sbin
 ## acpiconf -- control ACPI power management
 usr/sbin/acpiconf
@@ -714,6 +720,16 @@ usr/sbin/rmextattr:usr/sbin/getextattr:usr/sbin/setextattr:usr/sbin/lsextattr
 ## portsnap -- fetch and extract compressed snapshots of the ports tree
 usr/sbin/portsnap
 
+## iasl -- Intel ACPI compiler/decompiler
+usr/sbin/iasl
+
+## bhyve -- run a guest operating system inside a virtual machine
+usr/sbin/bhyve
+usr/sbin/bhyvectl
+
+## bhyveload -- load a FreeBSD guest inside a bhyve virtual machine
+usr/sbin/bhyveload
+
 ####### contents of /usr/libexec
 # ld-elf.so.1, ld.so, rtld -- run-time link-editor
 libexec/ld-elf.so.1:usr/libexec/ld-elf.so.1
@@ -731,8 +747,12 @@ usr/libexec/make_index
 ## phttpget
 usr/libexec/phttpget
 
+####### contents of /usr/share/examples
+usr/share/examples/bhyve/vmrun.sh
+
 ####### contents of /usr/share/misc
 usr/share/misc/init.ee
+usr/share/misc/magic
 usr/share/misc/scsi_modes
 usr/share/misc/termcap:etc/termcap
 usr/share/misc/pci_vendors
@@ -785,6 +805,8 @@ boot/boot1
 # GPT
 boot/pmbr
 boot/gptboot
+#
+boot/userboot.so
 
 ####### contents of /etc
 etc/rc.shutdown
@@ -836,7 +858,7 @@ etc/rc.d/swap
 #etc/rc.d/swaplate
 #etc/rc.d/ip6fw
 etc/rc.d/devd
-#etc/rc.d/devfs
+etc/rc.d/devfs
 etc/rc.d/dmesg
 etc/rc.d/hostid
 etc/rc.d/jail

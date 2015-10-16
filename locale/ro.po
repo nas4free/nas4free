@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-16 03:45+0000\n"
-"PO-Revision-Date: 2015-08-07 19:24+0000\n"
+"POT-Creation-Date: 2015-10-10 16:28+0000\n"
+"PO-Revision-Date: 2015-10-09 14:53+0000\n"
 "Last-Translator: Laurentiu Bubuianu <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-08-22 00:13+0000\n"
-"X-Generator: Launchpad (build 17690)\n"
+"X-Launchpad-Export-Date: 2015-10-10 13:41+0000\n"
+"X-Generator: Launchpad (build 17802)\n"
 "Language: ro_RO\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -839,6 +839,9 @@ msgstr "Metodă Autentificare"
 
 msgid "Authenticate URL"
 msgstr "URL Autentificare"
+
+msgid "Authenticate path & realm"
+msgstr "Cale & realm ptr. autentificare"
 
 msgid "Authentication"
 msgstr "Autentificare"
@@ -2648,9 +2651,6 @@ msgstr "Activare capcane software (traps)."
 msgid "Enable tuning of some kernel variables"
 msgstr "Activare optimizare pentru unele variabile kernel"
 
-msgid "Enable use sendfile."
-msgstr "Activare sendfile"
-
 msgid "Enable write cache mode."
 msgstr "Activare mod cache la scriere."
 
@@ -2692,6 +2692,11 @@ msgstr ""
 "Introduceți un port personalizat pentru accesarea Interfeței Grafice în "
 "locul portului implicit (80 pentru HTTP, 443 pentru HTTPS)."
 
+msgid ""
+"Enter a space-separated list of tap devices. The devices will be created and "
+"automatically added it to the bridge."
+msgstr ""
+
 msgid "Enter a valid sysctl MIB name."
 msgstr "Introduceți un nume MIB valid."
 
@@ -2708,6 +2713,13 @@ msgid ""
 msgstr ""
 "Introduceți expresia de acces care va fi utilizată în modul WPA-PSK. "
 "Expresia utilizată la criptare trebuie să aibă între 8 și 63 de caractere."
+
+msgid ""
+"Enter the path to the home directory of VirtualBox. VM config and HDD image "
+"will be created under the specified directory."
+msgstr ""
+"Introduceți calea către folderul home pentru VirtualBox. Configurația pentru "
+"VM și imaginea HDD-ului vor fi create în acest folder."
 
 msgid ""
 "Enter the path to the home directory of that user. Leave this field empty to "
@@ -6231,6 +6243,9 @@ msgstr "Eticheta%d"
 msgid "Tag%d (%s)"
 msgstr "Eticheta%d (%s)"
 
+msgid "Tap device"
+msgstr ""
+
 msgid "Tape"
 msgstr "Casetă"
 
@@ -7377,15 +7392,6 @@ msgstr ""
 "Doar pentru informare (nu va fi utilizat în timpul negocierii iSCSI)."
 
 msgid ""
-"This may make more efficient use of the system CPU's and cause Samba to be "
-"faster. Samba automatically turns this off for clients that use protocol "
-"levels lower than NT LM 0.12 and when it detects a client is Windows 9x."
-msgstr ""
-"În acest mod procesorul este utilizat mai eficient iar Samba devine mai "
-"rapidă. Samba dezactivează automat această opțiune pentru protocoale mai "
-"vechi gen NT LM 0,12 sau atunci cînd detectează clienți tip Windows 9x."
-
-msgid ""
 "This means that the image you uploaded is not an official/supported image "
 "and may lead to unexpected behavior or security compromises. Only install "
 "images that come from sources that you trust, and make sure that the image "
@@ -8090,9 +8096,6 @@ msgstr ""
 msgid "Use as sparse volume. (thin provisioning)"
 msgstr "Utilizat ca volum de rezervă. (thin provisioning)"
 
-msgid "Use sendfile"
-msgstr "Utilizare sendfile"
-
 msgid ""
 "Use the following IP address as the source address in outgoing packets."
 msgstr ""
@@ -8217,6 +8220,9 @@ msgstr "VLAN"
 msgid "VLAN tag"
 msgstr "Eticheta VLAN"
 
+msgid "VM"
+msgstr "VM"
+
 msgid "Value"
 msgstr "Valoare"
 
@@ -8246,6 +8252,9 @@ msgstr "ID Sistem Virtual"
 msgid "Virtual IP address"
 msgstr "Adresă IP Virtuală"
 
+msgid "Virtual Machine"
+msgstr "Mașină virtuală"
+
 msgid "Virtual device"
 msgstr "Dispozitiv virtual"
 
@@ -8254,6 +8263,9 @@ msgstr "Dispozitive virtuale"
 
 msgid "Virtual interface"
 msgstr "Interfețe virtuale"
+
+msgid "VirtualBox"
+msgstr "VirtualBox"
 
 msgid "Volume"
 msgstr "Volum"
@@ -8665,11 +8677,17 @@ msgstr "n/a"
 msgid "no new encrypted disk found."
 msgstr "nu a fost găsit niciun disc nou criptat."
 
+msgid "noVNC"
+msgstr "noVNC"
+
 msgid "none"
 msgstr "nimic"
 
 msgid "phpBB"
 msgstr "phpBB"
+
+msgid "phpVirtualBox"
+msgstr "phpVirtualBox"
 
 msgid "rc.conf"
 msgstr "rc.conf"

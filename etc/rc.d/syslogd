@@ -48,7 +48,7 @@ local4.* %${clog_logdir}/rsyncd.log
 local5.* %${clog_logdir}/smartd.log
 ftp.* %${clog_logdir}/ftp.log
 daemon.* %${clog_logdir}/daemon.log
-*.notice;kern.debug;lpr.info;mail.crit;mail.info;news.err;local0.none;local7.none %${clog_logdir}/system.log
+*.notice;authpriv.none;kern.debug;lpr.info;mail.crit;mail.info;news.err;local0.none;local7.none %${clog_logdir}/system.log
 security.* %${clog_logdir}/system.log
 auth.info;authpriv.info %${clog_logdir}/system.log
 *.emerg *" > ${syslogd_config}

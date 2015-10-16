@@ -115,6 +115,9 @@ echo 'kern.maxfiles="65536"' >> $MINIBSD_DIR/loader.conf
 echo 'kern.maxfilesperproc="60000"' >> $MINIBSD_DIR/loader.conf
 echo 'kern.cam.boot_delay="8000"' >> $MINIBSD_DIR/loader.conf
 echo 'kern.geom.label.disk_ident.enable="0"' >> $MINIBSD_DIR/loader.conf
+echo 'hint.acpi_throttle.0.disabled="0"' >> $MINIBSD_DIR/loader.conf
+echo 'hint.p4tcc.0.disabled="0"' >> $MINIBSD_DIR/loader.conf
+
 # Enable bootsplash?
 if [ 0 != $opt_b ]; then
 	echo 'splash_bmp_load="YES"' >> $MINIBSD_DIR/loader.conf
