@@ -136,7 +136,7 @@ $a_poolstatus = zfs_get_pool_list();
 					<tr>
 						<td width="15%" class="listhdrlr"><?=gettext("Name");?></td>
 						<td width="10%" class="listhdrr"><?=gettext("Size");?></td>
-						<td width="10%" class="listhdrr"><?=gettext("Used");?></td>
+						<td width="10%" class="listhdrr"><?=gettext("Alloc");?></td>
 						<td width="10%" class="listhdrr"><?=gettext("Free");?></td>
 						<td width="10%" class="listhdrr"><?=gettext("Capacity");?></td>
 						<td width="10%" class="listhdrr"><?=gettext("Dedup");?></td>
@@ -148,16 +148,16 @@ $a_poolstatus = zfs_get_pool_list();
 					<?php
 					$notificationmode = (isset($poolv['uuid'])) ? updatenotify_get_mode("zfszpool", $poolv['uuid']) : UPDATENOTIFY_MODE_UNKNOWN ;
 					if (UPDATENOTIFY_MODE_NEW == $notificationmode) {
-						$altroot = $cap = $avail = $used = $size = $dedup = $health = gettext("Initializing");
+						$altroot = $cap = $alloc = $free = $size = $dedup = $health = gettext("Initializing");
 					} else if (UPDATENOTIFY_MODE_MODIFIED == $notificationmode) {
-						$altroot = $cap = $avail = $used = $size = $dedup = $health = gettext("Modifying");
+						$altroot = $cap = $alloc = $free = $size = $dedup = $health = gettext("Modifying");
 					} else {
-						$altroot = $cap = $avail = $used = $size = $dedup = $health = gettext("Unknown");
+						$altroot = $cap = $alloc = $free = $size = $dedup = $health = gettext("Unknown");
 					}
 					if (is_array($a_poolstatus) && array_key_exists($poolv['name'], $a_poolstatus)) {
 						$size = $a_poolstatus[$poolv['name']]['size'];
-						$used = $a_poolstatus[$poolv['name']]['used'];
-						$avail = $a_poolstatus[$poolv['name']]['avail'];
+						$alloc = $a_poolstatus[$poolv['name']]['alloc'];
+						$free = $a_poolstatus[$poolv['name']]['free'];
 						$cap = $a_poolstatus[$poolv['name']]['cap'];
 						$dedup = $a_poolstatus[$poolv['name']]['dedup'];
 						$health = $a_poolstatus[$poolv['name']]['health'];
@@ -167,8 +167,8 @@ $a_poolstatus = zfs_get_pool_list();
 					<tr>
 						<td class="listlr"><?= (isset($poolv['name'])) ? htmlspecialchars($poolv['name']) : '' ;?>&nbsp;</td>
 						<td class="listr"><?=$size;?>&nbsp;</td>
-						<td class="listr"><?=$used;?>&nbsp;</td>
-						<td class="listr"><?=$avail;?>&nbsp;</td>
+						<td class="listr"><?=$alloc;?>&nbsp;</td>
+						<td class="listr"><?=$free;?>&nbsp;</td>
 						<td class="listr"><?=$cap;?>&nbsp;</td>
 						<td class="listr"><?=$dedup;?>&nbsp;</td>
 						<td class="listbg"><a href="disks_zfs_zpool_info.php?pool=<?=$poolv['name']?>"><?=$health;?></a>&nbsp;</td>

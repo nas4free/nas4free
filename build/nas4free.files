@@ -315,6 +315,9 @@ usr/bin/bzip2recover
 ## du -- Display file usage: Usefull for checking disk space
 usr/bin/du
 
+## dialog -- display dialog boxes from shell scripts
+usr/bin/dialog
+
 ## fstat -- identify active files
 usr/bin/fstat
 
@@ -696,6 +699,9 @@ usr/sbin/vidcontrol
 ## kbdcontrol -- keyboard control and configuration utility
 usr/sbin/kbdcontrol
 
+## kbdmap, vidfont -- front end for syscons and vt
+usr/sbin/kbdmap
+
 ## gstat -- print statistics about GEOM disks
 usr/sbin/gstat
 
@@ -892,6 +898,15 @@ usr/share/snmp/mibs/BRIDGE-MIB.txt
 usr/share/snmp/mibs/FOKUS-MIB.txt
 usr/share/snmp/mibs/FREEBSD-MIB.txt
 usr/share/snmp/mibs/RSTP-MIB.txt
+
+####### contents of /usr/share/syscons
+usr/share/syscons/fonts/
+usr/share/syscons/keymaps/
+usr/share/syscons/scrnmaps/
+
+####### contents of /usr/share/vt
+usr/share/vt/fonts/
+usr/share/vt/keymaps/
 
 ####### contents of /libexec/resolvconf
 libexec/resolvconf/dnsmasq

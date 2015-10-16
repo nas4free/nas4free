@@ -106,6 +106,13 @@ mkdir usr/share/locale ;
 mkdir usr/share/snmp ;
 mkdir usr/share/snmp/defs ;
 mkdir usr/share/snmp/mibs ;
+mkdir usr/share/syscons ;
+mkdir usr/share/syscons/fonts ;
+mkdir usr/share/syscons/keymaps ;
+mkdir usr/share/syscons/scrnmaps ;
+mkdir usr/share/vt ;
+mkdir usr/share/vt/fonts ;
+mkdir usr/share/vt/keymaps ;
 #mkdir -m 01777 tmp ;
 # /var will be populated by /etc/rc and /etc/rc.d/var
 mkdir var ;

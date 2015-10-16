@@ -55,13 +55,16 @@ else
 		echo "Console Menu"
 		echo "------------"
 		if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
-			echo "1) Configure Network Interfaces"
-			echo "2) Configure Network IP Address"
+			echo -n "1) Configure Network Interfaces"
+			echo "    10) Restart WebGUI"
+			echo -n "2) Configure Network IP Address"
+			echo "    20) Console Keyboard Map"
 			echo "3) Reset WebGUI Password"
 			echo "4) Reset to Factory Defaults"
 			echo "5) Ping Host"
 		else
 			echo "1-5) Disabled (LiveCD requires 2GB memory)"
+			echo "20) Keboard map"
 		fi
 		echo "6) Shell"
 		echo "7) Reboot Server"
@@ -115,6 +118,18 @@ else
 					*-live[cC][dD]|*-live[uU][sS][bB])
 						/etc/rc.initial.install
 				esac
+				;;
+			10)
+				if [ ${DISABLE_LIVEMODE} -eq 0 ]; then
+					/etc/rc.d/lighttpd forcestop > /dev/null 2>&1
+					rm -f /var/run/config.lock
+					/sbin/umount /cf > /dev/null 2>&1
+					/sbin/mount /cf > /dev/null 2>&1
+					/etc/rc.d/lighttpd forcestart > /dev/null
+				fi
+				;;
+			20)
+				/usr/sbin/kbdmap
 				;;
 		esac
 	done

@@ -295,8 +295,8 @@ $(document).ready(function(){
 					$('#diskusage_'+pu.id+'_bar_free').attr('title', pu['tooltip'].available);
 					$('#diskusage_'+pu.id+'_capacity').text(pu.capacity);
 					$('#diskusage_'+pu.id+'_total').text(pu.size);
-					$('#diskusage_'+pu.id+'_used').text(pu.used);
-					$('#diskusage_'+pu.id+'_free').text(pu.avail);
+					$('#diskusage_'+pu.id+'_used').text(pu.alloc);
+					$('#diskusage_'+pu.id+'_free').text(pu.free);
 					$('#diskusage_'+pu.id+'_state').children().text(pu.health);
 				}
 			}
@@ -581,7 +581,7 @@ $(document).ready(function(){
 							"<span name='diskusage_{$ctrlid}_capacity' id='diskusage_{$ctrlid}_capacity' class='capacity'>{$poolv['cap']}</span>",
 							$poolv['size']);
 						echo "<br />";
-						echo sprintf(gettext("Total: %s | Used: %s | Free: %s | State: %s"),
+						echo sprintf(gettext("Total: %s | Alloc: %s | Free: %s | State: %s"),
 							"<span name='diskusage_{$ctrlid}_total' id='diskusage_{$ctrlid}_total' class='total'>{$poolv['size']}</span>",
 							"<span name='diskusage_{$ctrlid}_used' id='diskusage_{$ctrlid}_used' class='used'>{$poolv['alloc']}</span>",
 							"<span name='diskusage_{$ctrlid}_free' id='diskusage_{$ctrlid}_free' class='free'>{$poolv['free']}</span>",

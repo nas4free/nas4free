@@ -161,21 +161,23 @@ foreach($rawdata as $line)
 $rawdata = null;
 $spa = @exec("sysctl -q -n vfs.zfs.version.spa");
 if ($spa == '') {
-	mwexec2('zpool list -H -o name,root,size,capacity,health', $rawdata);
+	mwexec2('zpool list -H -o name,root,size,allocated,free,capacity,health', $rawdata);
 } else if ($spa < 21) {
-	mwexec2("zpool list -H -o name,altroot,size,capacity,health", $rawdata);
+	mwexec2("zpool list -H -o name,altroot,size,allocated,free,capacity,health", $rawdata);
 } else {
-	mwexec2("zpool list -H -o name,altroot,size,capacity,health,dedup", $rawdata);
+	mwexec2("zpool list -H -o name,altroot,size,allocated,free,capacity,health,dedup", $rawdata);
 }
 foreach ($rawdata as $line)
 {
 	if ($line == 'no pools available') { continue; }
-	list($pool, $root, $size, $cap, $health, $dedup) = explode("\t", $line);
+	list($pool, $root, $size, $alloc, $free, $cap, $health, $dedup) = explode("\t", $line);
 	if ($root != '-')
 	{
 		$zfs['pools']['pool'][$pool]['root'] = $root;
 	}
 	$zfs['extra']['pools']['pool'][$pool]['size'] = $size;
+	$zfs['extra']['pools']['pool'][$pool]['alloc'] = $alloc;
+	$zfs['extra']['pools']['pool'][$pool]['free'] = $free;
 	$zfs['extra']['pools']['pool'][$pool]['cap'] = $cap;
 	$zfs['extra']['pools']['pool'][$pool]['health'] = $health;
 	$zfs['extra']['pools']['pool'][$pool]['dedup'] = $dedup;
@@ -528,7 +530,7 @@ if (!$health)
 						<td width="1%" class="listhdrlr">&nbsp;</td>
 						<td width="15%" class="listhdrr"><?=gettext("Name");?></td>
 						<td width="12%" class="listhdrr"><?=gettext("Size");?></td>
-						<td width="12%" class="listhdrr"><?=gettext("Used");?></td>
+						<td width="12%" class="listhdrr"><?=gettext("Alloc");?></td>
 						<td width="12%" class="listhdrr"><?=gettext("Free");?></td>
 						<td width="12%" class="listhdrr"><?=gettext("Dedup");?></td>
 						<td width="12%" class="listhdrr"><?=gettext("Health");?></td>
@@ -540,8 +542,8 @@ if (!$health)
 						<td class="listlr"><input type="checkbox" checked="checked" name="pool[]" value="<?= $pool['name']; ?>" id="pool_<?= $pool['uuid']; ?>" /></td>
 						<td class="listr"><label for="pool_<?= $pool['uuid']; ?>"><?= $pool['name']; ?></label></td>
 						<td class="listr"><?= $zfs['extra']['pools']['pool'][$key]['size']; ?></td>
-						<td class="listr"><?= $zfs['extra']['pools']['pool'][$key]['used']; ?> (<?= $zfs['extra']['pools']['pool'][$key]['cap']; ?>)</td>
-						<td class="listr"><?= $zfs['extra']['pools']['pool'][$key]['avail']; ?></td>
+						<td class="listr"><?= $zfs['extra']['pools']['pool'][$key]['alloc']; ?> (<?= $zfs['extra']['pools']['pool'][$key]['cap']; ?>)</td>
+						<td class="listr"><?= $zfs['extra']['pools']['pool'][$key]['free']; ?></td>
 						<td class="listr"><?= $zfs['extra']['pools']['pool'][$key]['dedup']; ?></td>
 						<td class="listr"><?= $zfs['extra']['pools']['pool'][$key]['health']; ?></td>
 						<td class="listr"><?= $pool['mountpoint']; ?></td>
