@@ -3,11 +3,7 @@
 	disks_crypt.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Disks"),gettext("Encryption"),gettext("Management"));
+$pgtitle = array(gtext("Disks"),gtext("Encryption"),gtext("Management"));
 
 if ($_POST) {
 	unset($input_errors);
@@ -50,11 +47,11 @@ if ($_POST) {
 	if (!empty($_POST['import']) || !empty($_POST['clear_import'])) {
 		$retval = disks_import_all_encrypted_disks($clean_import);
 		if ($retval == 0) {
-			$savemsg = gettext("no new encrypted disk found.");
+			$savemsg = gtext("no new encrypted disk found.");
 		} else if ($retval > 0) {
-			$savemsg = gettext("all encrypted disks are imported.");
+			$savemsg = gtext("all encrypted disks are imported.");
 		} else {
-			$input_errors[] = gettext("detected an error while importing.");
+			$input_errors[] = gtext("detected an error while importing.");
 		}
 		if ($retval >= 0) {
 			disks_update_mounts();
@@ -91,7 +88,7 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 			header("Location: disks_crypt.php");
 			exit;
 		} else {
-			$errormsg[] = gettext("The volume must be detached before it can be deleted.");
+			$errormsg = gtext("The volume must be detached before it can be deleted.");
 		}
 	}
 }
@@ -125,25 +122,25 @@ function geli_process_updatenotification($mode, $data) {
 	<tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-        <li class="tabact"><a href="disks_crypt.php" title="<?=gettext("Reload page");?>" ><span><?=gettext("Management");?></span></a></li>
-        <li class="tabinact"><a href="disks_crypt_tools.php"><span><?=gettext("Tools");?></span></a></li>
+        <li class="tabact"><a href="disks_crypt.php" title="<?=gtext('Reload page');?>" ><span><?=gtext("Management");?></span></a></li>
+        <li class="tabinact"><a href="disks_crypt_tools.php"><span><?=gtext("Tools");?></span></a></li>
       </ul>
     </td>
   </tr>
   <tr>
     <td class="tabcont">
-      <form action="disks_crypt.php" method="post">
+      <form action="disks_crypt.php" method="post" onsubmit="spinner()">
         <?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 	<?php if (!empty($errormsg)) print_error_box($errormsg);?>
 	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-        <?php if (updatenotify_exists_mode("geli", UPDATENOTIFY_MODE_DIRTY)) print_warning_box(gettext("Warning: You are going to delete an encrypted volume. All data will get lost and can not be recovered."));?>
+        <?php if (updatenotify_exists_mode("geli", UPDATENOTIFY_MODE_DIRTY)) print_warning_box(gtext("Warning: You are going to delete an encrypted volume. All data will get lost and can not be recovered."));?>
         <?php if (updatenotify_exists("geli")) print_config_change_box();?>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="25%" class="listhdrlr"><?=gettext("Disk"); ?></td>
-            <td width="25%" class="listhdrr"><?=gettext("Data integrity"); ?></td>
-            <td width="20%" class="listhdrr"><?=gettext("Encryption"); ?></td>
-            <td width="20%" class="listhdrr"><?=gettext("Status") ;?></td>
+            <td width="25%" class="listhdrlr"><?=gtext("Disk"); ?></td>
+            <td width="25%" class="listhdrr"><?=gtext("Data integrity"); ?></td>
+            <td width="20%" class="listhdrr"><?=gtext("Encryption"); ?></td>
+            <td width="20%" class="listhdrr"><?=gtext("Status") ;?></td>
             <td width="10%" class="list"></td>
           </tr>
   			  <?php $i = 0; foreach($a_geli as $geli): ?>
@@ -154,32 +151,32 @@ function geli_process_updatenotification($mode, $data) {
             <td class="listbg">
               <?php
               if (updatenotify_exists("geli")) {
-								$status = gettext("Configuring");
+								$status = gtext("Configuring");
 								$notificationmode = updatenotify_get_mode("geli", $geli['uuid']);
 								switch ($notificationmode) {
 									case UPDATENOTIFY_MODE_DIRTY:
-										$status = gettext("Deleting");
+										$status = gtext("Deleting");
 										break;
 								}
 								echo htmlspecialchars($status);
               } else {
 		$notificationmode = UPDATENOTIFY_MODE_UNKNOWN;
                 if(disks_exists($geli['devicespecialfile'])) {
-                  echo("<a href=\"disks_crypt_tools.php?disk={$geli['devicespecialfile']}&amp;action=attach\">" . htmlspecialchars(gettext("Not attached")) . "</a>");
+                  echo("<a href=\"disks_crypt_tools.php?disk={$geli['devicespecialfile']}&amp;action=attach\">" . gtext("Not attached") . "</a>");
                 } else {
-                  echo(htmlspecialchars(gettext("Attached")));
+                  echo(gtext("Attached"));
                 }
               }
               ?>&nbsp;
             </td>
             <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
             <td valign="middle" nowrap="nowrap" class="list">
-							<a href="disks_crypt_tools.php?disk=<?=$geli['devicespecialfile'];?>&amp;action=setkey"><img src="e.gif" title="<?=gettext("Change password"); ?>" border="0" alt="<?=gettext("Change password"); ?>" /></a>&nbsp;
-              <a href="disks_crypt.php?act=del&amp;uuid=<?=$geli['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this volume?\\n!!! Note, all data will get lost and can not be recovered. !!!");?>')"><img src="x.gif" title="<?=gettext("Kill encrypted volume"); ?>" border="0" alt="<?=gettext("Kill encrypted volume"); ?>" /></a>
+							<a href="disks_crypt_tools.php?disk=<?=$geli['devicespecialfile'];?>&amp;action=setkey"><img src="images/edit.png" title="<?=gtext("Change password"); ?>" border="0" alt="<?=gtext("Change password"); ?>" /></a>&nbsp;
+              <a href="disks_crypt.php?act=del&amp;uuid=<?=$geli['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this volume?\\n!!! Note, all data will get lost and can not be recovered. !!!");?>')"><img src="images/delete.png" title="<?=gtext("Kill encrypted volume"); ?>" border="0" alt="<?=gtext("Kill encrypted volume"); ?>" /></a>
             </td>
             <?php else:?>
 						<td valign="middle" nowrap="nowrap" class="list">
-							<img src="del.gif" border="0" alt="" />
+							<img src="images/delete.png" border="0" alt="" />
 						</td>
 						<?php endif;?>
           </tr>
@@ -187,13 +184,13 @@ function geli_process_updatenotification($mode, $data) {
           <tr>
             <td class="list" colspan="4"></td>
             <td class="list">
-							<a href="disks_crypt_edit.php"><img src="plus.gif" title="<?=gettext("Create encrypted volume");?>" border="0" alt="<?=gettext("Create encrypted volume");?>" /></a>
+							<a href="disks_crypt_edit.php"><img src="images/add.png" title="<?=gtext("Create encrypted volume");?>" border="0" alt="<?=gtext("Create encrypted volume");?>" /></a>
 						</td>
 			    </tr>
         </table>
 	<div id="submit">
-		<input name="import" type="submit" class="formbtn" value="<?=gettext("Import disks");?>" onclick="return confirm('<?=gettext("Do you really want to import?\\nThe existing config may be overwritten.");?>');" />
-		<input name="clear_import" type="submit" class="formbtn" value="<?=gettext("Clear config and Import disks");?>" onclick="return confirm('<?=gettext("Do you really want to clear and import?\\nThe existing config will be cleared and overwritten.");?>');" />
+		<input name="import" type="submit" class="formbtn" value="<?=gtext("Import disks");?>" onclick="return confirm('<?=gtext("Do you really want to import?\\nThe existing config may be overwritten.");?>');" />
+		<input name="clear_import" type="submit" class="formbtn" value="<?=gtext("Clear config and Import disks");?>" onclick="return confirm('<?=gtext("Do you really want to clear and import?\\nThe existing config will be cleared and overwritten.");?>');" />
 	</div>
         <?php include("formend.inc");?>
       </form>

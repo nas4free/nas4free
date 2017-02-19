@@ -1,12 +1,10 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 # 
-# Portions of freenas (http://www.freenas.org).
-# Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-# All rights reserved.
+# Simple dynamic dns client
 #
 
 # PROVIDE: inadyn
@@ -19,6 +17,7 @@
 . /etc/configxml.subr
 
 name="inadyn"
+desc="Simple dynamic dns client"
 rcvar=inadyn_enable
 
 load_rc_config "${name}"
@@ -49,6 +48,10 @@ inadyn_prestart()
 		-i "provider[. = 'ipv6tb.he.net']" -o "--dyndns_system ipv6tb@he.net" -n -b \
 		-i "provider[. = 'tzo.com']" -o "--dyndns_system default@tzo.com" -n -b \
 		-i "provider[. = 'dynsip.org']" -o "--dyndns_system default@dynsip.org" -n -b \
+		-i "provider[. = 'dtdns.com']" -o "--dyndns_system default@dtdns.com" -n -b \
+		-i "provider[. = 'changeip.com']" -o "--dyndns_system default@changeip.com" -n -b \
+		-i "provider[. = 'dy.fi']" -o "--dyndns_system default@dy.fi" -n -b \
+		-i "provider[. = 'two-dns.de']" -o "--dyndns_system default@two-dns.de" -n -b \
 		-o "--background" -n \
 		-o "--syslog" -n \
 		-v "concat('--username ',username)" -n \

@@ -3,15 +3,7 @@
 	system_routes_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
-	Portions of m0n0wall (http://m0n0.ch/wall).
-	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -19,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -46,7 +39,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Network"), gettext("Static routes"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Network"), gtext("Static routes"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
 if (!isset($config['staticroutes']['route']) || !is_array($config['staticroutes']['route']))
 	$config['staticroutes']['route'] = array();
@@ -78,33 +71,33 @@ if ($_POST) {
 
 	// Input validation
 	$reqdfields = explode(" ", "interface network network_subnet gateway");
-	$reqdfieldsn = array(gettext("Interface"), gettext("Destination network"), gettext("Destination network bit count"), gettext("Gateway"));
+	$reqdfieldsn = array(gtext("Interface"), gtext("Destination network"), gtext("Destination network bit count"), gtext("Gateway"));
 	
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	
 	if (($_POST['network'] && !is_ipaddr($_POST['network']))) {
-		$input_errors[] = gettext("A valid destination network must be specified.");
+		$input_errors[] = gtext("A valid destination network must be specified.");
 	}
 	
 	if (($_POST['network'] && is_ipv4addr($_POST['network'])) && $_POST['network_subnet'])  {
 		if (filter_var($_POST['network_subnet'], FILTER_VALIDATE_INT, array('options' => array('min_range' => 1, 'max_range' => 32))) == false)
-			$input_errors[] = gettext("A valid IPv4 network bit count must be specified.");
+			$input_errors[] = gtext("A valid IPv4 network bit count must be specified.");
 	}
 
 	if (($_POST['network'] && is_ipv6addr($_POST['network'])) && $_POST['network_subnet'])  {
 		if (filter_var($_POST['network_subnet'], FILTER_VALIDATE_INT, array('options' => array('min_range' => 1, 'max_range' => 128))) == false)
-			$input_errors[] = gettext("A valid IPv6 prefix must be specified.");
+			$input_errors[] = gtext("A valid IPv6 prefix must be specified.");
 	}
 
 	if (($_POST['gateway'] && !is_ipaddr($_POST['gateway']))) {
-		$input_errors[] = gettext("A valid gateway IP address must be specified.");
+		$input_errors[] = gtext("A valid gateway IP address must be specified.");
 	}
 	
 	if ($_POST['gateway'] && $_POST['network']) {
 		if (is_ipv4addr($_POST['gateway']) && !is_ipv4addr($_POST['network'])) {
-			$input_errors[] = gettext("You must enter the same IP type for network and gateway.");
+			$input_errors[] = gtext("You must enter the same IP type for network and gateway.");
 		} else if (is_ipv6addr($_POST['gateway']) && !is_ipv6addr($_POST['network'])) {
-			$input_errors[] = gettext("IP type mismatch for network and gateway.");
+			$input_errors[] = gtext("IP type mismatch for network and gateway.");
 		}
 	}
 	
@@ -119,7 +112,7 @@ if ($_POST) {
 	$index = array_search_ex($osn, $a_routes, "network");
 	if (FALSE !== $index) {
 		if (!((FALSE !== $cnid) && ($a_routes[$cnid]['uuid'] === $a_routes[$index]['uuid']))) {
-			$input_errors[] = gettext("A route to this destination network already exists.");
+			$input_errors[] = gtext("A route to this destination network already exists.");
 		}
 	}
 
@@ -151,13 +144,14 @@ if ($_POST) {
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="tabcont">
-      <form action="system_routes_edit.php" method="post" name="iform" id="iform">
+      <form action="system_routes_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
       	<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
         <table width="100%" border="0" cellpadding="6" cellspacing="0">
+	<?php html_titleline2(gtext('Static Routes Setup'), 2);?>
           <?php $interfaces = array('lan' => 'LAN'); for ($i = 1; isset($config['interfaces']['opt' . $i]); $i++) { $interfaces['opt' . $i] = $config['interfaces']['opt' . $i]['descr']; }?>
-          <?php html_combobox("interface", gettext("Interface"), !empty($pconfig['interface']) ? $pconfig['interface'] : "", $interfaces, gettext("Choose which interface this route applies to."), true);?>
+          <?php html_combobox("interface", gtext("Interface"), !empty($pconfig['interface']) ? $pconfig['interface'] : "", $interfaces, gtext("Choose which interface this route applies to."), true);?>
           <tr>
-            <td width="22%" valign="top" class="vncellreq"><?=gettext("Destination network");?></td>
+            <td width="22%" valign="top" class="vncellreq"><?=gtext("Destination network");?></td>
             <td width="78%" class="vtable"> 
 							<input name="network" type="text" class="formfld" id="network" size="20" value="<?=htmlspecialchars(!empty($pconfig['network']) ? $pconfig['network'] : "");?>" /> 
 							/
@@ -166,15 +160,15 @@ if ($_POST) {
 								<option value="<?=$i;?>" <?php if ($i == $pconfig['network_subnet']) echo "selected=\"selected\"";?>><?=$i;?></option>
 								<?php endfor;?>
 							</select>
-							<br /><span class="vexpl"><?=gettext("Destination network for this static route");?></span>
+							<br /><span class="vexpl"><?=gtext("Destination network for this static route");?></span>
 						</td>
           </tr>
-          <?php html_inputbox("gateway", gettext("Gateway"), $pconfig['gateway'], gettext("Gateway to be used to reach the destination network."), true, 40);?>
-          <?php html_inputbox("descr", gettext("Description"), $pconfig['descr'], gettext("You may enter a description here for your reference."), false, 40);?>
+          <?php html_inputbox("gateway", gtext("Gateway"), $pconfig['gateway'], gtext("Gateway to be used to reach the destination network."), true, 40);?>
+          <?php html_inputbox("descr", gtext("Description"), $pconfig['descr'], gtext("You may enter a description here for your reference."), false, 40);?>
         </table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 			  </div>
 			  <?php include("formend.inc");?>

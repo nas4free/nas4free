@@ -3,11 +3,7 @@
 	access_users_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -42,7 +39,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Access"), gettext("Users"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Access"), gtext("Users"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
 if (!isset($config['access']['user']) || !is_array($config['access']['user']))
 	$config['access']['user'] = array();
@@ -88,7 +85,7 @@ if ($_POST) {
 	}
 
 	$reqdfields = explode(" ", "login fullname primarygroup userid shell");
-	$reqdfieldsn = array(gettext("Name"), gettext("Full Name"), gettext("Primary Group"), gettext("User ID"), gettext("Shell"));
+	$reqdfieldsn = array(gtext("Name"), gtext("Full Name"), gtext("Primary Group"), gtext("User ID"), gtext("Shell"));
 	$reqdfieldst = explode(" ", "string string numeric numeric string");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -96,52 +93,52 @@ if ($_POST) {
 
 	// Check for valid login name.
 	if (($_POST['login'] && !is_validlogin($_POST['login']))) {
-		$input_errors[] = gettext("The login name contains invalid characters.");
+		$input_errors[] = gtext("The login name contains invalid characters.");
 	}
 	if (($_POST['login'] && strlen($_POST['login']) > 16)) {
-		$input_errors[] = gettext("The login name is limited to 16 characters.");
+		$input_errors[] = gtext("The login name is limited to 16 characters.");
 	}
 
 	if (($_POST['login'] && in_array($_POST['login'], $reservedlogin))) {
-		$input_errors[] = gettext("The login name is a reserved login name.");
+		$input_errors[] = gtext("The login name is a reserved login name.");
 	}
 
 	// Check for valid Full name.
 	if (($_POST['fullname'] && !is_validdesc($_POST['fullname']))) {
-		$input_errors[] = gettext("The full name contains invalid characters.");
+		$input_errors[] = gtext("The full name contains invalid characters.");
 	}
 
 	// Check for name conflicts. Only check if user is created.
 	if (!(isset($uuid) && (FALSE !== $cnid)) && ((is_array($a_user_system) && array_key_exists($_POST['login'], $a_user_system)) ||
 		(false !== array_search_ex($_POST['login'], $a_user, "login")))) {
-		$input_errors[] = gettext("This user already exists in the user list.");
+		$input_errors[] = gtext("This user already exists in the user list.");
 	}
 
 	// Check for a password mismatch.
 	if ($_POST['password'] != $_POST['passwordconf']) {
-		$input_errors[] = gettext("Password don't match.");
+		$input_errors[] = gtext("Password don't match.");
 	}
 
 	// Check if primary group is also selected in additional group.
 	if (isset($_POST['group']) && is_array($_POST['group']) && in_array($_POST['primarygroup'], $_POST['group'])) {
-		$input_errors[] = gettext("Primary group is also selected in additional group.");
+		$input_errors[] = gtext("Primary group is also selected in additional group.");
 	}
 
 	// Check additional group count. Max=15 (Primary+14) 
 	if (isset($_POST['group']) && is_array($_POST['group']) && count($_POST['group']) > 14) {
-		$input_errors[] = gettext("There are too many additional groups.");
+		$input_errors[] = gtext("There are too many additional groups.");
 	}
 
 	// Validate if ID is unique. Only check if user is created.
 	if (!(isset($uuid) && (FALSE !== $cnid)) && (false !== array_search_ex($_POST['userid'], $a_user, "id"))) {
-		$input_errors[] = gettext("The unique user ID is already used.");
+		$input_errors[] = gtext("The unique user ID is already used.");
 	}
 
 	// Check Webserver document root if auth is required
 	if (isset($config['websrv']['enable'])
 	    && isset($config['websrv']['authentication']['enable'])
 	    && !is_dir($config['websrv']['documentroot'])) {
-		$input_errors[] = gettext("Webserver document root is missing.");
+		$input_errors[] = gtext("Webserver document root is missing.");
 	}
 
 	if (empty($input_errors)) {
@@ -202,31 +199,31 @@ function get_nextuser_id() {
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabact"><a href="access_users.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Users");?></span></a></li>
-				<li class="tabinact"><a href="access_users_groups.php"><span><?=gettext("Groups");?></span></a></li>
+				<li class="tabact"><a href="access_users.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Users");?></span></a></li>
+				<li class="tabinact"><a href="access_users_groups.php"><span><?=gtext("Groups");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabcont">
-			<form action="access_users_edit.php" method="post" name="iform" id="iform">
+			<form action="access_users_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($nogroup_errors)) print_input_errors($nogroup_errors); ?>
 				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_inputbox("login", gettext("Name"), $pconfig['login'], gettext("Login name of user."), true, 20, isset($uuid) && (FALSE !== $cnid));?>
-					<?php html_inputbox("fullname", gettext("Full Name"), $pconfig['fullname'], gettext("User full name."), true, 20);?>
-					<?php html_passwordconfbox("password", "passwordconf", gettext("Password"), $pconfig['password'], $pconfig['passwordconf'], gettext("User password."), true);?>
-					<?php html_inputbox("userid", gettext("User ID"), $pconfig['userid'], gettext("User numeric id."), true, 20, isset($uuid) && (FALSE !== $cnid));?>
-					<?php html_combobox("shell", gettext("Shell"), $pconfig['shell'], array("nologin" => "nologin", "scponly" => "scponly", "sh" => "sh",  "csh" => "csh", "tcsh" => "tcsh", "bash" => "bash"), gettext("The user's login shell."), true);?>
+					<?php html_inputbox("login", gtext("Name"), $pconfig['login'], gtext("Login name of user."), true, 20, isset($uuid) && (FALSE !== $cnid));?>
+					<?php html_inputbox("fullname", gtext("Full Name"), $pconfig['fullname'], gtext("User full name."), true, 20);?>
+					<?php html_passwordconfbox("password", "passwordconf", gtext("Password"), $pconfig['password'], $pconfig['passwordconf'], gtext("User password."), true);?>
+					<?php html_inputbox("userid", gtext("User ID"), $pconfig['userid'], gtext("User numeric id."), true, 20, isset($uuid) && (FALSE !== $cnid));?>
+					<?php html_combobox("shell", gtext("Shell"), $pconfig['shell'], array("nologin" => "nologin", "scponly" => "scponly", "sh" => "sh",  "csh" => "csh", "tcsh" => "tcsh", "bash" => "bash"), gtext("The user's login shell."), true);?>
 					<?php $grouplist = array(); foreach ($a_group as $groupk => $groupv) { $grouplist[$groupv] = $groupk; } ?>
-					<?php html_combobox("primarygroup", gettext("Primary group"), $pconfig['primarygroup'], $grouplist, gettext("Set the account's primary group to the given group."), true);?>
-					<?php html_listbox("group", gettext("Additional group"), !empty($pconfig['group']) ? $pconfig['group'] : array(), $grouplist, gettext("Set additional group memberships for this account.")."<br />".gettext("Note: Ctrl-click (or command-click on the Mac) to select and deselect groups."));?>
-					<?php html_filechooser("homedir", gettext("Home directory"), $pconfig['homedir'], gettext("Enter the path to the home directory of that user. Leave this field empty to use default path /mnt."), $g['media_path'], false, 60);?>
-					<?php html_checkbox("userportal", gettext("User portal"), !empty($pconfig['userportal']) ? true : false, gettext("Grant access to the user portal."), "", false);?>
+					<?php html_combobox("primarygroup", gtext("Primary Group"), $pconfig['primarygroup'], $grouplist, gtext("Set the account's primary group to the given group."), true);?>
+					<?php html_listbox("group", gtext("Additional group"), !empty($pconfig['group']) ? $pconfig['group'] : array(), $grouplist, gtext("Set additional group memberships for this account.")."<br />".gtext("Note: Ctrl-click (or command-click on the Mac) to select and deselect groups."));?>
+					<?php html_filechooser("homedir", gtext("Home directory"), $pconfig['homedir'], gtext("Enter the path to the home directory of that user. Leave this field empty to use default path /mnt."), $g['media_path'], false, 60);?>
+					<?php html_checkbox("userportal", gtext("User portal"), !empty($pconfig['userportal']) ? true : false, gtext("Grant access to the user portal."), "", false);?>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 				</div>
 				<?php include("formend.inc");?>

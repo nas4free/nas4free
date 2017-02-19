@@ -1,6 +1,6 @@
---- mDNSPosix/Makefile.orig	2015-06-28 02:28:49.000000000 +0900
-+++ mDNSPosix/Makefile	2015-06-28 02:30:06.000000000 +0900
-@@ -524,3 +524,10 @@
+--- mDNSPosix/Makefile.orig	2016-11-23 00:27:25.000000000 +0900
++++ mDNSPosix/Makefile	2016-11-23 00:34:07.000000000 +0900
+@@ -517,3 +517,10 @@
  $(OBJDIR)/%.l.o: $(SHAREDDIR)/%.l
  	$(FLEX) $(FLEXFLAGS_OS) -i             -o$(OBJDIR)/$*.l.c $<
  	$(CC) $(CFLAGS) -Wno-error -c -o $@ $(OBJDIR)/$*.l.c

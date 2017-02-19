@@ -1,12 +1,10 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-# Portions of freenas (http://www.freenas.org).
-# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
-# All rights reserved.
+# Mount critical remote filesystems
 #
 # $FreeBSD: src/etc/rc.d/mountcritremote
 # Changes:	- Modify prereq's and remove REQUIRE: ipsec
@@ -19,6 +17,7 @@
 . /etc/rc.subr
 
 name="mountcritremote"
+desc="Mount critical remote file systems"
 stop_cmd="mountcritremote_stop"
 start_cmd="mountcritremote_start"
 start_precmd="mountcritremote_precmd"

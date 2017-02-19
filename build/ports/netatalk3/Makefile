@@ -1,21 +1,20 @@
 PORTNAME=		netatalk
-PORTVERSION=	 3.1.7
-PORTREVISION=	 1
-PORTEPOCH=	 1
+PORTVERSION=	 3.1.10
+PORTREVISION=	 0
 CATEGORIES=	 net
 MASTER_SITES=	 SF
-PKGNAMESUFFIX= 3
+PKGNAMESUFFIX=   3
 
-MAINTAINER=	aoyama@nas4free.org
+MAINTAINER=	zoon1@nas4free.org
 COMMENT=	File server for Mac OS X
 
 LICENSE=	GPLv2
 
-LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt \
-		libevent.so:${PORTSDIR}/devel/libevent2
+LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
+		libevent.so:devel/libevent2
 
-USE_BDB=	5+
-USES=		iconv gmake pkgconfig perl5 libtool tar:bzip2
+USES=           iconv gmake pkgconfig perl5 libtool tar:bzip2 bdb:5+ ssl
+
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 #USE_RC_SUBR=	netatalk
@@ -29,9 +28,11 @@ CONFIGURE_ARGS+=	--with-pkgconfdir=${PREFIX}/etc \
 			--sysconfdir=/var/etc \
 			--disable-bundled-libevent \
 			--with-libevent-header=${LOCALBASE}/include \
-			--with-libevent-lib=${LOCALBASE}/lib
+			--with-libevent-lib=${LOCALBASE}/lib \
+			--with-ssl-dir=${OPENSSLBASE}
 
-LIB_DEPENDS+=	libsunacl.so:${PORTSDIR}/sysutils/libsunacl
+LIB_DEPENDS+=	libsunacl.so:sysutils/libsunacl
+
 CONFIGURE_ARGS+= 	--without-dtrace \
 			--without-kerberos \
 			--with-pam \
@@ -67,11 +68,12 @@ post-install:
 # NAS4Free install
 	@echo "install for ${NAS4FREE_ROOTFS}"
 
+	@${INSTALL_PROGRAM} -v ${STAGEDIR}${PREFIX}/bin/dbd ${NAS4FREE_ROOTFS}/usr/local/bin
 	@${INSTALL_PROGRAM} -v ${STAGEDIR}${PREFIX}/sbin/afpd ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${STAGEDIR}${PREFIX}/sbin/cnid_metad ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${STAGEDIR}${PREFIX}/sbin/cnid_dbd ${NAS4FREE_ROOTFS}/usr/local/sbin
 	@${INSTALL_PROGRAM} -v ${STAGEDIR}${PREFIX}/sbin/netatalk ${NAS4FREE_ROOTFS}/usr/local/sbin
-	@${INSTALL_LIB} -v ${STAGEDIR}${PREFIX}/lib/libatalk.so.16 ${NAS4FREE_ROOTFS}/usr/local/lib
+	@${INSTALL_LIB} -v ${STAGEDIR}${PREFIX}/lib/libatalk.so.18 ${NAS4FREE_ROOTFS}/usr/local/lib
 	@${INSTALL_DATA} -v ${STAGEDIR}${PREFIX}/etc/extmap.conf.dist ${NAS4FREE_ROOTFS}/usr/local/etc/extmap.conf
 
 	@${MKDIR} -v ${NAS4FREE_ROOTFS}/etc/uams

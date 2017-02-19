@@ -3,11 +3,7 @@
 	services_iscsitarget_target_media.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Services"), gettext("iSCSI Target"), gettext("Media"));
+$pgtitle = array(gtext("Services"), gtext("iSCSI Target"), gtext("Media"));
 
 if (!isset($config['iscsitarget']['media_uctladdress']))
 	$config['iscsitarget']['media_uctladdress'] = "127.0.0.1";
@@ -279,9 +276,9 @@ if ($_POST) {
 	}
 	if (isset($_POST['Scan']) && $_POST['Scan']) {
 		$reqdfields = explode(" ", "media_uctladdress media_uctlport media_uctlauthmethod");
-		$reqdfieldsn = array(gettext("Controller IP address"),
-			     gettext("Controller TCP Port"),
-			     gettext("Controller Auth Method"));
+		$reqdfieldsn = array(gtext("Controller IP address"),
+			     gtext("Controller TCP Port"),
+			     gtext("Controller Auth Method"));
 		$reqdfieldst = explode(" ", "string numericint string");
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -290,8 +287,8 @@ if ($_POST) {
 		if ($_POST['media_uctlauthmethod'] == 'CHAP'
 		    || $_POST['media_uctlauthmethod'] == 'CHAP mutual') {
 			$reqdfields = explode(" ", "media_uctluser media_uctlsecret");
-			$reqdfieldsn = array(gettext("User"),
-				     gettext("Secret"));
+			$reqdfieldsn = array(gtext("User"),
+				     gtext("Secret"));
 			$reqdfieldst = explode(" ", "string string");
 
 			do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -299,8 +296,8 @@ if ($_POST) {
 		}
 		if ($_POST['media_uctlauthmethod'] == 'CHAP mutual') {
 			$reqdfields = explode(" ", "media_uctlmuser media_uctlmsecret");
-			$reqdfieldsn = array(gettext("Peer User"),
-				     gettext("Peer Secret"));
+			$reqdfieldsn = array(gtext("Peer User"),
+				     gtext("Peer Secret"));
 			$reqdfieldst = explode(" ", "string string");
 
 			do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -327,7 +324,7 @@ if ($_POST) {
 				if ($pconfig['error'] != "") {
 					$errormsg = $pconfig['error'];
 				} else {
-					$errormsg = gettext("scan target failed.");
+					$errormsg = gtext("scan target failed.");
 				}
 			}
 		}
@@ -337,11 +334,11 @@ if ($_POST) {
 			if ($pconfig['error'] != "") {
 				$errormsg = $pconfig['error'];
 			} else {
-				$errormsg = gettext("scan target failed.");
+				$errormsg = gtext("scan target failed.");
 			}
 		}
 		if ($pconfig['target'] == "") {
-			$input_errors[] = gettext("Target is not selected.");
+			$input_errors[] = gtext("Target is not selected.");
 		}
 		if (empty($input_errors)) {
 			// get info on specified target
@@ -349,7 +346,7 @@ if ($_POST) {
 				if ($pconfig['error'] != "") {
 					$errormsg = $pconfig['error'];
 				} else {
-					$errormsg = gettext("get target info failed.");
+					$errormsg = gtext("get target info failed.");
 				}
 			}
 		}
@@ -359,11 +356,11 @@ if ($_POST) {
 			if ($pconfig['error'] != "") {
 				$errormsg = $pconfig['error'];
 			} else {
-				$errormsg = gettext("scan target failed.");
+				$errormsg = gtext("scan target failed.");
 			}
 		}
 		if ($pconfig['target'] == "") {
-			$input_errors[] = gettext("Target is not selected.");
+			$input_errors[] = gtext("Target is not selected.");
 		}
 		if (empty($input_errors)) {
 			// load/unload media
@@ -371,19 +368,19 @@ if ($_POST) {
 				if ($pconfig['error'] != "") {
 					$errormsg = $pconfig['error'];
 				} else {
-					$errormsg = gettext("load/unload failed.");
+					$errormsg = gtext("load/unload failed.");
 				}
 			} else {
 				$savemsg = sprintf("%s %s",
-					 ($_POST['Unload'] ? gettext("Unload") : gettext("Load")),
-					 gettext("successfully."));
+					 ($_POST['Unload'] ? gtext("Unload") : gtext("Load")),
+					 gtext("successfully."));
 			}
 		}
 		if (get_target_info($pconfig) != 0) {
 			if ($pconfig['error'] != "") {
 				$errormsg = $pconfig['error'];
 			} else {
-				$errormsg = gettext("get target info failed.");
+				$errormsg = gtext("get target info failed.");
 			}
 		}
 	}
@@ -392,25 +389,25 @@ if ($_POST) {
 			if ($pconfig['error'] != "") {
 				$errormsg = $pconfig['error'];
 			} else {
-				$errormsg = gettext("scan target failed.");
+				$errormsg = gtext("scan target failed.");
 			}
 		}
 		if ($pconfig['target'] == "") {
-			$input_errors[] = gettext("Target is not selected.");
+			$input_errors[] = gtext("Target is not selected.");
 		}
 		if ($pconfig['sizeunit'] == 'auto'){
 			$pconfig['size'] = "";
 			$reqdfields = explode(" ", "path sizeunit flags");
-			$reqdfieldsn = array(gettext("Path"),
-				     gettext("Auto size"),
-				     gettext("Flags"));
+			$reqdfieldsn = array(gtext("Path"),
+				     gtext("Auto size"),
+				     gtext("Flags"));
 			$reqdfieldst = explode(" ", "string string string");
 		}else{
 			$reqdfields = explode(" ", "path size sizeunit flags");
-			$reqdfieldsn = array(gettext("Path"),
-				     gettext("File size"),
-				     gettext("File sizeunit"),
-				     gettext("Flags"));
+			$reqdfieldsn = array(gtext("Path"),
+				     gtext("File size"),
+				     gtext("File sizeunit"),
+				     gtext("Flags"));
 			$reqdfieldst = explode(" ", "string numericint string");
 		}
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -422,19 +419,19 @@ if ($_POST) {
 				if ($pconfig['error'] != "") {
 					$errormsg = $pconfig['error'];
 				} else {
-					$errormsg = gettext("change failed.");
+					$errormsg = gtext("change failed.");
 				}
 			} else {
 				$savemsg = sprintf("%s %s",
-					 gettext("Change"),
-					 gettext("successfully."));
+					 gtext("Change"),
+					 gtext("successfully."));
 			}
 		}
 		if (get_target_info($pconfig) != 0) {
 			if ($pconfig['error'] != "") {
 				$errormsg = $pconfig['error'];
 			} else {
-				$errormsg = gettext("get target info failed.");
+				$errormsg = gtext("get target info failed.");
 			}
 		}
 	}
@@ -443,12 +440,12 @@ if ($_POST) {
 function target_list(&$pconfig) {
 	if (empty($pconfig['target_list'])) return;
 
-	html_titleline(gettext("Target list"));
+	html_titleline(gtext("Target list"));
 	echo '<tr><td colspan="2">';
 	echo '<table width="100%" border="0" cellpadding="0" cellspacing="0">';
 	echo '<tr>';
 	echo '  <td width="1%" class="listhdrlr">&nbsp;</td>';
-	echo '  <td class="listhdrr">'.htmlspecialchars(gettext("Target Name")).'</td>';
+	echo '  <td class="listhdrr">'.gtext("Target Name").'</td>';
 	echo '</tr>'."\n";
 	foreach ($pconfig['target_list'] as $targetv) {
 		$name = $targetv['name'];
@@ -461,7 +458,7 @@ function target_list(&$pconfig) {
 	echo '</table>';
 	echo '</td></tr>'."\n";
 	echo '<tr><td colspan="2" valign="top">';
-	echo '  <input name="Info" type="submit" class="formbtn" value="'.gettext("Get Target Info").'" />';
+	echo '  <input name="Info" type="submit" class="formbtn" value="'.gtext("Get Target Info").'" />';
 	echo '</td></tr>'."\n";
 }
 
@@ -470,13 +467,13 @@ function target_info(&$pconfig) {
 	$mediadir = $pconfig['mediadirectory'];
 	if ($mediadir == "") $mediadir = "/mnt";
 
-	html_titleline(gettext("Target information"));
+	html_titleline(gtext("Target information"));
 	echo '<tr><td colspan="2">';
 	echo '<table width="100%" border="0" cellpadding="0" cellspacing="0">';
 	echo '<tr>';
-	echo '  <td width="5%" class="listhdrlr">'.htmlspecialchars(gettext("Type")).'</td>';
-	echo '  <td width="5%" class="listhdrr">'.htmlspecialchars(gettext("LUN")).'</td>';
-	echo '  <td class="listhdrr">'.htmlspecialchars(gettext("Status")).'</td>';
+	echo '  <td width="5%" class="listhdrlr">'.gtext("Type").'</td>';
+	echo '  <td width="5%" class="listhdrr">'.gtext("LUN").'</td>';
+	echo '  <td class="listhdrr">'.gtext("Status").'</td>';
 	echo '</tr>'."\n";
 	$removable = 0;
 	foreach ($pconfig['target_info'] as $infov) {
@@ -497,9 +494,9 @@ function target_info(&$pconfig) {
 
 	if ($removable == 0) return;
 	echo '<tr><td colspan="2" valign="top">';
-	echo '  <input name="Unload" type="submit" class="formbtn" value="'.gettext("Unload").'" />';
-	echo '  <input name="Load" type="submit" class="formbtn" value="'.gettext("Load").'" />';
-	echo '  <input name="Change" type="submit" class="formbtn" value="'.gettext("Change below file").'" />';
+	echo '  <input name="Unload" type="submit" class="formbtn" value="'.gtext("Unload").'" />';
+	echo '  <input name="Load" type="submit" class="formbtn" value="'.gtext("Load").'" />';
+	echo '  <input name="Change" type="submit" class="formbtn" value="'.gtext("Change below file").'" />';
 	echo '</td></tr>'."\n";
 
 	echo "<tr id='path_tr'><td colspan='2' valign='top'>";
@@ -510,21 +507,21 @@ function target_info(&$pconfig) {
 	echo '<tr id="size_tr"><td colspan="2">';
 	echo '<input name="size" type="text" class="formfld" id="size" size="10" value="" /> ';
 	echo '<select name="sizeunit" onclick="sizeunit_change()">';
-	echo '  <option value="MB" >'.htmlspecialchars(gettext("MiB")).'</option>';
+	echo '  <option value="MB" >'.gtext("MiB").'</option>';
 
-	echo '  <option value="GB" >'.htmlspecialchars(gettext("GiB")).'</option>';
-	echo '  <option value="TB" >'.htmlspecialchars(gettext("TiB")).'</option>';
-	echo '  <option value="auto" selected="selected">'.htmlspecialchars(gettext("Auto")).'</option>';
+	echo '  <option value="GB" >'.gtext("GiB").'</option>';
+	echo '  <option value="TB" >'.gtext("TiB").'</option>';
+	echo '  <option value="auto" selected="selected">'.gtext("Auto").'</option>';
 	echo '</select>';
-	echo '<br /><span class="vexpl">'.gettext("Size offered to the initiator. (up to 8EiB=8388608TiB. actual size is depend on your disks.)").'</span>';
+	echo '<br /><span class="vexpl">'.gtext("Size offered to the initiator. (up to 8EiB=8388608TiB. actual size is depend on your disks.)").'</span>';
 	echo '</td></tr>'."\n";
 
 	echo '<tr id="flags_tr"><td colspan="2">';
 	echo "<select name='flags' class='formfld' id='flags' >";
-	echo "  <option value='rw' selected='selected' >".gettext("Read/Write (rw)")."</option>";
-	echo "  <option value='rw,dynamic' >".gettext("Read/Write (rw,dynamic) for removable types file size grow and shrink automatically by EOF (ignore specified size)")."</option>";
-	echo "  <option value='rw,extend' >".gettext("Read/Write (rw,extend) for removable types extend file size if EOM reached")."</option>";
-	echo "  <option value='ro' >".gettext("Read Only (ro)")."</option>";
+	echo "  <option value='rw' selected='selected' >".gtext("Read/Write (rw)")."</option>";
+	echo "  <option value='rw,dynamic' >".gtext("Read/Write (rw,dynamic) for removable types file size grow and shrink automatically by EOF (ignore specified size)")."</option>";
+	echo "  <option value='rw,extend' >".gtext("Read/Write (rw,extend) for removable types extend file size if EOM reached")."</option>";
+	echo "  <option value='ro' >".gtext("Read Only (ro)")."</option>";
 	echo "</select>";
 	echo '</td></tr>'."\n";
 }
@@ -562,17 +559,17 @@ function sizeunit_change() {
 }
 //-->
 </script>
-<form action="services_iscsitarget_media.php" method="post" name="iform" id="iform">
+<form action="services_iscsitarget_media.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-				<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gettext("Settings");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_target.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Targets");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gettext("Portals");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gettext("Initiators");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gettext("Auths");?></span></a></li>
-				<li class="tabact"><a href="services_iscsitarget_media.php"><span><?=gettext("Media");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_target.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Targets");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gtext("Portals");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gtext("Auths");?></span></a></li>
+				<li class="tabact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
       </ul>
     </td>
   </tr>
@@ -582,21 +579,21 @@ function sizeunit_change() {
       <?php if (!empty($errormsg)) print_error_box($errormsg);?>
       <?php if (!empty($savemsg)) print_info_box($savemsg);?>
       <table width="100%" border="0" cellpadding="6" cellspacing="0">
-      <?php html_titleline(gettext("Logical Unit Controller login information"));?>
-      <?php html_inputbox("media_uctladdress", gettext("Controller IP address"), $pconfig['media_uctladdress'], "", true, 30);?>
-      <?php html_inputbox("media_uctlport", gettext("Controller TCP Port"), $pconfig['media_uctlport'], "", true, 15);?>
-      <?php html_combobox("media_uctlauthmethod", gettext("Controller Auth Method"), $pconfig['media_uctlauthmethod'], array("CHAP" => gettext("CHAP"), "CHAP mutual" => gettext("Mutual CHAP")), "", true, false, "authmethod_change()");?>
-      <?php html_inputbox("media_uctluser", gettext("User"), $pconfig['media_uctluser'], "", true, 60);?>
-      <?php html_passwordbox("media_uctlsecret", gettext("Secret"), $pconfig['media_uctlsecret'], "", true, 30);?>
-      <?php html_inputbox("media_uctlmuser", gettext("Peer User"), $pconfig['media_uctlmuser'], "", true, 60);?>
-      <?php html_passwordbox("media_uctlmsecret", gettext("Peer Secret"), $pconfig['media_uctlmsecret'], "", true, 30);?>
-      <?php html_checkbox("media_uctlsave", gettext("Save"), !empty($pconfig['media_uctlsave']) ? true : false, gettext("Save login information in configuration file."), "", false);?>
+      <?php html_titleline(gtext("Logical Unit Controller Login Information"));?>
+      <?php html_inputbox("media_uctladdress", gtext("Controller IP Address"), $pconfig['media_uctladdress'], "", true, 30);?>
+      <?php html_inputbox("media_uctlport", gtext("Controller TCP Port"), $pconfig['media_uctlport'], "", true, 15);?>
+      <?php html_combobox("media_uctlauthmethod", gtext("Controller Auth Method"), $pconfig['media_uctlauthmethod'], array("CHAP" => gtext("CHAP"), "CHAP mutual" => gtext("Mutual CHAP")), "", true, false, "authmethod_change()");?>
+      <?php html_inputbox("media_uctluser", gtext("User"), $pconfig['media_uctluser'], "", true, 60);?>
+      <?php html_passwordbox("media_uctlsecret", gtext("Secret"), $pconfig['media_uctlsecret'], "", true, 30);?>
+      <?php html_inputbox("media_uctlmuser", gtext("Peer User"), $pconfig['media_uctlmuser'], "", true, 60);?>
+      <?php html_passwordbox("media_uctlmsecret", gtext("Peer Secret"), $pconfig['media_uctlmsecret'], "", true, 30);?>
+      <?php html_checkbox("media_uctlsave", gtext("Save"), !empty($pconfig['media_uctlsave']) ? true : false, gtext("Save login information in configuration file."), "", false);?>
       <tr>
         <td colspan="1" valign="top">
-          <input name="Scan" type="submit" class="formbtn" value="<?=gettext("Scan Targets");?>" />
+          <input name="Scan" type="submit" class="formbtn" value="<?=gtext("Scan Targets");?>" />
         </td>
         <td colspan="1" valign="top" align="right">
-          <input name="Delete" type="submit" class="formbtn" value="<?=gettext("Delete Login Info");?>" />
+          <input name="Delete" type="submit" class="formbtn" value="<?=gtext("Delete Login Info");?>" />
         </td>
       </tr>
       <?php target_list($pconfig) ?>

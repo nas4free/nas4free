@@ -3,7 +3,7 @@
 	en_US.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -53,7 +53,7 @@ $GLOBALS["error_msg"] = array(
 	// exist
 	"direxist"		=> "This directory doesn't exist.",
 	"fileexist"		=> "This file doesn't exist.",
-	"itemdoesexist"	=> "This item already exists.",
+	"itemdoesexist"		=> "This item already exists.",
 	"itemexist"		=> "This item doesn't exist.",
 	"targetexist"		=> "The target directory doesn't exist.",
 	"targetdoesexist"	=> "The target item already exists.",
@@ -67,10 +67,10 @@ $GLOBALS["error_msg"] = array(
 	"accessfile"		=> "You are not allowed to access this file.",
 	"accessitem"		=> "You are not allowed to access this item.",
 	"accessfunc"		=> "You are not allowed to use this function.",
-	"accesstarget"	=> "You are not allowed to access the target directory.",
+	"accesstarget"		=> "You are not allowed to access the target directory.",
 
 	// actions
-	"chmod_not_allowed" => 'Changing Permissions to NONE is not allowed!',
+	"chmod_not_allowed"	=> 'Changing Permissions to NONE is not allowed!',
 	"permread"		=> "Getting permissions failed.",
 	"permchange"		=> "Permission-change failed.",
 	"openfile"		=> "File opening failed.",
@@ -85,22 +85,22 @@ $GLOBALS["error_msg"] = array(
 	"deluser"		=> "Removing user failed.",
 	"adduser"		=> "Adding user failed.",
 	"saveuser"		=> "Saving user failed.",
-	"searchnothing"	=> "You must supply something to search for.",
+	"searchnothing"		=> "You must supply something to search for.",
 
 	// misc
 	"miscnofunc"		=> "Function unavailable.",
-	"miscfilesize"	=> "File exceeds maximum size.",
-	"miscfilepart"	=> "File was only partially uploaded.",
+	"miscfilesize"		=> "File exceeds maximum size.",
+	"miscfilepart"		=> "File was only partially uploaded.",
 	"miscnoname"		=> "You must supply a name.",
-	"miscselitems"	=> "You haven't selected any item(s).",
-	"miscdelitems"	=> "Are you sure you want to delete these \"+num+\" item(s)?",
+	"miscselitems"		=> "You haven't selected any item(s).",
+	"miscdelitems"		=> "Are you sure you want to delete these \"+num+\" item(s)?",
 	"miscdeluser"		=> "Are you sure you want to delete user '\"+user+\"'?",
 	"miscnopassdiff"	=> "New password doesn't differ from current.",
 	"miscnopassmatch"	=> "Passwords don't match.",
 	"miscfieldmissed"	=> "You missed an important field.",
 	"miscnouserpass"	=> "Username or password incorrect.",
 	"miscselfremove"	=> "You can't remove yourself.",
-	"miscuserexist"	=> "User already exists.",
+	"miscuserexist"		=> "User already exists.",
 	"miscnofinduser"	=> "Can't find user.",
 );
 $GLOBALS["messages"] = array(
@@ -128,7 +128,7 @@ $GLOBALS["messages"] = array(
 	"typeheader"		=> "Type",
 	"modifheader"		=> "Modified",
 	"permheader"		=> "Permissions",
-	"actionheader"	=> "Actions",
+	"actionheader"		=> "Actions",
 	"pathheader"		=> "Path",
 
 	// buttons
@@ -154,9 +154,9 @@ $GLOBALS["messages"] = array(
 	"actperms"		=> "Change permissions",
 	"actedit"		=> "Edit file",
 	"actsearchresults"	=> "Search results",
-	"actcopyitems"	=> "Copy item(s)",
+	"actcopyitems"		=> "Copy item(s)",
 	"actcopyfrom"		=> "Copy from /%s to /%s ",
-	"actmoveitems"	=> "Move item(s)",
+	"actmoveitems"		=> "Move item(s)",
 	"actmovefrom"		=> "Move from /%s to /%s ",
 	"actlogin"		=> "Login",
 	"actloginheader"	=> "Login to use File Manager",
@@ -164,17 +164,17 @@ $GLOBALS["messages"] = array(
 	"actchpwd"		=> "Change password",
 	"actusers"		=> "Users",
 	"actarchive"		=> "Archive item(s)",
-	"actunzipitem"	=> "Extracting",
+	"actunzipitem"		=> "Extracting",
 	"actupload"		=> "Upload file(s)",
 
 	// misc
 	"miscitems"		=> "Item(s)",
 	"miscfree"		=> "Free",
-	"miscusername"	=> "Username",
-	"miscpassword"	=> "Password",
+	"miscusername"		=> "Username",
+	"miscpassword"		=> "Password",
 	"miscoldpass"		=> "Old password",
 	"miscnewpass"		=> "New password",
-	"miscconfpass"	=> "Confirm password",
+	"miscconfpass"		=> "Confirm password",
 	"miscconfnewpass"	=> "Confirm new password",
 	"miscchpass"		=> "Change password",
 	"mischomedir"		=> "Home directory",
@@ -182,12 +182,12 @@ $GLOBALS["messages"] = array(
 	"miscshowhidden"	=> "Show hidden items",
 	"mischidepattern"	=> "Hide pattern",
 	"miscperms"		=> "Permissions",
-	"miscuseritems"	=> "(name, home directory, show hidden items, permissions, active)",
+	"miscuseritems"		=> "(name, home directory, show hidden items, permissions, active)",
 	"miscadduser"		=> "add user",
-	"miscedituser"	=> "edit user '%s'",
+	"miscedituser"		=> "edit user '%s'",
 	"miscactive"		=> "Active",
 	"misclang"		=> "Language",
-	"miscnoresult"	=> "No results available.",
+	"miscnoresult"		=> "No results available.",
 	"miscsubdirs"		=> "Search subdirectories",
 	"miscpermissions"	=> array(
 					"read"		=> array("Read", "User may read and download a file"),

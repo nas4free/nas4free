@@ -3,11 +3,7 @@
 	system_rc.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("System"),gettext("Advanced"),gettext("Command scripts"));
+$pgtitle = array(gtext("System"),gtext("Advanced"),gtext("Command Scripts"));
 
 if (!isset($config['rc']['preinit']['cmd']) || !is_array($config['rc']['preinit']['cmd']))
 	$config['rc']['preinit']['cmd'] = array();
@@ -75,15 +72,14 @@ if (isset($_GET['act']) && $_GET['act'] == "del")
 	<tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-      	<li class="tabinact"><a href="system_advanced.php"><span><?=gettext("Advanced");?></span></a></li>
-      	<li class="tabinact"><a href="system_email.php"><span><?=gettext("Email");?></span></a></li>
-      	<li class="tabinact"><a href="system_proxy.php"><span><?=gettext("Proxy");?></span></a></li>
-      	<li class="tabinact"><a href="system_swap.php"><span><?=gettext("Swap");?></span></a></li>
-        <li class="tabact"><a href="system_rc.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Command scripts");?></span></a></li>
-        <li class="tabinact"><a href="system_cron.php"><span><?=gettext("Cron");?></span></a></li>
-		<li class="tabinact"><a href="system_loaderconf.php"><span><?=gettext("loader.conf");?></span></a></li>
-        <li class="tabinact"><a href="system_rcconf.php"><span><?=gettext("rc.conf");?></span></a></li>
-        <li class="tabinact"><a href="system_sysctl.php"><span><?=gettext("sysctl.conf");?></span></a></li>
+      	<li class="tabinact"><a href="system_advanced.php"><span><?=gtext("Advanced");?></span></a></li>
+      	<li class="tabinact"><a href="system_email.php"><span><?=gtext("Email");?></span></a></li>
+      	<li class="tabinact"><a href="system_swap.php"><span><?=gtext("Swap");?></span></a></li>
+        <li class="tabact"><a href="system_rc.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Command Scripts");?></span></a></li>
+        <li class="tabinact"><a href="system_cron.php"><span><?=gtext("Cron");?></span></a></li>
+		<li class="tabinact"><a href="system_loaderconf.php"><span><?=gtext("loader.conf");?></span></a></li>
+        <li class="tabinact"><a href="system_rcconf.php"><span><?=gtext("rc.conf");?></span></a></li>
+        <li class="tabinact"><a href="system_sysctl.php"><span><?=gtext("sysctl.conf");?></span></a></li>
       </ul>
     </td>
   </tr>
@@ -91,47 +87,47 @@ if (isset($_GET['act']) && $_GET['act'] == "del")
     <td class="tabcont">
       <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-          <td width="80%" class="listhdrlr"><?=gettext("Command");?></td>
-          <td width="10%" class="listhdrr"><?=gettext("Type");?></td>
+          <td width="80%" class="listhdrlr"><?=gtext("Command");?></td>
+          <td width="10%" class="listhdrr"><?=gtext("Type");?></td>
           <td width="10%" class="list"></td>
         </tr>
 			  <?php $i = 0; foreach($config['rc']['preinit']['cmd'] as $cmd): ?>
         <tr>
           <td class="listlr"><?=htmlspecialchars($cmd);?>&nbsp;</td>
-          <td class="listbg"><?php echo(gettext("PreInit"));?>&nbsp;</td>
+          <td class="listbg"><?php echo(gtext("PreInit"));?>&nbsp;</td>
           <td valign="middle" nowrap="nowrap" class="list">
-            <a href="system_rc_edit.php?id=<?=$i;?>&amp;type=PREINIT"><img src="e.gif" title="<?=gettext("Edit command");?>" border="0" alt="<?=gettext("Edit command");?>" /></a>&nbsp;
-            <a href="system_rc.php?act=del&amp;id=<?=$i;?>&amp;type=PREINIT" onclick="return confirm('<?=gettext("Do you really want to delete this command?");?>')"><img src="x.gif" title="<?=gettext("Delete command");?>" border="0" alt="<?=gettext("Delete command");?>" /></a>
+            <a href="system_rc_edit.php?id=<?=$i;?>&amp;type=PREINIT"><img src="images/edit.png" title="<?=gtext("Edit command");?>" border="0" alt="<?=gtext("Edit command");?>" /></a>&nbsp;
+            <a href="system_rc.php?act=del&amp;id=<?=$i;?>&amp;type=PREINIT" onclick="return confirm('<?=gtext("Do you really want to delete this command?");?>')"><img src="images/delete.png" title="<?=gtext("Delete command");?>" border="0" alt="<?=gtext("Delete command");?>" /></a>
           </td>
         </tr>
         <?php $i++; endforeach;?>
         <?php $i = 0; foreach($config['rc']['postinit']['cmd'] as $cmd): ?>
         <tr>
           <td class="listlr"><?=htmlspecialchars($cmd);?>&nbsp;</td>
-          <td class="listbg"><?php echo(gettext("PostInit"));?>&nbsp;</td>
+          <td class="listbg"><?php echo(gtext("PostInit"));?>&nbsp;</td>
           <td valign="middle" nowrap="nowrap" class="list">
-            <a href="system_rc_edit.php?id=<?=$i;?>&amp;type=POSTINIT"><img src="e.gif" title="<?=gettext("Edit command");?>" border="0" alt="<?=gettext("Edit command");?>" /></a>&nbsp;
-            <a href="system_rc.php?act=del&amp;id=<?=$i;?>&amp;type=POSTINIT" onclick="return confirm('<?=gettext("Do you really want to delete this command?");?>')"><img src="x.gif" title="<?=gettext("Delete command");?>" border="0" alt="<?=gettext("Delete command");?>" /></a>
+            <a href="system_rc_edit.php?id=<?=$i;?>&amp;type=POSTINIT"><img src="images/edit.png" title="<?=gtext("Edit command");?>" border="0" alt="<?=gtext("Edit command");?>" /></a>&nbsp;
+            <a href="system_rc.php?act=del&amp;id=<?=$i;?>&amp;type=POSTINIT" onclick="return confirm('<?=gtext("Do you really want to delete this command?");?>')"><img src="images/delete.png" title="<?=gtext("Delete command");?>" border="0" alt="<?=gtext("Delete command");?>" /></a>
           </td>
         </tr>
         <?php $i++; endforeach;?>
         <?php $i = 0; foreach($config['rc']['shutdown']['cmd'] as $cmd): ?>
         <tr>
           <td class="listlr"><?=htmlspecialchars($cmd);?>&nbsp;</td>
-          <td class="listbg"><?php echo(gettext("Shutdown"));?>&nbsp;</td>
+          <td class="listbg"><?php echo(gtext("Shutdown"));?>&nbsp;</td>
           <td valign="middle" nowrap="nowrap" class="list">
-            <a href="system_rc_edit.php?id=<?=$i;?>&amp;type=SHUTDOWN"><img src="e.gif" title="<?=gettext("Edit command");?>" border="0" alt="<?=gettext("Edit command");?>" /></a>&nbsp;
-            <a href="system_rc.php?act=del&amp;id=<?=$i;?>&amp;type=SHUTDOWN" onclick="return confirm('<?=gettext("Do you really want to delete this command?");?>')"><img src="x.gif" title="<?=gettext("Delete command");?>" border="0" alt="<?=gettext("Delete command");?>" /></a>
+            <a href="system_rc_edit.php?id=<?=$i;?>&amp;type=SHUTDOWN"><img src="images/edit.png" title="<?=gtext("Edit command");?>" border="0" alt="<?=gtext("Edit command");?>" /></a>&nbsp;
+            <a href="system_rc.php?act=del&amp;id=<?=$i;?>&amp;type=SHUTDOWN" onclick="return confirm('<?=gtext("Do you really want to delete this command?");?>')"><img src="images/delete.png" title="<?=gtext("Delete command");?>" border="0" alt="<?=gtext("Delete command");?>" /></a>
           </td>
         </tr>
         <?php $i++; endforeach;?>
         <tr>
           <td class="list" colspan="2"></td>
-          <td class="list"><a href="system_rc_edit.php"><img src="plus.gif" title="<?=gettext("Add command");?>" border="0" alt="<?=gettext("Add command");?>" /></a></td>
+          <td class="list"><a href="system_rc_edit.php"><img src="images/add.png" title="<?=gtext("Add command");?>" border="0" alt="<?=gtext("Add command");?>" /></a></td>
         </tr>
       </table>
       <div id="remarks">
-      	<?php html_remark("note", gettext("Note"), gettext("These commands will be executed pre or post system initialization (booting) or before system shutdown."));?>
+      	<?php html_remark("note", gtext("Note"), gtext("These commands will be executed pre or post system initialization (booting) or before system shutdown."));?>
       </div>
     </td>
   </tr>

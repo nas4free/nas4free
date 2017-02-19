@@ -3,7 +3,7 @@
 	mkitem.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -41,16 +41,16 @@ function make_item ($dir)
 {
 	if (!permissions_grant($dir, NULL, "create"))
 		show_error($GLOBALS["error_msg"]["accessfunc"]);
-	
+
 	$mkname=$GLOBALS['__POST']["mkname"];
 	$mktype=$GLOBALS['__POST']["mktype"];
-	
-	$mkname=basename(stripslashes($mkname));
+
+	$mkname=basename($mkname);
 	if($mkname=="") show_error($GLOBALS["error_msg"]["miscnoname"]);
-	
+
 	$new = get_abs_item($dir,$mkname);
-	if(@file_exists($new)) show_error($mkname.": ".$GLOBALS["error_msg"]["itemdoesexist"]);
-	
+	if(@file_exists($new)) show_error(htmlspecialchars($mkname).": ".$GLOBALS["error_msg"]["itemdoesexist"]);
+
 	if($mktype!="file") {
 		$ok=@mkdir($new, 0777);
 		$err=$GLOBALS["error_msg"]["createdir"];
@@ -58,9 +58,9 @@ function make_item ($dir)
 		$ok=@touch($new);
 		$err=$GLOBALS["error_msg"]["createfile"];
 	}
-	
+
 	if($ok===false) show_error($err);
-	
+
 	header("Location: ".make_link("list",$dir,NULL));
 }
 

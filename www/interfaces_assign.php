@@ -3,15 +3,7 @@
 	interfaces_assign.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
-	Portions of m0n0wall (http://m0n0.ch/wall).
-	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -19,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -41,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Network"), gettext("Interface Management"));
+$pgtitle = array(gtext("Network"), gtext("Interface Management"));
 
 /*
 	In this file, "port" refers to the physical port name,
@@ -93,9 +86,9 @@ if ($_POST) {
 	/* Deliver error message for any port with more than one assignment */
 	foreach ($portifmap as $portname => $ifnames) {
 		if (count($ifnames) > 1) {
-			$errstr = gettext("Port ") . $portname .
-				gettext(" was assigned to ") . count($ifnames) .
-				gettext(" interfaces:");
+			$errstr = gtext("Port ") . $portname .
+				gtext(" was assigned to ") . count($ifnames) .
+				gtext(" interfaces:");
 
 			foreach ($portifmap[$portname] as $ifn)
 				$errstr .= " " . $ifn;
@@ -209,24 +202,24 @@ if (isset($_GET['act']) && $_GET['act'] == "add") {
 	<tr>
 		<td class="tabnavtbl">
 		  <ul id="tabnav">
-				<li class="tabact"><a href="interfaces_assign.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Management");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_wlan.php"><span><?=gettext("WLAN");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_vlan.php"><span><?=gettext("VLAN");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_lagg.php"><span><?=gettext("LAGG");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gettext("Bridge");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_carp.php"><span><?=gettext("CARP");?></span></a></li>
+				<li class="tabact"><a href="interfaces_assign.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Management");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_wlan.php"><span><?=gtext("WLAN");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_vlan.php"><span><?=gtext("VLAN");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_lagg.php"><span><?=gtext("LAGG");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gtext("Bridge");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_carp.php"><span><?=gtext("CARP");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabcont">
-			<form action="interfaces_assign.php" method="post" name="iform" id="iform">
+			<form action="interfaces_assign.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 				<table border="0" cellpadding="0" cellspacing="0">
 					<tr>
-						<td class="listhdrlr"><?=gettext("Interface");?></td>
-						<td class="listhdrr"><?=gettext("Network port");?></td>
+						<td class="listhdrlr"><?=gtext("Interface");?></td>
+						<td class="listhdrr"><?=gtext("Network port");?></td>
 						<td class="list">&nbsp;</td>
 					</tr>
 					<?php foreach ($config['interfaces'] as $ifname => $iface):
@@ -237,7 +230,7 @@ if (isset($_GET['act']) && $_GET['act'] == "add") {
 					?>
 					<tr>
 						<td class="listlr" valign="middle"><strong><?=$ifdescr;?></strong></td>
-					  <td valign="middle" class="listr">
+						<td valign="middle" class="listr">
 							<select name="<?=$ifname;?>" class="formfld" id="<?=$ifname;?>">
 							  <?php foreach ($portlist as $portname => $portinfo):?>
 							  <option value="<?=$portname;?>" <?php if ($portname == $iface['if']) echo "selected=\"selected\"";?>>
@@ -258,29 +251,38 @@ if (isset($_GET['act']) && $_GET['act'] == "add") {
 						</td>
 						<td valign="middle" class="list">
 							<?php if (($ifname != 'lan') && ($ifname != 'wan')):?>
-							<a href="interfaces_assign.php?act=del&amp;id=<?=$ifname;?>"><img src="x.gif" title="<?=gettext("Delete interface");?>" border="0" alt="<?=gettext("Delete interface");?>" /></a>
+							<a href="interfaces_assign.php?act=del&amp;id=<?=$ifname;?>"><img src="images/delete.png" title="<?=gtext("Delete interface");?>" border="0" alt="<?=gtext("Delete interface");?>" /></a>
 							<?php endif;?>
 						</td>
 					</tr>
-				  <?php endforeach;?>
-				  <?php if (count($config['interfaces']) < count($portlist)):?>
-				  <tr>
+					<?php endforeach;?>
+					<?php if (count($config['interfaces']) < count($portlist)):?>
+					<tr>
 						<td class="list" colspan="2"></td>
 						<td class="list" nowrap="nowrap">
-							<a href="interfaces_assign.php?act=add"><img src="plus.gif" title="<?=gettext("Add interface");?>" border="0" alt="<?=gettext("Add interface");?>" /></a>
+							<a href="interfaces_assign.php?act=add"><img src="images/add.png" title="<?=gtext("Add interface");?>" border="0" alt="<?=gtext("Add interface");?>" /></a>
 						</td>
-				  </tr>
-				  <?php else:?>
-				  <tr>
-					<td class="list" colspan="3" height="10"></td>
-				  </tr>
-				  <?php endif;?>
+					</tr>
+					<?php else:?>
+					<tr>
+						<td class="list" colspan="3" height="10"></td>
+					</tr>
+					<?php endif;?>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save");?>" />
 				</div>
 				<div id="remarks">
-					<?php html_remark("warning", gettext("Warning"), sprintf(gettext("After you click &quot;Save&quot;, you must reboot the server to make the changes take effect. You may also have to do one or more of the following steps before you can access your server again: <ul><li><span class='vexpl'>change the IP address of your server</span></li><li><span class='vexpl'>access the webGUI with the new IP address</span></li></ul>")));?>
+					<?php
+					$helpinghand = gtext('After you click "Save" you must reboot the server to make the changes take effect.')
+						. ' '
+						. gtext('You may also have to do one or more of the following steps before you can access your server again:')
+						. '<ul>'
+						. '<li><span class="vexpl">' . gtext('Change the IP address of your server') . '</span></li>'
+						. '<li><span class="vexpl">' . gtext('Access the webGUI with the new IP address') . '</span></li>'
+						. '</ul>';
+					html_remark("warning", gtext('Warning'), $helpinghand);
+					?>
 				</div>
 				<?php include("formend.inc");?>
 			</form>

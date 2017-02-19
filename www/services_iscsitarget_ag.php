@@ -3,11 +3,7 @@
 	services_iscsitarget_ag.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Services"), gettext("iSCSI Target"), gettext("Auth Group"));
+$pgtitle = array(gtext("Services"), gtext("iSCSI Target"), gtext("Auth Group"));
 
 if ($_POST) {
 	$pconfig = $_POST;
@@ -55,8 +52,12 @@ if ($_POST) {
 		$savemsg = get_std_save_message($retval);
 		if ($retval == 0) {
 			if (get_hast_role() != 'secondary') {
-				$savemsg .= "<br>";
-				$savemsg .= sprintf(gettext("The reloading request has been sent to the daemon. You can see the result by <a href=\"%s\">Log</a>."), "diag_log.php?log=2");
+				$savemsg .= '<br>'
+					. gtext('A reload request has been sent to the daemon.')
+					. ' '
+					. '<a href="' . 'diag_log.php?log=2' . '">'
+					. gtext('You can verify the result in the log file.')
+					. '</a>';
 			}
 			updatenotify_delete("iscsitarget_ag");
 		}
@@ -77,13 +78,13 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 	if ($index !== false) {
 		$ag = $config['iscsitarget']['authgroup'][$index];
 		if ($ag['tag'] == $config['iscsitarget']['discoveryauthgroup']) {
-			$input_errors[] = gettext("This tag is used.");
+			$input_errors[] = gtext("This tag is used.");
 		}
 		foreach ($config['iscsitarget']['target'] as $target) {
 			if (isset($target['agmap'])) {
 				foreach ($target['agmap'] as $agmap) {
 					if ($agmap['agtag'] == $ag['tag']) {
-						$input_errors[] = gettext("This tag is used.");
+						$input_errors[] = gtext("This tag is used.");
 					}
 				}
 			}
@@ -121,12 +122,12 @@ function iscsitargetag_process_updatenotification($mode, $data) {
   <tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-        <li class="tabinact"><a href="services_iscsitarget.php"><span><?=gettext("Settings");?></span></a></li>
-        <li class="tabinact"><a href="services_iscsitarget_target.php"><span><?=gettext("Targets");?></span></a></li>
-        <li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gettext("Portals");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gettext("Initiators");?></span></a></li>
-				<li class="tabact"><a href="services_iscsitarget_ag.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Auths");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gettext("Media");?></span></a></li>
+        <li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
+        <li class="tabinact"><a href="services_iscsitarget_target.php"><span><?=gtext("Targets");?></span></a></li>
+        <li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gtext("Portals");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
+				<li class="tabact"><a href="services_iscsitarget_ag.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Auths");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
       </ul>
     </td>
   </tr>
@@ -137,17 +138,17 @@ function iscsitargetag_process_updatenotification($mode, $data) {
       <?php if (updatenotify_exists("iscsitarget_ag")) print_config_change_box();?>
       <table width="100%" border="0" cellpadding="6" cellspacing="0">
       <tr>
-        <td colspan="2" valign="top" class="listtopic"><?=gettext("Auth Groups");?></td>
+        <td colspan="2" valign="top" class="listtopic"><?=gtext("Auth Groups");?></td>
       </tr>
       <tr>
-        <td width="22%" valign="top" class="vncell"><?=gettext("Auth Group");?></td>
+        <td width="22%" valign="top" class="vncell"><?=gtext("Auth Group");?></td>
         <td width="78%" class="vtable">
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-          <td width="5%" class="listhdrlr"><?=gettext("Tag");?></td>
-          <td width="30%" class="listhdrr"><?=gettext("CHAP Users");?></td>
-          <td width="30%" class="listhdrr"><?=gettext("Mutual CHAP Users");?></td>
-          <td width="25%" class="listhdrr"><?=gettext("Comment");?></td>
+          <td width="5%" class="listhdrlr"><?=gtext("Tag");?></td>
+          <td width="30%" class="listhdrr"><?=gtext("CHAP Users");?></td>
+          <td width="30%" class="listhdrr"><?=gtext("Mutual CHAP Users");?></td>
+          <td width="25%" class="listhdrr"><?=gtext("Comment");?></td>
           <td width="10%" class="list"></td>
         </tr>
         <?php foreach($config['iscsitarget']['authgroup'] as $ag):?>
@@ -174,22 +175,22 @@ function iscsitargetag_process_updatenotification($mode, $data) {
           <td class="listr"><?=htmlspecialchars($ag['comment']);?>&nbsp;</td>
           <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
           <td valign="middle" nowrap="nowrap" class="list">
-            <a href="services_iscsitarget_ag_edit.php?uuid=<?=$ag['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit auth group");?>" border="0" alt="<?=gettext("Edit auth group");?>" /></a>
-            <a href="services_iscsitarget_ag.php?act=del&amp;type=ag&amp;uuid=<?=$ag['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this auth group?");?>')"><img src="x.gif" title="<?=gettext("Delete auth group");?>" border="0" alt="<?=gettext("Delete auth group");?>" /></a>
+            <a href="services_iscsitarget_ag_edit.php?uuid=<?=$ag['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit auth group");?>" border="0" alt="<?=gtext("Edit auth group");?>" /></a>
+            <a href="services_iscsitarget_ag.php?act=del&amp;type=ag&amp;uuid=<?=$ag['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this auth group?");?>')"><img src="images/delete.png" title="<?=gtext("Delete auth group");?>" border="0" alt="<?=gtext("Delete auth group");?>" /></a>
           </td>
           <?php else:?>
           <td valign="middle" nowrap="nowrap" class="list">
-            <img src="del.gif" border="0" alt="" />
+            <img src="images/delete.png" border="0" alt="" />
           </td>
           <?php endif;?>
         </tr>
         <?php endforeach;?>
         <tr>
           <td class="list" colspan="4"></td>
-          <td class="list"><a href="services_iscsitarget_ag_edit.php"><img src="plus.gif" title="<?=gettext("Add auth group");?>" border="0" alt="<?=gettext("Add auth group");?>" /></a></td>
+          <td class="list"><a href="services_iscsitarget_ag_edit.php"><img src="images/add.png" title="<?=gtext("Add auth group");?>" border="0" alt="<?=gtext("Add auth group");?>" /></a></td>
         </tr>
         </table>
-        <?=gettext("A Auth Group contains authorised users and secrets for additional security.");?>
+        <?=gtext("A Auth Group contains authorised users and secrets for additional security.");?>
         </td>
       </tr>
       </table>

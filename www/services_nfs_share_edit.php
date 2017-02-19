@@ -3,11 +3,7 @@
 	services_nfs_share_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -42,7 +39,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Services"), gettext("NFS"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Services"), gtext("NFS"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
 if (!isset($config['nfsd']['share']) || !is_array($config['nfsd']['share']))
 	$config['nfsd']['share'] = array();
@@ -101,7 +98,7 @@ if ($_POST) {
 
 	// Input validation.
 	$reqdfields = explode(" ", "path network mask");
-	$reqdfieldsn = array(gettext("Path"), gettext("Authorised network"), gettext("Network mask"));
+	$reqdfieldsn = array(gtext("Path"), gtext("Authorised network"), gtext("Network mask"));
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	// remove last slash and check alldirs option
@@ -114,7 +111,7 @@ if ($_POST) {
 	} else if (isset($_POST['quiet'])) {
 		// might be delayed mount
 	} else if (isset($_POST['alldirs']) && !ismounted_or_dataset($path)) {
-	   $input_errors[] = sprintf(gettext("All dirs requires mounted path, but Path %s is not mounted."), $path);
+	   $input_errors[] = sprintf(gtext("All dirs requires mounted path, but Path %s is not mounted."), $path);
 	}
 
 	if (empty($input_errors)) {
@@ -150,29 +147,29 @@ if ($_POST) {
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabinact"><a href="services_nfs.php"><span><?=gettext("Settings");?></span></a></li>
-				<li class="tabact"><a href="services_nfs_share.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Shares");?></span></a></li>
+				<li class="tabinact"><a href="services_nfs.php"><span><?=gtext("Settings");?></span></a></li>
+				<li class="tabact"><a href="services_nfs_share.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Shares");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabcont">
-			<form action="services_nfs_share_edit.php" method="post" name="iform" id="iform">
+			<form action="services_nfs_share_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if ($input_errors) print_input_errors($input_errors);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 			    <tr>
-  				  <td width="22%" valign="top" class="vncellreq"><?=gettext("Path");?></td>
+  				  <td width="22%" valign="top" class="vncellreq"><?=gtext("Path");?></td>
   				  <td width="78%" class="vtable">
   				  	<input name="path" type="text" class="formfld" id="path" size="60" value="<?=htmlspecialchars($pconfig['path']);?>" />
   				  	<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.path; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." /><br />
-  				  	<span class="vexpl"><?=gettext("Path to be shared.");?> <?=gettext("Please note that blanks in path names are not allowed.");?></span>
+  				  	<span class="vexpl"><?=gtext("Path to be shared.");?> <?=gtext("Please note that blanks in path names are not allowed.");?></span>
   				  </td>
   				</tr>
 			    <tr>
-			      <td width="22%" valign="top" class="vncellreq"><?=gettext("Map all users to root"); ?></td>
+			      <td width="22%" valign="top" class="vncellreq"><?=gtext("Map all users to root"); ?></td>
 			      <td width="78%" class="vtable">
 			        <select name="mapall" class="formfld" id="mapall">
-			        <?php $types = array(gettext("Yes"),gettext("No"));?>
+			        <?php $types = array(gtext("Yes"),gtext("No"));?>
 			        <?php $vals = explode(" ", "yes no");?>
 			        <?php $j = 0; for ($j = 0; $j < count($vals); $j++): ?>
 			          <option value="<?=$vals[$j];?>" <?php if ($vals[$j] == $pconfig['mapall']) echo "selected=\"selected\"";?>>
@@ -180,11 +177,11 @@ if ($_POST) {
 			          </option>
 			        <?php endfor; ?>
 			        </select><br />
-			        <span class="vexpl"><?=gettext("All users will have the root privilege.");?></span>
+			        <span class="vexpl"><?=gtext("All users will have the root privilege.");?></span>
 			      </td>
 			    </tr>
 			    <tr>
-			      <td width="22%" valign="top" class="vncellreq"><?=gettext("Authorised network");?></td>
+			      <td width="22%" valign="top" class="vncellreq"><?=gtext("Authorised network");?></td>
 			      <td width="78%" class="vtable">
 			        <input name="network" type="text" class="formfld" id="network" size="20" value="<?=htmlspecialchars($pconfig['network']);?>" /> /
 			        <select name="mask" class="formfld" id="mask">
@@ -192,48 +189,48 @@ if ($_POST) {
 			          <option value="<?=$i;?>" <?php if ($i == $pconfig['mask']) echo "selected=\"selected\"";?>><?=$i;?></option>
 			          <?php endfor;?>
 			        </select><br />
-			        <span class="vexpl"><?=gettext("Network that is authorised to access the NFS share.");?></span>
+			        <span class="vexpl"><?=gtext("Network that is authorised to access the NFS share.");?></span>
 			      </td>
 			    </tr>
 			    <tr>
-			      <td width="22%" valign="top" class="vncell"><?=gettext("Comment");?></td>
+			      <td width="22%" valign="top" class="vncell"><?=gtext("Comment");?></td>
 			      <td width="78%" class="vtable">
 			        <input name="comment" type="text" class="formfld" id="comment" size="30" value="<?=htmlspecialchars($pconfig['comment']);?>" />
 			      </td>
 			    </tr>
 			    <tr>
-			      <td width="22%" valign="top" class="vncell"><?=gettext("NFSv4");?></td>
+			      <td width="22%" valign="top" class="vncell"><?=gtext("NFSv4");?></td>
 			      <td width="78%" class="vtable">
 			      	<input name="v4rootdir" type="checkbox" id="v4rootdir" value="yes" <?php if (!empty($pconfig['v4rootdir'])) echo "checked=\"checked\"";?> />
-			      	<span class="vexpl"><?=gettext("Specified path is NFSv4 root directory.");?></span><br />
+			      	<span class="vexpl"><?=gtext("Specified path is NFSv4 root directory.");?></span><br />
 			      </td>
 			    </tr>
 			    <tr>
-			      <td width="22%" valign="top" class="vncell"><?=gettext("All dirs");?></td>
+			      <td width="22%" valign="top" class="vncell"><?=gtext("All dirs");?></td>
 			      <td width="78%" class="vtable">
 			      	<input name="alldirs" type="checkbox" id="alldirs" value="yes" <?php if (!empty($pconfig['alldirs'])) echo "checked=\"checked\"";?> />
-			      	<span class="vexpl"><?=gettext("Export all the directories in the specified path.");?></span><br />
-				<?=sprintf(gettext("To use subdirectories, you must mount each directories. (e.g. %s)"), "mount -t nfs host:/mnt/path/subdir /path/to/mount");?>
+			      	<span class="vexpl"><?=gtext("Export all the directories in the specified path.");?></span><br />
+				<?=sprintf(gtext("To use subdirectories, you must mount each directories. (e.g. %s)"), "mount -t nfs host:/mnt/path/subdir /path/to/mount");?>
 			      </td>
 			    </tr>
 			    <tr>
-			      <td width="22%" valign="top" class="vncell"><?=gettext("Read only");?></td>
+			      <td width="22%" valign="top" class="vncell"><?=gtext("Read only");?></td>
 			      <td width="78%" class="vtable">
 			      	<input name="readonly" type="checkbox" id="readonly" value="yes" <?php if (!empty($pconfig['readonly'])) echo "checked=\"checked\"";?> />
-			        <span class="vexpl"><?=gettext("Specifies that the file system should be exported read-only.");?></span>
+			        <span class="vexpl"><?=gtext("Specifies that the file system should be exported read-only.");?></span>
 			      </td>
 			    </tr>
 			    <tr>
-			      <td width="22%" valign="top" class="vncell"><?=gettext("Quiet");?></td>
+			      <td width="22%" valign="top" class="vncell"><?=gtext("Quiet");?></td>
 			      <td width="78%" class="vtable">
 			      	<input name="quiet" type="checkbox" id="quiet" value="yes" <?php if (!empty($pconfig['quiet'])) echo "checked=\"checked\"";?> />
-			        <span class="vexpl"><?=gettext("Inhibit some of the syslog diagnostics for bad lines in /etc/exports.");?></span>
+			        <span class="vexpl"><?=gtext("Inhibit some of the syslog diagnostics for bad lines in /etc/exports.");?></span>
 			      </td>
 			    </tr>
 			  </table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 				</div>
 				<?php include("formend.inc");?>

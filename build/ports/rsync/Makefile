@@ -1,9 +1,9 @@
 PORTNAME=		rsync
-PORTVERSION=	3.1.1
+PORTVERSION=	3.1.2
 PORTREVISION=	0
 CATEGORIES=		net
 COMMENT=		A network file distribution/sync utility
-MAINTAINER=		zoon01@nas4free.org
+MAINTAINER=		zoon1@nas4free.org
 
 MASTER_SITES=		http://rsync.samba.org/ftp/%SUBDIR%/ \
 							ftp://ftp.samba.org/pub/%SUBDIR%/ \

@@ -1,0 +1,29 @@
+--- usb/controller/xhci.c.orig	2016-04-04 09:18:38.624669000 +0200
++++ usb/controller/xhci.c	2016-04-04 10:42:59.000000000 +0200
+@@ -2363,6 +2363,8 @@
+ 
+ 	/* store endpoint mode */
+ 	pepext->trb_ep_mode = ep_mode;
++	/* store bMaxPacketSize for control endpoints */
++	pepext->trb_ep_maxp = edesc->wMaxPacketSize[0];
+ 	usb_pc_cpu_flush(pepext->page_cache);
+ 
+ 	if (ep_mode == USB_EP_MODE_STREAMS) {
+@@ -2909,6 +2911,17 @@
+ 		return (USB_ERR_NOMEM);
+ 	}
+ 
++	/* check if bMaxPacketSize changed */
++	if (xfer->flags_int.control_xfr != 0 &&
++	    pepext->trb_ep_maxp != xfer->endpoint->edesc->wMaxPacketSize[0]) {
++
++	     DPRINTFN(8, "Reconfigure control endpoint\n");
++
++	     /* force driver to reconfigure endpoint */
++	     pepext->trb_halted = 1;
++	     pepext->trb_running = 0;
++	}
++
+ 	/* check for stopped condition, after putting transfer on interrupt queue */
+ 	if (pepext->trb_running == 0) {
+ 		struct xhci_softc *sc = XHCI_BUS2SC(xfer->xroot->bus);

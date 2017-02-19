@@ -1,0 +1,14 @@
+--- usb/controller/ohci_pci.c.orig	2016-06-18 02:09:20.353148000 +0200
++++ usb/controller/ohci_pci.c	2016-06-18 04:46:33.000000000 +0200
+@@ -124,9 +124,10 @@
+ 
+ 	case 0x740c1022:
+ 		return ("AMD-756 USB Controller");
+-
+ 	case 0x74141022:
+ 		return ("AMD-766 USB Controller");
++	case 0x78071022:
++		return ("AMD FCH USB Controller");
+ 
+ 	case 0x43741002:
+ 		return "ATI SB400 USB Controller";

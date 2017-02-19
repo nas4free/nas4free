@@ -3,7 +3,7 @@
 # This script is designed to automate the assembly of NAS4Free builds.
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # Debug script
@@ -28,8 +28,16 @@ if [ -f "${NAS4FREE_SVNDIR}/local.revision" ]; then
 fi
 NAS4FREE_ARCH=$(uname -p)
 NAS4FREE_KERNCONF="$(echo ${NAS4FREE_PRODUCTNAME} | tr '[:lower:]' '[:upper:]')-${NAS4FREE_ARCH}"
+NAS4FREE_BUILD_DOM0=0
+if [ -f ${NAS4FREE_ROOTDIR}/build-dom0 ]; then
+    NAS4FREE_BUILD_DOM0=1
+fi
 if [ "amd64" = ${NAS4FREE_ARCH} ]; then
     NAS4FREE_XARCH="x64"
+    if [ ${NAS4FREE_BUILD_DOM0} -ne 0 ]; then
+	NAS4FREE_XARCH="dom0"
+	NAS4FREE_KERNCONF="$(echo ${NAS4FREE_PRODUCTNAME} | tr '[:lower:]' '[:upper:]')-${NAS4FREE_XARCH}"
+    fi
 elif [ "i386" = ${NAS4FREE_ARCH} ]; then
     NAS4FREE_XARCH="x86"
 elif [ "armv6" = ${NAS4FREE_ARCH} ]; then
@@ -60,11 +68,13 @@ export NAS4FREE_WORLD
 export NAS4FREE_PRODUCTNAME
 export NAS4FREE_VERSION
 export NAS4FREE_ARCH
+export NAS4FREE_XARCH
 export NAS4FREE_KERNCONF
 export NAS4FREE_OBJDIRPREFIX
 export NAS4FREE_BOOTDIR
 export NAS4FREE_REVISION
 export NAS4FREE_TMPDIR
+#export NAS4FREE_BUILD_DOM0
 
 NAS4FREE_MK=${NAS4FREE_SVNDIR}/build/ports/nas4free.mk
 rm -rf ${NAS4FREE_MK}
@@ -76,16 +86,18 @@ echo "NAS4FREE_WORLD=${NAS4FREE_WORLD}" >> ${NAS4FREE_MK}
 echo "NAS4FREE_PRODUCTNAME=${NAS4FREE_PRODUCTNAME}" >> ${NAS4FREE_MK}
 echo "NAS4FREE_VERSION=${NAS4FREE_VERSION}" >> ${NAS4FREE_MK}
 echo "NAS4FREE_ARCH=${NAS4FREE_ARCH}" >> ${NAS4FREE_MK}
+echo "NAS4FREE_XARCH=${NAS4FREE_XARCH}" >> ${NAS4FREE_MK}
 echo "NAS4FREE_KERNCONF=${NAS4FREE_KERNCONF}" >> ${NAS4FREE_MK}
 echo "NAS4FREE_OBJDIRPREFIX=${NAS4FREE_OBJDIRPREFIX}" >> ${NAS4FREE_MK}
 echo "NAS4FREE_BOOTDIR=${NAS4FREE_BOOTDIR}" >> ${NAS4FREE_MK}
 echo "NAS4FREE_REVISION=${NAS4FREE_REVISION}" >> ${NAS4FREE_MK}
 echo "NAS4FREE_TMPDIR=${NAS4FREE_TMPDIR}" >> ${NAS4FREE_MK}
+#echo "NAS4FREE_BUILD_DOM0=${NAS4FREE_BUILD_DOM0}" >> ${NAS4FREE_MK}
 
 # Local variables
 NAS4FREE_URL=$(cat $NAS4FREE_SVNDIR/etc/prd.url)
-NAS4FREE_SVNURL="https://svn.code.sf.net/p/nas4free/code/trunk"
-NAS4FREE_SVN_SRCTREE="svn://svn.FreeBSD.org/base/releng/10.2"
+NAS4FREE_SVNURL="https://svn.code.sf.net/p/nas4free/code/branches/10.3.0.3"
+NAS4FREE_SVN_SRCTREE="svn://svn.FreeBSD.org/base/releng/10.3"
 
 # Size in MB of the MFS Root filesystem that will include all FreeBSD binary
 # and NAS4FREE WEbGUI/Scripts. Keep this file very small! This file is unzipped
@@ -413,7 +425,13 @@ add_libs() {
 			if [ ! -d ${DESTDIR} ]; then
 			    DESTDIR=${NAS4FREE_ROOTFS}/usr/local/lib
 			fi
-			install -c -s -v ${NAS4FREE_WORLD}${i} ${DESTDIR}
+			FILE=`basename ${i}`
+			if [ -L "${DESTDIR}/${FILE}" ]; then
+				# do not remove symbolic link
+				echo "link: ${i}"
+			else
+				install -c -s -v ${NAS4FREE_WORLD}${i} ${DESTDIR}
+			fi
 		fi
 	done
 
@@ -638,6 +656,7 @@ create_image() {
 
 	# Set build time.
 	date > ${NAS4FREE_ROOTFS}/etc/prd.version.buildtime
+	date "+%s" > ${NAS4FREE_ROOTFS}/etc/prd.version.buildtimestamp
 
 	# Set revision.
 	echo ${NAS4FREE_REVISION} > ${NAS4FREE_ROOTFS}/etc/prd.revision
@@ -728,6 +747,13 @@ create_image() {
 	# Mellanox ConnectX EN
 	if [ "amd64" == ${NAS4FREE_ARCH} ]; then
 		echo 'mlxen_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	fi
+
+	# Xen
+	if [ "dom0" == ${NAS4FREE_XARCH} ]; then
+		install -v -o root -g wheel -m 555 ${NAS4FREE_BOOTDIR}/xen ${NAS4FREE_TMPDIR}/boot
+		install -v -o root -g wheel -m 644 ${NAS4FREE_BOOTDIR}/xen.4th ${NAS4FREE_TMPDIR}/boot
+		kldxref -R ${NAS4FREE_TMPDIR}/boot
 	fi
 
 	echo "===> Unmount memory disk"
@@ -853,6 +879,13 @@ create_iso () {
 		echo 'mlxen_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	fi
 
+	# Xen
+	if [ "dom0" == ${NAS4FREE_XARCH} ]; then
+		install -v -o root -g wheel -m 555 ${NAS4FREE_BOOTDIR}/xen ${NAS4FREE_TMPDIR}/boot
+		install -v -o root -g wheel -m 644 ${NAS4FREE_BOOTDIR}/xen.4th ${NAS4FREE_TMPDIR}/boot
+		kldxref -R ${NAS4FREE_TMPDIR}/boot
+	fi
+
 	if [ ! $TINY_ISO ]; then
 		echo "ISO: Copying IMG file to $NAS4FREE_TMPDIR"
 		cp ${NAS4FREE_WORKINGDIR}/image.bin.xz ${NAS4FREE_TMPDIR}/${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-embedded.xz
@@ -862,9 +895,9 @@ create_iso () {
 	mkisofs -b "boot/cdboot" -no-emul-boot -r -J -A "${NAS4FREE_PRODUCTNAME} CD-ROM image" -publisher "${NAS4FREE_URL}" -V "${VOLUMEID}" -o "${NAS4FREE_ROOTDIR}/${LABEL}.iso" ${NAS4FREE_TMPDIR}
 	[ 0 != $? ] && return 1 # successful?
 
-	echo "Generating SHA256 CHECKSUM File"
-	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.checksum"
-	cd ${NAS4FREE_ROOTDIR} && sha256 *.img.gz *.xz *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
+	echo "Generating SHA512 CHECKSUM File"
+	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.SHA512-CHECKSUM"
+	cd ${NAS4FREE_ROOTDIR} && sha512 *.img.gz *.xz *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
 
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
@@ -1086,6 +1119,13 @@ create_usb () {
 		echo 'mlxen_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	fi
 
+	# Xen
+	if [ "dom0" == ${NAS4FREE_XARCH} ]; then
+		install -v -o root -g wheel -m 555 ${NAS4FREE_BOOTDIR}/xen ${NAS4FREE_TMPDIR}/boot
+		install -v -o root -g wheel -m 644 ${NAS4FREE_BOOTDIR}/xen.4th ${NAS4FREE_TMPDIR}/boot
+		kldxref -R ${NAS4FREE_TMPDIR}/boot
+	fi
+
 	echo "USB: Copying IMG file to $NAS4FREE_TMPDIR"
 	cp ${NAS4FREE_WORKINGDIR}/image.bin.xz ${NAS4FREE_TMPDIR}/${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-embedded.xz
 
@@ -1097,9 +1137,9 @@ create_usb () {
 	echo "Compress LiveUSB.img to LiveUSB.img.gz"
 	gzip -9n $NAS4FREE_ROOTDIR/$IMGFILENAME
 
-	echo "Generating SHA256 CHECKSUM File"
-	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.checksum"
-	cd ${NAS4FREE_ROOTDIR} && sha256 *.img.gz *.xz > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
+	echo "Generating SHA512 CHECKSUM File"
+	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.SHA512-CHECKSUM"
+	cd ${NAS4FREE_ROOTDIR} && sha512 *.img.gz *.xz > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
 
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
@@ -1190,13 +1230,17 @@ create_full() {
 	echo 'hw.est.msr_info="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'hw.hptrr.attach_generic="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'hw.msk.msi_disable="1"' >> $NAS4FREE_TMPDIR/boot/loader.conf
-	echo 'kern.maxfiles="65536"' >> $NAS4FREE_TMPDIR/boot/loader.conf
-	echo 'kern.maxfilesperproc="60000"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'kern.maxfiles="6289573"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'kern.cam.boot_delay="8000"' >> $NAS4FREE_TMPDIR/boot/loader.conf
-	echo 'splash_bmp_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
-	echo 'bitmap_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
-	echo 'bitmap_name="/boot/splash.bmp"' >> $NAS4FREE_TMPDIR/boot/loader.conf
-	echo 'autoboot_delay="5"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'kern.cam.ada.legacy_aliases="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'kern.geom.label.disk_ident.enable="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'kern.geom.label.gptid.enable="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'hint.acpi_throttle.0.disabled="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'hint.p4tcc.0.disabled="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	#echo 'splash_bmp_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	#echo 'bitmap_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	#echo 'bitmap_name="/boot/splash.bmp"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'autoboot_delay="3"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'isboot_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'zfs_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'geom_xmd_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
@@ -1204,6 +1248,13 @@ create_full() {
 	# Mellanox ConnectX EN
 	if [ "amd64" == ${NAS4FREE_ARCH} ]; then
 		echo 'mlxen_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	fi
+
+	# Xen
+	if [ "dom0" == ${NAS4FREE_XARCH} ]; then
+		install -v -o root -g wheel -m 555 ${NAS4FREE_BOOTDIR}/xen ${NAS4FREE_TMPDIR}/boot
+		install -v -o root -g wheel -m 644 ${NAS4FREE_BOOTDIR}/xen.4th ${NAS4FREE_TMPDIR}/boot
+		kldxref -R ${NAS4FREE_TMPDIR}/boot
 	fi
 
 	#Check that there is no /etc/fstab file! This file can be generated only during install, and must be kept
@@ -1220,9 +1271,9 @@ create_full() {
 	echo "Cleaning temp .o file(s)"
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
 
-	echo "Generating SHA256 CHECKSUM File"
-	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.checksum"
-	cd ${NAS4FREE_ROOTDIR} && sha256 *.img.gz *.xz *.iso *.tgz > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
+	echo "Generating SHA512 CHECKSUM File"
+	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.SHA512-CHECKSUM"
+	cd ${NAS4FREE_ROOTDIR} && sha512 *.img.gz *.xz *.iso *.tgz > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
 
 	return 0
 }
@@ -1296,6 +1347,7 @@ create_arm_image() {
 
 	# Set build time.
 	date > ${NAS4FREE_ROOTFS}/etc/prd.version.buildtime
+	date "+%s" > ${NAS4FREE_ROOTFS}/etc/prd.version.buildtimestamp
 
 	# Set Revision.
 	echo ${NAS4FREE_REVISION} > ${NAS4FREE_ROOTFS}/etc/prd.revision
@@ -1508,6 +1560,9 @@ create_rpisd() {
 	echo "RPISD: Mount this virtual disk on $NAS4FREE_TMPDIR"
 	mount /dev/${mdp} $NAS4FREE_TMPDIR
 
+	# Enable auto resize
+	touch ${NAS4FREE_TMPDIR}/req_resize
+
 	echo "RPISD: Unmount memory disk"
 	umount $NAS4FREE_TMPDIR
 	echo "RPISD: Detach memory disk"
@@ -1515,9 +1570,9 @@ create_rpisd() {
 	echo "RPISD: Copy SD image"
 	cp $NAS4FREE_WORKINGDIR/sd-image.bin $NAS4FREE_ROOTDIR/${IMGFILENAME}
 
-	echo "Generating SHA256 CHECKSUM File"
-	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.checksum"
-	cd ${NAS4FREE_ROOTDIR} && sha256 *.img *.xz *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
+	echo "Generating SHA512 CHECKSUM File"
+	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.SHA512-CHECKSUM"
+	cd ${NAS4FREE_ROOTDIR} && sha512 *.img *.xz *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
 
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
@@ -1640,6 +1695,9 @@ create_rpi2sd() {
 	echo "RPISD: Mount this virtual disk on $NAS4FREE_TMPDIR"
 	mount /dev/${mdp} $NAS4FREE_TMPDIR
 
+	# Enable auto resize
+	touch ${NAS4FREE_TMPDIR}/req_resize
+
 	echo "RPISD: Unmount memory disk"
 	umount $NAS4FREE_TMPDIR
 	echo "RPISD: Detach memory disk"
@@ -1647,9 +1705,9 @@ create_rpi2sd() {
 	echo "RPISD: Copy SD image"
 	cp $NAS4FREE_WORKINGDIR/sd-image.bin $NAS4FREE_ROOTDIR/${IMGFILENAME}
 
-	echo "Generating SHA256 CHECKSUM File"
-	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.checksum"
-	cd ${NAS4FREE_ROOTDIR} && sha256 *.img *.xz *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
+	echo "Generating SHA512 CHECKSUM File"
+	NAS4FREE_CHECKSUMFILENAME="${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}.SHA512-CHECKSUM"
+	cd ${NAS4FREE_ROOTDIR} && sha512 *.img *.xz *.iso > ${NAS4FREE_ROOTDIR}/${NAS4FREE_CHECKSUMFILENAME}
 
 	# Cleanup.
 	[ -d $NAS4FREE_TMPDIR ] && rm -rf $NAS4FREE_TMPDIR
@@ -1695,6 +1753,13 @@ use_svn() {
 			rm -f ${NAS4FREE_ROOTFS}/etc/rc.d/initrandom
 		fi
 	fi
+	# adjust for dom0
+	if [ "dom0" = ${NAS4FREE_XARCH} ]; then
+		if [ -f ${NAS4FREE_ROOTFS}/etc/rc.d/initrandom ]; then
+			rm -f ${NAS4FREE_ROOTFS}/etc/rc.d/initrandom
+		fi
+		sed -i '' -e "/^xc0/ s/off/on /" ${NAS4FREE_ROOTFS}/etc/ttys
+	fi
 
 	return 0
 }
@@ -1712,10 +1777,11 @@ Compile NAS4FREE from Scratch
 2 - Create Filesystem Structure.
 3 - Build/Install the Kernel.
 4 - Build World.
-5 - Build Ports.
-6 - Build Bootloader.
-7 - Add Necessary Libraries.
-8 - Modify File Permissions.
+5 - Copy Files/Ports to their locations.
+6 - Build Ports.
+7 - Build Bootloader.
+8 - Add Necessary Libraries.
+9 - Modify File Permissions.
 * - Exit.
 
 Press # '
@@ -1725,8 +1791,9 @@ Press # '
 			2)	create_rootfs;;
 			3)	build_kernel;;
 			4)	build_world;;
-			5)	build_ports;;
-			6)	opt="-f";
+			5)	copy_files;;
+			6)	build_ports;;
+			7)	opt="-f";
 					if [ 0 != $OPT_BOOTMENU ]; then
 						opt="$opt -m"
 					fi;
@@ -1737,21 +1804,55 @@ Press # '
 						opt="$opt -s"
 					fi;
 					$NAS4FREE_SVNDIR/build/nas4free-create-bootdir.sh $opt $NAS4FREE_BOOTDIR;;
-			7)	add_libs;;
-			8)	$NAS4FREE_SVNDIR/build/nas4free-modify-permissions.sh $NAS4FREE_ROOTFS;;
+			8)	add_libs;;
+			9)	$NAS4FREE_SVNDIR/build/nas4free-modify-permissions.sh $NAS4FREE_ROOTFS;;
 			*)	main; return $?;;
 		esac
 		[ 0 == $? ] && echo "=> Successfully done <=" || echo "=> Failed!"
 		sleep 1
   done
 }
+# Copy files/ports. Copying required files from 'distfiles & copy-ports'.
+copy_files() {
+			# Copy required sources to FreeBSD distfiles directory.
+			echo;
+			echo "-------------------------------------------------------------------";
+			echo ">>> Copy needed sources to distfiles directory usr/ports/distfiles.";
+			echo "-------------------------------------------------------------------";
+			echo "===> Start copy sources"
+			cp -f ${NAS4FREE_SVNDIR}/build/ports/distfiles/CLI_freebsd-from_the_10.2.2.1_9.5.5.1_codesets.zip /usr/ports/distfiles
+			echo "===> Copy CLI_freebsd-from_the_10.2.2.1_9.5.5.1_codesets.zip done!"
+			cp -f ${NAS4FREE_SVNDIR}/build/ports/distfiles/istgt-20150713.tar.gz /usr/ports/distfiles
+			echo "===> Copy istgt-20150713.tar.gz done!"
+			cp -f ${NAS4FREE_SVNDIR}/build/ports/distfiles/fuppes-0.692.tar.gz /usr/ports/distfiles
+			echo "===> Copy fuppes-0.692.tar.gz done!"
+			cp -f ${NAS4FREE_SVNDIR}/build/ports/distfiles/xmd-0.5.tar.gz /usr/ports/distfiles
+			echo "===> Copy xmd-0.5.tar.gz done!"
 
+			# Copy required ports to FreeBSD ports directory.
+			echo;
+			echo "----------------------------------------------------------";
+			echo ">>> Copy new files to ports directory FreeBSD usr/ports/*.";
+			echo "----------------------------------------------------------";
+			echo "===> Delete pango from ports"
+			rm -rf /usr/ports/x11-toolkits/pango
+			echo "===> Start copy new pango files to ports/x11-toolkits"
+			cp -Rpv ${NAS4FREE_SVNDIR}/build/ports/copy-ports/files/pango /usr/ports/x11-toolkits/pango
+			echo "===> Copy new files to /usr/ports/x11-toolkits/pango done!"
+			echo "===> Delete ffmpeg from ports"
+			rm -rf /usr/ports/multimedia/ffmpeg
+			echo "===> Start copy new pango files to ports/multimedia"
+			cp -Rpv ${NAS4FREE_SVNDIR}/build/ports/copy-ports/files/ffmpeg /usr/ports/multimedia/ffmpeg
+			echo "===> Copy new files to /usr/ports/multimedia/ffmpeg done!"
+
+	return 0
+}
 build_ports() {
 	tempfile=$NAS4FREE_WORKINGDIR/tmp$$
 	ports=$NAS4FREE_WORKINGDIR/ports$$
 
 	# Choose what to do.
-	$DIALOG --title "$NAS4FREE_PRODUCTNAME - Build/Install Ports" --menu "Please select whether you want to build or install ports." 10 45 2 \
+	$DIALOG --title "$NAS4FREE_PRODUCTNAME - Build/Install Ports" --menu "Please select whether you want to build or install ports." 10 45 3 \
 		"build" "Build ports" \
 		"install" "Install ports" 2> $tempfile
 	if [ 0 != $? ]; then # successful?
@@ -1765,7 +1866,7 @@ build_ports() {
 	# Create list of available ports.
 	echo "#! /bin/sh
 $DIALOG --title \"$NAS4FREE_PRODUCTNAME - Ports\" \\
---checklist \"Select the ports you want to process.\" 21 75 14 \\" > $tempfile
+--checklist \"Select the ports you want to process.\" 21 130 14 \\" > $tempfile
 
 	for s in $NAS4FREE_SVNDIR/build/ports/*; do
 		[ ! -d "$s" ] && continue
@@ -1778,7 +1879,13 @@ $DIALOG --title \"$NAS4FREE_PRODUCTNAME - Ports\" \\
 				fi
 			done
 		elif [ "i386" = ${NAS4FREE_ARCH} ]; then
-			for forceoff in grub2-bhyve; do
+			for forceoff in grub2-bhyve novnc open-vm-tools phpvirtualbox vbox vbox-additions; do
+				if [ "$port" = "$forceoff" ]; then
+					state="OFF"; break;
+				fi
+			done
+		elif [ "dom0" = ${NAS4FREE_XARCH} ]; then
+			for forceoff in firefly fuppes grub2-bhyve inadyn-mt minidlna netatalk3 open-vm-tools phpvirtualbox samba42 transmission vbox vbox-additions; do
 				if [ "$port" = "$forceoff" ]; then
 					state="OFF"; break;
 				fi
@@ -1872,7 +1979,7 @@ ${NAS4FREE_PRODUCTNAME} Build Environment
 
 1  - Update NAS4FREE Source Files to CURRENT.
 2  - NAS4Free Compile Menu.
-10 - Create 'Embedded.img.xz' File. (Firmware Update for Embedded Systems)
+10 - Create 'Embedded.img.xz' File. (Firmware Update)
 11 - Create 'LiveUSB.img.gz' File. (Rawrite to USB Key)
 12 - Create 'LiveCD' (ISO) File.
 13 - Create 'LiveCD-Tin' (ISO) without 'Embedded' File.

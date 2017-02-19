@@ -4,7 +4,7 @@ PORTREVISION= 1
 CATEGORIES=		sysutils
 MASTER_SITES=		SF
 COMMENT=		Client/server suite for LCD devices
-MAINTAINER=		zoon01@nas4free.org
+MAINTAINER=		zoon1@nas4free.org
 
 GNU_CONFIGURE=	yes
 USES=           autoreconf pkgconfig

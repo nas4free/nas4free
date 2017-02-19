@@ -1,6 +1,6 @@
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2016 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # $FreeBSD: src/etc/root/dot.cshrc 242850 2012-11-10 06:05:04Z eadler $
@@ -30,7 +30,7 @@ setenv	EDITOR nano
 
 if ($?prompt) then
 	# An interactive shell -- set some stuff up
-	set prompt=" %{\033[1;32m%}%m: %{\033[1;32m%}%.%{\033[0m%}%# "
+	set prompt="%{\033[1;32m%}%m: %{\033[1;32m%}%.%{\033[0m%}%# "
 	set promptchars = "%#"
 	set filec
 	set autolist
@@ -55,7 +55,7 @@ endif
 if ("ttyu0" == "$tty" && `kenv console | sed -n 's/.*uboot.*/uboot/p'` == "uboot") then
 	stty clocal
 endif
-if ( "ttyv0" == "$tty" || "ttyu0" == "$tty" ) then
+if ( "ttyv0" == "$tty" || "ttyu0" == "$tty" || "xc0" == "$tty" ) then
 	/etc/rc.banner
 	/etc/rc.initial
 endif

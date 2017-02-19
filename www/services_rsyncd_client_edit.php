@@ -3,11 +3,7 @@
 	services_rsyncd_client_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -42,11 +39,11 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Services"), gettext("Rsync"), gettext("Client"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Services"), gtext("Rsync"), gtext("Client"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
 /* Global arrays. */
-$a_months = explode(" ",gettext("January February March April May June July August September October November December"));
-$a_weekdays = explode(" ",gettext("Sunday Monday Tuesday Wednesday Thursday Friday Saturday"));
+$a_months = explode(" ",gtext("January February March April May June July August September October November December"));
+$a_weekdays = explode(" ",gtext("Sunday Monday Tuesday Wednesday Thursday Friday Saturday"));
 
 if (!isset($config['rsync']) || !is_array($config['rsync']))
 	$config['rsync'] = array();
@@ -132,10 +129,10 @@ if ($_POST) {
 
 	// Input validation
 	$reqdfields = explode(" ", "rsyncserverip localshare remoteshare who");
-	$reqdfieldsn = array(gettext("Remote Rsync Server"), gettext("Local shares to be synchronized"), gettext("Remote module name"), gettext("Who"));
+	$reqdfieldsn = array(gtext("Remote Rsync Server"), gtext("Local shares to be synchronized"), gtext("Remote module name"), gtext("Who"));
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
-	if (!empty($_POST['Submit']) && gettext("Execute now") !== $_POST['Submit']) {
+	if (!empty($_POST['Submit']) && gtext("Execute now") !== $_POST['Submit']) {
 		// Validate synchronization time
 		do_input_validate_synctime($_POST, $input_errors);
 	}
@@ -183,7 +180,7 @@ if ($_POST) {
 		updatenotify_set("rsyncclient", $mode, $rsyncclient['uuid']);
 		write_config();
 
-		if (!empty($_POST['Submit']) && stristr($_POST['Submit'], gettext("Execute now"))) {
+		if (!empty($_POST['Submit']) && stristr($_POST['Submit'], gtext("Execute now"))) {
 			$retval = 0;
 
 			// Update scripts and execute it.
@@ -229,59 +226,59 @@ function delete_change() {
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabinact"><a href="services_rsyncd.php"><span><?=gettext("Server");?></span></a></li>
-				<li class="tabact"><a href="services_rsyncd_client.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Client");?></span></a></li>
-				<li class="tabinact"><a href="services_rsyncd_local.php"><span><?=gettext("Local");?></span></a></li>
+				<li class="tabinact"><a href="services_rsyncd.php"><span><?=gtext("Server");?></span></a></li>
+				<li class="tabact"><a href="services_rsyncd_client.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Client");?></span></a></li>
+				<li class="tabinact"><a href="services_rsyncd_local.php"><span><?=gtext("Local");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
   <tr>
     <td class="tabcont">
-			<form action="services_rsyncd_client_edit.php" method="post" name="iform" id="iform">
+			<form action="services_rsyncd_client_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Rsync job"), !empty($pconfig['enable']) ? true : false, gettext("Enable"));?>
+					<?php html_titleline_checkbox("enable", gtext("Rsync Job"), !empty($pconfig['enable']) ? true : false, gtext("Enable"));?>
 					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gettext("Local share (destination)");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Local share (destination)");?></td>
 						<td width="78%" class="vtable">
 							<input name="localshare" type="text" class="formfld" id="localshare" size="60" value="<?=htmlspecialchars($pconfig['localshare']);?>" />
 							<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.localshare; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield; window.slash_localshare = 1;' value="..." /><br />
-							<span class="vexpl"><?=gettext("Path to be shared.");?></span>
+							<span class="vexpl"><?=gtext("Path to be shared.");?></span>
 					  </td>
 					</tr>
 			    <tr>
-						<td width="22%" valign="top" class="vncellreq"><strong><?=gettext("Remote Rsync Server");?></strong></td>
+						<td width="22%" valign="top" class="vncellreq"><strong><?=gtext("Remote Rsync Server");?></strong></td>
 						<td width="78%" class="vtable">
 							<input name="rsyncserverip" id="rsyncserverip" type="text" class="formfld" size="20" value="<?=htmlspecialchars($pconfig['rsyncserverip']);?>" />
-							<br /><?=gettext("IP or FQDN address of remote Rsync server.");?><br />
+							<br /><?=gtext("IP or FQDN address of remote Rsync server.");?><br />
 						</td>
 					</tr>
 					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gettext("Remote module (source)");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Remote module (source)");?></td>
 			      <td width="78%" class="vtable">
 			        <input name="remoteshare" type="text" class="formfld" id="remoteshare" size="20" value="<?=htmlspecialchars($pconfig['remoteshare']);?>" />
 			      </td>
 			    </tr>
 			    <?php $a_user = array(); foreach (system_get_user_list() as $userk => $userv) { $a_user[$userk] = htmlspecialchars($userk); }?>
-			    <?php html_combobox("who", gettext("Who"), $pconfig['who'], $a_user, "", true);?>
+			    <?php html_combobox("who", gtext("Who"), $pconfig['who'], $a_user, "", true);?>
 			    <tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gettext("Synchronization time");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Synchronization time");?></td>
 						<td width="78%" class="vtable">
 							<table width="100%" border="0" cellpadding="5" cellspacing="0">
 								<tr>
-									<td class="listhdrlr"><?=gettext("Minutes");?></td>
-									<td class="listhdrr"><?=gettext("Hours");?></td>
-									<td class="listhdrr"><?=gettext("Days");?></td>
-									<td class="listhdrr"><?=gettext("Months");?></td>
-									<td class="listhdrr"><?=gettext("Week days");?></td>
+									<td class="listhdrlr"><?=gtext("Minutes");?></td>
+									<td class="listhdrr"><?=gtext("Hours");?></td>
+									<td class="listhdrr"><?=gtext("Days");?></td>
+									<td class="listhdrr"><?=gtext("Months");?></td>
+									<td class="listhdrr"><?=gtext("Week days");?></td>
 								</tr>
 								<tr>
 									<td class="listlr">
 										<input type="radio" name="all_mins" id="all_mins1" value="1" <?php if (1 == $pconfig['all_mins']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_mins" id="all_mins2" value="0" <?php if (1 != $pconfig['all_mins']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -325,9 +322,9 @@ function delete_change() {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_hours" id="all_hours1" value="1" <?php if (1 == $pconfig['all_hours']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_hours" id="all_hours2" value="0" <?php if (1 != $pconfig['all_hours']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -349,9 +346,9 @@ function delete_change() {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_days" id="all_days1" value="1" <?php if (1 == $pconfig['all_days']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_days" id="all_days2" value="0" <?php if (1 != $pconfig['all_days']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -380,9 +377,9 @@ function delete_change() {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_months" id="all_months1" value="1" <?php if (1 == $pconfig['all_months']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_months" id="all_months2" value="0" <?php if (1 != $pconfig['all_months']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -397,9 +394,9 @@ function delete_change() {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_weekdays" id="all_weekdays1" value="1" <?php if (1 == $pconfig['all_weekdays']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_weekdays" id="all_weekdays2" value="0" <?php if (1 != $pconfig['all_weekdays']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -414,11 +411,11 @@ function delete_change() {
 									</td>
 								</tr>
 							</table>
-							<span class="vexpl"><?=gettext("Note: Ctrl-click (or command-click on the Mac) to select and de-select minutes, hours, days and months.");?></span>
+							<span class="vexpl"><?=gtext("Note: Ctrl-click (or command-click on the Mac) to select and de-select minutes, hours, days and months.");?></span>
 						</td>
 					</tr>
 					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gettext("Description");?></td>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Description");?></td>
 						<td width="78%" class="vtable">
 							<input name="description" type="text" class="formfld" id="description" size="40" value="<?=htmlspecialchars($pconfig['description']);?>" />
 						</td>
@@ -427,32 +424,58 @@ function delete_change() {
 						<td colspan="2" class="list" height="12"></td>
 					</tr>
 					<tr>
-						<td colspan="2" valign="top" class="listtopic"><?=gettext("Advanced Options");?></td>
+						<td colspan="2" valign="top" class="listtopic"><?=gtext("Advanced Options");?></td>
 					</tr>
-					<?php html_checkbox("recursive", gettext("Recursive"), !empty($pconfig['recursive']) ? true : false, gettext("Recurse into directories."), "", false);?>
-					<?php html_checkbox("nodaemonreq", gettext("Remote rsync daemon"), !empty($pconfig['nodaemonreq']) ? true : false, gettext("Run without requiring remote rsync daemon. (Disabled by default)"), "", false);?>
-					<?php html_checkbox("times", gettext("Times"), !empty($pconfig['times']) ? true : false, gettext("Preserve modification times."), "", false);?>
-					<?php html_checkbox("compress", gettext("Compress"), !empty($pconfig['compress']) ? true : false, gettext("Compress file data during the transfer."), "", false);?>
-					<?php html_checkbox("archive", gettext("Archive"), !empty($pconfig['archive']) ? true : false, gettext("Archive mode."), "", false);?>
-					<?php html_checkbox("delete", gettext("Delete"), !empty($pconfig['delete']) ? true : false, gettext("Delete files on the receiving side that don't exist on sender."), "", false, "delete_change()");?>
-					<?php html_combobox("delete_algorithm", gettext("Delete algorithm"), $pconfig['delete_algorithm'], array("default" => "Default", "before" => "Before", "during" => "During", "delay" => "Delay", "after" => "After"), "</span><div id='enumeration'><ul>".gettext("<li>Default - Rsync will choose the 'during' algorithm when talking to rsync 3.0.0 or newer, and the 'before' algorithm when talking to an older rsync.</li><li>Before - File-deletions will be done before the transfer starts.</li><li>During - File-deletions will be done incrementally as the transfer happens.</li><li>Delay - File-deletions will be computed during the transfer, and then removed after the transfer completes.</li><li>After - File-deletions will be done after the transfer has completed.</li>")."</ul></div><span>", false);?>
+					<?php
+					html_checkbox("recursive", gtext("Recursive"), !empty($pconfig['recursive']) ? true : false, gtext("Recurse into directories."), "", false);
+					html_checkbox("nodaemonreq", gtext("Remote rsync daemon"), !empty($pconfig['nodaemonreq']) ? true : false, gtext("Run without requiring remote rsync daemon. (Disabled by default)"), "", false);
+					html_checkbox("times", gtext("Times"), !empty($pconfig['times']) ? true : false, gtext("Preserve modification times."), "", false);
+					html_checkbox("compress", gtext("Compress"), !empty($pconfig['compress']) ? true : false, gtext("Compress file data during the transfer."), "", false);
+					html_checkbox("archive", gtext("Archive"), !empty($pconfig['archive']) ? true : false, gtext("Archive mode."), "", false);
+					html_checkbox("delete", gtext("Delete"), !empty($pconfig['delete']) ? true : false, gtext("Delete files on the receiving side that don't exist on sender."), "", false, "delete_change()");
+					$helpinghand = '</span><div id="enumeration"><ul>'
+						. '<li>'
+						. gtext("Default - Rsync will choose the 'during' algorithm when talking to rsync 3.0.0 or newer, and the 'before' algorithm when talking to an older rsync.")
+						. '</li>'
+						. '<li>'
+						. gtext('Before - File-deletions will be done before the transfer starts.')
+						. '</li>'
+						. '<li>'
+						. gtext('During - File-deletions will be done incrementally as the transfer happens.')
+						. '</li>'
+						. '<li>'
+						. gtext('Delay - File-deletions will be computed during the transfer, and then removed after the transfer completes.')
+						. '</li>'
+						. '<li>'
+						. gtext('After - File-deletions will be done after the transfer has completed.')
+						. '</li>'
+						. '</ul></div><span>';
+					html_combobox("delete_algorithm", gtext("Delete algorithm"), $pconfig['delete_algorithm'], array("default" => "Default", "before" => "Before", "during" => "During", "delay" => "Delay", "after" => "After"), $helpinghand, false);
+					?>
 					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gettext("Quiet");?></td>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Quiet");?></td>
 						<td width="78%" class="vtable">
-							<input name="quiet" id="quiet" type="checkbox" value="yes" <?php if (!empty($pconfig['quiet'])) echo "checked=\"checked\""; ?> /> <?=gettext("Suppress non-error messages."); ?><br />
+							<input name="quiet" id="quiet" type="checkbox" value="yes" <?php if (!empty($pconfig['quiet'])) echo "checked=\"checked\""; ?> /> <?=gtext("Suppress non-error messages."); ?><br />
 						</td>
 					</tr>
-					<?php html_checkbox("perms", gettext("Preserve permissions"), !empty($pconfig['perms']) ? true : false, gettext("This option causes the receiving rsync to set the destination permissions to be the same as the source permissions."), "", false);?>
-					<?php html_checkbox("xattrs", gettext("Preserve extended attributes"), !empty($pconfig['xattrs']) ? true : false, gettext("This option causes rsync to update the remote extended attributes to be the same as the local ones."), "", false);?>
-					<?php html_checkbox("reversedirection", gettext("Reverse direction"), !empty($pconfig['reversedirection']) ? true : false, gettext("This option causes rsync to copy the local data to the remote server."), "", false);?>
-					<?php html_inputbox("extraoptions", gettext("Extra options"), !empty($pconfig['extraoptions']) ? $pconfig['extraoptions'] : "", gettext("Extra options to rsync (usually empty).") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://rsync.samba.org/ftp/rsync/rsync.html"), false, 40);?>
-	      </table>
+					<?php
+					html_checkbox("perms", gtext("Preserve permissions"), !empty($pconfig['perms']) ? true : false, gtext("This option causes the receiving rsync to set the destination permissions to be the same as the source permissions."), "", false);
+					html_checkbox("xattrs", gtext("Preserve extended attributes"), !empty($pconfig['xattrs']) ? true : false, gtext("This option causes rsync to update the remote extended attributes to be the same as the local ones."), "", false);
+					html_checkbox("reversedirection", gtext("Reverse direction"), !empty($pconfig['reversedirection']) ? true : false, gtext("This option causes rsync to copy the local data to the remote server."), "", false);
+					$helpinghand = '<a href="'
+						. 'http://rsync.samba.org/ftp/rsync/rsync.html'
+						. '" target="_blank">'
+						. gtext('Please check the documentation')
+						. '</a>.';
+					html_inputbox("extraoptions", gtext("Extra options"), !empty($pconfig['extraoptions']) ? $pconfig['extraoptions'] : "", gtext("Extra options to rsync (usually empty).") . " " . $helpinghand, false, 40);
+					?>
+				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 					<?php if (isset($uuid) && (FALSE !== $cnid)):?>
-					<input name="Submit" id="execnow" type="submit" class="formbtn" value="<?=gettext("Execute now");?>" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="Submit" id="execnow" type="submit" class="formbtn" value="<?=gtext("Execute now");?>" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<?php endif;?>
 				</div>
 				<?php include("formend.inc");?>

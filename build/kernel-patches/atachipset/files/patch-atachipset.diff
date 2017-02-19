@@ -1,6 +1,6 @@
---- ata/chipsets/ata-via.c.orig	2015-04-20 10:28:06.000000000 +0900
-+++ ata/chipsets/ata-via.c	2015-04-20 16:34:54.000000000 +0900
-@@ -152,6 +152,12 @@
+--- ata/chipsets/ata-via.c.orig	2016-03-13 20:39:16.000000000 +0100
++++ ata/chipsets/ata-via.c	2016-03-13 20:41:48.000000000 +0100
+@@ -150,6 +150,12 @@
      if (ata_setup_interrupt(dev, ata_generic_intr))
  	return ENXIO;
  
@@ -10,6 +10,6 @@
 +	    (pci_read_config(dev, 0x52, 1) | 0x04), 1);
 +    }
 +
-     /* AHCI SATA */
-     if (ctlr->chip->cfg2 & VIAAHCI) {
- 	if (ata_ahci_chipinit(dev) != ENXIO)
+     /* 2 SATA with "SATA registers" at PCI config space + PATA on secondary */
+     if (ctlr->chip->cfg2 & VIASATA) {
+ 	ctlr->ch_attach = ata_via_sata_ch_attach;

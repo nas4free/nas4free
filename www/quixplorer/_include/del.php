@@ -3,7 +3,7 @@
 	del.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -48,7 +48,7 @@ function del_items($dir)
 	
 	// delete files & check for errors
 	for($i=0;$i<$cnt;++$i) {
-		$items[$i] = stripslashes($GLOBALS['__POST']["selitems"][$i]);
+		$items[$i] = $GLOBALS['__POST']["selitems"][$i];
 		$abs = get_abs_item($dir,$items[$i]);
 	
 		if(!@file_exists(get_abs_item($dir, $items[$i]))) {

@@ -3,11 +3,7 @@
 	globals.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -34,6 +31,7 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
+require_once "super_fun.inc";
 
 $g = array(
 	"varrun_path" => "/var/run",
@@ -51,7 +49,7 @@ $g = array(
 	"www_path" => "/usr/local/www",
 	"xml_rootobj" => "nas4free",
 	"debug" => false,
-	"latest_config" => "2.2",
+	"latest_config" => "2.6",
 	"wireless_regex" => "/^(ndis|wlan|an|ath|bwi|bwn|ipw|iwi|iwn|malo|mwl|ral|wi|wpi|rsu|rum|run|uath|upgt|ural|urtw|urtwn|usie|zyd)/",
 	"default_passwd" => "nas4free",
 	"default_ip" => "192.168.1.250"
@@ -65,44 +63,44 @@ $g_install = array(
 );
 
 /* Available languages/locales */
-$g_languages = array (
-	"sq"    => array("codeset" => "UTF-8", "desc" => gettext("Albanian")),
-	"bg"    => array("codeset" => "UTF-8", "desc" => gettext("Bulgarian")),
-	"cs"    => array("codeset" => "UTF-8", "desc" => gettext("Czech")),
-	"zh_CN" => array("codeset" => "UTF-8", "desc" => gettext("Chinese (Simplified)")),
-	"zh_TW" => array("codeset" => "UTF-8", "desc" => gettext("Chinese (Traditional)")),
-	"nl"    => array("codeset" => "UTF-8", "desc" => gettext("Dutch")),
-	"da"    => array("codeset" => "UTF-8", "desc" => gettext("Danish")),
-	"en_US" => array("codeset" => "UTF-8", "desc" => gettext("English")),
-	"fi"    => array("codeset" => "UTF-8", "desc" => gettext("Finnish")),
-	"fr"    => array("codeset" => "UTF-8", "desc" => gettext("French")),
-	"de"    => array("codeset" => "UTF-8", "desc" => gettext("German")),
-	"el"    => array("codeset" => "UTF-8", "desc" => gettext("Greek")),
-	"hu"    => array("codeset" => "UTF-8", "desc" => gettext("Hungarian")),
-	"it"    => array("codeset" => "UTF-8", "desc" => gettext("Italian")),
-	"ja"    => array("codeset" => "UTF-8", "desc" => gettext("Japanese")),
-	"ko"    => array("codeset" => "UTF-8", "desc" => gettext("Korean")),
-	"lv"    => array("codeset" => "UTF-8", "desc" => gettext("Latvian")),
-	"nb"    => array("codeset" => "UTF-8", "desc" => gettext("Norwegian (Bokmal)")),
-	"pl"    => array("codeset" => "UTF-8", "desc" => gettext("Polish")),
-	"pt_BR" => array("codeset" => "UTF-8", "desc" => gettext("Portuguese (Brazil)")),
-	"pt"    => array("codeset" => "UTF-8", "desc" => gettext("Portuguese (Portugal)")),
-	"ro"    => array("codeset" => "UTF-8", "desc" => gettext("Romanian")),
-	"ru"    => array("codeset" => "UTF-8", "desc" => gettext("Russian")),
-	"sl"    => array("codeset" => "UTF-8", "desc" => gettext("Slovenian")),
-	"es"    => array("codeset" => "UTF-8", "desc" => gettext("Spanish")),
-	"sv"    => array("codeset" => "UTF-8", "desc" => gettext("Swedish")),
-	"sk"    => array("codeset" => "UTF-8", "desc" => gettext("Slovak")),
-	"tr"    => array("codeset" => "UTF-8", "desc" => gettext("Turkish")),
-	"uk"    => array("codeset" => "UTF-8", "desc" => gettext("Ukrainian"))
-);
+$g_languages = [
+	'sq'    => ['codeset' => 'UTF-8', 'desc' => gtext('Albanian'), 'desc.localized' => 'Shqip'],
+	'bg'    => ['codeset' => 'UTF-8', 'desc' => gtext('Bulgarian'), 'desc.localized' => 'Български'],
+	'cs'    => ['codeset' => 'UTF-8', 'desc' => gtext('Czech'), 'desc.localized' => 'čeština'],
+	'zh_CN' => ['codeset' => 'UTF-8', 'desc' => gtext('Chinese (Simplified)'), 'desc.localized' => '中文（簡體）'],
+	'zh_TW' => ['codeset' => 'UTF-8', 'desc' => gtext('Chinese (Traditional)'), 'desc.localized' => '正體中文'],
+	'nl'    => ['codeset' => 'UTF-8', 'desc' => gtext('Dutch'), 'desc.localized' => 'Nederlands'],
+	'da'    => ['codeset' => 'UTF-8', 'desc' => gtext('Danish'), 'desc.localized' => 'Dansk'],
+	'en_US' => ['codeset' => 'UTF-8', 'desc' => gtext('English'), 'desc.localized' => "English"],
+	'fi'    => ['codeset' => 'UTF-8', 'desc' => gtext('Finnish'), 'desc.localized' => 'Suomi'],
+	'fr'    => ['codeset' => 'UTF-8', 'desc' => gtext('French'), 'desc.localized' => 'Français'],
+	'de'    => ['codeset' => 'UTF-8', 'desc' => gtext('German'), 'desc.localized' => 'Deutsch'],
+	'el'    => ['codeset' => 'UTF-8', 'desc' => gtext('Greek'), 'desc.localized' => 'Ελληνικά'],
+	'hu'    => ['codeset' => 'UTF-8', 'desc' => gtext('Hungarian'), 'desc.localized' => 'Magyar'],
+	'it'    => ['codeset' => 'UTF-8', 'desc' => gtext('Italian'), 'desc.localized' => 'Italiano'],
+	'ja'    => ['codeset' => 'UTF-8', 'desc' => gtext('Japanese'), 'desc.localized' => '日本語'],
+	'ko'    => ['codeset' => 'UTF-8', 'desc' => gtext('Korean'), 'desc.localized' => '한국어'],
+	'lv'    => ['codeset' => 'UTF-8', 'desc' => gtext('Latvian'), 'desc.localized' => 'Latviešu'],
+	'nb'    => ['codeset' => 'UTF-8', 'desc' => gtext('Norwegian (Bokmal)'), 'desc.localized' => 'Norsk (bokmål)'],
+	'pl'    => ['codeset' => 'UTF-8', 'desc' => gtext('Polish'), 'desc.localized' => 'Polski'],
+	'pt_BR' => ['codeset' => 'UTF-8', 'desc' => gtext('Portuguese (Brazil)'), 'desc.localized' => 'Português (Brasil)'],
+	'pt'    => ['codeset' => 'UTF-8', 'desc' => gtext('Portuguese (Portugal)'), 'desc.localized' => 'Português (Portugal)'],
+	'ro'    => ['codeset' => 'UTF-8', 'desc' => gtext('Romanian'), 'desc.localized' => 'Română'],
+	'ru'    => ['codeset' => 'UTF-8', 'desc' => gtext('Russian'), 'desc.localized' => 'Русский'],
+	'sl'    => ['codeset' => 'UTF-8', 'desc' => gtext('Slovenian'), 'desc.localized' => 'Slovenščina'],
+	'es'    => ['codeset' => 'UTF-8', 'desc' => gtext('Spanish'), 'desc.localized' => 'Español'],
+	'sv'    => ['codeset' => 'UTF-8', 'desc' => gtext('Swedish'), 'desc.localized' => "Svenska"],
+	'sk'    => ['codeset' => 'UTF-8', 'desc' => gtext('Slovak'), 'desc.localized' => 'Slovenský'],
+	'tr'    => ['codeset' => 'UTF-8', 'desc' => gtext('Turkish'), 'desc.localized' => 'Türkçe'],
+	'uk'    => ['codeset' => 'UTF-8', 'desc' => gtext('Ukrainian'), 'desc.localized' => 'Українська']
+];
 
 /* Supported filesystems */
 $g_filesystems = array(
 	"" => "Unformated",
-	"ufs" => "UFS with Soft Updates",
+	"ufs" => gtext("UFS with Soft Updates"),
 	"ufs_no_su" => "UFS",
-	"ufsgpt" => "UFS (GPT and Soft Updates)",
+	"ufsgpt" => gtext("UFS (GPT and Soft Updates)"),
 	"ufsgpt_no_su" => "UFS (EFI/GPT)",
 	"msdos" => "FAT32",
 	"cd9660" => "CD/DVD",
@@ -111,17 +109,17 @@ $g_filesystems = array(
 	"exfat" => "exFAT",
 	"softraid" => "Software RAID",
 	"geli" => "Encrypted",
-	"zfs" => "ZFS storage pool device"
+	"zfs" => "ZFS Storage Pool"
 );
 
 $g_file_upload_error = array(
-	UPLOAD_ERR_OK => gettext("There is no error, the file uploaded with success."),
-	UPLOAD_ERR_INI_SIZE => gettext("The uploaded file exceeds the upload_max_filesize directive in php.ini."),
-	UPLOAD_ERR_FORM_SIZE => gettext("The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form."),
-	UPLOAD_ERR_PARTIAL => gettext("The uploaded file was only partially uploaded."),
-	UPLOAD_ERR_NO_FILE => gettext("No file was uploaded."),
-	UPLOAD_ERR_NO_TMP_DIR => gettext("Missing a temporary folder."),
-	UPLOAD_ERR_CANT_WRITE => gettext("Failed to write file to disk."),
-	UPLOAD_ERR_EXTENSION => gettext("File upload stopped by extension.")
+	UPLOAD_ERR_OK => gtext("There is no error, the file uploaded with success."),
+	UPLOAD_ERR_INI_SIZE => gtext("The uploaded file exceeds the upload_max_filesize directive in php.ini."),
+	UPLOAD_ERR_FORM_SIZE => gtext("The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form."),
+	UPLOAD_ERR_PARTIAL => gtext("The uploaded file was only partially uploaded."),
+	UPLOAD_ERR_NO_FILE => gtext("No file was uploaded."),
+	UPLOAD_ERR_NO_TMP_DIR => gtext("Missing a temporary folder."),
+	UPLOAD_ERR_CANT_WRITE => gtext("Failed to write file to disk."),
+	UPLOAD_ERR_EXTENSION => gtext("File upload stopped by extension.")
 );
 ?>

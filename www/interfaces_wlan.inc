@@ -3,15 +3,7 @@
 	interfaces_wlan.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
-	portions of m0n0wall (http://m0n0.ch/wall).
-	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -19,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -45,6 +38,7 @@ function wireless_config_init() {
 
 	$pconfig['standard'] = !empty($optcfg['wireless']['standard']) ? $optcfg['wireless']['standard'] : "";
 	$pconfig['ssid'] = !empty($optcfg['wireless']['ssid']) ? $optcfg['wireless']['ssid'] : "";
+	$pconfig['scan_ssid'] = isset($optcfg['wireless']['scan_ssid']) ? true : false;
 	$pconfig['channel'] = !empty($optcfg['wireless']['channel']) ? $optcfg['wireless']['channel'] : "";
 
 	$pconfig['encryption'] = "none";
@@ -73,17 +67,17 @@ function wireless_config_post() {
 	// Input validation
 	if ($_POST['enable']) {
 		$reqdfields = explode(" ", "standard ssid channel");
-		$reqdfieldsn = array(gettext("Standard"), gettext("SSID"), gettext("Channel"));
+		$reqdfieldsn = array(gtext("Standard"), gtext("SSID"), gtext("Channel"));
 
 		switch ($_POST['encryption']) {
 			case "wep":
 				$reqdfields = array_merge($reqdfields, array("wep_key"));
-				$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Key")));
+				$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Key")));
 				break;
 
 			case "wpa":
 				$reqdfields = array_merge($reqdfields, array("wpa_psk"));
-				$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("PSK")));
+				$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("PSK")));
 				break;
 
 			default;
@@ -94,13 +88,14 @@ function wireless_config_post() {
 
 		if ($_POST['encryption'] == "wpa" && !empty($_POST['wpa_psk'])
 		    && (strlen($_POST['wpa_psk']) < 8 || strlen($_POST['wpa_psk']) > 63)) {
-			$input_errors[] = sprintf(gettext("The attribute '%s' is required within %d or more characters to %d characters."), gettext("PSK"), 8, 63);
+			$input_errors[] = sprintf(gtext("The attribute '%s' is required within %d or more characters to %d characters."), gtext("PSK"), 8, 63);
 		}
 	}
 
 	if (!$input_errors) {
 		$optcfg['wireless']['standard'] = $_POST['standard'];
 		$optcfg['wireless']['ssid'] = $_POST['ssid'];
+		$optcfg['wireless']['scan_ssid'] = isset($_POST['scan_ssid']);
 		$optcfg['wireless']['channel'] = $_POST['channel'];
 		$optcfg['wireless']['wep']['key'] = $_POST['wep_key'];
 		$optcfg['wireless']['wpa']['keymgmt'] = $_POST['wpa_keymgmt'];
@@ -132,15 +127,16 @@ function wireless_config_print() {
 	global $optcfg, $pconfig;
 ?>
 								<?php html_separator();?>
-								<?php html_titleline(gettext("Wireless configuration"));?>
+								<?php html_titleline(gtext("Wireless configuration"));?>
 								<?php $a_standard = array(); foreach (interfaces_wireless_get_standards($optcfg['if']) as $standardv) { $a_standard[$standardv] = "802.{$standardv}"; }?>
-								<?php html_combobox("standard", gettext("Standard"), $pconfig['standard'], $a_standard, "", true);?>
-								<?php html_inputbox("ssid", gettext("SSID"), $pconfig['ssid'], gettext("Set the desired Service Set Identifier (aka network name)."), true, 20);?>
+								<?php html_combobox("standard", gtext("Standard"), $pconfig['standard'], $a_standard, "", true);?>
+								<?php html_inputbox("ssid", gtext("SSID"), $pconfig['ssid'], gtext("Set the desired Service Set Identifier (aka network name)."), true, 20);?>
+								<?php html_checkbox('scan_ssid', gtext('Connect to hidden network'), $pconfig['scan_ssid'], gtext('Allows to connect to a hidden network'));?>
 								<tr>
-									<td valign="top" class="vncellreq"><?=gettext("Channel");?></td>
+									<td valign="top" class="vncellreq"><?=gtext("Channel");?></td>
 									<td class="vtable">
 										<select name="channel" class="formfld" id="channel">
-											<option <?php if ("any" === $pconfig['channel']) echo "selected";?> value="any"><?=gettext("Auto");?></option>
+											<option <?php if ("any" === $pconfig['channel']) echo "selected";?> value="any"><?=gtext("Auto");?></option>
 											<?php foreach (interfaces_wireless_get_channellist($optcfg['if']) as $channelk => $channelv):?>
 											<?php if ($channelv['mode'] === "11g") $mode = "11b/g"; else $mode = $channelv['mode'];?>
 											<option <?php if ($channelk == $pconfig['channel']) echo "selected";?> value="<?=$channelk;?>"><?="{$channelv['channel']} ({$channelv['freq']} MHz, {$mode})";?></option>
@@ -148,9 +144,9 @@ function wireless_config_print() {
 										</select>
 									</td>
 								</tr>
-								<?php html_combobox("encryption", gettext("Encryption"), $pconfig['encryption'], array("none" => gettext("None"), "wep" => gettext("WEP"), "wpa" => sprintf("%s / %s", gettext("WPA"), gettext("WPA2"))), "", true, false, "encryption_change()");?>
-								<?php html_passwordbox("wep_key", gettext("Key"), $pconfig['wep_key'], gettext("A key will be either 5 or 13 characters (40 or 104 bits) depending of the local network and the capabilities of the adaptor. It may be specified either as a plain string or as a string of hexadecimal digits preceded by '0x'."), true, 40);?>
-								<?php html_combobox("wpa_keymgmt", gettext("Key Management Protocol"), $pconfig['wpa_keymgmt'], array("WPA-PSK" => gettext("WPA-PSK (Pre Shared Key)"), "WPA-EAP" => gettext("WPA-EAP (Extensible Authentication Protocol)"), "WPA-PSK WPA-EAP" => gettext("WPA-PSK WPA-EAP")), "", true);?>
-								<?php html_combobox("wpa_pairwise", gettext("Pairwise"), $pconfig['wpa_pairwise'], array("CCMP" => gettext("CCMP"), "CCMP TKIP" => gettext("CCMP TKIP"), "TKIP" => gettext("TKIP")), gettext("List of acceptable pairwise (unicast) ciphers for WPA. One or more of: CCMP (AES in Counter mode with CBC-MAC, RFC 3610, IEEE 802.11i/D7.0), TKIP (Temporal Key Integrity Protocol, IEEE 802.11i/D7.0)."), true);?>
-								<?php html_passwordbox("wpa_psk", gettext("PSK"), $pconfig['wpa_psk'], gettext("Enter the passphrase that will be used in WPA-PSK mode. This must be between 8 and 63 characters long."), true, 40);?>
+								<?php html_combobox("encryption", gtext("Encryption"), $pconfig['encryption'], array("none" => gtext("None"), "wep" => gtext("WEP"), "wpa" => sprintf("%s / %s", gtext("WPA"), gtext("WPA2"))), "", true, false, "encryption_change()");?>
+								<?php html_passwordbox("wep_key", gtext("Key"), $pconfig['wep_key'], gtext("A key will be either 5 or 13 characters (40 or 104 bits) depending of the local network and the capabilities of the adaptor. It may be specified either as a plain string or as a string of hexadecimal digits preceded by '0x'."), true, 40);?>
+								<?php html_combobox("wpa_keymgmt", gtext("Key Management Protocol"), $pconfig['wpa_keymgmt'], array("WPA-PSK" => gtext("WPA-PSK (Pre Shared Key)"), "WPA-EAP" => gtext("WPA-EAP (Extensible Authentication Protocol)"), "WPA-PSK WPA-EAP" => gtext("WPA-PSK WPA-EAP")), "", true);?>
+								<?php html_combobox("wpa_pairwise", gtext("Pairwise"), $pconfig['wpa_pairwise'], array("CCMP" => gtext("CCMP"), "CCMP TKIP" => gtext("CCMP TKIP"), "TKIP" => gtext("TKIP")), gtext("List of acceptable pairwise (unicast) ciphers for WPA. One or more of: CCMP (AES in Counter mode with CBC-MAC, RFC 3610, IEEE 802.11i/D7.0), TKIP (Temporal Key Integrity Protocol, IEEE 802.11i/D7.0)."), true);?>
+								<?php html_passwordbox("wpa_psk", gtext("PSK"), $pconfig['wpa_psk'], gtext("Enter the passphrase that will be used in WPA-PSK mode. This must be between 8 and 63 characters long."), true, 40);?>
 <?php } ?>

@@ -3,11 +3,7 @@
 	services_iscsitarget_ag_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -42,7 +39,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Services"), gettext("iSCSI Target"), gettext("Auth Group"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Services"), gtext("iSCSI Target"), gtext("Auth Group"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
 $MAX_AUTHUSERS = 4;
 $GROW_AUTHUSERS = 4;
@@ -100,19 +97,19 @@ if ($_POST) {
 
 	// Input validation.
 	$reqdfields = explode(" ", "tag");
-	$reqdfieldsn = array(gettext("Tag number"));
+	$reqdfieldsn = array(gtext("Tag number"));
 	$reqdfieldst = explode(" ", "numericint");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if ($pconfig['tag'] < 1 || $pconfig['tag'] > 65535) {
-		$input_errors[] = gettext("The tag range is invalid.");
+		$input_errors[] = gtext("The tag range is invalid.");
 	}
 	if (!(isset($uuid) && (FALSE !== $cnid))) {
 		$index = array_search_ex($pconfig['tag'], $config['iscsitarget']['authgroup'], "tag");
 		if ($index !== FALSE) {
-			$input_errors[] = gettext("This tag already exists.");
+			$input_errors[] = gtext("This tag already exists.");
 		}
 	}
 
@@ -128,29 +125,29 @@ if ($_POST) {
 		if (strlen($user) != 0
 			|| strlen($secret) != 0 || strlen($secret2) != 0) {
 			if (strlen($user) == 0) {
-				$input_errors[] = sprintf("%s%d: %s", gettext("User"), $i, sprintf(gettext("The attribute '%s' is required."), gettext("User")));
+				$input_errors[] = sprintf("%s%d: %s", gtext("User"), $i, sprintf(gtext("The attribute '%s' is required."), gtext("User")));
 			}
 			if (strcmp($secret, $secret2) != 0) {
-				$input_errors[] = sprintf("%s%d: %s", gettext("User"), $i, gettext("Password don't match."));
+				$input_errors[] = sprintf("%s%d: %s", gtext("User"), $i, gtext("Password don't match."));
 			}
 		}
 		if (strlen($muser) != 0
 			|| strlen($msecret) != 0 || strlen($msecret2) != 0) {
 			if (strlen($user) == 0) {
-				$input_errors[] = sprintf("%s%d: %s", gettext("User"), $i, sprintf(gettext("The attribute '%s' is required."), gettext("User")));
+				$input_errors[] = sprintf("%s%d: %s", gtext("User"), $i, sprintf(gtext("The attribute '%s' is required."), gtext("User")));
 			}
 			if (strlen($muser) == 0) {
-				$input_errors[] = sprintf("%s%d: %s", gettext("User"), $i, sprintf(gettext("The attribute '%s' is required."), gettext("Peer User")));
+				$input_errors[] = sprintf("%s%d: %s", gtext("User"), $i, sprintf(gtext("The attribute '%s' is required."), gtext("Peer User")));
 			}
 			if (strcmp($msecret, $msecret2) != 0) {
-				$input_errors[] = sprintf("%s%d: %s", gettext("User"), $i, gettext("Password don't match."));
+				$input_errors[] = sprintf("%s%d: %s", gtext("User"), $i, gtext("Password don't match."));
 			}
 		}
 		if (strlen($user) != 0
 			&& $delete === false) {
 			$index = array_search_ex($user, $auths, "authuser");
 			if ($index !== false) {
-				$input_errors[] = sprintf("%s%d: %s", gettext("User"), $i, gettext("This user already exists."));
+				$input_errors[] = sprintf("%s%d: %s", gtext("User"), $i, gtext("This user already exists."));
 			} else {
 				$tmp = array();
 				$tmp['authuser'] = $user;
@@ -279,17 +276,17 @@ function normalize_ipv6addr($v6addr) {
 }
 ?>
 <?php include("fbegin.inc");?>
-<form action="services_iscsitarget_ag_edit.php" method="post" name="iform" id="iform">
+<form action="services_iscsitarget_ag_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td class="tabnavtbl">
 	      <ul id="tabnav">
-					<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gettext("Settings");?></span></a></li>
-					<li class="tabinact"><a href="services_iscsitarget_target.php"><span><?=gettext("Targets");?></span></a></li>
-					<li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gettext("Portals");?></span></a></li>
-					<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gettext("Initiators");?></span></a></li>
-					<li class="tabact"><a href="services_iscsitarget_ag.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Auths");?></span></a></li>
-					<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gettext("Media");?></span></a></li>
+					<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
+					<li class="tabinact"><a href="services_iscsitarget_target.php"><span><?=gtext("Targets");?></span></a></li>
+					<li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gtext("Portals");?></span></a></li>
+					<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
+					<li class="tabact"><a href="services_iscsitarget_ag.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Auths");?></span></a></li>
+					<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
 	      </ul>
 	    </td>
 	  </tr>
@@ -297,8 +294,8 @@ function normalize_ipv6addr($v6addr) {
 	    <td class="tabcont">
 	      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 	      <table width="100%" border="0" cellpadding="6" cellspacing="0">
-	      <?php html_inputbox("tag", gettext("Tag number"), $pconfig['tag'], gettext("Numeric identifier of the group."), true, 10, (isset($uuid) && (FALSE !== $cnid)));?>
-	      <?php html_inputbox("comment", gettext("Comment"), $pconfig['comment'], gettext("You may enter a description here for your reference."), false, 40);?>
+	      <?php html_inputbox("tag", gtext("Tag number"), $pconfig['tag'], gtext("Numeric identifier of the group."), true, 10, (isset($uuid) && (FALSE !== $cnid)));?>
+	      <?php html_inputbox("comment", gtext("Comment"), $pconfig['comment'], gtext("You may enter a description here for your reference."), false, 40);?>
 	      <?php for ($i = 1; $i <= $MAX_AUTHUSERS; $i++): ?>
 	      <?php $ldelete=sprintf("delete%d", $i); ?>
 	      <?php $luser=sprintf("user%d", $i); ?>
@@ -322,30 +319,30 @@ function normalize_ipv6addr($v6addr) {
 			$pconfig["$lmsecret2"] = "";
 	      ?>
 	      <?php html_separator();?>
-	      <?php html_titleline_checkbox("$ldelete", sprintf("%s%d", gettext("User"), $i), false, gettext("Delete"), false);?>
-	      <?php html_inputbox("$luser", gettext("User"), $pconfig["$luser"], gettext("Target side user name. It is usually the initiator name by default."), false, 60);?>
+	      <?php html_titleline_checkbox("$ldelete", sprintf("%s%d", gtext("User"), $i), false, gtext("Delete"), false);?>
+	      <?php html_inputbox("$luser", gtext("User"), $pconfig["$luser"], gtext("Target side user name. It is usually the initiator name by default."), false, 60);?>
 	      <tr>
-	        <td width="22%" valign="top" class="vncell"><?=gettext("Secret");?></td>
+	        <td width="22%" valign="top" class="vncell"><?=gtext("Secret");?></td>
 	        <td width="78%" class="vtable">
 	          <input name="<?=$lsecret;?>" type="password" class="formfld" id="<?=$lsecret;?>" size="30" value="<?=htmlspecialchars($pconfig[$lsecret]);?>" /><br />
-	          <input name="<?=$lsecret2;?>" type="password" class="formfld" id="<?=$lsecret2;?>" size="30" value="<?=htmlspecialchars($pconfig[$lsecret2]);?>" />&nbsp;(<?=gettext("Confirmation");?>)<br />
-	          <span class="vexpl"><?=gettext("Target side secret.");?></span>
+	          <input name="<?=$lsecret2;?>" type="password" class="formfld" id="<?=$lsecret2;?>" size="30" value="<?=htmlspecialchars($pconfig[$lsecret2]);?>" />&nbsp;(<?=gtext("Confirmation");?>)<br />
+	          <span class="vexpl"><?=gtext("Target side secret.");?></span>
 	        </td>
 	      </tr>
-	      <?php html_inputbox("$lmuser", gettext("Peer User"), $pconfig["$lmuser"], gettext("Initiator side user name. (for mutual CHAP authentication)"), false, 60);?>
+	      <?php html_inputbox("$lmuser", gtext("Peer User"), $pconfig["$lmuser"], gtext("Initiator side user name. (for mutual CHAP authentication)"), false, 60);?>
 	      <tr>
-	        <td width="22%" valign="top" class="vncell"><?=gettext("Peer Secret");?></td>
+	        <td width="22%" valign="top" class="vncell"><?=gtext("Peer Secret");?></td>
 	        <td width="78%" class="vtable">
 	          <input name="<?=$lmsecret;?>" type="password" class="formfld" id="<?=$lmsecret;?>" size="30" value="<?=htmlspecialchars($pconfig[$lmsecret]);?>" /><br />
-	          <input name="<?=$lmsecret2;?>" type="password" class="formfld" id="<?=$lmsecret2;?>" size="30" value="<?=htmlspecialchars($pconfig[$lmsecret2]);?>" />&nbsp;(<?=gettext("Confirmation");?>)<br />
-	          <span class="vexpl"><?=gettext("Initiator side secret. (for mutual CHAP authentication)");?></span>
+	          <input name="<?=$lmsecret2;?>" type="password" class="formfld" id="<?=$lmsecret2;?>" size="30" value="<?=htmlspecialchars($pconfig[$lmsecret2]);?>" />&nbsp;(<?=gtext("Confirmation");?>)<br />
+	          <span class="vexpl"><?=gtext("Initiator side secret. (for mutual CHAP authentication)");?></span>
 	        </td>
 	      </tr>
 	      <?php endfor;?>
 	      </table>
 	      <div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 		      <input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 	      </div>
 	    </td>

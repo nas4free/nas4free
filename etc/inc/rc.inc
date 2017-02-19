@@ -3,11 +3,7 @@
 	rc.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -40,7 +37,7 @@ require_once("util.inc");
 // Execute rc script.
 // Return 0 if successful, otherwise 1.
 function rc_exec_script($scriptname) {
-	mwexec2("{$scriptname} >/dev/null 2>&1", $output, $retval);
+	mwexec2("{$scriptname} >/dev/null 2>&1 </dev/null", $output, $retval);
 	return $retval;
 }
 

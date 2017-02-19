@@ -1,6 +1,6 @@
 PORTNAME=		wait_on
 PORTVERSION=		1.1
-PORTREVISION=		0
+PORTREVISION=		1
 CATEGORIES=		sysutils
 
 COMMENT=		Enable shell scripts to monitor directories for new files
@@ -13,7 +13,7 @@ NO_PKG_REGISTER=	yes
 #DISABLE_VULNERABILITIES=yes
 DEPENDS_TARGET=	clean build stage
 
-BUILD_DEPENDS=		${NONEXISTENT}:${PORTSDIR}/sysutils/wait_on
+BUILD_DEPENDS=		${NONEXISTENT}:sysutils/wait_on
 DEP_STAGEDIR=		${PORTSDIR}/sysutils/wait_on/work/stage
 
 do-install:

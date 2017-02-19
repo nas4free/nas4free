@@ -3,7 +3,7 @@
 	services_hast_resource_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -11,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -38,7 +39,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Services"), gettext("HAST"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Services"), gtext("HAST"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
 if (!isset($config['hast']['hastresource']) || !is_array($config['hast']['hastresource']))
 	$config['hast']['hastresource'] = array();
@@ -81,10 +82,10 @@ if ($_POST) {
 
 	// Input validation.
 	$reqdfields = explode(" ", "name aname bname apath bpath aremoteaddr bremoteaddr");
-	$reqdfieldsn = array(gettext("Resource name"),
-				gettext("Node Name"), gettext("Node Name"),
-				gettext("Path"), gettext("Path"),
-				gettext("Node B IP address"), gettext("Node A IP address"));
+	$reqdfieldsn = array(gtext("Resource name"),
+				gtext("Node Name"), gtext("Node Name"),
+				gtext("Path"), gtext("Path"),
+				gtext("Node B IP address"), gtext("Node A IP address"));
 	$reqdfieldst = explode(" ", "alias string string string string string string");
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
@@ -125,42 +126,53 @@ if ($_POST) {
 ?>
 <?php include("fbegin.inc");?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-	<li class="tabinact"><a href="services_hast.php"><span><?=gettext("Settings");?></span></a></li>
-	<li class="tabact"><a href="services_hast_resource.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Resources");?></span></a></li>
-	<li class="tabinact"><a href="services_hast_info.php"><span><?=gettext("Information");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-      <form action="services_hast_resource_edit.php" method="post" name="iform" id="iform">
-        <?php if ($input_errors) print_input_errors($input_errors);?>
-	<table width="100%" border="0" cellpadding="6" cellspacing="0">
-	<?php html_titleline(gettext("HAST resource"));?>
-	<?php html_inputbox("name", gettext("Resource name"), $pconfig['name'], "", false, 30);?>
-	<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("These parameters are added to %s."), "hast.conf") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://www.freebsd.org/cgi/man.cgi?query=hast.conf&sektion=5"), false, 65, 5, false, false);?>
-	<?php html_separator();?>
-	<?php html_titleline(gettext("Node A settings"));?>
-	<?php html_inputbox("aname", gettext("Node Name"), $pconfig['aname'], "", false, 40);?>
-	<?php html_inputbox("apath", gettext("Path"), $pconfig['apath'], sprintf(gettext("Path to the local device. (e.g. %s)"), "/dev/da1"), false, 40);?>
-	<?php html_inputbox("aremoteaddr", gettext("Node B IP address"), $pconfig['aremoteaddr'], gettext("Address of the remote hastd daemon. It must be a static IP address."), false, 40);?>
-	<?php html_separator();?>
-	<?php html_titleline(gettext("Node B settings"));?>
-	<?php html_inputbox("bname", gettext("Node Name"), $pconfig['bname'], "", false, 40);?>
-	<?php html_inputbox("bpath", gettext("Path"), $pconfig['bpath'], sprintf(gettext("Path to the local device. (e.g. %s)"), "/dev/da1"), false, 40);?>
-	<?php html_inputbox("bremoteaddr", gettext("Node A IP address"), $pconfig['bremoteaddr'], gettext("Address of the remote hastd daemon. It must be a static IP address."), false, 40);?>
-	</table>
-	<div id="submit">
-	  <input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
-	  <input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
-	  <input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
-	</div>
-	<?php include("formend.inc");?>
-      </form>
-    </td>
-  </tr>
+	<tr>
+		<td class="tabnavtbl">
+			<ul id="tabnav">
+				<li class="tabinact"><a href="services_hast.php"><span><?=gtext("Settings");?></span></a></li>
+				<li class="tabact"><a href="services_hast_resource.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Resources");?></span></a></li>
+				<li class="tabinact"><a href="services_hast_info.php"><span><?=gtext("Information");?></span></a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="tabcont">
+			<form action="services_hast_resource_edit.php" method="post" name="iform" id="iform">
+				<?php
+				if ($input_errors) {
+					print_input_errors($input_errors);
+				}
+				?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<?php
+					html_titleline(gtext("HAST Resource"));
+					html_inputbox("name", gtext("Resource name"), $pconfig['name'], "", false, 30);
+					$helpinghand = '<a href="'
+						. 'http://www.freebsd.org/cgi/man.cgi?query=hast.conf&sektion=5'
+						. '" target="_blank">'
+						. gtext('Please check the documentation')
+						. '</a>.';
+					html_textarea("auxparam", gtext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gtext("These parameters are added to %s."), "hast.conf") . " " . $helpinghand, false, 65, 5, false, false);
+					html_separator();
+					html_titleline(gtext("Node A Settings"));
+					html_inputbox("aname", gtext("Node Name"), $pconfig['aname'], "", false, 40);
+					html_inputbox("apath", gtext("Path"), $pconfig['apath'], sprintf(gtext("Path to the local device. (e.g. %s)"), "/dev/da1"), false, 40);
+					html_inputbox("aremoteaddr", gtext("Node B IP address"), $pconfig['aremoteaddr'], gtext("Address of the remote hastd daemon. It must be a static IP address."), false, 40);
+					html_separator();
+					html_titleline(gtext("Node B Settings"));
+					html_inputbox("bname", gtext("Node Name"), $pconfig['bname'], "", false, 40);
+					html_inputbox("bpath", gtext("Path"), $pconfig['bpath'], sprintf(gtext("Path to the local device. (e.g. %s)"), "/dev/da1"), false, 40);
+					html_inputbox("bremoteaddr", gtext("Node A IP address"), $pconfig['bremoteaddr'], gtext("Address of the remote hastd daemon. It must be a static IP address."), false, 40);
+					?>
+				</table>
+				<div id="submit">
+					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
+					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
+				</div>
+				<?php include("formend.inc");?>
+			</form>
+		</td>
+	</tr>
 </table>
 <?php include("fend.inc");?>

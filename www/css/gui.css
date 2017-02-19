@@ -1,0 +1,748 @@
+/*
+	gui.css
+
+	Part of NAS4Free (http://www.nas4free.org).
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
+	All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
+
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer.
+
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies,
+	either expressed or implied, of the NAS4Free Project.
+*/
+body, td, th, input, select {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+body {
+	background: #D9DCE1;
+	margin: 0 auto;
+	padding: 0pt;
+	min-width: 700px;
+}
+body a:link, body a:active, body a:visited {
+	color: #0000CC;
+}
+body a:hover {
+	color: #95A7C0;
+}
+form {
+	margin: 0px;
+}
+p {
+	margin: 0 0 10px 0;
+}
+pre {
+	border: 0px solid #95A7C0;
+	background: #F0F0F0;
+	font-family: 'Courier New', Courier, monospace;
+	white-space: pre-wrap;
+	line-height: 10pt;
+	font-size: 9pt;
+}
+.pgtitle {
+	font-size: 18px;
+	color: #777777;
+	font-weight: bold;
+}
+.vncellbg, .vncell, .vncellreq, .vncellt {
+	background-color: #D6D6D6;
+/*
+	background: #DCDCDC url("/images/vncell_bg.png") repeat-x scroll left top;
+*/
+	padding-right: 20px;
+	padding-left: 8px;
+}
+.vncell, .vncellreq, .vncellt {
+	border-bottom: 1px solid #999999;
+}
+.vncellreq, .vncellt {
+	font-weight: bold;
+}
+.vncellt {
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+.celltag {
+	border-bottom: 1px solid #999999;
+	background-color: #D6D6D6;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 8px;
+	padding-right: 20px;
+	font-weight: normal;
+	vertical-align: top;
+}
+.celltagreq {
+	border-bottom: 1px solid #999999;
+	background-color: #D6D6D6;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 8px;
+	padding-right: 20px;
+	font-weight: bold;
+	vertical-align: top;
+}
+.celltagalt {
+	border-bottom: 1px solid #999999;
+	background-color: #D6D6D6;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 8px;
+	padding-right: 20px;
+	font-weight: normal;
+	vertical-align: top;
+}
+.celltagreqalt {
+	border-bottom: 1px solid #999999;
+	background-color: #D6D6D6;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 8px;
+	padding-right: 20px;
+	font-weight: bold;
+	vertical-align: top;
+}
+.celldata {
+	border-bottom: 1px solid #999999;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 8px;
+	padding-right: 20px;
+	vertical-align: top;
+}
+.celldatareq {
+	border-bottom: 1px solid #999999;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 8px;
+	padding-right: 20px;
+	vertical-align: top;
+}
+.celldataalt {
+	border-bottom: 1px solid #999999;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 8px;
+	padding-right: 20px;
+	vertical-align: top;
+}
+.celldatareqalt {
+	border-bottom: 1px solid #999999;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	padding-left: 8px;
+	padding-right: 20px;
+	vertical-align: top;
+}
+.cellabout {
+	font-size: 11px;
+}
+.celldatacheckbox input {
+	float: left;
+	margin: 0px;
+}
+.celldatacheckbox label {
+	margin-left: 20px;
+	font-size: 11px;
+	display: block;
+}
+.formfld {
+}
+.formfldro {
+	background-color: transparent;
+	border: 1.6px transparent;
+	color: #000000;
+}
+.formfld[type=file] {
+	width: 350px;
+}
+.formfldalias {
+	background-color: #e7edf9;
+}
+.formpre {
+	font-family: Tahoma,Verdana,Arial,Helvetica,sans-serif;
+	font-size: 11px;
+}
+.formbtn {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+.formbtns {
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+.red {
+	color: #CC0000;
+}
+.gray {
+	color: #A0A0A0;
+}
+.vexpl, .listbgc {
+	font-size: 11px;
+}
+a {
+	text-decoration: none;
+}
+.tblnk {
+	color: #FFFFFF;
+	text-decoration: none;
+}
+.vtable {
+	border-bottom: 1px solid #999999;
+}
+.listr, .listrc, .listrd, .listrcd {
+	background-color: #FCFCFC;
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	font-size: 11px;
+	padding-right: 6px;
+	padding-left: 6px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+.listrc, .listrcd, .listbgc {
+	text-align: center;
+}
+.listrpad {
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	font-size: 11px;
+	padding-right: 16px;
+	padding-left: 10px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+.listn, .listbg {
+	font-size: 11px;
+	padding-right: 16px;
+	padding-left: 6px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+.listbg, .listbgc {
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	background-color: #D9DEE8;
+}
+.listbgc {
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+.listhdr, .listhdrlr, .listhdrr, .listhdrc {
+	background: #BBBBBB url("/images/gradient_listhdr.png") repeat-x scroll left top;
+	padding-right: 16px;
+	padding-left: 6px;
+	font-weight: bold;
+	border-bottom: 1px solid #999999;
+	font-size: 11px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.listhdrlr, .listhdrr, .listhdrc {
+	border-right: 1px solid #999999;
+	vertical-align: top;
+}
+.listhdrlr {
+	border-left: 1px solid #BBBBBB;
+	margin-left: 1px;
+}
+.listhdrc {
+	text-align: center;
+}
+.listhdr a {
+	color: #000000;
+}
+.listhdrr a {
+	color: #000000;
+}
+.listlrns, .listlr, .listlrd {
+	background-color: #FCFCFC;
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	border-left: 1px solid #999999;
+	font-size: 11px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+.listlr, .listlrd, .listbgc {
+	padding-right: 6px;
+	padding-left: 6px;
+}
+.listlrd, .listrd, .listrcd {
+	background-color: #E0E0E0;
+}
+.list {
+	font-size: 11px;
+	padding-left: 6px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.listt {
+	font-size: 11px;
+	padding-top: 5px;
+}
+.listhdrrns {
+	background-color: #BBBBBB;
+	padding-left: 6px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 6px;
+	font-weight: bold;
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	font-size: 11px;
+}
+.listbgns {
+	border-right: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	font-size: 11px;
+	background-color: #D9DEE8;
+	padding-left: 6px;
+	padding-right: 4px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+.listtopic {
+	font-size: 11px;
+	background-image: url("/images/listtopic_bg.png");
+	background-color: #95A7C0;
+	padding-right: 16px;
+	padding-left: 6px;
+	color: #FFFFFF;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+.listcontent {
+	padding: 0;
+	border: 0;
+	background-color: #EEEEEE;
+	font-family: 'Courier New', Courier, monospace;
+	font-size: 9pt;
+}
+.optsect_t {
+	background-image: url("/images/listtopic_bg.png");
+	background-color: #95A7C0;
+	padding-right: 6px;
+	padding-left: 6px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+.optsect_s {
+	font-size: 11px;
+	color: #FFFFFF;
+	font-weight: bold;
+}
+.tabcont {
+	background-color: #EEEEEE;
+	padding: 20px;
+	border: 1px solid #DEDBD1;
+}
+table#area_navigator {
+	width: 100%;
+	border: 0;
+	border-spacing: 0px; 
+	border-collapse: collapse;
+	margin: 0px;
+}
+table#area_data {
+	width: 100%;
+	border: 0px;
+	border-spacing: 0px; 
+	border-collapse: separate;
+	margin: 0px;
+}
+
+td#area_data_frame {
+	border: 0px;
+	padding: 20px;
+	background-color: #EEEEEE;
+}
+
+table#area_data_settings {
+	border: 0;
+	border-spacing: 0px; 
+	border-collapse: separate;
+	margin: 0px;
+	width: 100%;
+}
+col#area_data_settings_col_tag {
+	width: 22%;
+}
+col#area_data_settings_col_data {
+	width: 78%;
+}
+table#area_data_selection {
+	margin: 0;
+	border: 0;
+	border-spacing: 0px; 
+	border-collapse: separate;
+	width: 100%;
+	table-layout: fixed;
+}
+table#area_data_selection_toolbox {
+	border: 0;
+	border-spacing: 0px; 
+	border-collapse: separate;
+	margin: 0px;
+	width: 100%;
+}
+/*
+table#area_data_selection tr:hover td {
+	background-color:#CCCCCC;
+}
+*/
+table#area_data_settings_submit {
+	margin: 0;
+	border: 0;
+	border-spacing: 0px; 
+	border-collapse: separate;
+	width: 100%;
+}
+table#area_data_messages {
+	margin: 0;
+	border: 0;
+	border-spacing: 0px; 
+	border-collapse: separate;
+	width: 100%;
+}
+col#area_data_messages_col_tag {
+	width: 10%;
+}
+col#area_data_messages_col_data {
+	width: 90%;
+}
+
+.label {
+	font-family: tahoma, verdana, arial, helvetica;
+	font-size: 11px;
+	font-weight: bold;
+}
+div#infobox, div#errorbox, div#warningbox, div#applybox input {
+	margin-bottom: 10px;
+}
+div#infobox table tr td.icon {
+	background-color: #577099;
+	width: 36px;
+}
+div#infobox table tr td.message {
+	background-color: #D9DEE8;
+	padding-left: 8px
+}
+div#errorbox table tr td.icon, div#warningbox table tr td.icon {
+	background-color: #950016;
+	width: 36px;
+}
+div#errorbox table tr td.message, div#warningbox table tr td.message {
+	color: #CC0000;
+	background-color: #FFD9D1;
+	padding-left: 8px;
+	font-weight: bold;
+}
+div#header {
+	min-width: 880px;
+	height: 80px;
+	width: 100%;
+	background: #171717 url("/images/header_bg.png") top left no-repeat;
+	position: fixed;
+	top: 0;
+}
+div#headerlogo {
+	float: left;
+}
+div#headerlogo a {
+}
+div#headerlogo a img {
+	margin-top: 6px;
+	margin-left: 34px;
+	border: 0;
+}
+div#headerrlogo {
+	float: right;
+	height: 100%;
+	width: 350px;
+	background-image: url("/images/header_rlogo.png");
+}
+div#headerrlogo .hostname {
+	font-size: 11px;
+	color: #FFFFFF;
+	text-align: right;
+	margin-top: 63px;
+	margin-right: 25px;
+}
+div#pagefooter {
+	margin: 0px 0px 0px 0px;
+	text-align: center;
+	background: url("/images/navbar_default.png");
+	height: 20px;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+div#pagefooter span p {
+	font-size: 10px;
+	padding: 4px;
+	color: #FFFFFF;
+}
+div#pagefooter span a:link, div#pagefooter span a:active, div#pagefooter span a:visited {
+	color: #777777;
+}
+div#pagefooter span a:hover {
+	color: #999999;
+}
+div#loginfooter {
+	position: fixed;
+	bottom: 0;
+	margin: 5px 0px 0px 0px;
+	text-align: center;
+}
+div#headernavbar {
+	min-width: 900px;
+	width: 100%;
+	background: black url("/images/navbar_default.png") center center repeat-x;
+	position: fixed;
+	top: 78px;
+}
+div#pagecontent {
+	min-width: 900px;
+	margin: 20px 25px 10px 25px;
+	padding: 110px 15px 15px 15px;
+}
+div#submit {
+	margin-top: 10px;
+}
+div#remarks {
+	margin-top: 10px;
+}
+div#cmdoutput {
+	margin-bottom: 5px;
+	color: #777777;
+	font-weight: bold;
+}
+div#enumeration ul {
+	margin: 0;
+	padding-left: 15px;
+}
+div#diskusage .name,
+div#diskusage .device,
+div#diskusage .size,
+div#diskusage .total,
+div#diskusage .used,
+div#diskusage .avail,
+div#diskusage .free,
+div#poolusage .name,
+div#poolusage .device,
+div#poolusage .size,
+div#poolusage .total,
+div#poolusage .used,
+div#poolusage .avail,
+div#poolusage .free,
+div#swapusage .name,
+div#swapusage .device,
+div#swapusage .size,
+div#swapusage .total,
+div#swapusage .used,
+div#swapusage .avail,
+div#swapusage .free {
+	font-weight: bold;
+}
+div#diskusage .name,
+div#diskusage .device,
+div#poolusage .name,
+div#poolusage .device {
+	font-size: 12px;
+}
+div#diskusage .capacity,
+div#diskusage .capofsize,
+div#poolusage .capacity,
+div#poolusage .capofsize,
+div#swapusage .capacity,
+div#swapusage .capofsize {
+	margin-left: 2px;
+}
+.progbarl, .progbarc, .progbarcf, .progbarr {
+	height: 14px;
+	border: 0px;
+	vertical-align: text-top;
+}
+.progbarl, .progbarr {
+	width: 2px;
+}
+div#loginpage {
+	position: relative;
+	left: 42.5%;
+	width: 15%;
+	height: auto;
+}
+
+div#loginboxheader {
+	background-image: url("/images/tablebg.png");
+	height: 20px;
+	text-align: left;
+	padding: 5px 0px 0px 10px;
+	border-top: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;	
+}
+
+div#loginbox {
+	background-image: url("/images/vncell_bg.png");
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	padding: 5px 10px 10px 10px;
+}
+
+div#loginbox table td {
+	white-space: nowrap;
+}
+
+.shadow {
+	-moz-box-shadow: 3px 3px 4px #000;
+	-webkit-box-shadow: 3px 3px 4px #000;
+	box-shadow: 3px 3px 4px #000;
+	/* For IE 8 & 9 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
+pre.cmdoutput {
+	margin: 0;
+	border: 0px solid #95A7C0;
+	background: #F0F0F0;
+	font-family: 'Courier New', Courier, monospace;
+	white-space: pre-wrap;
+	line-height: 10pt;
+	font-size: 9pt;
+}
+
+.warningtext{
+	color: orange;
+	font-weight: bold;
+}
+
+.errortext{
+	color: red;
+	font-weight: bold;
+}
+
+/*
+	1-3 element
+		lhe: list header element
+		lce: list cell element
+	4 - border
+		l: left border only
+		b: both left and right border
+		r: right border only
+		n: no border
+	5 - horizontal alignment
+		l: left
+		c: center
+		r: right
+	6 - background
+		_: normal
+		d: dark
+
+	special classes
+	.lhetop: header topic element
+	.lceadd: cell containing the add icon, default .lcebld
+*/
+
+.lhell, .lhebl, .lhelc, .lhebc, .lhelr, .lhebr {
+	margin: 0;
+	border-top-width: 0;
+	border-bottom: 1px solid #999999;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 6px;
+	padding-left: 6px;
+	background: #BBBBBB url("/images/gradient_listhdr.png") repeat-x scroll left top;
+	font-size: 11px;
+	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.lcell, .lcebl, .lcelc, .lcebc, .lcelld, .lcebld, .lcelcd, .lcebcd, .lcelr, .lcebr, .lcelrd, .lcebrd, .lceadd, .lcenl {
+	margin: 0;
+	border-top-width: 0;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	padding-left: 6px;
+	padding-right: 6px;
+	vertical-align: middle;
+	font-size: 11px;
+	font-weight: normal;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.lcell, .lcebl, .lcelc, .lcebc, .lcelld, .lcebld, .lcelcd, .lcebcd, .lcelr, .lcebr, .lcelrd, .lceadd {
+	border-bottom: 1px solid #999999;
+}
+.lcenl {
+	border-bottom-width: 0;
+}
+.lhell, .lhebl, .lhelc, .lhebc, .lhelr, .lhebr, .lcell, .lcebl, .lcelc, .lcebc, .lcelr, .lcebr, .lcelld, .lcebld, .lceadd, .lcelcd, .lcebcd, .lcelrd, .lcebrd {
+	border-left: 1px solid #999999;
+}
+.lhebl, .lhebc, .lhebr, .lcebl, .lcebc, .lcebr, .lcebld, .lcebcd, .lcebrd, .lceadd {
+	border-right: 1px solid #999999;
+}
+.lhell, .lhebl, .lcell, .lcebl, .lcelld, .lcebld, .lceadd {
+	text-align: left;
+}
+.lhelc, .lhebc, .lcelc, .lcebc, .lcelcd, .lcebcd {
+	text-align: center;
+}
+.lhelr, .lhebr, .lcelr, .lcebr, .lcelrd, .lcebrd {
+	text-align: right;
+}
+.lcell, .lcebl, .lcelc, .lcebc, .lcelr, .lcebr {
+	background-color: #FCFCFC;
+}
+.lcelld, .lcebld, .lceadd, .lcelcd, .lcebcd, .lcelrd, .lcebrd {
+	background-color: #E0E0E0;
+}
+.lhetop {
+	margin: 0;
+	border: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 6px;
+	padding-right: 16px;
+	background-image: url("/images/listtopic_bg.png");
+	background-color: #95A7C0;
+	vertical-align: middle;
+	text-align: left;
+	font-size: 11px;
+	font-weight: bold;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #FFFFFF;
+}

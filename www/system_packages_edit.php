@@ -3,11 +3,7 @@
 	system_packages_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -38,7 +35,7 @@ require("auth.inc");
 require("guiconfig.inc");
 require("packages.inc");
 
-$pgtitle = array(gettext("System"),gettext("Packages"),gettext("Install"));
+$pgtitle = array(gtext("System"),gtext("Packages"),gtext("Install"));
 
 if (isset($_POST) && $_POST) {
 	unset($input_errors);
@@ -46,11 +43,11 @@ if (isset($_POST) && $_POST) {
 	if (is_uploaded_file($_FILES['ulfile']['tmp_name'])) {
 		if (!file_exists($_FILES['ulfile']['tmp_name'])) {
 			// Probably out of memory for the MFS.
-			$input_errors[] = gettext("Package upload failed (out of memory?)");
+			$input_errors[] = gtext("Package upload failed (out of memory?)");
 		} else {
 			// Check whether package is already installed.
 			if (0 == packages_is_installed($_FILES['ulfile']['name'])) {
-				$input_errors[] = gettext("Package is already installed.");
+				$input_errors[] = gtext("Package is already installed.");
 			} else {
 				$packagename = "{$g['tmp_path']}/{$_FILES['ulfile']['name']}";
 
@@ -70,33 +67,33 @@ if(!isset($do_action)) {
 ?>
 <?php include("fbegin.inc");?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
+	<tr>
 		<td class="tabnavtbl">
-  		<ul id="tabnav">
-				<li class="tabact"><a href="system_packages.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Packages");?></span></a></li>
-  		</ul>
-  	</td>
+			<ul id="tabnav">
+				<li class="tabact"><a href="system_packages.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Packages");?></span></a></li>
+			</ul>
+		</td>
 	</tr>
-  <tr>
-    <td class="tabcont">
+	<tr>
+		<td class="tabcont">
 			<form action="system_packages_edit.php" method="post" enctype="multipart/form-data">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
-			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gettext("Package file");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Package file");?></td>
 						<td width="78%" class="vtable">
 							<input name="ulfile" type="file" class="formfld" />
-							<br /><?=gettext("Select the FreeBSD package to be installed.");?>
+							<br /><?=gtext("Select the FreeBSD package to be installed.");?>
 						</td>
 					</tr>
-			  </table>
+				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Install")?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Install")?>" />
 				</div>
 				<?php if($do_action)
 				{
-				echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
+				echo(sprintf("<div id='cmdoutput'>%s</div>", gtext("Command output:")));
 				echo('<pre class="cmdoutput">');
 				//ob_end_flush();
 				ob_start();
@@ -115,7 +112,12 @@ if(!isset($do_action)) {
 				}
 				?>
 				<div id="remarks">
-					<?php html_remark("note", gettext("Note"), gettext("You can also install a package via SSH or console using the the pkg add command.<br />Example: pkg add packagename"));?>
+					<?php
+					$helpinghand = gtext('You can also install a package via SSH or console using the the pkg add command.')
+						. '<br />'
+						. gtext('Example: pkg add packagename.');
+					html_remark("note", gtext('Note'), $helpinghand);
+					?>
 				</div>
 				<?php include("formend.inc");?>
 			</form>

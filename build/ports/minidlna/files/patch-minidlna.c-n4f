@@ -1,0 +1,31 @@
+--- minidlna.c.orig	2015-11-12 02:11:30.895797000 +0900
++++ minidlna.c	2015-11-12 02:12:27.899892000 +0900
+@@ -263,6 +263,28 @@
+ 	else if (strcmp(modelnumber, "NV+ v2") == 0)
+ 		memcpy(pnpx_hwid+17, "0109", 4);
+ #endif
++#elif defined(NAS4Free)
++	FILE *fp_name, *fp_platform;
++	char tmpbuf[64], tmpbuf2[64], *name, *platform;
++	name = platform = NULL;
++	fp_name = fopen("/etc/prd.name", "r");
++	if (fp_name != NULL)
++	{
++		name = fgets(tmpbuf, sizeof tmpbuf, fp_name);
++		name = trim(name);
++	}
++	fp_platform = fopen("/etc/platform", "r");
++	if (fp_platform != NULL)
++	{
++		platform = fgets(tmpbuf2, sizeof tmpbuf2, fp_platform);
++		platform = trim(platform);
++	}
++	fclose(fp_name);
++	fclose(fp_platform);
++	if (name != NULL && platform != NULL)
++		snprintf(buf+off, len-off, "%s %s", name, platform);
++	else if (name != NULL)
++		snprintf(buf+off, len-off, "%s", name);
+ #else
+ 	char * logname;
+ 	logname = getenv("LOGNAME");

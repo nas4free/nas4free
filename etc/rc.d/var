@@ -1,8 +1,10 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
+#
+# Populate /var directory
 #
 # $FreeBSD: src/etc/rc.d/var
 # Changes: - Remove useless code
@@ -17,6 +19,7 @@
 . /etc/rc.subr
 
 name="var"
+desc="Populate /var directory"
 stop_cmd=':'
 
 load_rc_config $name
@@ -24,7 +27,7 @@ load_rc_config $name
 populate_var()
 {
 	# Create required directories in /var
-	/usr/sbin/mtree -deU -f /etc/mtree/BSD.var.dist -p /var > /dev/null
+	/usr/sbin/mtree -deiU -f /etc/mtree/BSD.var.dist -p /var > /dev/null
 	# Configure the shared library cache
 	/sbin/ldconfig -elf /usr/lib /usr/local/lib /lib
 }
@@ -42,15 +45,15 @@ PLATFORM=`/bin/cat /etc/platform`
 case "${varmfs}" in
 [Yy][Ee][Ss])
 	if [ ${BOOT_LOWMEM} -ne 0 ]; then
-		xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 6`
+		xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 4`
 		#/sbin/newfs -U -t -m2 -o space /dev/${xmd} >/dev/null
 		/sbin/newfs -U -t /dev/${xmd} >/dev/null
 		/sbin/mount -o noatime,acls /dev/${xmd} /var
-		/sbin/xmdconfig -m -c 6 -u ${xmd}
+		/sbin/xmdconfig -m -c 4 -u ${xmd}
 	else
 		case ${PLATFORM} in
 		*-embedded)
-			xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 6`
+			xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 9`
 			/sbin/newfs -U -t /dev/${xmd} >/dev/null
 			/sbin/mount -o noatime,acls /dev/${xmd} /var
 			/sbin/xmdconfig -m -c 1 -u ${xmd}
@@ -70,10 +73,10 @@ case "${varmfs}" in
 		rmdir /var/.diskless
 	else
 		if [ ${BOOT_LOWMEM} -ne 0 ]; then
-			xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 9`
+			xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 4`
 			/sbin/newfs -U -t /dev/${xmd} >/dev/null
 			/sbin/mount -o noatime,acls /dev/${xmd} /var
-			/sbin/xmdconfig -m -c 6 -u ${xmd}
+			/sbin/xmdconfig -m -c 4 -u ${xmd}
 		else
 			case ${PLATFORM} in
 			*-embedded)

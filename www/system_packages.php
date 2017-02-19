@@ -3,11 +3,7 @@
 	system_packages.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -38,7 +35,7 @@ require("auth.inc");
 require("guiconfig.inc");
 require("packages.inc");
 
-$pgtitle = array(gettext("System"), gettext("Packages"));
+$pgtitle = array(gtext("System"), gtext("Packages"));
 
 $a_packages = packages_get_installed();
 
@@ -55,7 +52,7 @@ if (isset($_GET['act']) && $_GET['act'] == "del") {
   <tr>
 		<td class="tabnavtbl">
   		<ul id="tabnav">
-				<li class="tabact"><a href="system_packages.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Packages");?></span></a></li>
+				<li class="tabact"><a href="system_packages.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Packages");?></span></a></li>
   		</ul>
   	</td>
 	</tr>
@@ -67,20 +64,20 @@ if (isset($_GET['act']) && $_GET['act'] == "del") {
 				<?php if (file_exists($d_packagesconfdirty_path)) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 			    <tr>
-			      <td width="40%" class="listhdrlr"><?=gettext("Package Name");?></td>
-			      <td width="50%" class="listhdrr"><?=gettext("Description");?></td>
+			      <td width="40%" class="listhdrlr"><?=gtext("Package Name");?></td>
+			      <td width="50%" class="listhdrr"><?=gtext("Description");?></td>
 			      <td width="10%" class="list"></td>
 			    </tr>
 				  <?php $i = 0; foreach($a_packages as $packagev): ?>
 			    <tr>
 			      <td class="listr"><?=htmlspecialchars($packagev['name']);?>&nbsp;</td>
 			      <td class="listbg"><?=htmlspecialchars($packagev['desc']);?>&nbsp;</td>
-			      <td valign="middle" nowrap="nowrap" class="list"> <a href="system_packages.php?act=del&amp;id=<?=$i;?>" onclick="return confirm('<?=gettext("Do you really want to uninstall this package?"); ?>')"><img src="x.gif" title="<?=gettext("Uninstall package"); ?>" border="0" alt="<?=gettext("Uninstall package"); ?>" /></a></td>
+			      <td valign="middle" nowrap="nowrap" class="list"> <a href="system_packages.php?act=del&amp;id=<?=$i;?>" onclick="return confirm('<?=gtext("Do you really want to uninstall this package?"); ?>')"><img src="images/delete.png" title="<?=gtext("Uninstall package"); ?>" border="0" alt="<?=gtext("Uninstall package"); ?>" /></a></td>
 			    </tr>
 			    <?php $i++; endforeach; ?>
 			    <tr>
 						<td class="list" colspan="2"></td>
-						<td class="list"> <a href="system_packages_edit.php"><img src="plus.gif" title="<?=gettext("Install package"); ?>" border="0" alt="<?=gettext("Install package"); ?>" /></a></td>
+						<td class="list"> <a href="system_packages_edit.php"><img src="images/add.png" title="<?=gtext("Install package"); ?>" border="0" alt="<?=gtext("Install package"); ?>" /></a></td>
 					</tr>
 			  </table>
 			  <?php include("formend.inc");?>

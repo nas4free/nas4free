@@ -1,0 +1,11 @@
+--- panes/wizardNewHDAdvanced.html.orig	2016-06-05 08:07:08.642345000 +0200
++++ panes/wizardNewHDAdvanced.html	2016-06-10 18:17:45.000000000 +0200
+@@ -229,7 +229,7 @@
+ 		$('#wizardNewHDSize').slider('value',wiz.suggested.size);
+ 	}
+ 	
+-	if(wiz.suggested.path){
++	if(wiz.suggested.path && wiz.suggested.name){
+ 		if($('#vboxPane').data('vboxConfig').enforceVMOwnership==true){
+ 			var nameIndex = wiz.suggested.path.lastIndexOf(wiz.suggested.name+$('#vboxPane').data('vboxConfig').DSEP);
+ 			var path = wiz.suggested.path.substr(0,nameIndex);

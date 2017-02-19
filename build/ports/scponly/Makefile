@@ -3,7 +3,7 @@ PORTVERSION=	4.8.20110526
 PORTREVISION= 0
 CATEGORIES=		shells security
 COMMENT=		A tiny shell that only permits scp and sftp
-MAINTAINER= 		zoon01@nas4free.org
+MAINTAINER= 		zoon1@nas4free.org
 
 MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTNAME}-snapshots
 DISTNAME=	${PORTNAME}-20110526

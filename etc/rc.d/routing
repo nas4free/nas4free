@@ -1,14 +1,12 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-# Portions of freenas (http://www.freenas.org).
-# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
-# All rights reserved.
+# Routing setup
 #
-# $FreeBSD: /src/etc/rc.d/routing
+# $FreeBSD: /src/etc/rc.d/routing 			Revision 179566
 # Changes: 	- Remove requirement ppp
 # 		- Add command mkconf and delete
 #
@@ -24,6 +22,7 @@
 . /etc/util.subr
 
 name="routing"
+desc="Routing setup"
 start_cmd="routing_start"
 stop_cmd="routing_stop"
 extra_commands="options static mkconf delete"

@@ -1,10 +1,11 @@
 PORTNAME=		mDNSResponder
-PORTVERSION=	567
+PORTVERSION=	765.30.11
+PORTREVISION=	0
 CATEGORIES=		net dns
 COMMENT=		Apple's mDNSResponder
-MAINTAINER=		zoon01@nas4free.org
+MAINTAINER=		zoon1@nas4free.org
 
-MASTER_SITES=	http://www.opensource.apple.com/tarballs/mDNSResponder/
+MASTER_SITES=		http://www.opensource.apple.com/tarballs/mDNSResponder/
 DISTNAME=		${PORTNAME}-${PORTVERSION}
 
 
@@ -12,7 +13,8 @@ USE_LDCONFIG=		YES
 
 MAKE_ARGS+=		os=freebsd LOCALBASE=${PREFIX}
 BUILD_WRKSRC=		${WRKSRC}/mDNSPosix
-CONFLICTS=		avahi-libdns-[0-9]*
+# lib/libdns_sd.so.1 sbin/mdnsd
+CONFLICTS_INSTALL=      avahi-libdns- openmdns-
 
 USES=		cpe gmake
 

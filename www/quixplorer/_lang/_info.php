@@ -3,7 +3,7 @@
 	_info.php
 	
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -33,23 +33,34 @@
 	//Set the language array
 	$lang = array(
 		'en_US'	=> 'English',
-		'bg'		=> 'Bulgarian',
-		'cs'		=> 'Czech',
+		'sq'		=> 'Shqip',
+		'bg'		=> 'Български',
+		'cs'		=> 'čeština',
 		'da'		=> 'Dansk',
 		'de'		=> 'Deutsch',
 		'es'		=> 'Español',
+		'fi'		=> 'Suomi',
 		'fr'		=> 'Français',
-		'el'		=> 'Greek',
-		'hu'		=> 'Hungarian',
+		'el'		=> 'Ελληνικά',
+		'hu'		=> 'Magyar',
 		'it'		=> 'Italiano',
-		'ja'		=> 'Japanese',
+		'ja'		=> '日本語',
+		'ko'		=> '한국어',
+		'lv'		=> 'Latviešu',
 		'nl'		=> 'Nederlands',
+		'nb'		=> 'Norsk (bokmål)',
 		'pl'		=> 'Polski',
-		'ptbr'		=> 'Português - Brasil',
-		'ro'		=> 'Românã',
-		'ru'		=> 'Russian',
-		'zh_CN'	=> 'Chinese (Simplified)',
-		'zh_TW'	=> 'Chinese (Traditional)'
+		'pt'		=> 'Português',
+		'pt_BR'		=> 'Português - Brasil',
+		'ro'		=> 'Română',
+		'ru'		=> 'Русский',
+		'sk'		=> 'Slovenský',
+		'sl'		=> 'Slovenščina',
+		'sv'		=> 'Svenska',
+		'tr'		=> 'Türkçe',
+		'uk'		=> 'Українська',
+		'zh_CN'	=> '中文（簡體）',
+		'zh_TW'	=> '正體中文'
 );
 
 	//Create the select box and options

@@ -1,13 +1,5 @@
---- mDNSPosix/mDNSPosix.c.orig	2015-03-02 19:24:41 UTC
+--- mDNSPosix/mDNSPosix.c.orig	2015-03-13 00:15:32 UTC
 +++ mDNSPosix/mDNSPosix.c
-@@ -516,6 +516,7 @@ mDNSexport int ParseDNSServers(mDNS *m, 
-             numOfServers++;
-         }
-     }
-+    fclose(fp);
-     return (numOfServers > 0) ? 0 : -1;
- }
- 
 @@ -740,7 +741,13 @@ mDNSlocal int SetupSocket(struct sockadd
      {
          struct ipv6_mreq imr6;

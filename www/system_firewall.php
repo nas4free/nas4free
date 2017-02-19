@@ -3,11 +3,7 @@
 	system_firewall.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Network"), gettext("Firewall"));
+$pgtitle = array(gtext("Network"), gtext("Firewall"));
 
 $pconfig['enable'] = isset($config['system']['firewall']['enable']);
 
@@ -61,7 +58,7 @@ if (isset($_POST['export']) && $_POST['export']) {
 	}
 	$xml = $doc->saveXML();
 	if ($xml === FALSE) {
-		$errormsg = gettext("Invalid file format.");
+		$errormsg = gtext("Invalid file format.");
 	} else {
 		$ts = date("YmdHis");
 		$fn = "firewall-{$config['system']['hostname']}.{$config['system']['domain']}-{$ts}.rules";
@@ -101,7 +98,7 @@ if (isset($_POST['export']) && $_POST['export']) {
 		}
 
 		if (empty($data['rule'])) {
-			$errormsg = gettext("Invalid file format.");
+			$errormsg = gtext("Invalid file format.");
 		} else {
 			// Take care array already exists.
 			if (!isset($config['system']['firewall']['rule']) || !is_array($config['system']['firewall']['rule']))
@@ -114,7 +111,7 @@ if (isset($_POST['export']) && $_POST['export']) {
 				if (false !== $index) {
 					// Create new uuid and mark rule as duplicate (modify description).
 					$rule['uuid'] = uuid();
-					$rule['desc'] = gettext("*** Imported duplicate ***") . " {$rule['desc']}";
+					$rule['desc'] = gtext("*** Imported duplicate ***") . " {$rule['desc']}";
 				}
 				$config['system']['firewall']['rule'][] = $rule;
 
@@ -127,7 +124,7 @@ if (isset($_POST['export']) && $_POST['export']) {
 			exit;
 		}
 	} else {
-		$errormsg = sprintf("%s %s", gettext("Failed to upload file."),
+		$errormsg = sprintf("%s %s", gtext("Failed to upload file."),
 			$g_file_upload_error[$_FILES['rulesfile']['error']]);
 	}
 } else if ($_POST) {
@@ -196,9 +193,17 @@ function firewall_process_updatenotification($mode, $data) {
 function enable_change(enable_change) {
 	var endis = !(document.iform.enable.checked || enable_change);
 }
+$(window).on("load", function() {
+$("#spinner1").click(function() {
+spinner();
+});
+$("#apply").click(function() {
+spinner();
+});
+});
 //-->
 </script>
-<form action="system_firewall.php" method="post" name="iform" id="iform" enctype="multipart/form-data">
+<form action="system_firewall.php" method="post" name="iform" id="iform" enctype="multipart/form-data" id="iform">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 		<tr>
 			<td class="tabcont">
@@ -207,20 +212,20 @@ function enable_change(enable_change) {
 				<?php if ($savemsg) print_info_box($savemsg);?>
 				<?php if (updatenotify_exists("firewall")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("System firewall"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gtext("Firewall"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");?>
 					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gettext("Rules");?></td>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Rules");?></td>
 						<td width="78%" class="vtable">
 							<table width="100%" border="0" cellpadding="0" cellspacing="0">
 								<tr>
 									<td width="4%" class="listhdrlr">&nbsp;</td>
-									<td width="5%" class="listhdrr"><?=gettext("Proto");?></td>
-									<td width="20%" class="listhdrr"><?=gettext("Source");?></td>
-									<td width="5%" class="listhdrr"><?=gettext("Port");?></td>
-									<td width="20%" class="listhdrr"><?=gettext("Destination");?></td>
-									<td width="5%" class="listhdrr"><?=gettext("Port");?></td>
-									<td width="5%" class="listhdrr"><?=htmlspecialchars(gettext("<->"));?></td>
-									<td width="26%" class="listhdrr"><?=gettext("Description");?></td>
+									<td width="5%" class="listhdrr"><?=gtext("Proto");?></td>
+									<td width="20%" class="listhdrr"><?=gtext("Source");?></td>
+									<td width="5%" class="listhdrr"><?=gtext("Port");?></td>
+									<td width="20%" class="listhdrr"><?=gtext("Destination");?></td>
+									<td width="5%" class="listhdrr"><?=gtext("Port");?></td>
+									<td width="5%" class="listhdrr"><?=htmlspecialchars('<->');?></td>
+									<td width="26%" class="listhdrr"><?=gtext("Description");?></td>
 									<td width="10%" class="list"></td>
 								</tr>
 								<?php foreach ($a_rule as $rule):?>
@@ -229,13 +234,13 @@ function enable_change(enable_change) {
 									<?php $enable = isset($rule['enable']);
 									switch ($rule['action']) {
 										case "allow":
-											$actionimg = "fw_action_allow.gif";
+											$actionimg = "images/fw_action_allow.png";
 											break;
 										case "deny":
-											$actionimg = "fw_action_deny.gif";
+											$actionimg = "images/fw_action_deny.png";
 											break;
 										case "unreach host":
-											$actionimg = "fw_action_reject.gif";
+											$actionimg = "images/fw_action_reject.png";
 											break;
 									}
 									?>
@@ -249,12 +254,12 @@ function enable_change(enable_change) {
 									<td class="listbg"><?=htmlspecialchars($rule['desc']);?>&nbsp;</td>
 									<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
 									<td valign="middle" nowrap="nowrap" class="list">
-										<a href="system_firewall_edit.php?uuid=<?=$rule['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit rule");?>" border="0" alt="<?=gettext("Edit rule");?>" /></a>
-										<a href="system_firewall.php?act=del&amp;uuid=<?=$rule['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this rule?");?>')"><img src="x.gif" title="<?=gettext("Delete rule");?>" border="0" alt="<?=gettext("Delete rule");?>" /></a>
+										<a href="system_firewall_edit.php?uuid=<?=$rule['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit rule");?>" border="0" alt="<?=gtext("Edit rule");?>" /></a>
+										<a href="system_firewall.php?act=del&amp;uuid=<?=$rule['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this rule?");?>')"><img src="images/delete.png" title="<?=gtext("Delete rule");?>" border="0" alt="<?=gtext("Delete rule");?>" /></a>
 									</td>
 									<?php else:?>
 									<td valign="middle" nowrap="nowrap" class="list">
-										<img src="del.gif" border="0" alt="" />
+										<img src="images/delete.png" border="0" alt="" />
 									</td>
 									<?php endif;?>
 								</tr>
@@ -262,9 +267,9 @@ function enable_change(enable_change) {
 								<tr>
 									<td class="list" colspan="8"></td>
 									<td class="list">
-										<a href="system_firewall_edit.php"><img src="plus.gif" title="<?=gettext("Add rule");?>" border="0" alt="<?=gettext("Add rule");?>" /></a>
+										<a href="system_firewall_edit.php"><img src="images/add.png" title="<?=gtext("Add rule");?>" border="0" alt="<?=gtext("Add rule");?>" /></a>
 										<?php if (!empty($a_rule)):?>
-										<a href="system_firewall.php?act=del&amp;uuid=all" onclick="return confirm('<?=gettext("Do you really want to delete all rules?");?>')"><img src="x.gif" title="<?=gettext("Delete all rules");?>" border="0" alt="<?=gettext("Delete all rules");?>" /></a>
+										<a href="system_firewall.php?act=del&amp;uuid=all" onclick="return confirm('<?=gtext("Do you really want to delete all rules?");?>')"><img src="images/delete.png" title="<?=gtext("Delete all rules");?>" border="0" alt="<?=gtext("Delete all rules");?>" /></a>
 										<?php endif;?>
 									</td>
 								</tr>
@@ -274,25 +279,25 @@ function enable_change(enable_change) {
 					<tr>
 						<td width="22%" valign="top" class="vncell">&nbsp;</td>
 						<td width="78%" class="vtable">
-							<?=gettext("Download firewall rules.");?><br />
+							<?=gtext("Download firewall rules.");?><br />
 							<div id="submit">
-								<input name="export" type="submit" class="formbtn" value="<?=gettext("Export");?>" /><br />
+								<input name="export" type="submit" class="formbtn" value="<?=gtext("Export");?>" /><br />
 							</div>
 						</td>
 					</tr>
 					<tr>
 						<td width="22%" valign="top" class="vncell">&nbsp;</td>
 						<td width="78%" class="vtable">
-							<?=gettext("Import firewall rules.");?><br />
+							<?=gtext("Import firewall rules.");?><br />
 							<div id="submit">
 								<input name="rulesfile" type="file" class="formfld" id="rulesfile" size="40" accept="*.rules" />&nbsp;
-								<input name="import" type="submit" class="formbtn" id="import" value="<?=gettext("Import");?>" /><br />
+								<input name="import" type="submit" class="formbtn" id="import" value="<?=gtext("Import");?>" /><br />
 							</div>
 						</td>
 					</tr>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" />
+					<input name="Submit" type="submit" class="formbtn" id="spinner1" value="<?=gtext("Save & Restart");?>" />
 				</div>
 			</td>
 		</tr>

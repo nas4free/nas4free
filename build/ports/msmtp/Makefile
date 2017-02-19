@@ -1,78 +1,71 @@
 PORTNAME=		msmtp
-PORTVERSION=	1.6.2
+PORTVERSION=	1.6.6
 PORTREVISION=	0
 CATEGORIES=		mail ipv6
-COMMENT=		A SMTP client
-MAINTAINER=		zoon01@nas4free.org
+COMMENT=		SMTP client
+MAINTAINER=		zoon1@nas4free.org
 
 MASTER_SITES=	SF
- 
-GNU_CONFIGURE=  yes 
-USES=           gmake makeinfo pkgconfig tar:xz
-CPPFLAGS+=      -I${LOCALBASE}/include 
-LDFLAGS+=       -L${LOCALBASE}/lib
+
+GNU_CONFIGURE=	yes
+USES=		gmake makeinfo pkgconfig tar:xz
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+INFO=	msmtp
 
 CONFIGURE_ENV=	CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
 
-OPTIONS_DEFINE= 	   GSASL NLS IDN GNOMEKEYRING MSMTPQ 
-OPTIONS_RADIO=	   TLS 
-OPTIONS_RADIO_TLS=      GNUTLS OPENSSL 
-OPTIONS_DEFAULT=        MSMTPQ OPENSSL 
+OPTIONS_DEFINE=	DOCS GSASL NLS IDN LIBSECRET MSMTPQ
+OPTIONS_RADIO=	TLS
+OPTIONS_RADIO_TLS=      GNUTLS OPENSSL
+OPTIONS_DEFAULT=        MSMTPQ OPENSSL
+OPTIONS_SUB=    yes
 
-GSASL_DESC=     GSASL support 
-MSMTPQ_DESC=    Install offline messaging scripts 
+GSASL_DESC=     GSASL support
+LIBSECRET_DESC= GNOME password management
+MSMTPQ_DESC=    Install offline messaging scripts
 
-.include       <bsd.port.options.mk>
+GSASL_CONFIGURE_WITH=	libgsasl
+GSASL_LIB_DEPENDS=	libgsasl.so:security/gsasl
+IDN_CONFIGURE_WITH=	libidn
+IDN_LIB_DEPENDS=	libidn.so:dns/libidn
+LIBSECRET_CONFIGURE_WITH=	libsecret
+LIBSECRET_LIB_DEPENDS=	libsecret-1.so:security/libsecret
+MSMTPQ_PORTDOCS=	README.msmtpq
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=		gettext
 
-.if ${PORT_OPTIONS:MGNUTLS} 
-LIB_DEPENDS+=   libgnutls.so:${PORTSDIR}/security/gnutls 
-CONFIGURE_ARGS+=        --with-ssl=gnutls 
-.elif ${PORT_OPTIONS:MOPENSSL} 
-USE_OPENSSL=    yes 
-CONFIGURE_ARGS+=        --with-ssl=openssl 
-CONFIGURE_ENV+=		libssl_CFLAGS="-I${OPENSSLINC}" \
+GNUTLS_CONFIGURE_ON=	--with-ssl=gnutls
+GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
+OPENSSL_VARS=		USE_OPENSSL=yes
+OPENSSL_CONFIGURE_ON=	--with-ssl=openssl
+OPENSSL_CONFIGURE_ENV=	libssl_CFLAGS="-I${OPENSSLINC}" \
 			libssl_LIBS="-L${OPENSSLLIB} -lssl -lcrypto"
-.else 
-CONFIGURE_ARGS+=        --with-ssl=no 
-.endif 
+CERTSFILE=		${LOCALBASE}/share/certs/ca-root-nss.crt
+
+.include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MGNUTLS} || ${PORT_OPTIONS:MOPENSSL}
-RUN_DEPENDS+=	  ${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
-.endif
-
-.if ${PORT_OPTIONS:MGSASL}
- LIB_DEPENDS+=   libgsasl.so:${PORTSDIR}/security/gsasl
-CONFIGURE_ARGS+=	--with-libgsasl
+RUN_DEPENDS+=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 .else
-CONFIGURE_ARGS+=	--without-libgsasl
+CONFIGURE_ARGS+=	--with-ssl=no
 .endif
 
-.if ${PORT_OPTIONS:MIDN}
-LIB_DEPENDS+=   libidn.so:${PORTSDIR}/dns/libidn
-CONFIGURE_ARGS+=	--with-libidn
-.else
-CONFIGURE_ARGS+=	--without-libidn
+post-extract:
+	@${REINPLACE_CMD} -e 's|/etc/ssl/certs/ca\\-certificates.crt|${CERTSFILE}|' \
+		${WRKSRC}/doc/msmtp.1
+
+.if ${PORT_OPTIONS:MMSMTPQ}
+post-stage:
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/msmtp-queue ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/msmtpq ${STAGEDIR}${PREFIX}/bin
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/scripts/msmtpq/README.msmtpq ${STAGEDIR}${DOCSDIR}
 .endif
 
-.if ${PORT_OPTIONS:MGNOMEKEYRING}
-CONFIGURE_ARGS+=	--with-gnome-keyring
-LIB_DEPENDS+=   libgnome-keyring.so:${PORTSDIR}/security/gnome-keyring
-.else
-CONFIGURE_ARGS+=        --without-gnome-keyring
-.endif
-
-.if ${PORT_OPTIONS:MNLS}
-USE_GETTEXT=		yes
-CONFIGURE_ARGS+=	--enable-nls
-PLIST_SUB+=		NLS=""
-.else
-CONFIGURE_ARGS+=	--disable-nls
-PLIST_SUB+=		NLS="@comment "
-.endif
-
-
-do-install:
-	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/${PORTNAME} ${NAS4FREE_ROOTFS}/usr/local/bin
+post-install:
+# NAS4Free install
 	@${INSTALL_SCRIPT} -v ${FILESDIR}/${PORTNAME}.in ${NAS4FREE_ROOTFS}/etc/rc.d/${PORTNAME}
+	@${INSTALL_PROGRAM} -v ${STAGEDIR}${PREFIX}/bin/msmtp ${NAS4FREE_ROOTFS}/usr/local/bin
 
 .include <bsd.port.mk>

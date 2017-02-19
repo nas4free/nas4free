@@ -3,7 +3,7 @@
 #This script does create the rootfs.
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 
@@ -68,7 +68,14 @@ mkdir etc/defaults ;
 mkdir etc/devd ;
 mkdir etc/inc ;
 mkdir etc/install ;
+mkdir etc/newsyslog.conf.d ;
+mkdir -m 0700 etc/ntp ;
 mkdir etc/pam.d ;
+mkdir etc/periodic ;
+mkdir etc/periodic/daily ;
+mkdir etc/periodic/monthly ;
+mkdir etc/periodic/security ;
+mkdir etc/periodic/weekly ;
 mkdir etc/ssh ;
 mkdir etc/ssl ;
 mkdir etc/rc.d ;
@@ -85,6 +92,8 @@ mkdir usr/bin ;
 mkdir usr/lib ;
 mkdir usr/lib/aout ;
 mkdir usr/libexec ;
+mkdir usr/libexec/bsdconfig ;
+mkdir usr/libexec/bsdconfig/include ;
 mkdir usr/local ;
 mkdir usr/local/bin;
 mkdir usr/local/lib ;
@@ -95,10 +104,15 @@ mkdir usr/local/share/locale ;
 mkdir usr/local/etc ;
 mkdir usr/local/etc/php ;
 mkdir usr/local/etc/rc.d ;
+mkdir usr/local/etc/newsyslog.conf.d ;
 mkdir usr/local/www ;
+mkdir usr/local/www/css ;
+mkdir usr/local/www/images ;
 mkdir usr/local/www/syntaxhighlighter ;
+mkdir usr/local/www/third-party_licenses ;
 mkdir usr/sbin ;
 mkdir usr/share ;
+mkdir usr/share/bsdconfig ;
 mkdir usr/share/examples ;
 mkdir usr/share/examples/bhyve ;
 mkdir usr/share/misc ;
@@ -129,6 +143,7 @@ ln -s /var/etc/hosts etc/hosts
 ln -s /var/etc/crontab etc/crontab
 ln -s /var/etc/syslog.conf etc/syslog.conf
 ln -s /var/etc/ssh/sshd_config etc/ssh/sshd_config
+ln -s /var/etc/ssh/ssh_host_rsa_key etc/ssh/ssh_host_rsa_key
 ln -s /var/etc/ssh/ssh_host_dsa_key etc/ssh/ssh_host_dsa_key
 ln -s /var/etc/pam.d/ftp etc/pam.d/ftp
 ln -s /var/etc/pam.d/ftp etc/pam.d/proftpd

@@ -3,11 +3,7 @@
 	diag_infos_ad.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("MS Active Directory"));
+$pgtitle = array(gtext("Diagnostics"), gtext("Information"), gtext("MS Active Directory"));
 
 if (!isset($config['ad']) || !is_array($config['ad']))
 	$config['ad'] = array();
@@ -48,56 +45,57 @@ if (!isset($config['ad']) || !is_array($config['ad']))
   <tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabinact"><a href="diag_infos.php"><span><?=gettext("Disks");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ata.php"><span><?=gettext("Disks (ATA)");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_part.php"><span><?=gettext("Partitions");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_smart.php"><span><?=gettext("S.M.A.R.T.");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_space.php"><span><?=gettext("Space Used");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gettext("Mounts");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_raid.php"><span><?=gettext("Software RAID");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos.php"><span><?=gtext("Disks");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_ata.php"><span><?=gtext("Disks (ATA)");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_part.php"><span><?=gtext("Partitions");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_smart.php"><span><?=gtext("S.M.A.R.T.");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_space.php"><span><?=gtext("Space Used");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gtext("Mounts");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_raid.php"><span><?=gtext("Software RAID");?></span></a></li>
 		  </ul>
 	  </td>
 	</tr>
   <tr>
 		<td class="tabnavtbl">
 		  <ul id="tabnav2">
-				<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gettext("iSCSI Initiator");?></span></a></li>
-				<li class="tabact"><a href="diag_infos_ad.php" title="<?=gettext("Reload page");?>"><span><?=gettext("MS Domain");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gettext("CIFS/SMB");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ftpd.php"><span><?=gettext("FTP");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_rsync_client.php"><span><?=gettext("RSYNC Client");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_swap.php"><span><?=gettext("Swap");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gettext("Sockets");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ups.php"><span><?=gettext("UPS");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gtext("iSCSI Initiator");?></span></a></li>
+				<li class="tabact"><a href="diag_infos_ad.php" title="<?=gtext("Reload page");?>"><span><?=gtext("MS Domain");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gtext("CIFS/SMB");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_ftpd.php"><span><?=gtext("FTP");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_rsync_client.php"><span><?=gtext("RSYNC Client");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_swap.php"><span><?=gtext("Swap");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gtext("Sockets");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_ipmi.php"><span><?=gtext('IPMI Stats');?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_ups.php"><span><?=gtext("UPS");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabcont">
 			<table width="100%" border="0">
-				<?php html_titleline(gettext("MS Active Directory informations"));?>
+				<?php html_titleline(gtext("MS Active Directory Information & Status"));?>
 				<tr>
 					<td>
 						<?php if (!isset($config['ad']['enable'])):?>
-						<pre><?=gettext("AD authentication disabled");?></pre>
+						<pre><?=gtext("AD authentication disabled");?></pre>
 						<?php else:?>
 						<pre><?php
-						echo gettext("Results for net rpc testjoin:") . "<br />";
+						echo gtext("Results for net rpc testjoin:") . "<br />";
 						exec("/usr/local/bin/net rpc testjoin -S {$config['ad']['domaincontrollername']} 2>&1", $rawdata);
 						echo htmlspecialchars(implode("\n", $rawdata));
 						unset($rawdata);
-						echo "<br />" . gettext("Ping winbindd to see if it is alive:") . "<br />";
+						echo "<br />" . gtext("Ping winbindd to see if it is alive:") . "<br />";
 						exec("/usr/local/bin/wbinfo -p 2>&1", $rawdata);
 						echo htmlspecialchars(implode("\n", $rawdata));
 						unset($rawdata);
-						echo "<br />" . gettext("Check shared secret:") . "<br />";
+						echo "<br />" . gtext("Check shared secret:") . "<br />";
 						exec("/usr/local/bin/wbinfo -t 2>&1", $rawdata);
 						echo htmlspecialchars(implode("\n", $rawdata));
 						unset($rawdata);
 						?></pre>
 					</td>
 				</tr>
-				<?php html_titleline(gettext("List of imported users"));?>
+				<?php html_titleline(gtext("List Imported Users"));?>
 				<tr>
 					<td>
 						<pre><?php

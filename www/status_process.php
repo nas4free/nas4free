@@ -3,11 +3,7 @@
 	status_process.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,10 +34,10 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Status"), gettext("Processes"));
+$pgtitle = array(gtext("Status"), gtext("Processes"));
 
 function get_process_info() {
-	exec("top -b 20", $result);
+	exec("top -b 23", $result);
 	return implode("\n", $result);
 }
 
@@ -63,10 +60,10 @@ $(document).ready(function(){
   <tr>
     <td class="tabcont">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<?php html_titleline(gettext("Processes information"));?>
+				<?php html_titleline(gtext("Processes Information"));?>
 			  <tr>
 			    <td class="listt">
-			    	<pre><textarea style="width: 98%;" id="procinfo" name="procinfo" class="listcontent" cols="95" rows="30" readonly="readonly"></textarea></pre>
+			    	<pre><textarea style="width: 98%;" id="procinfo" name="procinfo" class="listcontent" cols="95" rows="34" readonly="readonly"></textarea></pre>
 			    </td>
 			  </tr>
 			</table>

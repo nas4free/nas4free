@@ -3,11 +3,7 @@
 	disks_crypt_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Disks"),gettext("Encryption"),gettext("Add"));
+$pgtitle = array(gtext("Disks"),gtext("Encryption"),gtext("Add"));
 
 if (!isset($config['geli']['vdisk']) || !is_array($config['geli']['vdisk']))
 	$config['geli']['vdisk'] = array();
@@ -50,12 +47,12 @@ $a_alldisk = get_conf_all_disks_list_filtered();
 
 // Check whether there are disks configured, othersie display a error message.
 if (!count($a_alldisk)) {
-	$nodisks_error = gettext("You must add disks first.");
+	$nodisks_error = gtext("You must add disks first.");
 }
 
 // Check if protocol is HTTPS, otherwise display a warning message.
 if ("http" === $config['system']['webgui']['protocol']) {
-	$nohttps_error = gettext("You should use HTTPS as WebGUI protocol for sending passphrase.");
+	$nohttps_error = gtext("You should use HTTPS as WebGUI protocol for sending passphrase.");
 }
 
 if ($_POST) {
@@ -70,17 +67,17 @@ if ($_POST) {
 
 	// Input validation.
   $reqdfields = explode(" ", "disk ealgo passphrase passphraseconf");
-  $reqdfieldsn = array(gettext("Disk"),gettext("Encryption algorithm"),gettext("Passphrase"),gettext("Passphrase"));
+  $reqdfieldsn = array(gtext("Disk"),gtext("Encryption algorithm"),gtext("Passphrase"),gtext("Passphrase"));
   do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	// Check for duplicate disks.
 	if (array_search_ex("{$_POST['disk']}.eli", $a_geli, "devicespecialfile")) {
-		$input_errors[] = gettext("This disk already exists in the disk list.");
+		$input_errors[] = gtext("This disk already exists in the disk list.");
 	}
 
 	// Check for a passphrase mismatch.
 	if ($_POST['passphrase'] !== $_POST['passphraseconf']) {
-		$input_errors[] = gettext("Passphrase don't match.");
+		$input_errors[] = gtext("Passphrase don't match.");
 	}
 
 	if (0 != mwexec("/sbin/kldstat -q -m aesni")) {
@@ -96,7 +93,9 @@ if ($_POST) {
 
 		// Check whether disk is mounted.
 		if (disks_ismounted_ex($pconfig['devicespecialfile'], "devicespecialfile")) {
-			$errormsg = sprintf( gettext("The disk is currently mounted! <a href='%s'>Unmount</a> this disk first before proceeding."), "disks_mount_tools.php?disk={$pconfig['devicespecialfile']}&action=umount");
+			$helpinghand = sprintf('disks_mount_tools.php?disk=%1$s&action=umount', $pconfig['devicespecialfile']);
+			$link = sprintf('<a href="%1$s">%2$s</a>', $helpinghand, gtext('Unmount this disk first before proceeding.'));
+			$errormsg = gtext('The disk is currently mounted!') . ' ' . $link;
 			$pconfig['do_action'] = false;
 		}
 
@@ -168,24 +167,24 @@ function ealgo_change() {
 	<tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-        <li class="tabact"><a href="disks_crypt.php" title="<?=gettext("Reload page");?>" ><span><?=gettext("Management");?></span></a></li>
-        <li class="tabinact"><a href="disks_crypt_tools.php"><span><?=gettext("Tools");?></span></a></li>
+        <li class="tabact"><a href="disks_crypt.php" title="<?=gtext('Reload page');?>" ><span><?=gtext("Management");?></span></a></li>
+        <li class="tabinact"><a href="disks_crypt_tools.php"><span><?=gtext("Tools");?></span></a></li>
       </ul>
     </td>
   </tr>
   <tr>
     <td class="tabcont">
-			<form action="disks_crypt_edit.php" method="post" name="iform" id="iform">
+			<form action="disks_crypt_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($nohttps_error)) print_warning_box($nohttps_error);?>
 				<?php if (!empty($nodisks_error)) print_error_box($nodisks_error);?>
 				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
 			    <tr>
-			      <td valign="top" class="vncellreq"><?=gettext("Disk");?></td>
+			      <td valign="top" class="vncellreq"><?=gtext("Disk");?></td>
 			      <td class="vtable">
 							<select name="disk" class="formfld" id="disk">
-								<option value=""><?=gettext("Must choose one");?></option>
+								<option value=""><?=gtext("Must choose one");?></option>
 								<?php $i = -1; foreach ($a_alldisk as $diskv):?>
 								<?php ++$i;?>
 								<?php if (0 == strcmp($diskv['class'], "geli")) continue;?>
@@ -201,7 +200,7 @@ function ealgo_change() {
 					<?php
 					/* Remove Data Intergrity Algorithhm : there is a bug when enabled
 					<tr>
-						<td valign="top" class="vncellreq"><?=gettext("Data integrity algorithm");?></td>
+						<td valign="top" class="vncellreq"><?=gtext("Data integrity algorithm");?></td>
 			      <td class="vtable">
 			        <select name="aalgo" class="formfld" id="aalgo">
 								<option value="none" <?php if ($pconfig['aalgo'] === "none") echo "selected=\"selected\""; ?>>none</option>
@@ -217,29 +216,29 @@ function ealgo_change() {
 					*/
 					?>
 					<?php $options = array("AES" => "AES-XTS", "AES-CBC" => "AES-CBC", "Blowfish" => "Blowfish", "Camellia" => "Camellia", "3DES" => "3DES");?>
-					<?php html_combobox("ealgo", gettext("Encryption algorithm"), $pconfig['ealgo'], $options, gettext("Encryption algorithm to use."), true, false, "ealgo_change()");?>
-					<?php $options = array("" => gettext("Default"), 128 => "128", 192 => "192", 256 => "256", 448 => "448");?>
-					<?php html_combobox("keylen", gettext("Key length"), $pconfig['keylen'], $options, gettext("Key length to use with the given cryptographic algorithm.") . " " . gettext("The default key lengths are: 128 for AES, 128 for Blowfish, 128 for Camellia and 192 for 3DES."), false);?>
-					<?php html_passwordconfbox("passphrase", "passphraseconf", gettext("Passphrase"), "", "", "", true);?>
-					<?php html_checkbox("init", gettext("Initialize"), $pconfig['init'] ? true : false, gettext("Initialize and encrypt disk."), gettext("This will erase ALL data on your disk! Do not use this option if you want to add an existing encrypted disk."));?>
+					<?php html_combobox("ealgo", gtext("Encryption algorithm"), $pconfig['ealgo'], $options, gtext("Encryption algorithm to use."), true, false, "ealgo_change()");?>
+					<?php $options = array("" => gtext("Default"), 128 => "128", 192 => "192", 256 => "256", 448 => "448");?>
+					<?php html_combobox("keylen", gtext("Key length"), $pconfig['keylen'], $options, gtext("Key length to use with the given cryptographic algorithm.") . " " . gtext("The default key lengths are: 128 for AES, 128 for Blowfish, 128 for Camellia and 192 for 3DES."), false);?>
+					<?php html_passwordconfbox("passphrase", "passphraseconf", gtext("Passphrase"), "", "", "", true);?>
+					<?php html_checkbox("init", gtext("Initialize"), $pconfig['init'] ? true : false, gtext("Initialize and encrypt disk."), gtext("This will erase ALL data on your disk! Do not use this option if you want to add an existing encrypted disk."));?>
 			  </table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Add");?>" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Add");?>" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 				</div>
 				<?php if ($pconfig['do_action']) {
-				echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
+				echo(sprintf("<div id='cmdoutput'>%s</div>", gtext("Command output:")));
 				echo('<pre class="cmdoutput">');
 				//ob_end_flush();
 
 				if (isset($pconfig['init']) && true === $pconfig['init']) {
 					// Initialize and encrypt the disk.
-					echo sprintf(gettext("Encrypting '%s'... Please wait") . "!<br />", $pconfig['devicespecialfile']);
+					echo sprintf(gtext("Encrypting '%s'... Please wait") . "!<br />", $pconfig['devicespecialfile']);
 					disks_geli_init($pconfig['devicespecialfile'], $pconfig['aalgo'], $pconfig['ealgo'], $pconfig['keylen'], $pconfig['passphrase'], true);
 				}
 
 				// Attach the disk.
-				echo(sprintf(gettext("Attaching provider '%s'."), $pconfig['devicespecialfile']) . "<br />");
+				echo(sprintf(gtext("Attaching provider '%s'."), $pconfig['devicespecialfile']) . "<br />");
 				disks_geli_attach($pconfig['devicespecialfile'], $pconfig['passphrase'], true);
 
 				echo('</pre>');

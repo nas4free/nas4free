@@ -3,11 +3,7 @@
 	services_rsyncd_local.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Services"), gettext("Rsync"), gettext("Local"));
+$pgtitle = array(gtext("Services"), gtext("Rsync"), gtext("Local"));
 
 if ($_POST) {
 	$pconfig = $_POST;
@@ -101,9 +98,9 @@ function rsynclocal_process_updatenotification($mode, $data) {
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabinact"><a href="services_rsyncd.php"><span><?=gettext("Server") ;?></span></a></li>
-				<li class="tabinact"><a href="services_rsyncd_client.php"><span><?=gettext("Client") ;?></span></a></li>
-				<li class="tabact"><a href="services_rsyncd_local.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Local") ;?></span></a></li>
+				<li class="tabinact"><a href="services_rsyncd.php"><span><?=gtext("Server") ;?></span></a></li>
+				<li class="tabinact"><a href="services_rsyncd_client.php"><span><?=gtext("Client") ;?></span></a></li>
+				<li class="tabact"><a href="services_rsyncd_local.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Local") ;?></span></a></li>
 			</ul>
 		</td>
 	</tr>
@@ -114,10 +111,10 @@ function rsynclocal_process_updatenotification($mode, $data) {
         <?php if (updatenotify_exists("rsynclocal")) print_config_change_box();?>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="25%" class="listhdrlr"><?=gettext("Source share");?></td>
-						<td width="25%" class="listhdrr"><?=gettext("Destination share");?></td>
-						<td width="10%" class="listhdrr"><?=gettext("Who");?></td>
-						<td width="30%" class="listhdrr"><?=gettext("Description");?></td>
+            <td width="25%" class="listhdrlr"><?=gtext("Source Share");?></td>
+						<td width="25%" class="listhdrr"><?=gtext("Destination Share");?></td>
+						<td width="10%" class="listhdrr"><?=gtext("Who");?></td>
+						<td width="30%" class="listhdrr"><?=gtext("Description");?></td>
             <td width="10%" class="list"></td>
           </tr>
   			  <?php foreach($a_rsynclocal as $rsynclocal):?>
@@ -130,19 +127,19 @@ function rsynclocal_process_updatenotification($mode, $data) {
 						<td class="listbg"><?=htmlspecialchars($rsynclocal['description']);?>&nbsp;</td>
 						<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
             <td valign="middle" nowrap="nowrap" class="list">
-							<a href="services_rsyncd_local_edit.php?uuid=<?=$rsynclocal['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit Rsync job");?>" border="0" alt="<?=gettext("Edit Rsync job");?>" /></a>&nbsp;
-              <a href="services_rsyncd_local.php?act=del&amp;uuid=<?=$rsynclocal['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this Rsync job?");?>')"><img src="x.gif" title="<?=gettext("Delete Rsync job");?>" border="0" alt="<?=gettext("Delete Rsync job");?>" /></a>
+							<a href="services_rsyncd_local_edit.php?uuid=<?=$rsynclocal['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit Rsync job");?>" border="0" alt="<?=gtext("Edit Rsync job");?>" /></a>&nbsp;
+              <a href="services_rsyncd_local.php?act=del&amp;uuid=<?=$rsynclocal['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this Rsync job?");?>')"><img src="images/delete.png" title="<?=gtext("Delete Rsync job");?>" border="0" alt="<?=gtext("Delete Rsync job");?>" /></a>
             </td>
             <?php else:?>
 						<td valign="middle" nowrap="nowrap" class="list">
-							<img src="del.gif" border="0" alt="" />
+							<img src="images/delete.png" border="0" alt="" />
 						</td>
 						<?php endif;?>
           </tr>
           <?php endforeach;?>
           <tr> 
             <td class="list" colspan="4"></td>
-            <td class="list"><a href="services_rsyncd_local_edit.php"><img src="plus.gif" title="<?=gettext("Add Rsync job");?>" border="0" alt="<?=gettext("Add Rsync job");?>" /></a></td>
+            <td class="list"><a href="services_rsyncd_local_edit.php"><img src="images/add.png" title="<?=gtext("Add Rsync job");?>" border="0" alt="<?=gtext("Add Rsync job");?>" /></a></td>
 			    </tr>
         </table>
         <?php include("formend.inc");?>

@@ -1,0 +1,10 @@
+/*
+	cdialog upgrade-notes.txt
+*/
+
+- After port upgrade do check if:
+  In file /build/nas4free-mdlocal-mini.files:
+  The same libcdialog.so.* version is used as in /build/ports/cdialog/work/dialog-*/.libs/libcdialog.so.*
+  Some menu options on livecd/usb gets broken if they can't find the correct libcdialog.so.* version.
+ 
+

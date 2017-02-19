@@ -3,11 +3,7 @@
 	disks_mount_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -42,7 +39,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Disks"), gettext("Mount Point"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Disks"), gtext("Mount Point"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
 if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
 	$config['mounts']['mount'] = array();
@@ -52,7 +49,7 @@ $a_mount = &$config['mounts']['mount'];
 
 function get_all_hast() {
 	$a = array();
-	$a[''] = gettext("Must choose one");
+	$a[''] = gtext("Must choose one");
 	mwexec2("hastctl dump | grep resource", $rawdata);
 	foreach ($rawdata as $line) {
 		$hast = preg_split("/\s/", $line);
@@ -148,13 +145,13 @@ if ($_POST) {
 	switch ($_POST['type']) {
 		case "disk":
 			$reqdfields = explode(" ", "mdisk partitiontype fstype sharename");
-			$reqdfieldsn = array(gettext("Disk"), gettext("Partition type"), gettext("File system"), gettext("Mount point name"));
+			$reqdfieldsn = array(gtext("Disk"), gtext("Partition type"), gtext("File system"), gtext("Mount point name"));
 			$reqdfieldst = explode(" ", "string string string string");
 			switch ($_POST['partitiontype']) {
 				case 'p':
 				case 's':
 					$reqdfields = array_merge($reqdfields, explode(" ", "partitionnum"));
-					$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Partition number")));
+					$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Partition number")));
 					$reqdfieldst = array_merge($reqdfieldst, explode(" ", "numeric"));
 					break;
 			}
@@ -162,13 +159,13 @@ if ($_POST) {
 
 		case "hvol":
 			$reqdfields = explode(" ", "hvol partitiontype fstype sharename");
-			$reqdfieldsn = array(gettext("HAST volume"), gettext("Partition type"), gettext("File system"), gettext("Mount point name"));
+			$reqdfieldsn = array(gtext("HAST volume"), gtext("Partition type"), gtext("File system"), gtext("Mount point name"));
 			$reqdfieldst = explode(" ", "string string string string");
 			switch ($_POST['partitiontype']) {
 				case 'p':
 				case 's':
 					$reqdfields = array_merge($reqdfields, explode(" ", "partitionnum"));
-					$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Partition number")));
+					$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Partition number")));
 					$reqdfieldst = array_merge($reqdfieldst, explode(" ", "numeric"));
 					break;
 			}
@@ -176,13 +173,13 @@ if ($_POST) {
 
 		case "iso":
 			$reqdfields = explode(" ", "filename sharename");
-			$reqdfieldsn = array(gettext("Filename"), gettext("Mount point name"));
+			$reqdfieldsn = array(gtext("Filename"), gtext("Mount point name"));
 			$reqdfieldst = explode(" ", "string string");
 			break;
 
 		case "custom":
 			$reqdfields = explode(" ", "devname fstype sharename");
-			$reqdfieldsn = array(gettext("Device / Label"), gettext("File system"), gettext("Mount point name"));
+			$reqdfieldsn = array(gtext("Device / Label"), gtext("File system"), gtext("Mount point name"));
 			$reqdfieldst = explode(" ", "string string string");
 			break;
 	}
@@ -191,17 +188,17 @@ if ($_POST) {
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if (($_POST['sharename'] && !is_validsharename($_POST['sharename']))) {
-		$input_errors[] = sprintf(gettext("The attribute '%s' may only consist of the characters a-z, A-Z, 0-9, _ , -."), gettext("Name"));
+		$input_errors[] = sprintf(gtext("The attribute '%s' may only consist of the characters a-z, A-Z, 0-9, _ , -."), gtext("Name"));
 	}
 
 	if (($_POST['desc'] && !is_validdesc($_POST['desc']))) {
-		$input_errors[] = sprintf(gettext("The attribute '%s' contains invalid characters."), gettext("Description"));
+		$input_errors[] = sprintf(gtext("The attribute '%s' contains invalid characters."), gtext("Description"));
 	}
 
 	// Do some 'disk' specific checks.
 	if ("disk" === $_POST['type']) {
 		if (($_POST['partition'] == "p1") && (($_POST['fstype'] == "msdosfs") || ($_POST['fstype'] == "cd9660")))  {
-			$input_errors[] = gettext("EFI/GPT partition can be use with UFS only.");
+			$input_errors[] = gtext("EFI/GPT partition can be use with UFS only.");
 		}
 
 		$device = "{$_POST['mdisk']}{$_POST['partition']}";
@@ -213,7 +210,7 @@ if ($_POST) {
 			}
 		}
 		if ($device === $cfdevice) {
-			$input_errors[] = gettext("Can't mount the system partition 1, the DATA partition is the 2.");
+			$input_errors[] = gtext("Can't mount the system partition 1, the DATA partition is the 2.");
 		}
 		//Check if partition exist
 		if (($_POST['fstype'] == "exfat") && (($_POST['partition'] == "p1") || ($_POST['partition'] == "s1"))) {
@@ -223,7 +220,7 @@ if ($_POST) {
 				$device = "{$_POST['mdisk']}{$_POST['partition']}";
 			}
 		} else if (!file_exists($device)) {
-			$input_errors[] = gettext("Wrong partition type or partition number.");
+			$input_errors[] = gtext("Wrong partition type or partition number.");
 		}
 
 		// get rawuuid
@@ -238,7 +235,7 @@ if ($_POST) {
 			$out = array();
 			$ufsid = disks_get_ufsid($device, $out);
 			if (empty($ufsid)) {
-				$input_errors[] = sprintf("%s: %s", $device, gettext("Can't get UFS ID."))."<br />".join('<br />', $out);
+				$input_errors[] = sprintf("%s: %s", $device, gtext("Can't get UFS ID."))."<br />".join('<br />', $out);
 			} else {
 				$device = "/dev/ufsid/$ufsid";
 			}
@@ -247,15 +244,15 @@ if ($_POST) {
 	// HAST volume specific
 	if ("hvol" === $_POST['type']) {
 		if ($_POST['partitiontype'] != 'p') {
-			$input_errors[] = gettext("HAST volume can be use with GPT/UFS only.");
+			$input_errors[] = gtext("HAST volume can be use with GPT/UFS only.");
 		}
 		$device = "{$_POST['hvol']}{$_POST['partition']}";
 		if ($device === $cfdevice) {
-			$input_errors[] = gettext("Can't mount the system partition 1, the DATA partition is the 2.");
+			$input_errors[] = gtext("Can't mount the system partition 1, the DATA partition is the 2.");
 		}
 		//Check if partition exist
 		if (!file_exists($device)) {
-			$input_errors[] = gettext("Wrong partition type or partition number.");
+			$input_errors[] = gtext("Wrong partition type or partition number.");
 		}
 
 		// get rawuuid
@@ -270,7 +267,7 @@ if ($_POST) {
 			$out = array();
 			$ufsid = disks_get_ufsid($device, $out);
 			if (empty($ufsid)) {
-				$input_errors[] = sprintf("%s: %s", $device, gettext("Can't get UFS ID."))."<br />".join('<br />', $out);
+				$input_errors[] = sprintf("%s: %s", $device, gtext("Can't get UFS ID."))."<br />".join('<br />', $out);
 			} else {
 				$device = "/dev/ufsid/$ufsid";
 			}
@@ -279,12 +276,12 @@ if ($_POST) {
 
 	// Check if it is a valid ISO image.
 	if (("iso" === $_POST['type']) && (FALSE === util_is_iso_image($_POST['filename']))) {
-		$input_errors[] = gettext("Selected file isn't an valid ISO file.");
+		$input_errors[] = gtext("Selected file isn't an valid ISO file.");
 	}
 
 	// Check if custom device exists.
 	if (("custom" === $_POST['type']) && !file_exists($_POST['devname'])) {
-		$input_errors[] = gettext("Selected device or label does not exist.");
+		$input_errors[] = gtext("Selected device or label does not exist.");
 	}
 
 	// Check for duplicates.
@@ -293,7 +290,7 @@ if ($_POST) {
 			if (isset($uuid) && (FALSE !== $cnid) && ($mount['uuid'] === $uuid)) 
 				continue;
 			if (($mount['mdisk'] === $_POST['mdisk']) && ($mount['partition'] === $_POST['partition'])) {
-				$input_errors[] = gettext("The disk/partition is already configured.");
+				$input_errors[] = gtext("The disk/partition is already configured.");
 				break;
 			}
 		}
@@ -303,7 +300,7 @@ if ($_POST) {
 			if (isset($uuid) && (FALSE !== $cnid) && ($mount['uuid'] === $uuid)) 
 				continue;
 			if (($mount['mdisk'] === $_POST['hvol']) && ($mount['partition'] === $_POST['partition'])) {
-				$input_errors[] = gettext("The disk/partition is already configured.");
+				$input_errors[] = gtext("The disk/partition is already configured.");
 				break;
 			}
 		}
@@ -314,7 +311,7 @@ if ($_POST) {
 	if (FALSE !== $index) {
 		// Ensure we do not check the current processed mount point itself.
 		if (!((FALSE !== $cnid) && ($a_mount[$cnid]['uuid'] === $a_mount[$index]['uuid']))) {
-			$input_errors[] = gettext("Duplicate mount point name.");
+			$input_errors[] = gtext("Duplicate mount point name.");
 		}
 	}
 
@@ -554,27 +551,27 @@ function enable_change(enable_change) {
 // -->
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-        <li class="tabact"><a href="disks_mount.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Management");?></span></a></li>
-        <li class="tabinact"><a href="disks_mount_tools.php"><span><?=gettext("Tools");?></span></a></li>
-        <li class="tabinact"><a href="disks_mount_fsck.php"><span><?=gettext("Fsck");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-			<form action="disks_mount_edit.php" method="post" name="iform" id="iform">
+	<tr>
+		<td class="tabnavtbl">
+			<ul id="tabnav">
+				<li class="tabact"><a href="disks_mount.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Management");?></span></a></li>
+				<li class="tabinact"><a href="disks_mount_tools.php"><span><?=gtext("Tools");?></span></a></li>
+				<li class="tabinact"><a href="disks_mount_fsck.php"><span><?=gtext("Fsck");?></span></a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="tabcont">
+			<form action="disks_mount_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline(gettext("Settings"));?>
-					<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("disk" => gettext("Disk"), "hvol" => gettext("HAST volume"), "iso" => "ISO", "custom" => gettext("Custom device")), "", true, false, "type_change()");?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<?php html_titleline(gtext("Settings"));?>
+					<?php html_combobox("type", gtext("Type"), $pconfig['type'], array("disk" => gtext("Disk"), "hvol" => gtext("HAST volume"), "iso" => "ISO", "custom" => gtext("Custom device")), "", true, false, "type_change()");?>
 					<tr id="mdisk_tr">
-			      <td width="22%" valign="top" class="vncellreq"><?=gettext("Disk");?></td>
-			      <td class="vtable">
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Disk");?></td>
+						<td class="vtable">
 							<select name="mdisk" class="formfld" id="mdisk">
-								<option value=""><?=gettext("Must choose one");?></option>
+								<option value=""><?=gtext("Must choose one");?></option>
 								<?php foreach ($a_disk as $diskv):?>
 								<?php if ($diskv['type'] == 'HAST') continue; ?>
 								<option value="<?=$diskv['devicespecialfile'];?>" <?php if ($pconfig['mdisk'] === $diskv['devicespecialfile']) echo "selected=\"selected\"";?>>
@@ -582,74 +579,88 @@ function enable_change(enable_change) {
 								</option>
 								<?php endforeach;?>
 							</select>
-			      </td>
-			    </tr>
-			    <?php html_combobox("hvol", gettext("HAST volume"), $pconfig['hvol'], $a_hast, "", true);?>
-			    <?php html_inputbox("devname", gettext("Device / Label"), !empty($pconfig['devname']) ? $pconfig['devname'] : "", gettext("You may enter a device file or label path."), true, 60);?>
-			    <tr id="partitiontype_tr">
-			      <td width="22%" valign="top" class="vncellreq"><?=gettext("Partition type");?></td>
-			      <td class="vtable">
+						</td>
+					</tr>
+					<?php html_combobox("hvol", gtext("HAST volume"), $pconfig['hvol'], $a_hast, "", true);?>
+					<?php html_inputbox("devname", gtext("Device / Label"), !empty($pconfig['devname']) ? $pconfig['devname'] : "", gtext("You may enter a device file or label path."), true, 60);?>
+					<tr id="partitiontype_tr">
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Partition type");?></td>
+						<td class="vtable">
 							<select name="partitiontype" class="formfld" id="partitiontype" onclick="partitiontype_change()">
-								<option value="p" <?php if ($pconfig['partitiontype'] === "p") echo "selected=\"selected\"";?>><?=gettext("GPT partition");?></option>
-								<option value="s" <?php if ($pconfig['partitiontype'] === "s") echo "selected=\"selected\"";?>><?=gettext("MBR partition");?></option>
-								<option value=" " <?php if (empty($pconfig['partitiontype'])) echo "selected=\"selected\"";?>><?=gettext("CD/DVD");?></option>
+								<option value="p" <?php if ($pconfig['partitiontype'] === "p") echo "selected=\"selected\"";?>><?=gtext("GPT partition");?></option>
+								<option value="s" <?php if ($pconfig['partitiontype'] === "s") echo "selected=\"selected\"";?>><?=gtext("MBR partition");?></option>
+								<option value=" " <?php if (empty($pconfig['partitiontype'])) echo "selected=\"selected\"";?>><?=gtext("CD/DVD");?></option>
 							</select><br />
-							<span class="vexpl"><?=gettext("<b>EFI GPT partition</b> if you want to mount a GPT formatted drive (<b>default partition</b>).<br/><b>MBR partition</b> if you want to mount a UFS formatted drive or do imported disks from other OS.<br/><b>CD/DVD volume</b> if you want to mount a CD/DVD volume.");?></span>
-			      </td>
-			    </tr>
-					<?php html_inputbox("partitionnum", gettext("Partition number"), $pconfig['partitionnum'], "", true, 3);?>
-					<?php html_combobox("fstype", gettext("File system"), !empty($pconfig['fstype']) ? $pconfig['fstype'] : "", array("ufs" => "UFS", "msdosfs" => "FAT", "cd9660" => "CD/DVD", "ntfs" => "NTFS", "ext2fs" => "EXT2", "exfat" => "exFAT"), "", true, false, "fstype_change()");?>
-					<?php html_filechooser("filename", "Filename", !empty($pconfig['filename']) ? $pconfig['filename'] : "", gettext("ISO file to be mounted."), $g['media_path'], true);?>
-					<?php html_inputbox("sharename", gettext("Mount point name"), !empty($pconfig['sharename']) ? $pconfig['sharename'] : "", "", true, 20);?>
-					<?php html_inputbox("desc", gettext("Description"), !empty($pconfig['desc']) ? $pconfig['desc'] : "", gettext("You may enter a description here for your reference."), false, 40);?>
-					<?php html_checkbox("readonly", gettext("Read only"), !empty($pconfig['readonly']) ? true : false, gettext("Mount the file system read-only (even the super-user may not write it)."), "", false);?>
-					<?php html_checkbox("fsck", gettext("File system check"), $pconfig['fsck'] ? true : false, gettext("Enable foreground/background file system consistency check during boot process."), "", false);?>
-					<?php html_separator();?>
-					<?php html_titleline(gettext("Access Restrictions"));?>
-					<?php $a_owner = array(); foreach (system_get_user_list() as $userk => $userv) { $a_owner[$userk] = htmlspecialchars($userk); }?>
-					<?php html_combobox("owner", gettext("Owner"), $pconfig['owner'], $a_owner, "", false);?>
-					<?php $a_group = array(); foreach (system_get_group_list() as $groupk => $groupv) { $a_group[$groupk] = htmlspecialchars($groupk); }?>
-					<?php html_combobox("group", gettext("Group"), $pconfig['group'], $a_group, "", false);?>
+							<?php
+							$helpinghand = gtext("Select 'GPT partition' if you want to mount a GPT formatted drive") . '<br />'
+								. gtext("Select 'MBR partition' default partition if you want to mount a UFS formatted drive or if you want to import disks from other OS.") . '<br />'
+								. gtext("Select 'CD/DVD' if you want to mount a CD/DVD volume.");
+							?>
+							<span class="vexpl"><?=$helpinghand;?></span>
+						</td>
+					</tr>
+					<?php
+					html_inputbox("partitionnum", gtext("Partition number"), $pconfig['partitionnum'], "", true, 3);
+					html_combobox("fstype", gtext("File system"), !empty($pconfig['fstype']) ? $pconfig['fstype'] : "", array("ufs" => "UFS", "msdosfs" => "FAT", "cd9660" => "CD/DVD", "ntfs" => "NTFS", "ext2fs" => "EXT2/3", "ext4fuse" => "EXT4", "exfat" => "exFAT"), "", true, false, "fstype_change()");
+					html_filechooser("filename", "Filename", !empty($pconfig['filename']) ? $pconfig['filename'] : "", gtext("ISO file to be mounted."), $g['media_path'], true);
+					html_inputbox("sharename", gtext("Mount point name"), !empty($pconfig['sharename']) ? $pconfig['sharename'] : "", "", true, 20);
+					html_inputbox("desc", gtext("Description"), !empty($pconfig['desc']) ? $pconfig['desc'] : "", gtext("You may enter a description here for your reference."), false, 40);
+					html_checkbox("readonly", gtext("Read only"), !empty($pconfig['readonly']) ? true : false, gtext("Mount the file system read-only (even the super-user may not write it)."), "", false);
+					html_checkbox("fsck", gtext("File system check"), $pconfig['fsck'] ? true : false, gtext("Enable foreground/background file system consistency check during boot process."), "", false);
+					html_separator();
+					html_titleline(gtext("Access Restrictions"));
+					$a_owner = array(); foreach (system_get_user_list() as $userk => $userv) { $a_owner[$userk] = htmlspecialchars($userk); }
+					html_combobox("owner", gtext("Owner"), $pconfig['owner'], $a_owner, "", false);
+					$a_group = array(); foreach (system_get_group_list() as $groupk => $groupv) { $a_group[$groupk] = htmlspecialchars($groupk); }
+					html_combobox("group", gtext("Group"), $pconfig['group'], $a_group, "", false);
+					?>
 					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gettext("Mode");?></td>
-			      <td width="78%" class="vtable">
-			      	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-				        <tr>
-				        	<td width="20%" class="listhdrlr">&nbsp;</td>
-									<td width="20%" class="listhdrc"><?=gettext("Read");?></td>
-									<td width="50%" class="listhdrc"><?=gettext("Write");?></td>
-									<td width="20%" class="listhdrc"><?=gettext("Execute");?></td>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Mode");?></td>
+						<td width="78%" class="vtable">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="20%" class="listhdrlr">&nbsp;</td>
+									<td width="20%" class="listhdrc"><?=gtext("Read");?></td>
+									<td width="50%" class="listhdrc"><?=gtext("Write");?></td>
+									<td width="20%" class="listhdrc"><?=gtext("Execute");?></td>
 									<td width="10%" class="list"></td>
-				        </tr>
-				        <tr>
-									<td class="listlr"><?=gettext("Owner");?>&nbsp;</td>
+								</tr>
+								<tr>
+									<td class="listlr"><?=gtext("Owner");?>&nbsp;</td>
 									<td class="listrc" align="center"><input type="checkbox" name="mode_owner[]" id="owner_read" value="r" <?php if (in_array("r", $pconfig['mode_owner'])) echo "checked=\"checked\"";?> />&nbsp;</td>
 									<td class="listrc" align="center"><input type="checkbox" name="mode_owner[]" id="owner_write" value="w" <?php if (in_array("w", $pconfig['mode_owner'])) echo "checked=\"checked\"";?> />&nbsp;</td>
 									<td class="listrc" align="center"><input type="checkbox" name="mode_owner[]" id="owner_execute" value="x" <?php if (in_array("x", $pconfig['mode_owner'])) echo "checked=\"checked\"";?> />&nbsp;</td>
-				        </tr>
-				        <tr>
-				          <td class="listlr"><?=gettext("Group");?>&nbsp;</td>
+								</tr>
+								<tr>
+									<td class="listlr"><?=gtext("Group");?>&nbsp;</td>
 									<td class="listrc" align="center"><input type="checkbox" name="mode_group[]" id="group_read" value="r" <?php if (in_array("r", $pconfig['mode_group'])) echo "checked=\"checked\"";?> />&nbsp;</td>
 									<td class="listrc" align="center"><input type="checkbox" name="mode_group[]" id="group_write" value="w" <?php if (in_array("w", $pconfig['mode_group'])) echo "checked=\"checked\"";?> />&nbsp;</td>
 									<td class="listrc" align="center"><input type="checkbox" name="mode_group[]" id="group_execute" value="x" <?php if (in_array("x", $pconfig['mode_group'])) echo "checked=\"checked\"";?> />&nbsp;</td>
-				        </tr>
-				        <tr>
-				          <td class="listlr"><?=gettext("Others");?>&nbsp;</td>
+								</tr>
+								<tr>
+									<td class="listlr"><?=gtext("Others");?>&nbsp;</td>
 									<td class="listrc" align="center"><input type="checkbox" name="mode_others[]" id="others_read" value="r" <?php if (in_array("r", $pconfig['mode_others'])) echo "checked=\"checked\"";?> />&nbsp;</td>
 									<td class="listrc" align="center"><input type="checkbox" name="mode_others[]" id="others_write" value="w" <?php if (in_array("w", $pconfig['mode_others'])) echo "checked=\"checked\"";?> />&nbsp;</td>
 									<td class="listrc" align="center"><input type="checkbox" name="mode_others[]" id="others_execute" value="x" <?php if (in_array("x", $pconfig['mode_others'])) echo "checked=\"checked\"";?> />&nbsp;</td>
-				        </tr>
+								</tr>
 							</table>
-			      </td>
-			    </tr>
-			  </table>
+						</td>
+					</tr>
+				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" onclick="enable_change(true)" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" onclick="enable_change(true)" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 				</div>
 				<div id="remarks">
-					<?php html_remark("warning", gettext("Warning"), sprintf(gettext("You can't mount the partition '%s' where the config file is stored.<br />"),htmlspecialchars($cfdevice)) . sprintf(gettext("UFS and variants are the NATIVE file format for FreeBSD (the underlying OS of %s). Attempting to use other file formats such as FAT, FAT32, EXT2, EXT3, or NTFS can result in unpredictable results, file corruption, and loss of data!"), get_product_name()));?>
+					<?php
+					$helpinghand = sprintf(gtext("You can not mount partition '%s' where the config file is stored."),htmlspecialchars($cfdevice))
+						. '<br />'
+						. sprintf(gtext('UFS and variants are the NATIVE file format for FreeBSD (the underlying OS of %s).'), get_product_name())
+						. ' '
+						. gtext('Attempting to use other file formats such as FAT, FAT32, EXT2, EXT3, EXT4 or NTFS can result in unpredictable results, file corruption and the loss of data!');
+					html_remark("warning", gtext('Warning'), $helpinghand);
+					?>
 				</div>
 				<?php include("formend.inc");?>
 			</form>

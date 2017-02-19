@@ -1,8 +1,9 @@
 PORTNAME=		nss_ldap
 PORTVERSION=	1.0
+PORTREVISION=   0
 CATEGORIES=		net
 COMMENT=		RFC 2307 NSS module
-MAINTAINER=		zoon01@nas4free.org
+MAINTAINER=		zoon1@nas4free.org
 
 # No files are needed to be fetched.
 DISTFILES?=
@@ -14,7 +15,7 @@ NO_PKG_REGISTER?=	yes
 #ALWAYS_BUILD_DEPENDS=	yes
 DEPENDS_TARGET=	clean build
 
-BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/net/nss_ldap
+BUILD_DEPENDS=	${NONEXISTENT}:net/nss_ldap
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/net/nss_ldap/work/nss_ldap-*/nss_ldap.so ${NAS4FREE_ROOTFS}/usr/local/lib/nss_ldap.so.1

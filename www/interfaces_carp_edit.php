@@ -3,7 +3,7 @@
 	interfaces_carp_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -11,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -38,7 +39,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Network"), gettext("Interface Management"), gettext("CARP"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Network"), gtext("Interface Management"), gtext("CARP"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
 if (!isset($config['vinterfaces']['carp']) || !is_array($config['vinterfaces']['carp']))
 	$config['vinterfaces']['carp'] = array();
@@ -88,23 +89,23 @@ if ($_POST) {
 
 	// Input validation.
 	$reqdfields = explode(" ", "vipaddr vsubnet");
-	$reqdfieldsn = array(gettext("Virtual IP address"), gettext("Subnet bit count"));
+	$reqdfieldsn = array(gtext("Virtual IP address"), gtext("Subnet bit count"));
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (!empty($_POST['vipaddr']) && !is_ipv4addr($_POST['vipaddr']))
-		$input_errors[] = gettext("A valid IPv4 address must be specified.");
+		$input_errors[] = gtext("A valid IPv4 address must be specified.");
 	if (!empty($_POST['vsubnet']) && !filter_var($_POST['vsubnet'], FILTER_VALIDATE_INT, array('options' => array('min_range' => 1, 'max_range' => 32))))
-		$input_errors[] = gettext("A valid network bit count (1-32) must be specified.");
+		$input_errors[] = gtext("A valid network bit count (1-32) must be specified.");
 
 	$reqdfields = explode(" ", "vhid advskew password");
-	$reqdfieldsn = array(gettext("Virtual Host ID"), gettext("Advertisement skew"), gettext("Password"));
+	$reqdfieldsn = array(gtext("Virtual Host ID"), gtext("Advertisement skew"), gtext("Password"));
 	$reqdfieldst = explode(" ", "numericint numericint string");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if (!empty($_POST['password']) && preg_match("/\'|\"/", $_POST['password']))
-		$input_errors[] = sprintf(gettext("The attribute '%s' contains invalid characters."), gettext("Password"));
+		$input_errors[] = sprintf(gtext("The attribute '%s' contains invalid characters."), gtext("Password"));
 
 	if (empty($input_errors)) {
 		$carp = array();
@@ -155,34 +156,34 @@ function get_nextcarp_id() {
 <tr>
 	<td class="tabnavtbl">
 		<ul id="tabnav">
-			<li class="tabinact"><a href="interfaces_assign.php"><span><?=gettext("Management");?></span></a></li>
-			<li class="tabinact"><a href="interfaces_wlan.php"><span><?=gettext("WLAN");?></span></a></li>
-			<li class="tabinact"><a href="interfaces_vlan.php"><span><?=gettext("VLAN");?></span></a></li>
-			<li class="tabinact"><a href="interfaces_lagg.php"><span><?=gettext("LAGG");?></span></a></li>
-			<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gettext("Bridge");?></span></a></li>
-			<li class="tabact"><a href="interfaces_carp.php" title="<?=gettext("Reload page");?>"><span><?=gettext("CARP");?></span></a></li>
+			<li class="tabinact"><a href="interfaces_assign.php"><span><?=gtext("Management");?></span></a></li>
+			<li class="tabinact"><a href="interfaces_wlan.php"><span><?=gtext("WLAN");?></span></a></li>
+			<li class="tabinact"><a href="interfaces_vlan.php"><span><?=gtext("VLAN");?></span></a></li>
+			<li class="tabinact"><a href="interfaces_lagg.php"><span><?=gtext("LAGG");?></span></a></li>
+			<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gtext("Bridge");?></span></a></li>
+			<li class="tabact"><a href="interfaces_carp.php" title="<?=gtext('Reload page');?>"><span><?=gtext("CARP");?></span></a></li>
 		</ul>
 	</td>
 </tr>
 <tr>
 	<td class="tabcont">
-		<form action="interfaces_carp_edit.php" method="post" name="iform" id="iform">
+		<form action="interfaces_carp_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 			<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
 				<?php $a_if = array(); foreach (get_interface_list() as $ifk => $ifv) { $a_if[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); };?>
-				<?php html_combobox("if", gettext("Interface"), $pconfig['if'], $a_if, "", true);?>
-				<?php html_inputbox("vhid", gettext("Virtual Host ID"), $pconfig['vhid'], "", true, 5);?>
-				<?php html_ipv4addrbox("vipaddr", "vsubnet", gettext("Virtual IP address"), $pconfig['vipaddr'], $pconfig['vsubnet'], "", true);?>
-				<?php html_inputbox("advskew", gettext("Advertisement skew"), $pconfig['advskew'], gettext("Lowest value is higher priority. For master node, use 0 or 1. If preempt is enabled, it is adjusted to 240 on failure."), true, 5);?>
-				<?php html_inputbox("password", gettext("Password"), $pconfig['password'], "", true, 20);?>
-				<?php html_inputbox("linkup", gettext("Link up action"), $pconfig['linkup'], sprintf(gettext("Command for LINK_UP event (e.g. %s)."), $default_linkup), false, 60);?>
-				<?php html_inputbox("linkdown", gettext("Link down action"), $pconfig['linkdown'], sprintf(gettext("Command for LINK_DOWN event (e.g. %s)."), $default_linkdown), false, 60);?>
-				<?php html_inputbox("extraoptions", gettext("Extra options"), $pconfig['extraoptions'], gettext("Extra options to ifconfig (usually empty)."), false, 40);?>
-				<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
+				<?php html_combobox("if", gtext("Interface"), $pconfig['if'], $a_if, "", true);?>
+				<?php html_inputbox("vhid", gtext("Virtual Host ID"), $pconfig['vhid'], "", true, 5);?>
+				<?php html_ipv4addrbox("vipaddr", "vsubnet", gtext("Virtual IP address"), $pconfig['vipaddr'], $pconfig['vsubnet'], "", true);?>
+				<?php html_inputbox("advskew", gtext("Advertisement skew"), $pconfig['advskew'], gtext("Lowest value is higher priority. For master node, use 0 or 1. If preempt is enabled, it is adjusted to 240 on failure."), true, 5);?>
+				<?php html_inputbox("password", gtext("Password"), $pconfig['password'], "", true, 20);?>
+				<?php html_inputbox("linkup", gtext("Link up action"), $pconfig['linkup'], sprintf(gtext("Command for LINK_UP event (e.g. %s)."), $default_linkup), false, 60);?>
+				<?php html_inputbox("linkdown", gtext("Link down action"), $pconfig['linkdown'], sprintf(gtext("Command for LINK_DOWN event (e.g. %s)."), $default_linkdown), false, 60);?>
+				<?php html_inputbox("extraoptions", gtext("Extra options"), $pconfig['extraoptions'], gtext("Extra options to ifconfig (usually empty)."), false, 40);?>
+				<?php html_inputbox("desc", gtext("Description"), $pconfig['desc'], gtext("You may enter a description here for your reference."), false, 40);?>
 			</table>
 			<div id="submit">
-				<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
-				<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+				<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+				<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 				<input name="enable" type="hidden" value="<?=$pconfig['enable'];?>" />
 				<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 			</div>

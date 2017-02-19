@@ -1,0 +1,12 @@
+--- src/cmd/dist/build.go.orig	2016-08-16 00:47:58.000000000 +0200
++++ src/cmd/dist/build.go	2016-08-28 22:13:19.000000000 +0200
+@@ -128,7 +128,8 @@
+ 	b = os.Getenv("GO386")
+ 	if b == "" {
+ 		if cansse2() {
+-			b = "sse2"
++			//b = "sse2"
++			b = "387"
+ 		} else {
+ 			b = "387"
+ 		}

@@ -3,11 +3,7 @@
 	system_rc_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -47,7 +44,7 @@ if (isset($_GET['type']))
 if (isset($_POST['type']))
 	$type = $_POST['type'];
 
-$pgtitle = array(gettext("System"), gettext("Advanced"), gettext("Command scripts"), isset($id) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("System"), gtext("Advanced"), gtext("Command Scripts"), isset($id) ? gtext("Edit") : gtext("Add"));
 
 if (!isset($config['rc']['preinit']['cmd']) || !is_array($config['rc']['preinit']['cmd']))
 	$config['rc']['preinit']['cmd'] = array();
@@ -87,7 +84,7 @@ if ($_POST) {
 
 	// Input validation.
 	$reqdfields = explode(" ", "command type");
-	$reqdfieldsn = array(gettext("Command"), gettext("Type"));
+	$reqdfieldsn = array(gtext("Command"), gtext("Type"));
 	$reqdfieldst = explode(" ", "string string");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -123,29 +120,28 @@ if ($_POST) {
 	<tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-      	<li class="tabinact"><a href="system_advanced.php"><span><?=gettext("Advanced");?></span></a></li>
-      	<li class="tabinact"><a href="system_email.php"><span><?=gettext("Email");?></span></a></li>
-      	<li class="tabinact"><a href="system_proxy.php"><span><?=gettext("Proxy");?></span></a></li>
-      	<li class="tabinact"><a href="system_swap.php"><span><?=gettext("Swap");?></span></a></li>
-        <li class="tabact"><a href="system_rc.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Command scripts");?></span></a></li>
-        <li class="tabinact"><a href="system_cron.php"><span><?=gettext("Cron");?></span></a></li>
-		<li class="tabinact"><a href="system_loaderconf.php"><span><?=gettext("loader.conf");?></span></a></li>
-        <li class="tabinact"><a href="system_rcconf.php"><span><?=gettext("rc.conf");?></span></a></li>
-        <li class="tabinact"><a href="system_sysctl.php"><span><?=gettext("sysctl.conf");?></span></a></li>
+      	<li class="tabinact"><a href="system_advanced.php"><span><?=gtext("Advanced");?></span></a></li>
+      	<li class="tabinact"><a href="system_email.php"><span><?=gtext("Email");?></span></a></li>
+      	<li class="tabinact"><a href="system_swap.php"><span><?=gtext("Swap");?></span></a></li>
+        <li class="tabact"><a href="system_rc.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Command Scripts");?></span></a></li>
+        <li class="tabinact"><a href="system_cron.php"><span><?=gtext("Cron");?></span></a></li>
+		<li class="tabinact"><a href="system_loaderconf.php"><span><?=gtext("loader.conf");?></span></a></li>
+        <li class="tabinact"><a href="system_rcconf.php"><span><?=gtext("rc.conf");?></span></a></li>
+        <li class="tabinact"><a href="system_sysctl.php"><span><?=gtext("sysctl.conf");?></span></a></li>
       </ul>
     </td>
   </tr>
   <tr>
     <td class="tabcont">
-			<form action="system_rc_edit.php" method="post" name="iform" id="iform">
+			<form action="system_rc_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_inputbox("command", gettext("Command"), $pconfig['command'], gettext("The command to be executed."), true, 60);?>
-					<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("PREINIT" => "PreInit", "POSTINIT" => "PostInit", "SHUTDOWN" => "Shutdown"), gettext("Execute command pre or post system initialization (booting) or before system shutdown."), true, isset($pconfig['type']));?>
+					<?php html_inputbox("command", gtext("Command"), $pconfig['command'], gtext("The command to be executed."), true, 67);?>
+					<?php html_combobox("type", gtext("Type"), $pconfig['type'], array("PREINIT" => "PreInit", "POSTINIT" => "PostInit", "SHUTDOWN" => "Shutdown"), gtext("Execute command pre or post system initialization (booting) or before system shutdown."), true, isset($pconfig['type']));?>
 			  </table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($id) && isset($type)) ? gettext("Save") : gettext("Add")?>" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($id) && isset($type)) ? gtext("Save") : gtext("Add")?>" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<?php if (isset($id) && isset($type)):?>
 					<input name="id" type="hidden" value="<?=$id;?>" />
 					<input name="type" type="hidden" value="<?=$type;?>" />

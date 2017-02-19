@@ -3,11 +3,7 @@
 	disks_manage_smart_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -42,10 +39,10 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Disks"), gettext("Management"), gettext("S.M.A.R.T."), gettext("Scheduled Self-Test"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Disks"), gtext("Management"), gtext("S.M.A.R.T."), gtext("Scheduled Self-Test"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
-$a_months = explode(" ",gettext("January February March April May June July August September October November December"));
-$a_weekdays = explode(" ",gettext("Monday Tuesday Wednesday Thursday Friday Saturday Sunday"));
+$a_months = explode(" ",gtext("January February March April May June July August September October November December"));
+$a_weekdays = explode(" ",gtext("Monday Tuesday Wednesday Thursday Friday Saturday Sunday"));
 
 if (!isset($config['smartd']) || !is_array($config['smartd']))
 	$config['smartd'] = array();
@@ -100,7 +97,7 @@ if ($_POST) {
 	$pconfig['all_mins'] = $_POST['all_mins'] = 1;
 
 	$reqdfields = explode(" ", "disk type");
-	$reqdfieldsn = array(gettext("Disk"), gettext("Type"));
+	$reqdfieldsn = array(gtext("Disk"), gtext("Type"));
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validate_synctime($_POST, $input_errors);
 
@@ -150,23 +147,24 @@ function enable_change(enable_change) {
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
     <td class="tabnavtbl">
-      <ul id="tabnav">
-      	<li class="tabinact"><a href="disks_manage.php"><span><?=gettext("Management");?></span></a></li>
-				<li class="tabact"><a href="disks_manage_smart.php" title="<?=gettext("Reload page");?>"><span><?=gettext("S.M.A.R.T.");?></span></a></li>
-				<li class="tabinact"><a href="disks_manage_iscsi.php"><span><?=gettext("iSCSI Initiator");?></span></a></li>
-      </ul>
+	<ul id="tabnav">
+		<li class="tabinact"><a href="disks_manage.php"><span><?=gtext("HDD Management");?></span></a></li>
+		<li class="tabinact"><a href="disks_init.php"><span><?=gtext("HDD Format");?></span></a></li>
+		<li class="tabact"><a href="disks_manage_smart.php" title="<?=gtext('Reload page');?>"><span><?=gtext("S.M.A.R.T.");?></span></a></li>
+		<li class="tabinact"><a href="disks_manage_iscsi.php"><span><?=gtext("iSCSI Initiator");?></span></a></li>
+	</ul>
     </td>
   </tr>
   <tr>
     <td class="tabcont">
-			<form action="disks_manage_smart_edit.php" method="post" name="iform" id="iform">
+			<form action="disks_manage_smart_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<tr>
-			      <td valign="top" class="vncellreq"><?=gettext("Disk"); ?></td>
+			      <td valign="top" class="vncellreq"><?=gtext("Disk"); ?></td>
 			      <td class="vtable">
 			        <select name="disk" class="formfld" id="disk">
-								<option value=""><?=gettext("Must choose one");?></option>
+								<option value=""><?=gtext("Must choose one");?></option>
 								<?php foreach ($a_disk as $diskv):?>
 								<?php if (0 == strcmp($diskv['size'], "NA")) continue;?>
 								<?php if (1 == disks_exists($diskv['devicespecialfile'])) continue;?>
@@ -176,11 +174,11 @@ function enable_change(enable_change) {
 								</option>
 								<?php endforeach;?>
 			        </select><br />
-			        <span class="vexpl"><?=gettext("Select a disk that is enabled for S.M.A.R.T. monitoring.");?></span>
+			        <span class="vexpl"><?=gtext("Select a disk that is enabled for S.M.A.R.T. monitoring.");?></span>
 			      </td>
 					</tr>
 					<tr>
-            <td width="22%" valign="top" class="vncellreq"><?=gettext("Type");?></td>
+            <td width="22%" valign="top" class="vncellreq"><?=gtext("Type");?></td>
             <td width="78%" class="vtable">
               <select name="type" class="formfld" id="type">
               <?php $types = explode(",", "Short Self-Test,Long Self-Test,Conveyance Self-Test,Offline Immediate Test"); $vals = explode(" ", "S L C O");?>
@@ -193,21 +191,21 @@ function enable_change(enable_change) {
             </td>
           </tr>
 			    <tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gettext("Time");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Time");?></td>
 						<td width="78%" class="vtable">
 							<table width="100%" border="0" cellpadding="4" cellspacing="0">
 								<tr>
-									<td class="listhdrlr"><?=gettext("Hours");?></td>
-									<td class="listhdrr"><?=gettext("Days");?></td>
-									<td class="listhdrr"><?=gettext("Months");?></td>
-									<td class="listhdrr"><?=gettext("Week days");?></td>
+									<td class="listhdrlr"><?=gtext("Hours");?></td>
+									<td class="listhdrr"><?=gtext("Days");?></td>
+									<td class="listhdrr"><?=gtext("Months");?></td>
+									<td class="listhdrr"><?=gtext("Week days");?></td>
 								</tr>
 								<tr>
 									<td class="listlr" valign="top">
 										<input type="radio" name="all_hours" id="all_hours1" value="1" <?php if (1 == $pconfig['all_hours']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_hours" id="all_hours2" value="0" <?php if (1 != $pconfig['all_hours']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -229,9 +227,9 @@ function enable_change(enable_change) {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_days" id="all_days1" value="1" <?php if (1 == $pconfig['all_days']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_days" id="all_days2" value="0" <?php if (1 != $pconfig['all_days']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -260,9 +258,9 @@ function enable_change(enable_change) {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_months" id="all_months1" value="1" <?php if (1 == $pconfig['all_months']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_months" id="all_months2" value="0" <?php if (1 != $pconfig['all_months']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -277,9 +275,9 @@ function enable_change(enable_change) {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_weekdays" id="all_weekdays1" value="1" <?php if (1 == $pconfig['all_weekdays']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_weekdays" id="all_weekdays2" value="0" <?php if (1 != $pconfig['all_weekdays']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -294,19 +292,19 @@ function enable_change(enable_change) {
 									</td>
 								</tr>
 							</table>
-							<span class="vexpl"><?=gettext("Note: Ctrl-click (or command-click on the Mac) to select and de-select minutes, hours, days and months.");?></span>
+							<span class="vexpl"><?=gtext("Note: Ctrl-click (or command-click on the Mac) to select and de-select minutes, hours, days and months.");?></span>
 						</td>
 					</tr>
 					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gettext("Description");?></td>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Description");?></td>
 						<td width="78%" class="vtable">
 							<input name="desc" type="text" class="formfld" id="desc" size="40" value="<?=htmlspecialchars($pconfig['desc']);?>" />
 						</td>
 					</tr>
 	      </table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" onclick="enable_change(true)" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" onclick="enable_change(true)" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 				</div>
 				<?php include("formend.inc");?>

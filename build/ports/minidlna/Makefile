@@ -8,18 +8,19 @@ MASTER_SITES=	SF
 MAINTAINER=	aoyama@nas4free.org
 COMMENT=	Media-server compatible with "Digital Life Network Alliance"
 
-LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3	\
+LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
 		libexif.so:${PORTSDIR}/graphics/libexif	\
-		libid3tag.so:${PORTSDIR}/audio/libid3tag	\
-		libogg.so:${PORTSDIR}/audio/libogg		\
-		libvorbis.so:${PORTSDIR}/audio/libvorbis	\
-		libFLAC.so:${PORTSDIR}/audio/flac		\
+		libid3tag.so:${PORTSDIR}/audio/libid3tag \
+		libogg.so:${PORTSDIR}/audio/libogg \
+		libvorbis.so:${PORTSDIR}/audio/libvorbis \
+		libFLAC.so:${PORTSDIR}/audio/flac \
 		libavformat.so:${PORTSDIR}/multimedia/ffmpeg
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-db-path=/var/db/minidlna \
-		--with-os-url="http://www.FreeBSD.org"
+		--with-os-url="http://www.nas4free.org"
 CPPFLAGS+=	-I${LOCALBASE}/include
+CFLAGS+=	-DNAS4Free
 LIBS+=		-L${LOCALBASE}/lib
 USES=		autoreconf gettext-tools iconv jpeg
 
@@ -47,6 +48,12 @@ EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-kqueue
 
 # NAS4Free
 NO_PKG_REGISTER=	yes
+ICONSDIR=${MASTERDIR}/icons
+N4F_ICONS=${WRKSRC}/nas4free-icons.c
+
+post-configure:
+	@echo "creating icon file..."
+	@(cd ${ICONSDIR}; sh mkicons.sh > ${N4F_ICONS})
 
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/*.5 ${STAGEDIR}${MANPREFIX}/man/man5/
@@ -56,10 +63,9 @@ post-install:
 # NAS4Free install
 	@echo "install for ${NAS4FREE_ROOTFS}"
 	@${INSTALL_PROGRAM} -v ${STAGEDIR}${PREFIX}/sbin/minidlnad ${NAS4FREE_ROOTFS}/usr/local/sbin
-	@${INSTALL_SCRIPT} -v ${WRKDIR}/minidlna ${NAS4FREE_ROOTFS}/usr/local/etc/rc.d
-	${INSTALL_DATA} ${STAGEDIR}${PREFIX}/etc/minidlna.conf.sample ${NAS4FREE_ROOTFS}/usr/local/etc
-	for lang in da de es fr it ja nb nl pl ru sl sv; do \
-		${CP} -pv ${STAGEDIR}${PREFIX}/share/locale/$${lang}/LC_MESSAGES/minidlna.mo ${NAS4FREE_ROOTFS}/usr/local/share/locale/$${lang}/LC_MESSAGES; \
-	done
+	@${INSTALL_SCRIPT} -v ${FILESDIR}/minidlna.in ${NAS4FREE_ROOTFS}/etc/rc.d/minidlna
+#	for lang in da de es fr it ja nb nl pl ru sl sv; do \
+#		${CP} -pv ${STAGEDIR}${PREFIX}/share/locale/$${lang}/LC_MESSAGES/minidlna.mo ${NAS4FREE_ROOTFS}/usr/local/share/locale/$${lang}/LC_MESSAGES; \
+#	done
 
 .include <bsd.port.mk>

@@ -1,6 +1,6 @@
 PORTNAME=		spindown
-PORTVERSION=		0.4
-PORTREVISION=		0
+PORTVERSION=		1.0
+PORTREVISION=		1
 CATEGORIES=		sysutils
 
 COMMENT=		SCSI/firewire harddrive spindown daemon
@@ -13,7 +13,7 @@ NO_PKG_REGISTER=	yes
 #DISABLE_VULNERABILITIES=yes
 DEPENDS_TARGET=	clean build stage
 
-BUILD_DEPENDS=		${NONEXISTENT}:${PORTSDIR}/sysutils/spindown
+BUILD_DEPENDS=		${NONEXISTENT}:sysutils/spindown
 DEP_STAGEDIR=		${PORTSDIR}/sysutils/spindown/work/stage
 
 do-install:

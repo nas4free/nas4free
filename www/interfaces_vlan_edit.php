@@ -3,15 +3,7 @@
 	interfaces_vlan_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
-	Portions of m0n0wall (http://m0n0.ch/wall).
-	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -19,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -46,7 +39,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Network"), gettext("Interface Management"), gettext("VLAN"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Network"), gtext("Interface Management"), gtext("VLAN"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
 if (!isset($config['vinterfaces']['vlan']) || !is_array($config['vinterfaces']['vlan']))
 	$config['vinterfaces']['vlan'] = array();
@@ -81,7 +74,7 @@ if ($_POST) {
 
 	// Input validation.
 	$reqdfields = explode(" ", "vlandev tag");
-	$reqdfieldsn = array(gettext("Physical interface"), gettext("VLAN tag"));
+	$reqdfieldsn = array(gtext("Physical interface"), gtext("VLAN tag"));
 	$reqdfieldst = explode(" ", "string numeric");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -89,7 +82,7 @@ if ($_POST) {
 
 	// Validate tag range.
 	if (($_POST['tag'] < '1') || ($_POST['tag'] > '4094')) {
-		$input_errors[] = gettext("The VLAN ID must be between 1 and 4094.");
+		$input_errors[] = gtext("The VLAN ID must be between 1 and 4094.");
 	}
 
 	// Validate if tag is unique. Only check if not in edit mode.
@@ -100,7 +93,7 @@ if ($_POST) {
 		}
 
 		if (false !== array_search_ex($_POST['tag'], array_filter($a_vlans, array(new InterfaceFilter($_POST['vlandev']), 'filter')), "tag")) {
-			$input_errors[] = sprintf(gettext("A VLAN with the tag %s is already defined on this interface."), $_POST['tag']);
+			$input_errors[] = sprintf(gtext("A VLAN with the tag %s is already defined on this interface."), $_POST['tag']);
 		}
 	}
 
@@ -147,28 +140,28 @@ function get_nextvlan_id() {
 	<tr>
 		<td class="tabnavtbl">
 		  <ul id="tabnav">
-				<li class="tabinact"><a href="interfaces_assign.php"><span><?=gettext("Management");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_wlan.php"><span><?=gettext("WLAN");?></span></a></li>
-				<li class="tabact"><a href="interfaces_vlan.php" title="<?=gettext("Reload page");?>"><span><?=gettext("VLAN");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_lagg.php"><span><?=gettext("LAGG");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gettext("Bridge");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_carp.php"><span><?=gettext("CARP");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_assign.php"><span><?=gtext("Management");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_wlan.php"><span><?=gtext("WLAN");?></span></a></li>
+				<li class="tabact"><a href="interfaces_vlan.php" title="<?=gtext('Reload page');?>"><span><?=gtext("VLAN");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_lagg.php"><span><?=gtext("LAGG");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gtext("Bridge");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_carp.php"><span><?=gtext("CARP");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabcont">
-			<form action="interfaces_vlan_edit.php" method="post" name="iform" id="iform">
+			<form action="interfaces_vlan_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if ($input_errors) print_input_errors($input_errors);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_inputbox("tag", gettext("VLAN tag"), $pconfig['tag'], gettext("802.1Q VLAN tag (between 1 and 4094)."), true, 4);?>
+					<?php html_inputbox("tag", gtext("VLAN tag"), $pconfig['tag'], gtext("802.1Q VLAN tag (between 1 and 4094)."), true, 4);?>
 					<?php $a_if = array(); foreach (get_interface_list() as $ifk => $ifv) { if (preg_match('/vlan/i', $ifk)) { continue; } $a_if[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); };?>
-					<?php html_combobox("vlandev", gettext("Physical interface"), $pconfig['vlandev'], $a_if, "", true);?>
-					<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
+					<?php html_combobox("vlandev", gtext("Physical interface"), $pconfig['vlandev'], $a_if, "", true);?>
+					<?php html_inputbox("desc", gtext("Description"), $pconfig['desc'], gtext("You may enter a description here for your reference."), false, 40);?>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<input name="enable" type="hidden" value="<?=$pconfig['enable'];?>" />
 					<input name="if" type="hidden" value="<?=$pconfig['if'];?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />

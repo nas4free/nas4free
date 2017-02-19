@@ -3,7 +3,7 @@
 	init.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -52,7 +52,7 @@ if(isset($_SERVER)) {
 	"You need at least PHP 4.0.0 to run QuiXplorer; preferably PHP 4.3.1 or higher.");
 }
 
-_debug("xxx3 action: " . $GLOBALS['__GET']["action"] . "/" . $GLOBALS["__GET"]["do_action"] . "/" . (isset($GLOBALS['__GET']['action']) ? "true" : "false"));
+_debug("xxx3 action: " . (isset($GLOBALS['__GET']["action"]) ? $GLOBALS['__GET']["action"] : "") . "/" . (isset($GLOBALS["__GET"]["do_action"])? $GLOBALS["__GET"]["do_action"]: "") . "/" . (isset($GLOBALS['__GET']['action']) ? "true" : "false"));
 if (isset($GLOBALS['__GET']["action"]))
 {
     $GLOBALS["action"]=$GLOBALS['__GET']["action"];
@@ -65,25 +65,36 @@ if($GLOBALS["action"]=="post" && isset($GLOBALS['__POST']["do_action"])) {
 	$GLOBALS["action"]=$GLOBALS['__POST']["do_action"];
 }
 if($GLOBALS["action"]=="") $GLOBALS["action"]="list";
-$GLOBALS["action"]=stripslashes($GLOBALS["action"]);
-_debug("xxx3 action: " . $GLOBALS['__GET']["action"] . "/" . $GLOBALS["__GET"]["do_action"] . "/" . (isset($GLOBALS['__GET']['action']) ? "true" : "false"));
+$GLOBALS["action"]=$GLOBALS["action"];
+_debug("xxx3 action: " . (isset($GLOBALS['__GET']["action"]) ? $GLOBALS['__GET']["action"] : "") . "/" . (isset($GLOBALS["__GET"]["do_action"])? $GLOBALS["__GET"]["do_action"]: "") . "/" . (isset($GLOBALS['__GET']['action']) ? "true" : "false"));
 
 
 // Get Item
-if(isset($GLOBALS['__GET']["item"])) $GLOBALS["item"]=stripslashes($GLOBALS['__GET']["item"]);
+if(isset($GLOBALS['__GET']["item"])) $GLOBALS["item"]=$GLOBALS['__GET']["item"];
 else $GLOBALS["item"]="";
 // Get Sort
-if(isset($GLOBALS['__GET']["order"])) $GLOBALS["order"]=stripslashes($GLOBALS['__GET']["order"]);
+if(isset($GLOBALS['__GET']["order"])) $GLOBALS["order"]=$GLOBALS['__GET']["order"];
 else $GLOBALS["order"]="name";
 if($GLOBALS["order"]=="") $GLOBALS["order"]=="name";
 // Get Sortorder (yes==up)
-if(isset($GLOBALS['__GET']["srt"])) $GLOBALS["srt"]=stripslashes($GLOBALS['__GET']["srt"]);
+if(isset($GLOBALS['__GET']["srt"])) $GLOBALS["srt"]=$GLOBALS['__GET']["srt"];
 else $GLOBALS["srt"]="yes";
 if($GLOBALS["srt"]=="") $GLOBALS["srt"]=="yes";
 
 // Necessary files
 ob_start(); // prevent unwanted output
+/* NAS4FREE CODE*/
+if(function_exists('date_default_timezone_set')) {
+	if(function_exists('date_default_timezone_get')) {
+		@date_default_timezone_set(@date_default_timezone_get());
+	} else {
+		@date_default_timezone_set('UTC');
+	}
+}
+/* END NAS4FREE CODE*/
+/* ORIGINAL CODE
 date_default_timezone_set ( "UTC" );
+ */
 if (!is_readable("./_config/conf.php"))
     show_error("./_config/conf.php not found.. please see installation instructions");
 

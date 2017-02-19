@@ -1,6 +1,6 @@
 PORTNAME=		nas4free-virtualbox-ose-additions
 PORTVERSION=	1.0
-#PORTREVISION= 0
+#PORTREVISION=	1
 CATEGORIES=		emulators
 MAINTAINER=		aoyama@peach.ne.jp
 COMMENT=		VirtualBox additions for FreeBSD guests
@@ -11,7 +11,7 @@ NO_PKG_REGISTER=	yes
 ALWAYS_BUILD_DEPENDS=	yes
 DEPENDS_TARGET=	clean build
 
-BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/emulators/virtualbox-ose-additions:build
+BUILD_DEPENDS=	${NONEXISTENT}:emulators/virtualbox-ose-additions:build
 
 BLDSRC=${PORTSDIR}/emulators/virtualbox-ose-additions/work/VirtualBox-*/
 WRKSRC=${WRKDIR}/virtualbox-ose-additions

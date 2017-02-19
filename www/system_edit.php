@@ -3,11 +3,7 @@
 	system_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,13 +34,13 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Advanced"), gettext("File Editor"));
+$pgtitle = array(gtext("Advanced"), gtext("File Editor"));
 
 $savetopath = "";
 if (isset($_POST['savetopath']))
 	$savetopath = htmlspecialchars($_POST['savetopath']);
 
-if ((isset($_POST['submit']) && $_POST['submit'] === gettext("Load file")) && file_exists($savetopath) && is_file($savetopath)) {
+if ((isset($_POST['submit']) && $_POST['submit'] === gtext("Edit")) && file_exists($savetopath) && is_file($savetopath)) {
 	$content = file_get_contents($savetopath);
 	$edit_area = "";
 	if (stristr($savetopath, ".php") == true)
@@ -58,17 +55,17 @@ if ((isset($_POST['submit']) && $_POST['submit'] === gettext("Load file")) && fi
 		$language = "js";
 	else if (stristr($savetopath, ".css") == true)
 		$language = "css";
-} else if ((isset($_POST['submit']) && $_POST['submit'] === gettext("Save file"))) {
+} else if ((isset($_POST['submit']) && $_POST['submit'] === gtext("Save"))) {
 	conf_mount_rw();
 	$content = preg_replace("/\r/","",$_POST['code']) ;
 	file_put_contents($savetopath, $content);
 	$edit_area = "";
-	$savemsg = gettext("Saved file to") . " " . $savetopath;
+	$savemsg = gtext("Saved file to") . " " . $savetopath;
 	if ($savetopath === "{$g['cf_conf_path']}/config.xml")
 		unlink_if_exists("{$g['tmp_path']}/config.cache");
 	conf_mount_ro();
-} else if ((isset($_POST['submit']) && $_POST['submit'] === gettext("Load")) && (!file_exists($savetopath) || !is_file($savetopath))) {
-	$savemsg = gettext("File not found") . " " . $savetopath;
+} else if ((isset($_POST['submit']) && $_POST['submit'] === gtext("Load")) && (!file_exists($savetopath) || !is_file($savetopath))) {
+	$savemsg = gtext("File not found") . " " . $savetopath;
 	$content = "";
 	$savetopath = "";
 }
@@ -98,27 +95,30 @@ else
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabcont">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<?php html_titleline(gtext("File Editor"));?>
+				<tr>
 			<form action="system_edit.php" method="post">
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" cellpadding='9' cellspacing='9' bgcolor='#eeeeee'>
 					<tr>
 						<td>
-							<span class="label"><?=gettext("File path");?></span>
+							<span class="label"><?=gtext("File Path");?></span>
 							<input size="42" id="savetopath" name="savetopath" value="<?=$savetopath;?>" />
 							<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.savetopath; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield.value), "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." />
-							<input name="submit" type="submit" class="formbtn" id="Load" value="<?=gettext("Load file");?>" />
-							<input name="submit" type="submit" class="formbtn" id="Save" value="<?=gettext("Save file");?>" />
+							<input name="submit" type="submit" class="formbtn" id="Edit" value="<?=gtext("Edit");?>" />
+							<input name="submit" type="submit" class="formbtn" id="Save" value="<?=gtext("Save");?>" />
 							<hr noshade="noshade" />
 							<?php if(isset($_POST['highlight']) && $_POST['highlight'] == "no"): ?>
-							<?=gettext("Rows"); ?>: <input size="3" name="rows" value="<? echo $rows; ?>" />
-							<?=gettext("Cols"); ?>: <input size="3" name="cols" value="<? echo $cols; ?>" />
+							<?=gtext("Rows"); ?>: <input size="3" name="rows" value="<?=$rows;?>"/>
+							<?=gtext("Cols"); ?>: <input size="3" name="cols" value="<?=$cols;?>"/>
 							|
 							<?php endif; ?>
-							<?=gettext("Highlighting"); ?>:
+							<?=gtext("Highlighting"); ?>:
 							<input id="highlighting_enabled" name="highlight" type="radio" value="yes" <?php if($highlight == "yes") echo " checked=\"checked\""; ?> />
-							<label for="highlighting_enabled"><?=gettext("Enabled"); ?></label>
+							<label for="highlighting_enabled"><?=gtext("Enabled"); ?></label>
 							<input id="highlighting_disabled" name="highlight" type="radio" value="no"<?php if($highlight == "no") echo " checked=\"checked\""; ?> />
-							<label for="highlighting_disabled"><?=gettext("Disabled"); ?></label>
+							<label for="highlighting_disabled"><?=gtext("Disabled"); ?></label>
 						</td>
 					</tr>
 				</table>

@@ -3,11 +3,7 @@
 	install.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,6 @@
 require_once("functions.inc");
 require_once("util.inc");
 require_once("xmlparse.inc");
-
 
 // Check image file
 function check_install_image($dev, $pt, $img)
@@ -192,6 +188,9 @@ function install_dd_image($harddrive)
 function install_harddrive_image($harddrive)
 {
 	global $g;
+	
+	// Determine if target disk/partition is GPT or MBR
+	if (mwexec("/sbin/gpart show {$harddrive} | grep GPT") == false ){ $part = "p2"; } else { $part = "s1a"; }
 
 	$boot_lowmem = trim(@file_get_contents("/etc/boot_lowmem"));
 	$platform = get_platform_type();
@@ -199,13 +198,13 @@ function install_harddrive_image($harddrive)
 
 	// Mount disk used to install OS.
 	mwexec("/bin/mkdir -p {$mntpath}");
-	if (1 == mwexec("/sbin/mount /dev/{$harddrive}s1a {$mntpath}")) {
-		write_console("Error: Failed to mount '/dev/{$harddrive}s1a'!\n");
+	if (1 == mwexec("/sbin/mount /dev/{$harddrive}{$part} {$mntpath}")) {
+		write_console("Error: Failed to mount '/dev/{$harddrive}{$part}'!\n");
 		return 1;
 	}
 
 	// Install system files.
-	write_console("Installing system files on device {$harddrive}s1a.\n");
+	write_console("Installing system files on device {$harddrive}{$part}.\n");
 	mwexec("/usr/bin/tar --exclude mnt/ --exclude dev/ --exclude var/ --exclude tmp/ --exclude {$g['cf_path']}/ -c -f - -C / . | tar -xvpf - -C {$mntpath}");
 	if ($boot_lowmem === "1" && preg_match('/-liveCD$/i', $platform)) {
 		// under lowmem version
@@ -238,15 +237,23 @@ bootfile="kernel"
 kernel_options=""
 hw.est.msr_info="0"
 hw.hptrr.attach_generic="0"
-kern.maxfiles="65536"
-kern.maxfilesperproc="60000"
+hw.msk.msi_disable="1"
+kern.maxfiles="6289573"
 kern.cam.boot_delay="8000"
-autoboot_delay="5"
+kern.cam.ada.legacy_aliases="0"
+kern.geom.label.disk_ident.enable="0"
+kern.geom.label.gptid.enable="0"
+hint.acpi_throttle.0.disabled="0"
+hint.p4tcc.0.disabled="0"
+autoboot_delay="3"
 isboot_load="YES"
 zfs_load="YES"
 geom_xmd_load="YES"
 
 EOD;
+	if ($g['arch'] == "x64") {
+		$loaderconf .= 'mlxen_load="YES"' . "\n";
+	}
 
 	if (false === file_put_contents("{$mntpath}/boot/loader.conf", $loaderconf)) {
 		write_console("Error: Failed to create '/boot/loader.conf'.\n");
@@ -270,7 +277,7 @@ EOD;
 	mwexec("(cd {$mntpath}/boot/kernel; for f in *.gz; do /usr/bin/gzip -d -f \$f; done)");
 
 	// Generate /etc/fstab.
-	$ufsid = disks_get_ufsid("/dev/{$harddrive}s1a");
+	$ufsid = disks_get_ufsid("/dev/{$harddrive}{$part}");
 	if (empty($ufsid)) {
 		write_console("Error: Failed to get UFS ID.\n");
 		return 1;
@@ -291,7 +298,7 @@ EOD;
 	// generated with 'liveCD' and 'embedded' during startup, but need to be
 	// created during install of 'full'.
 	$cfdevice = <<<EOD
-{$harddrive}s1a
+{$harddrive}{$part}
 
 EOD;
 
@@ -310,7 +317,7 @@ EOD;
 		sleep(1);
 	}
 	if ($retry == 0) {
-		write_console("Error: Failed to umount {$mntpath}!\n");
+		write_console("Error: Failed to unmount {$mntpath}!\n");
 		return 1;
 	}
 	mwexec("/bin/rm -f -r {$mntpath}");
@@ -323,6 +330,9 @@ EOD;
 function install_upgrade_full($harddrive)
 {
 	global $g;
+	
+	// Determine if target disk/partition is GPT or MBR
+	if (mwexec("/sbin/gpart show {$harddrive} | grep GPT") == false ){ $part = "p2"; } else { $part = "s1a"; }
 
 	$boot_lowmem = trim(@file_get_contents("/etc/boot_lowmem"));
 	$platform = get_platform_type();
@@ -331,8 +341,8 @@ function install_upgrade_full($harddrive)
 
 	// Mount disk used to install OS
 	mwexec("/bin/mkdir -p {$mntpath}");
-	if (1 == mwexec("/sbin/mount /dev/{$harddrive}s1a {$mntpath}")) {
-		write_console("Error: Failed to mount '/dev/{$harddrive}s1a'!\n");
+	if (1 == mwexec("/sbin/mount /dev/{$harddrive}{$part} {$mntpath}")) {
+		write_console("Error: Failed to mount '/dev/{$harddrive}{$part}'!\n");
 		return 1;
 	}
 
@@ -357,7 +367,7 @@ function install_upgrade_full($harddrive)
 	mwexec("/etc/install/upgrade.sh clean {$mntpath}");
 
 	// Install system files
-	write_console("Installing system files on device {$harddrive}s1a.\n");
+	write_console("Installing system files on device {$harddrive}{$part}.\n");
 	mwexec("/usr/bin/tar --exclude mnt/ --exclude dev/ --exclude var/ --exclude tmp/ --exclude {$g['cf_path']}/ -c -f - -C / . | tar -xvpf - -C {$mntpath}");
 	if ($boot_lowmem === "1" && preg_match('/-liveCD$/i', $platform)) {
 		// under lowmem version
@@ -395,7 +405,6 @@ function install_upgrade_full($harddrive)
 	if (file_exists("{$sysbackup}/loader.conf.local")) {
 		mwexec("/bin/cp -p {$sysbackup}/loader.conf.local {$mntpath}/boot/");
 	}
-	#mwexec("/bin/cp -p {$sysbackup}/platform {$mntpath}/etc");
 	mwexec("/bin/cp -p {$sysbackup}/fstab {$mntpath}/etc");
 	mwexec("/bin/cp -p {$sysbackup}/cfdevice {$mntpath}/etc");
 
@@ -423,7 +432,7 @@ EOD;
 		sleep(1);
 	}
 	if ($retry == 0) {
-		write_console("Error: Failed to umount {$mntpath}!\n");
+		write_console("Error: Failed to unmount {$mntpath}!\n");
 		return 1;
 	}
 	mwexec("/bin/rm -f -r {$mntpath}");
@@ -529,13 +538,19 @@ function install_backup_config($disk)
 		write_console("Error: Failed to backup the configuration file!\n");
 		return 1;
 	}
+	$files = glob("{$mnt_cf_disk}/conf/ssh_host_*") or array();
+	foreach ($files as $file) {
+		if (1 == mwexec("/bin/cp -p {$file} {$tmp_cf_bak}")) {
+			write_console("Error: Failed to backup the configuration file!\n");
+			return 1;
+		}
+	}
 	if (file_exists("{$mnt_cf_disk}/boot.config")
 	    && 1 == mwexec("/bin/cp -p {$mnt_cf_disk}/boot.config {$tmp_cf_bak}")) {
 		write_console("Error: Failed to backup the configuration file!\n");
 		return 1;
 	}
-    
-    if (file_exists("{$mnt_cf_disk}/boot/loader.conf.local")
+	if (file_exists("{$mnt_cf_disk}/boot/loader.conf.local")
 	    && 1 == mwexec("/bin/cp -p {$mnt_cf_disk}/boot/loader.conf.local {$tmp_cf_bak}")) {
 		write_console("Error: Failed to backup the configuration file!\n");
 		return 1;
@@ -569,6 +584,13 @@ function install_restore_config($disk)
 	if (1 == mwexec("/bin/cp -p {$tmp_cf_bak}/config.xml {$mnt_cf_disk}/conf")) {
 		write_console("Error: Failed to restore the configuration file! (config.xml)\n");
 		return 1;
+	}
+	$files = glob("{$tmp_cf_bak}/ssh_host_*") or array();
+	foreach ($files as $file) {
+		if (1 == mwexec("/bin/cp -p {$file} {$mnt_cf_disk}/conf")) {
+			write_console("Error: Failed to restore the configuration file!({$file})\n");
+			return 1;
+		}
 	}
 	if (file_exists("{$tmp_cf_bak}/boot.config")) {
 		if (1 == mwexec("/bin/cp -p {$tmp_cf_bak}/boot.config {$mnt_cf_disk}/")) {
@@ -652,25 +674,6 @@ function install_init_disk($disk, $partlayout)
 		$slicesize = $partinfo[$partlayoutv['slice']]['size'];
 
 		write_console("  {$diskdevicename}\n");
-
-/*
-		// Do not create partitions for swap.
-		if ("swap" === $partlayoutv['fstype']) {
-			// Completely wipe any prior information
-			if (mwexec("/bin/dd if=/dev/zero of=/dev/{$diskdevicename} bs=512 count=34")) {
-				set_kern_geom_debugflags(0);
-				write_console("\nError: Failed to wipe any prior information on {$diskdevicename}.\n");
-				return 1;
-			}
-			continue;
-		}
-
-		if (install_bsdlabel($diskdevicename, $partlayoutv['fstype'], $startsector, $slicesize, $alignsector)) {
-			set_kern_geom_debugflags(0);
-			write_console("\nError: Failed to create BSD label on {$diskdevicename}!\n");
-			return 1;
-		}
-*/
 
 		// force delete existing partitions (error is OK)
 		mwexec("/sbin/gpart destroy -F {$diskdevicename}");
@@ -851,7 +854,6 @@ function install_fdisk($disk, $slicesize)
 		if (is_numeric($slicesizev)) {
 			$bytes = $slicesizev * 1024 * 1024;
 			$slicetable[$slicesizek]['length'] = $bytes / $diskinfo['sectorsize'];
-			//$slicetable[$slicesizek]['length'] = floor($slicetable[$slicesizek]['length'] / $align) * $align;
 			$slicetable[$slicesizek]['length'] = ceil($slicetable[$slicesizek]['length'] / $align) * $align;
 			if ($slicesizek == 0) {
 				$slicetable[$slicesizek]['length'] -= $diskinfo['sectors'];
@@ -992,9 +994,9 @@ function install_bsdlabel($disk, $fstype, $startsector, $slicesize, $alignsector
 	$fd = fopen("{$g['tmp_path']}/label.tmp", 'w');
 
 	while(list(,$val) = each($label)) {
-		if (ereg ("unused",$val) && !ereg ("c:",$val)) {
+		if ((false !== strpos($val, 'unused')) && (false === strpos($val, 'c:'))) {
 			// Replace 'unused' with '$fstype'
-			$val = ereg_replace("unused", $fstype, $val);
+			$val = str_replace("unused", $fstype, $val);
 			// Replace with aligned size
 			$val = preg_replace("/([a-z]:)\s+\d+\s+\d+/",
 				"\\1 {$aligned_counts} {$aligned_start}",
@@ -1065,7 +1067,7 @@ function install_detect_installation($mode, &$devinfo) {
 	$adisk = explode(" ", trim(preg_replace("/kern.disks: /", "", exec("/sbin/sysctl kern.disks"))));
 	foreach ($adisk as $diskv) {
 		// Skip mfs-mounted filesystems
-		if (0 < ereg("md[0-9]*", $diskv))
+		if (false != preg_match('/md[\d]/', $diskv))
 			continue;
 
 		// Search on slice 1 for OS installed on disk with install script
@@ -1090,7 +1092,7 @@ function install_detect_installation($mode, &$devinfo) {
 
 					case 'full':
 						$platform = chop(@file_get_contents("{$mnt_cf_disk}{$g['etc_path']}/platform"));
-						if (FALSE !== ereg("^.*-full", $platform)) {
+						if (false !== strpos($platform, '-full')) {
 							$result = 0;
 						}
 						break;
@@ -1126,7 +1128,7 @@ function install_detect_installation($mode, &$devinfo) {
 
 					case 'full':
 						$platform = chop(@file_get_contents("{$mnt_cf_disk}{$g['etc_path']}/platform"));
-						if (FALSE !== ereg("^.*-full", $platform)) {
+						if (false !== strpos($platform, '-full')) {
 							$result = 0;
 						}
 						break;
@@ -1162,7 +1164,7 @@ function install_detect_installation($mode, &$devinfo) {
 
 					case 'full':
 						$platform = chop(@file_get_contents("{$mnt_cf_disk}{$g['etc_path']}/platform"));
-						if (FALSE !== ereg("^.*-full", $platform)) {
+						if (false !== strpos($platform, '-full')) {
 							$result = 0;
 						}
 						break;

@@ -1,6 +1,6 @@
 PORTNAME=		nas4free-open-vm-tools
 PORTVERSION=	1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=		emulators
 MAINTAINER=		aoyama@peach.ne.jp
 COMMENT=		Open VMware tools for FreeBSD VMware guests
@@ -11,7 +11,7 @@ NO_PKG_REGISTER=	yes
 ALWAYS_BUILD_DEPENDS=		yes
 DEPENDS_TARGET=	clean build
 
-BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/emulators/open-vm-tools-nox11:build
+BUILD_DEPENDS=	${NONEXISTENT}:emulators/open-vm-tools-nox11:build
 
 BLDSRC=${PORTSDIR}/emulators/open-vm-tools-nox11/work/open-vm-tools-*
 WRKSRC=${WRKDIR}/open-vm-tools-nox11

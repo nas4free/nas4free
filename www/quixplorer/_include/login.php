@@ -3,7 +3,7 @@
 	login.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -39,7 +39,10 @@ require_once "./_include/debug.php";
 
 user_load();
 
-session_start();
+if(!isset($_SESSION))
+    {
+        session_start();
+    }
 
 function login_check ()
 {
@@ -82,11 +85,11 @@ function login ()
         {
             _debug("login(): login authentication");
             // Check Login
-            //if ( ! user_activate( stripslashes( $_POST["p_user"] ), md5( stripslashes( $p_pass ) ) ) )
-            if ( ! user_activate( stripslashes( $_POST["p_user"] ), $p_pass ) )
+            //if ( ! user_activate( $_POST["p_user"], md5( $p_pass ) ) )
+	    if ( ! user_activate( $_POST["p_user"], $p_pass ) ) 
             {
                 global $error_msg;
-                show_error( $error_msg["login_failed"] . ": " . $_POST["p_user"] );
+                show_error( $error_msg["login_failed"] . ": " . htmlspecialchars($_POST["p_user"]) );
             }
             // authentication sucessfull
             _debug( "user '" . $_POST[ "p_user" ]  . "' successfully authenticated" );
@@ -106,7 +109,7 @@ function login ()
             echo "<INPUT name=\"p_pass\" type=\"password\" size=\"25\"></TD></TR>\n";
             // NAS4Free Code
             //Select box and auto language detection array
-            echo "<TR><TD>".gettext("Detected Language:<br />(Change if needed)")."</TD><TD align=\"right\">";
+            echo "<TR><TD>", gtext("Detected Language:"), "<br />", gtext("(Change if needed)"), "</TD><TD align=\"right\">";
             @include "./_lang/_info.php";
             // End NAS4Free Code
             echo "<TR><TD colspan=\"2\" align=\"right\"><INPUT type=\"submit\" value=\"";

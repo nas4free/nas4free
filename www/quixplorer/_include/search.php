@@ -3,7 +3,7 @@
 	search.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -44,8 +44,9 @@ function find_item($dir,$pat,&$list,$recur) {
 		if(!get_show_item($dir, $new_item)) continue;
 		
 		// match?
-		if(@eregi($pat,$new_item)) $list[]=array($dir,$new_item);
-		
+		if (preg_match('/'.preg_quote($pat,'/').'/i', $new_item)) {
+			$list[]=array($dir,$new_item);
+		}
 		// search sub-directories
 		if(get_is_dir($dir, $new_item) && $recur) {
 			find_item(get_rel_item($dir,$new_item),$pat,$list,$recur);
@@ -87,14 +88,14 @@ function print_table($list) {
 		echo "align=\"ABSMIDDLE\" src=\"_img/" . $img . "\" ALT=\"\">&nbsp;";
 		/*if($link!="")*/ echo"<A HREF=\"".$link."\" TARGET=\"".$target."\">";
 		//else echo "<A>";
-		echo $s_item."</A></TD><TD><A HREF=\"" . make_link("list",$dir,NULL)."\"> /";
-		echo $s_dir."</A></TD></TR>\n";
+		echo htmlspecialchars($s_item)."</A></TD><TD><A HREF=\"" . make_link("list",$dir,NULL)."\"> /";
+		echo htmlspecialchars($s_dir)."</A></TD></TR>\n";
 	}
 }
 // search for item
 function search_items($dir) {
 	if(isset($GLOBALS['__POST']["searchitem"])) {
-		$searchitem=stripslashes($GLOBALS['__POST']["searchitem"]);
+		$searchitem=$GLOBALS['__POST']["searchitem"];
 		$subdir=(isset($GLOBALS['__POST']["subdir"]) && $GLOBALS['__POST']["subdir"]=="y");
 		$list=make_list($dir,$searchitem,$subdir);
 	} else {
@@ -104,12 +105,12 @@ function search_items($dir) {
 
 	$msg=$GLOBALS["messages"]["actsearchresults"];
 	if($searchitem!=NULL) $msg.=": (/" . get_rel_item($dir, $searchitem).")";
-	show_header($msg);
+	show_header(htmlspecialchars($msg));
 
 	// Search Box
 	echo "<BR><BR><BR><CENTER><TABLE><FORM name=\"searchform\" action=\"".make_link("search",$dir,NULL);
 	echo "\" method=\"post\">\n<TR><TD><INPUT name=\"searchitem\" type=\"text\" size=\"25\" value=\"";
-	echo $searchitem."\"><INPUT type=\"submit\" value=\"".$GLOBALS["messages"]["btnsearch"];
+	echo htmlspecialchars($searchitem)."\"><INPUT type=\"submit\" value=\"".$GLOBALS["messages"]["btnsearch"];
 	echo "\">&nbsp;<input type=\"button\" value=\"".$GLOBALS["messages"]["btnclose"];
 	echo "\" onClick=\"javascript:location='".make_link("list",$dir,NULL);
 	echo "';\"></TD></TR><TR><TD><INPUT type=\"checkbox\" name=\"subdir\" value=\"y\"";

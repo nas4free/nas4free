@@ -2,7 +2,7 @@
 	gui.js
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -10,6 +10,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -124,6 +125,7 @@ GUI.prototype = {
 	},
 	recall: function(firstTime, nextTime, url, data, callback) {
 		var self = this;
+		var nextTick = new Date().getTime() + firstTime + nextTime;
 		self.timer = setTimeout(function ajaxFunc() {
 			jQuery.when(
 				jQuery.ajax({
@@ -133,8 +135,13 @@ GUI.prototype = {
 					data: data,
 				})
 			).then(function(data, textStatus, jqXHR) {
+				var timeToSleep;
 				callback(data, textStatus, jqXHR);
-				self.timer = setTimeout(ajaxFunc, nextTime);
+				do { // calculate next tick
+					timeToSleep = nextTick - new Date().getTime();
+					nextTick += nextTime; 
+				} while (timeToSleep < 200); // skip to next tick if system is too slow
+				self.timer = setTimeout(ajaxFunc, timeToSleep);
 			}, function(jqXHR, textStatus, errorThrown) {
 				clearTimeout(self.timer);
 			});

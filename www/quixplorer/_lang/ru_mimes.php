@@ -3,7 +3,7 @@
 	ru_mimes.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -42,7 +42,7 @@ $GLOBALS["mimes"]=array(
       "dir"       => "Каталог",
       "exe"       => "Файл",
       "file"      => "Файл",
-      "link"	    => "Link",
+      "link"	    => "Ссылка",
 
       // text
       "text"      => "Текстовый файл",

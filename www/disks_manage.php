@@ -3,11 +3,7 @@
 	disks_manage.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Disks"),gettext("Management"));
+$pgtitle = [gtext("Disks"),gtext("Management"),gtext("HDD Management")];
 
 if ($_POST) {
 	$pconfig = $_POST;
@@ -48,11 +45,11 @@ if ($_POST) {
 	if (!empty($_POST['import']) || !empty($_POST['clear_import'])) {
 		$retval = disks_import_all_disks($clean_import);
 		if ($retval == 0) {
-			$savemsg = gettext("No new disk found.");
+			$savemsg = gtext("No new disk found.");
 		} else if ($retval > 0) {
-			$savemsg = gettext("All disks are imported.");
+			$savemsg = gtext("All disks are imported.");
 		} else {
-			$input_errors[] = gettext("Detected an error while importing.");
+			$input_errors[] = gtext("Detected an error while importing.");
 		}
 		if ($retval >= 0) {
 			disks_update_mounts();
@@ -64,11 +61,11 @@ if ($_POST) {
 	if (!empty($_POST['import_swraid']) || !empty($_POST['clear_import_swraid'])) {
 		$retval = disks_import_all_swraid_disks($clean_import);
 		if ($retval == 0) {
-			$savemsg = gettext("No new software raid disk found.");
+			$savemsg = gtext("No new software raid disk found.");
 		} else if ($retval > 0) {
-			$savemsg = gettext("All software raid disks are imported.");
+			$savemsg = gtext("All software raid disks are imported.");
 		} else {
-			$input_errors[] = gettext("Detected an error while importing.");
+			$input_errors[] = gtext("Detected an error while importing.");
 		}
 		if ($retval >= 0) {
 			disks_update_mounts();
@@ -146,7 +143,7 @@ function diskmanagement_process_updatenotification($mode, $data) {
 	// make sure detected disks have same ID in config.
 	$verify_errors = disks_verify_all_disks($a_phy_disk);
 	if (!empty($verify_errors)) {
-		$errormsg .= gettext("The device(s) in config are different to actual device(s). Please remove the device(s) and re-add it or use 'Clear config and Import disks'.");
+		$errormsg .= gtext("The device(s) in config are different to actual device(s). Please remove the device(s) and re-add it or use 'Clear config and Import disks'.");
 		$errormsg .= "<br />\n";
 	}
 ?>
@@ -155,30 +152,31 @@ function diskmanagement_process_updatenotification($mode, $data) {
   <tr>
 		<td class="tabnavtbl">
   		<ul id="tabnav">
-				<li class="tabact"><a href="disks_manage.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Management");?></span></a></li>
-				<li class="tabinact"><a href="disks_manage_smart.php"><span><?=gettext("S.M.A.R.T.");?></span></a></li>
-				<li class="tabinact"><a href="disks_manage_iscsi.php"><span><?=gettext("iSCSI Initiator");?></span></a></li>
+				<li class="tabact"><a href="disks_manage.php" title="<?=gtext('Reload page');?>"><span><?=gtext("HDD Management");?></span></a></li>
+				<li class="tabinact"><a href="disks_init.php"><span><?=gtext("HDD Format");?></span></a></li>
+				<li class="tabinact"><a href="disks_manage_smart.php"><span><?=gtext("S.M.A.R.T.");?></span></a></li>
+				<li class="tabinact"><a href="disks_manage_iscsi.php"><span><?=gtext("iSCSI Initiator");?></span></a></li>
   		</ul>
   	</td>
 	</tr>
   <tr>
     <td class="tabcont">
-			<form action="disks_manage.php" method="post">
+			<form action="disks_manage.php" method="post" onsubmit="spinner()">
 				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (updatenotify_exists("device")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
-						<td width="5%" class="listhdrlr"><?=gettext("Device"); ?></td>
-						<td width="15%" class="listhdrr"><?=gettext("Device model"); ?></td>
-						<td width="5%" class="listhdrr"><?=gettext("Size"); ?></td>
-						<td width="15%" class="listhdrr"><?=gettext("Serial number"); ?></td>
-						<td width="5%" class="listhdrr"><?=gettext("Controller"); ?></td>
-						<td width="15%" class="listhdrr"><?=gettext("Controller model"); ?></td>
-						<td width="7%" class="listhdrr"><?=gettext("Standby time"); ?></td>
-						<td width="8%" class="listhdrr"><?=gettext("File system"); ?></td>
-						<td width="17%" class="listhdrr"><?=gettext("Status"); ?></td>
+						<td width="5%" class="listhdrlr"><?=gtext("Device"); ?></td>
+						<td width="15%" class="listhdrr"><?=gtext("Device Model"); ?></td>
+						<td width="7%" class="listhdrr"><?=gtext("Size"); ?></td>
+						<td width="15%" class="listhdrr"><?=gtext("Serial Number"); ?></td>
+						<td width="5%" class="listhdrr"><?=gtext("Controller"); ?></td>
+						<td width="18%" class="listhdrr"><?=gtext("Controller Model"); ?></td>
+						<td width="9%" class="listhdrr"><?=gtext("Standby"); ?></td>
+						<td width="10%" class="listhdrr"><?=gtext("Filesystem"); ?></td>
+						<td width="8%" class="listhdrr"><?=gtext("Status"); ?></td>
 						<td width="8%" class="list"></td>
 					</tr>
 					<?php foreach ($a_disk_conf as $disk):?>
@@ -186,47 +184,51 @@ function diskmanagement_process_updatenotification($mode, $data) {
 					$notificationmode = updatenotify_get_mode("device", $disk['uuid']);
 					switch ($notificationmode) {
 						case UPDATENOTIFY_MODE_NEW:
-							$status = gettext("Initializing");
+							$status = gtext("Initializing");
 							break;
 						case UPDATENOTIFY_MODE_MODIFIED:
-							$status = gettext("Modifying");
+							$status = gtext("Modifying");
 							break;
 						case UPDATENOTIFY_MODE_DIRTY:
-							$status = gettext("Deleting");
+							$status = gtext("Deleting");
 							break;
 						default:
 							if ($disk['type'] == 'HAST') {
 								$role = $a_phy_disk[$disk['name']]['role'];
-								$status = sprintf("%s (%s)", (0 == disks_exists($disk['devicespecialfile'])) ? gettext("ONLINE") : gettext("MISSING"), $role);
+								$status = sprintf("%s (%s)", (0 == disks_exists($disk['devicespecialfile'])) ? gtext("ONLINE") : gtext("MISSING"), $role);
 								$disk['size'] = $a_phy_disk[$disk['name']]['size'];
 							} else {
-								switch ( $verify_errors[$disk['name']]['error'] ){
-									case 1:
-										$status = sprintf("%s : %s", gettext('MOVED TO') , $verify_errors[$disk['name']]['new_devicespecialfile']);
-										break;
-									case 2:
-										if(empty($verify_errors[$disk['name']]['old_serial']) === FALSE){
-											$old_serial = htmlspecialchars($verify_errors[$disk['name']]['old_serial']);
-										} else {
-											$old_serial = htmlspecialchars(gettext("n/a"));
-										};
+								if (isset($verify_errors[$disk['name']]) && is_array($verify_errors[$disk['name']])) {
+									switch ( $verify_errors[$disk['name']]['error'] ){
+										case 1:
+											$status = sprintf("%s : %s", gtext('MOVED TO') , $verify_errors[$disk['name']]['new_devicespecialfile']);
+											break;
+										case 2:
+											if(empty($verify_errors[$disk['name']]['old_serial']) === FALSE){
+												$old_serial = htmlspecialchars($verify_errors[$disk['name']]['old_serial']);
+											} else {
+												$old_serial = gtext("n/a");
+											};
 
-										if(empty($verify_errors[$disk['name']]['new_serial']) === FALSE){
-											$new_serial = htmlspecialchars($verify_errors[$disk['name']]['new_serial']);
-										} else {
-											$new_serial = htmlspecialchars(gettext("n/a"));
-										};
-										$status = sprintf("%s (%s : '%s' %s '%s')", gettext('CHANGED'), gettext('Device Serial'), $old_serial, gettext('to'), $new_serial);
-										break;
-									case 4:
-										$status = sprintf("%s (%s : '%s' %s '%s')", gettext('CHANGED'), gettext('Controller'), htmlspecialchars($verify_errors[$disk['name']]['config_controller']), gettext('to'), htmlspecialchars($verify_errors[$disk['name']]['new_controller']) );
-										break;
-									case 8:
-										$status = sprintf("%s (%s)", gettext("MISSING"), $disk['devicespecialfile']);
-										break;
-									default:
-										$status = gettext("ONLINE");
+											if(empty($verify_errors[$disk['name']]['new_serial']) === FALSE){
+												$new_serial = htmlspecialchars($verify_errors[$disk['name']]['new_serial']);
+											} else {
+												$new_serial = gtext("n/a");
+											};
+											$status = sprintf("%s (%s : '%s' %s '%s')", gtext('CHANGED'), gtext('Device Serial'), $old_serial, gtext('to'), $new_serial);
+											break;
+										case 4:
+											$status = sprintf("%s (%s : '%s' %s '%s')", gtext('CHANGED'), gtext('Controller'), htmlspecialchars($verify_errors[$disk['name']]['config_controller']), gtext('to'), htmlspecialchars($verify_errors[$disk['name']]['new_controller']) );
+											break;
+										case 8:
+											$status = sprintf("%s (%s)", gtext("MISSING"), $disk['devicespecialfile']);
+											break;
+										default:
+											$status = gtext("ONLINE");
 									}
+								} else {
+									$status = gtext("ONLINE");
+								}
 							}
 							break;
 					}
@@ -238,58 +240,62 @@ function diskmanagement_process_updatenotification($mode, $data) {
 						$status_start_tag = '<td class="listbg">';
 						$status_end_tag = $end_tag;
 
-						if ($verify_errors[$disk['name']]['error'] >0){
-							$start_tag = $start_tag . '<span style="color: #ff0000;font-weight:bold;">';
-							$end_tag = '</span>&nbsp;' . $end_tag;
-							$status_start_tag = $status_start_tag . '<span style="color: #ff0000;font-weight:bold;">';
-							$status_end_tag = '</span>&nbsp;'. $end_tag;
+						if (isset($verify_errors[$disk['name']]) && is_array($verify_errors[$disk['name']])) {
+							if ($verify_errors[$disk['name']]['error'] > 0){
+								$start_tag = $start_tag . '<span style="color: #ff0000;font-weight:bold;">';
+								$end_tag = '</span>&nbsp;' . $end_tag;
+								$status_start_tag = $status_start_tag . '<span style="color: #ff0000;font-weight:bold;">';
+								$status_end_tag = '</span>&nbsp;'. $end_tag;
+							}
 						}
 
-						if($verify_errors[$disk['name']]['error'] == 8){
-							$start_tag = $start_tag . '<del>';
-							$end_tag = '</del>'. $end_tag;
+						if (isset($verify_errors[$disk['name']]) && is_array($verify_errors[$disk['name']])) {
+							if($verify_errors[$disk['name']]['error'] == 8){
+								$start_tag = $start_tag . '<del>';
+								$end_tag = '</del>'. $end_tag;
+							}
 						}
 
 						print $start_tag . htmlspecialchars($disk['name']) . $end_tag;
 						print $start_tag . htmlspecialchars($disk['model']) . $end_tag;
 						print $start_tag . htmlspecialchars($disk['size']) . $end_tag;
-						print $start_tag . ((empty($disk['serial']) ) === FALSE ? htmlspecialchars($disk['serial']) : htmlspecialchars(gettext("n/a"))) . $end_tag;
+						print $start_tag . ((empty($disk['serial']) ) === FALSE ? htmlspecialchars($disk['serial']) : gtext("n/a")) . $end_tag;
 						print $start_tag . htmlspecialchars($disk['controller'].$disk['controller_id']) . $end_tag;
 						print $start_tag . htmlspecialchars($disk['controller_desc']) . $end_tag;
-						print $start_tag . ($disk['harddiskstandby'] ? htmlspecialchars($disk['harddiskstandby']) : gettext("Always on")) . $end_tag;
-						print $start_tag . ((!empty($disk['fstype'])) ? htmlspecialchars(get_fstype_shortdesc($disk['fstype'])) : htmlspecialchars(gettext("Unknown or unformatted"))) . $end_tag;
+						print $start_tag . ($disk['harddiskstandby'] ? htmlspecialchars($disk['harddiskstandby']) : gtext("Always On")) . $end_tag;
+						print $start_tag . ((!empty($disk['fstype'])) ? htmlspecialchars(get_fstype_shortdesc($disk['fstype'])) : gtext("Unknown or unformatted")) . $end_tag;
 						print $status_start_tag . htmlspecialchars($status) . $status_end_tag;
 					?>
 
 						<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
 						<td valign="middle" nowrap="nowrap" class="list">
-							<a href="disks_manage_edit.php?uuid=<?=$disk['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit disk");?>" border="0" alt="<?=gettext("Edit disk");?>" /></a>&nbsp;
-							<a href="disks_manage.php?act=del&amp;uuid=<?=$disk['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this disk? All elements that still use it will become invalid (e.g. share)!"); ?>')"><img src="x.gif" title="<?=gettext("Delete disk"); ?>" border="0" alt="<?=gettext("Delete disk"); ?>" /></a>
+							<a href="disks_manage_edit.php?uuid=<?=$disk['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit disk");?>" border="0" alt="<?=gtext("Edit disk");?>" /></a>&nbsp;
+							<a href="disks_manage.php?act=del&amp;uuid=<?=$disk['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this disk? All elements that still use it will become invalid (e.g. share)!"); ?>')"><img src="images/delete.png" title="<?=gtext("Delete disk"); ?>" border="0" alt="<?=gtext("Delete disk"); ?>" /></a>
 						</td>
 						<?php else:?>
 						<td valign="middle" nowrap="nowrap" class="list">
-							<img src="del.gif" border="0" alt="" />
+							<img src="images/delete.png" border="0" alt="" />
 						</td>
 						<?php endif;?>
 					</tr>
 					<?php endforeach;?>
 					<tr>
 						<td class="list" colspan="9"></td>
-						<td class="list"> <a href="disks_manage_edit.php"><img src="plus.gif" title="<?=gettext("Add disk"); ?>" border="0" alt="<?=gettext("Add disk"); ?>" /></a></td>
+						<td class="list"> <a href="disks_manage_edit.php"><img src="images/add.png" title="<?=gtext("Add disk"); ?>" border="0" alt="<?=gtext("Add disk"); ?>" /></a></td>
 					</tr>
 				</table>
 				<div id="submit">
-					<input name="import" type="submit" class="formbtn" value="<?=gettext("Import disks");?>" onclick="return confirm('<?=gettext("Do you really want to import?\\nThe existing config may be overwritten.");?>');" />
-					<input name="clear_import" type="submit" class="formbtn" value="<?=gettext("Clear config and Import disks");?>" onclick="return confirm('<?=gettext("Do you really want to clear and import?\\nThe existing config will be cleared and overwritten.");?>');" />
-					<input name="disks_rescan" type="submit" class="formbtn" value="<?=gettext("Rescan disks");?>" />
+					<input name="import" type="submit" class="formbtn" value="<?=gtext("Import Disks");?>" onclick="return confirm('<?=gtext("Do you really want to import?\\nThe existing config may be overwritten.");?>');" />
+					<input name="clear_import" type="submit" class="formbtn" value="<?=gtext("Clear Config & Import Disks");?>" onclick="return confirm('<?=gtext("Do you really want to clear and import?\\nThe existing config will be cleared and overwritten.");?>');" />
+					<input name="disks_rescan" type="submit" class="formbtn" value="<?=gtext("Rescan Disks");?>" />
 					<br />
 					<br />
-					<input name="import_swraid" type="submit" class="formbtn" value="<?=gettext("Import software raid disks");?>" onclick="return confirm('<?=gettext("Do you really want to import?\\nThe existing config may be overwritten.");?>');" />
-					<input name="clear_import_swraid" type="submit" class="formbtn" value="<?=gettext("Clear config and Import software raid disks");?>" onclick="return confirm('<?=gettext("Do you really want to clear and import?\\nThe existing config will be cleared and overwritten.");?>');" />
+					<input name="import_swraid" type="submit" class="formbtn" value="<?=gtext("Import Software Raid Disks");?>" onclick="return confirm('<?=gtext("Do you really want to import?\\nThe existing config may be overwritten.");?>');" />
+					<input name="clear_import_swraid" type="submit" class="formbtn" value="<?=gtext("Clear Config & Import Software Raid Disks");?>" onclick="return confirm('<?=gtext("Do you really want to clear and import?\\nThe existing config will be cleared and overwritten.");?>');" />
 				</div>
 				<?php
 				if ($do_action) {
-					echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
+					echo(sprintf("<div id='cmdoutput'>%s</div>", gtext("Command output:")));
 					echo('<pre class="cmdoutput">');
 					//ob_end_flush();
 					if (true == $disks_rescan) {

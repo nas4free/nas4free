@@ -1,0 +1,15 @@
+--- usb/controller/uhci_pci.c.orig	2016-04-04 09:18:38.625240000 +0200
++++ usb/controller/uhci_pci.c	2016-04-04 09:53:03.000000000 +0200
+@@ -161,6 +161,12 @@
+ 	case 0x24de8086:
+ 		return ("Intel 82801EB (ICH5) USB controller USB-D");
+ 
++	case 0x25a98086:
++		return ("Intel 6300ESB USB controller USB-A");
++
++	case 0x25aa8086:
++		return ("Intel 6300ESB USB controller USB-B");
++
+ 	case 0x26588086:
+ 		return ("Intel 82801FB/FR/FW/FRW (ICH6) USB controller USB-A");
+ 

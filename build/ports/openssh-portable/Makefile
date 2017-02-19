@@ -1,9 +1,9 @@
 PORTNAME=		openssh-portable
 PORTVERSION=	1.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=		security
 COMMENT=		The portable version of OpenBSD's OpenSSH
-MAINTAINER=		zoon01@nas4free.org
+MAINTAINER=		zoon1@nas4free.org
 
 # No files are needed to be fetched.
 DISTFILES?=
@@ -16,7 +16,7 @@ NO_PKG_REGISTER?=	yes
 DEPENDS_TARGET=	clean build
 DISABLE_VULNERABILITIES=yes
 
-BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/security/openssh-portable
+BUILD_DEPENDS=	${NONEXISTENT}:security/openssh-portable
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/security/openssh-portable/work/openssh-*/sshd ${NAS4FREE_ROOTFS}/usr/sbin

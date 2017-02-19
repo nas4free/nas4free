@@ -3,11 +3,7 @@
 	system_proxy.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("System"),gettext("Advanced"),gettext("Proxy"));
+$pgtitle = array(gtext("Network"), gtext("Proxy"));
 
 if (!isset($config['system']['proxy']['http']) || !is_array($config['system']['proxy']['http']))
 	$config['system']['proxy']['http'] = array();
@@ -69,24 +66,24 @@ if ($_POST) {
 
 	if (isset($_POST['http_enable'])) {
 		$reqdfields = array_merge($reqdfields, explode(" ", "http_address http_port"));
-		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Address"),gettext("Port")));
+		$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Address"),gtext("Port")));
 		$reqdfieldst = array_merge($reqdfieldst,array("string","numeric"));
 
 		if (isset($_POST['http_auth'])) {
 			$reqdfields = array_merge($reqdfields, explode(" ", "http_username http_password"));
-			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("User"),gettext("Password")));
+			$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("User"),gtext("Password")));
 			$reqdfieldst = array_merge($reqdfieldst,array("string","password"));
 		}
 	}
 
 	if (isset($_POST['ftp_enable'])) {
 		$reqdfields = array_merge($reqdfields, explode(" ", "ftp_address ftp_port"));
-		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Address"),gettext("Port")));
+		$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Address"),gtext("Port")));
 		$reqdfieldst = array_merge($reqdfieldst,array("string","numeric"));
 
 		if (isset($_POST['ftp_auth'])) {
 			$reqdfields = array_merge($reqdfields, explode(" ", "ftp_username ftp_password"));
-			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("User"),gettext("Password")));
+			$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("User"),gtext("Password")));
 			$reqdfieldst = array_merge($reqdfieldst,array("string","password"));
 		}
 	}
@@ -96,7 +93,7 @@ if ($_POST) {
 
 	if (isset($_POST['http_auth'])) {
 		if (($_POST['http_password'] && !is_validpassword($_POST['http_password']))) {
-			$input_errors[] = gettext("The password contains the illegal character ':'.");
+			$input_errors[] = gtext("The password contains the illegal character ':'.");
 		}
 	}
 
@@ -183,47 +180,31 @@ function proxy_auth_change() {
 //-->
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-      	<li class="tabinact"><a href="system_advanced.php"><span><?=gettext("Advanced");?></span></a></li>
-      	<li class="tabinact"><a href="system_email.php"><span><?=gettext("Email");?></span></a></li>
-      	<li class="tabact"><a href="system_proxy.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Proxy");?></span></a></li>
-      	<li class="tabinact"><a href="system_swap.php"><span><?=gettext("Swap");?></span></a></li>
-      	<li class="tabinact"><a href="system_rc.php"><span><?=gettext("Command scripts");?></span></a></li>
-        <li class="tabinact"><a href="system_cron.php"><span><?=gettext("Cron");?></span></a></li>
-		<li class="tabinact"><a href="system_loaderconf.php"><span><?=gettext("loader.conf");?></span></a></li>
-        <li class="tabinact"><a href="system_rcconf.php"><span><?=gettext("rc.conf");?></span></a></li>
-        <li class="tabinact"><a href="system_sysctl.php"><span><?=gettext("sysctl.conf");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
     <td class="tabcont">
-    	<form action="system_proxy.php" method="post" name="iform" id="iform">
+    	<form action="system_proxy.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("http_enable", gettext("HTTP Proxy"), !empty($pconfig['http_enable']) ? true : false, gettext("Enable"), "enable_change(this)");?>
-          <?php html_inputbox("http_address", gettext("Address"), $pconfig['http_address'], "", true, 40);?>
-          <?php html_inputbox("http_port", gettext("Port"), $pconfig['http_port'], "", true, 10);?>
-					<?php html_checkbox("http_auth", gettext("Authentication"), !empty($pconfig['http_auth']) ? true : false, gettext("Enable proxy authentication."), "", false, "proxy_auth_change()");?>
-          <?php html_inputbox("http_username", gettext("User"), $pconfig['http_username'], "", true, 20);?>
-			    <?php html_inputbox("http_password", gettext("Password"), $pconfig['http_password'], "", true, 20);?>
+					<?php html_titleline_checkbox("http_enable", gtext("HTTP Proxy"), !empty($pconfig['http_enable']) ? true : false, gtext("Enable"), "enable_change(this)");?>
+          <?php html_inputbox("http_address", gtext("Address"), $pconfig['http_address'], "", true, 40);?>
+          <?php html_inputbox("http_port", gtext("Port"), $pconfig['http_port'], "", true, 10);?>
+					<?php html_checkbox("http_auth", gtext("Authentication"), !empty($pconfig['http_auth']) ? true : false, gtext("Enable proxy authentication."), "", false, "proxy_auth_change()");?>
+          <?php html_inputbox("http_username", gtext("User"), $pconfig['http_username'], "", true, 20);?>
+			    <?php html_inputbox("http_password", gtext("Password"), $pconfig['http_password'], "", true, 20);?>
 					<?php html_separator();?>
-					<?php html_titleline_checkbox("ftp_enable", gettext("FTP Proxy"), !empty($pconfig['ftp_enable']) ? true : false, gettext("Enable"), "enable_change(this)");?>
-          <?php html_inputbox("ftp_address", gettext("Address"), $pconfig['ftp_address'], "", true, 40);?>
-          <?php html_inputbox("ftp_port", gettext("Port"), $pconfig['ftp_port'], "", true, 10);?>
-          <?php html_checkbox("ftp_auth", gettext("Authentication"), !empty($pconfig['ftp_auth']) ? true : false, gettext("Enable proxy authentication."), "", false, "proxy_auth_change()");?>
-          <?php html_inputbox("ftp_username", gettext("User"), $pconfig['ftp_username'], "", true, 20);?>
-			    <?php html_inputbox("ftp_password", gettext("Password"), $pconfig['ftp_password'], "", true, 20);?>
+					<?php html_titleline_checkbox("ftp_enable", gtext("FTP Proxy"), !empty($pconfig['ftp_enable']) ? true : false, gtext("Enable"), "enable_change(this)");?>
+          <?php html_inputbox("ftp_address", gtext("Address"), $pconfig['ftp_address'], "", true, 40);?>
+          <?php html_inputbox("ftp_port", gtext("Port"), $pconfig['ftp_port'], "", true, 10);?>
+          <?php html_checkbox("ftp_auth", gtext("Authentication"), !empty($pconfig['ftp_auth']) ? true : false, gtext("Enable proxy authentication."), "", false, "proxy_auth_change()");?>
+          <?php html_inputbox("ftp_username", gtext("User"), $pconfig['ftp_username'], "", true, 20);?>
+			    <?php html_inputbox("ftp_password", gtext("Password"), $pconfig['ftp_password'], "", true, 20);?>
 			  </table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save");?>" onclick="enable_change(true)" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save");?>" onclick="enable_change(true)" />
 			  </div>
 			  <div id="remarks">
-			  	<?php html_remark("note", gettext("Note"), gettext("If the server is behind a proxy set these parameters to give local services access to the internet via proxy."));?>
+			  	<?php html_remark("note", gtext("Note"), gtext("If the server is behind a proxy set these parameters to give local services access to the internet via proxy."));?>
 			  </div>
 			  <?php include("formend.inc");?>
 			</form>

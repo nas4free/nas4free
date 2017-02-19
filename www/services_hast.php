@@ -3,7 +3,7 @@
 	services_hast.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -11,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -33,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Services"), gettext("HAST"));
+$pgtitle = array(gtext("Services"), gtext("HAST"));
 
 if (!isset($config['hast']['auxparam']) || !is_array($config['hast']['auxparam']))
 	$config['hast']['auxparam'] = array();
@@ -57,7 +58,11 @@ $a_carp = &$config['vinterfaces']['carp'];
 array_sort_key($a_carp, "if");
 
 if (!sizeof($a_carp)) {
-	$errormsg = sprintf(gettext("No configured CARP interfaces. Please add new <a href='%s'>CARP interface</a> first."), "interfaces_carp.php");
+	$errormsg = gtext('No configured CARP interfaces.')
+		. ' '
+		. '<a href="' . 'interfaces_carp.php' . '">'
+		. gtext('Please add a new CARP interface first')
+		. '</a>.';
 }
 
 if ($_POST) {
@@ -136,7 +141,7 @@ if ($_POST) {
 	// Input validation.
 /*
 	$reqdfields = explode(" ", "role");
-	$reqdfieldsn = array(gettext("HAST role"));
+	$reqdfieldsn = array(gtext("HAST role"));
 	$reqdfieldst = explode(" ", "string");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -239,56 +244,64 @@ $(document).ready(function(){
 //]]>
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-	<li class="tabact"><a href="services_hast.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Settings");?></span></a></li>
-	<li class="tabinact"><a href="services_hast_resource.php"><span><?=gettext("Resources");?></span></a></li>
-	<li class="tabinact"><a href="services_hast_info.php"><span><?=gettext("Information");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-      <form action="services_hast.php" method="post" name="iform" id="iform">
-	<?php if (!empty($errormsg)) print_error_box($errormsg);?>
-	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-	<?php if (!empty($savemsg)) print_info_box($savemsg);?>
-	<table width="100%" border="0" cellpadding="6" cellspacing="0">
-	<?php html_titleline_checkbox("enable", gettext("HAST (Highly Available Storage)"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "");?>
-	<?php echo html_text("nodeid", gettext("Node ID"), htmlspecialchars($nodeid)); ?>
-	<?php echo html_text("nodename", gettext("Node Name"), htmlspecialchars($nodename)); ?>
-	<?php
-		$a_vipaddrs = array();
-		foreach ($a_carp as $carp) {
-			$ifinfo = get_carp_info($carp['if']);
-			//$a_vipaddrs[] = $carp['vipaddr']." ({$ifinfo['state']},{$ifinfo['advskew']})";
-			$a_vipaddrs[] = $carp['vipaddr']." ({$ifinfo['state']})";
-		}
-	?>
-	<?php echo html_text("vipaddr", gettext("Virtual IP address"), (!empty($a_vipaddrs) ? htmlspecialchars(join(', ', $a_vipaddrs)) : sprintf("<span class='red'>%s</span>", htmlspecialchars(gettext("No configured CARP interfaces."))))); ?>
-	<?php //html_combobox("role", gettext("HAST role"), $pconfig['role'], array("primary" => gettext("Primary"), "secondary" => gettext("Secondary")), "", true);?>
-	<tr id="control_btn">
-	  <td colspan="2">
-	    <input id="switch_backup" name="switch_backup" type="submit" class="formbtn" value="<?php echo gettext("Switch VIP to BACKUP"); ?>" />
-	    <?php if (isset($a_carp[0]) && $a_carp[0]['advskew'] <= 1) { ?>
-	    &nbsp;<input id="switch_master" name="switch_master" type="submit" class="formbtn" value="<?php echo gettext("Switch VIP to MASTER"); ?>" />
-	    <?php } ?>
-	  </td>
+	<tr>
+		<td class="tabnavtbl">
+			<ul id="tabnav">
+				<li class="tabact"><a href="services_hast.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Settings");?></span></a></li>
+				<li class="tabinact"><a href="services_hast_resource.php"><span><?=gtext("Resources");?></span></a></li>
+				<li class="tabinact"><a href="services_hast_info.php"><span><?=gtext("Information");?></span></a></li>
+			</ul>
+		</td>
 	</tr>
-	<?php html_separator();?>
-	<?php html_titleline(gettext("Advanced settings"));?>
-	<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("These parameters are added to %s."), "hast.conf") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/disks-hast.html"), false, 65, 5, false, false);?>
-	</table>
-	<div id="submit">
-	  <input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" />
-	</div>
-	<div id="remarks">
-	  <?php html_remark("note", gettext("Note"), sprintf("<div id='enumeration'><ul><li>%s</li><li>%s</li><li>%s</li></ul></div>", gettext("When HAST is enabled, the local devices, the local services and the additional packages which do not support HAST volume cannot be used."), gettext("The HAST volumes can not be accessed until HAST node becomes Primary."), gettext("Dynamic IP (DHCP) can not be used for HAST resources.")));?>
-	</div>
-	<?php include("formend.inc");?>
-      </form>
-    </td>
-  </tr>
+	<tr>
+		<td class="tabcont">
+			<form action="services_hast.php" method="post" name="iform" id="iform" onsubmit="spinner()">
+				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<?php html_titleline_checkbox("enable", gtext("HAST (Highly Available Storage)"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "");?>
+					<?php echo html_text("nodeid", gtext("Node ID"), htmlspecialchars($nodeid)); ?>
+					<?php echo html_text("nodename", gtext("Node Name"), htmlspecialchars($nodename)); ?>
+					<?php
+					$a_vipaddrs = array();
+					foreach ($a_carp as $carp) {
+						$ifinfo = get_carp_info($carp['if']);
+						//$a_vipaddrs[] = $carp['vipaddr']." ({$ifinfo['state']},{$ifinfo['advskew']})";
+						$a_vipaddrs[] = $carp['vipaddr']." ({$ifinfo['state']})";
+					}
+					?>
+					<?php echo html_text("vipaddr", gtext("Virtual IP address"), (!empty($a_vipaddrs) ? htmlspecialchars(join(', ', $a_vipaddrs)) : sprintf("<span class='red'>%s</span>", gtext("No configured CARP interfaces.")))); ?>
+					<?php //html_combobox("role", gtext("HAST role"), $pconfig['role'], array("primary" => gtext("Primary"), "secondary" => gtext("Secondary")), "", true);?>
+					<tr id="control_btn">
+						<td colspan="2">
+							<input id="switch_backup" name="switch_backup" type="submit" class="formbtn" value="<?php echo gtext("Switch VIP to BACKUP"); ?>" />
+							<?php if (isset($a_carp[0]) && $a_carp[0]['advskew'] <= 1) { ?>
+							&nbsp;<input id="switch_master" name="switch_master" type="submit" class="formbtn" value="<?php echo gtext("Switch VIP to MASTER"); ?>" />
+							<?php } ?>
+						</td>
+					</tr>
+					<?php
+					html_separator();
+					html_titleline(gtext("Advanced Settings"));
+					
+					$helpinghand = '<a href="'
+						. 'http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/disks-hast.html'
+						. '" target="_blank">'
+						. gtext('Please check the documentation')
+						. '</a>.';
+					html_textarea("auxparam", gtext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gtext("These parameters are added to %s."), "hast.conf") . " " . $helpinghand, false, 65, 5, false, false);
+					?>
+				</table>
+				<div id="submit">
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" />
+				</div>
+				<div id="remarks">
+					<?php html_remark("note", gtext('Note'), sprintf("<div id='enumeration'><ul><li>%s</li><li>%s</li><li>%s</li></ul></div>", gtext("When HAST is enabled, the local devices, the local services and the additional packages which do not support HAST volume cannot be used."), gtext("The HAST volumes can not be accessed until HAST node becomes Primary."), gtext("Dynamic IP (DHCP) can not be used for HAST resources.")));?>
+				</div>
+				<?php include("formend.inc");?>
+			</form>
+		</td>
+	</tr>
 </table>
 <?php include("fend.inc");?>

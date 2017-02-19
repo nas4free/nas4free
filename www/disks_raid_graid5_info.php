@@ -3,7 +3,7 @@
 	disks_raid_graid5_info.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -15,6 +15,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +38,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Disks"), gettext("Software RAID"), gettext("RAID5"), gettext("Information"));
+$pgtitle = array(gtext("Disks"), gtext("Software RAID"), gtext("RAID5"), gtext("Information"));
 
 function get_raidinfo() {
 	exec("/sbin/graid5 list",$rawdata);
@@ -50,7 +51,8 @@ if (is_ajax()) {
 }
 ?>
 <?php include("fbegin.inc");?>
-<script type="text/javascript">//<![CDATA[
+<script type="text/javascript">
+//<![CDATA[
 $(document).ready(function(){
 	var gui = new GUI;
 	gui.recall(0, 5000, 'disks_raid_graid5_info.php', null, function(data) {
@@ -60,33 +62,34 @@ $(document).ready(function(){
 //]]>
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-	<tr><td class="tabnavtbl">
-  <ul id="tabnav">
-	<li class="tabinact"><a href="disks_raid_gconcat.php"><span><?=gettext("JBOD");?></span></a></li>
-	<li class="tabinact"><a href="disks_raid_gstripe.php"><span><?=gettext("RAID 0");?></span></a></li>
-	<li class="tabinact"><a href="disks_raid_gmirror.php"><span><?=gettext("RAID 1");?></span></a></li>
-	<li class="tabact"><a href="disks_raid_graid5.php" title="<?=gettext("Reload page");?>"><span><?=gettext("RAID 5");?></span></a></li>
-	<li class="tabinact"><a href="disks_raid_gvinum.php"><span><?=gettext("RAID 0/1/5");?></span></a></li>
-  </ul>
-  </td></tr>
-  <tr><td class="tabnavtbl">
-  <ul id="tabnav2">
-	<li class="tabinact"><a href="disks_raid_graid5.php"><span><?=gettext("Management"); ?></span></a></li>
-	<li class="tabinact"><a href="disks_raid_graid5_tools.php"><span><?=gettext("Tools"); ?></span></a></li>
-	<li class="tabact"><a href="disks_raid_graid5_info.php" title="<?=gettext("Reload page");?>" ><span><?=gettext("Information");?></span></a></li>
-  </ul>
-  </td></tr>
-  <tr> 
-    <td class="tabcont">
-	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-	    <?php html_titleline(gettext("RAID 5 information and status"));?>
-	    <tr>
-		<td class="listt">
-		    <pre><span id="raidinfo"></span></pre>
+	<tr>
+		<td class="tabnavtbl">
+			<ul id="tabnav">
+				<li class="tabact"><a href="disks_raid_geom.php" title="<?=gtext('Reload page');?>"><span><?=gtext('GEOM');?></span></a></li>
+				<li class="tabinact"><a href="disks_raid_gvinum.php"><span><?=gtext("RAID 0/1/5");?></span></a></li>
+			</ul>
 		</td>
-	    </tr>
-    	</table>
-    </td>
-  </tr>
+	</tr>
+	<tr>
+		<td class="tabnavtbl">
+			<ul id="tabnav2">
+				<li class="tabinact"><a href="disks_raid_geom.php"><span><?=gtext('Management'); ?></span></a></li>
+				<li class="tabinact"><a href="disks_raid_graid5_tools.php"><span><?=gtext('Maintenance'); ?></span></a></li>
+				<li class="tabact"><a href="disks_raid_graid5_info.php" title="<?=gtext('Reload page');?>" ><span><?=gtext('Information');?></span></a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr> 
+		<td class="tabcont">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+				<?php html_titleline(gtext('RAID 5 Information & Status'));?>
+				<tr>
+					<td class="listt">
+						<pre><span id="raidinfo"></span></pre>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
 </table>
 <?php include("fend.inc");?>

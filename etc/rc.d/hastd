@@ -1,8 +1,10 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
+#
+# Highly Available Storage daemon
 #
 
 # PROVIDE: hastd
@@ -17,6 +19,7 @@
 . /etc/configxml.subr
 
 name="hastd"
+desc="Highly Available Storage daemon"
 rcvar="hastd_enable"
 load_rc_config "${name}"
 
@@ -60,6 +63,7 @@ hastd_mkconf()
 
 hastd_stop_precmd()
 {
+	/etc/rc.d/iscsi_initiator forcestop
 	/usr/local/sbin/hastswitch shutdown
 	${hastctl} role ${hastctl_args} init all
 }

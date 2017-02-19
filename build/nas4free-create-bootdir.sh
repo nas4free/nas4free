@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 
@@ -111,10 +111,11 @@ echo 'mfsroot_name="/mfsroot"' >> $MINIBSD_DIR/loader.conf
 echo 'hw.est.msr_info="0"' >> $MINIBSD_DIR/loader.conf
 echo 'hw.hptrr.attach_generic="0"' >> $MINIBSD_DIR/loader.conf
 echo 'hw.msk.msi_disable="1"' >> $MINIBSD_DIR/loader.conf
-echo 'kern.maxfiles="65536"' >> $MINIBSD_DIR/loader.conf
-echo 'kern.maxfilesperproc="60000"' >> $MINIBSD_DIR/loader.conf
+echo 'kern.maxfiles="6289573"' >> $MINIBSD_DIR/loader.conf
 echo 'kern.cam.boot_delay="8000"' >> $MINIBSD_DIR/loader.conf
+echo 'kern.cam.ada.legacy_aliases="0"' >> $MINIBSD_DIR/loader.conf
 echo 'kern.geom.label.disk_ident.enable="0"' >> $MINIBSD_DIR/loader.conf
+echo 'kern.geom.label.gptid.enable="0"' >> $MINIBSD_DIR/loader.conf
 echo 'hint.acpi_throttle.0.disabled="0"' >> $MINIBSD_DIR/loader.conf
 echo 'hint.p4tcc.0.disabled="0"' >> $MINIBSD_DIR/loader.conf
 
@@ -155,6 +156,14 @@ echo 'xmfsroot_load="YES"' >> $MINIBSD_DIR/loader.conf
 echo 'xmfsroot_type="xmd_root"' >> $MINIBSD_DIR/loader.conf
 echo 'xmfsroot_name="/mfsroot.uzip"' >> $MINIBSD_DIR/loader.conf
 echo 'geom_xmd_load="YES"' >> $MINIBSD_DIR/loader.conf
+
+# Xen
+if [ "dom0" == ${NAS4FREE_XARCH} ]; then
+    echo 'xen_kernel="/boot/xen"' >> $MINIBSD_DIR/loader.conf
+    echo 'xen_cmdline="dom0_mem=4096M dom0_max_vcpus=4 dom0pvh=1 com1=115200,8n1 guest_loglvl=all loglvl=all console=com1,vga"' >> $MINIBSD_DIR/loader.conf
+    echo 'vfs.zfs.arc_max="2G"' >> $MINIBSD_DIR/loader.conf
+    echo 'vfs.zfs.arc_min="1G"' >> $MINIBSD_DIR/loader.conf
+fi
 
 # Copy kernel.
 if [ -e "${NAS4FREE_WORKINGDIR}/kernel.gz" ] ; then

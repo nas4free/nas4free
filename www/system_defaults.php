@@ -3,11 +3,7 @@
 	system_defaults.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,13 +34,13 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("System"), gettext("Factory defaults"));
+$pgtitle = array(gtext("System"), gtext("Factory Defaults"));
 
 if ($_POST) {
-	if (0 == strcmp($_POST['Submit'], gettext("Yes"))) {
+	if (0 == strcmp($_POST['Submit'], gtext("Yes"))) {
 		reset_factory_defaults();
 		system_reboot();
-		$rebootmsg = gettext("The server has been reset to factory defaults and is now rebooting. This may take one minute.");
+		$rebootmsg = gtext("The server has been reset to factory defaults and is now rebooting. This may take one minute.");
 	} else {
 		header("Location: index.php");
 		exit;
@@ -52,19 +49,23 @@ if ($_POST) {
 ?>
 <?php include("fbegin.inc");?>
 <?php if (!empty($rebootmsg)): echo print_info_box($rebootmsg); else:?>
-<form action="system_defaults.php" method="post">
+<form action="system_defaults.php" method="post" onsubmit="spinner()">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="tabcont">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<?php html_titleline(gtext("Factory Defaults"));?>
 	  <tr>
 	    <td class="tabcont">
 				<p>
 					<strong>
-						<?=sprintf(gettext("If you click 'Yes', The server will be reset to factory defaults and will reboot immediately. The entire system configuration will be overwritten. The LAN IP address will be reset to %s and the password will be set to '%s'."), $g['default_ip'], $g['default_passwd']);?><br /><br />
-						<?=gettext("Are you sure you want to proceed?");?>
+						<?=sprintf(gtext("If you click 'Yes', The server will be reset to factory defaults and will reboot immediately. The entire system configuration will be overwritten. The LAN IP address will be reset to %s and the password will be set to '%s'."), $g['default_ip'], $g['default_passwd']);?><br /><br />
+						<p class="red"><?=gtext("Are you sure you want to proceed?");?>
 					</strong>
 				</p>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Yes");?>" />
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("No");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Yes");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("No");?>" />
 				</div>
 			</td>
 		</tr>

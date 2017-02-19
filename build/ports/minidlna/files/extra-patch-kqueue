@@ -1,5 +1,18 @@
 --- configure.ac.orig	2015-09-11 04:24:09.000000000 +0900
 +++ configure.ac	2015-09-30 21:33:29.288753000 +0900
+@@ -40,9 +40,9 @@
+ 
+ # Default string definitions
+ AC_DEFINE_UNQUOTED([OS_URL],"http://sourceforge.net/projects/minidlna/",[OS URL])
+-AC_DEFINE_UNQUOTED([ROOTDEV_MANUFACTURER],"Justin Maggard", [Manufacturer])
+-AC_DEFINE_UNQUOTED([ROOTDEV_MANUFACTURERURL],"http://www.netgear.com/", [Manufacturer URL])
+-AC_DEFINE_UNQUOTED([ROOTDEV_MODELNAME],"Windows Media Connect compatible (MiniDLNA)", [Model name])
++AC_DEFINE_UNQUOTED([ROOTDEV_MANUFACTURER],"NAS4Free", [Manufacturer])
++AC_DEFINE_UNQUOTED([ROOTDEV_MANUFACTURERURL],"http://www.nas4free.org", [Manufacturer URL])
++AC_DEFINE_UNQUOTED([ROOTDEV_MODELNAME],"Simple Media Server (MiniDLNA)", [Model name])
+ AC_DEFINE_UNQUOTED([ROOTDEV_MODELDESCRIPTION],"MiniDLNA on " OS_NAME, [Model description])
+ AC_DEFINE_UNQUOTED([ROOTDEV_MODELURL],OS_URL,[Model URL])
+ 
 @@ -481,7 +481,7 @@
  ################################################################################################################
  ### Header checks
@@ -495,8 +508,16 @@
  	smonitor = OpenAndConfMonitorSocket();
  
 --- upnpevents.c.orig	2015-09-11 04:24:09.000000000 +0900
-+++ upnpevents.c	2015-09-30 21:51:12.319195000 +0900
-@@ -417,6 +417,10 @@
++++ upnpevents.c	2015-10-17 18:23:47.204539000 +0900
+@@ -47,6 +47,7 @@
+  */
+ #include "config.h"
+ 
++#define FD_SETSIZE 8192
+ #include <stdio.h>
+ #include <string.h>
+ #include <errno.h>
+@@ -417,6 +418,10 @@
  {
  	struct upnp_event_notify * obj;
  	for(obj = notifylist.lh_first; obj != NULL; obj = obj->entries.le_next) {

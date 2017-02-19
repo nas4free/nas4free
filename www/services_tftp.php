@@ -3,11 +3,7 @@
 	services_tftp.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Services"), gettext("TFTP"));
+$pgtitle = array(gtext("Services"), gtext("TFTP"));
 
 if (!isset($config['tftpd']) || !is_array($config['tftpd']))
 	$config['tftpd'] = array();
@@ -63,20 +60,20 @@ if ($_POST) {
 	// Input validation.
 	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "dir");
-		$reqdfieldsn = array(gettext("Directory"));
+		$reqdfieldsn = array(gtext("Directory"));
 		$reqdfieldst = explode(" ", "string");
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 		$reqdfields = array_merge($reqdfields, explode(" ", "port umask timeout maxblocksize"));
-		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Port"), gettext("umask"), gettext("Timeout"), gettext("Max. block size")));
+		$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Port"), gtext("umask"), gtext("Timeout"), gtext("Max. block size")));
 		$reqdfieldst = array_merge($reqdfieldst, explode(" ", "port numeric numeric numeric"));
 
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
 
 	if ($_POST['maxblocksize'] && ((512 > $_POST['maxblocksize']) || (65464 < $_POST['maxblocksize']))) {
-		$input_errors[] = sprintf(gettext("Invalid max. block size! It must be in the range from %d to %d."), 512, 65464);
+		$input_errors[] = sprintf(gtext("Invalid max. block size! It must be in the range from %d to %d."), 512, 65464);
 	}
 
 	if (empty($input_errors)) {
@@ -123,25 +120,25 @@ function enable_change(enable_change) {
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabcont">
-			<form action="services_tftp.php" method="post" name="iform" id="iform">
+			<form action="services_tftp.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Trivial File Transfer Protocol"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
-					<?php html_filechooser("dir", gettext("Directory"), $pconfig['dir'], gettext("The directory containing the files you want to publish. The remote host does not need to pass along the directory as part of the transfer."), $g['media_path'], true, 60);?>
-					<?php html_checkbox("allowfilecreation", gettext("Allow new files"), !empty($pconfig['allowfilecreation']) ? true : false, gettext("Allow new files to be created."), gettext("By default, only already existing files can be uploaded."), false);?>
+					<?php html_titleline_checkbox("enable", gtext("Trivial File Transfer Protocol"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");?>
+					<?php html_filechooser("dir", gtext("Directory"), $pconfig['dir'], gtext("The directory containing the files you want to publish. The remote host does not need to pass along the directory as part of the transfer."), $g['media_path'], true, 60);?>
+					<?php html_checkbox("allowfilecreation", gtext("Allow new files"), !empty($pconfig['allowfilecreation']) ? true : false, gtext("Allow new files to be created."), gtext("By default, only already existing files can be uploaded."), false);?>
 					<?php html_separator();?>
-					<?php html_titleline(gettext("Advanced settings"));?>
-					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], gettext("The port to listen to. The default is to listen to the tftp port specified in /etc/services."), false, 5);?>
+					<?php html_titleline(gtext("Advanced Settings"));?>
+					<?php html_inputbox("port", gtext("Port"), $pconfig['port'], gtext("The port to listen to. The default is to listen to the tftp port specified in /etc/services."), false, 5);?>
 					<?php $a_user = array(); foreach (system_get_user_list() as $userk => $userv) { $a_user[$userk] = htmlspecialchars($userk); }?>
-					<?php html_combobox("username", gettext("Username"), $pconfig['username'], $a_user, gettext("Specifies the username which the service will run as."), false);?>
-					<?php html_inputbox("umask", gettext("umask"), $pconfig['umask'], gettext("Sets the umask for newly created files to the specified value. The default is zero (anyone can read or write)."), false, 4);?>
-					<?php html_inputbox("timeout", gettext("Timeout"), $pconfig['timeout'], gettext("Determine the default timeout, in microseconds, before the first packet is retransmitted. The default is 1000000 (1 second)."), false, 10);?>
-					<?php html_inputbox("maxblocksize", gettext("Max. block size"), $pconfig['maxblocksize'], gettext("Specifies the maximum permitted block size. The permitted range for this parameter is from 512 to 65464."), false, 5);?>
-					<?php html_inputbox("extraoptions", gettext("Extra options"), $pconfig['extraoptions'], gettext("Extra options (usually empty)."), false, 40);?>
+					<?php html_combobox("username", gtext("Username"), $pconfig['username'], $a_user, gtext("Specifies the username which the service will run as."), false);?>
+					<?php html_inputbox("umask", gtext("umask"), $pconfig['umask'], gtext("Sets the umask for newly created files to the specified value. The default is zero (anyone can read or write)."), false, 4);?>
+					<?php html_inputbox("timeout", gtext("Timeout"), $pconfig['timeout'], gtext("Determine the default timeout, in microseconds, before the first packet is retransmitted. The default is 1000000 (1 second)."), false, 10);?>
+					<?php html_inputbox("maxblocksize", gtext("Max. block size"), $pconfig['maxblocksize'], gtext("Specifies the maximum permitted block size. The permitted range for this parameter is from 512 to 65464."), false, 5);?>
+					<?php html_inputbox("extraoptions", gtext("Extra options"), $pconfig['extraoptions'], gtext("Extra options (usually empty)."), false, 40);?>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" onclick="enable_change(true)" />
 				</div>
 				<?php include("formend.inc");?>
 			</form>

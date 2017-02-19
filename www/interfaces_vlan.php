@@ -3,15 +3,7 @@
 	interfaces_vlan.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
-	Portions of m0n0wall (http://m0n0.ch/wall).
-	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -19,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -41,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Network"), gettext("Interface Management"), gettext("VLAN"));
+$pgtitle = array(gtext("Network"), gtext("Interface Management"), gtext("VLAN"));
 
 if (!isset($config['vinterfaces']['vlan']) || !is_array($config['vinterfaces']['vlan']))
 	$config['vinterfaces']['vlan'] = array();
@@ -76,7 +69,7 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 
 	// Check if still in use.
 	if (vlan_inuse($vlan['if'])) {
-		$input_errors[] = gettext("This VLAN cannot be deleted because it is still being used as an interface.");
+		$input_errors[] = gtext("This VLAN cannot be deleted because it is still being used as an interface.");
 	} else {
 		mwexec("/usr/local/sbin/rconf attribute remove 'ifconfig_{$vlan['if']}'");
 
@@ -95,12 +88,12 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 	<tr>
 		<td class="tabnavtbl">
 		  <ul id="tabnav">
-				<li class="tabinact"><a href="interfaces_assign.php"><span><?=gettext("Management");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_wlan.php"><span><?=gettext("WLAN");?></span></a></li>
-				<li class="tabact"><a href="interfaces_vlan.php" title="<?=gettext("Reload page");?>"><span><?=gettext("VLAN");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_lagg.php"><span><?=gettext("LAGG");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gettext("Bridge");?></span></a></li>
-				<li class="tabinact"><a href="interfaces_carp.php"><span><?=gettext("CARP");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_assign.php"><span><?=gtext("Management");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_wlan.php"><span><?=gtext("WLAN");?></span></a></li>
+				<li class="tabact"><a href="interfaces_vlan.php" title="<?=gtext('Reload page');?>"><span><?=gtext("VLAN");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_lagg.php"><span><?=gtext("LAGG");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gtext("Bridge");?></span></a></li>
+				<li class="tabinact"><a href="interfaces_carp.php"><span><?=gtext("CARP");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
@@ -111,10 +104,10 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
-						<td width="20%" class="listhdrlr"><?=gettext("Virtual interface");?></td>
-						<td width="20%" class="listhdrr"><?=gettext("Physical interface");?></td>
-						<td width="5%" class="listhdrr"><?=gettext("VLAN tag");?></td>
-						<td width="45%" class="listhdrr"><?=gettext("Description");?></td>
+						<td width="20%" class="listhdrlr"><?=gtext("Virtual Interface");?></td>
+						<td width="20%" class="listhdrr"><?=gtext("Physical Interface");?></td>
+						<td width="7%" class="listhdrr"><?=gtext("VLAN Tag");?></td>
+						<td width="43%" class="listhdrr"><?=gtext("Description");?></td>
 						<td width="10%" class="list"></td>
 					</tr>
 					<?php foreach ($a_vlan as $vlan):?>
@@ -124,20 +117,20 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 						<td class="listr"><?=htmlspecialchars($vlan['tag']);?></td>
 						<td class="listbg"><?=htmlspecialchars($vlan['desc']);?>&nbsp;</td>
 						<td valign="middle" nowrap="nowrap" class="list">
-							<a href="interfaces_vlan_edit.php?uuid=<?=$vlan['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit interface");?>" border="0" alt="<?=gettext("Edit interface");?>" /></a>&nbsp;
-							<a href="interfaces_vlan.php?act=del&amp;uuid=<?=$vlan['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this interface?");?>')"><img src="x.gif" title="<?=gettext("Delete interface");?>" border="0" alt="<?=gettext("Delete interface");?>" /></a>
+							<a href="interfaces_vlan_edit.php?uuid=<?=$vlan['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit interface");?>" border="0" alt="<?=gtext("Edit interface");?>" /></a>&nbsp;
+							<a href="interfaces_vlan.php?act=del&amp;uuid=<?=$vlan['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this interface?");?>')"><img src="images/delete.png" title="<?=gtext("Delete interface");?>" border="0" alt="<?=gtext("Delete interface");?>" /></a>
 						</td>
 					</tr>
 					<?php endforeach;?>
 					<tr>
 						<td class="list" colspan="4">&nbsp;</td>
 						<td class="list">
-							<a href="interfaces_vlan_edit.php"><img src="plus.gif" title="<?=gettext("Add interface");?>" border="0" alt="<?=gettext("Add interface");?>" /></a>
+							<a href="interfaces_vlan_edit.php"><img src="images/add.png" title="<?=gtext("Add interface");?>" border="0" alt="<?=gtext("Add interface");?>" /></a>
 						</td>
 					</tr>
 				</table>
 				<div id="remarks">
-					<?php html_remark("note", gettext("Note"), gettext("Not all drivers/NICs support 802.1Q VLAN tagging properly. On cards that do not explicitly support it, VLAN tagging will still work, but the reduced MTU may cause problems."));?>
+					<?php html_remark("note", gtext("Note"), gtext("Not all drivers/NICs support 802.1Q VLAN tagging properly. On cards that do not explicitly support it, VLAN tagging will still work, but the reduced MTU may cause problems."));?>
 				</div>
 				<?php include("formend.inc");?>
 			</form>

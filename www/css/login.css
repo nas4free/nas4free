@@ -1,0 +1,177 @@
+/*
+	login.css
+
+	Part of NAS4Free (http://www.nas4free.org).
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
+	All rights reserved.
+
+	Redistribution and use in source and binary forms, with or without
+	modification, are permitted provided that the following conditions are met:
+
+	1. Redistributions of source code must retain the above copyright notice, this
+	   list of conditions and the following disclaimer.
+
+	2. Redistributions in binary form must reproduce the above copyright notice,
+	   this list of conditions and the following disclaimer in the documentation
+	   and/or other materials provided with the distribution.
+
+	THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+	ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+	WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+	DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+	ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+	(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+	LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+	ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+	(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+	SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+	The views and conclusions contained in the software and documentation are those
+	of the authors and should not be interpreted as representing official policies,
+	either expressed or implied, of the NAS4Free Project.
+*/
+body {
+	background: #D9DCE1;
+	margin: 0 auto;
+	padding: 0pt;
+	min-width: 700px;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+.logintitle {
+	background: rgb(237,237,237);
+	background: -moz-linear-gradient(top, rgba(237,237,237,1) 0%, rgba(222,222,222,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(237,237,237,1)), color-stop(100%,rgba(222,222,222,1)));
+	background: -webkit-linear-gradient(top, rgba(237,237,237,1) 0%,rgba(222,222,222,1) 100%);
+	background: -o-linear-gradient(top, rgba(237,237,237,1) 0%,rgba(222,222,222,1) 100%);
+	background: -ms-linear-gradient(top, rgba(237,237,237,1) 0%,rgba(222,222,222,1) 100%);
+	background: linear-gradient(to bottom, rgba(237,237,237,1) 0%,rgba(222,222,222,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ededed', endColorstr='#dedede',GradientType=0 );
+	padding: 15px;
+	text-transform: uppercase;
+	line-height: 21px;
+	border: 1px solid #bbb;
+	font-size: 18px;
+	border-bottom: 0;
+	-moz-border-radius: 2px 2px 0 0;
+	-webkit-border-radius: 2px 2px 0 0;
+	border-radius: 2px 2px 0 0;
+	color: #666;
+	padding-bottom: 25px;
+}
+.loginwrapper {
+	width: 422px;
+	margin: 130px auto 0 auto;
+}
+.loginwrapperinner {
+	padding: 20px;
+	background: #444;
+	-moz-border-radius: 0 0 2px 2px;
+	-webkit-border-radius: 0 0 2px 2px;
+	border-radius: 0 0 2px 2px;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+.loginwrapper input {
+	width: 100%;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 10px;
+	min-height: 44px;
+	font-size: 14px !important;
+	border:1px solid #444444;
+	color: #ffffff;
+	border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px 3px 3px 3px;
+	color: #fff;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+span, a, form, h1, button {
+	background: transparent;
+	border: 0;
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+}
+.loginwrapper input#username {
+	background: #eee url(/images/uname.png) no-repeat 8px 12px;
+	color: #444;
+	padding-left: 30px;
+}
+.loginwrapper input#password {
+	background: #eee url(/images/pwd.png) no-repeat 8px 12px;
+	color: #444;
+	padding-left: 30px;
+}
+.loginwrapper p {
+	margin: 18px 0;
+}
+.formbtn{
+	display: inline-block;
+	border:1px solid #444444;
+	color: #ffffff;
+	border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px 3px 3px 3px;
+	font-family: Verdana;
+	width: auto;
+	height: auto;
+	font-size: 16px;
+	padding: 10px 40px;
+	box-shadow: inset 0 1px 0 0 #7cd4fc,inset 0 1px 0 0 #2696c9,inset 0 1px 0 1px #59b7e3,0 0px 0px 0 #444444;
+	-moz-box-shadow: inset 0 1px 0 0 #7cd4fc,inset 0 1px 0 0 #2696c9,inset 0 1px 0 1px #59b7e3,0 0px 0px 0 #444444;
+	-webkit-box-shadow: inset 0 1px 0 0 #7cd4fc,inset 0 1px 0 0 #2696c9,inset 0 1px 0 1px #59b7e3,0 0px 0px 0 #444444;
+	border:1px solid #444444;
+	color: #ffffff;
+	border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px 3px 3px 3px;text-shadow: 0 1px 2px #000000;
+	border:1px solid #444444;
+	color: #ffffff;
+	border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px 3px 3px 3px;background-image: linear-gradient(to top, #42B0E3, #2ba9e3);
+	background-color: #42b0e3;
+}
+.formbtn:active, .formbtn:hover{
+	border:2px solid #444444;
+	color: #ffffff;
+	box-shadow: inset 0 1px 0 0 #7cd4fc,inset 0 -1px 0 0 #2696c9,inset 0 0 0 1px #59b7e3;
+	-moz-box-shadow: inset 0 1px 0 0 #7cd4fc,inset 0 -1px 0 0 #2696c9,inset 0 0 0 1px #59b7e3;
+	-webkit-box-shadow: inset 0 1px 0 0 #7cd4fc,inset 0 -1px 0 0 #2696c9,inset 0 0 0 1px #59b7e3;
+	background-color: #2ba9e3;
+}
+.logintitle span.subtitle {
+	font-size: 12px;
+	font-weight: normal;
+	display: block;
+	margin-left: 32px;
+	text-transform: none;
+	color: #9999;
+	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+	float:right;
+}
+.logintitle span.iconfa-lock {
+	font-size: 24px;
+	margin-top: 20px;
+	float: left;
+	margin-right: 10px;
+}
+#all_links a {
+	color:#444;
+}
+#all_links a:hover {
+	text-decoration:underline;
+}
+#all_links ul {
+	list-style:none;
+}
+#all_links ul li{
+	display:inline-block;
+}
+#loginerror {
+	font-size: 15px;
+	color:red;
+	text-align:center;
+}

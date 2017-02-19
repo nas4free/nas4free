@@ -3,11 +3,7 @@
 	services_afp.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,25 +34,27 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Services"),gettext("AFP"));
+$pgtitle = array(gtext("Services"),gtext("AFP"));
 
-if (!isset($config['afp']) || !is_array($config['afp']))
-	$config['afp'] = array();
+if (!(isset($config['afp']) && is_array($config['afp']))) {
+	$config['afp'] = [];
+}
+if (!(isset($config['afp']['auxparam']) && is_array($config['afp']['auxparam']))) {
+	$config['afp']['auxparam'] = [];
+}
 
 $pconfig['enable'] = isset($config['afp']['enable']);
 $pconfig['afpname'] = !empty($config['afp']['afpname']) ? $config['afp']['afpname'] : "";
 $pconfig['guest'] = isset($config['afp']['guest']);
 $pconfig['local'] = isset($config['afp']['local']);
-$pconfig['noddp'] = isset($config['afp']['noddp']);
-if (is_array($config['afp']['auxparam']))
-	$pconfig['auxparam'] = implode("\n", $config['afp']['auxparam']);
+$pconfig['auxparam'] = implode("\n", $config['afp']['auxparam']);
 
 if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
 	if (!empty($_POST['enable']) && (empty($_POST['guest']) && empty($_POST['local']))) {
-		$input_errors[] = gettext("You must select at least one authentication method.");
+		$input_errors[] = gtext("You must select at least one authentication method.");
 	}
 
 	if (empty($input_errors)) {
@@ -63,7 +62,6 @@ if ($_POST) {
 		$config['afp']['afpname'] = $_POST['afpname'];
 		$config['afp']['guest'] = isset($_POST['guest']) ? true : false;
 		$config['afp']['local'] = isset($_POST['local']) ? true : false;
-		$config['afp']['noddp'] = isset($_POST['noddp']) ? true : false;
 		
 		# Write additional parameters.
 		unset($config['afp']['auxparam']);
@@ -94,52 +92,66 @@ function enable_change(enable_change) {
 	document.iform.afpname.disabled = endis;
 	document.iform.guest.disabled = endis;
 	document.iform.local.disabled = endis;
-	document.iform.noddp.disabled = endis;
+	document.iform.auxparam.disabled = endis;
 }
 //-->
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-        <li class="tabact"><a href="services_afp.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Settings");?></span></a></li>
-        <li class="tabinact"><a href="services_afp_share.php"><span><?=gettext("Shares");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-			<form action="services_afp.php" method="post" name="iform" id="iform">
+	<tr>
+		<td class="tabnavtbl">
+			<ul id="tabnav">
+				<li class="tabact"><a href="services_afp.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Settings");?></span></a></li>
+				<li class="tabinact"><a href="services_afp_share.php"><span><?=gtext("Shares");?></span></a></li>
+			</ul>
+		</td>
+	</tr>
+	<tr>
+		<td class="tabcont">
+			<form action="services_afp.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Apple Filing Protocol"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gtext("Apple Filing Protocol"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");?>
 					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gettext("Server Name");?></td>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Server Name");?></td>
 						<td width="78%" class="vtable">
 							<input name="afpname" type="text" class="formfld" id="afpname" size="30" value="<?=htmlspecialchars($pconfig['afpname']);?>" /><br />
-							<?=gettext("Name of the server. If this field is left empty the default server is specified.");?><br />
+							<?=gtext("Name of the server. If this field is left empty the default server is specified.");?><br />
 						</td>
 					</tr>
 					<tr>
-						<td width="22%" valign="top" class="vncell"><strong><?=gettext("Authentication");?></strong></td>
+						<td width="22%" valign="top" class="vncell"><strong><?=gtext("Authentication");?></strong></td>
 						<td width="78%" class="vtable">
 							<input name="guest" id="guest" type="checkbox" value="yes" <?php if (!empty($pconfig['guest'])) echo "checked=\"checked\"";?> />
-							<?=gettext("Enable guest access.");?><br />
+							<?=gtext("Enable guest access.");?><br />
 							<input name="local" id="local" type="checkbox" value="yes" <?php if (!empty($pconfig['local'])) echo "checked=\"checked\"";?> />
-							<?=gettext("Enable local user authentication.");?>
+							<?=gtext("Enable local user authentication.");?>
 						</td>
 					</tr>
 					
 					<tr>
-					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("add any supplemental parameters")) . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://netatalk.sourceforge.net/3.1/htmldocs/afp.conf.5.html"), false, 65, 5, false, false);?>
-                                        </tr>
-			  </table>
+					<?php
+					$helpinghand = '<a href="'
+						. 'http://netatalk.sourceforge.net/3.1/htmldocs/afp.conf.5.html'
+						. '" target="_blank">'
+						. gtext('Please check the documentation')
+						. '</a>.';
+					html_textarea("auxparam", gtext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gtext('Add any supplemental parameters.')) . ' ' . $helpinghand, false, 65, 5, false, false);
+					?>
+					</tr>
+				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" onclick="enable_change(true)" />
 				</div>
 				<div id="remarks">
-					<?php html_remark("note", gettext("Note"), sprintf(gettext("You have to activate <a href='%s'>Zeroconf/Bonjour</a> to advertise this service to clients."), "system_advanced.php"));?>
+					<?php
+					$link = '<a href="'
+						. 'system_advanced.php'
+						. '">'
+						. gtext('Zeroconf/Bonjour')
+						. '</a>';
+					html_remark("note", gtext('Note'), sprintf(gtext("You have to activate %s to advertise this service to clients."), $link));
+					?>
 				</div>
 				<?php include("formend.inc");?>
 			</form>

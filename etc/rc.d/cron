@@ -1,12 +1,10 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-# Portions of freenas (http://www.freenas.org).
-# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
-# All rights reserved.
+# Daemon to execute scheduled commands
 #
 
 # PROVIDE: cron
@@ -18,6 +16,7 @@
 . /etc/configxml.subr
 
 name="cron"
+desc="Daemon to execute scheduled commands"
 rcvar="cron_enable"
 
 load_rc_config "$name"
@@ -91,12 +90,28 @@ cron_mkconf()
 	# Remove all existing user crontabs
 	rm ${cron_tabspath}/* > /dev/null 2>&1
 
+	# Create /etc/newsyslog.conf
+	cat << EOF > /etc/newsyslog.conf
+# logfilename          [owner:group]    mode count size when  flags [/pid_file] [sig_num]
+
+<include> /etc/newsyslog.conf.d/*
+<include> /usr/local/etc/newsyslog.conf.d/*
+EOF
+
 	# Create /etc/crontab
 	echo "SHELL=/bin/sh
 PATH=/etc:/bin:/sbin:/usr/bin:/usr/sbin
 HOME=/var/log
 #
 #minute	hour	mday	month	wday	who	command
+#
+# Rotate log files every hour, if necessary.
+0	*	*	*	*	root	newsyslog
+#
+# Perform daily/weekly/monthly maintenance.
+1	3	*	*	*	root	periodic daily
+15	4	*	*	6	root	periodic weekly
+30	5	1	*	*	root	periodic monthly
 #" > ${cron_config}
 
 	# Time synchronization

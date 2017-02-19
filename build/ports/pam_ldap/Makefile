@@ -1,8 +1,9 @@
 PORTNAME=		pam_ldap
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=		security
 COMMENT=		A pam module for authenticating with LDAP
-MAINTAINER=		zoon01@nas4free.org
+MAINTAINER=		zoon1@nas4free.org
 
 # No files are needed to be fetched.
 DISTFILES?=
@@ -15,7 +16,7 @@ NO_PKG_REGISTER?=	 yes
 DEPENDS_TARGET=	clean build
 DISABLE_VULNERABILITIES=yes
 
-BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/security/pam_ldap
+BUILD_DEPENDS=	${NONEXISTENT}:security/pam_ldap
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/security/pam_ldap/work/pam_ldap-*/pam_ldap.so ${NAS4FREE_ROOTFS}/usr/local/lib

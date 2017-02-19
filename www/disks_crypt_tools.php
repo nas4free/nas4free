@@ -3,11 +3,7 @@
 	disks_crypt_tools.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Disks"), gettext("Encryption"), gettext("Tools"));
+$pgtitle = array(gtext("Disks"), gtext("Encryption"), gtext("Tools"));
 
 // Omit no-cache headers because it confuses IE with file downloads.
 $omit_nocacheheaders = true;
@@ -55,7 +52,7 @@ array_sort_key($config['mounts']['mount'], "devicespecialfile");
 $a_mount = &$config['mounts']['mount'];
 
 if ($config['system']['webgui']['protocol'] === "http") {
-	$nohttps_error = gettext("You should use HTTPS as WebGUI protocol for sending passphrase.");
+	$nohttps_error = gtext("You should use HTTPS as WebGUI protocol for sending passphrase.");
 }
 
 if ($_POST) {
@@ -63,11 +60,11 @@ if ($_POST) {
 
 	// Input validation.
 	$reqdfields = explode(" ", "disk action");
-	$reqdfieldsn = array(gettext("Disk"), gettext("Command"));
+	$reqdfieldsn = array(gtext("Disk"), gtext("Command"));
 
 	if (isset($_POST['action']) && $_POST['action'] === "attach") {
 		$reqdfields = array_merge($reqdfields, explode(" ", "passphrase"));
-		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Passphrase")));
+		$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Passphrase")));
 	}
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -81,7 +78,9 @@ if ($_POST) {
 
 		// Action = 'detach' => Check if device is mounted
 		if (($_POST['action'] === "detach") && (1 == disks_ismounted_ex($_POST['disk'], "devicespecialfile"))) {
-			$errormsg = sprintf(gettext("The encrypted device is currently mounted! <a href='%s'>Unmount</a> this disk first before proceeding."), "disks_mount_tools.php?disk={$_POST['disk']}&action=umount");
+			$helpinghand = sprintf('disks_mount_tools.php?disk=%1$s&action=umount', $_POST['disk']);
+			$link = sprintf('<a href="%1$s">%2$s</a>', $helpinghand, gtext('Unmount this disk first before proceeding.'));
+			$errormsg = gtext('The encrypted device is currently mounted!') . ' ' . $link;
 			$pconfig['do_action'] = false;
 		}
 
@@ -130,7 +129,7 @@ if ("restore" === $pconfig['action']) {
 		// Move the metadata backup file so PHP won't delete it.
 		move_uploaded_file($_FILES['backupfile']['tmp_name'], $fn);
 	} else {
-		$errormsg = sprintf("%s %s", gettext("Failed to upload file."),
+		$errormsg = sprintf("%s %s", gtext("Failed to upload file."),
 			$g_file_upload_error[$_FILES['backupfile']['error']]);
 	}
 }
@@ -168,8 +167,8 @@ function action_change() {
   <tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-        <li class="tabinact"><a href="disks_crypt.php"><span><?=gettext("Management");?></span></a></li>
-        <li class="tabact"><a href="disks_crypt_tools.php" title="<?=gettext("Reload page");?>" ><span><?=gettext("Tools");?></span></a></li>
+        <li class="tabinact"><a href="disks_crypt.php"><span><?=gtext("Management");?></span></a></li>
+        <li class="tabact"><a href="disks_crypt_tools.php" title="<?=gtext('Reload page');?>" ><span><?=gtext("Tools");?></span></a></li>
       </ul>
     </td>
   </tr>
@@ -178,13 +177,13 @@ function action_change() {
     	<?php if (!empty($nohttps_error)) print_warning_box($nohttps_error);?>
       <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
       <?php if (!empty($errormsg)) print_error_box($errormsg);?>
-			<form action="disks_crypt_tools.php" method="post" name="iform" id="iform" enctype="multipart/form-data">
+			<form action="disks_crypt_tools.php" method="post" name="iform" id="iform" enctype="multipart/form-data" onsubmit="spinner()">
 			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
           <tr>
-            <td width="22%" valign="top" class="vncellreq"><?=gettext("Disk");?></td>
+            <td width="22%" valign="top" class="vncellreq"><?=gtext("Disk");?></td>
             <td width="78%" class="vtable">
               <select name="disk" class="formfld" id="disk">
-              	<option value=""><?=gettext("Must choose one");?></option>
+              	<option value=""><?=gtext("Must choose one");?></option>
                 <?php foreach ($a_geli as $geliv):?>
 								<option value="<?=$geliv['devicespecialfile'];?>" <?php if ($geliv['devicespecialfile'] === $pconfig['disk']) echo "selected=\"selected\"";?>>
 								<?php echo htmlspecialchars("{$geliv['name']}: {$geliv['size']} ({$geliv['desc']})");?>
@@ -194,32 +193,32 @@ function action_change() {
             </td>
       		</tr>
 					<?php $options = array("attach" => "attach", "detach" => "detach", "setkey" => "setkey", "list" => "list", "status" => "status", "backup" => "backup", "restore" => "restore");?>
-					<?php html_combobox("action", gettext("Command"), $pconfig['action'], $options, "", true, false, "action_change()");?>
+					<?php html_combobox("action", gtext("Command"), $pconfig['action'], $options, "", true, false, "action_change()");?>
           <tr id="oldpassphrase_tr" style="display: none">
-						<td width="22%" valign="top" class="vncellreq"><?=htmlspecialchars(gettext("Old passphrase"));?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Old passphrase");?></td>
 						<td width="78%" class="vtable">
 							<input name="oldpassphrase" type="password" class="formfld" id="oldpassphrase" size="20" />
 						</td>
 					</tr>
           <tr id="passphrase_tr" style="display: none">
-						<td width="22%" valign="top" class="vncellreq"><?=htmlspecialchars(gettext("Passphrase"));?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Passphrase");?></td>
 						<td width="78%" class="vtable">
 							<input name="passphrase" type="password" class="formfld" id="passphrase" size="20" />
 						</td>
 					</tr>
 					<tr id="backupfile_tr" style="display: none">
-						<td width="22%" valign="top" class="vncellreq"><?=htmlspecialchars(gettext("Backup file"));?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Backup file");?></td>
 						<td width="78%" class="vtable">
 							<input name="backupfile" type="file" class="formfld" size="40" /><br />
-							<span class="vexpl"><?=gettext("Restore metadata from the given file to the given provider.");?></span>
+							<span class="vexpl"><?=gtext("Restore metadata from the given file to the given provider.");?></span>
 						</td>
 					</tr>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Execute");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Execute");?>" />
 				</div>
 				<?php if ($pconfig['do_action']) {
-					echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
+					echo(sprintf("<div id='cmdoutput'>%s</div>", gtext("Command output:")));
 					echo('<pre class="cmdoutput">');
 					//ob_end_flush();
 
@@ -228,14 +227,14 @@ function action_change() {
 			        $result = disks_geli_attach($geli['device'][0], $pconfig['passphrase'], true);
 			        // When attaching the disk, then also mount it.
 							if (FALSE !== ($cnid = array_search_ex($geli['devicespecialfile'], $a_mount, "mdisk"))) {
-								echo("<br />" . gettext("Mounting device.") . "<br />");
-								echo((0 == disks_mount($a_mount[$cnid])) ? gettext("Successful.") : gettext("Failed."));
+								echo("<br />" . gtext("Mounting device.") . "<br />");
+								echo((0 == disks_mount($a_mount[$cnid])) ? gtext("Successful.") : gtext("Failed."));
 							}
 			        break;
 
 			      case "detach":
 							$result = disks_geli_detach($geli['devicespecialfile'], true);
-							echo((0 == $result) ? gettext("Done.") : gettext("Failed."));
+							echo((0 == $result) ? gtext("Done.") : gtext("Failed."));
 			        break;
 
 						case "setkey":
@@ -256,7 +255,7 @@ function action_change() {
 					  		system("/sbin/geli restore -v {$fn} {$geli['devicespecialfile']}");
 					  		unlink($fn);
 					  	} else {
-					  		echo gettext("Failed to upload metadata backup file.");
+					  		echo gtext("Failed to upload metadata backup file.");
 							}
 					  	break;
 					}

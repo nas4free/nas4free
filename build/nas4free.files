@@ -1,6 +1,6 @@
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # List of files required for NAS4FREE.
@@ -110,6 +110,12 @@ bin/setfacl
 
 ## uuidgen -- generate universally unique identifiers
 bin/uuidgen
+
+## chio -- medium changer control utility
+bin/chio
+
+## freebsd-version -- print the version and patch level of the installed system
+bin/freebsd-version
 
 ####### contents of /sbin
 ## adjkerntz -- adjust local time CMOS clock to reflect time zone changes and keep current timezone offset for the kernel
@@ -242,7 +248,7 @@ sbin/shutdown
 sbin/sysctl
 
 ## swapon - Enable swap
-sbin/swapon:sbin/swapoff
+sbin/swapon:sbin/swapoff:sbin/swapctl
 
 ## pstat, swapinfo -- display system data structures
 usr/sbin/pstat:usr/sbin/swapinfo
@@ -259,8 +265,8 @@ sbin/camcontrol
 ## rcorder -- print a dependency ordering of interdependent files
 sbin/rcorder
 
-## md5, sha1, sha256, rmd160 -- calculate a message-digest fingerprint
-sbin/md5:sbin/sha1:sbin/sha256:sbin/rmd160
+## md5, sha1, sha256, sha512, rmd160 -- calculate a message-digest fingerprint
+sbin/md5:sbin/sha1:sbin/sha256:sbin/sha512:sbin/rmd160
 
 ## mksnap_ffs -- take a file system snapshot
 sbin/mksnap_ffs
@@ -298,6 +304,15 @@ sbin/restore
 ## resolvconf -- a framework for managing multiple DNS configurations
 sbin/resolvconf
 
+## routed, rdisc -- network RIP and router discovery routing daemon
+sbin/routed
+
+## rtquery -- query routing daemons for their routing tables
+sbin/rtquery
+
+## nvmecontrol -- NVM Express control utility
+sbin/nvmecontrol
+
 ####### contents of /usr/bin
 
 ## awk -- pattern-directed scanning and processing language
@@ -325,7 +340,7 @@ usr/bin/fstat
 usr/bin/fetch
 
 ## gzip, gunzip, zcat -- compress or expand files
-usr/bin/gzip:usr/bin/gunzip:usr/bin/zcat
+usr/bin/gzip:usr/bin/gunzip:usr/bin/gzcat:usr/bin/zcat
 
 ## id -- displays the user and group names and numeric IDs, of the calling process
 usr/bin/id:usr/bin/groups
@@ -409,8 +424,9 @@ usr/bin/who
 ## head -- display first lines of a file
 usr/bin/head
 
-## uudecode, b64decode -- decode a binary file
+## uuencode, uudecode, b64encode, b64decode -- encode/decode a binary file
 usr/bin/uudecode:usr/bin/b64decode
+usr/bin/uuencode:usr/bin/b64encode
 
 ## install -- install binaries
 usr/bin/install
@@ -574,9 +590,136 @@ usr/bin/file
 ## truncate -- truncate or extend the length of files
 usr/bin/truncate
 
+## ntpq -- standard NTP query program
+usr/bin/ntpq
+
+## at, batch, atq, atrm -- queue, examine or delete jobs for later execution
+usr/bin/at:usr/bin/atq:usr/bin/atrm:usr/bin/batch
+
+## brandelf -- mark an ELF binary for a specific ABI
+usr/bin/brandelf
+
+## cap_mkdb -- create capability database
+usr/bin/cap_mkdb
+
+## crontab -- maintain crontab files for individual users (V3)
+usr/bin/crontab
+
+## ctlstat -- CAM Target Layer statistics utility
+usr/bin/ctlstat
+
+## drill - get (debug) information out of DNS(SEC)
+usr/bin/drill
+
+## expand, unexpand -- expand tabs to spaces, and vice versa
+usr/bin/expand
+usr/bin/unexpand
+
+## false -- return false value
+usr/bin/false
+
+## fmt -- simple text formatter
+usr/bin/fmt
+
+## fold -- fold long lines for finite width output device
+usr/bin/fold
+
+## fsync -- synchronize a file's in-core state with that on disk
+usr/bin/fsync
+
+## hexdump, hd -- ASCII, decimal, hexadecimal, octal dump
+usr/bin/hexdump:usr/bin/hd
+
+## iconv -- codeset conversion utility
+usr/bin/iconv
+
+## mkcsmapper -- generates hashed conversion data for iconv(3)
+usr/bin/mkcsmapper
+
+## mkesdb -- generates conversion catalog for iconv(3)
+usr/bin/mkesdb
+
+## kdump -- display kernel trace data
+usr/bin/kdump
+
+## ktrace -- enable kernel process tracing
+usr/bin/ktrace
+
+## limits -- set or display process resource limits
+usr/bin/limits
+
+## locale -- get locale-specific information
+usr/bin/locale
+
+## lockf -- execute a command while holding a file lock
+usr/bin/lockf
+
+## logname -- display user's login name
+usr/bin/logname
+
+## lsvfs -- list installed virtual file systems
+usr/bin/lsvfs
+
+## od -- octal, decimal, hex, ASCII dump
+usr/bin/od
+
+## paste -- merge corresponding or subsequent lines of files
+usr/bin/paste
+
+## perror -- print an error number as a string
+usr/bin/perror
+
+## protect -- protect processes from being killed when swap space is exhausted
+usr/bin/protect
+
+## rctl -- display and update resource limits database
+usr/bin/rctl
+
+## renice -- alter priority of running processes
+usr/bin/renice
+
+## tset, reset -- terminal initialization
+usr/bin/tset:usr/bin/reset
+
+## rev -- reverse lines of a file
+usr/bin/rev
+
+## rs -- reshape a data array
+usr/bin/rs
+
+## seq -- print sequences of numbers
+usr/bin/seq
+
+## smbutil -- interface to the SMB requester
+usr/bin/smbutil
+
+## split -- split a file into pieces
+usr/bin/split
+
+## svnlite -- Subversion command-line client tool
+usr/bin/svnlite
+
+## usbhidaction -- perform actions according to USB HID controls
+usr/bin/usbhidaction
+
+## usbhidctl -- manipulate USB HID devices
+usr/bin/usbhidctl
+
+## vtfontcvt -- convert font files for use by the video console
+usr/bin/vtfontcvt
+
+## yes -- be repetitively affirmative
+usr/bin/yes
+
 ####### contents of /usr/sbin
 ## acpiconf -- control ACPI power management
 usr/sbin/acpiconf
+
+## acpidb -- ACPI DSDT debugger
+usr/sbin/acpidb
+
+## acpidump -- dump ACPI tables and ASL
+usr/sbin/acpidump
 
 ## ancontrol -- configure Aironet 4500/4800 devices
 usr/sbin/ancontrol
@@ -684,6 +827,9 @@ usr/sbin/jls
 ## mount_smbfs -- mount a shared resource from an SMB file server
 usr/sbin/mount_smbfs
 
+## ngctl -- netgraph control utility
+usr/sbin/ngctl
+
 ## usbconfig -- configure the USB subsystem
 usr/sbin/usbconfig
 
@@ -700,7 +846,7 @@ usr/sbin/vidcontrol
 usr/sbin/kbdcontrol
 
 ## kbdmap, vidfont -- front end for syscons and vt
-usr/sbin/kbdmap
+usr/sbin/kbdmap:usr/sbin/vidfont
 
 ## gstat -- print statistics about GEOM disks
 usr/sbin/gstat
@@ -736,6 +882,60 @@ usr/sbin/bhyvectl
 ## bhyveload -- load a FreeBSD guest inside a bhyve virtual machine
 usr/sbin/bhyveload
 
+## ctladm -- CAM Target Layer control utility
+usr/sbin/ctladm
+
+## ctld -- CAM Target Layer / iSCSI target daemon
+usr/sbin/ctld
+
+## devinfo -- print information about system device configuration
+usr/sbin/devinfo
+
+## fstyp -- determine filesystem type
+usr/sbin/fstyp
+
+## gpioctl -- GPIO control utility
+usr/sbin/gpioctl
+
+## hv_kvp_daemon -- Hyper-V Key Value Pair Daemon
+usr/sbin/hv_kvp_daemon
+
+## newsyslog -- maintain system log files to manageable sizes
+usr/sbin/newsyslog
+
+## ntpd -- NTP daemon program
+usr/sbin/ntpd
+
+## periodic -- run periodic system functions
+usr/sbin/periodic
+
+## rarpd -- reverse ARP daemon
+usr/sbin/rarpd
+
+## service -- control (start/stop/etc.) or list system services
+usr/sbin/service
+
+## sysrc -- safely edit system rc files
+usr/sbin/sysrc
+
+## usbdump -- dump traffic on USB host controller
+usr/sbin/usbdump
+
+## watchdog -- watchdog control program
+usr/sbin/watchdog
+
+## watchdogd -- watchdog daemon
+usr/sbin/watchdogd
+
+## wlandebug -- set/query 802.11 wireless debugging messages
+usr/sbin/wlandebug
+
+## wpa_passphrase -- utility for generating a 256-bit pre-shared WPA key
+usr/sbin/wpa_passphrase
+
+## zhack -- ZFS debugging tool
+usr/sbin/zhack
+
 ####### contents of /usr/libexec
 # ld-elf.so.1, ld.so, rtld -- run-time link-editor
 libexec/ld-elf.so.1:usr/libexec/ld-elf.so.1
@@ -752,6 +952,13 @@ usr/libexec/make_index
 
 ## phttpget
 usr/libexec/phttpget
+
+## sysrc
+usr/libexec/bsdconfig/include/messages.subr
+
+####### contents of /usr/share/bsdconfig
+usr/share/bsdconfig/common.subr
+usr/share/bsdconfig/sysrc.subr
 
 ####### contents of /usr/share/examples
 usr/share/examples/bhyve/vmrun.sh
@@ -846,46 +1053,47 @@ etc/defaults/devfs.rules
 etc/defaults/rc.conf
 
 ####### contents of /etc/rc.d
-etc/rc.d/LOGIN
-etc/rc.d/local
-#etc/rc.d/early.sh
 etc/rc.d/adjkerntz
-etc/rc.d/securelevel
-etc/rc.d/dhclient
-etc/rc.d/netoptions
-etc/rc.d/power_profile
-#etc/rc.d/network_ipv6
-#etc/rc.d/auto_linklocal
-etc/rc.d/FILESYSTEMS
-etc/rc.d/ip6addrctl
-etc/rc.d/random
-etc/rc.d/postrandom
-etc/rc.d/swap
-#etc/rc.d/swaplate
-#etc/rc.d/ip6fw
 etc/rc.d/devd
 etc/rc.d/devfs
+etc/rc.d/dhclient
 etc/rc.d/dmesg
+etc/rc.d/FILESYSTEMS
 etc/rc.d/hostid
+etc/rc.d/ip6addrctl
+etc/rc.d/ipfilter
+etc/rc.d/ipfw
+etc/rc.d/pf
+etc/rc.d/pflog
+etc/rc.d/pfsync
+etc/rc.d/ppp
 etc/rc.d/jail
+etc/rc.d/local
+etc/rc.d/LOGIN
 etc/rc.d/netif
+etc/rc.d/netoptions
 etc/rc.d/netwait
 etc/rc.d/nfscbd
 etc/rc.d/nfsuserd
+etc/rc.d/postrandom
+etc/rc.d/power_profile
+etc/rc.d/random
+etc/rc.d/securelevel
+etc/rc.d/swap
 
 ####### contents of /usr/share/snmp/defs
 usr/share/snmp/defs/atm_freebsd.def
-usr/share/snmp/defs/bridge_tree.def
-usr/share/snmp/defs/mibII_tree.def
-usr/share/snmp/defs/pf_tree.def
 usr/share/snmp/defs/atm_tree.def
+usr/share/snmp/defs/bridge_tree.def
 usr/share/snmp/defs/hostres_tree.def
+usr/share/snmp/defs/mibII_tree.def
 usr/share/snmp/defs/netgraph_tree.def
+usr/share/snmp/defs/pf_tree.def
 usr/share/snmp/defs/tree.def
 
 ####### contents of /usr/share/snmp/mibs
-usr/share/snmp/mibs/BEGEMOT-ATM-FREEBSD-MIB.txt
 usr/share/snmp/mibs/BEGEMOT-ATM.txt
+usr/share/snmp/mibs/BEGEMOT-ATM-FREEBSD-MIB.txt
 usr/share/snmp/mibs/BEGEMOT-BRIDGE-MIB.txt
 usr/share/snmp/mibs/BEGEMOT-HOSTRES-MIB.txt
 usr/share/snmp/mibs/BEGEMOT-IP-MIB.txt

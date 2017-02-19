@@ -3,11 +3,7 @@
 	session.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -41,7 +38,7 @@ class Session {
 	private static function _init() {
 		session_regenerate_id(true);
 		$_SESSION['login'] = TRUE;
-		$_SESSION['authtoken'] = crypt(session_id());
+		$_SESSION['authtoken'] = password_hash(session_id(), PASSWORD_DEFAULT);
 		$_SESSION['ts'] = time();
 	}
 

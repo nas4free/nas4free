@@ -3,11 +3,7 @@
 	disks_zfs_zpool_tools.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -34,1442 +31,1530 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-require("zfs.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'zfs.inc';
+require 'co_zpool_info.inc';
+require 'disks_zfs_zpool_tools_render.inc';
+require 'co_geom_info.inc';
 
-$pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Pools"), gettext("Tools"));
+$b_test = false; // flag to force all options to show - remove after testing
+$b_exec = true; // flag to indicate to execute a command or not - remove after testing
 
-if (!isset($config['zfs']['pools']['pool']) || !is_array($config['zfs']['pools']['pool']))
-	$config['zfs']['pools']['pool'] = array();
+$sphere_scriptname = basename(__FILE__);
+$sphere_array = [];
+$prerequisites_ok = true;
 
-if (!isset($config['zfs']['vdevices']['vdevice']) || !is_array($config['zfs']['vdevices']['vdevice']))
-	$config['zfs']['vdevices']['vdevice'] = array();
-
-array_sort_key($config['zfs']['pools']['pool'], "name");
-array_sort_key($config['zfs']['vdevices']['vdevice'], "name");
-
-$a_pool = $config['zfs']['pools']['pool'];
-$a_vdevice = $config['zfs']['vdevices']['vdevice'];
-$a_vdevice_cache = array();
-$a_vdevice_log = array();
-$a_vdevice_spare = array();
-$a_vdevice_vdev = array();
-foreach ($a_vdevice as $vdevicev) {
-	if ($vdevicev['type'] == 'cache') {
-		$tmp = $vdevicev;
-		$a_devs = array();
-		foreach ($vdevicev['device'] as $device) {
-			$name = preg_replace("/^\/dev\//", "", $device);
-			$a_devs[] = $name;
-		}
-		$tmp['devs'] = implode(" ", $a_devs);
-		$a_vdevice_cache[] = $tmp;
-	} else if ($vdevicev['type'] == 'log' || $vdevicev['type'] == 'log-mirror') {
-		$tmp = $vdevicev;
-		$a_devs = array();
-		foreach ($vdevicev['device'] as $device) {
-			$name = preg_replace("/^\/dev\//", "", $device);
-			$a_devs[] = $name;
-		}
-		$tmp['devs'] = implode(" ", $a_devs);
-		$a_vdevice_log[] = $tmp;
-	} else if ($vdevicev['type'] == 'spare') {
-		$tmp = $vdevicev;
-		$a_devs = array();
-		foreach ($vdevicev['device'] as $device) {
-			$name = preg_replace("/^\/dev\//", "", $device);
-			$a_devs[] = $name;
-		}
-		$tmp['devs'] = implode(" ", $a_devs);
-		$a_vdevice_spare[] = $tmp;
-	} else if ($vdevicev['type'] == 'stripe' ||$vdevicev['type'] == 'mirror'
-		   || $vdevicev['type'] == 'raidz1' || $vdevicev['type'] == 'raidz2'
-		   || $vdevicev['type'] == 'raidz3') {
-		$tmp = $vdevicev;
-		$a_devs = array();
-		foreach ($vdevicev['device'] as $device) {
-			$name = preg_replace("/^\/dev\//", "", $device);
-			$a_devs[] = $name;
-		}
-		$tmp['devs'] = implode(" ", $a_devs);
-		$a_vdevice_vdev[] = $tmp;
-	}
+$o_zpool = new co_zpool_info();
+if(!$o_zpool->configuration_loaded()) {
+	header('Location: index.php');
+	exit;
 }
-
-$a_disk = get_conf_disks_filtered_ex("fstype", "zfs");
-$a_disk_free = array();
-foreach ($a_disk as $diskv) {
-	if (false !== array_search_ex($diskv['devicespecialfile'], $a_vdevice, "device"))
-		continue;
-	$a_disk_free = array_merge($a_disk_free, array("{$diskv['devicespecialfile']}" => "{$diskv['name']} ({$diskv['desc']})"));
-	//$a_disk_free = array_merge($a_disk_free, array("{$diskv['name']}" => "{$diskv['name']} ({$diskv['desc']})"));
+$a_pool = $o_zpool->get_all_pools();
+$a_pool_for_attach_data = $o_zpool->get_pools_for_attach_data();
+$a_pool_for_attach_log = $o_zpool->get_pools_for_attach_log();
+$a_pool_for_detach_data = $o_zpool->get_pools_with_mirrored_data_devices();
+$a_pool_for_detach_log = $o_zpool->get_pools_with_mirrored_log_devices();
+$a_pool_for_offline_data = $o_zpool->get_pools_for_offline_data();
+$a_pool_for_online_data = $o_zpool->get_pools_for_online_data();
+$a_pool_for_remove_log = $o_zpool->get_pools_with_single_log_devices();
+$a_pool_for_remove_cache = $o_zpool->get_pools_with_single_cache_devices();
+$a_pool_for_remove_spare = $o_zpool->get_pools_with_single_spare_devices();
+$a_pool_for_replace_data = $o_zpool->get_pools_for_replace_data();
+// pools from config.xml, needed for add data
+if (!(isset($config['zfs']['pools']['pool']) && is_array($config['zfs']['pools']['pool']))) {
+	$config['zfs']['pools']['pool'] = [];
+	$a_cfg_pool = [];
+} else {
+	$a_cfg_pool = $config['zfs']['pools']['pool'];
+//	array_sort_key($a_cfg_pool, 'name');
 }
-
-function get_spare_list($pool) {
-	$result = array();
-	mwexec2("zpool status {$pool}", $rawdata);
-	$req_level = -1;
-	$key = "";
-	$devs = array();
-	foreach ($rawdata as $line) {
-		if ($line[0] != "\t") continue;
-		if (preg_match('/^\t(\s+)(spare-\S+)/', $line, $m)) {
-			$req_level = strlen($m[1]) + 2;
-			$key = $m[2];
-			continue;
-		}
-		if (preg_match('/^\t(\s+)(\S+)/', $line, $m)) {
-			$level = strlen($m[1]);
-			if ($level == $req_level) {
-				$devs[] = "/dev/{$m[2]}";
-				continue;
-			}
-		}
-		if ($key != "")
-			$result[$key] = $devs;
-		$key = "";
-		$devs = array();
-		$req_level = -1;
-	}
-	return $result;
+// vdevices from config.xml, needed for add data
+if (false === ($b_vdev = (isset($config['zfs']['vdevices']['vdevice']) && is_array($config['zfs']['vdevices']['vdevice'])))) {
+	$config['zfs']['vdevices']['vdevice'] = [];
+	$a_cfg_vdev = [];
+} else {
+	$a_cfg_vdev = $config['zfs']['vdevices']['vdevice'];
+	array_sort_key($a_cfg_vdev, 'name');
 }
-
-function get_logmirror($pool, $dev) {
-	mwexec2("zpool status {$pool}", $rawdata);
-	$type = "";
-	$mirror = "";
-	$dev = preg_replace('/^\/dev\//', "", $dev);
-	foreach ($rawdata as $line) {
-		if ($line[0] != "\t") continue;
-		if (preg_match('/^\t(\S+)/', $line, $m)) {
-			$mirror = "";
-			if ($m[1] == "logs")
-				$type = "log";
-			else
-				$type = "";
-			continue;
-		} else if ($type != "log") {
-			continue;
-		}
-		if (preg_match('/^\t(\s+)(mirror-(\S+))/', $line, $m)) {
-			$mirror = $m[2];
-		} else if ($mirror == "") {
-			continue;
-		}
-		if (preg_match('/^\t\s+([a-z]+[0-9]+)/', $line, $dev)) {
+$a_cfg_newvdev_data = [];
+foreach ($a_cfg_vdev as $r_cfg_vdev) {
+	if(false === array_search_ex($r_cfg_vdev['name'], $a_cfg_pool, 'vdevice')) { // vdevice not found in config pools
+		switch ($r_cfg_vdev['type']) {
+			case 'disk':
+			case 'stripe':
+			case 'mirror':
+			case 'raidz1':
+			case 'raidz2':
+			case 'raidz3':
+				$a_cfg_newvdev_data[] = $r_cfg_vdev;
 			break;
 		}
 	}
-	return $mirror;
 }
-
-function get_device_type($device, &$a_vdevice) {
-	$index = array_search_ex($device, $a_vdevice, "device");
-	if ($index !== false) {
-		$type = $a_vdevice[$index]['type'];
-	} else {
-		$type = "none";
-	}
-	return $type;
-}
-
-if (isset($_GET['action']))
-	$pconfig['action'] = $_GET['action'];
-if (isset($_POST['action']))
-	$pconfig['action'] = $_POST['action'];
-
-if (isset($_GET['option']))
-	$pconfig['option'] = $_GET['option'];
-if (isset($_POST['option']))
-	$pconfig['option'] = $_POST['option'];
-
-if (isset($_GET['pool']))
-	$pconfig['pool'] = $_GET['pool'];
-if (isset($_POST['pool']))
-	$pconfig['pool'] = $_POST['pool'];
-
-if (isset($_GET['device']))
-	$pconfig['device'] = $_GET['device'];
-if (isset($_POST['device']))
-	$pconfig['device'] = $_POST['device'];
-
-if (isset($_GET['device_new']))
-	$pconfig['device_new'] = $_GET['device_new'];
-if (isset($_POST['device_new']))
-	$pconfig['device_new'] = $_POST['device_new'];
-
-if (isset($_GET['device_new2']))
-	$pconfig['device_new2'] = $_GET['device_new2'];
-if (isset($_POST['device_new2']))
-	$pconfig['device_new2'] = $_POST['device_new2'];
-
-if (isset($_GET['device_cache']))
-	$pconfig['device_cache'] = $_GET['device_cache'];
-if (isset($_POST['device_cache']))
-	$pconfig['device_cache'] = $_POST['device_cache'];
-
-if (isset($_GET['device_log']))
-	$pconfig['device_log'] = $_GET['device_log'];
-if (isset($_POST['device_log']))
-	$pconfig['device_log'] = $_POST['device_log'];
-
-if (isset($_GET['device_spare']))
-	$pconfig['device_spare'] = $_GET['device_spare'];
-if (isset($_POST['device_spare']))
-	$pconfig['device_spare'] = $_POST['device_spare'];
-
-if (isset($_GET['device_vdev']))
-	$pconfig['device_vdev'] = $_GET['device_vdev'];
-if (isset($_POST['device_vdev']))
-	$pconfig['device_vdev'] = $_POST['device_vdev'];
-
-if (!empty($_POST) || !empty($_GET)) {
-	unset($input_errors);
-	unset($do_action);
-
-	if (empty($input_errors)) {
-		$do_action = true;
+$o_geom = new co_geom_info();
+$a_geom_dev = $o_geom->get_dev();
+/*
+ * Eliminate devices that are used in zpool except spare devices
+ */
+$o_zpool->set_devicepath_strip_regex('/^\/dev\//');
+$a_devices_in_use = array_column($o_zpool->get_all_devices_except_spare_devices(), 'device.path');
+$o_zpool->set_devicepath_strip_regex();
+$a_newdev_stage_1 = [];
+foreach($a_geom_dev as $tmp_device) {
+	if (false === array_search($tmp_device['name'], $a_devices_in_use)) {
+		$a_newdev_stage_1[] = $tmp_device;
 	}
 }
-
-if (!isset($do_action)) {
-	$do_action = false;
-	$pconfig['action'] = "history";
-	$pconfig['option'] = "";
-	$pconfig['pool'] = "";
-	$pconfig['device'] = "";
-	$pconfig['device_new'] = "";
-	$pconfig['device_cache'] = "";
-	$pconfig['device_log'] = "";
-	$pconfig['device_spare'] = "";
-	$pconfig['device_vdev'] = "";
+/*
+ *	Eliminate other devices that shouldn't be made available for selection
+ */
+$a_devices_in_use = [
+	'cd0', 'cd1', 'cd2', 'cd3', 'cd4', 'cd5', 'cd6', 'cd7', 'cd8', 'cd9',
+	'md0', 'md1', 'md2', 'md3', 'md4', 'md5', 'md6', 'md7', 'md8', 'md9',
+	'xmd0', 'xmd1', 'xmd2', 'xmdx', 'xmd4', 'xmd5', 'xmd6', 'xmd7', 'xmd8', 'xmd9',
+	'ufs/embboot'
+];
+$a_newdev = [];
+foreach($a_newdev_stage_1 as $tmp_device) {
+	if (false === array_search($tmp_device['name'], $a_devices_in_use)) {
+		$a_newdev[] = $tmp_device;
+	}
 }
+array_sort_key($a_newdev, 'name');
+$b_pool = $b_test || (0 < count($a_pool));
+$b_add_data	 = $b_test || ($b_pool && (0 < count($a_newdev)) && (0 < count($a_cfg_newvdev_data))); // a bit weak
+$b_add_cache = $b_test || ($b_pool && (0 < count($a_newdev)));
+$b_add_log = $b_test || ($b_pool && (0 < count($a_newdev)));
+$b_add_spare = $b_test || ($b_pool && (0 < count($a_newdev)));
+$b_attach_data = $b_test || ($b_pool && (0 < count($a_newdev)) && (0 < count($a_pool_for_attach_data)));
+$b_attach_log = $b_test || ($b_pool && (0 < count($a_newdev)) && (0 < count($a_pool_for_attach_log)));
+$b_detach_data = $b_test || ($b_pool && (0 < count($a_pool_for_detach_data)));
+$b_detach_log = $b_test || ($b_pool && (0 < count($a_pool_for_detach_log)));
+$b_offline_data = $b_test || ($b_pool && (0 < count($a_pool_for_offline_data)));
+$b_online_data = $b_test || ($b_pool && (0 < count($a_pool_for_online_data)));
+$b_remove_cache = $b_test || ($b_pool && (0 < count($a_pool_for_remove_cache)));
+$b_remove_log = $b_test || ($b_pool && (0 < count($a_pool_for_remove_log)));
+$b_remove_spare = $b_test || ($b_pool && (0 < count($a_pool_for_remove_spare)));
+$b_replace_data = $b_test || ($b_pool && (0 < count($a_newdev)) && (0 < count($a_pool_for_replace_data)));
+
+$l_command = [
+	'add.data' => ['name' => 'activity', 'value' => 'add.data' , 'show' => $b_add_data , 'default' => false, 'longname' => gtext('Add a virtual device to a pool')],
+	'add.cache' => ['name' => 'activity', 'value' => 'add.cache' , 'show' => $b_add_cache , 'default' => false, 'longname' => gtext('Add a cache device to a pool')],
+	'add.log' => ['name' => 'activity', 'value' => 'add.log' , 'show' => $b_add_log , 'default' => false, 'longname' => gtext('Add a log device to a pool')],
+	'add.spare' => ['name' => 'activity', 'value' => 'add.spare' , 'show' => $b_add_spare , 'default' => false, 'longname' => gtext('Add a spare device to a pool')],
+	'attach.data' => ['name' => 'activity', 'value' => 'attach.data' , 'show' => $b_attach_data , 'default' => false, 'longname' => gtext('Attach a data device')],
+	'attach.log' => ['name' => 'activity', 'value' => 'attach.log' , 'show' => $b_attach_log , 'default' => false, 'longname' => gtext('Attach a log device')],
+	'clear' => ['name' => 'activity', 'value' => 'clear' , 'show' => $b_pool , 'default' => false, 'longname' => gtext('Clear device errors')],
+//	'create' => ['name' => 'activity', 'value' => 'create' , 'show' => $b_pool && false, 'default' => false, 'longname' => gtext('Create a new storage pool')],
+	'destroy' => ['name' => 'activity', 'value' => 'destroy' , 'show' => $b_pool , 'default' => false, 'longname' => gtext('Destroy a pool')],
+	'detach.data' => ['name' => 'activity', 'value' => 'detach.data' , 'show' => $b_detach_data , 'default' => false, 'longname' => gtext('Detach a data device from a mirror')],
+	'detach.log' => ['name' => 'activity', 'value' => 'detach.log' , 'show' => $b_detach_log , 'default' => false, 'longname' => gtext('Detach a log device from a mirrored log')],
+	'export' => ['name' => 'activity', 'value' => 'export' , 'show' => $b_pool , 'default' => false, 'longname' => gtext('Export a pool from the system')],
+//	'get' => ['name' => 'activity', 'value' => 'get' , 'show' => $b_pool && false, 'default' => false, 'longname' => gtext('Get properties of a pool')],
+	'history' => ['name' => 'activity', 'value' => 'history' , 'show' => $b_pool , 'default' => true , 'longname' => gtext('Display ZFS command history')],
+	'import' => ['name' => 'activity', 'value' => 'import' , 'show' => true , 'default' => false, 'longname' => gtext('List or import pools')],
+//	'iostat' => ['name' => 'activity', 'value' => 'iostat' , 'show' => $b_pool && false, 'default' => false, 'longname' => gtext('Display I/O statistics')],
+	'labelclear' => ['name' => 'activity', 'value' => 'labelclear' , 'show' => true, 'default' => false, 'longname' => gtext('Remove ZFS label information from a device')],
+//	'list' => ['name' => 'activity', 'value' => 'list' , 'show' => $b_pool && false, 'default' => false, 'longname' => gtext('List the status of pools')],
+	'offline' => ['name' => 'activity', 'value' => 'offline' , 'show' => $b_offline_data , 'default' => false, 'longname' => gtext('Take a device offline')],
+	'online' => ['name' => 'activity', 'value' => 'online' , 'show' => $b_online_data , 'default' => false, 'longname' => gtext('Bring a device online')],
+	'reguid' => ['name' => 'activity', 'value' => 'reguid' , 'show' => $b_pool , 'default' => false, 'longname' => gtext('Generate a new unique identifier for a pool')],
+	'remove.cache' => ['name' => 'activity', 'value' => 'remove.cache' , 'show' => $b_remove_cache , 'default' => false, 'longname' => gtext('Remove a cache device from a pool')],
+	'remove.log' => ['name' => 'activity', 'value' => 'remove.log' , 'show' => $b_remove_log , 'default' => false, 'longname' => gtext('Remove a log device from a pool')],
+	'remove.spare' => ['name' => 'activity', 'value' => 'remove.spare' , 'show' => $b_remove_spare , 'default' => false, 'longname' => gtext('Remove a spare device from a pool')],
+//	'reopen' => ['name' => 'activity', 'value' => 'reopen' , 'show' => $b_pool && false, 'default' => false, 'longname' => gtext('Reopen all virtual devices of a pool')],
+	'replace' => ['name' => 'activity', 'value' => 'replace' , 'show' => $b_replace_data , 'default' => false, 'longname' => gtext('Replace a device')],
+	'scrub' => ['name' => 'activity', 'value' => 'scrub' , 'show' => $b_pool , 'default' => false, 'longname' => gtext('Scrub a pool')],
+//	'set' => ['name' => 'activity', 'value' => 'set' , 'show' => $b_pool && false, 'default' => false, 'longname' => gtext('Set property of a pool')],
+//	'split' => ['name' => 'activity', 'value' => 'split' , 'show' => $b_pool && false, 'default' => false, 'longname' => gtext('Split off a device from mirrored virtual devices')],
+//	'status' => ['name' => 'activity', 'value' => 'status' , 'show' => true && false, 'default' => false, 'longname' => gtext('Displays the health status of a pool')],
+	'upgrade' => ['name' => 'activity', 'value' => 'upgrade' , 'show' => $b_pool , 'default' => false, 'longname' => gtext('Upgrade ZFS and add all supported feature flags on a pool')]
+];
+$lcommand = array_sort_key($l_command, 'longname');
+$l_option = [
+	'all' => ['name' => 'option' , 'value' => 'all' , 'show' => true , 'default' => false, 'longname' => gtext('All')],
+	'd' => ['name' => 'option' , 'value' => 'd' , 'show' => true , 'default' => false, 'longname' => gtext('Device')],
+	'pool' => ['name' => 'option' , 'value' => 'pool' , 'show' => true , 'default' => false, 'longname' => gtext('Pool')],
+	't' => ['name' => 'option' , 'value' => 't' , 'show' => true , 'default' => false, 'longname' => gtext('Temporary Device')],
+	'start' => ['name' => 'option' , 'value' => 'start' , 'show' => true , 'default' => false, 'longname' => gtext('Start')],
+	'stop' => ['name' => 'option' , 'value' => 'stop' , 'show' => true , 'default' => false, 'longname' => gtext('Stop')],
+	'view' => ['name' => 'option' , 'value' => 'view' , 'show' => true , 'default' => false, 'longname' => gtext('Display')],
+	'force' => ['name' => 'flag' , 'value' => 'force' , 'show' => true , 'default' => false, 'longname' => gtext('Force Operation')],
+	'sfaiapf' => ['name' => 'flag' , 'value' => 'sfaiapf' , 'show' => true , 'default' => false, 'longname' => gtext('Search for and import all disks found')],
+	'test' => ['name' => 'flag' , 'value' => 'test' , 'show' => true , 'default' => false, 'longname' => gtext('Test Mode')]
+];
+$sphere_array['submit'] = false;
+$sphere_array['pageindex'] = 1;
+$sphere_array['activity'] = $l_command['history']['value'];
+$sphere_array['option'] = '';
+$sphere_array['flag'] = [];
+$sphere_array['pool'] = [];
+$sphere_array['pooldev'] = [];
+$sphere_array['poolvdev'] = [];
+$sphere_array['newdev'] = [];
+$sphere_array['newvdev'] = [];
+
+if(isset($_POST['submit']) && is_string($_POST['submit'])) {
+	$sphere_array['submit'] = true;
+}
+if(isset($_POST['pageindex']) && is_string($_POST['pageindex'])) {
+	$sphere_array['pageindex'] = $_POST['pageindex'];
+}
+if(isset($_POST['activity']) && is_array($_POST['activity'])) {
+	$sphere_array['activity'] = $_POST['activity'][0];
+}
+if(isset($_POST['option']) && is_array($_POST['option'])) {
+	$sphere_array['option'] = $_POST['option'][0];
+}
+if(isset($_POST['flag']) && is_array($_POST['flag'])) {
+	$sphere_array['flag'] = $_POST['flag'];
+}
+if(isset($_POST['pool']) && is_array($_POST['pool'])) {
+	$sphere_array['pool'] = $_POST['pool'];
+}
+if(isset($_POST['poolvdev']) && is_array($_POST['poolvdev'])) {
+	$sphere_array['poolvdev'] = $_POST['poolvdev'];
+}
+if(isset($_POST['pooldev']) && is_array($_POST['pooldev'])) {
+	$sphere_array['pooldev'] = $_POST['pooldev'];
+}
+if(isset($_POST['newdev']) && is_array($_POST['newdev'])) {
+	$sphere_array['newdev'] = $_POST['newdev'];
+}
+if(isset($_POST['newvdev']) && is_array($_POST['newvdev'])) {
+	$sphere_array['newvdev'] = $_POST['newvdev'];
+}
+$pgtitle = [gtext('Disks'), gtext('ZFS'), gtext('Pools'), gtext('Tools'), sprintf('%1$s %2$d', gtext('Step'), $sphere_array['pageindex'])];
 ?>
-<?php include("fbegin.inc");?>
-<script type="text/javascript">//<![CDATA[
-function command_change() {
-	showElementById('devices_tr','hide');
-	showElementById('device_new_tr','hide');
-	showElementById('device_new2_tr','hide');
-	showElementById('device_cache_tr','hide');
-	showElementById('device_log_tr','hide');
-	showElementById('device_spare_tr','hide');
-	showElementById('device_vdev_tr','hide');
-	document.iform.option.length = 0;
-	document.iform.device_new.length = 0;
-	document.iform.device_cache.length = 0;
-	document.iform.device_log.length = 0;
-	document.iform.device_spare.length = 0;
-	document.iform.device_vdev.length = 0;
-	var action = document.iform.action.value;
-	switch (action) {
-		case "upgrade":
-			document.iform.option[0] = new Option('<?=gettext("Display")?>','v', <?=$pconfig['option'] === 'v' ? "true" : "false"?>);
-			document.iform.option[1] = new Option('<?=gettext("All")?>','a', <?=$pconfig['option'] === 'a' ? "true" : "false"?>);
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[2] = new Option('<?=gettext("Pool")?>','p', <?=$pconfig['option'] === 'p' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "history":
-			document.iform.option[0] = new Option('<?=gettext("All")?>','a', <?=$pconfig['option'] === 'a' ? "true" : "false"?>);
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[1] = new Option('<?=gettext("Pool")?>','p', <?=$pconfig['option'] === 'p' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "scrub":
-			document.iform.option[0] = new Option('<?=gettext("Start")?>','s', <?=$pconfig['option'] === 's' ? "true" : "false"?>);
-			document.iform.option[1] = new Option('<?=gettext("Stop")?>','st', <?=$pconfig['option'] === 'st' ? "true" : "false"?>);
-			break;
-		case "clear":
-			showElementById('devices_tr','show');
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Pool")?>','p', <?=$pconfig['option'] === 'p' ? "true" : "false"?>);
-			document.iform.option[1] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "offline":
-			showElementById('devices_tr','show');
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			document.iform.option[1] = new Option('<?=gettext("Temporary Device")?>','t', <?=$pconfig['option'] === 't' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "online":
-			showElementById('devices_tr','show');
-			<?php if(!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "attach":
-			showElementById('devices_tr','show');
-			showElementById('device_new2_tr','show');
-			<?php if(!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "detach":
-			showElementById('devices_tr','show');
-			<?php if(!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "remove":
-			showElementById('devices_tr','show');
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "replace":
-			showElementById('devices_tr','show');
-			showElementById('device_new_tr','show');
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "cache add":
-			showElementById('devices_tr','hide');
-			showElementById('device_cache_tr','show');
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "cache remove":
-			showElementById('devices_tr','hide');
-			showElementById('device_cache_tr','show');
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "log add":
-			showElementById('devices_tr','hide');
-			showElementById('device_log_tr','show');
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "log remove":
-			showElementById('devices_tr','hide');
-			showElementById('device_log_tr','show');
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "spare add":
-			showElementById('devices_tr','hide');
-			showElementById('device_spare_tr','show');
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "spare remove":
-			showElementById('devices_tr','hide');
-			showElementById('device_spare_tr','show');
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		case "vdev add":
-			showElementById('devices_tr','hide');
-			showElementById('device_vdev_tr','show');
-			<?php if (!empty($a_pool) && is_array($a_pool)):?>
-			document.iform.option[0] = new Option('<?=gettext("Device")?>','d', <?=$pconfig['option'] === 'd' ? "true" : "false"?>);
-			<?php endif;?>
-			break;
-		default:
-			break;
-	}
-	option_change();
-}
-
-function option_change() {
-	var div = document.getElementById("devices");
-	div.innerHTML = "<?=gettext("No device selected.");?>";
-
-	document.iform.pool.disabled = 1;
-	document.iform.pool.length = 0;
-	var option = document.iform.option.value;
-	if (option == "s" || option == "st" || option == "p" || option == "d" || option == "t") {
-		<?php if (!empty($a_pool) && is_array($a_pool)):?>
-		document.iform.pool.disabled = 0;
-		<?php $i = 0; foreach($a_pool  as $pool):?>
-		document.iform.pool[<?=$i?>] = new Option('<?=$pool['name']?>','<?=$pool['name']?>', <?=(isset($pconfig['pool']) && $pconfig['pool'] === $pool['name']) ? "true" : "false"?>);
-		<?php if (isset($pconfig['pool']) && $pconfig['pool'] === $pool['name']) {?>
-			document.iform.pool.selectedIndex = <?=$i?>;
-		<?php }?>
-		<?php $i++; endforeach;?>
-		<?php endif;?>
-	}
-	if (option == "d" || option == "t") {
-		pool_change();
-	}
-}
-
-function pool_change() {
-	document.iform.device_new.length = 0;
-	document.iform.device_cache.length = 0;
-	document.iform.device_log.length = 0;
-	document.iform.device_spare.length = 0;
-	document.iform.device_vdev.length = 0;
-	var div = document.getElementById("devices");
-	div.innerHTML ="";
-	var pool = document.iform.pool.value;
-	var action = document.iform.action.value;
-	switch (pool) {
-		<?php if (!empty($a_pool)) { foreach ($a_pool as $pool):?>
-		case "<?=$pool['name'];?>": {
-			<?php
-			$result = array();
-			$first_type = "";
-			foreach ($pool['vdevice'] as $vdevicev) {
-				$index = array_search_ex($vdevicev, $a_vdevice, "name");
-				$vdevice = $a_vdevice[$index];
-				$type = $vdevice['type'];
-				if ($first_type == ""
-				    && ($type == "stripe" || $type == "mirror"
-					|| $type == "raidz1" || $type == "raidz2"
-					|| $type == "raidz3")) {
-					$first_type = $type;
-				}
-				foreach ($vdevice['device'] as $devicev) {
-					$pnum ='';
-					if (preg_match('/(p[0-9]+)$/', $devicev, $m)) {
-						$pnum = $m[1];
-					}
-					$devicev = preg_replace('/p[0-9]+$/', '', $devicev);
-
-					$a_disk = get_conf_disks_filtered_ex("fstype", "zfs");
-					$a_encrypteddisk = get_conf_encryped_disks_list();
-
-					if (($index = array_search_ex($devicev, $a_disk, "devicespecialfile")) !== false) {
-						$tmp = $a_disk[$index];
-						$tmp['type'] = $type;
-						$tmp['name2'] = $tmp['name'].$pnum;
-						if (($index = array_search_ex($devicev, $a_encrypteddisk, "devicespecialfile")) !== false) {
-							$tmp['name2'] = $tmp['name'].$pnum.".eli";
-						}
-						$result[] = $tmp;
-					}
-				}
-			}
-			$i = 0; $j = 0;
-			array_sort_key($result, "name");
-			foreach ($result as $disk) {
-				$checked = "";
-				if (isset($pconfig['device']) && is_array($pconfig['device'])) {
-					foreach ($pconfig['device'] as $devicev) {
-						if ($devicev === $disk['name']) {
-							$checked = " checked='checked'";
-							break;
-						}
-					}
-				} else {
-					if (isset($pconfig['device']) && $pconfig['device'] === $disk['name']) {
-						$checked = " checked='checked'";
-					}
-				}
-				if ($disk['type'] != "cache") {
-				?>
-
-				if (action != "cache add" && action != "cache remove") {
-					div.innerHTML += "<input name='device[]' id='<?=$i?>' type='checkbox' value='<?=$disk['name2'];?>'<?=$checked?> />";
-					div.innerHTML += "<?=$disk['name'];?> (<?=$disk['size']?>, <?=htmlspecialchars($disk['desc'])?>)";
-					div.innerHTML += "<br />";
-					document.iform.device_new[<?=$i;?>] = new Option('<?="{$disk['name']} ({$disk['size']}, {$disk['desc']})";?>','<?=$disk['name2'];?>','false');
-				}
-
-				<?php
-					$i++;
-				} else if ($disk['type'] == "cache") {
-				?>
-
-				if (action == "cache add" || action == "cache remove") {
-					div.innerHTML += "<input name='device[]' id='<?=$i?>' type='checkbox' value='<?=$disk['name2'];?>'<?=$checked?> />";
-					div.innerHTML += "<?=$disk['name'];?> (<?=$disk['type']?>, <?=$disk['size']?>, <?=htmlspecialchars($disk['desc'])?>)";
-					div.innerHTML += "<br />";
-					document.iform.device_new[<?=$j;?>] = new Option('<?="{$disk['name']} ({$disk['type']}, {$disk['size']}, {$disk['desc']})";?>','<?=$disk['name2'];?>','false');
-				}
-
-				<?php
-					$j++;
-				}
-			}
-
-			$result_add = array();
-			$result_del = array();
-			array_sort_key($a_vdevice_cache, "name");
-			foreach ($a_vdevice_cache as $vdevicev) {
-				$index = array_search_ex($vdevicev['name'], $a_pool, "vdevice");
-				if ($index !== false) {
-					if ($a_pool[$index]['name'] == $pool['name']) {
-						$result_del[] = $vdevicev;
-					}
-				} else {
-					$result_add[] = $vdevicev;
-				}
-			}
-			?>
-
-			if (action == "cache add") {
-			<?php $i = 0; foreach ($result_add as $vdevicev) {?>
-				document.iform.device_cache[<?=$i;?>] = new Option('<?="{$vdevicev['name']} ({$vdevicev['devs']})";?>','<?="{$vdevicev['name']}";?>','false');
-			<?php $i++; } ?>
-
-			} else if (action == "cache remove") {
-			<?php $i = 0; foreach ($result_del as $vdevicev) {?>
-				document.iform.device_cache[<?=$i;?>] = new Option('<?="{$vdevicev['name']} ({$vdevicev['devs']})";?>','<?="{$vdevicev['name']}";?>','false');
-			<?php $i++; } ?>
-
-			}
-
-			<?php
-			$result_add = array();
-			$result_del = array();
-			array_sort_key($a_vdevice_log, "name");
-			foreach ($a_vdevice_log as $vdevicev) {
-				$index = array_search_ex($vdevicev['name'], $a_pool, "vdevice");
-				if ($index !== false) {
-					if ($a_pool[$index]['name'] == $pool['name']) {
-						$result_del[] = $vdevicev;
-					}
-				} else {
-					$result_add[] = $vdevicev;
-				}
-			}
-			?>
-
-			if (action == "log add") {
-			<?php $i = 0; foreach ($result_add as $vdevicev) {?>
-				document.iform.device_log[<?=$i;?>] = new Option('<?="{$vdevicev['name']} ({$vdevicev['devs']})";?>','<?="{$vdevicev['name']}";?>','false');
-			<?php $i++; } ?>
-
-			} else if (action == "log remove") {
-			<?php $i = 0; foreach ($result_del as $vdevicev) {?>
-				document.iform.device_log[<?=$i;?>] = new Option('<?="{$vdevicev['name']} ({$vdevicev['devs']})";?>','<?="{$vdevicev['name']}";?>','false');
-			<?php $i++; } ?>
-
-			}
-
-			<?php
-			$result_add = array();
-			$result_del = array();
-			array_sort_key($a_vdevice_spare, "name");
-			foreach ($a_vdevice_spare as $vdevicev) {
-				$index = array_search_ex($vdevicev['name'], $a_pool, "vdevice");
-				if ($index !== false) {
-					if ($a_pool[$index]['name'] == $pool['name']) {
-						$result_del[] = $vdevicev;
-					}
-				} else {
-					$result_add[] = $vdevicev;
-				}
-			}
-			?>
-
-			if (action == "spare add") {
-			<?php $i = 0; foreach ($result_add as $vdevicev) {?>
-				document.iform.device_spare[<?=$i;?>] = new Option('<?="{$vdevicev['name']} ({$vdevicev['devs']})";?>','<?="{$vdevicev['name']}";?>','false');
-			<?php $i++; } ?>
-
-			} else if (action == "spare remove") {
-			<?php $i = 0; foreach ($result_del as $vdevicev) {?>
-				document.iform.device_spare[<?=$i;?>] = new Option('<?="{$vdevicev['name']} ({$vdevicev['devs']})";?>','<?="{$vdevicev['name']}";?>','false');
-			<?php $i++; } ?>
-
-			}
-
-			<?php
-			$result_add = array();
-			$result_del = array();
-			array_sort_key($a_vdevice_vdev, "name");
-			foreach ($a_vdevice_vdev as $vdevicev) {
-				if ($first_type == "" || $first_type != $vdevicev['type']) {
-					continue;
-				}
-				$index = array_search_ex($vdevicev['name'], $a_pool, "vdevice");
-				if ($index !== false) {
-					if ($a_pool[$index]['name'] == $pool['name']) {
-						$result_del[] = $vdevicev;
-					}
-				} else {
-					$result_add[] = $vdevicev;
-				}
-			}
-			?>
-
-			if (action == "vdev add") {
-			<?php $i = 0; foreach ($result_add as $vdevicev) {?>
-				document.iform.device_vdev[<?=$i;?>] = new Option('<?="{$vdevicev['name']} ({$vdevicev['devs']})";?>','<?="{$vdevicev['name']}";?>','false');
-			<?php $i++; } ?>
-
-			} else if (action == "vdev remove") {
-			<?php $i = 0; foreach ($result_del as $vdevicev) {?>
-				document.iform.device_vdev[<?=$i;?>] = new Option('<?="{$vdevicev['name']} ({$vdevicev['devs']})";?>','<?="{$vdevicev['name']}";?>','false');
-			<?php $i++; } ?>
-
+<?php include 'fbegin.inc'; ?>
+<script type="text/javascript">
+//<![CDATA[
+$(window).on("load", function() {
+	// Init spinner onsubmit()
+	$("#iform").submit(function() { spinner(); });
+	// Init toggle checkbox
+	$("#togglepool").click(function() { togglecheckboxesbyname(this, "pool[]"); });
+	$("#togglepooldev").click(function() { togglecheckboxesbyname(this, "pooldev[]"); });
+	$("#togglenewdev").click(function() { togglecheckboxesbyname(this, "newdev[]"); });
+	$("#togglenewvdev").click(function() { togglecheckboxesbyname(this, "newvdev[]"); });
+});
+function togglecheckboxesbyname(ego, triggerbyname) {
+	var a_trigger = document.getElementsByName(triggerbyname);
+	var n_trigger = a_trigger.length;
+	var i = 0;
+	for (; i < n_trigger; i++) {
+		if (a_trigger[i].type == 'checkbox') {
+			if (!a_trigger[i].disabled) {
+				a_trigger[i].checked = !a_trigger[i].checked;
 			}
 		}
-		break;
-		<?php endforeach; } ?>
 	}
+	if (ego.type == 'checkbox') { ego.checked = false; }
 }
 //]]>
 </script>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-	<li class="tabact"><a href="disks_zfs_zpool.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Pools");?></span></a></li>
-	<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gettext("Datasets");?></span></a></li>
-	<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gettext("Volumes");?></span></a></li>
-	<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gettext("Snapshots");?></span></a></li>
-	<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gettext("Configuration");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav2">
-	<li class="tabinact"><a href="disks_zfs_zpool_vdevice.php"><span><?=gettext("Virtual device");?></span></a></li>
-	<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gettext("Management");?></span></a></li>
-	<li class="tabact"><a href="disks_zfs_zpool_tools.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Tools");?></span></a></li>
-	<li class="tabinact"><a href="disks_zfs_zpool_info.php"><span><?=gettext("Information");?></span></a></li>
-	<li class="tabinact"><a href="disks_zfs_zpool_io.php"><span><?=gettext("I/O statistics");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-      <form action="disks_zfs_zpool_tools.php" method="post" name="iform" id="iform">
-	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-	<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
-	<?php if (!$do_action) { ?>
-	<table width="100%" border="0" cellpadding="6" cellspacing="0">
-	<?php } else { ?>
-	<table width="100%" border="0" cellpadding="6" cellspacing="0" style="display:none;">
-	<?php } ?>
-	<tr>
-	  <td width="22%" valign="top" class="vncellreq"><?=gettext("Command");?></td>
-	  <td width="78%" class="vtable">
-	  <select name="action" class="formfld" id="action" onchange="command_change()">
-	  <?
-		$cmd = "upgrade history";
-		if (is_array($a_pool) && !empty($a_pool)) {
-		    $cmd .= " remove clear scrub offline online replace attach detach";
-		}
-		$a_cmd = explode(" ", $cmd);
-		if (is_array($a_pool) && !empty($a_pool)) {
-		    $a_cmd[] = "cache add";
-		    $a_cmd[] = "cache remove";
-		    $a_cmd[] = "log add";
-		    $a_cmd[] = "log remove";
-		    $a_cmd[] = "spare add";
-		    $a_cmd[] = "spare remove";
-		    $a_cmd[] = "vdev add";
-		}
-		asort($a_cmd);
-		foreach ($a_cmd as $cmdv) {
-		    echo "<option value=\"${cmdv}\"";
-		if ($cmdv === $pconfig['action'])
-		    echo " selected=\"selected\"";
-		    echo ">${cmdv}</option>";
-		}
-	  ?>
-	  </select>
-	  </td>
-	</tr>
-	<?php html_combobox("option", gettext("Option"), NULL, NULL, "", true, false, "option_change()");?>
-	<?php html_combobox("pool", gettext("Pool"), NULL, NULL, "", true, true, "pool_change()");?>
-	<tr id='devices_tr'>
-	<td valign="top" class="vncellreq"><?=gettext("Devices");?></td>
-	<td class="vtable">
-	<div id="devices">
-	<?=gettext("No device selected.");?>
-	</div>
-	</td>
-	</tr>
-	<?php html_combobox("device_new", gettext("New Device"), NULL, NULL, "", true);?>
-	<?php html_combobox("device_new2", gettext("New Device"), NULL, $a_disk_free, "", true);?>
-	<?php html_combobox("device_cache", gettext("Cache Device"), NULL, NULL, "", true);?>
-	<?php html_combobox("device_log", gettext("Log Device"), NULL, NULL, "", true);?>
-	<?php html_combobox("device_spare", gettext("Hot Spare"), NULL, NULL, "", true);?>
-	<?php html_combobox("device_vdev", gettext("Virtual device"), NULL, NULL, gettext("Once you add the virtual device, it becomes impossible to delete again. It recommends adding the same number of drives as the existing virtual device."), true);?>
-	</table>
-	<?php if (!$do_action) { ?>
-	<div id="submit">
-	  <input name="Submit" type="submit" class="formbtn" value="<?=gettext("Send Command!");?>" />
-	</div>
-	<?php } else { ?>
-	<div id="reload">
-	  <input name="reload" type="button" class="formbtn" value="<?=gettext("Return to Command page");?>" onclick="location.href='disks_zfs_zpool_tools.php';" />
-	</div>
-	<?php } ?>
-	<?php if ($do_action) {
-		echo(sprintf("<div id='cmdoutput'>%s</div>", gettext("Command output:")));
-		echo('<pre class="cmdoutput">');
-		//ob_end_flush();
-
-		$action = $pconfig['action'];
-		$option = !empty($pconfig['option']) ? $pconfig['option'] : null;
-		$pool = !empty($pconfig['pool']) ? $pconfig['pool'] : null;
-		$device = !empty($pconfig['device']) ? $pconfig['device'] : null;
-		$new_device = !empty($pconfig['device_new']) ? $pconfig['device_new'] : null;
-		$new2_device = !empty($pconfig['device_new2']) ? $pconfig['device_new2'] : null;
-		$cache_device = !empty($pconfig['device_cache']) ? $pconfig['device_cache'] : null;
-		$log_device = !empty($pconfig['device_log']) ? $pconfig['device_log'] : null;
-		$spare_device = !empty($pconfig['device_spare']) ? $pconfig['device_spare'] : null;
-		$vdev_device = !empty($pconfig['device_vdev']) ? $pconfig['device_vdev'] : null;
-
-		// remove existing pool cache
-		if ($action != 'clear' && $action != 'history' && $action != 'scrub') {
-			conf_mount_rw();
-			unlink_if_exists("{$g['cf_path']}/boot/zfs/zpool.cache");
-			conf_mount_ro();
-		}
-
-		if (is_array($device)) {
-			$a = array();
-			foreach ($device as $dev) {
-				$index = array_search_ex("/dev/{$dev}", $a_vdevice, "device");
-				if ($index !== false) {
-					$aft4k = isset($a_vdevice[$index]['aft4k']);
-					if (!empty($aft4k)) {
-						$a[] = "{$dev}.nop";
+<table id="area_navigator"><tbody>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabact"><a href="disks_zfs_zpool.php" title="<?=gtext('Reload page');?>"><span><?=gtext('Pools');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gtext('Datasets');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gtext('Volumes');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gtext('Snapshots');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gtext('Configuration');?></span></a></li>
+	</ul></td></tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav2">
+		<li class="tabinact"><a href="disks_zfs_zpool_vdevice.php"><span><?=gtext('Virtual Device');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gtext('Management');?></span></a></li>
+		<li class="tabact"><a href="<?=$sphere_scriptname;?>" title="<?=gtext('Reload page');?>"><span><?=gtext('Tools');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_zpool_info.php"><span><?=gtext('Information');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_zpool_io.php"><span><?=gtext('I/O Statistics');?></span></a></li>
+	</ul></td></tr>
+</tbody></table>
+<table id="area_data"><tbody><tr><td id="area_data_frame"><form action="<?=$sphere_scriptname;?>" method="post" id="iform" name="iform">
+	<?php
+	if(1 < $sphere_array['pageindex']) {
+		if($sphere_array['submit']) {
+			if(isset($l_command[$sphere_array['activity']])) {
+				$c_activity = $l_command[$sphere_array['activity']]['longname'];
+			} else {
+				$c_activity = gtext('Unknown Activity');
+			}
+			switch($sphere_array['activity']) {
+				default:
+					$sphere_array['pageindex'] = 1;
+					break;
+				case 'add.cache': // add a device to a pool as a cache device
+					$subcommand = 'add';
+					$o_flags = new co_zpool_flags(['force', 'test'], $sphere_array['flag']);
+					switch($sphere_array['pageindex']) {
+						case 2: // add cache: select flags and pool
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool, '1', $sphere_array['pool']); // 1 pool required
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], []);
+							break;
+						case 3: // add cache: select geom device
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							html_separator2(2);
+							html_titleline2(gtext('Select a cache device'), 2);
+							render_newdev_edit($a_newdev, '1');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], []);
+							break;
+						case 4: // add cache: process
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_selected_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gtext('Source'), 2);
+							$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								foreach($sphere_array['flag'] as $tmp_flag) {
+									switch($tmp_flag) {
+										case 'force':
+											$a_param[] = '-f';
+											break;
+										case 'test':
+											$a_param[] = '-n';
+											break;
+									}
+								}
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$a_param[] = 'cache';
+								foreach($sphere_array['newdev'] as $tmp_device) {
+									$a_param[] = escapeshellarg($tmp_device);
+								}
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'add.data': // enhance an existing pool with a predefined vdev (data)
+					$subcommand = 'add';
+					$o_flags = new co_zpool_flags(['force', 'test'], $sphere_array['flag']);
+ 					switch($sphere_array['pageindex']) {
+						case 2: // add data: select flags and pool
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool, '1', $sphere_array['pool']); // 1 pool required
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], []);
+							break;
+						case 3: // add data: select new virtual device
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							html_separator2(2);
+							html_titleline2(gtext('Select a data device'), 2);
+							render_newvdev_edit($a_cfg_newvdev_data, '1');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], []);
+							break;
+						case 4: // add data: process
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_selected_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gtext('Source'), 2);
+							$prerequisites_ok &= render_newvdev_view($sphere_array['newvdev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							if($prerequisites_ok) {
+								if(false === ($index = array_search_ex($sphere_array['newvdev'][0], $a_cfg_newvdev_data, "name"))) {
+									$prerequisites_ok = false;
+								}
+							}
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								foreach($sphere_array['flag'] as $tmp_flag) {
+									switch($tmp_flag) {
+										case 'force':
+											$a_param[] = '-f';
+											break;
+										case 'test':
+											$a_param[] = '-n';
+											break;
+									}
+								}
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$tmp_virtual = $a_cfg_newvdev_data[$index];
+								$tmp_devices = $tmp_virtual['device'];
+								switch($tmp_virtual['type']):
+									case 'disk':
+									case 'stripe':
+										break;
+									default:
+										$a_param[] = $tmp_virtual['type'];
+										break;
+								endswitch;
+								foreach($tmp_devices as $tmp_device) {
+									$a_param[] = $tmp_device;
+								}
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'add.log': // add a device to a pool as a log device
+					$subcommand = 'add';
+					$o_flags = new co_zpool_flags(['force', 'test'], $sphere_array['flag']);
+					switch($sphere_array['pageindex']) {
+						case 2: // add log: select flags and pool
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool, '1', $sphere_array['pool']); // 1 pool required
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], []);
+							break;
+						case 3: // add log: select geom device
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							html_separator2(2);
+							html_titleline2(gtext('Select a log device'), 2);
+							render_newdev_edit($a_newdev, '1');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], []);
+							break;
+						case 4: // add log: process
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_selected_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gtext('Source'), 2);
+							$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								foreach($sphere_array['flag'] as $tmp_flag) {
+									switch($tmp_flag) {
+										case 'force':
+											$a_param[] = '-f';
+											break;
+										case 'test':
+											$a_param[] = '-n';
+											break;
+									}
+								}
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$a_param[] = 'log';
+								foreach($sphere_array['newdev'] as $tmp_device) {
+									$a_param[] = escapeshellarg($tmp_device);
+								}
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'add.spare': // add a device to a pool as a spare device
+					$subcommand = 'add';
+					$o_flags = new co_zpool_flags(['force', 'test'], $sphere_array['flag']);
+					switch($sphere_array['pageindex']) {
+						case 2: // add spare: select flags and pool
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool, '1', $sphere_array['pool']); // 1 pool required
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], []);
+							break;
+						case 3: // add spare: select geom device
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							html_separator2(2);
+							html_titleline2(gtext('Select one or more spare devices'), 2);
+							render_newdev_edit($a_newdev, '1N');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], []);
+							break;
+						case 4: // add spare: process
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_selected_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gtext('Source'), 2);
+							$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								foreach($sphere_array['flag'] as $tmp_flag) {
+									switch($tmp_flag) {
+										case 'force':
+											$a_param[] = '-f';
+											break;
+										case 'test':
+											$a_param[] = '-n';
+											break;
+									}
+								}
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$a_param[] = 'spare';
+								foreach($sphere_array['newdev'] as $tmp_device) {
+									$a_param[] = escapeshellarg($tmp_device);
+								}
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'attach.data': // parameter: force flag, non-raidz vdev, new device
+					$subcommand = 'attach';
+					$o_flags = new co_zpool_flags(['force'], $sphere_array['flag']);
+					switch($sphere_array['pageindex']) {
+						case 2: // attach data: select flags and pool
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool_for_attach_data, '1', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], []);
+							break;
+						case 3: // attach data: select pool device and new device
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool device'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]); // limit next query to selected pool
+							$a_device_for_attach_data = $o_zpool->get_pool_devices_for_attach_data();
+							$o_zpool->set_poolname_filter();
+							render_pooldev_edit($a_device_for_attach_data, '1');
+							html_separator2(2);
+							html_titleline2(gtext('Select a data device'), 2);
+							render_newdev_edit($a_newdev, '1');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], []);
+							break;
+						case 4: // attach data: process
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_selected_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev']);
+							html_separator2(2);
+							html_titleline2(gtext('Source'), 2);
+							$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								foreach($sphere_array['flag'] as $tmp_flag) {
+									switch($tmp_flag) {
+										case 'force':
+											$a_param[] = '-f';
+											break;
+									}
+								}
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
+								$a_param[] = escapeshellarg($sphere_array['newdev'][0]);
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['keys']);
+							break;
+					}
+					break;
+				case 'attach.log': // force flag, non-raidz vdev, vdev, new device
+					$subcommand = 'attach';
+					$o_flags = new co_zpool_flags(['force'], $sphere_array['flag']);
+					switch($sphere_array['pageindex']) {
+						case 2: // attach log: select flags and pool
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool_for_attach_log, '1', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], []);
+							break;
+						case 3: // attach log: select device and new device
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool device'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
+							$a_device_for_attach_log = $o_zpool->get_pool_devices_for_attach_log();
+							$o_zpool->set_poolname_filter();
+							render_pooldev_edit($a_device_for_attach_log, '1');
+							html_separator2(2);
+							html_titleline2(gtext('Select a log device'), 2);
+							render_newdev_edit($a_newdev, '1');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], []);
+							break;
+						case 4: // attach log: process
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_selected_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev']);
+							html_separator2(2);
+							html_titleline2(gtext('Source'), 2);
+							$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								foreach($sphere_array['flag'] as $tmp_flag) {
+									switch($tmp_flag) {
+										case 'force':
+											$a_param[] = '-f';
+											break;
+									}
+								}
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
+								$a_param[] = escapeshellarg($sphere_array['newdev'][0]);
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'clear':
+					$subcommand = 'clear';
+					switch($sphere_array['pageindex']) {
+						case 2: // clear: select pool
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool, '1', $sphere_array['pool']); // 1 pool only
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], $sphere_array['flag']);
+							break;
+						case 3: // clear: select pool device
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select pool device'), 2);
+							render_pool_view($sphere_array['pool']);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
+							$a_pool_device_for_clear = $o_zpool->get_all_data_devices();
+							$o_zpool->set_poolname_filter();
+							render_pooldev_edit($a_pool_device_for_clear, '0');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+						case 4:
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							render_pooldev_view($sphere_array['pooldev']); // 0-N devices can be selected, no check for success
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								if(0 < count($sphere_array['pooldev'])) {
+									foreach($sphere_array['pooldev'] as $tmp_device) {
+										$a_param[] = escapeshellarg($tmp_device);
+									}
+								}
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'destroy':
+					$subcommand = 'destroy';
+					$o_flags = new co_zpool_flags(['force'], $sphere_array['flag']);
+					switch($sphere_array['pageindex']) {
+						case 2: // destroy: select flags & pool
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool, '1N', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], []);
+							break;
+						case 3: // destroy: process
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_selected_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								foreach($sphere_array['pool'] as $tmp_pool) {
+									$result = 0;
+									$a_param = [];
+									foreach($sphere_array['flag'] as $tmp_flag) {
+										switch($tmp_flag) {
+											case 'force':
+												$a_param[] = '-f';
+												break;
+										}
+									}
+									$a_param[] = escapeshellarg($tmp_pool);
+									$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+									render_command_result($result);
+								}
+							} else {
+								render_command_result($result);
+							}
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'detach.data':
+					$subcommand = 'detach';
+					switch($sphere_array['pageindex']) {
+						case 2: // detach data: select pool
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool_for_detach_data, '1', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], $sphere_array['flag']);
+							break;
+						case 3: // detach data: select pool data device
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a data device'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
+							$a_pool_device_for_detach_data = $o_zpool->get_mirrored_data_devices();
+							$o_zpool->set_poolname_filter();
+							render_pooldev_edit($a_pool_device_for_detach_data, '1');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+						case 4: // detach data page 4: process
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'detach.log':
+					$subcommand = 'detach';
+					switch($sphere_array['pageindex']) {
+						case 2: // detach log: select pool
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool_for_detach_log, '1', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], $sphere_array['flag']);
+							break;
+						case 3: // detach log: select pool device
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a log device'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
+							$a_pool_device_for_detach_log = $o_zpool->get_mirrored_log_devices();
+							$o_zpool->set_poolname_filter();
+							render_pooldev_edit($a_pool_device_for_detach_log, '1');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+						case 4: // detach log: process
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'export': // parameter: force flag, pool
+					$subcommand = 'export';
+					$o_flags = new co_zpool_flags(['force'], $sphere_array['flag']);
+					switch($sphere_array['pageindex']) {
+						case 2: // export: select flags & pool
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Select pools'), 2);
+							render_pool_edit($a_pool, '1N', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], []);
+							break;
+						case 3: // export: process
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_selected_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								foreach($sphere_array['pool'] as $r_pool) {
+									$result = 0;
+									$a_param = [];
+									foreach($sphere_array['flag'] as $tmp_flag) {
+										switch($tmp_flag) {
+											case 'force':
+												$a_param[] = '-f';
+												break;
+										}
+									}
+									$a_param[] = escapeshellarg($r_pool);
+									$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+									render_command_result($result);
+								}
+							} else {
+								render_command_result($result);
+							}
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'history':
+					$subcommand = 'history';
+					switch($sphere_array['pageindex']) {
+						case 2: // history: select pool(s)
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select pools'), 2);
+							render_pool_edit($a_pool, '0N', $sphere_array['pool']); // 0..N = checkboxes
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], $sphere_array['flag']);
+							break;
+						case 3: // history: process
+							if(0 === count($sphere_array['pool']) || (count($a_pool) === count($sphere_array['pool']))) {
+								render_set_start();
+								render_activity_view($c_activity);
+								$prerequisites_ok = true;
+								html_separator2(2);
+								html_titleline2(gtext('Output'), 2);
+								$result = $prerequisites_ok ? 0 : 15;
+								if($prerequisites_ok) {
+									$a_param = [];
+									$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+								}
+								render_command_result($result);
+								render_set_end();
+								render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							} else {
+								$result = 0;
+								render_set_start();
+								render_activity_view($c_activity);
+								$prerequisites_ok = true;
+								html_separator2(2);
+								html_titleline2(gtext('Output'), 2);
+								$result = $prerequisites_ok ? 0 : 15;
+								if($prerequisites_ok) {
+									foreach($sphere_array['pool'] as $tmp_pool) {
+										$result = 0;
+										$a_param = [];
+										render_pool_view($tmp_pool);
+										$a_param[] = escapeshellarg($tmp_pool);
+										$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+										render_command_result($result);
+									}
+								} else {
+									render_command_result($result);
+								}
+								render_set_end();
+								render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							}
+							break;
+					}
+					break;
+				case 'import':
+					$subcommand = 'import';
+					$o_flags = new co_zpool_flags(['force', 'sfaiapf', 'gptlabel', 'gptid'], $sphere_array['flag']);
+					switch($sphere_array['pageindex']) {
+						case 2: // import page: get flags
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], []);
+							break;
+						case 3: // import page: process
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_selected_keys();
+							$prerequisites_ok = true;
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								foreach($sphere_array['flag'] as $tmp_flag) {
+									switch($tmp_flag) {
+										case 'force':
+											$a_param[] = '-f';
+											break;
+										case 'gptlabel':
+											if(is_dir('/dev/gpt')) {
+												$a_param[] = '-d /dev/gpt';
+											}
+											break;
+										case 'gptid':
+											if(is_dir('/dev/gptid')) {
+												$a_param[] = '-d /dev/gptid';
+											}
+											break;
+										case 'sfaiapf':
+											$a_param[] = '-a';
+											break;
+									}
+								}
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'labelclear': // labelclear wipes zfs information from a disk
+					$subcommand = 'labelclear';
+					$o_flags = new co_zpool_flags(['force'], $sphere_array['flag']);
+					switch($sphere_array['pageindex']) {
+						case 2: // labelclear: select flags and device
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Select a device'), 2);
+							render_newdev_edit($a_newdev, '1'); // $a_newdev still lists spares, must be changed
+//							render_newdev_edit($o_zpool->get_all_devices(),'1');
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], $a_sphere['pool'], []);
+							break;
+						case 3: // labelclear: process
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_selected_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								foreach($sphere_array['flag'] as $tmp_flag) {
+									switch($tmp_flag) {
+										case 'force':
+											$a_param[] = '-f';
+											break;
+									}
+								}
+								foreach($sphere_array['newdev'] as $tmp_device) { // labelclear expects a full path
+									if(preg_match('/^\//', $tmp_device)) { // verify full path
+										$a_param[] = escapeshellarg($tmp_device);
+									} else {
+										$a_param[] = escapeshellarg(sprintf('/dev/%s', $tmp_device));
+									}
+								}
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'offline': // mirror and raidz allowed
+					$subcommand = 'offline';
+					switch($sphere_array['pageindex']) {
+						case 2: // offline data: select pool
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool_for_offline_data, '1', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], $sphere_array['flags']);
+							break;
+						case 3: // offline data: select data device
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a device'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
+							$a_pool_device_for_offline_data = $o_zpool->get_pool_devices_for_offline_data();
+							$o_zpool->set_poolname_filter();
+							render_pooldev_edit($a_pool_device_for_offline_data, '1');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+						case 4: // offline data: process
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'online':
+					$subcommand = 'online';
+					switch($sphere_array['pageindex']) {
+						case 2: // online data: select pool
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool_for_online_data, '1', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], $sphere_array['flags']);
+							break;
+						case 3: // online data: select data device
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool device'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
+							$a_pool_device_for_online_data = $o_zpool->get_pool_devices_for_online_data();
+							$o_zpool->set_poolname_filter();
+							render_pooldev_edit($a_pool_device_for_online_data, '1');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+						case 4: // online data: process
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'reguid':
+					$subcommand = 'reguid';
+					switch($sphere_array['pageindex']) {
+						case 2: // reguid page 2: select pool
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool, '1N', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], $sphere_array['flag']);
+							break;
+						case 3:
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								foreach($sphere_array['pool'] as $tmp_pool) {
+									$result = 0;
+									$a_param = [];
+									$a_param[] = escapeshellarg($tmp_pool);
+									$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+									render_command_result($result);
+								}
+							} else {
+								render_command_result($result);
+							}
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'remove.cache':
+					$subcommand = 'remove';
+					switch($sphere_array['pageindex']) {
+						case 2: // remove cache: select pool
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool_for_remove_cache, '1', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], $sphere_array['flags']);
+							break;
+						case 3: // remove cache: select cache device
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a cache device'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
+							$a_pool_device_for_remove_cache = $o_zpool->get_single_cache_devices();
+							$o_zpool->set_poolname_filter();
+							render_pooldev_edit($a_pool_device_for_remove_cache, '1');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+						case 4: // remove cache: process
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'remove.log':
+					$subcommand = 'remove';
+					switch($sphere_array['pageindex']) {
+						case 2: // remove log: select pool
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool_for_remove_log, '1', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], $sphere_array['flag']);
+							break;
+						case 3: // remove log: select log device
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a log device'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
+							$a_pool_device_for_remove_log = $o_zpool->get_single_log_devices();
+							$o_zpool->set_poolname_filter();
+							render_pooldev_edit($a_pool_device_for_remove_log, '1');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+						case 4: // remove log: process
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+					}
+					break;
+				case 'remove.spare':
+					$subcommand = 'remove';
+					switch($sphere_array['pageindex']) {
+						case 2: // remove spare: select pool
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool_for_remove_spare, '1', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], $sphere_array['flag']);
+							break;
+						case 3: // remove spare: select spare device
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select a spare device'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]);
+							$a_pool_device_for_remove_spare = $o_zpool->get_single_spare_devices();
+							$o_zpool->set_poolname_filter();
+							render_pooldev_edit($a_pool_device_for_remove_spare, '1');
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+						case 4: // remove spare: process
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+							break;
+						break;
+					}
+					break;
+				case 'replace': // parameter: force flag, pool, redundant device, new device
+					$subcommand = 'replace';
+					$o_flags = new co_zpool_flags(['force'], $sphere_array['flag']);
+					switch($sphere_array['pageindex']) {
+						case 2: // replace data: select flags and pool
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool'), 2);
+							render_pool_edit($a_pool_for_replace_data, '1', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], []);
+							break;
+						case 3: // replace data: select pool device and new device
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_available_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Select a pool device'), 2);
+							render_pool_view($sphere_array['pool']);
+							render_zpool_status($sphere_array['pool'][0], $b_exec);
+							$o_zpool->set_poolname_filter($sphere_array['pool'][0]); // limit next query to selected pool
+							$a_device_for_replace_data = $o_zpool->get_pool_devices_for_replace_data();
+							$o_zpool->set_poolname_filter();
+							render_pooldev_edit($a_device_for_replace_data, '1');
+							html_separator2(2);
+							html_titleline2(gtext('Select a data device'), 2);
+							render_newdev_edit($a_newdev, '1'); // we make it mandatory
+							render_set_end();
+							render_submit(4, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], []);
+							break;
+						case 4: // replace data: process
+							render_set_start();
+							render_activity_view($c_activity);
+							$o_flags->render_selected_keys();
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							$prerequisites_ok = render_pool_view($sphere_array['pool']);
+							$prerequisites_ok &= render_pooldev_view($sphere_array['pooldev']);
+							html_separator2(2);
+							html_titleline2(gtext('Source'), 2);
+							$prerequisites_ok &= render_newdev_view($sphere_array['newdev']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								$a_param = [];
+								foreach($sphere_array['flag'] as $tmp_flag) {
+									switch($tmp_flag) {
+										case 'force':
+											$a_param[] = '-f';
+											break;
+									}
+								}
+								$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+								$a_param[] = escapeshellarg($sphere_array['pooldev'][0]);
+								$a_param[] = escapeshellarg($sphere_array['newdev'][0]);
+								$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+							}
+							render_command_result($result);
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['keys']);
+							break;
+					}
+					break;
+				case 'scrub':
+					$subcommand = 'scrub';
+					$result = 0;
+					if($b_pool) {
+						switch($sphere_array['pageindex']) {
+							case 2: // scrub page 2: select option and pool
+								$ll_option = [];
+								$ll_option['start'] = $l_option['start']; 
+								$ll_option['stop'] = $l_option['stop'];
+								$ll_option['start']['default'] = true;
+								render_set_start();
+								render_activity_view($c_activity);
+								render_selector_radio(gtext('Options'), $ll_option, $sphere_array['option']);
+								html_separator2(2);
+								html_titleline2(gtext('Select a pool'), 2);
+								render_pool_edit($a_pool, '1', $sphere_array['pool']);
+								render_set_end();
+								render_submit(3, $sphere_array['activity'], '', [], $sphere_array['flag']);
+								break;
+							case 3: // process
+								switch($sphere_array['option']) {
+									case 'start':
+										render_set_start();
+										render_activity_view($c_activity);
+										render_option_view($l_option[$sphere_array['option']]['longname']);
+										html_separator2(2);
+										html_titleline2(gtext('Target'), 2);
+										$prerequisites_ok = render_pool_view($sphere_array['pool']);
+										html_separator2(2);
+										html_titleline2(gtext('Output'), 2);
+										$result = $prerequisites_ok ? 0 : 15;
+										if($prerequisites_ok) {
+											$a_param = [];
+											$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+											$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+										}
+										render_command_result($result);
+										render_set_end();
+										render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+										break;
+									case 'stop':
+										render_set_start();
+										render_activity_view($c_activity);
+										render_option_view($l_option[$sphere_array['option']]['longname']);
+										html_separator2(2);
+										html_titleline2(gtext('Target'), 2);
+										$prerequisites_ok = render_pool_view($sphere_array['pool']);
+										html_separator2(2);
+										html_titleline2(gtext('Output'), 2);
+										$result = $prerequisites_ok ? 0 : 15;
+										if($prerequisites_ok) {
+											$a_param = [];
+											$a_param[] = '-s';
+											$a_param[] = escapeshellarg($sphere_array['pool'][0]);
+											$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+										}
+										render_command_result($result);
+										render_set_end();
+										render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+										break;
+								}
+								break;
+						}
 					} else {
-						$a[] = "{$dev}";
+						render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool']);
 					}
-				}
-			}
-			$device = $a;
-		} else {
-			$index = array_search_ex("/dev/{$device}", $a_vdevice, "device");
-			if ($index !== false) {
-				$aft4k = isset($a_vdevice[$index]['aft4k']);
-				if (!empty($aft4k)) {
-					$device = "{$device}.nop";
-				} else {
-					$device = "{$device}";
-				}
-			}
-		}
-
-		$index = array_search_ex("/dev/{$new_device}", $a_vdevice, "device");
-		if ($index !== false) {
-			$aft4k = isset($a_vdevice[$index]['aft4k']);
-			if (!empty($aft4k)) {
-				$new_device = "{$new_device}.nop";
-			} else {
-				$new_device = "{$new_device}";
-			}
-		}
-
-		switch ($action) {
-		case "upgrade": {
-		    switch ($option) {
-		    case "v": {
-			zfs_zpool_cmd($action, "-v", false, false, true, $output);
-			foreach ($output as $line) {
-			    if (preg_match("/(\s+)(\d+)(\s+)(.*)/",$line, $match)) {
-				$href = "<a href=\"http://www.opensolaris.org/os/community/zfs/version/{$match[2]}\" target=\"_blank\">{$match[2]}</a>";
-				echo "{$match[1]}{$href}{$match[3]}{$match[4]}";
-			    } else {
-				echo htmlspecialchars($line);
-			    }
-			    echo "<br />";
-			}
-		    }
-		    break;
-
-		    case "a":
-			zfs_zpool_cmd($action, "-a", true);
-			break;
-
-		    case "p":
-			zfs_zpool_cmd($action, $pool, true);
-			break;
-		    }
-		}
-		break;
-
-		case "history": {
-		    switch ($option) {
-		    case "a":
-			zfs_zpool_cmd($action, "", true);
-			break;
-
-		    case "p":
-			zfs_zpool_cmd($action, $pool, true);
-			break;
-		    }
-		}
-		break;
-
-		case "scrub": {
-		    switch ($option) {
-		    case "s":
-			zfs_zpool_cmd($action, $pool, true);
-			break;
-
-		    case "st":
-			zfs_zpool_cmd($action,"-s {$pool}", true);
-			break;
-		    }
-		}
-		break;
-
-		case "clear": {
-		    switch ($option) {
-		    case "p":
-			zfs_zpool_cmd($action, $pool, true);
-			break;
-
-		    case "d":
-			if (is_array($device)) {
-			    foreach ($device as $dev) {
-				zfs_zpool_cmd($action, "{$pool} {$dev}", true);
-			    }
-			} else {
-			    zfs_zpool_cmd($action, "{$pool} {$device}", true);
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "offline": {
-		    switch ($option) {
-		    case "t":
-			$result = zfs_zpool_cmd($action, "-t {$pool} {$device}", true);
-			if ($result == 0) {
-			    echo gettext("Done.")."\n";
-			}
-			break;
-
-		    case "d":
-			if (is_array($device)) {
-			    $result = 0;
-			    foreach ($device as $dev) {
-				$result |= zfs_zpool_cmd($action, "{$pool} {$dev}", true);
-			    }
-			} else {
-			    $result = zfs_zpool_cmd($action, "{$pool} {$device}", true);
-			}
-			if ($result == 0) {
-			    echo gettext("Done.")."\n";
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "online": {
-		    switch ($option) {
-		    case "d":
-			if (is_array($device)) {
-			    $result = 0;
-			    foreach ($device as $dev) {
-				$result |= zfs_zpool_cmd($action, "{$pool} {$dev}", true);
-			    }
-			} else {
-			    $result = zfs_zpool_cmd($action, "{$pool} {$device}", true);
-			}
-			if ($result == 0) {
-			    echo gettext("Done.")."\n";
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "attach": {
-		    echo "$action...\n";
-		    if ((is_array($device) && count($device) == 0) || $device == "")
-			break;
-		    switch ($option) {
-		    case "d":
-			if (is_array($device)) {
-			    if (count($device) != 1) {
-				echo "Only one device is allowed.\n";
-				break;
-			    }
-			    $dev = $device[0];
-			} else {
-			    $dev = $device;
-			}
-
-			// Create gnop
-			unset($aft4k);
-			$result = 0;
-			$target_device = "/dev/{$dev}";
-			$attach_device = "{$new2_device}";
-			if (preg_match("/^(.+)\.nop$/", $dev, $m)) {
-			    $target_device = "/dev/{$m[1]}";
-			    $aft4k = true;
-			    if (!empty($aft4k)) {
-				$gnop_cmd = "gnop create -S 4096 {$new2_device}";
-				write_log("$gnop_cmd");
-				$result = mwexec($gnop_cmd, true);
-				if ($result != 0)
-				    break;
-				$new2_device = "{$new2_device}.nop";
-			    }
-			}
-			if ($result != 0)
-			    break;
-
-			$result = zfs_zpool_cmd($action, "{$pool} {$dev} {$new2_device}", true);
-			if ($result == 0) {
-			    $index = array_search_ex($target_device, $config['zfs']['vdevices']['vdevice'], "device");
-			    if ($index !== false) {
-				if ($config['zfs']['vdevices']['vdevice'][$index]['type'] == "stripe") {
-				    $config['zfs']['vdevices']['vdevice'][$index]['type'] = "mirror";
-				}
-				$config['zfs']['vdevices']['vdevice'][$index]['device'][] = $attach_device;
-			    }
-
-			    write_config();
-			    echo gettext("Done.")."\n";
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "detach": {
-		    echo "$action...\n";
-		    if ((is_array($device) && count($device) == 0) || $device == "")
-			break;
-		    // get curret spare list
-		    $a_spares = get_spare_list($pool);
-
-		    switch ($option) {
-		    case "d":
-			if (is_array($device)) {
-			    $result = 0;
-			    foreach ($device as $dev) {
-				$result |= zfs_zpool_cmd($action, "{$pool} {$dev}", true);
-			    }
-			} else {
-			    $result = zfs_zpool_cmd($action, "{$pool} {$device}", true);
-			}
-			if ($result == 0) {
-			   $target_devices = array();
-			   if (is_array($device)) {
-				foreach ($device as $dev) {
-				    if (preg_match("/^(.+)\.nop$/", $dev, $m)) {
-				        $target_devices[] = "/dev/{$m[1]}";
-				    } else {
-					$target_devices[] = "/dev/{$dev}";
-				    }
-				}
-			    } else {
-				if (preg_match("/^(.+)\.nop$/", $dev, $m)) {
-				    $target_devices[] = "/dev/{$m[1]}";
-				} else {
-				    $target_devices[] = "/dev/{$dev}";
-				}
-			    }
-			    foreach ($target_devices as $target_device) {
-				$index = array_search_ex($target_device, $config['zfs']['vdevices']['vdevice'], "device");
-				if ($index !== false) {
-				    $type = get_device_type($target_device, $a_vdevice);
-
-				    // remove spares if any
-				    if ($type != "spare" && !empty($a_spares)) {
-					foreach ($a_spares as $spares) {
-					    if (in_array($target_device, $spares) == false)
-						continue;
-					    // ok target in the array, remove spare
-					    foreach ($spares as $spare_device) {
-						if (strcmp($spare_device, $target_device) == 0)
-						    continue;
-						$s_index = array_search_ex($spare_device, $config['zfs']['vdevices']['vdevice'], "device");
-						if ($s_index !== false) {
-						    $new_devices = array();
-						    foreach ($config['zfs']['vdevices']['vdevice'][$s_index]['device'] as $device) {
-							if (strcmp($device, $spare_device) != 0) {
-							    $new_devices[] = $device;
-						        }
-						    }
-						    $config['zfs']['vdevices']['vdevice'][$s_index]['device'] = $new_devices;
-						}
-					    }
-var_dump($config['zfs']['vdevices']);
-					    // insert spare to target vdevice
-					    $config['zfs']['vdevices']['vdevice'][$index]['device'][] = $spare_device;
-					}
-				    }
-var_dump($config['zfs']['vdevices']);
-
-				    // cleanup spare vdevice
-				    $new_vdevices = array();
-				    $del_vdevices = array();
-				    foreach ($config['zfs']['vdevices']['vdevice'] as $vdevice) {
-					if (count($vdevice['device']) == 0) {
-					    $del_vdevices[] = $vdevice;
-					} else {
-					    $new_vdevices[] = $vdevice;
-					}
-				    }
-				    $config['zfs']['vdevices']['vdevice'] = $new_vdevices;
-
-				    // reflect pool
-				    $p_index = array_search_ex($pool, $config['zfs']['pools']['pool'], "name");
-				    if ($p_index !== false) {
-					$new_vdevices = array();
-					foreach ($config['zfs']['pools']['pool'][$p_index]['vdevice'] as $vdevice) {
-					    $v_index = array_search_ex($vdevice, $del_vdevices, "name");
-					    if ($v_index === false) {
-						$new_vdevices[] = $vdevice;
-					    }
-					}
-					$config['zfs']['pools']['pool'][$p_index]['vdevice'] = $new_vdevices;
-				    }
-
-				    // now get replaced vdevs, remove target
-				    $new_devices = array();
-				    $result = 0;
-				    foreach ($config['zfs']['vdevices']['vdevice'][$index]['device'] as $device) {
-					if (strcmp($device, $target_device) == 0 && $config['zfs']['vdevices']['vdevice'][$index]['type'] != "spare") {
-					    if (isset($config['zfs']['vdevices']['vdevice'][$index]['aft4k'])) {
-						// Destroy gnop
-						$gnop_cmd = "gnop destroy {$target_device}.nop";
-						write_log("$gnop_cmd");
-						$result = mwexec($gnop_cmd, true);
-						if ($result != 0)
-							break;
-					    }
-					} else {
-					    $new_devices[] = $device;
-					}
-				    }
-				    if ($result != 0)
 					break;
-				    if (count($new_devices) == 1 && $config['zfs']['vdevices']['vdevice'][$index]['type'] == "mirror") {
-					$config['zfs']['vdevices']['vdevice'][$index]['type'] = "stripe";
-				    }
-				    $config['zfs']['vdevices']['vdevice'][$index]['device'] = $new_devices;
-				}
-			    }
-			    if ($result != 0)
-				break;
-
-			    write_config();
-			    echo gettext("Done.")."\n";
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "remove": {
-		    switch ($option) {
-		    case "d":
-			if (is_array($device)) {
-			    $result = 0;
-			    foreach ($device as $dev) {
-				$result |= zfs_zpool_cmd($action, "{$pool} {$dev}", true);
-			    }
-			} else if (!empty($device)) {
-			    $result = zfs_zpool_cmd($action, "{$pool} {$device}", true);
-			}
-			if ($result == 0) {
-			    echo gettext("Done.")."\n";
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "replace": {
-		    switch ($option) {
-		    case "d":
-			if (is_array($device)) {
-			    $result = 0;
-			    foreach ($device as $dev) {
-				$result |= zfs_zpool_cmd($action, "{$pool} {$dev} {$new_device}", true);
-			    }
-			} else {
-			    $result = zfs_zpool_cmd($action, "{$pool} {$device} {$new_device}", true);
-			}
-			if ($result == 0) {
-			    echo gettext("Done.")."\n";
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "cache add": {
-		    switch ($option) {
-		    case "d":
-			if ($cache_device == '')
-				break;
-			$index = array_search_ex($cache_device, $a_vdevice_cache, "name");
-			if ($index === false)
-				break;
-			$vdevice = $a_vdevice_cache[$index];
-			$device = $vdevice['device'];
-			$result = 0;
-			if (!empty($vdevice['aft4k'])) {
-				$a = array();
-				foreach ($device as $dev) {
-					$gnop_cmd = "gnop create -S 4096 {$dev}";
-					write_log("$gnop_cmd");
-					$result = mwexec($gnop_cmd, true);
-					if ($result != 0)
-						break;
-					$a[] = "${dev}.nop";
-				}
-				$device = $a;
-			}
-			if ($result != 0)
-				break;
-			$devs = implode(" ", $device);
-			$result = zfs_zpool_cmd("add", "{$pool} cache {$devs}", true);
-			// Update config
-			if ($result == 0) {
-				$index = array_search_ex($pool, $config['zfs']['pools']['pool'], "name");
-				if ($index !== false) {
-					$config['zfs']['pools']['pool'][$index]['vdevice'][] = $cache_device;
-					write_config();
-					echo gettext("Done.")."\n";
-				}
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "cache remove": {
-		    switch ($option) {
-		    case "d":
-			if ($cache_device == '')
-				break;
-			$index = array_search_ex($cache_device, $a_vdevice_cache, "name");
-			if ($index === false)
-				break;
-			$vdevice = $a_vdevice_cache[$index];
-			$device = $vdevice['device'];
-			$result = 0;
-			if (!empty($vdevice['aft4k'])) {
-				$a = array();
-				foreach ($device as $dev) {
-					$a[] = "${dev}.nop";
-				}
-				$device = $a;
-			}
-			$devs = implode(" ", $device);
-			$result = zfs_zpool_cmd("remove", "{$pool} {$devs}", true);
-
-			// Destroy gnop
-			if ($result == 0) {
-				$device = $vdevice['device'];
-				$result = 0;
-				if (!empty($vdevice['aft4k'])) {
-					foreach ($device as $dev) {
-						$gnop_cmd = "gnop destroy {$dev}.nop";
-						write_log("$gnop_cmd");
-						$result = mwexec($gnop_cmd, true);
-						if ($result != 0)
+				case 'upgrade':
+					$subcommand = 'upgrade';
+					$result = 0;
+					switch($sphere_array['pageindex']) {
+						case 2: // upgrade page 2: select pool
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Select pools'), 2);
+							render_pool_edit($a_pool, '0N', $sphere_array['pool']);
+							render_set_end();
+							render_submit(3, $sphere_array['activity'], $sphere_array['option'], [], $sphere_array['flag']);
+							break;
+						case 3: // upgrade page 2: process
+							$prerequisites_ok = true;
+							render_set_start();
+							render_activity_view($c_activity);
+							html_separator2(2);
+							html_titleline2(gtext('Target'), 2);
+							render_pool_view($sphere_array['pool']);
+							html_separator2(2);
+							html_titleline2(gtext('Output'), 2);
+							$result = $prerequisites_ok ? 0 : 15;
+							if($prerequisites_ok) {
+								if(0 < count($sphere_array['pool'])) { // Upgrade list of pools
+									foreach($sphere_array['pool'] as $tmp_pool) {
+										$result = 0;
+										$a_param = [];
+										$a_param[] = escapeshellarg($tmp_pool);
+										$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+										render_command_result($result);
+									}
+								} else { // View feature flags
+//									$result = 0;
+									$a_param = [];
+									$a_param[] = '-v';
+									$result |= render_command_and_execute($subcommand, $a_param, $b_exec);
+									render_command_result($result);
+								}
+							} else {
+								render_command_result($result);
+							}
+							render_set_end();
+							render_submit(1, $sphere_array['activity'], $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
 							break;
 					}
-				}
-				if ($result != 0)
 					break;
 			}
-
-			// Update config
-			if ($result == 0) {
-				$index = array_search_ex($pool, $config['zfs']['pools']['pool'], "name");
-				if ($index !== false) {
-					$a_vdevice = $config['zfs']['pools']['pool'][$index]['vdevice'];
-					$new_vdevice = array();
-					foreach ($a_vdevice as $vdevice) {
-						if (strcmp($vdevice, $cache_device) != 0) {
-							$new_vdevice[] = $vdevice;
-						}
-					}
-					$config['zfs']['pools']['pool'][$index]['vdevice'] = $new_vdevice;
-					write_config();
-					echo gettext("Done.")."\n";
-				}
-			}
-			break;
-		    }
 		}
-		break;
-
-		case "log add": {
-		    switch ($option) {
-		    case "d":
-			if ($log_device == '')
-				break;
-			$index = array_search_ex($log_device, $a_vdevice_log, "name");
-			if ($index === false)
-				break;
-			$vdevice = $a_vdevice_log[$index];
-			$device = $vdevice['device'];
-			$result = 0;
-			if (!empty($vdevice['aft4k'])) {
-				$a = array();
-				foreach ($device as $dev) {
-					$gnop_cmd = "gnop create -S 4096 {$dev}";
-					write_log("$gnop_cmd");
-					$result = mwexec($gnop_cmd, true);
-					if ($result != 0)
-						break;
-					$a[] = "${dev}.nop";
-				}
-				$device = $a;
-			}
-			if ($result != 0)
-				break;
-			$devs = implode(" ", $device);
-			if ($vdevice['type'] == "log-mirror") {
-				$devs = "mirror ".$devs;
-			}
-			$result = zfs_zpool_cmd("add", "{$pool} log {$devs}", true);
-			// Update config
-			if ($result == 0) {
-				$index = array_search_ex($pool, $config['zfs']['pools']['pool'], "name");
-				if ($index !== false) {
-					$config['zfs']['pools']['pool'][$index]['vdevice'][] = $log_device;
-					write_config();
-					echo gettext("Done.")."\n";
-				}
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "log remove": {
-		    switch ($option) {
-		    case "d":
-			if ($log_device == '')
-				break;
-			$index = array_search_ex($log_device, $a_vdevice_log, "name");
-			if ($index === false)
-				break;
-			$vdevice = $a_vdevice_log[$index];
-			$device = $vdevice['device'];
-			$result = 0;
-			if (!empty($vdevice['aft4k'])) {
-				$a = array();
-				foreach ($device as $dev) {
-					$a[] = "${dev}.nop";
-				}
-				$device = $a;
-			}
-			$devs = implode(" ", $device);
-			if ($vdevice['type'] == "log-mirror") {
-				$mirror = get_logmirror($pool, $device[0]);
-				if ($mirror == "") {
-					printf(gettext("%s: cannot get mirror name.")."\n", $device[0]);
-					break;
-				}
-				$result = zfs_zpool_cmd("remove", "{$pool} {$mirror}", true);
-			} else {
-				$result = zfs_zpool_cmd("remove", "{$pool} {$devs}", true);
-			}
-
-			// Destroy gnop
-			if ($result == 0) {
-				$device = $vdevice['device'];
-				$result = 0;
-				if (!empty($vdevice['aft4k'])) {
-					foreach ($device as $dev) {
-						$gnop_cmd = "gnop destroy {$dev}.nop";
-						write_log("$gnop_cmd");
-						$result = mwexec($gnop_cmd, true);
-						if ($result != 0)
-							break;
-					}
-				}
-				if ($result != 0)
-					break;
-			}
-
-			// Update config
-			if ($result == 0) {
-				$index = array_search_ex($pool, $config['zfs']['pools']['pool'], "name");
-				if ($index !== false) {
-					$a_vdevice = $config['zfs']['pools']['pool'][$index]['vdevice'];
-					$new_vdevice = array();
-					foreach ($a_vdevice as $vdevice) {
-						if (strcmp($vdevice, $log_device) != 0) {
-							$new_vdevice[] = $vdevice;
-						}
-					}
-					$config['zfs']['pools']['pool'][$index]['vdevice'] = $new_vdevice;
-					write_config();
-					echo gettext("Done.")."\n";
-				}
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "spare add": {
-		    echo "$action...\n";
-		    switch ($option) {
-		    case "d":
-			if ($spare_device == '')
-				break;
-			$index = array_search_ex($spare_device, $a_vdevice_spare, "name");
-			if ($index === false)
-				break;
-			$vdevice = $a_vdevice_spare[$index];
-			$device = $vdevice['device'];
-			$result = 0;
-			if (!empty($vdevice['aft4k'])) {
-				$a = array();
-				foreach ($device as $dev) {
-					$gnop_cmd = "gnop create -S 4096 {$dev}";
-					write_log("$gnop_cmd");
-					$result = mwexec($gnop_cmd, true);
-					if ($result != 0)
-						break;
-					$a[] = "${dev}.nop";
-				}
-				$device = $a;
-			}
-			if ($result != 0)
-				break;
-			$devs = implode(" ", $device);
-			$result = zfs_zpool_cmd("add", "{$pool} spare {$devs}", true);
-			// Update config
-			if ($result == 0) {
-				$index = array_search_ex($pool, $config['zfs']['pools']['pool'], "name");
-				if ($index !== false) {
-					$config['zfs']['pools']['pool'][$index]['vdevice'][] = $spare_device;
-					write_config();
-					echo gettext("Done.")."\n";
-				}
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "spare remove": {
-		    echo "$action...\n";
-		    switch ($option) {
-		    case "d":
-			if ($spare_device == '')
-				break;
-			$index = array_search_ex($spare_device, $a_vdevice_spare, "name");
-			if ($index === false)
-				break;
-			$vdevice = $a_vdevice_spare[$index];
-			$device = $vdevice['device'];
-			$result = 0;
-			if (!empty($vdevice['aft4k'])) {
-				$a = array();
-				foreach ($device as $dev) {
-					$a[] = "${dev}.nop";
-				}
-				$device = $a;
-			}
-			$devs = implode(" ", $device);
-			$result = zfs_zpool_cmd("remove", "{$pool} {$devs}", true);
-
-			// Destroy gnop
-			if ($result == 0) {
-				$device = $vdevice['device'];
-				$result = 0;
-				if (!empty($vdevice['aft4k'])) {
-					foreach ($device as $dev) {
-						$gnop_cmd = "gnop destroy {$dev}.nop";
-						write_log("$gnop_cmd");
-						$result = mwexec($gnop_cmd, true);
-						if ($result != 0)
-							break;
-					}
-				}
-				if ($result != 0)
-					break;
-			}
-
-			// Update config
-			if ($result == 0) {
-				$index = array_search_ex($pool, $config['zfs']['pools']['pool'], "name");
-				if ($index !== false) {
-					$a_vdevice = $config['zfs']['pools']['pool'][$index]['vdevice'];
-					$new_vdevice = array();
-					foreach ($a_vdevice as $vdevice) {
-						if (strcmp($vdevice, $spare_device) != 0) {
-							$new_vdevice[] = $vdevice;
-						}
-					}
-					$config['zfs']['pools']['pool'][$index]['vdevice'] = $new_vdevice;
-					write_config();
-					echo gettext("Done.")."\n";
-				}
-			}
-			break;
-		    }
-		}
-		break;
-
-		case "vdev add": {
-		    echo "$action...\n";
-		    switch ($option) {
-		    case "d":
-			if ($vdev_device == '')
-				break;
-			$index = array_search_ex($vdev_device, $a_vdevice_vdev, "name");
-			if ($index === false)
-				break;
-			$vdevice = $a_vdevice_vdev[$index];
-			$device = $vdevice['device'];
-			$result = 0;
-			if (!empty($vdevice['aft4k'])) {
-				$a = array();
-				foreach ($device as $dev) {
-					$gnop_cmd = "gnop create -S 4096 {$dev}";
-					write_log("$gnop_cmd");
-					$result = mwexec($gnop_cmd, true);
-					if ($result != 0)
-						break;
-					$a[] = "${dev}.nop";
-				}
-				$device = $a;
-			}
-			if ($result != 0)
-				break;
-			$devs = implode(" ", $device);
-			if ($vdevice['type'] == 'stripe') {
-				$type = "";
-			} else {
-				$type = "{$vdevice['type']} ";
-			}
-			$result = zfs_zpool_cmd("add", "{$pool} {$type} {$devs}", true);
-			// Update config
-			if ($result == 0) {
-				$index = array_search_ex($pool, $config['zfs']['pools']['pool'], "name");
-				if ($index !== false) {
-					$config['zfs']['pools']['pool'][$index]['vdevice'][] = $vdev_device;
-					write_config();
-					echo gettext("Done.")."\n";
-				}
-			}
-			break;
-		    }
-		}
-		break;
-
-		}
-		echo('</pre>');
-	    };?>
-	<?php include("formend.inc");?>
-      </form>
-    </td>
-  </tr>
-</table>
-<script type="text/javascript">
-command_change();
-</script>
-<?php include("fend.inc");?>
+	}
+	?>
+	<?php
+	if(1 == $sphere_array['pageindex']) {
+		render_set_start();
+		render_selector_radio(gtext('Activities'), $l_command, $sphere_array['activity']);
+		render_set_end();
+		render_submit(2, '', $sphere_array['option'], $sphere_array['pool'], $sphere_array['flag']);
+	}
+	?>
+	<?php include 'formend.inc';?>
+</form></td></tr></tbody></table>
+<?php include 'fend.inc';

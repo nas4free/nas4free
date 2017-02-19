@@ -1,5 +1,5 @@
 PORTNAME=		isboot
-PORTVERSION=		0.2.11
+PORTVERSION=		0.2.13
 CATEGORIES=		net
 COMMENT=		iSCSI boot driver by Daisuke Aoyama (aoyama@peach.ne.jp)
 

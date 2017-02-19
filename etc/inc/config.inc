@@ -3,11 +3,7 @@
 	config.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -84,7 +81,7 @@ if (is_booting()) {
 				$found = false;
 
 				// Skip non USB (SCSI) device. The filesystem type must be MSDOS
-				if (FALSE === ereg("da[0-9]*", $disk))
+				if (FALSE == preg_match('/da[\d]/', $disk))
 					continue;
 
 				// Display progress...
@@ -115,7 +112,7 @@ if (is_booting()) {
 			// Probe kernel known disks until we find one with config.xml
 			foreach ($disks as $disk) {
 				// Skip mfs-mounted filesystems
-				if (TRUE === ereg("md[0-9]*", $disk))
+				if (FALSE != preg_match('/md[\d]/', $disk))
 					continue;
 
 				// Display progress...
@@ -154,6 +151,14 @@ if (is_booting()) {
 					}
 					// Unmount device
 					mwexec("/sbin/umount -f {$g['cf_path']}");
+				} else if (($g['arch'] == "bpi" ) && (0 == mwexec("/sbin/mount -w  /dev/{$disk}s2a {$g['cf_path']}"))) { // Search on slice 2
+					if (file_exists($g['cf_conf_path']."/config.xml")) {
+						$cfgdevice = $disk;
+						$cfgpartition = "{$cfgdevice}s2a";
+						$cfgfstype = "ufs";	
+					}
+					// Unmount device
+					mwexec("/sbin/umount -f {$g['cf_path']}");
 				}
 
 				// Device found, exit
@@ -166,7 +171,7 @@ if (is_booting()) {
 				// Check if there is any USB device that can be used
 				foreach ($disks as $disk) {
 					// Skip non USB (SCSI) device. The filesystem type must be MSDOS
-					if (FALSE === ereg("da[0-9]*", $disk))
+					if (FALSE == preg_match('/da[\d]/', $disk))
 						continue;
 
 					// Display progress...
@@ -236,6 +241,13 @@ EOD;
 		@file_put_contents("{$g['etc_path']}/fstab", $data, FILE_TEXT | FILE_APPEND);
 	}
 
+	//bananaPI
+	if ($g['arch'] == "bpi" ) {		
+	if (mwexec("/usr/bin/grep ' /boot/msdos ' {$g['etc_path']}/fstab") != 0) {
+		// Append process file system to /etc/fstab
+		$data = "/dev/{$cfgdevice}s1 /boot/msdos  msdosfs ro 0 0\n";
+		@file_put_contents("{$g['etc_path']}/fstab", $data, FILE_TEXT | FILE_APPEND);
+	}	}
 	// Mount all filesystems
 	mwexec("/sbin/mount -a");
 }
@@ -465,7 +477,9 @@ function write_loader_config(){
 		}
 
 		if(strlen($lines) == 0){
-			unlink($loader_filename);
+			if (file_exists($loader_filename)) {
+				@unlink($loader_filename);
+			}
 		}
 		// Write configuration file
 		else if (file_put_contents_safe($loader_filename, $lines ) === FALSE) {
@@ -612,6 +626,14 @@ function config_write_cache($data) {
 	return TRUE;
 }
 
+function SearchAndRemoveInConfig($needle, &$haystack, $key){
+
+	$index = array_search_ex($needle, $haystack, $key);
+	if ($index !== false) {
+		unset($haystack[$index]);
+	}
+}
+
 // Convert the config file.
 // Return 0 if successful, otherwise 1
 function config_upgrade() {
@@ -620,7 +642,7 @@ function config_upgrade() {
 	/* Reject blacklist config */
 	if ($config['version'] == '9.6') {
 		putenv("TERM=xterm"); // not defined at boot
-		$result = tui_display_yesno("Your config is a blacklist. You must reset the config or reinstall.\n\nDo you want to reset to Factory Default now?", 50, 8, false);
+		$result = tui_display_yesno("Your config is blacklisted and not valid. You must reset the config or reinstall.\n\nDo you want to reset to Factory Default now?", 50, 8, false);
 		if (0 == $result) {
 			config_unlock();
 			reset_factory_defaults();
@@ -999,8 +1021,125 @@ function config_upgrade() {
 		$config['version'] = "2.2";
 	}
 
-	/* XXX Convert 9.5 -> 9.7 (must skip 9.6) */
+	/* Convert 2.2 -> 2.3 */
+	if ($config['version'] === "2.2") {
+		$config['system']['usermanagement']['user'][] = array(
+			"uuid" => uuid(),
+			"name" => "syncthing",
+			"id" => "983",
+			"primarygroup" => "983",
+			"extraoptions" => '-c "Syncthing Daemon" -d /var/tmp/syncthing -s /usr/sbin/nologin' );
+		$config['system']['usermanagement']['group'][] = array(
+			"uuid" => uuid(),
+			"name" => "syncthing",
+			"id" => "983" );
+		$config['minidlna']['port'] = "8200";
+		$config['minidlna']['notify_int'] = "300";
+		$config['minidlna']['container'] = "B";
+		$config['minidlna']['loglevel'] = "info";
+		$config['minidlna']['inotify'] = true;
+		if (isset($config['samba']) && !isset($config['samba']['timesrv']))
+			$config['samba']['timesrv'] = "yes";
+		if (isset($config['samba']) && !isset($config['samba']['doscharset']))
+			$config['samba']['doscharset'] = "CP437";
+		if (isset($config['samba']) && !isset($config['samba']['unixcharset']))
+			$config['samba']['unixcharset'] = "UTF-8";
+		if (isset($config['samba']) && !isset($config['samba']['loglevel']))
+			$config['samba']['loglevel'] = "1";
+		$config['version'] = "2.3";
+	}
 
+	/* Convert 2.3 -> 2.4 */
+	if ($config['version'] === "2.3") {
+		$tmp = array();
+		$found = 0;
+		foreach ($config['system']['usermanagement']['user'] as $v) {
+			if ($v['name'] == "syncthing") {
+				if ($found)
+					continue;
+				$found = 1;
+			}
+			$tmp[] = $v;
+		}
+		$config['system']['usermanagement']['user'] = $tmp;
+
+		$tmp = array();
+		$found = 0;
+		foreach ($config['system']['usermanagement']['group'] as $v) {
+			if ($v['name'] == "syncthing") {
+				if ($found)
+					continue;
+				$found = 1;
+			}
+			$tmp[] = $v;
+		}
+		$config['system']['usermanagement']['group'] = $tmp;
+
+		$index = array_search_ex("varsize", $config['system']['rcconf']['param'], "name");
+		if ($index !== false) {
+			if ($config['system']['rcconf']['param'][$index]['value'] === "256m") {
+				$config['system']['rcconf']['param'][$index]['value'] = "512m";
+			}
+		}
+		$index = array_search_ex("vartmpsize", $config['system']['rcconf']['param'], "name");
+		if ($index !== false) {
+			if ($config['system']['rcconf']['param'][$index]['value'] == "128m") {
+				$config['system']['rcconf']['param'][$index]['value'] = "256m";
+			}
+		}
+
+		$config['system']['loaderconf']['param'][] = array(
+			"uuid" => uuid(),
+			"name" => "vfs.zfs.arc_max",
+			"value" => "2G",
+			"comment" => "ZFS maximum ARC size");
+		$config['system']['loaderconf']['param'][] = array(
+			"uuid" => uuid(),
+			"name" => "vfs.zfs.arc_min",
+			"value" => "1G",
+			"comment" => "ZFS minimum ARC size");
+		$config['system']['loaderconf']['param'][] = array(
+			"uuid" => uuid(),
+			"name" => "vfs.zfs.prefetch_disable",
+			"value" => "1",
+			"comment" => "ZFS prefech disable");
+		$config['version'] = "2.4";
+	}
+
+	/* Convert 2.4 -> 2.5 */
+	if ($config['version'] === "2.4") {
+		if ($config['ups']['upsname'] === "ups")
+			$config['ups']['upsname'] = "ups1";
+
+		$config['system']['email']['tls_certcheck'] = "tls_certcheck off";
+
+		$config['system']['loaderconf']['param'][] = array(
+			"uuid" => uuid(),
+			"name" => "arcsas_load",
+			"value" => "YES",
+			"comment" => "Areca non-RAID HBAs ARC-1300/ARC-1320 series Driver");
+		$config['system']['loaderconf']['param'][] = array(
+			"uuid" => uuid(),
+			"name" => "ipmi_load",
+			"value" => "YES",
+			"comment" => "IPMItool Server Management Utility");
+		$config['version'] = "2.5";
+	}
+
+	/* Convert 2.5 -> 2.6 */
+	if ($config['version'] === "2.5") {
+		SearchAndRemoveInConfig('a4bd7970-1c77-43d7-8bc8-7924d9f86077', $config['system']['sysctl']['param'], 'uuid');
+
+		if (!empty($config['system']['sysctl']) && !empty($config['system']['sysctl']['param'])) {
+			$index = array_search_ex("kern.maxfiles", $config['system']['sysctl']['param'], "name");
+			if ($index !== false) {
+			$config['system']['sysctl']['param'][$index]['value'] = "6289573";
+		}
+	}
+		$config['version'] = "2.6";
+	}
+
+	/* XXX Convert 9.5 -> 9.7 (must skip 9.6) */
 	write_config();
 
 	if (is_booting())

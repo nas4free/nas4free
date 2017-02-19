@@ -71,15 +71,18 @@ $GLOBALS["used_mime_types"]=array(
 	
 	// music
 	"mp3"	=> array($GLOBALS["mimes"]["mp3"],		"filetypes/music.png",			"\.mp3$",											"mp3"),
+	"flac"	=> array($GLOBALS["mimes"]["flac"],		"flac.gif",					"\.flac$",											"flac"),
 	"wav"	=> array($GLOBALS["mimes"]["wav"],		"sound.gif",					"\.wav$",											"wav"),
 	"midi"	=> array($GLOBALS["mimes"]["midi"],		"midi.gif",						"\.mid$",											"mid"),
 	"real"	=> array($GLOBALS["mimes"]["real"],		"real.gif",						"\.rm$|\.ra$|\.ram$",								"real"),
 	//"play"	=> array($GLOBALS["mimes"]["play"],	"mp3.gif",						"\.pls$|\.m3u$"),
 	
 	// movie
+	"avi"	=> array($GLOBALS["mimes"]["avi"],		"video.gif",					"\.avi$",											"avi"),
 	"mpg"	=> array($GLOBALS["mimes"]["mpg"],		"video.gif",					"\.mpg$|\.mpeg$",									"mpeg"),
 	"mov"	=> array($GLOBALS["mimes"]["mov"],		"video.gif",					"\.mov$",											"mov"),
-	"avi"	=> array($GLOBALS["mimes"]["avi"],		"video.gif",					"\.avi$",											"avi"),
+	"mkv"	=> array($GLOBALS["mimes"]["avi"],		"mkv.gif",					"\.mkv$",											"mkv"),
+	"vob"	=> array($GLOBALS["mimes"]["vob"],		"vob.gif",					"\.vob$",											"vob"),
 	"flash"	=> array($GLOBALS["mimes"]["flash"],	"flash.gif",					"\.swf$",											"swf"),
 	
 	// Micosoft / Adobe

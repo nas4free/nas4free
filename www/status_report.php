@@ -3,11 +3,7 @@
 	status_report.php.
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -39,7 +36,7 @@ require("guiconfig.inc");
 require("email.inc");
 require("report.inc");
 
-$pgtitle = array(gettext("Status"), gettext("Email Report"));
+$pgtitle = array(gtext("Status"), gtext("Email Report"));
 
 if (!isset($config['statusreport']) || !is_array($config['statusreport']))
 	$config['statusreport'] = array();
@@ -60,8 +57,8 @@ $pconfig['all_days'] = $config['statusreport']['all_days'];
 $pconfig['all_months'] = $config['statusreport']['all_months'];
 $pconfig['all_weekdays'] = $config['statusreport']['all_weekdays'];
 
-$a_months = explode(" ",gettext("January February March April May June July August September October November December"));
-$a_weekdays = explode(" ",gettext("Sunday Monday Tuesday Wednesday Thursday Friday Saturday"));
+$a_months = explode(" ",gtext("January February March April May June July August September October November December"));
+$a_weekdays = explode(" ",gtext("Sunday Monday Tuesday Wednesday Thursday Friday Saturday"));
 
 if ($_POST) {
 	unset($input_errors);
@@ -70,13 +67,13 @@ if ($_POST) {
 	// Input validation.
 	if(isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "to");
-		$reqdfieldsn = array(gettext("To e-mail"));
+		$reqdfieldsn = array(gtext("To e-mail"));
 		$reqdfieldst = explode(" ", "string");
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
-		if (gettext("Send now") !== $_POST['Submit']) {
+		if (isset($_POST["Submit"]) && $_POST["Submit"]) {
 			// Validate synchronization time
 			do_input_validate_synctime($_POST, $input_errors);
 		}
@@ -84,9 +81,9 @@ if ($_POST) {
 		// custom script
 		if (is_array($_POST['report']) && in_array("script", $_POST['report'])) {
 			if ($_POST['report_scriptname'] == '') {
-				$input_errors[] = gettext("Custom script is required.");
+				$input_errors[] = gtext("Custom script is required.");
 			} else if (!file_exists($_POST['report_scriptname'])) {
-				$input_errors[] = gettext("Custom script is not found.");
+				$input_errors[] = gtext("Custom script is not found.");
 			}
 		}
 	}
@@ -110,13 +107,18 @@ if ($_POST) {
 
 		write_config();
 
-		if (stristr($_POST['Submit'], gettext("Send now"))) {
+		if(isset($_POST['SendReportNow']) && $_POST['SendReportNow']) {
 			// Send an email status report now.
 			$retval = @report_send_mail();
-			if (0 == $retval)
-				$savemsg = gettext("Status report successfully sent.");
-			else
-				$failmsg = sprintf(gettext("Failed to send status report. Please check the <a href='%s'>log</a> files."), "diag_log.php");
+			if (0 == $retval) {
+				$savemsg = gtext("Status report successfully sent.");
+			} else {
+				$failmsg = gtext('Failed to send status report.')
+					. ' '
+					. '<a href="' . 'diag_log.php' . '">'
+					. gtext('Please check the log files')
+					. '</a>.';
+			}
 		} else {
 			// Configure cron job.
 			if (!file_exists($d_sysrebootreqd_path)) {
@@ -178,48 +180,64 @@ function enable_change(enable_change) {
 }
 //-->
 </script>
-<form action="status_report.php" method="post" name="iform" id="iform">
+<form action="status_report.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	  <tr>
 	    <td class="tabcont">
-	    	<?php if (0 !== email_validate_settings()) print_error_box(sprintf(gettext("Make sure you have already configured your <a href='%s'>Email</a> settings."), "system_email.php"));?>
-    		<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
-				<?php if (!empty($failmsg)) print_error_box($failmsg);?>
-			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Email Report"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
+	    	<?php
+			if (0 !== email_validate_settings()) {
+				$helpinghand = '<a href="' . 'system_email.php' . '">'
+					. gtext('Make sure you have already configured your email settings')
+					. '</a>.';
+				print_error_box($helpinghand);
+			}
+			if (!empty($input_errors)) {
+				print_input_errors($input_errors);
+			}
+			if (!empty($savemsg)) {
+				print_info_box($savemsg);
+			}
+			if (!empty($failmsg)) {
+				print_error_box($failmsg);
+			}
+			?>
+			<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<?php html_titleline_checkbox("enable", gtext("Email Report"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");?>
 					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gettext("To email");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("To email");?></td>
 						<td width="78%" class="vtable">
-							<input name="to" type="text" class="formfld" id="to" size="40" value="<?=htmlspecialchars($pconfig['to']);?>" /><br />
-							<span class="vexpl"><?=gettext("Destination email address.");?> <?=gettext("Separate email addresses by semi-colon.");?></span>
+							<input name="to" type="text" class="formfld" id="to" size="74" value="<?=htmlspecialchars($pconfig['to']);?>" /><br />
+							<span class="vexpl"><?=gtext("Destination email address.");?> <?=gtext("Separate email addresses by semi-colon.");?></span>
 						</td>
 					</tr>
 					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gettext("Subject");?></td>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Subject");?></td>
 						<td width="78%" class="vtable">
-							<input name="subject" type="text" class="formfld" id="subject" size="60" value="<?=htmlspecialchars($pconfig['subject']);?>" /><br />
-							<span class="vexpl"><?=gettext("The subject of the email.") . " " . gettext("You can use the following parameters for substitution:");?></span><?=gettext("<div id='enumeration'><ul><li>%d - Date</li><li>%h - Hostname</li></ul></div>");?>
+							<input name="subject" type="text" class="formfld" id="subject" size="74" value="<?=htmlspecialchars($pconfig['subject']);?>" /><br />
+							<?php
+							$helpinghand = '<div id="enumeration"><ul><li>%d - ' . gtext('Date') . '</li><li>%h - ' . gtext('Hostname') . '</li></ul></div>';
+							?>
+							<span class="vexpl"><?=gtext('The subject of the email.') . ' ' . gtext('You can use the following parameters for substitution:');?></span><?=$helpinghand;?>
 						</td>
 					</tr>
 					<tr>
-				    <td width="22%" valign="top" class="vncell"><?=gettext("Reports");?></td>
+				    <td width="22%" valign="top" class="vncell"><?=gtext("Reports");?></td>
 			      <td width="78%" class="vtable">
 			      	<table>
-								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_systeminfo" value="systeminfo" <?php if (is_array($pconfig['report']) && in_array("systeminfo", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gettext("System info");?></td></tr>
-								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_dmesg" value="dmesg" <?php if (is_array($pconfig['report']) && in_array("dmesg", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gettext("System message buffer");?></td></tr>
-								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_systemlog" value="systemlog" <?php if (is_array($pconfig['report']) && in_array("systemlog", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gettext("System log");?></td></tr>
-								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_ftplog" value="ftplog" <?php if (is_array($pconfig['report']) && in_array("ftplog", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gettext("FTP log");?></td></tr>
-								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_rsynclog" value="rsynclog" <?php if (is_array($pconfig['report']) && in_array("rsynclog", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gettext("RSYNC log");?></td></tr>
-								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_sshdlog" value="sshdlog" <?php if (is_array($pconfig['report']) && in_array("sshdlog", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gettext("SSHD log");?></td></tr>
-								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_smartdlog" value="smartdlog" <?php if (is_array($pconfig['report']) && in_array("smartdlog", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gettext("S.M.A.R.T. log");?></td></tr>
-								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_daemonlog" value="daemonlog" <?php if (is_array($pconfig['report']) && in_array("daemonlog", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gettext("Daemon log");?></td></tr>
-								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_script" value="script" <?php if (is_array($pconfig['report']) && in_array("script", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gettext("Custom script");?></td></tr>
+								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_systeminfo" value="systeminfo" <?php if (is_array($pconfig['report']) && in_array("systeminfo", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gtext("System info");?></td></tr>
+								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_dmesg" value="dmesg" <?php if (is_array($pconfig['report']) && in_array("dmesg", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gtext("System message buffer");?></td></tr>
+								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_systemlog" value="systemlog" <?php if (is_array($pconfig['report']) && in_array("systemlog", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gtext("System log");?></td></tr>
+								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_ftplog" value="ftplog" <?php if (is_array($pconfig['report']) && in_array("ftplog", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gtext("FTP log");?></td></tr>
+								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_rsynclog" value="rsynclog" <?php if (is_array($pconfig['report']) && in_array("rsynclog", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gtext("RSYNC log");?></td></tr>
+								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_sshdlog" value="sshdlog" <?php if (is_array($pconfig['report']) && in_array("sshdlog", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gtext("SSHD log");?></td></tr>
+								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_smartdlog" value="smartdlog" <?php if (is_array($pconfig['report']) && in_array("smartdlog", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gtext("S.M.A.R.T. log");?></td></tr>
+								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_daemonlog" value="daemonlog" <?php if (is_array($pconfig['report']) && in_array("daemonlog", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gtext("Daemon log");?></td></tr>
+								<tr><td><input name="report[]" type="checkbox" class="formfld" id="report_script" value="script" <?php if (is_array($pconfig['report']) && in_array("script", $pconfig['report'])):?>checked="checked"<?php endif;?> /><?=gtext("Custom script");?></td></tr>
 								<tr><td>
 <?php
 	$scriptname = $pconfig['report_scriptname'];
 	$scriptpath = "/mnt";
-	$ctrl = new HTMLFileChooser("report_scriptname", "", "$scriptname", "", 60);
+	$ctrl = new HTMLFileChooser("report_scriptname", "", "$scriptname", "", 65);
 	$ctrl->SetRequired(false);
 	$ctrl->SetReadOnly(false);
 	$ctrl->SetPath($scriptpath);
@@ -230,22 +248,22 @@ function enable_change(enable_change) {
 			      </td>
 					</tr>
 					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gettext("Polling time");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Polling time");?></td>
 						<td width="78%" class="vtable">
 							<table width="100%" border="0" cellpadding="5" cellspacing="0">
 								<tr>
-									<td class="listhdrlr"><?=gettext("Minutes");?></td>
-									<td class="listhdrr"><?=gettext("Hours");?></td>
-									<td class="listhdrr"><?=gettext("Days");?></td>
-									<td class="listhdrr"><?=gettext("Months");?></td>
-									<td class="listhdrr"><?=gettext("Week days");?></td>
+									<td class="listhdrlr"><?=gtext("Minutes");?></td>
+									<td class="listhdrr"><?=gtext("Hours");?></td>
+									<td class="listhdrr"><?=gtext("Days");?></td>
+									<td class="listhdrr"><?=gtext("Months");?></td>
+									<td class="listhdrr"><?=gtext("Week days");?></td>
 								</tr>
 								<tr>
 									<td class="listlr">
 										<input type="radio" name="all_mins" id="all_mins1" value="1" <?php if (1 == $pconfig['all_mins']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_mins" id="all_mins2" value="0" <?php if (1 != $pconfig['all_mins']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -289,9 +307,9 @@ function enable_change(enable_change) {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_hours" id="all_hours1" value="1" <?php if (1 == $pconfig['all_hours']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_hours" id="all_hours2" value="0" <?php if (1 != $pconfig['all_hours']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -313,9 +331,9 @@ function enable_change(enable_change) {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_days" id="all_days1" value="1" <?php if (1 == $pconfig['all_days']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_days" id="all_days2" value="0" <?php if (1 != $pconfig['all_days']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -344,9 +362,9 @@ function enable_change(enable_change) {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_months" id="all_months1" value="1" <?php if (1 == $pconfig['all_months']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_months" id="all_months2" value="0" <?php if (1 != $pconfig['all_months']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -361,9 +379,9 @@ function enable_change(enable_change) {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_weekdays" id="all_weekdays1" value="1" <?php if (1 == $pconfig['all_weekdays']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_weekdays" id="all_weekdays2" value="0" <?php if (1 != $pconfig['all_weekdays']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -378,13 +396,13 @@ function enable_change(enable_change) {
 									</td>
 								</tr>
 							</table>
-							<span class="vexpl"><?=gettext("Note: Ctrl-click (or command-click on the Mac) to select and de-select minutes, hours, days and months.");?></span>
+							<span class="vexpl"><?=gtext("Note: Ctrl-click (or command-click on the Mac) to select and de-select minutes, hours, days and months.");?></span>
 						</td>
 					</tr>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />
-					<input name="Submit" id="sendnow" type="submit" class="formbtn" value="<?=gettext("Send now");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" onclick="enable_change(true)" />
+					<input name="SendReportNow" id="sendnow" type="Submit" class="formbtn" value="<?=gtext("Send Now");?>" />
 				</div>
 			</td>
 		</tr>

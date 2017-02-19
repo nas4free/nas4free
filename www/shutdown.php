@@ -3,11 +3,7 @@
 	shutdown.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,11 +34,11 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("System"),gettext("Shutdown"), gettext("Now"));
+$pgtitle = array(gtext("System"),gtext("Shutdown"), gtext("Now"));
 
 if ($_POST) {
-	if ($_POST['Submit'] !== gettext("No")) {
-		$rebootmsg = gettext("The system is halting now. This may take one minute.");
+	if ($_POST['Submit'] !== gtext("No")) {
+		$rebootmsg = gtext("The server is halting now. This may take one minute.");
 	} else {
 		header("Location: index.php");
 		exit;
@@ -53,19 +50,19 @@ if ($_POST) {
   <tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-        <li class="tabact"><a href="shutdown.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Now");?></span></a></li>
-        <li class="tabinact"><a href="shutdown_sched.php"><span><?=gettext("Scheduled");?></span></a></li>
+        <li class="tabact"><a href="shutdown.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Now");?></span></a></li>
+        <li class="tabinact"><a href="shutdown_sched.php"><span><?=gtext("Scheduled");?></span></a></li>
       </ul>
     </td>
   </tr>
   <tr>
     <td class="tabcont">
       <?php if (!empty($rebootmsg)): echo print_info_box($rebootmsg); system_halt(); else:?>
-      <form action="shutdown.php" method="post">
-				<strong><?=gettext("Are you sure you want to shutdown the system?");?></strong>
+      <form action="shutdown.php" method="post" onsubmit="spinner()">
+				<strong><?=gtext("Are you sure you want to shutdown the server?");?></strong>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Yes");?>" />
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("No");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Yes");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("No");?>" />
 				</div>
 				<?php include("formend.inc");?>
       </form>

@@ -3,11 +3,7 @@
 	services_nfs.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Services"),gettext("NFS"));
+$pgtitle = array(gtext("Services"),gtext("NFS"));
 
 if (!isset($config['nfsd']['share']) || !is_array($config['nfsd']['share']))
 	$config['nfsd']['share'] = array();
@@ -56,7 +53,7 @@ if ($_POST) {
 
 	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "numproc");
-		$reqdfieldsn = array(gettext("Number of servers"));
+		$reqdfieldsn = array(gtext("Number of servers"));
 		$reqdfieldst = explode(" ", "numeric");
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -107,23 +104,23 @@ function enable_change(enable_change) {
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabact"><a href="services_nfs.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Settings");?></span></a></li>
-				<li class="tabinact"><a href="services_nfs_share.php"><span><?=gettext("Shares");?></span></a></li>
+				<li class="tabact"><a href="services_nfs.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Settings");?></span></a></li>
+				<li class="tabinact"><a href="services_nfs_share.php"><span><?=gtext("Shares");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabcont">
-			<form action="services_nfs.php" method="post" name="iform" id="iform">
+			<form action="services_nfs.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Network File System"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
-					<?php html_inputbox("numproc", gettext("Number of servers"), $pconfig['numproc'], gettext("Specifies how many servers to create.") . " " . gettext("There should be enough to handle the maximum level of concurrency from its clients, typically four to six."), false, 2);?>
-					<?php html_checkbox("v4enable", gettext("NFSv4"), !empty($pconfig['v4enable']) ? true : false, gettext("Enable NFSv4 server."), "", false);?>
+					<?php html_titleline_checkbox("enable", gtext("Network File System"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");?>
+					<?php html_inputbox("numproc", gtext("Number of servers"), $pconfig['numproc'], gtext("Specifies how many servers to create.") . " " . gtext("There should be enough to handle the maximum level of concurrency from its clients, typically four to six."), false, 2);?>
+					<?php html_checkbox("v4enable", gtext("NFSv4"), !empty($pconfig['v4enable']) ? true : false, gtext("Enable NFSv4 server."), "", false);?>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" onclick="enable_change(true)" />
 				</div>
 				<?php include("formend.inc");?>
 			</form>

@@ -1,18 +1,19 @@
 PORTNAME=			firefly
 PORTVERSION=	1696
+PORTREVISION=	1
 CATEGORIES=			audio
 COMMENT=			Multithread daapd yet another server for Apple iTunes
-MAINTAINER=			zoon01@nas4free.org
+MAINTAINER=			zoon1@nas4free.org
 
 MASTER_SITES=			http://nightlies.fireflymediaserver.org/nightlies/svn-${PORTVERSION}/ \
 									http://www.magnesium.net/~mdf/distfiles/
 DISTNAME=				mt-daapd-svn-${PORTVERSION}
 
 FORCE_PKG_REGISTER=yes
-LIB_DEPENDS+=				libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
-										libid3tag.so:${PORTSDIR}/audio/libid3tag \
-										libvorbis.so:${PORTSDIR}/audio/libvorbis \
-										libFLAC.so:${PORTSDIR}/audio/flac
+LIB_DEPENDS+=				libsqlite3.so:databases/sqlite3 \
+										libid3tag.so:audio/libid3tag \
+										libvorbis.so:audio/libvorbis \
+										libFLAC.so:audio/flac
 
 USE_PKGCONFIG=	yes
 MAKE_JOBS_UNSAFE=	yes

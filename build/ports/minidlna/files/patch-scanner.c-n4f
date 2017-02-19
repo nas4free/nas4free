@@ -1,0 +1,27 @@
+--- scanner.c.orig	2015-09-11 04:24:09.000000000 +0900
++++ scanner.c	2015-10-31 20:23:11.596541000 +0900
+@@ -824,6 +824,14 @@
+ 	if( flag )
+ 		fclose(flag);
+ #endif
++#ifdef NAS4Free
++#ifndef SCAN_NOTIFY_FILE
++#define	SCAN_NOTIFY_FILE "/var/run/minidlna/upnp-av.scan"
++#endif
++	FILE *flag = fopen(SCAN_NOTIFY_FILE, "w");
++	if( flag )
++		fclose(flag);
++#endif
+ }
+ 
+ static void
+@@ -834,6 +842,9 @@
+ 		system("/bin/sh /ramfs/.rescan_done");
+ 	unlink("/ramfs/.upnp-av_scan");
+ #endif
++#ifdef NAS4Free
++	unlink(SCAN_NOTIFY_FILE);
++#endif
+ }
+ 
+ void

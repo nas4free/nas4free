@@ -1,0 +1,68 @@
+#!/bin/sh
+#
+# Part of NAS4Free (http://www.nas4free.org).
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
+# All rights reserved.
+#
+# syncthing service
+#
+
+# PROVIDE: syncthing
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+# XQUERY: -i "count(//syncthing/enable) > 0" -o "0" -b
+# RCVAR: syncthing
+
+. /etc/rc.subr
+. /etc/util.subr
+. /etc/configxml.subr
+
+name="syncthing"
+desc="syncthing service"
+rcvar="syncthing_enable"
+
+load_rc_config "${name}"
+
+: ${syncthing_enable:="NO"}
+: ${syncthing_user:="syncthing"}
+: ${syncthing_group:="syncthing"}
+: ${syncthing_dir:="/var/db/syncthing"}
+
+homedir=`configxml_get "//syncthing/homedir"`
+logfile="${homedir}/syncthing.log"
+pidfile=/var/run/syncthing.pid
+procname="/usr/local/bin/syncthing"
+command="/usr/sbin/daemon"
+command_args="-p ${pidfile} ${procname} -home=${homedir} -no-browser ${syncthing_args} > ${logfile} 2>&1"
+
+start_precmd=syncthing_startprecmd
+extra_commands="mkconf"
+
+syncthing_mkconf()
+{
+	local _user _group _homedir
+
+	_user=${syncthing_user}
+	_group=${syncthing_group}
+	_homedir=${homedir}
+	if [ "$_homedir" = "" ]; then
+		_homedir="/var/db/syncthing"
+	fi
+
+	# config is created by GUI
+}
+
+syncthing_startprecmd()
+{
+	if [ ! -e ${pidfile} ]; then
+		install -o ${syncthing_user} -g ${syncthing_group} /dev/null ${pidfile}
+	fi
+
+	if [ ! -d ${homedir} ]; then
+		install -d -o ${syncthing_user} -g ${syncthing_group} ${homedir}
+	fi
+	HOME=${syncthing_dir}
+	export HOME
+}
+
+run_rc_command "$1"

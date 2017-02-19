@@ -3,7 +3,7 @@
 	graph.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -70,7 +70,7 @@ $attribs['error']='fill="red" font-family="Arial" font-size="4"';
 $attribs['collect_initial']='fill="gray" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="4"';
 
 //Error text if we cannot fetch data : depends on which method is used
-$error_text = gettext("Cannot get data about interface") . " $ifnum";
+$error_text = gtext("Cannot get data about interface") . " $ifnum";
 
 $height=100;            //SVG internal height : do not modify
 $width=200;             //SVG internal width : do not modify
@@ -97,15 +97,15 @@ echo "<?xml version=\"1.0\" encoding=\"{$encoding}\"?>\n";
     <text id="grid_txt1" x="<?=$width*0.99?>" y="<?=$height/4.3*1?>" <?=$attribs['grid_txt']?> text-anchor="end">75%</text>
     <text id="grid_txt2" x="<?=$width*0.99?>" y="<?=$height/4.15*2?>" <?=$attribs['grid_txt']?> text-anchor="end">50%</text>
     <text id="grid_txt3" x="<?=$width*0.99?>" y="<?=$height/4.1*3?>" <?=$attribs['grid_txt']?> text-anchor="end">25%</text>
-    <text id="graph_in_lbl" x="3" y="7" <?=$attribs['in']?>><?=gettext("In");?> <tspan id="graph_in_txt" <?=$attribs['in']?>> </tspan></text>
-    <text id="graph_out_lbl" x="3" y="13" <?=$attribs['out']?>><?=gettext("Out");?> <tspan id="graph_out_txt" <?=$attribs['out']?>> </tspan></text>
-    <text id="switch_unit" x="<?=$width*0.60?>" y="5" <?=$attribs['switch_unit']?>><?=sprintf(gettext("Switch to %s/s"), ("bits" === $unit) ? "bytes" : "bits");?></text>
-    <text id="switch_scale" x="<?=$width*0.60?>" y="11" <?=$attribs['switch_scale']?>><?=gettext("AutoScale");?> (<?=("up" === $scale_type) ? gettext("Up") : gettext("Follow");?>)</text>
+    <text id="graph_in_lbl" x="3" y="7" <?=$attribs['in']?>><?=gtext("In");?> <tspan id="graph_in_txt" <?=$attribs['in']?>> </tspan></text>
+    <text id="graph_out_lbl" x="3" y="13" <?=$attribs['out']?>><?=gtext("Out");?> <tspan id="graph_out_txt" <?=$attribs['out']?>> </tspan></text>
+    <text id="switch_unit" x="<?=$width*0.60?>" y="5" <?=$attribs['switch_unit']?>><?=sprintf(gtext("Switch to %s/s"), ("bits" === $unit) ? "bytes" : "bits");?></text>
+    <text id="switch_scale" x="<?=$width*0.60?>" y="11" <?=$attribs['switch_scale']?>><?=gtext("AutoScale");?> (<?=("up" === $scale_type) ? gtext("Up") : gtext("Follow");?>)</text>
     <text id="datetime" x="<?=$width*0.38?>" y="5" <?=$attribs['legend']?>>00/00/0000</text>
     <text id="interface_name"  x="<?=$width*0.99?>" y="7" <?=$attribs['in']?> text-anchor="end"><?=$ifname?></text>
     <polygon id="axis_arrow_x" <?=$attribs['axis']?> points="<?=($width) . "," . ($height)?> <?=($width-2) . "," . ($height-2)?> <?=($width-2) . "," . $height?>"/>
     <text id="error" x="<?=$width*0.5?>" y="<?=$height*0.4?>" visibility="hidden" <?=$attribs['error']?> text-anchor="middle"><?=$error_text?></text>
-    <text id="collect_initial" x="<?=$width*0.5?>" y="<?=$height*0.3?>" visibility="hidden" <?=$attribs['collect_initial']?> text-anchor="middle"><?=gettext("Collecting initial data, please wait...");?></text>
+    <text id="collect_initial" x="<?=$width*0.5?>" y="<?=$height*0.3?>" visibility="hidden" <?=$attribs['collect_initial']?> text-anchor="middle"><?=gtext("Collecting initial data, please wait...");?></text>
   </g>
   <script type="text/ecmascript">
     <![CDATA[
@@ -181,15 +181,15 @@ function init(evt) {
 
 function switch_unit(event)
 {
-  SVGDoc.getElementById('switch_unit').firstChild.data = '<?=gettext("Switch to");?> ' + unit + '/s';
+  SVGDoc.getElementById('switch_unit').firstChild.data = '<?=gtext("Switch to");?> ' + unit + '/s';
   unit = (unit == 'bits') ? 'bytes' : 'bits';
 }
 
 function switch_scale(event)
 {
   scale_type = (scale_type == 'up') ? 'follow' : 'up';
-  scale_type_text = (scale_type == 'up') ? '<?=gettext("Up");?>' : '<?=gettext("Follow");?>';
-  SVGDoc.getElementById('switch_scale').firstChild.data = '<?=gettext("AutoScale");?> (' + scale_type_text + ')';
+  scale_type_text = (scale_type == 'up') ? '<?=gtext("Up");?>' : '<?=gtext("Follow");?>';
+  SVGDoc.getElementById('switch_scale').firstChild.data = '<?=gtext("AutoScale");?> (' + scale_type_text + ')';
 }
 
 function fetch_data() {

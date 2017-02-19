@@ -1,22 +1,22 @@
 PORTNAME=		fuppes
 PORTVERSION=	0.692
-PORTREVISION= 2
+PORTREVISION=	3
 CATEGORIES=		net
 COMMENT=		Free UPnP Entertainment Service
-MAINTAINER=		zoon01@nas4free.org
+MAINTAINER=		zoon1@nas4free.org
 
 MASTER_SITES=		SF/${PORTNAME}/${PORTNAME}/SVN-660
 DISTNAME=		${PORTNAME}-${PORTVERSION}
 
-LIB_DEPENDS+=		libsqlite3.so:${PORTSDIR}/databases/sqlite3 \
-			libtag.so:${PORTSDIR}/audio/taglib \
-			libcurl.so:${PORTSDIR}/ftp/curl \
-			libpcre.so:${PORTSDIR}/devel/pcre \
-			libuuid.so:${PORTSDIR}/misc/e2fsprogs-libuuid \
-			libmp3lame.so:${PORTSDIR}/audio/lame \
-			libtwolame.so:${PORTSDIR}/audio/twolame \
-			libvorbis.so:${PORTSDIR}/audio/libvorbis \
-			libavformat.so:${PORTSDIR}/multimedia/ffmpeg
+LIB_DEPENDS+=		libsqlite3.so:databases/sqlite3 \
+			libtag.so:audio/taglib \
+			libcurl.so:ftp/curl \
+			libpcre.so:devel/pcre \
+			libuuid.so:misc/e2fsprogs-libuuid \
+			libmp3lame.so:audio/lame \
+			libtwolame.so:audio/twolame \
+			libvorbis.so:audio/libvorbis \
+			libavformat.so:multimedia/ffmpeg
 
 USE_AUTOTOOLS=	autoconf
 USE_GNOME=		libxml2

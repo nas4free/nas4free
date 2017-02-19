@@ -3,7 +3,7 @@
 	diag_infos_ups.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -11,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -136,7 +137,7 @@ EOD
 	."\n");
 }
 
-$pgtitle = array(gettext("Diagnostics"), gettext("Information"), gettext("UPS"));
+$pgtitle = [gtext('Diagnostics'), gtext('Information'), gtext('UPS')];
 ?>
 <?php include("fbegin.inc");?>
 <script type="text/javascript">
@@ -160,27 +161,28 @@ function upsc_enable_change() {
   <tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabinact"><a href="diag_infos.php"><span><?=gettext("Disks");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ata.php"><span><?=gettext("Disks (ATA)");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_part.php"><span><?=gettext("Partitions");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_smart.php"><span><?=gettext("S.M.A.R.T.");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_space.php"><span><?=gettext("Space Used");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gettext("Mounts");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_raid.php"><span><?=gettext("Software RAID");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos.php"><span><?=gtext("Disks");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_ata.php"><span><?=gtext("Disks (ATA)");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_part.php"><span><?=gtext("Partitions");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_smart.php"><span><?=gtext("S.M.A.R.T.");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_space.php"><span><?=gtext("Space Used");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gtext("Mounts");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_raid.php"><span><?=gtext("Software RAID");?></span></a></li>
 		  </ul>
 	  </td>
 	</tr>
   <tr>
 		<td class="tabnavtbl">
 		  <ul id="tabnav2">
-				<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gettext("iSCSI Initiator");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ad.php"><span><?=gettext("MS Domain");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gettext("CIFS/SMB");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ftpd.php"><span><?=gettext("FTP");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_rsync_client.php"><span><?=gettext("RSYNC Client");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_swap.php"><span><?=gettext("Swap");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gettext("Sockets");?></span></a></li>
-				<li class="tabact"><a href="diag_infos_ups.php" title="<?=gettext("Reload page");?>"><span><?=gettext("UPS");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gtext("iSCSI Initiator");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_ad.php"><span><?=gtext("MS Domain");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gtext("CIFS/SMB");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_ftpd.php"><span><?=gtext("FTP");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_rsync_client.php"><span><?=gtext("RSYNC Client");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_swap.php"><span><?=gtext("Swap");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gtext("Sockets");?></span></a></li>
+				<li class="tabinact"><a href="diag_infos_ipmi.php"><span><?=gtext('IPMI Stats');?></span></a></li>
+				<li class="tabact"><a href="diag_infos_ups.php" title="<?=gtext("Reload page");?>"><span><?=gtext("UPS");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
@@ -188,16 +190,40 @@ function upsc_enable_change() {
     <td class="tabcont">
     	<!-- <table width="100%" border="0"> -->
 		<?php tblopen();?>
-				<?php html_titleline(gettext("UPS Status"));?>
+				<?php html_titleline2(gtext("UPS Information & Status"));?>
 				<?php if (!isset($config['ups']['enable'])):?>
 				<tr>
 					<td>
-						<pre><?=gettext("UPS disabled");?></pre>
+						<pre><?=gtext("UPS disabled");?></pre>
 					</td>
 				</tr>
 				<?php else:?>
+                <?php 
+                    if (isset($config['ups']['ups2'])) { 
+                        echo(gtext("Selected UPS").":&nbsp;&nbsp;&nbsp"); ?>
+                        <form name="form2" action="diag_infos_ups.php" method="get">
+                        <select name="if" class="formfld" onchange="submit()">
+                        <?php
+                            $curif = $config['ups']['upsname'];
+                            if (isset($_GET['if']) && $_GET['if']) $curif = $_GET['if'];
+                            $ifnum = $curif;
+                            $ifdescrs = array($config['ups']['upsname'] => $config['ups']['upsname'], $config['ups']['ups2_upsname'] => $config['ups']['ups2_upsname']);
+                            foreach ($ifdescrs as $ifn => $ifd) {
+                                echo "<option value=\"$ifn\"";
+                                if ($ifn == $curif) echo " selected=\"selected\"";
+                                echo ">" . htmlspecialchars($ifd) . "</option>\n";
+                            }
+                        ?>
+                        </select>
+                        </form>
+                        <br><br>
+                        <?php 
+                    } 
+                    else $ifnum = $config['ups']['upsname']; 
+                    //echo($ifnum);
+                ?>
 				<?php
-					$cmd = "/usr/local/bin/upsc {$config['ups']['upsname']}@{$config['ups']['ip']}";
+					$cmd = "/usr/local/bin/upsc {$ifnum}@{$config['ups']['ip']}";
 					$handle = popen($cmd, 'r');
 					
 					if($handle) {
@@ -212,192 +238,192 @@ function upsc_enable_change() {
 						}
 
 						if(count($lines) == 1)
-							tblrow(gettext('ERROR:'), 'Data stale!');
+							tblrow(gtext('ERROR:'), 'Data stale!');
 
-						tblrow(gettext('Manufacturer'), $ups['device.mfr']);
-						tblrow(gettext('Model'), $ups['device.model']);
-						tblrow(gettext('Type'), $ups['device.type']);
-						tblrow(gettext('Serial number'), $ups['device.serial']);
-						tblrow(gettext('Firmware version'), $ups['ups.firmware']);
+						tblrow(gtext('Manufacturer'), $ups['device.mfr']);
+						tblrow(gtext('Model'), $ups['device.model']);
+						tblrow(gtext('Type'), $ups['device.type']);
+						tblrow(gtext('Serial number'), $ups['device.serial']);
+						tblrow(gtext('Firmware version'), $ups['ups.firmware']);
 
 						$status = explode(' ', $ups['ups.status']);
 						foreach($status as $condition) {
 							if($disp_status) $disp_status .= ', ';
 							switch ($condition) {
 								case 'WAIT':
-									$disp_status .= gettext('UPS Waiting');
+									$disp_status .= gtext('UPS Waiting');
 									break;
 								case 'OFF':
-									$disp_status .= gettext('UPS Off Line');
+									$disp_status .= gtext('UPS Off Line');
 									break;
 								case 'OL':
-									$disp_status .= gettext('UPS On Line');
+									$disp_status .= gtext('UPS On Line');
 									break;
 								case 'OB':
-									$disp_status .= gettext('UPS On Battery');
+									$disp_status .= gtext('UPS On Battery');
 									break;
 								case 'TRIM':
-									$disp_status .= gettext('SmartTrim');
+									$disp_status .= gtext('SmartTrim');
 									break;
 								case 'BOOST':
-									$disp_status .= gettext('SmartBoost');
+									$disp_status .= gtext('SmartBoost');
 									break;
 								case 'OVER':
-									$disp_status .= gettext('Overload');
+									$disp_status .= gtext('Overload');
 									break;
 								case 'LB':
-									$disp_status .= gettext('Battery Low');
+									$disp_status .= gtext('Battery Low');
 									break;
 								case 'RB':
-									$disp_status .= gettext('Replace Battery UPS');
+									$disp_status .= gtext('Replace Battery UPS');
 									break;
 								case 'CAL':
-									$disp_status .= gettext('Calibration Battery');
+									$disp_status .= gtext('Calibration Battery');
 									break;
 								case 'CHRG':
-									$disp_status .= gettext('Charging Battery');
+									$disp_status .= gtext('Charging Battery');
 									break;
 								default:
 									$disp_status .= $condition;
 									break;
 							}
 						}
-						tblrow(gettext('Status'), $disp_status);
+						tblrow(gtext('Status'), $disp_status);
 
-						tblrowbar(gettext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
-						tblrowbar(gettext('Battery level'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
+						tblrowbar(gtext('Load'), $ups['ups.load'], '%', '100-80', '79-60', '59-0');
+						tblrowbar(gtext('Battery level'), $ups['battery.charge'], '%', '0-29' ,'30-79', '80-100');
 
 						// status
-						tblrow(gettext('Battery voltage'), $ups['battery.voltage'], 'V');
-						tblrow(gettext('Input voltage'), $ups['input.voltage'], 'V');
-						tblrow(gettext('Input frequency'), $ups['input.frequency'], 'Hz');
-						tblrow(gettext('Output voltage'), $ups['output.voltage'], 'V');
-						tblrow(gettext('Temperature'), $ups['ups.temperature'], ' &deg;C');
-						tblrow(gettext('Remaining battery runtime'), $ups['battery.runtime'], ' seconds');
+						tblrow(gtext('Battery voltage'), $ups['battery.voltage'], 'V');
+						tblrow(gtext('Input voltage'), $ups['input.voltage'], 'V');
+						tblrow(gtext('Input frequency'), $ups['input.frequency'], 'Hz');
+						tblrow(gtext('Output voltage'), $ups['output.voltage'], 'V');
+						tblrow(gtext('Temperature'), $ups['ups.temperature'], ' &deg;C');
+						tblrow(gtext('Remaining battery runtime'), $ups['battery.runtime'], ' seconds');
 						
-						html_separator();
+						html_separator2();
 						
 						// output						
-						html_titleline(gettext('UPS Unit General Information'));
-						tblrow(gettext('UPS status'), $ups['ups.status']);
-						tblrow(gettext('UPS alarms'), $ups['ups.alarm']);
-						tblrow(gettext('Internal UPS clock time'), $ups['ups.time']);
-						tblrow(gettext('Internal UPS clock date'), $ups['ups.date']);
-						tblrow(gettext('UPS model'), $ups['ups.model']);
-						tblrow(gettext('Manufacturer'), $ups['ups.mfr']);
-						tblrow(gettext('Manufacturing date'), $ups['ups.mfr.date']);
-						tblrow(gettext('Serial number'), $ups['ups.serial']);
-						tblrow(gettext('Vendor ID'), $ups['ups.vendorid']);
-						tblrow(gettext('Product ID'), $ups['ups.productid']);
-						tblrow(gettext('UPS firmware'), $ups['ups.firmware']);
-						tblrow(gettext('Auxiliary device firmware'), $ups['ups.firmware.aux']);
-						tblrow(gettext('UPS temperature'), $ups['ups.temperature'], ' &deg;C');
-						tblrow(gettext('Load on UPS'), $ups['ups.load'], '%');
-						tblrow(gettext('Load when UPS switches to overload condition ("OVER")'), $ups['ups.load.high'], '%');
-						tblrow(gettext('UPS system identifier'), $ups['ups.id']);
-						tblrow(gettext('Interval to wait before restarting the load'), $ups['ups.delay.start'], ' seconds');
-						tblrow(gettext('Interval to wait before rebooting the UPS)'), $ups['ups.delay.reboot'], ' seconds');
-						tblrow(gettext('Interval to wait after shutdown with delay command'), $ups['ups.delay.shutdown'], ' seconds');
-						tblrow(gettext('Time before the load will be started'), $ups['ups.timer.start'], ' seconds');
-						tblrow(gettext('Time before the load will be rebooted'), $ups['ups.timer.reboot'], ' seconds');
-						tblrow(gettext('Time before the load will be shutdown'), $ups['ups.timer.shutdown'], ' seconds');
-						tblrow(gettext('Interval between self tests'), $ups['ups.test.interval'], ' seconds');
-						tblrow(gettext('Results of last self test'), $ups['ups.test.result']);
-						tblrow(gettext('Language to use on front panel'), $ups['ups.display.language']);
-						tblrow(gettext('UPS external contact sensors'), $ups['ups.contacts']);
-						tblrow(gettext('Efficiency of the UPS (Ratio of the output current on the input current)'), $ups['ups.efficiency'], '%');
-						tblrow(gettext('Current value of apparent power (Volt-Amps)'), $ups['ups.power'], 'VA');
-						tblrow(gettext('Nominal value of apparent power (Volt-Amps)'), $ups['ups.power.nominal'], 'VA');
-						tblrow(gettext('Current value of real power (Watts)'), $ups['ups.realpower'], 'W');
-						tblrow(gettext('Nominal value of real power (Watts)'), $ups['ups.realpower.nominal'], 'W');
-						tblrow(gettext('UPS beeper status'), $ups['ups.beeper.status']);
-						tblrow(gettext('UPS type'), $ups['ups.type']);
-						tblrow(gettext('UPS watchdog status'), $ups['ups.watchdog.status']);
-						tblrow(gettext('UPS starts when mains is (re)applied'), $ups['ups.start.auto']);
-						tblrow(gettext('Allow to start UPS from battery'), $ups['ups.start.battery']);
-						tblrow(gettext('UPS coldstarts from battery'), $ups['ups.start.reboot']);
+						html_titleline2(gtext('UPS Unit General Information'));
+						tblrow(gtext('UPS status'), $ups['ups.status']);
+						tblrow(gtext('UPS alarms'), $ups['ups.alarm']);
+						tblrow(gtext('Internal UPS clock time'), $ups['ups.time']);
+						tblrow(gtext('Internal UPS clock date'), $ups['ups.date']);
+						tblrow(gtext('UPS model'), $ups['ups.model']);
+						tblrow(gtext('Manufacturer'), $ups['ups.mfr']);
+						tblrow(gtext('Manufacturing date'), $ups['ups.mfr.date']);
+						tblrow(gtext('Serial number'), $ups['ups.serial']);
+						tblrow(gtext('Vendor ID'), $ups['ups.vendorid']);
+						tblrow(gtext('Product ID'), $ups['ups.productid']);
+						tblrow(gtext('UPS firmware'), $ups['ups.firmware']);
+						tblrow(gtext('Auxiliary device firmware'), $ups['ups.firmware.aux']);
+						tblrow(gtext('UPS temperature'), $ups['ups.temperature'], ' &deg;C');
+						tblrow(gtext('Load on UPS'), $ups['ups.load'], '%');
+						tblrow(gtext('Load when UPS switches to overload condition ("OVER")'), $ups['ups.load.high'], '%');
+						tblrow(gtext('UPS system identifier'), $ups['ups.id']);
+						tblrow(gtext('Interval to wait before restarting the load'), $ups['ups.delay.start'], ' seconds');
+						tblrow(gtext('Interval to wait before rebooting the UPS)'), $ups['ups.delay.reboot'], ' seconds');
+						tblrow(gtext('Interval to wait after shutdown with delay command'), $ups['ups.delay.shutdown'], ' seconds');
+						tblrow(gtext('Time before the load will be started'), $ups['ups.timer.start'], ' seconds');
+						tblrow(gtext('Time before the load will be rebooted'), $ups['ups.timer.reboot'], ' seconds');
+						tblrow(gtext('Time before the load will be shutdown'), $ups['ups.timer.shutdown'], ' seconds');
+						tblrow(gtext('Interval between self tests'), $ups['ups.test.interval'], ' seconds');
+						tblrow(gtext('Results of last self test'), $ups['ups.test.result']);
+						tblrow(gtext('Language to use on front panel'), $ups['ups.display.language']);
+						tblrow(gtext('UPS external contact sensors'), $ups['ups.contacts']);
+						tblrow(gtext('Efficiency of the UPS (Ratio of the output current on the input current)'), $ups['ups.efficiency'], '%');
+						tblrow(gtext('Current value of apparent power (Volt-Amps)'), $ups['ups.power'], 'VA');
+						tblrow(gtext('Nominal value of apparent power (Volt-Amps)'), $ups['ups.power.nominal'], 'VA');
+						tblrow(gtext('Current value of real power (Watts)'), $ups['ups.realpower'], 'W');
+						tblrow(gtext('Nominal value of real power (Watts)'), $ups['ups.realpower.nominal'], 'W');
+						tblrow(gtext('UPS beeper status'), $ups['ups.beeper.status']);
+						tblrow(gtext('UPS type'), $ups['ups.type']);
+						tblrow(gtext('UPS watchdog status'), $ups['ups.watchdog.status']);
+						tblrow(gtext('UPS starts when mains is (re)applied'), $ups['ups.start.auto']);
+						tblrow(gtext('Allow to start UPS from battery'), $ups['ups.start.battery']);
+						tblrow(gtext('UPS coldstarts from battery'), $ups['ups.start.reboot']);
 						
-						html_separator();
+						html_separator2();
 						
-						html_titleline(gettext('Incoming Line/Power Information'));
-						tblrow(gettext('Input voltage'), $ups['input.voltage'], 'V');
-						tblrow(gettext('Maximum incoming voltage seen'), $ups['input.voltage.maximum'], 'V');
-						tblrow(gettext('Minimum incoming voltage seen'), $ups['input.voltage.minimum'], 'V');
-						tblrow(gettext('Nominal input voltage'), $ups['input.voltage.nominal'], 'V');
-						tblrow(gettext('Extended input voltage range'), $ups['input.voltage.extended']);
-						tblrow(gettext('Reason for last transfer to battery (* opaque)'), $ups['input.transfer.reason']);
-						tblrow(gettext('Low voltage transfer point'), $ups['input.transfer.low'], 'V');
-						tblrow(gettext('High voltage transfer point'), $ups['input.transfer.high'], 'V');
-						tblrow(gettext('smallest settable low voltage transfer point'), $ups['input.transfer.low.min'], 'V');
-						tblrow(gettext('greatest settable low voltage transfer point'), $ups['input.transfer.low.max'], 'V');
-						tblrow(gettext('smallest settable high voltage transfer point'), $ups['input.transfer.high.min'], 'V');
-						tblrow(gettext('greatest settable high voltage transfer point'), $ups['input.transfer.high.max'], 'V');
-						tblrow(gettext('Input power sensitivity'), $ups['input.sensitivity']);
-						tblrow(gettext('Input power quality (* opaque)'), $ups['input.quality']);
-						tblrow(gettext('Input current (A)'), $ups['input.current'], 'A');
-						tblrow(gettext('Nominal input current (A)'), $ups['input.current.nominal'], 'A');
-						tblrow(gettext('Input line frequency (Hz)'), $ups['input.frequency'], 'Hz');
-						tblrow(gettext('Nominal input line frequency (Hz)'), $ups['input.frequency.nominal'], 'Hz');
-						tblrow(gettext('Input line frequency low (Hz)'), $ups['input.frequency.low'], 'Hz');
-						tblrow(gettext('Input line frequency high (Hz)'), $ups['input.frequency.high'], 'Hz');
-						tblrow(gettext('Extended input frequency range'), $ups['input.frequency.extended']);
-						tblrow(gettext('Low voltage boosting transfer point'), $ups['input.transfer.boost.low'], 'V');
-						tblrow(gettext('High voltage boosting transfer point'), $ups['input.transfer.boost.high'], 'V');
-						tblrow(gettext('Low voltage trimming transfer point'), $ups['input.transfer.trim.low'], 'V');
-						tblrow(gettext('High voltage trimming transfer point'), $ups['input.transfer.trim.high'], 'V');
+						html_titleline2(gtext('Incoming Line/Power Information'));
+						tblrow(gtext('Input voltage'), $ups['input.voltage'], 'V');
+						tblrow(gtext('Maximum incoming voltage seen'), $ups['input.voltage.maximum'], 'V');
+						tblrow(gtext('Minimum incoming voltage seen'), $ups['input.voltage.minimum'], 'V');
+						tblrow(gtext('Nominal input voltage'), $ups['input.voltage.nominal'], 'V');
+						tblrow(gtext('Extended input voltage range'), $ups['input.voltage.extended']);
+						tblrow(gtext('Reason for last transfer to battery (* opaque)'), $ups['input.transfer.reason']);
+						tblrow(gtext('Low voltage transfer point'), $ups['input.transfer.low'], 'V');
+						tblrow(gtext('High voltage transfer point'), $ups['input.transfer.high'], 'V');
+						tblrow(gtext('smallest settable low voltage transfer point'), $ups['input.transfer.low.min'], 'V');
+						tblrow(gtext('greatest settable low voltage transfer point'), $ups['input.transfer.low.max'], 'V');
+						tblrow(gtext('smallest settable high voltage transfer point'), $ups['input.transfer.high.min'], 'V');
+						tblrow(gtext('greatest settable high voltage transfer point'), $ups['input.transfer.high.max'], 'V');
+						tblrow(gtext('Input power sensitivity'), $ups['input.sensitivity']);
+						tblrow(gtext('Input power quality (* opaque)'), $ups['input.quality']);
+						tblrow(gtext('Input current (A)'), $ups['input.current'], 'A');
+						tblrow(gtext('Nominal input current (A)'), $ups['input.current.nominal'], 'A');
+						tblrow(gtext('Input line frequency (Hz)'), $ups['input.frequency'], 'Hz');
+						tblrow(gtext('Nominal input line frequency (Hz)'), $ups['input.frequency.nominal'], 'Hz');
+						tblrow(gtext('Input line frequency low (Hz)'), $ups['input.frequency.low'], 'Hz');
+						tblrow(gtext('Input line frequency high (Hz)'), $ups['input.frequency.high'], 'Hz');
+						tblrow(gtext('Extended input frequency range'), $ups['input.frequency.extended']);
+						tblrow(gtext('Low voltage boosting transfer point'), $ups['input.transfer.boost.low'], 'V');
+						tblrow(gtext('High voltage boosting transfer point'), $ups['input.transfer.boost.high'], 'V');
+						tblrow(gtext('Low voltage trimming transfer point'), $ups['input.transfer.trim.low'], 'V');
+						tblrow(gtext('High voltage trimming transfer point'), $ups['input.transfer.trim.high'], 'V');
 						
-						html_separator();
+						html_separator2();
 						
-						html_titleline(gettext('Outgoing Power/Inverter Information'));
-						tblrow(gettext('Output voltage (V)'), $ups['output.voltage'], 'V');
-						tblrow(gettext('Nominal output voltage (V)'), $ups['output.voltage.nominal'], 'V');
-						tblrow(gettext('Output frequency (Hz)'), $ups['output.frequency'], 'Hz');
-						tblrow(gettext('Nominal output frequency (Hz)'), $ups['output.frequency.nominal'], 'Hz');
-						tblrow(gettext('Output current (A)'), $ups['output.current'], 'A');
-						tblrow(gettext('Nominal output current (A)'), $ups['output.current.nominal'], 'A');
+						html_titleline2(gtext('Outgoing Power/Inverter Information'));
+						tblrow(gtext('Output voltage (V)'), $ups['output.voltage'], 'V');
+						tblrow(gtext('Nominal output voltage (V)'), $ups['output.voltage.nominal'], 'V');
+						tblrow(gtext('Output frequency (Hz)'), $ups['output.frequency'], 'Hz');
+						tblrow(gtext('Nominal output frequency (Hz)'), $ups['output.frequency.nominal'], 'Hz');
+						tblrow(gtext('Output current (A)'), $ups['output.current'], 'A');
+						tblrow(gtext('Nominal output current (A)'), $ups['output.current.nominal'], 'A');
 						
-						html_separator();
+						html_separator2();
 						
-						html_titleline(gettext('Battery Details'));
-						tblrow(gettext('Battery level'), $ups['battery.charge'], '%');
-						tblrow(gettext('Battery Remaining level when UPS switches to Shutdown mode (Low Battery)'), $ups['battery.charge.low'], '%');
-						tblrow(gettext('Minimum battery level for UPS restart after power-off'), $ups['battery.charge.restart'], '%');
-						tblrow(gettext('Battery level when UPS switches to "Warning" state'), $ups['battery.charge.warning'], '%');
-						tblrow(gettext('Battery voltage'), $ups['battery.voltage'], 'V');
-						tblrow(gettext('Battery capacity'), $ups['battery.capacity'], 'Ah');
-						tblrow(gettext('Battery current'), $ups['battery.current'], 'A');
-						tblrow(gettext('Battery temperature'), $ups['battery.temperature'], ' &deg;C');
-						tblrow(gettext('Nominal battery voltage'), $ups['battery.voltage.nominal'], 'V');
-						tblrow(gettext('Remaining battery runtime'), $ups['battery.runtime'], ' seconds');
-						tblrow(gettext('When UPS switches to Low Battery'), $ups['battery.runtime.low'], ' seconds');
-						tblrow(gettext('Battery alarm threshold'), $ups['battery.alarm.threshold']);
-						tblrow(gettext('Battery change date'), $ups['battery.date']);
-						tblrow(gettext('Battery manufacturing date'), $ups['battery.mfr.date']);
-						tblrow(gettext('Number of battery packs'), $ups['battery.packs']);
-						tblrow(gettext('Number of bad battery packs'), $ups['battery.packs.bad']);
-						tblrow(gettext('Battery chemistry'), $ups['battery.type']);
-						tblrow(gettext('Prevent deep discharge of battery'), $ups['battery.protection']);
-						tblrow(gettext('Switch off when running on battery and no/low load'), $ups['battery.energysave']);
+						html_titleline2(gtext('Battery Details'));
+						tblrow(gtext('Battery level'), $ups['battery.charge'], '%');
+						tblrow(gtext('Battery Remaining level when UPS switches to Shutdown mode (Low Battery)'), $ups['battery.charge.low'], '%');
+						tblrow(gtext('Minimum battery level for UPS restart after power-off'), $ups['battery.charge.restart'], '%');
+						tblrow(gtext('Battery level when UPS switches to "Warning" state'), $ups['battery.charge.warning'], '%');
+						tblrow(gtext('Battery voltage'), $ups['battery.voltage'], 'V');
+						tblrow(gtext('Battery capacity'), $ups['battery.capacity'], 'Ah');
+						tblrow(gtext('Battery current'), $ups['battery.current'], 'A');
+						tblrow(gtext('Battery temperature'), $ups['battery.temperature'], ' &deg;C');
+						tblrow(gtext('Nominal battery voltage'), $ups['battery.voltage.nominal'], 'V');
+						tblrow(gtext('Remaining battery runtime'), $ups['battery.runtime'], ' seconds');
+						tblrow(gtext('When UPS switches to Low Battery'), $ups['battery.runtime.low'], ' seconds');
+						tblrow(gtext('Battery alarm threshold'), $ups['battery.alarm.threshold']);
+						tblrow(gtext('Battery change date'), $ups['battery.date']);
+						tblrow(gtext('Battery manufacturing date'), $ups['battery.mfr.date']);
+						tblrow(gtext('Number of battery packs'), $ups['battery.packs']);
+						tblrow(gtext('Number of bad battery packs'), $ups['battery.packs.bad']);
+						tblrow(gtext('Battery chemistry'), $ups['battery.type']);
+						tblrow(gtext('Prevent deep discharge of battery'), $ups['battery.protection']);
+						tblrow(gtext('Switch off when running on battery and no/low load'), $ups['battery.energysave']);
 						
-						html_separator();
+						html_separator2();
 						
-						html_titleline(gettext('Ambient Conditions From External Probe Equipment'));
-						tblrow(gettext('Ambient temperature (degrees C)'), $ups['ambient.temperature'], ' &deg;C');
-						tblrow(gettext('Temperature alarm (enabled/disabled)'), $ups['ambient.temperature.alarm']);
-						tblrow(gettext('Temperature threshold high (degrees C)'), $ups['ambient.temperature.high'], ' &deg;C');
-						tblrow(gettext('Temperature threshold low (degrees C)'), $ups['ambient.temperature.low'], ' &deg;C');
-						tblrow(gettext('Maximum temperature seen (degrees C)'), $ups['ambient.temperature.maximum'], ' &deg;C');
-						tblrow(gettext('Minimum temperature seen (degrees C)'), $ups['ambient.temperature.minimum'], ' &deg;C');
-						tblrow(gettext('Ambient relative humidity (percent)'), $ups['ambient.humidity'], '%');
-						tblrow(gettext('Relative humidity alarm (enabled/disabled)'), $ups['ambient.humidity.alarm']);
-						tblrow(gettext('Relative humidity threshold high (percent)'), $ups['ambient.humidity.high'], '%');
-						tblrow(gettext('Relative humidity threshold high (percent)'), $ups['ambient.humidity.low'], '%');
-						tblrow(gettext('Maximum relative humidity seen (percent)'), $ups['ambient.humidity.maximum'], '%');
-						tblrow(gettext('Minimum relative humidity seen (percent)'), $ups['ambient.humidity.minimum'], '%');
+						html_titleline2(gtext('Ambient Conditions From External Probe Equipment'));
+						tblrow(gtext('Ambient temperature (degrees C)'), $ups['ambient.temperature'], ' &deg;C');
+						tblrow(gtext('Temperature alarm (enabled/disabled)'), $ups['ambient.temperature.alarm']);
+						tblrow(gtext('Temperature threshold high (degrees C)'), $ups['ambient.temperature.high'], ' &deg;C');
+						tblrow(gtext('Temperature threshold low (degrees C)'), $ups['ambient.temperature.low'], ' &deg;C');
+						tblrow(gtext('Maximum temperature seen (degrees C)'), $ups['ambient.temperature.maximum'], ' &deg;C');
+						tblrow(gtext('Minimum temperature seen (degrees C)'), $ups['ambient.temperature.minimum'], ' &deg;C');
+						tblrow(gtext('Ambient relative humidity (percent)'), $ups['ambient.humidity'], '%');
+						tblrow(gtext('Relative humidity alarm (enabled/disabled)'), $ups['ambient.humidity.alarm']);
+						tblrow(gtext('Relative humidity threshold high (percent)'), $ups['ambient.humidity.high'], '%');
+						tblrow(gtext('Relative humidity threshold high (percent)'), $ups['ambient.humidity.low'], '%');
+						tblrow(gtext('Maximum relative humidity seen (percent)'), $ups['ambient.humidity.maximum'], '%');
+						tblrow(gtext('Minimum relative humidity seen (percent)'), $ups['ambient.humidity.minimum'], '%');
 						
-						html_separator();
+						html_separator2();
 						
-						html_titleline('Smart Outlet Management');
+						html_titleline2(gtext('Smart Outlet Management'));
 						tblrow('[Main] Outlet system identifier', $ups['outlet.id']);
 						tblrow('[Main] Outlet description', $ups['outlet.desc']);
 						tblrow('[Main] Outlet switch control (on/off)', $ups['outlet.switch']);
@@ -432,27 +458,27 @@ function upsc_enable_change() {
 							tblrow('['.$i.'] Apparent power (VA)', $ups['outlet.'.$i.'.power'], 'VA');
 						}
 						
-						html_separator();
+						html_separator2();
 						
-						html_titleline(gettext('NUT Internal Driver Information'));
-						tblrow(gettext('Driver used'), $ups['driver.name']);
-						tblrow(gettext('Driver version'), $ups['driver.version']);
-						tblrow(gettext('Driver version internal'), $ups['driver.version.internal']);
-						tblrow(gettext('Parameter xxx (ups.conf or cmdline -x) setting'), $ups['driver.parameter.xxx']);
-						tblrow(gettext('Flag xxx (ups.conf or cmdline -x) status'), $ups['driver.flag.xxx']);
+						html_titleline2(gtext('NUT Internal Driver Information'));
+						tblrow(gtext('Driver used'), $ups['driver.name']);
+						tblrow(gtext('Driver version'), $ups['driver.version']);
+						tblrow(gtext('Driver version internal'), $ups['driver.version.internal']);
+						tblrow(gtext('Parameter xxx (ups.conf or cmdline -x) setting'), $ups['driver.parameter.xxx']);
+						tblrow(gtext('Flag xxx (ups.conf or cmdline -x) status'), $ups['driver.flag.xxx']);
 						
-						html_separator();
+						html_separator2();
 						
-						html_titleline(gettext('Internal Server Information'));
-						tblrow(gettext('Server information'), $ups['server.info']);
-						tblrow(gettext('Server version'), $ups['server.version']);
+						html_titleline2(gtext('Internal Server Information'));
+						tblrow(gtext('Server information'), $ups['server.info']);
+						tblrow(gtext('Server version'), $ups['server.version']);
 						
 						
-						html_separator();
-						html_separator();
+						html_separator2();
+						html_separator2();
 
-						html_titleline_checkbox('raw_upsc_enable', 'NUT', $upsc_enable ? true : false, (gettext('Show RAW UPS Info')), 'upsc_enable_change()');
-						tblrow(gettext('RAW info'), htmlspecialchars($read), 'pre', 'upsc_raw_command');
+						html_titleline_checkbox2('raw_upsc_enable', 'NUT', $upsc_enable ? true : false, (gtext('Show RAW UPS Info')), 'upsc_enable_change()');
+						tblrow(gtext('RAW info'), htmlspecialchars($read), 'pre', 'upsc_raw_command');
 
 						unset($handle);
 						unset($read);

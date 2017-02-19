@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- NAS4Free default system configuration -->
 <nas4free>
-	<version>2.2</version>
+	<version>2.6</version>
 	<lastchange></lastchange>
 	<system>
 		<hostname>nas4free</hostname>
@@ -12,6 +12,7 @@
 		<username>admin</username>
 		<password>$6$HXPTA2l3EVGgRSvw$s6iifSRgYcHBTi5MzmjGRS6wE1N.NyoIDVVCcxnE0QnlLJXisGffnwTNON/l1P6rYpFoISriJrFvh.aEhfEo3.</password>
 		<timezone>Etc/UTC</timezone>
+		<datetimeformat>l F d H:i:s T Y</datetimeformat>
 		<language>en_US</language>
 		<ntp>
 			<!-- <enable/> -->
@@ -28,7 +29,9 @@
 			<noantilockout/>
 			-->
 		</webgui>
+		<!--
 		<zeroconf/>
+		-->
 		<!-- The message of the day has to be encoded otherwise line breaks
 		will get lost because of the PHP XML parser. -->
 		<motd>V2VsY29tZSB0byBOQVM0RnJlZSENCg==</motd>
@@ -84,7 +87,45 @@
 			<!--
 			<auth/>
 			-->
+			<tls_certcheck>tls_certcheck off</tls_certcheck>
 		</email>
+		<loaderconf>
+			<param>
+				<!-- <enable/> -->
+				<uuid>1f7c3fcd-402a-437f-bdab-cd3cb3511ef6</uuid>
+				<name>arcsas_load</name>
+				<value>YES</value>
+				<comment>Areca non-RAID HBAs ARC-1300/ARC-1320 series Driver</comment>
+			</param>		
+			<param>
+				<!-- <enable/> -->
+				<uuid>d68b8192-ca70-45ad-b312-c61715ac1c27</uuid>
+				<name>ipmi_load</name>
+				<value>YES</value>
+				<comment>IPMItool Server Management Utility</comment>
+			</param>		
+			<param>
+				<!-- <enable/> -->
+				<uuid>938a66c6-fe89-4e2c-8e07-ad0aac8db511</uuid>
+				<name>vfs.zfs.arc_max</name>
+				<value>2G</value>
+				<comment>ZFS maximum ARC size</comment>
+			</param>
+			<param>
+				<!-- <enable/> -->
+				<uuid>2f380ee0-4b3f-440e-9ade-ad346c7f58d1</uuid>
+				<name>vfs.zfs.arc_min</name>
+				<value>1G</value>
+				<comment>ZFS minimum ARC size</comment>
+			</param>
+			<param>
+				<!-- <enable/> -->
+				<uuid>e1583f30-44da-4fc3-b726-b650dad74aee</uuid>
+				<name>vfs.zfs.prefetch_disable</name>
+				<value>1</value>
+				<comment>ZFS prefech disable</comment>
+			</param>
+		</loaderconf>
 		<rcconf>
 			<!--
 			<param>
@@ -105,14 +146,14 @@
 			<param>
 				<uuid>1c2a4807-9969-42bc-8500-ba234e33a3f5</uuid>
 				<name>varsize</name>
-				<value>256m</value>
+				<value>512m</value>
 				<comment>Default /var size</comment>
 				<enable/>
 			</param>
 			<param>
 				<uuid>3ab45cfd-9ea5-4295-98c8-bebc7603332e</uuid>
 				<name>vartmpsize</name>
-				<value>128m</value>
+				<value>256m</value>
 				<comment>Default /var/tmp size</comment>
 				<enable/>
 			</param>
@@ -312,14 +353,7 @@
 			<param>
 				<uuid>5867a59c-5332-4589-a9cb-4510f1405901</uuid>
 				<name>kern.maxfiles</name>
-				<value>65536</value>
-				<comment>System tuning</comment>
-				<enable/>
-			</param>
-			<param>
-				<uuid>a4bd7970-1c77-43d7-8bc8-7924d9f86077</uuid>
-				<name>kern.maxfilesperproc</name>
-				<value>60000</value>
+				<value>6289573</value>
 				<comment>System tuning</comment>
 				<enable/>
 			</param>
@@ -350,6 +384,13 @@
 				<value>9000</value>
 				<comment>System tuning</comment>
 				<enable/>
+			</param>
+			<param>
+				<!-- <enable/> -->
+				<uuid>c527bec2-7829-49d8-9ca8-7c2e62842db1</uuid>
+				<name>vfs.zfs.l2arc_noprefetch</name>
+				<value>0</value>
+				<comment>Allow streaming/sequential reads to be cached</comment>
 			</param>
 			<!--
 			<param>
@@ -414,6 +455,13 @@
 				<primarygroup>920</primarygroup>
 				<extraoptions>-c &quot;Virtualbox user&quot; -d /nonexistent -s /usr/sbin/nologin</extraoptions>
 			</user>
+			<user>
+				<uuid>8937d051-f1b4-4048-8207-c73e81d5d364</uuid>
+				<name>syncthing</name>
+				<id>983</id>
+				<primarygroup>983</primarygroup>
+				<extraoptions>-c &quot;Syncthing Daemon&quot; -d /var/tmp/syncthing -s /usr/sbin/nologin</extraoptions>
+			</user>
 			<group>
 				<uuid>e8cc78b8-7c3d-46de-a34c-11b1c260a37e</uuid>
 				<id>999</id>
@@ -428,6 +476,11 @@
 				<uuid>235a1033-f7ee-443a-8c55-6bea64d5139e</uuid>
 				<id>920</id>
 				<name>vboxusers</name>
+			</group>
+			<group>
+				<uuid>6f5c8dd0-4c98-4ccf-8a18-64ad5e8e067f</uuid>
+				<id>983</id>
+				<name>syncthing</name>
 			</group>
 			<group>
 				<uuid>e504881b-c8dc-43d7-9ca4-74552f9b405b</uuid>
@@ -902,7 +955,8 @@
 		<loglevel>1</loglevel>
 		<rcvbuf>128480</rcvbuf>
 		<sndbuf>128480</sndbuf>
-		<storedosattributes/>
+		<!-- <storedosattributes/> -->
+		<!-- <mapdosattributes/> -->
 		<largereadwrite/>
 		<!-- <aio/> -->
 		<aiorsize>1024</aiorsize>
@@ -1122,6 +1176,22 @@
 		<port>49152</port>
 		<profile>default</profile>
 	</upnp>
+	<minidlna>
+		<!--
+		<enable/>
+		<name>xxx</name>
+		<if>xxx</if>
+		<content>xxx</content>
+		<home>xxx</home> // Directory where database get stored.
+		<web/>
+		<deviceip>xxx.xxx.xxx.xxx<deviceip>
+		-->
+		<port>8200</port>
+		<notify_int>300</notify_int>
+		<container>B</container>
+		<loglevel>info</loglevel>
+		<inotify/>
+	</minidlna>
 	<daap>
 		<!--
 		<enable/>
@@ -1219,7 +1289,7 @@
 		<!-- <ipfstatentries></ipfstatentries> -->
 	</diag>
 	<syslogd>
-		<nentries>100</nentries>
+		<nentries>175</nentries>
 		<!--
 		<reverse/>
 		<resolve/>
@@ -1442,7 +1512,7 @@
 		<auxparam>pam_ldap_attribute uid</auxparam>
 	</ldap>
 	<ups>
-		<upsname>ups</upsname>
+		<upsname>ups1</upsname>
 		<shutdownmode>onbatt</shutdownmode>
 		<shutdowntimer>30</shutdowntimer>
 		<!--
@@ -1460,6 +1530,17 @@
 			<to></to>
 			<subject>UPS notification from %h</subject>
 		</email>
+		<ups2_upsname>ups2</ups2_upsname>
+		<!--
+		<ups2_driver>usbhid-ups</ups2_driver>
+		<ups2_port>auto</ups2_port>
+		<ups2_desc/>
+		<ip>localhost</ip>
+		<monitoruser>upsmon</monitoruser>
+		<monitorpassword>upsmon</monitorpassword>
+		<user>root</user>
+		<password>$6$9i4fD5ryG5Uz6doa$NyGgJzUZZBHcWTJUemogma2GD6fjWeH6IL1B1iA4XwqJZvv5ggsCTQlJieN1TIl7y4jnObZPReXsku6ERSHpl.</password>
+		-->
 	</ups>
 	<tftpd>
 		<!--

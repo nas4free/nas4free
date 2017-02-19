@@ -3,11 +3,7 @@
 	system_hosts.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Network"), gettext("Hosts"));
+$pgtitle = array(gtext("Network"), gtext("Hosts"));
 
 if ($_POST) {
 	if (isset($_POST['Submit']) && $_POST['Submit']) {
@@ -116,18 +113,19 @@ function hosts_process_updatenotification($mode, $data) {
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabcont">
-			<form action="system_hosts.php" method="post">
+			<form action="system_hosts.php" method="post" onsubmit="spinner()">
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<?php if (updatenotify_exists("hosts")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+				<?php html_titleline2(gtext('Hosts'), 2);?>
 					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gettext("Hostname database");?></td>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Hostname database");?></td>
 						<td width="78%" class="vtable">
 							<table width="100%" border="0" cellpadding="0" cellspacing="0">
 								<tr>
-									<td width="25%" class="listhdrlr"><?=gettext("Hostname");?></td>
-									<td width="30%" class="listhdrr"><?=gettext("IP address");?></td>
-									<td width="35%" class="listhdrr"><?=gettext("Description");?></td>
+									<td width="25%" class="listhdrlr"><?=gtext("Hostname");?></td>
+									<td width="30%" class="listhdrr"><?=gtext("IP address");?></td>
+									<td width="35%" class="listhdrr"><?=gtext("Description");?></td>
 									<td width="10%" class="list"></td>
 								</tr>
 								<?php foreach ($a_hosts as $host):?>
@@ -139,27 +137,31 @@ function hosts_process_updatenotification($mode, $data) {
 									<td class="listbg"><?=htmlspecialchars($host['descr']);?>&nbsp;</td>
 									<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
 									<td valign="middle" nowrap="nowrap" class="list">
-										<a href="system_hosts_edit.php?uuid=<?=$host['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit Host");?>" border="0" alt="<?=gettext("Edit Host");?>" /></a>
-										<a href="system_hosts.php?act=del&amp;uuid=<?=$host['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this host?");?>')"><img src="x.gif" title="<?=gettext("Delete Host");?>" border="0" alt="<?=gettext("Delete Host");?>" /></a>
+										<a href="system_hosts_edit.php?uuid=<?=$host['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit Host");?>" border="0" alt="<?=gtext("Edit Host");?>" /></a>
+										<a href="system_hosts.php?act=del&amp;uuid=<?=$host['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this host?");?>')"><img src="images/delete.png" title="<?=gtext("Delete Host");?>" border="0" alt="<?=gtext("Delete Host");?>" /></a>
 									</td>
 									<?php else:?>
 									<td valign="middle" nowrap="nowrap" class="list">
-										<img src="del.gif" border="0" alt="" />
+										<img src="images/delete.png" border="0" alt="" />
 									</td>
 									<?php endif;?>
 								</tr>
 								<?php endforeach;?>
 								<tr>
 									<td class="list" colspan="3"></td>
-									<td class="list"><a href="system_hosts_edit.php"><img src="plus.gif" title="<?=gettext("Add Host");?>" border="0" alt="<?=gettext("Add Host");?>" /></a></td>
+									<td class="list"><a href="system_hosts_edit.php"><img src="images/add.png" title="<?=gtext("Add Host");?>" border="0" alt="<?=gtext("Add Host");?>" /></a></td>
 								</tr>
 							</table>
 						</td>
 					</tr>
-					<?php html_textarea("hostsacl", gettext("Host access control"), $pconfig['hostsacl'], gettext("The basic configuration usually takes the form of 'daemon : address : action'. Where daemon is the daemon name of the service started. The address can be a valid hostname, an IP address or an IPv6 address enclosed in brackets. The action field can be either allow or deny to grant or deny access appropriately. Keep in mind that configuration works off a first rule match semantic, meaning that the configuration file is scanned in ascending order for a matching rule. When a match is found the rule is applied and the search process will halt.") . " " . sprintf(gettext("To get detailed informations about TCP Wrappers check the FreeBSD <a href='%s' target='_blank'>documentation</a>."), "http://www.freebsd.org/doc/en/books/handbook/tcpwrappers.html"), false, 80, 8, false, false);?>
+					<?php
+					$helpinghand = '<a href="' . 'http://www.freebsd.org/doc/en/books/handbook/tcpwrappers.html' . '" target="_blank">'
+						. gtext('Check the FreeBSD documentation for detailed information about TCP Wrappers')
+						. '</a>.';
+					html_textarea("hostsacl", gtext("Host access control"), $pconfig['hostsacl'], gtext("The basic configuration usually takes the form of 'daemon : address : action'. Where daemon is the daemon name of the service started. The address can be a valid hostname, an IP address or an IPv6 address enclosed in brackets. The action field can be either allow or deny to grant or deny access appropriately. Keep in mind that configuration works off a first rule match semantic, meaning that the configuration file is scanned in ascending order for a matching rule. When a match is found the rule is applied and the search process will halt.") . " " . $helpinghand, false, 80, 8, false, false);?>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save and Restart");?>" />
 				</div>
 				<?php include("formend.inc");?>
 			</form>

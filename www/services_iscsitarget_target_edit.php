@@ -3,11 +3,7 @@
 	services_iscsitarget_target_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -42,7 +39,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Services"), gettext("iSCSI Target"), gettext("Target"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Services"), gtext("iSCSI Target"), gtext("Target"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
 /* currently support LUN0 only */
 $MAX_LUNS = 4;
@@ -130,13 +127,31 @@ function get_random_iscsi_sn($length = 8){
 
 $errormsg = "";
 if (count($config['iscsitarget']['portalgroup']) == 0) {
-	$errormsg .= sprintf(gettext("No configured Portal Group. Please add new <a href='%s'>Portal Group</a> first."), "services_iscsitarget_pg.php")."<br />\n";
+	$errormsg .= gtext('No Portal Group has been configured.')
+		. ' '
+		. '<a href="' . 'services_iscsitarget_pg.php' . '">'
+		. gtext('Please add a new Portal Group first.')
+		. '</a>'
+		. '<br />'
+		. "\n";
 }
 if (count($config['iscsitarget']['initiatorgroup']) == 0) {
-	$errormsg .= sprintf(gettext("No configured Initiator Group. Please add new <a href='%s'>Initiator Group</a> first."), "services_iscsitarget_ig.php")."<br />\n";
+	$errormsg .= gtext('No Initiator Group has been configured.')
+		. ' '
+		. '<a href="' . 'services_iscsitarget_ig.php' . '">'
+		. gtext('Please add a new Initiator Group first.')
+		. '</a>'
+		. '<br />'
+		. "\n";
 }
 if (count($config['iscsitarget']['extent']) == 0) {
-	$errormsg .= sprintf(gettext("No configured Extent. Please add new <a href='%s'>Extent</a> first."), "services_iscsitarget_target.php")."<br />\n";
+	$errormsg .= gtext('No Extent has been configured.')
+		. ' '
+		. '<a href="' . 'services_iscsitarget_target.php' . '">'
+		. gtext('Please add a new Extent first.')
+		. '</a>'
+		. '<br />'
+		. "\n";
 }
 
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_target, "uuid")))) {
@@ -330,30 +345,30 @@ if ($_POST) {
 
 	// Input validation.
 	$reqdfields = explode(" ", "name");
-	$reqdfieldsn = array(gettext("Target name"));
+	$reqdfieldsn = array(gtext("Target name"));
 	$reqdfieldst = explode(" ", "string");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	$reqdfields = explode(" ", "type flags portalgroup initiatorgroup portalgroup initiatorgroup storage");
-	$reqdfieldsn = array(gettext("Type"),
-						 gettext("Flags"),
-						 gettext("Portal Group"),
-						 gettext("Initiator Group"),
-						 gettext("Portal Group"),
-						 gettext("Initiator Group"),
-						 gettext("Storage"));
+	$reqdfieldsn = array(gtext("Type"),
+						 gtext("Flags"),
+						 gtext("Portal Group"),
+						 gtext("Initiator Group"),
+						 gtext("Portal Group"),
+						 gtext("Initiator Group"),
+						 gtext("Storage"));
 	$reqdfieldst = explode(" ", "string string numericint numericint numericint numericint string");
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	$reqdfields = explode(" ", "authmethod authgroup digest queuedepth blocklen");
-	$reqdfieldsn = array(gettext("Auth Method"),
-						 gettext("Auth Group"),
-						 gettext("Initial Digest"),
-						 gettext("Queue Depth"),
-						 gettext("Logical Block Length"));
+	$reqdfieldsn = array(gtext("Auth Method"),
+						 gtext("Auth Group"),
+						 gtext("Initial Digest"),
+						 gtext("Queue Depth"),
+						 gtext("Logical Block Length"));
 	$reqdfieldst = explode(" ", "string numericint string numericint numericint");
 	//do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
@@ -362,31 +377,31 @@ if ($_POST) {
 	   || (empty($_POST['portalgroup2']) && !empty($_POST['initiatorgroup2']))) {
 
 		if (empty($_POST['portalgroup2']))
-			$input_errors[] = sprintf(gettext("The attribute '%s' is required."), gettext("Portal Group"));
+			$input_errors[] = sprintf(gtext("The attribute '%s' is required."), gtext("Portal Group"));
 		if (empty($_POST['initiatorgroup2']))
-			$input_errors[] = sprintf(gettext("The attribute '%s' is required."), gettext("Initiator Group"));
+			$input_errors[] = sprintf(gtext("The attribute '%s' is required."), gtext("Initiator Group"));
 	}
 
 	if ((strcasecmp("Auto", $pconfig['authmethod']) != 0
 	   && strcasecmp("None", $pconfig['authmethod']) != 0)
 		&& $pconfig['authgroup'] == 0) {
-		$input_errors[] = sprintf(gettext("The attribute '%s' is required."), gettext("Auth Group"));
+		$input_errors[] = sprintf(gtext("The attribute '%s' is required."), gtext("Auth Group"));
 	}
 
 	if ($pconfig['queuedepth'] < 0 || $pconfig['queuedepth'] > 255) {
-		$input_errors[] = gettext("The queuedepth range is invalid.");
+		$input_errors[] = gtext("The queuedepth range is invalid.");
 	}
 	if (strlen($pconfig['inqvendor']) > 8) {
-		$input_errors[] = sprintf(gettext("%s is too long."), gettext("Inquiry Vendor"));
+		$input_errors[] = sprintf(gtext("%s is too long."), gtext("Inquiry Vendor"));
 	}
 	if (strlen($pconfig['inqproduct']) > 16) {
-		$input_errors[] = sprintf(gettext("%s is too long."), gettext("Inquiry Product"));
+		$input_errors[] = sprintf(gtext("%s is too long."), gtext("Inquiry Product"));
 	}
 	if (strlen($pconfig['inqrevision']) > 4) {
-		$input_errors[] = sprintf(gettext("%s is too long."), gettext("Inquiry Revision"));
+		$input_errors[] = sprintf(gtext("%s is too long."), gtext("Inquiry Revision"));
 	}
 	if (strlen($pconfig['inqserial']) > 16) {
-		$input_errors[] = sprintf(gettext("%s is too long."), gettext("Inquiry Serial"));
+		$input_errors[] = sprintf(gtext("%s is too long."), gtext("Inquiry Serial"));
 	}
 
 	// Check for duplicates.
@@ -394,7 +409,7 @@ if ($_POST) {
 		$fullname = get_fulliqn($pconfig['name']);
 		foreach ($a_iscsitarget_target as $target) {
 			if (strcasecmp($fullname, get_fulliqn($target['name'])) == 0) {
-				$input_errors[] = gettext("The target name already exists.");
+				$input_errors[] = gtext("The target name already exists.");
 				break;
 			}
 		}
@@ -410,7 +425,7 @@ if ($_POST) {
 				|| $lunmap[$j]['extentname'] === "-")
 				continue;
 			if ($lunmap[$j]['extentname'] === $lunmap[$i]['extentname']) {
-				$input_errors[] = sprintf(gettext("%s%d %s is already used by %s%d."), gettext("LUN"), $i, $lunmap[$i]['extentname'], gettext("LUN"), $j);
+				$input_errors[] = sprintf(gtext("%s%d %s is already used by %s%d."), gtext("LUN"), $i, $lunmap[$i]['extentname'], gtext("LUN"), $j);
 			}
 		}
 	}
@@ -598,17 +613,17 @@ function enable_change(enable_change) {
 }
 //-->
 </script>
-<form action="services_iscsitarget_target_edit.php" method="post" name="iform" id="iform">
+<form action="services_iscsitarget_target_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-        <li class="tabinact"><a href="services_iscsitarget.php"><span><?=gettext("Settings");?></span></a></li>
-        <li class="tabact"><a href="services_iscsitarget_target.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Targets");?></span></a></li>
-        <li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gettext("Portals");?></span></a></li>
-		<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gettext("Initiators");?></span></a></li>
-		<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gettext("Auths");?></span></a></li>
-		<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gettext("Media");?></span></a></li>
+        <li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
+        <li class="tabact"><a href="services_iscsitarget_target.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Targets");?></span></a></li>
+        <li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gtext("Portals");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gtext("Auths");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
       </ul>
     </td>
   </tr>
@@ -618,42 +633,42 @@ function enable_change(enable_change) {
       <?php if (!empty($errormsg)) print_error_box($errormsg);?>
       <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
       <table width="100%" border="0" cellpadding="6" cellspacing="0">
-      <?php html_titleline_checkbox("enable", gettext("iSCSI Target"), $pconfig['enable'] ? true : false, gettext("Enable"), "enable_change(false)");?>
-      <?php html_inputbox("name", gettext("Target Name"), $pconfig['name'], gettext("Base Name will be appended automatically when starting without 'iqn.'."), true, 70, false);?>
-      <?php html_inputbox("alias", gettext("Target Alias"), $pconfig['alias'], gettext("Optional user-friendly string of the target."), false, 70, false);?>
-      <?php html_combobox("type", gettext("Type"), $pconfig['type'], array("Disk" => gettext("Disk"),"DVD" => gettext("DVD"),"Tape" => gettext("Tape"),"Pass" => gettext("Device Pass-through")), gettext("Logical Unit Type mapped to LUN."), true, false, "type_change()");?>
-      <?php html_combobox("flags", gettext("Flags"), $pconfig['flags'], array("rw" => gettext("Read/Write (rw)"),"rw,dynamic" => gettext("Read/Write (rw,dynamic) for removable types file size grow and shrink automatically by EOF (ignore specified size)"),"rw,extend" => gettext("Read/Write (rw,extend) for removable types extend file size if EOM reached"), "ro" => gettext("Read Only (ro)")), "", true);?>
+      <?php html_titleline_checkbox("enable", gtext("iSCSI Target"), $pconfig['enable'] ? true : false, gtext("Enable"), "enable_change(false)");?>
+      <?php html_inputbox("name", gtext("Target Name"), $pconfig['name'], gtext("Base Name will be appended automatically when starting without 'iqn.'."), true, 70, false);?>
+      <?php html_inputbox("alias", gtext("Target Alias"), $pconfig['alias'], gtext("Optional user-friendly string of the target."), false, 70, false);?>
+      <?php html_combobox("type", gtext("Type"), $pconfig['type'], array("Disk" => gtext("Disk"),"DVD" => gtext("DVD"),"Tape" => gtext("Tape"),"Pass" => gtext("Device Pass-through")), gtext("Logical Unit Type mapped to LUN."), true, false, "type_change()");?>
+      <?php html_combobox("flags", gtext("Flags"), $pconfig['flags'], array("rw" => gtext("Read/Write (rw)"),"rw,dynamic" => gtext("Read/Write (rw,dynamic) for removable types file size grow and shrink automatically by EOF (ignore specified size)"),"rw,extend" => gtext("Read/Write (rw,extend) for removable types extend file size if EOM reached"), "ro" => gtext("Read Only (ro)")), "", true);?>
       <?php
 		$pg_list = array();
-		//$pg_list['0'] = gettext("None");
+		//$pg_list['0'] = gtext("None");
 		foreach($config['iscsitarget']['portalgroup'] as $pg) {
 		  if ($pg['comment']) {
-			  $l = sprintf(gettext("Tag%d (%s)"), $pg['tag'], $pg['comment']);
+			  $l = sprintf(gtext("Tag%d (%s)"), $pg['tag'], $pg['comment']);
 		  } else {
-			  $l = sprintf(gettext("Tag%d"), $pg['tag']);
+			  $l = sprintf(gtext("Tag%d"), $pg['tag']);
 		  }
 		  $pg_list[$pg['tag']] = htmlspecialchars($l);
 		}
-		html_combobox("portalgroup", sprintf("%s (%s)", gettext("Portal Group"), gettext("Primary")), $pconfig['portalgroup'], $pg_list, gettext("The initiator can connect to the portals in specific Portal Group."), true);
+		html_combobox("portalgroup", sprintf("%s (%s)", gtext("Portal Group"), gtext("Primary")), $pconfig['portalgroup'], $pg_list, gtext("The initiator can connect to the portals in specific Portal Group."), true);
       ?>
       <?php
 		$ig_list = array();
-		//$ig_list['0'] = gettext("None");
+		//$ig_list['0'] = gtext("None");
 		foreach($config['iscsitarget']['initiatorgroup'] as $ig) {
 		  if ($ig['comment']) {
-			  $l = sprintf(gettext("Tag%d (%s)"), $ig['tag'], $ig['comment']);
+			  $l = sprintf(gtext("Tag%d (%s)"), $ig['tag'], $ig['comment']);
 		  } else {
-			  $l = sprintf(gettext("Tag%d"), $ig['tag']);
+			  $l = sprintf(gtext("Tag%d"), $ig['tag']);
 		  }
 		  $ig_list[$ig['tag']] = htmlspecialchars($l);
 		}
-		html_combobox("initiatorgroup", sprintf("%s (%s)", gettext("Initiator Group"), gettext("Primary")), $pconfig['initiatorgroup'], $ig_list, gettext("The initiator can access to the target via the portals by authorised initiator names and networks in specific Initiator Group."), true);
+		html_combobox("initiatorgroup", sprintf("%s (%s)", gtext("Initiator Group"), gtext("Primary")), $pconfig['initiatorgroup'], $ig_list, gtext("The initiator can access to the target via the portals by authorised initiator names and networks in specific Initiator Group."), true);
       ?>
       <?php	// secondary
-		html_combobox("portalgroup2", sprintf("%s (%s)", gettext("Portal Group"), gettext("Secondary")), $pconfig['portalgroup2'], array_merge(array("0" => gettext("None")), $pg_list), "", true);
-		html_combobox("initiatorgroup2", sprintf("%s (%s)", gettext("Initiator Group"), gettext("Secondary")), $pconfig['initiatorgroup2'], array_merge(array("0" => gettext("None")), $ig_list), "", true);
+		html_combobox("portalgroup2", sprintf("%s (%s)", gtext("Portal Group"), gtext("Secondary")), $pconfig['portalgroup2'], array_merge(array("0" => gtext("None")), $pg_list), "", true);
+		html_combobox("initiatorgroup2", sprintf("%s (%s)", gtext("Initiator Group"), gtext("Secondary")), $pconfig['initiatorgroup2'], array_merge(array("0" => gtext("None")), $ig_list), "", true);
       ?>
-      <?php html_inputbox("comment", gettext("Comment"), $pconfig['comment'], gettext("You may enter a description here for your reference."), false, 40);?>
+      <?php html_inputbox("comment", gtext("Comment"), $pconfig['comment'], gtext("You may enter a description here for your reference."), false, 40);?>
       <?php
 			$a_storage_add = array();
 			$a_storage_edit = array();
@@ -687,27 +702,27 @@ function enable_change(enable_change) {
 			if (!(isset($uuid) && (FALSE !== $cnid))) {
 				// Add
 				$a_storage = &$a_storage_add;
-				$a_storage_opt=array_merge(array("-" => gettext("None")), $a_storage_add);
+				$a_storage_opt=array_merge(array("-" => gtext("None")), $a_storage_add);
 			} else {
 				// Edit
 				$a_storage = &$a_storage_edit;
 				$a_storage = array_merge($a_storage, $a_storage_add);
-				$a_storage_opt = array_merge(array("-" => gettext("None")), $a_storage_edit);
+				$a_storage_opt = array_merge(array("-" => gtext("None")), $a_storage_edit);
 			}
       ?>
       <?php html_separator();?>
-      <?php html_titleline(sprintf("%s%d", gettext("LUN"), 0));?>
+      <?php html_titleline(sprintf("%s%d", gtext("LUN"), 0));?>
       <?php
 			$index = array_search_ex("0", $pconfig['lunmap'], "lun");
 			if (false !== $index) {
-				html_combobox("storage", gettext("Storage"), $pconfig['lunmap'][$index]['extentname'], $a_storage, sprintf(gettext("The storage area mapped to LUN%d."), 0), true);
-				html_combobox("removable", gettext("Removable"), $pconfig['lunmap'][$index]['extentname'], $a_storage_opt, sprintf(gettext("The removable area mapped to LUN%d."), 0), true);
+				html_combobox("storage", gtext("Storage"), $pconfig['lunmap'][$index]['extentname'], $a_storage, sprintf(gtext("The storage area mapped to LUN%d."), 0), true);
+				html_combobox("removable", gtext("Removable"), $pconfig['lunmap'][$index]['extentname'], $a_storage_opt, sprintf(gtext("The removable area mapped to LUN%d."), 0), true);
 			}
       ?>
       <?php for ($i = 1; $i < $MAX_LUNS; $i++): ?>
       <?php $lenable=sprintf("enable%d", $i); ?>
       <?php $lstorage=sprintf("storage%d", $i); ?>
-      <?php $a_storage_opt_add=array_merge(array("-" => gettext("None")), $a_storage_add); ?>
+      <?php $a_storage_opt_add=array_merge(array("-" => gtext("None")), $a_storage_add); ?>
 			<?php
 			$enabled = 0;
 			$index = array_search_ex("$i", $pconfig['lunmap'], "lun");
@@ -719,59 +734,59 @@ function enable_change(enable_change) {
 			?>
       <?php
 			if (!(isset($uuid) && (FALSE !== $cnid))) {
-				$a_storage_opt=array_merge(array("-" => gettext("None")), $a_storage_add);
+				$a_storage_opt=array_merge(array("-" => gtext("None")), $a_storage_add);
 			} else {
-				$a_storage_opt=array_merge(array("-" => gettext("None")), $a_storage_edit);
+				$a_storage_opt=array_merge(array("-" => gtext("None")), $a_storage_edit);
 			}
 			?>
 			<?php html_separator(2, sprintf("lun%d_separator", $i));?>
-			<?php html_titleline_checkbox("$lenable", sprintf("%s%d", gettext("LUN"), $i), $enabled ? true : false, gettext("Enable"), "lun_change($i)");?>
+			<?php html_titleline_checkbox("$lenable", sprintf("%s%d", gtext("LUN"), $i), $enabled ? true : false, gtext("Enable"), "lun_change($i)");?>
       <?php
 			$index = array_search_ex("$i", $pconfig['lunmap'], "lun");
 			if (false !== $index) {
-				html_combobox("$lstorage", gettext("Storage"), $pconfig['lunmap'][$index]['extentname'], $a_storage_opt, sprintf(gettext("The storage area mapped to LUN%d."), $i), true);
+				html_combobox("$lstorage", gtext("Storage"), $pconfig['lunmap'][$index]['extentname'], $a_storage_opt, sprintf(gtext("The storage area mapped to LUN%d."), $i), true);
 			} else {
-				html_combobox("$lstorage", gettext("Storage"), "-", $a_storage_opt_add, sprintf(gettext("The storage area mapped to LUN%d."), $i), true);
+				html_combobox("$lstorage", gtext("Storage"), "-", $a_storage_opt_add, sprintf(gtext("The storage area mapped to LUN%d."), $i), true);
 			}
       ?>
       <?php endfor;?>
       <?php html_separator();?>
-      <?php html_titleline(gettext("Advanced settings"));?>
-      <?php html_combobox("authmethod", gettext("Auth Method"), $pconfig['authmethod'], array("Auto" => gettext("Auto"), "CHAP" => gettext("CHAP"), "CHAP Mutual" => gettext("Mutual CHAP"), "None" => gettext("None")), gettext("The method can be accepted by the target. Auto means both none and authentication."), false);?>
+      <?php html_titleline(gtext("Advanced settings"));?>
+      <?php html_combobox("authmethod", gtext("Auth Method"), $pconfig['authmethod'], array("Auto" => gtext("Auto"), "CHAP" => gtext("CHAP"), "CHAP Mutual" => gtext("Mutual CHAP"), "None" => gtext("None")), gtext("The method can be accepted by the target. Auto means both none and authentication."), false);?>
       <?php
 			$ag_list = array();
-			$ag_list['0'] = gettext("None");
+			$ag_list['0'] = gtext("None");
 			foreach($config['iscsitarget']['authgroup'] as $ag) {
 			  if ($ag['comment']) {
-				  $l = sprintf(gettext("Tag%d (%s)"), $ag['tag'], $ag['comment']);
+				  $l = sprintf(gtext("Tag%d (%s)"), $ag['tag'], $ag['comment']);
 			  } else {
-				  $l = sprintf(gettext("Tag%d"), $ag['tag']);
+				  $l = sprintf(gtext("Tag%d"), $ag['tag']);
 			  }
 			  $ag_list[$ag['tag']] = htmlspecialchars($l);
 			}
-			html_combobox("authgroup", gettext("Auth Group"), $pconfig['authgroup'], $ag_list, gettext("The initiator can access to the target with correct user and secret in specific Auth Group."), false);
+			html_combobox("authgroup", gtext("Auth Group"), $pconfig['authgroup'], $ag_list, gtext("The initiator can access to the target with correct user and secret in specific Auth Group."), false);
       ?>
-      <?php html_combobox("digest", gettext("Initial Digest"), $pconfig['digest'], array("Auto" => gettext("Auto"), "Header" => gettext("Header digest"), "Data" => gettext("Data digest"), "Header Data" => gettext("Header and Data digest")), gettext("The initial digest mode negotiated with the initiator."), false);?>
-      <?php html_inputbox("queuedepth", gettext("Queue Depth"), $pconfig['queuedepth'], gettext("0=disabled, 1-255=enabled command queuing with specified depth.")." ".sprintf(gettext("The recommended queue depth is %d."), 32), false, 10);?>
-      <?php html_checkbox("writecache", gettext("Write Cache"), !empty($pconfig['writecache']) ? true : false, gettext("Enable write cache mode."), gettext("It can be changed from the client side by standard SCSI mode page at any time."), false);?>
-      <?php html_inputbox("inqvendor", gettext("Inquiry Vendor"), $pconfig['inqvendor'], sprintf(gettext("You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII chars)"), 8), false, 20);?>
-      <?php html_inputbox("inqproduct", gettext("Inquiry Product"), $pconfig['inqproduct'], sprintf(gettext("You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII chars)"), 16), false, 20);?>
-      <?php html_inputbox("inqrevision", gettext("Inquiry Revision"), $pconfig['inqrevision'], sprintf(gettext("You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII chars)"), 4), false, 20);?>
-      <?php html_inputbox("inqserial", gettext("Inquiry Serial"), $pconfig['inqserial'], sprintf(gettext("You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII chars)"), 16), false, 20);?>
+      <?php html_combobox("digest", gtext("Initial Digest"), $pconfig['digest'], array("Auto" => gtext("Auto"), "Header" => gtext("Header digest"), "Data" => gtext("Data digest"), "Header Data" => gtext("Header and Data digest")), gtext("The initial digest mode negotiated with the initiator."), false);?>
+      <?php html_inputbox("queuedepth", gtext("Queue Depth"), $pconfig['queuedepth'], gtext("0=disabled, 1-255=enabled command queuing with specified depth.")." ".sprintf(gtext("The recommended queue depth is %d."), 32), false, 10);?>
+      <?php html_checkbox("writecache", gtext("Write Cache"), !empty($pconfig['writecache']) ? true : false, gtext("Enable write cache mode."), gtext("It can be changed from the client side by standard SCSI mode page at any time."), false);?>
+      <?php html_inputbox("inqvendor", gtext("Inquiry Vendor"), $pconfig['inqvendor'], sprintf(gtext("You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII chars)"), 8), false, 20);?>
+      <?php html_inputbox("inqproduct", gtext("Inquiry Product"), $pconfig['inqproduct'], sprintf(gtext("You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII chars)"), 16), false, 20);?>
+      <?php html_inputbox("inqrevision", gtext("Inquiry Revision"), $pconfig['inqrevision'], sprintf(gtext("You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII chars)"), 4), false, 20);?>
+      <?php html_inputbox("inqserial", gtext("Inquiry Serial"), $pconfig['inqserial'], sprintf(gtext("You may specify as SCSI INQUIRY data. Empty as default. (up to %d ASCII chars)"), 16), false, 20);?>
       <?php if ($MAX_BLOCKLEN > 512): ?>
       <?php $a_blocklen = array();
 	for ($x = 0; (512 << $x) <= $MAX_BLOCKLEN; $x++) {
-		$a_blocklen[(512 << $x)] = sprintf(gettext("%dB / block"), (512 << $x));
+		$a_blocklen[(512 << $x)] = sprintf(gtext("%dB / block"), (512 << $x));
 	}
       ?>
-      <?php html_combobox("blocklen", gettext("Logical Block Length"), $pconfig['blocklen'], $a_blocklen, sprintf("%s %s", sprintf(gettext("You may specify logical block length (%d by default)."), 512), sprintf(gettext("The recommended length for compatibility is %d."), 512)), false, false, "");?>
+      <?php html_combobox("blocklen", gtext("Logical Block Length"), $pconfig['blocklen'], $a_blocklen, sprintf("%s %s", sprintf(gtext("You may specify logical block length (%d by default)."), 512), sprintf(gtext("The recommended length for compatibility is %d."), 512)), false, false, "");?>
       <?php else: ?>
       <input name="blocklen" type="hidden" value="512" />
       <?php endif; ?>
       </table>
       <div id="submit">
-	      <input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" onclick="enable_change(true)" />
-	      <input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+	      <input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" onclick="enable_change(true)" />
+	      <input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 	      <input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 	      <input name="addedit" type="hidden" value="<?=isset($uuid) ? 'edit' : 'add';?>" />
       </div>

@@ -3,7 +3,7 @@
 	interfaces_wlan_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -11,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -39,7 +40,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Network"), gettext("Interface Management"), gettext("WLAN"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Network"), gtext("Interface Management"), gtext("WLAN"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
 if (!isset($config['vinterfaces']['wlan']) || !is_array($config['vinterfaces']['wlan']))
 	$config['vinterfaces']['wlan'] = array();
@@ -94,25 +95,25 @@ if ($_POST) {
 
 	// Input validation.
 	$reqdfields = explode(" ", "wlandev");
-	$reqdfieldsn = array(gettext("Physical interface"));
+	$reqdfieldsn = array(gtext("Physical interface"));
 	$reqdfieldst = explode(" ", "string numeric");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	if (isset($_POST['apmode'])) {
 		$reqdfields = explode(" ", "ap_ssid ap_channel ap_psk");
-		$reqdfieldsn = array(gettext("SSID"), gettext("Channel"), gettext("PSK"));
+		$reqdfieldsn = array(gtext("SSID"), gtext("Channel"), gtext("PSK"));
 		$reqdfieldst = explode(" ", "string string string");
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 		if (preg_match("/\ |,|\'|\"/", $_POST['ap_ssid']))
-			$input_errors[] = sprintf(gettext("The attribute '%s' contains invalid characters."), gettext("SSID"));
+			$input_errors[] = sprintf(gtext("The attribute '%s' contains invalid characters."), gtext("SSID"));
 		if (preg_match("/\ |,|\'|\"/", $_POST['ap_channel']))
-			$input_errors[] = sprintf(gettext("The attribute '%s' contains invalid characters."), gettext("Channel"));
+			$input_errors[] = sprintf(gtext("The attribute '%s' contains invalid characters."), gtext("Channel"));
 		if (!empty($_POST['ap_psk']) && (strlen($_POST['ap_psk']) < 8 || strlen($_POST['ap_psk']) > 63)) {
-			$input_errors[] = sprintf(gettext("The attribute '%s' is required within %d or more characters to %d characters."), gettext("PSK"), 8, 63);
+			$input_errors[] = sprintf(gtext("The attribute '%s' is required within %d or more characters to %d characters."), gtext("PSK"), 8, 63);
 		}
 	}
 
@@ -198,37 +199,44 @@ $(document).ready(function(){
 <tr>
 	<td class="tabnavtbl">
 		<ul id="tabnav">
-			<li class="tabinact"><a href="interfaces_assign.php"><span><?=gettext("Management");?></span></a></li>
-			<li class="tabact"><a href="interfaces_wlan.php" title="<?=gettext("Reload page");?>"><span><?=gettext("WLAN");?></span></a></li>
-			<li class="tabinact"><a href="interfaces_vlan.php"><span><?=gettext("VLAN");?></span></a></li>
-			<li class="tabinact"><a href="interfaces_lagg.php"><span><?=gettext("LAGG");?></span></a></li>
-			<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gettext("Bridge");?></span></a></li>
-			<li class="tabinact"><a href="interfaces_carp.php"><span><?=gettext("CARP");?></span></a></li>
+			<li class="tabinact"><a href="interfaces_assign.php"><span><?=gtext("Management");?></span></a></li>
+			<li class="tabact"><a href="interfaces_wlan.php" title="<?=gtext('Reload page');?>"><span><?=gtext("WLAN");?></span></a></li>
+			<li class="tabinact"><a href="interfaces_vlan.php"><span><?=gtext("VLAN");?></span></a></li>
+			<li class="tabinact"><a href="interfaces_lagg.php"><span><?=gtext("LAGG");?></span></a></li>
+			<li class="tabinact"><a href="interfaces_bridge.php"><span><?=gtext("Bridge");?></span></a></li>
+			<li class="tabinact"><a href="interfaces_carp.php"><span><?=gtext("CARP");?></span></a></li>
 		</ul>
 	</td>
 </tr>
 <tr>
 	<td class="tabcont">
-		<form action="interfaces_wlan_edit.php" method="post" name="iform" id="iform">
+		<form action="interfaces_wlan_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 			<?php if ($input_errors) print_input_errors($input_errors);?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
-				<?php $a_if = array(); foreach (get_interface_wlist() as $ifk => $ifv) { if (preg_match('/wlan/i', $ifk)) { continue; } $a_if[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); };?>
-				<?php html_combobox("wlandev", gettext("Physical interface"), $pconfig['wlandev'], $a_if, "", true);?>
-				<?php html_inputbox("desc", gettext("Description"), $pconfig['desc'], gettext("You may enter a description here for your reference."), false, 40);?>
-				<?php html_separator();?>
-				<?php html_titleline_checkbox("apmode", gettext("AP mode"), !empty($pconfig['apmode']) ? true : false, gettext("Enable"), "");?>
-				<?php html_inputbox("ap_ssid", gettext("SSID"), $pconfig['ap_ssid'], gettext("Set the desired Service Set Identifier (aka network name)."), true, 20);?>
-				<?php html_inputbox("ap_channel", gettext("Channel"), $pconfig['ap_channel'], "", true, 10);?>
-				<?php html_combobox("ap_encryption", gettext("Encryption"), $pconfig['ap_encryption'], array("wpa" => sprintf("%s / %s", gettext("WPA"), gettext("WPA2"))), "", true, false, "encryption_change()");?>
-				<?php html_combobox("ap_keymgmt", gettext("Key Management Protocol"), $pconfig['ap_keymgmt'], array("WPA-PSK" => gettext("WPA-PSK (Pre Shared Key)")), "", true);?>
-				<?php html_combobox("ap_pairwise", gettext("Pairwise"), $pconfig['ap_pairwise'], array("CCMP" => gettext("CCMP"), "CCMP TKIP" => gettext("CCMP TKIP")), "", true);?>
-				<?php html_passwordbox("ap_psk", gettext("PSK"), $pconfig['ap_psk'], gettext("Enter the passphrase that will be used in WPA-PSK mode. This must be between 8 and 63 characters long."), true, 40);?>
-				<?php html_inputbox("ap_extraoptions", gettext("Extra options"), $pconfig['ap_extraoptions'], gettext("Extra options to ifconfig (usually empty)."), false, 60);?>
-				<?php html_textarea("auxparam", gettext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gettext("These parameters are added to %s."), "hostapd.conf") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://www.freebsd.org/cgi/man.cgi?query=hostapd.conf"), false, 65, 5, false, false);?>
+				<?php
+				$a_if = array(); foreach (get_interface_wlist() as $ifk => $ifv) { if (preg_match('/wlan/i', $ifk)) { continue; } $a_if[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); };
+				html_combobox("wlandev", gtext("Physical interface"), $pconfig['wlandev'], $a_if, "", true);
+				html_inputbox("desc", gtext("Description"), $pconfig['desc'], gtext("You may enter a description here for your reference."), false, 40);
+				html_separator();
+				html_titleline_checkbox("apmode", gtext("AP mode"), !empty($pconfig['apmode']) ? true : false, gtext("Enable"), "");
+				html_inputbox("ap_ssid", gtext("SSID"), $pconfig['ap_ssid'], gtext("Set the desired Service Set Identifier (aka network name)."), true, 20);
+				html_inputbox("ap_channel", gtext("Channel"), $pconfig['ap_channel'], "", true, 10);
+				html_combobox("ap_encryption", gtext("Encryption"), $pconfig['ap_encryption'], array("wpa" => sprintf("%s / %s", gtext("WPA"), gtext("WPA2"))), "", true, false, "encryption_change()");
+				html_combobox("ap_keymgmt", gtext("Key Management Protocol"), $pconfig['ap_keymgmt'], array("WPA-PSK" => gtext("WPA-PSK (Pre Shared Key)")), "", true);
+				html_combobox("ap_pairwise", gtext("Pairwise"), $pconfig['ap_pairwise'], array("CCMP" => gtext("CCMP"), "CCMP TKIP" => gtext("CCMP TKIP")), "", true);
+				html_passwordbox("ap_psk", gtext("PSK"), $pconfig['ap_psk'], gtext("Enter the passphrase that will be used in WPA-PSK mode. This must be between 8 and 63 characters long."), true, 40);
+				html_inputbox("ap_extraoptions", gtext("Extra options"), $pconfig['ap_extraoptions'], gtext("Extra options to ifconfig (usually empty)."), false, 60);
+				$helpinghand = '<a href="'
+					. 'http://www.freebsd.org/cgi/man.cgi?query=hostapd.conf'
+					. '" target="_blank">'
+					. gtext('Please check the documentation')
+					. '</a>.';
+				html_textarea("auxparam", gtext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gtext("These parameters are added to %s."), "hostapd.conf") . " " . $helpinghand, false, 65, 5, false, false);
+				?>
 			</table>
 			<div id="submit">
-				<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
-				<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+				<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+				<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 				<input name="enable" type="hidden" value="<?=$pconfig['enable'];?>" />
 				<input name="if" type="hidden" value="<?=$pconfig['if'];?>" />
 				<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />

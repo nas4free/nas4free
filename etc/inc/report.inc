@@ -3,11 +3,7 @@
 	report.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -141,7 +138,7 @@ a {
 .listtopic {
 	border-right: 1px solid #999999;
 	font-size: 11px;
-	background-image: url("listtopic_bg.png");
+	background-image: url("images/listtopic_bg.png");
 	background-color: #95A7C0;
 	padding-right: 16px;
 	padding-left: 6px;
@@ -342,11 +339,11 @@ function report_send_mail() {
 	// Send email and log result.
 	$result = email_send($config['statusreport']['to'], $config['statusreport']['subject'], $statusreport->Generate(), $error);
 	if (0 != $result) {
-		write_log(sprintf(gettext("Failed to send status report to: %s."), $config['statusreport']['to']));
+		write_log(sprintf('Failed to send status report to: %s.', $config['statusreport']['to']));
 		return 1;
 	}
 
-	write_log(sprintf(gettext("Status report successfully sent to: %s."), $config['statusreport']['to']));
+	write_log(sprintf('Status report successfully sent to: %s.', $config['statusreport']['to']));
 	return 0;
 }
 

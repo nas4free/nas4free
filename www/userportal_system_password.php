@@ -3,7 +3,7 @@
 	userportal_system_password.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -41,7 +41,7 @@ require("auth.inc");
 require("guiconfig.inc");
 require("email.inc");
 
-$pgtitle = array(gettext("System"), gettext("Password"));
+$pgtitle = array(gtext("System"), gtext("Password"));
 
 if (!isset($config['access']['user']) || !is_array($config['access']['user']))
 	$config['access']['user'] = array();
@@ -59,7 +59,7 @@ if ($_POST) {
 	unset($input_errors);
 
 	$reqdfields = explode(" ", "password_old password_new password_confirm");
-	$reqdfieldsn = array(gettext("Current password"), gettext("New password"), gettext("Password (confirmed)"));
+	$reqdfieldsn = array(gtext("Current password"), gtext("New password"), gtext("Password (confirmed)"));
 	$reqdfieldst = explode(" ", "password password password");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -67,12 +67,12 @@ if ($_POST) {
 
 	// Validate old password.
 	if ($_POST['password_old'] !== $a_user[$cnid]['password']) {
-		$input_errors[] = gettext("The old password is not correct.");
+		$input_errors[] = gtext("The old password is not correct.");
 	}
 
 	// Validate new password.
 	if ($_POST['password_new'] !== $_POST['password_confirm']) {
-		$input_errors[] = gettext("The confirmation password does not match. Please ensure the passwords match exactly.");
+		$input_errors[] = gtext("The confirmation password does not match. Please ensure the passwords match exactly.");
 	}
 
 	if (empty($input_errors)) {
@@ -85,11 +85,11 @@ if ($_POST) {
 		$message = sprintf("The user %s has changed his password via user portal.", Session::getUserName());
 		write_log($message);
 		if (0 == @email_validate_settings()) {
-			$subject = sprintf(gettext("Notification email from host: %s"), system_get_hostname());
+			$subject = sprintf(gtext("Notification email from host: %s"), system_get_hostname());
 			@email_send($config['system']['email']['from'], $subject, $message, $error);
 		}
 
-		$savemsg = gettext("The administrator has been notified to apply your changes.");
+		$savemsg = gtext("The administrator has been notified to apply your changes.");
 	}
 }
 ?>
@@ -101,11 +101,11 @@ if ($_POST) {
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_passwordbox("password_old", gettext("Current password"), "", "", true);?>
-					<?php html_passwordconfbox("password_new", "password_confirm", gettext("New password"), "", "", "", true);?>
+					<?php html_passwordbox("password_old", gtext("Current password"), "", "", true);?>
+					<?php html_passwordconfbox("password_new", "password_confirm", gtext("New password"), "", "", "", true);?>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save");?>" />
 				</div>
 				<?php include("formend.inc");?>
 			</form>

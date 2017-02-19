@@ -3,7 +3,7 @@ PORTVERSION=	 9.5.5
 PORTREVISION?= 0
 CATEGORIES=		sysutils
 COMMENT=		3ware storage controllers management CLI
-MAINTAINER=		redantz@nas4free.org
+MAINTAINER=		zoon1@nas4free.org
 
 MASTER_SITES=		http://www.lsi.com/downloads/Public/SATA/SATA%20Common%20Files/${DISTNAME}${EXTRACT_SUFX}?source=/
 DISTNAME=		CLI_freebsd-from_the_10.2.2.1_9.5.5.1_codesets

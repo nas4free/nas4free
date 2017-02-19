@@ -3,15 +3,7 @@
 	interfaces_lan.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
-	Portions of m0n0wall (http://m0n0.ch/wall).
-	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -19,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -41,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Network"), gettext("LAN Management"));
+$pgtitle = array(gtext("Network"), gtext("LAN Management"));
 
 $lancfg = &$config['interfaces']['lan'];
 $optcfg = &$config['interfaces']['lan']; // Required for WLAN.
@@ -94,28 +87,28 @@ if ($_POST) {
 
 	if ($_POST['type'] === "Static") {
 		$reqdfields = explode(" ", "ipaddr subnet");
-		$reqdfieldsn = array(gettext("IP address"),gettext("Subnet bit count"));
+		$reqdfieldsn = array(gtext("IP address"),gtext("Subnet bit count"));
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 		if (($_POST['ipaddr'] && !is_ipv4addr($_POST['ipaddr'])))
-			$input_errors[] = gettext("A valid IPv4 address must be specified.");
+			$input_errors[] = gtext("A valid IPv4 address must be specified.");
 		if ($_POST['subnet'] && !filter_var($_POST['subnet'], FILTER_VALIDATE_INT, array('options' => array('min_range' => 1, 'max_range' => 32))))
-			$input_errors[] = gettext("A valid network bit count (1-32) must be specified.");
+			$input_errors[] = gtext("A valid network bit count (1-32) must be specified.");
 	}
 
 	if (isset($_POST['ipv6_enable']) && $_POST['ipv6_enable'] && ($_POST['ipv6type'] === "Static")) {
 		$reqdfields = explode(" ", "ipv6addr ipv6subnet");
-		$reqdfieldsn = array(gettext("IPv6 address"),gettext("Prefix"));
+		$reqdfieldsn = array(gtext("IPv6 address"),gtext("Prefix"));
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 		if (($_POST['ipv6addr'] && !is_ipv6addr($_POST['ipv6addr'])))
-			$input_errors[] = gettext("A valid IPv6 address must be specified.");
+			$input_errors[] = gtext("A valid IPv6 address must be specified.");
 		if ($_POST['ipv6subnet'] && !filter_var($_POST['ipv6subnet'], FILTER_VALIDATE_INT, array('options' => array('min_range' => 1, 'max_range' => 128))))
-			$input_errors[] = gettext("A valid prefix (1-128) must be specified.");
+			$input_errors[] = gtext("A valid prefix (1-128) must be specified.");
 		if (($_POST['ipv6gatewayr'] && !is_ipv6addr($_POST['ipv6gateway'])))
-			$input_errors[] = gettext("A valid IPv6 Gateway address must be specified.");
+			$input_errors[] = gtext("A valid IPv6 Gateway address must be specified.");
 	}
 
 	// Wireless interface?
@@ -258,42 +251,61 @@ function encryption_change() {
 <?php endif;?>
 // -->
 </script>
-<form action="interfaces_lan.php" method="post" name="iform" id="iform">
+<form action="interfaces_lan.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	  <tr>
-	    <td class="tabcont">
-				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
-			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline(gettext("IPv4 Configuration"));?>
-					<?php html_combobox("type", gettext("Type"), $pconfig['type'], array("Static" => gettext("Static"), "DHCP" => "DHCP"), "", true, false, "type_change()");?>
-					<?php html_ipv4addrbox("ipaddr", "subnet", gettext("IP address"), $pconfig['ipaddr'], $pconfig['subnet'], "", true);?>
-					<?php html_inputbox("gateway", gettext("Gateway"), $pconfig['gateway'], "", true, 20);?>
-					<?php html_separator();?>
-					<?php html_titleline_checkbox("ipv6_enable", gettext("IPv6 Configuration"), !empty($pconfig['ipv6_enable']) ? true : false, gettext("Activate"), "enable_change(this)");?>
-					<?php html_combobox("ipv6type", gettext("Type"), $pconfig['ipv6type'], array("Static" => gettext("Static"), "Auto" => gettext("Auto")), "", true, false, "ipv6_type_change()");?>
-					<?php html_ipv6addrbox("ipv6addr", "ipv6subnet", gettext("IP address"), !empty($pconfig['ipv6addr']) ? $pconfig['ipv6addr'] : "", !empty($pconfig['ipv6subnet']) ? $pconfig['ipv6subnet'] : "", "", true);?>
-					<?php html_inputbox("ipv6gateway", gettext("Gateway"), !empty($pconfig['ipv6gateway']) ? $pconfig['ipv6gateway'] : "", "", true, 20);?>
-					<?php html_separator();?>
-					<?php html_titleline(gettext("Advanced Configuration"));?>
-					<?php html_inputbox("mtu", gettext("MTU"), $pconfig['mtu'], gettext("Set the maximum transmission unit of the interface to n, default is interface specific. The MTU is used to limit the size of packets that are transmitted on an interface. Not all interfaces support setting the MTU, and some interfaces have range restrictions."), false, 5);?>
+		<tr>
+			<td class="tabcont">
+				<?php
+				if (!empty($input_errors)) {
+					print_input_errors($input_errors);
+				}
+				if (file_exists($d_sysrebootreqd_path)) {
+					print_info_box(get_std_save_message(0));
+				}
+				?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<?php
+					html_titleline(gtext("IPv4 Configuration"));
+					html_combobox("type", gtext("Type"), $pconfig['type'], array("Static" => gtext("Static"), "DHCP" => "DHCP"), "", true, false, "type_change()");
+					html_ipv4addrbox("ipaddr", "subnet", gtext("IP address"), $pconfig['ipaddr'], $pconfig['subnet'], "", true);
+					html_inputbox("gateway", gtext("Gateway"), $pconfig['gateway'], "", true, 20);
+					html_separator();
+					html_titleline_checkbox("ipv6_enable", gtext("IPv6 Configuration"), !empty($pconfig['ipv6_enable']) ? true : false, gtext("Activate"), "enable_change(this)");
+					html_combobox("ipv6type", gtext("Type"), $pconfig['ipv6type'], array("Static" => gtext("Static"), "Auto" => gtext("Auto")), "", true, false, "ipv6_type_change()");
+					html_ipv6addrbox("ipv6addr", "ipv6subnet", gtext("IP address"), !empty($pconfig['ipv6addr']) ? $pconfig['ipv6addr'] : "", !empty($pconfig['ipv6subnet']) ? $pconfig['ipv6subnet'] : "", "", true);
+					html_inputbox("ipv6gateway", gtext("Gateway"), !empty($pconfig['ipv6gateway']) ? $pconfig['ipv6gateway'] : "", "", true, 20);
+					html_separator();
+					html_titleline(gtext("Advanced Configuration"));
+					html_inputbox("mtu", gtext("MTU"), $pconfig['mtu'], gtext("Set the maximum transmission unit of the interface to n, default is interface specific. The MTU is used to limit the size of packets that are transmitted on an interface. Not all interfaces support setting the MTU, and some interfaces have range restrictions."), false, 5);
+					?>
 <!--
-					<?php html_checkbox("polling", gettext("Device polling"), $pconfig['polling'] ? true : false, gettext("Enable device polling"), gettext("Device polling is a technique that lets the system periodically poll network devices for new data instead of relying on interrupts. This can reduce CPU load and therefore increase throughput, at the expense of a slightly higher forwarding delay (the devices are polled 1000 times per second). Not all NICs support polling."), false);?>
+					<?php html_checkbox("polling", gtext("Device polling"), $pconfig['polling'] ? true : false, gtext("Enable device polling"), gtext("Device polling is a technique that lets the system periodically poll network devices for new data instead of relying on interrupts. This can reduce CPU load and therefore increase throughput, at the expense of a slightly higher forwarding delay (the devices are polled 1000 times per second). Not all NICs support polling."), false);?>
 -->
-					<?php html_combobox("media", gettext("Media"), $pconfig['media'], array("autoselect" => gettext("Autoselect"), "10baseT/UTP" => "10baseT/UTP", "100baseTX" => "100baseTX", "1000baseTX" => "1000baseTX", "1000baseSX" => "1000baseSX",), "", false, false, "media_change()");?>
-					<?php html_combobox("mediaopt", gettext("Duplex"), $pconfig['mediaopt'], array("half-duplex" => "half-duplex", "full-duplex" => "full-duplex"), "", false);?>
-					<?php if (!empty($ifinfo['wolevents'])):?>
-					<?php $wakeonoptions = array("off" => gettext("Off"), "wol" => gettext("On")); foreach ($ifinfo['wolevents'] as $woleventv) { $wakeonoptions[$woleventv] = $woleventv; };?>
-					<?php html_combobox("wakeon", gettext("Wake On LAN"), $pconfig['wakeon'], $wakeonoptions, "", false);?>
-					<?php endif;?>
-					<?php html_inputbox("extraoptions", gettext("Extra options"), $pconfig['extraoptions'], gettext("Extra options to ifconfig (usually empty)."), false, 40);?>
-					<?php if (isset($lancfg['wireless'])) wireless_config_print();?>
-			  </table>
+					<?php
+					html_combobox("media", gtext("Media"), $pconfig['media'], array("autoselect" => gtext("Autoselect"), "10baseT/UTP" => "10baseT/UTP", "100baseTX" => "100baseTX", "1000baseTX" => "1000baseTX", "1000baseSX" => "1000baseSX",), "", false, false, "media_change()");
+					html_combobox("mediaopt", gtext("Duplex"), $pconfig['mediaopt'], array("half-duplex" => "half-duplex", "full-duplex" => "full-duplex"), "", false);
+					if (!empty($ifinfo['wolevents'])) {
+						$wakeonoptions = array("off" => gtext("Off"), "wol" => gtext("On")); foreach ($ifinfo['wolevents'] as $woleventv) { $wakeonoptions[$woleventv] = $woleventv; };
+						html_combobox("wakeon", gtext("Wake On LAN"), $pconfig['wakeon'], $wakeonoptions, "", false);
+					}
+					html_inputbox("extraoptions", gtext("Extra options"), $pconfig['extraoptions'], gtext("Extra options to ifconfig (usually empty)."), false, 40);
+					if (isset($lancfg['wireless'])) {
+						wireless_config_print();
+					}
+					?>
+				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save");?>" onclick="enable_change(true)" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save");?>" onclick="enable_change(true)" />
 				</div>
 				<div id="remarks">
-					<?php html_remark("warning", gettext("Warning"), sprintf(gettext("After you click &quot;Save&quot;, you may also have to do one or more of the following steps before you can access this server again: <ul><li>change the IP address of your computer</li><li>access the webGUI with the new IP address</li></ul>")));?>
+					<?php
+					$helpinghand = gtext('After you click "Save" you may also have to do one or more of the following steps before you can access this server again:')
+						. '<ul>'
+						. '<li>' . gtext('Change the IP address of your computer') . '</li>'
+						. '<li>' . gtext('Access the webGUI with the new IP address') . '</li>'
+						. '</ul>';
+					html_remark('warning', gtext('Warning'), $helpinghand);
+					?>
 				</div>
 			</td>
 		</tr>

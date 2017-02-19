@@ -3,7 +3,7 @@
 	services_websrv_authurl.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -11,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -38,7 +39,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Services"), gettext("Webserver"), gettext("Authenticate URL"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Services"), gtext("Webserver"), gtext("Authenticate URL"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
 if (!isset($config['websrv']['authentication']['url']) || !is_array($config['websrv']['authentication']['url']))
 	$config['websrv']['authentication']['url'] = array();
@@ -67,14 +68,14 @@ if ($_POST) {
 
 	// Input validation.
 	$reqdfields = explode(" ", "path realm");
-	$reqdfieldsn = array(gettext("URL"), gettext("Realm"));
+	$reqdfieldsn = array(gtext("URL"), gtext("Realm"));
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	// Check if URL is already configured.
 	$index = array_search_ex($_POST['path'], $a_authurl, "path");
 	if (FALSE !== $index) {
 		if (!((FALSE !== $cnid) && ($a_authurl[$cnid]['uuid'] === $a_authurl[$index]['uuid']))) {
-			$input_errors[] = gettext("This URL is already configured.");
+			$input_errors[] = gtext("This URL is already configured.");
 		}
 	}
 
@@ -104,16 +105,16 @@ if ($_POST) {
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
 	<td class="tabcont">
-		<form action="services_websrv_authurl.php" method="post" name="iform" id="iform">
+		<form action="services_websrv_authurl.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 			<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
-	    			<?php html_titleline(gettext("Authenticate path & realm"));?>
-				<?php html_inputbox("path", gettext("Path"), $pconfig['path'], gettext("Path of the URL relative to document root."), true, 60);?>
-				<?php html_inputbox("realm", gettext("Realm"), $pconfig['realm'], gettext("String displayed in the dialog presented to the user when accessing the URL."), true, 60);?>
+	    			<?php html_titleline(gtext("Authenticate path & realm"));?>
+				<?php html_inputbox("path", gtext("Path"), $pconfig['path'], gtext("Path of the URL relative to document root."), true, 60);?>
+				<?php html_inputbox("realm", gtext("Realm"), $pconfig['realm'], gtext("String displayed in the dialog presented to the user when accessing the URL."), true, 60);?>
 			</table>
 			<div id="submit">
-				<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
-				<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+				<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+				<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 				<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 			</div>
 			<?php include("formend.inc");?>

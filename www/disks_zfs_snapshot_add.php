@@ -3,7 +3,7 @@
 	disks_zfs_snapshot_add.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -43,7 +43,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Snapshots"), gettext("Snapshot"), gettext("Add"));
+$pgtitle = array(gtext("Disks"), gtext("ZFS"), gtext("Snapshots"), gtext("Snapshot"), gtext("Add"));
 
 if (!isset($config['zfs']['pools']['pool']) || !is_array($config['zfs']['pools']['pool']))
 	$config['zfs']['pools']['pool'] = array();
@@ -71,7 +71,10 @@ function get_zfs_paths() {
 $a_path = get_zfs_paths();
 
 if (!isset($uuid) && (!sizeof($a_pool))) {
-	$errormsg = sprintf(gettext("No configured pools. Please add new <a href='%s'>pools</a> first."), "disks_zfs_zpool.php");
+	$link = sprintf('<a href="%1$s">%2$s</a>', 'disks_zfs_zpool.php', gtext('pools'));
+	$helpinghand = gtext('No configured pools.') . ' ' . gtext('Please add new %s first.');
+	$helpinghand = sprintf($helpinghand, $link);
+	$errormsg = $helpinghand;
 }
 
 $cnid = FALSE;
@@ -100,14 +103,14 @@ if ($_POST) {
 
 	// Input validation
 	$reqdfields = explode(" ", "path name");
-	$reqdfieldsn = array(gettext("Path"), gettext("Name"));
+	$reqdfieldsn = array(gtext("Path"), gtext("Name"));
 	$reqdfieldst = explode(" ", "string string");
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if (preg_match("/(\\s|\\@|\\'|\\\")+/", $_POST['name'])) {
-		$input_errors[] = sprintf(gettext("The attribute '%s' contains invalid characters."), gettext("Name"));
+		$input_errors[] = sprintf(gtext("The attribute '%s' contains invalid characters."), gtext("Name"));
 	}
 
 	if (empty($input_errors)) {
@@ -145,21 +148,21 @@ function enable_change(enable_change) {
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gettext("Pools");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gettext("Datasets");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gettext("Volumes");?></span></a></li>
-				<li class="tabact"><a href="disks_zfs_snapshot.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Snapshots");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gettext("Configuration");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gtext("Pools");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gtext("Datasets");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gtext("Volumes");?></span></a></li>
+				<li class="tabact"><a href="disks_zfs_snapshot.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Snapshots");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gtext("Configuration");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav2">
-				<li class="tabact"><a href="disks_zfs_snapshot.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Snapshot");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot_clone.php"><span><?=gettext("Clone");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot_auto.php"><span><?=gettext("Auto Snapshot");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot_info.php"><span><?=gettext("Information");?></span></a></li>
+				<li class="tabact"><a href="disks_zfs_snapshot.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Snapshot");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot_clone.php"><span><?=gtext("Clone");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot_auto.php"><span><?=gtext("Auto Snapshot");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot_info.php"><span><?=gtext("Information");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
@@ -171,13 +174,13 @@ function enable_change(enable_change) {
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php $a_pathlist = array(); foreach ($a_path as $pathv) { $a_pathlist[$pathv['path']] = htmlspecialchars($pathv['path']); }?>
-					<?php html_combobox("path", gettext("Path"), $pconfig['path'], $a_pathlist, "", true);?>
-					<?php html_inputbox("name", gettext("Name"), $pconfig['name'], "", true, 20);?>
-					<?php html_checkbox("recursive", gettext("Recursive"), !empty($pconfig['recursive']) ? true : false, gettext("Creates the recursive snapshot."), "", false);?>
+					<?php html_combobox("path", gtext("Path"), $pconfig['path'], $a_pathlist, "", true);?>
+					<?php html_inputbox("name", gtext("Name"), $pconfig['name'], "", true, 20);?>
+					<?php html_checkbox("recursive", gtext("Recursive"), !empty($pconfig['recursive']) ? true : false, gtext("Creates the recursive snapshot."), "", false);?>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Add");?>" onclick="enable_change(true)" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Add");?>" onclick="enable_change(true)" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 				</div>
 				<?php include("formend.inc");?>

@@ -1,0 +1,11 @@
+--- icons.c.orig	2015-11-12 02:18:09.422881000 +0900
++++ icons.c	2015-11-12 02:19:00.293630000 +0900
+@@ -1101,6 +1101,8 @@
+              "\x6b\x4e\x7a\xe0\x6a\x0a\x51\xa2\x8a\x34\x51\x46\x8a\x28\xd1\x45\x1a\x28\xa3\x45\x14\x68\xa2\x8d"
+              "\x14\x51\xa2\x8a\x34\x51\x46\x8a\x28\xd1\x45\x1a\x28\xa3\x45\x14\x68\xa2\x8d\x14\x51\xa2\x8a\xff"
+              "\xd9";
++#elif defined(NAS4Free)
++#include "nas4free-icons.c"
+ #elif __FreeBSD__
+ /* Small Daemon PNG image */
+ unsigned char

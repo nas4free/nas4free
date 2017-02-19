@@ -3,15 +3,7 @@
 	reboot.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
-	Portions of m0n0wall (http://m0n0.ch/wall).
-	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -19,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -41,11 +34,11 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("System"), gettext("Reboot"), gettext("Now"));
+$pgtitle = array(gtext("System"), gtext("Reboot"), gtext("Now"));
 
 if ($_POST) {
-	if ($_POST['Submit'] !== gettext("No")) {
-		$rebootmsg = gettext("The system is rebooting now. This may take one minute.");
+	if ($_POST['Submit'] !== gtext("No")) {
+		$rebootmsg = gtext("The server is rebooting now.");
 	} else {
 		header("Location: index.php");
 		exit;
@@ -57,19 +50,19 @@ if ($_POST) {
   <tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-        <li class="tabact"><a href="reboot.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Now");?></span></a></li>
-        <li class="tabinact"><a href="reboot_sched.php"><span><?=gettext("Scheduled");?></span></a></li>
+        <li class="tabact"><a href="reboot.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Now");?></span></a></li>
+        <li class="tabinact"><a href="reboot_sched.php"><span><?=gtext("Scheduled");?></span></a></li>
       </ul>
     </td>
   </tr>
   <tr>
     <td class="tabcont">
-			<?php if (!empty($rebootmsg)): echo print_info_box($rebootmsg); system_reboot(); else:?>
-			<form action="reboot.php" method="post">
-			  <strong><?=gettext("Are you sure you want to reboot the system?");?></strong>
+			<?php if (!empty($rebootmsg)): echo print_info_box($rebootmsg); sleep(1); system_reboot(); else:?>
+			<form action="reboot.php" method="post" onsubmit="spinner()">
+			  <strong><?=gtext("Are you sure you want to reboot the server?");?></strong>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Yes");?>" />
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("No");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Yes");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("No");?>" />
 				</div>
 				<?php include("formend.inc");?>
 			</form>

@@ -3,11 +3,7 @@
 	disks_zfs_zpool_io.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -34,70 +31,76 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Pools"), gettext("I/O statistics"));
-
-function zfs_zpool_get_iostat() {
-	// Get zpool I/O statistic informations
-	$cmd = "zpool iostat -v 2>&1";
-	if (isset($_GET['pool'])) {
-		$cmd .= " {$_GET['pool']}";
+function disks_zfs_zpool_get_io_ajax() {
+	if (isset($_GET['pool']) && is_string($_GET['pool'])) {
+		$cmd = sprintf('zpool iostat -v "%s"', $_GET['pool']);
+	} else {
+		$cmd = 'zpool iostat -v';
 	}
 	mwexec2($cmd, $rawdata);
-	return implode("\n", $rawdata);
+	return htmlspecialchars(implode("\n", $rawdata));
 }
-
 if (is_ajax()) {
-	$iostat = zfs_zpool_get_iostat();
-	render_ajax($iostat);
+	$status = disks_zfs_zpool_get_io_ajax();
+	render_ajax($status);
 }
+$pgtitle = [gtext('Disks'), gtext('ZFS'), gtext('Pools'), gtext('I/O Statistics')];
 ?>
-<?php include("fbegin.inc");?>
-<script type="text/javascript">//<![CDATA[
+<?php include 'fbegin.inc';?>
+<script type="text/javascript">
+//<![CDATA[
 $(document).ready(function(){
 	var gui = new GUI;
 	gui.recall(0, 5000, 'disks_zfs_zpool_io.php', null, function(data) {
-		$('#zfs_zpool_iostat').text(data.data);
+		$('#ajax_refresh').text(data.data);
 	});
 });
 //]]>
 </script>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<table id="area_navigator"><tbody>
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabact"><a href="disks_zfs_zpool.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Pools");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gettext("Datasets");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gettext("Volumes");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gettext("Snapshots");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gettext("Configuration");?></span></a></li>
+				<li class="tabact"><a href="disks_zfs_zpool.php" title="<?=gtext('Reload page');?>"><span><?=gtext('Pools');?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gtext('Datasets');?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gtext('Volumes');?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gtext('Snapshots');?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gtext('Configuration');?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav2">
-				<li class="tabinact"><a href="disks_zfs_zpool_vdevice.php"><span><?=gettext("Virtual device");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gettext("Management");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_zpool_tools.php"><span><?=gettext("Tools");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_zpool_info.php"><span><?=gettext("Information");?></span></a></li>
-				<li class="tabact"><a href="disks_zfs_zpool_io.php" title="<?=gettext("Reload page");?>"><span><?=gettext("I/O statistics");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_zpool_vdevice.php"><span><?=gtext('Virtual Device');?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gtext('Management');?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_zpool_tools.php"><span><?=gtext('Tools');?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_zpool_info.php"><span><?=gtext('Information');?></span></a></li>
+				<li class="tabact"><a href="disks_zfs_zpool_io.php" title="<?=gtext('Reload page');?>"><span><?=gtext('I/O Statistics');?></span></a></li>
 			</ul>
 		</td>
 	</tr>
-	<tr>
-		<td class="tabcont">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<?php html_titleline(gettext("Pool information and status"));?>
-				<tr>
-					<td class="listt">
-						<pre><span id="zfs_zpool_iostat"></span></pre>
-					</td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>
-<?php include("fend.inc");?>
+</tbody></table>
+<table id="area_data"><tbody><tr><td id="area_data_frame">
+	<table id="area_data_settings">
+		<colgroup>
+			<col id="area_data_settings_col_tag">
+			<col id="area_data_settings_col_data">
+		</colgroup>
+		<thead>
+			<?php html_titleline2(gtext('ZFS Pool I/O Statistics'));?>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="celltag"><?=gtext('Information');?></td>
+				<td class="celldata">
+					<pre><span id="ajax_refresh"></span></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</td></tr></tbody></table>
+<?php include 'fend.inc';?>

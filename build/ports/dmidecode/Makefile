@@ -1,12 +1,13 @@
 PORTNAME=	dmidecode
-PORTVERSION=	2.12
+PORTVERSION=	3.0
+PORTREVISION?= 1
 CATEGORIES=	sysutils
 MASTER_SITES=	SAVANNAH
 
-MAINTAINER=	zoon01@nas4free.org
+MAINTAINER=	zoon1@nas4free.org
 COMMENT=	A tool for dumping DMI (SMBIOS) contents in human-readable format
 
-USES=		tar:bzip2
+EXTRACT_SUFX= .tar.xz
 LICENSE=	GPLv2
 
 

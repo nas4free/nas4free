@@ -1,26 +1,26 @@
 PORTNAME=		nut
-PORTVERSION=	2.7.3
-PORTREVISION=	0
+PORTVERSION=	2.7.4
+PORTREVISION=	2
 CATEGORIES=		sysutils
 COMMENT=		Network UPS tools
-MAINTAINER=		zoon01@nas4free.org
+MAINTAINER=		zoon1@nas4free.org
 
 MASTER_SITES=	http://www.networkupstools.org/source/${PORTVERSION:R}/
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 USE_AUTOTOOLS=  autoconf
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=		yes
-USES=		gmake pkgconfig libtool
+USES=			gmake pkgconfig libtool
 
 NUT_USER=		root
-NUT_GROUP=		root
+NUT_GROUP=		wheel
 NUT_PIDDIR=		/var/run
 NUT_STATEDIR=		/var/db/nut
-NUT_SYSCONFDIR=	/var/etc
+NUT_SYSCONFDIR=		/var/etc
 NUT_DATADIR=		/usr/local/etc/${PORTNAME}
-NUT_DRVDIR=			/usr/local/libexec/${PORTNAME}
+NUT_DRVDIR=		/usr/local/libexec/${PORTNAME}
 
 CONFIGURE_ARGS+=	--sysconfdir=${NUT_SYSCONFDIR} \
 		--program-transform-name="" \
@@ -45,11 +45,11 @@ CONFIGURE_ARGS+=	--sysconfdir=${NUT_SYSCONFDIR} \
 
 .include <bsd.port.pre.mk>
 
-LIB_DEPENDS+=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
-LIB_DEPENDS+=   libneon.so:${PORTSDIR}/www/neon
-LIB_DEPENDS+=	libpowerman.so:${PORTSDIR}/sysutils/powerman
+LIB_DEPENDS+=	libnetsnmp.so:net-mgmt/net-snmp
+LIB_DEPENDS+=   libneon.so:www/neon
+LIB_DEPENDS+=	libpowerman.so:sysutils/powerman
 .if (${ARCH} == "amd64" || ${ARCH} == "i386")
-LIB_DEPENDS+=	libfreeipmi.so:${PORTSDIR}/sysutils/freeipmi
+LIB_DEPENDS+=	libfreeipmi.so:sysutils/freeipmi
 CONFIGURE_ARGS+=--with-ipmi \
 		--with-freeipmi
 .endif

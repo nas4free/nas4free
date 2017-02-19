@@ -3,11 +3,7 @@
 	updatenotify.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -40,9 +37,27 @@ require_once("globals.inc");
 define("UPDATENOTIFY_MODE_NEW", 0);
 define("UPDATENOTIFY_MODE_MODIFIED", 1);
 define("UPDATENOTIFY_MODE_DIRTY", 2);
+define("UPDATENOTIFY_MODE_DIRTY_CONFIG", 22);
 define("UPDATENOTIFY_MODE_UNKNOWN", 3);
 
 define("UPDATENOTIFY_DB", "{$g['vardb_path']}/updatenotify.db");
+
+// Config parameter constants to determine the mode of a parameter / array of parameters
+define("RECORD_ERROR", 0);
+define("RECORD_NEW", 1);
+define("RECORD_NEW_MODIFY", 12);
+define("RECORD_NEW_DELETE", 13);
+define("RECORD_MODIFY", 2);
+define("RECORD_MODIFY_MODIFY", 22);
+define("RECORD_MODIFY_DELETE", 23);
+define("RECORD_DELETE", 3);
+define("RECORD_DELETE_MODIFY", 32);
+define("RECORD_DELETE_DELETE", 33);
+
+// Parameter to define the mode of a page
+define("PAGE_MODE_ADD", 1);
+define("PAGE_MODE_EDIT", 2);
+define("PAGE_MODE_POST", 3);
 
 // Create database object and create tables if necessary.
 try {
@@ -251,10 +266,10 @@ function updatenotify_process($key, $function) {
 		return 0;
 
 	foreach ($a_notification as $notificationv) {
-		if (0 != call_user_func($function, $notificationv['mode'], $notificationv['data']))
+		if (0 != call_user_func($function, $notificationv['mode'], $notificationv['data'])) {
 			return 1;
+		}
 	}
-
 	return 0;
 }
 ?>

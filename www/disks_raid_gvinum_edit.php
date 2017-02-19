@@ -3,11 +3,7 @@
 	disks_raid_gvinum_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -36,180 +33,479 @@
 */
 require("auth.inc");
 require("guiconfig.inc");
+require 'disks_raid_gvinum_fun.inc';
 
-if (isset($_GET['id']))
-	$id = $_GET['id'];
-if (isset($_POST['id']))
-	$id = $_POST['id'];
-
-$pgtitle = array(gettext("Disks"), gettext("Software RAID"), gettext("RAID 0/1/5"), isset($id) ? gettext("Edit") : gettext("Add"));
-
-if (!isset($config['gvinum']['vdisk']) || !is_array($config['gvinum']['vdisk']))
-	$config['gvinum']['vdisk'] = array();
-
-array_sort_key($config['gvinum']['vdisk'], "name");
-
-$a_raid = &$config['gvinum']['vdisk'];
-$all_raid = get_conf_sraid_disks_list();
-$a_disk = get_conf_disks_filtered_ex("fstype", "softraid");
-
-if (!sizeof($a_disk)) {
-	$nodisk_errors[] = gettext("You must add disks first.");
+$sphere_scriptname = basename(__FILE__);
+$sphere_header = 'Location: '.$sphere_scriptname;
+$sphere_header_parent = 'Location: disks_raid_gvinum.php';
+$sphere_notifier = 'raid_gvinum';
+$sphere_array = [];
+$sphere_record = [];
+$checkbox_member_name = 'checkbox_member_array';
+$checkbox_member_array = [];
+$checkbox_member_record = [];
+$gt_record_loc = gtext('RAID device is already in use.');
+$gt_record_opn = gtext('RAID device can be removed.');
+$gt_confirm_mirror = gtext('Do you want to create a RAID-1 from selected disks?');
+$gt_confirm_raid5 = gtext('Do you want to create a RAID-5 from selected disks?');
+$gt_confirm_stripe = gtext('Do you want to create a RAID-0 from selected disks?');
+$prerequisites_ok = true; // flag to indicate lack of information / resources
+$img_path = [
+	'add' => 'images/add.png',
+	'mod' => 'images/edit.png',
+	'del' => 'images/delete.png',
+	'loc' => 'images/locked.png',
+	'unl' => 'images/unlocked.png'
+];
+// detect page mode (GET, POST, ADD)
+$mode_page = ($_POST) ? PAGE_MODE_POST : (($_GET) ? PAGE_MODE_EDIT : PAGE_MODE_ADD);
+// process cancel event, allow only submit or action
+if (PAGE_MODE_POST == $mode_page) { // POST is Cancel
+	if ((isset($_POST['Cancel']) && $_POST['Cancel']) && !(isset($_POST['Submit']) && $_POST['Submit']) && !(isset($_POST['Action']) && $_POST['Action'])) {
+		header($sphere_header_parent);
+		exit;
+	}
 }
-
-if (isset($id) && $a_raid[$id]) {
-	$pconfig['uuid'] = $a_raid[$id]['uuid'];
-	$pconfig['name'] = $a_raid[$id]['name'];
-	$pconfig['devicespecialfile'] = $a_raid[$id]['devicespecialfile'];
-	$pconfig['type'] = $a_raid[$id]['type'];
-	$pconfig['device'] = $a_raid[$id]['device'];
+// get/set uuid based on page mode (GET, POST, ADD)
+if ((PAGE_MODE_POST == $mode_page) && isset($_POST['uuid']) && is_uuid_v4($_POST['uuid'])) {
+	$sphere_record['uuid'] = $_POST['uuid'];
 } else {
-	$pconfig['uuid'] = uuid();
-	$pconfig['name'] = "";
-	$pconfig['devicespecialfile'] = "";
-	$pconfig['type'] = 0;
-	$pconfig['device'] = array();
+	if ((PAGE_MODE_EDIT == $mode_page) && isset($_GET['uuid']) && is_uuid_v4($_GET['uuid'])) {
+		$sphere_record['uuid'] = $_GET['uuid'];
+	} else {
+		$mode_page = PAGE_MODE_ADD; // Force ADD
+		$sphere_record['uuid'] = uuid();
+	}
 }
+// read configuration data
+if (!(isset($config['gvinum']['vdisk']) && is_array($config['gvinum']['vdisk']))) {
+	$config['gvinum']['vdisk'] = [];
+}
+array_sort_key($config['gvinum']['vdisk'], 'name');
+$sphere_array = &$config['gvinum']['vdisk'];
+// get additional processing information
+$a_process = gvinum_processinfo_get();
+// scan for pending tasks
+$mode_updatenotify = UPDATENOTIFY_MODE_UNKNOWN;
+foreach ($a_process as $r_process) {
+	if (UPDATENOTIFY_MODE_UNKNOWN === $mode_updatenotify) {
+		$mode_updatenotify = updatenotify_get_mode($r_process['x-notifier'], $sphere_record['uuid']); // get updatenotify mode for uuid
+	} else {
+		break;
+	}
+}
+// find index of uuid in the main array
+$index = array_search_ex($sphere_record['uuid'], $sphere_array, 'uuid');
+// determine record mode, exit page if information doesn't mke sense
+$mode_record = RECORD_ERROR;
+if (false !== $index) { // record for uuid found in configuration 
+	if ((PAGE_MODE_POST == $mode_page || (PAGE_MODE_EDIT == $mode_page))) { // POST or EDIT
+		switch ($mode_updatenotify) {
+			case UPDATENOTIFY_MODE_NEW:
+				$mode_record = RECORD_NEW_MODIFY;
+				break;
+			case UPDATENOTIFY_MODE_MODIFIED:
+			case UPDATENOTIFY_MODE_UNKNOWN:
+				$mode_record = RECORD_MODIFY;
+				break;
+		}
+	}
+} else { // record for uuid not found in configuration
+	if ((PAGE_MODE_POST == $mode_page) || (PAGE_MODE_ADD == $mode_page)) { // POST or ADD
+		switch ($mode_updatenotify) {
+			case UPDATENOTIFY_MODE_UNKNOWN:
+				$mode_record = RECORD_NEW;
+				break;
+		}
+	}
+}
+if (RECORD_ERROR == $mode_record) { // oops, someone tries to cheat, over and out
+	header($sphere_header_parent);
+	exit;
+}
+$isrecordnew = (RECORD_NEW === $mode_record);
+$isrecordnewmodify = (RECORD_NEW_MODIFY == $mode_record);
+$isrecordmodify = (RECORD_MODIFY === $mode_record);
+$isrecordnewornewmodify = ($isrecordnew || $isrecordnewmodify);
 
-if ($_POST) {
+// get all known softraids (config)
+$a_config_sraid = get_conf_sraid_disks_list();
+// get all disks that are softraid-formatted 
+$a_sdisk = get_conf_disks_filtered_ex('fstype', 'softraid');
+if (!sizeof($a_sdisk)) {
+	$errormsg = gtext('No softraid-formatted disks available.');
+	$prerequisites_ok = false;
+}
+if (PAGE_MODE_POST == $mode_page) { // We know POST is "Submit" or "Action", already checked at the beginning
+	if (isset($_POST['Submit']) && $_POST['Submit']) { // Submit is coming from save button which is only shown on RECORD_MODIFY
+		$sphere_record['desc']              = (isset($_POST['desc']) ? $_POST['desc'] : '');
+		$sphere_record['device']            = $sphere_array[$index]['device'];
+		$sphere_record['init']              = false;
+		$sphere_record['name']              = $sphere_array[$index]['name'];
+		$sphere_record['size']              = $sphere_array[$index]['size'];
+		$sphere_record['type']              = $sphere_array[$index]['type'];
+		$sphere_record['devicespecialfile'] = sprintf('%1$s/%2$s', $a_process[$sphere_record['type']]['x-devdir'], $sphere_record['name']);
+	} elseif (isset($_POST['Action']) && preg_match('/\S/', $_POST['Action'])) { // Action is coming from action buttons which are only shown on RECORD_NEW or RECORD_NEW_MODIFY
+		$sphere_record['desc']              = (isset($_POST['desc']) ? $_POST['desc'] : '');
+		$sphere_record['device']            = (isset($_POST[$checkbox_member_name]) ? $_POST[$checkbox_member_name] : []);
+		$sphere_record['init']              = isset($_POST['init']);
+		$sphere_record['name']              = (isset($_POST['name']) ? substr($_POST['name'], 0, 15) : ''); // Make sure name is only 15 chars long (GEOM limitation).
+		$sphere_record['size']              = 'Unknown';
+		$sphere_record['type']              = $_POST['Action'];
+		$sphere_record['devicespecialfile'] = sprintf('%1$s/%2$s', $a_process[$sphere_record['type']]['x-devdir'], $sphere_record['name']);
+	} else { // something went wrong with POST, we exit
+		header($sphere_header_parent);
+		exit;
+	}
+	// start validation
 	unset($input_errors);
-	$pconfig = $_POST;
-
-	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
-		header("Location: disks_raid_gvinum.php");
-		exit;
-	}
-
 	// Input validation
-	$reqdfields = explode(" ", "name type");
-	$reqdfieldsn = array(gettext("Raid name"),gettext("Type"));
+	$reqdfields = ['name', 'type'];
+	$reqdfieldsn = [gtext('RAID Name'), gtext('Type')];
 
-	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
-
-	if (($_POST['name'] && !is_validaliasname($_POST['name']))) {
-		$input_errors[] = gettext("The device name may only consist of the characters a-z, A-Z, 0-9.");
-	}
-
-	// Check for duplicate name.
-	foreach ($all_raid as $raid) {
-		if ($raid['name'] === $_POST['name']) {
-			$input_errors[] = gettext("This device already exists in the raid volume list.");
-			break;
+	do_input_validation($sphere_record, $reqdfields, $reqdfieldsn, $input_errors);
+	// logic validation
+	if ($prerequisites_ok && empty($input_errors)) { // check for a valid RAID name.
+		if (($sphere_record['name'] && !is_validaliasname($sphere_record['name']))) {
+			$input_errors[] = gtext('The name of the RAID may only consist of the characters a-z, A-Z, 0-9.');
 		}
 	}
-
-	/* check the number of RAID disk for volume */
-	switch ($_POST['type'])
-	{
-		case 0:
-			if (empty($_POST['device']) || count($_POST['device']) < 2)
-				$input_errors[] = gettext("There must be a minimum of 2 disks in a RAID 0 volume.");
+	if ($prerequisites_ok && empty($input_errors)) { // check for existing RAID names
+		switch ($mode_record) { // verify config
+			case RECORD_NEW:
+				foreach ($a_config_sraid as $r_config_sraid) { // RAID name must not exist in config at all
+					if ($r_config_sraid['name'] === $sphere_record['name']) {
+						$input_errors[] = gtext('The name of the RAID is already in use.');
+						break; // break loop
+					}
+				}
 			break;
-		case 1:
-			if (empty($_POST['device']) || count($_POST['device']) != 2)
-				$input_errors[] = gettext("There must be 2 disks in a RAID 1 volume.");
-			break;
-		case 5:
-			if (empty($_POST['device']) || count($_POST['device']) < 3)
-				$input_errors[] = gettext("There must be a minimum of 3 disks in a RAID 5 volume.");
-			break;
-	}
-
-	if (empty($input_errors)) {
-		$raid = array();
-		$raid['uuid'] = uuid();
-		$raid['name'] = substr($_POST['name'], 0, 15); // Make sure name is only 15 chars long (GEOM limitation).
-		$raid['type'] = $_POST['type'];
-		$raid['device'] = $_POST['device'];
-		$raid['desc'] = "Software gvinum RAID {$_POST['type']}";
-		$raid['devicespecialfile'] = "/dev/gvinum/{$raid['name']}";
-
-		if (isset($id) && $a_raid[$id]) {
-			$a_raid[$id] = $raid;
-			$mode = UPDATENOTIFY_MODE_MODIFIED;
-		} else {
-			$a_raid[] = $raid;
-			if (isset($_POST['init']))
-				$mode = UPDATENOTIFY_MODE_NEW;
-			else
-				$mode = UPDATENOTIFY_MODE_MODIFIED;
+			case RECORD_NEW_MODIFY: 
+				if ($sphere_record['name'] !== $sphere_array[$index]['name']) { // if the RAID name has changed it shouldn't be found in config
+					foreach ($a_config_sraid as $r_config_sraid) {
+						if ($r_config_sraid['name'] === $sphere_record['name']) {
+							$input_errors[] = gtext('The name of the RAID is already in use.');
+							break; // break loop
+						}
+					}
+				}
+				break;
+			case RECORD_MODIFY: 
+				if ($sphere_record['name'] !== $sphere_array[$index]['name']) { // should never happen because sphere_record['name'] should be set to $sphere_array[$index]['name']
+					$input_errors[] = gtext('The name of the RAID cannot be changed.');
+				}
+				break;
 		}
-
-		updatenotify_set("raid_gvinum", $mode, $raid['uuid']);
+	}
+	if ($prerequisites_ok && empty($input_errors)) { // check the number of disk for RAID volume
+		$helpinghand = count($sphere_record['device']);
+		switch ($sphere_record['type']) {
+			case '1'   : if ($helpinghand < 2) { $input_errors[] = gtext('2 or more disks are required to build a RAID-1 volume.'); } break;
+			case '5'   : if ($helpinghand < 3) { $input_errors[] = gtext('3 or more disks are required to build a RAID-5 volume.'); } break;
+			case '0'   : if ($helpinghand < 2) { $input_errors[] = gtext('2 or more disks are required to build a RAID-0 volume.'); } break;
+		}
+	}
+	// process POST
+	if ($prerequisites_ok && empty($input_errors)) {
+		$sphere_notifier = $a_process[$sphere_record['type']]['x-notifier'];
+		switch ($mode_record) {
+			case RECORD_NEW:
+				if ($sphere_record['init']) { // create new RAID
+					updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_NEW, $sphere_record['uuid']);
+				} else { // existing RAID
+					updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_MODIFIED, $sphere_record['uuid']);
+				}
+				unset($sphere_record['init']); // lifetime ends here
+				$sphere_array[] = $sphere_record;
+				break;
+			case RECORD_NEW_MODIFY:
+				if ($sphere_record['init']) { // create new RAID
+				} else { // existing RAID
+					updatenotify_clear($sphere_notifier, $sphere_record['uuid']); // clear NEW
+					updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_MODIFIED, $sphere_record['uuid']);
+				}
+				unset($sphere_record['init']); // lifetime ends here
+				$sphere_array[$index] = $sphere_record;
+				break;
+			case RECORD_MODIFY:
+				if (UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify) {
+					updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_MODIFIED, $sphere_record['uuid']);
+				}
+				unset($sphere_record['init']); // lifetime ends here
+				$sphere_array[$index] = $sphere_record;
+				break;
+		}
 		write_config();
-
-		header("Location: disks_raid_gvinum.php");
+		header($sphere_header_parent);
 		exit;
+	}
+} else { // EDIT / ADD
+	switch ($mode_record) {
+		case RECORD_NEW:
+			$sphere_record['name'] = '';
+			$sphere_record['type'] = '1'; // RAID1 by default
+			$sphere_record['init'] = false;
+			$sphere_record['device'] = [];
+			$sphere_record['devicespecialfile'] = '';
+			$sphere_record['desc'] = gtext('GEOM VINUM Software RAID');
+			break;
+		case RECORD_NEW_MODIFY:
+			$sphere_record['name'] = (isset($sphere_array[$index]['name']) ? $sphere_array[$index]['name'] : '');
+			$sphere_record['type'] = (isset($sphere_array[$index]['type']) ? $sphere_array[$index]['type'] : '');
+			$sphere_record['init'] = true; // it must have been set because the previous status of RECORD_NEW_MODIFY can only be RECOD_NEW.
+			$sphere_record['device'] = (isset($sphere_array[$index]['device']) ? $sphere_array[$index]['device'] : []);
+			$sphere_record['devicespecialfile'] = $sphere_array[$index]['devicespecialfile'];
+			$sphere_record['desc'] = (isset($sphere_array[$index]['desc']) ? $sphere_array[$index]['desc'] : '');
+			break;
+		case RECORD_MODIFY:
+			$sphere_record['name'] = (isset($sphere_array[$index]['name']) ? $sphere_array[$index]['name'] : '');
+			$sphere_record['type'] = (isset($sphere_array[$index]['type']) ? $sphere_array[$index]['type'] : '');
+			$sphere_record['init'] = false;
+			$sphere_record['device'] = (isset($sphere_array[$index]['device']) ? $sphere_array[$index]['device'] : []);
+			$sphere_record['devicespecialfile'] = $sphere_array[$index]['devicespecialfile'];
+			$sphere_record['desc'] = (isset($sphere_array[$index]['desc']) ? $sphere_array[$index]['desc'] : '');
+			break;
 	}
 }
+// compile list of devices
+$a_device = [];
+foreach ($a_sdisk as $r_sdisk) {
+	$helpinghand = $r_sdisk['devicespecialfile'] . (isset($r_sdisk['zfsgpt']) ? $r_sdisk['zfsgpt'] : '');
+	$r_device = [];
+	$r_device['name'] = isset($r_sdisk['name']) ? htmlspecialchars($r_sdisk['name']) : '';
+	$r_device['uuid'] = isset($r_sdisk['uuid']) ? $r_sdisk['uuid'] : '';
+	$r_device['model'] = isset($r_sdidk['model']) ? htmlspecialchars($r_sdisk['model']) : '';
+	$r_device['devicespecialfile'] = htmlspecialchars($helpinghand);
+	$r_device['partition'] = ((isset($r_sdisk['zfsgpt']) && (!empty($r_sdisk['zfsgpt'])))? $r_sdisk['zfsgpt'] : gtext('Entire Device'));
+	$r_device['controller'] = (isset($r_sdisk['controller']) ? $r_sdisk['controller'] : '?') . (isset($r_sdisk['controller_id']) ?  $r_sdisk['controller_id'] : '');
+	if (isset($r_sdisk['controller_desc'])) {
+		$r_device['controller'] .= (' (' . $r_sdisk['controller_desc'] . ')');
+	}
+	$r_device['size'] = isset($r_sdisk['size']) ? $r_sdisk['size'] : '';
+	$r_device['serial'] = isset($r_sdisk['serial']) ? $r_sdisk['serial'] : '';
+	$r_device['desc'] = isset($r_sdisk['desc']) ? htmlspecialchars($r_sdisk['desc']) : '';
+	$r_device['isnotinasraid'] = (false === array_search_ex($r_device['devicespecialfile'], $a_config_sraid, 'device'));
+	$r_device['isinthissraid'] = (isset($sphere_record['device']) && is_array($sphere_record['device']) && in_array($r_device['devicespecialfile'], $sphere_record['device']));
+	$a_device[$helpinghand] = $r_device;
+}
+
+$pgtitle = [gtext('Disks'), gtext('Software RAID'), gtext('RAID 0/1/5'), ($isrecordnew) ? gtext('Add') : gtext('Edit')];
 ?>
 <?php include("fbegin.inc"); ?>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<?php if ($isrecordnewornewmodify):?>
+<script type="text/javascript">
+//<![CDATA[
+$(window).on("load", function() {
+	$("input[name='<?=$checkbox_member_name;?>[]").click(function() {
+		controlactionbuttons(this, '<?=$checkbox_member_name;?>[]');
+	});
+	$("#togglebox").click(function() {
+		toggleselection($(this)[0], "<?=$checkbox_member_name;?>[]");
+	});
+	$("#button_raid1").click(function () { return confirm('<?=$gt_confirm_mirror;?>'); });
+	$("#button_raid5").click(function () { return confirm('<?=$gt_confirm_raid5;?>'); });
+	$("#button_raid0").click(function () { return confirm('<?=$gt_confirm_stripe;?>'); });
+	controlactionbuttons(this,'<?=$checkbox_member_name;?>[]');
+	// Init spinner onsubmit()
+	$("#iform").submit(function() { spinner(); });
+});
+function disableactionbuttons(n) {
+	var ab_element;
+	var ab_disable = [];
+	if (typeof(n) !== 'number') { n = 0; }
+ 	switch (n) { //            mirror, raid5 , stripe
+		case  0: ab_disable = [true  , true  , true  ]; break;
+		case  1: ab_disable = [true  , true  , true  ]; break;
+		case  2: ab_disable = [false , true  , false ]; break;
+		default: ab_disable = [false , false , false ]; break; // setting for 3 or more disks
+	}		
+	ab_element = document.getElementById('button_raid1'); if ((ab_element !== null) && (ab_element.disabled !== ab_disable[0])) { ab_element.disabled = ab_disable[0]; }
+	ab_element = document.getElementById('button_raid5'); if ((ab_element !== null) && (ab_element.disabled !== ab_disable[1])) { ab_element.disabled = ab_disable[1]; }
+	ab_element = document.getElementById('button_raid0'); if ((ab_element !== null) && (ab_element.disabled !== ab_disable[2])) { ab_element.disabled = ab_disable[2]; }
+}
+function controlactionbuttons(ego, triggerbyname) {
+	var a_trigger = document.getElementsByName(triggerbyname);
+	var n_trigger = a_trigger.length;
+	var i = 0;
+	var n = 0;
+	for (; i < n_trigger; i++) {
+		if ((a_trigger[i].type === 'checkbox') && !a_trigger[i].disabled && a_trigger[i].checked) {
+			n++;
+		}
+	}
+	disableactionbuttons(n);
+}
+function toggleselection(ego, triggerbyname) {
+	var a_trigger = document.getElementsByName(triggerbyname);
+	var n_trigger = a_trigger.length;
+	var i = 0;
+	var n = 0;
+	for (; i < n_trigger; i++) {
+		if ((a_trigger[i].type === 'checkbox') && !a_trigger[i].disabled) {
+			a_trigger[i].checked = !a_trigger[i].checked;
+			if (a_trigger[i].checked) {
+				n++;
+			}
+		}
+	}
+	disableactionbuttons(n);
+	$("#togglebox").prop("checked", false);
+}
+//]]>
+</script>
+<?php endif;?>
+<table id="area_navigator"><tbody>
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabinact"><a href="disks_raid_gconcat.php"><span><?=gettext("JBOD");?></span></a></li>
-				<li class="tabinact"><a href="disks_raid_gstripe.php"><span><?=gettext("RAID 0");?></span></a></li>
-				<li class="tabinact"><a href="disks_raid_gmirror.php"><span><?=gettext("RAID 1");?></span></a></li>
-				<li class="tabinact"><a href="disks_raid_graid5.php"><span><?=gettext("RAID 5");?></span></a></li>
-				<li class="tabact"><a href="disks_raid_gvinum.php" title="<?=gettext("Reload page");?>"><span><?=gettext("RAID 0/1/5");?></span></a></li>
+				<li class="tabinact"><a href="disks_raid_geom.php"><span><?=gtext('GEOM');?></span></a></li>
+				<li class="tabact"><a href="disks_raid_gvinum.php" title="<?=gtext('Reload page');?>"><span><?=gtext('RAID 0/1/5');?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav2">
-				<li class="tabact"><a href="disks_raid_gvinum.php" title="<?=gettext("Reload page");?>" ><span><?=gettext("Management");?></span></a></li>
-				<li class="tabinact"><a href="disks_raid_gvinum_tools.php"><span><?=gettext("Tools"); ?></span></a></li>
-				<li class="tabinact"><a href="disks_raid_gvinum_info.php"><span><?=gettext("Information"); ?></span></a></li>
+				<li class="tabact"><a href="disks_raid_gvinum.php" title="<?=gtext('Reload page');?>" ><span><?=gtext('Management');?></span></a></li>
+				<li class="tabinact"><a href="disks_raid_gvinum_tools.php"><span><?=gtext('Maintenance'); ?></span></a></li>
+				<li class="tabinact"><a href="disks_raid_gvinum_info.php"><span><?=gtext('Information'); ?></span></a></li>
 			</ul>
 		</td>
 	</tr>
-  <tr>
-    <td class="tabcont">
-			<form action="disks_raid_gvinum_edit.php" method="post" name="iform" id="iform">
-				<?php if (!empty($nodisk_errors)) print_input_errors($nodisk_errors); ?>
-				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
-			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-			    <tr>
-			      <td valign="top" class="vncellreq"><?=gettext("Raid name");?></td>
-			      <td width="78%" class="vtable">
-			        <input name="name" type="text" class="formfld" id="name" size="15" value="<?=htmlspecialchars($pconfig['name']);?>" <?php if (isset($id)) echo "readonly=\"readonly\"";?> />
-			      </td>
-			    </tr>
-			    <tr>
-			      <td valign="top" class="vncellreq"><?=gettext("Type"); ?></td>
-			      <td width="78%" class="vtable">
-			        <select name="type" class="formfld" id="type" <?php if(isset($id)) echo "disabled=\"disabled\"";?>>
-			          <option value="0" <?php if ($pconfig['type'] == 0) echo "selected=\"selected\""; ?>>RAID 0 (<?=gettext("striping");?>)</option>
-			          <option value="1" <?php if ($pconfig['type'] == 1) echo "selected=\"selected\""; ?>>RAID 1 (<?=gettext("mirroring"); ?>)</option>
-			          <option value="5" <?php if ($pconfig['type'] == 5) echo "selected=\"selected\""; ?>>RAID 5 (<?=gettext("rotated block-interleaved parity"); ?>)</option>
-			        </select>
-			      </td>
-			    </tr>
-			    <?php $a_provider = array(); foreach ($a_disk as $diskv) { if (isset($id) && !(is_array($pconfig['device']) && in_array($diskv['devicespecialfile'], $pconfig['device']))) { continue; } if (!isset($id) && false !== array_search_ex($diskv['devicespecialfile'], $all_raid, "device")) { continue; } $a_provider[$diskv['devicespecialfile']] = htmlspecialchars("$diskv[name] ($diskv[size], $diskv[desc])"); }?>
-			    <?php html_listbox("device", gettext("Provider"), !empty($pconfig['device']) ? $pconfig['device'] : array(), $a_provider, gettext("Note: Ctrl-click (or command-click on the Mac) to select multiple entries."), true, isset($id));?>
-			    <?php if (!isset($id)):?>
-			    <tr>
-						<td width="22%" valign="top" class="vncell"><?=gettext("Initialize");?></td>
-			      <td width="78%" class="vtable">
-							<input name="init" type="checkbox" id="init" value="yes" <?php if (isset($pconfig['init']) && true === $pconfig['init']) echo "checked=\"checked\""; ?> />
-							<?=gettext("Create and initialize RAID.");?><br />
-							<span class="vexpl"><?=gettext("This will erase ALL data on the selected disks! Do not use this option if you want to add an already existing RAID again.");?></span>
-			      </td>
-			    </tr>
+</tbody></table>
+<table id="area_data"><tbody><tr><td id="area_data_frame"><form action="<?=$sphere_scriptname;?>" method="post" name="iform" id="iform">
+	<?php 
+		if (!empty($nodisk_errors)) print_input_errors($nodisk_errors);
+		if (!empty($input_errors)) print_input_errors($input_errors);
+		if (file_exists($d_sysrebootreqd_path)) { print_info_box(get_std_save_message(0)); }
+	?>
+	<?php if ($isrecordnewornewmodify):?>
+		<div id="submit" style="margin-bottom:10px">
+			<?php foreach ($a_process as $r_process):?>
+				<button name="Action" id="<?=$r_process['x-button'];?>" type="submit" class="formbtn" value="<?=$r_process['type'];?>"><?=$r_process['gt-type'];?></button>
+			<?php endforeach;?>
+		</div>
+	<?php endif;?>
+	<table id="area_data_settings">
+		<colgroup>
+			<col id="area_data_settings_col_tag">
+			<col id="area_data_settings_col_data">
+		</colgroup>
+		<thead>
+			<?php html_titleline2(gtext('Settings'));?>
+		</thead>
+		<tbody>
+			<?php
+				html_inputbox2('name', gtext('RAID Name'), $sphere_record['name'], '', true, 15, $isrecordmodify); // readonly when in mode modify
+				if ($isrecordmodify) {
+					html_inputbox2('type', gtext('RAID Type'), $a_process[$sphere_record['type']]['gt-type'], '', false, 40, $isrecordmodify);
+				}
+			?>
+			<?php
+				$helpinghand = [
+					[gtext('Do not activate this option if you want to add an existing RAID.')],
+					[gtext('All data will be lost when you activate this option!'), 'red']
+				];
+				html_checkbox2('init', gtext('Initialize'), !empty($sphere_record['init']) ? true : false, gtext('Create and initialize RAID.'), $helpinghand, false, $isrecordmodify);
+				html_inputbox2('desc', gtext('Description'), $sphere_record['desc'], gtext('You may enter a description here for your reference.'), false, 48);
+				html_separator2();
+			?>
+		</tbody>
+	</table>
+	<table id="area_data_selection">
+		<colgroup>
+			<col style="width:5%"> <!--// checkbox -->
+			<col style="width:10%"><!--// Device -->
+			<col style="width:10%"><!--// Partition -->
+			<col style="width:15%"><!--// Model -->
+			<col style="width:10%"><!--// Serial -->
+			<col style="width:10%"><!--// Size -->
+			<col style="width:20%"><!--// Controller -->
+			<col style="width:15%"><!--// Description -->
+			<col style="width:5%"> <!--// Icons -->
+		</colgroup>
+		<thead>
+			<?php html_titleline2(gtext('Device List'), 9);?>
+			<tr>
+				<td class="lhelc">
+					<?php if ($isrecordnewornewmodify):?>
+						<input type="checkbox" id="togglebox" name="togglebox" title="<?=gtext('Invert Selection');?>"/>
+					<?php else:?>
+						<input type="checkbox" id="togglebox" name="togglebox" disabled="disabled"/>
 					<?php endif;?>
-			  </table>
-			  <?php if (!isset($id)):?>
-			  <div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Add");?>" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
-					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
-				</div>
+				</td>
+				<td class="lhell"><?=gtext('Device');?></td>
+				<td class="lhell"><?=gtext('Partition');?></td>
+				<td class="lhell"><?=gtext('Model');?></td>
+				<td class="lhell"><?=gtext('Serial Number');?></td>
+				<td class="lhell"><?=gtext('Size');?></td>
+				<td class="lhell"><?=gtext('Controller');?></td>
+				<td class="lhell"><?=gtext('Name');?></td>
+				<td class="lhebl">&nbsp;</td>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach ($a_device as $r_device):?>
+				<?php 
+					$isnotinasraid = $r_device['isnotinasraid'];
+					$isinthissraid = $r_device['isinthissraid'];
+				?>
+				<?php if ($isrecordnewornewmodify):?>
+					<?php if ($isnotinasraid || $isinthissraid):?>
+						<tr>
+							<td class="lcelc">
+								<?php if ($isinthissraid):?>
+									<input type="checkbox" name="<?=$checkbox_member_name;?>[]" value="<?=$r_device['devicespecialfile'];?>" id="<?=$r_device['uuid'];?>" checked="checked"/>
+								<?php else:?>
+									<input type="checkbox" name="<?=$checkbox_member_name;?>[]" value="<?=$r_device['devicespecialfile'];?>" id="<?=$r_device['uuid'];?>"/>
+								<?php endif;?>	
+							</td>
+							<td class="lcell"><?=htmlspecialchars($r_device['name']);?>&nbsp;</td>
+							<td class="lcell"><?=htmlspecialchars($r_device['partition']);?>&nbsp;</td>
+							<td class="lcell"><?=htmlspecialchars($r_device['model']);?>&nbsp;</td>
+							<td class="lcell"><?=htmlspecialchars($r_device['serial']);?>&nbsp;</td>
+							<td class="lcell"><?=htmlspecialchars($r_device['size']);?>&nbsp;</td>
+							<td class="lcell"><?=htmlspecialchars($r_device['controller']);?>&nbsp;</td>
+							<td class="lcell"><?=htmlspecialchars($r_device['desc']);?>&nbsp;</td>
+							<td class="lcebcd">
+								<?php if ($isinthissraid):?>
+									<img src="<?=$img_path['unl'];?>" title="<?=$gt_record_opn;?>" alt="<?=$gt_record_opn;?>" />
+								<?php else:?>
+									&nbsp;
+								<?php endif;?>
+							</td>
+						</tr>
+					<?php endif;?>
 				<?php endif;?>
-				<?php include("formend.inc");?>
-			</form>
-		</td>
-	</tr>
-</table>
-<?php include("fend.inc");?>
+				<?php if ($isrecordmodify):?>
+					<?php if ($isinthissraid):?>
+						<tr>
+							<td class="lcelcd"">
+								<input type="checkbox" name="<?=$checkbox_member_name;?>[]" value="<?=$r_device['devicespecialfile'];?>" id="<?=$r_device['uuid'];?>" checked="checked" disabled="disabled"/>
+							</td>
+							<td class="lcelld"><?=htmlspecialchars($r_device['name']);?>&nbsp;</td>
+							<td class="lcelld"><?=htmlspecialchars($r_device['partition']);?>&nbsp;</td>
+							<td class="lcelld"><?=htmlspecialchars($r_device['model']);?>&nbsp;</td>
+							<td class="lcelld"><?=htmlspecialchars($r_device['serial']);?>&nbsp;</td>
+							<td class="lcelld"><?=htmlspecialchars($r_device['size']);?>&nbsp;</td>
+							<td class="lcelld"><?=htmlspecialchars($r_device['controller']);?>&nbsp;</td>
+							<td class="lcelld"><?=htmlspecialchars($r_device['desc']);?>&nbsp;</td>
+							<td class="lcebcd">
+								<img src="<?=$img_path['loc'];?>" title="<?=$gt_record_loc;?>" alt="<?=$gt_record_loc;?>" />
+							</td>
+						</tr>
+					<?php endif; ?>
+				<?php endif; ?>
+			<?php endforeach; ?>
+		</tbody>
+	</table>
+	<div id="submit">
+		<?php if ($isrecordmodify):?>
+			<input name="Submit" id="submit_button" type="submit" class="formbtn" value="<?=gtext('Save');?>"/>
+		<?php endif;?>
+		<input name="Cancel" id="cancel_button" type="submit" class="formbtn" value="<?=gtext('Cancel');?>" />
+		<input name="uuid" type="hidden" value="<?=$sphere_record['uuid'];?>" />
+	</div>
+	<?php include("formend.inc"); ?>
+</form></td></tr></tbody></table>
+<?php include("fend.inc"); ?>

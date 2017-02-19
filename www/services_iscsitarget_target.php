@@ -3,11 +3,7 @@
 	services_iscsitarget_target.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Services"), gettext("iSCSI Target"), gettext("Target"));
+$pgtitle = array(gtext("Services"), gtext("iSCSI Target"), gtext("Target"));
 
 $pconfig['enable'] = isset($config['iscsitarget']['enable']);
 
@@ -60,8 +57,12 @@ if ($_POST) {
 		$savemsg = get_std_save_message($retval);
 		if ($retval == 0) {
 			if (get_hast_role() != 'secondary') {
-				$savemsg .= "<br>";
-				$savemsg .= sprintf(gettext("The reloading request has been sent to the daemon. You can see the result by <a href=\"%s\">Log</a>."), "diag_log.php?log=2");
+				$savemsg .= '<br>'
+					. gtext('A reload request has been sent to the daemon.')
+					. ' '
+					. '<a href="' . 'diag_log.php?log=2' . '">'
+					. gtext('You can verify the result in the log file.')
+					. '</a>';
 			}
 			updatenotify_delete("iscsitarget_extent");
 			updatenotify_delete("iscsitarget_target");
@@ -131,7 +132,7 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 					if (isset($device['storage'])) {
 						foreach ($device['storage'] as $storage) {
 							if ($extent['name'] === $storage) {
-								$input_errors[] = gettext("This extent is used.");
+								$input_errors[] = gtext("This extent is used.");
 							}
 						}
 					}
@@ -140,14 +141,14 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 					if (isset($target['storage'])) {
 						foreach ($target['storage'] as $storage) {
 							if ($extent['name'] === $storage) {
-								$input_errors[] = gettext("This extent is used.");
+								$input_errors[] = gtext("This extent is used.");
 							}
 						}
 					}
 					if (isset($target['lunmap'])) {
 						foreach ($target['lunmap'] as $lunmap) {
 							if ($extent['name'] === $lunmap['extentname']) {
-								$input_errors[] = gettext("This extent is used.");
+								$input_errors[] = gtext("This extent is used.");
 							}
 						}
 					}
@@ -210,12 +211,12 @@ function iscsitargettarget_process_updatenotification($mode, $data) {
   <tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-				<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gettext("Settings");?></span></a></li>
-				<li class="tabact"><a href="services_iscsitarget_target.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Targets");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gettext("Portals");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gettext("Initiators");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gettext("Auths");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gettext("Media");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
+				<li class="tabact"><a href="services_iscsitarget_target.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Targets");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gtext("Portals");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gtext("Auths");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
       </ul>
     </td>
   </tr>
@@ -226,21 +227,21 @@ function iscsitargettarget_process_updatenotification($mode, $data) {
       <?php if (updatenotify_exists("iscsitarget_extent") || updatenotify_exists("iscsitarget_target")) print_config_change_box();?>
       <table width="100%" border="0" cellpadding="6" cellspacing="0">
       <tr>
-        <td colspan="2" valign="top" class="listtopic"><?=gettext("Targets");?></td>
+        <td colspan="2" valign="top" class="listtopic"><?=gtext("Targets");?></td>
       </tr>
       <tr>
-        <td width="22%" valign="top" class="vncell"><?=gettext("Extent");?></td>
+        <td width="22%" valign="top" class="vncell"><?=gtext("Extent");?></td>
         <td width="78%" class="vtable">
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-          <td width="20%" class="listhdrlr"><?=gettext("Name");?></td>
-          <td width="50%" class="listhdrr"><?=gettext("Path");?></td>
-          <td width="20%" class="listhdrr"><?=gettext("Size");?></td>
+          <td width="20%" class="listhdrlr"><?=gtext("Name");?></td>
+          <td width="50%" class="listhdrr"><?=gtext("Path");?></td>
+          <td width="20%" class="listhdrr"><?=gtext("Size");?></td>
           <td width="10%" class="list"></td>
         </tr>
         <?php foreach($config['iscsitarget']['extent'] as $extent):?>
         <?php $sizeunit = $extent['sizeunit']; if (!$sizeunit) { $sizeunit = "MB"; }?>
-        <?php if ($sizeunit === "MB") { $psizeunit = gettext("MiB"); } else if ($sizeunit === "GB") { $psizeunit = gettext("GiB"); } else if ($sizeunit === "TB") { $psizeunit = gettext("TiB"); } else if ($sizeunit === "auto") { $psizeunit = gettext("Auto"); } else { $psizeunit = $sizeunit; }?>
+        <?php if ($sizeunit === "MB") { $psizeunit = gtext("MiB"); } else if ($sizeunit === "GB") { $psizeunit = gtext("GiB"); } else if ($sizeunit === "TB") { $psizeunit = gtext("TiB"); } else if ($sizeunit === "auto") { $psizeunit = gtext("Auto"); } else { $psizeunit = $sizeunit; }?>
         <?php $notificationmode = updatenotify_get_mode("iscsitarget_extent", $extent['uuid']);?>
         <tr>
           <td class="listlr"><?=htmlspecialchars($extent['name']);?>&nbsp;</td>
@@ -248,35 +249,35 @@ function iscsitargettarget_process_updatenotification($mode, $data) {
           <td class="listr"><?=htmlspecialchars($extent['size']);?><?=htmlspecialchars($psizeunit)?>&nbsp;</td>
           <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
           <td valign="middle" nowrap="nowrap" class="list">
-            <a href="services_iscsitarget_extent_edit.php?uuid=<?=$extent['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit extent");?>" border="0" alt="<?=gettext("Edit extent");?>" /></a>
-            <a href="services_iscsitarget_target.php?act=del&amp;type=extent&amp;uuid=<?=$extent['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this extent?");?>')"><img src="x.gif" title="<?=gettext("Delete extent");?>" border="0" alt="<?=gettext("Delete extent");?>" /></a>
+            <a href="services_iscsitarget_extent_edit.php?uuid=<?=$extent['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit extent");?>" border="0" alt="<?=gtext("Edit extent");?>" /></a>
+            <a href="services_iscsitarget_target.php?act=del&amp;type=extent&amp;uuid=<?=$extent['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this extent?");?>')"><img src="images/delete.png" title="<?=gtext("Delete extent");?>" border="0" alt="<?=gtext("Delete extent");?>" /></a>
           </td>
           <?php else:?>
           <td valign="middle" nowrap="nowrap" class="list">
-            <img src="del.gif" border="0" alt="" />
+            <img src="images/delete.png" border="0" alt="" />
           </td>
           <?php endif;?>
         </tr>
         <?php endforeach;?>
         <tr>
           <td class="list" colspan="3"></td>
-          <td class="list"><a href="services_iscsitarget_extent_edit.php"><img src="plus.gif" title="<?=gettext("Add extent");?>" border="0" alt="<?=gettext("Add extent");?>" /></a></td>
+          <td class="list"><a href="services_iscsitarget_extent_edit.php"><img src="images/add.png" title="<?=gtext("Add extent");?>" border="0" alt="<?=gtext("Add extent");?>" /></a></td>
         </tr>
         </table>
-        <?=gettext("Extents must be defined before they can be used, and extents cannot be used more than once.");?>
+        <?=gtext("Extents must be defined before they can be used, and extents cannot be used more than once.");?>
         </td>
       </tr>
       <tr>
-        <td width="22%" valign="top" class="vncell"><?=gettext("Target");?></td>
+        <td width="22%" valign="top" class="vncell"><?=gtext("Target");?></td>
         <td width="78%" class="vtable">
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-          <td width="35%" class="listhdrlr"><?=gettext("Name");?></td>
-          <td width="4%" class="listhdrr"><?=gettext("Flags");?></td>
-          <td width="30%" class="listhdrr"><?=gettext("LUNs");?></td>
-          <td width="7%" class="listhdrr"><?=gettext("PG");?></td>
-          <td width="7%" class="listhdrr"><?=gettext("IG");?></td>
-          <td width="7%" class="listhdrr"><?=gettext("AG");?></td>
+          <td width="35%" class="listhdrlr"><?=gtext("Name");?></td>
+          <td width="4%" class="listhdrr"><?=gtext("Flags");?></td>
+          <td width="30%" class="listhdrr"><?=gtext("LUNs");?></td>
+          <td width="7%" class="listhdrr"><?=gtext("PG");?></td>
+          <td width="7%" class="listhdrr"><?=gtext("IG");?></td>
+          <td width="7%" class="listhdrr"><?=gtext("AG");?></td>
           <td width="10%" class="list"></td>
         </tr>
         <?php foreach($config['iscsitarget']['target'] as $target):?>
@@ -292,7 +293,7 @@ function iscsitargettarget_process_updatenotification($mode, $data) {
 			}
 			$agtag = $target['agmap'][0]['agtag'];
 			$name = get_fulliqn($target['name']);
-			$disabled = !isset($target['enable']) ? sprintf("(%s)", gettext("Disabled")) : "";
+			$disabled = !isset($target['enable']) ? sprintf("(%s)", gtext("Disabled")) : "";
 			if ($pgtag == 0 && count($config['iscsitarget']['portalgroup']) != 0)
 				$pgtag = 1;
 			if ($igtag == 0 && count($config['iscsitarget']['initiatorgroup']) != 0)
@@ -324,14 +325,14 @@ function iscsitargettarget_process_updatenotification($mode, $data) {
           <td class="listr">
           <?php
 				foreach ($LUNs as $key => $val) {
-					echo sprintf("%s%s=%s<br />", gettext("LUN"), $key, $val);
+					echo sprintf("%s%s=%s<br />", gtext("LUN"), $key, $val);
 				}
           ?>
           </td>
           <td class="listr">
           <?php
 				if ($pgtag == 0) {
-					echo htmlspecialchars(gettext("none"));
+					echo gtext("none");
 				} else {
 					echo htmlspecialchars($pgtag);
 				}
@@ -343,7 +344,7 @@ function iscsitargettarget_process_updatenotification($mode, $data) {
           <td class="listr">
           <?php
 				if ($igtag == 0) {
-					echo htmlspecialchars(gettext("none"));
+					echo gtext("none");
 				} else {
 					echo htmlspecialchars($igtag);
 				}
@@ -355,7 +356,7 @@ function iscsitargettarget_process_updatenotification($mode, $data) {
           <td class="listr">
           <?php
 				if ($agtag == 0) {
-					echo htmlspecialchars(gettext("none"));
+					echo gtext("none");
 				} else {
 					echo htmlspecialchars($agtag);
 				}
@@ -363,27 +364,38 @@ function iscsitargettarget_process_updatenotification($mode, $data) {
           </td>
           <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
           <td valign="middle" nowrap="nowrap" class="list">
-            <a href="services_iscsitarget_target_edit.php?uuid=<?=$target['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit target");?>" border="0" alt="<?=gettext("Edit target");?>" /></a>
-            <a href="services_iscsitarget_target.php?act=del&amp;type=target&amp;uuid=<?=$target['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this target?");?>')"><img src="x.gif" title="<?=gettext("Delete target");?>" border="0" alt="<?=gettext("Delete target");?>" /></a>
+            <a href="services_iscsitarget_target_edit.php?uuid=<?=$target['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit target");?>" border="0" alt="<?=gtext("Edit target");?>" /></a>
+            <a href="services_iscsitarget_target.php?act=del&amp;type=target&amp;uuid=<?=$target['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this target?");?>')"><img src="images/delete.png" title="<?=gtext("Delete target");?>" border="0" alt="<?=gtext("Delete target");?>" /></a>
           </td>
           <?php else:?>
           <td valign="middle" nowrap="nowrap" class="list">
-            <img src="del.gif" border="0" alt="" />
+            <img src="images/delete.png" border="0" alt="" />
           </td>
           <?php endif;?>
         </tr>
         <?php endforeach;?>
         <tr>
           <td class="list" colspan="6"></td>
-          <td class="list"><a href="services_iscsitarget_target_edit.php"><img src="plus.gif" title="<?=gettext("Add target");?>" border="0" alt="<?=gettext("Add target");?>" /></a></td>
+          <td class="list"><a href="services_iscsitarget_target_edit.php"><img src="images/add.png" title="<?=gtext("Add target");?>" border="0" alt="<?=gtext("Add target");?>" /></a></td>
         </tr>
         </table>
-        <?=gettext("At the highest level, a target is what is presented to the initiator, and is made up of one or more extents.");?>
+        <?=gtext("At the highest level, a target is what is presented to the initiator, and is made up of one or more extents.");?>
         </td>
       </tr>
       </table>
       <div id="remarks">
-        <?php html_remark("note", gettext("Note"), gettext("To configure the target, you must add at least Portal Group and Initiator Group and Extent.<br />Portal Group which is identified by tag number defines IP addresses and listening TCP ports.<br />Initiator Group which is identified by tag number defines authorised initiator names and networks.<br />Auth Group which is identified by tag number and is optional if the target does not use CHAP authentication defines authorised users and secrets for additional security.<br />Extent defines the storage area of the target."));?>
+        <?php
+		$helpinghand = gtext('You must add at least a Portal Group, an Initiator Group and an Extent before you can configure a Target.')
+			. '<br />'
+			. gtext('A Portal Group is identified by a tag number and defines IP addresses and listening TCP ports.')
+			. '<br />'
+			. gtext('An Initiator Group is identified by a tag number and defines authorised initiator names and networks.')
+			. '<br />'
+			. gtext('An Auth Group is identified by a tag number and is optional. If the Target does not use CHAP authentication it defines authorised users and secrets for additional security.')
+			. '<br />'
+			. gtext('An Extent defines the storage area of the Target.');
+		html_remark("note", gtext('Note'), $helpinghand);
+		?>
       </div>
     </td>
   </tr>

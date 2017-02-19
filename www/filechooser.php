@@ -1,13 +1,9 @@
-<?
+<?php
 /*
 	filechooser.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,12 +34,10 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-class FileChooser
-{
-	var	$cfg = array();
+class FileChooser {
+	var	$cfg = [];
 
-	function FileChooser()
-	{
+	function FileChooser() {
 		// Settings.
 		$this->cfg['footer'] = true; // show footer
 		$this->cfg['sort'] = true; // show sorting header
@@ -68,22 +63,26 @@ class FileChooser
 		// If no path is available, set it to root.
 		if (!$path) {
 			$path = (isset($_GET['sd'])) ? htmlspecialchars($_GET['sd']) : $this->cfg['startDirectory'];
-    }
+		}
 
-    // Check if file exists.
-    if(!file_exists($path)) {
-    	echo "<tr><td class=\"addrbar\">";
-		  print_info_box("File not found $path");
-		  echo "</tr></td>";
-      $path = $this->get_valid_parent_dir($path);
-    }
+		// Check if file exists.
+		if (!file_exists($path)) {
+			echo "<tr><td class=\"infobar\">";
+			print_info_box("File not found $path");
+			echo "</tr></td>";
+			if (substr($path, 0, 1) == '/') {
+				$path = $this->get_valid_parent_dir($path);
+			} else {
+				$path = "/mnt";
+			}
+		}
 
-    $dir = $path;
+		$dir = $path;
 
 		// Extract path if necessary.
-    if(is_file($dir)) {
-      $dir = dirname($dir).'/';
-    }
+		if (is_file($dir)) {
+			$dir = dirname($dir).'/';
+		}
 
 		// Check if directory string end with '/'. Add it if necessary.
 		if ("/" !== substr(strrev($dir),0,1)) {
@@ -92,9 +91,9 @@ class FileChooser
 
 		// Get sorting vars from URL, if nothing is set, sort by N [file Name].
 		$this->cfg['sortMode'] = (isset($_GET['N']) ? 'N' :
-			        				 (isset($_GET['S']) ? 'S' :
-			         				 (isset($_GET['T']) ? 'T' :
-			         				 (isset($_GET['M']) ? 'M' : 'N' ))));
+			(isset($_GET['S']) ? 'S' :
+			(isset($_GET['T']) ? 'T' :
+			(isset($_GET['M']) ? 'M' : 'N' ))));
 
 		// Get sort ascending or descending.
 		$this->cfg['sortOrder'] =
@@ -111,57 +110,46 @@ class FileChooser
 		// Sort files.
 		$files = $this->sort_files($files);
 
-    // Display navigation bar.
-    echo $this->navigation_bar($path);
+		// Display navigation bar.
+		echo $this->navigation_bar($path);
 
 		// Display file list.
 		echo $this->file_list($dir, $files);
 	}
 
-  function make_file_array($dir)
-	{
-		if(!function_exists('mime_content_type'))
-		{
-		   function mime_content_type($file)
-		   {
-			   $file = escapeshellarg($file);
-			   $type = `file -bi $file`;
-		   	   $expl = explode(";", $type);
-		   	   return $expl[0];
-		   }
+	function make_file_array($dir) {
+		if(!function_exists('mime_content_type')) {
+			function mime_content_type($file) {
+				$file = escapeshellarg($file);
+				$type = `file -bi $file`;
+				$expl = explode(";", $type);
+				return $expl[0];
+			}
 		}
 
-		$dirArray	= array();
-		$folderArray = array();
-		$folderInfo = array();
-		$fileArray = array();
-		$fileInfo = array();
+		$dirArray	= [];
+		$folderArray = [];
+		$folderInfo = [];
+		$fileArray = [];
+		$fileInfo = [];
 
 		$content = $this->get_content($dir);
 
-		foreach($content as $file)
-    {
-			if(is_dir("{$dir}/{$file}")) // is a folder
-			{
+		foreach($content as $file) {
+			if(is_dir("{$dir}/{$file}")) { // is a folder
 				// store elements of folder in sub array
 				$folderInfo['name']	= $file;
 				$folderInfo['mtime'] = @filemtime("{$dir}/{$file}");
-				$folderInfo['type'] = gettext("Directory");
+				$folderInfo['type'] = gtext("Directory");
 				// calc folder size ?
-				$folderInfo['size'] =
-					$this->cfg['calcFolderSizes'] ?
-					$this->get_folder_size("{$dir}/{$file}") : '-';
+				$folderInfo['size'] = $this->cfg['calcFolderSizes'] ? $this->get_folder_size("{$dir}/{$file}") : '-';
 				$folderInfo['rowType'] = 'fr';
 				$folderArray[] = $folderInfo;
-			}
-			else // is a file
-			{
+			} else { // is a file
 				// store elements of file in sub array
 				$fileInfo['name'] = $file;
 				$fileInfo['mtime'] = @filemtime("{$dir}/{$file}");
-				$fileInfo['type'] = $this->cfg['simpleType'] ?
-					$this->get_extension("{$dir}/{$file}") :
-					mime_content_type("{$dir}/{$file}");
+				$fileInfo['type'] = $this->cfg['simpleType'] ? $this->get_extension("{$dir}/{$file}") : mime_content_type("{$dir}/{$file}");
 				$fileInfo['size'] = @get_filesize("{$dir}/{$file}");
 				$fileInfo['rowType'] = 'fl';
 				$fileArray[] = $fileInfo;
@@ -172,99 +160,92 @@ class FileChooser
 		$dirArray['files'] = $fileArray;
 
 		return $dirArray;
-  }
+	}
 
-  function get_content($dir)
-  {
-    $folders = array();
-    $files = array();
+	function get_content($dir) {
+		$folders = [];
+		$files = [];
 
-    $handle = @opendir($dir);
-    while($file = @readdir($handle)) {
-      if(is_dir("{$dir}/{$file}"))
-        $folders[] = $file;
-      elseif(is_file("{$dir}/{$file}"))
-        $files[] = $file;
-    }
-    @closedir($handle);
+		$handle = @opendir($dir);
+		while($file = @readdir($handle)) {
+			if(is_dir("{$dir}/{$file}")) { 
+				$folders[] = $file;
+			} elseif(is_file("{$dir}/{$file}")) { 
+				$files[] = $file;
+			} elseif(preg_match('#^/dev/zvol/#', "{$dir}") && strpos($file, '@') == FALSE) {
+				/* pickup ZFS volume but not snapshot */
+				$S_IFCHR = 0020000;
+				$st = stat("{$dir}/{$file}");
+				if ($st != FALSE && $st['mode'] & $S_IFCHR)
+					$files[] = $file;
+			}
+		}
+		@closedir($handle);
 
-    $folders = $this->filter_content($folders, $this->cfg['filterShowFolders'], $this->cfg['filterHideFolders']);
-    $files = $this->filter_content($files, $this->cfg['filterShowFiles'], $this->cfg['filterHideFiles']);
+		$folders = $this->filter_content($folders, $this->cfg['filterShowFolders'], $this->cfg['filterHideFolders']);
+		$files = $this->filter_content($files, $this->cfg['filterShowFiles'], $this->cfg['filterHideFiles']);
 
-    return array_merge($folders, $files);
-  }
+		return array_merge($folders, $files);
+	}
 
-  function filter_content($arr, $allow, $hide)
-  {
-    $allow = $this->make_regex($allow);
-    $hide = $this->make_regex($hide);
+	function filter_content($arr, $allow, $hide) {
+		$allow = $this->make_regex($allow);
+		$hide = $this->make_regex($hide);
 
-    $ret = array();
-    $ret = preg_grep("/$allow/", $arr);
-    $ret = preg_grep("/$hide/",  $ret, PREG_GREP_INVERT);
+		$ret = array();
+		$ret = preg_grep("/$allow/", $arr);
+		$ret = preg_grep("/$hide/",  $ret, PREG_GREP_INVERT);
 
-    return $ret;
-  }
+		return $ret;
+	}
 
-  function make_regex($filter)
-  {
-    $regex = str_replace('.', '\.', $filter);
-    $regex = str_replace('/', '\/', $regex);
-    $regex = str_replace('*', '.+', $regex);
-    $regex = str_replace(',', '$|^', $regex);
-    return "^$regex\$";
-  }
+	function make_regex($filter) {
+		$regex = str_replace('.', '\.', $filter);
+		$regex = str_replace('/', '\/', $regex);
+		$regex = str_replace('*', '.+', $regex);
+		$regex = str_replace(',', '$|^', $regex);
+		return "^$regex\$";
+	}
 
-  function get_extension($filename)
-	{
+	function get_extension($filename) {
 		$justfile = explode("/", $filename);
 		$justfile = $justfile[(sizeof($justfile)-1)];
-    	$expl = explode(".", $justfile);
-		if(sizeof($expl)>1 && $expl[sizeof($expl)-1])
-		{
-    		return $expl[sizeof($expl)-1];
-    	}
-		else
-		{
+		$expl = explode(".", $justfile);
+		if(sizeof($expl)>1 && $expl[sizeof($expl)-1]) {
+			return $expl[sizeof($expl)-1];
+		} else {
 			return '?';
 		}
 	}
 
-  function get_valid_parent_dir($path)
-  {
-    if(strcmp($path,"/") == 0) // Is it already root of filesystem?
-      return false;
+	function get_valid_parent_dir($path) {
+		if(strcmp($path,"/") == 0) { // Is it already root of filesystem?
+			return false;
+		}
 
-  	$expl = explode("/", substr($path, 0, -1));
-  	$path = substr($path, 0, -strlen($expl[(sizeof($expl)-1)].'/'));
+		$expl = explode("/", substr($path, 0, -1));
+		$path = substr($path, 0, -strlen($expl[(sizeof($expl)-1)].'/'));
 
-  	if(!(file_exists($path) && is_dir($path)))
-      $path = $this->get_valid_parent_dir($path);
+		if(!(file_exists($path) && is_dir($path))) {
+			$path = $this->get_valid_parent_dir($path);
+		}
 
-    return $path;
-  }
+		return $path;
+	}
 
-	function format_size($bytes)
-	{
-		if(is_numeric($bytes) && $bytes > 0)
-		{
+	function format_size($bytes) {
+		if(is_numeric($bytes) && $bytes > 0) {
 			$formats = array("%d Bytes","%.1f KB","%.1f MB","%.1f GB","%.1f TB");
 			$logsize = min(intval(log($bytes)/log(1024)), count($formats)-1);
 			return sprintf($formats[$logsize], $bytes/pow(1024, $logsize));
-		}
-		// is a folder without calculated size
-		else if(!is_numeric($bytes) && $bytes == '-')
-		{
+		} elseif(!is_numeric($bytes) && $bytes == '-') { // is a folder without calculated size
 			return '-';
-		}
-		else
-		{
+		} else {
 			return '0 Bytes';
 		}
 	}
 
-	function get_folder_size($dir)
-	{
+	function get_folder_size($dir) {
 		$size = 0;
 		if ($handle = opendir($dir)) {
 			while (false !== ($file = readdir($handle))) {
@@ -280,32 +261,23 @@ class FileChooser
 		return $size;
 	}
 
-	function sort_files($files)
-	{
+	function sort_files($files) {
 		// sort folders on top
-		if($this->cfg['separateFolders'])
-		{
+		if($this->cfg['separateFolders']) {
 			$sortedFolders = $this->order_by_column($files['folders'], '2');
-
 			$sortedFiles = $this->order_by_column($files['files'], '1');
 
 			// sort files depending on sort order
-			if($this->cfg['sortOrder'] == 'A')
-			{
+			if($this->cfg['sortOrder'] == 'A') {
 				ksort($sortedFolders);
 				ksort($sortedFiles);
 				$result = array_merge($sortedFolders, $sortedFiles);
-			}
-			else
-			{
+			} else {
 				krsort($sortedFolders);
 				krsort($sortedFiles);
 				$result = array_merge($sortedFiles, $sortedFolders);
 			}
-		}
-		else
-		// sort folders and files together
-		{
+		} else { // sort folders and files together
 			$files = array_merge($files['folders'], $files['files']);
 			$result = $this->order_by_column($files,'1');
 
@@ -315,17 +287,17 @@ class FileChooser
 		return $result;
 	}
 
-	function order_by_column($input, $type)
-	{
+	function order_by_column($input, $type) {
 		$column = $this->cfg['sortMode'];
-
 		$result = array();
 
 		// available sort columns
-		$columnList = array('N'=>'name',
-							'S'=>'size',
-							'T'=>'type',
-							'M'=>'mtime');
+		$columnList = [
+			'N'=>'name',
+			'S'=>'size',
+			'T'=>'type',
+			'M'=>'mtime'
+		];
 
 		// row count
 		// each array key gets $rowcount and $type
@@ -333,18 +305,13 @@ class FileChooser
 		$rowcount = 0;
 
 		// create new array with sort mode as the key
-		foreach($input as $key=>$value)
-		{
+		foreach($input as $key=>$value) {
 			// natural sort - make array keys lowercase
-			if($this->cfg['naturalSort'])
-			{
+			if($this->cfg['naturalSort']) {
 				$col = $value[$columnList[$column]];
 				$res = strtolower($col).'.'.$rowcount.$type;
 				$result[$res] = $value;
-			}
-			// regular sort - uppercase values get sorted on top
-			else
-			{
+			} else  { // regular sort - uppercase values get sorted on top
 				$res = $value[$columnList[$column]].'.'.$rowcount.$type;
 				$result[$res] = $value;
 			}
@@ -353,190 +320,135 @@ class FileChooser
 		return $result;
 	}
 
-	function file_list($dir, $files)
-	{
-    $ret = "";
-    $ret .= '<tr>';
-    $ret .= '<td class="filelist">';
-    $ret .= '<table cellspacing="0" border="0">';
+	function file_list($dir, $files) {
+		$ret = "";
+		$ret .= '<tr>';
+		$ret .= '<td class="filelist">';
+		$ret .= '<table cellspacing="0" border="0">';
 		$ret .= ($this->cfg['sort']) ? $this->row('sort', $dir) : '';
 		$ret .= ($this->get_valid_parent_dir($dir)) ? $this->row('parent', $dir) : '';
-
 		// total number of files
 		$rowcount  = 1;
 		// total byte size of the current tree
 		$totalsize = 0;
-
 		// rows of files
-		foreach($files as $file)
-		{
+		foreach($files as $file) {
 			$ret .= $this->row($file['rowType'], $dir, $rowcount, $file);
 			$rowcount++;
 			$totalsize += $file['size'];
 		}
-
 		$this->cfg['totalSize'] = $this->format_size($totalsize);
-
 		$ret .= ($this->cfg['footer']) ? $this->row('footer') : '';
-
 		$ret .= '</table>';
 		$ret .= '</td>';
 		$ret .= '</tr>';
-
 		return $ret;
 	}
 
-	function row($type, $dir=null, $rowcount=null, $file=null)
-	{
+	function row($type, $dir=null, $rowcount=null, $file=null) {
 		$scriptname = "filechooser.php";
 		// alternating row styles
 		$rnum = $rowcount ? ($rowcount%2 == 0 ? '_even' : '_odd') : null;
-
 		// start row string variable to be returned
 		$row = "\n".'<tr class="'.$type.$rnum.'">'."\n";
-
-		switch($type)
-		{
+		switch($type) {
 			// file / folder row
 			case 'fl':
 			case 'fr':
 				// line number
 				$row .= $this->cfg['lineNumbers'] ? '<td class="ln">'.$rowcount.'</td>' : '';
-
 				// filename
 				$row .= '<td class="nm"><a href="';
 				$row .= ''.$scriptname.'?p=' . urlencode("{$dir}{$file['name']}") . (($type === "fr") ? "/" : "");
 				$row .= '">'.$file['name'].'</a></td>';
-
 				// file size
-				$row .= $this->cfg['showFileSize'] ?
-				        '<td class="sz">'.$this->format_size($file['size']).'
-				         </td>' : '';
-
+				$row .= $this->cfg['showFileSize'] ? '<td class="sz">'.$this->format_size($file['size']).'</td>' : '';
 				// file type
-				$row .= $this->cfg['showFileType'] ?
-				        '<td class="tp">'.$file['type'].'</td>' : '';
-
+				$row .= $this->cfg['showFileType'] ? '<td class="tp">'.$file['type'].'</td>' : '';
 				// date
-				$row .= $this->cfg['showFileModDate'] ?
-				        '<td class="dt">
-				        '.date($this->cfg['dateFormat'], $file['mtime']).'
-				         </td>' : '';
+				$row .= $this->cfg['showFileModDate'] ? '<td class="dt">'.date($this->cfg['dateFormat'], $file['mtime']).'</td>' : '';
 				break;
-
 			// sorting header
 			case 'sort':
 				// sort order. Setting ascending or descending for sorting links
-				$N = ($this->cfg['sortMode'] == 'N') ?
-					 ($this->cfg['sortOrder'] == 'A' ? 'D' : 'A') : 'A';
+				$N = ($this->cfg['sortMode'] == 'N') ? ($this->cfg['sortOrder'] == 'A' ? 'D' : 'A') : 'A';
+				$S = ($this->cfg['sortMode'] == 'S') ? ($this->cfg['sortOrder'] == 'A' ? 'D' : 'A') : 'A';
+				$T = ($this->cfg['sortMode'] == 'T') ? ($this->cfg['sortOrder'] == 'A' ? 'D' : 'A') : 'A';
+				$M = ($this->cfg['sortMode'] == 'M') ? ($this->cfg['sortOrder'] == 'A' ? 'D' : 'A') : 'A';
 
-				$S = ($this->cfg['sortMode'] == 'S') ?
-					 ($this->cfg['sortOrder'] == 'A' ? 'D' : 'A') : 'A';
-
-				$T = ($this->cfg['sortMode'] == 'T') ?
-					 ($this->cfg['sortOrder'] == 'A' ? 'D' : 'A') : 'A';
-
-				$M = ($this->cfg['sortMode'] == 'M') ?
-					 ($this->cfg['sortOrder'] == 'A' ? 'D' : 'A') : 'A';
-
-				$row .= $this->cfg['lineNumbers'] ?
-				        '<td class="ln">&nbsp;</td>' : '';
-				$row .= '<td><a href="'.$scriptname.'?N='.$N.'&amp;p=' . urlencode($dir) . '">'.gettext("Name").'</a></td>';
-				$row .= $this->cfg['showFileSize'] ?
-					    '<td class="sz">
-						 <a href="'.$scriptname.'?S='.$S.'&amp;p=' . urlencode($dir) . '">'.gettext("Size").'</a>
-						 </td>' : '';
-				$row .= $this->cfg['showFileType'] ?
-				        '<td class="tp">
-				         <a href="'.$scriptname.'?T='.$T.'&amp;p=' . urlencode($dir) . '">'.gettext("Type").'</a>
-				         </td>' : '';
-				$row .= $this->cfg['showFileModDate'] ?
-					    '<td class="dt">
-					     <a href="'.$scriptname.'?M='.$M.'&amp;p=' . urlencode($dir) . '">'.gettext("Modified").'</a>
-					     </td>' : '';
+				$row .= $this->cfg['lineNumbers'] ? '<td class="ln">&nbsp;</td>' : '';
+				$row .= '<td><a href="'.$scriptname.'?N='.$N.'&amp;p=' . urlencode($dir) . '">'.gtext("Name").'</a></td>';
+				$row .= $this->cfg['showFileSize']    ? '<td class="sz"><a href="' . $scriptname.'?S=' . $S . '&amp;p=' . urlencode($dir) . '">'.gtext("Size")    . '</a></td>' : '';
+				$row .= $this->cfg['showFileType']    ? '<td class="tp"><a href="' . $scriptname.'?T=' . $T . '&amp;p=' . urlencode($dir) . '">'.gtext("Type")    . '</a></td>' : '';
+				$row .= $this->cfg['showFileModDate'] ? '<td class="dt"><a href="' . $scriptname.'?M=' . $M . '&amp;p=' . urlencode($dir) . '">'.gtext("Modified"). '</a></td>' : '';
 				break;
-
 			// parent directory row
 			case 'parent':
-				$row .= $this->cfg['lineNumbers'] ?
-				        '<td class="ln">&laquo;</td>' : '';
-				$row .= '<td class="nm">
-				         <a href="'.$scriptname.'?p=' . urlencode($this->get_valid_parent_dir($dir)) . '">';
-				$row .= gettext("Parent Directory");
+				$row .= $this->cfg['lineNumbers'] ? '<td class="ln">&laquo;</td>' : '';
+				$row .= '<td class="nm"><a href="'.$scriptname.'?p=' . urlencode($this->get_valid_parent_dir($dir)) . '">';
+				$row .= gtext("Parent Directory");
 				$row .= '</a></td>';
-				$row .= $this->cfg['showFileSize'] ?
-				        '<td class="sz">&nbsp;</td>' : '';
-				$row .= $this->cfg['showFileType'] ?
-				        '<td class="tp">&nbsp;</td>' : '';
-				$row .= $this->cfg['showFileModDate'] ?
-				        '<td class="dt">&nbsp;</td>' : '';
+				$row .= $this->cfg['showFileSize'] ? '<td class="sz">&nbsp;</td>' : '';
+				$row .= $this->cfg['showFileType'] ? '<td class="tp">&nbsp;</td>' : '';
+				$row .= $this->cfg['showFileModDate'] ? '<td class="dt">&nbsp;</td>' : '';
 				break;
-
 			// footer row
 			case 'footer':
-				$row .= $this->cfg['lineNumbers'] ?
-				        '<td class="ln">&nbsp;</td>' : '';
+				$row .= $this->cfg['lineNumbers'] ? '<td class="ln">&nbsp;</td>' : '';
 				$row .= '<td class="nm">&nbsp;</td>';
-				$row .= $this->cfg['showFileSize'] ?
-				        '<td class="sz">'.$this->cfg['totalSize'].'
-				         </td>' : '';
-				$row .= $this->cfg['showFileType'] ?
-				        '<td class="tp">&nbsp;</td>' : '';
-				$row .= $this->cfg['showFileModDate'] ?
-				        '<td class="dt">&nbsp;</td>' : '';
+				$row .= $this->cfg['showFileSize'] ? '<td class="sz">'.$this->cfg['totalSize'].'</td>' : '';
+				$row .= $this->cfg['showFileType'] ? '<td class="tp">&nbsp;</td>' : '';
+				$row .= $this->cfg['showFileModDate'] ? '<td class="dt">&nbsp;</td>' : '';
 				break;
 		}
-
 		$row .= '</tr>';
 		return $row;
 	}
 
-  function navigation_bar($path)
-	{
-    $gettext = "gettext";
-    $ret = "";
-    $ret .= <<<EOD
+	function navigation_bar($path) {
+		$gt_cancel = gtext('Cancel');
+		$gt_ok = gtext('OK');
+		$ret = '';
+		$ret .= <<<EOD
 	<tr>
 	<td class="navbar">
 	<form method="get" action="filechooser.php" onSubmit="onSubmit();" onReset="onReset();">
 		<input class="input" name="p" value="{$path}" type="text">
-		<input class="button" type="reset" value="{$gettext("Cancel")}">
-		<input class="button" type="submit" value="{$gettext("OK")}">
+		<input class="button" type="reset" value="{$gt_cancel}">
+		<input class="button" type="submit" value="{$gt_ok}">
 EOD;
-    ob_start();
-    include("formend.inc");
-    $formend = ob_get_contents();
-    ob_end_clean();
-    $formend = str_replace('/>', '>', $formend);
-    $ret .= $formend;
-    $ret .= <<<EOD
+		ob_start();
+		include("formend.inc");
+		$formend = ob_get_contents();
+		ob_end_clean();
+		$formend = str_replace('/>', '>', $formend);
+		$ret .= $formend;
+		$ret .= <<<EOD
 	</form>
 	</td>
 	</tr>
 EOD;
-    return $ret;
-  }
+		return $ret;
+	}
 }
 ?>
 <?php header("Content-Type: text/html; charset=" . system_get_language_codeset());?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="<?=system_get_language_code();?>">
-  <head>
-	<title><?=htmlspecialchars(gettext("filechooser"));?></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=<?=system_get_language_codeset();?>">
-	<meta http-equiv="Content-Script-Type" content="text/javascript">
-	<meta http-equiv="Content-Style-Type" content="text/css">
-  	<link href="gui.css" rel="stylesheet" type="text/css">
+	<head>
+		<title><?=gtext("filechooser");?></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=<?=system_get_language_codeset();?>">
+		<meta http-equiv="Content-Script-Type" content="text/javascript">
+		<meta http-equiv="Content-Style-Type" content="text/css">
+		<link href="css/gui.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="niftycube/niftycube.js"></script>
 		<script type="text/javascript" src="niftycube/niftylayout.js"></script>
 		<style type="text/css">
-		<!--
+<!--
 			body { background: #FFFFFF; min-width: 0px; }
-
 			.filechooser { background-color: #fff; margin: 0px; padding: 0px; }
 			.filechooser table { width: 100%; height: 100%; font-size: 11px; font-family: Tahoma, Verdana, Arial, sans-serif !important; }
 			.filechooser td { padding: 10px; vertical-align: top; }
-
 			.filechooser .filelist table { width:100%; }
 			.filechooser .filelist table tr td { padding:1px; font-size:12px; }
 			.filechooser .filelist table tr.fr_odd td,
@@ -553,7 +465,7 @@ EOD;
 			.filechooser .filelist table tr.sort a:hover { text-decoration:underline; }
 			/* parent row */
 			.filechooser .filelist table tr.parent { font-weight:bold; }
-			.filechooser .filelist table tr.parent td { height: 18px; border-bottom: 1px solid #eee; text-color: #ffffff; background: #435370 url(listtopic_bg.png); }
+			.filechooser .filelist table tr.parent td { height: 18px; border-bottom: 1px solid #eee; text-color: #ffffff; background: #435370 url(images/listtopic_bg.png); }
 			.filechooser .filelist table tr.parent a { text-decoration:none; color:#ffffff; }
 			.filechooser .filelist table tr.parent a:hover { text-decoration:underline; }
 			/* filelist rows */
@@ -572,17 +484,16 @@ EOD;
 			.filechooser .filelist table tr td.dt { border-right:1px solid #eee; }
 			/* footer row */
 			.filechooser .filelist table tr.footer td { border:0; font-weight:bold; }
-
 			/* Navigation bar */
 			.filechooser .navbar { background-color: #eee; padding: 6px 9px; text-align:left; border-left:1px solid #eee; border-right:1px solid #eee; border-bottom:1px solid #eee; border-spacing:0; height: 40px }
-			.filechooser .navbar .input { position:absolute; width:75%; top: 6px; left: 9px; }
+			.filechooser .navbar .input { /*position:absolute;*/ width:75%; top: 6px; left: 9px; }
 			.filechooser .navbar .button { position:relative; float:right; }
-		-->
+			.filechooser .infobar { height: 100px; }
+-->
 		</style>
 		<script type="text/javascript">
-		<!--
-			function onSubmit()
-			{
+<!--
+			function onSubmit() {
 				var slash = eval("opener.slash_"+opener.ifield.id);
 				if (typeof slash === "undefined" || slash == 0) {
 					opener.ifield.value = document.forms[0].p.value.replace(/\/$/, '');
@@ -592,16 +503,15 @@ EOD;
 				}
 				close();
 			}
-			function onReset()
-			{
+			function onReset() {
 				close();
 			}
-		// -->
+// -->
 		</script>
-  </head>
-  <body class="filechooser">
-  	<table cellspacing="0">
-		<?php new FileChooser();?>
+	</head>
+	<body class="filechooser">
+		<table cellspacing="0">
+			<?php new FileChooser();?>
 		</table>
-  </body>
+	</body>
 </html>

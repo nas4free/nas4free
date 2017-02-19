@@ -1,14 +1,11 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-# All rights reserved.
-# 
-# Portions of freenas (http://www.freenas.org).
-# Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-
+# UPS Monitor Service
+#
 
 # PROVIDE: nut_upsmon
 # REQUIRE: NETWORKING nut
@@ -21,6 +18,7 @@
 . /etc/configxml.subr
 
 name="nut_upsmon"
+desc="UPS Monitor Service"
 rcvar=nut_upsmon_enable
 
 load_rc_config "${name}"
@@ -59,13 +57,26 @@ nut_upsmon_mkconf()
 	local _shutdownmode _shutdowntimer
 
 	_shutdownmode=`configxml_get "//ups/shutdownmode"`
+    _upsmode=`configxml_get "//ups/mode"`
+    if [ "master" = "${_upsmode}" ]; then
+        _ups_user=`configxml_get "//ups/user"`
+        _ups_password=`configxml_get "//ups/password"`
+    else
+        _ups_user=`configxml_get "//ups/monitoruser"`
+        _ups_password=`configxml_get "//ups/monitorpassword"`
+    fi
 
 	############################
 	# Create upsmon.conf
-	/usr/local/bin/xml sel -t \
-		-v "concat('MONITOR ',//ups/upsname,'@',//ups/ip,' 1 ',//ups/monitoruser,' ',//ups/password,' ',//ups/mode)" -n \
-		${configxml_file} | /usr/local/bin/xml unesc > ${nut_upsmon_conf}
-
+        /usr/local/bin/xml sel -t \
+            -v "concat('MONITOR ',//ups/upsname,'@',//ups/ip,' 1 ${_ups_user} ${_ups_password} ',//ups/mode)" -n \
+            ${configxml_file} | /usr/local/bin/xml unesc > ${nut_upsmon_conf}
+        if configxml_isset //ups/ups2; then
+            /usr/local/bin/xml sel -t \
+                -v "concat('MONITOR ',//ups/ups2_upsname,'@',//ups/ip,' 1 ${_ups_user} ${_ups_password} ',//ups/mode)" -n \
+                ${configxml_file} | /usr/local/bin/xml unesc >> ${nut_upsmon_conf}
+        fi
+    
 	cat <<EOF >> ${nut_upsmon_conf}
 MINSUPPLIES ${nut_upsmon_minsupplies}
 SHUTDOWNCMD "${nut_upsmon_shutdowncmd}"
@@ -135,4 +146,3 @@ EOF
 nut_upsmon_mkconf
 
 run_rc_command "$1"
-

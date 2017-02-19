@@ -3,11 +3,7 @@
 	wui.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -228,7 +225,7 @@ class HTMLPasswordConfBox extends HTMLEditBox {
 		$valueconf = htmlspecialchars($this->GetValueConf(), ENT_QUOTES);
 		$size = $this->GetSize();
 		$param = $this->GetParam();
-		$caption = htmlspecialchars(gettext("Confirmation"), ENT_QUOTES);
+		$caption = gtext("Confirmation");
 
 		echo "		<input name='{$ctrlname}' type='password' class='formfld' id='{$ctrlname}' size='{$size}' value='{$value}' {$param} /><br />\n";
 		echo "    <input name='{$ctrlnameconf}' type='password' class='formfld' id='{$ctrlnameconf}' size='{$size}' value='{$valueconf}' {$param} />&nbsp;({$caption})\n";
@@ -544,14 +541,16 @@ class HTMLMountComboBox extends HTMLComboBox {
 		global $config;
 
 		// Generate options.
-		if (!isset($config['mounts']) || !is_array($config['mounts']))
-			$config['mounts'] = array();
-		if (!is_array($config['mounts']['mount']))
-			$config['mounts']['mount'] = array();
+		if (!(isset($config['mounts']) && is_array($config['mounts']))) {
+			$config['mounts'] = [];
+		}
+		if (!(isset($config['mounts']['mount']) && is_array($config['mounts']['mount']))) {
+			$config['mounts']['mount'] = [];
+		}
 		array_sort_key($config['mounts']['mount'], "devicespecialfile");
 
-		$options = array();
-		$options[""] = htmlspecialchars(gettext("Must choose one"), ENT_QUOTES);
+		$options = [];
+		$options[""] = gtext("Must choose one");
 		foreach ($config['mounts']['mount'] as $mountv) {
 			$options[$mountv['uuid']] = $mountv['sharename'];
 		}
@@ -591,7 +590,7 @@ class HTMLLanguageComboBox extends HTMLComboBox {
 		// Generate options.
 		$options = array();
 		foreach ($g_languages as $languagek => $languagev) {
-			$options[$languagek] = htmlspecialchars(gettext($languagev['desc']), ENT_QUOTES);
+			$options[$languagek] = $languagev['desc.localized'];
 		}
 		// Sort options alphabetically
 		asort($options);
@@ -821,13 +820,13 @@ class HTMLFolderBox extends HTMLBaseControl {
 		echo "    function onclick_delete_{$ctrlname}() {\n";
 		echo "      var element = document.getElementById('{$ctrlname}');\n";
 		echo "      if (element.value != '') {\n";
-		echo "        var msg = confirm('".htmlspecialchars(gettext("Do you really want to remove the selected item from the list?"), ENT_QUOTES)."');\n";
+		echo "        var msg = confirm('".gtext("Do you really want to remove the selected item from the list?")."');\n";
 		echo "        if (msg == true) {\n";
 		echo "          element.options[element.selectedIndex] = null;\n";
 		echo "          document.getElementById('{$ctrlname}data').value = '';\n";
 		echo "        }\n";
 		echo "      } else {\n";
-		echo "        alert('".htmlspecialchars(gettext("Select item to remove from the list"), ENT_QUOTES)."');\n";
+		echo "        alert('".gtext("Select item to remove from the list")."');\n";
 		echo "      }\n";
 		echo "    }\n";
 		echo "    function onclick_change_{$ctrlname}() {\n";
@@ -852,11 +851,105 @@ class HTMLFolderBox extends HTMLBaseControl {
 			echo "      <option value='{$valuev}' {$optparam}>{$valuev}</option>\n";
 		}
 		echo "    </select>\n";
-		echo "    <input name='{$ctrlname}deletebtn' type='button' class='formbtn' id='{$ctrlname}deletebtn' value='".htmlspecialchars(gettext("Delete"), ENT_QUOTES)."' onclick='onclick_delete_{$ctrlname}()' /><br />\n";
+		echo "    <input name='{$ctrlname}deletebtn' type='button' class='formbtn' id='{$ctrlname}deletebtn' value='".gtext("Delete")."' onclick='onclick_delete_{$ctrlname}()' /><br />\n";
 		echo "    <input name='{$ctrlname}data' type='text' class='formfld' id='{$ctrlname}data' size='60' value='' />\n";
 		echo "    <input name='{$ctrlname}browsebtn' type='button' class='formbtn' id='{$ctrlname}browsebtn' onclick='ifield = form.{$ctrlname}data; filechooser = window.open(\"filechooser.php?p=\"+encodeURIComponent(ifield.value)+\"&amp;sd={$path}\", \"filechooser\", \"scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300\"); filechooser.ifield = ifield; window.ifield = ifield;' value='...' />\n";
-		echo "    <input name='{$ctrlname}addbtn' type='button' class='formbtn' id='{$ctrlname}addbtn' value='".htmlspecialchars(gettext("Add"), ENT_QUOTES)."' onclick='onclick_add_{$ctrlname}()' />\n";
-		echo "    <input name='{$ctrlname}changebtn' type='button' class='formbtn' id='{$ctrlname}changebtn' value='".htmlspecialchars(gettext("Change"), ENT_QUOTES)."' onclick='onclick_change_{$ctrlname}()' />\n";
+		echo "    <input name='{$ctrlname}addbtn' type='button' class='formbtn' id='{$ctrlname}addbtn' value='".gtext("Add")."' onclick='onclick_add_{$ctrlname}()' />\n";
+		echo "    <input name='{$ctrlname}changebtn' type='button' class='formbtn' id='{$ctrlname}changebtn' value='".gtext("Change")."' onclick='onclick_change_{$ctrlname}()' />\n";
+	}
+}
+
+class HTMLFolderBox1 extends HTMLFolderBox {
+	function RenderCtrl() {
+		$ctrlname = $this->GetCtrlName();
+		$value = $this->GetValue();
+		$path = $this->GetPath();
+
+		echo "    <script type='text/javascript'>\n";
+		echo "    //<![CDATA[\n";
+		echo "    function onchange_{$ctrlname}() {\n";
+		echo "      var value1 = document.getElementById('{$ctrlname}');\n";
+		echo "      if (value1.value.charAt(0) != '/') {\n";
+		echo "      document.getElementById('{$ctrlname}data').value = value1.value.substring(2,(value1.value.length));\n";
+		echo "      document.getElementById('{$ctrlname}filetype').value = value1.value.charAt(0);\n";
+		echo "        }else{\n";
+		echo "      document.getElementById('{$ctrlname}data').value = document.getElementById('{$ctrlname}').value;\n";
+		echo "      document.getElementById('{$ctrlname}filetype').value = '';\n";
+		echo "      }\n";
+		echo "    }\n";
+		echo "    function onclick_add_{$ctrlname}() {\n";
+		echo "      var value1 = document.getElementById('{$ctrlname}data').value;\n";
+		echo "      var valuetype = document.getElementById('{$ctrlname}filetype').value;\n";
+		echo "      if (valuetype != '') {\n";
+		echo "      var valuetype = valuetype + ',';\n";
+		echo "          }\n";
+		echo "      var value = valuetype +  value1;\n";
+		echo "      if (value != '') {\n";
+		echo "        var found = false;\n";
+		echo "        var element = document.getElementById('{$ctrlname}');\n";
+		echo "        for (var i = 0; i < element.length; i++) {\n";
+		echo "          if (element.options[i].text == value) {\n";
+		echo "            found = true;\n";
+		echo "            break;\n";
+		echo "          }\n";
+		echo "        }\n";
+		echo "        if (found != true) {\n";
+		echo "          element.options[element.length] = new Option(value, value, false, true);\n";
+		echo "          document.getElementById('{$ctrlname}data').value = '';\n";
+		echo "        }\n";
+		echo "      }\n";
+		echo "    }\n";
+		echo "    function onclick_delete_{$ctrlname}() {\n";
+		echo "      var element = document.getElementById('{$ctrlname}');\n";
+		echo "      if (element.value != '') {\n";
+		echo "        var msg = confirm('".gtext("Do you really want to remove the selected item from the list?")."');\n";
+		echo "        if (msg == true) {\n";
+		echo "          element.options[element.selectedIndex] = null;\n";
+		echo "          document.getElementById('{$ctrlname}data').value = '';\n";
+		echo "        }\n";
+		echo "      } else {\n";
+		echo "        alert('".gtext("Select item to remove from the list")."');\n";
+		echo "      }\n";
+		echo "    }\n";
+		echo "    function onclick_change_{$ctrlname}() {\n";
+		echo "      var element = document.getElementById('{$ctrlname}');\n";
+		echo "      if (element.value != '') {\n";
+		echo "        var value1 = document.getElementById('{$ctrlname}data').value;\n";
+		echo "      var valuetype = document.getElementById('{$ctrlname}filetype').value;\n";
+		echo "      if (valuetype != '') {\n";
+		echo "      var valuetype = valuetype + ',';\n";
+		echo "          }\n";
+		echo "      var value = valuetype +  value1;\n";
+		echo "        element.options[element.selectedIndex].text = value;\n";
+		echo "        element.options[element.selectedIndex].value = value;\n";
+		echo "      }\n";
+		echo "    }\n";
+		echo "    function onsubmit_{$ctrlname}() {\n";
+		echo "      var element = document.getElementById('{$ctrlname}');\n";
+		echo "      for (var i = 0; i < element.length; i++) {\n";
+		echo "        if (element.options[i].value != '')\n";
+		echo "          element.options[i].selected = true;\n";
+		echo "      }\n";
+		echo "    }\n";
+		echo "    //]]>\n";
+		echo "    </script>\n";
+		echo "    <select name='{$ctrlname}[]' class='formfld' id='{$ctrlname}' multiple='multiple'  style='width: 350px' onchange='onchange_{$ctrlname}()'>\n";
+		foreach ($value as $valuek => $valuev) {
+			echo "      <option value='{$valuev}' {$optparam}>{$valuev}</option>\n";
+		}
+		echo "    </select>\n";
+		echo "    <input name='{$ctrlname}deletebtn' type='button' class='formbtn' id='{$ctrlname}deletebtn' value='".gtext("Delete")."' onclick='onclick_delete_{$ctrlname}()' /><br />\n";
+		echo "    <select name='{$ctrlname}filetype' class='formfld' id='{$ctrlname}filetype' > ";
+		echo "			<option value=''>".gtext("All")."</option>";
+		echo "			<option value='A'>".gtext("Audio")."</option>";
+		echo "			<option value='V'>".gtext("Video")."</option>";
+		echo "  		<option value='P'>".gtext("Pictures")."</option>";
+		echo "    </select>";
+
+		echo "    <input name='{$ctrlname}data' type='text' class='formfld' id='{$ctrlname}data' size='60' value='' />\n";
+		echo "    <input name='{$ctrlname}browsebtn' type='button' class='formbtn' id='{$ctrlname}browsebtn' onclick='ifield = form.{$ctrlname}data; filechooser = window.open(\"filechooser.php?p=\"+encodeURIComponent(ifield.value)+\"&amp;sd={$path}\", \"filechooser\", \"scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300\"); filechooser.ifield = ifield; window.ifield = ifield;' value='...' />\n";
+		echo "    <input name='{$ctrlname}addbtn' type='button' class='formbtn' id='{$ctrlname}addbtn' value='".gtext("Add")."' onclick='onclick_add_{$ctrlname}()' />\n";
+		echo "    <input name='{$ctrlname}changebtn' type='button' class='formbtn' id='{$ctrlname}changebtn' value='".gtext("Change")."' onclick='onclick_change_{$ctrlname}()' />\n";
 	}
 }
 ?>

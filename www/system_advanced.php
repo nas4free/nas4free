@@ -3,11 +3,7 @@
 	system_advanced.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,12 +34,13 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("System"), gettext("Advanced"));
+$pgtitle = array(gtext("System"), gtext("Advanced Setup"));
 
 $pconfig['disableconsolemenu'] = isset($config['system']['disableconsolemenu']);
 $pconfig['disablefm'] = isset($config['system']['disablefm']);
 $pconfig['disablefirmwarecheck'] = isset($config['system']['disablefirmwarecheck']);
 $pconfig['disablebeep'] = isset($config['system']['disablebeep']);
+$pconfig['enabletogglemode'] = isset($config['system']['enabletogglemode']);
 $pconfig['tune_enable'] = isset($config['system']['tune']);
 $pconfig['zeroconf'] = isset($config['system']['zeroconf']);
 $pconfig['powerd'] = isset($config['system']['powerd']);
@@ -66,7 +64,7 @@ if ($_POST) {
 	// Input validation.
 	if (isset($_POST['sysconsaver'])) {
 		$reqdfields = explode(" ", "sysconsaverblanktime");
-		$reqdfieldsn = array(gettext("Blank time"));
+		$reqdfieldsn = array(gtext("Blank time"));
 		$reqdfieldst = explode(" ", "numeric");
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -74,7 +72,7 @@ if ($_POST) {
 	}
 	if (isset($_POST['powerd'])) {
 		$reqdfields = explode(" ", "pwmax pwmin");
-		$reqdfieldsn = array(gettext("Maximum frequency"), gettext("Minimum frequency"));
+		$reqdfieldsn = array(gtext("Maximum frequency"), gtext("Minimum frequency"));
 		$reqdfieldst = explode(" ", "numeric numeric");
 
 		//do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -137,6 +135,7 @@ if ($_POST) {
 		$config['system']['disableconsolemenu'] = isset($_POST['disableconsolemenu']) ? true : false;
 		$config['system']['disablefm'] = isset($_POST['disablefm']) ? true : false;
 		$config['system']['disablefirmwarecheck'] = isset($_POST['disablefirmwarecheck']) ? true : false;
+		$config['system']['enabletogglemode'] = isset($_POST['enabletogglemode']) ? true : false;
 		$config['system']['webgui']['noantilockout'] = isset($_POST['noantilockout']) ? true : false;
 		$config['system']['disablebeep'] = isset($_POST['disablebeep']) ? true : false;
 		$config['system']['tune'] = isset($_POST['tune_enable']) ? true : false;
@@ -201,33 +200,49 @@ function sysctl_tune($mode) {
 	$a_sysctlvar = &$config['system']['sysctl']['param'];
 
 	$a_mib = array(
-		"net.inet.tcp.delayed_ack" => 1,
-		"net.inet.tcp.rfc1323" => 1,
-		"net.inet.tcp.sendspace" => 131072,
-		"net.inet.tcp.recvspace" => 131072,
-		"net.inet.tcp.sendbuf_max" => 4194304,
-		"net.inet.tcp.sendbuf_inc" => 131072,
-		"net.inet.tcp.sendbuf_auto" => 1,
-		"net.inet.tcp.recvbuf_max" => 4194304,
-		"net.inet.tcp.recvbuf_inc" => 131072,
-		"net.inet.tcp.recvbuf_auto" => 1,
-		"net.inet.udp.recvspace" => 65536,
-		"net.inet.udp.maxdgram" => 57344,
-		"net.local.stream.recvspace" => 65536,
-		"net.local.stream.sendspace" => 65536,
-		"kern.ipc.maxsockbuf" => 16777216,
-		"kern.ipc.somaxconn" => 8192,
-		"kern.ipc.nmbclusters" => 131072,
-		"kern.ipc.nmbjumbop" => 131072,
-		"kern.ipc.nmbjumbo9" => 32768,
-		"kern.ipc.nmbjumbo16" => 16384,
-		"kern.maxfiles" => 65536,
-		"kern.maxfilesperproc" => 60000,
-		"net.inet.icmp.icmplim" => 300,
-		"net.inet.icmp.icmplim_output" => 1,
-		//"net.inet.tcp.inflight.enable" => 0,
-		"net.inet.tcp.path_mtu_discovery" => 0,
-		"hw.intr_storm_threshold" => 9000,
+	"kern.maxvnodes"                    =>	3339551,
+	"kern.maxproc"	                    =>  201940,
+	"kern.maxfiles"	                    =>  65536,
+	"kern.maxusers"	                    =>  12620,
+	"kern.ipc.nmbclusters"	            =>  12255534,
+	"kern.ipc.nmbjumbop"	            =>  6127766,
+	"kern.ipc.nmbjumbo9"	            =>  5446902,
+	"kern.ipc.nmbjumbo16"	            =>  4085176,
+	"kern.ipc.maxsockets"	            =>  1042450,
+	"kern.ipc.maxsockbuf"	            =>  2097152,
+	"kern.ipc.somaxconn"	            =>  2048,
+	"net.inet.tcp.sendbuf_auto"	    =>  1,
+	"net.inet.tcp.recvbuf_auto"	    =>  1,
+	"net.inet.tcp.sendspace"	    =>  32768,
+	"net.inet.tcp.recvspace"	    =>  65536,
+	"net.inet.tcp.sendbuf_max"	    =>  2097152,
+	"net.inet.tcp.recvbuf_max"	    =>  2097152,
+	"net.inet.tcp.sendbuf_inc"	    =>  8192,
+	"net.inet.tcp.recvbuf_inc"	    =>  16384,
+	"net.inet.tcp.tcbhashsize"	    =>  2097152,
+	"net.inet.ip.intr_queue_maxlen"	    =>  256,
+	"net.route.netisr_maxqlen"	    =>  256,
+	"hw.igb.max_interrupt_rate"	    =>  8000,
+	"hw.ix.max_interrupt_rate"	    =>  31250,
+	"hw.igb.rxd"	                    =>  1024,
+	"hw.igb.txd"	                    =>  1024,
+	"hw.ix.txd"	                    =>  2048,
+	"hw.ix.rxd"	                    =>  2048,
+	"hw.igb.num_queues"	            =>  0,
+	"hw.ix.num_queues"	            =>  8,
+
+		"net.inet.tcp.delayed_ack" 		=> 1,
+		"net.inet.tcp.rfc1323" 			=> 1,
+		"net.inet.udp.recvspace" 		=> 65536,
+		"net.inet.udp.maxdgram" 		=> 57344,
+
+		"net.local.stream.recvspace" 		=> 65536,
+		"net.local.stream.sendspace" 		=> 65536,
+
+		"net.inet.icmp.icmplim" 		=> 300,
+		"net.inet.icmp.icmplim_output" 		=> 1,
+		"net.inet.tcp.path_mtu_discovery" 	=> 0,
+		"hw.intr_storm_threshold" 		=> 9000,
 	);
 
 	switch ($mode) {
@@ -252,7 +267,7 @@ function sysctl_tune($mode) {
 				$param['uuid'] = uuid();
 				$param['name'] = $name;
 				$param['value'] = $value;
-				$param['comment'] = gettext("System tuning");
+				$param['comment'] = gtext("System tuning");
 				$param['enable'] = true;
 
 				$a_sysctlvar[] = $param;
@@ -296,55 +311,67 @@ function powerd_change() {
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabact"><a href="system_advanced.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Advanced");?></span></a></li>
-				<li class="tabinact"><a href="system_email.php"><span><?=gettext("Email");?></span></a></li>
-				<li class="tabinact"><a href="system_proxy.php"><span><?=gettext("Proxy");?></span></a></li>
-				<li class="tabinact"><a href="system_swap.php"><span><?=gettext("Swap");?></span></a></li>
-				<li class="tabinact"><a href="system_rc.php"><span><?=gettext("Command scripts");?></span></a></li>
-				<li class="tabinact"><a href="system_cron.php"><span><?=gettext("Cron");?></span></a></li>
-				<li class="tabinact"><a href="system_loaderconf.php"><span><?=gettext("loader.conf");?></span></a></li>
-				<li class="tabinact"><a href="system_rcconf.php"><span><?=gettext("rc.conf");?></span></a></li>
-				<li class="tabinact"><a href="system_sysctl.php"><span><?=gettext("sysctl.conf");?></span></a></li>
+				<li class="tabact"><a href="system_advanced.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Advanced");?></span></a></li>
+				<li class="tabinact"><a href="system_email.php"><span><?=gtext("Email");?></span></a></li>
+				<li class="tabinact"><a href="system_swap.php"><span><?=gtext("Swap");?></span></a></li>
+				<li class="tabinact"><a href="system_rc.php"><span><?=gtext("Command Scripts");?></span></a></li>
+				<li class="tabinact"><a href="system_cron.php"><span><?=gtext("Cron");?></span></a></li>
+				<li class="tabinact"><a href="system_loaderconf.php"><span><?=gtext("loader.conf");?></span></a></li>
+				<li class="tabinact"><a href="system_rcconf.php"><span><?=gtext("rc.conf");?></span></a></li>
+				<li class="tabinact"><a href="system_sysctl.php"><span><?=gtext("sysctl.conf");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabcont">
-			<form action="system_advanced.php" method="post" name="iform" id="iform">
+			<form action="system_advanced.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_checkbox("disableconsolemenu", gettext("Console Menu"), !empty($pconfig['disableconsolemenu']) ? true : false, gettext("Disable console menu"), gettext("Changes to this option will take effect after a reboot."));?>
-					<?php html_checkbox("enableserialconsole", gettext("Serial Console"), !empty($pconfig['enableserialconsole']) ? true : false, gettext("Enable serial console"), sprintf("<span class='red'><strong>%s</strong></span><br />%s", gettext("The COM port in BIOS has to be enabled before enabling this option."), gettext("Changes to this option will take effect after a reboot.")));?>
-					<?php html_checkbox("sysconsaver", gettext("Console screensaver"), !empty($pconfig['sysconsaver']) ? true : false, gettext("Enable console screensaver"), "", false, "sysconsaver_change()");?>
-					<?php html_inputbox("sysconsaverblanktime", gettext("Blank time"), $pconfig['sysconsaverblanktime'], gettext("Turn the monitor to standby after N seconds."), true, 5);?>
-					<?php html_checkbox("disablefm", gettext("File Manager"), !empty($pconfig['disablefm']) ? true : false, gettext("Disable File Manager"));?>
-					<?php if ("full" !== $g['platform']):?>
-					<?php html_checkbox("disablefirmwarecheck", gettext("Firmware version check"), !empty($pconfig['disablefirmwarecheck']) ? true : false, gettext("Disable firmware version check"), sprintf(gettext("This will cause %s not to check for newer firmware versions when the <a href='%s'>%s</a> page is viewed."), get_product_name(), "system_firmware.php", gettext("System").": ".gettext("Firmware")));?>
-					<?php endif;?>
-					<?php html_checkbox("disablebeep", gettext("System Beep"), !empty($pconfig['disablebeep']) ? true : false, gettext("Disable speaker beep on startup and shutdown"));?>
-					<?php html_checkbox("tune_enable", gettext("Tuning"), !empty($pconfig['tune_enable']) ? true : false, gettext("Enable tuning of some kernel variables"));?>
-					<?php html_checkbox("powerd", gettext("Power Daemon"), !empty($pconfig['powerd']) ? true : false, gettext("Enable the system power control utility"), gettext("The powerd utility monitors the system state and sets various power control options accordingly."), false, "powerd_change()");?>
-					<?php $a_pwmode = array("maximum" => gettext("maximum (highest performance)"), "hiadaptive" => gettext("hiadaptive (high performance)"), "adaptive" => gettext("adaptive (low power consumption)"), "minimum" => gettext("minimum (power saving)")); ?>
-					<?php html_combobox("pwmode", gettext("Power Mode"), $pconfig['pwmode'], $a_pwmode, gettext("Controls power consumption."), false);?>
+					<?php
+					html_titleline(gtext("System Settings"));
+					html_checkbox("zeroconf", gtext("Zeroconf/Bonjour"), !empty($pconfig['zeroconf']) ? true : false, gtext("Enable Zeroconf/Bonjour to advertise services of this device."));
+					html_checkbox("disablefm", gtext("File Manager"), !empty($pconfig['disablefm']) ? true : false, gtext("Disable file manager completely."));
+					if ("full" !== $g['platform']) {
+						$link = '<a href="' . 'system_firmware.php' . '">' . gtext('System') . ': ' . gtext('Firmware Update') . '</a>';
+						$helpinghand = sprintf(gtext('Do not let the server check for newer firmware versions when the %s page gets loaded.'), $link);
+						html_checkbox("disablefirmwarecheck", gtext("Firmware Check"), !empty($pconfig['disablefirmwarecheck']) ? true : false, gtext("Disable firmware version check."), $helpinghand);
+					}
+					html_checkbox("disablebeep", gtext("Internal Speaker"), !empty($pconfig['disablebeep']) ? true : false, gtext("Disable speaker beep on startup and shutdowns."));
+					html_checkbox("enabletogglemode", gtext("Toggle Mode"), !empty($pconfig['enabletogglemode']) ? true : false, gtext("Use toggle button instead of enable/disable buttons."));
+					html_separator();
+					?>
+					<tr>
+						<td colspan="2" valign="top" class="listtopic"><?=gtext("Performance Settings");?></td>
+					</tr>
+					<?php html_checkbox("tune_enable", gtext("Tuning"), !empty($pconfig['tune_enable']) ? true : false, gtext("Enable tuning of some kernel variables."));?>
+					<?php html_checkbox("powerd", gtext("Power Daemon"), !empty($pconfig['powerd']) ? true : false, gtext("Enable the server power control utility."), gtext("The powerd utility monitors the server state and sets various power control options accordingly."), false, "powerd_change()");?>
+					<?php $a_pwmode = array("maximum" => gtext("Maximum (Highest Performance)"), "hiadaptive" => gtext("Hiadaptive (High Performance)"), "adaptive" => gtext("Adaptive (Low Power Consumption)"), "minimum" => gtext("Minimum (Lowest Performance)")); ?>
+					<?php html_combobox("pwmode", gtext("Power Mode"), $pconfig['pwmode'], $a_pwmode, gtext("Controls power consumption."), false);?>
 					<?php $clocks = @exec("/sbin/sysctl -q -n dev.cpu.0.freq_levels");
-					    $a_freq = array();
-					   if (!empty($clocks)) {
-						$a_tmp = preg_split("/\s/", $clocks);
+						$a_freq = array();
+						if (!empty($clocks)) {
+							$a_tmp = preg_split("/\s/", $clocks);
 						foreach ($a_tmp as $val) {
 							list($freq,$tmp) = preg_split("/\//", $val);
 							if (!empty($freq))
 								$a_freq[] = $freq;
 						}
-					   }
+						}
 					?>
-					<?php html_inputbox("pwmax", gettext("Maximum frequency"), $pconfig['pwmax'], sprintf("%s %s", gettext("CPU frequency:"), join(", ", $a_freq))."<br />".gettext("Empty as default."), false, 5);?>
-					<?php html_inputbox("pwmin", gettext("Minimum frequency"), $pconfig['pwmin'], gettext("Empty as default."), false, 5);?>
-					<?php html_checkbox("zeroconf", gettext("Zeroconf/Bonjour"), !empty($pconfig['zeroconf']) ? true : false, gettext("Enable Zeroconf/Bonjour to advertise services of this device"));?>
-					<?php html_textarea("motd", gettext("MOTD"), $pconfig['motd'], gettext("Message of the day."), false, 65, 7, false, false);?>
+					<?php html_inputbox("pwmax", gtext("Maximum frequency"), $pconfig['pwmax'], sprintf("%s %s", gtext("CPU frequency:"), join(", ", $a_freq)).".<br />".gtext("Empty as default."), false, 5);?>
+					<?php html_inputbox("pwmin", gtext("Minimum frequency"), $pconfig['pwmin'], gtext("Empty as default."), false, 5);?>
+					<?php html_separator();?>
+			    		<?php html_titleline(gtext("Console Settings"));?>
+					<?php html_checkbox("disableconsolemenu", gtext("Console Menu"), !empty($pconfig['disableconsolemenu']) ? true : false, gtext("Disable console menu."), gtext("Changes to this option will take effect after a reboot."));?>
+					<?php html_checkbox("enableserialconsole", gtext("Serial Console"), !empty($pconfig['enableserialconsole']) ? true : false, gtext("Enable serial console."), sprintf("<span class='red'><strong>%s</strong></span><br />%s", gtext("The COM port in BIOS has to be enabled before enabling this option."), gtext("Changes to this option will take effect after a reboot.")));?>
+					<?php html_checkbox("sysconsaver", gtext("Console screensaver"), !empty($pconfig['sysconsaver']) ? true : false, gtext("Enable console screensaver."), "", false, "sysconsaver_change()");?>
+					<?php html_inputbox("sysconsaverblanktime", gtext("Blank time"), $pconfig['sysconsaverblanktime'], gtext("Turn the monitor to standby after N seconds."), true, 5);?>
+					<?php html_textarea("motd", gtext("MOTD"), $pconfig['motd'], gtext("Message of the day."), false, 65, 7, false, false);?>
+
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save");?>" onclick="enable_change(true)" />
 				</div>
 				<?php include("formend.inc");?>
 			</form>

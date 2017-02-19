@@ -3,7 +3,7 @@
 	services_websrv.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -38,7 +38,7 @@ require("auth.inc");
 require("guiconfig.inc");
 require("services.inc");
 
-$pgtitle = array(gettext("Services"),gettext("Webserver"));
+$pgtitle = array(gtext("Services"),gtext("Webserver"));
 
 if (!isset($config['websrv']) || !is_array($config['websrv']))
 	$config['websrv'] = array();
@@ -69,12 +69,12 @@ if ($_POST) {
 	// Input validation.
 	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "port documentroot");
-		$reqdfieldsn = array(gettext("Port"), gettext("Document root"));
+		$reqdfieldsn = array(gtext("Port"), gtext("Document root"));
 		$reqdfieldst = explode(" ", "port string");
 
 		if ("https" === $_POST['protocol']) {
 			$reqdfields = array_merge($reqdfields, explode(" ", "certificate privatekey"));
-			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Certificate"), gettext("Private key")));
+			$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Certificate"), gtext("Private key")));
 			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "certificate privatekey"));
 		}
 
@@ -83,12 +83,12 @@ if ($_POST) {
 
 		// Check if port is already used.
 		if (services_is_port_used($_POST['port'], "websrv"))
-			$input_errors[] = sprintf(gettext("Port %ld is already used by another service."), $_POST['port']);
+			$input_errors[] = sprintf(gtext("Port %ld is already used by another service."), $_POST['port']);
 
 		// Check Webserver document root if auth is required
 		if (isset($_POST['authentication'])
 		    && !is_dir($_POST['documentroot'])) {
-			$input_errors[] = gettext("Webserver document root is missing.");
+			$input_errors[] = gtext("Webserver document root is missing.");
 		}
 	}
 
@@ -205,29 +205,38 @@ function authentication_change() {
 //-->
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabcont">
-    	<form action="services_websrv.php" method="post" name="iform" id="iform">
-	    	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
-				<?php if (updatenotify_exists("websrvauth")) print_config_change_box();?>
-			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Webserver"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
-					<?php html_combobox("protocol", gettext("Protocol"), $pconfig['protocol'], array("http" => "HTTP", "https" => "HTTPS"), "", true, false, "protocol_change()");?>
-					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], gettext("TCP port to bind the server to."), true, 5);?>
-					<?php html_combobox("runasuser", gettext("Run as"), $pconfig['runasuser'], array("server.username = \"www\"" => "www", "" => "root"), gettext("Set what user the service will run as (www by default). <br><b><font color='red'>NOTE</font>: Running as root is <u>not recommended</u> for security reasons, use it on your own risk!</b></br>"), true);?>	
-					<?php html_textarea("certificate", gettext("Certificate"), $pconfig['certificate'], gettext("Paste a signed certificate in X.509 PEM format here."), true, 76, 7, false, false);?>
-					<?php html_textarea("privatekey", gettext("Private key"), $pconfig['privatekey'], gettext("Paste an private key in PEM format here."), true, 76, 7, false, false);?>
-					<?php html_filechooser("documentroot", gettext("Document root"), $pconfig['documentroot'], gettext("Document root of the webserver. Home of the web page files."), $g['media_path'], true, 76);?>
-					<?php html_filechooser("uploaddir", gettext("Upload directory"), $pconfig['uploaddir'], sprintf(gettext("Upload directory of the webserver. The default is %s."), $default_uploaddir), $default_uploaddir, true, 76);?>
-			    <?php html_checkbox("authentication", gettext("Authentication"), !empty($pconfig['authentication']) ? true : false, gettext("Enable authentication."), gettext("Give only local users access to the web page."), false, "authentication_change()");?>
+	<tr>
+		<td class="tabcont">
+			<form action="services_websrv.php" method="post" name="iform" id="iform" onsubmit="spinner()">
+				<?php
+				if (!empty($input_errors)) print_input_errors($input_errors);
+				if (!empty($savemsg)) print_info_box($savemsg);
+				if (updatenotify_exists("websrvauth")) print_config_change_box();
+				?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<?php
+					html_titleline_checkbox("enable", gtext("Webserver"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");
+					html_combobox("protocol", gtext("Protocol"), $pconfig['protocol'], array("http" => "HTTP", "https" => "HTTPS"), "", true, false, "protocol_change()");
+					html_inputbox("port", gtext("Port"), $pconfig['port'], gtext("TCP port to bind the server to."), true, 5);
+					$helpinghand = gtext('Set under which user the service should run (www by default).')
+						. '<br><b>'
+						. '<font color="red">' . gtext('NOTE') . '</font>: '
+						. gtext('Running the service as user root is not recommended for security reasons, use at your own risk!')
+						. '</b></br>';
+					html_combobox("runasuser", gtext("Run as"), $pconfig['runasuser'], array("server.username = \"www\"" => "www", "" => "root"), $helpinghand, true);
+					html_textarea("certificate", gtext("Certificate"), $pconfig['certificate'], gtext("Paste a signed certificate in X.509 PEM format here."), true, 76, 7, false, false);
+					html_textarea("privatekey", gtext("Private key"), $pconfig['privatekey'], gtext("Paste an private key in PEM format here."), true, 76, 7, false, false);
+					html_filechooser("documentroot", gtext("Document root"), $pconfig['documentroot'], gtext("Document root of the webserver. Home of the web page files."), $g['media_path'], true, 76);
+					html_filechooser("uploaddir", gtext("Upload directory"), $pconfig['uploaddir'], sprintf(gtext("Upload directory of the webserver. The default is %s."), $default_uploaddir), $default_uploaddir, true, 76);
+					html_checkbox("authentication", gtext("Authentication"), !empty($pconfig['authentication']) ? true : false, gtext("Enable authentication."), gtext("Give only local users access to the web page."), false, "authentication_change()");
+					?>
 					<tr id="authdirs_tr">
 						<td width="22%" valign="top" class="vncell">&nbsp;</td>
 						<td width="78%" class="vtable">
 							<table width="100%" border="0" cellpadding="0" cellspacing="0">
 								<tr>
-									<td width="45%" class="listhdrlr"><?=gettext("URL");?></td>
-									<td width="45%" class="listhdrr"><?=gettext("Realm");?></td>
+									<td width="45%" class="listhdrlr"><?=gtext("URL");?></td>
+									<td width="45%" class="listhdrr"><?=gtext("Realm");?></td>
 									<td width="10%" class="list"></td>
 								</tr>
 								<?php foreach ($config['websrv']['authentication']['url'] as $urlv):?>
@@ -238,13 +247,13 @@ function authentication_change() {
 									<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
 									<td valign="middle" nowrap="nowrap" class="list">
 										<?php if (isset($config['websrv']['enable'])):?>
-										<a href="services_websrv_authurl.php?uuid=<?=$urlv['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit URL");?>" border="0" alt="<?=gettext("Edit URL");?>" /></a>&nbsp;
-										<a href="services_websrv.php?act=del&amp;uuid=<?=$urlv['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this URL?");?>')"><img src="x.gif" title="<?=gettext("Delete URL");?>" border="0" alt="<?=gettext("Delete URL");?>" /></a>
+										<a href="services_websrv_authurl.php?uuid=<?=$urlv['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit URL");?>" border="0" alt="<?=gtext("Edit URL");?>" /></a>&nbsp;
+										<a href="services_websrv.php?act=del&amp;uuid=<?=$urlv['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this URL?");?>')"><img src="images/delete.png" title="<?=gtext("Delete URL");?>" border="0" alt="<?=gtext("Delete URL");?>" /></a>
 										<?php endif;?>
 									</td>
 									<?php else:?>
 									<td valign="middle" nowrap="nowrap" class="list">
-										<img src="del.gif" border="0" alt="" />
+										<img src="images/delete.png" border="0" alt="" />
 									</td>
 									<?php endif;?>
 								</tr>
@@ -252,18 +261,25 @@ function authentication_change() {
 								<tr>
 									<td class="list" colspan="2"></td>
 									<td class="list">
-										<a href="services_websrv_authurl.php"><img src="plus.gif" title="<?=gettext("Add URL");?>" border="0" alt="<?=gettext("Add URL");?>" /></a>
+										<a href="services_websrv_authurl.php"><img src="images/add.png" title="<?=gtext("Add URL");?>" border="0" alt="<?=gtext("Add URL");?>" /></a>
 									</td>
 								</tr>
 							</table>
-							<span class="vexpl"><?=gettext("Define directories/URL's that require authentication.");?></span>
+							<span class="vexpl"><?=gtext("Define directories/URL's that require authentication.");?></span>
 						</td>
 					</tr>
-					<?php html_checkbox("dirlisting", gettext("Directory listing"), !empty($pconfig['dirlisting']) ? true : false, gettext("Enable directory listing."), gettext("A directory listing is generated if a directory is requested and no index-file (index.php, index.html, index.htm or default.htm) was found in that directory."), false);?>
-					<?php html_textarea("auxparam", gettext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gettext("These parameters will be added to %s."), "websrv.conf")  . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://redmine.lighttpd.net/projects/lighttpd/wiki"), false, 85, 7, false, false);?>
-			  </table>
+					<?php
+					html_checkbox("dirlisting", gtext("Directory listing"), !empty($pconfig['dirlisting']) ? true : false, gtext("Enable directory listing."), gtext("A directory listing is generated if a directory is requested and no index-file (index.php, index.html, index.htm or default.htm) was found in that directory."), false);
+					$helpinghand = '<a href="'
+						. 'http://redmine.lighttpd.net/projects/lighttpd/wiki'
+						. '" target="_blank">'
+						. gtext('Please check the documentation')
+						. '</a>.';
+					html_textarea("auxparam", gtext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gtext("These parameters will be added to %s."), "websrv.conf")  . " " . $helpinghand, false, 85, 7, false, false);
+					?>
+				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" onclick="enable_change(true)" />
 				</div>
 				<?php include("formend.inc");?>
 			</form>

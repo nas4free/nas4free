@@ -3,11 +3,7 @@
 	services_unison.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -55,7 +52,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Services"), gettext("Unison"));
+$pgtitle = array(gtext("Services"), gtext("Unison"));
 
 if (!isset($config['unison']) || !is_array($config['unison']))
 	$config['unison'] = array();
@@ -74,13 +71,13 @@ if ($_POST) {
 
 	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = array_merge($reqdfields, explode(" ", "workdir"));
-		$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Working directory")));
+		$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Working directory")));
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 		// Check if working directory exists
 		if (empty($_POST['mkdir']) && !file_exists($_POST['workdir'])) {
-			$input_errors[] = gettext("The working directory does not exist.");
+			$input_errors[] = gtext("The working directory does not exist.");
 		}
 	}
 
@@ -118,22 +115,28 @@ function enable_change(enable_change) {
 }
 //-->
 </script>
-<form action="services_unison.php" method="post" name="iform" id="iform">
+<form action="services_unison.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	  <tr>
-	    <td class="tabcont">
+		<tr>
+			<td class="tabcont">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>	    
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Unison File Synchronisation"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
-					<?php html_filechooser("workdir", gettext("Working directory"), $pconfig['workdir'], sprintf(gettext("Location where the working files will be stored, e.g. %s/backup/.unison"), $g['media_path']), $g['media_path'], true, 60);?>
-				  <?php html_checkbox("mkdir", "", !empty($pconfig['mkdir']) ? true : false, gettext("Create work directory if it doesn't exist."), "", false);?>
+					<?php
+					html_titleline_checkbox("enable", gtext("Unison File Synchronisation"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");
+					html_filechooser("workdir", gtext("Working directory"), $pconfig['workdir'], sprintf(gtext("Location where the working files will be stored, e.g. %s/backup/.unison"), $g['media_path']), $g['media_path'], true, 60);
+					html_checkbox("mkdir", "", !empty($pconfig['mkdir']) ? true : false, gtext("Create work directory if it doesn't exist."), "", false);
+					?>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save and Restart");?>" onclick="enable_change(true)" />
 				</div>
 				<div id="remarks">
-					<?php html_remark("note", gettext("Note"), sprintf(gettext("<a href='%s'>SSHD</a> must be enabled for Unison to work, and the <a href='%s'>user</a> must have shell access."), "services_sshd.php", "access_users.php"));?>
+					<?php
+					$link1 = '<a href="' . 'services_sshd.php' . '">' . gtext('SSHD') . '</a>';
+					$link2 = '<a href="' . 'access_users.php' . '">' . gtext('user') . '</a>';
+					html_remark("note", gtext('Note'), sprintf(gtext("%s must be enabled for Unison to work, and the %s must have shell access."), $link1, $link2));
+					?>
 				</div>
 			</td>
 		</tr>

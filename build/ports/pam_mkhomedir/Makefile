@@ -1,8 +1,9 @@
 PORTNAME=		pam_mkhomedir
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=		security
 COMMENT=		Create HOME with a PAM module on demand
-MAINTAINER=		zoon01@nas4free.org
+MAINTAINER=		zoon1@nas4free.org
 
 # No files are needed to be fetched.
 DISTFILES?=
@@ -14,7 +15,7 @@ NO_PKG_REGISTER?=	 yes
 #ALWAYS_BUILD_DEPENDS= yes
 DEPENDS_TARGET=	 clean build
 
-BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/security/pam_mkhomedir
+BUILD_DEPENDS=	${NONEXISTENT}:security/pam_mkhomedir
 
 do-install:
 	@${INSTALL_PROGRAM} -v ${PORTSDIR}/security/pam_mkhomedir/work/pam_mkhomedir-*/pam_mkhomedir.so ${NAS4FREE_ROOTFS}/usr/local/lib

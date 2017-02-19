@@ -1,6 +1,6 @@
 PORTNAME=	exfat
-PORTVERSION=	20150924
-PORTREVISION=	0
+PORTVERSION=	20151219
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	aoyama@nas4free.org
@@ -8,11 +8,11 @@ COMMENT=	Full-featured exFAT FS implementation as a FUSE module
 
 LICENSE=	GPLv2
 
-LIB_DEPENDS=	libublio.so:${PORTSDIR}/devel/libublio
+LIB_DEPENDS=	libublio.so:devel/libublio
 
 USE_GITHUB=     yes
 GH_ACCOUNT=     relan
-GH_TAGNAME=     b7953e2
+GH_TAGNAME=     0514eff
 
 USES=		autoreconf fuse
 GNU_CONFIGURE=	yes

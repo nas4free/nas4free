@@ -3,7 +3,7 @@
 	status_graph_cpu.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -41,7 +41,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Status"), gettext("Graph"), gettext("CPU load"));
+$pgtitle = array(gtext("Status"), gtext("Graph"), gtext("CPU Load"));
 
 $graph_gap = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 $graph_width = 397;
@@ -52,13 +52,13 @@ $graph_height = 220;
   <tr>
 		<td class="tabnavtbl">
   		<ul id="tabnav">
-        <li class="tabinact"><a href="status_graph.php"><span><?=gettext("System load");?></span></a></li>
-        <li class="tabact"><a href="status_graph_cpu.php" title="<?=gettext("Reload page");?>"><span><?=gettext("CPU load");?></span></a></li>
+        <li class="tabinact"><a href="status_graph.php"><span><?=gtext("System Load");?></span></a></li>
+        <li class="tabact"><a href="status_graph_cpu.php" title="<?=gtext('Reload page');?>"><span><?=gtext("CPU Load");?></span></a></li>
       </ul>
     </td>
   </tr>
     <td class="tabcont">
-        <?=gettext("Graph shows last 120 seconds");?>
+        <?=gtext("Graph shows last 120 seconds");?>
 <div align="center" style="min-width:840px;">
         <br />
 <?php

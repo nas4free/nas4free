@@ -1,6 +1,6 @@
---- src/sys/cddl/contrib/opensolaris/uts/common/fs/zfs/arc.c.orig	2015-07-12 15:29:17.258890000 +0900
-+++ src/sys/cddl/contrib/opensolaris/uts/common/fs/zfs/arc.c	2015-07-12 15:41:25.622642000 +0900
-@@ -4163,12 +4163,37 @@
+--- src/sys/cddl/contrib/opensolaris/uts/common/fs/zfs/arc.c.orig	2016-03-13 20:04:18.966628000 +0100
++++ src/sys/cddl/contrib/opensolaris/uts/common/fs/zfs/arc.c	2016-03-13 22:40:33.000000000 +0100
+@@ -5303,12 +5303,37 @@
  #endif	/* sun */
  	/* set min cache to 1/32 of all memory, or 16MB, whichever is more */
  	arc_c_min = MAX(arc_c / 4, 16 << 20);
@@ -36,9 +36,9 @@
 +		arc_c_max = MIN(arc_c_min, (32UL * (1<<20)));
 +#endif
  
- #ifdef _KERNEL
  	/*
-@@ -4203,6 +4228,19 @@
+ 	 * In userland, there's only the memory pressure that we artificially
+@@ -5365,6 +5390,19 @@
  	if (zfs_arc_p_min_shift > 0)
  		arc_p_min_shift = zfs_arc_p_min_shift;
  
@@ -55,6 +55,6 @@
 +		arc_c_min = (arc_c_max * 1) / 4;
 +#endif
 +
- 	/* if kmem_flags are set, lets try to use less memory */
- 	if (kmem_debugging())
- 		arc_c = arc_c / 2;
+ 	if (zfs_arc_num_sublists_per_state < 1)
+ 		zfs_arc_num_sublists_per_state = MAX(max_ncpus, 1);
+ 

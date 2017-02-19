@@ -3,11 +3,7 @@
 	services_ups_drv.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Services"), gettext("UPS"), gettext("Driver list"));
+$pgtitle = array(gtext("Services"), gtext("UPS"), gtext("Driver list"));
 
 function nut_get_driverlist() {
 	$a_driverinfo = array();
@@ -71,10 +68,10 @@ function nut_get_driverlist() {
 	    <td class="tabcont">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tr>
-          	<td width="25%" class="listhdrlr"><?=gettext("Manufacturer");?></td>
-            <td width="25%" class="listhdrr"><?=gettext("Model name");?></td>
-            <td width="25%" class="listhdrr"><?=gettext("Model extra");?></td>
-            <td width="25%" class="listhdrr"><?=gettext("Driver");?></td>
+          	<td width="25%" class="listhdrlr"><?=gtext("Manufacturer");?></td>
+            <td width="25%" class="listhdrr"><?=gtext("Model Name");?></td>
+            <td width="25%" class="listhdrr"><?=gtext("Model Extra");?></td>
+            <td width="25%" class="listhdrr"><?=gtext("Driver");?></td>
           </tr>
   			  <?php foreach(nut_get_driverlist() as $driverinfov):?>
           <tr>

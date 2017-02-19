@@ -3,11 +3,7 @@
 	disks_zfs_snapshot_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -43,7 +40,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Snapshots"), gettext("Snapshot"), gettext("Edit"));
+$pgtitle = array(gtext("Disks"), gtext("ZFS"), gtext("Snapshots"), gtext("Snapshot"), gtext("Edit"));
 
 if (!isset($config['zfs']['pools']['pool']) || !is_array($config['zfs']['pools']['pool']))
 	$config['zfs']['pools']['pool'] = array();
@@ -71,7 +68,10 @@ function get_zfs_paths() {
 $a_path = get_zfs_paths();
 
 if (!isset($uuid) && (!sizeof($a_pool))) {
-	$errormsg = sprintf(gettext("No configured pools. Please add new <a href='%s'>pools</a> first."), "disks_zfs_zpool.php");
+	$link = sprintf('<a href="%1$s">%2$s</a>', 'disks_zfs_zpool.php', gtext('pools'));
+	$helpinghand = gtext('No configured pools.') . ' ' . gtext('Please add new %s first.');
+	$helpinghand = sprintf($helpinghand, $link);
+	$errormsg = $helpinghand;
 }
 
 if (isset($_GET['snapshot']))
@@ -109,71 +109,74 @@ if ($_POST) {
 		exit;
 	}
 
-	if (isset($_POST['action']))
+	if (isset($_POST['action'])) {
 		$action = $_POST['action'];
+	}
 	if (empty($action)) {
-		$input_errors[] = sprintf(gettext("The attribute '%s' is required."), gettext("Action"));
-	} else if ($action == 'clone') {
-		// Input validation
-		$reqdfields = explode(" ", "newpath");
-		$reqdfieldsn = array(gettext("Path"));
-		$reqdfieldst = explode(" ", "string");
-
-		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
-		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
-
-		if (preg_match("/(\\s|\\@|\\'|\\\")+/", $_POST['newpath'])) {
-			$input_errors[] = sprintf(gettext("The attribute '%s' contains invalid characters."), gettext("Path"));
-		}
-
-		if (empty($input_errors)) {
-			$snapshot = array();
-			$snapshot['uuid'] = $_POST['uuid'];
-			$snapshot['pool'] = $_POST['pool'];
-			$snapshot['path'] = $_POST['newpath'];
-			//$snapshot['name'] = $_POST['newname'];
-			$snapshot['snapshot'] =	$_POST['snapshot'];
-			//$snapshot['recursive'] = isset($_POST['recursive']) ? true : false;
-
-			//$mode = UPDATENOTIFY_MODE_MODIFIED;
-			//updatenotify_set("zfssnapshot", $mode, serialize($snapshot));
-			//header("Location: disks_zfs_snapshot.php");
-			//exit;
-
-			$ret = zfs_snapshot_clone($snapshot);
-			if ($ret['retval'] == 0) {
-				header("Location: disks_zfs_snapshot.php");
-				exit;
-			}
-			$errormsg = implode("\n", $ret['output']);
-		}
-	} else if ($action == 'delete') {
-		// Input validation
-		// nothing
-
-		if (empty($input_errors)) {
-			$snapshot = array();
-			$snapshot['uuid'] = $_POST['uuid'];
-			//$snapshot['pool'] = $_POST['pool'];
-			//$snapshot['path'] = $_POST['path'];
-			//$snapshot['name'] = $_POST['name'];
-			$snapshot['snapshot'] =	$_POST['snapshot'];
-			$snapshot['recursive'] = isset($_POST['recursive']) ? true : false;
-
-			//$mode = UPDATENOTIFY_MODE_DIRTY;
-			//updatenotify_set("zfssnapshot", $mode, serialize($snapshot));
-			//header("Location: disks_zfs_snapshot.php");
-			//exit;
-
-			$ret = zfs_snapshot_destroy($snapshot);
-			if ($ret['retval'] == 0) {
-				header("Location: disks_zfs_snapshot.php");
-				exit;
-			}
-			$errormsg = implode("\n", $ret['output']);
-		}
+		$input_errors[] = sprintf(gtext("The attribute '%s' is required."), gtext("Action"));
 	} else {
-		$input_errors[] = sprintf(gettext("The attribute '%s' is invalid."), "action");
+		switch($action) {
+			case 'clone':
+				// Input validation
+				$reqdfields = explode(" ", "newpath");
+				$reqdfieldsn = array(gtext("Path"));
+				$reqdfieldst = explode(" ", "string");
+
+				do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
+				do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
+
+				if (preg_match("/(\\s|\\@|\\'|\\\")+/", $_POST['newpath'])) {
+					$input_errors[] = sprintf(gtext("The attribute '%s' contains invalid characters."), gtext("Path"));
+				}
+
+				if (empty($input_errors)) {
+					$snapshot = array();
+					$snapshot['uuid'] = $_POST['uuid'];
+					$snapshot['pool'] = $_POST['pool'];
+					$snapshot['path'] = $_POST['newpath'];
+					$snapshot['snapshot'] =	$_POST['snapshot'];
+					$ret = zfs_snapshot_clone($snapshot);
+					if ($ret['retval'] == 0) {
+						header("Location: disks_zfs_snapshot.php");
+						exit;
+					}
+					$errormsg = implode("\n", $ret['output']);
+				}
+				break;
+			case 'delete':
+				// Input validation not required
+				if (empty($input_errors)) {
+					$snapshot = [];
+					$snapshot['uuid'] = $_POST['uuid'];
+					$snapshot['snapshot'] =	$_POST['snapshot'];
+					$snapshot['recursive'] = isset($_POST['recursive']) ? true : false;
+					$ret = zfs_snapshot_destroy($snapshot);
+					if ($ret['retval'] == 0) {
+						header("Location: disks_zfs_snapshot.php");
+						exit;
+					}
+					$errormsg = implode("\n", $ret['output']);
+				}
+				break;
+			case 'rollback':
+				// Input validation not required
+				if (empty($input_errors)) {
+					$snapshot = [];
+					$snapshot['uuid'] = $_POST['uuid'];
+					$snapshot['snapshot'] =	$_POST['snapshot'];
+					$snapshot['force_delete'] = isset($_POST['force_delete']) ? true : false;
+					$ret = zfs_snapshot_rollback($snapshot);
+					if ($ret['retval'] == 0) {
+						header("Location: disks_zfs_snapshot.php");
+						exit;
+					}
+					$errormsg = implode("\n", $ret['output']);
+				}
+				break;
+			default:
+				$input_errors[] = sprintf(gtext("The attribute '%s' is invalid."), 'action');
+				break;
+		}
 	}
 }
 ?>
@@ -185,15 +188,23 @@ function enable_change(enable_change) {
 function action_change() {
 	showElementById('newpath_tr','hide');
 	showElementById('recursive_tr','hide');
+	showElementById('force_delete_tr','hide');
 	var action = document.iform.action.value;
 	switch (action) {
 		case "clone":
 			showElementById('newpath_tr','show');
 			showElementById('recursive_tr','hide');
+			showElementById('force_delete_tr','hide');
 			break;
 		case "delete":
 			showElementById('newpath_tr','hide');
 			showElementById('recursive_tr','show');
+			showElementById('force_delete_tr','hide');
+			break;
+		case "rollback":
+			showElementById('newpath_tr','hide');
+			showElementById('recursive_tr','hide');
+			showElementById('force_delete_tr','show');
 			break;
 		default:
 			break;
@@ -205,40 +216,45 @@ function action_change() {
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gettext("Pools");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gettext("Datasets");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gettext("Volumes");?></span></a></li>
-				<li class="tabact"><a href="disks_zfs_snapshot.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Snapshots");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gettext("Configuration");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gtext("Pools");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gtext("Datasets");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gtext("Volumes");?></span></a></li>
+				<li class="tabact"><a href="disks_zfs_snapshot.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Snapshots");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gtext("Configuration");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav2">
-				<li class="tabact"><a href="disks_zfs_snapshot.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Snapshot");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot_clone.php"><span><?=gettext("Clone");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot_auto.php"><span><?=gettext("Auto Snapshot");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot_info.php"><span><?=gettext("Information");?></span></a></li>
+				<li class="tabact"><a href="disks_zfs_snapshot.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Snapshot");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot_clone.php"><span><?=gtext("Clone");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot_auto.php"><span><?=gtext("Auto Snapshot");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot_info.php"><span><?=gtext("Information");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabcont">
 			<form action="disks_zfs_snapshot_edit.php" method="post" name="iform" id="iform">
-				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
-				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
+				<?php
+					if (!empty($errormsg)) print_error_box($errormsg);
+					if (!empty($input_errors)) print_input_errors($input_errors);
+					if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));
+				?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_text("snapshot", gettext("Snapshot"), htmlspecialchars($pconfig['snapshot']));?>
-					<?php $a_action = array("clone" => gettext("Clone"), "delete" => gettext("Delete"));?>
-					<?php html_combobox("action", gettext("Action"), $pconfig['action'], $a_action, "", true, false, "action_change()");?>
-					<?php html_inputbox("newpath", gettext("Path"), $pconfig['newpath'], "", true, 30);?>
-					<?php html_checkbox("recursive", gettext("Recursive"), !empty($pconfig['recursive']) ? true : false, gettext("Deletes the recursive snapshot."), "", false);?>
+					<?php
+						html_text("snapshot", gtext("Snapshot"), htmlspecialchars($pconfig['snapshot']));
+						$a_action = array("clone" => gtext("Clone"), "delete" => gtext("Delete"), "rollback" => gtext("Rollback"));
+						html_combobox("action", gtext("Action"), $pconfig['action'], $a_action, "", true, false, "action_change()");
+						html_inputbox("newpath", gtext("Path"), $pconfig['newpath'], "", true, 30);
+						html_checkbox("recursive", gtext("Recursive"), !empty($pconfig['recursive']) ? true : false, gtext("Deletes the recursive snapshot."), "", false);
+						html_checkbox("force_delete", gtext("Force delete"), !empty($pconfig['force_delete']) ? true : false, gtext("Destroy any snapshots and bookmarks more recent than the one specified."), "", false);
+					?>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Execute");?>" onclick="enable_change(true)" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Execute");?>" onclick="enable_change(true)" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 					<input name="snapshot" type="hidden" value="<?=$pconfig['snapshot'];?>" />
 					<input name="pool" type="hidden" value="<?=$pconfig['pool'];?>" />

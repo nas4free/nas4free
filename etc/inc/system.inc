@@ -3,11 +3,7 @@
 	system.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -261,7 +258,17 @@ function get_smbios_info() {
 		$serial = chop(`/sbin/sysctl -n hw.board.serial`);
 		if (!empty($serial))
 			$smbios['planar']['product'] .= " (S/N: $serial)";
-	} else if ($smbios['bios']['vendor'] == 'BHYVE') {
+	}   else if (preg_match('/^bpi-/', $platform)) {
+		// fake data on BANANA-PI
+		$smbios['bios']['reldate'] = "01/01/2015";
+		$smbios['bios']['vendor'] = "BANANA-PI";
+		$smbios['bios']['version'] = "1.0";
+		$smbios['planar']['maker'] = "Sinovoip Co";
+		$smbios['planar']['product'] = chop(`sysctl -n dev.cpu.0.%pnpinfo | awk -F "," '{ print $2; }'`);
+		$serial = chop(`/sbin/sysctl -n hw.board.revision`);
+		if (!empty($serial))
+			$smbios['planar']['product'] .= " (S/N: $serial)";
+	} 	else if ($smbios['bios']['vendor'] == 'BHYVE') {
 		$smbios['bios']['reldate'] = "01/01/2015";
 		$smbios['bios']['vendor'] = "BHyVe";
 		$smbios['bios']['version'] = "1.0";
@@ -357,11 +364,14 @@ function system_get_cpu_info() {
 			$cpuinfo['model'] = "Broadcom BCM2836";
 		else if ($platform == "meson8b")
 			$cpuinfo['model'] = "Amlogic S805";
+		else if ($platform == "a20")
+			$cpuinfo['model'] = "Allwinner a20";
 		else
 			$cpuinfo['model'] = $platform;
 	}
 	$cpuinfo['clockrate'] = chop(`/sbin/sysctl -n hw.clockrate`);
-	$cpuinfo['temperature'] = chop(`/sbin/sysctl -n hw.acpi.thermal.tz0.temperature`);
+	if (chop(`/sbin/sysctl -n hw.platform`) == 'a20') $cpuinfo['temperature'] = chop(`/sbin/sysctl -n dev.axp209_pmu.0.temp`);
+	else $cpuinfo['temperature'] = chop(`/sbin/sysctl -n hw.acpi.thermal.tz0.temperature`);
 	$cpus = system_get_cpus();
 	$cpuinfo['temperature2'] = array();
 	$temp = @exec("/sbin/sysctl -q -n dev.cpu.0.temperature");
@@ -411,17 +421,67 @@ function system_get_uptime() {
 	$upsecs = $uptime % 60;
 
 	if (($updays < 1) && ($uphours < 1)) {
-		$uptime = sprintf("%d %s %d %s", $upmins, gettext("minute(s)"), $upsecs, gettext("second(s)"));
+		$uptime = sprintf("%d %s %d %s", $upmins, gtext("minute(s)"), $upsecs, gtext("second(s)"));
 	} else if ($updays < 1) {
-		$uptime = sprintf("%d %s %d %s %d %s", $uphours, gettext("hour(s)"),
-			$upmins, gettext("minute(s)"), $upsecs, gettext("second(s)"));
+		$uptime = sprintf("%d %s %d %s %d %s", $uphours, gtext("hour(s)"),
+			$upmins, gtext("minute(s)"), $upsecs, gtext("second(s)"));
 	} else {
-		$uptime = sprintf("%d %s %d %s %d %s %d %s", $updays, gettext("day(s)"),
-			$uphours, gettext("hour(s)"), $upmins, gettext("minute(s)"), $upsecs,
-			gettext("second(s)"));
+		$uptime = sprintf("%d %s %d %s %d %s %d %s", $updays, gtext("day(s)"),
+			$uphours, gtext("hour(s)"), $upmins, gtext("minute(s)"), $upsecs,
+			gtext("second(s)"));
 	}
 
 	return htmlspecialchars($uptime);
+}
+
+/**
+ * Get the system date/time for conversion strings.
+ * @return The current uptime as string.
+ */
+function get_datetime_locale_samples() {
+	$retval = [];
+	$sphere_array = [
+		'D M d H:i:s T Y',    // Thu Feb 25 22:52:29 CET 2016
+		'D d M Y H:i:s',      // Thu 25 Feb 2016 22:52:29
+		'D d M Y H:i:s T',    // Thu 25 Feb 2016 22:52:29 CET
+		'D d M Y H:i:s T O',  // Thu 25 Feb 2016 22:52:29 CET +0100
+		'l F d H:i:s T Y',    // Thursday February 25 22:52:29 BST 2016
+		'l d F Y H:i:s',      // Thursday 25 February 2016 22:52:29
+		'l d F Y H:i:s T',    // Thursday 25 February 2016 22:52:29 BST
+		'l d F Y H:i:s T O',  // Thursday 25 February 2016 22:52:29 BST +0100
+		'D M d h:i:s A T Y',  // Thu Feb 25 10:52:29 PM PT 2016
+		'l F d h:i:s A T Y',  // Thursday February 25 10:52:29 PM BST 2016
+		'd.m.Y H:i:s',        // 25.02.2016 22:31:42
+		'd/m/Y H:i:s',        // 25/02/2016 22:31:42
+		'd/m/Y h:i:s A',      // 25/02/2016 10:31:42 PM
+		'm/d/Y H:i:s',        // 02/25/2016 22:31:42
+		'm/d/Y h:i:s A',      // 02/25/2016 10:31:42 PM
+		'Y-m-d H:i:s'         // 2016-02-02 22:31:42
+	];
+	$now = shell_exec('date "+%s"');
+	foreach ($sphere_array as $sphere_record) {
+		$retval[$sphere_record] = get_datetime_locale($now, $sphere_record);
+	}
+	return $retval;
+}
+
+function get_datetime_locale($timestamp = null, $format = null) {
+	global $config;
+	$retval = '';
+	$timestamp = (int)(($timestamp === null) ? shell_exec('date "+%s"') : $timestamp);
+	$format = ($format === null) ? (isset($config['system']['datetimeformat']) ? $config['system']['datetimeformat'] : 'D M d H:i:s T Y') : $format;
+	$datetime_object = new DateTime();
+	$datetime_object->setTimestamp($timestamp);
+	$format_symbols = ['D','l','M','F'];
+	$replacement_symbols = ['%1','%2','%3','%4'];
+	$localised_names = [
+		gtext($datetime_object->format($format_symbols[0])),
+		gtext($datetime_object->format($format_symbols[1])),
+		gtext($datetime_object->format($format_symbols[2])),
+		gtext($datetime_object->format($format_symbols[3]))
+	];
+	$retval = str_replace($replacement_symbols, $localised_names, $datetime_object->format(str_replace($format_symbols, $replacement_symbols, $format))); // Do the whole thing in one go
+	return $retval;
 }
 
 // Get the current RAM information.
@@ -554,7 +614,7 @@ function system_get_device_temp($devicespecialfile) {
 		foreach ($rawdata as $rawdatav) {
 			$arawdatav = preg_split("/\s+/", $rawdatav);
 
-			if (!empty($arawdatav[1]) && (0 == strncmp(trim($arawdatav[1]), "Temperature_", 12)) &&
+			if (!empty($arawdatav[1]) && ((0 == strncmp(trim($arawdatav[1]), "Temperature_", 12)) || (0 == strncmp(trim($arawdatav[1]), "Airflow_Temperature_", 20))) &&
 				((0 != strcmp(trim($arawdatav[0]), "190")) || (0 != strcmp(trim($arawdatav[0]), "194")) )) {
 				$result = chop($arawdatav[9]);
 				break;
@@ -614,7 +674,7 @@ function system_get_controller($devicespecialfile) {
 		}
 	}
 
-	return gettext("n/a");
+	return gtext("n/a");
 }
 
 /**
@@ -651,7 +711,7 @@ function system_get_volume_serial($devicespecialfile) {
 			return $serial;
 	}
 
-	return gettext("n/a");
+	return gtext("n/a");
 }
 
 /**
@@ -693,7 +753,7 @@ function system_get_volume_model($devicespecialfile) {
 			return $model;
 	}
 
-	return gettext("n/a");
+	return gtext("n/a");
 }
 
 /**
@@ -746,6 +806,93 @@ function system_get_mount_usage() {
 	return $result;
 }
 
+function get_disk_usage() {
+	$retval = [];
+	$a_diskusage = [];
+	$a_diskinfo = system_get_mount_usage();
+	if (!empty($a_diskinfo)) {
+		foreach ($a_diskinfo as $diskk => $diskv) {
+			$id = get_mount_fsid($diskv['filesystem'], $diskk);
+			$r_diskusage = [];
+			$r_diskusage['id'] = $id;
+			$r_diskusage['mountpoint'] = $diskv['mountpoint'];
+			$r_diskusage['name'] = $diskv['name'];
+			$r_diskusage['capacity'] = $diskv['capacity'];
+			$r_diskusage['percentage'] = rtrim($diskv['capacity'], "%");
+			$r_diskusage['size'] = $diskv['size'];
+			$r_diskusage['used'] = $diskv['used'];
+			$r_diskusage['avail'] = $diskv['avail'];
+			$r_diskusage['capofsize'] = sprintf(gtext("%s of %sB"), $r_diskusage['capacity'], $r_diskusage['size']);
+			$r_diskusage['tooltip']['used'] = sprintf(gtext("%sB used of %sB"), $r_diskusage['used'], $r_diskusage['size']);
+			$r_diskusage['tooltip']['avail'] = sprintf(gtext("%sB available of %sB"), $r_diskusage['avail'], $r_diskusage['size']);
+			$a_diskusage[] = $r_diskusage;
+		}
+		array_sort_key($a_diskusage, 'name');
+		$retval = $a_diskusage;
+	}
+	return $retval;
+}
+
+function get_pool_usage() {
+	global $config;
+ 	$retval = [];
+	$a_poolusage = [];
+	$a_poolinfo = zfs_get_pool_list();
+	if (!empty($a_poolinfo)) {
+		foreach ($a_poolinfo as $poolk => $poolv) {
+			$id = $poolv['name'];
+			$id = preg_replace('/[-\.: ]/', '_', $id);
+			$r_poolusage = [];
+			$r_poolusage['id'] = $id;
+			$r_poolusage['name'] = $poolv['name'];
+			$r_poolusage['capacity'] = $poolv['cap'];
+			$r_poolusage['percentage'] = rtrim($poolv['cap'], "%");
+			$r_poolusage['size'] = $poolv['size'];
+			if (isset($config['zfs']['settings']['showusedavail'])) {
+				$r_poolusage['used'] = $poolv['used'];
+				$r_poolusage['avail'] = $poolv['avail'];
+			} else { // this is the default setting
+				$r_poolusage['used'] = $poolv['alloc'];
+				$r_poolusage['avail'] = $poolv['free'];
+			}
+			$r_poolusage['health'] = $poolv['health'];
+			$r_poolusage['capofsize'] = sprintf(gtext("%s of %sB"), $r_poolusage['capacity'], $r_poolusage['size']);
+			$r_poolusage['tooltip']['used'] = sprintf(gtext("%sB used of %sB"), $r_poolusage['used'], $r_poolusage['size']);
+			$r_poolusage['tooltip']['avail'] = sprintf(gtext("%sB available of %sB"), $r_poolusage['avail'], $r_poolusage['size']);
+			$a_poolusage[] = $r_poolusage;
+		}
+		array_sort_key($a_poolusage, 'name');
+		$retval = $a_poolusage;
+	}
+	return $retval;
+}
+
+function get_swap_usage() {
+	$retval = [];
+	$a_swapusage = [];
+	$a_swapinfo= system_get_swap_info();
+	if (!empty($a_swapinfo)) {
+		$id = 0;
+		foreach ($a_swapinfo as $swapk => $swapv) {
+			$r_swapusage = [];
+			$r_swapusage['id'] = $id++;
+			$r_swapusage['name'] = $swapv['device'];
+			$r_swapusage['capacity'] = $swapv['capacity'];
+			$r_swapusage['percentage'] = rtrim($swapv['capacity'], "%");
+			$r_swapusage['size'] = $swapv['total'];
+			$r_swapusage['used'] = $swapv['used'];
+			$r_swapusage['avail'] = $swapv['avail'];
+			$r_swapusage['capofsize'] = sprintf(gtext("%s of %sB"), $r_swapusage['capacity'], $r_swapusage['size']);
+			$r_swapusage['tooltip']['used'] = sprintf(gtext("%sB used of %sB"), $r_swapusage['used'], $r_swapusage['size']);
+			$r_swapusage['tooltip']['avail']  = sprintf(gtext("%sB available of %sB"), $r_swapusage['avail'], $r_swapusage['size']);
+			$a_swapusage[]= $r_swapusage;
+		}
+		array_sort_key($a_swapusage, 'name');
+		$retval = $a_swapusage;
+	}
+	return $retval;
+}
+
 /**
  * Get various system informations.
  * @return An array containing the system informations.
@@ -757,15 +904,11 @@ function system_get_sysinfo() {
 	$cpus = system_get_cpus();
 	$value['cpus'] = $cpus;
 
-	// Get uptime and date.
-	$value['uptime'] = system_get_uptime();
-	$value['date'] = trim(shell_exec("date"));
-
 	// Get RAM usage.
 	$raminfo = system_get_ram_info();
 	$percentage = round(($raminfo['used'] * 100) / $raminfo['total'], 0);
 	$value['memusage']['percentage'] = $percentage;
-	$value['memusage']['caption'] = sprintf(gettext("%d%% of %dMiB"), $percentage, round($raminfo['physical'] / 1024 / 1024));
+	$value['memusage']['caption'] = sprintf(gtext("%d%% of %dMiB"), $percentage, round($raminfo['physical'] / 1024 / 1024));
 
 	// Get load average.
 	exec("uptime", $result);
@@ -786,69 +929,13 @@ function system_get_sysinfo() {
 		$value['cpuusage'] = system_get_cpu_usage();
 		$value['cpuusage2'] = array($value['cpuusage']);
 	}
+	$value['diskusage'] = get_disk_usage(); // Get disk usage.
+	$value['poolusage'] = get_pool_usage(); // Get pool info.
+	$value['swapusage'] = get_swap_usage(); // Get swap info.
 
-	// Get disk usage.
-	$a_diskusage = system_get_mount_usage();
-	if (is_array($a_diskusage) && (0 < count($a_diskusage))) {
-		foreach ($a_diskusage as $diskusagek => $diskusagev) {
-			$fsid = get_mount_fsid($diskusagev['filesystem'], $diskusagek);
-			$diskinfo = array();
-			$diskinfo['id'] = $fsid;
-			$diskinfo['mountpoint'] = $diskusagev['mountpoint'];
-			$diskinfo['name'] = $diskusagev['name'];
-			$diskinfo['capacity'] = $diskusagev['capacity'];
-			$diskinfo['percentage'] = rtrim($diskusagev['capacity'], "%");
-			$diskinfo['size'] = $diskusagev['size'];
-			$diskinfo['used'] = $diskusagev['used'];
-			$diskinfo['avail'] = $diskusagev['avail'];
-			$diskinfo['tooltip']['used'] = sprintf(gettext("%sB used of %sB"), $diskusagev['used'], $diskusagev['size']);
-			$diskinfo['tooltip']['available'] = sprintf(gettext("%sB available of %sB"), $diskusagev['avail'], $diskusagev['size']);
-
-			$value['diskusage'][] = $diskinfo;
-		}
-	}
-
-	// Get pool info.
-	$zfspools = zfs_get_pool_list();
-	if (!empty($zfspools)) {
-		foreach ($zfspools as $poolk => $poolv) {
-			$id = $poolv['name'];
-			$id = preg_replace('/[-\.: ]/', '_', $id);
-			$poolinfo = array();
-			$poolinfo['id'] = $id;
-			$poolinfo['name'] = $poolv['name'];
-			$poolinfo['capacity'] = $poolv['cap'];
-			$poolinfo['percentage'] = rtrim($poolv['cap'], "%");
-			$poolinfo['size'] = $poolv['size'];
-			$poolinfo['used'] = $poolv['alloc'];
-			$poolinfo['avail'] = $poolv['free'];
-			$poolinfo['health'] = $poolv['health'];
-			$poolinfo['tooltip']['used'] = sprintf(gettext("%sB used of %sB"), $poolv['alloc'], $poolv['size']);
-			$poolinfo['tooltip']['available'] = sprintf(gettext("%sB available of %sB"), $poolv['free'], $poolv['size']);
-			$value['poolusage'][] = $poolinfo;
-		}
-	}
-
-	// Get swap info.
-	$swapinfo = system_get_swap_info();
-	if (is_array($swapinfo) && (0 < count($swapinfo))) {
-		$id = 0;
-		foreach ($swapinfo as $swapv) {
-			$swapinfo = array();
-			$swapinfo['id'] = $id++;
-			$swapinfo['device'] = $swapv['device'];
-			$swapinfo['capacity'] = $swapv['capacity'];
-			$swapinfo['percentage'] = rtrim($swapv['capacity'], "%");
-			$swapinfo['total'] = $swapv['total'];
-			$swapinfo['used'] = $swapv['used'];
-			$swapinfo['avail'] = $swapv['avail'];
-			$swapinfo['tooltip']['used'] = sprintf(gettext("%sB used of %sB"), $swapv['used'], $swapv['total']);
-			$swapinfo['tooltip']['available']  = sprintf(gettext("%sB available of %sB"), $swapv['avail'], $swapv['total']);
-
-			$value['swapusage'][]= $swapinfo;
-		}
-	}
-
+	// Get uptime and date.
+	$value['uptime'] = system_get_uptime();
+	$value['date'] = get_datetime_locale();
 	return $value;
 }
 ?>

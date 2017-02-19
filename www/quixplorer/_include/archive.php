@@ -3,7 +3,7 @@
 	archive.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -135,7 +135,7 @@ function archive_items($dir)
 	if(!$GLOBALS["zip"] && !$GLOBALS["tar"] && !$GLOBALS["tgz"]) show_error($GLOBALS["error_msg"]["miscnofunc"]);
 
 	if(isset($GLOBALS['__POST']["name"])) {
-		$name=basename(stripslashes($GLOBALS['__POST']["name"]));
+		$name=basename($GLOBALS['__POST']["name"]);
 		if($name=="") show_error($GLOBALS["error_msg"]["miscnoname"]);
 		switch($GLOBALS['__POST']["type"]) {
 			case "zip":	zip_items($dir,$name);	break;
@@ -150,8 +150,7 @@ function archive_items($dir)
 
 	$cnt=count($GLOBALS['__POST']["selitems"]);
 	for($i=0;$i<$cnt;++$i) {
-		echo "<INPUT type=\"hidden\" name=\"selitems[]\" value=\"".stripslashes($GLOBALS['__POST']["selitems"][$i])."\">\n";
-	}
+		echo "<INPUT type=\"hidden\" name=\"selitems[]\" value=\"".htmlspecialchars($GLOBALS['__POST']["selitems"][$i])."\">\n";	}
 
 	echo "<TABLE width=\"300\"><TR><TD>".$GLOBALS["messages"]["nameheader"].":</TD><TD align=\"right\">";
 	echo "<INPUT type=\"text\" name=\"name\" size=\"25\"></TD></TR>\n";

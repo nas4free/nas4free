@@ -3,11 +3,7 @@
 	util.inc
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -34,6 +31,7 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
+require_once "super_fun.inc";
 require_once("globals.inc");
 require_once("array.inc");
 require_once("system.inc");
@@ -417,6 +415,10 @@ function is_valid_privatekey($privatekey, $type = "RSA") {
 	return false;
 }
 
+function is_uuid_v4($uuid) {
+	return (false !== preg_match('/^[\da-f]{4}([\da-f]{4}-){2}4[\da-f]{3}-[89ab][\da-f]{3}-[\da-f]{12}$/i',$uuid));
+}
+
 function get_interface_list() {
 	global $g;
 
@@ -582,8 +584,8 @@ function get_mounts_list()
 		$mountpath = chop($aline[2]);
 
 		// Ignore various mountpoints
-		if (("/" === $mountpath) || ("devfs" === $devicespecialfile) || ("/var" === $mountpath) ||
-				("/dev/fd0" === $devicespecialfile) || ($g['cf_path'] === $mountpath))
+		if (("/" === $mountpath) || ("devfs" === $devicespecialfile) || ("procfs" === $devicespecialfile) || ("tmpfs" === $devicespecialfile) || 
+			("/var" === $mountpath) || ("/dev/fd0" === $devicespecialfile) || ($g['cf_path'] === $mountpath))
 			continue;
 
 		// Get the complete name /dev/devicename
@@ -720,7 +722,7 @@ function get_gmirror_disks_list()
 			$disklist[$diskname]['devicespecialfile'] = "/dev/mirror/" . $diskname;
 			$disklist[$diskname]['type'] = "gmirror";
 			$disklist[$diskname]['desc'] = "Software RAID";
-			$disklist[$diskname]['state'] = gettext("Unknown");
+			$disklist[$diskname]['state'] = gtext("Unknown");
 
 			/* Get diskinfo to get disk size */
 			$diskinfo = disks_get_diskinfo($disklist[$diskname]['devicespecialfile']);
@@ -790,7 +792,7 @@ function get_gconcat_disks_list()
 			$disklist[$diskname]['devicespecialfile'] = "/dev/concat/" . $diskname;
 			$disklist[$diskname]['type'] = "gconcat";
 			$disklist[$diskname]['desc'] = "Software RAID";
-			$disklist[$diskname]['state'] = gettext("Unknown");
+			$disklist[$diskname]['state'] = gtext("Unknown");
 
 			/* Get diskinfo to get disk size */
 			$diskinfo = disks_get_diskinfo($disklist[$diskname]['devicespecialfile']);
@@ -849,7 +851,7 @@ function get_gstripe_disks_list()
 			$disklist[$diskname]['devicespecialfile'] = "/dev/stripe/" . $diskname;
 			$disklist[$diskname]['type'] = "gstripe";
 			$disklist[$diskname]['desc'] = "Software RAID";
-			$disklist[$diskname]['state'] = gettext("Unknown");
+			$disklist[$diskname]['state'] = gtext("Unknown");
 
 			/* Get diskinfo to get disk size */
 			$diskinfo = disks_get_diskinfo($disklist[$diskname]['devicespecialfile']);
@@ -908,7 +910,7 @@ function get_graid5_disks_list()
 			$disklist[$diskname]['devicespecialfile'] = "/dev/raid5/" . $diskname;
 			$disklist[$diskname]['type'] = "graid5";
 			$disklist[$diskname]['desc'] = "Software RAID";
-			$disklist[$diskname]['state'] = gettext("Unknown");
+			$disklist[$diskname]['state'] = gtext("Unknown");
 
 			/* Get diskinfo to get disk size */
 			$diskinfo = disks_get_diskinfo($disklist[$diskname]['devicespecialfile']);
@@ -961,8 +963,8 @@ function get_hast_disks_list()
 			$disklist[$diskname]['type'] = "HAST";
 			$disklist[$diskname]['model'] = "HAST device";
 			$disklist[$diskname]['desc'] = "HAST device";
-			$disklist[$diskname]['role'] = gettext("Unknown");
-			$disklist[$diskname]['status'] = gettext("Unknown");
+			$disklist[$diskname]['role'] = gtext("Unknown");
+			$disklist[$diskname]['status'] = gtext("Unknown");
 			$disklist[$diskname]['localpath'] = '';
 		} else if (preg_match("/^\s+role:\s+(.+)$/",$line,$match)) {
 			$role = trim($match[1]);
@@ -1084,7 +1086,7 @@ function parse_camcontrol_info($devtype){
 
 					// Get diskinfo to get disk size
 					$diskinfo = disks_get_diskinfo($devlist["$device[0]$device[1]"]['devicespecialfile']);
-					$devlist["$device[0]$device[1]"]['size'] = $diskinfo['mediasize_mbytes'] . "MB";					
+					$devlist["$device[0]$device[1]"]['size'] = isset($diskinfo['mediasize_mbytes']) ? $diskinfo['mediasize_mbytes'] . "MB" : gtext('Unknown');					
 
 					$devlist["$device[0]$device[1]"]['controller'] = $controller[0];
 					$devlist["$device[0]$device[1]"]['controller_id'] = $controller[1];
@@ -1119,7 +1121,7 @@ function parse_controller_config(&$devlist){
 
 	foreach($devlist as &$device){
 		$devtype = '';
-		$device['desc'] = $config_disks[$device['name']]['desc'];
+		$device['desc'] = isset($config_disks[$device['name']]['desc']) ? $config_disks[$device['name']]['desc'] : '';
 		switch( $device['controller']){
 		// Experimental : requires arcmsr to add enclosure support
 		// Areca SATA[/SAS] RAID controller
@@ -1230,7 +1232,7 @@ function parse_controller_config(&$devlist){
 
 		// if S.M.A.R.T. is not available, get transfer speed from dmesg
 		if(empty($smartctl_info['transfer_rate'])){
-			mwexec2("dmesg | grep \"".$device['name'].": \"", $lines);
+			mwexec2("dmesg | grep \"".$device['name'].": \" | grep \"transfers\"", $lines);
 
 			foreach($lines as $line){
 				$matches = preg_split("/[\s\:]+/",$line);
@@ -1246,6 +1248,8 @@ function parse_controller_config(&$devlist){
 		}else{
 			$device['smart']['smart_support'] = "Unavailable";
 		}
+		if(!empty($smartctl_info['isavailable'])) $device['smart']['isavailable'] = $smartctl_info['isavailable'];
+		if(!empty($smartctl_info['isenabled'])) $device['smart']['isenabled'] = $smartctl_info['isenabled'];
 
 		// retry empty case
 		if(empty($device['model'])) $device['model'] = system_get_volume_model($device['devicespecialfile']);
@@ -1348,10 +1352,14 @@ function get_smartctl_info($device){
 				if(empty($smartctl_info['smart_support'])){
 					if(preg_match("/(?<=SMART support is:).*(?=\-)+/", $line, $matches)){
 						$smartctl_info['smart_support'] = ltrim($matches[0]);
+						$smartctl_info['isavailable'] = strncasecmp(trim($matches[0]),"available", 9) == 0;
 					}
-				}else if( strncmp($smartctl_info['smart_support'], 'Available', 9) == 0 )  {
-					if( preg_match("/(?<=SMART support is: ).*/", $line, $matches)){
-						$smartctl_info['smart_support'] = $smartctl_info['smart_support'].', '.$matches[0];
+				} else {
+					if(strncasecmp($smartctl_info['smart_support'],"available", 9) == 0 )  {
+						if( preg_match("/(?<=SMART support is: ).*/", $line, $matches)){
+							$smartctl_info['smart_support'] = $smartctl_info['smart_support'].', '.$matches[0];
+							$smartctl_info['isenabled'] = strncasecmp(trim($matches[0]),"enabled", 7) == 0;
+						}
 					}
 				}
 				break;
@@ -1362,9 +1370,9 @@ function get_smartctl_info($device){
 		$smartctl_info['model'] = trim($vendor.' '.$product.' '.$revision);
  	}
 	// final fixup
-	$smartctl_info['model'] = str_replace('"', '', $smartctl_info['model']);
-	$smartctl_info['desc'] = str_replace('"', '', $smartctl_info['desc']);
-	$smartctl_info['serial'] = str_replace('"', '', $smartctl_info['serial']);
+	$smartctl_info['model'] = str_replace('"', '', isset($smartctl_info['model']) ? $smartctl_info['model'] : '');
+	$smartctl_info['desc'] = str_replace('"', '', isset($smartctl_info['desc']) ? $smartctl_info['desc'] : '');
+	$smartctl_info['serial'] = str_replace('"', '', isset($smartctl_info['serial']) ? $smartctl_info['serial'] : '');
 	return $smartctl_info;
 }
 
@@ -1385,6 +1393,8 @@ function init_device_attributes(&$device){
 	$device['smart']['devicetype'] = '';
 	$device['smart']['devicetypearg'] = '';
 	$device['smart']['smart_support'] = '';
+	$device['smart']['isavailable'] = false;
+	$device['smart']['isenabled'] = false;
 }
 
 function parse_device_desc($device){
@@ -1399,7 +1409,7 @@ function parse_device_desc($device){
 			return $matches[0];
 		}
 	}
-	return $matches[0];
+	return '';
 }
 
 function parse_ata_ahci_controller_desc($controller){
@@ -2079,7 +2089,7 @@ function get_fstype_shortdesc($fstype) {
 
 	switch($fstype) {
 		case "":
-			$shortdesc = gettext("Unformated");
+			$shortdesc = gtext("Unformated");
 			break;
 		case "ufs":
 		case "ufs_no_su":
@@ -2112,19 +2122,19 @@ function get_fstype_shortdesc($fstype) {
 			$shortdesc = "gvinum";
 			break;
 		case "softraid":
-			$shortdesc = gettext("SoftRaid");
+			$shortdesc = gtext("SoftRaid");
 			break;
 		case "geli":
-			$shortdesc = gettext("Encrypted");
+			$shortdesc = gtext("Encrypted");
 			break;
 		case "ext2":
-			$shortdesc = "EXT2";
+			$shortdesc = "EXT2/3/4";
 			break;
 		case "exfat":
 			$shortdesc = "exFAT";
 			break;
 		case "zfs":
-			$shortdesc = "ZFS storage pool device";
+			$shortdesc = "ZFS Storage Pool";
 			break;
   }
 
@@ -2383,10 +2393,16 @@ function get_product_revision() {
 	return chop(file_get_contents("{$g['etc_path']}/prd.revision"));
 }
 
-/* Get the product version */
+/* Get the product build time (formatted) */
 function get_product_buildtime() {
 	global $g;
 	return chop(file_get_contents("{$g['etc_path']}/prd.version.buildtime"));
+}
+
+/* Get the product build timestamp */
+function get_product_buildtimestamp() {
+	global $g;
+	return chop(file_get_contents("{$g['etc_path']}/prd.version.buildtimestamp"));
 }
 
 /* Get the product version name */
@@ -2398,7 +2414,7 @@ function get_product_versionname() {
 // Write message into log file.
 // Return 0 if successful, otherwise 1
 function write_log($message) {
-	$cmd="/usr/bin/logger \"{$message}\"";
+	$cmd= sprintf('/usr/bin/logger %s', escapeshellarg($message));
 	return mwexec($cmd);
 }
 
@@ -2553,7 +2569,11 @@ function get_conf_all_disks_list_filtered() {
 		// Check ZFS virtual devices
 		foreach ($a_zfsvdevice as $vdisk) {
 			if (false !== array_search($disk['devicespecialfile'], $vdisk['device'])) {
-				$unused = false;
+					$unused = false;
+				break;
+			}
+			if (false !== array_search($disk['devicespecialfile'] . ($disk['zfsgpt'] ?? ''), $vdisk['device'])) {
+					$unused = false;
 				break;
 			}
 		}
@@ -2645,8 +2665,12 @@ function set_conf_disk_fstype_opt($disk, $fstype, $opt)
 		$id = array_search_ex($disk, $config[$class][$val], "devicespecialfile");
 		if ($id !== false) {
 			$config[$class][$val][$id]['fstype'] = $fstype;
-			if (!empty($opt) && $fstype == "zfs" && isset($opt['zfsgpt']))
+			// add zfsgpt information if filesystem is zfs, remove when not
+			if (!empty($opt) && $fstype == "zfs" && isset($opt['zfsgpt'])) {
 				$config[$class][$val][$id]['zfsgpt'] = $opt['zfsgpt'];
+			} elseif (isset($config[$class][$val][$id]['zfsgpt'])) {
+				unset($config[$class][$val][$id]['zfsgpt']);
+			}
 			$result = 0;
 //		echo "Set \$config['$class']['$val'][$id]['fstype'] = $fstype\n";
 			break;
@@ -2692,6 +2716,10 @@ function uuid() {
 // Get the file size in bytes.
 // Fix PHP file size problem (see http://de.php.net/manual/en/function.filesize.php).
 function get_filesize($file) {
+	if (preg_match('#^/dev/zvol/(.+)$#', "{$file}", $m) && !empty($m[1])) {
+		$volname = str_replace('//', '/', $m[1]);
+		return @exec("zfs get -Hp -o value volsize " . escapeshellarg($volname));
+	}
 	return @exec("stat -f %z " . escapeshellarg($file));
 }
 

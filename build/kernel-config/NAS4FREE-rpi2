@@ -16,7 +16,7 @@
 # If you are in doubt as to the purpose or necessity of a line, check first
 # in NOTES.
 #
-# $FreeBSD: head/sys/arm/conf/RPI2 282610 2015-05-07 22:11:44Z loos $
+# $FreeBSD: head/sys/arm/conf/RPI2 291135 2015-11-21 16:23:56Z andrew $
 
 ident		RPI2
 
@@ -66,6 +66,9 @@ options 	DDB			# Enable the kernel debugger
 #options 	BOOTP_WIRED_TO=ue0
 
 options 	ROOTDEVNAME=\"ufs:mmcsd0s2\"
+
+# ARM Generic Timer
+device         generic_timer
 
 device		bpf
 device		loop

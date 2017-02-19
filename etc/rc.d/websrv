@@ -1,12 +1,10 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-# Portions of freenas (http://www.freenas.org).
-# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
-# All rights reserved.
+# websrv script
 #
 
 # PROVIDE: websrv
@@ -20,6 +18,7 @@
 . /etc/util.subr
 
 name="websrv"
+desc="websrv setup"
 rcvar=websrv_enable
 
 load_rc_config "${name}"
@@ -53,7 +52,8 @@ sig_reload="-INT"
 
 websrv_mkconf()
 {
-	local _protocol _certificate _privatekey _documentroot _uploaddir _runasuser
+	local _protocol _certificate _privatekey _documentroot _uploaddir
+	local _runasuser _runasgroup
 
 	# Get configuration data
 	_protocol=`configxml_get "//websrv/protocol"`
@@ -62,6 +62,10 @@ websrv_mkconf()
 	_documentroot=`configxml_get "//websrv/documentroot"`
 	_uploaddir=`configxml_get "//websrv/uploaddir"`
 	_runasuser=`configxml_get "//websrv/runasuser"`
+	_runasgroup=""
+	if [ -n "$_runasuser" ]; then
+		_runasgroup="server.groupname = \"www\""
+	fi
 	if [ -z "$_uploaddir" ]; then
 		_uploaddir="/var/tmp/ftmp"
 	fi
@@ -69,7 +73,8 @@ websrv_mkconf()
 	# Create .conf file
 	/usr/local/bin/xml sel -t -m "//websrv" \
 		-v "concat('server.port = ',port)" -n \
-		-v "concat('',runasuser,'')" -n \
+		-o "${_runasuser}" -n \
+		-o "${_runasgroup}" -n \
 		-v "concat('server.document-root = \"',documentroot,'\"')" -n \
 		-i "count(dirlisting) > 0" \
 			-o "server.dir-listing = \"enable\"" -n \
@@ -85,17 +90,21 @@ server.modules = (
   "mod_auth",
   "mod_expire",
   "mod_cgi",
+  "mod_fastcgi",
+  "mod_setenv",
   "mod_rewrite",
   "mod_redirect",
   "mod_alias"
  )
 server.errorlog-use-syslog = "enable"
-# debugmode ° debug.log-request-handling enable/disable
+# debugmode debug.log-request-handling enable/disable
 debug.log-request-handling = "disable"
 #server.event-handler = "freebsd-kqueue"
 server.event-handler = "libev"
 server.max-write-idle = ${websrv_server_maxwriteidle}
 index-file.names   = ( "index.php", "index.html", "index.htm", "index.shtml", "default.htm" )
+# set trust path
+setenv.add-environment = ( "PATH" => "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" )
 #\$HTTP["url"] =~ "\.(js|css|png|gif|jpg)$" {
 #    expire.url = ( "" => "access plus 1 hours" )
 #}
@@ -164,8 +173,28 @@ mimetype.assign             = (
 url.access-deny = ( "~", ".inc", ".websrv_htpasswd" )
 static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
 server.pid-file = "${pidfile}"
-cgi.assign = (".php" => "/usr/local/bin/php-cgi-websrv")
+# cgi.assign = (".php" => "/usr/local/bin/php-cgi-websrv")
 server.tag = "webserv"
+
+# FastCGI
+fastcgi.server = ( ".php" =>
+  (( "socket" => "/var/tmp/php-wsrv.socket",
+        "bin-path" => "/usr/local/bin/php-cgi",
+        "bin-environment" => (
+            "PHP_FCGI_CHILDREN" => "5",
+            "PHP_FCGI_MAX_REQUESTS" => "1000"
+        ),
+        "bin-copy-environment" => (
+            "PATH", "SHELL", "USER" ),
+        "broken-scriptfilename" => "enable",
+        "min-procs" => 1,
+        "max-procs" => 2,
+        "max-load-per-proc" => 90,
+        "idle-timeout" => 360,
+        "x-sendfile" => "enable"
+    )
+  )
+)
 EOF
 
 	# Set temporary directory

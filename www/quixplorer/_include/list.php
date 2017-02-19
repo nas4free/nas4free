@@ -3,7 +3,7 @@
 	list.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of Quixplorer (http://quixplorer.sourceforge.net).
@@ -494,6 +494,9 @@ function _print_link ($function, $allow, $dir, $item)
 function _get_link_info($dir, $item)
 {
     $type = get_mime_type($dir, $item, "type");
+    if(is_array($type)){  
+        $type = $type[0];  
+    }
 
     if (! file_exists(get_abs_item($dir, $item)))
     {
@@ -542,13 +545,13 @@ function _breadcrumbs($curdir, $displayseparator = ' &raquo; ')
             // If we are not on the last index, then create a link using $crumb
             // as the text.
 
-			$breadcrumbs[] = "<a href=\"".make_link("list", $crumbdir, NULL)."\">$crumb</a>";
+			$breadcrumbs[] = "<a href=\"".make_link("list", $crumbdir, NULL)."\">".htmlspecialchars($crumb)."</a>";
 
 			// Add a separator between our crumbs.
 			$crumbdir = $crumbdir . DIRECTORY_SEPARATOR;
 		else:
 			// Don't create a link for the final crumb.  Just display the crumb name.
-            $breadcrumbs[] = $crumb;
+            $breadcrumbs[] = htmlspecialchars($crumb);
 		endif;
     }
 

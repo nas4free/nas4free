@@ -4,15 +4,7 @@
 	rc.initial.setlanip
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard (olivier@freenas.org).
-	All rights reserved.
-
-	Portions of m0n0wall (http://m0n0.ch/wall).
-	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -20,6 +12,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -212,13 +205,13 @@ if (preg_match($g['wireless_regex'], $config['interfaces']['lan']['if'])) {
 		$menuitem['item'] = "802.{$standardv}";
 		$amenuitem[] = $menuitem;
 	}
-	$result = tui_display_menu(gettext("Operating mode"), gettext("Set the operating mode for this interface."), 48, 10, 3, $amenuitem, $standard);
+	$result = tui_display_menu(gtext("Operating mode"), gtext("Set the operating mode for this interface."), 48, 10, 3, $amenuitem, $standard);
 	if (0 != $result)
 		exit(0);
 
 	// Display 'SSID' dialog
 	$ssid = $lancfg['wireless']['ssid'];
-	$result = tui_display_input(gettext("Set the desired Service Set Identifier (aka network name)."), 43, 9, $ssid);
+	$result = tui_display_input(gtext("Set the desired Service Set Identifier (aka network name)."), 43, 9, $ssid);
 
 	// Display 'Channel' dialog
 	$channel = $lancfg['wireless']['channel'];
@@ -233,27 +226,27 @@ if (preg_match($g['wireless_regex'], $config['interfaces']['lan']['if'])) {
 		$menuitem['item'] = "{$channelv['channel']} ({$channelv['freq']} MHz, {$mode})";
 		$amenuitem[] = $menuitem;
 	}
-	$result = tui_display_menu(gettext("Select channel"), gettext("Set a single desired channel. Setting the channel to any will give you the default for your adaptor."), 50, 14, 8, $amenuitem, $channel);
+	$result = tui_display_menu(gtext("Select channel"), gtext("Set a single desired channel. Setting the channel to any will give you the default for your adaptor."), 50, 14, 8, $amenuitem, $channel);
 	if (0 != $result)
 		exit(0);
 
 	// Display 'Encryption' dialog
 	$encryption = $lancfg['wireless']['encryption'];
 	$amenuitem = array();
-	foreach (array("none" => gettext("None"), "wep" => gettext("WEP"), "wpa" => gettext("WPA")) as $encryptionk => $encryptionv) {
+	foreach (array("none" => gtext("None"), "wep" => gtext("WEP"), "wpa" => gtext("WPA")) as $encryptionk => $encryptionv) {
 		$menuitem['tag'] = $encryptionk;
 		$menuitem['item'] = $encryptionv;
 		$amenuitem[] = $menuitem;
 	}
-	$result = tui_display_menu(gettext("Encryption mode"), gettext("Select the encryption mode."), 40, 10, 3, $amenuitem, $encryption);
+	$result = tui_display_menu(gtext("Encryption mode"), gtext("Select the encryption mode."), 40, 10, 3, $amenuitem, $encryption);
 	if (0 != $result)
 		exit(0);
 
 	if ("wep" === $encryption) {
 		$key = $lancfg['wireless']['wep']['key'];
-		$text = gettext("Please enter the WEP key.");
+		$text = gtext("Please enter the WEP key.");
 		$text .= " ";
-		$text .= gettext("A key will be either 5 or 13 characters (40 or 104 bits) depending of the local network and the capabilities of the adaptor. It may be specified either as a plain string or as a string of hexadecimal digits preceded by '0x'.");
+		$text .= gtext("A key will be either 5 or 13 characters (40 or 104 bits) depending of the local network and the capabilities of the adaptor. It may be specified either as a plain string or as a string of hexadecimal digits preceded by '0x'.");
 		$result = tui_display_input($text, 70, 11, $key);
 		if (0 != $result)
 			exit(0);
@@ -264,31 +257,31 @@ if (preg_match($g['wireless_regex'], $config['interfaces']['lan']['if'])) {
 		// Display 'Key Management Protocol' dialog
 		$keymgmt = $lancfg['wireless']['wpa']['keymgmt'];
 		$amenuitem = array();
-		foreach (array("WPA-PSK" => gettext("WPA-PSK (Pre Shared Key)"), "WPA-EAP" => gettext("WPA-EAP (Extensible Authentication Protocol)"), "WPA-PSK WPA-EAP" => gettext("WPA-PSK WPA-EAP")) as $keymgmtk => $keymgmtv) {
+		foreach (array("WPA-PSK" => gtext("WPA-PSK (Pre Shared Key)"), "WPA-EAP" => gtext("WPA-EAP (Extensible Authentication Protocol)"), "WPA-PSK WPA-EAP" => gtext("WPA-PSK WPA-EAP")) as $keymgmtk => $keymgmtv) {
 			$menuitem['tag'] = $keymgmtk;
 			$menuitem['item'] = $keymgmtv;
 			$amenuitem[] = $menuitem;
 		}
-		$result = tui_display_menu(gettext("Key management protocol"), gettext("Select the key management protocol."), 70, 10, 3, $amenuitem, $keymgmt);
+		$result = tui_display_menu(gtext("Key management protocol"), gtext("Select the key management protocol."), 70, 10, 3, $amenuitem, $keymgmt);
 		if (0 != $result)
 			exit(0);
 
 		// Display 'Pairwise' dialog
 		$pairwise = $lancfg['wireless']['wpa']['pairwise'];
-		$text = gettext("List of acceptable pairwise (unicast) ciphers for WPA. One or more of: CCMP (AES in Counter mode with CBC-MAC, RFC 3610, IEEE 802.11i/D7.0), TKIP (Temporal Key Integrity Protocol, IEEE 802.11i/D7.0).");
+		$text = gtext("List of acceptable pairwise (unicast) ciphers for WPA. One or more of: CCMP (AES in Counter mode with CBC-MAC, RFC 3610, IEEE 802.11i/D7.0), TKIP (Temporal Key Integrity Protocol, IEEE 802.11i/D7.0).");
 		$amenuitem = array();
-		foreach (array("CCMP TKIP" => gettext("CCMP TKIP"), "CCMP" => gettext("CCMP"), "TKIP" => gettext("TKIP")) as $pairwisek => $pairwisev) {
+		foreach (array("CCMP TKIP" => gtext("CCMP TKIP"), "CCMP" => gtext("CCMP"), "TKIP" => gtext("TKIP")) as $pairwisek => $pairwisev) {
 			$menuitem['tag'] = $pairwisek;
 			$menuitem['item'] = $pairwisev;
 			$amenuitem[] = $menuitem;
 		}
-		$result = tui_display_menu(gettext("Pairwise"), $text, 60, 13, 3, $amenuitem, $pairwise);
+		$result = tui_display_menu(gtext("Pairwise"), $text, 60, 13, 3, $amenuitem, $pairwise);
 		if (0 != $result)
 			exit(0);
 
 		// Display 'PSK' dialog
 		$psk = $lancfg['wireless']['wpa']['psk'];
-		$text = gettext("Enter the passphrase that will be used in WPA-PSK mode. This must be between 8 and 63 characters long.");
+		$text = gtext("Enter the passphrase that will be used in WPA-PSK mode. This must be between 8 and 63 characters long.");
 		$result = tui_display_input($text, 70, 9, $psk);
 		if (0 != $result)
 			exit(0);

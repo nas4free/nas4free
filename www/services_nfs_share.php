@@ -3,11 +3,7 @@
 	services_nfs_share.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Services"), gettext("NFS"), gettext("Shares"));
+$pgtitle = array(gtext("Services"), gtext("NFS"), gtext("Shares"));
 
 if ($_POST) {
 	$pconfig = $_POST;
@@ -100,8 +97,8 @@ function nfsshare_process_updatenotification($mode, $data) {
   <tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-        <li class="tabinact"><a href="services_nfs.php"><span><?=gettext("Settings");?></span></a></li>
-        <li class="tabact"><a href="services_nfs_share.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Shares");?></span></a></li>
+        <li class="tabinact"><a href="services_nfs.php"><span><?=gtext("Settings");?></span></a></li>
+        <li class="tabact"><a href="services_nfs_share.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Shares");?></span></a></li>
       </ul>
     </td>
   </tr>
@@ -112,9 +109,9 @@ function nfsshare_process_updatenotification($mode, $data) {
         <?php if (updatenotify_exists("nfsshare")) print_config_change_box();?>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tr>
-						<td width="30%" class="listhdrlr"><?=gettext("Path");?></td>
-						<td width="30%" class="listhdrr"><?=gettext("Network");?></td>
-						<td width="30%" class="listhdrr"><?=gettext("Comment");?></td>
+						<td width="30%" class="listhdrlr"><?=gtext("Path");?></td>
+						<td width="30%" class="listhdrr"><?=gtext("Network");?></td>
+						<td width="30%" class="listhdrr"><?=gtext("Comment");?></td>
             <td width="10%" class="list"></td>
           </tr>
   			  <?php foreach ($a_share as $sharev):?>
@@ -125,19 +122,19 @@ function nfsshare_process_updatenotification($mode, $data) {
 						<td class="listr"><?=htmlspecialchars($sharev['comment']);?>&nbsp;</td>
 						<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
             <td valign="middle" nowrap="nowrap" class="list">
-              <a href="services_nfs_share_edit.php?uuid=<?=$sharev['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit share");?>" border="0" alt="<?=gettext("Edit share");?>" /></a>
-              <a href="services_nfs_share.php?act=del&amp;uuid=<?=$sharev['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this share?");?>')"><img src="x.gif" title="<?=gettext("Delete share");?>" border="0" alt="<?=gettext("Delete share");?>" /></a>
+              <a href="services_nfs_share_edit.php?uuid=<?=$sharev['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit share");?>" border="0" alt="<?=gtext("Edit share");?>" /></a>
+              <a href="services_nfs_share.php?act=del&amp;uuid=<?=$sharev['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this share?");?>')"><img src="images/delete.png" title="<?=gtext("Delete share");?>" border="0" alt="<?=gtext("Delete share");?>" /></a>
             </td>
             <?php else:?>
 						<td valign="middle" nowrap="nowrap" class="list">
-							<img src="del.gif" border="0" alt="" />
+							<img src="images/delete.png" border="0" alt="" />
 						</td>
 						<?php endif;?>
           </tr>
           <?php endforeach;?>
           <tr>
             <td class="list" colspan="3"></td>
-            <td class="list"><a href="services_nfs_share_edit.php"><img src="plus.gif" title="<?=gettext("Add share");?>" border="0" alt="<?=gettext("Add share");?>" /></a></td>
+            <td class="list"><a href="services_nfs_share_edit.php"><img src="images/add.png" title="<?=gtext("Add share");?>" border="0" alt="<?=gtext("Add share");?>" /></a></td>
           </tr>
         </table>
         <?php include("formend.inc");?>

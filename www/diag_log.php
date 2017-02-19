@@ -3,11 +3,7 @@
 	diag_log.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -45,7 +42,7 @@ if (isset($_POST['log']))
 if (empty($log))
 	$log = 0;
 
-$pgtitle = array(gettext("Diagnostics"), gettext("Log"));
+$pgtitle = array(gtext("Diagnostics"), gtext("Log"));
 
 if (isset($_POST['clear']) && $_POST['clear']) {
 	log_clear($loginfo[$log]);
@@ -62,6 +59,7 @@ if (isset($_POST['refresh']) && $_POST['refresh']) {
 	header("Location: diag_log.php?log={$log}");
 	exit;
 }
+$searchlog = isset($_POST['searchlog']) ? $_POST['searchlog'] : '';
 ?>
 <?php include("fbegin.inc");?>
 <script type="text/javascript">
@@ -76,30 +74,33 @@ function log_change() {
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabact"><a href="diag_log.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Log");?></span></a></li>
-				<li class="tabinact"><a href="diag_log_settings.php"><span><?=gettext("Settings");?></span></a></li>
+				<li class="tabact"><a href="diag_log.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Log");?></span></a></li>
+				<li class="tabinact"><a href="diag_log_settings.php"><span><?=gtext("Settings");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
-    <td class="tabcont">
-    	<form action="diag_log.php" method="post" name="iform" id="iform">
+		<td class="tabcont">
+			<form action="diag_log.php" method="post" name="iform" id="iform">
 				<select id="log" class="formfld" onchange="log_change()" name="log">
 					<?php foreach($loginfo as $loginfok => $loginfov):?>
 					<?php if (FALSE === $loginfov['visible']) continue;?>
-					<option value="<?=$loginfok;?>" <?php if ($loginfok == $log) echo "selected=\"selected\"";?>><?=htmlspecialchars($loginfov['desc']);?></option>
+					<option value="<?=$loginfok;?>" <?php if ($loginfok == $log) echo 'selected="selected"';?>><?=$loginfov['desc'];?></option>
 					<?php endforeach;?>
 				</select>
-				<input name="clear" type="submit" class="formbtn" value="<?=gettext("Clear");?>" />
-				<input name="download" type="submit" class="formbtn" value="<?=gettext("Download");?>" />
-				<input name="refresh" type="submit" class="formbtn" value="<?=gettext("Refresh");?>" />
+				<input name="clear" type="submit" class="formbtn" value="<?=gtext("Clear");?>" />
+				<input name="download" type="submit" class="formbtn" value="<?=gtext("Download");?>" />
+				<input name="refresh" type="submit" class="formbtn" value="<?=gtext("Refresh");?>" />
+				<span class="label">&nbsp;&nbsp;&nbsp;<?=gtext("Search event");?></span>
+				<input size="30" id="searchlog" name="searchlog" value="<?=$searchlog;?>" />
+				<input name="search" type="submit" class="formbtn" value="<?=gtext("Search");?>" />
 				<br /><br />
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
-				  <?php log_display($loginfo[$log]);?>
+					<?php log_display($loginfo[$log]);?>
 				</table>
 				<?php include("formend.inc");?>
 			</form>
 		</td>
-  </tr>
+	</tr>
 </table>
 <?php include("fend.inc");?>

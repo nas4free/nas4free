@@ -1,0 +1,10 @@
+--- usb/controller/xhci.h.orig	2016-04-04 09:18:38.626071000 +0200
++++ usb/controller/xhci.h	2016-04-04 10:24:34.000000000 +0200
+@@ -383,6 +383,7 @@
+ 	uint8_t			trb_halted;
+ 	uint8_t			trb_running;
+ 	uint8_t			trb_ep_mode;
++	uint8_t                 trb_ep_maxp;
+ };
+ 
+ enum {

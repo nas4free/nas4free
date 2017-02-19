@@ -1,0 +1,90 @@
+--- getifaddr.c.orig	2015-09-11 04:24:09.000000000 +0900
++++ getifaddr.c	2015-11-01 00:01:13.514869000 +0900
+@@ -41,6 +41,12 @@
+ #if defined(sun)
+ #include <sys/sockio.h>
+ #endif
++#ifdef __FreeBSD__
++#include <sys/sockio.h>
++#include <sys/sysctl.h>
++#include <net/route.h>
++#include <netinet/if_ether.h>
++#endif
+ 
+ #include "config.h"
+ #if HAVE_GETIFADDRS
+@@ -272,6 +278,66 @@
+ int
+ get_remote_mac(struct in_addr ip_addr, unsigned char *mac)
+ {
++#ifdef __FreeBSD__
++	int mib[6];
++	size_t needed;
++	char *lim, *buf, *next;
++	struct rt_msghdr *rtm;
++	struct sockaddr_in *sin;
++	struct sockaddr_dl *sdl;
++
++	memset(mac, 0xFF, 6);
++
++	mib[0] = CTL_NET;
++	mib[1] = PF_ROUTE;
++	mib[2] = 0;
++	mib[3] = AF_INET;
++	mib[4] = NET_RT_FLAGS;
++#ifdef RTF_LLINFO
++	mib[5] = RTF_LLINFO;
++#else
++	mib[5] = 0;
++#endif
++	if (sysctl(mib, 6, NULL, &needed, NULL, 0) < 0)
++	{
++		DPRINTF(E_ERROR, L_GENERAL, "route sysctl estimate");
++		return 1;
++	}
++	if (needed == 0)	/* empty table */
++		return 1;
++
++	buf = malloc(needed);
++	if (buf == NULL)
++	{
++		DPRINTF(E_ERROR, L_GENERAL, "could not allocate memory");
++		return 1;
++	}
++	if (sysctl(mib, 6, buf, &needed, NULL, 0) < 0)
++	{
++		DPRINTF(E_ERROR, L_GENERAL, "actual retrieval of routing table");
++		free(buf);
++		return 1;
++	}
++
++	lim = buf + needed;
++	for (next = buf; next < lim; next += rtm->rtm_msglen)
++	{
++		rtm = (struct rt_msghdr *)next;
++		sin = (struct sockaddr_in *)(rtm + 1);
++		sdl = (struct sockaddr_dl *)((char *)sin + SA_SIZE(sin));
++		if (ip_addr.s_addr != sin->sin_addr.s_addr)
++			continue;
++		if (sdl->sdl_alen)
++		{
++			if (sdl->sdl_alen == ETHER_ADDR_LEN)
++			{
++				memcpy(mac, (unsigned char *)LLADDR(sdl), 6);
++				break;
++			}
++		}
++	}
++	free(buf);
++#else /* !__FreeBSD__ */
+ 	struct in_addr arp_ent;
+ 	FILE * arp;
+ 	char remote_ip[16];
+@@ -294,6 +360,7 @@
+ 		mac[0] = 0xFF;
+ 	}
+ 	fclose(arp);
++#endif /* __FreeBSD__ */
+ 
+ 	if (mac[0] == 0xFF)
+ 	{

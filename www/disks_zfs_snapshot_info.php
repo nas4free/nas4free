@@ -3,7 +3,7 @@
 	disks_zfs_snapshot_info.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -37,7 +37,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Snapshots"), gettext("Information"));
+$pgtitle = array(gtext("Disks"), gtext("ZFS"), gtext("Snapshots"), gtext("Information"));
 
 if (!isset($config['zfs']['snapshots']['snapshot']) || !is_array($config['zfs']['snapshots']['snapshot']))
 	$config['zfs']['snapshots']['snapshot'] = array();
@@ -65,34 +65,34 @@ function zfs_snapshot_display_properties() {
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gettext("Pools");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gettext("Datasets");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gettext("Volumes");?></span></a></li>
-				<li class="tabact"><a href="disks_zfs_snapshot.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Snapshots");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gettext("Configuration");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gtext("Pools");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gtext("Datasets");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gtext("Volumes");?></span></a></li>
+				<li class="tabact"><a href="disks_zfs_snapshot.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Snapshots");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gtext("Configuration");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav2">
-				<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gettext("Snapshot");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot_clone.php"><span><?=gettext("Clone");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot_auto.php"><span><?=gettext("Auto Snapshot");?></span></a></li>
-				<li class="tabact"><a href="disks_zfs_snapshot_info.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Information");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gtext("Snapshot");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot_clone.php"><span><?=gtext("Clone");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot_auto.php"><span><?=gtext("Auto Snapshot");?></span></a></li>
+				<li class="tabact"><a href="disks_zfs_snapshot_info.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Information");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabcont">
 			<table width="100%" border="0">
-				<?php html_titleline(gettext("ZFS snapshot information and status"));?>
+				<?php html_titleline(gtext("ZFS Snapshot Information & Status"));?>
 				<tr>
 					<td class="listt">
 						<pre><span id="zfs_snapshot_list"><?=zfs_snapshot_display_list();?></span></pre>
 					</td>
 				</tr>
-				<?php html_titleline(gettext("ZFS snapshot properties"));?>
+				<?php html_titleline(gtext("ZFS Snapshot Properties"));?>
 				<tr>
 					<td class="listt">
 						<pre><span id="zfs_snapshot_properties"><?=zfs_snapshot_display_properties();?></span></pre>

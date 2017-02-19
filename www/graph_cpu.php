@@ -3,15 +3,7 @@
 	graph_cpu.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
-	portions of m0n0wall (http://m0n0.ch/wall).
-	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -19,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -60,7 +53,7 @@ $attribs['grid']='stroke="#C3C3C3" stroke-opacity="0.5"';
 $attribs['error']='fill="red" font-family="Arial" font-size="4"';
 $attribs['collect_initial']='fill="gray" font-family="Tahoma, Verdana, Arial, Helvetica, sans-serif" font-size="4"';
 
-$error_text = gettext("Cannot get CPU load");
+$error_text = gtext("Cannot get CPU load");
 
 $height=100;		//SVG internal height : do not modify
 $width=200;		//SVG internal width : do not modify
@@ -82,7 +75,7 @@ echo "<?xml version=\"1.0\" encoding=\"{$encoding}\"?>\n";
     <line id="axis_x" x1="0" y1="0" x2="0" y2="100%" <?=$attribs['axis']?>/>
     <line id="axis_y" x1="0" y1="100%" x2="100%" y2="100%" <?=$attribs['axis']?>/>
     <path id="graph_cpu"  d="M0 <?=$height?> L 0 <?=$height?>" <?=$attribs['graph_cpu']?>/>
-    <text id="graph_in_lbl" x="3" y="7" <?=$attribs['cpu']?>><?=gettext("CPU load");?> <tspan id="graph_cpu_txt" <?=$attribs['cpu']?>> </tspan></text>
+    <text id="graph_in_lbl" x="3" y="7" <?=$attribs['cpu']?>><?=gtext("CPU load");?> <tspan id="graph_cpu_txt" <?=$attribs['cpu']?>> </tspan></text>
     <path id="grid"  d="M0 <?=$height/4*1?> L <?=$width?> <?=$height/4*1?> M0 <?=$height/4*2?> L <?=$width?> <?=$height/4*2?> M0 <?=$height/4*3?> L <?=$width?> <?=$height/4*3?>" <?=$attribs['grid']?>/>
     <text id="grid_txt1" x="<?=$width*0.99?>" y="<?=$height/4.3*1?>" <?=$attribs['grid_txt']?> text-anchor="end">75%</text>
     <text id="grid_txt2" x="<?=$width*0.99?>" y="<?=$height/4.15*2?>" <?=$attribs['grid_txt']?> text-anchor="end">50%</text>
@@ -91,7 +84,7 @@ echo "<?xml version=\"1.0\" encoding=\"{$encoding}\"?>\n";
     <text id="cpu_name"  x="<?=$width*0.99?>" y="7" <?=$attribs['cpu']?> text-anchor="end">CPU <?=$cpu?></text>
     <polygon id="axis_arrow_x" <?=$attribs['axis']?> points="<?=($width) . "," . ($height)?> <?=($width-2) . "," . ($height-2)?> <?=($width-2) . "," . $height?>"/>
     <text id="error" x="<?=$width*0.5?>" y="<?=$height*0.4?>"  visibility="hidden" <?=$attribs['error']?> text-anchor="middle"><?=$error_text?></text>
-    <text id="collect_initial" x="<?=$width*0.5?>" y="<?=$height*0.3?>" visibility="hidden" <?=$attribs['collect_initial']?> text-anchor="middle"><?=gettext("Collecting initial data, please wait...");?></text>
+    <text id="collect_initial" x="<?=$width*0.5?>" y="<?=$height*0.3?>" visibility="hidden" <?=$attribs['collect_initial']?> text-anchor="middle"><?=gtext("Collecting initial data, please wait...");?></text>
   </g>
   <script type="text/ecmascript">
     <![CDATA[

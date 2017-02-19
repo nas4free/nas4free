@@ -1,6 +1,6 @@
 PORTNAME=		grub2-bhyve
-PORTVERSION=		0.40
-PORTREVISION=		0
+PORTVERSION=		1.0
+PORTREVISION=		1
 CATEGORIES=		sysutils
 
 COMMENT=		Grub-emu loader for bhyve
@@ -13,7 +13,7 @@ NO_PKG_REGISTER=	yes
 #DISABLE_VULNERABILITIES=yes
 DEPENDS_TARGET=	clean build stage
 
-BUILD_DEPENDS=		${NONEXISTENT}:${PORTSDIR}/sysutils/grub2-bhyve
+BUILD_DEPENDS=		${NONEXISTENT}:sysutils/grub2-bhyve
 DEP_STAGEDIR=		${PORTSDIR}/sysutils/grub2-bhyve/work/stage
 
 do-install:

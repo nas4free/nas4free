@@ -3,15 +3,7 @@
 	system_firmware.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
-	Portions of m0n0wall (http://m0n0.ch/wall).
-	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -19,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -43,7 +36,7 @@ $d_isfwfile = 1;
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("System"), gettext("Firmware"));
+$pgtitle = array(gtext("System"), gtext("Firmware Update"));
 
 // check boot partition
 $part1size = $g_install['part1size_embedded'];
@@ -57,7 +50,7 @@ if ($g['arch'] == "rpi" || $g['arch'] == "rpi2" || $g['arch'] == "oc1")
 if ($diskinfo['mediasize_mbytes'] < $part1min) {
 	if (in_array($g['platform'], $fwupplatforms)) {
 		$part1ok = false;
-		$errormsg = sprintf(gettext("Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or resize boot partition of %s.\n"), $cfdevice);
+		$errormsg = sprintf(gtext("Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or resize boot partition of %s.\n"), $cfdevice);
 	}
 }
 
@@ -112,6 +105,34 @@ function check_firmware_version($locale) {
 	return null;
 }
 
+function simplexml_load_file_from_url($url, $timeout = 5) {
+	if (false !== ($ch = curl_init($url))) { // get handle
+		curl_setopt_array($ch, [
+			CURLOPT_HEADER => false,
+			CURLOPT_FOLLOWLOCATION => true, // follow location
+			CURLOPT_RETURNTRANSFER => true, // return content
+			CURLOPT_SSL_VERIFYPEER => true, // verify certificate of peer
+			CURLOPT_CAPATH => '/etc/ssl', // certificate directory
+			CURLOPT_CAINFO => '/etc/ssl/cert.pem', // root certificates from the Mozilla project
+			CURLOPT_CONNECTTIMEOUT => (int)$timeout // set connection and read timeout
+		]);
+		$data = curl_exec($ch);
+		if (curl_errno($ch)) {
+			write_log('CURL error: '.curl_error($ch)); // write error to log
+		} else {
+			curl_close($ch);
+			if (false !== $data) { // just to be on the safe side
+				$previous_value = libxml_use_internal_errors(true);
+				$xml_data = simplexml_load_string($data); // get xml structure
+				libxml_clear_errors();
+				libxml_use_internal_errors($previous_value); // revert to previous setting
+				return $xml_data;
+			}
+		}
+	}
+	return false;
+}
+
 function get_path_version($rss) {
 	$version = get_product_version();
 
@@ -124,24 +145,21 @@ function get_path_version($rss) {
 		return $resp;
 	}
 
-	$xml = @simplexml_load_file($rss);
+	$xml = simplexml_load_file_from_url($rss);
 	if (empty($xml)) return $resp;
 	if (empty($xml->channel)) return $resp;
 	foreach ($xml->channel->item as $item) {
 		$title = $item->title;
 		$parts = pathinfo($title);
 		if ($parts['dirname'] === "/") {
-			if (preg_match("/^.*(\d+)\.(\d+)\.(\d)\.(\d).*$/",
-			    $parts['basename'], $m)) {
-			    	$os_ver2 = $m[1] * 1000 + $m[2];
+			if (preg_match("/^.*(\d+)\.(\d+)\.(\d)\.(\d).*$/", $parts['basename'], $m)) {
+				$os_ver2 = $m[1] * 1000 + $m[2];
 				$pd_ver2 = $m[3] * 1000 + $m[4];
-				$rss_version = sprintf("%d.%d.%d.%d",
-				    $m[1], $m[2], $m[3], $m[4]);
+				$rss_version = sprintf("%d.%d.%d.%d", $m[1], $m[2], $m[3], $m[4]);
 				// Compare with rss version, equal or greater?
-				if ($os_ver2 > $os_ver
-				    || ($os_ver2 == $os_ver && $pd_ver2 >= $pd_ver)) {
-				    $resp = $rss_version;
-				    break;
+				if ($os_ver2 > $os_ver || ($os_ver2 == $os_ver && $pd_ver2 >= $pd_ver)) {
+					$resp = $rss_version;
+					break;
 				}
 			}
 		}
@@ -162,7 +180,7 @@ function get_latest_file($rss) {
 	$ext2 = "xz";
 
 	$resp = "";
-	$xml = @simplexml_load_file($rss);
+	$xml = simplexml_load_file_from_url($rss); // @simplexml_load_file($rss);
 	if (empty($xml)) return $resp;
 	if (empty($xml->channel)) return $resp;
 	foreach ($xml->channel->item as $item) {
@@ -183,8 +201,7 @@ function get_latest_file($rss) {
 
 		if (empty($parts['extension']))
 			continue;
-		if (strcasecmp($parts['extension'], $ext) != 0
-		    && strcasecmp($parts['extension'], $ext2) != 0)
+		if (strcasecmp($parts['extension'], $ext) != 0 && strcasecmp($parts['extension'], $ext2) != 0)
 			continue;
 		$filename = $parts['filename'];
 		$fullname = $parts['filename'].".".$parts['extension'];
@@ -192,14 +209,10 @@ function get_latest_file($rss) {
 		if (preg_match("/^{$product}-{$platform}-(.*?)\.(\d+)(\.img)?$/", $filename, $m)) {
 			$filever = $m[1];
 			$filerev = $m[2];
-			if ($version < $filever
-			    || ($version == $filever && $revision < $filerev)) {
-				$resp .= sprintf("<a href=\"%s\" title=\"%s\" target=\"_blank\">%s</a> (%s)",
-					htmlspecialchars($link), htmlspecialchars($title),
-					htmlspecialchars($fullname), htmlspecialchars($date));
+			if ($version < $filever || ($version == $filever && $revision < $filerev)) {
+				$resp .= sprintf("<a href=\"%s\" title=\"%s\" target=\"_blank\">%s</a> (%s)", htmlspecialchars($link), htmlspecialchars($title), htmlspecialchars($fullname), htmlspecialchars($date));
 			} else {
-				$resp .= sprintf("%s (%s)", htmlspecialchars($fullname),
-					htmlspecialchars($date));
+				$resp .= sprintf("%s (%s)", htmlspecialchars($fullname), htmlspecialchars($date));
 			}
 			break;
 		}
@@ -208,11 +221,11 @@ function get_latest_file($rss) {
 }
 
 function check_firmware_version_rss($locale) {
-	$rss_path = "http://sourceforge.net/projects/nas4free/rss?limit=40";
-	$rss_release = "http://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-@@VERSION@@&limit=20";
-	$rss_beta = "http://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-Beta&limit=20";
-	$rss_arm = "http://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-ARM&limit=20";
-	$rss_arm_beta = "http://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-ARM/Beta&limit=20";
+	$rss_path = "https://sourceforge.net/projects/nas4free/rss?limit=40";
+	$rss_release = "https://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-@@VERSION@@&limit=20";
+	$rss_beta = "https://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-Beta&limit=20";
+	$rss_arm = "https://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-ARM&limit=20";
+	$rss_arm_beta = "https://sourceforge.net/projects/nas4free/rss?path=/NAS4Free-ARM/Beta&limit=20";
 
 	// replace with existing version
 	$path_version = get_path_version($rss_path);
@@ -230,19 +243,19 @@ function check_firmware_version_rss($locale) {
 	}
 	$resp = "";
 	if (!empty($release)) {
-		$resp .= sprintf(gettext("Latest Release: %s"), $release);
+		$resp .= sprintf(gtext("Latest Release: %s"), $release);
 		$resp .= "<br />\n";
 	}
 	if (!empty($beta)) {
-		$resp .= sprintf(gettext("Latest Beta Build: %s"), $beta);
+		$resp .= sprintf(gtext("Latest Beta Build: %s"), $beta);
 		$resp .= "<br />\n";
 	}
 	if (!empty($arm)) {
-		$resp .= sprintf(gettext("Latest Release: %s"), $arm);
+		$resp .= sprintf(gtext("Latest Release: %s"), $arm);
 		$resp .= "<br />\n";
 	}
 	if (!empty($arm_beta)) {
-		$resp .= sprintf(gettext("Latest Beta Build: %s"), $arm_beta);
+		$resp .= sprintf(gtext("Latest Beta Build: %s"), $arm_beta);
 		$resp .= "<br />\n";
 	}
 	return $resp;
@@ -252,22 +265,22 @@ if ($_POST && !file_exists($d_firmwarelock_path)) {
 	unset($input_errors);
 	unset($sig_warning);
 
-	if (stristr($_POST['Submit'], gettext("Enable firmware upload")))
+	if (isset($_POST['EnableFirmwareUpdate'])) {
 		$mode = "enable";
-	else if (stristr($_POST['Submit'], gettext("Disable firmware upload")))
+	} elseif (isset($_POST['DisableFirmwareUpdate'])) {
 		$mode = "disable";
-	else if (stristr($_POST['Submit'], gettext("Upgrade firmware")) || $_POST['sig_override'])
+	} elseif (isset($_POST['PerformFirmwareUpdate'])) {
 		$mode = "upgrade";
-	else if ($_POST['sig_no'])
+	} elseif ($_POST['sig_no']) {
 		unlink("{$g['ftmp_path']}/firmware.img");
-
+	}
 	if ($mode) {
 		if ($mode === "enable") {
 			$retval = rc_exec_script("/etc/rc.firmware enable");
 			if (0 == $retval) {
 				touch($d_fwupenabled_path);
 			} else {
-				$input_errors[] = gettext("Failed to create in-memory file system.");
+				$input_errors[] = gtext("Failed to create in-memory file system.");
 			}
 		} else if ($mode === "disable") {
 			rc_exec_script("/etc/rc.firmware disable");
@@ -277,21 +290,21 @@ if ($_POST && !file_exists($d_firmwarelock_path)) {
 			if (!empty($_FILES) && is_uploaded_file($_FILES['ulfile']['tmp_name'])) {
 				/* verify firmware image(s) */
 				if (!stristr($_FILES['ulfile']['name'], $g['fullplatform']) && !$_POST['sig_override'])
-					$input_errors[] = gettext("The uploaded image file is not for this platform")." ({$g['fullplatform']}).";
+					$input_errors[] = gtext("The file you try to flash is not for this platform")." ({$g['fullplatform']}).";
 				else if (!file_exists($_FILES['ulfile']['tmp_name'])) {
 					/* probably out of memory for the MFS */
-					$input_errors[] = gettext("Image upload failed (out of memory?)");
+					$input_errors[] = gtext("Firmware upload failed (out of memory?)");
 				} else {
 					/* move the image so PHP won't delete it */
 					move_uploaded_file($_FILES['ulfile']['tmp_name'], "{$g['ftmp_path']}/firmware.img");
 
 					if (!verify_xz_file("{$g['ftmp_path']}/firmware.img")) {
-						$input_errors[] = gettext("The image file is corrupt");
+						$input_errors[] = gtext("The firmware file is corrupt");
 						unlink("{$g['ftmp_path']}/firmware.img");
 					}
 				}
 			} else {
-				$input_errors[] = gettext("Image upload failed (out of memory?)");
+				$input_errors[] = gtext("Firmware upload failed (out of memory?)");
 			}
 
 			// Cleanup if there were errors.
@@ -314,7 +327,7 @@ if ($_POST && !file_exists($d_firmwarelock_path)) {
 						break;
 				}
 
-				$savemsg = sprintf(gettext("The firmware is now being installed. The server will reboot automatically."));
+				$savemsg = sprintf(gtext("The firmware is now being installed. The server will reboot automatically."));
 
 				// Clean firmwarelock: Permit to force all pages to be redirect on the firmware page.
 				if (file_exists($d_firmwarelock_path))
@@ -340,67 +353,88 @@ if ($mode === "default" || $mode === "enable" || $mode === "disable") {
 ?>
 <?php include("fbegin.inc");?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabcont">
+	<tr>
+		<td class="tabcont">
 			<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 			<?php if (!empty($errormsg)) print_error_box($errormsg); ?>
 			<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
-			<?php html_titleline(gettext("Firmware"));?>
-			<?php html_text("Current version", gettext("Current Version:"), sprintf("%s %s (%s)", get_product_name(), get_product_version(), get_product_revision()));?>
-			<?php html_separator();?>
-			<?php if (isset($fwinfo) && $fwinfo) {
-				html_titleline(gettext("Online version check"));
-				echo "<tr id='fwinfo'><td class='vtable' colspan='2'>";
-				echo "{$fwinfo}";
-				echo "</td></tr>\n";
-				html_separator();
-			      }
-			?>
+				<?php html_titleline(gtext("Firmware"));?>
+				<?php html_text("Current version", gtext("Current Version:"), sprintf("%s %s (%s)", get_product_name(), get_product_version(), get_product_revision()));?>
+				<?php html_separator();?>
+				<?php if (isset($fwinfo) && $fwinfo) {
+						html_titleline(gtext("Online"));
+						echo "<tr id='fwinfo'><td class='vtable' colspan='2'>";
+						echo "{$fwinfo}";
+						echo "</td></tr>\n";
+						html_separator();
+					}
+				?>
 			</table>
 			<?php if (!in_array($g['platform'], $fwupplatforms)): ?>
-			<?php print_error_box(gettext("Firmware uploading is not supported on this platform."));?>
+				<?php print_error_box(gtext("Firmware uploading is not supported on this platform."));?>
 			<?php elseif (!empty($sig_warning) && empty($input_errors)): ?>
-			<form action="system_firmware.php" method="post">
-			<?php
-			$sig_warning = "<strong>" . $sig_warning . "</strong><br />".gettext("This means that the image you uploaded is not an official/supported image and may lead to unexpected behavior or security compromises. Only install images that come from sources that you trust, and make sure that the image has not been tampered with.<br /><br />Do you want to install this image anyway (on your own risk)?");
-			print_info_box($sig_warning);
-			?>
-			<input name="sig_override" type="submit" class="formbtn" id="sig_override" value=" Yes ">
-			<input name="sig_no" type="submit" class="formbtn" id="sig_no" value=" No ">
-			<?php include("formend.inc");?>
-			</form>
+				<form action="system_firmware.php" method="post">
+					<?php
+						$sig_warning = '<strong>' . $sig_warning . '</strong>'
+							. '<br />'
+							. gtext('This means that the firmware you flashed is not an official/supported firmware and may lead to unexpected behavior or security compromises.')
+							. ' '
+							. gtext('Only install firmwares that come from sources that you trust, and make sure that the firmware has not been tampered with.')
+							. '<br /><br />'
+							. gtext('Do you want to install this firmware anyway (at your own risk)?');
+						print_info_box($sig_warning);
+					?>
+					<input name="sig_override" type="submit" class="formbtn" id="sig_override" value=" Yes ">
+					<input name="sig_no" type="submit" class="formbtn" id="sig_no" value=" No ">
+					<?php include("formend.inc");?>
+				</form>
 			<?php else:?>
-			<?php if ($part1ok): ?>
-			<?php if (!file_exists($d_firmwarelock_path)):?>
-			<?=gettext("Click &quot;Enable firmware upload&quot; below, then choose the embedded image file for flashing.<br />Click &quot;Upgrade firmware&quot; to start the upgrade process.");?>
-			<form action="system_firmware.php" method="post" enctype="multipart/form-data">
-				<?php if (!file_exists($d_sysrebootreqd_path)):?>
-					<?php if (!file_exists($d_fwupenabled_path)):?>
-					<div id="submit">
-					<input name="Submit" id="Enable" type="submit" class="formbtn" value="<?=gettext("Enable firmware upload");?>" />
-					</div>
-					<?php else:?>
-					<div id="submit">
-					<input name="Submit" id="Disable" type="submit" class="formbtn" value="<?=gettext("Disable firmware upload");?>" />
-					</div>
-					<div id="submit">
-					<strong><?=gettext("Firmware image file");?> </strong>&nbsp;<input name="ulfile" type="file" class="formfld" size="40" />
-					</div>
-					<div id="submit">
-					<input name="Submit" id="Upgrade" type="submit" class="formbtn" value="<?=gettext("Upgrade firmware");?>" />
-					</div>
+				<?php if ($part1ok): ?>
+					<?php if (!file_exists($d_firmwarelock_path)):?>
+					<form action="system_firmware.php" method="post" enctype="multipart/form-data" onsubmit="spinner()">
+						<?php if (!file_exists($d_sysrebootreqd_path)):?>
+								<?php if (!file_exists($d_fwupenabled_path)):?>
+									<div id="submit">
+										<input name="EnableFirmwareUpdate" id="Enable" type="submit" class="formbtn" value="<?=gtext("Enable Firmware Update");?>" />
+									</div>
+								<?php else:?>
+									<div id="submit">
+										<input name="DisableFirmwareUpdate" id="Disable" type="submit" class="formbtn" value="<?=gtext("Disable Firmware Update");?>" />
+									</div>
+									<div id="submit">
+										<strong><?=gtext("Select firmware:");?> </strong>&nbsp;<input name="ulfile" type="file" class="formfld" size="40" />
+									</div>
+									<div id="submit">
+										<input name="PerformFirmwareUpdate" id="Upgrade" type="submit" class="formbtn" value="<?=gtext("Upgrade Firmware");?>" />
+									</div>
+									<br />
+									<div id="remarks">
+										<?php
+										$helpinghand = gtext('DO NOT abort the firmware upgrade process once it has started.')
+											. '<br />'
+											. sprintf(gtext("DO NOT try to flash other files than a valid '%s-%s-embedded.img.xz' file."), get_product_name(), $g['arch'])
+											. '<br />'
+											. '<a href="' . 'system_backup.php' . '">'
+											. gtext('It is recommended that you backup the server configuration before you upgrade')
+											. '</a>.';
+										html_remark("warning", gtext('Warning'), $helpinghand);
+										?>
+									</div>
+								<?php endif;?>
+							<?php else:?>
+								<?php
+								$helpinghand = '<a href="' . 'reboot.php' . '">'
+									. gtext('You must reboot the server before you can upgrade the firmware')
+									. '</a>.';
+								?>
+								<strong><?=$helpinghand;?></strong>
+							<?php endif;?>
+							<?php include("formend.inc");?>
+						</form>
 					<?php endif;?>
-				<?php else:?>
-				<strong><?=sprintf(gettext("You must <a href='%s'>reboot</a> the system before you can upgrade the firmware."), "reboot.php");?></strong>
 				<?php endif;?>
-				<div id="remarks">
-					<?php html_remark("warning", gettext("Warning"), sprintf(gettext("DO NOT abort the firmware upgrade process once it has started. Once it is completed, the server will automatically reboot, the current configuration will be maintained.<br />You need a minimum of %d MiB free RAM to perform the upgrade.<br />It is strongly recommended that you <a href='%s'>Backup</a> the server configuration before doing a upgrade."), 512, "system_backup.php"));?>
-				</div>
-				<?php include("formend.inc");?>
-			</form>
 			<?php endif;?>
-			<?php endif; endif;?>
 		</td>
 	</tr>
 </table>

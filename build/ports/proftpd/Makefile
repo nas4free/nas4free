@@ -1,9 +1,9 @@
 PORTNAME=		proftpd
-PORTVERSION=	1.3.5a
-PORTREVISION?=  0
+PORTVERSION=	1.3.5d
+PORTREVISION=	0
 CATEGORIES=		ftp
 COMMENT=		Highly configurable FTP daemon
-MAINTAINER=		zoon01@nas4free.org
+MAINTAINER=		zoon1@nas4free.org
 
 MASTER_SITES=		ftp://ftp.proftpd.org/distrib/source/ \
 						https://github.com/downloads/proftpd/proftpd.github.com/ \
@@ -19,7 +19,6 @@ USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 USE_GETTEXT=		yes
 USE_OPENSSL=		yes
-DISABLE_VULNERABILITIES=yes
 
 MODULES=	mod_ratio:mod_readme:mod_rewrite:mod_site_misc:mod_tls:mod_wrap:mod_wrap2:mod_wrap2_file:mod_ban:mod_ctrls_admin:mod_ifsession
 OPTIONS+=       WRAP "Include mod_wrap2" on

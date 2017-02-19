@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
 # $FreeBSD: src/etc/rc
@@ -30,8 +30,8 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin:/usr/local/sbin
 export HOME PATH
 
 # Get operating platform
-PLATFORM=`cat /etc/platform`
-XARCH=`/bin/echo ${PLATFORM} | sed -e 's/-.*//'`
+PLATFORM=`/bin/cat /etc/platform`
+XARCH=`/bin/echo ${PLATFORM} | /usr/bin/sed -e 's/-.*//'`
 ARCH=`/usr/bin/uname -m`
 
 # Fixed values requested by build/make.sh
@@ -50,7 +50,31 @@ if [ ${mem} -le 1536 ]; then
 fi
 export BOOT_LOWMEM BOOT_LIVECD
 #/bin/kenv -q boot_lowmem=${BOOT_LOWMEM} > /dev/null
-
+#Reroot in case banana-pi embedded
+if [ "${PLATFORM}" = "bpi-embedded" ]; then
+	if [ -f /reroot ]; then
+	# Prepare reroot disk and variables.  We know, /var is empty and /mnt is empty and I use its
+		/bin/echo "Create new root disk in memory"
+		mdr=`/sbin/mdconfig -t swap -s 128m`
+		/sbin/mount /dev/mmcsd0s2a /mnt
+		/usr/bin/xz -dcv /mnt/mfsroot.tar.xz | /bin/dd of=/dev/${mdr} bs=1m status=none
+		/sbin/umount /mnt
+		/sbin/fsck -yf /dev/${mdr}s1a
+		#prepare reroot variables
+		/bin/kenv mfsroot_type="mfs_root"
+		/bin/kenv vfs.root.mountfrom="ufs:/dev/${mdr}s1a";
+		/bin/kenv vfs.root.mountfrom.options="rw";
+		/sbin/reboot -r;
+		sleep 2;
+		exit;
+	else
+		if [ -f /dev/md0.uzip ];then
+			# I destroy unused broken after reroot md0 and unload geom_uzip module
+			mdconfig -d -u 0
+		fi
+		/sbin/kldunload geom_uzip
+	fi
+fi
 case ${PLATFORM} in
 	*-full)
 		# Do a fsck on root file system.
@@ -61,10 +85,16 @@ case ${PLATFORM} in
 		;;
 	*)
 		# If running from liveCD or embedded, mount the root (ramdisk) in read-write.
+		
 		if [ -e /dev/xmd0 ]; then
 			/sbin/mount -u -o rw,noatime,acls /dev/xmd0 /;
+		
 		else
-			/sbin/mount -u -o rw,noatime,acls /dev/md0 /;
+			if [ "${PLATFORM}" = "bpi-embedded" ]; then
+				/sbin/mount -u -o rw,noatime,acls /dev/md1s1a /;
+			else
+				/sbin/mount -u -o rw,noatime,acls /dev/md0 /;
+			fi
 		fi
 
 		/bin/echo "Creating 2nd memory disk for ${PLATFORM}"
@@ -105,7 +135,7 @@ case ${PLATFORM} in
 					if [ -f /boot/kernel/geom_xmd.ko ]; then
 						/sbin/mdconfig -d -u ${md}
 						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
-						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
+						md=`/sbin/xmdconfig -c 4 -s ${MDLOCALSIZE}`
 					fi
 				else
 					# not use LiveUSB
@@ -116,7 +146,7 @@ case ${PLATFORM} in
 					if [ -f /boot/kernel/geom_xmd.ko ]; then
 						/sbin/mdconfig -d -u ${md}
 						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
-						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
+						md=`/sbin/xmdconfig -c 4 -s ${MDLOCALSIZE}`
 					fi
 				fi
 
@@ -134,7 +164,11 @@ case ${PLATFORM} in
 				/sbin/umount /mnt
 				;;
 			*-embedded)
-				root=`/sbin/glabel status -s|/usr/bin/awk '/embboot/{print $3;exit 0}'`
+				if  [ "${PLATFORM}" = "bpi-embedded" ]; then
+					root="md1s1a"
+				else
+					root=`/sbin/glabel status -s|/usr/bin/awk '/embboot/{print $3;exit 0}'`
+				fi
 				gptswap=`/sbin/glabel status -s|/usr/bin/awk '/gptswap/{print $3;exit 0}'`
 				if [ -z "${root}" ]; then
 					echo "can't determine rootfs"
@@ -169,7 +203,7 @@ case ${PLATFORM} in
 					if [ -f /boot/kernel/geom_xmd.ko ]; then
 						/sbin/mdconfig -d -u ${md}
 						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
-						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
+						md=`/sbin/xmdconfig -c 4 -s ${MDLOCALSIZE}`
 					fi
 				else
 					if [ "${swap}" != "NONE" -a -e "/dev/${swap}" ]; then
@@ -179,7 +213,7 @@ case ${PLATFORM} in
 					if [ -f /boot/kernel/geom_xmd.ko ]; then
 						/sbin/mdconfig -d -u ${md}
 						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
-						md=`/sbin/xmdconfig -s ${MDLOCALSIZE}`
+						md=`/sbin/xmdconfig -c 4 -s ${MDLOCALSIZE}`
 					fi
 				fi
 

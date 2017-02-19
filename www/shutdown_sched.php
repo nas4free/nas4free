@@ -3,11 +3,7 @@
 	shutdown_sched.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("System"), gettext("Shutdown"), gettext("Scheduled"));
+$pgtitle = array(gtext("System"), gtext("Shutdown"), gtext("Scheduled"));
 
 if (!isset($config['shutdown']) || !is_array($config['shutdown']))
 	$config['shutdown'] = array();
@@ -54,8 +51,8 @@ $pconfig['all_days'] = $config['shutdown']['all_days'];
 $pconfig['all_months'] = $config['shutdown']['all_months'];
 $pconfig['all_weekdays'] = $config['shutdown']['all_weekdays'];
 
-$a_months = explode(" ",gettext("January February March April May June July August September October November December"));
-$a_weekdays = explode(" ",gettext("Sunday Monday Tuesday Wednesday Thursday Friday Saturday"));
+$a_months = explode(" ",gtext("January February March April May June July August September October November December"));
+$a_weekdays = explode(" ",gtext("Sunday Monday Tuesday Wednesday Thursday Friday Saturday"));
 
 if ($_POST){
 	unset($input_errors);
@@ -131,34 +128,34 @@ function enable_change(enable_change) {
   <tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-        <li class="tabinact"><a href="shutdown.php"><span><?=gettext("Now");?></span></a></li>
-        <li class="tabact"><a href="shutdown_sched.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Scheduled");?></span></a></li>
+        <li class="tabinact"><a href="shutdown.php"><span><?=gtext("Now");?></span></a></li>
+        <li class="tabact"><a href="shutdown_sched.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Scheduled");?></span></a></li>
       </ul>
     </td>
   </tr>
   <tr>
     <td class="tabcont">
-      <form action="shutdown_sched.php" method="post" name="iform" id="iform">
+      <form action="shutdown_sched.php" method="post" name="iform" id="iform" onsubmit="spinner()">
       	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
         <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", gettext("Scheduled shutdown"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
+					<?php html_titleline_checkbox("enable", gtext("Scheduled Shutdown"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");?>
           <tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gettext("Time");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Time");?></td>
 						<td width="78%" class="vtable">
 							<table width="100%" border="0" cellpadding="5" cellspacing="0">
 								<tr>
-									<td class="listhdrlr"><?=gettext("Minutes");?></td>
-									<td class="listhdrr"><?=gettext("Hours");?></td>
-									<td class="listhdrr"><?=gettext("Days");?></td>
-									<td class="listhdrr"><?=gettext("Months");?></td>
-									<td class="listhdrr"><?=gettext("Week days");?></td>
+									<td class="listhdrlr"><?=gtext("Minutes");?></td>
+									<td class="listhdrr"><?=gtext("Hours");?></td>
+									<td class="listhdrr"><?=gtext("Days");?></td>
+									<td class="listhdrr"><?=gtext("Months");?></td>
+									<td class="listhdrr"><?=gtext("Week days");?></td>
 								</tr>
 								<tr>
 									<td class="listlr">
 										<input type="radio" name="all_mins" id="all_mins1" value="1" <?php if (1 == $pconfig['all_mins']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_mins" id="all_mins2" value="0" <?php if (1 != $pconfig['all_mins']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -202,9 +199,9 @@ function enable_change(enable_change) {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_hours" id="all_hours1" value="1" <?php if (1 == $pconfig['all_hours']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_hours" id="all_hours2" value="0" <?php if (1 != $pconfig['all_hours']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -226,9 +223,9 @@ function enable_change(enable_change) {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_days" id="all_days1" value="1" <?php if (1 == $pconfig['all_days']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_days" id="all_days2" value="0" <?php if (1 != $pconfig['all_days']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -257,9 +254,9 @@ function enable_change(enable_change) {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_months" id="all_months1" value="1" <?php if (1 == $pconfig['all_months']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_months" id="all_months2" value="0" <?php if (1 != $pconfig['all_months']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -274,9 +271,9 @@ function enable_change(enable_change) {
 									</td>
 									<td class="listr" valign="top">
 										<input type="radio" name="all_weekdays" id="all_weekdays1" value="1" <?php if (1 == $pconfig['all_weekdays']) echo "checked=\"checked\"";?> />
-										<?=gettext("All");?><br />
+										<?=gtext("All");?><br />
 										<input type="radio" name="all_weekdays" id="all_weekdays2" value="0" <?php if (1 != $pconfig['all_weekdays']) echo "checked=\"checked\"";?> />
-										<?=gettext("Selected");?> ..<br />
+										<?=gtext("Selected");?> ..<br />
 										<table>
 											<tr>
 												<td valign="top">
@@ -291,12 +288,12 @@ function enable_change(enable_change) {
 									</td>
 								</tr>
 							</table>
-							<span class="vexpl"><?=gettext("Note: Ctrl-click (or command-click on the Mac) to select and de-select minutes, hours, days and months.");?></span>
+							<span class="vexpl"><?=gtext("Note: Ctrl-click (or command-click on the Mac) to select and de-select minutes, hours, days and months.");?></span>
 						</td>
 					</tr>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save");?>" onclick="enable_change(true)" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save");?>" onclick="enable_change(true)" />
 				</div>
 				<?php include("formend.inc");?>
 			</form>

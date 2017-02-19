@@ -1,14 +1,11 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-# All rights reserved.
-# 
-# Portions of freenas (http://www.freenas.org).
-# Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-
+# UPS Service
+#
 
 # PROVIDE: nut
 # REQUIRE: NETWORKING
@@ -22,6 +19,7 @@
 . /etc/util.subr
 
 name="nut"
+desc="UPS Service"
 rcvar=nut_enable
 
 load_rc_config "${name}"
@@ -51,6 +49,8 @@ required_files="${nut_ups_conf} ${nut_upsd_conf} ${nut_upsd_users}"
 command="${nut_prefix}/sbin/upsd"
 pidfile="/var/run/upsd.pid"
 
+_upsmode=`configxml_get "//ups/mode"`
+
 nut_mkconf()
 {
 	local _if _ip
@@ -70,8 +70,18 @@ nut_mkconf()
 		-v "concat('	port = ',port)" -n \
 		-m "auxparam" \
 			-v "concat('	',.)" -n \
-		-b \
+		-b -n \
 		${configxml_file} | /usr/local/bin/xml unesc > ${nut_ups_conf}
+    if configxml_isset //ups/ups2; then
+        /usr/local/bin/xml sel -t -m "//ups" \
+            -v "concat('[',ups2_upsname,']')" -n \
+            -v "concat('	driver = ',ups2_driver)" -n \
+            -v "concat('	port = ',ups2_port)" -n \
+            -m "ups2_auxparam/auxparam" \
+                -v "concat('	',.)" -n \
+            -b \
+            ${configxml_file} | /usr/local/bin/xml unesc >> ${nut_ups_conf}
+    fi
 
 	############################
 	# Create upsd.conf
@@ -96,17 +106,24 @@ EOF
 
 	############################
 	# Create upsd.users
-	/usr/local/bin/xml sel -t \
-		-o "[${nut_upsmon_user}]" -n \
-		-v "concat('        password = ',//ups/password)" -n \
-		-o "        actions = set" -n \
-		-o "        instcmds = all" -n \
-		-v "concat('        upsmon ',//ups/mode)" -n \
-		-o " " -n \
-		-o "[upsmon]" -n \
-		-o "        password = upsmon" -n \
-		-o "        upsmon slave" -n \
-		${configxml_file} | /usr/local/bin/xml unesc > ${nut_upsd_users}
+    # on master system
+    echo "" > ${nut_upsd_users}
+    if [ "master" = "${_upsmode}" ]; then
+        /usr/local/bin/xml sel -t \
+            -v "concat('[',//ups/user,']')" -n \
+            -v "concat('        password = ',//ups/password)" -n \
+            -o "        actions = set" -n \
+            -o "        instcmds = all" -n \
+            -v "concat('        upsmon ',//ups/mode)" -n \
+            -o " " -n \
+            ${configxml_file} | /usr/local/bin/xml unesc > ${nut_upsd_users}
+    fi
+    # on both master and slave system
+        /usr/local/bin/xml sel -t \
+            -v "concat('[',//ups/monitoruser,']')" -n \
+            -v "concat('        password = ',//ups/monitorpassword)" -n \
+            -o "        upsmon slave" -n \
+            ${configxml_file} | /usr/local/bin/xml unesc >> ${nut_upsd_users}
 
 	chmod 0600 ${nut_nut_conf}
 	chmod 0600 ${nut_ups_conf}
@@ -128,11 +145,9 @@ mkdir -m 0600 ${nut_statedir} 2>/dev/null
 # Create required config file
 nut_mkconf
 
-_upsmode=`configxml_get "//ups/mode"`
 if [ "slave" = "${_upsmode}" ]; then
 	nut_enable="NO"
 	rcvar=nut_enable
 fi
 
 run_rc_command "$1"
-

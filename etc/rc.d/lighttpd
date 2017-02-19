@@ -1,12 +1,10 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-# Portions of freenas (http://www.freenas.org).
-# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
-# All rights reserved.
+# Lighttpd Daemon
 #
 
 # PROVIDE: lighttpd
@@ -18,6 +16,7 @@
 . /etc/configxml.subr
 
 name="lighttpd"
+desc="Lighttpd Daemon"
 rcvar=lighttpd_enable
 
 load_rc_config "${name}"
@@ -58,6 +57,11 @@ if [ ! -d "${lighttpd_uploaddir}/ftmp" ]; then
 	mkdir -p "${lighttpd_uploaddir}/ftmp"
 fi
 chmod 1777 "${lighttpd_uploaddir}/ftmp"
+
+# FastCGI socket directory
+mkdir -p /var/tmp/fastcgi
+chmod 755 /var/tmp/fastcgi
+
 
 lighttpd_mkconf()
 {
@@ -102,10 +106,14 @@ lighttpd_mkconf()
 	fi
 	# hosts allow
 	_hostsallow=`configxml_get "//system/webgui/hostsallow"`
+	_hostsallow_disable=0
 	if [ -z "$_hostsallow" ]; then
 		_hostsallow="$_network"
 	fi
 	_hostsallow="${_hostsallow} 127.0.0.1"
+	if configxml_isset "//system/webgui/hostsallow_disable"; then
+		_hostsallow_disable=1
+	fi
 
 	# Create lighttpd.conf file
 	cat <<EOF > ${lighttpd_conf}
@@ -113,13 +121,18 @@ server.modules = (
   "mod_access",
   "mod_auth",
   "mod_expire",
-  "mod_cgi" )
+  "mod_cgi",
+  "mod_fastcgi",
+  "mod_setenv"
+ )
 server.document-root = "${lighttpd_docroot}"
 server.errorlog-use-syslog = "enable"
 #server.event-handler = "freebsd-kqueue"
 server.event-handler = "libev"
 server.max-write-idle = ${lighttpd_server_maxwriteidle}
 index-file.names = ( "index.php" )
+# set trust path
+setenv.add-environment = ( "PATH" => "/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin" )
 \$HTTP["url"] =~ "\.(js|css|png|gif|jpg)$" {
     expire.url = ( "" => "access plus 1 hours" )
 }
@@ -188,7 +201,29 @@ mimetype.assign             = (
 #url.access-deny = ( "~", ".inc", ".htpasswd" )
 static-file.exclude-extensions = ( ".php", ".pl", ".fcgi" )
 server.pid-file = "${pidfile}"
-cgi.assign = (".php" => "/usr/local/bin/php-cgi")
+#cgi.assign = (".php" => "/usr/local/bin/php-cgi")
+
+# FastCGI
+fastcgi.server = ( ".php" =>
+  ( "localhost" =>
+    ( "socket" => "/var/tmp/fastcgi/php.socket",
+        "bin-path" => "/usr/local/bin/php-cgi",
+        "check-local" => "disable",
+        "bin-environment" => (
+            "PHP_FCGI_CHILDREN" => "2",
+            "PHP_FCGI_MAX_REQUESTS" => "500"
+        ),
+        "bin-copy-environment" => (
+            "PATH", "SHELL", "USER" ),
+        "broken-scriptfilename" => "enable",
+        "min-procs" => 1,
+        "max-procs" => 2,
+        "max-load-per-proc" => 90,
+        "idle-timeout" => 360,
+        "x-sendfile" => "enable"
+    )
+  )
+)
 EOF
 
 	# Set IP address and TCP port
@@ -211,16 +246,18 @@ EOF
 		fi
 	fi
 	# hosts allow
-	cat <<EOF >> ${lighttpd_conf}
+	if [ $_hostsallow_disable -eq 0 ]; then
+		cat <<EOF >> ${lighttpd_conf}
 url.access-deny = ( "" )
 EOF
-	for h in $_hostsallow; do
-		cat <<EOF >> ${lighttpd_conf}
+		for h in $_hostsallow; do
+			cat <<EOF >> ${lighttpd_conf}
 \$HTTP["remoteip"] == "$h" {
 	url.access-deny = ( "~", ".inc", ".htpasswd" )
 }
 EOF
-	done
+		done
+	fi
 
 	# Set temporary directory
 	cat <<EOF >> ${lighttpd_conf}

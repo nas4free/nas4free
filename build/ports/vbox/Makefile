@@ -1,6 +1,6 @@
 PORTNAME=		nas4free-virtualbox
 PORTVERSION=		1.0
-PORTREVISION=		0
+PORTREVISION=		1
 CATEGORIES=		emulators
 
 COMMENT=		VirtualBox
@@ -13,8 +13,8 @@ NO_PKG_REGISTER=	yes
 #DISABLE_VULNERABILITIES=yes
 DEPENDS_TARGET=	clean build stage
 
-BUILD_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/emulators/virtualbox-ose
-BUILD_DEPENDS+=	${NONEXISTENT}:${PORTSDIR}/emulators/virtualbox-ose-kmod
+BUILD_DEPENDS=	${NONEXISTENT}:emulators/virtualbox-ose
+BUILD_DEPENDS+=	${NONEXISTENT}:emulators/virtualbox-ose-kmod
 DEP_STAGEDIR=	${PORTSDIR}/emulators/virtualbox-ose/work/stage
 KMOD_STAGEDIR=	${PORTSDIR}/emulators/virtualbox-ose-kmod/work/stage
 

@@ -3,7 +3,7 @@
 	disks_zfs_dataset_info.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -37,7 +37,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Datasets"), gettext("Information"));
+$pgtitle = array(gtext("Disks"), gtext("ZFS"), gtext("Datasets"), gtext("Information"));
 
 if (!isset($config['zfs']['datasets']['dataset']) || !is_array($config['zfs']['datasets']['dataset']))
 	$config['zfs']['datasets']['dataset'] = array();
@@ -61,32 +61,32 @@ function zfs_dataset_display_properties() {
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gettext("Pools");?></span></a></li>
-				<li class="tabact"><a href="disks_zfs_dataset.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Datasets");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gettext("Volumes");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gettext("Snapshots");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gettext("Configuration");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gtext("Pools");?></span></a></li>
+				<li class="tabact"><a href="disks_zfs_dataset.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Datasets");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gtext("Volumes");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gtext("Snapshots");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gtext("Configuration");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav2">
-				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gettext("Dataset");?></span></a></li>
-				<li class="tabact"><a href="disks_zfs_dataset_info.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Information");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gtext("Dataset");?></span></a></li>
+				<li class="tabact"><a href="disks_zfs_dataset_info.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Information");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabcont">
 			<table width="100%" border="0">
-				<?php html_titleline(gettext("ZFS dataset information and status"));?>
+				<?php html_titleline(gtext("ZFS Dataset Information & Status"));?>
 				<tr>
 					<td class="listt">
 						<pre><span id="zfs_dataset_list"><?=zfs_dataset_display_list();?></span></pre>
 					</td>
 				</tr>
-				<?php html_titleline(gettext("ZFS dataset properties"));?>
+				<?php html_titleline(gtext("ZFS Dataset Properties"));?>
 				<tr>
 					<td class="listt">
 						<pre><span id="zfs_dataset_properties"><?=zfs_dataset_display_properties();?></span></pre>

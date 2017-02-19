@@ -3,7 +3,7 @@
 	disks_zfs_snapshot_auto.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Portions of freenas (http://www.freenas.org).
@@ -38,7 +38,7 @@ require("auth.inc");
 require("guiconfig.inc");
 require("zfs.inc");
 
-$pgtitle = array(gettext("Disks"), gettext("ZFS"), gettext("Snapshots"), gettext("Auto Snapshot"));
+$pgtitle = array(gtext("Disks"), gtext("ZFS"), gtext("Snapshots"), gtext("Auto Snapshot"));
 
 if (!isset($config['zfs']['autosnapshots']['autosnapshot']) || !is_array($config['zfs']['autosnapshots']['autosnapshot']))
 	$config['zfs']['autosnapshots']['autosnapshot'] = array();
@@ -53,7 +53,10 @@ array_sort_key($config['zfs']['pools']['pool'], "name");
 $a_pool = &$config['zfs']['pools']['pool'];
 
 if (!isset($uuid) && (!sizeof($a_pool))) {
-	$errormsg = sprintf(gettext("No configured pools. Please add new <a href='%s'>pools</a> first."), "disks_zfs_zpool.php");
+	$link = sprintf('<a href="%1$s">%2$s</a>', 'disks_zfs_zpool.php', gtext('pools'));
+	$helpinghand = gtext('No configured pools.') . ' ' . gtext('Please add new %s first.');
+	$helpinghand = sprintf($helpinghand, $link);
+	$errormsg = $helpinghand;
 }
 
 $a_timehour = array();
@@ -61,15 +64,15 @@ foreach (range(0, 23) as $hour) {
 	$min = 0;
 	$a_timehour[sprintf("%02.2d%02.2d", $hour, $min)] = sprintf("%02.2d:%02.2d", $hour, $min);
 }
-$a_lifetime = array("0" => gettext("infinity"),
-	    "1w" => sprintf(gettext("%d week"), 1),
-	    "2w" => sprintf(gettext("%d weeks"), 2),
-	    "30d" => sprintf(gettext("%d days"), 30),
-	    "60d" => sprintf(gettext("%d days"), 60),
-	    "90d" => sprintf(gettext("%d days"), 90),
-	    "180d" => sprintf(gettext("%d days"), 180),
-	    "1y" => sprintf(gettext("%d year"), 1),
-	    "2y" => sprintf(gettext("%d years"), 2));
+$a_lifetime = array("0" => gtext("infinity"),
+	    "1w" => sprintf(gtext("%d week"), 1),
+	    "2w" => sprintf(gtext("%d weeks"), 2),
+	    "30d" => sprintf(gtext("%d days"), 30),
+	    "60d" => sprintf(gtext("%d days"), 60),
+	    "90d" => sprintf(gtext("%d days"), 90),
+	    "180d" => sprintf(gtext("%d days"), 180),
+	    "1y" => sprintf(gtext("%d year"), 1),
+	    "2y" => sprintf(gtext("%d years"), 2));
 
 if ($_POST) {
 	$pconfig = $_POST;
@@ -137,21 +140,21 @@ function zfsautosnapshot_process_updatenotification($mode, $data) {
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav">
-				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gettext("Pools");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gettext("Datasets");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gettext("Volumes");?></span></a></li>
-				<li class="tabact"><a href="disks_zfs_snapshot.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Snapshots");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gettext("Configuration");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gtext("Pools");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gtext("Datasets");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gtext("Volumes");?></span></a></li>
+				<li class="tabact"><a href="disks_zfs_snapshot.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Snapshots");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gtext("Configuration");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
 	<tr>
 		<td class="tabnavtbl">
 			<ul id="tabnav2">
-				<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gettext("Snapshot");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot_clone.php"><span><?=gettext("Clone");?></span></a></li>
-				<li class="tabact"><a href="disks_zfs_snapshot_auto.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Auto Snapshot");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot_info.php"><span><?=gettext("Information");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gtext("Snapshot");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot_clone.php"><span><?=gtext("Clone");?></span></a></li>
+				<li class="tabact"><a href="disks_zfs_snapshot_auto.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Auto Snapshot");?></span></a></li>
+				<li class="tabinact"><a href="disks_zfs_snapshot_info.php"><span><?=gtext("Information");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
@@ -163,12 +166,12 @@ function zfsautosnapshot_process_updatenotification($mode, $data) {
 				<?php if (updatenotify_exists("zfsautosnapshot")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
-						<td width="30%" class="listhdrlr"><?=gettext("Path");?></td>
-						<td width="20%" class="listhdrr"><?=gettext("Name");?></td>
-						<td width="10%" class="listhdrr"><?=gettext("Recursive");?></td>
-						<td width="10%" class="listhdrr"><?=gettext("Type");?></td>
-						<td width="10%" class="listhdrr"><?=gettext("Schedule time");?></td>
-						<td width="10%" class="listhdrr"><?=gettext("Life time");?></td>
+						<td width="30%" class="listhdrlr"><?=gtext("Path");?></td>
+						<td width="20%" class="listhdrr"><?=gtext("Name");?></td>
+						<td width="10%" class="listhdrr"><?=gtext("Recursive");?></td>
+						<td width="10%" class="listhdrr"><?=gtext("Type");?></td>
+						<td width="10%" class="listhdrr"><?=gtext("Schedule Time");?></td>
+						<td width="10%" class="listhdrr"><?=gtext("Life Time");?></td>
 						<td width="10%" class="list"></td>
 					</tr>
 					<?php foreach ($a_autosnapshot as $autosnapshotv):?>
@@ -182,12 +185,12 @@ function zfsautosnapshot_process_updatenotification($mode, $data) {
 						<td class="listr"><?=htmlspecialchars($a_lifetime[$autosnapshotv['lifetime']]);?>&nbsp;</td>
 						<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
 						<td valign="middle" nowrap="nowrap" class="list">
-							<a href="disks_zfs_snapshot_auto_edit.php?uuid=<?=$autosnapshotv['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit auto snapshot");?>" border="0" alt="<?=gettext("Edit auto snapshot");?>" /></a>&nbsp;
-							<a href="disks_zfs_snapshot_auto.php?act=del&amp;uuid=<?=$autosnapshotv['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this auto snapshot?");?>')"><img src="x.gif" title="<?=gettext("Delete auto snapshot");?>" border="0" alt="<?=gettext("Delete auto snapshot");?>" /></a>
+							<a href="disks_zfs_snapshot_auto_edit.php?uuid=<?=$autosnapshotv['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit auto snapshot");?>" border="0" alt="<?=gtext("Edit auto snapshot");?>" /></a>&nbsp;
+							<a href="disks_zfs_snapshot_auto.php?act=del&amp;uuid=<?=$autosnapshotv['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this auto snapshot?");?>')"><img src="images/delete.png" title="<?=gtext("Delete auto snapshot");?>" border="0" alt="<?=gtext("Delete auto snapshot");?>" /></a>
 						</td>
 						<?php else:?>
 						<td valign="middle" nowrap="nowrap" class="list">
-							<img src="del.gif" border="0" alt="" />
+							<img src="images/delete.png" border="0" alt="" />
 						</td>
 						<?php endif;?>
 					</tr>
@@ -195,7 +198,7 @@ function zfsautosnapshot_process_updatenotification($mode, $data) {
 					<tr>
 						<td class="list" colspan="6"></td>
 						<td class="list">
-							<a href="disks_zfs_snapshot_auto_edit.php"><img src="plus.gif" title="<?=gettext("Add auto snapshot");?>" border="0" alt="<?=gettext("Add auto snapshot");?>" /></a>
+							<a href="disks_zfs_snapshot_auto_edit.php"><img src="images/add.png" title="<?=gtext("Add auto snapshot");?>" border="0" alt="<?=gtext("Add auto snapshot");?>" /></a>
 						</td>
 					</tr>
 				</table>

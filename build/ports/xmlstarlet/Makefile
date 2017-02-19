@@ -2,7 +2,7 @@ PORTNAME=		xmlstarlet
 PORTVERSION=	1.6.1
 CATEGORIES=		textproc
 COMMENT=		Command line XML toolkit
-MAINTAINER=		zoon01@nas4free.org
+MAINTAINER=		zoon1@nas4free.org
 
 MASTER_SITES=		SF/xmlstar/${PORTNAME}/${PORTVERSION}
 

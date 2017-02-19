@@ -3,11 +3,7 @@
 	system_hosts_edit.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -42,7 +39,7 @@ if (isset($_GET['uuid']))
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gettext("Network"), gettext("Hosts"), isset($uuid) ? gettext("Edit") : gettext("Add"));
+$pgtitle = array(gtext("Network"), gtext("Hosts"), isset($uuid) ? gtext("Edit") : gtext("Add"));
 
 if (!isset($config['system']['hosts']) || !is_array($config['system']['hosts']))
 	$config['system']['hosts'] = array();
@@ -73,22 +70,22 @@ if ($_POST) {
 
 	// Input validation.
 	$reqdfields = explode(" ", "name address");
-	$reqdfieldsn = array(gettext("Hostname"),gettext("IP address"));
+	$reqdfieldsn = array(gtext("Hostname"),gtext("IP address"));
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (($_POST['name'] && !is_validdesc($_POST['name']))) {
-		$input_errors[] = gettext("The host name contain invalid characters.");
+		$input_errors[] = gtext("The host name contain invalid characters.");
 	}
 	if (($_POST['address'] && !is_ipaddr($_POST['address']))) {
-		$input_errors[] = gettext("A valid IP address must be specified.");
+		$input_errors[] = gtext("A valid IP address must be specified.");
 	}
 
 	// Check for duplicates.
 	$index = array_search_ex($_POST['name'], $a_hosts, "name");
 	if (FALSE !== $index) {
 		if (!((FALSE !== $cnid) && ($a_hosts[$cnid]['uuid'] === $a_hosts[$index]['uuid']))) {
-			$input_errors[] = gettext("An host with this name already exists.");
+			$input_errors[] = gtext("An host with this name already exists.");
 		}
 	}
 
@@ -119,16 +116,17 @@ if ($_POST) {
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
     <td class="tabcont">
-      <form action="system_hosts_edit.php" method="post" name="iform" id="iform">
+      <form action="system_hosts_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
       	<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
         <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_inputbox("name", gettext("Hostname"), $pconfig['name'], gettext("The host name may only consist of the characters a-z, A-Z and 0-9, - , _ and ."), true, 40);?>
-					<?php html_inputbox("address", gettext("IP address"), $pconfig['address'], gettext("The IP address that this hostname represents."), true, 20);?>
-					<?php html_inputbox("descr", gettext("Description"), $pconfig['descr'], gettext("You may enter a description here for your reference."), false, 20);?>
+				<?php html_titleline2(gtext('Hosts Setup'), 2);?>
+					<?php html_inputbox("name", gtext("Hostname"), $pconfig['name'], gtext("The host name may only consist of the characters a-z, A-Z and 0-9, - , _ and ."), true, 40);?>
+					<?php html_inputbox("address", gtext("IP address"), $pconfig['address'], gtext("The IP address that this hostname represents."), true, 20);?>
+					<?php html_inputbox("descr", gtext("Description"), $pconfig['descr'], gtext("You may enter a description here for your reference."), false, 20);?>
         </table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gettext("Save") : gettext("Add")?>" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gettext("Cancel");?>" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 				</div>
 				<?php include("formend.inc");?>

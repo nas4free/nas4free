@@ -3,11 +3,7 @@
 	disks_mount.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("Disks"), gettext("Mount Point"), gettext("Management"));
+$pgtitle = array(gtext("Disks"), gtext("Mount Point"), gtext("Management"));
 
 if ($_POST) {
 	$pconfig = $_POST;
@@ -82,7 +79,7 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 		if ((isset($config['system']['swap']['enable'])) &&
 			($config['system']['swap']['type'] === "file") &&
 			($config['system']['swap']['mountpoint'] === $_GET['uuid'])) {
-			$errormsg[] = gettext(sprintf("A swap file is located on the mounted device %s.",
+			$errormsg[] = gtext(sprintf("A swap file is located on the mounted device %s.",
 				$config['mounts']['mount'][$index]['devicespecialfile']));
 		} else {
 			updatenotify_set("mountpoint", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
@@ -144,9 +141,9 @@ function mountmanagement_process_updatenotification($mode, $data) {
   <tr>
     <td class="tabnavtbl">
       <ul id="tabnav">
-        <li class="tabact"><a href="disks_mount.php" title="<?=gettext("Reload page");?>"><span><?=gettext("Management");?></span></a></li>
-        <li class="tabinact"><a href="disks_mount_tools.php"><span><?=gettext("Tools");?></span></a></li>
-        <li class="tabinact"><a href="disks_mount_fsck.php"><span><?=gettext("Fsck");?></span></a></li>
+        <li class="tabact"><a href="disks_mount.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Management");?></span></a></li>
+        <li class="tabinact"><a href="disks_mount_tools.php"><span><?=gtext("Tools");?></span></a></li>
+        <li class="tabinact"><a href="disks_mount_fsck.php"><span><?=gtext("Fsck");?></span></a></li>
       </ul>
     </td>
   </tr>
@@ -157,11 +154,11 @@ function mountmanagement_process_updatenotification($mode, $data) {
         <?php if (updatenotify_exists("mountpoint")) print_config_change_box();?>
         <table width="100%" border="0" cellpadding="0" cellspacing="0">
           <tr>
-            <td width="30%" class="listhdrlr"><?=gettext("Disk");?></td>
-            <td width="15%" class="listhdrr"><?=gettext("File system");?></td>
-            <td width="15%" class="listhdrr"><?=gettext("Name");?></td>
-            <td width="20%" class="listhdrr"><?=gettext("Description");?></td>
-            <td width="13%" class="listhdrr"><?=gettext("Status");?></td>
+            <td width="30%" class="listhdrlr"><?=gtext("Disk");?></td>
+            <td width="15%" class="listhdrr"><?=gtext("File system");?></td>
+            <td width="15%" class="listhdrr"><?=gtext("Name");?></td>
+            <td width="20%" class="listhdrr"><?=gtext("Description");?></td>
+            <td width="13%" class="listhdrr"><?=gtext("Status");?></td>
             <td width="7%" class="list"></td>
           </tr>
 					<?php foreach($a_mount as $mount):?>
@@ -169,19 +166,19 @@ function mountmanagement_process_updatenotification($mode, $data) {
 					$notificationmode = updatenotify_get_mode("mountpoint", $mount['uuid']);
 					switch ($notificationmode) {
 						case UPDATENOTIFY_MODE_NEW:
-							$status = gettext("Initializing");
+							$status = gtext("Initializing");
 							break;
 						case UPDATENOTIFY_MODE_MODIFIED:
-							$status = gettext("Modifying");
+							$status = gtext("Modifying");
 							break;
 						case UPDATENOTIFY_MODE_DIRTY:
-							$status = gettext("Deleting");
+							$status = gtext("Deleting");
 							break;
 						default:
 							if(disks_ismounted_ex($mount['sharename'],"sharename")) {
-								$status = gettext("OK");
+								$status = gtext("OK");
 							} else {
-								$status = gettext("Error") . " - <a href=\"disks_mount.php?act=retry&uuid={$mount['uuid']}\">" . gettext("Retry") . "</a>";
+								$status = gtext("Error") . " - <a href=\"disks_mount.php?act=retry&uuid={$mount['uuid']}\">" . gtext("Retry") . "</a>";
 							}
 							break;
 					}
@@ -202,23 +199,23 @@ function mountmanagement_process_updatenotification($mode, $data) {
             <td class="listbg"><?=$status;?>&nbsp;</td>
             <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
             <td valign="middle" nowrap="nowrap" class="list">
-              <a href="disks_mount_edit.php?uuid=<?=$mount['uuid'];?>"><img src="e.gif" title="<?=gettext("Edit mount point");?>" border="0" alt="<?=gettext("Edit mount point");?>" /></a>&nbsp;
-              <a href="disks_mount.php?act=del&amp;uuid=<?=$mount['uuid'];?>" onclick="return confirm('<?=gettext("Do you really want to delete this mount point? All elements that still use it will become invalid (e.g. share)!");?>')"><img src="x.gif" title="<?=gettext("Delete mount point");?>" border="0" alt="<?=gettext("Delete mount point");?>" /></a>
+              <a href="disks_mount_edit.php?uuid=<?=$mount['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit mount point");?>" border="0" alt="<?=gtext("Edit mount point");?>" /></a>&nbsp;
+              <a href="disks_mount.php?act=del&amp;uuid=<?=$mount['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this mount point? All elements that still use it will become invalid (e.g. share)!");?>')"><img src="images/delete.png" title="<?=gtext("Delete mount point");?>" border="0" alt="<?=gtext("Delete mount point");?>" /></a>
             </td>
             <?php else:?>
 						<td valign="middle" nowrap="nowrap" class="list">
-							<img src="del.gif" border="0" alt="" />
+							<img src="images/delete.png" border="0" alt="" />
 						</td>
 						<?php endif;?>
           </tr>
           <?php endforeach;?>
           <tr>
             <td class="list" colspan="5"></td>
-            <td class="list"><a href="disks_mount_edit.php"><img src="plus.gif" title="<?=gettext("Add mount point");?>" border="0" alt="<?=gettext("Add mount point");?>" /></a></td>
+            <td class="list"><a href="disks_mount_edit.php"><img src="images/add.png" title="<?=gtext("Add mount point");?>" border="0" alt="<?=gtext("Add mount point");?>" /></a></td>
           </tr>
         </table>
         <div id="remarks">
-		<?php html_remark("Warning", gettext("Warning"), sprintf(gettext("UFS and ZFS are the NATIVE filesystems of FreeBSD (the underlying OS of %s). Attempting to use other filesystems such as FAT, FAT32, EXT2, EXT3, EXT4 or NTFS can result in unpredictable results, file corruption, and loss of data!"), get_product_name()));?>
+		<?php html_remark("Warning", gtext("Warning"), sprintf(gtext("UFS and ZFS are NATIVE filesystems of %s. Attempting to use other filesystems such as EXT2, EXT3, EXT4, FAT, FAT32, or NTFS can result in unpredictable results, file corruption and the loss of data!"), get_product_name()));?>
         </div>
         <?php include("formend.inc");?>
       </form>

@@ -3,11 +3,7 @@
 	system_backup.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,7 +34,7 @@
 require("auth.inc");
 require("guiconfig.inc");
 
-$pgtitle = array(gettext("System"), gettext("Backup/Restore"));
+$pgtitle = array(gtext("System"), gtext("Backup/Restore"));
 
 /* omit no-cache headers because it confuses IE with file downloads */
 $omit_nocacheheaders = true;
@@ -49,33 +46,33 @@ $old_default_password = "freenas";
 $current_password = $config['system']['password'];
 if (strcmp($current_password, $g['default_passwd']) === 0
    || strcmp($current_password, $old_default_password) === 0) {
-	$errormsg = gettext("Current password is default password. You should use your own password.");
+	$errormsg = gtext("Current password is default password. You should use your own password.");
 }
 
 if ($_POST) {
 	unset($errormsg);
 	unset($input_errors);
-	$pconfig['encryption'] = $_POST['encryption'];
+	$pconfig['encryption'] = isset($_POST['encryption']) ? $_POST['encryption'] : '';
 
 	$encryption = 0;
 	if (!empty($_POST['encryption']))
 		$encryption = 1;
-	if (0 == strcmp($_POST['Submit'], gettext("Restore configuration"))) {
+	if (0 == strcmp($_POST['Submit'], gtext("Restore Configuration"))) {
 		$mode = "restore";
-	} else if (0 == strcmp($_POST['Submit'], gettext("Download configuration"))) {
+	} else if (0 == strcmp($_POST['Submit'], gtext("Download Configuration"))) {
 		$mode = "download";
 	}
 
 	if ($encryption) {
 		$reqdfields = explode(" ", "encrypt_password encrypt_password_confirm");
-		$reqdfieldsn = array(gettext("Encrypt password"), gettext("Encrypt password (confirmed)"));
+		$reqdfieldsn = array(gtext("Encrypt password"), gtext("Encrypt password (confirmed)"));
 		$reqdfieldst = explode(" ", "password password");
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 		if ($_POST['encrypt_password'] !== $_POST['encrypt_password_confirm']) {
-			$input_errors[] = gettext("The confirmed password does not match. Please ensure the passwords match exactly.");
+			$input_errors[] = gtext("The confirmed password does not match. Please ensure the passwords match exactly.");
 		}
 	}
 
@@ -128,8 +125,8 @@ if ($_POST) {
 					$validate = validate_xml_config($_FILES['conffile']['tmp_name'], $g['xml_rootobj']);
 				}
 				if (!$validate) {
-					$errormsg = sprintf(gettext("The configuration could not be restored. %s"),
-						$encrypted ? gettext("Invalid file format or incorrect password.") : gettext("Invalid file format."));
+					$errormsg = sprintf(gtext("The configuration could not be restored. %s"),
+						$encrypted ? gtext("Invalid file format or incorrect password.") : gtext("Invalid file format or incorrect password."));
 				} else {
 					// Install configuration backup
 					if ($encrypted) {
@@ -140,13 +137,13 @@ if ($_POST) {
 					}
 					if ($ret == 0) {
 						system_reboot();
-						$savemsg = sprintf(gettext("The configuration has been restored. The server is now rebooting."));
+						$savemsg = sprintf(gtext("The configuration has been restored. The server is now rebooting."));
 					} else {
-						$errormsg = gettext("The configuration could not be restored.");
+						$errormsg = gtext("The configuration could not be restored.");
 					}
 				}
 			} else {
-				$errormsg = sprintf(gettext("The configuration could not be restored. No file was uploaded!"),
+				$errormsg = sprintf(gtext("The configuration could not be restored. No file was uploaded!"),
 					$g_file_upload_error[$_FILES['conffile']['error']]);
 			}
 		}
@@ -189,30 +186,30 @@ $(document).ready(function(){
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 			  <table width="100%" border="0" cellspacing="0" cellpadding="6">
 			    <tr>
-			      <td colspan="2" class="listtopic"><?=gettext("Backup configuration");?></td>
+			      <td colspan="2" class="listtopic"><?=gtext("Backup Configuration");?></td>
 			    </tr>
 			    <tr>
-					<td width="22%" valign="top" class="vncell"><?=gettext("Encryption");?></td>
+					<td width="22%" valign="top" class="vncell"><?=gtext("Encryption");?></td>
 					<td width="78%" class="vtable">
 						<input name="encryption" type="checkbox" id="encryption" value="yes" <?php if (!empty($pconfig['encryption'])) echo "checked=\"checked\""; ?> />
-					<?=gettext("Enable encryption.");?></td>
+					<?=gtext("Enable encryption.");?></td>
 			    </tr>
 			    <tr id="encrypt_password_tr">
-					<td width="22%" valign="top" class="vncell"><label for="encrypt_password"><?=gettext("Encrypt password");?></label></td>
+					<td width="22%" valign="top" class="vncell"><label for="encrypt_password"><?=gtext("Encrypt password");?></label></td>
 					<td width="78%" class="vtable">
 						<input name="encrypt_password" type="password" class="formfld" id="encrypt_password" size="25" value="" /><br />
-						<input name="encrypt_password_confirm" type="password" class="formfld" id="encrypt_password_confirm" size="25" value="" />&nbsp;(<?=gettext("Confirmation");?>)
+						<input name="encrypt_password_confirm" type="password" class="formfld" id="encrypt_password_confirm" size="25" value="" />&nbsp;(<?=gtext("Confirmation");?>)
 					</td>
 			    </tr>
 			    <tr>
 					<td width="22%" valign="baseline" class="vncell">&nbsp;</td>
 					<td width="78%" class="vtable">
-						<?=gettext("Click this button to download the server configuration in encrypted GZIP file or XML format.");?><br />
+						<?=gtext("Click this button to download the server configuration in encrypted GZIP file or XML format.");?><br />
 						<div id="remarks">
-							<?php html_remark("note", gettext("Note"), sprintf("%s", /*gettext("Current administrator password is used for encryption.")*/ gettext("Encrypted configuration is automatically gzipped.")));?>
+							<?php html_remark("note", gtext("Note"), sprintf("%s", /*gtext("Current administrator password is used for encryption.")*/ gtext("Encrypted configuration is automatically gzipped.")));?>
 						</div>
 						<div id="submit">
-							<input name="Submit" type="submit" class="formbtn" id="download" value="<?=gettext("Download configuration");?>" />
+							<input name="Submit" type="submit" class="formbtn" id="download" value="<?=gtext("Download Configuration");?>" />
 						</div>
 					</td>
 			    </tr>
@@ -220,10 +217,10 @@ $(document).ready(function(){
 			      <td colspan="2" class="list" height="12"></td>
 			    </tr>
 			    <tr>
-			      <td colspan="2" class="listtopic"><?=gettext("Restore configuration");?></td>
+			      <td colspan="2" class="listtopic"><?=gtext("Restore Configuration");?></td>
 			    </tr>
 			    <tr id="decrypt_password_tr">
-				<td width="22%" valign="top" class="vncell"><label for="decrypt_password"><?=gettext("Decrypt password");?></label></td>
+				<td width="22%" valign="top" class="vncell"><label for="decrypt_password"><?=gtext("Decrypt password");?></label></td>
 				<td width="78%" class="vtable">
 					<input name="decrypt_password" type="password" class="formfld" id="decrypt_password" size="25" value="" />
 				</td>
@@ -231,22 +228,25 @@ $(document).ready(function(){
 			    <tr>
 					<td width="22%" valign="baseline" class="vncell">&nbsp;</td>
 					<td width="78%" class="vtable">
-						<?php echo sprintf(gettext("Select the server configuration encrypted GZIP file or XML file and click the button below to restore the configuration."));?><br />
+						<?php echo sprintf(gtext("Select the server configuration encrypted GZIP file or XML file and click the button below to restore the configuration."));?><br />
 						<div id="remarks">
-							<?php html_remark("note", gettext("Note"), sprintf("%s", /*gettext("Current administrator password is used for decryption.")*/ gettext("The server will reboot after restoring the configuration.")));?>
+							<?php html_remark("note", gtext("Note"), sprintf("%s", /*gtext("Current administrator password is used for decryption.")*/ gtext("The server will reboot after restoring the configuration.")));?>
 						</div>
 						<div id="submit">
 						<input name="conffile" type="file" class="formfld" id="conffile" size="40" />
 						</div>
 						<div id="submit">
-						<input name="Submit" type="submit" class="formbtn" id="restore" value="<?=gettext("Restore configuration");?>" />
+						<input name="Submit" type="submit" class="formbtn" id="restore" value="<?=gtext("Restore Configuration");?>" />
 						</div>
 					</td>
 			    </tr>
-			  </table>
+		</table>
+			<div id="remarks">
+				<?php html_remark("warning", gtext("Warning"), sprintf(gtext("It is recommended to use encryption before you store the backup in a safe location.")));?>
+				</div>
 			</td>
 		</tr>
-	</table>
-	<?php include("formend.inc");?>
+</table>
+<?php include("formend.inc");?>
 </form>
 <?php include("fend.inc");?>

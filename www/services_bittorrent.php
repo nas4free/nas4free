@@ -3,11 +3,7 @@
 	services_bittorrent.php
 
 	Part of NAS4Free (http://www.nas4free.org).
-	Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
-	All rights reserved.
-
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
+	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
 	Redistribution and use in source and binary forms, with or without
@@ -15,6 +11,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -38,10 +35,12 @@ require("auth.inc");
 require("guiconfig.inc");
 require("services.inc");
 
-$pgtitle = array(gettext("Services"), gettext("BitTorrent"));
+$pgtitle = array(gtext("Services"), gtext("BitTorrent"));
 
 if (!isset($config['bittorrent']) || !is_array($config['bittorrent']))
 	$config['bittorrent'] = array();
+
+$os_release = exec('uname -r | cut -d - -f1');
 
 $pconfig['enable'] = isset($config['bittorrent']['enable']);
 $pconfig['port'] = $config['bittorrent']['port'];
@@ -67,33 +66,38 @@ if (!$pconfig['port']) $pconfig['port'] = "9091";
 
 // Function to check directories (if exists & permisssions)
 function change_perms($dir) {
-    global $input_errors;
-    
-    $path = rtrim($dir,'/');                                            // remove trailing slash
-    if (strlen($path) > 1) {
-        if (!is_dir($path)) {                                           // check if directory exists
-            $input_errors[] = "Directory $path doesn't exist!";
-        }
-        else {
-            $path_check = explode("/", $path);                          // split path to get directory names
-            $path_elements = count($path_check);                        // get path depth
-            $fp = substr(sprintf('%o', fileperms("/$path_check[1]/$path_check[2]")), -1);   // get mountpoint permissions for others
-            if ($fp >= 5) {                                             // transmission needs at least read & search permission at the mountpoint
-                $directory = "/$path_check[1]/$path_check[2]";          // set to the mountpoint
-                for ($i = 3; $i < $path_elements - 1; $i++) {           // traverse the path and set permissions to rx
-                    $directory = $directory."/$path_check[$i]";         // add next level
-                    exec("chmod o=+r+x \"$directory\"");                // set permissions to o=+r+x
-                }
-                $path_elements = $path_elements - 1;
-                $directory = $directory."/$path_check[$path_elements]"; // add last level
-                exec("chmod o=rwx \"$directory\"");                     // set permissions to o=rwx
-            }
-            else
-            {
-                $input_errors[] = sprintf(gettext("BitTorrent needs at least read & execute permissions at the mount point for directory $path! Set the Read and Execute bits for Others (Access Restrictions | Mode) for the mount point /$path_check[1]/$path_check[2] (in <a href='%s'>Disks | Mount Point | Management</a>) and hit Save in order to take them effect."), "disks_mount.php"); 
-            }
-        }
-    }
+	global $input_errors;
+
+	$path = rtrim($dir,'/'); // remove trailing slash
+	if (strlen($path) > 1) {
+		if (!is_dir($path)) { // check if directory exists
+			$input_errors[] = "Directory $path doesn't exist!";
+		} else {
+			$path_check = explode("/", $path); // split path to get directory names
+			$path_elements = count($path_check); // get path depth
+			$fp = substr(sprintf('%o', fileperms("/$path_check[1]/$path_check[2]")), -1); // get mountpoint permissions for others
+			if ($fp >= 5) { // transmission needs at least read & search permission at the mountpoint
+				$directory = "/$path_check[1]/$path_check[2]"; // set to the mountpoint
+				for ($i = 3; $i < $path_elements - 1; $i++) { // traverse the path and set permissions to rx
+					$directory = $directory."/$path_check[$i]"; // add next level
+					exec("chmod o=+r+x \"$directory\""); // set permissions to o=+r+x
+				}
+				$path_elements = $path_elements - 1;
+				$directory = $directory."/$path_check[$path_elements]"; // add last level
+				exec("chmod o=rwx \"$directory\""); // set permissions to o=rwx
+			} else {
+				$link = '<a href="'
+					. 'disks_mount.php'
+					. '">'
+					. gtext('Disks | Mount Point | Management')
+					. '</a>.';
+				$helpinghand = sprintf(gtext('BitTorrent needs at least read & execute permissions at the mount point for directory %s!'), $path)
+					. ' '
+					. sprintf(gtext('Set the Read and Execute bits permission for Others (Access Restrictions | Mode) for the mount point %s in %s and hit Save in order to take them effect.'), '/' . $path_check[1] . '/' . $path_check[2], $link);
+				$input_errors[] = $helpinghand;
+			}
+		}
+	}
 }
 
 if ($_POST) {
@@ -103,14 +107,14 @@ if ($_POST) {
 	// Input validation.
 	if (isset($_POST['enable']) && $_POST['enable']) {
 		$reqdfields = explode(" ", "port downloaddir peerport");
-		$reqdfieldsn = array(gettext("Port"), gettext("Download directory"), gettext("Peer port"));
+		$reqdfieldsn = array(gtext("Port"), gtext("Download directory"), gtext("Peer port"));
 		$reqdfieldst = explode(" ", "port string port");
 
 		if (!empty($_POST['authrequired'])) {
 			// !!! Note !!! It seems TransmissionBT does not support special characters,
 			// so use 'alias' instead of 'password' check.
 			$reqdfields = array_merge($reqdfields, explode(" ", "username password"));
-			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("Username"), gettext("Password")));
+			$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Username"), gtext("Password")));
 			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "alias alias"));
 		}
 
@@ -119,7 +123,7 @@ if ($_POST) {
 		// Add additional type checks
 		if (isset($_POST['umask'])) {
 			$reqdfields = array_merge($reqdfields, explode(" ", "umask"));
-			$reqdfieldsn = array_merge($reqdfieldsn, array(gettext("User mask")));
+			$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("User mask")));
 			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "filemode"));
 		}
 
@@ -127,12 +131,12 @@ if ($_POST) {
 
 		// Check if port is already used.
 		if (services_is_port_used($_POST['port'], "bittorrent")) {
-			$input_errors[] = sprintf(gettext("Port %ld is already used by another service."), $_POST['port']);
+			$input_errors[] = sprintf(gtext("Port %ld is already used by another service."), $_POST['port']);
 		}
 
 		// Check port range.
 		if ($_POST['port'] && ((1024 > $_POST['port']) || (65535 < $_POST['port']))) {
-			$input_errors[] = sprintf(gettext("The attribute '%s' must be in the range from %d to %d."), gettext("Port"), 1024, 65535);
+			$input_errors[] = sprintf(gtext("The attribute '%s' must be in the range from %d to %d."), gtext("Port"), 1024, 65535);
 		}
 	
         // Check directories (if exist & permisssions)
@@ -219,42 +223,48 @@ function authrequired_change() {
 }
 //-->
 </script>
-<form action="services_bittorrent.php" method="post" name="iform" id="iform">
+<form action="services_bittorrent.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	  <tr>
-	    <td class="tabcont">
+		<tr>
+			<td class="tabcont">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
-			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-			  	<?php html_titleline_checkbox("enable", gettext("BitTorrent"), !empty($pconfig['enable']) ? true : false, gettext("Enable"), "enable_change(false)");?>
-					<?php html_inputbox("peerport", gettext("Peer port"), $pconfig['peerport'], sprintf(gettext("Port to listen for incoming peer connections. Default port is %d."), 51413), true, 5);?>
-					<?php html_filechooser("downloaddir", gettext("Download directory"), $pconfig['downloaddir'], gettext("Where to save downloaded data."), $g['media_path'], true, 60);?>
-					<?php html_filechooser("configdir", gettext("Configuration directory"), $pconfig['configdir'], gettext("Alternative configuration directory (usually empty)."), $g['media_path'], false, 60);?>
-					<?php html_checkbox("portforwarding", gettext("Port forwarding"), !empty($pconfig['portforwarding']) ? true : false, gettext("Enable port forwarding via NAT-PMP or UPnP."), "", false);?>
-					<?php html_checkbox("pex", gettext("Peer exchange"), !empty($pconfig['pex']) ? true : false, gettext("Enable peer exchange (PEX)."), "", false);?>
-					<?php html_checkbox("dht", gettext("Distributed hash table"), !empty($pconfig['dht']) ? true : false, gettext("Enable distributed hash table."), "", false);?>
-					<?php html_combobox("encryption", gettext("Encryption"), $pconfig['encryption'], array("0" => gettext("Tolerated"), "1" => gettext("Preferred"), "2" => gettext("Required")), gettext("The peer connection encryption mode."), false);?>
-					<?php html_inputbox("uplimit", gettext("Upload bandwidth"), $pconfig['uplimit'], gettext("The maximum upload bandwith in KB/s. An empty field means infinity."), false, 5);?>
-					<?php html_inputbox("downlimit", gettext("Download bandwidth"), $pconfig['downlimit'], gettext("The maximum download bandwith in KiB/s. An empty field means infinity."), false, 5);?>
-					<?php html_filechooser("watchdir", gettext("Watch directory"), $pconfig['watchdir'], gettext("Directory to watch for new .torrent files."), $g['media_path'], false, 60);?>
-					<?php html_filechooser("incompletedir", gettext("Incomplete directory"), $pconfig['incompletedir'], gettext("Directory for incomplete files. An empty field means disable."), $g['media_path'], false, 60);?>
-					<?php html_inputbox("umask", gettext("User mask"), $pconfig['umask'], sprintf(gettext("Use this option to override the default permission modes for newly created files (%s by default)."), "0002"), false, 3);?>
-					<?php html_inputbox("extraoptions", gettext("Extra options"), $pconfig['extraoptions'], gettext("Extra options to pass over rpc using transmission-remote (usually empty).") . " " . sprintf(gettext("Please check the <a href='%s' target='_blank'>documentation</a>."), "http://www.freebsd.org/cgi/man.cgi?query=transmission-remote&sektion=1&manpath=FreeBSD+Ports+9.0-RELEASE"), false, 40);?>					<?php html_separator();?>
-					<?php html_titleline(gettext("Administrative WebGUI"));?>
-					<?php html_inputbox("port", gettext("Port"), $pconfig['port'], sprintf(gettext("Port to listen on. Default port is %d."), 9091), true, 5);?>
-					<?php html_checkbox("authrequired", gettext("Authentication"), !empty($pconfig['authrequired']) ? true : false, gettext("Require authentication."), "", false, "authrequired_change()");?>
-					<?php html_inputbox("username", gettext("Username"), $pconfig['username'], "", true, 20);?>
-					<?php html_passwordbox("password", gettext("Password"), $pconfig['password'], gettext("Password for the administrative pages."), true, 20);?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php
+					html_titleline_checkbox("enable", gtext("BitTorrent"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");
+					html_inputbox("peerport", gtext("Peer port"), $pconfig['peerport'], sprintf(gtext("Port to listen for incoming peer connections. Default port is %d."), 51413), true, 5);
+					html_filechooser("downloaddir", gtext("Download directory"), $pconfig['downloaddir'], gtext("Where to save downloaded data."), $g['media_path'], true, 60);
+					html_filechooser("configdir", gtext("Configuration directory"), $pconfig['configdir'], gtext("Alternative configuration directory (usually empty)."), $g['media_path'], false, 60);
+					html_checkbox("portforwarding", gtext("Port forwarding"), !empty($pconfig['portforwarding']) ? true : false, gtext("Enable port forwarding via NAT-PMP or UPnP."), "", false);
+					html_checkbox("pex", gtext("Peer exchange"), !empty($pconfig['pex']) ? true : false, gtext("Enable peer exchange (PEX)."), "", false);
+					html_checkbox("dht", gtext("Distributed hash table"), !empty($pconfig['dht']) ? true : false, gtext("Enable distributed hash table."), "", false);
+					html_combobox("encryption", gtext("Encryption"), $pconfig['encryption'], array("0" => gtext("Tolerated"), "1" => gtext("Preferred"), "2" => gtext("Required")), gtext("The peer connection encryption mode."), false);
+					html_inputbox("uplimit", gtext("Upload bandwidth"), $pconfig['uplimit'], gtext("The maximum upload bandwith in KB/s. An empty field means infinity."), false, 5);
+					html_inputbox("downlimit", gtext("Download bandwidth"), $pconfig['downlimit'], gtext("The maximum download bandwith in KiB/s. An empty field means infinity."), false, 5);
+					html_filechooser("watchdir", gtext("Watch directory"), $pconfig['watchdir'], gtext("Directory to watch for new .torrent files."), $g['media_path'], false, 60);
+					html_filechooser("incompletedir", gtext("Incomplete directory"), $pconfig['incompletedir'], gtext("Directory for incomplete files. An empty field means disable."), $g['media_path'], false, 60);
+					html_inputbox("umask", gtext("User mask"), $pconfig['umask'], sprintf(gtext("Use this option to override the default permission modes for newly created files (%s by default)."), "0002"), false, 3);
+					$helpinghand = '<a href="'
+						. 'http://www.freebsd.org/cgi/man.cgi?query=transmission-remote&sektion=1&manpath=FreeBSD+Ports+' . $os_release . '-RELEASE&arch=default&format=html'
+						. '" target="_blank">'
+						. gtext('Please check the documentation')
+						. '</a>.';
+					html_inputbox("extraoptions", gtext("Extra options"), $pconfig['extraoptions'], gtext("Extra options to pass over rpc using transmission-remote (usually empty).") . " " . $helpinghand, false, 40);
+					html_separator();
+					html_titleline(gtext("Administrative WebGUI"));
+					html_inputbox("port", gtext("Port"), $pconfig['port'], sprintf(gtext("Port to listen on. Default port is %d."), 9091), true, 5);
+					html_checkbox("authrequired", gtext("Authentication"), !empty($pconfig['authrequired']) ? true : false, gtext("Require authentication."), "", false, "authrequired_change()");
+					html_inputbox("username", gtext("Username"), $pconfig['username'], "", true, 20);
+					html_passwordbox("password", gtext("Password"), $pconfig['password'], gtext("Password for the administrative pages."), true, 20);
 					$if = get_ifname($config['interfaces']['lan']['if']);
 					$ipaddr = get_ipaddr($if);
 					$url = htmlspecialchars("http://{$ipaddr}:{$pconfig['port']}");
 					$text = "<a href='{$url}' target='_blank'>{$url}</a>";
+					html_text("url", gtext("URL"), $text);
 					?>
-					<?php html_text("url", gettext("URL"), $text);?>
-			  </table>
+				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gettext("Save and Restart");?>" onclick="enable_change(true)" />
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" onclick="enable_change(true)" />
 				</div>
 			</td>
 		</tr>

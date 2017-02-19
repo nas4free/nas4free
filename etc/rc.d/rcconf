@@ -1,12 +1,10 @@
 #!/bin/sh
 #
 # Part of NAS4Free (http://www.nas4free.org).
-# Copyright (c) 2012-2015 The NAS4Free Project <info@nas4free.org>.
+# Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-# Portions of freenas (http://www.freenas.org).
-# Copyright (c) 2005-2011 Olivier Cochard-Labbe <olivier@freenas.org>.
-# All rights reserved.
+# Set configuration
 #
 
 # PROVIDE: rcconf
@@ -300,13 +298,18 @@ setifconfig()
 					# wlanN AP mode in bridge member
 					sysctl -q net.link.bridge.inherit_mac=1 > /dev/null
 				else
-					eval /usr/local/sbin/rconf attribute set "ifconfig_${_bridgeif}" "${_bridgeif_args}"
+					_value=`/usr/sbin/sysrc -qn ifconfig_${_bridgeif}`
+					#if [ "${_value}" != "syncdhcp" -a "${_value}" != "dhcp" ]; then
+					if [ -z "${_value}" ]; then
+						eval /usr/local/sbin/rconf attribute set "ifconfig_${_bridgeif}" "${_bridgeif_args}"
+					fi
 				fi
 			fi
 		done
 	/usr/local/bin/xml sel -t \
 		-m "//vinterfaces/bridge" \
 			-v if \
+			-v "concat(' \"', mtu,'\"')" \
 			-m "bridgeif" \
 				-v "concat(' addm ',.)" \
 			-b \
@@ -314,8 +317,10 @@ setifconfig()
 			-n \
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc | \
-		while read _bridge _bridge_args; do
-			_bridge_args="up ${_bridge_args}"
+		while read _bridge _mtu _bridge_args; do
+			if [ "${_mtu}" = '""' ]; then _mtu='"1500"'; fi
+			_mtu=`echo ${_mtu} | sed -e 's/^"\(.*\)"$/\1/'`
+			_bridge_args="up mtu ${_mtu} ${_bridge_args}"
 			_bridge_addr=`/usr/local/bin/xml sel -t -m "//interfaces/*[if = '${_bridge}']" \
 				-i "ipaddr[. = 'dhcp']" -o "syncdhcp" -b \
 				-i "ipaddr[. != 'dhcp']" -v "concat(ipaddr,'/',subnet)" -b \
@@ -501,7 +506,7 @@ updateservices()
 # Set additional options.
 setoptions()
 {
-	local _option _name _value
+	local _option _name _value _platform
 
 	# Set rc.conf variables configured via WebGUI.
 	/usr/local/bin/xml sel -t -m "//system/rcconf/param[enable]" \
@@ -537,6 +542,14 @@ setoptions()
 	# Disable ipfw (enabled by /etc/rc.d/ipfw)
 	sysctl -q net.inet.ip.fw.enable=0 > /dev/null
 	sysctl -q net.inet6.ip6.fw.enable=0 > /dev/null
+
+	_platform=`cat /etc/platform`
+	case ${_platform} in
+		dom0-*)
+			/sbin/kldload -qn if_tap.ko > /dev/null
+			sysctl -q vm.max_wired=-1 > /dev/null
+			;;
+	esac
 }
 
 # Serial console
@@ -567,6 +580,75 @@ setserialconsole()
     fi
 }
 
+# ARM: resize MBR partition and create/resize UFS partition
+resizepartition()
+{
+	local ARCH _cfdev _dev _ufsid _platform
+
+	ARCH=`/usr/bin/uname -m`
+	_cfdev=`/bin/cat /etc/cfdevice | sed -e 's/0.*/0/'`
+	_dev="/dev/${_cfdev}"
+    _platform=`/bin/cat /etc/platform`
+
+	if [ "${ARCH}" = "arm" -a -f /cf/req_resize ]; then
+		# resize MBR partition
+		echo "Resize for "${_platform}
+		echo ""
+		echo "${_dev}: resize MBR/BSD partition. (auto reboot)"
+		if [ "${_platform}" = "bpi-full" ]; then
+			/bin/rm -f /cf/req_resize
+			/sbin/gpart resize -i 3 ${_dev}
+			/sbin/gpart commit ${_dev}s3
+			/sbin/gpart resize -a 4m -i 1 ${_dev}s3
+			# create new UFS, because it not formatted on build script
+			/sbin/newfs -U -j -L "DATA" ${_dev}s3a
+			# fixup: at this point, we cannot use operator(/etc/group)
+			/sbin/mount ${_dev}s3a /mnt
+			/usr/sbin/chown 0:5 /mnt/.snap
+			/sbin/umount /mnt
+			echo "${_dev}s3a: resize done."
+		elif [ "${_platform}" = "bpi-embedded" ]; then
+			/sbin/mount -uw /cf
+			/bin/rm -f /cf/req_resize
+			/sbin/umount /cf
+			/sbin/gpart resize -i 3 ${_dev}
+			/sbin/gpart commit ${_dev}s3
+			/sbin/gpart resize -a4m -i 1 ${_dev}s3
+			/sbin/mount ${_dev}s2a /cf
+			# create new UFS
+			/sbin/newfs -U -j -L "DATA" ${_dev}s3a
+			# fixup: at this point, we cannot use operator(/etc/group)
+			/sbin/mount ${_dev}s3a /mnt
+			/usr/sbin/chown 0:5 /mnt/.snap
+			/sbin/umount /mnt
+			echo "${_dev}s3a: resize done."
+		else	
+			/sbin/mount -uw /cf
+			/bin/rm -f /cf/req_resize
+			/sbin/umount /cf
+			/sbin/gpart resize -i 4 ${_dev}
+			/sbin/gpart commit ${_dev}s4
+			/sbin/gpart resize -a4m -i 1 ${_dev}s4
+			/sbin/mount /cf
+			# create or resize UFS partition
+			_ufsid=`/sbin/dumpfs -l ${_dev}s4a 2>/dev/null`
+			if [ "${_ufsid}" = "" ]; then
+				# create new UFS
+				/sbin/newfs -U -j ${_dev}s4a
+				# fixup: at this point, we cannot use operator(/etc/group)
+				/sbin/mount ${_dev}s4a /mnt
+				/usr/sbin/chown 0:5 /mnt/.snap
+				/sbin/umount /mnt
+			else
+				# use existing UFS
+				/sbin/growfs -y ${_dev}s4a
+			fi
+			echo "${_dev}s4a: resize done."
+		fi
+		/sbin/reboot
+	fi
+}
+
 load_rc_config ${name}
 
 echo -n "Updating rc.conf:"
@@ -578,6 +660,7 @@ sethostname
 setifconfig
 setoptions
 setserialconsole
+resizepartition
 
 # Finally issue a line break
 echo

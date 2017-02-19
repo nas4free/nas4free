@@ -1,7 +1,7 @@
 PORTNAME=		xmd
-PORTVERSION=		0.4.4
+PORTVERSION=		0.5
 CATEGORIES=		sysutils
-COMMENT=		Experimental memory disk by Daisuke Aoyama (aoyama@peach.ne.jp)
+COMMENT=		Memory Disk driver by Daisuke Aoyama (aoyama@peach.ne.jp)
 
 MAINTAINER=		aoyama@nas4free.org
 MASTER_SITES=		http://www.peach.ne.jp/archives/nas4free/xmd/
@@ -20,10 +20,6 @@ BASEDIR=x86
 BASEDIR=armv6
 .else
 IGNORE=unsupported on ${ARCH}
-.endif
-
-.if ${OSVERSION} >= 1100000
-EXTRA_PATCHES+= ${FILESDIR}/extra-patch-xmd__xmd.c
 .endif
 
 post-build:
