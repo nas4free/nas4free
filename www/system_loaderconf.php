@@ -31,297 +31,203 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'co_sphere.php';
 
-$sphere_scriptname = basename(__FILE__);
-$sphere_scriptname_child = 'system_loaderconf_edit.php';
-$sphere_header = 'Location: '.$sphere_scriptname;
-$sphere_header_parent = $sphere_header;
-$sphere_notifier = 'loaderconf';
-$sphere_array = [];
-$sphere_record = [];
-$checkbox_member_name = 'checkbox_member_array';
-$checkbox_member_array = [];
-$checkbox_member_record = [];
-$gt_record_add = gtext('Add option');
-$gt_record_mod = gtext('Edit option');
-$gt_record_del = gtext('Option is marked for deletion');
-$gt_record_loc = gtext('Option is locked');
-$gt_record_mup = gtext('Move up');
-$gt_record_mdn = gtext('Move down');
-$gt_selection_toggle = gtext('Toggle Selected Options');
-$gt_selection_toggle_confirm = gtext('Do you want to toggle selected options?');
-$gt_selection_enable = gtext('Enable Selected Options');
-$gt_selection_enable_confirm = gtext('Do you want to enable selected options?');
-$gt_selection_disable = gtext('Disable Selected Options');
-$gt_selection_disable_confirm = gtext('Do you want to disable selected options?');
-$gt_selection_delete = gtext('Delete Selected Options');
-$gt_selection_delete_confirm = gtext('Do you want to delete selected options?');
-$img_path = [
-	'add' => 'images/add.png',
-	'mod' => 'images/edit.png',
-	'del' => 'images/delete.png',
-	'loc' => 'images/locked.png',
-	'unl' => 'images/unlocked.png',
-	'mai' => 'images/maintain.png',
-	'inf' => 'images/info.png',
-	'ena' => 'images/status_enabled.png',
-	'dis' => 'images/status_disabled.png'
-];
-
-// sunrise: verify if setting exists, otherwise run init tasks
-if (!(isset($config['system']) && is_array($config['system']))) {
-	$config['system'] = [];
-}
-if (!(isset($config['system']['loaderconf']) && is_array($config['system']['loaderconf']))) {
-	$config['system']['loaderconf'] = [];
-}
-if (!(isset($config['system']['loaderconf']['param']) && is_array($config['system']['loaderconf']['param']))) {
-	$config['system']['loaderconf']['param'] = [];
-}
-$sphere_array = &$config['system']['loaderconf']['param'];
-if (!empty($sphere_array)) {
-	$key1 = array_column($sphere_array, 'name');
-	$key2 = array_column($sphere_array, 'uuid');
-	array_multisort($key1, SORT_ASC, SORT_NATURAL | SORT_FLAG_CASE, $key2, SORT_ASC, SORT_STRING | SORT_FLAG_CASE, $sphere_array);
-}
-
-if ($_POST) {
-	if (isset($_POST['apply']) && $_POST['apply']) {
-		$retval = 0;
-		if (!file_exists($d_sysrebootreqd_path)) {
-			touch($d_sysrebootreqd_path);
-		}
-		$retval |= updatenotify_process($sphere_notifier, 'loaderconf_process_updatenotification');
-		$savemsg = get_std_save_message($retval);
-		if ($retval == 0) {
-			updatenotify_delete($sphere_notifier);
-		}
-		header($sphere_header);
-		exit;
-	}
-	if (isset($_POST['enable_selected_rows']) && $_POST['enable_selected_rows']) {
-		$checkbox_member_array = isset($_POST[$checkbox_member_name]) ? $_POST[$checkbox_member_name] : [];
-		$updateconfigfile = false;
-		foreach ($checkbox_member_array as $checkbox_member_record) {
-			if (false !== ($index = array_search_ex($checkbox_member_record, $sphere_array, 'uuid'))) {
-				if (!(isset($sphere_array[$index]['enable']))) {
-					$sphere_array[$index]['enable'] = true;
-					$updateconfigfile = true;
-					$mode_updatenotify = updatenotify_get_mode($sphere_notifier, $sphere_array[$index]['uuid']);
-					if (UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify) {
-						updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_MODIFIED, $sphere_array[$index]['uuid']);
-					}
-				}
-			}
-		}
-		if ($updateconfigfile) {
-			write_config();
-			$updateconfigfile = false;
-		}
-		header($sphere_header);
-		exit;
-	}
-	if (isset($_POST['disable_selected_rows']) && $_POST['disable_selected_rows']) {
-		$checkbox_member_array = isset($_POST[$checkbox_member_name]) ? $_POST[$checkbox_member_name] : [];
-		$updateconfigfile = false;
-		foreach ($checkbox_member_array as $checkbox_member_record) {
-			if (false !== ($index = array_search_ex($checkbox_member_record, $sphere_array, 'uuid'))) {
-				if (isset($sphere_array[$index]['enable'])) {
-					unset($sphere_array[$index]['enable']);
-					$updateconfigfile = true;
-					$mode_updatenotify = updatenotify_get_mode($sphere_notifier, $sphere_array[$index]['uuid']);
-					if (UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify) {
-						updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_MODIFIED, $sphere_array[$index]['uuid']);
-					}
-				}
-			}
-		}
-		if ($updateconfigfile) {
-			write_config();
-			$updateconfigfile = false;
-		}
-		header($sphere_header);
-		exit;
-	}
-	if (isset($_POST['toggle_selected_rows']) && $_POST['toggle_selected_rows']) {
-		$checkbox_member_array = isset($_POST[$checkbox_member_name]) ? $_POST[$checkbox_member_name] : [];
-		$updateconfigfile = false;
-		foreach ($checkbox_member_array as $checkbox_member_record) {
-			if (false !== ($index = array_search_ex($checkbox_member_record, $sphere_array, 'uuid'))) {
-				if (isset($sphere_array[$index]['enable'])) {
-					unset($sphere_array[$index]['enable']);
-				} else {
-					$sphere_array[$index]['enable'] = true;
-				}
-				$updateconfigfile = true;
-				$mode_updatenotify = updatenotify_get_mode($sphere_notifier, $sphere_array[$index]['uuid']);
-				if (UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify) {
-					updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_MODIFIED, $sphere_array[$index]['uuid']);
-				}
-			}
-		}
-		if ($updateconfigfile) {
-			write_config();
-			$updateconfigfile = false;
-		}
-		header($sphere_header);
-		exit;
-	}
-	if (isset($_POST['delete_selected_rows']) && $_POST['delete_selected_rows']) {
-		$checkbox_member_array = isset($_POST[$checkbox_member_name]) ? $_POST[$checkbox_member_name] : [];
-		foreach ($checkbox_member_array as $checkbox_member_record) {
-			if (false !== ($index = array_search_ex($checkbox_member_record, $sphere_array, 'uuid'))) {
-				$mode_updatenotify = updatenotify_get_mode($sphere_notifier, $sphere_array[$index]['uuid']);
-				switch ($mode_updatenotify) {
-					case UPDATENOTIFY_MODE_NEW:
-						updatenotify_clear($sphere_notifier, $sphere_array[$index]['uuid']);
-						updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_DIRTY_CONFIG, $sphere_array[$index]['uuid']);
-						break;
-					case UPDATENOTIFY_MODE_MODIFIED:
-						updatenotify_clear($sphere_notifier, $sphere_array[$index]['uuid']);
-						updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_DIRTY, $sphere_array[$index]['uuid']);
-						break;
-					case UPDATENOTIFY_MODE_UNKNOWN:
-						updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_DIRTY, $sphere_array[$index]['uuid']);
-						break;
-				}
-			}
-		}
-		header($sphere_header);
-		exit;
-	}
-}
-
-function loaderconf_process_updatenotification($mode, $data) {
+function loaderconf_process_updatenotification($mode,$data) {
 	global $config;
 	$retval = 0;
-	switch ($mode) {
+	$sphere = &system_loaderconf_get_sphere();
+	switch($mode):
 		case UPDATENOTIFY_MODE_NEW:
 		case UPDATENOTIFY_MODE_MODIFIED:
 			write_loader_config();
 			write_config();
 			break;
-		case UPDATENOTIFY_MODE_DIRTY:
 		case UPDATENOTIFY_MODE_DIRTY_CONFIG:
-			if (is_array($config['system']['loaderconf']['param'])) {
-				$index = array_search_ex($data, $config['system']['loaderconf']['param'], 'uuid');
-				if (false !== $index) {
-					unset($config['system']['loaderconf']['param'][$index]);
-					write_loader_config();
-					write_config();
-				}
-			}
+		case UPDATENOTIFY_MODE_DIRTY:
+			if(false !== ($sphere->row_id = array_search_ex($data,$sphere->grid,$sphere->row_identifier()))):
+				unset($sphere->grid[$sphere->row_id]);
+				write_loader_config();
+				write_config();
+			endif;
 			break;
-	}
+	endswitch;
 	return $retval;
 }
-$enabletogglemode = isset($config['system']['enabletogglemode']);
-$pgtitle = array(gtext('System'), gtext('Advanced'), gtext('loader.conf'));
-?>
-<?php include("fbegin.inc");?>
-<script type="text/javascript">
-//<![CDATA[
-$(window).on("load", function() {
-	// Init action buttons
-	<?php if ($enabletogglemode):?>
-		$("#toggle_selected_rows").click(function () {
-			return confirm('<?=$gt_selection_toggle_confirm;?>');
-		});
-	<?php else:?>
-		$("#enable_selected_rows").click(function () {
-			return confirm('<?=$gt_selection_enable_confirm;?>');
-		});
-		$("#disable_selected_rows").click(function () {
-			return confirm('<?=$gt_selection_disable_confirm;?>');
-		});
-	<?php endif;?>
-	$("#delete_selected_rows").click(function () {
-		return confirm('<?=$gt_selection_delete_confirm;?>');
-	});
-	// Disable action buttons.
-	disableactionbuttons(true);
-	// Init toggle checkbox
-	$("#togglemembers").click(function() {
-		togglecheckboxesbyname(this, "<?=$checkbox_member_name;?>[]");
-	});
-	// Init member checkboxes
-	$("input[name='<?=$checkbox_member_name;?>[]").click(function() {
-		controlactionbuttons(this, '<?=$checkbox_member_name;?>[]');
-	});
-}); 
-function disableactionbuttons(ab_disable) {
-	var ab_element;
-	<?php if ($enabletogglemode):?>
-		ab_element = document.getElementById('toggle_selected_rows'); if ((ab_element !== null) && (ab_element.disabled !== ab_disable)) { ab_element.disabled = ab_disable; }
-	<?php else:?>
-		ab_element = document.getElementById('enable_selected_rows'); if ((ab_element !== null) && (ab_element.disabled !== ab_disable)) { ab_element.disabled = ab_disable; }
-		ab_element = document.getElementById('disable_selected_rows'); if ((ab_element !== null) && (ab_element.disabled !== ab_disable)) { ab_element.disabled = ab_disable; }
-	<?php endif;?>
-	ab_element = document.getElementById('delete_selected_rows'); if ((ab_element !== null) && (ab_element.disabled !== ab_disable)) { ab_element.disabled = ab_disable; }
+function system_loaderconf_get_sphere() {
+	global $config;
+	$sphere = new co_sphere_grid('system_loaderconf','php');
+	$sphere->modify->basename($sphere->basename() . '_edit');
+	$sphere->notifier('loaderconf');
+	$sphere->row_identifier('uuid');
+	$sphere->enadis(true);
+	$sphere->lock(true);
+	$sphere->sym_add(gtext('Add Option'));
+	$sphere->sym_mod(gtext('Edit Option'));
+	$sphere->sym_del(gtext('Option is marked for deletion'));
+	$sphere->sym_loc(gtext('Option is locked'));
+	$sphere->sym_unl(gtext('Option is unlocked'));
+	$sphere->cbm_delete(gtext('Delete Selected Options'));
+	$sphere->cbm_delete_confirm(gtext('Do you want to delete selected options?'));
+	$sphere->cbm_disable(gtext('Disable Selected Options'));
+	$sphere->cbm_disable_confirm(gtext('Do you want to disable selected options?'));
+	$sphere->cbm_enable(gtext('Enable Selected Options'));
+	$sphere->cbm_enable_confirm(gtext('Do you want to enable selected options?'));
+	$sphere->cbm_toggle(gtext('Toggle Selected Options'));
+	$sphere->cbm_toggle_confirm(gtext('Do you want to toggle selected options?'));
+	$sphere->grid = &array_make_branch($config,'system','loaderconf','param');
+	return $sphere;
 }
-function togglecheckboxesbyname(ego, triggerbyname) {
-	var a_trigger = document.getElementsByName(triggerbyname);
-	var n_trigger = a_trigger.length;
-	var ab_disable = true;
-	var i = 0;
-	for (; i < n_trigger; i++) {
-		if (a_trigger[i].type === 'checkbox') {
-			if (!a_trigger[i].disabled) {
-				a_trigger[i].checked = !a_trigger[i].checked;
-				if (a_trigger[i].checked) {
-					ab_disable = false;
-				}
-			}
-		}
-	}
-	if (ego.type === 'checkbox') { ego.checked = false; }
-	disableactionbuttons(ab_disable);
-}
-function controlactionbuttons(ego, triggerbyname) {
-	var a_trigger = document.getElementsByName(triggerbyname);
-	var n_trigger = a_trigger.length;
-	var ab_disable = true;
-	var i = 0;
-	for (; i < n_trigger; i++) {
-		if (a_trigger[i].type === 'checkbox') {
-			if (a_trigger[i].checked) {
-				ab_disable = false;
+$sphere = &system_loaderconf_get_sphere();
+if(empty($sphere->grid)):
+else:	
+	$key1 = array_column($sphere->grid,'name');
+	$key2 = array_column($sphere->grid,'uuid');
+	array_multisort($key1,SORT_ASC,SORT_NATURAL | SORT_FLAG_CASE,$key2,SORT_ASC,SORT_STRING | SORT_FLAG_CASE,$sphere->grid);
+endif;
+if($_POST):
+	if(isset($_POST['apply']) && $_POST['apply']):
+		$retval = 0;
+		if(!file_exists($d_sysrebootreqd_path)):
+			touch($d_sysrebootreqd_path);
+		endif;
+		$retval |= updatenotify_process($sphere->notifier(),$sphere->notifier_processor());
+		$savemsg = get_std_save_message($retval);
+		if($retval == 0):
+			updatenotify_delete($sphere->notifier());
+		endif;
+		header($sphere->header());
+		exit;
+	endif;
+	if(isset($_POST['submit'])):
+		switch($_POST['submit']):
+			case 'rows.enable':
+				$sphere->cbm_grid = $_POST[$sphere->cbm_name] ?? [];
+				$updateconfig = false;
+				foreach($sphere->cbm_grid as $sphere->cbm_row):
+					if(false !== ($sphere->row_id = array_search_ex($sphere->cbm_row,$sphere->grid,$sphere->row_identifier()))):
+						if(!(isset($sphere->grid[$sphere->row_id]['enable']))):
+							$sphere->grid[$sphere->row_id]['enable'] = true;
+							$updateconfig = true;
+							$mode_updatenotify = updatenotify_get_mode($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+							if(UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify):
+								updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_MODIFIED,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+							endif;
+						endif;
+					endif;
+				endforeach;
+				if($updateconfig):
+					write_config();
+					$updateconfig = false;
+				endif;
+				header($sphere->header());
+				exit;
 				break;
-			}
-		}
-	}
-	disableactionbuttons(ab_disable);
-}
-//]]>
-</script>
+			case 'rows.disable':
+				$sphere->cbm_grid = $_POST[$sphere->cbm_name] ?? [];
+				$updateconfig = false;
+				foreach($sphere->cbm_grid as $sphere->cbm_row):
+					if(false !== ($sphere->row_id = array_search_ex($sphere->cbm_row,$sphere->grid,$sphere->row_identifier()))):
+						if(isset($sphere->grid[$sphere->row_id]['enable'])):
+							unset($sphere->grid[$sphere->row_id]['enable']);
+							$updateconfig = true;
+							$mode_updatenotify = updatenotify_get_mode($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+							if(UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify):
+								updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_MODIFIED,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+							endif;
+						endif;
+					endif;
+				endforeach;
+				if($updateconfig):
+					write_config();
+					$updateconfig = false;
+				endif;
+				header($sphere->header());
+				exit;
+				break;
+			case 'rows.toggle':
+				$sphere->cbm_grid = $_POST[$sphere->cbm_name] ?? [];
+				$updateconfig = false;
+				foreach($sphere->cbm_grid as $sphere->cbm_row):
+					if(false !== ($sphere->row_id = array_search_ex($sphere->cbm_row,$sphere->grid,$sphere->row_identifier()))):
+						if(isset($sphere->grid[$sphere->row_id]['enable'])):
+							unset($sphere->grid[$sphere->row_id]['enable']);
+						else:
+							$sphere->grid[$sphere->row_id]['enable'] = true;					
+						endif;
+						$updateconfig = true;
+						$mode_updatenotify = updatenotify_get_mode($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+						if(UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify):
+							updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_MODIFIED,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+						endif;
+					endif;
+				endforeach;
+				if($updateconfig):
+					write_config();
+					$updateconfig = false;
+				endif;
+				header($sphere->header());
+				exit;
+				break;
+			case 'rows.delete':
+				$sphere->cbm_grid = $_POST[$sphere->cbm_name] ?? [];
+				foreach($sphere->cbm_grid as $sphere->cbm_row):
+					if(false !== ($sphere->row_id = array_search_ex($sphere->cbm_row,$sphere->grid,$sphere->row_identifier()))):
+						$mode_updatenotify = updatenotify_get_mode($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+						switch ($mode_updatenotify):
+							case UPDATENOTIFY_MODE_NEW:  
+								updatenotify_clear($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+								updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_DIRTY_CONFIG,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+								break;
+							case UPDATENOTIFY_MODE_MODIFIED:
+								updatenotify_clear($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+								updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_DIRTY,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+								break;
+							case UPDATENOTIFY_MODE_UNKNOWN:
+								updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_DIRTY,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+								break;
+						endswitch;
+					endif;
+				endforeach;
+				header($sphere->header());
+				exit;
+				break;
+		endswitch;
+	endif;
+endif;
+$pgtitle = [gtext('System'),gtext('Advanced'),gtext('loader.conf')];
+include 'fbegin.inc';
+echo $sphere->doj();
+?>
 <table id="area_navigator"><tbody>
 	<tr><td class="tabnavtbl"><ul id="tabnav">
 		<li class="tabinact"><a href="system_advanced.php"><span><?=gtext('Advanced');?></span></a></li>
 		<li class="tabinact"><a href="system_email.php"><span><?=gtext('Email');?></span></a></li>
+		<li class="tabinact"><a href="system_email_reports.php"><span><?=gtext('Email Reports');?></span></a></li>
+		<li class="tabinact"><a href="system_monitoring.php"><span><?=gtext('Monitoring');?></span></a></li>
 		<li class="tabinact"><a href="system_swap.php"><span><?=gtext('Swap');?></span></a></li>
 		<li class="tabinact"><a href="system_rc.php"><span><?=gtext('Command Scripts');?></span></a></li>
 		<li class="tabinact"><a href="system_cron.php"><span><?=gtext('Cron');?></span></a></li>
-		<li class="tabact"><a href="<?=$sphere_scriptname;?>" title="<?=gtext('Reload page');?>"><span><?=gtext('loader.conf');?></span></a></li>
+		<li class="tabact"><a href="<?=$sphere->scriptname();?>" title="<?=gtext('Reload page');?>"><span><?=gtext('loader.conf');?></span></a></li>
 		<li class="tabinact"><a href="system_rcconf.php"><span><?=gtext('rc.conf');?></span></a></li>
 		<li class="tabinact"><a href="system_sysctl.php"><span><?=gtext('sysctl.conf');?></span></a></li>
 	</ul></td></tr>
 </tbody></table>
-<table id="area_data"><tbody><tr><td id="area_data_frame"><form action="<?=$sphere_scriptname;?>" method="post" id="iframe" name="iframe">
-	<?php
-		if (!empty($savemsg)) {
-			print_info_box($savemsg);
-		} else {
-			if (file_exists($d_sysrebootreqd_path)) {
-				print_info_box(get_std_save_message(0));
-			}
-		}
-		if (updatenotify_exists($sphere_notifier)) { 
-			print_config_change_box();
-		}
-	?>
-	<table id="area_data_selection">
+<form action="<?=$sphere->scriptname();?>" method="post" id="iframe" name="iframe"><table id="area_data"><tbody><tr><td id="area_data_frame">
+<?php
+	if(file_exists($d_sysrebootreqd_path)):
+		print_info_box(get_std_save_message(0));
+	endif;
+	if(!empty($savemsg)):
+		print_info_box($savemsg);
+	endif;
+	if(updatenotify_exists($sphere->notifier())):
+		print_config_change_box();
+	endif;
+?>
+	<table class="area_data_selection">
 		<colgroup>
 			<col style="width:5%">
 			<col style="width:30%">
@@ -331,9 +237,11 @@ function controlactionbuttons(ego, triggerbyname) {
 			<col style="width:10%">
 		</colgroup>
 		<thead>
-			<?php html_titleline2(gtext('Overview'), 6);?>
+<?php
+			html_titleline2(gtext('Overview'),6);
+?>
 			<tr>
-				<th class="lhelc"><input type="checkbox" id="togglemembers" name="togglemembers" title="<?=gtext('Invert Selection');?>"/></th>
+				<th class="lhelc"><?=$sphere->html_checkbox_toggle_cbm();?></th>
 				<th class="lhell"><?=gtext('Variable');?></th>
 				<th class="lhell"><?=gtext('Value');?></th>
 				<th class="lhell"><?=gtext('Status');?></th>
@@ -341,71 +249,82 @@ function controlactionbuttons(ego, triggerbyname) {
 				<th class="lhebl"><?=gtext('Toolbox');?></th>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<td class="lcenl" colspan="5"></td>
-				<td class="lceadd"><a href="<?=$sphere_scriptname_child;?>"><img src="<?=$img_path['add'];?>" title="<?=$gt_record_add;?>" border="0" alt="<?=$gt_record_add;?>"/></a></td>
-			</tr>
-		</tfoot>
 		<tbody>
-			<?php foreach ($sphere_array as $sphere_record):?>
+<?php
+			foreach ($sphere->grid as $sphere->row):
+				$notificationmode = updatenotify_get_mode($sphere->notifier(),$sphere->row[$sphere->row_identifier()]);
+				$notdirty = (UPDATENOTIFY_MODE_DIRTY != $notificationmode) && (UPDATENOTIFY_MODE_DIRTY_CONFIG != $notificationmode);
+				$enabled = $sphere->enadis() ? isset($sphere->row['enable']) : true;
+				$notprotected = $sphere->lock() ? !isset($sphere->row['protected']) : true;
+?>
 				<tr>
-					<?php 
-						$notificationmode = updatenotify_get_mode($sphere_notifier, $sphere_record['uuid']);
-						$notdirty = (UPDATENOTIFY_MODE_DIRTY != $notificationmode) && (UPDATENOTIFY_MODE_DIRTY_CONFIG != $notificationmode);
-						$enabled = isset($sphere_record['enable']);
-						$notprotected = !isset($sphere_record['protected']);
-					?>
 					<td class="<?=$enabled ? "lcelc" : "lcelcd";?>">
-						<?php if ($notdirty && $notprotected):?>
-							<input type="checkbox" name="<?=$checkbox_member_name;?>[]" value="<?=$sphere_record['uuid'];?>" id="<?=$sphere_record['uuid'];?>"/>
-						<?php else:?>
-							<input type="checkbox" name="<?=$checkbox_member_name;?>[]" value="<?=$sphere_record['uuid'];?>" id="<?=$sphere_record['uuid'];?>" disabled="disabled"/>
-						<?php endif;?>
+<?php 
+						if($notdirty && $notprotected):
+							echo $sphere->html_checkbox_cbm(false);
+						else:
+							echo $sphere->html_checkbox_cbm(true);
+						endif;
+?>
 					</td>
-					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere_record['name']);?>&nbsp;</td>
-					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere_record['value']);?>&nbsp;</td>
-					<td class="<?=$enabled ? "lcell" : "lcelld";?>">
-						<?php if ($enabled):?>
-							<a title="<?=gtext('Enabled');?>"><center><img src="<?=$img_path['ena'];?>" border="0" alt=""/></center></a>
-						<?php else:?>
-							<a title="<?=gtext('Disabled');?>"><center><img src="<?=$img_path['dis'];?>" border="0" alt=""/></center></a>
-						<?php endif;?>
+					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere->row['name']);?></td>
+					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere->row['value']);?></td>
+					<td class="<?=$enabled ? "lcelc" : "lcelcd";?>">
+<?php
+						if($enabled):
+?>
+							<a title="<?=gtext('Enabled');?>"><img src="<?=$g_img['ena'];?>" alt=""/></a>
+<?php
+						else:
+?>
+							<a title="<?=gtext('Disabled');?>"><img src="<?=$g_img['dis'];?>" alt=""/></a>
+<?php
+						endif;
+?>
 					</td>
-					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere_record['comment']);?>&nbsp;</td>
+					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere->row['comment']);?></td>
 					<td class="lcebld">
-						<table id="area_data_selection_toolbox"><tbody><tr>
-							<td>
-								<?php if ($notdirty && $notprotected):?>
-									<a href="<?=$sphere_scriptname_child;?>?uuid=<?=$sphere_record['uuid'];?>"><img src="<?=$img_path['mod'];?>" title="<?=$gt_record_mod;?>" alt="<?=$gt_record_mod;?>" /></a>
-								<?php else:?>
-									<?php if ($notprotected):?>
-										<img src="<?=$img_path['del'];?>" title="<?=$gt_record_del;?>" alt="<?=$gt_record_del;?>"/>
-									<?php else:?>
-										<img src="<?=$img_path['loc'];?>" title="<?=$gt_record_loc;?>" alt="<?=$gt_record_loc;?>"/>
-									<?php endif;?>
-								<?php endif;?>
-							</td>
+						<table class="area_data_selection_toolbox"><colgroup><col style="width:33%"><col style="width:34%"><col style="width:33%"></colgroup><tbody><tr>
+<?php 
+							echo $sphere->html_toolbox($notprotected,$notdirty);
+?>
 							<td></td>
 							<td></td>
 						</tr></tbody></table>
 					</td>
 				</tr>
-			<?php endforeach;?>
+<?php
+			endforeach;
+?>
 		</tbody>
+		<tfoot>
+<?php
+			echo $sphere->html_footer_add(6);
+?>
+		</tfoot>
 	</table>
 	<div id="submit">
-		<?php if ($enabletogglemode):?>
-			<input type="submit" class="formbtn" name="toggle_selected_rows" id="toggle_selected_rows" value="<?=$gt_selection_toggle;?>"/>
-		<?php else:?>
-			<input type="submit" class="formbtn" name="enable_selected_rows" id="enable_selected_rows" value="<?=$gt_selection_enable;?>"/>
-			<input type="submit" class="formbtn" name="disable_selected_rows" id="disable_selected_rows" value="<?=$gt_selection_disable;?>"/>
-		<?php endif;?>
-		<input type="submit" class="formbtn" name="delete_selected_rows" id="delete_selected_rows" value="<?=$gt_selection_delete;?>"/>
+<?php
+		if($sphere->enadis()):
+			if($sphere->toggle()):
+				echo $sphere->html_button_toggle_rows();
+			else:
+				echo $sphere->html_button_enable_rows();
+				echo $sphere->html_button_disable_rows();
+			endif;
+		endif;
+		echo $sphere->html_button_delete_rows();
+?>
 	</div>
 	<div id="remarks">
-		<?php html_remark2('note', gtext('Note'), gtext('These option(s) will be added to /boot/loader.conf.local. This allows you to specify parameters to be passed to kernel, and additional modules to be loaded.'));?>
+<?php
+		html_remark2('note', gtext('Note'), gtext('These option(s) will be added to /boot/loader.conf.local. This allows you to specify parameters to be passed to kernel, and additional modules to be loaded.'));
+?>
 	</div>
-	<?php include("formend.inc");?>
-</form></td></tr></tbody></table>
-<?php include("fend.inc");?>
+<?php
+	require 'formend.inc';
+?>
+</td></tr></tbody></table></form>
+<?php
+include 'fend.inc';
+?>

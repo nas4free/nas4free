@@ -296,6 +296,13 @@ EOF
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc >> ${lighttpd_conf}
 
+	# Add auxparam
+	/usr/local/bin/xml sel -t -m "//webgui" \
+		-m "auxparam" \
+			-v "." -n \
+		-b \
+		${configxml_file} | /usr/local/bin/xml unesc >> ${lighttpd_conf}
+
 	_protocol=`configxml_get "//system/webgui/protocol"`
 	_certificate=`configxml_get "//system/webgui/certificate"`
 	_privatekey=`configxml_get "//system/webgui/privatekey"`

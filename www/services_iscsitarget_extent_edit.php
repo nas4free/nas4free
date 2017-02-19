@@ -38,8 +38,8 @@ TODO: 	1) Script to creat file based extend in existing(mounted) File System e.g
 		2) Insert changes to GUI for script.
 		3) row 196.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
@@ -48,16 +48,16 @@ if (isset($_POST['uuid']))
 if (!isset($uuid))
 	$uuid = null;
 
-$pgtitle = array(gtext("Services"), gtext("iSCSI Target"), gtext("Extent"), isset($uuid) ? gtext("Edit") : gtext("Add"));
+$pgtitle = [gtext('Services'),gtext('iSCSI Target'),gtext('Extent'), isset($uuid) ? gtext('Edit') : gtext('Add')];
 
-if (!isset($config['iscsitarget']['extent']) || !is_array($config['iscsitarget']['extent']))
-	$config['iscsitarget']['extent'] = array();
-
-array_sort_key($config['iscsitarget']['extent'], "name");
-$a_iscsitarget_extent = &$config['iscsitarget']['extent'];
+$a_iscsitarget_extent = &array_make_branch($config,'iscsitarget','extent');
+if(empty($a_iscsitarget_extent)):
+else:
+	array_sort_key($a_iscsitarget_extent,'name');
+endif;
 
 function get_all_device($a_extent,$uuid) {
-	$a = array();
+	$a = [];
 	$a[''] = gtext("Must choose one");
 	foreach (get_conf_all_disks_list_filtered() as $diskv) {
 		$file = $diskv['devicespecialfile'];
@@ -79,7 +79,7 @@ function get_all_device($a_extent,$uuid) {
 
 // TODO: handle SCSI pass-through device
 function get_all_scsi_device($a_extent,$uuid) {
-	$a = array();
+	$a = [];
 	$a[''] = gtext("Must choose one");
 	foreach (get_conf_all_disks_list_filtered() as $diskv) {
 		$file = $diskv['devicespecialfile'];
@@ -100,7 +100,7 @@ function get_all_scsi_device($a_extent,$uuid) {
 }
 
 function get_all_zvol($a_extent,$uuid) {
-	$a = array();
+	$a = [];
 	$a[''] = gtext("Must choose one");
 	mwexec2("zfs list -H -t volume -o name,volsize,sharenfs,org.freebsd:swap", $rawdata);
 	foreach ($rawdata as $line) {
@@ -123,7 +123,7 @@ function get_all_zvol($a_extent,$uuid) {
 }
 
 function get_all_hast($a_extent,$uuid) {
-	$a = array();
+	$a = [];
 	$a[''] = gtext("Must choose one");
 	mwexec2("hastctl dump | grep resource", $rawdata);
 	foreach ($rawdata as $line) {
@@ -171,7 +171,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_ex
 } else {
 	// Find next unused ID.
 	$extentid = 0;
-	$a_id = array();
+	$a_id = [];
 	foreach($a_iscsitarget_extent as $extent)
 		$a_id[] = (int)str_replace("extent", "", $extent['name']); // Extract ID.
 	while (true === in_array($extentid, $a_id))
@@ -202,36 +202,36 @@ if ($_POST) {
 		$_POST['sizeunit'] = "auto";
 		$pconfig['size'] = "";
 		$_POST['size'] = "";
-		$reqdfields = explode(" ", "name device");
-		$reqdfieldsn = array(gtext("Extent name"), gtext("Device"));
-		$reqdfieldst = explode(" ", "string string");
+		$reqdfields = ['name','device'];
+		$reqdfieldsn = [gtext('Extent name'),gtext('Device')];
+		$reqdfieldst = ['string','string'];
 	} else if ($_POST['type'] == 'zvol') {
 		$pconfig['sizeunit'] = "auto";
 		$_POST['sizeunit'] = "auto";
 		$pconfig['size'] = "";
 		$_POST['size'] = "";
-		$reqdfields = explode(" ", "name zvol");
-		$reqdfieldsn = array(gtext("Extent name"), gtext("ZFS volume"));
-		$reqdfieldst = explode(" ", "string string");
+		$reqdfields = ['name','zvol'];
+		$reqdfieldsn = [gtext('Extent name'),gtext('ZFS volume')];
+		$reqdfieldst = ['string','string'];
 	} else if ($_POST['type'] == 'hast') {
 		$pconfig['sizeunit'] = "auto";
 		$_POST['sizeunit'] = "auto";
 		$pconfig['size'] = "";
 		$_POST['size'] = "";
-		$reqdfields = explode(" ", "name hast");
-		$reqdfieldsn = array(gtext("Extent name"), gtext("HAST volume"));
-		$reqdfieldst = explode(" ", "string string");
+		$reqdfields = ['name','hast'];
+		$reqdfieldsn = [gtext('Extent name'),gtext('HAST volume')];
+		$reqdfieldst = ['string','string'];
 	} else {
 		if ($pconfig['sizeunit'] == 'auto'){
 			$pconfig['size'] = "";
 			$_POST['size'] = "";
-			$reqdfields = explode(" ", "name path sizeunit");
-			$reqdfieldsn = array(gtext("Extent name"), gtext("Path"), gtext("Auto size"));
-			$reqdfieldst = explode(" ", "string string string");
+			$reqdfields = ['name','path','sizeunit'];
+			$reqdfieldsn = [gtext('Extent Name'),gtext('Path'),gtext('Auto size')];
+			$reqdfieldst = ['string','string','string'];
 		}else{
-			$reqdfields = explode(" ", "name path size sizeunit");
-			$reqdfieldsn = array(gtext("Extent name"), gtext("Path"), gtext("File size"), gtext("File sizeunit"));
-			$reqdfieldst = explode(" ", "string string numericint string");
+			$reqdfields = ['name','path','size','sizeunit'];
+			$reqdfieldsn = [gtext('Extent name'),gtext('Path'),gtext('Size'),gtext('File sizeunit')];
+			$reqdfieldst = ['string','string','numericint','string'];
 		}
 	}
 
@@ -274,7 +274,7 @@ if ($_POST) {
 	$pconfig['path'] = $path;
 
 	if (empty($input_errors)) {
-		$iscsitarget_extent = array();
+		$iscsitarget_extent = [];
 		$iscsitarget_extent['uuid'] = $_POST['uuid'];
 		$iscsitarget_extent['name'] = $_POST['name'];
 		$iscsitarget_extent['path'] = $path;
@@ -299,7 +299,7 @@ if ($_POST) {
 	}
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function type_change() {
@@ -348,58 +348,59 @@ function sizeunit_change() {
 //-->
 </script>
 <form action="services_iscsitarget_extent_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	  <tr>
-	    <td class="tabnavtbl">
-	      <ul id="tabnav">
-					<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
-					<li class="tabact"><a href="services_iscsitarget_target.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Targets");?></span></a></li>
-					<li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gtext("Portals");?></span></a></li>
-					<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
-					<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gtext("Auths");?></span></a></li>
-					<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
-	      </ul>
-	    </td>
-	  </tr>
-	  <tr>
-	    <td class="tabcont">
-	      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-	      <table width="100%" border="0" cellpadding="6" cellspacing="0">
-	      <?php html_inputbox("name", gtext("Extent Name"), $pconfig['name'], gtext("String identifier of the extent."), true, 30, (isset($uuid) && (FALSE !== $cnid)));?>
-	      <?php html_combobox("type", gtext("Type"), $pconfig['type'], array("file" => gtext("File"), "device" => gtext("Device"), "zvol" => gtext("ZFS volume"), "hast" => gtext("HAST volume")), gtext("Type used as extent."), true, false, "type_change()");?>
-	      <?php html_filechooser("path", gtext("Path"), $pconfig['path'], sprintf(gtext("File path (e.g. /mnt/sharename/extent/%s) used as extent."), $pconfig['name']), $g['media_path'], true);?>
-	      <?php html_combobox("device", gtext("Device"), $pconfig['path'], $a_device, "", true);?>
-	      <?php html_combobox("zvol", gtext("ZFS volume"), $pconfig['path'], $a_zvol, "", true);?>
-	      <?php html_combobox("hast", gtext("HAST volume"), $pconfig['path'], $a_hast, "", true);?>
-	      <tr id="size_tr">
-	        <td width="22%" valign="top" class="vncellreq"><?=gtext("File size");?></td>
-	        <td width="78%" class="vtable">
-	          <input name="size" type="text" class="formfld" id="size" size="10" value="<?=htmlspecialchars($pconfig['size']);?>" />
-	          <select name="sizeunit" onclick="sizeunit_change()"> 
-	            <option value="MB" <?php if ($pconfig['sizeunit'] === "MB") echo "selected=\"selected\"";?>><?=gtext("MiB");?></option>
-	            <option value="GB" <?php if ($pconfig['sizeunit'] === "GB") echo "selected=\"selected\"";?>><?=gtext("GiB");?></option>
-	            <option value="TB" <?php if ($pconfig['sizeunit'] === "TB") echo "selected=\"selected\"";?>><?=gtext("TiB");?></option>
-	            <option value="auto" <?php if ($pconfig['sizeunit'] === "auto") echo "selected=\"selected\"";?>><?=gtext("Auto");?></option>
-	          </select><br />
-	          <span class="vexpl"><?=gtext("Size offered to the initiator. (up to 8EiB=8388608TiB. actual size is depend on your disks.)");?></span>
-	        </td>
-	      </tr>
-	      <?php html_inputbox("comment", gtext("Comment"), $pconfig['comment'], gtext("You may enter a description here for your reference."), false, 40);?>
-	      </table>
-	      <div id="submit">
-		      <input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
-		      <input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
-		      <input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
-	      </div>
-	    </td>
-	  </tr>
-	</table>
-	<?php include("formend.inc");?>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+	<td class="tabnavtbl">
+		<ul id="tabnav">
+				<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
+				<li class="tabact"><a href="services_iscsitarget_target.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Targets");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gtext("Portals");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gtext("Auths");?></span></a></li>
+				<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
+				</ul>
+		</td>
+</tr>
+<tr>
+	<td class="tabcont">
+		<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+		<table width="100%" border="0" cellpadding="6" cellspacing="0">
+		<?php html_titleline(gtext("Extent Settings"));?>
+			<?php html_inputbox("name", gtext("Extent Name"), $pconfig['name'], gtext("String identifier of the extent."), true, 30, (isset($uuid) && (FALSE !== $cnid)));?>
+			<?php html_combobox("type", gtext("Type"), $pconfig['type'], ['file' => gtext('File'), 'device' => gtext('Device'), 'zvol' => gtext('ZFS volume'), 'hast' => gtext('HAST volume')], gtext("Type used as extent."), true, false, "type_change()");?>
+			<?php html_filechooser("path", gtext("Path"), $pconfig['path'], sprintf(gtext("File path (e.g. /mnt/sharename/extent/%s) used as extent."), $pconfig['name']), $g['media_path'], true);?>
+			<?php html_combobox("device", gtext("Device"), $pconfig['path'], $a_device, "", true);?>
+			<?php html_combobox("zvol", gtext("ZFS volume"), $pconfig['path'], $a_zvol, "", true);?>
+			<?php html_combobox("hast", gtext("HAST volume"), $pconfig['path'], $a_hast, "", true);?>
+			<tr id="size_tr">
+			<td width="22%" valign="top" class="vncellreq"><?=gtext("Size");?></td>
+			<td width="78%" class="vtable">
+			<input name="size" type="text" class="formfld" id="size" size="10" value="<?=htmlspecialchars($pconfig['size']);?>" />
+			<select name="sizeunit" onclick="sizeunit_change()"> 
+			<option value="MB" <?php if ($pconfig['sizeunit'] === "MB") echo "selected=\"selected\"";?>><?=gtext("MiB");?></option>
+			<option value="GB" <?php if ($pconfig['sizeunit'] === "GB") echo "selected=\"selected\"";?>><?=gtext("GiB");?></option>
+			<option value="TB" <?php if ($pconfig['sizeunit'] === "TB") echo "selected=\"selected\"";?>><?=gtext("TiB");?></option>
+			<option value="auto" <?php if ($pconfig['sizeunit'] === "auto") echo "selected=\"selected\"";?>><?=gtext("Auto");?></option>
+	</select><br />
+			<span class="vexpl"><?=gtext("Size offered to the initiator. (up to 8EiB=8388608TiB).");?><br><?=gtext("The actual size is depend on your disks.");?></br>
+		</td>
+		</tr>
+			<?php html_inputbox("comment", gtext("Comment"), $pconfig['comment'], gtext("You may enter a description here for your reference."), false, 40);?>
+		</table>
+		<div id="submit">
+			<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+			<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
+			<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
+		</div>
+	</td>
+</tr>
+</table>
+<?php include 'formend.inc';?>
 </form>
 <script type="text/javascript">
 <!--
-	type_change();
-	sizeunit_change();
+type_change();
+sizeunit_change();
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

@@ -31,25 +31,31 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Services"), gtext("iSCSI Target"), gtext("Media"));
-
-if (!isset($config['iscsitarget']['media_uctladdress']))
-	$config['iscsitarget']['media_uctladdress'] = "127.0.0.1";
-if (!isset($config['iscsitarget']['media_uctlport']))
-	$config['iscsitarget']['media_uctlport'] = "3261";
-if (!isset($config['iscsitarget']['media_uctlauthmethod']))
-	$config['iscsitarget']['media_uctlauthmethod'] = "CHAP";
-if (!isset($config['iscsitarget']['media_uctluser']))
-	$config['iscsitarget']['media_uctluser'] = "";
-if (!isset($config['iscsitarget']['media_uctlsecret']))
-	$config['iscsitarget']['media_uctlsecret'] = "";
-if (!isset($config['iscsitarget']['media_uctlmuser']))
-	$config['iscsitarget']['media_uctlmuser'] = "";
-if (!isset($config['iscsitarget']['media_uctlmsecret']))
-	$config['iscsitarget']['media_uctlmsecret'] = "";
+array_make_branch($config,'iscsitarget');
+if(!isset($config['iscsitarget']['media_uctladdress'])):
+	$config['iscsitarget']['media_uctladdress'] = '127.0.0.1';
+endif;
+if(!isset($config['iscsitarget']['media_uctlport'])):
+	$config['iscsitarget']['media_uctlport'] = '3261';
+endif;
+if(!isset($config['iscsitarget']['media_uctlauthmethod'])): 
+	$config['iscsitarget']['media_uctlauthmethod'] = 'CHAP';
+endif;
+if(!isset($config['iscsitarget']['media_uctluser'])):
+	$config['iscsitarget']['media_uctluser'] = '';
+endif;
+if(!isset($config['iscsitarget']['media_uctlsecret'])):
+	$config['iscsitarget']['media_uctlsecret'] = '';
+endif;
+if(!isset($config['iscsitarget']['media_uctlmuser'])):
+	$config['iscsitarget']['media_uctlmuser'] = '';
+endif;
+if(!isset($config['iscsitarget']['media_uctlmsecret'])):
+	$config['iscsitarget']['media_uctlmsecret'] = '';
+endif;
 
 $pconfig['media_uctladdress'] = $config['iscsitarget']['media_uctladdress'];
 $pconfig['media_uctlport'] = $config['iscsitarget']['media_uctlport'];
@@ -58,7 +64,7 @@ $pconfig['media_uctluser'] = $config['iscsitarget']['media_uctluser'];
 $pconfig['media_uctlsecret'] = $config['iscsitarget']['media_uctlsecret'];
 $pconfig['media_uctlmuser'] = $config['iscsitarget']['media_uctlmuser'];
 $pconfig['media_uctlmsecret'] = $config['iscsitarget']['media_uctlmsecret'];
-$pconfig['media_uctlsave'] = FALSE;
+$pconfig['media_uctlsave'] = false;
 
 function reset_uctlinfo(&$pconfig) {
 	$pconfig['media_uctladdress'] = "127.0.0.1";
@@ -71,12 +77,12 @@ function reset_uctlinfo(&$pconfig) {
 	$pconfig['media_uctlsave'] = FALSE;
 }
 
-if (!isset($pconfig['media_uctladdress'])
-    || $pconfig['media_uctladdress'] == '') {
+if (!isset($pconfig['media_uctladdress']) || $pconfig['media_uctladdress'] == '') {
 	reset_uctlinfo($pconfig);
 }
 
-$pconfig['target_list'] = array();
+$pconfig['target_list'] = [];
+
 function scan_target(&$pconfig) {
 	$address = $pconfig['media_uctladdress'];
 	$port = $pconfig['media_uctlport'];
@@ -106,14 +112,14 @@ function scan_target(&$pconfig) {
 		return -1;
 	}
 
-	$pconfig['target_list'] = array();
+	$pconfig['target_list'] = [];
 	foreach ($rawdata as $line) {
 		$pconfig['target_list'][]['name'] = $line;
 	}
 	return 0;
 }
 
-$pconfig['target_info'] = array();
+$pconfig['target_info'] = [];
 function get_target_info(&$pconfig) {
 	$address = $pconfig['media_uctladdress'];
 	$port = $pconfig['media_uctlport'];
@@ -142,7 +148,7 @@ function get_target_info(&$pconfig) {
 		return -1;
 	}
 
-	$pconfig['target_info'] = array();
+	$pconfig['target_info'] = [];
 	$index = 0;
 	foreach ($rawdata as $line) {
 		$pconfig['target_info'][$index]['line'] = $line;
@@ -253,8 +259,8 @@ if ($_POST) {
 	unset($input_errors);
 	unset($errormsg);
 	$pconfig = $_POST;
-	$pconfig['target_list'] = array();
-	$pconfig['target_info'] = array();
+	$pconfig['target_list'] = [];
+	$pconfig['target_info'] = [];
 	$pconfig['mediadirectory'] = $config['iscsitarget']['mediadirectory'];
 
 	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
@@ -275,30 +281,28 @@ if ($_POST) {
 		exit;
 	}
 	if (isset($_POST['Scan']) && $_POST['Scan']) {
-		$reqdfields = explode(" ", "media_uctladdress media_uctlport media_uctlauthmethod");
-		$reqdfieldsn = array(gtext("Controller IP address"),
-			     gtext("Controller TCP Port"),
-			     gtext("Controller Auth Method"));
-		$reqdfieldst = explode(" ", "string numericint string");
+		$reqdfields = ['media_uctladdress','media_uctlport','media_uctlauthmethod'];
+		$reqdfieldsn = [gtext('Controller IP address'),
+			     gtext('Controller TCP Port'),
+			     gtext('Controller Auth Method')];
+		$reqdfieldst = ['string','numericint','string'];
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 		if ($_POST['media_uctlauthmethod'] == 'CHAP'
 		    || $_POST['media_uctlauthmethod'] == 'CHAP mutual') {
-			$reqdfields = explode(" ", "media_uctluser media_uctlsecret");
-			$reqdfieldsn = array(gtext("User"),
-				     gtext("Secret"));
-			$reqdfieldst = explode(" ", "string string");
+			$reqdfields = ['media_uctluser','media_uctlsecret'];
+			$reqdfieldsn = [gtext('User'),gtext('Secret')];
+			$reqdfieldst = ['string','string'];
 
 			do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 			do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 		}
 		if ($_POST['media_uctlauthmethod'] == 'CHAP mutual') {
-			$reqdfields = explode(" ", "media_uctlmuser media_uctlmsecret");
-			$reqdfieldsn = array(gtext("Peer User"),
-				     gtext("Peer Secret"));
-			$reqdfieldst = explode(" ", "string string");
+			$reqdfields = ['media_uctlmuser','media_uctlmsecret'];
+			$reqdfieldsn = [gtext('Peer User'),gtext('Peer Secret')];
+			$reqdfieldst = ['string','string'];
 
 			do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 			do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
@@ -397,18 +401,15 @@ if ($_POST) {
 		}
 		if ($pconfig['sizeunit'] == 'auto'){
 			$pconfig['size'] = "";
-			$reqdfields = explode(" ", "path sizeunit flags");
-			$reqdfieldsn = array(gtext("Path"),
-				     gtext("Auto size"),
-				     gtext("Flags"));
-			$reqdfieldst = explode(" ", "string string string");
+			$reqdfields = ['path','sizeunit','flags'];
+			$reqdfieldsn = [gtext('Path'),
+				     gtext('Auto size'),
+				     gtext('Flags')];
+			$reqdfieldst = ['string','string','string'];
 		}else{
-			$reqdfields = explode(" ", "path size sizeunit flags");
-			$reqdfieldsn = array(gtext("Path"),
-				     gtext("File size"),
-				     gtext("File sizeunit"),
-				     gtext("Flags"));
-			$reqdfieldst = explode(" ", "string numericint string");
+			$reqdfields = ['path','size','sizeunit','flags'];
+			$reqdfieldsn = [gtext('Path'),gtext('File size'),gtext('File sizeunit'),gtext('Flags')];
+			$reqdfieldst = ['string','numericint','string'];
 		}
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
@@ -525,8 +526,9 @@ function target_info(&$pconfig) {
 	echo "</select>";
 	echo '</td></tr>'."\n";
 }
+$pgtitle = [gtext('Services'),gtext('iSCSI Target'),gtext('Media')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function authmethod_change() {
@@ -559,55 +561,51 @@ function sizeunit_change() {
 }
 //-->
 </script>
-<form action="services_iscsitarget_media.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-				<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_target.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Targets");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gtext("Portals");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gtext("Auths");?></span></a></li>
-				<li class="tabact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-      <?php if (!empty($errormsg)) print_error_box($errormsg);?>
-      <?php if (!empty($savemsg)) print_info_box($savemsg);?>
-      <table width="100%" border="0" cellpadding="6" cellspacing="0">
-      <?php html_titleline(gtext("Logical Unit Controller Login Information"));?>
-      <?php html_inputbox("media_uctladdress", gtext("Controller IP Address"), $pconfig['media_uctladdress'], "", true, 30);?>
-      <?php html_inputbox("media_uctlport", gtext("Controller TCP Port"), $pconfig['media_uctlport'], "", true, 15);?>
-      <?php html_combobox("media_uctlauthmethod", gtext("Controller Auth Method"), $pconfig['media_uctlauthmethod'], array("CHAP" => gtext("CHAP"), "CHAP mutual" => gtext("Mutual CHAP")), "", true, false, "authmethod_change()");?>
-      <?php html_inputbox("media_uctluser", gtext("User"), $pconfig['media_uctluser'], "", true, 60);?>
-      <?php html_passwordbox("media_uctlsecret", gtext("Secret"), $pconfig['media_uctlsecret'], "", true, 30);?>
-      <?php html_inputbox("media_uctlmuser", gtext("Peer User"), $pconfig['media_uctlmuser'], "", true, 60);?>
-      <?php html_passwordbox("media_uctlmsecret", gtext("Peer Secret"), $pconfig['media_uctlmsecret'], "", true, 30);?>
-      <?php html_checkbox("media_uctlsave", gtext("Save"), !empty($pconfig['media_uctlsave']) ? true : false, gtext("Save login information in configuration file."), "", false);?>
-      <tr>
-        <td colspan="1" valign="top">
-          <input name="Scan" type="submit" class="formbtn" value="<?=gtext("Scan Targets");?>" />
-        </td>
-        <td colspan="1" valign="top" align="right">
-          <input name="Delete" type="submit" class="formbtn" value="<?=gtext("Delete Login Info");?>" />
-        </td>
-      </tr>
-      <?php target_list($pconfig) ?>
-      <?php target_info($pconfig) ?>
-      </table>
-    </td>
-  </tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_target.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Targets");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gtext("Portals");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gtext("Auths");?></span></a></li>
+		<li class="tabact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
+	</ul></td></tr>
+	<tr>
+		<td class="tabcont">
+			<form action="services_iscsitarget_media.php" method="post" name="iform" id="iform" onsubmit="spinner()">
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($errormsg)) print_error_box($errormsg);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<?php html_titleline(gtext("Logical Unit Controller Login Information"));?>
+					<?php html_inputbox("media_uctladdress", gtext("Controller IP Address"), $pconfig['media_uctladdress'], "", true, 30);?>
+					<?php html_inputbox("media_uctlport", gtext("Controller TCP Port"), $pconfig['media_uctlport'], "", true, 15);?>
+					<?php html_combobox("media_uctlauthmethod", gtext("Controller Auth Method"), $pconfig['media_uctlauthmethod'], ['CHAP' => gtext('CHAP'), 'CHAP mutual' => gtext('Mutual CHAP')], "", true, false, "authmethod_change()");?>
+					<?php html_inputbox("media_uctluser", gtext("User"), $pconfig['media_uctluser'], "", true, 60);?>
+					<?php html_passwordbox("media_uctlsecret", gtext("Secret"), $pconfig['media_uctlsecret'], "", true, 30);?>
+					<?php html_inputbox("media_uctlmuser", gtext("Peer User"), $pconfig['media_uctlmuser'], "", true, 60);?>
+					<?php html_passwordbox("media_uctlmsecret", gtext("Peer Secret"), $pconfig['media_uctlmsecret'], "", true, 30);?>
+					<?php html_checkbox("media_uctlsave", gtext("Save"), !empty($pconfig['media_uctlsave']) ? true : false, gtext("Save login information in configuration file."), "", false);?>
+					<tr>
+						<td colspan="1" valign="top">
+							<input name="Scan" type="submit" class="formbtn" value="<?=gtext("Scan Targets");?>" />
+						</td>
+						<td colspan="1" valign="top" align="right">
+							<input name="Delete" type="submit" class="formbtn" value="<?=gtext("Delete Login Info");?>" />
+						</td>
+					</tr>
+					<?php target_list($pconfig) ?>
+					<?php target_info($pconfig) ?>
+				</table>
+				<?php include 'formend.inc';?>
+			</form>
+		</td>
+	</tr>
 </table>
-<?php include("formend.inc");?>
-</form>
 <script type="text/javascript">
 <!--
 	authmethod_change();
 	sizeunit_change();
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

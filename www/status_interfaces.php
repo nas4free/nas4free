@@ -31,188 +31,119 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Status"), gtext("Interfaces"));
+$show_separator = false;
+$ifdescrs = ['lan' => 'LAN'];
+for($j = 1;isset($config['interfaces']['opt' . $j]);$j++) {
+	$ifdescrs['opt' . $j] = $config['interfaces']['opt' . $j]['descr'];
+}
+$pgtitle = [gtext('Status'),gtext('Interfaces')];
 ?>
-<?php include("fbegin.inc");?>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabcont">
-		  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-		    <?php $i = 0; $ifdescrs = array('lan' => 'LAN');
-		    for ($j = 1; isset($config['interfaces']['opt' . $j]); $j++) {
-		      $ifdescrs['opt' . $j] = $config['interfaces']['opt' . $j]['descr'];
-		    }
-		    foreach ($ifdescrs as $ifdescr => $ifname):
-		      $ifinfo = get_interface_info_ex($ifdescr);
-		    ?>
-		      <?php if ($i): ?>
-		      <tr>
-		        <td colspan="8" class="list" height="12"></td>
-		      </tr>
-		      <?php endif; ?>
-		      <tr>
-		        <td colspan="2" class="listtopic">
-		          <?=sprintf(gtext("%s Interface"), htmlspecialchars($ifname));?>
-		        </td>
-		      </tr>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("Interface");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['hwif']);?>
-		        </td>
-		      </tr>
-		      <?php if (isset($ifinfo['dhcplink']) && $ifinfo['dhcplink']): ?>
-		  	  <tr>
-		  		  <td width="22%" class="vncellt"><?=gtext("DHCP");?></td>
-		  			<td width="78%" class="listr">
-		  			  <?=htmlspecialchars($ifinfo['dhcplink']);?>&nbsp;&nbsp;
-		  			  <?php if ($ifinfo['dhcplink'] == "up"): ?>
-		  			  <input type="submit" name="submit" value="Release" class="formbtns" />
-		  			  <?php else: ?>
-		  			  <input type="submit" name="submit" value="Renew" class="formbtns" />
-		  			  <?php endif; ?>
-		  			</td>
-		  	  </tr>
-		      <?php endif; if (isset($ifinfo['pppoelink']) && $ifinfo['pppoelink']): ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("PPPoE");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['pppoelink']);?>&nbsp;&nbsp;
-		  			  <?php if ($ifinfo['pppoelink'] == "up"): ?>
-		  			  <input type="submit" name="submit" value="Disconnect" class="formbtns" />
-		  			  <?php else: ?>
-		  			  <input type="submit" name="submit" value="Connect" class="formbtns" />
-		  			  <?php endif; ?>
-		        </td>
-		      </tr>
-		      <?php  endif; if (isset($ifinfo['pptplink']) && $ifinfo['pptplink']): ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("PPTP");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['pptplink']);?>&nbsp;&nbsp;
-		  			  <?php if ($ifinfo['pptplink'] == "up"): ?>
-		  			  <input type="submit" name="submit" value="Disconnect" class="formbtns" />
-		  			  <?php else: ?>
-		  			  <input type="submit" name="submit" value="Connect" class="formbtns" />
-		  			  <?php endif; ?>
-		        </td>
-		      </tr>
-		      <?php  endif; if (isset($ifinfo['macaddr']) && $ifinfo['macaddr']): ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("MAC address");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['macaddr']);?>
-		        </td>
-		      </tr>
-		      <?php endif; if ($ifinfo['status'] != "down"): ?>
-		  		<?php if ((!isset($ifinfo['dhcplink']) || $ifinfo['dhcplink'] != "down") && (!isset($ifinfo['pppoelink']) || $ifinfo['pppoelink'] != "down") && (!isset($ifinfo['pptplink']) || $ifinfo['pptplink'] != "down")): ?>
-		  		<?php if (isset($ifinfo['ipaddr']) && $ifinfo['ipaddr']): ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("IP address");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['ipaddr']);?>&nbsp;
-		        </td>
-		      </tr>
-		      <?php endif; ?><?php if (isset($ifinfo['subnet']) && $ifinfo['subnet']): ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("Subnet mask");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['subnet']);?>
-		        </td>
-		      </tr>
-		      <?php endif; ?><?php if (isset($ifinfo['gateway']) && $ifinfo['gateway']): ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("Gateway");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['gateway']);?>
-		        </td>
-		      </tr>
-			  <?php endif; ?><?php if (isset($ifinfo['ipv6addr']) && $ifinfo['ipv6addr']): ?>
-			  <tr>
-		        <td width="22%" class="vncellt"><?=gtext("IPv6 address");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['ipv6addr']);?>&nbsp;
-		        </td>
-		      </tr>
-		      <?php endif; ?><?php if (isset($ifinfo['ipv6subnet']) && $ifinfo['ipv6subnet']): ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("IPv6 Prefix");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['ipv6subnet']);?>
-		        </td>
-		      </tr>
-		      <?php endif; ?><?php if (isset($ifinfo['ipv6gateway']) && $ifinfo['ipv6gateway']): ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("IPv6 Gateway");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['ipv6gateway']);?>
-		        </td>
-		      </tr>
-		      <?php endif; if ($ifdescr == "wan" && file_exists("{$g['varetc_path']}/nameservers.conf")): ?>
-		      <td width="22%" class="vncellt"><?=gtext("ISP DNS servers");?></td>
-		      <td width="78%" class="listr"><?php echo nl2br(file_get_contents("{$g['varetc_path']}/nameservers.conf")); ?></td>
-		      <?php endif; endif; if (isset($ifinfo['media']) && $ifinfo['media']): ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("Media");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['media']);?>
-		        </td>
-		      </tr>
-		      <?php endif; ?><?php if (isset($ifinfo['channel']) && $ifinfo['channel']): ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("Channel");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['channel']);?>
-		        </td>
-		      </tr>
-		      <?php endif; ?><?php if (isset($ifinfo['ssid']) && $ifinfo['ssid']): ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("SSID");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['ssid']);?>
-		        </td>
-		      </tr>
-		      <?php endif; ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("MTU");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['mtu']);?>
-		        </td>
-		      </tr>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("In/Out packets");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['inpkts'] . "/" . $ifinfo['outpkts'] . " (" . format_bytes($ifinfo['inbytes']) . "/" . format_bytes($ifinfo['outbytes']) . ")");?>
-		        </td>
-		      </tr>
-		      <?php if (isset($ifinfo['inerrs'])): ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("In/Out errors");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['inerrs'] . "/" . $ifinfo['outerrs']);?>
-		        </td>
-		      </tr>
-		      <?php endif; ?><?php if (isset($ifinfo['collisions'])): ?>
-		      <tr>
-		        <td width="22%" class="vncellt"><?=gtext("Collisions");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['collisions']);?>
-		        </td>
-		      </tr>
-		      <?php endif; ?>
-		  	  <?php endif; ?>
-		  	  <tr>
-		        <td width="22%" class="vncellt"><?=gtext("Status");?></td>
-		        <td width="78%" class="listr">
-		          <?=htmlspecialchars($ifinfo['status']);?>
-		        </td>
-		      </tr>
-		    <?php $i++; endforeach; ?>
-		  </table>
-		</td>
-	</tr>
-</table>
-<?php include("fend.inc");?>
+<?php include 'fbegin.inc';?>
+<table id="area_data"><tbody><tr><td id="area_data_frame"><form action="<?=$sphere_scriptname;?>" method="post" name="iform" id="iform">
+	<?php
+	foreach ($ifdescrs as $ifdescr => $ifname):
+		$sphere_record = get_interface_info_ex($ifdescr);?>
+		<table class="area_data_settings">
+			<colgroup>
+				<col class="area_data_settings_col_tag">
+				<col class="area_data_settings_col_data">
+			</colgroup>
+			<thead>
+				<?php
+				if($show_separator):
+					html_separator2();
+				else:
+					$show_separator = true;
+				endif;
+				html_titleline2(sprintf(gtext('%s Interface'),htmlspecialchars($ifname)));
+				?>
+			</thead>
+			<tbody>
+				<?php
+				$show_ip_details = true;
+				html_text2('interface',gtext('Interface'),htmlspecialchars($sphere_record['hwif']));
+				if(isset($sphere_record['dhcplink']) && $sphere_record['dhcplink']):
+					html_text2('dhcplink',gtext('DHCP'),htmlspecialchars($sphere_record['dhcplink']));
+					if('down' == $sphere_record['dhcplink']):
+						$show_ip_details = false;
+					endif;
+				endif;
+				if(isset($sphere_record['pppoelink']) && $sphere_record['pppoelink']):
+					html_text2('pppoelink',gtext('PPPoE'),htmlspecialchars($sphere_record['pppoelink']));
+					if('down' == $sphere_record['pppoelink']):
+						$show_ip_details = false;
+					endif;
+				endif;
+				if(isset($sphere_record['pptplink']) && $sphere_record['pptplink']):
+					html_text2('pptplink',gtext('PPTP'),htmlspecialchars($sphere_record['pptplink']));
+					if('down' == $sphere_record['pptplink']):
+						$show_ip_details = false;
+					endif;
+				endif;
+				if(isset($sphere_record['macaddr']) && $sphere_record['macaddr']):
+					html_text2('macaddr',gtext('MAC Address'),htmlspecialchars($sphere_record['macaddr']));
+				endif;
+				if('down' != $sphere_record['status']):
+					if($show_ip_details):
+						if(isset($sphere_record['ipaddr']) && $sphere_record['ipaddr']):
+							html_text2('ipaddr',gtext('IP Address'),htmlspecialchars($sphere_record['ipaddr']));
+						endif;
+						if(isset($sphere_record['subnet']) && $sphere_record['subnet']):
+							html_text2('subnet',gtext('Subnet Mask'),htmlspecialchars($sphere_record['subnet']));
+						endif;
+						if(isset($sphere_record['gateway']) && $sphere_record['gateway']):
+							html_text2('gateway',gtext('Gateway'),htmlspecialchars($sphere_record['gateway']));
+						endif;
+						if(isset($sphere_record['ipv6addr']) && $sphere_record['ipv6addr']):
+							html_text2('ipv6addr',gtext('IPv6 Address'),htmlspecialchars($sphere_record['ipv6addr']));
+						endif;
+						if(isset($sphere_record['ipv6subnet']) && $sphere_record['ipv6subnet']):
+							html_text2('ipv6subnet',gtext('IPv6 Prefix'),htmlspecialchars($sphere_record['ipv6subnet']));
+						endif;
+						if(isset($sphere_record['ipv6gateway']) && $sphere_record['ipv6gateway']):
+							html_text2('ipv6gateway',gtext('IPv6 Gateway'),htmlspecialchars($sphere_record['ipv6gateway']));
+						endif;
+						if('wan' == $ifdescr && file_exists("{$g['varetc_path']}/nameservers.conf")):
+							$filename = sprintf('%s/nameservers.conf',$g['varetc_path']);
+							$helpinghand = '<pre>' . htmlspecialchars(file_get_contents($filename)) .'</pre>';
+							html_text2('ispdnsservers',gtext('ISP DNS Servers').$helpinghand);
+						endif;
+					endif;
+					if(isset($sphere_record['media']) && $sphere_record['media']):
+						html_text2('media',gtext('Media'),htmlspecialchars($sphere_record['media']));
+					endif;
+					if(isset($sphere_record['channel']) && $sphere_record['channel']):
+						html_text2('channel',gtext('Channel'),htmlspecialchars($sphere_record['channel']));
+					endif;
+					if(isset($sphere_record['ssid']) && $sphere_record['ssid']):
+						html_text2('ssid',gtext('SSID'),htmlspecialchars($sphere_record['ssid']));
+					endif;
+					html_text2('mtu',gtext('MTU'),htmlspecialchars($sphere_record['mtu']));
+					$helpinghand = htmlspecialchars($sphere_record['inpkts'] .
+							'/' . 
+							$sphere_record['outpkts'] . 
+							' (' . 
+							format_bytes($sphere_record['inbytes']) . 
+							'/' . 
+							format_bytes($sphere_record['outbytes']) . 
+							')');
+					html_text2('inpkts',gtext('In/Out Packets'),$helpinghand);
+					if(isset($sphere_record['inerrs'])):
+						$helpinghand = htmlspecialchars($sphere_record['inerrs'] . '/' . $sphere_record['outerrs']);
+						html_text2('inerrs',gtext('In/Out Errors'),$helpinghand);
+					endif;
+					if(isset($sphere_record['collisions'])):
+						html_text2('collisions',gtext('Collisions'),htmlspecialchars($sphere_record['collisions']));
+					endif;
+				endif;
+				html_text2('status',gtext('Status'),htmlspecialchars($sphere_record['status']));
+				?>
+			</tbody>
+		</table>
+<?php endforeach;?>
+<?php include 'formend.inc';?>
+</form></td></tr></tbody></table>
+<?php include 'fend.inc';?>

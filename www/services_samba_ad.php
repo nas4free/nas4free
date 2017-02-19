@@ -31,37 +31,32 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Services"), gtext("Samba AD"));
+array_make_branch($config,'sambaad','auxparam');
+$errormsg='';
 
-if (!isset($config['sambaad']['auxparam']) || !is_array($config['sambaad']['auxparam']))
-	$config['sambaad']['auxparam'] = array();
-
-$errormsg="";
-
-if ($config['interfaces']['lan']['ipaddr'] == "dhcp") {
+if($config['interfaces']['lan']['ipaddr'] == 'dhcp'):
 	$errormsg .= gtext("Cannot use DHCP for LAN interface.");
 	$errormsg .= "<br/>";
-}
-if ((!empty($config['system']['dnsserver']) && $config['system']['dnsserver'][0] == "")
-   && (!empty($config['system']['ipv6dnsserver']) && $config['system']['ipv6dnsserver'][0] == "")) {
+endif;
+if((!empty($config['system']['dnsserver']) && $config['system']['dnsserver'][0] == "")
+   && (!empty($config['system']['ipv6dnsserver']) && $config['system']['ipv6dnsserver'][0] == "")):
 	$errormsg .= gtext("DNS server is empty.");
 	$errormsg .= "<br/>";
-}
-if (!isset($config['system']['ntp']['enable'])) {
+endif;
+if(!isset($config['system']['ntp']['enable'])):
 	$errormsg .= gtext("NTP is not enabled.");
 	$errormsg .= "<br/>";
-}
+endif;
 /*
 if (isset($config['samba']['enable'])) {
 	$errormsg .= gtext("CIFS/SMB is enabled.");
 	$errormsg .= "<br/>";
 }
 */
-
-if ($_POST) {
+if($_POST) {
 	unset($input_errors);
 	unset($errormsg);
 
@@ -125,10 +120,12 @@ $hostname = $config['system']['hostname'];
 $netbiosname = strtoupper($config['system']['hostname']);
 
 $pconfig['auxparam'] = "";
-if (is_array($config['sambaad']['auxparam']))
+if(is_array($config['sambaad']['auxparam'])):
 	$pconfig['auxparam'] = implode("\n", $config['sambaad']['auxparam']);
+endif;
+$pgtitle = [gtext('Services'),gtext('Samba AD')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">//<![CDATA[
 $(document).ready(function(){
 	function enable_change(enable_change) {
@@ -165,19 +162,19 @@ $(document).ready(function(){
 					<?php
 					html_titleline_checkbox("enable", gtext("Samba Active Directory Domain Controller"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "");
 					html_text("hostname", gtext("Hostname"), htmlspecialchars($hostname));
-					html_text("netniosname", gtext("NetBIOS name"), htmlspecialchars($netbiosname));
-					html_inputbox("dns_forwarder", gtext("DNS forwarder"), $pconfig['dns_forwarder'], "", false, 40);
-					html_text("dns_domain", gtext("DNS domain"), htmlspecialchars($pconfig['dns_domain']));
-					html_text("netbios_domain", gtext("NetBIOS domain"), htmlspecialchars($pconfig['netbios_domain']));
+					html_text("netniosname", gtext("NetBIOS Name"), htmlspecialchars($netbiosname));
+					html_inputbox("dns_forwarder", gtext("DNS Forwarder"), $pconfig['dns_forwarder'], "", false, 40);
+					html_text("dns_domain", gtext("DNS Domain"), htmlspecialchars($pconfig['dns_domain']));
+					html_text("netbios_domain", gtext("NetBIOS Domain"), htmlspecialchars($pconfig['netbios_domain']));
 					html_text("path", gtext("Path"), htmlspecialchars($pconfig['path']));
 					html_text("fstype", gtext("Fileserver"), htmlspecialchars($pconfig['fstype']));
-					html_checkbox("user_shares", gtext("User shares"), !empty($pconfig['user_shares']) ? true : false, gtext("Append user defined shares"), "", false);
+					html_checkbox("user_shares", gtext("User Shares"), !empty($pconfig['user_shares']) ? true : false, gtext("Append user defined shares"), "", false);
 					$helpinghand = '<a href="'
 						. 'http://us1.samba.org/samba/docs/man/manpages-3/smb.conf.5.html'
 						. '" target="_blank">'
 						. gtext('Please check the documentation')
 						. '</a>.';
-					html_textarea("auxparam", gtext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gtext("These parameters are added to [Global] section of %s."), "smb4.conf") . " " . $helpinghand, false, 65, 5, false, false);
+					html_textarea("auxparam", gtext("Additional Parameters"), $pconfig['auxparam'], sprintf(gtext("These parameters are added to [Global] section of %s."), "smb4.conf") . " " . $helpinghand, false, 65, 5, false, false);
 					?>
 				</table>
 				<div id="submit">
@@ -188,9 +185,9 @@ $(document).ready(function(){
 					html_remark("note", gtext('Note'), sprintf("<div id='enumeration'><ul><li>%s</li><li>%s</li><li>%s</li></ul></div>", gtext("When Samba AD is enabled, stand-alone CIFS/SMB file sharing cannot be used."), gtext("NTP must be enabled."), gtext("DHCP cannot be used for LAN interface.")));
 					?>
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

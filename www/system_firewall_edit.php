@@ -31,22 +31,19 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("Network"), gtext("Firewall"), gtext("Rule"), isset($uuid) ? gtext("Edit") : gtext("Add"));
-
-if (!isset($config['system']['firewall']['rule']) || !is_array($config['system']['firewall']['rule']))
-	$config['system']['firewall']['rule'] = array();
-
-array_sort_key($config['system']['firewall']['rule'], "ruleno");
-$a_rule = &$config['system']['firewall']['rule'];
-
+$a_rule = &array_make_branch($config,'system','firewall','rule');
+if(empty($a_rule)):
+else:
+	array_sort_key($a_rule,'ruleno');
+endif;
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_rule, "uuid")))) {
 	$pconfig['uuid'] = $a_rule[$cnid]['uuid'];
 	$pconfig['enable'] = isset($a_rule[$cnid]['enable']);
@@ -98,7 +95,7 @@ if ($_POST) {
 	}
 
 	if (empty($input_errors)) {
-		$rule = array();
+		$rule = [];
 		$rule['uuid'] = $_POST['uuid'];
 		$rule['enable'] = isset($_POST['enable']) ? true : false;
 		$rule['ruleno'] = $_POST['ruleno'];
@@ -146,8 +143,9 @@ function get_next_rulenumber() {
 
 	return $ruleno;
 }
+$pgtitle = [gtext('Network'),gtext('Firewall'),gtext('Rule'),isset($uuid) ? gtext('Edit') : gtext('Add')];
 ?>
-<?php include("fbegin.inc"); ?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabcont">
@@ -157,7 +155,7 @@ function get_next_rulenumber() {
 					<?php
 					html_titleline_checkbox("enable", gtext("Firewall Rule Settings"), !empty($pconfig['enable']) ? true : false, gtext("Enable"));
 					html_inputbox("ruleno", gtext("Rule number"), $pconfig['ruleno'], gtext("The rule number determines the order of the rule."), true, 10);
-					html_combobox("action", gtext("Action"), $pconfig['action'], array("allow" => gtext("Allow"), "deny" => gtext("Deny"), "unreach host" => gtext("Reject")), gtext("The action which will be executed when the packet match the criteria specified below."), true);
+					html_combobox("action", gtext("Action"), $pconfig['action'],['allow' => gtext('Allow'),'deny' => gtext('Deny'),'unreach host' => gtext('Reject')], gtext("The action which will be executed when the packet match the criteria specified below."), true);
 					$a_interface = array("" => gtext("All"), get_ifname($config['interfaces']['lan']['if']) => "LAN"); for ($i = 1; isset($config['interfaces']['opt' . $i]); ++$i) { $a_interface[$config['interfaces']['opt' . $i]['if']] = $config['interfaces']['opt' . $i]['descr']; }
 					html_combobox("if", gtext("Interface"), $pconfig['if'], $a_interface, gtext("Choose on which interface packets must come in to match this rule."), true);
 					html_combobox("protocol", gtext("Protocol"), $pconfig['protocol'], array("udp" => "UDP", "tcp" => "TCP", "icmp" => "ICMP", "all" => gtext("All")), gtext("Choose which IP protocol this rule should match."), true);
@@ -184,9 +182,9 @@ function get_next_rulenumber() {
 					html_remark("note", gtext('Note'), $helpinghand);
 					?>
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

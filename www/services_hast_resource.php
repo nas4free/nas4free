@@ -31,122 +31,272 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'co_sphere.php';
 
-$pgtitle = array(gtext("Services"), gtext("HAST"), gtext("Resources"));
-
-if ($_POST) {
-	$pconfig = $_POST;
-
-	if (isset($_POST['apply']) && $_POST['apply']) {
-		$retval = 0;
-		if (!file_exists($d_sysrebootreqd_path)) {
-			$retval |= updatenotify_process("hastresource", "hastresource_process_updatenotification");
-			config_lock();
-			$retval |= rc_update_service("hastd");
-			config_unlock();
-		}
-		$savemsg = get_std_save_message($retval);
-		if ($retval == 0) {
-			updatenotify_delete("hastresource");
-		}
-	}
-}
-
-if (!isset($config['hast']['hastresource']) || !is_array($config['hast']['hastresource']))
-	$config['hast']['hastresource'] = array();
-
-array_sort_key($config['hast']['hastresource'], "name");
-$a_resource = &$config['hast']['hastresource'];
-
-if (isset($_GET['act']) && $_GET['act'] === "del") {
-	updatenotify_set("hastresource", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
-	header("Location: services_hast_resource.php");
-	exit;
-}
-
-function hastresource_process_updatenotification($mode, $data) {
+function hastresource_process_updatenotification($mode,$data) {
 	global $config;
-
 	$retval = 0;
-
-	switch ($mode) {
+	$sphere = &services_hast_resource_get_sphere();
+	switch($mode):
 		case UPDATENOTIFY_MODE_NEW:
 		case UPDATENOTIFY_MODE_MODIFIED:
 			break;
+		case UPDATENOTIFY_MODE_DIRTY_CONFIG:
 		case UPDATENOTIFY_MODE_DIRTY:
-			$cnid = array_search_ex($data, $config['hast']['hastresource'], "uuid");
-			if (FALSE !== $cnid) {
-				unset($config['hast']['hastresource'][$cnid]);
+			if(false !== ($sphere->row_id = array_search_ex($data,$sphere->grid,$sphere->row_identifier()))):
+				unset($sphere->grid[$sphere->row_id]);
 				write_config();
-			}
+			endif;
 			break;
-	}
-
+	endswitch;
 	return $retval;
 }
+function services_hast_resource_get_sphere() {
+	global $config;
+	$sphere = new co_sphere_grid('services_hast_resource','php');
+	$sphere->modify->basename($sphere->basename() . '_edit');
+	$sphere->notifier('hastresource');
+	$sphere->row_identifier('uuid');
+	$sphere->enadis(false);
+	$sphere->lock(false);
+	$sphere->sym_add(gtext('Add Resource'));
+	$sphere->sym_mod(gtext('Edit Resource'));
+	$sphere->sym_del(gtext('Resource is marked for deletion'));
+	$sphere->sym_loc(gtext('Resource is protected'));
+	$sphere->sym_unl(gtext('Resource is unlocked'));
+	$sphere->cbm_delete(gtext('Delete Selected Resources'));
+	$sphere->cbm_delete_confirm(gtext('Do you want to delete selected resources?'));
+	$sphere->grid = &array_make_branch($config,'hast','hastresource');
+	return $sphere;
+}
+$sphere = &services_hast_resource_get_sphere();
+if($_POST):
+	if(isset($_POST['apply']) && $_POST['apply']):
+		$retval = 0;
+		if(!file_exists($d_sysrebootreqd_path)):
+			$retval |= updatenotify_process($sphere->notifier(),$sphere->notifier_processor());
+			config_lock();
+			$retval |= rc_update_service('hastd');
+			config_unlock();
+		endif;
+		$savemsg = get_std_save_message($retval);
+		if($retval == 0):
+			updatenotify_delete($sphere->notifier());
+		endif;
+	endif;
+	if(isset($_POST['submit'])):
+		switch($_POST['submit']):
+			case 'rows.delete':
+				$sphere->cbm_array = $_POST[$sphere->cbm_name] ?? [];
+				foreach($sphere->cbm_array as $sphere->cbm_row):
+					if(false !== ($sphere->row_id = array_search_ex($sphere->cbm_row,$sphere->grid,$sphere->row_identifier()))):
+						$mode_updatenotify = updatenotify_get_mode($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+						switch ($mode_updatenotify):
+							case UPDATENOTIFY_MODE_NEW:  
+								updatenotify_clear($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+								updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_DIRTY_CONFIG,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+								break;
+							case UPDATENOTIFY_MODE_MODIFIED:
+								updatenotify_clear($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+								updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_DIRTY,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+								break;
+							case UPDATENOTIFY_MODE_UNKNOWN:
+								updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_DIRTY,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+								break;
+						endswitch;
+					endif;
+				endforeach;
+//				header($sphere->header());
+//				exit;
+				break;
+			case 'rows.disable':
+				$sphere->cbm_grid = $_POST[$sphere->cbm_name] ?? [];
+				$updateconfig = false;
+				foreach($sphere->cbm_grid as $sphere->cbm_row):
+					if(false !== ($sphere->row_id = array_search_ex($sphere->cbm_row,$sphere->grid,$sphere->row_identifier()))):
+						if(isset($sphere->grid[$sphere->row_id]['enable'])):
+							unset($sphere->grid[$sphere->row_id]['enable']);
+							$updateconfig = true;
+							$mode_updatenotify = updatenotify_get_mode($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+							if(UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify):
+								updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_MODIFIED,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+							endif;
+						endif;
+					endif;
+				endforeach;
+				if($updateconfig):
+					write_config();
+					$updateconfig = false;
+				endif;
+				header($sphere->header());
+				exit;
+				break;
+			case 'rows.enable':
+				$sphere->cbm_grid = $_POST[$sphere->cbm_name] ?? [];
+				$updateconfig = false;
+				foreach($sphere->cbm_grid as $sphere->cbm_row):
+					if(false !== ($sphere->row_id = array_search_ex($sphere->cbm_row,$sphere->grid,$sphere->row_identifier()))):
+						if(!(isset($sphere->grid[$sphere->row_id]['enable']))):
+							$sphere->grid[$sphere->row_id]['enable'] = true;
+							$updateconfig = true;
+							$mode_updatenotify = updatenotify_get_mode($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+							if(UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify):
+								updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_MODIFIED,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+							endif;
+						endif;
+					endif;
+				endforeach;
+				if($updateconfig):
+					write_config();
+					$updateconfig = false;
+				endif;
+				header($sphere->header());
+				exit;
+				break;
+			case 'rows.toggle':
+				$sphere->cbm_grid = $_POST[$sphere->cbm_name] ?? [];
+				$updateconfig = false;
+				foreach($sphere->cbm_grid as $sphere->cbm_row):
+					if(false !== ($sphere->row_id = array_search_ex($sphere->cbm_row,$sphere->grid,$sphere->row_identifier()))):
+						if(isset($sphere->grid[$sphere->row_id]['enable'])):
+							unset($sphere->grid[$sphere->row_id]['enable']);
+						else:
+							$sphere->grid[$sphere->row_id]['enable'] = true;					
+						endif;
+						$updateconfig = true;
+						$mode_updatenotify = updatenotify_get_mode($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+						if(UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify):
+							updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_MODIFIED,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+						endif;
+					endif;
+				endforeach;
+				if($updateconfig):
+					write_config();
+					$updateconfig = false;
+				endif;
+				header($sphere->header());
+				exit;
+				break;
+		endswitch;
+	endif;
+endif;
+if(empty($sphere->grid)):
+else:
+	array_sort_key($sphere->grid,'name');
+endif;
+$pgtitle = [gtext('Services'),gtext('HAST'),gtext('Resources')];
+include 'fbegin.inc';
+echo $sphere->doj();
 ?>
-<?php include("fbegin.inc");?>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-	<li class="tabinact"><a href="services_hast.php"><span><?=gtext("Settings");?></span></a></li>
-	<li class="tabact"><a href="services_hast_resource.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Resources");?></span></a></li>
-	<li class="tabinact"><a href="services_hast_info.php"><span><?=gtext("Information");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-      <form action="services_hast_resource.php" method="post" onsubmit="spinner()">
-	<?php if (!empty($savemsg)) print_info_box($savemsg);?>
-	<?php if (updatenotify_exists("hastresource")) print_config_change_box();?>
-	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	  <tr>
-	    <td width="12%" class="listhdrlr"><?=gtext("Resource");?></td>
-	    <td width="10%" class="listhdrr"><?=gtext("Role");?></td>
-	    <td width="10%" class="listhdrr"><?=gtext("Status");?></td>
-	    <td width="20%" class="listhdrr"><?=gtext("Node Name");?></td>
-	    <td width="22%" class="listhdrr"><?=gtext("Path");?></td>
-	    <td width="20%" class="listhdrr"><?=gtext("IP Address");?></td>
-	    <td width="6%" class="list"></td>
-	  </tr>
-	  <?php foreach ($a_resource as $resourcev):?>
-	  <?php $hvolinfo = get_hvol_info($resourcev['name']); ?>
-	  <?php $notificationmode = updatenotify_get_mode("hastresource", $resourcev['uuid']);?>
-	  <tr>
-	    <td class="listlr"><?=htmlspecialchars($resourcev['name']);?>&nbsp;</td>
-	    <td class="listr"><?=htmlspecialchars($hvolinfo['role']);?>&nbsp;</td>
-	    <td class="listr"><?=htmlspecialchars($hvolinfo['status']);?>&nbsp;</td>
-	    <td class="listr"><?=htmlspecialchars($resourcev['aname']);?><br /><?=htmlspecialchars($resourcev['bname']);?>&nbsp;</td>
-	    <td class="listr"><?=htmlspecialchars($resourcev['apath']);?><br /><?=htmlspecialchars($resourcev['bpath']);?>&nbsp;</td>
-	    <td class="listr"><?=htmlspecialchars($resourcev['aremoteaddr']);?><br /><?=htmlspecialchars($resourcev['bremoteaddr']);?>&nbsp;</td>
-
-	    <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
-	    <td valign="middle" nowrap="nowrap" class="list">
-	      <a href="services_hast_resource_edit.php?uuid=<?=$resourcev['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit resource");?>" border="0" alt="<?=gtext("Edit resource");?>" /></a>
-	      <a href="services_hast_resource.php?act=del&amp;uuid=<?=$resourcev['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this resource?");?>')"><img src="images/delete.png" title="<?=gtext("Delete resource");?>" border="0" alt="<?=gtext("Delete resource");?>" /></a>
-	    </td>
-	    <?php else:?>
-	    <td valign="middle" nowrap="nowrap" class="list">
-	      <img src="images/delete.png" border="0" alt="" />
-	    </td>
-	    <?php endif;?>
-	  </tr>
-	  <?php endforeach;?>
-	  <tr>
-	    <td class="list" colspan="6"></td>
-	    <td class="list"><a href="services_hast_resource_edit.php"><img src="images/add.png" title="<?=gtext("Add resource");?>" border="0" alt="<?=gtext("Add resource");?>" /></a></td>
-	  </tr>
+<table id="area_navigator"><tbody>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabinact"><a href="services_hast.php"><span><?=gtext('Settings');?></span></a></li>
+		<li class="tabact"><a href="<?=$sphere->scriptname();?>" title="<?=gtext('Reload page');?>"><span><?=gtext('Resources');?></span></a></li>
+		<li class="tabinact"><a href="services_hast_info.php"><span><?=gtext('Information');?></span></a></li>
+	</ul></td></tr>
+</tbody></table>
+<form action="<?=$sphere->scriptname();?>" method="post" name="iform" id="iform"><table id="area_data"><tbody><tr><td id="area_data_frame">
+<?php
+	if(file_exists($d_sysrebootreqd_path)):
+		print_info_box(get_std_save_message(0));
+	endif;
+	if(!empty($savemsg)):
+		print_info_box($savemsg);
+	endif;
+	if(updatenotify_exists($sphere->notifier())):
+		print_config_change_box();
+	endif;
+?>
+	<table class="area_data_selection">
+		<colgroup>
+			<col style="width:5%">
+			<col style="width:10%">
+			<col style="width:10%">
+			<col style="width:10%">
+			<col style="width:20%">
+			<col style="width:20%">
+			<col style="width:15%">
+			<col style="width:10%">
+		</colgroup>
+		<thead>
+<?php
+			html_titleline2(gtext('Overview'),8);
+?>
+			<tr>
+				<th class="lhelc"><?=$sphere->html_checkbox_toggle_cbm();?></th>
+				<th class="lhelc"><?=gtext('Resource');?></th>
+				<th class="lhell"><?=gtext('Role');?></th>
+				<th class="lhell"><?=gtext('Status');?></th>
+				<th class="lhell"><?=gtext('Node Name');?></th>
+				<th class="lhell"><?=gtext('Path');?></th>
+				<th class="lhell"><?=gtext('IP Address');?></th>
+				<th class="lhebl"><?=gtext('Toolbox');?></th>
+			</tr>
+		</thead>
+		<tbody>
+<?php
+			foreach ($sphere->grid as $sphere->row):
+				$notificationmode = updatenotify_get_mode($sphere->notifier(),$sphere->row[$sphere->row_identifier()]);
+				$notdirty = (UPDATENOTIFY_MODE_DIRTY != $notificationmode) && (UPDATENOTIFY_MODE_DIRTY_CONFIG != $notificationmode);
+				$enabled = $sphere->enadis() ? isset($sphere->row['enable']) : true;
+				$notprotected = $sphere->lock() ? !isset($sphere->row['protected']) : true;
+				$hvolinfo = get_hvol_info($sphere->row['name']);
+?>
+				<tr>
+					<td class="<?=$enabled ? "lcelc" : "lcelcd";?>">
+<?php
+						if($notdirty && $notprotected):
+							echo $sphere->html_checkbox_cbm(false);
+						else:
+							echo $sphere->html_checkbox_cbm(true);
+						endif;
+?>
+					</td>
+					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere->row['name']);?></td>
+					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($hvolinfo['role']);?></td>
+					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($hvolinfo['status']);?></td>
+					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere->row['aname']);?><br /><?=htmlspecialchars($sphere->row['bname']);?></td>
+					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere->row['apath']);?><br /><?=htmlspecialchars($sphere->row['bpath']);?></td>
+					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere->row['aremoteaddr']);?><br /><?=htmlspecialchars($sphere->row['bremoteaddr']);?></td>
+					<td class="lcebld">
+						<table class="area_data_selection_toolbox"><colgroup><col style="width:33%"><col style="width:34%"><col style="width:33%"></colgroup><tbody><tr>
+<?php
+							echo $sphere->html_toolbox($notprotected,$notdirty);
+?>
+							<td></td>
+							<td></td>
+						</tr></tbody></table>
+					</td>
+				</tr>
+<?php
+			endforeach;
+?>
+		</tbody>
+		<tfoot>
+<?php
+			echo $sphere->html_footer_add(8);
+?>
+		</tfoot>
 	</table>
 	<div id="submit">
-	  <input id="reload" name="reload" type="submit" class="formbtn" value="<?php echo gtext("Reload page"); ?>" />
+<?php
+		if($sphere->enadis()):
+			if($sphere->toggle()):
+				echo $sphere->html_button_toggle_rows();
+			else:
+				echo $sphere->html_button_enable_rows();
+				echo $sphere->html_button_disable_rows();
+			endif;
+		endif;
+		echo $sphere->html_button_delete_rows();
+?>
 	</div>
-	<?php include("formend.inc");?>
-      </form>
-    </td>
-  </tr>
-</table>
-<?php include("fend.inc");?>
+<?php
+	include 'formend.inc';
+?>
+</td></tr></tbody></table></form>
+<?php
+include 'fend.inc';
+?>

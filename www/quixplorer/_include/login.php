@@ -135,7 +135,7 @@ function logout ()
     global $_SESSION;
 
     _debug("logging out user " . $_SESSION["s_user"]);
-	$_SESSION = array();
+	$_SESSION = [];
 	session_destroy();
 	header("location: ".$GLOBALS["script_name"]);
 }

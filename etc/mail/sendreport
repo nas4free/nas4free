@@ -5,7 +5,7 @@
 # Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-require_once("report.inc");
+require_once 'report.inc';
 
 $retval = @report_send_mail();
 exit($retval);

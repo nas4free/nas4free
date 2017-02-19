@@ -31,10 +31,10 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Disks"), gtext("Mount Point"), gtext("Tools"));
+$pgtitle = [gtext('Disks'),gtext('Mount Point'),gtext('Tools')];
 
 if (isset($_GET['disk'])) {
 	$index = array_search_ex($_GET['disk'], $config['mounts']['mount'], "mdisk");
@@ -47,8 +47,7 @@ if (isset($_GET['action'])) {
 	$action = $_GET['action'];
 }
 
-if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
-	$config['mounts']['mount'] = array();
+array_make_branch($config,'mounts','mount');
 
 if ($_POST) {
 	unset($input_errors);
@@ -56,8 +55,8 @@ if ($_POST) {
 	unset($do_action);
 
 	// Input validation.
-	$reqdfields = explode(" ", "mountpoint action");
-	$reqdfieldsn = array(gtext("Mount point"), gtext("Command"));
+	$reqdfields = ['mountpoint','action'];
+	$reqdfieldsn = [gtext('Mount Point'),gtext('Command')];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	// Check if mount point is used to store a swap file.
@@ -81,7 +80,7 @@ if (!isset($do_action)) {
 	$do_action = false;
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <?php if(!empty($errormsg)) print_input_errors($errormsg);?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
@@ -97,12 +96,16 @@ if (!isset($do_action)) {
     <td class="tabcont">
       <?php if ($input_errors) print_input_errors($input_errors);?>
 			<form action="disks_mount_tools.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_mountcombobox("mountpoint", gtext("Mount point"), !empty($uuid) ? $uuid : "", "", true);?>
-					<?php html_combobox("action", gtext("Command"), !empty($action) ? $action : "", array("mount" => gtext("mount"), "umount" => gtext("umount")), "", true);?>
+			<table width="100%" border="0" cellpadding="6" cellspacing="0">
+			<?php html_titleline(gtext("Mount Point Tools"));?>
+					<?php html_mountcombobox("mountpoint", gtext("Mount Point"), !empty($uuid) ? $uuid : "", "", true);?>
+					<?php html_combobox("action", gtext("Command"), !empty($action) ? $action : "", ['mount' => gtext('mount'), 'umount' => gtext('umount')], "", true);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Execute");?>" />
+				</div>
+				<div id="remarks">
+					<?php html_remark("note", gtext("Note"), gtext("You can't unmount a drive which is used by swap file, a iSCSI-target file or any other running process!"));?>
 				</div>
 				<?php if(($do_action) && (empty($errormsg))) {
 					echo(sprintf("<div id='cmdoutput'>%s</div>", gtext("Command output:")));
@@ -129,12 +132,9 @@ if (!isset($do_action)) {
 					}
 					echo('</pre>');
 				}?>
-				<div id="remarks">
-					<?php html_remark("note", gtext("Note"), gtext("You can't unmount a drive which is used by swap file, a iSCSI-target file or any other running process!"));?>
-				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

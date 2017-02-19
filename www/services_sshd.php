@@ -31,16 +31,11 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Services"),gtext("SSH"));
-
-if (!isset($config['sshd']) || !is_array($config['sshd']))
-	$config['sshd'] = array();
-
+array_make_branch($config,'sshd','auxparam');
 $os_release = exec('uname -r | cut -d - -f1');
-
 $pconfig['challengeresponseauthentication'] = isset($config['sshd']['challengeresponseauthentication']);
 $pconfig['port'] = $config['sshd']['port'];
 $pconfig['permitrootlogin'] = isset($config['sshd']['permitrootlogin']);
@@ -50,26 +45,27 @@ $pconfig['key'] = !empty($config['sshd']['private-key']) ? base64_decode($config
 $pconfig['passwordauthentication'] = isset($config['sshd']['passwordauthentication']);
 $pconfig['compression'] = isset($config['sshd']['compression']);
 $pconfig['subsystem'] = !empty($config['sshd']['subsystem']) ? $config['sshd']['subsystem'] : "";
-if (isset($config['sshd']['auxparam']) && is_array($config['sshd']['auxparam']))
+if(isset($config['sshd']['auxparam']) && is_array($config['sshd']['auxparam'])):
 	$pconfig['auxparam'] = implode("\n", $config['sshd']['auxparam']);
+endif;
 
 if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
 
 	/* input validation */
-	$reqdfields = array();
-	$reqdfieldsn = array();
+	$reqdfields = [];
+	$reqdfieldsn = [];
 
 	if (isset($_POST['enable']) && $_POST['enable']) {
-		$reqdfields = array_merge($reqdfields, explode(" ", "port"));
-		$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("TCP port")));
-		$reqdfieldst = explode(" ", "port");
+		$reqdfields = array_merge($reqdfields,['port']);
+		$reqdfieldsn = [gtext('TCP Port')];
+		$reqdfieldst = ['port'];
 		
 		if (!empty($_POST['key'])) {
-			$reqdfields = array_merge($reqdfields, array("key"));
-			$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Private Key")));
-			$reqdfieldst = array_merge($reqdfieldst, array("privatekey"));
+			$reqdfields = array_merge($reqdfields, ['key']);
+			$reqdfieldsn = array_merge($reqdfieldsn,[gtext('Private Key')]);
+			$reqdfieldst = array_merge($reqdfieldst, ['privatekey']);
 		}
 	}
 
@@ -107,8 +103,9 @@ if ($_POST) {
 		$savemsg = get_std_save_message($retval);
 	}
 }
+$pgtitle = [gtext('Services'),gtext('SSH')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -125,72 +122,79 @@ function enable_change(enable_change) {
 }
 //-->
 </script>
-<form action="services_sshd.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	  <tr>
-	    <td class="tabcont">
-		    <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="tabcont">
+			<form action="services_sshd.php" method="post" name="iform" id="iform" onsubmit="spinner()">
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
-			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline_checkbox("enable", gtext("Secure Shell"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");?>
-			    <tr>
-			      <td width="22%" valign="top" class="vncellreq"><?=gtext("TCP port");?></td>
-			      <td width="78%" class="vtable">
-							<input name="port" type="text" class="formfld" id="port" size="20" value="<?=htmlspecialchars($pconfig['port']);?>" />
-							<br /><?=gtext("Alternate TCP port. Default is 22");?></td>
-			    </tr>
-			    <tr>
-			      <td width="22%" valign="top" class="vncell"><?=gtext("Enable Challenge-Response Authentication");?></td>
-			      <td width="78%" class="vtable">
-			        <input name="challengeresponseauthentication" type="checkbox" id="challengeresponseauthentication" value="yes" <?php if (!empty($pconfig['challengeresponseauthentication'])) echo "checked=\"checked\""; ?> />
-			        <?=gtext("Specifies the usage of Challenge-Response Authentication.");?></td>
-			    </tr>
-			    <tr>
-			      <td width="22%" valign="top" class="vncell"><?=gtext("Permit root login");?></td>
-			      <td width="78%" class="vtable">
-			        <input name="permitrootlogin" type="checkbox" id="permitrootlogin" value="yes" <?php if (!empty($pconfig['permitrootlogin'])) echo "checked=\"checked\""; ?> />
-			        <?=gtext("Specifies whether it is allowed to login as superuser (root) directly.");?></td>
-			    </tr>
 					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gtext("Password authentication");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("TCP port");?></td>
+						<td width="78%" class="vtable">
+							<input name="port" type="text" class="formfld" id="port" size="20" value="<?=htmlspecialchars($pconfig['port']);?>" />
+							<br /><?=gtext("Enter a custom port number if you want to override the default port. (Default is 22).");?>
+						</td>
+					</tr>
+					<tr>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Enable Challenge-Response Authentication");?></td>
+						<td width="78%" class="vtable">
+							<input name="challengeresponseauthentication" type="checkbox" id="challengeresponseauthentication" value="yes" <?php if (!empty($pconfig['challengeresponseauthentication'])) echo "checked=\"checked\""; ?> />
+							<?=gtext("Specifies the usage of Challenge-Response Authentication.");?>
+						</td>
+					</tr>
+					<tr>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Permit Root Login");?></td>
+						<td width="78%" class="vtable">
+						<input name="permitrootlogin" type="checkbox" id="permitrootlogin" value="yes" <?php if (!empty($pconfig['permitrootlogin'])) echo "checked=\"checked\""; ?> />
+							<?=gtext("Specifies whether it is allowed to login as superuser (root) directly.");?>
+						</td>
+					</tr>
+					<tr>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Password Authentication");?></td>
 						<td width="78%" class="vtable">
 							<input name="passwordauthentication" type="checkbox" id="passwordauthentication" value="yes" <?php if (!empty($pconfig['passwordauthentication'])) echo "checked=\"checked\""; ?> />
-							<?=gtext("Enable keyboard-interactive authentication.");?></td>
+							<?=gtext("Enable keyboard-interactive authentication.");?>
+						</td>
 					</tr>
-			    <tr>
-			      <td width="22%" valign="top" class="vncell"><?=gtext("TCP forwarding");?></td>
-			      <td width="78%" class="vtable">
-			        <input name="tcpforwarding" type="checkbox" id="tcpforwarding" value="yes" <?php if (!empty($pconfig['tcpforwarding'])) echo "checked=\"checked\""; ?> />
-			        <?=gtext("Permit to do SSH Tunneling.");?></td>
-			    </tr>
-			    <tr>
-			      <td width="22%" valign="top" class="vncell"><?=gtext("Compression");?></td>
-			      <td width="78%" class="vtable">
-			        <input name="compression" type="checkbox" id="compression" value="yes" <?php if (!empty($pconfig['compression'])) echo "checked=\"checked\""; ?> />
-			        <?=gtext("Enable compression.");?><br />
-			        <span class="vexpl"><?=gtext("Compression is worth using if your connection is slow. The efficiency of the compression depends on the type of the file, and varies widely. Useful for internet transfer only.");?></span></td>
-			    </tr>
+					<tr>
+					<td width="22%" valign="top" class="vncell"><?=gtext("TCP Forwarding");?></td>
+						<td width="78%" class="vtable">
+							<input name="tcpforwarding" type="checkbox" id="tcpforwarding" value="yes" <?php if (!empty($pconfig['tcpforwarding'])) echo "checked=\"checked\""; ?> />
+							<?=gtext("Permit to do SSH Tunneling.");?>
+						</td>
+					</tr>
+					<tr>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Compression");?></td>
+						<td width="78%" class="vtable">
+							<input name="compression" type="checkbox" id="compression" value="yes" <?php if (!empty($pconfig['compression'])) echo "checked=\"checked\""; ?> />
+							<?=gtext("Enable compression.");?><br />
+							<span class="vexpl"><?=gtext("Compression is worth using if your connection is slow. The efficiency of the compression depends on the type of the file, and varies widely. Useful for internet transfer only.");?></span>
+						</td>
+					</tr>
 					<?php html_textarea("key", gtext("Private Key"), $pconfig['key'], gtext("Paste a RSA PRIVATE KEY in PEM format here."), false, 65, 7, false, false);?>
-			    <?php html_inputbox("subsystem", gtext("Subsystem"), $pconfig['subsystem'], gtext("Leave this field empty to use default settings."), false, 40);?>
-			    <?php
-				$helpinghand = '<a href="'
-					. 'http://www.freebsd.org/cgi/man.cgi?query=sshd_config&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD+' . $os_release . '-RELEASE&amp;format=html'
-					. '" target="_blank">'
-					. gtext('Please check the documentation')
-					. '</a>.';
-				html_textarea("auxparam", gtext("Extra options"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", gtext("Extra options to /etc/ssh/sshd_config (usually empty). Note, incorrect entered options prevent SSH service to be started.") . " " . $helpinghand, false, 65, 5, false, false);?>
-			  </table>
+					<?php html_inputbox("subsystem", gtext("Subsystem"), $pconfig['subsystem'], gtext("Leave this field empty to use default settings."), false, 40);?>
+					<?php
+					$helpinghand = '<a href="' .
+							'http://www.freebsd.org/cgi/man.cgi?query=sshd_config&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD+' . $os_release . '-RELEASE&amp;format=html' .
+							'" target="_blank">' .
+							gtext('Please check the documentation').
+							'</a>.';
+					html_textarea("auxparam", gtext("Additional Parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", gtext("Extra options to /etc/ssh/sshd_config (usually empty). Note, incorrect entered options prevent SSH service to be started.") . " " . $helpinghand, false, 65, 5, false, false);
+					?>
+				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" onclick="enable_change(true)" />
 				</div>
-			</td>
-		</tr>
-	</table>
-	<?php include("formend.inc");?>
-</form>
+				<?php include 'formend.inc';?>
+			</form>
+		</td>
+	</tr>
+</table>
 <script type="text/javascript">
 <!--
 enable_change(false);
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

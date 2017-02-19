@@ -31,21 +31,21 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("Network"), gtext("Interface Management"), gtext("VLAN"), isset($uuid) ? gtext("Edit") : gtext("Add"));
+$pgtitle = [gtext('Network'), gtext('Interface Management'), gtext('VLAN'), isset($uuid) ? gtext('Edit') : gtext('Add')];
 
-if (!isset($config['vinterfaces']['vlan']) || !is_array($config['vinterfaces']['vlan']))
-	$config['vinterfaces']['vlan'] = array();
-
-$a_vlans = &$config['vinterfaces']['vlan'];
-array_sort_key($a_vlans, "if");
+$a_vlans = &array_make_branch($config,'vinterfaces','vlan');
+if(empty($a_vlans)):
+else:
+	array_sort_key($a_vlans,'if');
+endif;
 
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_vlans, "uuid")))) {
 	$pconfig['enable'] = isset($a_vlans[$cnid]['enable']);
@@ -73,10 +73,9 @@ if ($_POST) {
 	}
 
 	// Input validation.
-	$reqdfields = explode(" ", "vlandev tag");
-	$reqdfieldsn = array(gtext("Physical interface"), gtext("VLAN tag"));
-	$reqdfieldst = explode(" ", "string numeric");
-
+	$reqdfields = ['vlandev','tag'];
+	$reqdfieldsn = [gtext('Physical Interface'),gtext('VLAN Tag')];
+	$reqdfieldst = ['string','numeric'];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
@@ -98,7 +97,7 @@ if ($_POST) {
 	}
 
 	if (empty($input_errors)) {
-		$vlan = array();
+		$vlan = [];
 		$vlan['enable'] = !empty($_POST['enable']) ? true : false;
 		$vlan['uuid'] = $_POST['uuid'];
 		$vlan['if'] = $_POST['if'];
@@ -135,7 +134,7 @@ function get_nextvlan_id() {
 	return $id;
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabnavtbl">
@@ -152,11 +151,12 @@ function get_nextvlan_id() {
 	<tr>
 		<td class="tabcont">
 			<form action="interfaces_vlan_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-				<?php if ($input_errors) print_input_errors($input_errors);?>
-				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_inputbox("tag", gtext("VLAN tag"), $pconfig['tag'], gtext("802.1Q VLAN tag (between 1 and 4094)."), true, 4);?>
-					<?php $a_if = array(); foreach (get_interface_list() as $ifk => $ifv) { if (preg_match('/vlan/i', $ifk)) { continue; } $a_if[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); };?>
-					<?php html_combobox("vlandev", gtext("Physical interface"), $pconfig['vlandev'], $a_if, "", true);?>
+			<?php if ($input_errors) print_input_errors($input_errors);?>
+			<table width="100%" border="0" cellpadding="6" cellspacing="0">
+			<?php html_titleline(gtext("VLAN Settings"));?>
+					<?php html_inputbox("tag", gtext("VLAN Tag"), $pconfig['tag'], gtext("802.1Q VLAN tag (between 1 and 4094)."), true, 4);?>
+					<?php $a_if = []; foreach (get_interface_list() as $ifk => $ifv) { if (preg_match('/vlan/i', $ifk)) { continue; } $a_if[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); };?>
+					<?php html_combobox("vlandev", gtext("Physical Interface"), $pconfig['vlandev'], $a_if, "", true);?>
 					<?php html_inputbox("desc", gtext("Description"), $pconfig['desc'], gtext("You may enter a description here for your reference."), false, 40);?>
 				</table>
 				<div id="submit">
@@ -166,9 +166,9 @@ function get_nextvlan_id() {
 					<input name="if" type="hidden" value="<?=$pconfig['if'];?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

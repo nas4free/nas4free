@@ -7,7 +7,6 @@
 . /etc/rc.subr
 
 name="upgrade"
-
 load_rc_config "$name"
 
 # Custom commands

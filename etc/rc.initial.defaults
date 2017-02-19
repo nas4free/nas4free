@@ -35,11 +35,11 @@
 // Don't parse the config so we can restore in case it's broken.
 $noparseconfig = 1;
 
-require_once("config.inc");
-require_once("functions.inc");
-require_once("util.inc");
-require_once("rc.inc");
-require_once("tui.inc");
+require_once 'config.inc';
+require_once 'functions.inc';
+require_once 'util.inc';
+require_once 'rc.inc';
+require_once 'tui.inc';
 
 // Get product information.
 $productname = get_product_name();
@@ -47,13 +47,13 @@ $productname = get_product_name();
 // Remove old logs.
 function remove_logs() {
 	global $g;
-	$logs = array(
+	$logs = [
 		'fuppes_logfile' => $g['varlog_path'].'/fuppes.log',
 		'minidlna_logfile' => $g['varlog_path'].'/minidlna.log',
 		'mtdaapd_logfile' => $g['varlog_path'].'/mt-daapd.log',
 		'rsync_client_logfile' => $g['varlog_path'].'/rsync_client.log',
 		'rsync_local_logfile' => $g['varlog_path'].'/rsync_local.log',
-	);
+	];
 	rc_stop_service("fuppes");
 	rc_stop_service("minidlnad");
 	rc_stop_service("mt-daapd");

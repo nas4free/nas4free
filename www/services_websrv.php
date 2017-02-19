@@ -6,15 +6,12 @@
 	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -34,17 +31,15 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-require("services.inc");
-
-$pgtitle = array(gtext("Services"),gtext("Webserver"));
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'services.inc';
 
 if (!isset($config['websrv']) || !is_array($config['websrv']))
-	$config['websrv'] = array();
+	$config['websrv'] = [];
 
 if (!isset($config['websrv']['authentication']['url']) || !is_array($config['websrv']['authentication']['url']))
-	$config['websrv']['authentication']['url'] = array();
+	$config['websrv']['authentication']['url'] = [];
 
 $default_uploaddir = "/var/tmp/ftmp";
 $default_runas = "server.username = \"www\"";
@@ -68,14 +63,14 @@ if ($_POST) {
 
 	// Input validation.
 	if (isset($_POST['enable']) && $_POST['enable']) {
-		$reqdfields = explode(" ", "port documentroot");
-		$reqdfieldsn = array(gtext("Port"), gtext("Document root"));
-		$reqdfieldst = explode(" ", "port string");
+		$reqdfields = ['port','documentroot'];
+		$reqdfieldsn = [gtext('Port'),gtext('Document Root')];
+		$reqdfieldst = ['port','string'];
 
 		if ("https" === $_POST['protocol']) {
-			$reqdfields = array_merge($reqdfields, explode(" ", "certificate privatekey"));
-			$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Certificate"), gtext("Private key")));
-			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "certificate privatekey"));
+			$reqdfields = array_merge($reqdfields, ['certificate','privatekey']);
+			$reqdfieldsn = array_merge($reqdfieldsn, [gtext('Certificate'),gtext('Private key')]);
+			$reqdfieldst = array_merge($reqdfieldst, ['certificate','privatekey']);
 		}
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -157,8 +152,9 @@ function websrvauth_process_updatenotification($mode, $data) {
 
 	return $retval;
 }
+$pgtitle = [gtext('Services'),gtext('Webserver')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -216,18 +212,18 @@ function authentication_change() {
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php
 					html_titleline_checkbox("enable", gtext("Webserver"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");
-					html_combobox("protocol", gtext("Protocol"), $pconfig['protocol'], array("http" => "HTTP", "https" => "HTTPS"), "", true, false, "protocol_change()");
+					html_combobox("protocol", gtext("Protocol"), $pconfig['protocol'],['http' => 'HTTP','https' => 'HTTPS'], "", true, false, "protocol_change()");
 					html_inputbox("port", gtext("Port"), $pconfig['port'], gtext("TCP port to bind the server to."), true, 5);
-					$helpinghand = gtext('Set under which user the service should run (www by default).')
+					$helpinghand = gtext('Select the permission for running this service. (www by default).')
 						. '<br><b>'
 						. '<font color="red">' . gtext('NOTE') . '</font>: '
-						. gtext('Running the service as user root is not recommended for security reasons, use at your own risk!')
+						. gtext('Running this service as root is not recommended for security reasons, use at your own risk!')
 						. '</b></br>';
-					html_combobox("runasuser", gtext("Run as"), $pconfig['runasuser'], array("server.username = \"www\"" => "www", "" => "root"), $helpinghand, true);
+					html_combobox("runasuser", gtext("Permission"), $pconfig['runasuser'], ["server.username = \"www\"" => "www", "" => "root"], $helpinghand, true);
 					html_textarea("certificate", gtext("Certificate"), $pconfig['certificate'], gtext("Paste a signed certificate in X.509 PEM format here."), true, 76, 7, false, false);
 					html_textarea("privatekey", gtext("Private key"), $pconfig['privatekey'], gtext("Paste an private key in PEM format here."), true, 76, 7, false, false);
-					html_filechooser("documentroot", gtext("Document root"), $pconfig['documentroot'], gtext("Document root of the webserver. Home of the web page files."), $g['media_path'], true, 76);
-					html_filechooser("uploaddir", gtext("Upload directory"), $pconfig['uploaddir'], sprintf(gtext("Upload directory of the webserver. The default is %s."), $default_uploaddir), $default_uploaddir, true, 76);
+					html_filechooser("documentroot", gtext("Document Root"), $pconfig['documentroot'], gtext("Document root of the webserver. Home of the web page files."), $g['media_path'], true, 76);
+					html_filechooser("uploaddir", gtext("Upload Directory"), $pconfig['uploaddir'], sprintf(gtext("Upload directory of the webserver. The default is %s."), $default_uploaddir), $default_uploaddir, true, 76);
 					html_checkbox("authentication", gtext("Authentication"), !empty($pconfig['authentication']) ? true : false, gtext("Enable authentication."), gtext("Give only local users access to the web page."), false, "authentication_change()");
 					?>
 					<tr id="authdirs_tr">
@@ -269,19 +265,19 @@ function authentication_change() {
 						</td>
 					</tr>
 					<?php
-					html_checkbox("dirlisting", gtext("Directory listing"), !empty($pconfig['dirlisting']) ? true : false, gtext("Enable directory listing."), gtext("A directory listing is generated if a directory is requested and no index-file (index.php, index.html, index.htm or default.htm) was found in that directory."), false);
+					html_checkbox("dirlisting", gtext("Directory listing"), !empty($pconfig['dirlisting']) ? true : false, gtext("Enable directory listing."), gtext("A directory listing is generated when no index-files (index.php, index.html, index.htm or default.htm) are found in a directory."), false);
 					$helpinghand = '<a href="'
 						. 'http://redmine.lighttpd.net/projects/lighttpd/wiki'
 						. '" target="_blank">'
 						. gtext('Please check the documentation')
 						. '</a>.';
-					html_textarea("auxparam", gtext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gtext("These parameters will be added to %s."), "websrv.conf")  . " " . $helpinghand, false, 85, 7, false, false);
+					html_textarea("auxparam", gtext("Additional Parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gtext("These parameters will be added to %s."), "websrv.conf")  . " " . $helpinghand, false, 85, 7, false, false);
 					?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" onclick="enable_change(true)" />
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
@@ -293,4 +289,4 @@ protocol_change();
 authentication_change();
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

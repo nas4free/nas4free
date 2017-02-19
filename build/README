@@ -1,4 +1,3 @@
-#
 # Part of NAS4Free (http://www.nas4free.org).
 # Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
@@ -45,7 +44,7 @@ Start /nas4free/svn/build/make.sh and follow the steps.
 
 Here is how to build NAS4Free from the latest sources:
 
-- It's really important to use the root user-account on your FreeBSD installed system!
+- It's really important to use only root user-account on your FreeBSD installed development system!
 
 3.1 Update your NAS4Free scripts/WebGUI code with the SVN:
 (this creates the svn directory)
@@ -69,13 +68,14 @@ portsnap fetch update
 
 svn/build/make.sh
 
-Execute all menus in '2' - Compile NAS4Free from Scratch' to compile your NAS4Free sources from scratch. When all are done, use one of the following options:
+Execute all menus in '2' - Compile NAS4Free from Scratch' to compile your NAS4Free sources from scratch.
+When all is done, use one of the following options:
 
-10 - Create 'Embedded' (IMG) file (rawrite to CF/USB/DD).
-11 - Create 'LiveUSB' (IMG) file.
-12 - Create 'LiveCD' (ISO) file.
-13 - Create 'Livecd-Tiny' (ISO) File without 'Embedded' File.
-14 - Create 'Full' (TGZ) update file.
+10 - Create 'Embedded.img.xz' File. (Firmware Update)
+11 - Create 'LiveUSB.img.gz' File. (Rawrite to USB Key)
+12 - Create 'LiveCD' (ISO) File.
+13 - Create 'LiveCD-Tin' (ISO) without 'Embedded' File.
+14 - Create 'Full' (TGZ) Update File.
 
 =================================
 4. Building kernel
@@ -88,5 +88,4 @@ Hint!
   You can create a backup from the kernel source to revert them quickly.
   # cp -r /usr/src /usr/src.orig
 
-(Kernel patches should be applied only once. Multiple times will fail (e.g. when
-  using patch command by ./make.sh file.)
+(Kernel patches should be applied only once. Multiple times will fail (e.g. when using patch command by ./make.sh file.)

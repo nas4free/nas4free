@@ -31,37 +31,39 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-
-$pgtitle = array(gtext("Diagnostics"), gtext("Traceroute"));
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if ($_POST) {
 	unset($input_errors);
 	unset($do_traceroute);
 
-	// Input validation.
-	$reqdfields = explode(" ", "host ttl");
-	$reqdfieldsn = array(gtext("Host"), gtext("Max. TTL"));
-
+	// Input validation
+	$reqdfields = ['target','max_ttl'];
+	$reqdfieldsn = [
+		gtext('Target'),
+		gtext('Count')
+	];
+	$reqdfieldst = ['string','numeric'];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (empty($input_errors)) {
 		$do_traceroute = true;
-		$host = $_POST['host'];
-		$ttl = $_POST['ttl'];
+		$target = $_POST['target'];
 		$resolve = isset($_POST['resolve']) ? true : false;
+		$max_ttl = $_POST['max_ttl'];
 	}
 }
 
 if (!isset($do_traceroute)) {
 	$do_traceroute = false;
-	$host = '';
-	$ttl = 18;
+	$target = '';
+	$max_ttl = 10;
 	$resolve = false;
 }
+$pgtitle = [gtext('Diagnostics'),gtext('Traceroute')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabnavtbl">
@@ -76,31 +78,39 @@ if (!isset($do_traceroute)) {
 			<form action="diag_traceroute.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-			    		<?php html_titleline(gtext("Traceroute Test"));?>
-					<?php html_inputbox("host", gtext("Host"), $host, gtext("Destination host name or IP number."), true, 20);?>
-					<?php $a_ttl = array(); for ($i = 1; $i <= 64; $i++) { $a_ttl[$i] = $i; }?>
-					<?php html_combobox("ttl", gtext("Max. TTL"), $ttl, $a_ttl, gtext("Max. time-to-live (max. number of hops) used in outgoing probe packets."), true);?>
-					<?php html_checkbox("resolve", gtext("Resolve"), $resolve ? true : false, gtext("Resolve IP addresses to hostnames"), "", false);?>
+					<?php
+					html_titleline(gtext('Traceroute Host'));
+					html_inputbox("target", gtext("Target"), $target, gtext("Enter hostname or IP address."), true, 32);
+					html_checkbox("resolve", gtext("Resolve IP"), $resolve ? true : false, gtext("Resolve IP addresses to hostnames."), "", false);
+					$a_max_ttl = []; for ($i = 1; $i <= 64; $i++) { $a_max_ttl[$i] = $i; }
+					html_combobox("max_ttl", gtext("Count"), $max_ttl, $a_max_ttl, gtext("Select max time-to-live (max number of hops) used in outgoing probe packets."), true);
+					?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Traceroute");?>" />
 				</div>
-				<?php if ($do_traceroute) {
-				echo(sprintf("<div id='cmdoutput'>%s</div>", gtext("Command output:")));
-				echo('<pre class="cmdoutput">');
-				//ob_end_flush();
-				exec("/usr/sbin/traceroute " . ($resolve ? "" : "-n ") . "-w 2 -m " . escapeshellarg($ttl) . " " . escapeshellarg($host), $rawdata);
-				echo htmlspecialchars(implode("\n", $rawdata));
-				unset($rawdata);
-				echo('</pre>');
-				}
-				?>
 				<div id="remarks">
-					<?php html_remark("note", gtext("Note"), gtext("Traceroute may take a while to complete. You may hit the Stop button on your browser at any time to see the progress of failed traceroutes."));?>
+					<?php html_remark("note", gtext("Note"), gtext("Traceroute may take a while, please be patient."));?>
 				</div>
-				<?php include("formend.inc");?>
+				<?php
+				if ($do_traceroute):?>
+				<table class="area_data_settings">
+					<thead>
+						<?php html_separator2();?>
+						<?php html_titleline2(gtext('Traceroute Output'));?>
+					</thead>
+				</table>
+				<?php
+					echo '<br>','<pre class="cmdoutput">';
+						exec('/usr/sbin/traceroute ' . ($resolve ? '' : '-n ') . '-w 2 -m ' . escapeshellarg($max_ttl) . ' ' . escapeshellarg($target), $rawdata);
+					echo htmlspecialchars(implode("\n", $rawdata));
+					unset($rawdata);
+					echo '</pre>','</br>';
+				endif;
+				?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

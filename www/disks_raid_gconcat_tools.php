@@ -31,48 +31,43 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+/*	error_reporting(E_ALL);
+ *	ini_set('display_errors',true);
+ *	ini_set('display_startup_errors',true);
+ */
+require 'auth.inc';
+require 'guiconfig.inc';
 
-require("auth.inc");
-require("guiconfig.inc");
+$a_raid = &array_make_branch($config,'gconcat','vdisk');
+if(empty($a_raid)):
+	else: array_sort_key($a_raid,'name');
+endif;
 
-$pgtitle = array(gtext("Disks"), gtext("Software RAID"), gtext("JBOD"), gtext("Maintenance"));
-
-if (!isset($config['gconcat']['vdisk']) || !is_array($config['gconcat']['vdisk']))
-	$config['gconcat']['vdisk'] = array();
-
-array_sort_key($config['gconcat']['vdisk'], "name");
-
-$a_raid = &$config['gconcat']['vdisk'];
-
-if ($_POST) {
+if($_POST):
 	unset($input_errors);
 	unset($do_action);
 
 	/* input validation */
-	$reqdfields = explode(" ", "action raid disk");
-	$reqdfieldsn = array(gtext("Command"),gtext("Volume Name"),gtext("Disk"));
+	$reqdfields = ['action','raid','disk'];
+	$reqdfieldsn = [gtext('Command'),gtext('Volume Name'),gtext('Disk')];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
-
-if (empty($input_errors)) {
-	$do_action = true;
-	$action = $_POST['action'];
-	$raid = $_POST['raid'];
-	$disk = $_POST['disk'];
-	}
-}
-
-if (!isset($do_action)) {
+	if(empty($input_errors)):
+		$do_action = true;
+		$action = $_POST['action'];
+		$raid = $_POST['raid'];
+		$disk = $_POST['disk'];
+	endif;
+endif;
+if(!isset($do_action)):
 	$do_action = false;
 	$action = '';
 	$object = '';
 	$raid = '';
 	$disk = '';
-}
+endif;
+$pgtitle = [gtext('Disks'),gtext('Software RAID'),gtext('JBOD'),gtext('Maintenance')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 //<![CDATA[
 $(window).on("load", function() {
@@ -100,23 +95,15 @@ function raid_change() {
 //]]>
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav">
-				<li class="tabact"><a href="disks_raid_geom.php" title="<?=gtext('Reload page');?>"><span><?=gtext('GEOM');?></span></a></li>
-				<li class="tabinact"><a href="disks_raid_gvinum.php"><span><?=gtext("RAID 0/1/5");?></span></a></li>
-			</ul>
-		</td>
-	</tr>
-	<tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav2">
-				<li class="tabinact"><a href="disks_raid_geom.php"><span><?=gtext('Management'); ?></span></a></li>
-				<li class="tabact"><a href="disks_raid_gconcat_tools.php" title="<?=gtext('Reload page');?>" ><span><?=gtext('Maintenance');?></span></a></li>
-				<li class="tabinact"><a href="disks_raid_gconcat_info.php"><span><?=gtext('Information'); ?></span></a></li>
-			</ul>
-		</td>
-	</tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabact"><a href="disks_raid_geom.php" title="<?=gtext('Reload page');?>"><span><?=gtext('GEOM');?></span></a></li>
+		<li class="tabinact"><a href="disks_raid_gvinum.php"><span><?=gtext("RAID 0/1/5");?></span></a></li>
+	</ul></td></tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav2">
+		<li class="tabinact"><a href="disks_raid_geom.php"><span><?=gtext('Management'); ?></span></a></li>
+		<li class="tabact"><a href="disks_raid_gconcat_tools.php" title="<?=gtext('Reload page');?>" ><span><?=gtext('Maintenance');?></span></a></li>
+		<li class="tabinact"><a href="disks_raid_gconcat_info.php"><span><?=gtext('Information'); ?></span></a></li>
+	</ul></td></tr>
 	<tr>
 		<td class="tabcont">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -124,7 +111,11 @@ function raid_change() {
 				<tr>
 					<td>
 						<form action="disks_raid_gconcat_tools.php" method="post" name="iform" id="iform">
-							<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
+							<?php
+							if (!empty($input_errors)):
+								print_input_errors($input_errors);
+							endif;
+							?>
 							<table width="100%" border="0" cellpadding="6" cellspacing="0">
 								<tr>
 									<td width="22%" valign="top" class="vncellreq"><?=gtext("Volume Name");?></td>
@@ -162,29 +153,29 @@ function raid_change() {
 								<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Send Command!");?>" />
 							</div>
 							<?php
-								if ($do_action) {
-									echo(sprintf("<div id='cmdoutput'>%s</div>", gtext("Command output:")));
-									echo('<pre class="cmdoutput">');
-									//ob_end_flush();
-									switch ($action) {
-										case "list":
-											disks_geom_cmd("concat", "list", $raid, true);
-											break;
-										case "status":
-											disks_geom_cmd("concat", "status", $raid, true);
-											break;
-										case "clear":
-											disks_geom_cmd("concat", "clear -v", $disk, true);
-											break;
-										case "stop":
-											disks_geom_cmd("concat", "stop -v", $raid, true);
-											break;
-										case "dump":
-											disks_geom_cmd("concat", "dump", $disk, true);
-											break;
-									}
-									echo('</pre>');
-								};
+							if($do_action):
+								echo(sprintf("<div id='cmdoutput'>%s</div>", gtext("Command output:")));
+								echo('<pre class="cmdoutput">');
+								//ob_end_flush();
+								switch ($action):
+									case "list":
+										disks_geom_cmd("concat", "list", $raid, true);
+										break;
+									case "status":
+										disks_geom_cmd("concat", "status", $raid, true);
+										break;
+									case "clear":
+										disks_geom_cmd("concat", "clear -v", $disk, true);
+										break;
+									case "stop":
+										disks_geom_cmd("concat", "stop -v", $raid, true);
+										break;
+									case "dump":
+										disks_geom_cmd("concat", "dump", $disk, true);
+										break;
+								endswitch;
+								echo('</pre>');
+							endif;
 							?>
 							<div id="remarks">
 								<?php
@@ -192,7 +183,7 @@ function raid_change() {
 								html_remark('warning', gtext('Warning'), $helpinghand);
 								?>
 							</div>
-							<?php include("formend.inc");?>
+							<?php include 'formend.inc';?>
 						</form>
 					</td>
 				</tr>
@@ -201,8 +192,8 @@ function raid_change() {
 	</tr>
 </table>
 <script type="text/javascript">
-<!--
+//<![CDATA[
 raid_change();
-//-->
+//]]>
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

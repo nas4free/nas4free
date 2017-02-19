@@ -31,20 +31,16 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-require("services.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'services.inc';
 
-$pgtitle = array(gtext("Services"), gtext("iTunes/DAAP"));
-
-if (!isset($config['daap']) || !is_array($config['daap']))
-	$config['daap'] = array();
-
+array_make_branch($config,'daap');
 $pconfig['enable'] = isset($config['daap']['enable']);
 $pconfig['servername'] = !empty($config['daap']['servername']) ? $config['daap']['servername'] : "";
 $pconfig['port'] = $config['daap']['port'];
 $pconfig['dbdir'] = $config['daap']['dbdir'];
-$pconfig['content'] = !empty($config['daap']['content']) ? $config['daap']['content'] : array();
+$pconfig['content'] = !empty($config['daap']['content']) ? $config['daap']['content'] : [];
 $pconfig['compdirs'] = $config['daap']['compdirs'];
 $pconfig['concatcomps'] = isset($config['daap']['concatcomps']);
 $pconfig['rescaninterval'] = $config['daap']['rescaninterval'];
@@ -69,15 +65,15 @@ if ($_POST) {
 
 	// Input validation.
 	if (isset($_POST['enable']) && $_POST['enable']) {
-		$reqdfields = explode(" ", "servername port dbdir content admin_pw");
-		$reqdfieldsn = array(gtext("Server name"), gtext("Port"), gtext("Database directory"), gtext("Content"), gtext("Password"));
-		$reqdfieldst = explode(" ", "string port string array password");
+		$reqdfields = ['servername','port','dbdir','content','admin_pw'];
+		$reqdfieldsn = [gtext('Name'),gtext('Port'),gtext('Database Directory'),gtext('Content'),gtext('Password')];
+		$reqdfieldst = ['string','port','string','array','password'];
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
-		$reqdfields = array_merge($reqdfields, array("rescaninterval"));
-		$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Rescan interval")));
-		$reqdfieldst = array_merge($reqdfieldst, array("numeric"));
+		$reqdfields = array_merge($reqdfields, ['rescaninterval']);
+		$reqdfieldsn = array_merge($reqdfieldsn, [gtext('Rescan interval')]);
+		$reqdfieldst = array_merge($reqdfieldst, ['numeric']);
 
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
@@ -91,7 +87,7 @@ if ($_POST) {
 		$config['daap']['servername'] = $_POST['servername'];
 		$config['daap']['port'] = $_POST['port'];
 		$config['daap']['dbdir'] = $_POST['dbdir'];
-		$config['daap']['content'] = !empty($_POST['content']) ? $_POST['content'] : array();
+		$config['daap']['content'] = !empty($_POST['content']) ? $_POST['content'] : [];
 		$config['daap']['compdirs'] = $_POST['compdirs'];
 		$config['daap']['concatcomps'] = isset($_POST['concatcomps']) ? true : false;
 		$config['daap']['rescaninterval'] = $_POST['rescaninterval'];
@@ -99,22 +95,21 @@ if ($_POST) {
 		$config['daap']['skipfirst'] = isset($_POST['skipfirst']) ? true : false;
 		$config['daap']['scantype'] = $_POST['scantype'];
 		$config['daap']['admin_pw'] = $_POST['admin_pw'];
-
 		write_config();
-
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			config_lock();
-			$retval |= rc_update_service("mt-daapd");
-			$retval |= rc_update_service("mdnsresponder");
+			$retval |= rc_update_service('mt-daapd');
+			$retval |= rc_update_service('mdnsresponder');
 			config_unlock();
 		}
 
 		$savemsg = get_std_save_message($retval);
 	}
 }
+$pgtitle = [gtext('Services'),gtext('iTunes/DAAP')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -144,34 +139,34 @@ function enable_change(enable_change) {
 		<tr>
 			<td class="tabcont">
 				<?php 
-				if (!empty($input_errors)) print_input_errors($input_errors);
-				?>
-				<?php
-				if (!empty($savemsg)) print_info_box($savemsg);
-				?>
-				<?php
-				if (!isset($config['system']['zeroconf'])) {
+				if(!empty($input_errors)):
+					print_input_errors($input_errors);
+				endif;
+				if(!empty($savemsg)):
+					print_info_box($savemsg);
+				endif;
+				if (!isset($config['system']['zeroconf'])):
 					$link = '<a href="'
 						. 'system_advanced.php'
 						. '">'
 						. gtext('Zeroconf/Bonjour')
 						. '</a>';
 					print_error_box(sprintf(gtext('You have to activate %s to advertise this service to clients.'), $link));
-				}
+				endif;
 				?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php
 					html_titleline_checkbox("enable", gtext("Digital Audio Access Protocol"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");
-					html_inputbox("servername", gtext("Server name"), $pconfig['servername'], gtext("This is both the name of the server as advertised via Zeroconf/Bonjour/Rendezvous, and the name of the database exported via DAAP."), true, 20);
+					html_inputbox("servername", gtext("Name"), $pconfig['servername'], gtext("This is both the name of the server as advertised via Zeroconf/Bonjour/Rendezvous, and the name of the database exported via DAAP."), true, 20);
 					html_inputbox("port", gtext("Port"), $pconfig['port'], gtext("Port to listen on. Default iTunes port is 3689."), true, 5);
-					html_filechooser("dbdir", gtext("Database directory"), $pconfig['dbdir'], gtext("Location where the content database file will be stored."), $g['media_path'], true, 60);
-					html_folderbox("content", gtext("Content"), !empty($pconfig['content']) ? $pconfig['content'] : array(), gtext("Location of the files to share."), $g['media_path'], true);
-					html_inputbox("compdirs", gtext("Compilations directories"), $pconfig['compdirs'], gtext("Tracks whose path contains one or more of these comma separated strings will be treated as a compilation."), false, 40);
-					html_checkbox("concatcomps", gtext("Group compilations"), !empty($pconfig['concatcomps']) ? true : false, "", gtext("Whether compilations should be shown together under Various Artists."), false);
-					html_inputbox("rescaninterval", gtext("Rescan interval"), $pconfig['rescaninterval'], gtext("Scan file system every N seconds to see if any files have been added or removed. Set to 0 to disable background scanning. If background rescanning is disabled, a scan can still be forced from the status page of the administrative web interface."), false, 5);
-					html_checkbox("alwaysscan", gtext("Always scan"), !empty($pconfig['alwaysscan']) ? true : false, "", gtext("Whether scans should be skipped if there are no users connected. This allows the drive to spin down when no users are connected."), false);
-					html_checkbox("skipfirst", gtext("Skip first scan"), !empty($pconfig['skipfirst']) ? true : false, "", gtext("Whether to skip initial boot-up scan."), false);
-					html_combobox("scantype", gtext("Scan type"), $pconfig['scantype'], array("0" => gtext("Normal"), "1" => gtext("Aggressive"), "2" => gtext("Painfully aggressive")), "", false);
+					html_filechooser("dbdir", gtext("Database Directory"), $pconfig['dbdir'], gtext("Location where the content database file will be stored."), $g['media_path'], true, 60);
+					html_folderbox("content", gtext("Content"), !empty($pconfig['content']) ? $pconfig['content'] : [], gtext("Location of the files to share."), $g['media_path'], true);
+					html_inputbox("compdirs", gtext("Compilations Directories"), $pconfig['compdirs'], gtext("Tracks whose path contains one or more of these comma separated strings will be treated as a compilation."), false, 40);
+					html_checkbox("concatcomps", gtext("Group Compilations"), !empty($pconfig['concatcomps']) ? true : false, "", gtext("Whether compilations should be shown together under Various Artists."), false);
+					html_inputbox("rescaninterval", gtext("Rescan Interval"), $pconfig['rescaninterval'], gtext("Scan file system every N seconds to see if any files have been added or removed. Set to 0 to disable background scanning. If background rescanning is disabled, a scan can still be forced from the status page of the administrative web interface."), false, 5);
+					html_checkbox("alwaysscan", gtext("Always Scan"), !empty($pconfig['alwaysscan']) ? true : false, "", gtext("Whether scans should be skipped if there are no users connected. This allows the drive to spin down when no users are connected."), false);
+					html_checkbox("skipfirst", gtext("Skip First Scan"), !empty($pconfig['skipfirst']) ? true : false, "", gtext("Whether to skip initial boot-up scan."), false);
+					html_combobox("scantype", gtext("Scan Mode"), $pconfig['scantype'], ['0' => gtext('Normal'),'1' => gtext('Aggressive'),'2' => gtext('Painfully aggressive')], "", false);
 					html_separator();
 					html_titleline(gtext("Administrative WebGUI"));
 					html_passwordbox("admin_pw", gtext("Password"), $pconfig['admin_pw'], sprintf("%s %s", gtext("Password for the administrative pages."), gtext("Default user name is 'admin'.")), true, 20);
@@ -198,11 +193,11 @@ function enable_change(enable_change) {
 			</td>
 		</tr>
 	</table>
-	<?php include("formend.inc");?>
+	<?php include 'formend.inc';?>
 </form>
 <script type="text/javascript">
 <!--
 enable_change(false);
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

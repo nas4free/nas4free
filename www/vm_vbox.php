@@ -31,13 +31,12 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("VM"), gtext("VirtualBox"));
-
+array_make_branch($config,'vbox');
 $pconfig['enable'] = isset($config['vbox']['enable']);
-$pconfig['homedir'] = $config['vbox']['homedir'];
+$pconfig['homedir'] = $config['vbox']['homedir'] ?? '';
 $vbox_user = rc_getenv_ex("vbox_user", "vboxusers");
 $vbox_group = rc_getenv_ex("vbox_group", "vboxusers");
 
@@ -48,9 +47,9 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	if (isset($_POST['enable'])) {
-		$reqdfields = explode(" ", "homedir");
-		$reqdfieldsn = array(gtext("Home directory"));
-		$reqdfieldst = explode(" ", "string");
+		$reqdfields = ['homedir'];
+		$reqdfieldsn = [gtext('Home Directory')];
+		$reqdfieldst = ['string'];
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	} else {
@@ -103,8 +102,9 @@ if ($_POST) {
 		$savemsg = get_std_save_message($retval);
 	}
 }
+$pgtitle = [gtext('Virtualization'),gtext('VirtualBox')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">//<![CDATA[
 $(document).ready(function(){
 	function enable_change(enable_change) {
@@ -130,41 +130,47 @@ $(document).ready(function(){
 //]]>
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabcont">
-      <form action="vm_vbox.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-	<?php if (!empty($errormsg)) print_error_box($errormsg);?>
-	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-	<?php if (!empty($savemsg)) print_info_box($savemsg);?>
-	<?php $enabled = isset($config['vbox']['enable']);?>
-	<table width="100%" border="0" cellpadding="6" cellspacing="0">
-	<?php html_titleline_checkbox("enable", gtext("VirtualBox"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "");?>
-	<?php html_filechooser("homedir", gtext("Home directory"), $pconfig['homedir'], gtext("Enter the path to the home directory of VirtualBox. VM config and HDD image will be created under the specified directory."), $g['media_path'], false, 60);?>
-	<?php if ($enabled):?>
-		<?php html_separator();?>
-		<?php html_titleline(sprintf("%s (%s)", gtext("Administrative WebGUI"), gtext("phpVirtualBox")));?>
-		<?php
-			$if = get_ifname($config['interfaces']['lan']['if']);
-			$ipaddr = get_ipaddr($if);
-			$url = htmlspecialchars("/phpvirtualbox/index.html");
-			$text = "<a href='${url}' id='a_url1' target='_blank'>{$url}</a>";
-		?>
-		<?php html_text("url1", gtext("URL"), $text);?>
-		<?php html_separator();?>
-		<?php html_titleline(sprintf("%s (%s)", gtext("Administrative WebGUI"), gtext("noVNC")));?>
-		<?php
-			$url = htmlspecialchars("/novnc/vnc.html");
-			$text = "<a href='${url}?host=$ipaddr' id='a_url2' target='_blank'>{$url}</a>";
-		?>
-		<?php html_text("url2", gtext("URL"), $text);?>
-	<?php endif;?>
-	</table>
-	<div id="submit">
-	  <input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" />
-	</div>
-	<?php include("formend.inc");?>
-      </form>
-    </td>
-  </tr>
+	<tr>
+		<td class="tabcont">
+			<form action="vm_vbox.php" method="post" name="iform" id="iform" onsubmit="spinner()">
+				<?php
+				if(!empty($errormsg)):
+					print_error_box($errormsg);
+				endif;
+				if(!empty($input_errors)):
+					print_input_errors($input_errors);
+				endif;
+				if(!empty($savemsg)):
+					print_info_box($savemsg);
+				endif;
+				$enabled = isset($config['vbox']['enable']);
+				?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<?php
+					html_titleline_checkbox("enable", gtext("VirtualBox"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "");
+					html_filechooser("homedir", gtext("Home Directory"), $pconfig['homedir'], gtext("Enter the path to the home directory of VirtualBox. VM config and HDD image will be created under the specified directory."), $g['media_path'], false, 60);
+					if ($enabled):
+						html_separator();
+						html_titleline(sprintf("%s (%s)", gtext("Administrative WebGUI"), gtext("phpVirtualBox")));
+						$if = get_ifname($config['interfaces']['lan']['if']);
+						$ipaddr = get_ipaddr($if);
+						$url = htmlspecialchars("/phpvirtualbox/index.html");
+						$text = "<a href='${url}' id='a_url1' target='_blank'>{$url}</a>";
+						html_text("url1", gtext("URL"), $text);
+						html_separator();
+						html_titleline(sprintf("%s (%s)", gtext("Administrative WebGUI"), gtext("noVNC")));
+						$url = htmlspecialchars("/novnc/vnc.html");
+						$text = "<a href='${url}?host=$ipaddr' id='a_url2' target='_blank'>{$url}</a>";
+						html_text("url2", gtext("URL"), $text);
+					endif;
+					?>
+				</table>
+				<div id="submit">
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" />
+				</div>
+				<?php include 'formend.inc';?>
+			</form>
+		</td>
+	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

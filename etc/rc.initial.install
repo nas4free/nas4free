@@ -17,13 +17,14 @@ trap "rm -f $tmpfile" 0 1 2 5 15
 # Endless loop
 while : ; do
     if [ "${XARCH}" != "dom0" ]; then
-	cdialog --clear --title "NAS4Free Install & Upgrade Menu" --cancel-label "Exit" --menu "" 12 67 10 \
+	cdialog --clear --title "NAS4Free Install & Upgrade Menu" --cancel-label "Exit" --menu "" 13 67 10 \
 		"1" "Install 'Embedded' OS on HDD/SSD/CF/USB (Preferred)" \
 		"2" "Upgrade 'Embedded' OS from LiveCD/LiveUSB" \
 		"-" "----------------------------------------------------------" \
 		"3" "Install 'Full' OS on HDD/SSD + DATA/SWAP (For Expert)" \
 		"4" "Upgrade 'Full' OS from LiveCD/LiveUSB" \
-		"5" "Upgrade & Convert 'Full' OS to 'Embedded' installation" 2> $tmpfile
+		"5" "Upgrade & Convert 'Full' OS to 'Embedded' installation" \
+		"6" "Launch Advanced ZFS Installer Options (For Expert)" 2> $tmpfile
     else
 	cdialog --clear --title "NAS4Free Install & Upgrade Options Menu" --cancel-label "Exit" --menu "" 8 67 3 \
 		"1" "Install 'Embedded' OS on HDD/SSD/CF/USB (Preferred)" \
@@ -50,6 +51,9 @@ while : ; do
 		 	;;
 		5)
 			/etc/rc.initial.full2emb
+		 	;;
+		6)
+			/etc/install/zfsinstall.sh
 		 	;;
 	esac
 done

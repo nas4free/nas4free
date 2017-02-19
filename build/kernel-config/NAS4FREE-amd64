@@ -1,7 +1,7 @@
 include         GENERIC
 ident		NAS4FREE-x64
 
-makeoptions	MODULES_EXTRA="mlx4 mlxen"
+makeoptions	MODULES_EXTRA="mlx4 mlxen mlx5 mlx5en"
 
 #####################################################################
 # NAS4FREE
@@ -41,14 +41,14 @@ device		sfxge		# Solarflare 10Gb Ethernet Adapters
 
 # InfiniBand support
 options		OFED		# InfiniBand support
-options		SDP		# SDP protocol
-options		IPOIB		# IPoIB
-options		IPOIB_CM	# IPoIB connected mode
-device		ipoib
+options COMPAT_LINUXKPI 
+
+#options		SDP		# SDP protocol
+#options		IPOIB		# IPoIB
+#options		IPOIB_CM	# IPoIB connected mode
 
 # InfiniBand Adapters
 #device		mlx4ib		# Mellanox ConnectX HCA InfiniBand
-#device		mlxen		# Mellanox ConnectX HCA Ethernet
 #device		mthca		# Mellanox HCA InfiniBand
 
 # Hardware crypto acceleration
@@ -56,9 +56,7 @@ device		crypto		# core crypto support
 device		cryptodev	# /dev/crypto for access to h/w
 
 # Temperature sensors:
-#
 # coretemp: on-die sensor on Intel Core and newer CPUs
-#
 device		coretemp
 # amdtemp: on-die digital thermal sensor for AMD K8, K10 and K11
 device		amdtemp

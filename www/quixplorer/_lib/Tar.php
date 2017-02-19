@@ -238,7 +238,7 @@ class Archive_Tar extends PEAR
     // {{{ listContent()
     function listContent()
     {
-        $v_list_detail = array();
+        $v_list_detail = [];
 
         if ($this->_openRead()) {
             if (!$this->_extractList('', $v_list_detail, "list", '', '')) {
@@ -460,7 +460,7 @@ class Archive_Tar extends PEAR
     function extractModify($p_path, $p_remove_path)
     {
         $v_result = true;
-        $v_list_detail = array();
+        $v_list_detail = [];
 
         if ($v_result = $this->_openRead()) {
             $v_result = $this->_extractList($p_path, $v_list_detail,
@@ -515,7 +515,7 @@ class Archive_Tar extends PEAR
     function extractList($p_filelist, $p_path='', $p_remove_path='')
     {
         $v_result = true;
-        $v_list_detail = array();
+        $v_list_detail = [];
 
         if (is_array($p_filelist))
             $v_list = $p_filelist;
@@ -857,7 +857,7 @@ class Archive_Tar extends PEAR
     function _addList($p_list, $p_add_dir, $p_remove_dir)
     {
       $v_result=true;
-      $v_header = array();
+      $v_header = [];
 
       // ----- Remove potential windows directory separator
       $p_add_dir = $this->_translateWinPath($p_add_dir);
@@ -1249,7 +1249,7 @@ class Archive_Tar extends PEAR
         }
 
         if (!is_array($v_header)) {
-            $v_header = array();
+            $v_header = [];
         }
         // ----- Calculate the checksum
         $v_checksum = 0;

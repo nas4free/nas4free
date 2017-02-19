@@ -31,11 +31,11 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-require("email.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'email.inc';
 
-$pgtitle = array(gtext("Disks"), gtext("Management"), gtext("S.M.A.R.T."));
+$pgtitle = [gtext('Disks'),gtext('Management'),gtext('S.M.A.R.T.')];
 
 $pconfig['enable'] = isset($config['smartd']['enable']);
 $pconfig['interval'] = $config['smartd']['interval'];
@@ -53,14 +53,14 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	if (isset($_POST['enable']) && $_POST['enable']) {
-		$reqdfields = explode(" ", "interval powermode temp_diff temp_info temp_crit");
-		$reqdfieldsn = array(gtext("Check interval"), gtext("Power mode"), gtext("Difference"), gtext("Informal"), gtext("Critical"));
-		$reqdfieldst = explode(" ", "numericint string numericint numericint numericint");
+		$reqdfields = ['interval','powermode','temp_diff','temp_info','temp_crit'];
+		$reqdfieldsn = [gtext('Interval'),gtext('Power Mode'),gtext('Difference'),gtext('Informal'),gtext('Critical')];
+		$reqdfieldst = ['numericint','string','numericint','numericint','numericint'];
 
 		if (isset($_POST['email_enable']) && $_POST['email_enable']) {
-			$reqdfields = array_merge($reqdfields, array("email_to"));
-			$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("To email")));
-			$reqdfieldst = array_merge($reqdfieldst, array("string"));
+			$reqdfields = array_merge($reqdfields, ['email_to']);
+			$reqdfieldsn = array_merge($reqdfieldsn, [gtext('To Email Address')]);
+			$reqdfieldst = array_merge($reqdfieldst, ['string']);
 		}
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -98,15 +98,9 @@ if ($_POST) {
 		}
 	}
 }
-
-if (!isset($config['disks']['disk']) || !is_array($config['disks']['disk']))
-	$config['disks']['disk'] = array();
-
-if (!isset($config['smartd']['selftest']) || !is_array($config['smartd']['selftest']))
-	$config['smartd']['selftest'] = array();
-
-$a_selftest = &$config['smartd']['selftest'];
-$a_type = array( "S" => "Short Self-Test", "L" => "Long Self-Test", "C" => "Conveyance Self-Test", "O" => "Offline Immediate Test");
+array_make_branch($config,'disks','disk');
+$a_selftest = &array_make_branch($config,'smartd','selftest');
+$a_type = ['S' => gtext('Short Self-Test'),'L' => gtext('Long Self-Test'),'C' => gtext('Conveyance Self-Test'),'O' => gtext('Offline Immediate Test')];
 
 if (isset($_GET['act']) && $_GET['act'] === "del") {
 	if ($_GET['uuid'] === "all") {
@@ -143,7 +137,7 @@ function smartssd_process_updatenotification($mode, $data) {
 	return $retval;
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -218,13 +212,13 @@ function enable_change(enable_change) {
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php
 					html_titleline_checkbox("enable", gtext("Self-Monitoring, Analysis & Reporting Technology"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(this)");
-					html_inputbox("interval", gtext("Check interval"), $pconfig['interval'], gtext("Sets the interval between disk checks to N seconds. The minimum allowed value is 10."), true, 5);
+					html_inputbox("interval", gtext("Interval"), $pconfig['interval'], gtext("Set interval between disk checks to N seconds. The minimum allowed value is 10."), true, 5);
 					?>
 					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("Power mode");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Power Mode");?></td>
 						<td width="78%" class="vtable">
 							<select name="powermode" class="formfld" id="powermode">
-								<?php $types = explode(" ", "Never Sleep Standby Idle"); $vals = explode(" ", "never sleep standby idle");?>
+								<?php $types = ['Never','Sleep','Standby','Idle']; $vals = ['never','sleep','standby','idle'];?>
 								<?php $j = 0; for ($j = 0; $j < count($vals); $j++):?>
 								<option value="<?=$vals[$j];?>" <?php if ($vals[$j] == $pconfig['powermode']) echo "selected=\"selected\"";?>><?=htmlspecialchars($types[$j]);?></option>
 								<?php endfor;?>
@@ -270,7 +264,7 @@ function enable_change(enable_change) {
 					<?php html_separator();?>
 					<?php html_titleline(gtext("Self-tests Management"));?>
 					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gtext("Scheduled tests");?></td>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Scheduled Tests");?></td>
 						<td width="78%" class="vtable">
 							<table width="100%" border="0" cellpadding="0" cellspacing="0">
 								<tr>
@@ -313,8 +307,8 @@ function enable_change(enable_change) {
 					<?php
 					html_separator();
 					html_titleline_checkbox("email_enable", gtext("Email Report"), !empty($pconfig['email_enable']) ? true : false, gtext("Activate"), "enable_change(this)");
-					html_inputbox("email_to", gtext("To email"), !empty($pconfig['email_to']) ? $pconfig['email_to'] : "", sprintf("%s %s", gtext("Destination email address."), gtext("Separate email addresses by semi-colon.")), true, 40);
-					html_checkbox("email_testemail", gtext("Test email"), !empty($pconfig['email_testemail']) ? true : false, gtext("Send a TEST warning email on startup."));
+					html_inputbox("email_to", gtext("To Email Address"), !empty($pconfig['email_to']) ? $pconfig['email_to'] : "", sprintf("%s %s", gtext("Destination email address."), gtext("Separate email addresses by semi-colon.")), true, 40);
+					html_checkbox("email_testemail", gtext("Test Email"), !empty($pconfig['email_testemail']) ? true : false, gtext("Send a TEST warning email on startup."));
 					?>
 				</table>
 				<div id="submit">
@@ -323,7 +317,7 @@ function enable_change(enable_change) {
 				<div id="remarks">
 					<?php html_remark("note", gtext("Note"), gtext("Activate email report if you want to be notified if a failure or a new error has been detected, or if a S.M.A.R.T. command to a disk fails."));?>
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
@@ -333,4 +327,4 @@ function enable_change(enable_change) {
 enable_change(false);
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

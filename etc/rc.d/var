@@ -6,13 +6,13 @@
 #
 # Populate /var directory
 #
-# $FreeBSD: src/etc/rc.d/var
+# $FreeBSD: /etc/rc.d/var	revision 299839
 # Changes: - Remove useless code
 #    ToDo: - Relocate code to populate /var from /etc/rc to this file ASAP
 #
 
 # PROVIDE: var
-# REQUIRE: mountcritlocal zfs
+# REQUIRE: mountcritlocal
 
 # NFS /var is not supported, unless NFS /var is part of diskless NFS /
 
@@ -45,18 +45,11 @@ PLATFORM=`/bin/cat /etc/platform`
 case "${varmfs}" in
 [Yy][Ee][Ss])
 	if [ ${BOOT_LOWMEM} -ne 0 ]; then
-		xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 4`
-		#/sbin/newfs -U -t -m2 -o space /dev/${xmd} >/dev/null
-		/sbin/newfs -U -t /dev/${xmd} >/dev/null
-		/sbin/mount -o noatime,acls /dev/${xmd} /var
-		/sbin/xmdconfig -m -c 4 -u ${xmd}
+		mount_md ${varsize} /var "${varmfs_flags}"
 	else
 		case ${PLATFORM} in
 		*-embedded)
-			xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 9`
-			/sbin/newfs -U -t /dev/${xmd} >/dev/null
-			/sbin/mount -o noatime,acls /dev/${xmd} /var
-			/sbin/xmdconfig -m -c 1 -u ${xmd}
+			mount_md ${varsize} /var "${varmfs_flags}"
 			;;
 		*)
 			mount_md ${varsize} /var "${varmfs_flags}"
@@ -73,17 +66,11 @@ case "${varmfs}" in
 		rmdir /var/.diskless
 	else
 		if [ ${BOOT_LOWMEM} -ne 0 ]; then
-			xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 4`
-			/sbin/newfs -U -t /dev/${xmd} >/dev/null
-			/sbin/mount -o noatime,acls /dev/${xmd} /var
-			/sbin/xmdconfig -m -c 4 -u ${xmd}
+			mount_md ${varsize} /var "${varmfs_flags}"
 		else
 			case ${PLATFORM} in
 			*-embedded)
-				xmd=`/sbin/xmdconfig -a -s ${varsize} -t lz4 -c 9`
-				/sbin/newfs -U -t /dev/${xmd} >/dev/null
-				/sbin/mount -o noatime,acls /dev/${xmd} /var
-				/sbin/xmdconfig -m -c 1 -u ${xmd}
+				mount_md ${varsize} /var "${varmfs_flags}"
 				;;
 			*)
 				mount_md ${varsize} /var "${varmfs_flags}"
@@ -95,6 +82,10 @@ case "${varmfs}" in
 	fi
 esac
 
+
+# If we have an empty looking /var, populate it, but only if we have
+# /usr available.  Hopefully, we'll eventually find a workaround, but
+# in realistic diskless setups, we're probably ok.
 case "${populate_var}" in
 [Yy][Ee][Ss])
 	populate_var

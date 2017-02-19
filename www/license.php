@@ -34,19 +34,19 @@
 // Configure page permission
 $pgperm['allowuser'] = TRUE;
 
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Help"), gtext("License & Credits"));
+$pgtitle = [gtext('Help'), gtext('License & Credits')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabcont">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<?php html_titleline(gtext("License"));?>
-			<tr>
-<td class="listt">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+		<?php html_titleline(gtext("License"));?>
+	<tr>
+	<td class="listt">
 	     <p><strong>NAS4Free is Copyright &copy; 2012-2017 The NAS4Free Project
               (<a href="mailto:info@nas4free.org">info@nas4free.org</a>).<br />
               All rights reserved.</strong></p>
@@ -77,15 +77,14 @@ $pgtitle = array(gtext("Help"), gtext("License & Credits"));
               <p>The views and conclusions contained in the software and documentation are those of the authors and should<br /> 
                not be interpreted as representing official policies, either expressed or implied, of the NAS4Free Project.</p>
 	</td>
-							
-</tr>
+	</tr>
             <?php html_separator();?>
             <?php html_titleline(gtext("Credits"));?>
             <tr>
             	<td class="listt">
             <p>The following persons have contributed to NAS4Free code:</p>
 	    <div>Daisuke Aoyama (<a href="mailto:aoyama@nas4free.org">aoyama@nas4free.org</a>)<br />
-	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer & Project leader</font></em></div><br />
+	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer</font></em></div><br />
 
 	    <div>Michael Schneider (<a href="mailto:ms49434@nas4free.org">ms49434@nas4free.org</a>)<br />
 	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer</font></em></div><br />
@@ -93,12 +92,18 @@ $pgtitle = array(gtext("Help"), gtext("License & Credits"));
 	    <div>Michael Zoon (<a href="mailto:zoon1@nas4free.org">zoon1@nas4free.org</a>)<br />
 	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Developer & Project leader</font></em></div><br />
 
+	    <div>José Rivera (<a href="mailto:joserprg@gmail.com">joserprg@gmail.com</a>)<br />
+	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Contributor</font></em></div><br />
+	      
+	    <div>Andreas Schmidhuber (<a href="mailto:a.schmidhuber@gmail.com">a.schmidhuber@gmail.com</a>)<br />
+	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">Contributor</font></em></div><br />
+
 	    <hr size="1" />
 	    <p>The following persons have contributed to NAS4Free support:</p>
 	    <div>Tony Cat (<a href="mailto:tony1@nas4free.org">tony1@nas4free.org</a>) irc alias tony1<br />
-	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
+	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free" target="_blank">http://webchat.freenode.net</a></font></em></div><br />
 	    <div>Rhett Hillary (<a href="mailto:siftu@nas4free.org">siftu@nas4free.org</a>) irc alias SIFTU<br />
-	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
+	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free" target="_blank">http://webchat.freenode.net</a></font></em></div><br />
 
 	    <hr size="1" />
 	    <p>The following persons have contributed to NAS4Free documentation and/or webgui translations:</p>
@@ -147,7 +152,7 @@ $pgtitle = array(gtext("Help"), gtext("License & Credits"));
 	    <hr size="1" />
 	      <p>The following persons have contributed to NAS4Free in the past:</p>
 	    <div>Samuel Tunis (<a href="mailto:killermist@gmail.com">killermist@gmail.com</a>) irc alias killermist<br />
-	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc #nas4free|IRC Freenode <a href="http://webchat.freenode.net/?channels=#nas4free">http://webchat.freenode.net</a></font></em></div><br />
+	      &nbsp;&nbsp;&nbsp;&nbsp;<em><font color="#666666">User guide and Live support on irc</font></em></div><br />
 	</td>
 </tr>
 	    <?php html_separator();?>
@@ -218,7 +223,6 @@ $pgtitle = array(gtext("Help"), gtext("License & Credits"));
 	    <p> MiniDLNA - Media server software, with the aim of being fully compliant with DLNA/UPnP-AV clients. (<a href="https://sourceforge.net/projects/minidlna/" target="_blank">https://sourceforge.net/projects/minidlna</a>)<br />
 	    Copyright &copy; 2008-2015  Justin Maggard. All Rights Reserved.</p>
 
-
 	    <p> mt-daapd - Multithread daapd Apple iTunes server (<a href="http://www.fireflymediaserver.org" target="_blank">http://www.fireflymediaserver.org</a>)<br />
 	    Copyright &copy; 2003 Ron Pedde (<a href="mailto:ron@pedde.com">ron@pedde.com</a>). All Rights Reserved.</p>
 
@@ -240,6 +244,9 @@ $pgtitle = array(gtext("Help"), gtext("License & Credits"));
 
 	    <p> XMLStarlet - Command Line XML Toolkit (<a href="http://xmlstar.sourceforge.net" target="_blank">http://xmlstar.sourceforge.net</a>)<br />
 	    Copyright &copy; 2002 Mikhail Grushinskiy. All Rights Reserved.</p>
+
+	    <p> Spinner.js - Command Line XML Toolkit (<a href="https://github.com/fgnass/spin.js" target="_blank">https://github.com/fgnass/spin.js</a>)<br />
+	    Copyright &copy; 2011-2015 Felix Gnass. All Rights Reserved.</p>    
 
 	    <p> sipcalc (<a href="http://www.routemeister.net/projects/sipcalc/" target="_blank">http://www.routemeister.net/projects/sipcalc</a>)<br />
 	    Copyright &copy; 2003 Simon Ekstrand. All Rights Reserved.</p>
@@ -308,4 +315,4 @@ $pgtitle = array(gtext("Help"), gtext("License & Credits"));
   </td>
 </tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

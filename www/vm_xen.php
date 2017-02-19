@@ -31,33 +31,25 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("VM"), gtext("Xen"));
+$a_vms = &array_make_branch($config,'xen','vms','param');
+$a_bridge = &array_make_branch($config,'vinterfaces','bridge');
 
-if (!isset($config['xen']['vms']['param']) || !is_array($config['xen']['vms']['param']))
-	$config['xen']['vms']['param'] = array();
-
-if (!isset($config['vinterfaces']['bridge']) || !is_array($config['vinterfaces']['bridge']))
-	$config['vinterfaces']['bridge'] = array();
-
-$a_vms = &$config['xen']['vms']['param'];
-
-$a_bridge = &$config['vinterfaces']['bridge'];
-array_sort_key($a_bridge, "if");
-
-if (!sizeof($a_bridge)) {
+if(empty($a_bridge)):
 	$errormsg = gtext('No configured bridge interfaces.')
 		. ' '
 		. '<a href="' . 'interfaces_bridge.php' . '">'
 		. gtext('Please add a bridge interface first.')
 		. '</a>';
-}
+else:
+	array_sort_key($a_bridge, "if");
+endif;
 
 // js button handler
 if (is_ajax()) {
-	$result = array();
+	$result = [];
 	$action = $_GET['action'];
 	$uuid = $_GET['uuid'];
 
@@ -251,7 +243,7 @@ function create_vm_config($vmuuid) {
 	}
 
 	// VIF
-	$vif = array();
+	$vif = [];
 	$vifmodel = "";
 	if ($vm['type'] == "hvm") {
 		if (isset($vm['nestedhvm'])) {
@@ -270,7 +262,7 @@ function create_vm_config($vmuuid) {
 	fprintf($fp, "vif = [ %s ]\n", implode(',', $vif));
 
 	// DISK
-	$disk = array();
+	$disk = [];
 	if ($vm['type'] == "pv") {
 		if (!empty($vm['disk1']))
 			$disk[] = sprintf("'%s,raw,xvda,w'", $vm['disk1']);
@@ -351,8 +343,9 @@ function create_vm_config($vmuuid) {
 	fclose($fp);
 	return $cfgname;
 }
+$pgtitle = [gtext('Virtualization'),gtext('Xen')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">//<![CDATA[
 $(document).ready(function(){
 	$('#CreatePV').click(function(){ location.href='vm_xen_pv.php'; });
@@ -513,9 +506,9 @@ $(document).ready(function(){
 	  <button type="button" id="CreatePV" class="formbtn"><?=gtext("Create PV Guest");?></button>
 	  <button type="button" id="CreateHVM" class="formbtn"><?=gtext("Create HVM Guest");?></button>
 	</div>
-	<?php include("formend.inc");?>
+	<?php include 'formend.inc';?>
       </form>
     </td>
   </tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

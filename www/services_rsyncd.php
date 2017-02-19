@@ -31,26 +31,21 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Services"), gtext("Rsync"), gtext("Server"), gtext("Settings"));
-
-if (!isset($config['access']['user']) || !is_array($config['access']['user']))
-	$config['access']['user'] = array();
-
-array_sort_key($config['access']['user'], "login");
+array_make_branch($config,'access','user');
+array_sort_key($config['access']['user'],'login');
 $a_user = &$config['access']['user'];
-
-if (!isset($config['rsync']) || !is_array($config['rsync']))
-	$config['rsync'] = array();
+array_make_branch($config,'rsyncd');
 
 $pconfig['enable'] = isset($config['rsyncd']['enable']);
 $pconfig['port'] = $config['rsyncd']['port'];
 $pconfig['motd'] = base64_decode($config['rsyncd']['motd']);
 $pconfig['rsyncd_user'] = $config['rsyncd']['rsyncd_user'];
-if (isset($config['rsyncd']['auxparam']) && is_array($config['rsyncd']['auxparam']))
-	$pconfig['auxparam'] = implode("\n", $config['rsyncd']['auxparam']);
+if(isset($config['rsyncd']['auxparam']) && is_array($config['rsyncd']['auxparam'])):
+	$pconfig['auxparam'] = implode("\n",$config['rsyncd']['auxparam']);
+endif;
 
 if ($_POST) {
 	unset($input_errors);
@@ -58,9 +53,9 @@ if ($_POST) {
 
 	if (isset($_POST['enable']) && $_POST['enable']) {
 		// Input validation.
-		$reqdfields = explode(" ", "rsyncd_user port");
-		$reqdfieldsn = array(gtext("Map to user"), gtext("TCP port"));
-		$reqdfieldst = explode(" ", "string port");
+		$reqdfields = ['rsyncd_user','port'];
+		$reqdfieldsn = [gtext('Map to User'),gtext('TCP Port')];
+		$reqdfieldst = ['string','port'];
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
@@ -92,8 +87,9 @@ if ($_POST) {
 		$savemsg = get_std_save_message($retval);
 	}
 }
+$pgtitle = [gtext('Services'),gtext('Rsync'),gtext('Server'),gtext('Settings')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -131,7 +127,7 @@ function enable_change(enable_change) {
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline_checkbox("enable", gtext("Rsync"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");?>
 					<tr>
-						<td valign="top" class="vncellreq"><?=gtext("Map to user");?></td>
+						<td valign="top" class="vncellreq"><?=gtext("Map to User");?></td>
 						<td class="vtable">
 							<select name="rsyncd_user" class="formfld" id="rsyncd_user">
 								<option value="ftp" <?php if ("ftp" === $pconfig['rsyncd_user']) echo "selected=\"selected\"";?>><?=gtext("Guest");?></option>
@@ -142,10 +138,10 @@ function enable_change(enable_change) {
 						</td>
 					</tr>
 					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("TCP port");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("TCP Port");?></td>
 						<td width="78%" class="vtable">
 							<input name="port" type="text" class="formfld" id="port" size="20" value="<?=htmlspecialchars($pconfig['port']);?>" />
-							<br /><?=gtext("Alternate TCP port. Default is 873");?>
+							<br /><?=gtext("Alternate TCP port. (Default is 873).");?>
 						</td>
 					</tr>
 					<?php
@@ -155,13 +151,13 @@ function enable_change(enable_change) {
 						. '" target="_blank">'
 						. gtext('Please check the documentation')
 						. '</a>.';
-					html_textarea("auxparam", gtext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gtext("These parameters will be added to [global] settings in %s."), "rsyncd.conf") . " " . $helpinghand, false, 65, 5, false, false);
+					html_textarea("auxparam", gtext("Additional Parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gtext("These parameters will be added to [global] settings in %s."), "rsyncd.conf") . " " . $helpinghand, false, 65, 5, false, false);
 					?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" onclick="enable_change(true)" />
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
@@ -171,4 +167,4 @@ function enable_change(enable_change) {
 enable_change(false);
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

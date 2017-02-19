@@ -26,3 +26,12 @@ fi
 	while read _cmd; do
 		eval ${_cmd}
 	done
+
+# Execute all commands from config 2.8.
+/usr/local/bin/xml sel -t -m "//rc/param[typeid=3 and enable]/value" \
+	-v "." \
+	-i "position() <= last()" -n -b \
+	${configxml_file} | /usr/local/bin/xml unesc | \
+	while read _cmd; do
+		eval ${_cmd}
+	done

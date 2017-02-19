@@ -38,7 +38,7 @@ require_once("./_include/permissions.php");
 
 function dir_list($dir) {            // make list of directories
     // this list is used to copy/move items to a specific location
-    $dir_list=array();
+    $dir_list = [];
     $handle = @opendir(get_abs_dir($dir));
     if($handle===false) return;        // unable to open dir
 
@@ -81,7 +81,7 @@ function copy_move_items ($dir)
 {
     // copy and move are only allowed if the user may read and change files
     if ($GLOBALS["action"] == "copy"
-    && !permissions_grant_all($dir, NULL, array("read", "create")))
+    && !permissions_grant_all($dir, NULL, ["read","create"]))
         show_error($GLOBALS["error_msg"]["accessfunc"]);
     if ($GLOBALS["action"] == "move"
     && !permissions_grant($dir, NULL, "change"))

@@ -31,16 +31,14 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Services"),gtext("NFS"));
-
-if (!isset($config['nfsd']['share']) || !is_array($config['nfsd']['share']))
-	$config['nfsd']['share'] = array();
-
-array_sort_key($config['nfsd']['share'], "path");
-$a_share = &$config['nfsd']['share'];
+$a_share = &array_make_branch($config,'nfsd','share');
+if(empty($a_share)):
+else:
+	array_sort_key($a_share,'path');
+endif;
 
 $pconfig['enable'] = isset($config['nfsd']['enable']);
 $pconfig['v4enable'] = isset($config['nfsd']['v4enable']);
@@ -52,10 +50,9 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	if (isset($_POST['enable']) && $_POST['enable']) {
-		$reqdfields = explode(" ", "numproc");
-		$reqdfieldsn = array(gtext("Number of servers"));
-		$reqdfieldst = explode(" ", "numeric");
-
+		$reqdfields = ['numproc'];
+		$reqdfieldsn = [gtext('Servers')];
+		$reqdfieldst = ['numeric'];
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
@@ -89,8 +86,9 @@ if ($_POST) {
 		$savemsg = get_std_save_message($retval);
 	}
 }
+$pgtitle = [gtext('Services'),gtext('NFS')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -116,13 +114,13 @@ function enable_change(enable_change) {
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline_checkbox("enable", gtext("Network File System"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");?>
-					<?php html_inputbox("numproc", gtext("Number of servers"), $pconfig['numproc'], gtext("Specifies how many servers to create.") . " " . gtext("There should be enough to handle the maximum level of concurrency from its clients, typically four to six."), false, 2);?>
+					<?php html_inputbox("numproc", gtext("Servers"), $pconfig['numproc'], gtext("Specifies how many servers to create.") . " " . gtext("There should be enough to handle the maximum level of concurrency from its clients, typically four to six."), false, 2);?>
 					<?php html_checkbox("v4enable", gtext("NFSv4"), !empty($pconfig['v4enable']) ? true : false, gtext("Enable NFSv4 server."), "", false);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" onclick="enable_change(true)" />
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
@@ -132,4 +130,4 @@ function enable_change(enable_change) {
 enable_change(false);
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

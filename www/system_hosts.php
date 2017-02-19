@@ -31,27 +31,28 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Network"), gtext("Hosts"));
+$pgtitle = [gtext('Network'),gtext('Hosts')];
 
 if ($_POST) {
-	if (isset($_POST['Submit']) && $_POST['Submit']) {
+	if(isset($_POST['Submit']) && $_POST['Submit']):
 		unset($input_errors);
 		$pconfig = $_POST;
-
-		if (empty($input_errors)) {
-			unset($config['system']['hostsacl']['rule']);
-			foreach (explode("\n", $_POST['hostsacl']) as $rule) {
-				$rule = trim($rule, "\t\n\r");
-				if (!empty($rule))
-					$config['system']['hostsacl']['rule'][] = $rule;
-			}
-
+		if(empty($input_errors)):
+			if(isset($config['system']['hostsacl']['rule'])):
+				unset($config['system']['hostsacl']['rule']);
+			endif;
+			$grid_hostacl = &array_make_branch($config,'system','hostsacl','rule');
+			foreach(explode("\n",$_POST['hostsacl']) as $rule):
+				$rule = trim($rule,"\t\n\r");
+				if(!empty($rule))
+					$grid_hostacl[] = $rule;
+			endforeach;
 			write_config();
-		}
-	}
+		endif;
+	endif;
 
 	if ((isset($_POST['apply']) && $_POST['apply']) || (isset($_POST['Submit']) && $_POST['Submit'])) {
 		$retval = 0;
@@ -68,19 +69,13 @@ if ($_POST) {
 	}
 }
 
-if (!isset($config['system']['hosts']) || !is_array($config['system']['hosts']))
-	$config['system']['hosts'] = array();
-
-if (!isset($config['system']['hostsacl']['rule']) || !is_array($config['system']['hostsacl']['rule']))
-	$config['system']['hostsacl']['rule'] = array();
-
-
-array_sort_key($config['system']['hosts'], "name");
-
-$a_hosts = $config['system']['hosts'];
-
-if (is_array($config['system']['hostsacl']['rule']))
-	$pconfig['hostsacl'] = implode("\n", $config['system']['hostsacl']['rule']);
+$a_hosts = &array_make_branch($config,'system','hosts');
+if(empty($a_hosts)):
+else:
+	array_sort_key($a_hosts,'name');
+endif;
+array_make_branch($config,'system','hostsacl','rule');
+$pconfig['hostsacl'] = implode("\n", $config['system']['hostsacl']['rule']);
 
 if (isset($_GET['act']) && $_GET['act'] === "del") {
 	updatenotify_set("hosts", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
@@ -109,7 +104,7 @@ function hosts_process_updatenotification($mode, $data) {
 	return $retval;
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabcont">
@@ -119,12 +114,12 @@ function hosts_process_updatenotification($mode, $data) {
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 				<?php html_titleline2(gtext('Hosts'), 2);?>
 					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gtext("Hostname database");?></td>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Hostname Database");?></td>
 						<td width="78%" class="vtable">
 							<table width="100%" border="0" cellpadding="0" cellspacing="0">
 								<tr>
 									<td width="25%" class="listhdrlr"><?=gtext("Hostname");?></td>
-									<td width="30%" class="listhdrr"><?=gtext("IP address");?></td>
+									<td width="30%" class="listhdrr"><?=gtext("IP Address");?></td>
 									<td width="35%" class="listhdrr"><?=gtext("Description");?></td>
 									<td width="10%" class="list"></td>
 								</tr>
@@ -158,14 +153,14 @@ function hosts_process_updatenotification($mode, $data) {
 					$helpinghand = '<a href="' . 'http://www.freebsd.org/doc/en/books/handbook/tcpwrappers.html' . '" target="_blank">'
 						. gtext('Check the FreeBSD documentation for detailed information about TCP Wrappers')
 						. '</a>.';
-					html_textarea("hostsacl", gtext("Host access control"), $pconfig['hostsacl'], gtext("The basic configuration usually takes the form of 'daemon : address : action'. Where daemon is the daemon name of the service started. The address can be a valid hostname, an IP address or an IPv6 address enclosed in brackets. The action field can be either allow or deny to grant or deny access appropriately. Keep in mind that configuration works off a first rule match semantic, meaning that the configuration file is scanned in ascending order for a matching rule. When a match is found the rule is applied and the search process will halt.") . " " . $helpinghand, false, 80, 8, false, false);?>
+					html_textarea("hostsacl", gtext("Host Access Control"), $pconfig['hostsacl'], gtext("The basic configuration usually takes the form of 'daemon : address : action'. Where daemon is the daemon name of the service started. The address can be a valid hostname, an IP address or an IPv6 address enclosed in brackets. The action field can be either allow or deny to grant or deny access appropriately. Keep in mind that configuration works off a first rule match semantic, meaning that the configuration file is scanned in ascending order for a matching rule. When a match is found the rule is applied and the search process will halt.") . " " . $helpinghand, false, 80, 8, false, false);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save and Restart");?>" />
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

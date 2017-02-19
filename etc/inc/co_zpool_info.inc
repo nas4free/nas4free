@@ -509,7 +509,176 @@ class co_zpool_info {
 		$this->get_raidz_data_devices($a_ret);
 		return $a_ret;
 	}
-	public function scan() {
+	private function zdb_row_analyze(string $row) {
+		$indent = 0;
+		$tag = '';
+		$value = '';
+		$a_ret = [];
+
+		if(preg_match('~\A(\s*)(.+)\z~',$row,$a_split)): // split string into leading blanks and rest of string, ignore empty strings
+			$indent = strlen($a_split[1]);
+			if(preg_match('~\A(\S+):\s(.*)\z~',$a_split[2],$a_tagval)): // search for tag with val
+				$tag = $a_tagval[1];
+				$value = trim($a_tagval[2],"'"); // strip surrounding singe quotes
+			elseif(preg_match('~\A(.+):\z~',$a_split[2],$a_tag)): // seach for tag without val
+				if(preg_match('~\A([^\[]+)~',$a_tag[1],$a_brackets)): // remove brackets
+					$tag = $a_brackets[1];
+				endif;
+			elseif(preg_match('~\A(.*)(?<!:)\z~',$a_split[2],$a_prop)): // search for property
+				$tag = $a_prop[1];
+			endif;
+		endif;
+		$a_ret['indent'] = $indent;
+		$a_ret['tag'] = htmlspecialchars($tag,ENT_XML1);
+		$a_ret['value'] = htmlspecialchars($value,ENT_XML1);
+		return $a_ret;
+	}
+	private function inject_more_pool_info(array $a_pool) {
+		// read pool status and add additional information to the pool
+		foreach($a_pool as $r_pool):
+			$x_pool = sprintf('/pools/pool[pool_guid="%s"]',$r_pool['pool.guid']);
+			if(false === ($a_pool = $this->a_xml->xpath($x_pool))):
+				continue;
+			endif;
+			$cmd = sprintf('zpool status %s', escapeshellarg($r_pool['pool.name']));
+			$a_row = [];
+			$retval = 0;
+			mwexec2($cmd, $a_row, $retval);
+			// amend pool
+			foreach($a_pool as $r_pool):
+				// add spares
+				$n_spare = 0;
+				$spares_root = $r_pool->addChild('spares');
+				foreach($a_row as $r_row):
+					$a_match = [];
+					if(preg_match_all('/^\t(\s*)spares$/',$r_row,$a_match)):
+						$n_spare = strlen($a_match[1][0]) + 2;
+						continue;
+					endif;
+					if(0 < $n_spare): // read all lines until indent no longer matches
+						$a_match = [];
+						if(preg_match_all('/^\t(\s+)(\S+)/',$r_row,$a_match)):
+							if($n_spare === strlen($a_match[1][0])):
+								$spare = htmlspecialchars($a_match[2][0],ENT_XML1,'UTF-8');
+								$child_root = $spares_root->addChild('children');
+								$child_root->addChild('type','disk'); // it is not confirmed that the spare device is a disk
+								$child_root->addChild('guid',uuid());
+								$child_root->addChild('path',sprintf('/dev/%s',$spare));
+								$child_root->addChild('phys_path',sprintf('/dev/%s',$spare));
+								$child_root->addChild('is_spare','1');
+							endif;
+						else:
+							break;
+						endif;
+					endif;
+				endforeach;
+				// add cache
+				$n_cache = 0;
+				$caches_root = $r_pool->addChild('caches');
+				foreach($a_row as $r_row):
+					$a_match = [];
+					if(preg_match_all('/^\t(\s*)cache$/',$r_row,$a_match)):
+						$n_cache = strlen($a_match[1][0]) + 2;
+						continue;
+					endif;
+					if(0 < $n_cache): // read all lines until indent no longer matches
+						$a_match = [];
+						if(preg_match_all('/^\t(\s+)(\S+)/',$r_row,$a_match)):
+							if($n_cache === strlen($a_match[1][0])):
+								$cache = htmlspecialchars($a_match[2][0],ENT_XML1,'UTF-8');
+								$child_root = $caches_root->addChild('children');
+								$child_root->addChild('type','disk'); // it is not confirmed that the spare device is a disk
+								$child_root->addChild('guid',uuid()); // temporary ID
+								$child_root->addChild('path',sprintf('/dev/%s',$cache));
+								$child_root->addChild('phys_path',sprintf('/dev/%s',$cache));
+								$child_root->addChild('is_cache','1');
+								$child_root->addChild('x_type','CACHE');
+							endif;
+						else:
+							break;
+						endif;
+					endif;
+				endforeach;
+			endforeach;
+		endforeach;
+		return true;
+	}
+	private function adjust_is_log() {
+		// vdev_tree: set is_log = 0 on all vdev that are not log vdevs or single log disks
+		if($this->configuration_loaded()) {
+			$x_device = '/pools/pool/vdev_tree/children[is_log="0"]/.//children[not(is_log)]';		
+			$a_device = $this->a_xml->xpath($x_device);
+			if(false !== $a_device) {
+				foreach($a_device as $r_device) {
+					$r_device->addChild('is_log', '0');
+				}
+			}
+		}
+		// vdev_tree: set is_log = 1 on all vdev that are log vdevs or single log disks
+		if($this->configuration_loaded()) {
+			$x_device = '/pools/pool/vdev_tree/children[is_log="1"]/.//children[not(is_log)]';		
+			$a_device = $this->a_xml->xpath($x_device);
+			if(false !== $a_device) {
+				foreach($a_device as $r_device) {
+					$r_device->addChild('is_log', '1');
+				}
+			}
+		}
+		return true;
+	}
+	public function scan_cache() {
+		// init object related information
+		$this->a_xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><pools/>');
+		
+		$a_stack = [];
+		$n_stack = 0;
+		$a_stack[$n_stack] = ['element' => $this->a_xml,'indent' => -1];
+		$candidate = [];
+
+		// read cached zfs configuration
+		$cmd = '/usr/sbin/zdb -C';
+		$a_row = [];
+		$retval = 0;
+		mwexec2($cmd, $a_row, $retval);
+		if($retval !== 0): // zdb command error, no pool information is available
+			return;
+		endif;
+
+		$old_indent = 0;  // 1st row is expected to have an indent of 0
+		foreach($a_row as &$r_row):
+			$new_item = $this->zdb_row_analyze($r_row);
+			$new_indent = $new_item['indent'];
+			$tag = $new_item['tag'];
+			$val = $new_item['value'];
+			if(!preg_match('~\S~',$tag)):
+				continue;
+			endif;
+			if(0 === $new_indent):
+				$tag = 'pool';
+			endif;
+			switch($new_indent <=> $old_indent):
+				case 0: // same indent
+					break;
+				case 1: // indent is greater than old indent
+					$n_stack++;
+					$a_stack[$n_stack] = $candidate;
+					break;
+				case -1: // indent is lesser than old indent
+					while(($n_stack >= 0) && ($a_stack[$n_stack]['indent'] >= $new_indent)): // pop stack
+//						array_pop($a_stack);
+						$n_stack--;
+					endwhile;
+					break;
+			endswitch;
+			$new_element = $a_stack[$n_stack]['element']->addChild($tag,$val);
+			$candidate = ['element' => $new_element, 'indent' => $new_indent];
+			$old_indent = $new_indent;
+		endforeach;
+		unset($r_row); // $r_row is no longer needed
+		unset($a_row); // $a_row is no longer needed
+	return;
+	}
+	public function scan_ondisk() {
 		$tag_open = [];
 		$tag_index = -1;
 		$c_xml = '';
@@ -703,35 +872,19 @@ class co_zpool_info {
 		}
 		libxml_clear_errors();
 		libxml_use_internal_errors($previous_libxml_use_internal_errors);
-/*
- * adjust some data 
- */
-		// flags (there's only one flag per child):
-		// is_log is "1": log vdev or single log disk
-		// is_log is "0": data vdev or single data disk
-		// is_cache is "1": single cache  disk
-		// is_spare is "1": single spare disk
-		// 
-		// vdev_tree: set is_log = 0 on all vdev that are not log vdevs or single log disks
-		if($this->configuration_loaded()) {
-			$x_device = '/pools/pool/vdev_tree/children[is_log="0"]/.//children[not(is_log)]';		
-			$a_device = $this->a_xml->xpath($x_device);
-			if(false !== $a_device) {
-				foreach($a_device as $r_device) {
-					$r_device->addChild('is_log', '0');
-				}
-			}
-		}
-		// vdev_tree: set is_log = 1 on all vdev that are log vdevs or single log disks
-		if($this->configuration_loaded()) {
-			$x_device = '/pools/pool/vdev_tree/children[is_log="1"]/.//children[not(is_log)]';		
-			$a_device = $this->a_xml->xpath($x_device);
-			if(false !== $a_device) {
-				foreach($a_device as $r_device) {
-					$r_device->addChild('is_log', '1');
-				}
-			}
-		}
 		return true;
+	}
+	public function scan() {
+		global $config;
+		if(isset($config['zfs']['settings']['scanondisk'])):
+			$this->scan_ondisk();
+		else:
+			$this->scan_cache();
+			if($this->configuration_loaded()):
+				$a_pool = $this->get_all_pools(); // get all pools
+				$this->inject_more_pool_info($a_pool);
+			endif;
+		endif;
+		$this->adjust_is_log();
 	}
 }

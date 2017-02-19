@@ -32,23 +32,23 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("config.inc");
-require_once("functions.inc");
-require_once("install.inc");
-require_once("util.inc");
-require_once("tui.inc");
+require_once 'config.inc';
+require_once 'functions.inc';
+require_once 'install.inc';
+require_once 'util.inc';
+require_once 'tui.inc';
 
 // Default size of slice/partition 1 (used for OS)
 $minpart1size = $g_install['part1size_full'];
 $swapsize =  $g_install['default_swap'];
 
 // Default partition layout
-$partlayout = array(
-	array("partition" => 1, "fstype" => "boot", "size" => "512k", "volname" => "boot"),
-	array("partition" => 2, "fstype" => "ufs",  "size" => $minpart1size, "volname" => "root"),
-	array("partition" => 3, "fstype" => "swap", "size" => $swapsize, "volname" => "swap"),
- 	array("partition" => 4, "fstype" => "ufs",  "size" => "*", "volname" => "data")
-);
+$partlayout = [
+	["partition" => 1, "fstype" => "boot", "size" => "512k", "volname" => "boot"],
+	["partition" => 2, "fstype" => "ufs",  "size" => $minpart1size, "volname" => "root"],
+	["partition" => 3, "fstype" => "swap", "size" => $swapsize, "volname" => "swap"],
+ 	["partition" => 4, "fstype" => "ufs",  "size" => "*", "volname" => "data"]
+];
 
 // Get product information
 $productname = get_product_name();
@@ -81,9 +81,9 @@ if (0 == count($cdlist)) {
 }
 
 // Display installation medias
-$amenuitem = array();
+$amenuitem = [];
 foreach ($cdlist as $cdromk => $cdromv) {
-	$menuitem = array();
+	$menuitem = [];
 	$menuitem['tag'] = $cdromk;
 	$menuitem['item'] = $cdromv['desc'];
 	$amenuitem[] = $menuitem;
@@ -93,11 +93,11 @@ if (0 != $result)
 	exit(0);
 
 // Display destination medias
-$amenuitem = array();
+$amenuitem = [];
 foreach ($disklist as $diskk => $diskv) {
 	if ($diskk === $cdrom)
 		continue;
-	$menuitem = array();
+	$menuitem = [];
 	$menuitem['tag'] = $diskk;
 	$menuitem['item'] = "{$diskv['size']} <{$diskv['desc']}>";
 	$amenuitem[] = $menuitem;
@@ -144,7 +144,7 @@ if (0 == $result) {
 	} while (!is_numeric($swapsize) || $swapsize < 512);
 
 	// Add swap slice/partition to the partition layout.
-	//$partlayout[] = array("partition" => 3, "fstype" => "swap", "size" => $swapsize, "volname" => "");
+	//$partlayout[] = ["partition" => 3, "fstype" => "swap", "size" => $swapsize, "volname" => ""];
 	$partlayout[2]['size'] = $swapsize;
 }
 

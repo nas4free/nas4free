@@ -31,22 +31,21 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("Access"), gtext("Groups"), isset($uuid) ? gtext("Edit") : gtext("Add"));
+$pgtitle = [gtext('Access'),gtext('Groups'),isset($uuid) ? gtext('Edit') : gtext('Add')];
 
-if (!isset($config['access']['group']) || !is_array($config['access']['group']))
-    $config['access']['group'] = array();
-	
-array_sort_key($config['access']['group'], "name");
-
-$a_group = &$config['access']['group'];
+$a_group = &array_make_branch($config,'access','group');
+if(empty($a_group)):
+else:
+	array_sort_key($a_group,'name');
+endif;
 $a_group_system = system_get_group_list();
 
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_group, "uuid")))) {
@@ -71,10 +70,13 @@ if ($_POST) {
 	}
 
 	// Input validation
-	$reqdfields = explode(" ", "name desc groupid");
-	$reqdfieldsn = array(gtext("Name"),gtext("Description"),gtext("Group ID"));
-	$reqdfieldst = explode(" ", "string string numeric");
-
+	$reqdfields = ['name','groupid','desc'];
+	$reqdfieldsn = [
+		gtext('Name'),
+		gtext('Group ID'),
+		gtext('Description')
+	];
+	$reqdfieldst = ['string','numeric','string'];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
@@ -100,7 +102,7 @@ if ($_POST) {
 	}
 
 	if (empty($input_errors)) {
-		$groups = array();
+		$groups = [];
 		$groups['uuid'] = $_POST['uuid'];
 		$groups['id'] = $_POST['groupid'];
 		$groups['name'] = $_POST['name'];
@@ -145,33 +147,34 @@ function get_nextgroup_id() {
 	return $id;
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabnavtbl">
-			<ul id="tabnav">
-				<li class="tabinact"><a href="access_users.php"><span><?=gtext("Users");?></span></a></li>
-				<li class="tabact"><a href="access_users_groups.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Groups");?></span></a></li>
-			</ul>
-		</td>
-	</tr>
+		<ul id="tabnav">
+			<li class="tabinact"><a href="access_users.php"><span><?=gtext("Users");?></span></a></li>
+			<li class="tabact"><a href="access_users_groups.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Groups");?></span></a></li>
+		</ul>
+	</td>
+</tr>
 	<tr>
 		<td class="tabcont">
-			<form action="access_users_groups_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
-				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_inputbox("name", gtext("Name"), $pconfig['name'], gtext("Group name."), true, 20, isset($uuid) && (FALSE !== $cnid));?>
-					<?php html_inputbox("groupid", gtext("Group ID"), $pconfig['groupid'], gtext("Group numeric id."), true, 20, isset($uuid) && (FALSE !== $cnid));?>
-					<?php html_inputbox("desc", gtext("Description"), $pconfig['desc'], gtext("You may enter a description here for your reference."), true, 48);?>
-				</table>
-				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
-					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
-				</div>
-				<?php include("formend.inc");?>
-			</form>
-		</td>
-	</tr>
+		<form action="access_users_groups_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
+		<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
+			<table width="100%" border="0" cellpadding="6" cellspacing="0">
+			<?php html_titleline(gtext("Group Settings"));?>
+			<?php html_inputbox("name", gtext("Name"), $pconfig['name'], gtext("Enter a group name."), true, 28, isset($uuid) && (FALSE !== $cnid));?>
+			<?php html_inputbox("groupid", gtext("Group ID"), $pconfig['groupid'], gtext("Group numeric id."), true, 12, isset($uuid) && (FALSE !== $cnid));?>
+			<?php html_inputbox("desc", gtext("Description"), $pconfig['desc'], gtext("Enter a group description."), true, 28);?>
+		</table>
+		<div id="submit">
+			<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+			<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
+			<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
+		</div>
+		<?php include 'formend.inc';?>
+		</form>
+	</td>
+</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

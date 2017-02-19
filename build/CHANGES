@@ -1,39 +1,21 @@
-NAS4Free 10.3.0.3 - Pilingitam
-------------------------------
+NAS4Free 11.0.0.4 - Sayyadina
+-----------------------------
 Changes:
-- Upgrade to FreeBSD 10.3-RELEASE-P15.
-- Add search function to Diagnostics|Log.
-- Add bulk delete action to snapshots and other pages.
-- Add configuration option for second UPS system.
-- Add configuration option for tls_certcheck.
-- Add zfs snapshot rollback.
-- Add zpool import using gpt labels / gpt id.
-- Add Zend OPcache module.
-- Add APCu module.
-- Change service Webserver to use FastCGI.
-- Increase allowed length of zfs dataset name and zfs volume name to 60 characters.
-- Add mounting (read-only) support for EXT4 drives.
-- UPS monitoring username & password can be set/changed.
-- Update installer now full gpt supported.
-- Refactoring Webgui parts and replace deprecated php code.
-- sshd Challenge-Response Authentication is now configurable.
-- Rewrite of zpool tools.
-- Upgrade exfat to 1.2.3.
-- Upgrade phpvirtualbox to 5.0-5.
-- Upgrade fusefs-ntfs to 2016.2.22.
-- Upgrade smartmontools to 6.5.
-- Upgrade gzip to 1.8.
-- Upgrade unison to 2.48.4.
-- Upgrade arcconf to 1_8_21375.
-- Upgrade netatalk to 3.1.10.
-- Upgrade jQuery to 3.1.1.
-- Upgrade inadyn-mt to 02.28.10.
-- Upgrade tmux to 2.3.
+- Upgrade to FreeBSD 11.0-RELEASE-P7.
+- Change XMD driver has been replaced for MD.
+- Add system RRDGraphs monitoring.
+- Webgui design improvements.
+- Command Scripts sort capability added.
+- Improved conversion to xml.
+- Improved performance of zfs tools.
+- Improved firmware update procedure.
+- More SMB protocols and configuration options added.
 - Upgrade msmtp to 1.6.6.
+- Upgrade arcconf to v2_02_22404.
 - Upgrade tzdata to 2016j.
 - Upgrade samba to 4.3.13.
 - Upgrade nano to 2.7.4.
-- Upgrade noVNC to 0.6.2.
+- Upgrade novnc to 0.6.2.
 - Upgrade mDNSResponder to 765.30.11.
 - Upgrade libvncserver to 0.9.11.
 - Upgrade lighttpd to 1.4.45.
@@ -46,43 +28,28 @@ Changes:
 - Upgrade dialog to 1.3-20170131.
 - Upgrade e2fsprogs to 1.43.4.
 - Upgrade syncthing to 0.14.23.
-- Upgrade php to 7.0.16.
+- Upgrade php to 7.1.2.
 
 Fixes:
-- Fix prevent deletion of mounted gconcat softraid.
-- Fix broken shadow copy.
-- Fix for rsync over ssh (without deamon).
-- Fix dataset did not always get destroyed on webgui if a share is in usage.
-- Fix missing mimes (translation files) for File Manager (translating needed).
-- Fix firewall rules cannot be moved into the preset rule area.
-- Fix disable fw button not working under certain conditions.
-- Fix importing ZFS datasets and ZFS volumes from different ZFS pools.
-- Fix code format for Swedish file manager.
-- Fix gettext protection against html code injections.
-- Fix issue when reformatting disks.
-- Fix a problem with gpt/labels.
-- Fix Some HGST drive temperatures are not displayed.
-- Fix download log files did not always work with some browsers.
-- Fix some code errors on System|Advanced|Swap.
-- Fix broken log files downloads.
-- Fix test emails could not send as in French WebGUI.
-- Fix change permission of a dataset fails if related pool doesn't use the default mount point.
-- Fix timezone in file manager.
-- Fix websockets-connection drop on mouse events in novnc.
-- Fix reverted libvncserver for proper shutdown vms.
-- Fix zpool tools - support added for pools with more than 10 vdevices.
-- Fix zpool tools - support added for vdevices with more than 10 devices.
-- Fix zpool tools - exception handling.
+- Fix escaped characters in output.
+- Fix support added for pools with more than 10 vdevices.
+- Fix support added for vdevices with more than 10 devices.
+- Fix exception handling improved.
+- Fix config for DNS server configuration.
 - Fix sending reports.
-- Fix allow large file downloads in file manager.
+- Fix proper start nfsd.
+- Fix identify boot/configuration device.
+- Fix create htpasswd file only when web service is enabled.
+- Fix system screensaver.
+- Fix large file downloads in file manager.
 - Fix don't add domain parameter to msmtp configuration when domain is empty.
 
 Permanent restrictions:
-- It is not possible to use virtualbox-ose on 32-bits nas4free, 64-bits only feature.
+- No more x86 versions of NAS4Free 11 series will be made, 32-bits users need 10.3 than.
 - It is not possible to format a SoftRAID disk with MSDOS FAT16/32.
 - It is not possible to encrypt a disk partition, only complete disks are supported.
 - AFP shares with TimeMachine support are limited to max. 4 shares.
-- iperf3 is not backwards compatible with iperf2.x. so you might also upgrade your client.
+- Tool iperf3 is not backwards compatible with iperf2.x. you must upgrade your client.
 
 Known bugs:
 - If DHCP for IPv4 is used, the IPv6 statically configured DNS server will be

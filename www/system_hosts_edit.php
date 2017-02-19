@@ -31,21 +31,21 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("Network"), gtext("Hosts"), isset($uuid) ? gtext("Edit") : gtext("Add"));
+$pgtitle = [gtext('Network'),gtext('Hosts'), isset($uuid) ? gtext('Edit') : gtext('Add')];
 
-if (!isset($config['system']['hosts']) || !is_array($config['system']['hosts']))
-	$config['system']['hosts'] = array();
-
-array_sort_key($config['system']['hosts'], "name");
-$a_hosts = &$config['system']['hosts'];
+$a_hosts = &array_make_branch($config,'system','hosts');
+if(empty($a_hosts)):
+else:
+	array_sort_key($a_hosts,'name');
+endif;
 
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_hosts, "uuid")))) {
 	$pconfig['uuid'] = $a_hosts[$cnid]['uuid'];
@@ -69,9 +69,8 @@ if ($_POST) {
 	}
 
 	// Input validation.
-	$reqdfields = explode(" ", "name address");
-	$reqdfieldsn = array(gtext("Hostname"),gtext("IP address"));
-
+	$reqdfields = ['name','address'];
+	$reqdfieldsn = [gtext('Hostname'),gtext('IP Address')];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (($_POST['name'] && !is_validdesc($_POST['name']))) {
@@ -90,7 +89,7 @@ if ($_POST) {
 	}
 
 	if (empty($input_errors)) {
-		$host = array();
+		$host = [];
 		$host['uuid'] = $_POST['uuid'];
 		$host['name'] = $_POST['name'];
 		$host['address'] = $_POST['address'];
@@ -112,26 +111,26 @@ if ($_POST) {
 	}
 }
 ?>
-<?php include("fbegin.inc"); ?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabcont">
-      <form action="system_hosts_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-      	<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
-        <table width="100%" border="0" cellpadding="6" cellspacing="0">
-				<?php html_titleline2(gtext('Hosts Setup'), 2);?>
-					<?php html_inputbox("name", gtext("Hostname"), $pconfig['name'], gtext("The host name may only consist of the characters a-z, A-Z and 0-9, - , _ and ."), true, 40);?>
-					<?php html_inputbox("address", gtext("IP address"), $pconfig['address'], gtext("The IP address that this hostname represents."), true, 20);?>
-					<?php html_inputbox("descr", gtext("Description"), $pconfig['descr'], gtext("You may enter a description here for your reference."), false, 20);?>
-        </table>
-				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
-					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
-				</div>
-				<?php include("formend.inc");?>
-			</form>
-		</td>
-	</tr>
+	<tr>
+	<td class="tabcont">
+	<form action="system_hosts_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
+	<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
+	<table width="100%" border="0" cellpadding="6" cellspacing="0">
+	<?php html_titleline2(gtext('Hosts Setup'), 2);?>
+		<?php html_inputbox("name", gtext("Hostname"), $pconfig['name'], gtext("The host name may only consist of the characters a-z, A-Z and 0-9, - , _ and ."), true, 40);?>
+		<?php html_inputbox("address", gtext("IP Address"), $pconfig['address'], gtext("The IP address that this hostname represents."), true, 20);?>
+		<?php html_inputbox("descr", gtext("Description"), $pconfig['descr'], gtext("You may enter a description here for your reference."), false, 20);?>
+		</table>
+		<div id="submit">
+		<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+		<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
+		<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
+		</div>
+		<?php include 'formend.inc';?>
+	</form>
+</td>
+</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

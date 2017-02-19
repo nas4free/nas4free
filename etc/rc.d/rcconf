@@ -124,7 +124,7 @@ setifconfig()
 			-b \
 		-b \
 		${configxml_file} | /usr/local/bin/xml unesc`
-
+	_ifconfig_args="${_ifconfig_args#"${_ifconfig_args%%[![:space:]]*}"}"
 	_ipaddr=`configxml_get "//interfaces/lan/ipaddr"`
 	_subnet=`configxml_get "//interfaces/lan/subnet"`
 	if [ "${_ifn}" = "${_ifn_isboot}" ]; then
@@ -194,7 +194,7 @@ setifconfig()
 					-b \
 				-b \
 				${configxml_file} | /usr/local/bin/xml unesc`
-
+			_ifconfig_args="${_ifconfig_args#"${_ifconfig_args%%[![:space:]]*}"}"
 			_ipaddr=`configxml_get "//interfaces/*[name() = 'opt${_id}']/ipaddr"`
 			_subnet=`configxml_get "//interfaces/*[name() = 'opt${_id}']/subnet"`
 			# "ifconfig hostname" is valid syntax, so it should not set a string.
@@ -588,7 +588,7 @@ resizepartition()
 	ARCH=`/usr/bin/uname -m`
 	_cfdev=`/bin/cat /etc/cfdevice | sed -e 's/0.*/0/'`
 	_dev="/dev/${_cfdev}"
-    _platform=`/bin/cat /etc/platform`
+	_platform=`/bin/cat /etc/platform`
 
 	if [ "${ARCH}" = "arm" -a -f /cf/req_resize ]; then
 		# resize MBR partition
@@ -670,4 +670,3 @@ echo
 #load_rc_config ${name}
 
 return 0
-

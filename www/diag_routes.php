@@ -31,57 +31,60 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Diagnostics"), gtext("Routing tables"));
+$pgtitle = [gtext('Diagnostics'),gtext('Routing Tables')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabcont">
-<?php
-	$netstat = ((isset($_POST['resolve']) && $_POST['resolve'] == 'yes') ? 'netstat -rW' : 'netstat -nrW');
-	list($dummy, $internet, $internet6) = explode("\n\n", shell_exec($netstat));
-
-	foreach (array(&$internet, &$internet6) as $tabindex => $table) {
-		$osver = @exec("/usr/bin/uname -U");
-		if ($osver >= 1000000)
-			$elements = ($tabindex == 0 ? 7 : 7);
-		else
-			$elements = ($tabindex == 0 ? 8 : 8);
-		$name = ($tabindex == 0 ? 'IPv4' : 'IPv6');
-?>
-			<table width="100%" border="0" cellpadding="6" cellspacing="0">
-				<?php html_titleline($name, $elements);?>
-<?php
-		foreach (explode("\n", $table) as $row => $line) {
-			if ($row == 0)
-				continue;
-			if ($line == '')
-				continue;
-			print("<tr>\n");
-			$col = 0;
-			foreach (explode(' ', $line) as $entry) {
-				if ($entry == '')
-					continue;
-				if ($row == 1) { 
-						$class = ($col == 0) ? "listhdrlr" : "listhdrr";
-				} else {
-					$class = ($col == 0) ? "listlr" : "listr";
-				}
-				print("<td class=\"$class\">$entry</td>\n");
-				$col++;
-			}
-			// The 'Expire' field might be blank
-			if ($col == ($elements - 1))
-				print('<td class="listr">&nbsp;</td>' . "\n");
-			print("</tr>\n");
-		}
-		print("</table><br />\n");
-	}
-?>
+			<?php
+			$netstat = ((isset($_POST['resolve']) && $_POST['resolve'] == 'yes') ? 'netstat -rW' : 'netstat -nrW');
+			list($dummy, $internet, $internet6) = explode("\n\n", shell_exec($netstat));
+			foreach (array(&$internet, &$internet6) as $tabindex => $table):
+				$osver = @exec("/usr/bin/uname -U");
+				if ($osver >= 1000000)
+					$elements = ($tabindex == 0 ? 7 : 7);
+				else
+					$elements = ($tabindex == 0 ? 8 : 8);
+				$name = ($tabindex == 0 ? 'IPv4' : 'IPv6');?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<?php html_titleline($name, $elements);?>
+					<?php
+					foreach (explode("\n", $table) as $row => $line):
+						if($row == 0): 
+							continue;
+						endif;
+						if($line == ''):
+							continue;
+						endif;
+						print("<tr>\n");
+						$col = 0;
+						foreach (explode(' ', $line) as $entry):
+							if($entry == ''):
+								continue;
+							endif;
+							if($row == 1):
+								$class = ($col == 0) ? "listhdrlr" : "listhdrr";
+							else:
+								$class = ($col == 0) ? "listlr" : "listr";
+							endif;
+							print("<td class=\"$class\">$entry</td>\n");
+							$col++;
+						endforeach;
+						// The 'Expire' field might be blank
+						if($col == ($elements - 1)):
+							print('<td class="listr">&nbsp;</td>' . "\n");
+						endif;
+						print("</tr>\n");
+					endforeach;
+					?>
+				</table>
+				<br />
+			<?php endforeach;?>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

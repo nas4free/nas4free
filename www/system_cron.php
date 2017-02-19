@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 $sphere_scriptname = basename(__FILE__);
 $sphere_scriptname_child = 'system_cron_edit.php';
@@ -71,13 +71,7 @@ $img_path = [
 ];
 
 // sunrise: verify if setting exists, otherwise run init tasks
-if (!(isset($config['cron']) && is_array($config['cron']))) {
-	$config['cron'] = [];
-}
-if (!(isset($config['cron']['job']) && is_array($config['cron']['job']))) {
-	$config['cron']['job'] = [];
-}
-$sphere_array = &$config['cron']['job'];
+$sphere_array = &array_make_branch($config,'cron','job');
 
 if ($_POST) {
 	if (isset($_POST['apply']) && $_POST['apply']) {
@@ -198,12 +192,11 @@ function cronjob_process_updatenotification($mode, $data) {
 			break;
 		case UPDATENOTIFY_MODE_DIRTY:
 		case UPDATENOTIFY_MODE_DIRTY_CONFIG:
-			if (is_array($config['cron']['job'])) {
-				$index = array_search_ex($data, $config['cron']['job'], 'uuid');
-				if (false !== $index) {
-					unset($config['cron']['job'][$index]);
-					write_config();
-				}
+			array_make_branch($config,'cron','job');
+			$index = array_search_ex($data, $config['cron']['job'], 'uuid');
+			if (false !== $index) {
+				unset($config['cron']['job'][$index]);
+				write_config();
 			}
 			break;
 	}
@@ -211,9 +204,9 @@ function cronjob_process_updatenotification($mode, $data) {
 }
 
 $enabletogglemode = isset($config['system']['enabletogglemode']);
-$pgtitle = array(gtext('System'), gtext('Advanced'), gtext('Cron'));
+$pgtitle = [gtext('System'),gtext('Advanced'),gtext('Cron')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 //<![CDATA[
 $(window).on("load", function() {
@@ -240,7 +233,7 @@ $(window).on("load", function() {
 		togglecheckboxesbyname(this, "<?=$checkbox_member_name;?>[]");
 	});
 	// Init member checkboxes
-	$("input[name='<?=$checkbox_member_name;?>[]").click(function() {
+	$("input[name='<?=$checkbox_member_name;?>[]']").click(function() {
 		controlactionbuttons(this, '<?=$checkbox_member_name;?>[]');
 	});
 }); 
@@ -293,6 +286,8 @@ function controlactionbuttons(ego, triggerbyname) {
 	<tr><td class="tabnavtbl"><ul id="tabnav">
 		<li class="tabinact"><a href="system_advanced.php"><span><?=gtext('Advanced');?></span></a></li>
 		<li class="tabinact"><a href="system_email.php"><span><?=gtext('Email');?></span></a></li>
+		<li class="tabinact"><a href="system_email_reports.php"><span><?=gtext("Email Reports");?></span></a></li>
+		<li class="tabinact"><a href="system_monitoring.php"><span><?=gtext("Monitoring");?></span></a></li>
 		<li class="tabinact"><a href="system_swap.php"><span><?=gtext('Swap');?></span></a></li>
 		<li class="tabinact"><a href="system_rc.php"><span><?=gtext('Command Scripts');?></span></a></li>
 		<li class="tabact"><a href="<?=$sphere_scriptname;?>" title="<?=gtext('Reload page');?>"><span><?=gtext('Cron');?></span></a></li>
@@ -314,7 +309,7 @@ function controlactionbuttons(ego, triggerbyname) {
 			print_config_change_box();
 		}
 	?>
-	<table id="area_data_selection">
+	<table class="area_data_selection">
 		<colgroup>
 			<col style="width:5%">
 			<col style="width:35%">
@@ -334,12 +329,6 @@ function controlactionbuttons(ego, triggerbyname) {
 				<th class="lhebl"><?=gtext('Toolbox');?></th>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<td class="lcenl" colspan="5"></td>
-				<td class="lceadd"><a href="<?=$sphere_scriptname_child;?>"><img src="<?=$img_path['add'];?>" title="<?=$gt_record_add;?>" border="0" alt="<?=$gt_record_add;?>"/></a></td>
-			</tr>
-		</tfoot>
 		<tbody>
 			<?php foreach($sphere_array as $sphere_record):?>
 				<tr>
@@ -367,7 +356,7 @@ function controlactionbuttons(ego, triggerbyname) {
 					</td>
 					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere_record['desc']);?>&nbsp;</td>
 					<td class="lcebld">
-						<table id="area_data_selection_toolbox"><tbody><tr>
+						<table class="area_data_selection_toolbox"><tbody><tr>
 							<td>
 								<?php if ($notdirty && $notprotected):?>
 									<a href="<?=$sphere_scriptname_child;?>?uuid=<?=$sphere_record['uuid'];?>"><img src="<?=$img_path['mod'];?>" title="<?=$gt_record_mod;?>" alt="<?=$gt_record_mod;?>" /></a>
@@ -386,6 +375,12 @@ function controlactionbuttons(ego, triggerbyname) {
 				</tr>
 			<?php endforeach;?>
 		</tbody>
+		<tfoot>
+			<tr>
+				<td class="lcenl" colspan="5"></td>
+				<td class="lceadd"><a href="<?=$sphere_scriptname_child;?>"><img src="<?=$img_path['add'];?>" title="<?=$gt_record_add;?>" border="0" alt="<?=$gt_record_add;?>"/></a></td>
+			</tr>
+		</tfoot>
 	</table>
 	<div id="submit">
 		<?php if ($enabletogglemode):?>
@@ -396,6 +391,6 @@ function controlactionbuttons(ego, triggerbyname) {
 		<?php endif;?>
 		<input type="submit" class="formbtn" name="delete_selected_rows" id="delete_selected_rows" value="<?=$gt_selection_delete;?>"/>
 	</div>
-	<?php include("formend.inc");?>
+<?php include 'formend.inc';?>
 </form></td></tr></tbody></table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

@@ -31,11 +31,11 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-require("diag_log.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'diag_log.inc';
 
-$pgtitle = array(gtext("Diagnostics"), gtext("Log"), gtext("Settings"));
+$pgtitle = [gtext('Diagnostics'),gtext('Log'),gtext('Settings')];
 
 $pconfig['reverse']  = isset($config['syslogd']['reverse']);
 $pconfig['nentries'] = $config['syslogd']['nentries'];
@@ -95,7 +95,7 @@ if ($_POST) {
 	}
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -128,14 +128,14 @@ function enable_change(enable_change) {
 			<?php html_titleline(gtext("Log Settings"));?>
 		   <tr>
 		<tr>
-			<td width="22%" valign="top" class="vncell"><?=gtext("Log order");?></td>
+			<td width="22%" valign="top" class="vncell"><?=gtext("Log Order");?></td>
 			<td width="78%" class="vtable">
 			<input name="reverse" type="checkbox" id="reverse" value="yes" <?php if (!empty($pconfig['reverse'])) echo "checked=\"checked\""; ?> />
 			<?=gtext("Show log entries in reverse order (newest entries on top).");?>
 		   </td>
 		</tr>
 	        <tr>
-		<td width="22%" valign="top" class="vncell"><?=gtext("Max entries");?></td>
+		<td width="22%" valign="top" class="vncell"><?=gtext("Max Entries");?></td>
 		<td width="78%" class="vtable">
 			<?=gtext("Number of log entries to show");?>:
 			<input name="nentries" id="nentries" type="text" class="formfld" size="4" value="<?=htmlspecialchars($pconfig['nentries']);?>" /></td>
@@ -157,7 +157,7 @@ function enable_change(enable_change) {
 			<?=gtext("Disable the compression of repeated line.");?></td>
 		   </tr>
 		<tr>
-			<td width="22%" valign="top" class="vncell"><?=gtext("Remote syslog messages");?></td>
+			<td width="22%" valign="top" class="vncell"><?=gtext("Remote Syslog Messages");?></td>
 			<td width="78%" class="vtable">
 			<input name="disablesecure" type="checkbox" id="disablesecure" value="yes" <?php if (!empty($pconfig['disablesecure'])) echo "checked=\"checked\""; ?> />
 			<?=gtext("Accept remote syslog messages.");?></td>
@@ -165,13 +165,13 @@ function enable_change(enable_change) {
 		   </tr>
 		<tr>
 			<?php html_titleline_checkbox("enable", gtext("Remote Syslog Server"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");?>
-			<td width="22%" valign="top" class="vncell"><?=gtext("IP address");?></td>
+			<td width="22%" valign="top" class="vncell"><?=gtext("IP Address");?></td>
 			<td width="78%" class="vtable">
 			<input name="ipaddr" id="ipaddr" type="text" class="formfld" size="17" value="<?=htmlspecialchars($pconfig['ipaddr']);?>" />
 			<br /><?=gtext("IP address of remote syslog server.");?>
 		   </tr>
 		<tr>
-			<td width="22%" valign="top" class="vncell"><?=gtext("Event selection");?></td>
+			<td width="22%" valign="top" class="vncell"><?=gtext("Event Selection");?></td>
 			<td width="78%" class="vtable">
 			<input name="system" id="system" type="checkbox" value="yes" <?php if (!empty($pconfig['system'])) echo "checked=\"checked\""; ?> />
 			<?=gtext("System events");?><br />
@@ -194,7 +194,7 @@ function enable_change(enable_change) {
 			<div id="remarks">
 			<?php html_remark("note", gtext("Note"), sprintf(gtext("Syslog sends UDP datagrams to port 514 on the specified remote syslog server. Be sure to set syslogd on the remote server to accept syslog messages from this server.")));?>
 			</div>
-			<?php include("formend.inc");?>
+			<?php include 'formend.inc';?>
 		   </form>
 		</td>
 	</tr>
@@ -204,4 +204,4 @@ function enable_change(enable_change) {
 enable_change(false);
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

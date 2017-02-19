@@ -32,11 +32,11 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the FreeBSD Project.
 */
-require_once("config.inc");
-require_once("functions.inc");
-require_once("install.inc");
-require_once("util.inc");
-require_once("tui.inc");
+require_once 'config.inc';
+require_once 'functions.inc';
+require_once 'install.inc';
+require_once 'util.inc';
+require_once 'tui.inc';
 
 // Default size of slice/partition 1 (used for OS)
 $part1size = $g_install['part1size_embedded'];
@@ -82,9 +82,9 @@ if (0 == count($cdlist)) {
 }
 
 // Display installation medias
-$amenuitem = array();
+$amenuitem = [];
 foreach ($cdlist as $cdromk => $cdromv) {
-	$menuitem = array();
+	$menuitem = [];
 	$menuitem['tag'] = $cdromk;
 	$menuitem['item'] = $cdromv['desc'];
 	$amenuitem[] = $menuitem;

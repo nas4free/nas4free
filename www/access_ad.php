@@ -31,18 +31,11 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Access"), gtext("Active Directory"));
-
-if (!isset($config['ad']) || !is_array($config['ad'])) {
-	$config['ad'] = [];
-}
-
-if (!isset($config['samba']) || !is_array($config['samba'])) {
-	$config['samba'] = [];
-}
+array_make_branch($config,'ad');
+array_make_branch($config,'samba');
 
 $pconfig['enable'] = isset($config['ad']['enable']);
 $pconfig['domaincontrollername'] = $config['ad']['domaincontrollername'];
@@ -58,13 +51,11 @@ if ($_POST) {
 
 	// Input validation.
 	if (isset($_POST['enable']) && $_POST['enable']) {
-		$reqdfields = explode(" ", "domaincontrollername domainname_dns domainname_netbios username password");
-		$reqdfieldsn = array(gtext("Domain controller name"), gtext("Domain name (DNS/Realm-Name)"), gtext("Domain name (NetBIOS-Name)"), gtext("Administrator name"), gtext("Administration password"));
-		$reqdfieldst = explode(" ", "string domain netbios string string");
-
+		$reqdfields = ['domaincontrollername','domainname_dns','domainname_netbios','username','password'];
+		$reqdfieldsn = [gtext('Domain Controller Name'),gtext('Domain Name (DNS/Realm-Name)'),gtext('Domain Name (NetBIOS-Name)'),gtext('Administrator Name'),gtext('Administration Password')];
+		$reqdfieldst = ['string','domain','netbios','string','string'];
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
-
 		if (($_POST['password'] !== $_POST['password2'])) {
 			$input_errors[] = gtext("The confirmed password does not match. Please ensure the passwords match exactly.");
 		}
@@ -77,7 +68,6 @@ if ($_POST) {
 		$config['ad']['username'] = $_POST['username'];
 		$config['ad']['password'] = $_POST['password'];
 		$config['ad']['enable'] = isset($_POST['enable']) ? true : false;
-
 		if ($config['ad']['enable']) {
 			$config['samba']['enable'] = true;
 			$config['samba']['security'] = "ads";
@@ -99,8 +89,10 @@ if ($_POST) {
 		$savemsg = get_std_save_message($retval);
 	}
 }
+$pgtitle = [gtext('Access'),gtext('Active Directory')];
+
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -123,35 +115,35 @@ function enable_change(enable_change) {
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline_checkbox("enable", gtext("Active Directory"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");?>
 					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("Domain controller name");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Domain Controller Name");?></td>
 						<td width="78%" class="vtable">
 							<input name="domaincontrollername" type="text" class="formfld" id="domaincontrollername" size="20" value="<?=htmlspecialchars($pconfig['domaincontrollername']);?>" />
 							<br /><span class="vexpl"><?=gtext("AD or PDC name.");?></span>
 						</td>
 					</tr>
 					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("Domain name (DNS/Realm-Name)");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Domain Name (DNS/Realm-Name)");?></td>
 						<td width="78%" class="vtable">
 							<input name="domainname_dns" type="text" class="formfld" id="domainname_dns" size="20" value="<?=htmlspecialchars($pconfig['domainname_dns']);?>" />
 							<br /><span class="vexpl"><?=gtext("Domain name, e.g. example.com.");?></span>
 						</td>
 					</tr>
 					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("Domain name (NetBIOS-Name)");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Domain Name (NetBIOS-Name)");?></td>
 						<td width="78%" class="vtable">
 							<input name="domainname_netbios" type="text" class="formfld" id="domainname_netbios" size="20" value="<?=htmlspecialchars($pconfig['domainname_netbios']);?>" />
 							<br /><span class="vexpl"><?=gtext("Domain name in old format, e.g. EXAMPLE.");?></span>
 						</td>
 					</tr>
 					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("Administrator name");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Administrator Name");?></td>
 						<td width="78%" class="vtable">
 							<input name="username" type="text" class="formfld" id="username" size="20" value="<?=htmlspecialchars($pconfig['username']);?>" />
 							<br /><span class="vexpl"><?=gtext("Username of a domain administrator account.");?></span>
 						</td>
 					</tr>
 					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("Administration password");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Administration Password");?></td>
 						<td width="78%" class="vtable">
 							<input name="password" type="password" class="formfld" id="password" size="20" value="<?=htmlspecialchars($pconfig['password']);?>" /><br />
 							<input name="password2" type="password" class="formfld" id="password2" size="20" value="<?=htmlspecialchars($pconfig['password2']);?>" />
@@ -175,11 +167,11 @@ function enable_change(enable_change) {
 			</td>
 		</tr>
 	</table>
-	<?php include("formend.inc");?>
+	<?php include 'formend.inc';?>
 </form>
 <script type="text/javascript">
 <!--
 enable_change(false);
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

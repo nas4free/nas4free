@@ -41,99 +41,83 @@
 
 umask(002); // Added to make created files/dirs group writable
 
-require_once "qx.php";
-require "./_include/init.php";	// Init
+require_once 'qx.php';
+require './_include/init.php';	// Init
 
 global $action;
 
-_debug( "system_filemanager.php: checking action $action" );
-
-$current_dir = qx_request("dir", "");
-
-switch($action)
-{		// Execute action
-
-// EDIT FILE
-case "edit":
-	require "./_include/edit_editarea.php";
-	edit_file($current_dir, $GLOBALS["item"]);
-break;
-// DELETE FILE(S)/DIR(S)
-case "delete":
-	require "./_include/del.php";
-	del_items($current_dir);
-break;
-// COPY/MOVE FILE(S)/DIR(S)
-case "copy":	case "move":
-	require "./_include/copy_move.php";
-	copy_move_items($current_dir);
-break;
-// DOWNLOAD FILE
-case "download":
-	ob_start(); // prevent unwanted output
-	require "./_include/down.php";
-	ob_end_clean(); // get rid of cached unwanted output
-    global $item;
-    _debug("download item: $current_dir/$item");
-    if ($item == '' )
-        show_error($GLOBALS["error_msg"]["miscselitems"]);
-	download_item($current_dir, $item);
-	ob_start(false); // prevent unwanted output
-	exit;
-break;
-case "download_selected":
-	ob_start(); // prevent unwanted output
-	require "./_include/down.php";
-	ob_end_clean(); // get rid of cached unwanted output
-	download_selected($current_dir);
-	ob_start(false); // prevent unwanted output
-	exit;
-break;
-// UNZIP ZIP FILE
-case "unzip":
-	require "./_include/unzip.php";
-	unzip_item($current_dir);
-break;
-// CREATE DIR/FILE
-case "mkitem":
-	require "./_include/mkitem.php";
-	make_item($current_dir);
-break;
-// CHMOD FILE/DIR
-case "chmod":
-	require "./_include/chmod.php";
-	chmod_item($current_dir, $GLOBALS["item"]);
-break;
-// SEARCH FOR FILE(S)/DIR(S)
-case "search":
-	require "./_include/search.php";
-	search_items($current_dir);
-break;
-// CREATE ARCHIVE
-case "arch":
-	require "./_include/archive.php";
-	archive_items($current_dir);
-break;
-// USER-ADMINISTRATION
-case "admin":
-	require "./_include/admin.php";
-	show_admin($current_dir);
-break;
-case "login":
-    _debug("doing login");
-    login();
-    require "./_include/list.php";
-    list_dir($current_dir);
-    break;
-case "logout":
-    _debug("doing logout");
-    logout();
-
-// DEFAULT: LIST FILES & DIRS
-case "list":
-default:
-	require "./_include/list.php";
-	list_dir($current_dir);
-}
+$current_dir = qx_request('dir','');
+switch($action): // Execute action
+	case 'edit': // EDIT FILE
+		require './_include/edit_editarea.php';
+		edit_file($current_dir, $GLOBALS['item']);
+		break;
+	case 'delete': // DELETE FILE(S)/DIR(S)
+		require './_include/del.php';
+		del_items($current_dir);
+		break;
+	case 'copy': // COPY/MOVE FILE(S)/DIR(S)
+	case 'move': 
+		require './_include/copy_move.php';
+		copy_move_items($current_dir);
+		break;
+	case 'download': // DOWNLOAD FILE
+		ob_start(); // prevent unwanted output
+		require './_include/down.php';
+		ob_end_clean(); // get rid of cached unwanted output
+		global $item;
+		if ($item == ''):
+			show_error($GLOBALS['error_msg']['miscselitems']);
+		endif;
+		download_item($current_dir,$item);
+		ob_start(false); // prevent unwanted output
+		exit;
+		break;
+	case 'download_selected':
+		ob_start(); // prevent unwanted output
+		require './_include/down.php';
+		ob_end_clean(); // get rid of cached unwanted output
+		download_selected($current_dir);
+		ob_start(false); // prevent unwanted output
+		exit;
+		break;
+	case 'unzip': // UNZIP ZIP FILE
+		require './_include/unzip.php';
+		unzip_item($current_dir);
+		break;
+	case 'mkitem': // CREATE DIR/FILE
+		require './_include/mkitem.php';
+		make_item($current_dir);
+		break;
+	case 'chmod': // CHMOD FILE/DIR
+		require './_include/chmod.php';
+		chmod_item($current_dir, $GLOBALS['item']);
+		break;
+	case 'search': // SEARCH FOR FILE(S)/DIR(S)
+		require './_include/search.php';
+		search_items($current_dir);
+		break;
+	case 'arch': // CREATE ARCHIVE
+		require './_include/archive.php';
+		archive_items($current_dir);
+		break;
+	case 'admin': // USER-ADMINISTRATION
+		require './_include/admin.php';
+		show_admin($current_dir);
+		break;
+	case 'login':
+	    login();
+	    require './_include/list.php';
+		list_dir($current_dir);
+		break;
+	case 'logout':
+		logout();
+		break;
+	case 'list': // DEFAULT: LIST FILES & DIRS
+	default:
+		require './_include/list.php';
+		list_dir($current_dir);
+		break;
+endswitch;
 show_footer();
 ?>

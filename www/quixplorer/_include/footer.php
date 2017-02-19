@@ -15,6 +15,7 @@
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,11 +38,15 @@
 // NAS4Free Code
 // footer for html-page
 function show_footer() {
-	echo "</div>";
-	echo "<div id=\"pagefooter\">\n";
-	echo "<span><p><a title=\"www.".get_product_url()."\" href=\"http://".get_product_url()."\" target=\"_blank\"></a> ".str_replace("Copyright (C)","&copy;",get_product_copyright())."</a></p></span>\n";
-	echo "</div>\n";
-	echo "</body>\n";
-	echo "</html>";
+	echo '</td></tr></tbody></table>';
+	echo '</div>';
+	echo '</div>';
+	echo '</main>';
+	echo '<footer id="g4f">';
+	echo '<div id="gapfooter"></div>';
+	echo '<div id="pagefooter"><span>', htmlspecialchars(get_product_copyright()), '</span></div>', "\n";
+	echo '</footer>';
+	echo '</body>';
+	echo '</html>';
 }
 ?>

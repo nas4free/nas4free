@@ -31,11 +31,9 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-require("packages.inc");
-
-$pgtitle = array(gtext("System"), gtext("Packages"));
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'packages.inc';
 
 $a_packages = packages_get_installed();
 
@@ -46,43 +44,41 @@ if (isset($_GET['act']) && $_GET['act'] == "del") {
 		exit;
 	}
 }
+$pgtitle = [gtext('System'),gtext('Packages')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-		<td class="tabnavtbl">
-  		<ul id="tabnav">
-				<li class="tabact"><a href="system_packages.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Packages");?></span></a></li>
-  		</ul>
-  	</td>
-	</tr>
-  <tr>
-    <td class="tabcont">
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabact"><a href="system_packages.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Packages");?></span></a></li>
+	</ul></td></tr>
+	<tr>
+		<td class="tabcont">
 			<form action="system_packages.php" method="post" name="iform" id="iform">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
 				<?php if (file_exists($d_packagesconfdirty_path)) print_config_change_box();?>
-				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-			    <tr>
-			      <td width="40%" class="listhdrlr"><?=gtext("Package Name");?></td>
-			      <td width="50%" class="listhdrr"><?=gtext("Description");?></td>
-			      <td width="10%" class="list"></td>
-			    </tr>
-				  <?php $i = 0; foreach($a_packages as $packagev): ?>
-			    <tr>
-			      <td class="listr"><?=htmlspecialchars($packagev['name']);?>&nbsp;</td>
-			      <td class="listbg"><?=htmlspecialchars($packagev['desc']);?>&nbsp;</td>
-			      <td valign="middle" nowrap="nowrap" class="list"> <a href="system_packages.php?act=del&amp;id=<?=$i;?>" onclick="return confirm('<?=gtext("Do you really want to uninstall this package?"); ?>')"><img src="images/delete.png" title="<?=gtext("Uninstall package"); ?>" border="0" alt="<?=gtext("Uninstall package"); ?>" /></a></td>
-			    </tr>
-			    <?php $i++; endforeach; ?>
-			    <tr>
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<?php html_titleline2(gtext('Overview'), 3);?>
+					<tr>
+						<td width="40%" class="listhdrlr"><?=gtext("Package Name");?></td>
+						<td width="50%" class="listhdrr"><?=gtext("Description");?></td>
+						<td width="10%" class="list"></td>
+					</tr>
+					<?php $i = 0; foreach($a_packages as $packagev): ?>
+						<tr>
+							<td class="listr"><?=htmlspecialchars($packagev['name']);?>&nbsp;</td>
+							<td class="listbg"><?=htmlspecialchars($packagev['desc']);?>&nbsp;</td>
+							<td valign="middle" nowrap="nowrap" class="list"> <a href="system_packages.php?act=del&amp;id=<?=$i;?>" onclick="return confirm('<?=gtext("Do you really want to uninstall this package?"); ?>')"><img src="images/delete.png" title="<?=gtext("Uninstall package"); ?>" border="0" alt="<?=gtext("Uninstall package"); ?>" /></a></td>
+						</tr>
+					<?php $i++; endforeach; ?>
+					<tr>
 						<td class="list" colspan="2"></td>
 						<td class="list"> <a href="system_packages_edit.php"><img src="images/add.png" title="<?=gtext("Install package"); ?>" border="0" alt="<?=gtext("Install package"); ?>" /></a></td>
 					</tr>
-			  </table>
-			  <?php include("formend.inc");?>
+				</table>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

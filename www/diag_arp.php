@@ -31,10 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-
-$pgtitle = array(gtext("Diagnostics"), gtext("ARP Tables"));
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if (isset($_GET['id']))
   $id = $_GET['id'];
@@ -62,7 +60,7 @@ $resolve = isset($config['syslogd']['resolve']);
 
 $fp = @fopen("{$g['vardb_path']}/dhcpd.leases","r");
 if ($fp) {
-	$return = array();
+	$return = [];
 
 	while ($line = fgets($fp)) {
 		$matches = "";
@@ -86,13 +84,13 @@ if ($fp) {
 		do {
 			if (preg_match("/^\s*\"([^\"]*)\"(.*)$/", $line, $matches)) {
 				$line = $matches[2];
-				$return[] = array($matches[1], 0);
+				$return[] = [$matches[1], 0];
 			} else if (preg_match("/^\s*([{};])(.*)$/", $line, $matches)) {
 				$line = $matches[2];
-				$return[] = array($matches[0], 1);
+				$return[] = [$matches[0], 1];
 			} else if (preg_match("/^\s*([^{}; \t]+)(.*)$/", $line, $matches)) {
 				$line = $matches[2];
-				$return[] = array($matches[1], 0);
+				$return[] = [$matches[1], 0];
 			} else
 				break;
 
@@ -103,7 +101,7 @@ if ($fp) {
 
 	fclose($fp);
 
-	$leases = array();
+	$leases = [];
 	$i = 0;
 
 	// Put everything together again
@@ -148,8 +146,8 @@ if ($fp) {
 	}
 
 	// Put this in an easy to use form
-	$dhcpmac = array();
-	$dhcpip = array();
+	$dhcpmac = [];
+	$dhcpip = [];
 
 	foreach ($leases as $value) {
 		$dhcpmac[$value['mac']] = $value['hostname'];
@@ -162,7 +160,7 @@ if ($fp) {
 exec("/usr/sbin/arp -an",$rawdata);
 
 $i = 0;
-$ifdescrs = array('lan' => 'LAN');
+$ifdescrs = ['lan' => 'LAN'];
 
 for ($j = 1; isset($config['interfaces']['opt' . $j]); $j++) {
 	$ifdescrs['opt' . $j] = $config['interfaces']['opt' . $j]['descr'];
@@ -172,13 +170,13 @@ foreach ($ifdescrs as $key => $interface) {
 	$hwif[get_ifname($config['interfaces'][$key]['if'])] = $interface;
 }
 
-$data = array();
+$data = [];
 foreach ($rawdata as $line) {
 	$elements = explode(' ',$line);
 
 	if ($elements[3] != "(incomplete)") {
-		$arpent = array();
-		$arpent['ip'] = trim(str_replace(array('(',')'),'',$elements[1]));
+		$arpent = [];
+		$arpent['ip'] = trim(str_replace(['(',')'],'',$elements[1]));
 		$arpent['mac'] = trim($elements[3]);
 		$arpent['interface'] = trim($elements[5]);
 		$data[] = $arpent;
@@ -197,19 +195,21 @@ function get_HostName($mac, $ip) {
 	else
 		return "";
 }
+$pgtitle = [gtext('Diagnostics'),gtext('ARP Tables')];
+
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table id="area_data"><tbody><tr><td id="area_data_frame">
-	<table id="area_data_selection">
+	<table class="area_data_selection">
 		<colgroup>
-			<col style="width:20%"><!-- IP Address -->
-			<col style="width:20%"><!-- MAC Address -->
-			<col style="width:30%"><!-- Hostname -->
-			<col style="width:20%"><!-- Interface -->
-			<col style="width:10%"><!-- Toolbox -->
+			<col style="width:20%">
+			<col style="width:20%">
+			<col style="width:30%">
+			<col style="width:20%">
+			<col style="width:10%">
 		</colgroup>
 		<thead>
-			<?php html_titleline2(gtext('ARP Tables List'), 5);?>
+			<?php html_titleline2(gtext('ARP Tables List'),5);?>
 			<tr>
 				<th class="lhell"><?=gtext('IP Address');?></th>
 				<th class="lhell"><?=gtext('MAC Address');?></th>
@@ -218,12 +218,6 @@ function get_HostName($mac, $ip) {
 				<th class="lhebl"><?=gtext('Toolbox');?></th>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<td class="lcenl" colspan="4"></td>
-				<td class="lceadd"><a href="diag_arp.php?act=del"><img src="images/delete.png" title="<?=gtext('Remove all entries from ARP table');?>" border="0" alt="<?=gtext('Remove all entries from ARP table');?>"/></a></td>
-			</tr>
-		</tfoot>
 		<tbody>
 			<?php $i = 0; foreach ($data as $entry): ?>
 				<tr>
@@ -232,7 +226,7 @@ function get_HostName($mac, $ip) {
 					<td class="lcell"><?=htmlspecialchars(get_HostName($entry['mac'], $entry['ip']));?>&nbsp;</td>
 					<td class="lcell"><?=htmlspecialchars($hwif[$entry['interface']]);?>&nbsp;</td>
 					<td class="lcebld">
-						<table id="area_data_selection_toolbox"><tbody><tr>
+						<table class="area_data_selection_toolbox"><tbody><tr>
 							<td>
 								<a href="diag_arp.php?act=del&amp;id=<?=$entry['ip'];?>"><img src="images/delete.png" title="<?=gtext("Delete ARP entry");?>" border="0" alt="<?=gtext("Delete ARP entry");?>" /></a>
 							</td>
@@ -243,6 +237,12 @@ function get_HostName($mac, $ip) {
 				</tr>
 			<?php $i++; endforeach; ?>
 		</tbody>
+		<tfoot>
+			<tr>
+				<td class="lcenl" colspan="4"></td>
+				<td class="lceadd"><a href="diag_arp.php?act=del"><img src="images/delete.png" title="<?=gtext('Remove all entries from ARP table');?>" border="0" alt="<?=gtext('Remove all entries from ARP table');?>"/></a></td>
+			</tr>
+		</tfoot>
 	</table>
 	<div id="remarks">
 		<?php
@@ -254,4 +254,4 @@ function get_HostName($mac, $ip) {
 		?>
 	</div>
 </td></tr></tbody></table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

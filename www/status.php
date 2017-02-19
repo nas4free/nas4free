@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("report.inc");
+require 'auth.inc';
+require 'report.inc';
 
 echo report_generate_html();
 ?>

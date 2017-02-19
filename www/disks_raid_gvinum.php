@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 require 'disks_raid_gvinum_fun.inc';
 
 $sphere_scriptname = basename(__FILE__);
@@ -61,16 +61,12 @@ $img_path = [
 ];
 
 // sunrise: verify if setting exists, otherwise run init tasks
-if (!(isset($config['gvinum']['vdisk']) && is_array($config['gvinum']['vdisk']))) {
-	$config['gvinum']['vdisk'] = [];
-}
-array_sort_key($config['gvinum']['vdisk'], 'name');
-$sphere_array = &$config['gvinum']['vdisk'];
+$sphere_array = &array_make_branch($config,'gvinum','vdisk');
+// $sphere_array = &$config['gvinum']['vdisk'];
+array_sort_key($sphere_array,'name');
 // get mounts from config
-if (!(isset($config['mounts']['mount']) && is_array($config['mounts']['mount']))) {
-	$config['mounts']['mount'] = [];
-}
-$a_config_mount = &$config['mounts']['mount'];
+$a_config_mount = &array_make_branch($config,'mounts','mount');
+// $a_config_mount = &$config['mounts']['mount'];
 // collect geom additional information
 $a_process = gvinum_processinfo_get();
 
@@ -115,9 +111,9 @@ if ($_POST) {
 	}
 }
 
-$pgtitle = [gtext('Disks'), gtext('Software RAID'), gtext('RAID 0/1/5'), gtext('Management')];
+$pgtitle = [gtext('Disks'),gtext('Software RAID'),gtext('RAID 0/1/5'),gtext('Management')];
 ?>
-<?php include("fbegin.inc"); ?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 //<![CDATA[
 $(window).on("load", function() {
@@ -132,7 +128,7 @@ $(window).on("load", function() {
 		togglecheckboxesbyname(this, "<?=$checkbox_member_name;?>[]");
 	});
 	// Init member checkboxes
-	$("input[name='<?=$checkbox_member_name;?>[]").click(function() {
+	$("input[name='<?=$checkbox_member_name;?>[]']").click(function() {
 		controlactionbuttons(this, '<?=$checkbox_member_name;?>[]');
 	});
 	// Init spinner onsubmit()
@@ -201,15 +197,15 @@ function controlactionbuttons(ego, triggerbyname) {
 		if (!empty($savemsg)) { print_info_box($savemsg); }
 		if (updatenotify_exists($sphere_notifier)) { print_config_change_box(); }
 	?>
-	<table id="area_data_selection">
+	<table class="area_data_selection">
 		<colgroup>
-			<col style="width:5%"><!-- checkbox -->
-			<col style="width:20%"><!-- Volume Name -->
-			<col style="width:10%"><!-- Type -->
-			<col style="width:15%"><!-- Size -->
-			<col style="width:30%"><!-- Description -->
-			<col style="width:10%"><!-- Status -->
-			<col style="width:10%"><!-- Icons -->
+			<col style="width:5%">
+			<col style="width:20%">
+			<col style="width:10%">
+			<col style="width:15%">
+			<col style="width:30%">
+			<col style="width:10%">
+			<col style="width:10%">
 		</colgroup>
 		<thead>
 			<?php html_titleline2(gtext('Overview'), 7);?>
@@ -223,12 +219,6 @@ function controlactionbuttons(ego, triggerbyname) {
 				<td class="lhebl"><?=gtext('Toolbox');?></td>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<th class="lcenl" colspan="6"></th>
-				<th class="lceadd"><a href="<?=$sphere_scriptname_child;?>"><img src="<?=$img_path['add'];?>" title="<?=$gt_record_add;?>" alt="<?=$gt_record_add;?>"/></a></th>
-			</tr>
-		</tfoot>
 		<tbody>
 			<?php $raidstatus = get_gvinum_disks_list(); ?>
 			<?php foreach ($sphere_array as $sphere_record): ?>
@@ -272,7 +262,7 @@ function controlactionbuttons(ego, triggerbyname) {
 					<td class="<?=$normaloperation ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere_record['desc']);?></td>
 					<td class="<?=$normaloperation ? "lcelc" : "lcelcd";?>"><?=$status;?>&nbsp;</td>
 					<td class="lcebld">
-						<table id="area_data_selection_toolbox"><tbody><tr>
+						<table class="area_data_selection_toolbox"><tbody><tr>
 							<td>
 								<?php if ($notdirty && $notprotected):?>
 									<a href="<?=$sphere_scriptname_child;?>?uuid=<?=$sphere_record['uuid'];?>"><img src="<?=$img_path['mod'];?>" title="<?=$gt_record_mod;?>" alt="<?=$gt_record_mod;?>" /></a>
@@ -291,6 +281,12 @@ function controlactionbuttons(ego, triggerbyname) {
 				</tr>
 			<?php endforeach; ?>
 		</tbody>
+		<tfoot>
+			<tr>
+				<th class="lcenl" colspan="6"></th>
+				<th class="lceadd"><a href="<?=$sphere_scriptname_child;?>"><img src="<?=$img_path['add'];?>" title="<?=$gt_record_add;?>" alt="<?=$gt_record_add;?>"/></a></th>
+			</tr>
+		</tfoot>
 	</table>
 	<div id="submit">
 		<input name="delete_selected_rows" id="delete_selected_rows" type="submit" class="formbtn" value="<?=$gt_selection_delete;?>"/>
@@ -316,6 +312,6 @@ function controlactionbuttons(ego, triggerbyname) {
 			?>
 		</tbody>
 	</table>
-	<?php include("formend.inc"); ?>
+	<?php include 'formend.inc';?>
 </form></td></tr></tbody></table>
-<?php include("fend.inc"); ?>
+<?php include 'fend.inc';?>

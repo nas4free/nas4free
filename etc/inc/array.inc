@@ -103,10 +103,10 @@ function array_sort_key(array &$array, $key) {
 // array - The array to be processed
 // key - The key used as filter criteria
 function array_remove_duplicate($array, $key) {
-	$result = array();
+	$result = [];
 	if (!is_array($array))
 		return false;
-	$subarray = array();
+	$subarray = [];
 	foreach ($array as $value) {
 		$subarray[] = $value[$key];
 	}
@@ -114,5 +114,23 @@ function array_remove_duplicate($array, $key) {
 		$result[] = $array[$k];
 	}
 	return $result;
+}
+function &array_make_branch(array &$branch,string ...$leaves) {
+// this function creates a chain of arrays in a given array if they don't exist
+// array_make_branch($config,'vinterfaces','carp') will create
+// - $config['vinterfaces'] = [] if vinterfaces doesn't exist or if it is not an array
+// - $config['vinterfaces']['carp'] = [] if carp doesn't exist or if it is not an array
+// - the last leaf of the chain of leaves is returned by reference.
+	$active_leaf = &$branch;
+	foreach($leaves as $leaf):
+		if(!(isset($active_leaf[$leaf]) && is_array($active_leaf[$leaf]))):
+			$active_leaf[$leaf] = [];
+		endif;
+		$next_leaf = &$active_leaf[$leaf];
+		unset($active_leaf);
+		$active_leaf = &$next_leaf;
+		unset($next_leaf);
+	endforeach;
+	return $active_leaf;
 }
 ?>

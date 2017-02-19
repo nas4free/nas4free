@@ -49,14 +49,10 @@
 	* 	Arguably, a full client install could be done too to
 	allow NAS4Free to NAS4Free syncing.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Services"), gtext("Unison"));
-
-if (!isset($config['unison']) || !is_array($config['unison']))
-	$config['unison'] = array();
-
+array_make_branch($config,'unison');
 $pconfig['enable'] = isset($config['unison']['enable']);
 $pconfig['workdir'] = $config['unison']['workdir'];
 $pconfig['mkdir'] = isset($config['unison']['mkdir']);
@@ -64,30 +60,23 @@ $pconfig['mkdir'] = isset($config['unison']['mkdir']);
 if ($_POST) {
 	unset($input_errors);
 	$pconfig = $_POST;
-
 	// Input validation
-	$reqdfields = array();
-	$reqdfieldsn = array();
-
+	$reqdfields = [];
+	$reqdfieldsn = [];
 	if (isset($_POST['enable']) && $_POST['enable']) {
-		$reqdfields = array_merge($reqdfields, explode(" ", "workdir"));
-		$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Working directory")));
-
+		$reqdfields = array_merge($reqdfields, ['workdir']);
+		$reqdfieldsn = array_merge($reqdfieldsn,[gtext('Work Directory')]);
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
-
 		// Check if working directory exists
 		if (empty($_POST['mkdir']) && !file_exists($_POST['workdir'])) {
-			$input_errors[] = gtext("The working directory does not exist.");
+			$input_errors[] = gtext("The work directory does not exist.");
 		}
 	}
-
 	if (empty($input_errors)) {
 		$config['unison']['workdir'] = $_POST['workdir'];
 		$config['unison']['enable'] = isset($_POST['enable']) ? true : false;
 		$config['unison']['mkdir'] = isset($_POST['mkdir']) ? true : false;
-
 		write_config();
-
 		$retval = 0;
 		if (!file_exists($d_sysrebootreqd_path)) {
 			config_lock();
@@ -97,15 +86,12 @@ if ($_POST) {
 		$savemsg = get_std_save_message($retval);
 	}
 }
-
-if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
-	$config['mounts']['mount'] = array();
-
+array_make_branch($config,'mounts','mount');
 array_sort_key($config['mounts']['mount'], "devicespecialfile");
 $a_mount = &$config['mounts']['mount'];
-
+$pgtitle = [gtext('Services'),gtext('Unison')];
 ?>
-<?php include("fbegin.inc"); ?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -115,37 +101,40 @@ function enable_change(enable_change) {
 }
 //-->
 </script>
-<form action="services_unison.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-		<tr>
-			<td class="tabcont">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="tabcont">
+			<form action="services_unison.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>	    
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php
-					html_titleline_checkbox("enable", gtext("Unison File Synchronisation"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");
-					html_filechooser("workdir", gtext("Working directory"), $pconfig['workdir'], sprintf(gtext("Location where the working files will be stored, e.g. %s/backup/.unison"), $g['media_path']), $g['media_path'], true, 60);
+					html_titleline_checkbox('enable', gtext("Unison File Synchronisation"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");
+					html_filechooser("workdir", gtext("Work Directory"), $pconfig['workdir'], sprintf(gtext("Location where the work files will be stored, e.g. %s/backup/.unison"), $g['media_path']), $g['media_path'], true, 60);
 					html_checkbox("mkdir", "", !empty($pconfig['mkdir']) ? true : false, gtext("Create work directory if it doesn't exist."), "", false);
 					?>
 				</table>
 				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save and Restart");?>" onclick="enable_change(true)" />
+				<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save and Restart");?>" onclick="enable_change(true)" />
 				</div>
 				<div id="remarks">
 					<?php
-					$link1 = '<a href="' . 'services_sshd.php' . '">' . gtext('SSHD') . '</a>';
-					$link2 = '<a href="' . 'access_users.php' . '">' . gtext('user') . '</a>';
-					html_remark("note", gtext('Note'), sprintf(gtext("%s must be enabled for Unison to work, and the %s must have shell access."), $link1, $link2));
+					$helpinghand = gtext('Before a Unison Client can start to work, you need to perform the following:')
+					. '<div id="enumeration"><ul>'
+					. '<li>' . '<a href="' . 'services_sshd.php' . '">' . gtext('Enable service SSH when disabled') . '</a>.' . '</li>'
+					. '<li>' . '<a href="' . 'access_users.php' . '">' . gtext('Setup user to get shell access') . '</a>.' . '</li>'
+					. '</ul></div>';
+					html_remark("note", gtext('Note'), $helpinghand );
 					?>
 				</div>
-			</td>
-		</tr>
-	</table>
-	<?php include("formend.inc");?>
-</form>
+				<?php include 'formend.inc';?>
+			</form>
+		</td>
+	</tr>
+</table>
 <script type="text/javascript">
 <!--
 enable_change(false);
 //-->
 </script>
-<?php include("fend.inc"); ?>
+<?php include 'fend.inc';?>

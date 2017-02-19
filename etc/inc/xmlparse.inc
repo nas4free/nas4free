@@ -63,7 +63,7 @@ function startElement($parser, $name, $attrs) {
 			/* is there an array already? */
 		if (!is_array($ptr)) {
 			/* make an array */
-			$ptr = array();
+			$ptr = [];
 		}
 
 		array_push($curpath, count($ptr));
@@ -123,8 +123,8 @@ function cData($parser, $data) {
 function parse_xml_config_raw($cffile, $rootobj) {
 	global $depth, $curpath, $config, $havedata, $listtags;
 
-	$config = array();
-	$curpath = array();
+	$config = []; // OK
+	$curpath = [];
 	$depth = 0;
 	$havedata = 0;
 	$encoding = "UTF-8"; // PHP default

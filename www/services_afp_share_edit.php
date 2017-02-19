@@ -31,27 +31,27 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("Services"), gtext("AFP"), gtext("Share"), isset($uuid) ? gtext("Edit") : gtext("Add"));
+$pgtitle = [gtext('Services'),gtext('AFP'),gtext('Share'), isset($uuid) ? gtext('Edit') : gtext('Add')];
 
-if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
-	$config['mounts']['mount'] = array();
+$a_mount = &array_make_branch($config,'mounts','mount');
+if(empty($a_mount)):
+else:
+	array_sort_key($a_mount,'devicespecialfile');
+endif;
 
-if (!isset($config['afp']['share']) || !is_array($config['afp']['share']))
-	$config['afp']['share'] = array();
-
-array_sort_key($config['mounts']['mount'], "devicespecialfile");
-$a_mount = &$config['mounts']['mount'];
-
-array_sort_key($config['afp']['share'], "name");
-$a_share = &$config['afp']['share'];
+$a_share = &array_make_branch($config,'afp','share');
+if(empty($a_share)):
+else:
+	array_sort_key($a_share,'name');
+endif;
 
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_share, "uuid")))) {
 	$pconfig['uuid'] = $a_share[$cnid]['uuid'];
@@ -96,11 +96,10 @@ if ($_POST) {
 	}
 
 	// Input validation.
-	$reqdfields = explode(" ", "name comment");
-	$reqdfieldsn = array(gtext("Name"), gtext("Comment"));
+	$reqdfields = ['name','comment'];
+	$reqdfieldsn = [gtext('Name'),gtext('Comment')];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
-
-	$reqdfieldst = explode(" ", "string string");
+	$reqdfieldst = ['string','string'];
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	// Verify that the share password is not more than 8 characters.
@@ -122,7 +121,7 @@ if ($_POST) {
 	}
 
 	if (empty($input_errors)) {
-		$share = array();
+		$share = [];
 		$share['uuid'] = $_POST['uuid'];
 		$share['name'] = $_POST['name'];
 		$share['path'] = $_POST['path'];
@@ -160,7 +159,7 @@ if ($_POST) {
 	}
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function adisk_change() {
@@ -190,106 +189,107 @@ function adisk_change() {
 			<form action="services_afp_share_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("Name");?></td>
-						<td width="78%" class="vtable">
-							<input name="name" type="text" class="formfld" id="name" size="30" value="<?=htmlspecialchars($pconfig['name']);?>" />
-						</td>
-					</tr>
-					<tr>
+				<?php html_titleline(gtext("Share Settings"));?>
+				<tr>
+					<td width="22%" valign="top" class="vncellreq"><?=gtext("Name");?></td>
+					<td width="78%" class="vtable">
+					<input name="name" type="text" class="formfld" id="name" size="30" value="<?=htmlspecialchars($pconfig['name']);?>" />
+				</td>
+			</tr>
+				<tr>
 					<td width="22%" valign="top" class="vncellreq"><?=gtext("Comment");?></td>
 					<td width="78%" class="vtable">
-						<input name="comment" type="text" class="formfld" id="comment" size="30" value="<?=htmlspecialchars($pconfig['comment']);?>" />
+					<input name="comment" type="text" class="formfld" id="comment" size="30" value="<?=htmlspecialchars($pconfig['comment']);?>" />
+				</td>
+			</tr>
+				<tr>
+					<td width="22%" valign="top" class="vncellreq"><?=gtext("Path");?></td>
+					<td width="78%" class="vtable">
+					<input name="path" type="text" class="formfld" id="path" size="60" value="<?=htmlspecialchars($pconfig['path']);?>" />
+					<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.path; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." /><br />
+					<span class="vexpl"><?=gtext("Path to be shared.");?></span>
 					</td>
-					</tr>
-					<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("Path");?></td>
-						<td width="78%" class="vtable">
-							<input name="path" type="text" class="formfld" id="path" size="60" value="<?=htmlspecialchars($pconfig['path']);?>" />
-							<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.path; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." /><br />
-							<span class="vexpl"><?=gtext("Path to be shared.");?></span>
-						</td>
-					</tr>
-					<tr>
+			</tr>
+				<tr>
 					<td width="22%" valign="top" class="vncell"><?=gtext("Share Password");?></td>
 					<td width="78%" class="vtable">
-						<input name="volpasswd" type="text" class="formfld" id="volpasswd" size="16" value="<?=htmlspecialchars($pconfig['volpasswd']);?>" />
-						<?=gtext("Set share password.");?><br />
-						<span class="vexpl"><?=gtext("This controls the access to this share with an access password.");?></span>
+					<input name="volpasswd" type="text" class="formfld" id="volpasswd" size="16" value="<?=htmlspecialchars($pconfig['volpasswd']);?>" />
+					<?=gtext("Set share password.");?><br />
+					<span class="vexpl"><?=gtext("This controls the access to this share with an access password.");?></span>
 					</td>
-					</tr>
-					<tr>
+			</tr>
+				<tr>
 					<td width="22%" valign="top" class="vncell"><?=gtext("Share Character Set");?></td>
 					<td width="78%" class="vtable">
-						<input name="volcharset" type="text" class="formfld" id="volcharset" size="16" value="<?=htmlspecialchars($pconfig['volcharset']);?>" /><br />
-						<span class="vexpl"><?=gtext("Specifies the share character set. For example UTF8, UTF8-MAC, ISO-8859-15, etc.");?></span>
+					<input name="volcharset" type="text" class="formfld" id="volcharset" size="16" value="<?=htmlspecialchars($pconfig['volcharset']);?>" /><br />
+					<span class="vexpl"><?=gtext("Specifies the share character set. For example UTF8, UTF8-MAC, ISO-8859-15, etc.");?></span>
 					</td>
-					</tr>
-					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gtext("Allow");?></td>
-						<td width="78%" class="vtable">
-							<input name="allow" type="text" class="formfld" id="allow" size="60" value="<?=htmlspecialchars($pconfig['allow']);?>" /><br />
-							<?=gtext("This option allows the users and groups that access a share to be specified. Users and groups are specified, delimited by commas. Groups are designated by a @ prefix.");?>
-						</td>
-					</tr>
-					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gtext("Deny");?></td>
-						<td width="78%" class="vtable">
-							<input name="deny" type="text" class="formfld" id="deny" size="60" value="<?=htmlspecialchars($pconfig['deny']);?>" /><br />
-							<?=gtext("The  deny  option specifies users and groups who are not allowed access to the share. It follows the same  format  as  the  allow option.");?>
-						</td>
-					</tr>
-					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gtext("Read Only Access");?></td>
-						<td width="78%" class="vtable">
-							<input name="rolist" type="text" class="formfld" id="rolist" size="60" value="<?=htmlspecialchars($pconfig['rolist']);?>" /><br />
-							<?=gtext("Allows certain users and groups to have read-only  access  to  a share. This follows the allow option format.");?>
-						</td>
-					</tr>
-					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gtext("Read/Write Access");?></td>
-						<td width="78%" class="vtable">
-							<input name="rwlist" type="text" class="formfld" id="rwlist" size="60" value="<?=htmlspecialchars($pconfig['rwlist']);?>" /><br />
-							<?=gtext("Allows  certain  users and groups to have read/write access to a share. This follows the allow option format.");?>
-						</td>
-					</tr>
-					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gtext("Time Machine");?></td>
-						<td width="78%" class="vtable">
-							<input name="timemachine" type="checkbox" id="timemachine" value="yes" <?php if (!empty($pconfig['timemachine'])) echo "checked=\"checked\""; ?> />
-							<?=gtext("Enable Time Machine support");?>
-						</td>
-					</tr>
-					<tr>
-						<td width="22%" valign="top" class="vncell"><?=gtext("Volume Size Limit");?></td>
-						<td width="78%" class="vtable">
-							<input name='volsizelimit' type='text' class='formfld' id='volsizelimit' size='10' value="<?=htmlspecialchars($pconfig['volsizelimit']);?>" /> <?=gtext("MiB");?>
-						</td>
-					</tr>
-					<tr>
-						<?php
-						$helpinghand = '<a href="'
-							. 'http://netatalk.sourceforge.net/3.1/htmldocs/afp.conf.5.html'
-							. '" target="_blank">'
-							. gtext('Please check the documentation')
-							. '</a>.';
-						html_textarea("auxparam", gtext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gtext("Add any supplemental parameters.")) . " " . $helpinghand, false, 65, 5, false, false);
-						?>
-					</tr>
-				</table>
+			</tr>
+				<tr>
+					<td width="22%" valign="top" class="vncell"><?=gtext("Allow");?></td>
+					<td width="78%" class="vtable">
+					<input name="allow" type="text" class="formfld" id="allow" size="60" value="<?=htmlspecialchars($pconfig['allow']);?>" /><br />
+					<?=gtext("This option allows the users and groups that access a share to be specified. Users and groups are specified, delimited by commas. Groups are designated by a @ prefix.");?>
+					</td>
+			</tr>
+				<tr>
+					<td width="22%" valign="top" class="vncell"><?=gtext("Deny");?></td>
+					<td width="78%" class="vtable">
+					<input name="deny" type="text" class="formfld" id="deny" size="60" value="<?=htmlspecialchars($pconfig['deny']);?>" /><br />
+					<?=gtext("The  deny  option specifies users and groups who are not allowed access to the share. It follows the same  format  as  the  allow option.");?>
+					</td>
+			</tr>
+				<tr>
+					<td width="22%" valign="top" class="vncell"><?=gtext("Read Only Access");?></td>
+					<td width="78%" class="vtable">
+					<input name="rolist" type="text" class="formfld" id="rolist" size="60" value="<?=htmlspecialchars($pconfig['rolist']);?>" /><br />
+					<?=gtext("Allows certain users and groups to have read-only  access  to  a share. This follows the allow option format.");?>
+					</td>
+			</tr>
+				<tr>
+					<td width="22%" valign="top" class="vncell"><?=gtext("Read/Write Access");?></td>
+					<td width="78%" class="vtable">
+					<input name="rwlist" type="text" class="formfld" id="rwlist" size="60" value="<?=htmlspecialchars($pconfig['rwlist']);?>" /><br />
+					<?=gtext("Allows  certain  users and groups to have read/write access to a share. This follows the allow option format.");?>
+					</td>
+			</tr>
+				<tr>
+					<td width="22%" valign="top" class="vncell"><?=gtext("Time Machine");?></td>
+					<td width="78%" class="vtable">
+					<input name="timemachine" type="checkbox" id="timemachine" value="yes" <?php if (!empty($pconfig['timemachine'])) echo "checked=\"checked\""; ?> />
+					<?=gtext("Enable Time Machine support");?>
+					</td>
+			</tr>
+				<tr>
+					<td width="22%" valign="top" class="vncell"><?=gtext("Volume Size Limit");?></td>
+					<td width="78%" class="vtable">
+					<input name='volsizelimit' type='text' class='formfld' id='volsizelimit' size='10' value="<?=htmlspecialchars($pconfig['volsizelimit']);?>" /> <?=gtext("MiB");?>
+					</td>
+			</tr>
+				<tr>
+					<?php
+					$helpinghand = '<a href="'
+					. 'http://netatalk.sourceforge.net/3.1/htmldocs/afp.conf.5.html'
+					. '" target="_blank">'
+					. gtext('Please check the documentation')
+					. '</a>.';
+					html_textarea("auxparam", gtext("Additional Parameters"), $pconfig['auxparam'], sprintf(gtext("Add any supplemental parameters.")) . " " . $helpinghand, false, 65, 5, false, false);
+					?>
+			</tr>
+			</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
 					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
-				</div>
-				<?php include("formend.inc");?>
-			</form>
-		</td>
-	</tr>
+			</div>
+			<?php include 'formend.inc';?>
+		</form>
+	</td>
+</tr>
 </table>
 <script type="text/javascript">
 <!--
 adisk_change();
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

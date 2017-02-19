@@ -31,68 +31,65 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Services"), gtext("HAST"), gtext("Information"));
-
-if (!isset($config['hast']['auxparam']) || !is_array($config['hast']['auxparam']))
-	$config['hast']['auxparam'] = array();
-//if (!isset($config['hast']['hastresource']) || !is_array($config['hast']['hastresource']))
-//	$config['hast']['hastresource'] = array();
-
-function hast_get_status() {
+function services_hast_info_ajax() {
 	global $config;
-
-	if (!isset($config['hast']['enable'])) {
-		return gtext("HAST disabled");
-	}
-
-	$cmd = "/sbin/hastctl status";
-	if (isset($_GET['name'])) {
-		$cmd .= " {$_GET['name']}";
-	}
+	if(!isset($config['hast']['enable'])):
+		return gtext('HAST is disabled.');
+	endif;
+	$cmd = '/sbin/hastctl status';
 	$cmd .= " 2>&1";
-	mwexec2($cmd, $rawdata);
-	return implode("\n", $rawdata);
+	mwexec2($cmd,$rawdata);
+	return implode("\n",$rawdata);
 }
-
-if (is_ajax()) {
-	$status = hast_get_status();
+array_make_branch($config,'hast');
+if(is_ajax()):
+	$status = services_hast_info_ajax();
 	render_ajax($status);
-}
+endif;
+$pgtitle = [gtext('Services'),gtext('HAST'),gtext('Information')];
+include 'fbegin.inc';
 ?>
-<?php include("fbegin.inc");?>
-<script type="text/javascript">//<![CDATA[
+<script type="text/javascript">
+//<![CDATA[
 $(document).ready(function(){
 	var gui = new GUI;
-	gui.recall(0, 5000, 'services_hast_info.php', null, function(data) {
-		$('#hast_status').text(data.data);
+	gui.recall(5000, 5000, 'services_hast_info.php', null, function(data) {
+		if ($('#area_refresh').length > 0) {
+			$('#area_refresh').text(data.data);
+		}
 	});
 });
 //]]>
 </script>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-	<li class="tabinact"><a href="services_hast.php"><span><?=gtext("Settings");?></span></a></li>
-	<li class="tabinact"><a href="services_hast_resource.php"><span><?=gtext("Resources");?></span></a></li>
-	<li class="tabact"><a href="services_hast_info.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Information");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-      <table width="100%" border="0" cellspacing="0" cellpadding="0">
-	<?php html_titleline(gtext("HAST Information & Status Configured Resources"));?>
-	<tr>
-	  <td class="listt">
-	  <pre><span id="hast_status"></span></pre>
-	  </td>
-	</tr>
+<table id="area_navigator"><tbody>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabinact"><a href="services_hast.php"><span><?=gtext('Settings');?></span></a></li>
+		<li class="tabinact"><a href="services_hast_resource.php"><span><?=gtext('Resources');?></span></a></li>
+		<li class="tabact"><a href="services_hast_info.php" title="<?=gtext('Reload page');?>"><span><?=gtext('Information');?></span></a></li>
+	</ul></td></tr>
+</tbody></table>
+<table id="area_data"><tbody><tr><td id="area_data_frame">
+	<table class="area_data_settings">
+		<colgroup>
+			<col class="area_data_settings_col_tag">
+			<col class="area_data_settings_col_data">
+		</colgroup>
+		<thead>
+<?php 
+			html_titleline2(gtext('HAST Information & Status Configured Resources'));
+?>
+		</thead>
+		<tbody><tr>
+			<td class="celltag"><?=gtext('Information');?></td>
+			<td class="celldata">
+				<pre><span id="area_refresh"><?=services_hast_info_ajax();?></span></pre>
+			</td>
+		</tr></tbody>
 	</table>
-    </td>
-  </tr>
-</table>
-<?php include("fend.inc");?>
+</td></tr></tbody></table>
+<?php
+include 'fend.inc';
+?>

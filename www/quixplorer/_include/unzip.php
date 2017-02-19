@@ -41,7 +41,7 @@ require_once("./_include/debug.php");
 //------------------------------------------------------------------------------
 function dir_list($dir) {			// make list of directories
 	// this list is used to copy/move items to a specific location
-	$dir_list = array();
+	$dir_list = [];
 	$handle = @opendir(get_abs_dir($dir));
 	if($handle===false) return;		// unable to open dir
 	
@@ -87,7 +87,7 @@ function unzip_item($dir)
     global $home_dir;
 
 	// copy and move are only allowed if the user may read and change files
-	if ( !permissions_grant_all( $dir, NULL, array( "read", "create" ) ) )
+	if ( !permissions_grant_all( $dir, NULL, ["read","create"]))
     {
         show_error($GLOBALS["error_msg"]["accessfunc"]);
     }
@@ -252,7 +252,7 @@ function unzip_item($dir)
     if( $res == false )
     {
         $error[$i]=$GLOBALS["error_msg"]["unzip"];
-        $err=true;	continue;
+        $err=true;	// continue;
     }
 
     $error[$i]=NULL;

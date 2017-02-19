@@ -31,21 +31,21 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("Services"), gtext("iSCSI Target"), gtext("Portal Group"), isset($uuid) ? gtext("Edit") : gtext("Add"));
+$pgtitle = [gtext('Services'),gtext('iSCSI Target'),gtext('Portal Group'), isset($uuid) ? gtext('Edit') : gtext('Add')];
 
-if (!isset($config['iscsitarget']['portalgroup']) || !is_array($config['iscsitarget']['portalgroup']))
-	$config['iscsitarget']['portalgroup'] = array();
-
-array_sort_key($config['iscsitarget']['portalgroup'], "tag");
-$a_iscsitarget_pg = &$config['iscsitarget']['portalgroup'];
+$a_iscsitarget_pg = &array_make_branch($config,'iscsitarget','portalgroup');
+if(empty($a_iscsitarget_pg)):
+else:
+	array_sort_key($a_iscsitarget_pg,'tag');
+endif;
 
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_pg, "uuid")))) {
 	$pconfig['uuid'] = $a_iscsitarget_pg[$cnid]['uuid'];
@@ -58,7 +58,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_iscsitarget_pg
 } else {
 	// Find next unused tag.
 	$tag = 1;
-	$a_tags = array();
+	$a_tags = [];
 	foreach($a_iscsitarget_pg as $pg)
 		$a_tags[] = $pg['tag'];
 
@@ -116,9 +116,9 @@ if ($_POST) {
 	}
 
 	// Input validation.
-	$reqdfields = explode(" ", "tag");
-	$reqdfieldsn = array(gtext("Tag number"));
-	$reqdfieldst = explode(" ", "numericint");
+	$reqdfields = ['tag'];
+	$reqdfieldsn = [gtext('Tag Number')];
+	$reqdfieldst = ['numericint'];
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
@@ -135,7 +135,7 @@ if ($_POST) {
 		}
 	}
 
-	$portals = array();
+	$portals = [];
 	foreach (explode("\n", $_POST['portals']) as $portal) {
 		$portal = trim($portal, " \t\r\n");
 		if (!empty($portal)) {
@@ -165,7 +165,7 @@ if ($_POST) {
 	}
 
 	if (empty($input_errors)) {
-		$iscsitarget_pg = array();
+		$iscsitarget_pg = [];
 		$iscsitarget_pg['uuid'] = $_POST['uuid'];
 		$iscsitarget_pg['tag'] = $_POST['tag'];
 		$iscsitarget_pg['comment'] = $_POST['comment'];
@@ -280,37 +280,38 @@ function normalize_ipv6addr($v6addr) {
 	return $v6str;
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <form action="services_iscsitarget_pg_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	  <tr>
-	    <td class="tabnavtbl">
-	      <ul id="tabnav">
-					<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
-					<li class="tabinact"><a href="services_iscsitarget_target.php"><span><?=gtext("Targets");?></span></a></li>
-					<li class="tabact"><a href="services_iscsitarget_pg.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Portals");?></span></a></li>
-					<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
-					<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gtext("Auths");?></span></a></li>
-					<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
-	      </ul>
-	    </td>
-	  </tr>
-	  <tr>
-	    <td class="tabcont">
-				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-				<?php html_inputbox("tag", gtext("Tag number"), $pconfig['tag'], gtext("Numeric identifier of the group."), true, 10, (isset($uuid) && (FALSE !== $cnid)));?>
-				<?php html_textarea("portals", gtext("Portals"), $pconfig['portals'], gtext("The portal takes the form of 'address:port'. for example '192.168.1.1:3260' for IPv4, '[2001:db8:1:1::1]:3260' for IPv6. the port 3260 is standard iSCSI port number. For any IPs (wildcard address), use '0.0.0.0:3260' and/or '[::]:3260'. Do not mix wildcard and other IPs at same address family."), true, 65, 7, false, false);?>
-				<?php html_inputbox("comment", gtext("Comment"), $pconfig['comment'], gtext("You may enter a description here for your reference."), false, 40);?>
-				</table>
-				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
-					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
-				</div>
-	    </td>
-	  </tr>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+	<td class="tabnavtbl">
+		<ul id="tabnav">
+			<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
+			<li class="tabinact"><a href="services_iscsitarget_target.php"><span><?=gtext("Targets");?></span></a></li>
+			<li class="tabact"><a href="services_iscsitarget_pg.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Portals");?></span></a></li>
+			<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
+			<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gtext("Auths");?></span></a></li>
+			<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
+			</ul>
+		</td>
+	</tr>
+<tr>
+	<td class="tabcont">
+			<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+			<table width="100%" border="0" cellpadding="6" cellspacing="0">
+			<?php html_titleline(gtext("Portal Group Settings"));?>
+			<?php html_inputbox("tag", gtext("Tag number"), $pconfig['tag'], gtext("Numeric identifier of the group."), true, 10, (isset($uuid) && (FALSE !== $cnid)));?>
+			<?php html_textarea("portals", gtext("Portals"), $pconfig['portals'], gtext("The portal takes the form of 'address:port'. for example '192.168.1.1:3260' for IPv4, '[2001:db8:1:1::1]:3260' for IPv6. the port 3260 is standard iSCSI port number. For any IPs (wildcard address), use '0.0.0.0:3260' and/or '[::]:3260'. Do not mix wildcard and other IPs at same address family."), true, 65, 7, false, false);?>
+			<?php html_inputbox("comment", gtext("Comment"), $pconfig['comment'], gtext("You may enter a description here for your reference."), false, 40);?>
 	</table>
-	<?php include("formend.inc");?>
+	<div id="submit">
+			<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+			<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
+			<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
+		</div>
+	</td>
+</tr>
+</table>
+<?php include 'formend.inc';?>
 </form>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

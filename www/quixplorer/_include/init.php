@@ -132,11 +132,18 @@ if (isset($prompt))
 
 ob_end_clean(); // get rid of cached unwanted output
 
-function _load_language($lang)
-{
-    if (!isset($lang))
+function _load_language($lang) {
+    if (!isset($lang)):
         $lang = 'en_US';
-    require "./_lang/$lang.php";
-    require "./_lang/$lang" . "_mimes.php";
+	endif;
+	$f1 = sprintf('./_lang/%s.php',$lang);
+	$f2 = sprintf('./_lang/%s_mimes.php',$lang);
+	if(!(file_exists($f1) and file_exists($f2))):
+        $lang = 'en_US';
+		$f1 = sprintf('./_lang/%s.php',$lang);
+		$f2 = sprintf('./_lang/%s_mimes.php',$lang);
+	endif;
+	require $f1;
+	require $f2;
 }
 ?>

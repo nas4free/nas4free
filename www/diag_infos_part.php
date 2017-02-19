@@ -31,57 +31,118 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-
-$pgtitle = array(gtext("Diagnostics"), gtext("Information"), gtext("Partitions"));
+require 'auth.inc';
+require 'guiconfig.inc';
 
 $a_disk = get_physical_disks_list();
+$pgtitle = [gtext('Diagnostics'),gtext('Information'),gtext('Partitions')];
+include 'fbegin.inc';
 ?>
-<?php include("fbegin.inc");?>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav">
-				<li class="tabinact"><a href="diag_infos.php"><span><?=gtext("Disks");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ata.php"><span><?=gtext("Disks (ATA)");?></span></a></li>
-				<li class="tabact"><a href="diag_infos_part.php" title="<?=gtext("Reload page");?>"><span><?=gtext("Partitions");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_smart.php"><span><?=gtext("S.M.A.R.T.");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_space.php"><span><?=gtext("Space Used");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gtext("Mounts");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_raid.php"><span><?=gtext("Software RAID");?></span></a></li>
-		  </ul>
-	  </td>
-	</tr>
-  <tr>
-		<td class="tabnavtbl">
-		  <ul id="tabnav2">
-				<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gtext("iSCSI Initiator");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ad.php"><span><?=gtext("MS Domain");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gtext("CIFS/SMB");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ftpd.php"><span><?=gtext("FTP");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_rsync_client.php"><span><?=gtext("RSYNC Client");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_swap.php"><span><?=gtext("Swap");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gtext("Sockets");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ipmi.php"><span><?=gtext('IPMI Stats');?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ups.php"><span><?=gtext("UPS");?></span></a></li>
-			</ul>
-		</td>
-	</tr>
-  <tr>
-    <td class="tabcont">
-    	<table width="100%" border="0">
-  			<?php foreach($a_disk as $diskk => $diskv):?>
-  			<?php html_titleline(sprintf(gtext("Device /dev/%s - %s"), $diskk, $diskv['desc']));?>
-				<tr>
-					<td>
-						<pre><?php unset($rawdata); exec("/sbin/gpart show {$diskk}", $rawdata); echo htmlspecialchars(implode("\n", $rawdata));?></pre>
-						<pre><?php unset($rawdata); exec("/sbin/fdisk {$diskk}", $rawdata); echo htmlspecialchars(implode("\n", $rawdata));?></pre>
-					</td>
-				</tr>
-    		<?php endforeach;?>
-    	</table>
-    </td>
-  </tr>
-</table>
-<?php include("fend.inc");?>
+<table id="area_navigator"><tbody>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabinact"><a href="diag_infos_disks.php"><span><?=gtext('Disks');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_disks_info.php"><span><?=gtext('Disks (Info)');?></span></a></li>
+		<li class="tabact"><a href="diag_infos_part.php" title="<?=gtext('Reload page');?>"><span><?=gtext('Partitions');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_smart.php"><span><?=gtext('S.M.A.R.T.');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_space.php"><span><?=gtext('Space Used');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_swap.php"><span><?=gtext('Swap');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gtext('Mounts');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_raid.php"><span><?=gtext('Software RAID');?></span></a></li>
+	</ul></td></tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav2">
+		<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gtext('iSCSI Initiator');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ad.php"><span><?=gtext('MS Domain');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gtext('CIFS/SMB');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ftpd.php"><span><?=gtext('FTP');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_rsync_client.php"><span><?=gtext('RSYNC Client');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_netstat.php"><span><?=gtext('Netstat');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gtext('Sockets');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ipmi.php"><span><?=gtext('IPMI Stats');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ups.php"><span><?=gtext('UPS');?></span></a></li>
+	</ul></td></tr>
+</tbody></table>
+<table id="area_data"><tbody><tr><td id="area_data_frame">
+<?php
+	if(empty($a_disk)):
+		print_info_box(gtext('No disks found.'));
+?>
+		<table class="area_data_settings">
+			<colgroup>
+				<col class="area_data_settings_col_tag">
+				<col class="area_data_settings_col_data">
+			</colgroup>
+			<thead>
+<?php
+				html_titleline2(gtext('Disk Partition Information'));
+?>
+			</thead>
+		</table>
+<?php
+	else:
+		$do_seperator = false;
+		foreach($a_disk as $diskk => $diskv):
+?>				
+			<table class="area_data_settings">
+				<colgroup>
+					<col class="area_data_settings_col_tag">
+					<col class="area_data_settings_col_data">
+				</colgroup>
+				<thead>
+<?php
+					if($do_seperator):
+						html_separator2();
+					else:
+						$do_seperator = true;
+					endif;
+					html_titleline2(sprintf(gtext('Device /dev/%s - %s'),$diskk,$diskv['desc']));
+?>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="celltag"><?=gtext('GEOM Partition Information');?></td>
+						<td class="celldata">
+<?php
+							echo '<pre>';
+							unset($rawdata);
+							$cmd = sprintf('/sbin/gpart show %s',escapeshellarg($diskk));
+							exec($cmd,$rawdata);
+							$output = htmlspecialchars(implode("\n",$rawdata));
+							if(preg_match('/\S/',$output)):
+								echo $output;
+							else:
+								echo gtext('No partition information found.');
+							endif;
+							unset($rawdata);
+							echo '</pre>';
+?>
+						</td>
+					</tr>
+					<tr>
+						<td class="celltag"><?=gtext('Fdisk Partition Information');?></td>
+						<td class="celldata">
+<?php
+							echo '<pre>';
+							unset($rawdata);
+							$cmd = sprintf('/sbin/fdisk %s',escapeshellarg($diskk));
+							exec($cmd,$rawdata);
+							$output = htmlspecialchars(implode("\n",$rawdata));
+							if(preg_match('/\S/',$output)):
+								echo $output;
+							else:
+								echo gtext('No fdisk information found.');
+							endif;
+							unset($rawdata);
+							echo '</pre>';
+?>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+<?php
+		endforeach;
+	endif;
+?>
+</td></tr></tbody></table>
+<?php
+include 'fend.inc';
+?>

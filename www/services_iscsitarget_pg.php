@@ -31,10 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-
-$pgtitle = array(gtext("Services"), gtext("iSCSI Target"), gtext("Portal Group"));
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if ($_POST) {
 	$pconfig = $_POST;
@@ -64,15 +62,12 @@ if ($_POST) {
 	}
 }
 
-if (!isset($config['iscsitarget']['portalgroup']) || !is_array($config['iscsitarget']['portalgroup']))
-	$config['iscsitarget']['portalgroup'] = array();
-
-
-array_sort_key($config['iscsitarget']['portalgroup'], "tag");
-$a_iscsitarget_pg = &$config['iscsitarget']['portalgroup'];
-
-if (!isset($config['iscsitarget']['target']) || !is_array($config['iscsitarget']['target']))
-	$config['iscsitarget']['target'] = array();
+$a_iscsitarget_pg = &array_make_branch($config,'iscsitarget','portalgroup');
+if(empty($a_iscsitarget_pg)):
+else:
+	array_sort_key($a_iscsitarget_pg,'tag');
+endif;
+array_make_branch($config,'iscsitarget','target');
 
 if (isset($_GET['act']) && $_GET['act'] === "del") {
 	$index = array_search_ex($_GET['uuid'], $config['iscsitarget']['portalgroup'], "uuid");
@@ -113,75 +108,72 @@ function iscsitargetpg_process_updatenotification($mode, $data) {
 
 	return $retval;
 }
+$pgtitle = [gtext('Services'),gtext('iSCSI Target'),gtext('Portal Group')];
 ?>
-<?php include("fbegin.inc");?>
-<form action="services_iscsitarget_pg.php" method="post" name="iform" id="iform">
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-        <li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
-        <li class="tabinact"><a href="services_iscsitarget_target.php"><span><?=gtext("Targets");?></span></a></li>
-        <li class="tabact"><a href="services_iscsitarget_pg.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Portals");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gtext("Auths");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-      <?php if (!empty($savemsg)) print_info_box($savemsg);?>
-      <?php if (updatenotify_exists("iscsitarget_pg")) print_config_change_box();?>
-      <table width="100%" border="0" cellpadding="6" cellspacing="0">
-      <tr>
-        <td colspan="2" valign="top" class="listtopic"><?=gtext("Portal Groups");?></td>
-      </tr>
-      <tr>
-        <td width="22%" valign="top" class="vncell"><?=gtext("Portal Group");?></td>
-        <td width="78%" class="vtable">
-        <table width="100%" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td width="5%" class="listhdrlr"><?=gtext("Tag");?></td>
-          <td width="55%" class="listhdrr"><?=gtext("Portals");?></td>
-          <td width="30%" class="listhdrr"><?=gtext("Comment");?></td>
-          <td width="10%" class="list"></td>
-        </tr>
-        <?php foreach($config['iscsitarget']['portalgroup'] as $pg):?>
-        <?php $notificationmode = updatenotify_get_mode("iscsitarget_pg", $pg['uuid']);?>
-        <tr>
-          <td class="listlr"><?=htmlspecialchars($pg['tag']);?>&nbsp;</td>
-          <td class="listr">
-          <?php foreach ($pg['portal'] as $portal): ?>
-          <?php echo htmlspecialchars($portal)."<br />\n"; ?>
-          <?php endforeach; ?>
-          </td>
-          <td class="listr"><?=htmlspecialchars($pg['comment']);?>&nbsp;</td>
-          <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
-          <td valign="middle" nowrap="nowrap" class="list">
-            <a href="services_iscsitarget_pg_edit.php?uuid=<?=$pg['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit portal group");?>" border="0" alt="<?=gtext("Edit portal group");?>" /></a>
-            <a href="services_iscsitarget_pg.php?act=del&amp;type=pg&amp;uuid=<?=$pg['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this portal group?");?>')"><img src="images/delete.png" title="<?=gtext("Delete portal group");?>" border="0" alt="<?=gtext("Delete portal group");?>" /></a>
-          </td>
-          <?php else:?>
-          <td valign="middle" nowrap="nowrap" class="list">
-            <img src="images/delete.png" border="0" alt="" />
-          </td>
-          <?php endif;?>
-        </tr>
-        <?php endforeach;?>
-        <tr>
-          <td class="list" colspan="3"></td>
-          <td class="list"><a href="services_iscsitarget_pg_edit.php"><img src="images/add.png" title="<?=gtext("Add portal group");?>" border="0" alt="<?=gtext("Add portal group");?>" /></a></td>
-        </tr>
-        </table>
-        <?=gtext("A Portal Group contains IP addresses and listening TCP ports to connect the target from the initiator.");?>
-        </td>
-      </tr>
-      </table>
-    </td>
-  </tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_target.php"><span><?=gtext("Targets");?></span></a></li>
+		<li class="tabact"><a href="services_iscsitarget_pg.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Portals");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gtext("Auths");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
+	</ul></td></tr>
+	<tr>
+		<td class="tabcont">
+			<form action="services_iscsitarget_pg.php" method="post" name="iform" id="iform">
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
+				<?php if (updatenotify_exists("iscsitarget_pg")) print_config_change_box();?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<tr>
+						<td colspan="2" valign="top" class="listtopic"><?=gtext("Portal Groups");?></td>
+					</tr>
+					<tr>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Portal Group");?></td>
+						<td width="78%" class="vtable">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="5%" class="listhdrlr"><?=gtext("Tag");?></td>
+									<td width="55%" class="listhdrr"><?=gtext("Portals");?></td>
+									<td width="30%" class="listhdrr"><?=gtext("Comment");?></td>
+									<td width="10%" class="list"></td>
+								</tr>
+								<?php foreach($config['iscsitarget']['portalgroup'] as $pg):?>
+									<?php $notificationmode = updatenotify_get_mode("iscsitarget_pg", $pg['uuid']);?>
+									<tr>
+										<td class="listlr"><?=htmlspecialchars($pg['tag']);?>&nbsp;</td>
+										<td class="listr">
+											<?php foreach ($pg['portal'] as $portal): ?>
+												<?php echo htmlspecialchars($portal)."<br />\n"; ?>
+											<?php endforeach; ?>
+										</td>
+										<td class="listr"><?=htmlspecialchars($pg['comment']);?>&nbsp;</td>
+										<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
+											<td valign="middle" nowrap="nowrap" class="list">
+												<a href="services_iscsitarget_pg_edit.php?uuid=<?=$pg['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit portal group");?>" border="0" alt="<?=gtext("Edit portal group");?>" /></a>
+												<a href="services_iscsitarget_pg.php?act=del&amp;type=pg&amp;uuid=<?=$pg['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this portal group?");?>')"><img src="images/delete.png" title="<?=gtext("Delete portal group");?>" border="0" alt="<?=gtext("Delete portal group");?>" /></a>
+											</td>
+										<?php else:?>
+											<td valign="middle" nowrap="nowrap" class="list">
+												<img src="images/delete.png" border="0" alt="" />
+											</td>
+										<?php endif;?>
+									</tr>
+								<?php endforeach;?>
+								<tr>
+									<td class="list" colspan="3"></td>
+									<td class="list"><a href="services_iscsitarget_pg_edit.php"><img src="images/add.png" title="<?=gtext("Add portal group");?>" border="0" alt="<?=gtext("Add portal group");?>" /></a></td>
+								</tr>
+							</table>
+							<?=gtext("Portal Groups contains IP addresses and listening on TCP ports to connect the target from the initiator.");?>
+						</td>
+					</tr>
+				</table>
+				<?php include 'formend.inc';?>
+			</form>
+		</td>
+	</tr>
 </table>
-<?php include("formend.inc");?>
-</form>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

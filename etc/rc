@@ -4,20 +4,16 @@
 # Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-# $FreeBSD: src/etc/rc
-#
 
-# System startup script run by init on autoboot
-# or after single-user.
+# System startup script run by init on autoboot or after single-user.
 # Output and error are redirected to console by init,
-# and the console is the controlling terminal.
+# the console is the controlling terminal.
 
-# Note that almost all of the user-configurable behavior is no longer in
-# this file, but rather in /etc/defaults/rc.conf.  Please check that file
-# first before contemplating any changes here.  If you do need to change
-# this file for some reason, we would like to know about it.
+# Note that almost all of the user-configurable behavior is no longer
+# in this file, but rather in /etc/defaults/rc.conf.
+# Please check rc.conf first before contemplating any changes here.
 
-stty status '^T'
+stty status '^T' 2> /dev/null
 
 # Set shell to ignore SIGINT (2), but not children;
 # shell catches SIGQUIT (3) and returns to single user.
@@ -85,20 +81,16 @@ case ${PLATFORM} in
 		;;
 	*)
 		# If running from liveCD or embedded, mount the root (ramdisk) in read-write.
-		
-		if [ -e /dev/xmd0 ]; then
-			/sbin/mount -u -o rw,noatime,acls /dev/xmd0 /;
-		
+		if [ "${PLATFORM}" = "bpi-embedded" ]; then
+			/sbin/mount -u -o rw,noatime,acls /dev/md1s1a /;
 		else
-			if [ "${PLATFORM}" = "bpi-embedded" ]; then
-				/sbin/mount -u -o rw,noatime,acls /dev/md1s1a /;
-			else
-				/sbin/mount -u -o rw,noatime,acls /dev/md0 /;
-			fi
+			/sbin/mount -u -o rw,noatime,acls /dev/md0 /;
 		fi
 
 		/bin/echo "Creating 2nd memory disk for ${PLATFORM}"
-		md=`/sbin/mdconfig -t swap -s ${MDLOCALSIZE}`
+		# Timer
+		sleep 3
+		md=`/sbin/mdconfig -t malloc -o compress -s ${MDLOCALSIZE}`
 		case ${PLATFORM} in
 			*-liveUSB)
 				root=`/sbin/glabel status -s|/usr/bin/awk '/liveboot/{print $3;exit 0}'`
@@ -107,15 +99,6 @@ case ${PLATFORM} in
 					echo "can't determine rootfs"
 					sleep 30; halt
 				fi
-				#swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
-				#swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
-				#if [ "${ARCH}" = "arm" -a -e "/dev/${swap2}" ]; then
-				#	# pre-configured swap
-				#	swap=${swap2}
-				#elif [ ! -e "/dev/${swap}" ]; then
-				#	dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
-				#	/sbin/gpart add -s ${SWAPSIZE} -t freebsd-swap ${dev}
-				#fi
 
 				# use default swap if exists
 				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/s[1234]a$/s2b/'`
@@ -132,29 +115,15 @@ case ${PLATFORM} in
 					else
 						echo "swap device is not found"
 					fi
-					if [ -f /boot/kernel/geom_xmd.ko ]; then
-						/sbin/mdconfig -d -u ${md}
-						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
-						md=`/sbin/xmdconfig -c 4 -s ${MDLOCALSIZE}`
-					fi
 				else
-					# not use LiveUSB
-					#if [ "${swap}" != "NONE" -a -e "/dev/${swap}" ]; then
-					#	/sbin/swapon /dev/${swap}
-					#	echo "/dev/${swap}" > /etc/swapdevice
-					#fi
-					if [ -f /boot/kernel/geom_xmd.ko ]; then
-						/sbin/mdconfig -d -u ${md}
-						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
-						md=`/sbin/xmdconfig -c 4 -s ${MDLOCALSIZE}`
+					if [ "${swap}" != "NONE" -a -e "/dev/${swap}" ]; then
+						/sbin/swapon /dev/${swap}
+						echo "/dev/${swap}" > /etc/swapdevice
 					fi
 				fi
 
 				/sbin/mount -r /dev/${root} /mnt
-				if [ -f /mnt/mdlocal.uzip ]; then
-					#echo "Direct loading: /mnt/mdlocal.uzip"
-					/sbin/xmdconfig -ivu ${md} /mnt/mdlocal.uzip
-				elif [ -f /mnt/mdlocal.xz ]; then
+				if [ -f /mnt/mdlocal.xz ]; then
 					/usr/bin/xz -dcv /mnt/mdlocal.xz | \
 					    /bin/dd of=/dev/${md} bs=1m status=none
 				else
@@ -174,16 +143,6 @@ case ${PLATFORM} in
 					echo "can't determine rootfs"
 					sleep 30; halt
 				fi
-				#swap=`/bin/echo ${root}|/usr/bin/sed -e 's/a$/b/'`
-				#swap2=`/bin/echo ${root}|/usr/bin/sed -e 's/s[13]a$/s2b/'`
-				# always create swap partition if not exists
-				#if [ "${ARCH}" = "arm" -a -e "/dev/${swap2}" ]; then
-				#	# pre-configured swap
-				#	swap=${swap2}
-				#elif [ ! -e "/dev/${swap}" ]; then
-				#	dev=`/bin/echo ${swap}|/usr/bin/sed -e 's/b$//'`
-				#	/sbin/gpart add -s ${SWAPSIZE} -t freebsd-swap ${dev}
-				#fi
 
 				# use default swap if exists
 				swap=`/bin/echo ${root}|/usr/bin/sed -e 's/s[1234]a$/s2b/'`
@@ -200,28 +159,15 @@ case ${PLATFORM} in
 					else
 						echo "swap device is not found"
 					fi
-					if [ -f /boot/kernel/geom_xmd.ko ]; then
-						/sbin/mdconfig -d -u ${md}
-						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
-						md=`/sbin/xmdconfig -c 4 -s ${MDLOCALSIZE}`
-					fi
 				else
 					if [ "${swap}" != "NONE" -a -e "/dev/${swap}" ]; then
 						/sbin/swapon /dev/${swap}
 						echo "/dev/${swap}" > /etc/swapdevice
 					fi
-					if [ -f /boot/kernel/geom_xmd.ko ]; then
-						/sbin/mdconfig -d -u ${md}
-						/sbin/kldload /boot/kernel/geom_xmd.ko 2> /dev/null
-						md=`/sbin/xmdconfig -c 4 -s ${MDLOCALSIZE}`
-					fi
 				fi
 
 				/sbin/mount -r /dev/${root} /mnt
-				if [ -f /mnt/mdlocal.uzip ]; then
-					#echo "Direct loading: /mnt/mdlocal.uzip"
-					/sbin/xmdconfig -ivu ${md} /mnt/mdlocal.uzip
-				elif [ -f /mnt/mdlocal.xz ]; then
+				if [ -f /mnt/mdlocal.xz ]; then
 					/usr/bin/xz -dcv /mnt/mdlocal.xz | \
 					    /bin/dd of=/dev/${md} bs=1m status=none
 				else
@@ -241,7 +187,6 @@ case ${PLATFORM} in
 					sleep 30; halt
 				fi
 				swap=NONE
-				#echo "NONE" > /etc/swapdevice
 				rm -f /etc/swapdevice
 
 				/sbin/mount -t cd9660 /dev/${root} /mnt

@@ -31,7 +31,7 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("session.inc");
+require_once 'session.inc';
 
 Session::destroy();
 header("Location: login.php");

@@ -34,7 +34,7 @@ body {
 	background: #D9DCE1;
 	margin: 0 auto;
 	padding: 0pt;
-	min-width: 700px;
+	min-width: 1024px;
 	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
 }
 .logintitle {
@@ -158,20 +158,37 @@ span, a, form, h1, button {
 	float: left;
 	margin-right: 10px;
 }
-#all_links a {
-	color:#444;
-}
-#all_links a:hover {
-	text-decoration:underline;
-}
-#all_links ul {
-	list-style:none;
-}
-#all_links ul li{
-	display:inline-block;
-}
 #loginerror {
 	font-size: 15px;
 	color:red;
 	text-align:center;
+	padding-top: 20px;
+}
+div#login_links {
+	padding-top: 20px;
+}
+#login_links ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	color: #444;
+	display: -webkit-box;  /* 1 */
+	display: -moz-box;     /* 2 */
+	display: -ms-flexbox;  /* 3 */
+	display: -webkit-flex; /* 4 */
+	display: -ms-flex;     /* 5 */
+	display: flex;         /* 6 */
+	-webkit-box-orient: horizontal; /* 1 */
+	-moz-box-orient: horizontal;    /* 2 */
+	-ms-box-orient: horizontal;     /* 3 */
+	-webkit-flex-direction: row;    /* 4 */
+	-ms-flex-direction: row;        /* 5 */
+	flex-direction: row;            /* 6 */
+	justify-content: space-between;
+}
+#login_links li a {
+	color:#444;
+}
+#login_links li a:hover {
+	text-decoration: underline;
 }

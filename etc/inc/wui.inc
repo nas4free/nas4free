@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("config.inc");
-require_once("array.inc");
+require_once 'config.inc';
+require_once 'array.inc';
 
 class HTMLBaseControl {
 	var $_ctrlname = "";
@@ -440,7 +440,7 @@ class HTMLCheckBox extends HTMLBaseControlJS {
 
 class HTMLSelectControl extends HTMLBaseControlJS {
 	var $_ctrlclass = "";
-	var $_options = array();
+	var $_options = [];
 
 	function __construct($ctrlclass, $ctrlname, $title, $value, $options, $description) {
 		parent::__construct($ctrlname, $title, $value, $description);
@@ -464,7 +464,7 @@ class HTMLSelectControl extends HTMLBaseControlJS {
 		$this->_options = $options;
 		if (empty($this->_options)) {
 			unset($this->_options);
-			$this->_options = array();
+			$this->_options = [];
 		}
 	}
 
@@ -541,20 +541,14 @@ class HTMLMountComboBox extends HTMLComboBox {
 		global $config;
 
 		// Generate options.
-		if (!(isset($config['mounts']) && is_array($config['mounts']))) {
-			$config['mounts'] = [];
-		}
-		if (!(isset($config['mounts']['mount']) && is_array($config['mounts']['mount']))) {
-			$config['mounts']['mount'] = [];
-		}
-		array_sort_key($config['mounts']['mount'], "devicespecialfile");
+		array_make_branch($config,'mounts','mount');
+		array_sort_key($config['mounts']['mount'],'devicespecialfile');
 
 		$options = [];
 		$options[""] = gtext("Must choose one");
 		foreach ($config['mounts']['mount'] as $mountv) {
 			$options[$mountv['uuid']] = $mountv['sharename'];
 		}
-
 		parent::__construct($ctrlname, $title, $value, $options, $description);
 	}
 }
@@ -571,7 +565,7 @@ class HTMLTimeZoneComboBox extends HTMLComboBox {
 		sort($timezonelist);
 
 		// Generate options.
-		$options = array();
+		$options = [];
 		foreach ($timezonelist as $tzv) {
 			if (!empty($tzv)) {
 				$tzv = substr($tzv, 2); // Remove leading './'
@@ -588,7 +582,7 @@ class HTMLLanguageComboBox extends HTMLComboBox {
 		global $g_languages;
 
 		// Generate options.
-		$options = array();
+		$options = [];
 		foreach ($g_languages as $languagek => $languagev) {
 			$options[$languagek] = $languagev['desc.localized'];
 		}
@@ -604,7 +598,7 @@ class HTMLInterfaceComboBox extends HTMLComboBox {
 		global $config;
 
 		// Generate options.
-		$options = array('lan' => 'LAN');
+		$options = ['lan' => 'LAN'];
 		for ($i = 1; isset($config['interfaces']['opt' . $i]); $i++) {
 			if (isset($config['interfaces']['opt' . $i]['enable'])) {
 				$options['opt' . $i] = $config['interfaces']['opt' . $i]['descr'];

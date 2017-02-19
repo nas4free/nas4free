@@ -31,29 +31,29 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-require("zfs.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'zfs.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("Disks"), gtext("ZFS"), gtext("Snapshots"), gtext("Snapshot"), gtext("Edit"));
+$pgtitle = [gtext('Disks'),gtext('ZFS'),gtext('Snapshots'),gtext('Snapshot'),gtext('Edit')];
 
-if (!isset($config['zfs']['pools']['pool']) || !is_array($config['zfs']['pools']['pool']))
-	$config['zfs']['pools']['pool'] = array();
-
-array_sort_key($config['zfs']['pools']['pool'], "name");
-$a_pool = &$config['zfs']['pools']['pool'];
+$a_pool = &array_make_branch($config,'zfs','pools','pool');
+if(empty($a_pool)):
+else:
+	array_sort_key($a_pool,'name');
+endif;
 
 function get_zfs_paths() {
-	$result = array();
+	$result = [];
 	mwexec2("zfs list -H -o name -t filesystem,volume 2>&1", $rawdata);
 	foreach ($rawdata as $line) {
 		$a = preg_split("/\t/", $line);
-		$r = array();
+		$r = [];
 		$name = $a[0];
 		$r['path'] = $name;
 		if (preg_match('/^([^\/\@]+)(\/([^\@]+))?$/', $name, $m)) {
@@ -97,7 +97,7 @@ if (isset($snapshot) && !empty($snapshot)) {
 	$pconfig['action'] = "clone";
 } else {
 	// not supported
-	$pconfig = array();
+	$pconfig = [];
 }
 
 if ($_POST) {
@@ -118,9 +118,9 @@ if ($_POST) {
 		switch($action) {
 			case 'clone':
 				// Input validation
-				$reqdfields = explode(" ", "newpath");
-				$reqdfieldsn = array(gtext("Path"));
-				$reqdfieldst = explode(" ", "string");
+				$reqdfields = ['newpath'];
+				$reqdfieldsn = [gtext('Path')];
+				$reqdfieldst = ['string'];
 
 				do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 				do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
@@ -130,7 +130,7 @@ if ($_POST) {
 				}
 
 				if (empty($input_errors)) {
-					$snapshot = array();
+					$snapshot = [];
 					$snapshot['uuid'] = $_POST['uuid'];
 					$snapshot['pool'] = $_POST['pool'];
 					$snapshot['path'] = $_POST['newpath'];
@@ -180,7 +180,7 @@ if ($_POST) {
 	}
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">//<![CDATA[
 function enable_change(enable_change) {
 	document.iform.name.disabled = !enable_change;
@@ -238,32 +238,33 @@ function action_change() {
 		<td class="tabcont">
 			<form action="disks_zfs_snapshot_edit.php" method="post" name="iform" id="iform">
 				<?php
-					if (!empty($errormsg)) print_error_box($errormsg);
-					if (!empty($input_errors)) print_input_errors($input_errors);
-					if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));
+				if (!empty($errormsg)) print_error_box($errormsg);
+				if (!empty($input_errors)) print_input_errors($input_errors);
+				if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));
 				?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php
-						html_text("snapshot", gtext("Snapshot"), htmlspecialchars($pconfig['snapshot']));
-						$a_action = array("clone" => gtext("Clone"), "delete" => gtext("Delete"), "rollback" => gtext("Rollback"));
-						html_combobox("action", gtext("Action"), $pconfig['action'], $a_action, "", true, false, "action_change()");
-						html_inputbox("newpath", gtext("Path"), $pconfig['newpath'], "", true, 30);
-						html_checkbox("recursive", gtext("Recursive"), !empty($pconfig['recursive']) ? true : false, gtext("Deletes the recursive snapshot."), "", false);
-						html_checkbox("force_delete", gtext("Force delete"), !empty($pconfig['force_delete']) ? true : false, gtext("Destroy any snapshots and bookmarks more recent than the one specified."), "", false);
-					?>
-				</table>
-				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Execute");?>" onclick="enable_change(true)" />
-					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
-					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
-					<input name="snapshot" type="hidden" value="<?=$pconfig['snapshot'];?>" />
-					<input name="pool" type="hidden" value="<?=$pconfig['pool'];?>" />
-					<input name="path" type="hidden" value="<?=$pconfig['path'];?>" />
+				<?php html_titleline(gtext("Edit Snapshot"));?>
+				<?php
+				html_text("snapshot", gtext("Snapshot"), htmlspecialchars($pconfig['snapshot']));
+				$a_action = ['clone' => gtext('Clone'),'delete' => gtext('Delete'),'rollback' => gtext('Rollback')];
+				html_combobox("action", gtext("Action"), $pconfig['action'], $a_action, "", true, false, "action_change()");
+				html_inputbox("newpath", gtext("Path"), $pconfig['newpath'], "", true, 30);
+				html_checkbox("recursive", gtext("Recursive"), !empty($pconfig['recursive']) ? true : false, gtext("Deletes the recursive snapshot."), "", false);
+				html_checkbox("force_delete", gtext("Force delete"), !empty($pconfig['force_delete']) ? true : false, gtext("Destroy any snapshots and bookmarks more recent than the one specified."), "", false);
+				?>
+		</table>
+		<div id="submit">
+				<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Execute");?>" onclick="enable_change(true)" />
+				<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
+				<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
+				<input name="snapshot" type="hidden" value="<?=$pconfig['snapshot'];?>" />
+				<input name="pool" type="hidden" value="<?=$pconfig['pool'];?>" />
+				<input name="path" type="hidden" value="<?=$pconfig['path'];?>" />
 				</div>
-				<?php include("formend.inc");?>
-			</form>
-		</td>
-	</tr>
+			<?php include 'formend.inc';?>
+		</form>
+	</td>
+</tr>
 </table>
 <script type="text/javascript">
 <!--
@@ -271,4 +272,4 @@ enable_change(true);
 action_change();
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

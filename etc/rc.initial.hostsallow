@@ -32,13 +32,13 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("config.inc");
-require_once("functions.inc");
-require_once("util.inc");
-require_once("rc.inc");
-require_once("tui.inc");
-require_once("interfaces.inc");
-require_once("services.inc");
+require_once 'config.inc';
+require_once 'functions.inc';
+require_once 'util.inc';
+require_once 'rc.inc';
+require_once 'tui.inc';
+require_once 'interfaces.inc';
+require_once 'services.inc';
 
 $result = tui_display_yesno("Do you want to disable Hosts allow?", 47, 5, false);
 if (0 == $result) {

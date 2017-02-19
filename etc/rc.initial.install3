@@ -32,22 +32,22 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("config.inc");
-require_once("functions.inc");
-require_once("install.inc");
-require_once("util.inc");
-require_once("tui.inc");
+require_once 'config.inc';
+require_once 'functions.inc';
+require_once 'install.inc';
+require_once 'util.inc';
+require_once 'tui.inc';
 
 // Minimum size of slice/partition 1 (used for OS)
 $minpart1size = $g_install['part1size_full'];
 $swapsize =  $g_install['default_swap'];
 
 // Default slice/partition layout
-$partlayout = array(
-	array("slice" => 1, "fstype" => "4.2BSD", "size" => $minpart1size, "volname" => "root"),
-	array("slice" => 2, "fstype" => "swap", "size" => $swapsize, "volname" => "swap"),
-	array("slice" => 3, "fstype" => "4.2BSD", "size" => "*", "volname" => "data")
-);
+$partlayout = [
+	["slice" => 1, "fstype" => "4.2BSD", "size" => $minpart1size, "volname" => "root"],
+	["slice" => 2, "fstype" => "swap", "size" => $swapsize, "volname" => "swap"],
+	["slice" => 3, "fstype" => "4.2BSD", "size" => "*", "volname" => "data"]
+];
 
 // Get product information
 $productname = get_product_name();
@@ -80,9 +80,9 @@ if (0 == count($cdlist)) {
 }
 
 // Display installation medias
-$amenuitem = array();
+$amenuitem = [];
 foreach ($cdlist as $cdromk => $cdromv) {
-	$menuitem = array();
+	$menuitem = [];
 	$menuitem['tag'] = $cdromk;
 	$menuitem['item'] = $cdromv['desc'];
 	$amenuitem[] = $menuitem;
@@ -92,11 +92,11 @@ if (0 != $result)
 	exit(0);
 
 // Display destination medias
-$amenuitem = array();
+$amenuitem = [];
 foreach ($disklist as $diskk => $diskv) {
 	if ($diskk === $cdrom)
 		continue;
-	$menuitem = array();
+	$menuitem = [];
 	$menuitem['tag'] = $diskk;
 	$menuitem['item'] = "{$diskv['size']} <{$diskv['desc']}>";
 	$amenuitem[] = $menuitem;
@@ -143,7 +143,7 @@ if (0 == $result) {
 	} while (!is_numeric($swapsize) || $swapsize < 512);
 
 	// Add swap slice/partition to the partition layout.
-	//$partlayout[] = array("slice" => 3, "fstype" => "swap", "size" => $swapsize, "volname" => "");
+	//$partlayout[] = ["slice" => 3, "fstype" => "swap", "size" => $swapsize, "volname" => ""];
 	$partlayout[1]['size'] = $swapsize;
 }
 

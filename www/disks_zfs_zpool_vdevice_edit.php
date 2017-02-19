@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 $sphere_scriptname = basename(__FILE__);
 $sphere_header = 'Location: '.$sphere_scriptname;
@@ -84,11 +84,11 @@ if ((PAGE_MODE_POST == $mode_page) && isset($_POST['uuid']) && is_uuid_v4($_POST
 	}
 }
 
-if (!(isset($config['zfs']['vdevices']['vdevice']) && is_array($config['zfs']['vdevices']['vdevice']))) {
-	$config['zfs']['vdevices']['vdevice'] = [];
-}
-array_sort_key($config['zfs']['vdevices']['vdevice'], 'name');
-$sphere_array = &$config['zfs']['vdevices']['vdevice'];
+$sphere_array = &array_make_branch($config,'zfs','vdevices','vdevice');
+if(empty($sphere_array)):
+else:
+	array_sort_key($sphere_array,'name');
+endif;
 
 $index = array_search_ex($sphere_record['uuid'], $sphere_array, 'uuid'); // find index of uuid
 $mode_updatenotify = updatenotify_get_mode($sphere_notifier, $sphere_record['uuid']); // get updatenotify mode for uuid
@@ -296,13 +296,13 @@ if (PAGE_MODE_POST === $mode_page) { // at this point we know it's a POST but (e
 	}
 }
 
-$pgtitle = [gtext('Disks'), gtext('ZFS'), gtext('Pools'), gtext('Virtual Device'), (!$isrecordnew) ? gtext('Edit') : gtext('Add')];
+$pgtitle = [gtext('Disks'),gtext('ZFS'),gtext('Pools'),gtext('Virtual Device'),(!$isrecordnew) ? gtext('Edit') : gtext('Add')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 //<![CDATA[
 $(window).on("load", function() {
-	$("input[name='<?=$checkbox_member_name;?>[]").click(function() {
+	$("input[name='<?=$checkbox_member_name;?>[]']").click(function() {
 		controlactionbuttons(this, '<?=$checkbox_member_name;?>[]');
 	});
 	$("#togglebox").click(function() {
@@ -374,34 +374,26 @@ function toggleselection(ego, triggerbyname) {
 //]]>
 </script>
 <table id="area_navigator">
-	<tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav">
-				<li class="tabact"><a href="disks_zfs_zpool.php" title="<?=gtext('Reload page');?>"><span><?=gtext('Pools');?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gtext('Datasets');?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gtext('Volumes');?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gtext('Snapshots');?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gtext('Configuration');?></span></a></li>
-			</ul>
-		</td>
-	</tr>
-	<tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav2">
-				<li class="tabact"><a href="disks_zfs_zpool_vdevice.php" title="<?=gtext('Reload page');?>"><span><?=gtext('Virtual Device');?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gtext('Management');?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_zpool_tools.php"><span><?=gtext('Tools');?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_zpool_info.php"><span><?=gtext('Information');?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_zpool_io.php"><span><?=gtext('I/O Statistics');?></span></a></li>
-			</ul>
-		</td>
-	</tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabact"><a href="disks_zfs_zpool.php" title="<?=gtext('Reload page');?>"><span><?=gtext('Pools');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gtext('Datasets');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gtext('Volumes');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gtext('Snapshots');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gtext('Configuration');?></span></a></li>
+	</ul></td></tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav2">
+		<li class="tabact"><a href="disks_zfs_zpool_vdevice.php" title="<?=gtext('Reload page');?>"><span><?=gtext('Virtual Device');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gtext('Management');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_zpool_tools.php"><span><?=gtext('Tools');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_zpool_info.php"><span><?=gtext('Information');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_zpool_io.php"><span><?=gtext('I/O Statistics');?></span></a></li>
+	</ul></td></tr>
 </table>
 <table id="area_data"><tbody><tr><td id="area_data_frame"><form action="<?=$sphere_scriptname;?>" method="post" name="iform" id="iform">
 	<?php
-		if (!empty($errormsg)) print_error_box($errormsg);
-		if (!empty($input_errors)) print_input_errors($input_errors);
-		if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));
+	if (!empty($errormsg)) print_error_box($errormsg);
+	if (!empty($input_errors)) print_input_errors($input_errors);
+	if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));
 	?>
 	<?php if ($isrecordnewornewmodify):?>
 		<div id="submit" style="margin-bottom:10px">
@@ -416,10 +408,10 @@ function toggleselection(ego, triggerbyname) {
 			<button name="Action" id="button_logmir" type="submit" class="formbtn" value="log-mirror"><?=gtext('LOG (Mirror)');?></button>
 		</div>
 	<?php endif;?>
-	<table id="area_data_settings">
+	<table class="area_data_settings">
 		<colgroup>
-			<col id="area_data_settings_col_tag">
-			<col id="area_data_settings_col_data">
+			<col class="area_data_settings_col_tag">
+			<col class="area_data_settings_col_data">
 		</colgroup>
 		<thead>
 			<?php html_titleline2(gtext('Settings'));?>
@@ -436,17 +428,17 @@ function toggleselection(ego, triggerbyname) {
 			?>
 		</tbody>
 	</table>
-	<table id="area_data_selection">
+	<table class="area_data_selection">
 		<colgroup>
-			<col style="width:5%"> <!--// checkbox -->
-			<col style="width:10%"><!--// Device -->
-			<col style="width:10%"><!--// Partition -->
-			<col style="width:15%"><!--// Model -->
-			<col style="width:10%"><!--// Serial -->
-			<col style="width:10%"><!--// Size -->
-			<col style="width:20%"><!--// Controller -->
-			<col style="width:15%"><!--// Description -->
-			<col style="width:5%"> <!--// Icons -->
+			<col style="width:5%">
+			<col style="width:10%">
+			<col style="width:10%">
+			<col style="width:15%">
+			<col style="width:10%">
+			<col style="width:10%">
+			<col style="width:20%">
+			<col style="width:15%">
+			<col style="width:5%">
 		</colgroup>
 		<thead>
 			<?php html_titleline2(gtext('Device List'), 9);?>
@@ -542,6 +534,6 @@ function toggleselection(ego, triggerbyname) {
 		html_remark2('note', gtext('Note'), $helpinghand);
 		?>
 	</div>
-	<?php include("formend.inc");?>
+	<?php include 'formend.inc';?>
 </form></td></tr></tbody></table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

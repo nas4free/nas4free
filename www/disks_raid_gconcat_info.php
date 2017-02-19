@@ -6,10 +6,6 @@
 	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 
@@ -35,59 +31,67 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext('Disks'), gtext('Software RAID'), gtext('JBOD'), gtext('Information'));
-
-function get_raidinfo() {
-	exec("/sbin/gconcat list",$rawdata);
-	return implode("\n", $rawdata);
+function disks_raid_gconcat_info_ajax() {
+	$cmd = '/sbin/gconcat list';
+	mwexec2($cmd,$rawdata);
+	return implode("\n",$rawdata);
 }
-
-if (is_ajax()) {
-	$raidinfo = get_raidinfo();
-	render_ajax($raidinfo);
-}
+if(is_ajax()):
+	$status = disks_raid_gconcat_info_ajax();
+	render_ajax($status);
+endif;
+$pgtitle = [gtext('Disks'),gtext('Software RAID'),gtext('JBOD'),gtext('Information')];
 ?>
-<?php include("fbegin.inc");?>
+<?php
+include 'fbegin.inc';
+?>
 <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function(){
 	var gui = new GUI;
-	gui.recall(0, 5000, 'disks_raid_gconcat_info.php', null, function(data) {
-		$('#raidinfo').text(data.data);
+	gui.recall(5000, 5000, 'disks_raid_gconcat_info.php', null, function(data) {
+		if ($('#area_refresh').length > 0) {
+			$('#area_refresh').text(data.data);
+		}
 	});
 });
 //]]>
 </script>
 <table id="area_navigator"><tbody>
-	<tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav">
-				<li class="tabact"><a href="disks_raid_geom.php" title="<?=gtext('Reload page');?>"><span><?=gtext('GEOM');?></span></a></li>
-				<li class="tabinact"><a href="disks_raid_gvinum.php"><span><?=gtext('RAID 0/1/5');?></span></a></li>
-			</ul>
-		</td>
-	</tr>
-	<tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav2">
-				<li class="tabinact"><a href="disks_raid_geom.php"><span><?=gtext('Management'); ?></span></a></li>
-				<li class="tabinact"><a href="disks_raid_gconcat_tools.php"><span><?=gtext('Maintenance'); ?></span></a></li>
-				<li class="tabact"><a href="disks_raid_gconcat_info.php" title="<?=gtext('Reload page');?>" ><span><?=gtext('Information');?></span></a></li>
-			</ul>
-		</td>
-	</tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabact"><a href="disks_raid_geom.php" title="<?=gtext('Reload page');?>"><span><?=gtext('GEOM');?></span></a></li>
+		<li class="tabinact"><a href="disks_raid_gvinum.php"><span><?=gtext('RAID 0/1/5');?></span></a></li>
+	</ul></td></tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav2">
+		<li class="tabinact"><a href="disks_raid_geom.php"><span><?=gtext('Management');?></span></a></li>
+		<li class="tabinact"><a href="disks_raid_gconcat_tools.php"><span><?=gtext('Maintenance');?></span></a></li>
+		<li class="tabact"><a href="disks_raid_gconcat_info.php" title="<?=gtext('Reload page');?>"><span><?=gtext('Information');?></span></a></li>
+	</ul></td></tr>
 </tbody></table>
 <table id="area_data"><tbody><tr><td id="area_data_frame">
-	<table id="area_data_settings">
-		<?php html_titleline(gtext('JBOD Information & Status'));?>
-		<tr>
-			<td class="listt">
-				<pre><span id="raidinfo"></span></pre>
-			</td>
-		</tr>
+	<table class="area_data_settings">
+		<colgroup>
+			<col class="area_data_settings_col_tag">
+			<col class="area_data_settings_col_data">
+		</colgroup>
+		<thead>
+<?php
+			html_titleline(gtext('JBOD Information & Status'));
+?>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="celltag"><?=gtext('Information');?></td>
+				<td class="celldata">
+					<pre><span id="area_refresh"><?=disks_raid_gconcat_info_ajax();?></span></pre>
+				</td>
+			</tr>
+		</tbody>
 	</table>
 </td></tr></tbody></table>
-<?php include("fend.inc");?>
+<?php
+include 'fend.inc';
+?>

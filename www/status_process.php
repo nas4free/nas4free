@@ -31,43 +31,49 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Status"), gtext("Processes"));
-
-function get_process_info() {
-	exec("top -b 23", $result);
-	return implode("\n", $result);
+$sphere_scriptname = basename(__FILE__);
+function status_process_ajax() {
+	$cmd = 'top -d1 25';
+	mwexec2($cmd,$rawdata);
+	return implode("\n",$rawdata);
 }
-
-if (is_ajax()) {
-	$procinfo = get_process_info();
-	render_ajax($procinfo);
-}
+if(is_ajax()):
+	$status = status_process_ajax();
+	render_ajax($status);
+endif;
+$pgtitle = [gtext('Status'),gtext('Processes')];
 ?>
-<?php include("fbegin.inc");?>
-<script type="text/javascript">//<![CDATA[
+<?php include 'fbegin.inc';?>
+<script type="text/javascript">
+//<![CDATA[
 $(document).ready(function(){
 	var gui = new GUI;
-	gui.recall(0, 5000, 'status_process.php', null, function(data) {
-		$('#procinfo').val(data.data);
+	gui.recall(5000, 5000, '<?=$sphere_scriptname;?>', null, function(data) {
+		$('#area_refresh').text(data.data);
 	});
 });
 //]]>
 </script>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabcont">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<?php html_titleline(gtext("Processes Information"));?>
-			  <tr>
-			    <td class="listt">
-			    	<pre><textarea style="width: 98%;" id="procinfo" name="procinfo" class="listcontent" cols="95" rows="34" readonly="readonly"></textarea></pre>
-			    </td>
-			  </tr>
-			</table>
-		</td>
-	</tr>
-</table>
-<?php include("fend.inc");?>
+<table id="area_data"><tbody><tr><td id="area_data_frame">
+	<table class="area_data_settings">
+		<colgroup>
+			<col class="area_data_settings_col_tag">
+			<col class="area_data_settings_col_data">
+		</colgroup>
+		<thead>
+			<?php html_titleline2(gtext('Process Status'));?>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="celltag"><?=gtext('Information');?></td>
+				<td class="celldata">
+					<pre><span id="area_refresh"><?=status_process_ajax();?></span></pre>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</td></tr></tbody></table>
+<?php include 'fend.inc';?>

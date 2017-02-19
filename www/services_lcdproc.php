@@ -6,15 +6,12 @@
 	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -34,15 +31,10 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Services"), gtext("LCDproc"));
-
-if (!isset($config['lcdproc']) || !is_array($config['lcdproc']))
-	$config['lcdproc'] = array();
-if (!isset($config['lcdproc']['lcdproc']) || !is_array($config['lcdproc']['lcdproc']))
-	$config['lcdproc']['lcdproc'] = array();
+array_make_branch($config,'lcdproc','lcdproc');
 
 $pconfig['enable'] = isset($config['lcdproc']['enable']);
 $pconfig['driver'] = $config['lcdproc']['driver'];
@@ -64,10 +56,9 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	// Input validation.
-	$reqdfields = explode(" ", "driver port waittime titlespeed");
-	$reqdfieldsn = array(gtext("Driver"), gtext("Port"), gtext("Wait time"), gtext("TitleSpeed"));
-	$reqdfieldst = explode(" ", "string numeric numeric numeric");
-
+	$reqdfields = ['driver','port','waittime','titlespeed'];
+	$reqdfieldsn = [gtext('Driver'),gtext('Port'),gtext('Wait time'),gtext('TitleSpeed')];
+	$reqdfieldst = ['string','numeric','numeric','numeric'];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
@@ -118,8 +109,9 @@ if ($_POST) {
 		$savemsg = get_std_save_message($retval);
 	}
 }
+$pgtitle = [gtext('Services'),gtext('LCDproc')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -162,14 +154,14 @@ function lcdproc_enable_change(enable_change) {
 						. '</a>.';
 					html_inputbox("driver", gtext("Driver"), $pconfig['driver'], $helpinghand, true, 30);
 					html_inputbox("port", gtext("Port"), $pconfig['port'], sprintf(gtext("Port to listen on. Default port is %d."), 13666), true, 10);
-					html_inputbox("waittime", gtext("Wait time"), $pconfig['waittime'], gtext("The default time in seconds to display a screen."), true, 10);
-					html_inputbox("titlespeed", gtext("TitleSpeed"), $pconfig['titlespeed'], gtext("Set title scrolling speed between 0-10 (default 10)."), true, 10);
-					html_textarea("param", gtext("Driver parameters"), !empty($pconfig['param']) ? $pconfig['param'] : "", gtext("Additional parameters to the hardware-specific part of the driver."), false, 65, 10, false, false);
-					html_textarea("auxparam", gtext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", "", false, 65, 5, false, false);
+					html_inputbox("waittime", gtext("Wait Time"), $pconfig['waittime'], gtext("The default time in seconds to display a screen."), true, 10);
+					html_inputbox("titlespeed", gtext("Title Speed"), $pconfig['titlespeed'], gtext("Set title scrolling speed between 0-10 (default 10)."), true, 10);
+					html_textarea("param", gtext("Driver Parameter"), !empty($pconfig['param']) ? $pconfig['param'] : "", gtext("Additional parameters to the hardware-specific part of the driver."), false, 65, 10, false, false);
+					html_textarea("auxparam", gtext("Additional Parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", "", false, 65, 5, false, false);
 					html_separator();
 					html_titleline_checkbox("lcdproc_enable", gtext("LCDproc (Client)"), !empty($pconfig['lcdproc_enable']) ? true : false, gtext("Enable"), "lcdproc_enable_change(false)");
-					html_textarea("lcdproc_param", gtext("Extra options"), !empty($pconfig['lcdproc_param']) ? $pconfig['lcdproc_param'] : "", "", false, 65, 10, false, false);
-					html_textarea("lcdproc_auxparam", gtext("Auxiliary parameters"), !empty($pconfig['lcdproc_auxparam']) ? $pconfig['lcdproc_auxparam'] : "", "", false, 65, 5, false, false);
+					html_textarea("lcdproc_param", gtext("Extra Options"), !empty($pconfig['lcdproc_param']) ? $pconfig['lcdproc_param'] : "", "", false, 65, 10, false, false);
+					html_textarea("lcdproc_auxparam", gtext("Additional Parameters"), !empty($pconfig['lcdproc_auxparam']) ? $pconfig['lcdproc_auxparam'] : "", "", false, 65, 5, false, false);
 					?>
 				</table>
 				<div id="submit">
@@ -183,7 +175,7 @@ function lcdproc_enable_change(enable_change) {
 					html_remark("note", gtext('Note'), $helpinghand);
 					?>
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
@@ -194,4 +186,4 @@ enable_change(false);
 lcdproc_enable_change(false);
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

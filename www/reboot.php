@@ -31,43 +31,82 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("System"), gtext("Reboot"), gtext("Now"));
-
-if ($_POST) {
-	if ($_POST['Submit'] !== gtext("No")) {
-		$rebootmsg = gtext("The server is rebooting now.");
-	} else {
-		header("Location: index.php");
-		exit;
-	}
-}
+$sphere_scriptname = basename(__FILE__);
+$sphere_header = 'Location: '.$sphere_scriptname;
+$sphere_header_parent = 'Location: index.php';
+$gt_reboot = gtext('The server is rebooting now.');
+$gt_reboot_confirm = gtext('Are you sure you want to reboot the server?');
+$gt_yes = gtext('Yes');
+$gt_no = gtext('No');
+$cmd_system_reboot = false;
+if($_POST):
+	if($_POST['submit']):
+		switch($_POST['submit']):
+			case 'save':
+				$cmd_system_reboot = true;
+				break;
+			case 'cancel':
+				header($sphere_header_parent);
+				exit;
+				break;
+			default:
+				header($sphere_header_parent);
+				exit;
+				break;
+		endswitch;
+	endif;
+endif;
+$pgtitle = [gtext('System'),gtext('Reboot'),gtext('Now')];
 ?>
-<?php include("fbegin.inc");?>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-        <li class="tabact"><a href="reboot.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Now");?></span></a></li>
-        <li class="tabinact"><a href="reboot_sched.php"><span><?=gtext("Scheduled");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-			<?php if (!empty($rebootmsg)): echo print_info_box($rebootmsg); sleep(1); system_reboot(); else:?>
-			<form action="reboot.php" method="post" onsubmit="spinner()">
-			  <strong><?=gtext("Are you sure you want to reboot the server?");?></strong>
-				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Yes");?>" />
-					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("No");?>" />
-				</div>
-				<?php include("formend.inc");?>
-			</form>
-			<?php endif;?>
-    </td>
-  </tr>
-</table>
-<?php include("fend.inc");?>
+<?php include 'fbegin.inc';?>
+<script type="text/javascript">
+//<![CDATA[
+$(window).on("load", function() {
+<?php // Init spinner onsubmit().?>
+	$("#iform").submit(function() { spinner(); });
+});
+//]]>
+</script>
+<table id="area_navigator"><tbody><tr><td class="tabnavtbl">
+	<ul id="tabnav">
+		<li class="tabact"><a href="reboot.php" title="<?=gtext('Reload page');?>"><span><?=gtext('Now');?></span></a></li>
+		<li class="tabinact"><a href="reboot_sched.php"><span><?=gtext('Scheduled');?></span></a></li>
+	</ul>
+</td></tr></tbody></table>
+<table id="area_data"><tbody><tr><td id="area_data_frame"><form action="<?=$sphere_scriptname;?>" method="post" name="iform" id="iform">
+	<?php
+	if($cmd_system_reboot):
+		echo print_info_box($gt_reboot);
+	endif;
+	?>
+	<table class="area_data_selection">
+		<colgroup>
+			<col style="width:100%">
+		</colgroup>
+		<thead>
+			<?php html_titleline2(gtext('Reboot'),1);?>
+		</thead>
+	</table>
+	<?php
+	if(!$cmd_system_reboot):
+		echo print_warning_box($gt_reboot_confirm);
+		echo '<div id="submit">';
+			echo html_button('save',$gt_yes);
+			echo html_button('cancel',$gt_no);
+		echo '</div>';
+	endif;
+	include 'formend.inc';
+	?>
+</form></td></tr></tbody></table>
+<?php
+include 'fend.inc';
+if($cmd_system_reboot):
+	ob_flush();
+	flush();
+	sleep(5);
+	system_reboot();
+endif;
+?>

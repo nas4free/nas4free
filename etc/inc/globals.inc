@@ -31,41 +31,56 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once "super_fun.inc";
-
-$g = array(
-	"varrun_path" => "/var/run",
-	"varetc_path" => "/var/etc",
-	"vardb_path" => "/var/db",
-	"varlog_path" => "/var/log",
-	"etc_path" => "/etc",
-	"tmp_path" => "/tmp",
-	"conf_path" => "/conf",
-	"ftmp_path" => "/var/tmp/ftmp",
-	"media_path" => "/mnt",
-	"conf_default_path" => "/conf.default",
-	"cf_path" => "/cf",
-	"cf_conf_path" => "/cf/conf",
-	"www_path" => "/usr/local/www",
-	"xml_rootobj" => "nas4free",
-	"debug" => false,
-	"latest_config" => "2.6",
-	"wireless_regex" => "/^(ndis|wlan|an|ath|bwi|bwn|ipw|iwi|iwn|malo|mwl|ral|wi|wpi|rsu|rum|run|uath|upgt|ural|urtw|urtwn|usie|zyd)/",
-	"default_passwd" => "nas4free",
-	"default_ip" => "192.168.1.250"
-);
-
-$g_install = array(
+require_once 'super_fun.inc';
+//	system configuration parameter
+$g = [
+	'varrun_path' => '/var/run',
+	'varetc_path' => '/var/etc',
+	'vardb_path' => '/var/db',
+	"varlog_path" => '/var/log',
+	'etc_path' => '/etc',
+	'tmp_path' => '/tmp',
+	'conf_path' => '/conf',
+	'ftmp_path' => '/var/tmp/ftmp',
+	'media_path' => '/mnt',
+	'conf_default_path' => '/conf.default',
+	'cf_path' => '/cf',
+	'cf_conf_path' => '/cf/conf',
+	'www_path' => '/usr/local/www',
+	'xml_rootobj' => 'nas4free',
+	'debug' => false,
+	'latest_config' => '2.9',
+	'wireless_regex' => '/^(ndis|wlan|an|ath|bwi|bwn|ipw|iwi|iwn|malo|mwl|ral|wi|wpi|rsu|rum|run|uath|upgt|ural|urtw|urtwn|usie|zyd)/',
+	'default_passwd' => 'nas4free',
+	'default_ip' => '192.168.1.250'
+];
+// directory of images
+$g_img= [
+	'add' => 'images/add.png',
+	'mod' => 'images/edit.png',
+	'del' => 'images/delete.png',
+	'loc' => 'images/locked.png',
+	'unl' => 'images/unlocked.png',
+	'mai' => 'images/maintain.png',
+	'inf' => 'images/info.png',
+	'ena' => 'images/status_enabled.png',
+	'dis' => 'images/status_disabled.png',
+	'box.error' => 'images/error_box.png',
+	'box.info' => 'images/info_box.png',
+	'box.warning' => 'images/warn_box.png'
+];
+//	installation parameter
+$g_install = [
 	"default_swap" => "1024",
 	"part1min_embedded" => "466",	/*  500MB= 476MiB ->  470MB - alignment */
-	"part1size_embedded" => "800",	/* 2000MB=1907MiB ->  768MB + SWAP1024MB */
-	"part1size_full" => "2600"	/* 4000MB=3814MiB -> 2560MB + SWAP1024MB */
-);
-
-/* Available languages/locales */
+	"part1size_embedded" => "1024",	/* 2000MB=1907MiB ->  768MB + SWAP1024MB */
+	"part1size_full" => "3072"	/* 4000MB=3814MiB -> 2560MB + SWAP1024MB */
+];
+//	available languages/locales
 $g_languages = [
-	'sq'    => ['codeset' => 'UTF-8', 'desc' => gtext('Albanian'), 'desc.localized' => 'Shqip'],
+	'af'    => ['codeset' => 'UTF-8', 'desc' => gtext('Afrikaans'), 'desc.localized' => 'Afrikaans'],
 	'bg'    => ['codeset' => 'UTF-8', 'desc' => gtext('Bulgarian'), 'desc.localized' => 'Български'],
+	'ca'    => ['codeset' => 'UTF-8', 'desc' => gtext('Catalan'), 'desc.localized' => 'català'],
 	'cs'    => ['codeset' => 'UTF-8', 'desc' => gtext('Czech'), 'desc.localized' => 'čeština'],
 	'zh_CN' => ['codeset' => 'UTF-8', 'desc' => gtext('Chinese (Simplified)'), 'desc.localized' => '中文（簡體）'],
 	'zh_TW' => ['codeset' => 'UTF-8', 'desc' => gtext('Chinese (Traditional)'), 'desc.localized' => '正體中文'],
@@ -80,7 +95,6 @@ $g_languages = [
 	'it'    => ['codeset' => 'UTF-8', 'desc' => gtext('Italian'), 'desc.localized' => 'Italiano'],
 	'ja'    => ['codeset' => 'UTF-8', 'desc' => gtext('Japanese'), 'desc.localized' => '日本語'],
 	'ko'    => ['codeset' => 'UTF-8', 'desc' => gtext('Korean'), 'desc.localized' => '한국어'],
-	'lv'    => ['codeset' => 'UTF-8', 'desc' => gtext('Latvian'), 'desc.localized' => 'Latviešu'],
 	'nb'    => ['codeset' => 'UTF-8', 'desc' => gtext('Norwegian (Bokmal)'), 'desc.localized' => 'Norsk (bokmål)'],
 	'pl'    => ['codeset' => 'UTF-8', 'desc' => gtext('Polish'), 'desc.localized' => 'Polski'],
 	'pt_BR' => ['codeset' => 'UTF-8', 'desc' => gtext('Portuguese (Brazil)'), 'desc.localized' => 'Português (Brasil)'],
@@ -94,32 +108,31 @@ $g_languages = [
 	'tr'    => ['codeset' => 'UTF-8', 'desc' => gtext('Turkish'), 'desc.localized' => 'Türkçe'],
 	'uk'    => ['codeset' => 'UTF-8', 'desc' => gtext('Ukrainian'), 'desc.localized' => 'Українська']
 ];
-
-/* Supported filesystems */
-$g_filesystems = array(
-	"" => "Unformated",
-	"ufs" => gtext("UFS with Soft Updates"),
-	"ufs_no_su" => "UFS",
-	"ufsgpt" => gtext("UFS (GPT and Soft Updates)"),
-	"ufsgpt_no_su" => "UFS (EFI/GPT)",
-	"msdos" => "FAT32",
-	"cd9660" => "CD/DVD",
-	"ntfs" => "NTFS",
-	"ext2" => "EXT2",
-	"exfat" => "exFAT",
-	"softraid" => "Software RAID",
-	"geli" => "Encrypted",
-	"zfs" => "ZFS Storage Pool"
-);
-
-$g_file_upload_error = array(
-	UPLOAD_ERR_OK => gtext("There is no error, the file uploaded with success."),
-	UPLOAD_ERR_INI_SIZE => gtext("The uploaded file exceeds the upload_max_filesize directive in php.ini."),
-	UPLOAD_ERR_FORM_SIZE => gtext("The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form."),
-	UPLOAD_ERR_PARTIAL => gtext("The uploaded file was only partially uploaded."),
-	UPLOAD_ERR_NO_FILE => gtext("No file was uploaded."),
-	UPLOAD_ERR_NO_TMP_DIR => gtext("Missing a temporary folder."),
-	UPLOAD_ERR_CANT_WRITE => gtext("Failed to write file to disk."),
-	UPLOAD_ERR_EXTENSION => gtext("File upload stopped by extension.")
-);
+//	supported filesystems
+$g_filesystems = [
+	'' => 'Unformated',
+	'ufs' => gtext('UFS with Soft Updates'),
+	'ufs_no_su' => 'UFS',
+	'ufsgpt' => gtext('UFS (GPT and Soft Updates)'),
+	'ufsgpt_no_su' => 'UFS (EFI/GPT)',
+	'msdos' => 'FAT32',
+	'cd9660' => 'CD/DVD',
+	'ntfs' => 'NTFS',
+	'ext2' => 'EXT2',
+	'exfat' => 'exFAT',
+	'softraid' => 'Software RAID',
+	'geli' => 'Encrypted',
+	'zfs' => 'ZFS Storage Pool'
+];
+//	upload status messages
+$g_file_upload_error = [
+	UPLOAD_ERR_OK => gtext('There is no error, the file uploaded with success.'),
+	UPLOAD_ERR_INI_SIZE => gtext('The uploaded file exceeds the upload_max_filesize directive in php.ini.'),
+	UPLOAD_ERR_FORM_SIZE => gtext('The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.'),
+	UPLOAD_ERR_PARTIAL => gtext('The uploaded file was only partially uploaded.'),
+	UPLOAD_ERR_NO_FILE => gtext('No file was uploaded.'),
+	UPLOAD_ERR_NO_TMP_DIR => gtext('Missing a temporary folder.'),
+	UPLOAD_ERR_CANT_WRITE => gtext('Failed to write file to disk.'),
+	UPLOAD_ERR_EXTENSION => gtext('File upload stopped by extension.')
+];
 ?>

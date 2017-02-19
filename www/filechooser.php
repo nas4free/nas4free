@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 class FileChooser {
 	var	$cfg = [];
@@ -67,16 +67,13 @@ class FileChooser {
 
 		// Check if file exists.
 		if (!file_exists($path)) {
-			echo "<tr><td class=\"infobar\">";
 			print_info_box("File not found $path");
-			echo "</tr></td>";
 			if (substr($path, 0, 1) == '/') {
 				$path = $this->get_valid_parent_dir($path);
 			} else {
 				$path = "/mnt";
 			}
 		}
-
 		$dir = $path;
 
 		// Extract path if necessary.
@@ -109,12 +106,33 @@ class FileChooser {
 
 		// Sort files.
 		$files = $this->sort_files($files);
+		
+		$gt_cancel = gtext('Cancel');
+		$gt_ok = gtext('OK');
 
-		// Display navigation bar.
-		echo $this->navigation_bar($path);
-
+		echo <<<EOD
+<table>
+		<thead>
+			<tr>
+				<th>
+					<input class="input" name="p" value="{$path}" type="text">
+				</th>
+			</tr>
+			<tr>
+				<th>
+					<input class="formbtn" type="submit" value="{$gt_ok}">
+					<input class="formbtn" type="reset" value="{$gt_cancel}">
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+EOD;
 		// Display file list.
 		echo $this->file_list($dir, $files);
+		echo <<<EOD
+		</tbody>
+</table>
+EOD;
 	}
 
 	function make_file_array($dir) {
@@ -192,7 +210,7 @@ class FileChooser {
 		$allow = $this->make_regex($allow);
 		$hide = $this->make_regex($hide);
 
-		$ret = array();
+		$ret = [];
 		$ret = preg_grep("/$allow/", $arr);
 		$ret = preg_grep("/$hide/",  $ret, PREG_GREP_INVERT);
 
@@ -235,7 +253,7 @@ class FileChooser {
 
 	function format_size($bytes) {
 		if(is_numeric($bytes) && $bytes > 0) {
-			$formats = array("%d Bytes","%.1f KB","%.1f MB","%.1f GB","%.1f TB");
+			$formats = ['%d Bytes','%.1f KB','%.1f MB','%.1f GB','%.1f TB'];
 			$logsize = min(intval(log($bytes)/log(1024)), count($formats)-1);
 			return sprintf($formats[$logsize], $bytes/pow(1024, $logsize));
 		} elseif(!is_numeric($bytes) && $bytes == '-') { // is a folder without calculated size
@@ -289,7 +307,7 @@ class FileChooser {
 
 	function order_by_column($input, $type) {
 		$column = $this->cfg['sortMode'];
-		$result = array();
+		$result = [];
 
 		// available sort columns
 		$columnList = [
@@ -325,7 +343,17 @@ class FileChooser {
 		$ret .= '<tr>';
 		$ret .= '<td class="filelist">';
 		$ret .= '<table cellspacing="0" border="0">';
+		$ret .= '<colgroup>';
+		$ret .= '<col style="width:5%">';
+		$ret .= '<col style="width:60%">';
+		$ret .= '<col style="width:10%">';
+		$ret .= '<col style="width:10%">';
+		$ret .= '<col style="width:15%">';
+		$ret .= '</colgroup>';
+		$ret .= '<thead>';
 		$ret .= ($this->cfg['sort']) ? $this->row('sort', $dir) : '';
+		$ret .= '</thead>';
+		$ret .= '<tbody>';
 		$ret .= ($this->get_valid_parent_dir($dir)) ? $this->row('parent', $dir) : '';
 		// total number of files
 		$rowcount  = 1;
@@ -335,10 +363,13 @@ class FileChooser {
 		foreach($files as $file) {
 			$ret .= $this->row($file['rowType'], $dir, $rowcount, $file);
 			$rowcount++;
-			$totalsize += $file['size'];
+			$totalsize += (int)$file['size'];
 		}
+		$ret .= '</tbody>';
+		$ret .= '<tfoot>';
 		$this->cfg['totalSize'] = $this->format_size($totalsize);
 		$ret .= ($this->cfg['footer']) ? $this->row('footer') : '';
+		$ret .= '</tfoot>';
 		$ret .= '</table>';
 		$ret .= '</td>';
 		$ret .= '</tr>';
@@ -404,93 +435,16 @@ class FileChooser {
 		$row .= '</tr>';
 		return $row;
 	}
-
-	function navigation_bar($path) {
-		$gt_cancel = gtext('Cancel');
-		$gt_ok = gtext('OK');
-		$ret = '';
-		$ret .= <<<EOD
-	<tr>
-	<td class="navbar">
-	<form method="get" action="filechooser.php" onSubmit="onSubmit();" onReset="onReset();">
-		<input class="input" name="p" value="{$path}" type="text">
-		<input class="button" type="reset" value="{$gt_cancel}">
-		<input class="button" type="submit" value="{$gt_ok}">
-EOD;
-		ob_start();
-		include("formend.inc");
-		$formend = ob_get_contents();
-		ob_end_clean();
-		$formend = str_replace('/>', '>', $formend);
-		$ret .= $formend;
-		$ret .= <<<EOD
-	</form>
-	</td>
-	</tr>
-EOD;
-		return $ret;
-	}
 }
 ?>
 <?php header("Content-Type: text/html; charset=" . system_get_language_codeset());?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html lang="<?=system_get_language_code();?>">
 	<head>
+		<meta charset="<?=system_get_language_codeset();?>"/>
 		<title><?=gtext("filechooser");?></title>
-		<meta http-equiv="Content-Type" content="text/html; charset=<?=system_get_language_codeset();?>">
-		<meta http-equiv="Content-Script-Type" content="text/javascript">
-		<meta http-equiv="Content-Style-Type" content="text/css">
 		<link href="css/gui.css" rel="stylesheet" type="text/css">
-		<script type="text/javascript" src="niftycube/niftycube.js"></script>
-		<script type="text/javascript" src="niftycube/niftylayout.js"></script>
-		<style type="text/css">
-<!--
-			body { background: #FFFFFF; min-width: 0px; }
-			.filechooser { background-color: #fff; margin: 0px; padding: 0px; }
-			.filechooser table { width: 100%; height: 100%; font-size: 11px; font-family: Tahoma, Verdana, Arial, sans-serif !important; }
-			.filechooser td { padding: 10px; vertical-align: top; }
-			.filechooser .filelist table { width:100%; }
-			.filechooser .filelist table tr td { padding:1px; font-size:12px; }
-			.filechooser .filelist table tr.fr_odd td,
-			.filechooser .filelist table tr.fr_even td,
-			.filechooser .filelist table tr.fl_odd td,
-			.filechooser .filelist table tr.fl_even td { height: 18px; border-top:1px solid #fff; border-bottom:1px solid #ddd; }
-			.filechooser .filelist table tr.fr_odd td,
-			.filechooser .filelist table tr.fl_odd td { background:#eee; }
-			.filechooser .filelist a { text-decoration:none; }
-			.filechooser .filelist a:hover { text-decoration:underline; }
-			/* sorting row */
-			.filechooser .filelist table tr.sort td { height: 18px; border: 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
-			.filechooser .filelist table tr.sort a { text-decoration:none; color:#9d9d9d; }
-			.filechooser .filelist table tr.sort a:hover { text-decoration:underline; }
-			/* parent row */
-			.filechooser .filelist table tr.parent { font-weight:bold; }
-			.filechooser .filelist table tr.parent td { height: 18px; border-bottom: 1px solid #eee; text-color: #ffffff; background: #435370 url(images/listtopic_bg.png); }
-			.filechooser .filelist table tr.parent a { text-decoration:none; color:#ffffff; }
-			.filechooser .filelist table tr.parent a:hover { text-decoration:underline; }
-			/* filelist rows */
-			/* line number column */
-			.filechooser .filelist table tr td.ln { border-left:1px solid #eee; font-weight:normal; text-align:right; padding:0 10px 0 10px; width:10px; color: #999; }
-			/* filename column */
-			.filechooser .filelist table tr.fr_odd td.nm,
-			.filechooser .filelist table tr.fr_even td.nm { font-weight:bold; }
-			.filechooser .filelist table tr.fl_odd td.nm,
-			.filechooser .filelist table tr.fl_even td.nm { font-weight:normal; }
-			/* size column */
-			.filechooser .filelist table tr td.sz { }
-			/* type column */
-			.filechooser .filelist table tr td.tp { }
-			/* date column */
-			.filechooser .filelist table tr td.dt { border-right:1px solid #eee; }
-			/* footer row */
-			.filechooser .filelist table tr.footer td { border:0; font-weight:bold; }
-			/* Navigation bar */
-			.filechooser .navbar { background-color: #eee; padding: 6px 9px; text-align:left; border-left:1px solid #eee; border-right:1px solid #eee; border-bottom:1px solid #eee; border-spacing:0; height: 40px }
-			.filechooser .navbar .input { /*position:absolute;*/ width:75%; top: 6px; left: 9px; }
-			.filechooser .navbar .button { position:relative; float:right; }
-			.filechooser .infobar { height: 100px; }
--->
-		</style>
+		<link href="css/fc.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript">
 <!--
 			function onSubmit() {
@@ -510,8 +464,11 @@ EOD;
 		</script>
 	</head>
 	<body class="filechooser">
-		<table cellspacing="0">
-			<?php new FileChooser();?>
-		</table>
+		<table cellspacing="0"><tbody><tr><td class="navbar"><form method="get" action="filechooser.php" onSubmit="onSubmit();" onReset="onReset();">
+			<?php
+			new FileChooser();
+			include 'formend.inc';
+			?>
+		</form>	</td></tr></tbody></table>
 	</body>
 </html>

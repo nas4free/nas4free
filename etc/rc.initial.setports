@@ -32,11 +32,11 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("config.inc");
-require_once("functions.inc");
-require_once("util.inc");
-require_once("rc.inc");
-require_once("tui.inc");
+require_once 'config.inc';
+require_once 'functions.inc';
+require_once 'util.inc';
+require_once 'rc.inc';
+require_once 'tui.inc';
 
 $iflist = get_interface_list();
 $iflist2 = get_wlan_interface_list();
@@ -46,14 +46,14 @@ if (!empty($iflist2))
 // Display detected interfaces
 $text = "If you don't know the names of your interfaces, you may use auto-detection. In that case, disconnect all interfaces before you begin, and reconnect each one when prompted to do so.";
 do {
-	$amenuitem = array();
+	$amenuitem = [];
 	foreach ($iflist as $ifk => $ifv) {
-		$menuitem = array();
+		$menuitem = [];
 		$menuitem['tag'] = $ifk;
 		$menuitem['item'] = sprintf("%s   %s", $ifv['mac'], $ifv['up'] ? "(up)" : "");
 		$amenuitem[] = $menuitem;
 	}
-	$menuitem = array();
+	$menuitem = [];
 	$menuitem['tag'] = "auto";
 	$menuitem['item'] = "Auto-detection";
 	$amenuitem[] = $menuitem;
@@ -68,7 +68,7 @@ do {
 
 // Optional interfaces
 // skip OPT selection if there is only one interface detected
-$optif = array();
+$optif = [];
 if (1 != count($iflist)) {
     $i = 0;
     while (1) {
@@ -76,14 +76,14 @@ if (1 != count($iflist)) {
 		    $i++;
 	    $i1 = $i + 1;
 	    $text = "Select the optional OPT{$i1} interface name, auto-detection or none to finish configuration.";
-	    $amenuitem = array();
+	    $amenuitem = [];
 	    foreach ($iflist as $ifk => $ifv) {
-		    $menuitem = array();
+		    $menuitem = [];
 		    $menuitem['tag'] = $ifk;
 		    $menuitem['item'] = sprintf("%s   %s", $ifv['mac'], $ifv['up'] ? "(up)" : "");
 		    $amenuitem[] = $menuitem;
 	}
-	    $menuitem = array();
+	    $menuitem = [];
 	    $menuitem['tag'] = "auto";
 	    $menuitem['item'] = "Auto-detection";
 	    $amenuitem[] = $menuitem;
@@ -110,7 +110,7 @@ if (1 != count($iflist)) {
 }
 
 // Check for duplicate assignments
-$ifarr = array_merge(array($lanif, $wanif), $optif);
+$ifarr = array_merge([$lanif, $wanif], $optif);
 for ($i = 0; $i < (count($ifarr)-1); $i++) {
 	for ($j = ($i+1); $j < count($ifarr); $j++) {
 		if ($ifarr[$i] == $ifarr[$j]) {
@@ -135,12 +135,11 @@ $result = tui_display_yesno($text, 47, 16);
 
 if (0 == $result) {
 	$config['interfaces']['lan']['if'] = $lanif;
-	if (preg_match($g['wireless_regex'], $lanif)) {
-		if (!is_array($config['interfaces']['lan']['wireless']))
-			$config['interfaces']['lan']['wireless'] = array();
-	} else {
+	if(preg_match($g['wireless_regex'],$lanif)):
+		array_make_branch($config,'interfaces','lan','wireless');
+	else:
 		unset($config['interfaces']['lan']['wireless']);
-	}
+	endif;
 
 	$if_isboot = @exec("/sbin/sysctl -q -n net.isboot.nic");
 	$ip_isboot = @exec("/sbin/sysctl -q -n hw.ibft.initiator_address");
@@ -156,32 +155,28 @@ if (0 == $result) {
 		$config['interfaces']['lan']['subnet'] = 24;
 	}
 
-	for ($i = 0; $i < count($optif); $i++) {
-		if (!is_array($config['interfaces']['opt' . ($i+1)]))
-			$config['interfaces']['opt' . ($i+1)] = array();
-
-		$config['interfaces']['opt' . ($i+1)]['if'] = $optif[$i];
-		if (strcmp($optif[$i], $if_isboot) == 0) {
+	for($i = 0;$i < count($optif);$i++):
+		$helpinghand = 'opt' . (i+1);
+		array_make_branch($config,'interfaces',$helpinghand);
+		$config['interfaces'][$helpinghand]['if'] = $optif[$i];
+		if(strcmp($optif[$i],$if_isboot) == 0):
 			// Update iSCSI booted NIC
-			$config['interfaces']['opt' . ($i+1)]['ipaddr'] = $ip_isboot;
-			$config['interfaces']['opt' . ($i+1)]['subnet'] = $nic_prefix;
-			$config['interfaces']['opt' . ($i+1)]['enable'] = true;
-		}
-
+			$config['interfaces'][$helpinghand]['ipaddr'] = $ip_isboot;
+			$config['interfaces'][$helpinghand]['subnet'] = $nic_prefix;
+			$config['interfaces'][$helpinghand]['enable'] = true;
+		endif;
 		// Wireless interface?
-		if (preg_match($g['wireless_regex'], $optif[$i])) {
-			if (!is_array($config['interfaces']['opt' . ($i+1)]['wireless']))
-				$config['interfaces']['opt' . ($i+1)]['wireless'] = array();
-		} else {
-			unset($config['interfaces']['opt' . ($i+1)]['wireless']);
-		}
-
-		if (strcmp($optif[$i], $if_isboot) != 0) {
-			unset($config['interfaces']['opt' . ($i+1)]['enable']);
-		}
-		$config['interfaces']['opt' . ($i+1)]['descr'] = "OPT" . ($i+1);
-		$config['interfaces']['opt' . ($i+1)]['ipv6addr'] = "auto";
-	}
+		if(preg_match($g['wireless_regex'],$optif[$i])):
+			array_make_branch($config,'interfaces',$helpinghand,'wireless');
+		else:
+			unset($config['interfaces'][$helpinghand]['wireless']);
+		endif;
+		if(strcmp($optif[$i],$if_isboot) != 0):
+			unset($config['interfaces'][$helpinghand]['enable']);
+		endif;
+		$config['interfaces'][$helpinghand]['descr'] = 'OPT' . ($i+1);
+		$config['interfaces'][$helpinghand]['ipv6addr'] = 'auto';
+	endfor;
 
 	// Remove all other (old) optional interfaces
 	for (; isset($config['interfaces']['opt' . ($i+1)]); $i++)

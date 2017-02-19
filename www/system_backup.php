@@ -31,10 +31,10 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("System"), gtext("Backup/Restore"));
+$pgtitle = [gtext('System'),gtext('Backup/Restore')];
 
 /* omit no-cache headers because it confuses IE with file downloads */
 $omit_nocacheheaders = true;
@@ -64,13 +64,11 @@ if ($_POST) {
 	}
 
 	if ($encryption) {
-		$reqdfields = explode(" ", "encrypt_password encrypt_password_confirm");
-		$reqdfieldsn = array(gtext("Encrypt password"), gtext("Encrypt password (confirmed)"));
-		$reqdfieldst = explode(" ", "password password");
-
+		$reqdfields = ['encrypt_password','encrypt_password_confirm'];
+		$reqdfieldsn = [gtext('Encrypt password'),gtext('Encrypt password (confirmed)')];
+		$reqdfieldst = ['password','password'];
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
-
 		if ($_POST['encrypt_password'] !== $_POST['encrypt_password_confirm']) {
 			$input_errors[] = gtext("The confirmed password does not match. Please ensure the passwords match exactly.");
 		}
@@ -150,7 +148,7 @@ if ($_POST) {
 	}
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">//<![CDATA[
 $(document).ready(function(){
 	function encrypt_change(encrypt_change) {
@@ -195,7 +193,7 @@ $(document).ready(function(){
 					<?=gtext("Enable encryption.");?></td>
 			    </tr>
 			    <tr id="encrypt_password_tr">
-					<td width="22%" valign="top" class="vncell"><label for="encrypt_password"><?=gtext("Encrypt password");?></label></td>
+					<td width="22%" valign="top" class="vncell"><label for="encrypt_password"><?=gtext("Encrypt Password");?></label></td>
 					<td width="78%" class="vtable">
 						<input name="encrypt_password" type="password" class="formfld" id="encrypt_password" size="25" value="" /><br />
 						<input name="encrypt_password_confirm" type="password" class="formfld" id="encrypt_password_confirm" size="25" value="" />&nbsp;(<?=gtext("Confirmation");?>)
@@ -220,7 +218,7 @@ $(document).ready(function(){
 			      <td colspan="2" class="listtopic"><?=gtext("Restore Configuration");?></td>
 			    </tr>
 			    <tr id="decrypt_password_tr">
-				<td width="22%" valign="top" class="vncell"><label for="decrypt_password"><?=gtext("Decrypt password");?></label></td>
+				<td width="22%" valign="top" class="vncell"><label for="decrypt_password"><?=gtext("Decrypt Password");?></label></td>
 				<td width="78%" class="vtable">
 					<input name="decrypt_password" type="password" class="formfld" id="decrypt_password" size="25" value="" />
 				</td>
@@ -247,6 +245,6 @@ $(document).ready(function(){
 			</td>
 		</tr>
 </table>
-<?php include("formend.inc");?>
+<?php include 'formend.inc';?>
 </form>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

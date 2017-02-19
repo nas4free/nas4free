@@ -6,19 +6,12 @@
 	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
-	Portions of m0n0wall (http://m0n0.ch/wall).
-	Copyright (c) 2003-2006 Manuel Kasper <mk@neon1.net>.
-	All rights reserved.
-
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -38,48 +31,78 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Status"), gtext("Graph"), gtext("CPU Load"));
-
+$status_cpu = true;
 $graph_gap = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 $graph_width = 397;
 $graph_height = 220;
-?>
-<?php include("fbegin.inc");?>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-		<td class="tabnavtbl">
-  		<ul id="tabnav">
-        <li class="tabinact"><a href="status_graph.php"><span><?=gtext("System Load");?></span></a></li>
-        <li class="tabact"><a href="status_graph_cpu.php" title="<?=gtext('Reload page');?>"><span><?=gtext("CPU Load");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-    <td class="tabcont">
-        <?=gtext("Graph shows last 120 seconds");?>
-<div align="center" style="min-width:840px;">
-        <br />
-<?php
-session_start();
-$cpus = system_get_cpus();
-if ($cpus > 1) {
-	for ($j = 0; $j < $cpus; $j++) {                                             
-        echo '<object id="graph" data="graph_cpu.php?cpu='.$j.'" type="image/svg+xml" width="'.$graph_width.'" height="'.$graph_height.'">';
-        echo '<param name="src" value="graph_cpu.php?cpu='.$j.'" />';
-        echo 'Your browser does not support this object type! You need to either use Firefox, Internet Explorer 9 and higher or download RENESIS Player<br /><span class="red"><strong>Note:</strong></span> The <a href="http://de.brothersoft.com/Renesis-Player-download-141155.html" target="_blank">RENESIS Player</a> is required to view the graph.<br></br>';
-        echo '</object>';
-        $test = $j % 2;
-        if ($test != 0) { echo '<br /><br /><br />'; }     /* add line breaks after second graph ... */
-        else { echo $graph_gap; }                          /* or the gap between two graphs */
-	}
-}
-?>
-        <object id="graph" data="graph_cpu.php" type="image/svg+xml" width="<?=$graph_width;?>" height="<?=$graph_height;?>">
-        <param name="src" value="graph_cpu.php" />
-        </object>
 
-</div>
+$a_object = [];
+$a_object['type'] = 'type="image/svg+xml"';
+$a_object['width'] = sprintf('width="%s"',$graph_width);
+$a_object['height'] = sprintf('height="%s"',$graph_height);
+$a_param = [];
+$a_param['name'] = 'name="src"';
+
+$gt_notsupported = gtext('Your browser does not support this svg object type.') .
+		'<br />' .
+		gtext('You need to update your browser or use Internet Explorer 10 or higher.') .
+		'<br/>';
+
+$pgtitle = [gtext('Status'),gtext('Monitoring'),gtext('CPU Load')];
+?>
+<?php include 'fbegin.inc';?>
+<table id="area_navigator"><tbody>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<?php require 'status_graph_tabs.inc';?>
+	</ul></td></tr>
+</tbody></table>
+<table id="area_data"><tbody><tr><td id="area_data_frame">
+	<table class="area_data_settings">
+		<colgroup>
+			<col style="width:100%">
+		</colgroup>
+		<thead>
+			<?php html_titleline2(gtext('CPU Load'),1);?>
+		</thead>
+		<tbody>
+			<tr><td><?=gtext('Graph shows last 120 seconds');?></td></tr>
+			<tr><td>
+				<div align="center" style="min-width:840px;">
+					<br />
+					<?php
+//					session_start();
+					$cpus = system_get_cpus();
+					if($cpus > 1):
+						for($j = 0;$j < $cpus;$j++):
+							$a_object['id'] = 'id="graph"';
+							$a_object['data'] = sprintf('data="status_graph_cpu2.php?cpu=%s"',$j);
+							$a_param['value'] = sprintf('value="status_graph_cpu2.php?cpu=%s"',$j);
+							echo sprintf('<object %s>',implode(' ',$a_object));
+							echo sprintf('<param %s/>',implode(' ',$a_param));
+							echo $gt_notsupported;
+							echo '</object>',"\n";
+							$test = $j % 2;
+							if($test != 0):
+								echo '<br /><br /><br />'; // add line breaks after second graph ...
+							else:
+								echo $graph_gap; // or the gap between two graphs
+							endif;
+						endfor;
+					endif;
+//					$a_object['id'] = 'id="graph"';
+					$a_object['data'] = 'data="status_graph_cpu2.php"';
+					$a_param['value'] = 'value="status_graph_cpu2.php"';
+					echo sprintf('<object %s>',implode(' ',$a_object));
+					echo sprintf('<param %s/>',implode(' ',$a_param));
+					echo $gt_notsupported;
+					echo '</object>',"\n";
+					?>
+				</div>
+			</td></tr>
+		</tbody>
+	</table>
 </td></tr></table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

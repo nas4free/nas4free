@@ -31,27 +31,26 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Disks"), gtext("Encryption"), gtext("Tools"));
+$pgtitle = [gtext('Disks'),gtext('Encryption'),gtext('Tools')];
 
 // Omit no-cache headers because it confuses IE with file downloads.
 $omit_nocacheheaders = true;
 
-if (!isset($config['geli']['vdisk']) || !is_array($config['geli']['vdisk']))
-	$config['geli']['vdisk'] = array();
+$a_geli = &array_make_branch($config,'geli','vdisk');
+if(empty($a_geli)):
+else:
+	array_sort_key($a_geli,'devicespecialfile');
+endif;
+$a_mount = &array_make_branch($config,'mounts','mount');
+if(empty($a_mount)):
+else:
+	array_sort_key($a_mount,'devicespecialfile');
+endif;
 
-if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
-	$config['mounts']['mount'] = array();
-
-array_sort_key($config['geli']['vdisk'], "devicespecialfile");
-$a_geli = &$config['geli']['vdisk'];
-
-array_sort_key($config['mounts']['mount'], "devicespecialfile");
-$a_mount = &$config['mounts']['mount'];
-
-if ($config['system']['webgui']['protocol'] === "http") {
+if($config['system']['webgui']['protocol'] === "http") {
 	$nohttps_error = gtext("You should use HTTPS as WebGUI protocol for sending passphrase.");
 }
 
@@ -59,12 +58,12 @@ if ($_POST) {
 	unset($input_errors);
 
 	// Input validation.
-	$reqdfields = explode(" ", "disk action");
-	$reqdfieldsn = array(gtext("Disk"), gtext("Command"));
+	$reqdfields = ['disk','action'];
+	$reqdfieldsn = [gtext('Disk'),gtext('Command')];
 
 	if (isset($_POST['action']) && $_POST['action'] === "attach") {
-		$reqdfields = array_merge($reqdfields, explode(" ", "passphrase"));
-		$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Passphrase")));
+		$reqdfields = array_merge($reqdfields, ['passphrase']);
+		$reqdfieldsn = array_merge($reqdfieldsn, [gtext('Passphrase')]);
 	}
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -134,7 +133,7 @@ if ("restore" === $pconfig['action']) {
 	}
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function action_change() {
@@ -178,7 +177,8 @@ function action_change() {
       <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
       <?php if (!empty($errormsg)) print_error_box($errormsg);?>
 			<form action="disks_crypt_tools.php" method="post" name="iform" id="iform" enctype="multipart/form-data" onsubmit="spinner()">
-			  <table width="100%" border="0" cellpadding="6" cellspacing="0">
+			<table width="100%" border="0" cellpadding="6" cellspacing="0">
+			<?php html_titleline(gtext("Encryption Tools"));?>
           <tr>
             <td width="22%" valign="top" class="vncellreq"><?=gtext("Disk");?></td>
             <td width="78%" class="vtable">
@@ -192,10 +192,10 @@ function action_change() {
               </select>
             </td>
       		</tr>
-					<?php $options = array("attach" => "attach", "detach" => "detach", "setkey" => "setkey", "list" => "list", "status" => "status", "backup" => "backup", "restore" => "restore");?>
+					<?php $options = ['attach' => gtext('Attach'),'detach' => gtext('Detach'),'setkey' => gtext('Setkey'),'list' => gtext('List'),'status' => gtext('Status'),'backup' => gtext('Backup'),'restore' => gtext('Restore')];?>
 					<?php html_combobox("action", gtext("Command"), $pconfig['action'], $options, "", true, false, "action_change()");?>
           <tr id="oldpassphrase_tr" style="display: none">
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("Old passphrase");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Old Passphrase");?></td>
 						<td width="78%" class="vtable">
 							<input name="oldpassphrase" type="password" class="formfld" id="oldpassphrase" size="20" />
 						</td>
@@ -207,7 +207,7 @@ function action_change() {
 						</td>
 					</tr>
 					<tr id="backupfile_tr" style="display: none">
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("Backup file");?></td>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Backup File");?></td>
 						<td width="78%" class="vtable">
 							<input name="backupfile" type="file" class="formfld" size="40" /><br />
 							<span class="vexpl"><?=gtext("Restore metadata from the given file to the given provider.");?></span>
@@ -218,7 +218,7 @@ function action_change() {
 					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Execute");?>" />
 				</div>
 				<?php if ($pconfig['do_action']) {
-					echo(sprintf("<div id='cmdoutput'>%s</div>", gtext("Command output:")));
+					echo(sprintf("<div id='cmdoutput'>%s</div>", gtext("Command Output:")));
 					echo('<pre class="cmdoutput">');
 					//ob_end_flush();
 
@@ -262,7 +262,7 @@ function action_change() {
 
 					echo('</pre>');
 				}?>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
@@ -272,4 +272,4 @@ function action_change() {
 action_change();
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

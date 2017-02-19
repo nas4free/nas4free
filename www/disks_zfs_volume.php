@@ -31,9 +31,9 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-require("zfs.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'zfs.inc';
 
 $sphere_scriptname = basename(__FILE__);
 $sphere_scriptname_child = 'disks_zfs_volume_edit.php';
@@ -65,11 +65,11 @@ $img_path = [
 	'inf' => 'images/info.png'
 ];
 // sunrise: verify if setting exists, otherwise run init tasks
-if (!(isset($config['zfs']['volumes']['volume']) && is_array($config['zfs']['volumes']['volume']))) {
-	$config['zfs']['volumes']['volume'] = [];
-}
-array_sort_key($config['zfs']['volumes']['volume'], 'name');
-$sphere_array = &$config['zfs']['volumes']['volume'];
+$sphere_array = &array_make_branch($config,'zfs','volumes','volume');
+if(empty($sphere_array)):
+else:
+	array_sort_key($sphere_array,'name');
+endif;
 
 if ($_POST) {
 	if (isset($_POST['apply']) && $_POST['apply']) {
@@ -154,9 +154,9 @@ function zfsvolume_process_updatenotification($mode, $data) {
 	return $retval;
 }
 
-$pgtitle = array(gtext('Disks'), gtext('ZFS'), gtext('Volumes'), gtext('Volume'));
+$pgtitle = [gtext('Disks'),gtext('ZFS'),gtext('Volumes'),gtext('Volume')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 //<![CDATA[
 $(window).on("load", function() {
@@ -171,7 +171,7 @@ $(window).on("load", function() {
 		togglecheckboxesbyname(this, "<?=$checkbox_member_name;?>[]");
 	});
 	// Init member checkboxes
-	$("input[name='<?=$checkbox_member_name;?>[]").click(function() {
+	$("input[name='<?=$checkbox_member_name;?>[]']").click(function() {
 		controlactionbuttons(this, '<?=$checkbox_member_name;?>[]');
 	});
 	// Init spinner onsubmit()
@@ -247,7 +247,7 @@ function controlactionbuttons(ego, triggerbyname) {
 		}
 		if (updatenotify_exists($sphere_notifier)) { print_config_change_box(); }
 	?>
-	<table id="area_data_selection">
+	<table class="area_data_selection">
 		<colgroup>
 			<col style="width:5%"><!-- // Checkbox -->
 			<col style="width:15%"><!-- // Pool -->
@@ -273,12 +273,6 @@ function controlactionbuttons(ego, triggerbyname) {
 				<td class="lhebl"><?=gtext('Toolbox');?></td>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<th class="lcenl" colspan="8"></th>
-				<th class="lceadd"><a href="<?=$sphere_scriptname_child;?>"><img src="<?=$img_path['add'];?>" title="<?=$gt_record_add;?>" alt="<?=$gt_record_add;?>"/></a></th>
-			</tr>
-		</tfoot>
 		<tbody>
 			<?php foreach ($sphere_array as $sphere_record):?>
 				<?php
@@ -309,7 +303,7 @@ function controlactionbuttons(ego, triggerbyname) {
 					<?php endif;?>
 					<td class="lcell"><?=htmlspecialchars($sphere_record['desc']);?>&nbsp;</td>
 					<td class="lcebld">
-						<table id="area_data_selection_toolbox"><tbody><tr>
+						<table class="area_data_selection_toolbox"><tbody><tr>
 							<td>
 								<?php if ($notdirty && $notprotected):?>
 									<a href="<?=$sphere_scriptname_child;?>?uuid=<?=$sphere_record['uuid'];?>"><img src="<?=$img_path['mod'];?>" title="<?=$gt_record_mod;?>" alt="<?=$gt_record_mod;?>" /></a>
@@ -328,10 +322,16 @@ function controlactionbuttons(ego, triggerbyname) {
 				</tr>
 			<?php endforeach;?>
 		</tbody>
+		<tfoot>
+			<tr>
+				<th class="lcenl" colspan="8"></th>
+				<th class="lceadd"><a href="<?=$sphere_scriptname_child;?>"><img src="<?=$img_path['add'];?>" title="<?=$gt_record_add;?>" alt="<?=$gt_record_add;?>"/></a></th>
+			</tr>
+		</tfoot>
 	</table>
 	<div id="submit">
 		<input name="delete_selected_rows" id="delete_selected_rows" type="submit" class="formbtn" value="<?=$gt_selection_delete;?>"/>
 	</div>
-	<?php include("formend.inc");?>
+	<?php include 'formend.inc';?>
 </form></td></tr></tbody></table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

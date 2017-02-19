@@ -31,10 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-
-$pgtitle = array(gtext("Services"), gtext("iSCSI Target"), gtext("Auth Group"));
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if ($_POST) {
 	$pconfig = $_POST;
@@ -64,14 +62,12 @@ if ($_POST) {
 	}
 }
 
-if (!isset($config['iscsitarget']['authgroup']) || !is_array($config['iscsitarget']['authgroup']))
-	$config['iscsitarget']['authgroup'] = array();
-
-array_sort_key($config['iscsitarget']['authgroup'], "tag");
-$a_iscsitarget_ag = &$config['iscsitarget']['authgroup'];
-
-if (!isset($config['iscsitarget']['target']) || !is_array($config['iscsitarget']['target']))
-	$config['iscsitarget']['target'] = array();
+$a_iscsitarget_ag = &array_make_branch($config,'iscsitarget','authgroup');
+if(empty($a_iscsitarget_ag)):
+else:
+	array_sort_key($a_iscsitarget_ag,'tag');
+endif;
+array_make_branch($config,'iscsitarget','target');
 
 if (isset($_GET['act']) && $_GET['act'] === "del") {
 	$index = array_search_ex($_GET['uuid'], $config['iscsitarget']['authgroup'], "uuid");
@@ -115,88 +111,93 @@ function iscsitargetag_process_updatenotification($mode, $data) {
 
 	return $retval;
 }
+$pgtitle = [gtext('Services'),gtext('iSCSI Target'),gtext('Auth Group')];
 ?>
-<?php include("fbegin.inc");?>
-<form action="services_iscsitarget_ag.php" method="post" name="iform" id="iform">
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-        <li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
-        <li class="tabinact"><a href="services_iscsitarget_target.php"><span><?=gtext("Targets");?></span></a></li>
-        <li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gtext("Portals");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
-				<li class="tabact"><a href="services_iscsitarget_ag.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Auths");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-      <?php if (!empty($savemsg)) print_info_box($savemsg);?>
-      <?php if (updatenotify_exists("iscsitarget_ag")) print_config_change_box();?>
-      <table width="100%" border="0" cellpadding="6" cellspacing="0">
-      <tr>
-        <td colspan="2" valign="top" class="listtopic"><?=gtext("Auth Groups");?></td>
-      </tr>
-      <tr>
-        <td width="22%" valign="top" class="vncell"><?=gtext("Auth Group");?></td>
-        <td width="78%" class="vtable">
-        <table width="100%" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td width="5%" class="listhdrlr"><?=gtext("Tag");?></td>
-          <td width="30%" class="listhdrr"><?=gtext("CHAP Users");?></td>
-          <td width="30%" class="listhdrr"><?=gtext("Mutual CHAP Users");?></td>
-          <td width="25%" class="listhdrr"><?=gtext("Comment");?></td>
-          <td width="10%" class="list"></td>
-        </tr>
-        <?php foreach($config['iscsitarget']['authgroup'] as $ag):?>
-        <?php
-			if (!isset($ag['agauth']) || !is_array($ag['agauth']))
-				$ag['agauth'] = array();
-			array_sort_key($ag['agauth'], "authuser");
-        ?>
-        <?php $notificationmode = updatenotify_get_mode("iscsitarget_ag", $ag['uuid']);?>
-        <tr>
-          <td class="listlr"><?=htmlspecialchars($ag['tag']);?>&nbsp;</td>
-          <td class="listr">
-          <?php if (count($ag['agauth']) == 0) echo "&nbsp;"; ?>
-          <?php foreach ($ag['agauth'] as $agauth): ?>
-          <?php echo htmlspecialchars($agauth['authuser'])."<br />\n"; ?>
-          <?php endforeach; ?>
-          </td>
-          <td class="listr">
-          <?php if (count($ag['agauth']) == 0) echo "&nbsp;"; ?>
-          <?php foreach ($ag['agauth'] as $agauth): ?>
-          <?php echo htmlspecialchars($agauth['authmuser'])."<br />\n"; ?>
-          <?php endforeach; ?>
-          </td>
-          <td class="listr"><?=htmlspecialchars($ag['comment']);?>&nbsp;</td>
-          <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
-          <td valign="middle" nowrap="nowrap" class="list">
-            <a href="services_iscsitarget_ag_edit.php?uuid=<?=$ag['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit auth group");?>" border="0" alt="<?=gtext("Edit auth group");?>" /></a>
-            <a href="services_iscsitarget_ag.php?act=del&amp;type=ag&amp;uuid=<?=$ag['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this auth group?");?>')"><img src="images/delete.png" title="<?=gtext("Delete auth group");?>" border="0" alt="<?=gtext("Delete auth group");?>" /></a>
-          </td>
-          <?php else:?>
-          <td valign="middle" nowrap="nowrap" class="list">
-            <img src="images/delete.png" border="0" alt="" />
-          </td>
-          <?php endif;?>
-        </tr>
-        <?php endforeach;?>
-        <tr>
-          <td class="list" colspan="4"></td>
-          <td class="list"><a href="services_iscsitarget_ag_edit.php"><img src="images/add.png" title="<?=gtext("Add auth group");?>" border="0" alt="<?=gtext("Add auth group");?>" /></a></td>
-        </tr>
-        </table>
-        <?=gtext("A Auth Group contains authorised users and secrets for additional security.");?>
-        </td>
-      </tr>
-      </table>
-    </td>
-  </tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_target.php"><span><?=gtext("Targets");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gtext("Portals");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_ig.php"><span><?=gtext("Initiators");?></span></a></li>
+		<li class="tabact"><a href="services_iscsitarget_ag.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Auths");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
+	</ul></td></tr>
+	<tr>
+		<td class="tabcont">
+			<form action="services_iscsitarget_ag.php" method="post" name="iform" id="iform">
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
+				<?php if (updatenotify_exists("iscsitarget_ag")) print_config_change_box();?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<tr>
+						<td colspan="2" valign="top" class="listtopic"><?=gtext("Auth Groups");?></td>
+					</tr>
+					<tr>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Auth Group");?></td>
+						<td width="78%" class="vtable">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="5%" class="listhdrlr"><?=gtext("Tag");?></td>
+									<td width="30%" class="listhdrr"><?=gtext("CHAP Users");?></td>
+									<td width="30%" class="listhdrr"><?=gtext("Mutual CHAP Users");?></td>
+									<td width="25%" class="listhdrr"><?=gtext("Comment");?></td>
+									<td width="10%" class="list"></td>
+								</tr>
+								<?php foreach($config['iscsitarget']['authgroup'] as $ag):?>
+									<?php
+									if (!isset($ag['agauth']) || !is_array($ag['agauth']))
+										$ag['agauth'] = [];
+									array_sort_key($ag['agauth'], "authuser");
+									?>
+									<?php $notificationmode = updatenotify_get_mode("iscsitarget_ag", $ag['uuid']);?>
+									<tr>
+										<td class="listlr"><?=htmlspecialchars($ag['tag']);?>&nbsp;</td>
+										<td class="listr">
+											<?php
+											if (count($ag['agauth']) == 0):
+												echo "&nbsp;";
+											endif;
+											foreach ($ag['agauth'] as $agauth):
+												 echo htmlspecialchars($agauth['authuser'])."<br />\n"; 
+											endforeach;
+											?>
+										</td>
+										<td class="listr">
+											<?php
+											if (count($ag['agauth']) == 0):
+												echo "&nbsp;";
+											endif;
+											foreach ($ag['agauth'] as $agauth):
+												echo htmlspecialchars($agauth['authmuser'])."<br />\n";
+											endforeach;
+											?>
+										</td>
+										<td class="listr"><?=htmlspecialchars($ag['comment']);?>&nbsp;</td>
+										<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
+											<td valign="middle" nowrap="nowrap" class="list">
+												<a href="services_iscsitarget_ag_edit.php?uuid=<?=$ag['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit auth group");?>" border="0" alt="<?=gtext("Edit auth group");?>" /></a>
+												<a href="services_iscsitarget_ag.php?act=del&amp;type=ag&amp;uuid=<?=$ag['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this auth group?");?>')"><img src="images/delete.png" title="<?=gtext("Delete auth group");?>" border="0" alt="<?=gtext("Delete auth group");?>" /></a>
+											</td>
+										<?php else:?>
+											<td valign="middle" nowrap="nowrap" class="list">
+												<img src="images/delete.png" border="0" alt="" />
+											</td>
+										<?php endif;?>
+									</tr>
+								<?php endforeach;?>
+								<tr>
+									<td class="list" colspan="4"></td>
+									<td class="list"><a href="services_iscsitarget_ag_edit.php"><img src="images/add.png" title="<?=gtext("Add auth group");?>" border="0" alt="<?=gtext("Add auth group");?>" /></a></td>
+								</tr>
+							</table>
+							<?=gtext("Auth Groups contains authorised users and secrets for additional security.");?>
+						</td>
+					</tr>
+				</table>
+				<?php include 'formend.inc';?>
+			</form>
+		</td>
+	</tr>
 </table>
-<?php include("formend.inc");?>
-</form>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

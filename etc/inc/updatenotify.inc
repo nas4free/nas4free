@@ -31,7 +31,7 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("globals.inc");
+require_once 'globals.inc';
 
 // Update notification constants
 define("UPDATENOTIFY_MODE_NEW", 0);
@@ -55,6 +55,7 @@ define("RECORD_DELETE_MODIFY", 32);
 define("RECORD_DELETE_DELETE", 33);
 
 // Parameter to define the mode of a page
+define("PAGE_MODE_VIEW", 0);
 define("PAGE_MODE_ADD", 1);
 define("PAGE_MODE_EDIT", 2);
 define("PAGE_MODE_POST", 3);
@@ -96,7 +97,7 @@ function updatenotify_set($key, $mode, $data) {
 	try {
 		$sql = "INSERT INTO updatenotify (key, ts, mode, data) VALUES (:key, :ts, :mode, :data)";
 		$stmt = $dbh->prepare($sql);
-		$stmt->execute(array(':key' => $key, ':ts' => time(), ':mode' => $mode, ':data' => $data));
+		$stmt->execute([':key' => $key,':ts' => time(),':mode' => $mode,':data' => $data]);
 		$stmt = null;
 	} catch (PDOException $e) {
 		print $e->getMessage();
@@ -115,9 +116,9 @@ function updatenotify_get($key) {
 	try {
 		$sql = "SELECT mode, data FROM updatenotify WHERE key = :key ORDER BY ts DESC";
 		$stmt = $dbh->prepare($sql);
-		$stmt->execute(array(':key' => $key));
+		$stmt->execute([':key' => $key]);
 
-		$result = array();
+		$result = [];
 		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 			$result[] = $row;
 		}
@@ -140,7 +141,7 @@ function updatenotify_delete($key) {
 	try {
 		$sql = "DELETE FROM updatenotify WHERE key = :key";
 		$stmt = $dbh->prepare($sql);
-		$stmt->execute(array(':key' => $key));
+		$stmt->execute([':key' => $key]);
 		$stmt = null;
 	} catch (PDOException $e) {
 		print $e->getMessage();
@@ -165,7 +166,7 @@ function updatenotify_clear($key, $data, $matchwholeword = TRUE) {
 
 		$sql = "DELETE FROM updatenotify WHERE key = :key AND {$ssql}";
 		$stmt = $dbh->prepare($sql);
-		$stmt->execute(array(':key' => $key, ':data' => $data));
+		$stmt->execute([':key' => $key, ':data' => $data]);
 		$stmt = null;
 	} catch (PDOException $e) {
 		print $e->getMessage();
@@ -191,7 +192,7 @@ function updatenotify_get_mode($key, $data, $matchwholeword = TRUE) {
 		// Remove duplicate entries. Last inserted notification wins (last in, first out).
 		$sql = "SELECT mode FROM updatenotify WHERE key = :key AND {$ssql} AND id IN (SELECT id FROM (SELECT id, MAX(ts) AS ts FROM updatenotify GROUP BY data))";
 		$stmt = $dbh->prepare($sql);
-		$stmt->execute(array(':key' => $key, ':data' => $data));
+		$stmt->execute([':key' => $key, ':data' => $data]);
 
 		$result = $stmt->fetch(PDO::FETCH_ASSOC);
 		if (FALSE !== $result)
@@ -217,7 +218,7 @@ function updatenotify_exists($key) {
 	try {
 		$sql = "SELECT COUNT(*) FROM updatenotify WHERE key = :key";
 		$stmt = $dbh->prepare($sql);
-		$stmt->execute(array(':key' => $key));
+		$stmt->execute([':key' => $key]);
 
 		$result = $stmt->fetchColumn();
 		$result = (0 < $result) ? TRUE : FALSE;
@@ -242,7 +243,7 @@ function updatenotify_exists_mode($key, $mode) {
 		// Remove duplicate entries. Last inserted notification wins (last in, first out).
 		$sql = "SELECT COUNT(*) FROM updatenotify WHERE key = :key AND mode = :mode AND id IN (SELECT id FROM (SELECT id, MAX(ts) AS ts FROM updatenotify GROUP BY mode))";
 		$stmt = $dbh->prepare($sql);
-		$stmt->execute(array(':key' => $key, ':mode' => $mode));
+		$stmt->execute([':key' => $key,':mode' => $mode]);
 
 		$result = $stmt->fetchColumn();
 		$result = (0 < $result) ? TRUE : FALSE;

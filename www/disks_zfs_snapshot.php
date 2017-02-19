@@ -6,10 +6,6 @@
 	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 
@@ -35,9 +31,9 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-require("zfs.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'zfs.inc';
 
 $sphere_scriptname = basename(__FILE__);
 $sphere_scriptname_child = 'disks_zfs_snapshot_edit.php';
@@ -209,7 +205,7 @@ function zfssnapshot_process_updatenotification($mode, $data) {
 }
 $pgtitle = [gtext('Disks'), gtext('ZFS'), gtext('Snapshots'), gtext('Snapshot')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 //<![CDATA[
 $(window).on("load", function() {
@@ -224,7 +220,7 @@ $(window).on("load", function() {
 		togglecheckboxesbyname(this, "<?=$checkbox_member_name;?>[]");
 	});
 	// Init member checkboxes
-	$("input[name='<?=$checkbox_member_name;?>[]").click(function() {
+	$("input[name='<?=$checkbox_member_name;?>[]']").click(function() {
 		controlactionbuttons(this, '<?=$checkbox_member_name;?>[]');
 	});
 });
@@ -301,10 +297,10 @@ function controlactionbuttons(ego, triggerbyname) {
 			print_config_change_box();
 		}
 	?>
-	<table id="area_data_settings">
+	<table class="area_data_settings">
 		<colgroup>
-			<col id="area_data_settings_col_tag">
-			<col id="area_data_settings_col_data">
+			<col class="area_data_settings_col_tag">
+			<col class="area_data_settings_col_data">
 		</colgroup>
 		<thead>
 			<?php html_titleline2(gtext('Filter'));?>
@@ -318,7 +314,7 @@ function controlactionbuttons(ego, triggerbyname) {
 	<div id="submit">
 		<input type="submit" class="formbtn" id="filter" name="filter" value="<?=gtext('Apply Filter');?>"/>
 	</div>
-	<table id="area_data_selection">
+	<table class="area_data_selection">
 		<colgroup>
 			<col style="width:5%"><!-- // Checkbox -->
 			<col style="width:35%"><!-- // Path -->
@@ -341,14 +337,6 @@ function controlactionbuttons(ego, triggerbyname) {
 				<th class="lhebl"><?=gtext('Toolbox');?></th>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<td class="lcenl" colspan="5"></td>
-				<td class="lceadd">
-					<a href="disks_zfs_snapshot_add.php"><img src="<?=$img_path['add'];?>" title="<?=$gt_record_add?>" border="0" alt="<?=gt_record_add;?>"/></a>
-				</td>
-			</tr>
-		</tfoot>
 		<tbody>
 			<?php foreach ($sphere_array as $sphere_record):?>
 				<?php
@@ -376,7 +364,7 @@ function controlactionbuttons(ego, triggerbyname) {
 					</td>
 					<td class="lcell"><?=htmlspecialchars($sphere_record['creation']);?>&nbsp;</td>
 					<td class="lcebld">
-						<table id="area_data_selection_toolbox"><tbody><tr>
+						<table class="area_data_selection_toolbox"><tbody><tr>
 							<td>
 								<?php if ($notdirty && $notprotected):?>
 									<a href="<?=$sphere_scriptname_child;?>?snapshot=<?=urlencode($sphere_record['snapshot']);?>"><img src="<?=$img_path['mod'];?>" title="<?=$gt_record_mod;?>" alt="<?=$gt_record_mod;?>" /></a>
@@ -395,10 +383,18 @@ function controlactionbuttons(ego, triggerbyname) {
 				</tr>
 			<?php endforeach;?>
 		</tbody>
+		<tfoot>
+			<tr>
+				<td class="lcenl" colspan="5"></td>
+				<td class="lceadd">
+					<a href="disks_zfs_snapshot_add.php"><img src="<?=$img_path['add'];?>" title="<?=$gt_record_add?>" border="0" alt="<?=gt_record_add;?>"/></a>
+				</td>
+			</tr>
+		</tfoot>
 	</table>
 	<div id="submit">
 		<input name="delete_selected_rows" id="delete_selected_rows" type="submit" class="formbtn" value="<?=$gt_selection_delete;?>"/>
 	</div>
-	<?php include("formend.inc");?>
+	<?php include 'formend.inc';?>
 </form></td></tr></tbody></table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

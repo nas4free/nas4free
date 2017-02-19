@@ -31,27 +31,19 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("Services"), gtext("Rsync"), gtext("Local"), isset($uuid) ? gtext("Edit") : gtext("Add"));
-
 /* Global arrays. */
 $a_months = explode(" ",gtext("January February March April May June July August September October November December"));
 $a_weekdays = explode(" ",gtext("Sunday Monday Tuesday Wednesday Thursday Friday Saturday"));
 
-if (!isset($config['rsync']) || !is_array($config['rsync']))
-	$config['rsync'] = array();
-
-if (!isset($config['rsync']['rsynclocal']) || !is_array($config['rsync']['rsynclocal']))
-	$config['rsync']['rsynclocal'] = array();
-
-$a_rsynclocal = &$config['rsync']['rsynclocal'];
+$a_rsynclocal = &array_make_branch($config,'rsync','rsynclocal');
 
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_rsynclocal, "uuid")))) {
 	$pconfig['enable'] = isset($a_rsynclocal[$cnid]['enable']);
@@ -86,11 +78,11 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_rsynclocal, "u
 	$pconfig['uuid'] = uuid();
 	$pconfig['source'] = "";
 	$pconfig['destination'] = "";
-	$pconfig['minute'] = array();
-	$pconfig['hour'] = array();
-	$pconfig['day'] = array();
-	$pconfig['month'] = array();
-	$pconfig['weekday'] = array();
+	$pconfig['minute'] = [];
+	$pconfig['hour'] = [];
+	$pconfig['day'] = [];
+	$pconfig['month'] = [];
+	$pconfig['weekday'] = [];
 	//$pconfig['sharetosync'] = "";
 	$pconfig['all_mins'] = 0;
 	$pconfig['all_hours'] = 0;
@@ -122,8 +114,8 @@ if ($_POST) {
 	}
 
 	// Input validation
-	$reqdfields = explode(" ", "source destination who");
-	$reqdfieldsn = array(gtext("Source share"), gtext("Destination share"), gtext("Who"));
+	$reqdfields = ['source','destination','who'];
+	$reqdfieldsn = [gtext('Source Share'),gtext('Destination Share'),gtext('Who')];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (!empty($_POST['Submit']) && gtext("Execute now") !== $_POST['Submit']) {
@@ -132,7 +124,7 @@ if ($_POST) {
 	}
 
 	if (empty($input_errors)) {
-		$rsynclocal = array();
+		$rsynclocal = [];
 		$rsynclocal['enable'] = isset($_POST['enable']) ? true : false;
 		$rsynclocal['uuid'] = $_POST['uuid'];
 		$rsynclocal['minute'] = !empty($_POST['minute']) ? $_POST['minute'] : null;
@@ -183,7 +175,7 @@ if ($_POST) {
 				updatenotify_clear("rsynclocal", $rsynclocal['uuid']);
 			}
 
-			$retval |= rc_exec_script("su -m {$rsynclocal['who']} -c '/bin/sh /var/run/rsync_local_{$rsynclocal['uuid']}.sh'");
+			$retval |= rc_exec_script_async("su -m {$rsynclocal['who']} -c '/bin/sh /var/run/rsync_local_{$rsynclocal['uuid']}.sh'");
 
 			$savemsg = get_std_save_message($retval);
 		} else {
@@ -192,8 +184,9 @@ if ($_POST) {
 		}
 	}
 }
+$pgtitle = [gtext('Services'),gtext('Rsync'),gtext('Local'),isset($uuid) ? gtext('Edit') : gtext('Add')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function set_selected(name) {
@@ -223,33 +216,33 @@ function delete_change() {
 			</ul>
 		</td>
 	</tr>
-  <tr>
-    <td class="tabcont">
+	<tr>
+		<td class="tabcont">
 			<form action="services_rsyncd_local_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php html_titleline_checkbox("enable", gtext("Rsync Job"), !empty($pconfig['enable']) ? true : false, gtext("Enable"));?>
-	    		<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("Source share");?></td>
+					<tr>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Source Share");?></td>
 						<td width="78%" class="vtable">
 							<input name="source" type="text" class="formfld" id="source" size="60" value="<?=htmlspecialchars($pconfig['source']);?>" />
 							<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.source; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield; window.slash_source = 1;' value="..." /><br />
 							<span class="vexpl"><?=gtext("Source directory to be synchronized.");?></span>
 					  </td>
 					</tr>
-    			<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("Destination share");?></td>
+					<tr>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Destination Share");?></td>
 						<td width="78%" class="vtable">
 							<input name="destination" type="text" class="formfld" id="destination" size="60" value="<?=htmlspecialchars($pconfig['destination']);?>" />
 							<input name="browse2" type="button" class="formbtn" id="Browse2" onclick='ifield2 = form.destination; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield2.value)+"&amp;sd=<?=$g['media_path'];?>", "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield2; window.ifield = ifield2; window.slash_destination = 1;' value="..." /><br />
 							<span class="vexpl"><?=gtext("Target directory.");?></span>
 					  </td>
 					</tr>
-					<?php $a_user = array(); foreach (system_get_user_list() as $userk => $userv) { $a_user[$userk] = htmlspecialchars($userk); }?>
+					<?php $a_user = []; foreach (system_get_user_list() as $userk => $userv) { $a_user[$userk] = htmlspecialchars($userk); }?>
 					<?php html_combobox("who", gtext("Who"), $pconfig['who'], $a_user, "", true);?>
-    			<tr>
-						<td width="22%" valign="top" class="vncellreq"><?=gtext("Synchronization time");?></td>
+					<tr>
+						<td width="22%" valign="top" class="vncellreq"><?=gtext("Synchronization Time");?></td>
 						<td width="78%" class="vtable">
 							<table width="100%" border="0" cellpadding="5" cellspacing="0">
 								<tr>
@@ -441,12 +434,12 @@ function delete_change() {
 						</td>
 					</tr>
 					<?php
-					html_checkbox("perms", gtext("Preserve permissions"), !empty($pconfig['perms']) ? true : false, gtext("This option causes the receiving rsync to set the destination permissions to be the same as the source permissions."), "", false);
-					html_checkbox("xattrs", gtext("Preserve extended attributes"), !empty($pconfig['xattrs']) ? true : false, gtext("This option causes rsync to update the remote extended attributes to be the same as the local ones."), "", false);
+					html_checkbox("perms", gtext("Preserve Permissions"), !empty($pconfig['perms']) ? true : false, gtext("This option causes the receiving rsync to set the destination permissions to be the same as the source permissions."), "", false);
+					html_checkbox("xattrs", gtext("Preserve Extended attributes"), !empty($pconfig['xattrs']) ? true : false, gtext("This option causes rsync to update the remote extended attributes to be the same as the local ones."), "", false);
 					$helpinghand = '<a href="' . 'http://rsync.samba.org/ftp/rsync/rsync.html' . '" target="_blank">'
 						. gtext('Please check the documentation')
 						. '</a>.';
-					html_inputbox("extraoptions", gtext("Extra options"), !empty($pconfig['extraoptions']) ? $pconfig['extraoptions'] : "", gtext("Extra options to rsync (usually empty).") . " " . $helpinghand, false, 40);
+					html_inputbox("extraoptions", gtext("Extra Options"), !empty($pconfig['extraoptions']) ? $pconfig['extraoptions'] : "", gtext("Extra options to rsync (usually empty).") . " " . $helpinghand, false, 40);
 					?>
 				</table>
 				<div id="submit">
@@ -457,7 +450,7 @@ function delete_change() {
 					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<?php endif;?>
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
@@ -467,4 +460,4 @@ function delete_change() {
 delete_change();
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

@@ -140,6 +140,12 @@ HOME=/var/log
 		echo   "0	*/1	*	*	*	root	/usr/local/sbin/autosnapshot >/dev/null 2>&1" >> ${cron_config}
 	fi
 
+	# Auto Update Monitoring Graphs every 5 minutes
+	if [ 0 -lt `configxml_get_count "//rrdgraphs/enable"` ]; then
+		echo "# rrdgraphsautautopdate" >> ${cron_config}
+		echo   "0,5,10,15,20,25,30,35,40,45,50,55 * * * * root /usr/local/share/rrdgraphs/rrd-update.sh" >> ${cron_config}
+	fi
+
 	# RSYNC client
 	_index=`configxml_get_count "//rsync/rsyncclient[enable]"`
 	if [ 0 -lt ${_index} ]; then

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- NAS4Free default system configuration -->
 <nas4free>
-	<version>2.6</version>
+	<version>2.9</version>
 	<lastchange></lastchange>
 	<system>
 		<hostname>nas4free</hostname>
@@ -89,14 +89,7 @@
 			-->
 			<tls_certcheck>tls_certcheck off</tls_certcheck>
 		</email>
-		<loaderconf>
-			<param>
-				<!-- <enable/> -->
-				<uuid>1f7c3fcd-402a-437f-bdab-cd3cb3511ef6</uuid>
-				<name>arcsas_load</name>
-				<value>YES</value>
-				<comment>Areca non-RAID HBAs ARC-1300/ARC-1320 series Driver</comment>
-			</param>		
+		<loaderconf>		
 			<param>
 				<!-- <enable/> -->
 				<uuid>d68b8192-ca70-45ad-b312-c61715ac1c27</uuid>
@@ -1225,6 +1218,7 @@
 		<password>nas4free</password>
 		<pex/>
 		<dht/>
+		<preallocation>1</preallocation>
 		<encryption>1</encryption>
 		<watchdir></watchdir>
 		<umask></umask>
@@ -1289,7 +1283,7 @@
 		<!-- <ipfstatentries></ipfstatentries> -->
 	</diag>
 	<syslogd>
-		<nentries>175</nentries>
+		<nentries>275</nentries>
 		<!--
 		<reverse/>
 		<resolve/>
@@ -1411,21 +1405,17 @@
 		-->
 	</cron>
 	<rc>
-		<preinit>
-			<!--
-			<cmd></cmd> // Can be defined multiple times.
-			-->
-		</preinit>
-		<postinit>
-			<!--
-			<cmd></cmd> // Can be defined multiple times.
-			-->
-		</postinit>
-		<shutdown>
-			<!--
-			<cmd></cmd> // Can be defined multiple times.
-			-->
-		</shutdown>
+		<!--
+		<param> // can be defined multiple times
+			<uuid>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</uuid>
+			<name></name>
+			<value></value>
+			<typeid>1</typeid>
+			<comment></commant>
+			<enable/>
+			<protected/>
+		</param>
+		-->
 	</rc>
 	<websrv>
 		<protocol>http</protocol>
@@ -1631,6 +1621,8 @@
 			<!-- <auxparam></auxparam> -->
 		</lcdproc>
 	</lcdproc>
+	<rrdgraphs>
+	</rrdgraphs>
 	<vbox>
 		<!-- <enable/> -->
 		<homedir></homedir>

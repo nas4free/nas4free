@@ -31,21 +31,21 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("Network"), gtext("Interface Management"), gtext("CARP"), isset($uuid) ? gtext("Edit") : gtext("Add"));
+$pgtitle = [gtext('Network'),gtext('Interface Management'),gtext('CARP'), isset($uuid) ? gtext('Edit') : gtext('Add')];
 
-if (!isset($config['vinterfaces']['carp']) || !is_array($config['vinterfaces']['carp']))
-	$config['vinterfaces']['carp'] = array();
-
-$a_carp = &$config['vinterfaces']['carp'];
-array_sort_key($a_carp, "if");
+$a_carp = &array_make_branch($config,'vinterfaces','carp');
+if(empty($a_carp)):
+else:
+	array_sort_key($a_carp,'if');
+endif;
 
 $default_linkup = "/usr/local/sbin/carp-hast-switch master";
 $default_linkdown = "/usr/local/sbin/carp-hast-switch slave";
@@ -88,18 +88,18 @@ if ($_POST) {
 	}
 
 	// Input validation.
-	$reqdfields = explode(" ", "vipaddr vsubnet");
-	$reqdfieldsn = array(gtext("Virtual IP address"), gtext("Subnet bit count"));
+	$reqdfields = ['vipaddr','vsubnet'];
+	$reqdfieldsn = [gtext('Virtual IP Address'),gtext('Subnet Bit Count')];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (!empty($_POST['vipaddr']) && !is_ipv4addr($_POST['vipaddr']))
 		$input_errors[] = gtext("A valid IPv4 address must be specified.");
-	if (!empty($_POST['vsubnet']) && !filter_var($_POST['vsubnet'], FILTER_VALIDATE_INT, array('options' => array('min_range' => 1, 'max_range' => 32))))
+	if (!empty($_POST['vsubnet']) && !filter_var($_POST['vsubnet'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 32]]))
 		$input_errors[] = gtext("A valid network bit count (1-32) must be specified.");
 
-	$reqdfields = explode(" ", "vhid advskew password");
-	$reqdfieldsn = array(gtext("Virtual Host ID"), gtext("Advertisement skew"), gtext("Password"));
-	$reqdfieldst = explode(" ", "numericint numericint string");
+	$reqdfields = ['vhid','advskew','password'];
+	$reqdfieldsn = [gtext('Virtual Host ID'),gtext('Advertisement Skew'),gtext('Password')];
+	$reqdfieldst = ['numericint','numericint','string'];
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
@@ -108,7 +108,7 @@ if ($_POST) {
 		$input_errors[] = sprintf(gtext("The attribute '%s' contains invalid characters."), gtext("Password"));
 
 	if (empty($input_errors)) {
-		$carp = array();
+		$carp = [];
 		$carp['enable'] = $_POST['enable'] ? true : false;
 		$carp['uuid'] = $_POST['uuid'];
 		$carp['if'] = $_POST['if'];
@@ -151,7 +151,7 @@ function get_nextcarp_id() {
 	return $id;
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 <tr>
 	<td class="tabnavtbl">
@@ -170,15 +170,16 @@ function get_nextcarp_id() {
 		<form action="interfaces_carp_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 			<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 			<table width="100%" border="0" cellpadding="6" cellspacing="0">
-				<?php $a_if = array(); foreach (get_interface_list() as $ifk => $ifv) { $a_if[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); };?>
+			<?php html_titleline(gtext("Carp Settings"));?>
+				<?php $a_if = []; foreach (get_interface_list() as $ifk => $ifv) { $a_if[$ifk] = htmlspecialchars("{$ifk} ({$ifv['mac']})"); };?>
 				<?php html_combobox("if", gtext("Interface"), $pconfig['if'], $a_if, "", true);?>
 				<?php html_inputbox("vhid", gtext("Virtual Host ID"), $pconfig['vhid'], "", true, 5);?>
-				<?php html_ipv4addrbox("vipaddr", "vsubnet", gtext("Virtual IP address"), $pconfig['vipaddr'], $pconfig['vsubnet'], "", true);?>
-				<?php html_inputbox("advskew", gtext("Advertisement skew"), $pconfig['advskew'], gtext("Lowest value is higher priority. For master node, use 0 or 1. If preempt is enabled, it is adjusted to 240 on failure."), true, 5);?>
+				<?php html_ipv4addrbox("vipaddr", "vsubnet", gtext("Virtual IP Address"), $pconfig['vipaddr'], $pconfig['vsubnet'], "", true);?>
+				<?php html_inputbox("advskew", gtext("Advertisement Skew"), $pconfig['advskew'], gtext("Lowest value is higher priority. For master node, use 0 or 1. If preempt is enabled, it is adjusted to 240 on failure."), true, 5);?>
 				<?php html_inputbox("password", gtext("Password"), $pconfig['password'], "", true, 20);?>
-				<?php html_inputbox("linkup", gtext("Link up action"), $pconfig['linkup'], sprintf(gtext("Command for LINK_UP event (e.g. %s)."), $default_linkup), false, 60);?>
-				<?php html_inputbox("linkdown", gtext("Link down action"), $pconfig['linkdown'], sprintf(gtext("Command for LINK_DOWN event (e.g. %s)."), $default_linkdown), false, 60);?>
-				<?php html_inputbox("extraoptions", gtext("Extra options"), $pconfig['extraoptions'], gtext("Extra options to ifconfig (usually empty)."), false, 40);?>
+				<?php html_inputbox("linkup", gtext("Link Up Action"), $pconfig['linkup'], sprintf(gtext("Command for LINK_UP event (e.g. %s)."), $default_linkup), false, 60);?>
+				<?php html_inputbox("linkdown", gtext("Link Down Action"), $pconfig['linkdown'], sprintf(gtext("Command for LINK_DOWN event (e.g. %s)."), $default_linkdown), false, 60);?>
+				<?php html_inputbox("extraoptions", gtext("Extra Options"), $pconfig['extraoptions'], gtext("Extra options to ifconfig (usually empty)."), false, 40);?>
 				<?php html_inputbox("desc", gtext("Description"), $pconfig['desc'], gtext("You may enter a description here for your reference."), false, 40);?>
 			</table>
 			<div id="submit">
@@ -187,9 +188,9 @@ function get_nextcarp_id() {
 				<input name="enable" type="hidden" value="<?=$pconfig['enable'];?>" />
 				<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 			</div>
-		<?php include("formend.inc");?>
+		<?php include 'formend.inc';?>
 		</form>
 	</td>
 </tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

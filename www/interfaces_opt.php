@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 unset($index);
 if (isset($_GET['index']) && $_GET['index'])
@@ -45,7 +45,7 @@ if (!$index)
 
 $optcfg = &$config['interfaces']['opt' . $index];
 
-// Get interface informations.
+// Get interface information.
 $ifinfo = get_interface_info(get_ifname($optcfg['if']));
 
 if ($config['interfaces']['opt' . $index]['ipaddr'] == "dhcp") {
@@ -98,26 +98,26 @@ if ($_POST) {
 		}
 
 		if ($_POST['type'] === "Static") {
-			$reqdfields = explode(" ", "descr ipaddr subnet");
-			$reqdfieldsn = array(gtext("Description"),gtext("IP address"),gtext("Subnet bit count"));
+			$reqdfields = ['descr','ipaddr','subnet'];
+			$reqdfieldsn = [gtext('Description'),gtext('IP Address'),gtext('Subnet Bit Count')];
 
 			do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 			if (($_POST['ipaddr'] && !is_ipv4addr($_POST['ipaddr'])))
 				$input_errors[] = gtext("A valid IP address must be specified.");
-			if ($_POST['subnet'] && !filter_var($_POST['subnet'], FILTER_VALIDATE_INT, array('options' => array('min_range' => 1, 'max_range' => 32))))
+			if ($_POST['subnet'] && !filter_var($_POST['subnet'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 32]]))
 				$input_errors[] = gtext("A valid network bit count (1-32) must be specified.");
 		}
 
 		if (isset($_POST['ipv6_enable']) && $_POST['ipv6_enable'] && ($_POST['ipv6type'] === "Static")) {
-			$reqdfields = explode(" ", "ipv6addr ipv6subnet");
-			$reqdfieldsn = array(gtext("IPv6 address"),gtext("Prefix"));
+			$reqdfields = ['ipv6addr','ipv6subnet'];
+			$reqdfieldsn = [gtext('IPv6 address'),gtext('Prefix')];
 
 			do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 			if (($_POST['ipv6addr'] && !is_ipv6addr($_POST['ipv6addr'])))
 				$input_errors[] = gtext("A valid IPv6 address must be specified.");
-			if ($_POST['ipv6subnet'] && !filter_var($_POST['ipv6subnet'], FILTER_VALIDATE_INT, array('options' => array('min_range' => 1, 'max_range' => 128))))
+			if ($_POST['ipv6subnet'] && !filter_var($_POST['ipv6subnet'], FILTER_VALIDATE_INT, ['options' => ['min_range' => 1, 'max_range' => 128]]))
 				$input_errors[] = gtext("A valid prefix (1-128) must be specified.");
 			if (($_POST['mtu'] && !is_mtu($_POST['mtu'])))
 				$input_errors[] = gtext("A valid mtu size must be specified.");
@@ -167,9 +167,9 @@ if ($_POST) {
 	}
 }
 
-$pgtitle = array(gtext("Network"), "Optional $index (" . htmlspecialchars($optcfg['descr']) . ")");
+$pgtitle = [gtext('Network'), 'Optional (' . htmlspecialchars($optcfg['descr']) . ')'];
 ?>
-<?php include("fbegin.inc"); ?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -298,43 +298,43 @@ function encryption_change() {
 <?php if ($optcfg['if']):?>
             <form action="interfaces_opt.php" method="post" name="iform" id="iform" onsubmit="spinner()">
             	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-							  <tr>
-									<td class="tabcont">
-										<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-										<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
-										<table width="100%" border="0" cellpadding="6" cellspacing="0">
-											<?php html_titleline_checkbox("enable", gtext("IPv4 Configuration"), !empty($pconfig['enable']) ? true : false, gtext("Activate"), "enable_change(false)");?>
-											<?php html_combobox("type", gtext("Type"), $pconfig['type'], array("Static" => gtext("Static"), "DHCP" => gtext("DHCP")), "", true, false, "type_change()");?>
-											<?php html_inputbox("descr", gtext("Description"), $pconfig['descr'], gtext("You may enter a description here for your reference."), true, 20);?>
-											<?php html_ipv4addrbox("ipaddr", "subnet", gtext("IP address"), !empty($pconfig['ipaddr']) ? $pconfig['ipaddr'] : "", !empty($pconfig['subnet']) ? $pconfig['subnet'] : "", "", true);?>
-											<?php html_separator();?>
-											<?php html_titleline_checkbox("ipv6_enable", gtext("IPv6 Configuration"), !empty($pconfig['ipv6_enable']) ? true : false, gtext("Activate"), "enable_change(this)");?>
-											<?php html_combobox("ipv6type", gtext("Type"), $pconfig['ipv6type'], array("Static" => gtext("Static"), "Auto" => gtext("Auto")), "", true, false, "ipv6_type_change()");?>
-											<?php html_ipv6addrbox("ipv6addr", "ipv6subnet", gtext("IP address"), !empty($pconfig['ipv6addr']) ? $pconfig['ipv6addr'] : "", !empty($pconfig['ipv6subnet']) ? $pconfig['ipv6subnet'] : "", "", true);?>
-											<?php html_separator();?>
-											<?php html_titleline(gtext("Advanced Configuration"));?>
-											<?php html_inputbox("mtu", gtext("MTU"), $pconfig['mtu'], gtext("Set the maximum transmission unit of the interface to n, default is interface specific. The MTU is used to limit the size of packets that are transmitted on an interface. Not all interfaces support setting the MTU, and some interfaces have range restrictions."), false, 5);?>
+			<tr>
+			<td class="tabcont">
+			<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+			<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
+			<table width="100%" border="0" cellpadding="6" cellspacing="0">
+			<?php html_titleline_checkbox("enable", gtext("IPv4 Settings"), !empty($pconfig['enable']) ? true : false, gtext("Activate"), "enable_change(false)");?>
+			<?php html_combobox("type", gtext("Type"), $pconfig['type'], ['Static' => gtext('Static'),'DHCP' => gtext('DHCP')], "", true, false, "type_change()");?>
+			<?php html_inputbox("descr", gtext("Description"), $pconfig['descr'], gtext("You may enter a description here for your reference."), true, 20);?>
+			<?php html_ipv4addrbox("ipaddr", "subnet", gtext("IP Address"), !empty($pconfig['ipaddr']) ? $pconfig['ipaddr'] : "", !empty($pconfig['subnet']) ? $pconfig['subnet'] : "", "", true);?>
+			<?php html_separator();?>
+			<?php html_titleline_checkbox("ipv6_enable", gtext("IPv6 Settings"), !empty($pconfig['ipv6_enable']) ? true : false, gtext("Activate"), "enable_change(this)");?>
+			<?php html_combobox("ipv6type", gtext("Type"), $pconfig['ipv6type'], ['Static' => gtext('Static'), 'Auto' => gtext('Auto')], "", true, false, "ipv6_type_change()");?>
+			<?php html_ipv6addrbox("ipv6addr", "ipv6subnet", gtext("IP Address"), !empty($pconfig['ipv6addr']) ? $pconfig['ipv6addr'] : "", !empty($pconfig['ipv6subnet']) ? $pconfig['ipv6subnet'] : "", "", true);?>
+			<?php html_separator();?>
+			<?php html_titleline(gtext("Advanced Settings"));?>
+			<?php html_inputbox("mtu", gtext("MTU"), $pconfig['mtu'], gtext("Set the maximum transmission unit of the interface to n, default is interface specific. The MTU is used to limit the size of packets that are transmitted on an interface. Not all interfaces support setting the MTU, and some interfaces have range restrictions."), false, 5);?>
 <!--
-											<?php html_checkbox("polling", gtext("Device polling"), $pconfig['polling'] ? true : false, gtext("Enable device polling"), gtext("Device polling is a technique that lets the system periodically poll network devices for new data instead of relying on interrupts. This can reduce CPU load and therefore increase throughput, at the expense of a slightly higher forwarding delay (the devices are polled 1000 times per second). Not all NICs support polling."), false);?>
+			<?php html_checkbox("polling", gtext("Device polling"), $pconfig['polling'] ? true : false, gtext("Enable device polling"), gtext("Device polling is a technique that lets the system periodically poll network devices for new data instead of relying on interrupts. This can reduce CPU load and therefore increase throughput, at the expense of a slightly higher forwarding delay (the devices are polled 1000 times per second). Not all NICs support polling."), false);?>
 -->
-											<?php html_combobox("media", gtext("Media"), $pconfig['media'], array("autoselect" => gtext("Autoselect"), "10baseT/UTP" => "10baseT/UTP", "100baseTX" => "100baseTX", "1000baseTX" => "1000baseTX", "1000baseSX" => "1000baseSX",), "", false, false, "media_change()");?>
-											<?php html_combobox("mediaopt", gtext("Duplex"), $pconfig['mediaopt'], array("half-duplex" => "half-duplex", "full-duplex" => "full-duplex"), "", false);?>
-											<?php if (!empty($ifinfo['wolevents'])):?>
-											<?php $wakeonoptions = array("off" => gtext("Off"), "wol" => gtext("On")); foreach ($ifinfo['wolevents'] as $woleventv) { $wakeonoptions[$woleventv] = $woleventv; };?>
-											<?php html_combobox("wakeon", gtext("Wake On LAN"), $pconfig['wakeon'], $wakeonoptions, "", false);?>
-											<?php endif;?>
-											<?php html_inputbox("extraoptions", gtext("Extra options"), $pconfig['extraoptions'], gtext("Extra options to ifconfig (usually empty)."), false, 40);?>
-											<?php if (isset($optcfg['wireless'])) wireless_config_print();?>
-										</table>
-										<div id="submit">
-											<input name="index" type="hidden" value="<?=$index;?>" />
-											<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save");?>" onclick="enable_change(true)" />
-										</div>
-									</td>
-								</tr>
-							</table>
-							<?php include("formend.inc");?>
-						</form>
+			<?php html_combobox("media", gtext("Media"), $pconfig['media'], ['autoselect' => gtext('Autoselect'),'10baseT/UTP' => '10baseT/UTP','100baseTX' => '100baseTX','1000baseTX' => '1000baseTX','1000baseSX' => '1000baseSX',], "", false, false, "media_change()");?>
+			<?php html_combobox("mediaopt", gtext("Duplex"), $pconfig['mediaopt'], ['half-duplex' => 'half-duplex','full-duplex' => 'full-duplex'], "", false);?>
+			<?php if (!empty($ifinfo['wolevents'])):?>
+			<?php $wakeonoptions = ['off' => gtext('Off'),'wol' => gtext('On')]; foreach ($ifinfo['wolevents'] as $woleventv) { $wakeonoptions[$woleventv] = $woleventv; };?>
+			<?php html_combobox("wakeon", gtext("Wake On LAN"), $pconfig['wakeon'], $wakeonoptions, "", false);?>
+			<?php endif;?>
+			<?php html_inputbox("extraoptions", gtext("Extra Options"), $pconfig['extraoptions'], gtext("Extra options to ifconfig (usually empty)."), false, 40);?>
+			<?php if (isset($optcfg['wireless'])) wireless_config_print();?>
+			</table>
+			<div id="submit">
+				<input name="index" type="hidden" value="<?=$index;?>" />
+				<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save");?>" onclick="enable_change(true)" />
+			</div>
+		</td>
+	</tr>
+</table>
+<?php include 'formend.inc';?>
+</form>
 <script type="text/javascript">
 <!--
 enable_change(false);
@@ -343,4 +343,4 @@ enable_change(false);
 <?php else:?>
 <strong>Optional <?=$index;?> has been disabled because there is no OPT<?=$index;?> interface.</strong>
 <?php endif; ?>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

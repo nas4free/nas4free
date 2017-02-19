@@ -31,170 +31,334 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-
-$pgtitle = array(gtext("Disks"),gtext("Encryption"),gtext("Management"));
-
-if ($_POST) {
-	unset($input_errors);
-	$pconfig = $_POST;
-
-	$clean_import = false;
-	if (!empty($_POST['clear_import'])) {
-		$clean_import = true;
-	}
-	if (!empty($_POST['import']) || !empty($_POST['clear_import'])) {
-		$retval = disks_import_all_encrypted_disks($clean_import);
-		if ($retval == 0) {
-			$savemsg = gtext("no new encrypted disk found.");
-		} else if ($retval > 0) {
-			$savemsg = gtext("all encrypted disks are imported.");
-		} else {
-			$input_errors[] = gtext("detected an error while importing.");
-		}
-		if ($retval >= 0) {
-			disks_update_mounts();
-		}
-		//skip redirect
-		//header("Location: disks_crypt.php");
-		//exit;
-	}
-	if (isset($_POST['apply']) && $_POST['apply']) {
-		$retval = 0;
-		if (!file_exists($d_sysrebootreqd_path)) {
-			// Process notifications
-			$retval = updatenotify_process("geli", "geli_process_updatenotification");
-		}
-		$savemsg = get_std_save_message($retval);
-		if ($retval == 0) {
-			updatenotify_delete("geli");
-		}
-		header("Location: disks_crypt.php");
-		exit;
-	}
-}
-
-if (!isset($config['geli']['vdisk']) || !is_array($config['geli']['vdisk']))
-	$config['geli']['vdisk'] = array();
-
-array_sort_key($config['geli']['vdisk'], "devicespecialfile");
-$a_geli = &$config['geli']['vdisk'];
-
-if (isset($_GET['act']) && $_GET['act'] === "del") {
-	if (FALSE !== ($cnid = array_search_ex($_GET['uuid'], $config['geli']['vdisk'], "uuid"))) {
-		if (disks_exists($config['geli']['vdisk'][$cnid]['devicespecialfile'])) {
-			updatenotify_set("geli", UPDATENOTIFY_MODE_DIRTY, $_GET['uuid']);
-			header("Location: disks_crypt.php");
-			exit;
-		} else {
-			$errormsg = gtext("The volume must be detached before it can be deleted.");
-		}
-	}
-}
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'co_sphere.php';
 
 function geli_process_updatenotification($mode, $data) {
 	global $config;
-	
 	$retval = 0;
-	
-	switch ($mode) {
-		case UPDATENOTIFY_MODE_DIRTY:
-			$cnid = array_search_ex($data, $config['geli']['vdisk'], "uuid");
-			if (FALSE !== $cnid) {
-				// Kill encrypted volume.
-				disks_geli_kill($config['geli']['vdisk'][$cnid]['devicespecialfile']);
-				// Reset disk file system type attribute ('fstype') in configuration.
-				set_conf_disk_fstype($config['geli']['vdisk'][$cnid]['device'][0], "");
-
-				unset($config['geli']['vdisk'][$cnid]);
-				write_config();
-			}
+	$sphere = &disks_crypt_get_sphere();
+	switch($mode):
+		case UPDATENOTIFY_MODE_NEW:
+		case UPDATENOTIFY_MODE_MODIFIED:
 			break;
-	}
-	
+		case UPDATENOTIFY_MODE_DIRTY_CONFIG:
+			if(false !== ($sphere->row_id = array_search_ex($data,$sphere->grid,$sphere->row_identifier()))):
+				unset($sphere->grid[$sphere->row_id]);
+				write_config();
+			endif;
+			break;
+		case UPDATENOTIFY_MODE_DIRTY:
+			if(false !== ($sphere->row_id = array_search_ex($data,$sphere->grid,$sphere->row_identifier()))):
+				//	Kill encrypted volume.
+				disks_geli_kill($sphere->grid[$sphere->row_id]['devicespecialfile']);
+				//	Reset disk file system type attribute ('fstype') in configuration.
+				set_conf_disk_fstype($sphere->grid[$sphere->row_id]['device'][0],'');
+				unset($sphere->grid[$sphere->row_id]);
+				write_config();
+			endif;
+			break;
+	endswitch;
 	return $retval;
 }
+function disks_crypt_get_sphere() {
+	global $config;
+	$sphere = new co_sphere_grid('disks_crypt','php');
+	$sphere->modify->basename($sphere->basename() . '_edit');
+	$sphere->notifier('geli');
+	$sphere->row_identifier('uuid');
+	$sphere->enadis(false);
+	$sphere->lock(false);
+	$sphere->sym_add(gtext('Add Encrypted Volume'));
+	$sphere->sym_mod(gtext('Edit Encrypted Volume'));
+	$sphere->sym_del(gtext('Encrypted volume is marked for deletion'));
+	$sphere->sym_loc(gtext('Encrypted volume is protected'));
+	$sphere->sym_unl(gtext('Encrypted volume is unlocked'));
+	$sphere->cbm_delete(gtext('Delete Selected Encrypted Volumes'));
+	$sphere->cbm_delete_confirm(gtext('Do you want to delete selected encrypted volumes?'));
+	$sphere->grid = &array_make_branch($config,'geli','vdisk');
+	return $sphere;
+}
+$sphere = &disks_crypt_get_sphere();
+array_sort_key($sphere->grid,'devicespecialfile');
+$errormsg = '';
+$input_errors = [];
+if($_POST):
+	if(isset($_POST['apply']) && $_POST['apply']):
+		$retval = 0;
+		if(!file_exists($d_sysrebootreqd_path)):
+			$retval = updatenotify_process($sphere->notifier(),$sphere->notifier_processor());
+		endif;
+		$savemsg = get_std_save_message($retval);
+		if($retval == 0):
+			updatenotify_delete($sphere->notifier());
+		endif;
+		header($sphere->header());
+		exit;
+	endif;
+	if(isset($_POST['submit'])):
+		switch($_POST['submit']):
+			case 'clearimport':
+			case 'import':
+				$retval = 0;
+				switch($_POST['submit']):
+					case 'clearimport':
+						$retval = disks_import_all_encrypted_disks(true);
+						break;
+					case 'import':
+						$retval = disks_import_all_encrypted_disks(false);
+						break;
+				endswitch;
+				switch($retval <=> 0):
+					case 0:
+						$savemsg = gtext('No new encrypted disks have been found.');
+						disks_update_mounts();
+						break;
+					case 1:
+						$savemsg = gtext('All encrypted disks have been imported.');
+						disks_update_mounts();
+						break;
+					case -1:
+						$input_errors[] = gtext('Errors have been detected during import.');
+						break;
+				endswitch;
+				
+				//	ensure at least an empty array is available
+				$sphere->grid = &array_make_branch($config,'geli','vdisk');
+//				header($sphere->header());
+//				exit;
+			case 'rows.delete':
+				$sphere->cbm_array = $_POST[$sphere->cbm_name] ?? [];
+				foreach($sphere->cbm_array as $sphere->cbm_row):
+					if(false !== ($sphere->row_id = array_search_ex($sphere->cbm_row,$sphere->grid,$sphere->row_identifier()))):
+						//	disks_exists: 0 = yes, 1 = no
+						if(disks_exists($sphere->grid[$sphere->row_id]['devicespecialfile'])):
+							$mode_updatenotify = updatenotify_get_mode($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+							switch ($mode_updatenotify):
+								case UPDATENOTIFY_MODE_NEW:  
+									updatenotify_clear($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+									updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_DIRTY_CONFIG,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+									break;
+								case UPDATENOTIFY_MODE_MODIFIED:
+									updatenotify_clear($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+									updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_DIRTY,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+									break;
+								case UPDATENOTIFY_MODE_UNKNOWN:
+									updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_DIRTY,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+									break;
+							endswitch;
+						endif;
+					endif;
+				endforeach;
+//				header($sphere->header());
+//				exit;
+				break;
+/*
+			case 'rows.disable':
+				$sphere->cbm_grid = $_POST[$sphere->cbm_name] ?? [];
+				$updateconfig = false;
+				foreach($sphere->cbm_grid as $sphere->cbm_row):
+					if(false !== ($sphere->row_id = array_search_ex($sphere->cbm_row,$sphere->grid,$sphere->row_identifier()))):
+						if(isset($sphere->grid[$sphere->row_id]['enable'])):
+							unset($sphere->grid[$sphere->row_id]['enable']);
+							$updateconfig = true;
+							$mode_updatenotify = updatenotify_get_mode($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+							if(UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify):
+								updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_MODIFIED,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+							endif;
+						endif;
+					endif;
+				endforeach;
+				if($updateconfig):
+					write_config();
+					$updateconfig = false;
+				endif;
+				header($sphere->header());
+				exit;
+				break;
+			case 'rows.enable':
+				$sphere->cbm_grid = $_POST[$sphere->cbm_name] ?? [];
+				$updateconfig = false;
+				foreach($sphere->cbm_grid as $sphere->cbm_row):
+					if(false !== ($sphere->row_id = array_search_ex($sphere->cbm_row,$sphere->grid,$sphere->row_identifier()))):
+						if(!(isset($sphere->grid[$sphere->row_id]['enable']))):
+							$sphere->grid[$sphere->row_id]['enable'] = true;
+							$updateconfig = true;
+							$mode_updatenotify = updatenotify_get_mode($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+							if(UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify):
+								updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_MODIFIED,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+							endif;
+						endif;
+					endif;
+				endforeach;
+				if($updateconfig):
+					write_config();
+					$updateconfig = false;
+				endif;
+				header($sphere->header());
+				exit;
+				break;
+			case 'rows.toggle':
+				$sphere->cbm_grid = $_POST[$sphere->cbm_name] ?? [];
+				$updateconfig = false;
+				foreach($sphere->cbm_grid as $sphere->cbm_row):
+					if(false !== ($sphere->row_id = array_search_ex($sphere->cbm_row,$sphere->grid,$sphere->row_identifier()))):
+						if(isset($sphere->grid[$sphere->row_id]['enable'])):
+							unset($sphere->grid[$sphere->row_id]['enable']);
+						else:
+							$sphere->grid[$sphere->row_id]['enable'] = true;					
+						endif;
+						$updateconfig = true;
+						$mode_updatenotify = updatenotify_get_mode($sphere->notifier(),$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+						if(UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify):
+							updatenotify_set($sphere->notifier(),UPDATENOTIFY_MODE_MODIFIED,$sphere->grid[$sphere->row_id][$sphere->row_identifier()]);
+						endif;
+					endif;
+				endforeach;
+				if($updateconfig):
+					write_config();
+					$updateconfig = false;
+				endif;
+				header($sphere->header());
+				exit;
+				break;
+ */
+		endswitch;
+	endif;
+endif;
+$pgtitle = [gtext('Disks'),gtext('Encryption'),gtext('Management')];
+include 'fbegin.inc';
+echo $sphere->doj();
 ?>
-<?php include("fbegin.inc"); ?>
-<?php if(!empty($errormsg)) print_input_errors($errormsg);?>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-        <li class="tabact"><a href="disks_crypt.php" title="<?=gtext('Reload page');?>" ><span><?=gtext("Management");?></span></a></li>
-        <li class="tabinact"><a href="disks_crypt_tools.php"><span><?=gtext("Tools");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-      <form action="disks_crypt.php" method="post" onsubmit="spinner()">
-        <?php if (!empty($savemsg)) print_info_box($savemsg); ?>
-	<?php if (!empty($errormsg)) print_error_box($errormsg);?>
-	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-        <?php if (updatenotify_exists_mode("geli", UPDATENOTIFY_MODE_DIRTY)) print_warning_box(gtext("Warning: You are going to delete an encrypted volume. All data will get lost and can not be recovered."));?>
-        <?php if (updatenotify_exists("geli")) print_config_change_box();?>
-        <table width="100%" border="0" cellpadding="0" cellspacing="0">
-          <tr>
-            <td width="25%" class="listhdrlr"><?=gtext("Disk"); ?></td>
-            <td width="25%" class="listhdrr"><?=gtext("Data integrity"); ?></td>
-            <td width="20%" class="listhdrr"><?=gtext("Encryption"); ?></td>
-            <td width="20%" class="listhdrr"><?=gtext("Status") ;?></td>
-            <td width="10%" class="list"></td>
-          </tr>
-  			  <?php $i = 0; foreach($a_geli as $geli): ?>
-          <tr>
-            <td class="listlr"><?=htmlspecialchars($geli['name']);?>&nbsp;</td>
-            <td class="listr"><?=htmlspecialchars($geli['aalgo']);?>&nbsp;</td>
-            <td class="listr"><?=htmlspecialchars($geli['ealgo']);?>&nbsp;</td>
-            <td class="listbg">
-              <?php
-              if (updatenotify_exists("geli")) {
-								$status = gtext("Configuring");
-								$notificationmode = updatenotify_get_mode("geli", $geli['uuid']);
-								switch ($notificationmode) {
-									case UPDATENOTIFY_MODE_DIRTY:
-										$status = gtext("Deleting");
-										break;
-								}
-								echo htmlspecialchars($status);
-              } else {
-		$notificationmode = UPDATENOTIFY_MODE_UNKNOWN;
-                if(disks_exists($geli['devicespecialfile'])) {
-                  echo("<a href=\"disks_crypt_tools.php?disk={$geli['devicespecialfile']}&amp;action=attach\">" . gtext("Not attached") . "</a>");
-                } else {
-                  echo(gtext("Attached"));
-                }
-              }
-              ?>&nbsp;
-            </td>
-            <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
-            <td valign="middle" nowrap="nowrap" class="list">
-							<a href="disks_crypt_tools.php?disk=<?=$geli['devicespecialfile'];?>&amp;action=setkey"><img src="images/edit.png" title="<?=gtext("Change password"); ?>" border="0" alt="<?=gtext("Change password"); ?>" /></a>&nbsp;
-              <a href="disks_crypt.php?act=del&amp;uuid=<?=$geli['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this volume?\\n!!! Note, all data will get lost and can not be recovered. !!!");?>')"><img src="images/delete.png" title="<?=gtext("Kill encrypted volume"); ?>" border="0" alt="<?=gtext("Kill encrypted volume"); ?>" /></a>
-            </td>
-            <?php else:?>
-						<td valign="middle" nowrap="nowrap" class="list">
-							<img src="images/delete.png" border="0" alt="" />
-						</td>
-						<?php endif;?>
-          </tr>
-          <?php $i++; endforeach;?>
-          <tr>
-            <td class="list" colspan="4"></td>
-            <td class="list">
-							<a href="disks_crypt_edit.php"><img src="images/add.png" title="<?=gtext("Create encrypted volume");?>" border="0" alt="<?=gtext("Create encrypted volume");?>" /></a>
-						</td>
-			    </tr>
-        </table>
+<table id="area_navigator"><tbody>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabact"><a href="<?=$sphere->scriptname;?>" title="<?=gtext('Reload page');?>" ><span><?=gtext('Management');?></span></a></li>
+		<li class="tabinact"><a href="disks_crypt_tools.php"><span><?=gtext('Tools');?></span></a></li>
+	</ul></td></tr>
+</tbody></table>
+<form action="disks_crypt.php" method="post" name="iform" id="iform"><table id="area_data"><tbody><tr><td id="area_data_frame">
+<?php
+	if(file_exists($d_sysrebootreqd_path)):
+		print_info_box(get_std_save_message(0));
+	endif;
+	if(!empty($errormsg)):
+		print_error_box($errormsg);
+	endif;
+	if(!empty($savemsg)):
+		print_info_box($savemsg);
+	endif;
+	if(updatenotify_exists($sphere->notifier())):
+		print_config_change_box();
+	endif;
+	if(!empty($input_errors)):
+		print_input_errors($input_errors);
+	endif;
+?>
+	<table class="area_data_selection">
+		<colgroup>
+			<col style="width:5%">
+			<col style="width:20%">
+			<col style="width:25%">
+			<col style="width:20%">
+			<col style="width:20%">
+			<col style="width:10%">
+		</colgroup>
+		<thead>
+<?php
+			html_titleline2(gtext('Encryption Management'),6);
+?>
+			<tr>
+				<th class="lhelc"><?=$sphere->html_checkbox_toggle_cbm();?></th>
+				<th class="lhell"><?=gtext('Disk');?></th>
+				<th class="lhell"><?=gtext('Data Integrity');?></th>
+				<th class="lhell"><?=gtext('Encryption');?></th>
+				<th class="lhell"><?=gtext('Status') ;?></th>
+				<th class="lhebl"><?=gtext('Toolbox');?></th>
+			</tr>
+		</thead>
+		<tbody>
+<?php
+			foreach($sphere->grid as $sphere->row):
+				$notificationmode = updatenotify_get_mode($sphere->notifier(),$sphere->row[$sphere->row_identifier()]);
+				$notdirty = (UPDATENOTIFY_MODE_DIRTY != $notificationmode) && (UPDATENOTIFY_MODE_DIRTY_CONFIG != $notificationmode);
+				$enabled = $sphere->enadis() ? isset($sphere->row['enable']) : true;
+				$notprotected = $sphere->lock() ? !isset($sphere->row['protected']) : true;
+?>
+				<tr>
+					<td class="<?=$enabled ? "lcelc" : "lcelcd";?>">
+<?php
+						if($notdirty && $notprotected && disks_exists($sphere->row['devicespecialfile'])):
+							echo $sphere->html_checkbox_cbm(false);
+						else:
+							echo $sphere->html_checkbox_cbm(true);
+						endif;
+?>
+					</td>
+					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere->row['name']);?></td>
+					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere->row['aalgo']);?></td>
+					<td class="<?=$enabled ? "lcell" : "lcelld";?>"><?=htmlspecialchars($sphere->row['ealgo']);?></td>
+					<td class="<?=$enabled ? "lcell" : "lcelld";?>">
+<?php
+						if(updatenotify_exists('geli')):
+							$status = gtext('Configuring');
+							switch ($notificationmode):
+								case UPDATENOTIFY_MODE_DIRTY_CONFIG:
+								case UPDATENOTIFY_MODE_DIRTY:
+									$status = gtext('Deleting');
+									break;
+							endswitch;
+							echo htmlspecialchars($status);
+						else:
+							$notificationmode = UPDATENOTIFY_MODE_UNKNOWN;
+							if(disks_exists($sphere->row['devicespecialfile'])):
+								echo("<a href=\"disks_crypt_tools.php?disk={$sphere->row['devicespecialfile']}&amp;action=attach\">" . gtext('Not attached') . '</a>');
+							else:
+								echo(gtext('Attached'));
+							endif;
+						endif;
+?>
+					</td>
+					<td class="lcebld">
+						<table class="area_data_selection_toolbox"><colgroup><col style="width:33%"><col style="width:34%"><col style="width:33%"></colgroup><tbody><tr>
+<?php
+							echo $sphere->html_toolbox($notprotected,$notdirty);
+?>
+							<td></td>
+							<td></td>
+						</tr></tbody></table>
+					</td>
+				</tr>
+<?php
+			endforeach;
+?>
+		</tbody>
+		<tfoot>
+<?php
+			echo $sphere->html_footer_add(6);
+?>
+		</tfoot>
+	</table>
 	<div id="submit">
-		<input name="import" type="submit" class="formbtn" value="<?=gtext("Import disks");?>" onclick="return confirm('<?=gtext("Do you really want to import?\\nThe existing config may be overwritten.");?>');" />
-		<input name="clear_import" type="submit" class="formbtn" value="<?=gtext("Clear config and Import disks");?>" onclick="return confirm('<?=gtext("Do you really want to clear and import?\\nThe existing config will be cleared and overwritten.");?>');" />
+<?php
+		if($sphere->enadis()):
+			if($sphere->toggle()):
+				echo $sphere->html_button_toggle_rows();
+			else:
+				echo $sphere->html_button_enable_rows();
+				echo $sphere->html_button_disable_rows();
+			endif;
+		endif;
+		echo $sphere->html_button_delete_rows();
+?>
+		<button name="submit" type="submit" class="formbtn spin" value="import" onclick="return confirm('<?=gtext("Do you really want to import?\\nThe existing config may be overwritten.");?>');"><?=gtext('Import Disks');?></button>
+		<button name="submit" type="submit" class="formbtn spin" value="clearimport" onclick="return confirm('<?=gtext("Do you really want to clear and import?\\nThe existing config will be cleared and overwritten.");?>');"><?=gtext('Clear Config And Import Disks');?></button>
 	</div>
-        <?php include("formend.inc");?>
-      </form>
-	  </td>
-  </tr>
-</table>
-<?php include("fend.inc");?>
+<?php
+	include 'formend.inc';
+?>
+</td></tr></tbody></table>
+</form>
+<?php
+include 'fend.inc';
+?>

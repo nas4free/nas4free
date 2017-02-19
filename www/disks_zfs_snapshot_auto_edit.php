@@ -6,15 +6,12 @@
 	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -34,35 +31,35 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-require("zfs.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'zfs.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("Disks"), gtext("ZFS"), gtext("Snapshots"), gtext("Auto Snapshot"), isset($uuid) ? gtext("Edit") : gtext("Add"));
+$pgtitle = [gtext('Disks'),gtext('ZFS'),gtext('Snapshots'),gtext('Auto Snapshot'), isset($uuid) ? gtext('Edit') : gtext('Add')];
 
-if (!isset($config['zfs']['autosnapshots']['autosnapshot']) || !is_array($config['zfs']['autosnapshots']['autosnapshot']))
-	$config['zfs']['autosnapshots']['autosnapshot'] = array();
+$a_autosnapshot = &array_make_branch($config,'zfs','autosnapshots','autosnapshot');
+if(empty($a_autosnapshot)):
+else:
+	array_sort_key($a_autosnapshot,'path');
+endif;
 
-array_sort_key($config['zfs']['autosnapshots']['autosnapshot'], "path");
-$a_autosnapshot = &$config['zfs']['autosnapshots']['autosnapshot'];
-
-if (!isset($config['zfs']['pools']['pool']) || !is_array($config['zfs']['pools']['pool']))
-	$config['zfs']['pools']['pool'] = array();
-
-array_sort_key($config['zfs']['pools']['pool'], "name");
-$a_pool = &$config['zfs']['pools']['pool'];
+$a_pool = &array_make_branch($config,'zfs','pools','pool');
+if(empty($a_pool)):
+else:
+	array_sort_key($a_pool,'name');
+endif;
 
 function get_zfs_paths() {
-	$result = array();
+	$result = [];
 	mwexec2("zfs list -H -o name -t filesystem,volume 2>&1", $rawdata);
 	foreach ($rawdata as $line) {
 		$a = preg_split("/\t/", $line);
-		$r = array();
+		$r = [];
 		$name = $a[0];
 		$r['path'] = $name;
 		if (preg_match('/^([^\/\@]+)(\/([^\@]+))?$/', $name, $m)) {
@@ -76,20 +73,20 @@ function get_zfs_paths() {
 }
 $a_path = get_zfs_paths();
 
-$a_timehour = array();
+$a_timehour = [];
 foreach (range(0, 23) as $hour) {
 	$min = 0;
 	$a_timehour[sprintf("%02.2d%02.2d", $hour, $min)] = sprintf("%02.2d:%02.2d", $hour, $min);
 }
-$a_lifetime = array("0" => gtext("infinity"),
-	    "1w" => sprintf(gtext("%d week"), 1),
-	    "2w" => sprintf(gtext("%d weeks"), 2),
-	    "30d" => sprintf(gtext("%d days"), 30),
-	    "60d" => sprintf(gtext("%d days"), 60),
-	    "90d" => sprintf(gtext("%d days"), 90),
-	    "180d" => sprintf(gtext("%d days"), 180),
-	    "1y" => sprintf(gtext("%d year"), 1),
-	    "2y" => sprintf(gtext("%d years"), 2));
+$a_lifetime = ['0' => gtext('infinity'),
+	    '1w' => sprintf(gtext('%d week'), 1),
+	    '2w' => sprintf(gtext('%d weeks'), 2),
+	    '30d' => sprintf(gtext('%d days'), 30),
+	    '60d' => sprintf(gtext('%d days'), 60),
+	    '90d' => sprintf(gtext('%d days'), 90),
+	    '180d' => sprintf(gtext('%d days'), 180),
+	    '1y' => sprintf(gtext('%d year'), 1),
+	    '2y' => sprintf(gtext('%d years'), 2)];
 
 if (!isset($uuid) && (!sizeof($a_pool))) {
 	$link = sprintf('<a href="%1$s">%2$s</a>', 'disks_zfs_zpool.php', gtext('pools'));
@@ -138,9 +135,9 @@ if ($_POST) {
 		$pconfig['path'] = "";
 
 	// Input validation
-	$reqdfields = explode(" ", "path name");
-	$reqdfieldsn = array(gtext("Path"), gtext("Name"));
-	$reqdfieldst = explode(" ", "string string");
+	$reqdfields = ['path','name'];
+	$reqdfieldsn = [gtext('Path'),gtext('Name')];
+	$reqdfieldst = ['string','string'];
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
@@ -150,7 +147,7 @@ if ($_POST) {
 	}
 
 	if (empty($input_errors)) {
-		$autosnapshot = array();
+		$autosnapshot = [];
 		$autosnapshot['uuid'] = $_POST['uuid'];
 		$autosnapshot['type'] = $_POST['type'];
 		$autosnapshot['path'] = $_POST['path'];
@@ -179,7 +176,7 @@ if ($_POST) {
 	}
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -216,7 +213,8 @@ function enable_change(enable_change) {
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php $a_pathlist = array(); foreach ($a_path as $pathv) { $a_pathlist[$pathv['path']] = htmlspecialchars($pathv['path']); }?>
+				<?php html_titleline(gtext("Auto Snapshot Settings"));?>
+					<?php $a_pathlist = []; foreach ($a_path as $pathv) { $a_pathlist[$pathv['path']] = htmlspecialchars($pathv['path']); }?>
 					<?php html_combobox("path", gtext("Path"), $pconfig['path'], $a_pathlist, "", true);?>
 					<?php html_inputbox("name", gtext("Name"), $pconfig['name'], "", true, 40);?>
 					<?php html_checkbox("recursive", gtext("Recursive"), !empty($pconfig['recursive']) ? true : false, gtext("Creates the recursive snapshot."), "", false);?>
@@ -233,7 +231,7 @@ function enable_change(enable_change) {
 					<input name="timewday" type="hidden" value="<?=$pconfig['timewday'];?>" />
 					<input name="timemin" type="hidden" value="<?=$pconfig['timemin'];?>" />
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
@@ -247,4 +245,4 @@ enable_change(false);
 enable_change(false);
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

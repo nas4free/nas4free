@@ -18,6 +18,12 @@ bin/[:bin/test
 ## cat -- concatenate and print files
 bin/cat
 
+## chflags -- change file flags
+bin/chflags
+
+## chio -- medium changer control utility
+bin/chio
+
 ## chmod -- change file modes
 bin/chmod
 
@@ -93,9 +99,6 @@ bin/kenv
 ## rmdir -- remove directories
 bin/rmdir
 
-## chflags -- change file flags
-bin/chflags
-
 ## pgrep, pkill -- find or signal processes by name
 bin/pkill:bin/pgrep:usr/bin/pkill:usr/bin/pgrep
 
@@ -110,9 +113,6 @@ bin/setfacl
 
 ## uuidgen -- generate universally unique identifiers
 bin/uuidgen
-
-## chio -- medium changer control utility
-bin/chio
 
 ## freebsd-version -- print the version and patch level of the installed system
 bin/freebsd-version
@@ -259,7 +259,7 @@ sbin/tunefs
 ## umount -- unmount file systems
 sbin/umount
 
-## camcontrol -- manage SCSI disk
+## camcontrol -- CAM control program
 sbin/camcontrol
 
 ## rcorder -- print a dependency ordering of interdependent files
@@ -500,9 +500,6 @@ usr/bin/showmount
 ## truss -- trace system calls
 usr/bin/truss
 
-## install-info -- update info/dir entries
-usr/bin/install-info
-
 ## xargs -- construct argument list(s) and execute utility
 usr/bin/xargs
 
@@ -561,7 +558,7 @@ usr/bin/kdestroy
 usr/bin/mkuzip
 
 ## mkulzma -- compress disk image for use with geom_uncompress(4) class
-usr/bin/mkulzma
+#usr/bin/mkulzma
 
 ## bspatch -- apply a patch built with bsdiff(1)
 usr/bin/bspatch
@@ -860,6 +857,9 @@ usr/sbin/wake
 ## zdb - ZFS debugg
 usr/sbin/zdb
 
+## zfsd - ZFS fault management daemon
+usr/sbin/zfsd
+
 ## hostapd -- authenticator for IEEE 802.11 networks
 usr/sbin/hostapd
 
@@ -974,14 +974,24 @@ usr/share/misc/usbdevs
 
 ####### contents of /usr/share/locale
 usr/share/locale/en_US.ISO8859-1/
+usr/share/locale/en_US.ISO8859-15/
+usr/share/locale/en_US.US-ASCII/
 usr/share/locale/en_US.UTF-8/
-usr/share/locale/la_LN.ISO8859-1/
-usr/share/locale/la_LN.US-ASCII/
-usr/share/locale/UTF-8/
 
 ####### contents of /usr/lib
 # PAM libraries
 usr/lib/pam_*.so.*
+usr/lib/libcasper.so
+
+####### contents of /usr/lib/engines
+# needed for samba-nsupdate
+usr/lib/engines/libgost.so
+
+####### contents of /lib/casper
+lib/casper/libcap_*.so
+
+# SNMP modules
+usr/lib/snmp_hostres.so.*:usr/lib/snmp_hostres.so
 
 # SNMP modules
 usr/lib/snmp_hostres.so.*:usr/lib/snmp_hostres.so
@@ -998,10 +1008,12 @@ lib/geom/geom_*.so
 # zfs tools
 lib/libzfs*.so.*
 lib/libzpool*.so.*
+# libdevdctl - A C++ library that helps devd clients process events
+usr/lib/libdevctl.so.*
 
 # For packages and shelltips only
 lib/libulog.so.0
-lib/libelf.so.1
+lib/libelf.so.2
 
 ####### contents of /etc/ssh
 # moduli -- system moduli file
@@ -1020,6 +1032,14 @@ boot/pmbr
 boot/gptboot
 #
 boot/userboot.so
+# EFI
+#boot/boot1.efi
+#boot/boot1.efifat
+#boot/loader.efi
+# ZFS
+boot/gptzfsboot
+boot/zfsboot
+boot/zfsloader
 
 ####### contents of /etc
 etc/rc.shutdown
@@ -1031,8 +1051,6 @@ etc/pccard_ether
 etc/gettytab
 etc/devd/*
 etc/ssl/openssl.cnf
-####### Add modified devd.conf into /etc
-#etc/devd.conf
 etc/devfs.conf
 etc/dhclient.conf
 etc/disktab
@@ -1040,16 +1058,12 @@ etc/fbtab
 etc/netconfig
 etc/networks
 etc/protocols
-#etc/rc.firewall6
 etc/regdomain.xml
 etc/remote
 etc/rpc
 
 ####### contents of /etc/defaults
 etc/defaults/devfs.rules
-#pccard.conf is not present on /etc/defaults on FreeBSD 8.0
-#Need to check if still usefull
-#etc/defaults/pccard.conf
 etc/defaults/rc.conf
 
 ####### contents of /etc/rc.d
@@ -1075,11 +1089,11 @@ etc/rc.d/netoptions
 etc/rc.d/netwait
 etc/rc.d/nfscbd
 etc/rc.d/nfsuserd
-etc/rc.d/postrandom
 etc/rc.d/power_profile
 etc/rc.d/random
 etc/rc.d/securelevel
 etc/rc.d/swap
+etc/rc.d/zfsd
 
 ####### contents of /usr/share/snmp/defs
 usr/share/snmp/defs/atm_freebsd.def
@@ -1123,10 +1137,12 @@ libexec/resolvconf/named
 libexec/resolvconf/pdnsd
 libexec/resolvconf/unbound
 
-####### Intel wireless module license
-usr/share/doc/legal/intel_wpi/LICENSE
-usr/share/doc/legal/intel_iwi/LICENSE
-usr/share/doc/legal/intel_ipw/LICENSE
+####### licenses
+usr/share/doc/legal/intel_ipw.LICENSE
+usr/share/doc/legal/intel_iwi.LICENSE
+usr/share/doc/legal/intel_iwn.LICENSE
+usr/share/doc/legal/intel_wpi.LICENSE
+usr/share/doc/legal/realtek.LICENSE
 
 ####### iSCSI initiator daemon / management utility
 etc/rc.d/iscsid
@@ -1138,21 +1154,21 @@ usr/bin/iscsictl
 # pkg -- a utility for manipulating packages
 usr/local/sbin/pkg
 etc/pkg/FreeBSD.conf
-usr/share/keys/pkg/revoked/*
+#usr/share/keys/pkg/revoked/*
 usr/share/keys/pkg/trusted/*
 etc/gss/mech
 etc/gss/qop
 
 # casperd
-sbin/casperd
+#sbin/casperd
 etc/casper/system.dns
 etc/casper/system.grp
 etc/casper/system.pwd
 etc/casper/system.random
 etc/casper/system.sysctl
-etc/rc.d/casperd
-libexec/casper/dns
-libexec/casper/grp
-libexec/casper/pwd
-libexec/casper/random
-libexec/casper/sysctl
+#etc/rc.d/casperd
+#libexec/casper/dns
+#libexec/casper/grp
+#libexec/casper/pwd
+#libexec/casper/random
+#libexec/casper/sysctl

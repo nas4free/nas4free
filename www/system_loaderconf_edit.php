@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 $sphere_scriptname = basename(__FILE__);
 $sphere_header = 'Location: '.$sphere_scriptname;
@@ -65,17 +65,11 @@ if ((PAGE_MODE_POST == $mode_page) && isset($_POST['uuid']) && is_uuid_v4($_POST
 	}
 }
 
-if (!(isset($config['system']) && is_array($config['system']))) {
-	$config['system'] = [];
-}
-if (!(isset($config['system']['loaderconf']) && is_array($config['system']['loaderconf']))) {
-	$config['system']['loaderconf'] = [];
-}
-if (!(isset($config['system']['loaderconf']['param']) && is_array($config['system']['loaderconf']['param']))) {
-	$config['system']['loaderconf']['param'] = [];
-}
-array_sort_key($config['system']['loaderconf']['param'], 'name');
-$sphere_array = &$config['system']['loaderconf']['param'];
+$sphere_array = &array_make_branch($config,'system','loaderconf','param');
+if(empty($sphere_array)):
+else:	
+	array_sort_key($sphere_array,'name');
+endif;
 
 $index = array_search_ex($sphere_record['uuid'], $sphere_array, "uuid"); // find index of uuid
 $mode_updatenotify = updatenotify_get_mode($sphere_notifier, $sphere_record['uuid']); // get updatenotify mode for uuid
@@ -156,13 +150,15 @@ if (PAGE_MODE_POST == $mode_page) { // We know POST is "Submit", already checked
 			break;
 	}
 }
-$pgtitle = [gtext('System'), gtext('Advanced'), gtext('loader.conf'), $isrecordnew ? gtext('Add') : gtext('Edit')];
+$pgtitle = [gtext('System'),gtext('Advanced'),gtext('loader.conf'),$isrecordnew ? gtext('Add') : gtext('Edit')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table id="area_navigator"><tbody>
 	<tr><td class="tabnavtbl"><ul id="tabnav">
 		<li class="tabinact"><a href="system_advanced.php"><span><?=gtext('Advanced');?></span></a></li>
 		<li class="tabinact"><a href="system_email.php"><span><?=gtext('Email');?></span></a></li>
+		<li class="tabinact"><a href="system_email_reports.php"><span><?=gtext("Email Reports");?></span></a></li>
+		<li class="tabinact"><a href="system_monitoring.php"><span><?=gtext("Monitoring");?></span></a></li>
 		<li class="tabinact"><a href="system_swap.php"><span><?=gtext('Swap');?></span></a></li>
 		<li class="tabinact"><a href="system_rc.php"><span><?=gtext('Command Scripts');?></span></a></li>
 		<li class="tabinact"><a href="system_cron.php"><span><?=gtext('Cron');?></span></a></li>
@@ -173,17 +169,21 @@ $pgtitle = [gtext('System'), gtext('Advanced'), gtext('loader.conf'), $isrecordn
 </tbody></table>
 <table id="area_data"><tbody><tr><td id="area_data_frame"><form action="<?=$sphere_scriptname;?>" method="post" name="iform" id="iform" onsubmit="spinner()">
 	<?php
-		if (!empty($errormsg)) {
-			print_error_box($errormsg);
-		}
-		if (!empty($input_errors)) {
-			print_input_errors($input_errors);
-		}
-		if (file_exists($d_sysrebootreqd_path)) {
-			print_info_box(get_std_save_message(0));
-		}
+	if (!empty($errormsg)) {
+		print_error_box($errormsg);
+	}
+	if (!empty($input_errors)) {
+		print_input_errors($input_errors);
+	}
+	if (file_exists($d_sysrebootreqd_path)) {
+		print_info_box(get_std_save_message(0));
+	}
 	?>
-	<table id="area_data_settings">
+	<table class="area_data_settings">
+		<colgroup>
+			<col class="area_data_settings_col_tag">
+			<col class="area_data_settings_col_data">
+		</colgroup>
 		<thead>
 			<?php html_titleline_checkbox2('enable', gtext('Configuration'), $sphere_record['enable'], gtext('Enable'));?>
 		</thead>
@@ -200,6 +200,6 @@ $pgtitle = [gtext('System'), gtext('Advanced'), gtext('loader.conf'), $isrecordn
 		<input name="Cancel" type="submit" class="formbtn" value="<?=gtext('Cancel');?>"/>
 		<input name="uuid" type="hidden" value="<?=$sphere_record['uuid'];?>"/>
 	</div>
-	<?php require('formend.inc');?>
+	<?php require 'formend.inc';?>
 </form></td></tr></tbody></table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

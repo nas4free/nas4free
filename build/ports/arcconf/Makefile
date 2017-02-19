@@ -1,5 +1,5 @@
 PORTNAME=		arcconf
-DISTVERSION=	v1_8_21375
+DISTVERSION=	v2_02_22404
 CATEGORIES=		sysutils
 COMMENT=		Adaptec SCSI/SAS RAID administration tool
 MAINTAINER=		zoon1@nas4free.org

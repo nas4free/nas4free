@@ -31,10 +31,9 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Diagnostics"), gtext("Information"), gtext("S.M.A.R.T."));
 $a_disk = get_physical_disks_list();
 
 $smartValueInfo = [
@@ -49,7 +48,7 @@ $smartValueInfo = [
 	"9" => array(False,"",gtext("Count of hours in power-on state. The raw value of this attribute shows total count of hours (or minutes, or seconds, depending on manufacturer) in power-on state.")),
 	"10" => array(False,"",gtext("Count of retry of spin start attempts. This attribute stores a total count of the spin start attempts to reach the fully operational speed (under the condition that the first attempt was unsuccessful). An increase of this attribute value is a sign of problems in the hard disk mechanical subsystem.")),
 	"11" => array(False,"",gtext("This attribute indicates the count that recalibration was requested (under the condition that the first attempt was unsuccessful). An increase of this attribute value is a sign of problems in the hard disk mechanical subsystem.")),
-	"12" => array(False,"",gtext("This attribute indicates the count of full hard disk power on/off cycles.")),
+	"12" => array(False,"",gtext("This attribute indicates the count of full disk power on/off cycles.")),
 	"13" => array(False,"",gtext("Uncorrected read errors reported to the operating system.")),
 	"22" => array(False,"",gtext("Specific Helium Level. The Helium, so says the literature, allows the drives to run cooler and quieter, and reduces power consumption. This is the status of the Helium in the drive. It is a pre-fail attribute that trips once the drive detects that the internal environment is out of specification.")),
 	"168" => array(False,"",gtext("Counts the number of SATA PHY errors. This value includes all PHY error counts, ex data FIS CRC , code errors, disparity errors, command FIS crc. Value clears upon system power-down.")),
@@ -73,7 +72,7 @@ $smartValueInfo = [
 	"188" => array(True,gtext("Consider replacing this drive"),gtext("The count of aborted operations due to HDD timeout. Normally this attribute value should be equal to zero and if the value is far above zero, then most likely there will be some serious problems with power supply or an oxidized data cable.")),
 	"189" => array(False,"",gtext("HDD producers implement a Fly Height Monitor that attempts to provide additional protections for write operations by detecting when a recording head is flying outside its normal operating range. If an unsafe fly height condition is encountered, the write process is stopped, and the information is rewritten or reallocated to a safe region of the hard drive. This attribute indicates the count of these errors detected over the lifetime of the drive. This feature is implemented in most modern Seagate drives.")),
 	"190" => array(False,"",gtext("Airflow temperature on Western Digital HDs (Same as temp. , but current value is 50 less for some models. Marked as obsolete.)")),
-	"190" => array(False,"",gtext("Value is equal to (100-temp. &deg;C), allowing manufacturer to set a minimum threshold which corresponds to a maximum temperature.")),
+	"190" => array(False,"",gtext("Value is equal to (100-temp. Celsius), allowing manufacturer to set a minimum threshold which corresponds to a maximum temperature.")),
 	"191" => array(False,"",gtext("The count of errors resulting from externally induced shock & vibration.")),
 	"192" => array(False,"",gtext("Count of times the heads are loaded off the media. Heads can be unloaded without actually powering off.")),
 	"193" => array(False,"",gtext("Count of load/unload cycles into head landing zone position.")),
@@ -130,111 +129,102 @@ $smartValueInfo = [
 	"254" => array(False,"",gtext("Count of 'Free Fall Events' detected."))
 ];
 
-include("fbegin.inc");
+$pgtitle = [gtext('Diagnostics'),gtext('Information'),gtext('S.M.A.R.T.')];
 ?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav">
-				<li class="tabinact"><a href="diag_infos.php"><span><?=gtext("Disks");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ata.php"><span><?=gtext("Disks (ATA)");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_part.php"><span><?=gtext("Partitions");?></span></a></li>
-				<li class="tabact"><a href="diag_infos_smart.php" title="<?=gtext("Reload page");?>"><span><?=gtext("S.M.A.R.T.");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_space.php"><span><?=gtext("Space Used");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gtext("Mounts");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_raid.php"><span><?=gtext("Software RAID");?></span></a></li>
-			</ul>
-		</td>
-	</tr>
-	<tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav2">
-				<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gtext("iSCSI Initiator");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ad.php"><span><?=gtext("MS Domain");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gtext("CIFS/SMB");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ftpd.php"><span><?=gtext("FTP");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_rsync_client.php"><span><?=gtext("RSYNC Client");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_swap.php"><span><?=gtext("Swap");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gtext("Sockets");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ipmi.php"><span><?=gtext('IPMI Stats');?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ups.php"><span><?=gtext("UPS");?></span></a></li>
-			</ul>
-		</td>
-	</tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabinact"><a href="diag_infos_disks.php"><span><?=gtext("Disks");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_disks_info.php"><span><?=gtext("Disks (Info)");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_part.php"><span><?=gtext("Partitions");?></span></a></li>
+		<li class="tabact"><a href="diag_infos_smart.php" title="<?=gtext("Reload page");?>"><span><?=gtext("S.M.A.R.T.");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_space.php"><span><?=gtext("Space Used");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_swap.php"><span><?=gtext("Swap");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gtext("Mounts");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_raid.php"><span><?=gtext("Software RAID");?></span></a></li>
+	</ul></td></tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav2">
+		<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gtext("iSCSI Initiator");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ad.php"><span><?=gtext("MS Domain");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gtext("CIFS/SMB");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ftpd.php"><span><?=gtext("FTP");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_rsync_client.php"><span><?=gtext("RSYNC Client");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_netstat.php"><span><?=gtext('Netstat');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gtext("Sockets");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ipmi.php"><span><?=gtext('IPMI Stats');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ups.php"><span><?=gtext("UPS");?></span></a></li>
+	</ul></td></tr>
 	<tr>
 		<td class="tabcont">
-		    <table width="100%" border="0">
-			  <?php foreach($a_disk as $diskk => $diskv) { ?>
-				<?php html_titleline(sprintf(gtext("Device /dev/%s - %s"), $diskk, $diskv['desc']));?>
-				<tr>
-					<td>
-						<pre><?php
-						$devicetype_arg = (!empty($diskv['smart']['devicetypearg']))
-							? sprintf('-d %s',$diskv['smart']['devicetypearg'])
-							: "";
-						exec ("/usr/local/sbin/smartctl -i {$diskv['smart']['devicefilepath']} {$devicetype_arg}",$rawdata);
-						$rawdata = array_slice($rawdata,3);
-						echo htmlspecialchars(implode("\n", $rawdata));
-						unset($rawdata);
-						?></pre>
-						<?php $hasdata = False;
-							$devicetype_arg = (!empty($diskv['smart']['devicetypearg']))
-							? sprintf('-d %s',$diskv['smart']['devicetypearg'])
-							: '';
-						exec ("/usr/local/sbin/smartctl -a {$diskv['smart']['devicefilepath']} {$devicetype_arg}",$rawdata);
+			<table width="100%" border="0">
+				<?php foreach($a_disk as $diskk => $diskv):?>
+					<?php html_titleline(sprintf(gtext("Device /dev/%s - %s"), $diskk, $diskv['desc']));?>
+					<tr>
+						<td>
+							<pre><?php
+								$devicetype_arg = (!empty($diskv['smart']['devicetypearg'])) ? sprintf('-d %s',$diskv['smart']['devicetypearg']) : '';
+								exec ("/usr/local/sbin/smartctl -i {$diskv['smart']['devicefilepath']} {$devicetype_arg}",$rawdata);
+								$rawdata = array_slice($rawdata,3);
+								echo htmlspecialchars(implode("\n", $rawdata));
+								unset($rawdata);
+							?></pre>
+							<?php
+							$hasdata = false;
+							$devicetype_arg = (!empty($diskv['smart']['devicetypearg'])) ? sprintf('-d %s',$diskv['smart']['devicetypearg']) : '';
+							exec ("/usr/local/sbin/smartctl -a {$diskv['smart']['devicefilepath']} {$devicetype_arg}",$rawdata);
 							$rawdata = array_slice($rawdata, 3);
-							$regex = '/^\s*(\d+)\s+([A-Za-z0-9_\-]+)\s+(0x[0-9a-fA-F]+)\s+(\d+)\s+(\d+)\s+(\d+).*\s+\-\s+(\d+)/';?>
-						<table width="100%" border="0" cellpadding="0" cellspacing="0">
-							<tr>
-								<td class="listhdrlr" width="10%"><?=gtext("ID");?></td>
-								<td class="listhdrlr" width="10%"><?=gtext("ATTRIBUTE NAME");?></td>
-								<td class="listhdrlr" width="10%"><?=gtext("RAW VALUE");?></td>
-								<td class="listhdrlr" width="70%"><?=gtext("DESCRIPTION");?></td>
-							</tr>
-						<?php $hasdata = false;
-							foreach($rawdata as $line) {
-								if(preg_match($regex,$line,$match)!==1)
-								{ continue; }
-								$hasdata      = true;
-								$info         = $smartValueInfo[$match[1]][2];
-								$haserror     = $smartValueInfo[$match[1]][0] && $match[7] >0;
-								$showRedValue = ($haserror)
-								? 'listbg errortext'
-								: 'listbg';
-								?>
-							<tr>
-								<td class="listlr"><?= $match[1]; ?></td>
-								<td class="listr"><?= $match[2]; ?></td>
-								<td class="<?= $showRedValue; ?>"><?= $match[7]; ?></td>
-								<td class="listr"><?= $info; ?></td>
-						<?php if($haserror) { ?>
-							</tr>
-						<tr>
-						<td class="listlr"></td>
-						<td colspan="3" class="listbg errortext"><?= $smartValueInfo[$match[1]][1]; ?></td><?php } ?>
-							</tr>
-						<?php }
-							if(!$hasdata) { ?>
-						<tr>
-						<td colspan="4">no data</td>
-							</tr>
-						<?php } ?>
-						</table>
-						<?php unset($rawdata); ?>
-						<pre><?php
-						$devicetype_arg = (!empty($diskv['smart']['devicetypearg']))
-							? sprintf('-d %s',$diskv['smart']['devicetypearg'])
-							: '';
-						exec("/usr/local/sbin/smartctl -AcH -l selftest -l error -l selective {$diskv['smart']['devicefilepath']} {$devicetype_arg}",$rawdata);
-						$rawdata = array_slice($rawdata, 3);
-						echo htmlspecialchars(implode("\n", $rawdata));
-						unset($rawdata);
-						?></pre>
-					</td>
-				</tr>
-			<?php } ?>
-		</table>
-	   </td>
+							$regex = '/^\s*(\d+)\s+([A-Za-z0-9_\-]+)\s+(0x[0-9a-fA-F]+)\s+(\d+)\s+(\d+)\s+(\d+).*\s+\-\s+(\d+)/';
+							?>
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td class="listhdrlr" width="10%"><?=gtext("ID");?></td>
+									<td class="listhdrlr" width="10%"><?=gtext("ATTRIBUTE NAME");?></td>
+									<td class="listhdrlr" width="10%"><?=gtext("RAW VALUE");?></td>
+									<td class="listhdrlr" width="70%"><?=gtext("DESCRIPTION");?></td>
+								</tr>
+								<?php
+								$hasdata = false;
+								foreach($rawdata as $line):
+									if(preg_match($regex,$line,$match)!==1):
+										continue;
+									endif;
+									$hasdata = true;
+									$info = $smartValueInfo[$match[1]][2];
+									$haserror = $smartValueInfo[$match[1]][0] && $match[7] > 0;
+									$showRedValue = ($haserror) ? 'listbg errortext' : 'listbg';
+									?>
+									<tr>
+										<td class="listlr"><?= $match[1]; ?></td>
+										<td class="listr"><?= $match[2]; ?></td>
+										<td class="<?= $showRedValue; ?>"><?= $match[7]; ?></td>
+										<td class="listr"><?= $info; ?></td>
+									</tr>
+									<?php if($haserror):?>
+										<tr>
+											<td class="listlr"></td>
+											<td colspan="3" class="listbg errortext"><?= $smartValueInfo[$match[1]][1]; ?></td>
+										</tr>
+									<?php endif;?>
+								<?php endforeach;
+								if(!$hasdata): ?>
+									<tr>
+										<td colspan="4">no data</td>
+									</tr>
+								<?php endif;?>
+							</table>
+							<?php unset($rawdata); ?>
+							<pre><?php
+								$devicetype_arg = (!empty($diskv['smart']['devicetypearg'])) ? sprintf('-d %s',$diskv['smart']['devicetypearg']) : '';
+								exec("/usr/local/sbin/smartctl -AcH -l selftest -l error -l selective {$diskv['smart']['devicefilepath']} {$devicetype_arg}",$rawdata);
+								$rawdata = array_slice($rawdata, 3);
+								echo htmlspecialchars(implode("\n", $rawdata));
+								unset($rawdata);
+							?></pre>
+						</td>
+					</tr>
+				<?php endforeach;?>
+			</table>
+		</td>
 	</tr>
 </table>
-<?php include("fend.inc");
+<?php include 'fend.inc';?>

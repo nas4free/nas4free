@@ -6,10 +6,6 @@
 	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 
@@ -35,8 +31,15 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+
+array_make_branch($config,'disks','disk');
+array_make_branch($config,'geli','vdisk');
+array_make_branch($config,'zfs','vdevices','vdevice');
+array_make_branch($config,'zfs','pools','pool');
+array_make_branch($config,'zfs','datasets','dataset');
+array_make_branch($config,'zfs','volumes','volume');
 
 $zfs = [
 	'vdevices' => ['vdevice' => []],
@@ -187,7 +190,7 @@ $pool = null;
 $vdev = null;
 $type = null;
 $i = 0;
-$vdev_type = array('mirror', 'raidz1', 'raidz2', 'raidz3');
+$vdev_type = ['mirror','raidz1','raidz2','raidz3'];
 
 $rawdata = null;
 mwexec2('zpool status', $rawdata);
@@ -279,7 +282,7 @@ foreach ($rawdata as $line) {
 }
 
 function get_geli_info($device) {
-	$result = array();
+	$result = [];
 	exec("/sbin/geli dump {$device}", $rawdata);
 	array_shift($rawdata);
 	foreach($rawdata as $line) {
@@ -435,7 +438,7 @@ if (isset($_POST['import_config'])) {
 			$pconfig['zfs']['autosnapshots'] = $_GET['zfs']['autosnapshots'];
 		}
 		if (isset($_POST['leave_autosnapshots'])) {
-			$cfg['zfs']['autosnapshots'] = !empty($config['zfs']['autosnapshots']) ? $config['zfs']['autosnapshots'] : array();
+			$cfg['zfs']['autosnapshots'] = !empty($config['zfs']['autosnapshots']) ? $config['zfs']['autosnapshots'] : [];
 		}
 		$config['zfs'] = $cfg['zfs'];
 		$config['disks'] = $cfg['disks'];
@@ -464,9 +467,9 @@ if (!$health) {
 	$message_box_text .= gtext('It is not recommanded to import non healthy pools nor virtual devices that are part of a non healthy pool.');
 }
 
-$pgtitle = array(gtext('Disks'), gtext('ZFS'), gtext('Configuration'), gtext('Synchronize'));
+$pgtitle = [gtext('Disks'),gtext('ZFS'),gtext('Configuration'),gtext('Synchronize')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table id="area_navigator"><tbody>
 	<tr><td class="tabnavtbl"><ul id="tabnav">
 		<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gtext("Pools");?></span></a></li>
@@ -490,7 +493,7 @@ $pgtitle = array(gtext('Disks'), gtext('ZFS'), gtext('Configuration'), gtext('Sy
 			print_error_box(gtext('Nothing to synchronize'));
 		}
 	?>
-	<table id="area_data_selection">
+	<table class="area_data_selection">
 		<colgroup>
 			<col style="width:5%"><!-- // Checkbox -->
 			<col style="width:14%"><!-- // Name -->
@@ -520,11 +523,6 @@ $pgtitle = array(gtext('Disks'), gtext('ZFS'), gtext('Configuration'), gtext('Sy
 				<th class="lhebl"><?=gtext('AltRoot');?></th>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<td class="lcenl" colspan="11"></td>
-			</tr>
-		</tfoot>
 		<tbody>
 			<?php foreach ($zfs['pools']['pool'] as $key => $pool):?>
 				<tr>
@@ -542,9 +540,13 @@ $pgtitle = array(gtext('Disks'), gtext('ZFS'), gtext('Configuration'), gtext('Sy
 				</tr>
 			<?php endforeach;?>
 		</tbody>
+		<tfoot>
+			<tr>
+				<td class="lcenl" colspan="11"></td>
+			</tr>
+		</tfoot>
 	</table>
-
-	<table id="area_data_selection">
+	<table class="area_data_selection">
 		<colgroup>
 			<col style="width:5%"><!-- // Checkbox -->
 			<col style="width:15%"><!-- // Name -->
@@ -562,11 +564,6 @@ $pgtitle = array(gtext('Disks'), gtext('ZFS'), gtext('Configuration'), gtext('Sy
 				<th class="lhebl"><?=gtext('Devices');?></th>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<th class="lcenl" colspan="5"></th>
-			</tr>
-		</tfoot>
 		<tbody>
 			<?php foreach ($zfs['vdevices']['vdevice'] as $key => $vdevice):?>
 				<tr>
@@ -578,9 +575,13 @@ $pgtitle = array(gtext('Disks'), gtext('ZFS'), gtext('Configuration'), gtext('Sy
 				</tr>
 			<?php endforeach;?>
 		</tbody>
+		<tfoot>
+			<tr>
+				<th class="lcenl" colspan="5"></th>
+			</tr>
+		</tfoot>
 	</table>
-					
-	<table id="area_data_selection">
+	<table class="area_data_selection">
 		<colgroup>
 			<col style="width:5%"><!-- // Checkbox -->
 			<col style="width:15%"><!-- // Name -->
@@ -618,11 +619,6 @@ $pgtitle = array(gtext('Disks'), gtext('ZFS'), gtext('Configuration'), gtext('Sy
 				<th class="lhebl"><?=gtext('Snapshot Visibility');?></th>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<td class="lcenl" colspan="12"></td>
-			</tr>
-		</tfoot>
 		<tbody>
 			<?php foreach ($zfs['datasets']['dataset'] as $dataset):?>
 				<tr>
@@ -644,8 +640,13 @@ $pgtitle = array(gtext('Disks'), gtext('ZFS'), gtext('Configuration'), gtext('Sy
 				</tr>
 			<?php endforeach;?>
 		</tbody>
+		<tfoot>
+			<tr>
+				<td class="lcenl" colspan="12"></td>
+			</tr>
+		</tfoot>
 	</table>
-	<table id="area_data_selection">
+	<table class="area_data_selection">
 		<colgroup>
 			<col style="width:5%"><!-- // Checkbox -->
 			<col style="width:15%"><!-- // Name -->
@@ -671,11 +672,6 @@ $pgtitle = array(gtext('Disks'), gtext('ZFS'), gtext('Configuration'), gtext('Sy
 				<th class="lhebl"><?=gtext('Sync');?></th>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<td class="lcenl" colspan="8"></td>
-			</tr>
-		</tfoot>
 		<tbody>
 			<?php foreach ($zfs['volumes']['volume'] as $volume):?>
 				<tr>
@@ -691,11 +687,16 @@ $pgtitle = array(gtext('Disks'), gtext('ZFS'), gtext('Configuration'), gtext('Sy
 				</tr>
 			<?php endforeach;?>
 		</tbody>
+		<tfoot>
+			<tr>
+				<td class="lcenl" colspan="8"></td>
+			</tr>
+		</tfoot>
 	</table>
-	<table id="area_data_settings">
+	<table class="area_data_settings">
 		<colgroup>
-			<col id="area_data_settings_col_tag">
-			<col id="area_data_settings_col_data">
+			<col class="area_data_settings_col_tag">
+			<col class="area_data_settings_col_data">
 		</colgroup>
 		<thead>
 			<?php html_titleline2(gtext('Options'));?>
@@ -711,6 +712,6 @@ $pgtitle = array(gtext('Disks'), gtext('ZFS'), gtext('Configuration'), gtext('Sy
 	<div id="submit">
 		<input type="submit" name="import_config" value="<?=gtext('Synchronize');?>"/>
 	</div>
-	<?php include("formend.inc");?>
+	<?php include 'formend.inc';?>
 </form></td></tr></tbody></table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

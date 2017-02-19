@@ -1,0 +1,21 @@
+PORTNAME=	APCu
+PORTVERSION=	5.1.8
+CATEGORIES=	devel
+MASTER_SITES=	http://pecl.php.net/get/
+PKGNAMEPREFIX=	php71-
+DISTNAME=	${PORTNAME:tl}-${PORTVERSION}
+DIST_SUBDIR=	PECL
+
+MAINTAINER=	zoon1@nas4free.org
+COMMENT=	APC User Caching
+
+LICENSE=	PHP301
+
+CONFLICTS_INSTALL=	pecl-APC-[0-9]*
+
+IGNORE_WITH_PHP=	56
+PHP_VER=	71
+USES=		localbase php:ext tar:tgz
+PHP_MODNAME=	${PORTNAME:tl}
+
+.include <bsd.port.mk>

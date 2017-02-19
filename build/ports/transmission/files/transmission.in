@@ -36,6 +36,7 @@ transmission_blocklist=${transmission_blocklist:-"NO"}
 transmission_blocklist_url=${transmission_blocklist_url:-"http://list.iblocklist.com/?list=ydxerpxkpcfqjaybcssw&fileformat=p2p&archiveformat=gz"}
 transmission_user=${transmission_user:-"transmission"}
 transmission_umask=${transmission_umask:-"0002"}
+transmission_preallocation=${transmission_preallocation:-"1"}
 
 command="/usr/local/bin/${name}-daemon"
 command_args="--allowed ${transmission_allowed}"
@@ -64,6 +65,7 @@ safe_xmlescape()
 transmission_prestart()
 {
 	local _command_args _umask
+	local _command_args _preallocation
 	local _homedir _password _configfile
 	local _downloaddir _configdir _watchdir _incompletedir
 
@@ -161,6 +163,13 @@ transmission_prestart()
 	debug "umask: $_umask"
 	#umask ${_umask}
 
+	# Set the preallocation.
+	_preallocation=`configxml_get "//bittorrent/preallocation"`
+	_preallocation=${_preallocation:-"${transmission_preallocation}"}
+
+	debug "preallocation: $_preallocation"
+	#preallocation ${_preallocation}
+
 	# Get the configuration directory.
 	_configdir=`configxml_get "//bittorrent/configdir"`
 	[ -z "${_configdir}" ] && _configdir="${_homedir}/.config/${name}-daemon"
@@ -187,6 +196,14 @@ transmission_prestart()
 	    _umask=`printf "%d" "0${_umask}"`
 	    debug "replace umask: $_umask"
 	    sed -i.bak "/\"umask\":/ s/:[^0-9]*[0-9]*\(.*\)/: ${_umask}\1/" "${_configfile}" && rm "${_configfile}.bak"
+	fi
+	# Check configuration's preallocation.
+	_configfile="${_configdir}/settings.json"
+	if [ -f "${_configfile}" ]; then
+	    # replace preallocation
+	    _preallocation=`configxml_get  "//bittorrent/preallocation"`
+	    debug "replace preallocation: $_preallocation"
+	    sed -i.bak "s/\s*\"preallocation\".*$/\"preallocation\": ${_preallocation},/" "${_configfile}" && rm "${_configfile}.bak"
 	fi
 }
 

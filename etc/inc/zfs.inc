@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("config.inc");
-require_once("util.inc");
+require_once 'config.inc';
+require_once 'util.inc';
 
 /*
  * Get list of available zpools
@@ -402,7 +402,7 @@ function zfs_zpool_properties($uuid) {
 // $verbose - Display command results or hide them.
 // $stderr  - Redirect stderr to stdout to display error messages too.
 // Return 0 if successful, 1 if error.
-function zfs_zpool_cmd($command, $param, $verbose = false, $stderr = true, $out = false, &$output = array()) {
+function zfs_zpool_cmd($command, $param, $verbose = false, $stderr = true, $out = false, &$output = []) {
 	$result = 1;
 	$cmd = "zpool {$command} {$param}";
 	write_log($cmd);
@@ -858,13 +858,13 @@ function zfs_volume_properties($uuid) {
  * @param[in] snapshot	The name of the snapshot to be configured.
  * @return An array containg the result:
  * @code
- * [output] => array("lines")
+ * [output] => ['lines']
  * [retval] => 0 if successful, otherwise 1
  * @endcode
  */
 function zfs_snapshot_configure($snapshot) {
 	global $config;
-	$result = array("output" => array("error"), "retval" => -1);
+	$result = ['output' => ['error'],'retval' => -1];
 
 	if (empty($snapshot) || empty($snapshot['snapshot']))
 		return $result;
@@ -895,13 +895,13 @@ function zfs_snapshot_configure($snapshot) {
  * @param[in] snapshot	The name of the snapshot to be deleted.
  * @return An array containg the result:
  * @code
- * [output] => array("lines")
+ * [output] => ['lines']
  * [retval] => 0 if successful, otherwise 1
  * @endcode
  */
 function zfs_snapshot_destroy($snapshot) {
 	global $config;
-	$result = array("output" => array("error"), "retval" => -1);
+	$result = ['output' => ['error'],'retval' => -1];
 
 	if (empty($snapshot) || empty($snapshot['snapshot']))
 		return $result;
@@ -929,7 +929,7 @@ function zfs_snapshot_destroy($snapshot) {
 
 function zfs_snapshot_rollback($snapshot) {
 	global $config;
-	$result = array("output" => array("error"), "retval" => -1);
+	$result = ['output' => ['error'],'retval' => -1];
 
 	if (empty($snapshot) || empty($snapshot['snapshot'])) {
 		return $result;
@@ -963,13 +963,13 @@ function zfs_snapshot_rollback($snapshot) {
  * @param[in] snapshot	The name of the snapshot to be cloned.
  * @return An array containg the result:
  * @code
- * [output] => array("lines")
+ * [output] => ['lines']
  * [retval] => 0 if successful, otherwise 1
  * @endcode
  */
 function zfs_snapshot_clone($snapshot) {
 	global $config;
-	$result = array("output" => array("error"), "retval" => -1);
+	$result = ['output' => ['error'], 'retval' => -1];
 
 	if (empty($snapshot) || empty($snapshot['snapshot']))
 		return $result;
@@ -1033,13 +1033,13 @@ function zfs_snapshot_properties($snapshot) {
  * @param[in] dataset	The name of the dataset to be deleted.
  * @return An array containg the result:
  * @code
- * [output] => array("lines")
+ * [output] => ['lines']
  * [retval] => 0 if successful, otherwise 1
  * @endcode
  */
 function zfs_clone_destroy($clone) {
 	global $config;
-	$result = array("output" => array("error"), "retval" => -1);
+	$result = ['output' => ['error'],'retval' => -1];
 
 	if (empty($clone) || empty($clone['path']))
 		return $result;
@@ -1064,10 +1064,10 @@ function zfs_clone_destroy($clone) {
 
 // Update notify for ZFS functions
 function zfs_updatenotify_process($key, $function) {
-	$result = array("output" => array("error"), "retval" => -1);
+	$result = ['output' => ['error'],'retval' => -1];
 	$a_notification = updatenotify_get($key);
 	if (!is_array($a_notification)) {
-		$result = array("output" => array("empty"), "retval" => 0);
+		$result = ['output' => ['empty'],'retval' => 0];
 		return $result;
 	}
 
@@ -1077,7 +1077,7 @@ function zfs_updatenotify_process($key, $function) {
 			return $ret;
 		}
 	}
-	$result = array("output" => array(), "retval" => 0);
+	$result = ['output' => [], 'retval' => 0];
 	return $result;
 }
 

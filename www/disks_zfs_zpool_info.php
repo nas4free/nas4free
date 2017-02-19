@@ -35,72 +35,68 @@ require 'auth.inc';
 require 'guiconfig.inc';
 
 function disks_zfs_zpool_info_ajax() {
-	if (isset($_GET['pool']) && is_string($_GET['pool'])) {
+	if(isset($_GET['pool']) && is_string($_GET['pool'])):
 		$cmd = sprintf('zpool status -v "%s"', $_GET['pool']);
-	} else {
+	else:
 		$cmd = 'zpool status -v';
-	}
-	mwexec2($cmd, $rawdata);
-	return implode("\n", $rawdata);
+	endif;
+	mwexec2($cmd,$rawdata);
+	return implode("\n",$rawdata);
 }
-if (is_ajax()) {
+if(is_ajax()):
 	$status = disks_zfs_zpool_info_ajax();
 	render_ajax($status);
-}
+endif;
 $pgtitle = [gtext('Disks'), gtext('ZFS'), gtext('Pools'), gtext('Information')];
+include 'fbegin.inc';
 ?>
-<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 //<![CDATA[
 $(document).ready(function(){
 	var gui = new GUI;
-	gui.recall(0, 5000, 'disks_zfs_zpool_info.php', null, function(data) {
+	gui.recall(5000, 5000, 'disks_zfs_zpool_info.php', null, function(data) {
 		$('#area_refresh').text(data.data);
 	});
 });
 //]]>
 </script>
 <table id="area_navigator"><tbody>
-	<tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav">
-				<li class="tabact"><a href="disks_zfs_zpool.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Pools");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gtext("Datasets");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gtext("Volumes");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gtext("Snapshots");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gtext("Configuration");?></span></a></li>
-			</ul>
-		</td>
-	</tr>
-	<tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav2">
-				<li class="tabinact"><a href="disks_zfs_zpool_vdevice.php"><span><?=gtext("Virtual Device");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gtext("Management");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_zpool_tools.php"><span><?=gtext("Tools");?></span></a></li>
-				<li class="tabact"><a href="disks_zfs_zpool_info.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Information");?></span></a></li>
-				<li class="tabinact"><a href="disks_zfs_zpool_io.php"><span><?=gtext("I/O Statistics");?></span></a></li>
-			</ul>
-		</td>
-	</tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabact"><a href="disks_zfs_zpool.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Pools");?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_dataset.php"><span><?=gtext('Datasets');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_volume.php"><span><?=gtext('Volumes');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_snapshot.php"><span><?=gtext('Snapshots');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_config.php"><span><?=gtext('Configuration');?></span></a></li>
+	</ul></td></tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav2">
+		<li class="tabinact"><a href="disks_zfs_zpool_vdevice.php"><span><?=gtext('Virtual Device');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_zpool.php"><span><?=gtext('Management');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_zpool_tools.php"><span><?=gtext('Tools');?></span></a></li>
+		<li class="tabact"><a href="disks_zfs_zpool_info.php" title="<?=gtext('Reload page');?>"><span><?=gtext('Information');?></span></a></li>
+		<li class="tabinact"><a href="disks_zfs_zpool_io.php"><span><?=gtext('I/O Statistics');?></span></a></li>
+	</ul></td></tr>
 </tbody></table>
 <table id="area_data"><tbody><tr><td id="area_data_frame">
-	<table id="area_data_settings">
+	<table class="area_data_settings">
 		<colgroup>
-			<col id="area_data_settings_col_tag">
-			<col id="area_data_settings_col_data">
+			<col class="area_data_settings_col_tag">
+			<col class="area_data_settings_col_data">
 		</colgroup>
 		<thead>
-			<?php html_titleline2(gtext("Pool Information & Status"));?>
+<?php
+			html_titleline2(gtext('Pool Information & Status'));
+?>
 		</thead>
 		<tbody>
 			<tr>
 				<td class="celltag"><?=gtext('Information');?></td>
 				<td class="celldata">
-					<pre><span id="area_refresh"></span></pre>
+					<pre><span id="area_refresh"><?=disks_zfs_zpool_info_ajax();?></span></pre>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 </td></tr></tbody></table>
-<?php include 'fend.inc';?>
+<?php
+include 'fend.inc';
+?>

@@ -31,62 +31,57 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Diagnostics"), gtext("Information"), gtext("Software RAID"));
+$sphere_array = ['concat','mirror','raid5','stripe','vinum'];
+
+$pgtitle = [gtext('Diagnostics'),gtext('Information'),gtext('Software RAID')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav">
-				<li class="tabinact"><a href="diag_infos.php"><span><?=gtext("Disks");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ata.php"><span><?=gtext("Disks (ATA)");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_part.php"><span><?=gtext("Partitions");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_smart.php"><span><?=gtext("S.M.A.R.T.");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_space.php"><span><?=gtext("Space Used");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gtext("Mounts");?></span></a></li>
-				<li class="tabact"><a href="diag_infos_raid.php" title="<?=gtext("Reload page");?>"><span><?=gtext("Software RAID");?></span></a></li>
-		  </ul>
-	  </td>
-	</tr>
-  <tr>
-		<td class="tabnavtbl">
-		  <ul id="tabnav2">
-				<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gtext("iSCSI Initiator");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ad.php"><span><?=gtext("MS Domain");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gtext("CIFS/SMB");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ftpd.php"><span><?=gtext("FTP");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_rsync_client.php"><span><?=gtext("RSYNC Client");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_swap.php"><span><?=gtext("Swap");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gtext("Sockets");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ipmi.php"><span><?=gtext('IPMI Stats');?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ups.php"><span><?=gtext("UPS");?></span></a></li>
-			</ul>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabinact"><a href="diag_infos_disks.php"><span><?=gtext("Disks");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_disks_info.php"><span><?=gtext("Disks (Info)");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_part.php"><span><?=gtext("Partitions");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_smart.php"><span><?=gtext("S.M.A.R.T.");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_space.php"><span><?=gtext("Space Used");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_swap.php"><span><?=gtext('Swap');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gtext("Mounts");?></span></a></li>
+		<li class="tabact"><a href="diag_infos_raid.php" title="<?=gtext("Reload page");?>"><span><?=gtext("Software RAID");?></span></a></li>
+	</ul></td></tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav2">
+		<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gtext("iSCSI Initiator");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ad.php"><span><?=gtext("MS Domain");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gtext("CIFS/SMB");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ftpd.php"><span><?=gtext("FTP");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_rsync_client.php"><span><?=gtext("RSYNC Client");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_netstat.php"><span><?=gtext('Netstat');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gtext("Sockets");?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ipmi.php"><span><?=gtext('IPMI Stats');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ups.php"><span><?=gtext("UPS");?></span></a></li>
+	</ul></td></tr>
+	<tr>
+		<td class="tabcont">
+			<table width="100%" border="0">
+				<?php foreach($sphere_array as $sphere_record):?>
+					<?php html_titleline(sprintf('GEOM %s',$sphere_record));?>
+					<tr>
+						<td>
+							<pre><?php
+								if(0 >= count(get_conf_disks_filtered_ex('class',sprintf('g%s',$sphere_record)))):
+									echo gtext('n/a');
+								else:
+									unset ($rawdata);
+									disks_geom_cmd($sphere_record,'list','',true,false,$rawdata);
+									echo htmlspecialchars(implode("\n",$rawdata));
+								endif;
+							?></pre>
+						</td>
+					</tr>
+				<?php endforeach;?>
+			</table>
 		</td>
 	</tr>
-  <tr>
-    <td class="tabcont">
-    	<table width="100%" border="0">
-  			<?php foreach (explode(" ", "concat mirror raid5 stripe vinum") as $class):?>
-  			<?php html_titleline("GEOM {$class}");?>
-				<tr>
-			    <td>
-			    	<pre><?php
-			    	if (0 >= count(get_conf_disks_filtered_ex("class","g{$class}")))
-			    		echo gtext("n/a");
-			    	else {
-					unset ($rawdata);
-					disks_geom_cmd($class, "list", "", true, false, $rawdata);
-					echo htmlspecialchars(implode("\n", $rawdata));
-				}
-				?></pre>
-			    </td>
-			  </tr>
-    		<?php endforeach;?>
-    	</table>
-    </td>
-  </tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

@@ -6,8 +6,8 @@
 # Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-# Script usage:
-# rc.firmware <args> [<file>]
+
+# Script usage: rc.firmware <args> [<file>]
 # Where <args> can take the following values:
 # - enable: Create a 256MB ram drive in ${FTMP}
 # - disable: Erase ram drive
@@ -113,13 +113,36 @@ case $1 in
 
 		# Backup config
 		mkdir /tmp/configbak
+
+		# Set current config.xml file checksum info
+		CONFCHECKSUM=`sha256 /conf/config.xml | cut -d= -f2`
+
 		cp -p /conf/* /tmp/configbak
 		if [ -f /cf/boot.config ]; then
 			cp -p /cf/boot.config /tmp/configbak
+			if [ $? -eq 1 ]; then
+				msg="ERROR: Backup configuration failed."
+				printf "\33[31m%s\33[0m\n" "${msg}"
+				exit 1
+			fi
 		fi
 		# Backup loader.conf.local
 		if [ -f /cf/boot/loader.conf.local ]; then
 			cp -p /cf/boot/loader.conf.local /tmp/configbak
+			if [ $? -eq 1 ]; then
+				msg="ERROR: Backup configuration failed."
+				printf "\33[31m%s\33[0m\n" "${msg}"
+				exit 1
+			fi
+		fi
+
+		# Check backup config.xml file integrity before dd firmware image
+		CONFBAKCHECKSUM=`sha256 /tmp/configbak/config.xml | cut -d= -f2`
+
+		if [ ! ${CONFBAKCHECKSUM} == ${CONFCHECKSUM} ]; then
+				msg="ERROR: Backup configuration corrupted."
+				printf "\33[31m%s\33[0m\n" "${msg}"
+				exit 1
 		fi
 
 		# Unmount /cf
@@ -128,16 +151,8 @@ case $1 in
 			msg="ERROR: Failed to umount '/cf'!"
 			printf "\33[31m%s\33[0m\n" "${msg}"
 			/usr/bin/logger "UPGRADE ${msg}"
+			exit 1
 		fi
-
-		# Remove swap on booting device if any
-		#if [ -f /etc/swapdevice ]; then
-		#	SWAPDEVICE=`cat /etc/swapdevice`
-		#	if [ "${ARCH}" != "arm" -a "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ]; then
-		#		echo "swapoff ${SWAPDEVICE}"
-		#		swapoff -q ${SWAPDEVICE} 2>/dev/null
-		#	fi
-		#fi
 
 		# dd image onto card
 		result=1
@@ -153,37 +168,66 @@ case $1 in
 					# resize boot partition
 					/sbin/growfs -y /dev/${CFDEVICE} > /dev/null 2>&1
 				fi
-				msg="Firmware installed successfully."
-				printf "\33[37;44m%s\33[0m\n" "${msg}"
-				/usr/bin/logger "UPGRADE: ${msg}"
 			fi
 		fi
 
-		#if [ -f /etc/swapdevice ]; then
-		#	SWAPDEVICE=`cat /etc/swapdevice`
-		#	if [ "${SWAPDEVICE}" != "NONE" -a -e "${SWAPDEVICE}" ]; then
-		#		echo "swapon ${SWAPDEVICE}"
-		#		swapon -q ${SWAPDEVICE} 2>/dev/null
-		#	fi
-		#fi
+		# Sync and wait 2 second after dd
+		sync; sleep 2
 
 		# Mount /cf read-write
 		/sbin/mount -w -o noatime /cf
+
+		# Try force mount /cf read-write and check file system consistency
+		if [ 0 != $? ]; then
+			/sbin/mount -f -w -o noatime /cf && fsck -y -B /cf
+		fi
+		if [ 0 != $? ]; then
+			msg="ERROR: Failed to umount '/cf' in read-write!"
+			printf "\33[31m%s\33[0m\n" "${msg}"
+			/usr/bin/logger "UPGRADE ${msg}"
+			exit 1
+		fi
 
 		# Restore config
 		cp -p /tmp/configbak/* /conf
 		if [ -f /conf/boot.config ]; then
 			mv /conf/boot.config /cf
+			if [ $? -eq 1 ]; then
+				msg="ERROR: Restore configuration failed."
+				printf "\33[31m%s\33[0m\n" "${msg}"
+				exit 1
+			fi
 		fi
 		# Restore loader.conf.local
 		if [ -f /conf/loader.conf.local ]; then
 			mv /conf/loader.conf.local /cf/boot
+			if [ $? -eq 1 ]; then
+				msg="ERROR: Restore configuration failed."
+				printf "\33[31m%s\33[0m\n" "${msg}"
+				exit 1
+			fi
 		fi
 		rm -r /tmp/configbak
 
 		# Remount /cf read-only
 		/sbin/umount -f /cf
 		/sbin/mount -r /cf
+
+		# Set restored config.xml file checksum info
+		CONFNEWCHECKSUM=`sha256 /conf/config.xml | cut -d= -f2`
+
+		# Check restored config.xml file integrity
+		if [ -f /conf/config.xml ]; then
+			if [ ! ${CONFNEWCHECKSUM} == ${CONFCHECKSUM} ]; then
+				msg="ERROR: Restored configuration corrupted."
+				printf "\33[31m%s\33[0m\n" "${msg}"
+				exit 1
+			fi
+		else
+			msg="ERROR: Server configuration not found."
+			printf "\33[31m%s\33[0m\n" "${msg}"
+			exit 1
+		fi
 
 		# Update boot partition
 		if [ "${ARCH}" == "arm" ]; then
@@ -209,6 +253,11 @@ case $1 in
 
 		# Reboot system if upgrade was successfully.
 		if [ 0 -eq ${result} ]; then
+			msg="Firmware installed successfully."
+			printf "\33[37;41m%s\33[0m\n" "${msg}"
+			/usr/bin/logger "UPGRADE: ${msg}"
+			sync; sleep 1
+
 			msg="Rebooting server..."
 			printf "\33[37m%s\33[0m\n" "${msg}"
 			/usr/bin/logger "${msg}"
@@ -261,12 +310,12 @@ case $1 in
 		/usr/bin/tar xzUPf "$2" -C / 2>&1
 		result=$?
 		if [ 0 != ${result} ]; then # successfully?
-			msg="ERROR: Failed to upgrade system firmware!"
+			msg="ERROR: Failed to upgrade firmware!"
 			printf "\33[31m%s\33[0m\n" "${msg}"
 			/usr/bin/logger "UPGRADE ${msg}"
 		else
 			msg="Firmware installed successfully."
-			printf "\33[37;44m%s\33[0m\n" "${msg}"
+			printf "\33[37;41m%s\33[0m\n" "${msg}"
 			/usr/bin/logger "UPGRADE: ${msg}"
 		fi
 

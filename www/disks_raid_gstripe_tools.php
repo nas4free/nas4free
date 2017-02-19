@@ -31,26 +31,23 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Disks"), gtext("Software RAID"), gtext("RAID-0"), gtext("Maintenance"));
-
-if (!isset($config['gstripe']['vdisk']) || !is_array($config['gstripe']['vdisk']))
-	$config['gstripe']['vdisk'] = array();
-
-array_sort_key($config['gstripe']['vdisk'], "name");
-$a_raid = &$config['gstripe']['vdisk'];
+$a_raid = &array_make_branch($config,'gstripe','vdisk');
+if(empty($a_raid)):
+else:
+	array_sort_key($a_raid,'name');
+endif;
 
 if ($_POST) {
 	unset($input_errors);
 	unset($do_action);
 
 	/* input validation */
-	$reqdfields = explode(" ", "action raid disk");
-	$reqdfieldsn = array(gtext("Command"), gtext("Volume Name"), gtext("Disk"));
+	$reqdfields = ['action','raid','disk'];
+	$reqdfieldsn = [gtext('Command'),gtext('Volume Name'),gtext('Disk')];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
-
 	if (empty($input_errors)) {
 		$do_action = true;
 		$action = $_POST['action'];
@@ -66,8 +63,9 @@ if (!isset($do_action)) {
 	$raid = '';
 	$disk = '';
 }
+$pgtitle = [gtext('Disks'),gtext('Software RAID'),gtext('RAID-0'),gtext('Maintenance')];
 ?>
-<?php include("fbegin.inc"); ?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 //<![CDATA[
 $(window).on("load", function() {
@@ -177,7 +175,7 @@ function raid_change() {
 						html_remark('warning', gtext('Warning'), $helpinghand);
 						?>
 					</div>
-					<?php include("formend.inc"); ?>
+					<?php include 'formend.inc';?>
 				</form>
 			</td></tr>
 		</table>
@@ -188,4 +186,4 @@ function raid_change() {
 raid_change();
 //]]>
 </script>
-<?php include("fend.inc"); ?>
+<?php include 'fend.inc';?>

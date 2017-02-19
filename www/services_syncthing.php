@@ -31,13 +31,10 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Services"),gtext("Syncthing"));
-
-if (!isset($config['syncthing']) || !is_array($config['syncthing']))
-	$config['syncthing'] = array();
+array_make_branch($config,'syncthing');
 
 $pconfig['enable'] = isset($config['syncthing']['enable']);
 $pconfig['homedir'] = $config['syncthing']['homedir'];
@@ -55,9 +52,9 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	if (isset($_POST['enable'])) {
-		$reqdfields = explode(" ", "homedir");
-		$reqdfieldsn = array(gtext("Home directory"));
-		$reqdfieldst = explode(" ", "string");
+		$reqdfields = ['homedir'];
+		$reqdfieldsn = [gtext('Database Directory')];
+		$reqdfieldst = ['string'];
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
@@ -105,8 +102,9 @@ if ($_POST) {
 		}
 	}
 }
+$pgtitle = [gtext('Services'),gtext('Syncthing')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">//<![CDATA[
 $(document).ready(function(){
 	function enable_change(enable_change) {
@@ -130,29 +128,40 @@ $(document).ready(function(){
 //]]>
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabcont">
-      <form action="services_syncthing.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-	<?php if (!empty($errormsg)) print_error_box($errormsg);?>
-	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-	<?php if (!empty($savemsg)) print_info_box($savemsg);?>
-	<table width="100%" border="0" cellpadding="6" cellspacing="0">
-	<?php html_titleline_checkbox("enable", gtext("Syncthing"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "");?>
-	<?php html_filechooser("homedir", gtext("Home directory"), $pconfig['homedir'], gtext("Enter the path to the home directory. The config will be created under the specified directory."), $g['media_path'], false, 60);?>
-	<?php html_separator();?>
-	<?php html_titleline(gtext("Administrative WebGUI"));?>
-	<?php
-		$url = "http://${gui_ipaddr}:${gui_port}/";
-		$text = "<a href='${url}' id='a_url' target='_blank'>{$url}</a>";
-	?>
-	<?php html_text("url", gtext("URL"), $text);?>
-	</table>
-	<div id="submit">
-	  <input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" />
-	</div>
-	<?php include("formend.inc");?>
-      </form>
-    </td>
-  </tr>
+	<tr>
+		<td class="tabcont">
+			<form action="services_syncthing.php" method="post" name="iform" id="iform" onsubmit="spinner()">
+				<?php
+				if (!empty($errormsg)):
+					print_error_box($errormsg);
+				endif;
+				if (!empty($input_errors)):
+					print_input_errors($input_errors);
+				endif;
+				if (!empty($savemsg)):
+					print_info_box($savemsg);
+				endif;
+				$enabled = isset($config['syncthing']['enable']);
+				?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<?php
+					html_titleline_checkbox("enable", gtext("Syncthing"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "");
+					html_filechooser("homedir", gtext("Database Directory"), $pconfig['homedir'], gtext("Enter the path to the database directory. The config files will be created under the specified directory."), $g['media_path'], false, 60);
+					if ($enabled):
+						html_separator();
+						html_titleline(gtext("Administrative WebGUI"));
+						$url = "http://${gui_ipaddr}:${gui_port}/";
+						$text = "<a href='${url}' id='a_url' target='_blank'>{$url}</a>";
+						html_text("url", gtext("URL"), $text);
+					endif;
+					?>
+				</table>
+				<div id="submit">
+					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" />
+				</div>
+				<?php include 'formend.inc';?>
+			</form>
+		</td>
+	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

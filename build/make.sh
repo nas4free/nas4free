@@ -39,7 +39,8 @@ if [ "amd64" = ${NAS4FREE_ARCH} ]; then
 	NAS4FREE_KERNCONF="$(echo ${NAS4FREE_PRODUCTNAME} | tr '[:lower:]' '[:upper:]')-${NAS4FREE_XARCH}"
     fi
 elif [ "i386" = ${NAS4FREE_ARCH} ]; then
-    NAS4FREE_XARCH="x86"
+ echo "->> build script does not support 32-bit builds for the i386 architecture"
+exit
 elif [ "armv6" = ${NAS4FREE_ARCH} ]; then
     NAS4FREE_ARCH="arm"
     PLATFORM=$(sysctl -n hw.platform)
@@ -96,8 +97,8 @@ echo "NAS4FREE_TMPDIR=${NAS4FREE_TMPDIR}" >> ${NAS4FREE_MK}
 
 # Local variables
 NAS4FREE_URL=$(cat $NAS4FREE_SVNDIR/etc/prd.url)
-NAS4FREE_SVNURL="https://svn.code.sf.net/p/nas4free/code/branches/10.3.0.3"
-NAS4FREE_SVN_SRCTREE="svn://svn.FreeBSD.org/base/releng/10.3"
+NAS4FREE_SVNURL="https://svn.code.sf.net/p/nas4free/code/trunk"
+NAS4FREE_SVN_SRCTREE="svn://svn.FreeBSD.org/base/releng/11.0"
 
 # Size in MB of the MFS Root filesystem that will include all FreeBSD binary
 # and NAS4FREE WEbGUI/Scripts. Keep this file very small! This file is unzipped
@@ -436,7 +437,7 @@ add_libs() {
 	done
 
 	# for compatibility
-	install -c -s -v ${NAS4FREE_WORLD}/lib/libreadline.* ${NAS4FREE_ROOTFS}/lib
+	# install -c -s -v ${NAS4FREE_WORLD}/lib/libreadline.* ${NAS4FREE_ROOTFS}/lib
 	install -c -s -v ${NAS4FREE_WORLD}/usr/lib/libgssapi_krb5.so.* ${NAS4FREE_ROOTFS}/usr/lib
 	install -c -s -v ${NAS4FREE_WORLD}/usr/lib/libgssapi_ntlm.so.* ${NAS4FREE_ROOTFS}/usr/lib
 	install -c -s -v ${NAS4FREE_WORLD}/usr/lib/libgssapi_spnego.so.* ${NAS4FREE_ROOTFS}/usr/lib
@@ -580,8 +581,8 @@ create_mfsroot() {
 	mdconfig -d -u ${md2}
 	mdconfig -d -u ${md}
 
-	mkuzip -s ${NAS4FREE_XMD_SEGLEN} $NAS4FREE_WORKINGDIR/mfsroot
-	chmod 644 $NAS4FREE_WORKINGDIR/mfsroot.uzip
+	#mkuzip -s ${NAS4FREE_XMD_SEGLEN} $NAS4FREE_WORKINGDIR/mfsroot
+	#chmod 644 $NAS4FREE_WORKINGDIR/mfsroot.uzip
 	gzip -9kfnv $NAS4FREE_WORKINGDIR/mfsroot
 	if [ "arm" = ${NAS4FREE_ARCH} ]; then
 		mkuzip -s ${NAS4FREE_XMD_SEGLEN} $NAS4FREE_WORKINGDIR/mdlocal
@@ -611,8 +612,8 @@ update_mfsroot() {
 	#[ -f $NAS4FREE_WORKINGDIR/mdlocal.uzip ] && rm -f $NAS4FREE_WORKINGDIR/mdlocal.uzip
 
 	cd $NAS4FREE_WORKINGDIR
-	mkuzip -s ${NAS4FREE_XMD_SEGLEN} $NAS4FREE_WORKINGDIR/mfsroot
-	chmod 644 $NAS4FREE_WORKINGDIR/mfsroot.uzip
+	#mkuzip -s ${NAS4FREE_XMD_SEGLEN} $NAS4FREE_WORKINGDIR/mfsroot
+	#chmod 644 $NAS4FREE_WORKINGDIR/mfsroot.uzip
 	gzip -9kfnv $NAS4FREE_WORKINGDIR/mfsroot
 	#xz -8kv $NAS4FREE_WORKINGDIR/mdlocal
 
@@ -694,8 +695,8 @@ create_image() {
 	echo "===> Mount this virtual disk on $NAS4FREE_TMPDIR"
 	mount /dev/${mdp} $NAS4FREE_TMPDIR
 	echo "===> Copying previously generated MFSROOT file to memory disk"
-	#cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
-	cp $NAS4FREE_WORKINGDIR/mfsroot.uzip $NAS4FREE_TMPDIR
+	cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
+	#cp $NAS4FREE_WORKINGDIR/mfsroot.uzip $NAS4FREE_TMPDIR
 	cp $NAS4FREE_WORKINGDIR/mdlocal.xz $NAS4FREE_TMPDIR
 	#cp $NAS4FREE_WORKINGDIR/mdlocal.uzip $NAS4FREE_TMPDIR
 	echo "${NAS4FREE_PRODUCTNAME}-${PLATFORM}-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}" > $NAS4FREE_TMPDIR/version
@@ -827,7 +828,7 @@ create_iso () {
 
 	echo "ISO: Copying previously generated MFSROOT file to $NAS4FREE_TMPDIR"
 	cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
-	cp $NAS4FREE_WORKINGDIR/mfsroot.uzip $NAS4FREE_TMPDIR
+	#cp $NAS4FREE_WORKINGDIR/mfsroot.uzip $NAS4FREE_TMPDIR
 	cp $NAS4FREE_WORKINGDIR/mdlocal.xz $NAS4FREE_TMPDIR
 	cp $NAS4FREE_WORKINGDIR/mdlocal-mini.xz $NAS4FREE_TMPDIR
 	echo "${LABEL}" > $NAS4FREE_TMPDIR/version
@@ -985,10 +986,11 @@ create_usb () {
 	# for 1GB USB stick
 	IMGSIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/image.bin.xz)
 	MFSSIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/mfsroot.gz)
-	MFS2SIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/mfsroot.uzip)
+	#MFS2SIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/mfsroot.uzip)
 	MDLSIZE=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/mdlocal.xz)
 	MDLSIZE2=$(stat -f "%z" ${NAS4FREE_WORKINGDIR}/mdlocal-mini.xz)
-	IMGSIZEM=$(expr \( $IMGSIZE + $MFSSIZE + $MFS2SIZE + $MDLSIZE + $MDLSIZE2 - 1 + 1024 \* 1024 \) / 1024 / 1024)
+	#IMGSIZEM=$(expr \( $IMGSIZE + $MFSSIZE + $MFS2SIZE + $MDLSIZE + $MDLSIZE2 - 1 + 1024 \* 1024 \) / 1024 / 1024)
+	IMGSIZEM=$(expr \( $IMGSIZE + $MFSSIZE + $MDLSIZE + $MDLSIZE2 - 1 + 1024 \* 1024 \) / 1024 / 1024)
 	USBROOTM=412
 	USBSWAPM=512
 	USBDATAM=12
@@ -1064,8 +1066,8 @@ create_usb () {
 	#dd if=/dev/zero of=$NAS4FREE_TMPDIR/swap.dat bs=1m seek=${USBSWAPM} count=0
 
 	echo "USB: Copying previously generated MFSROOT file to memory disk"
-	#cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
-	cp $NAS4FREE_WORKINGDIR/mfsroot.uzip $NAS4FREE_TMPDIR
+	cp $NAS4FREE_WORKINGDIR/mfsroot.gz $NAS4FREE_TMPDIR
+	#cp $NAS4FREE_WORKINGDIR/mfsroot.uzip $NAS4FREE_TMPDIR
 	cp $NAS4FREE_WORKINGDIR/mdlocal.xz $NAS4FREE_TMPDIR
 	cp $NAS4FREE_WORKINGDIR/mdlocal-mini.xz $NAS4FREE_TMPDIR
 	echo "${NAS4FREE_PRODUCTNAME}-${NAS4FREE_XARCH}-LiveUSB-${NAS4FREE_VERSION}.${NAS4FREE_REVISION}" > $NAS4FREE_TMPDIR/version
@@ -1231,10 +1233,10 @@ create_full() {
 	echo 'hw.hptrr.attach_generic="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'hw.msk.msi_disable="1"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'kern.maxfiles="6289573"' >> $NAS4FREE_TMPDIR/boot/loader.conf
-	echo 'kern.cam.boot_delay="8000"' >> $NAS4FREE_TMPDIR/boot/loader.conf
-	echo 'kern.cam.ada.legacy_aliases="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'kern.cam.boot_delay="12000"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'kern.geom.label.disk_ident.enable="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'kern.geom.label.gptid.enable="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
+	echo 'kern.vty = "sc"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'hint.acpi_throttle.0.disabled="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'hint.p4tcc.0.disabled="0"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	#echo 'splash_bmp_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
@@ -1243,7 +1245,6 @@ create_full() {
 	echo 'autoboot_delay="3"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'isboot_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 	echo 'zfs_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
-	echo 'geom_xmd_load="YES"' >> $NAS4FREE_TMPDIR/boot/loader.conf
 
 	# Mellanox ConnectX EN
 	if [ "amd64" == ${NAS4FREE_ARCH} ]; then
@@ -1747,17 +1748,8 @@ use_svn() {
 	cd ${NAS4FREE_SVNDIR}/www && find . \! -iregex ".*/\.svn.*" -print | cpio -pdumv ${NAS4FREE_ROOTFS}/usr/local/www
 	cd ${NAS4FREE_SVNDIR}/conf && find . \! -iregex ".*/\.svn.*" -print | cpio -pdumv ${NAS4FREE_ROOTFS}/conf.default
 
-	# adjust for arm/11-current
-	if [ "arm" = ${NAS4FREE_ARCH} ]; then
-		if [ -f ${NAS4FREE_ROOTFS}/etc/rc.d/initrandom ]; then
-			rm -f ${NAS4FREE_ROOTFS}/etc/rc.d/initrandom
-		fi
-	fi
 	# adjust for dom0
 	if [ "dom0" = ${NAS4FREE_XARCH} ]; then
-		if [ -f ${NAS4FREE_ROOTFS}/etc/rc.d/initrandom ]; then
-			rm -f ${NAS4FREE_ROOTFS}/etc/rc.d/initrandom
-		fi
 		sed -i '' -e "/^xc0/ s/off/on /" ${NAS4FREE_ROOTFS}/etc/ttys
 	fi
 
@@ -1826,8 +1818,6 @@ copy_files() {
 			echo "===> Copy istgt-20150713.tar.gz done!"
 			cp -f ${NAS4FREE_SVNDIR}/build/ports/distfiles/fuppes-0.692.tar.gz /usr/ports/distfiles
 			echo "===> Copy fuppes-0.692.tar.gz done!"
-			cp -f ${NAS4FREE_SVNDIR}/build/ports/distfiles/xmd-0.5.tar.gz /usr/ports/distfiles
-			echo "===> Copy xmd-0.5.tar.gz done!"
 
 			# Copy required ports to FreeBSD ports directory.
 			echo;
@@ -1844,7 +1834,9 @@ copy_files() {
 			echo "===> Start copy new pango files to ports/multimedia"
 			cp -Rpv ${NAS4FREE_SVNDIR}/build/ports/copy-ports/files/ffmpeg /usr/ports/multimedia/ffmpeg
 			echo "===> Copy new files to /usr/ports/multimedia/ffmpeg done!"
-
+			echo "===> Start copy new php71-APCu files to ports/devel/"
+			cp -Rpv ${NAS4FREE_SVNDIR}/build/ports/copy-ports/files/php71-APCu /usr/ports/devel
+			echo "===> Copy new files to /usr/ports/devel/php71-APCu done!"
 	return 0
 }
 build_ports() {
@@ -1974,8 +1966,6 @@ main() {
 --------------------------
 ${NAS4FREE_PRODUCTNAME} Build Environment
 --------------------------
-
-     Menu Options:
 
 1  - Update NAS4FREE Source Files to CURRENT.
 2  - NAS4Free Compile Menu.

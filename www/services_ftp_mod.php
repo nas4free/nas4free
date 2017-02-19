@@ -31,11 +31,10 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Services"), gtext("FTP"), gtext("Modules"));
-
+$a_rule = &array_make_branch($config,'ftpd','mod_ban','rule');
 $pconfig['mod_ban_enable'] = isset($config['ftpd']['mod_ban']['enable']);
 
 if ($_POST) {
@@ -58,10 +57,6 @@ if ($_POST) {
 	}
 }
 
-if (!isset($config['ftpd']['mod_ban']['rule']) || !is_array($config['ftpd']['mod_ban']['rule']))
-	$config['ftpd']['mod_ban']['rule'] = array();
-
-$a_rule = &$config['ftpd']['mod_ban']['rule'];
 
 if (isset($_GET['act']) && $_GET['act'] === "del") {
 	if ($_GET['uuid'] === "all") {
@@ -97,8 +92,9 @@ function ftpd_mod_ban_process_updatenotification($mode, $data) {
 
 	return $retval;
 }
+$pgtitle = [gtext('Services'),gtext('FTP'),gtext('Modules')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabnavtbl">
@@ -162,9 +158,9 @@ function ftpd_mod_ban_process_updatenotification($mode, $data) {
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" />
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

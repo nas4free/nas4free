@@ -6,15 +6,12 @@
 	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -37,14 +34,14 @@
 // Configure page permission
 $pgperm['allowuser'] = TRUE;
 
-require("auth.inc");
-require("guiconfig.inc");
-require("email.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'email.inc';
 
-$pgtitle = array(gtext("System"), gtext("Password"));
+$pgtitle = [gtext('System'),gtext('Password')];
 
 if (!isset($config['access']['user']) || !is_array($config['access']['user']))
-	$config['access']['user'] = array();
+	$config['access']['user'] = [];
 
 $a_user = &$config['access']['user'];
 
@@ -58,9 +55,9 @@ if (FALSE === ($cnid = array_search_ex(Session::getUserId(), $a_user, "id"))) {
 if ($_POST) {
 	unset($input_errors);
 
-	$reqdfields = explode(" ", "password_old password_new password_confirm");
-	$reqdfieldsn = array(gtext("Current password"), gtext("New password"), gtext("Password (confirmed)"));
-	$reqdfieldst = explode(" ", "password password password");
+	$reqdfields = ['password_old','password_new','password_confirm'];
+	$reqdfieldsn = [gtext('Current password'),gtext('New password'),gtext('Password (confirmed)')];
+	$reqdfieldst = ['password','password','password'];
 
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
@@ -93,7 +90,7 @@ if ($_POST) {
 	}
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabcont">
@@ -101,15 +98,16 @@ if ($_POST) {
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+				<?php html_titleline2(gtext('User Password Settings'));?>
 					<?php html_passwordbox("password_old", gtext("Current password"), "", "", true);?>
 					<?php html_passwordconfbox("password_new", "password_confirm", gtext("New password"), "", "", "", true);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save");?>" />
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

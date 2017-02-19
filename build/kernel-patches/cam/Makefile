@@ -1,4 +1,4 @@
-PATCHFILE=patch-sys__cam__scsi__scsi_da.c
+PATCHFILE=patch-sys__cam__scsi__scsi_xpt.c
 
 all:
 

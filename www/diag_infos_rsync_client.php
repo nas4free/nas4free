@@ -31,68 +31,98 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Diagnostics"), gtext("Information"), gtext("RSYNC Client"));
+$pgtitle = [gtext('Diagnostics'),gtext('Information'),gtext('RSYNC Client')];
+include 'fbegin.inc';
 ?>
-<?php include("fbegin.inc");?>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav">
-				<li class="tabinact"><a href="diag_infos.php"><span><?=gtext("Disks");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ata.php"><span><?=gtext("Disks (ATA)");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_part.php"><span><?=gtext("Partitions");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_smart.php"><span><?=gtext("S.M.A.R.T.");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_space.php"><span><?=gtext("Space Used");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gtext("Mounts");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_raid.php"><span><?=gtext("Software RAID");?></span></a></li>
-		  </ul>
-	  </td>
-	</tr>
-  <tr>
-		<td class="tabnavtbl">
-		  <ul id="tabnav2">
-				<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gtext("iSCSI Initiator");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ad.php"><span><?=gtext("MS Domain");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gtext("CIFS/SMB");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ftpd.php"><span><?=gtext("FTP");?></span></a></li>
-				<li class="tabact"><a href="diag_infos_rsync_client.php" title="<?=gtext("Reload page");?>"><span><?=gtext("RSYNC Client");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_swap.php"><span><?=gtext("Swap");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gtext("Sockets");?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ipmi.php"><span><?=gtext('IPMI Stats');?></span></a></li>
-				<li class="tabinact"><a href="diag_infos_ups.php"><span><?=gtext("UPS");?></span></a></li>
-			</ul>
-		</td>
-	</tr>
-  <tr>
-    <td class="tabcont">
-			<table width="100%" border="0">
-				<?php html_titleline(gtext("RSYNC Client Information & Status"));?>
-				<tr>
-			    <td>
-			    	<?php if (!is_array($config['rsync']) || !is_array($config['rsync']['rsyncclient'])):?>
-			    	<pre><?=gtext("No RSYNC Client configured");?></pre>
-			    	<?php else:?>
-			    	<pre><?php
-			    	echo("<strong>" . gtext("Detected RSYNC remote shares") . ":</strong><br /><br />");
-						$i = 0;
-						foreach ($config['rsync']['rsyncclient'] as $rsyncclient) {
-							echo("<br />RSYNC client number $i:<br />");
-							echo("- Remote server address: {$rsyncclient['rsyncserverip']}<br />");
-							echo("- Remote share name configured : {$rsyncclient['remoteshare']}<br />");
-							echo("- Detected shares on this server: <br />");
-							exec("/usr/local/bin/rsync {$rsyncclient['rsyncserverip']}::", $rawdata);
-							echo htmlspecialchars(implode("\n", $rawdata));
-							unset($rawdata);
-						}
-						?></pre>
-						<?php endif;?>
-					</td>
-			  </tr>
-    	</table>
-    </td>
-  </tr>
-</table>
-<?php include("fend.inc");?>
+<table id="area_navigator"><tbody>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabinact"><a href="diag_infos_disks.php"><span><?=gtext('Disks');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_disks_info.php"><span><?=gtext('Disks (Info)');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_part.php"><span><?=gtext('Partitions');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_smart.php"><span><?=gtext('S.M.A.R.T.');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_space.php"><span><?=gtext('Space Used');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_swap.php"><span><?=gtext('Swap');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_mount.php"><span><?=gtext('Mounts');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_raid.php"><span><?=gtext('Software RAID');?></span></a></li>
+	</ul></td></tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav2">
+		<li class="tabinact"><a href="diag_infos_iscsi.php"><span><?=gtext('iSCSI Initiator');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ad.php"><span><?=gtext('MS Domain');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_samba.php"><span><?=gtext('CIFS/SMB');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ftpd.php"><span><?=gtext('FTP');?></span></a></li>
+		<li class="tabact"><a href="diag_infos_rsync_client.php" title="<?=gtext('Reload page');?>"><span><?=gtext('RSYNC Client');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_netstat.php"><span><?=gtext('Netstat');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_sockets.php"><span><?=gtext('Sockets');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ipmi.php"><span><?=gtext('IPMI Stats');?></span></a></li>
+		<li class="tabinact"><a href="diag_infos_ups.php"><span><?=gtext('UPS');?></span></a></li>
+	</ul></td></tr>
+</tbody></table>
+<table id="area_data"><tbody><tr><td id="area_data_frame">
+<?php
+if(!is_array($config['rsync']) || !is_array($config['rsync']['rsyncclient'])):
+?>
+	<table class="area_data_settings">
+		<colgroup>
+			<col class="area_data_settings_col_tag">
+			<col class="area_data_settings_col_data">
+		</colgroup>
+		<thead>
+<?php
+			html_titleline2(gtext('RSYNC Client Information & Status'));
+?>
+		</thead>
+		<tbody><tr>
+			<td class="celltag"><?=gtext('Information');?></td>
+			<td class="celldata">
+<?php
+				echo '<pre>';
+				echo gtext('No RSYNC Client configured.');
+				echo '</pre>';
+?>
+			</tr></tbody>
+		</table>
+<?php
+else:
+?>
+	<table class="area_data_settings">
+		<colgroup>
+			<col class="area_data_settings_col_tag">
+			<col class="area_data_settings_col_data">
+		</colgroup>
+		<thead>
+<?php
+			html_titleline2(gtext('RSYNC Client Information & Status'));
+?>
+		</thead>
+		<tbody><tr>
+			<td class="celltag"><?=gtext('Information');?></td>
+			<td class="celldata">
+<?php
+				echo '<pre>';
+				echo '<strong>',gtext('Detected RSYNC Remote Shares'),':</strong><br /><br />';
+				$i = 0;
+				foreach($config['rsync']['rsyncclient'] as $rsyncclient): 
+					echo '<br />';
+					echo '',gtext('RSYNC client number'),' ',$i,':','<br />';
+					echo '- ',gtext('Remote server address'),': ',$rsyncclient['rsyncserverip'],'<br />';
+					echo '- ',gtext('Remote share name configured'),': ',$rsyncclient['remoteshare'],'<br />';
+					echo '- ',gtext('Detected shares on this server'),': ','<br />';
+					$cmd = sprintf('/usr/local/bin/rsync %s::',$rsyncclient['rsyncserverip']);
+					exec($cmd,$rawdata);
+					echo htmlspecialchars(implode("\n",$rawdata));
+					unset($rawdata);
+				endforeach;
+				echo '</pre>';
+?>
+		</tr></tbody>
+	</table>
+<?php
+endif;
+?>
+</td></tr></table>
+<?php
+include 'fend.inc';
+?>

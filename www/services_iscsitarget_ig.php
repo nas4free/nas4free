@@ -31,10 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-
-$pgtitle = array(gtext("Services"), gtext("iSCSI Target"), gtext("Initiator Group"));
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if ($_POST) {
 	$pconfig = $_POST;
@@ -64,14 +62,12 @@ if ($_POST) {
 	}
 }
 
-if (!isset($config['iscsitarget']['initiatorgroup']) || !is_array($config['iscsitarget']['initiatorgroup']))
-	$config['iscsitarget']['initiatorgroup'] = array();
-
-array_sort_key($config['iscsitarget']['initiatorgroup'], "tag");
-$a_iscsitarget_ig = &$config['iscsitarget']['initiatorgroup'];
-
-if (!isset($config['iscsitarget']['target']) || !is_array($config['iscsitarget']['target']))
-	$config['iscsitarget']['target'] = array();
+$a_iscsitarget_ig = &array_make_branch($config,'iscsitarget','initiatorgroup');
+if(empty($a_iscsitarget_ig)):
+else:
+	array_sort_key($a_iscsitarget_ig,'tag');
+endif;
+array_make_branch($config,'iscsitarget','target');
 
 if (isset($_GET['act']) && $_GET['act'] === "del") {
 	$index = array_search_ex($_GET['uuid'], $config['iscsitarget']['initiatorgroup'], "uuid");
@@ -112,83 +108,80 @@ function iscsitargetig_process_updatenotification($mode, $data) {
 
 	return $retval;
 }
+$pgtitle = [gtext('Services'),gtext('iSCSI Target'),gtext('Initiator Group')];
 ?>
-<?php include("fbegin.inc");?>
-<form action="services_iscsitarget_ig.php" method="post" name="iform" id="iform">
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabnavtbl">
-      <ul id="tabnav">
-				<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_target.php"><span><?=gtext("Targets");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gtext("Portals");?></span></a></li>
-				<li class="tabact"><a href="services_iscsitarget_ig.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Initiators");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gtext("Auths");?></span></a></li>
-				<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
-      </ul>
-    </td>
-  </tr>
-  <tr>
-    <td class="tabcont">
-      <?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-      <?php if (!empty($savemsg)) print_info_box($savemsg);?>
-      <?php if (updatenotify_exists("iscsitarget_ig")) print_config_change_box();?>
-      <table width="100%" border="0" cellpadding="6" cellspacing="0">
-      <tr>
-        <td colspan="2" valign="top" class="listtopic"><?=gtext("Initiator Groups");?></td>
-      </tr>
-      <tr>
-        <td width="22%" valign="top" class="vncell"><?=gtext("Initiator Group");?></td>
-        <td width="78%" class="vtable">
-        <table width="100%" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-          <td width="5%" class="listhdrlr"><?=gtext("Tag");?></td>
-          <td width="35%" class="listhdrr"><?=gtext("Initiators");?></td>
-          <td width="25%" class="listhdrr"><?=gtext("Networks");?></td>
-          <td width="25%" class="listhdrr"><?=gtext("Comment");?></td>
-          <td width="10%" class="list"></td>
-        </tr>
-        <?php foreach($config['iscsitarget']['initiatorgroup'] as $ig):?>
-        <?php $notificationmode = updatenotify_get_mode("iscsitarget_ig", $ig['uuid']);?>
-        <tr>
-          <td class="listlr"><?=htmlspecialchars($ig['tag']);?>&nbsp;</td>
-          <td class="listr">
-          <?php foreach ($ig['iginitiatorname'] as $initiator): ?>
-          <?php echo htmlspecialchars($initiator)."<br />\n"; ?>
-          <?php endforeach;?>
-          </td>
-          <td class="listr">
-          <?php foreach ($ig['ignetmask'] as $netmask): ?>
-          <?php echo htmlspecialchars($netmask)."<br />\n"; ?>
-          <?php endforeach;?>
-          </td>
-          <td class="listr"><?=htmlspecialchars($ig['comment']);?>&nbsp;</td>
-          <?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
-          <td valign="middle" nowrap="nowrap" class="list">
-            <a href="services_iscsitarget_ig_edit.php?uuid=<?=$ig['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit initiator group");?>" border="0" alt="<?=gtext("Edit initiator group");?>" /></a>
-            <a href="services_iscsitarget_ig.php?act=del&amp;type=ig&amp;uuid=<?=$ig['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this initiator group?");?>')"><img src="images/delete.png" title="<?=gtext("Delete initiator group");?>" border="0" alt="<?=gtext("Add initiator group");?>" /></a>
-          </td>
-          <?php else:?>
-          <td valign="middle" nowrap="nowrap" class="list">
-            <img src="images/delete.png" border="0" alt="" />
-          </td>
-          <?php endif;?>
-        </tr>
-        <?php endforeach;?>
-        <tr>
-          <td class="list" colspan="4"></td>
-          <td class="list">
-						<a href="services_iscsitarget_ig_edit.php"><img src="images/add.png" title="<?=gtext("Add initiator group");?>" border="0" alt="<?=gtext("Add initiator group");?>" /></a>
-					</td>
-        </tr>
-        </table>
-        <?=gtext("A Initiator Group contains authorised initiator names and networks to access the target.");?>
-        </td>
-      </tr>
-      </table>
-    </td>
-  </tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabinact"><a href="services_iscsitarget.php"><span><?=gtext("Settings");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_target.php"><span><?=gtext("Targets");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_pg.php"><span><?=gtext("Portals");?></span></a></li>
+		<li class="tabact"><a href="services_iscsitarget_ig.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Initiators");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_ag.php"><span><?=gtext("Auths");?></span></a></li>
+		<li class="tabinact"><a href="services_iscsitarget_media.php"><span><?=gtext("Media");?></span></a></li>
+	</ul></td></tr>
+	<tr>
+		<td class="tabcont">
+			<form action="services_iscsitarget_ig.php" method="post" name="iform" id="iform">
+				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
+				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
+				<?php if (updatenotify_exists("iscsitarget_ig")) print_config_change_box();?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<tr>
+						<td colspan="2" valign="top" class="listtopic"><?=gtext("Initiator Groups");?></td>
+					</tr>
+					<tr>
+						<td width="22%" valign="top" class="vncell"><?=gtext("Initiator Group");?></td>
+						<td width="78%" class="vtable">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="5%" class="listhdrlr"><?=gtext("Tag");?></td>
+									<td width="35%" class="listhdrr"><?=gtext("Initiators");?></td>
+									<td width="25%" class="listhdrr"><?=gtext("Networks");?></td>
+									<td width="25%" class="listhdrr"><?=gtext("Comment");?></td>
+									<td width="10%" class="list"></td>
+								</tr>
+								<?php foreach($config['iscsitarget']['initiatorgroup'] as $ig):?>
+									<?php $notificationmode = updatenotify_get_mode("iscsitarget_ig", $ig['uuid']);?>
+									<tr>
+										<td class="listlr"><?=htmlspecialchars($ig['tag']);?>&nbsp;</td>
+										<td class="listr">
+											<?php foreach ($ig['iginitiatorname'] as $initiator): ?>
+												<?php echo htmlspecialchars($initiator)."<br />\n"; ?>
+											<?php endforeach;?>
+										</td>
+										<td class="listr">
+											<?php foreach ($ig['ignetmask'] as $netmask): ?>
+												<?php echo htmlspecialchars($netmask)."<br />\n"; ?>
+											<?php endforeach;?>
+										</td>
+										<td class="listr"><?=htmlspecialchars($ig['comment']);?>&nbsp;</td>
+										<?php if (UPDATENOTIFY_MODE_DIRTY != $notificationmode):?>
+											<td valign="middle" nowrap="nowrap" class="list">
+												<a href="services_iscsitarget_ig_edit.php?uuid=<?=$ig['uuid'];?>"><img src="images/edit.png" title="<?=gtext("Edit initiator group");?>" border="0" alt="<?=gtext("Edit initiator group");?>" /></a>
+												<a href="services_iscsitarget_ig.php?act=del&amp;type=ig&amp;uuid=<?=$ig['uuid'];?>" onclick="return confirm('<?=gtext("Do you really want to delete this initiator group?");?>')"><img src="images/delete.png" title="<?=gtext("Delete initiator group");?>" border="0" alt="<?=gtext("Add initiator group");?>" /></a>
+											</td>
+										<?php else:?>
+											<td valign="middle" nowrap="nowrap" class="list">
+												<img src="images/delete.png" border="0" alt="" />
+											</td>
+										<?php endif;?>
+									</tr>
+								<?php endforeach;?>
+								<tr>
+									<td class="list" colspan="4"></td>
+									<td class="list">
+										<a href="services_iscsitarget_ig_edit.php"><img src="images/add.png" title="<?=gtext("Add initiator group");?>" border="0" alt="<?=gtext("Add initiator group");?>" /></a>
+									</td>
+								</tr>
+							</table>
+							<?=gtext("Initiator Groups contains authorised initiator names and networks to access the target.");?>
+						</td>
+					</tr>
+				</table>
+				<?php include 'formend.inc';?>
+			</form>
+		</td>
+	</tr>
 </table>
-<?php include("formend.inc");?>
-</form>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

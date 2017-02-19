@@ -31,112 +31,132 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Advanced"), gtext("File Editor"));
-
-$savetopath = "";
-if (isset($_POST['savetopath']))
+$savetopath = '';
+if (isset($_POST['savetopath']))  {
 	$savetopath = htmlspecialchars($_POST['savetopath']);
-
-if ((isset($_POST['submit']) && $_POST['submit'] === gtext("Edit")) && file_exists($savetopath) && is_file($savetopath)) {
-	$content = file_get_contents($savetopath);
-	$edit_area = "";
-	if (stristr($savetopath, ".php") == true)
-		$language = "php";
-	else if (stristr($savetopath, ".inc") == true)
-		$language = "php";
-	else if (stristr($savetopath, ".sh") == true)
-		$language = "core";
-	else if (stristr($savetopath, ".xml") == true)
-		$language = "xml";
-	else if (stristr($savetopath, ".js") == true)
-		$language = "js";
-	else if (stristr($savetopath, ".css") == true)
-		$language = "css";
-} else if ((isset($_POST['submit']) && $_POST['submit'] === gtext("Save"))) {
-	conf_mount_rw();
-	$content = preg_replace("/\r/","",$_POST['code']) ;
-	file_put_contents($savetopath, $content);
-	$edit_area = "";
-	$savemsg = gtext("Saved file to") . " " . $savetopath;
-	if ($savetopath === "{$g['cf_conf_path']}/config.xml")
-		unlink_if_exists("{$g['tmp_path']}/config.cache");
-	conf_mount_ro();
-} else if ((isset($_POST['submit']) && $_POST['submit'] === gtext("Load")) && (!file_exists($savetopath) || !is_file($savetopath))) {
-	$savemsg = gtext("File not found") . " " . $savetopath;
-	$content = "";
-	$savetopath = "";
 }
-
-if(isset($_POST['highlight']) && $_POST['highlight'] <> "") {
-	if($_POST['highlight'] == "yes" or
-	  $_POST['highlight'] == "enabled") {
-		$highlight = "yes";
-	} else {
-		$highlight = "no";
+if(isset($_POST['submit'])) {
+	switch($_POST['submit']) {
+		case 'edit':
+			if(preg_match('/\S/', $savetopath)) {
+				if(file_exists($savetopath) && is_file($savetopath)) {
+					$content = file_get_contents($savetopath);
+					$edit_area = "";
+					if (stristr($savetopath, ".php") == true) $language = "php";
+					else if (stristr($savetopath, ".inc") == true) $language = "php";
+					else if (stristr($savetopath, ".sh") == true) $language = "core";
+					else if (stristr($savetopath, ".xml") == true) $language = "xml";
+					else if (stristr($savetopath, ".js") == true) $language = "js";
+					else if (stristr($savetopath, ".css") == true) $language = "css";
+				} else {
+					$savemsg = sprintf('%s %s', gtext('File not found'), $savetopath);
+					$content = '';
+					$savetopath = '';			
+				}
+			}
+			break;
+		case 'save':
+			if(preg_match('/\S/', $savetopath)) {
+				conf_mount_rw();
+				$content = preg_replace("/\r/","",$_POST['code']) ;
+				file_put_contents($savetopath, $content);
+				$edit_area = "";
+				$savemsg = sprintf('%s %s', gtext('Saved file to'), $savetopath);
+				if ($savetopath === "{$g['cf_conf_path']}/config.xml") {
+					unlink_if_exists("{$g['tmp_path']}/config.cache");
+				}
+				conf_mount_ro();
+			}
+			break;
 	}
-} else {
-	$highlight = "no";
 }
 
-if(isset($_POST['rows']) && $_POST['rows'] <> "")
+if(isset($_POST['highlight']) && !empty($_POST['highlight'])) {
+	switch($_POST['highlight']) {
+		case 'yes':
+		case 'enabled':
+			$highlight = 'yes';
+			break;
+		default:
+			$highlight = 'no';
+			break;
+	}
+}
+if(isset($_POST['rows']) && !empty($_POST['rows'])) {
 	$rows = $_POST['rows'];
-else
+} else {
 	$rows = 30;
-
-if(isset($_POST['cols']) && $_POST['cols'] <> "")
+}
+if(isset($_POST['cols']) && !empty($_POST['cols'])) {
 	$cols = $_POST['cols'];
-else
+} else {
 	$cols = 66;
+}
+$pgtitle = [gtext('Tools'), gtext('File Editor')];
 ?>
-<?php include("fbegin.inc");?>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td class="tabcont">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
-				<?php html_titleline(gtext("File Editor"));?>
-				<tr>
-			<form action="system_edit.php" method="post">
-				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
-				<table width="100%" cellpadding='9' cellspacing='9' bgcolor='#eeeeee'>
-					<tr>
-						<td>
-							<span class="label"><?=gtext("File Path");?></span>
-							<input size="42" id="savetopath" name="savetopath" value="<?=$savetopath;?>" />
-							<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.savetopath; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield.value), "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." />
-							<input name="submit" type="submit" class="formbtn" id="Edit" value="<?=gtext("Edit");?>" />
-							<input name="submit" type="submit" class="formbtn" id="Save" value="<?=gtext("Save");?>" />
-							<hr noshade="noshade" />
-							<?php if(isset($_POST['highlight']) && $_POST['highlight'] == "no"): ?>
-							<?=gtext("Rows"); ?>: <input size="3" name="rows" value="<?=$rows;?>"/>
-							<?=gtext("Cols"); ?>: <input size="3" name="cols" value="<?=$cols;?>"/>
-							|
-							<?php endif; ?>
-							<?=gtext("Highlighting"); ?>:
-							<input id="highlighting_enabled" name="highlight" type="radio" value="yes" <?php if($highlight == "yes") echo " checked=\"checked\""; ?> />
-							<label for="highlighting_enabled"><?=gtext("Enabled"); ?></label>
-							<input id="highlighting_disabled" name="highlight" type="radio" value="no"<?php if($highlight == "no") echo " checked=\"checked\""; ?> />
-							<label for="highlighting_disabled"><?=gtext("Disabled"); ?></label>
-						</td>
-					</tr>
-				</table>
-				<table width='100%'>
-					<tr>
-						<td valign="top" class="label">
-							<div style="background: #eeeeee;" id="textareaitem">
-							<!-- NOTE: The opening *and* the closing textarea tag must be on the same line. -->
-							<textarea style="width: 98%; margin: 7px;" class="<?php echo $language; ?>:showcolumns" rows="<?php echo $rows; ?>" cols="<?php echo $cols; ?>" name="code"><?php echo htmlspecialchars(!empty($content) ? $content : "");?></textarea>
-							</div>
-						</td>
-					</tr>
-				</table>
-				<?php include("formend.inc");?>
-			</form>
-		</td>
-	</tr>
-</table>
+<?php include 'fbegin.inc';?>
+<script type="text/javascript">
+//<![CDATA[
+$(window).on("load", function() {
+<?php	// Init spinner onsubmit()?>
+	$("#iform").submit(function() { spinner(); });
+});
+//]]>
+</script>
+<table id="area_data"><tbody><tr><td id="area_data_frame"><form action="system_edit.php" method="post" name="iform" id="iform">
+	<?php
+	if(!empty($savemsg)) {
+		print_info_box($savemsg);
+	}
+	?>
+	<table class="area_data_settings">
+		<colgroup>
+			<col style="width:100%">
+		</colgroup>
+		<thead>
+			<?php
+			html_titleline2(gtext('File Editor'),1);
+			html_separator2(1);
+			?>
+			<tr>
+				<td>
+					<span class="label"><?=gtext('File Path');?></span>
+					<input size="42" id="savetopath" name="savetopath" value="<?=$savetopath;?>" />
+					<input name="browse" type="button" class="formbtn" id="Browse" onclick='ifield = form.savetopath; filechooser = window.open("filechooser.php?p="+encodeURIComponent(ifield.value), "filechooser", "scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300"); filechooser.ifield = ifield; window.ifield = ifield;' value="..." />
+					<button name="submit" type="submit" class="formbtn" id="Edit" value="edit"><?=gtext('Edit');?></button>
+					<button name="submit" type="submit" class="formbtn" id="Save" value="save"><?=gtext('Save');?></button>
+					<hr noshade="noshade" />
+					<?php if(isset($_POST['highlight']) && $_POST['highlight'] == "no"): ?>
+						<?=gtext('Rows'); ?>: <input size="3" name="rows" value="<?=$rows;?>"/>
+						<?=gtext('Cols'); ?>: <input size="3" name="cols" value="<?=$cols;?>"/>
+					<?php endif; ?>
+					<?=gtext('Highlighting'); ?>:
+					<input id="highlighting_enabled" name="highlight" type="radio" value="yes" <?php if($highlight == 'yes') echo " checked=\"checked\""; ?> />
+					<label for="highlighting_enabled"><?=gtext('Enabled'); ?></label>
+					<input id="highlighting_disabled" name="highlight" type="radio" value="no"<?php if($highlight == 'no') echo " checked=\"checked\""; ?> />
+					<label for="highlighting_disabled"><?=gtext('Disabled'); ?></label>
+				</td>
+			</tr>
+			<?php
+			html_separator2(1);
+			?>
+		</thead>
+		<tbody>
+			<tr>
+				<td valign="top" class="label">
+					<div style="background: #eeeeee;" id="textareaitem">
+<?php //				<!-- NOTE: The opening *and* the closing textarea tag must be on the same line.-->?>
+						<textarea style="width:100%; margin:0;" class="<?=$language;?>:showcolumns" rows="<?=$rows;?>" cols="<?=$cols;?>" name="code"><?=htmlspecialchars(!empty($content) ? $content : '');?></textarea>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+<?php include 'formend.inc';?>
+</form></td></tr></tbody></table>
 <script type="text/javascript" src="syntaxhighlighter/shCore.js"></script>
 <script type="text/javascript" src="syntaxhighlighter/shBrushCSharp.js"></script>
 <script type="text/javascript" src="syntaxhighlighter/shBrushPhp.js"></script>
@@ -150,7 +170,7 @@ else
 <script type="text/javascript" src="syntaxhighlighter/shBrushRuby.js"></script>
 <script type="text/javascript" src="syntaxhighlighter/shBrushCss.js"></script>
 <script type="text/javascript">
-<!--
+//<![CDATA[
   // Set focus.
   document.forms[0].savetopath.focus();
 
@@ -170,6 +190,6 @@ else
     echo "document.forms[0].Save.disabled = 1;\n";
   }
 ?>
-//-->
+//]]>
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

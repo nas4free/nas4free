@@ -31,16 +31,12 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Services"), gtext("SNMP"));
-
-if (!isset($config['snmpd']) || !is_array($config['snmpd']))
-	$config['snmpd'] = array();
-
+array_make_branch($config,'snmpd','auxparam');
+array_make_branch($config,'snmpd','modules');
 $os_release = exec('uname -r | cut -d - -f1');
-
 $pconfig['enable'] = isset($config['snmpd']['enable']);
 $pconfig['location'] = $config['snmpd']['location'];
 $pconfig['contact'] = $config['snmpd']['contact'];
@@ -53,8 +49,9 @@ $pconfig['mibii'] = isset($config['snmpd']['modules']['mibii']);
 $pconfig['netgraph'] = isset($config['snmpd']['modules']['netgraph']);
 $pconfig['hostres'] = isset($config['snmpd']['modules']['hostres']);
 $pconfig['ucd'] = isset($config['snmpd']['modules']['ucd']);
-if (isset($config['snmpd']['auxparam']) && is_array($config['snmpd']['auxparam']))
+if (isset($config['snmpd']['auxparam']) && is_array($config['snmpd']['auxparam'])):
 	$pconfig['auxparam'] = implode("\n", $config['snmpd']['auxparam']);
+endif;
 
 if ($_POST) {
 	unset($input_errors);
@@ -62,14 +59,13 @@ if ($_POST) {
 
 	// Input validation
 	if (isset($_POST['enable']) && $_POST['enable']) {
-		$reqdfields = explode(" ", "location contact read");
-		$reqdfieldsn = array(gtext("Location"), gtext("Contact"), gtext("Community"));
-		$reqdfieldst = explode(" ", "string string string");
-
+		$reqdfields = ['location','contact','read'];
+		$reqdfieldsn = [gtext('Location'),gtext('Contact'),gtext('Community')];
+		$reqdfieldst = ['string','string','string'];
 		if (isset($_POST['trapenable']) && $_POST['trapenable']) {
-			$reqdfields = array_merge($reqdfields, explode(" ", "traphost trapport trap"));
-			$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Trap host"), gtext("Trap port"), gtext("Trap string")));
-			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "string port string"));
+			$reqdfields = array_merge($reqdfields, ['traphost','trapport','trap']);
+			$reqdfieldsn = array_merge($reqdfieldsn, [gtext('Trap Host'),gtext('Trap Port'),gtext('Trap String')]);
+			$reqdfieldst = array_merge($reqdfieldst, ['string','port','string']);
 		}
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -109,8 +105,9 @@ if ($_POST) {
 		$savemsg = get_std_save_message($retval);
 	}
 }
+$pgtitle = [gtext('Services'),gtext('SNMP')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -146,10 +143,10 @@ function trapenable_change() {
 }
 //-->
 </script>
-<form action="services_snmp.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-		<tr>
-			<td class="tabcont">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr>
+		<td class="tabcont">
+			<form action="services_snmp.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
@@ -159,15 +156,15 @@ function trapenable_change() {
 					html_inputbox("contact", gtext("Contact"), $pconfig['contact'], gtext("Contact information, e.g. name or email of the person responsible for this system: 'admin@email.address'."), true, 40);
 					html_inputbox("read", gtext("Community"), $pconfig['read'], gtext("In most cases, 'public' is used here."), true, 40);
 					html_checkbox("trapenable", gtext("Traps"), !empty($pconfig['trapenable']) ? true : false, gtext("Enable traps."), "", false, "trapenable_change()");
-					html_inputbox("traphost", gtext("Trap host"), $pconfig['traphost'], gtext("Enter trap host name."), true, 40);
-					html_inputbox("trapport", gtext("Trap port"), $pconfig['trapport'], gtext("Enter the port to send the traps to (default 162)."), true, 5);
-					html_inputbox("trap", gtext("Trap string"), $pconfig['trap'], gtext("Trap string."), true, 40);
+					html_inputbox("traphost", gtext("Trap Host"), $pconfig['traphost'], gtext("Enter trap host name."), true, 40);
+					html_inputbox("trapport", gtext("Trap Port"), $pconfig['trapport'], gtext("Enter the port to send the traps to (default 162)."), true, 5);
+					html_inputbox("trap", gtext("Trap String"), $pconfig['trap'], gtext("Trap string."), true, 40);
 					$helpinghand = '<a href="'
 						. 'http://www.freebsd.org/cgi/man.cgi?query=bsnmpd&amp;apropos=0&amp;sektion=0&amp;manpath=FreeBSD+' . $os_release . '-RELEASE&amp;format=html'
 						. '" target="_blank">'
 						. gtext('Please check the documentation')
 						. '</a>.';
-					html_textarea("auxparam", gtext("Auxiliary parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gtext("These parameters will be added to %s."), "snmpd.config") . ' ' . $helpinghand, false, 65, 5, false, false);
+					html_textarea("auxparam", gtext("Additional Parameters"), !empty($pconfig['auxparam']) ? $pconfig['auxparam'] : "", sprintf(gtext("These parameters will be added to %s."), "snmpd.config") . ' ' . $helpinghand, false, 65, 5, false, false);
 					html_separator();
 					html_titleline(gtext("Modules"));
 					?>
@@ -180,22 +177,22 @@ function trapenable_change() {
 							<input name="ucd" type="checkbox" id="ucd" value="yes" <?php if (!empty($pconfig['ucd'])) echo "checked=\"checked\""; ?> /><?=gtext("UCD-SNMP-MIB");?>
 						</td>
 					</tr>
-			  </table>
+				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" onclick="enable_change(true)" />
 				</div>
 				<div id="remarks">
 					<?php html_remark("note", gtext("Note"), sprintf(gtext("The associated MIB files can be found at %s."), "/usr/share/snmp/mibs"));?>
 				</div>
-			</td>
-		</tr>
-	</table>
-	<?php include("formend.inc");?>
-</form>
+				<?php include 'formend.inc';?>
+			</form>
+		</td>
+	</tr>
+</table>
 <script type="text/javascript">
 <!--
 trapenable_change();
 enable_change(false);
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

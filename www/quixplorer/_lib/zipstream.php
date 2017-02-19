@@ -62,7 +62,7 @@
 #   $zip = new ZipStream('some_files.zip');
 #
 #   # list of local files
-#   $files = array('foo.txt', 'bar.jpg');
+#   $files = ['foo.txt','bar.jpg'];
 #
 #   # read and add each file to the archive
 #   foreach ($files as $path)
@@ -74,8 +74,8 @@
 class ZipStream {
   const VERSION = '0.2.2';
 
-  var $opt = array(),
-      $files = array(),
+  var $opt = [],
+      $files = [],
       $cdr_ofs = 0,
       $ofs = 0; 
 
@@ -137,9 +137,9 @@ class ZipStream {
   #   $zip = new ZipStream('foo.zip');
   #
   #   # create a new zip file named 'bar.zip' with a comment
-  #   $zip = new ZipStream('bar.zip', array(
-  #     'comment' => 'this is a comment for the zip file.',
-  #   ));
+  #   $zip = new ZipStream('bar.zip',
+  #     ['comment' => 'this is a comment for the zip file.',
+  #   ]);
   #
   # Notes:
   #
@@ -147,7 +147,7 @@ class ZipStream {
   # headers by default.  This behavior is to allow software to send its
   # own headers (including the filename), and still use this library.
   #
-  function __construct($name = null, $opt = array()) {
+  function __construct($name = null, $opt = []) {
     # save options
     $this->opt = $opt;
 
@@ -186,12 +186,12 @@ class ZipStream {
   #   # add a file named 'bar.jpg' with a comment and a last-modified
   #   # time of two hours ago
   #   $data = file_get_contents('bar.jpg');
-  #   $zip->add_file('bar.jpg', $data, array(
-  #     'time'    => time() - 2 * 3600,
+  #   $zip->add_file('bar.jpg', $data,
+  #     ['time'    => time() - 2 * 3600,
   #     'comment' => 'this is a comment about bar.jpg',
-  #   ));
+  #   ]);
   # 
-  function add_file($name, $data, $opt = array()) {
+  function add_file($name, $data, $opt = []) {
     # compress data
     $zdata = gzdeflate($data);
 
@@ -237,12 +237,12 @@ class ZipStream {
   #   # '/usr/share/bigfile.rar' with a comment and a last-modified
   #   # time of two hours ago
   #   $path = '/usr/share/bigfile.rar';
-  #   $zip->add_file_from_path('bigfile.rar', $path, array(
-  #     'time'    => time() - 2 * 3600,
+  #   $zip->add_file_from_path('bigfile.rar', $path,
+  #     ['time'    => time() - 2 * 3600,
   #     'comment' => 'this is a comment about bar.jpg',
-  #   ));
+  #   ]);
   # 
-  function add_file_from_path($name, $path, $opt = array()) {
+  function add_file_from_path($name, $path, $opt = []) {
     if ($this->is_large_file($path)) {
       # file is too large to be read into memory; add progressively
       $this->add_large_file($name, $path, $opt);
@@ -260,7 +260,7 @@ class ZipStream {
   # Example:
   #
   #   # add a list of files to the archive
-  #   $files = array('foo.txt', 'bar.jpg');
+  #   $files = ['foo.txt','bar.jpg'];
   #   foreach ($files as $path)
   #     $zip->add_file($path, file_get_contents($path));
   # 
@@ -293,18 +293,18 @@ class ZipStream {
     $dts = $this->dostime($opt['time']);
 
     # build file header
-    $fields = array(            # (from V.A of APPNOTE.TXT)
-      array('V', 0x04034b50),     # local file header signature
-      array('v', (6 << 8) + 3),   # version needed to extract
-      array('v', 0x00),           # general purpose bit flag
-      array('v', $meth),          # compresion method (deflate or store)
-      array('V', $dts),           # dos timestamp
-      array('V', $crc),           # crc32 of data
-      array('V', $zlen),          # compressed data length
-      array('V', $len),           # uncompressed data length
-      array('v', $nlen),          # filename length
-      array('v', 0),              # extra data len
-    );
+    $fields = [              # (from V.A of APPNOTE.TXT)
+      ['V', 0x04034b50],     # local file header signature
+      ['v', (6 << 8) + 3],   # version needed to extract
+      ['v', 0x00],           # general purpose bit flag
+      ['v', $meth],          # compresion method (deflate or store)
+      ['V', $dts],           # dos timestamp
+      ['V', $crc],           # crc32 of data
+      ['V', $zlen],          # compressed data length
+      ['V', $len],           # uncompressed data length
+      ['v', $nlen],          # filename length
+      ['v', 0],              # extra data len
+    ];
 
     # pack fields and calculate "total" length
     $ret = $this->pack_fields($fields);
@@ -320,7 +320,7 @@ class ZipStream {
   #
   # Add a large file from the given path.
   #
-  private function add_large_file($name, $path, $opt = array()) {
+  private function add_large_file($name, $path, $opt = []) {
     $st = stat($path);
     $block_size = 1048576; # process in 1 megabyte chunks
     $algo = 'crc32b';
@@ -390,7 +390,7 @@ class ZipStream {
   # Save file attributes for trailing CDR record.
   #
   private function add_to_cdr($name, $opt, $meth, $crc, $zlen, $len, $rec_len) {
-    $this->files[] = array($name, $opt, $meth, $crc, $zlen, $len, $this->ofs);
+    $this->files[] = [$name, $opt, $meth, $crc, $zlen, $len, $this->ofs];
     $this->ofs += $rec_len;
   }
 
@@ -406,24 +406,24 @@ class ZipStream {
     # get dos timestamp
     $dts = $this->dostime($opt['time']);
 
-    $fields = array(                  # (from V,F of APPNOTE.TXT)
-      array('V', 0x02014b50),           # central file header signature
-      array('v', (6 << 8) + 3),         # version made by
-      array('v', (6 << 8) + 3),         # version needed to extract
-      array('v', 0x00),                 # general purpose bit flag
-      array('v', $meth),                # compresion method (deflate or store)
-      array('V', $dts),                 # dos timestamp
-      array('V', $crc),                 # crc32 of data
-      array('V', $zlen),                # compressed data length
-      array('V', $len),                 # uncompressed data length
-      array('v', strlen($name)),        # filename length
-      array('v', 0),                    # extra data len
-      array('v', strlen($comment)),     # file comment length
-      array('v', 0),                    # disk number start
-      array('v', 0),                    # internal file attributes
-      array('V', 32),                   # external file attributes
-      array('V', $ofs),                 # relative offset of local header
-    );
+    $fields = [                      # (from V,F of APPNOTE.TXT)
+      ['V', 0x02014b50],           # central file header signature
+      ['v', (6 << 8) + 3],         # version made by
+      ['v', (6 << 8) + 3],         # version needed to extract
+      ['v', 0x00],                 # general purpose bit flag
+      ['v', $meth],                # compresion method (deflate or store)
+      ['V', $dts],                 # dos timestamp
+      ['V', $crc],                 # crc32 of data
+      ['V', $zlen],                # compressed data length
+      ['V', $len],                 # uncompressed data length
+      ['v', strlen($name)],        # filename length
+      ['v', 0],                    # extra data len
+      ['v', strlen($comment)],     # file comment length
+      ['v', 0],                    # disk number start
+      ['v', 0],                    # internal file attributes
+      ['V', 32],                   # external file attributes
+      ['V', $ofs],                 # relative offset of local header
+    ];
 
     # pack fields, then append name and comment
     $ret = $this->pack_fields($fields) . $name . $comment;
@@ -447,16 +447,16 @@ class ZipStream {
     if ($opt && $opt['comment'])
       $comment = $opt['comment'];
 
-    $fields = array(                # (from V,F of APPNOTE.TXT)
-      array('V', 0x06054b50),         # end of central file header signature
-      array('v', 0x00),               # this disk number
-      array('v', 0x00),               # number of disk with cdr
-      array('v', $num),               # number of entries in the cdr on this disk
-      array('v', $num),               # number of entries in the cdr
-      array('V', $cdr_len),           # cdr size
-      array('V', $cdr_ofs),           # cdr ofs
-      array('v', strlen($comment)),   # zip file comment length
-    );
+    $fields = [                   # (from V,F of APPNOTE.TXT)
+      ['V', 0x06054b50],         # end of central file header signature
+      ['v', 0x00],               # this disk number
+      ['v', 0x00],               # number of disk with cdr
+      ['v', $num],               # number of entries in the cdr on this disk
+      ['v', $num],               # number of entries in the cdr
+      ['V', $cdr_len],           # cdr size
+      ['V', $cdr_ofs],           # cdr ofs
+      ['v', strlen($comment)],   # zip file comment length
+    ];
 
     $ret = $this->pack_fields($fields) . $comment;
     $this->send($ret);
@@ -476,10 +476,10 @@ class ZipStream {
   # usable after this.
   #
   function clear() {
-    $this->files = array();
+    $this->files = [];
     $this->ofs = 0;
     $this->cdr_ofs = 0;
-    $this->opt = array();
+    $this->opt = [];
   }
 
   ###########################
@@ -506,13 +506,13 @@ class ZipStream {
     if ($this->output_name) 
       $disposition .= "; filename=\"{$this->output_name}\"";
 
-    $headers = array(
+    $headers = [
       'Content-Type'              => $content_type,
       'Content-Disposition'       => $disposition,
       'Pragma'                    => 'public',
       'Cache-Control'             => 'public, must-revalidate',
       'Content-Transfer-Encoding' => 'binary',
-    );
+    ];
 
     foreach ($headers as $key => $val)
       header("$key: $val");
@@ -538,8 +538,8 @@ class ZipStream {
 
     # set lower-bound on dates
     if ($d['year'] < 1980) {
-      $d = array('year' => 1980, 'mon' => 1, 'mday' => 1, 
-                 'hours' => 0, 'minutes' => 0, 'seconds' => 0);
+      $d = ['year' => 1980, 'mon' => 1, 'mday' => 1, 
+                 'hours' => 0, 'minutes' => 0, 'seconds' => 0];
     }
 
     # remove extra years from 1980
@@ -555,7 +555,7 @@ class ZipStream {
   # pack() and return the result.
   #
   function pack_fields($fields) {
-    list ($fmt, $args) = array('', array());
+    list ($fmt, $args) = ['', []];
 
     # populate format string and argument list
     foreach ($fields as $field) {

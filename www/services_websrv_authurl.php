@@ -31,21 +31,19 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("Services"), gtext("Webserver"), gtext("Authenticate URL"), isset($uuid) ? gtext("Edit") : gtext("Add"));
-
-if (!isset($config['websrv']['authentication']['url']) || !is_array($config['websrv']['authentication']['url']))
-	$config['websrv']['authentication']['url'] = array();
-
-array_sort_key($config['websrv']['authentication']['url'], "path");
-$a_authurl = &$config['websrv']['authentication']['url'];
+$a_authurl = &array_make_branch($config,'websrv','authentication','url');
+if(empty($a_authurl)):
+else:
+	array_sort_key($a_authurl,'path');
+endif;
 
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_authurl, "uuid")))) {
 	$pconfig['uuid'] = $a_authurl[$cnid]['uuid'];
@@ -67,8 +65,8 @@ if ($_POST) {
 	}
 
 	// Input validation.
-	$reqdfields = explode(" ", "path realm");
-	$reqdfieldsn = array(gtext("URL"), gtext("Realm"));
+	$reqdfields = ['path','realm'];
+	$reqdfieldsn = [gtext('URL'),gtext('Realm')];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	// Check if URL is already configured.
@@ -80,7 +78,7 @@ if ($_POST) {
 	}
 
 	if (empty($input_errors)) {
-		$url = array();
+		$url = [];
 		$url['uuid'] = $_POST['uuid'];
 		$url['path'] = $_POST['path'];
 		$url['realm'] = $_POST['realm'];
@@ -100,26 +98,33 @@ if ($_POST) {
 		exit;
 	}
 }
+$pgtitle = [gtext('Services'),gtext('Webserver'),gtext('Authenticate URL'),isset($uuid) ? gtext('Edit') : gtext('Add')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-	<td class="tabcont">
-		<form action="services_websrv_authurl.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-			<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-			<table width="100%" border="0" cellpadding="6" cellspacing="0">
-	    			<?php html_titleline(gtext("Authenticate path & realm"));?>
-				<?php html_inputbox("path", gtext("Path"), $pconfig['path'], gtext("Path of the URL relative to document root."), true, 60);?>
-				<?php html_inputbox("realm", gtext("Realm"), $pconfig['realm'], gtext("String displayed in the dialog presented to the user when accessing the URL."), true, 60);?>
-			</table>
-			<div id="submit">
-				<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
-				<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
-				<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
-			</div>
-			<?php include("formend.inc");?>
-		</form>
-	</td>
-  </tr>
+	<tr>
+		<td class="tabcont">
+			<form action="services_websrv_authurl.php" method="post" name="iform" id="iform" onsubmit="spinner()">
+				<?php
+				if(!empty($input_errors)):
+					print_input_errors($input_errors);
+				endif;
+				?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<?php
+					html_titleline(gtext('Authenticate Path & Realm'));
+					html_inputbox("path", gtext('Path'), $pconfig['path'], gtext('Path of the URL relative to document root.'), true, 60);
+					html_inputbox("realm", gtext('Realm'), $pconfig['realm'], gtext('String displayed in the dialog presented to the user when accessing the URL.'),true,60);
+					?>
+				</table>
+				<div id="submit">
+					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
+					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
+					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
+				</div>
+				<?php include 'formend.inc';?>
+			</form>
+		</td>
+	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

@@ -31,10 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-
-$pgtitle = array(gtext("Network"), gtext("Firewall"));
+require 'auth.inc';
+require 'guiconfig.inc';
 
 $pconfig['enable'] = isset($config['system']['firewall']['enable']);
 
@@ -78,13 +76,13 @@ if (isset($_POST['export']) && $_POST['export']) {
 		// import from XML
 		$xml = file_get_contents($_FILES['rulesfile']['tmp_name']);
 		$doc = new DOMDocument();
-		$data = array();
-		$data['rule'] = array();
+		$data = [];
+		$data['rule'] = [];
 		if ($doc->loadXML($xml) != FALSE) {
 			$doc->normalizeDocument();
 			$rules = $doc->getElementsByTagName('rule');
 			foreach ($rules as $rule) {
-				$a = array();
+				$a = [];
 				foreach ($rule->childNodes as $node) {
 					if ($node->nodeType != XML_ELEMENT_NODE)
 						continue;
@@ -101,9 +99,7 @@ if (isset($_POST['export']) && $_POST['export']) {
 			$errormsg = gtext("Invalid file format.");
 		} else {
 			// Take care array already exists.
-			if (!isset($config['system']['firewall']['rule']) || !is_array($config['system']['firewall']['rule']))
-				$config['system']['firewall']['rule'] = array();
-
+			array_make_branch($config,'system','firewall','rule');
 			// Import rules.
 			foreach ($data['rule'] as $rule) {
 				// Check if rule already exists.
@@ -147,12 +143,11 @@ if (isset($_POST['export']) && $_POST['export']) {
 	}
 }
 
-if (!isset($config['system']['firewall']['rule']) || !is_array($config['system']['firewall']['rule']))
-	$config['system']['firewall']['rule'] = array();
-
-
-array_sort_key($config['system']['firewall']['rule'], "ruleno");
-$a_rule = &$config['system']['firewall']['rule'];
+$a_rule = &array_make_branch($config,'system','firewall','rule');
+if(empty($a_rule)):
+else:
+	array_sort_key($a_rule,'ruleno');
+endif;
 
 if (isset($_GET['act']) && $_GET['act'] === "del") {
 	if ($_GET['uuid'] === "all") {
@@ -186,8 +181,9 @@ function firewall_process_updatenotification($mode, $data) {
 
 	return $retval;
 }
+$pgtitle = [gtext('Network'),gtext('Firewall')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -279,7 +275,7 @@ spinner();
 					<tr>
 						<td width="22%" valign="top" class="vncell">&nbsp;</td>
 						<td width="78%" class="vtable">
-							<?=gtext("Download firewall rules.");?><br />
+							<?=gtext("Export firewall rules.");?><br />
 							<div id="submit">
 								<input name="export" type="submit" class="formbtn" value="<?=gtext("Export");?>" /><br />
 							</div>
@@ -302,6 +298,6 @@ spinner();
 			</td>
 		</tr>
 	</table>
-	<?php include("formend.inc");?>
+	<?php include 'formend.inc';?>
 </form>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

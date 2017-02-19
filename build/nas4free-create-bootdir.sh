@@ -105,17 +105,17 @@ fi
 
 # Generate the loader.conf file using by bootloader
 echo "Generate $MINIBSD_DIR/loader.conf"
-echo 'mfsroot_load="NO"' > $MINIBSD_DIR/loader.conf
+echo 'mfsroot_load="YES"' > $MINIBSD_DIR/loader.conf
 echo 'mfsroot_type="mfs_root"' >> $MINIBSD_DIR/loader.conf
 echo 'mfsroot_name="/mfsroot"' >> $MINIBSD_DIR/loader.conf
 echo 'hw.est.msr_info="0"' >> $MINIBSD_DIR/loader.conf
 echo 'hw.hptrr.attach_generic="0"' >> $MINIBSD_DIR/loader.conf
 echo 'hw.msk.msi_disable="1"' >> $MINIBSD_DIR/loader.conf
 echo 'kern.maxfiles="6289573"' >> $MINIBSD_DIR/loader.conf
-echo 'kern.cam.boot_delay="8000"' >> $MINIBSD_DIR/loader.conf
-echo 'kern.cam.ada.legacy_aliases="0"' >> $MINIBSD_DIR/loader.conf
+echo 'kern.cam.boot_delay="12000"' >> $MINIBSD_DIR/loader.conf
 echo 'kern.geom.label.disk_ident.enable="0"' >> $MINIBSD_DIR/loader.conf
 echo 'kern.geom.label.gptid.enable="0"' >> $MINIBSD_DIR/loader.conf
+echo 'kern.vty = "sc"' >> $MINIBSD_DIR/loader.conf
 echo 'hint.acpi_throttle.0.disabled="0"' >> $MINIBSD_DIR/loader.conf
 echo 'hint.p4tcc.0.disabled="0"' >> $MINIBSD_DIR/loader.conf
 
@@ -147,15 +147,7 @@ fi
 # iSCSI driver
 echo 'isboot_load="YES"' >> $MINIBSD_DIR/loader.conf
 # preload kernel drivers
-#echo 'opensolaris_load="YES"' >> $MINIBSD_DIR/loader.conf
 echo 'zfs_load="YES"' >> $MINIBSD_DIR/loader.conf
-#echo 'geom_mirror_load="YES"' >> $MINIBSD_DIR/loader.conf
-#echo 'geom_stripe_load="YES"' >> $MINIBSD_DIR/loader.conf
-# xmd
-echo 'xmfsroot_load="YES"' >> $MINIBSD_DIR/loader.conf
-echo 'xmfsroot_type="xmd_root"' >> $MINIBSD_DIR/loader.conf
-echo 'xmfsroot_name="/mfsroot.uzip"' >> $MINIBSD_DIR/loader.conf
-echo 'geom_xmd_load="YES"' >> $MINIBSD_DIR/loader.conf
 
 # Xen
 if [ "dom0" == ${NAS4FREE_XARCH} ]; then

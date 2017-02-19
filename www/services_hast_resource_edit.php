@@ -31,21 +31,19 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("Services"), gtext("HAST"), isset($uuid) ? gtext("Edit") : gtext("Add"));
-
-if (!isset($config['hast']['hastresource']) || !is_array($config['hast']['hastresource']))
-	$config['hast']['hastresource'] = array();
-
-array_sort_key($config['hast']['hastresource'], "name");
-$a_resource = &$config['hast']['hastresource'];
+$a_resource = &array_make_branch($config,'hast','hastresource');
+if(empty($a_resource)):
+else:
+	array_sort_key($a_resource,'name');
+endif;
 
 if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_resource, "uuid")))) {
 	$pconfig['uuid'] = $a_resource[$cnid]['uuid'];
@@ -81,17 +79,22 @@ if ($_POST) {
 	}
 
 	// Input validation.
-	$reqdfields = explode(" ", "name aname bname apath bpath aremoteaddr bremoteaddr");
-	$reqdfieldsn = array(gtext("Resource name"),
-				gtext("Node Name"), gtext("Node Name"),
-				gtext("Path"), gtext("Path"),
-				gtext("Node B IP address"), gtext("Node A IP address"));
-	$reqdfieldst = explode(" ", "alias string string string string string string");
+	$reqdfields = ['name','aname','bname','apath','bpath','aremoteaddr','bremoteaddr'];
+	$reqdfieldsn = [
+		gtext('Resource Name'),
+		gtext('Node Name'),
+		gtext('Node Name'),
+		gtext('Path'),
+		gtext('Path'),
+		gtext('Node B IP address'),
+		gtext('Node A IP address')
+	];
+	$reqdfieldst = ['alias','string','string','string','string','string','string'];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	if (empty($input_errors)) {
-		$resource = array();
+		$resource = [];
 		$resource['uuid'] = $_POST['uuid'];
 		$resource['name'] = $_POST['name'];
 		$resource['aname'] = $_POST['aname'];
@@ -123,18 +126,15 @@ if ($_POST) {
 		exit;
 	}
 }
+$pgtitle = [gtext('Services'),gtext('HAST'),isset($uuid) ? gtext('Edit') : gtext('Add')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav">
-				<li class="tabinact"><a href="services_hast.php"><span><?=gtext("Settings");?></span></a></li>
-				<li class="tabact"><a href="services_hast_resource.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Resources");?></span></a></li>
-				<li class="tabinact"><a href="services_hast_info.php"><span><?=gtext("Information");?></span></a></li>
-			</ul>
-		</td>
-	</tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabinact"><a href="services_hast.php"><span><?=gtext("Settings");?></span></a></li>
+		<li class="tabact"><a href="services_hast_resource.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Resources");?></span></a></li>
+		<li class="tabinact"><a href="services_hast_info.php"><span><?=gtext("Information");?></span></a></li>
+	</ul></td></tr>
 	<tr>
 		<td class="tabcont">
 			<form action="services_hast_resource_edit.php" method="post" name="iform" id="iform">
@@ -146,13 +146,13 @@ if ($_POST) {
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
 					<?php
 					html_titleline(gtext("HAST Resource"));
-					html_inputbox("name", gtext("Resource name"), $pconfig['name'], "", false, 30);
+					html_inputbox("name", gtext("Resource Name"), $pconfig['name'], "", false, 30);
 					$helpinghand = '<a href="'
 						. 'http://www.freebsd.org/cgi/man.cgi?query=hast.conf&sektion=5'
 						. '" target="_blank">'
 						. gtext('Please check the documentation')
 						. '</a>.';
-					html_textarea("auxparam", gtext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gtext("These parameters are added to %s."), "hast.conf") . " " . $helpinghand, false, 65, 5, false, false);
+					html_textarea("auxparam", gtext("Additional Parameters"), $pconfig['auxparam'], sprintf(gtext("These parameters are added to %s."), "hast.conf") . " " . $helpinghand, false, 65, 5, false, false);
 					html_separator();
 					html_titleline(gtext("Node A Settings"));
 					html_inputbox("aname", gtext("Node Name"), $pconfig['aname'], "", false, 40);
@@ -170,9 +170,9 @@ if ($_POST) {
 					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

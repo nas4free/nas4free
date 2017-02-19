@@ -31,24 +31,28 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 session_start ();
 
 // Make sure no other output than the requested data is echoed.
-if (0 == strcmp("cpu=", getenv("QUERY_STRING"))) {          /* leave it as is to avoid side effects (only an additional "=")*/
+if(0 == strcmp("cpu=", getenv("QUERY_STRING"))): /* leave it as is to avoid side effects (only an additional "=")*/
 	$cpuload = @system_get_cpu_usage();
 	echo $cpuload;
-} else {
+else:
 	$param = $_GET;
-	if (isset($param['if'])) { 
-    	$ifinfo = @get_interface_info($param['if']);
-    	$time = gettimeofday();
-    	$timing = (double)$time["sec"] + (double)$time["usec"] / 1000000.0;
-    	echo "$timing|" . $ifinfo['inbytes'] . "|" . $ifinfo['outbytes'] . "\n";
-    } else if (isset($param['cpu'])) {
-        if ($param['cpu'] == 0) { $_SESSION['cpu'] = @system_get_smp_cpu_usage(); } 
-        echo $_SESSION['cpu'][$param['cpu']]; 
-    }
-}
+	if(isset($param['if'])):
+		$ifinfo = @get_interface_info($param['if']);
+		$time = gettimeofday();
+		$timing = (double)$time["sec"] + (double)$time["usec"] / 1000000.0;
+		echo "$timing|" . $ifinfo['inbytes'] . "|" . $ifinfo['outbytes'] . "\n";
+	else:
+		if (isset($param['cpu'])):
+			if ($param['cpu'] == 0):
+				$_SESSION['cpu'] = @system_get_smp_cpu_usage();
+			endif; 
+			echo $_SESSION['cpu'][$param['cpu']]; 
+		endif;
+	endif;
+endif;
 ?>

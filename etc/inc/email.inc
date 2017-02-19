@@ -31,9 +31,9 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("config.inc");
-require_once("util.inc");
-require_once("system.inc");
+require_once 'config.inc';
+require_once 'util.inc';
+require_once 'system.inc';
 
 // Checks if Email settings are valid.
 // Return 0 if successful, otherwise 1.
@@ -68,12 +68,12 @@ function email_send($address, $subject, $message, &$error) {
 	// Get the language configured.
 	$language = $config['system']['language'];
 	$codeset = $g_languages[$language]['codeset'];
-	$preferences = array(
+	$preferences = [
 		"input-charset" => $codeset,
 		"output-charset" => "UTF-8",
 		"line-length" => 76,
 		"line-break-chars" => "\n"
-	);
+	];
 
 	// Substitute special characters in subject.
 	$subject = str_replace("%d", trim(shell_exec("date")), $subject);
@@ -81,7 +81,7 @@ function email_send($address, $subject, $message, &$error) {
 	$subject = iconv_mime_encode("Subject", $subject, $preferences);
 
 	// Convert adresses for msmtp.
-	$address = strtr($address, array(";" => " ", "," => " "));
+	$address = strtr($address, [";" => " ", "," => " "]);
 
 	// Generate message content.
 	$data = "";

@@ -31,10 +31,10 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("config.inc");
+require_once 'config.inc';
 
 function interfaces_wireless_get_channellist($if) {
-	$a_chanlist = array();
+	$a_chanlist = [];
 
 	exec("/sbin/ifconfig {$if} list chan", $rawdata);
 	foreach ($rawdata as $line) {
@@ -42,7 +42,7 @@ function interfaces_wireless_get_channellist($if) {
 
 		foreach (explode("Channel", $line) as $channelv) {
 			if (preg_match("/(\d+)\s+:\s+(\d+)\s+MHz\s+(.+)/", $channelv, $matches)) {
-				$info = array();
+				$info = [];
 				$info['channel'] = $matches[1];
 				$info['freq'] = $matches[2];
 				$info['mode'] = trim($matches[3]);
@@ -58,7 +58,7 @@ function interfaces_wireless_get_channellist($if) {
 }
 
 function interfaces_wireless_get_standards($if) {
-	$a_standards = array();
+	$a_standards = [];
 
 	exec("/sbin/ifconfig -m {$if}", $rawdata);
 	foreach ($rawdata as $line) {

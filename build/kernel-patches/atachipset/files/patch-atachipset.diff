@@ -1,5 +1,5 @@
---- ata/chipsets/ata-via.c.orig	2016-03-13 20:39:16.000000000 +0100
-+++ ata/chipsets/ata-via.c	2016-03-13 20:41:48.000000000 +0100
+--- ata/chipsets/ata-via.c.orig	2016-10-25 16:44:10.761091000 +0200
++++ ata/chipsets/ata-via.c	2016-10-25 16:51:15.000000000 +0200
 @@ -150,6 +150,12 @@
      if (ata_setup_interrupt(dev, ata_generic_intr))
  	return ENXIO;

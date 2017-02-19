@@ -31,21 +31,20 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 $gt_remark_1 = gtext('A mounted disk or partition will be unmounted temporarily to perform the requested action.')
 	. '<br />'
 	. gtext('Users will notice a service disruption when trying to access this mount while the file system check is running.');
 
-$pgtitle = array(gtext("Disks"),gtext("Mount Point"),gtext("Fsck"));
+$pgtitle = [gtext('Disks'),gtext('Mount Point'),gtext('Fsck')];
 
-if (!isset($config['mounts']['mount']) || !is_array($config['mounts']['mount']))
-	$config['mounts']['mount'] = array();
-
-array_sort_key($config['mounts']['mount'], "devicespecialfile");
-
-$a_mount = $config['mounts']['mount'];
+$a_mount = &array_make_branch($config,'mounts','mount');
+if(empty($a_mount)):
+else:
+	array_sort_key($a_mount,'devicespecialfile');
+endif;
 
 if ($_POST) {
 	unset($input_errors);
@@ -53,8 +52,8 @@ if ($_POST) {
 	unset($do_action);
 
 	// Input validation
-	$reqdfields = explode(" ", "disk");
-	$reqdfieldsn = array(gtext("Disk"));
+	$reqdfields = ['disk'];
+	$reqdfieldsn = [gtext('Disk')];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 
 	if (empty($input_errors)) {
@@ -70,7 +69,7 @@ if (!isset($do_action)) {
 	$umount = false;
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabnavtbl">
@@ -86,6 +85,7 @@ if (!isset($do_action)) {
 			<?php if ($input_errors) print_input_errors($input_errors);?>
 			<form action="disks_mount_fsck.php" method="post" name="iform" id="iform" onsubmit="spinner()">
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+				<?php html_titleline(gtext("Mount Point Fsck"));?>
 					<tr>
 						<td valign="top" class="vncellreq"><?=gtext("Disk");?></td>
 						<td class="vtable">
@@ -126,9 +126,9 @@ if (!isset($do_action)) {
 				<div id="remarks">
 					<?php html_remark("note", gtext("Note"), gtext("You can't unmount a drive which is used by swap file, a iSCSI-target file or any other running process!"));?>
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

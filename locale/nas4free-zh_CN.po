@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
-"POT-Creation-Date: 2016-10-29 14:22+0000\n"
-"PO-Revision-Date: 2016-08-18 19:02+0000\n"
-"Last-Translator: Hu Xinyu <Unknown>\n"
+"POT-Creation-Date: 2017-02-18 21:02+0000\n"
+"PO-Revision-Date: 2017-02-17 17:31+0000\n"
+"Last-Translator: tianmo <Unknown>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2016-10-29 12:41+0000\n"
-"X-Generator: Launchpad (build 18246)\n"
+"X-Launchpad-Export-Date: 2017-02-19 09:42+0000\n"
+"X-Generator: Launchpad (build 18326)\n"
 "Language: zh_CN\n"
 "X-Poedit-Bookmarks: -1,-1,-1,-1,128,-1,-1,-1,-1,-1\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -78,11 +78,6 @@ msgid "%s is too long."
 msgstr "%s 太长了。"
 
 #, php-format
-msgid ""
-"%s must be enabled for Unison to work, and the %s must have shell access."
-msgstr ""
-
-#, php-format
 msgid "%s of %sB"
 msgstr "%s 与 %sB"
 
@@ -106,8 +101,17 @@ msgstr "%sB 有效，于 %sB"
 msgid "%sB used of %sB"
 msgstr "%sB 已用，于 %sB"
 
+#, php-format
+msgid "'%s' deletes all statistical data from the graphs!"
+msgstr "'%s' 清除图表中所有统计数据"
+
 msgid "(Change if needed)"
 msgstr "(如果需要则改变)"
+
+msgid ""
+"(Default lengths are: 128 for AES, 128 for Blowfish, 128 for Camellia and "
+"192 for 3DES)."
+msgstr "默认长度：AES为128，Blowfish为128，Camellia为128，3DES为192"
 
 msgid "(Found in a Maxtor 6B200M0 200GB and Maxtor 2R015H1 15GB disks)."
 msgstr "找到一个Maxtor 6B200M0 200GB 和一个Maxtor 2R015H1 15GB 硬盘"
@@ -116,13 +120,13 @@ msgid ""
 "(Kingston)Counts the number of flash erase failures. This Attribute returns "
 "the total number of Flash erase operation failures since the drive was "
 "deployed. This Attribute is identical to Attribute 182."
-msgstr ""
+msgstr "（Kingston）计算闪存擦除失败的次数。 此属性返回自部署驱动器以来Flash擦除操作失败的总数。 此属性与属性182相同。"
 
 msgid ""
 "(Kingston)Counts the number of flash program failures. This Attribute "
 "returns the total number of Flash program operation failures since the drive "
 "was deployed. This attribute is identical to attribute 181."
-msgstr ""
+msgstr "（Kingston）计算闪存程序失败的次数。 此属性返回自部署驱动器以来Flash程序操作失败的总数。 该属性与属性181相同。"
 
 msgid ""
 "(Vendor specific raw value.) Rate of seek errors of the magnetic heads. If "
@@ -132,6 +136,8 @@ msgid ""
 "different structure for different vendors and is often not meaningful as a "
 "decimal number."
 msgstr ""
+"（供应商特定的原始值。）磁头的搜索错误率。 如果机械定位系统中存在部分故障，则会出现寻道错误。 这种故障可能由于许多因素，例如伺服的损坏或硬盘的热扩展。 "
+"原始值对于不同的供应商具有不同的结构，并且通常作为十进制数没有意义。"
 
 msgid ""
 "(Vendor specific raw value.) Stores data related to the rate of hardware "
@@ -139,11 +145,17 @@ msgid ""
 "value has different structure for different vendors and is often not "
 "meaningful as a decimal number."
 msgstr ""
+"（供应商特定的原始值。）存储与从磁盘表面读取数据时发生的硬件读取错误的速率相关的数据。 "
+"原始值对于不同的供应商具有不同的结构，并且通常作为十进制数没有意义。"
 
 msgid ""
 "(Vendor-specific raw value.) The raw value has different structure for "
 "different vendors and is often not meaningful as a decimal number."
-msgstr ""
+msgstr "（供应商特定的原始值。）原始值对于不同的供应商具有不同的结构，并且通常作为十进制数没有意义。"
+
+#, php-format
+msgid "(default %s %s"
+msgstr "默认 %s %s"
 
 msgid "*** Imported duplicate ***"
 msgstr "*** 重复导入 ***"
@@ -173,39 +185,25 @@ msgid "802.1Q VLAN tag (between 1 and 4094)."
 msgstr "802.1Q VLAN 标签 （介于1和4094之间）。"
 
 msgid ""
-"A Auth Group contains authorised users and secrets for additional security."
-msgstr "认证组含有授权用户和秘密以增强额外的安全性。"
-
-msgid ""
-"A Initiator Group contains authorised initiator names and networks to access "
-"the target."
-msgstr "启动器组拥有已授权的启动器名称和目标器的网络访问权限。"
-
-msgid ""
 "A NTP time server name may only contain the characters a-z, 0-9, '-' and '.'."
 msgstr "NTP 伺服器名称只可以含有 a-z，0-9，'-' 及 '.' 的字元。"
 
 msgid ""
-"A Portal Group contains IP addresses and listening TCP ports to connect the "
-"target from the initiator."
-msgstr "门户组含有可从启动器（initiator）连接目标器（target）的 IP 地址和侦听的TCP 端口。"
-
-msgid ""
 "A Portal Group is identified by a tag number and defines IP addresses and "
 "listening TCP ports."
-msgstr ""
+msgstr "端口组由标记识别并定义IP地址和监听的TCP端口"
 
 #, php-format
 msgid "A VLAN with the tag %s is already defined on this interface."
 msgstr "此介面已经定义一个为 %s 的VLAN 标签。"
 
 msgid ""
-"A directory listing is generated if a directory is requested and no index-"
-"file (index.php, index.html, index.htm or default.htm) was found in that "
-"directory."
-msgstr ""
-"如果要求目录时目录档不存在和目录没有索引文件，系统将会自动产生目录列表。（index.php, index.html, index.htm 或 "
-"default.htm）"
+"A directory listing is generated when no index-files (index.php, index.html, "
+"index.htm or default.htm) are found in a directory."
+msgstr "当在目录中找不到索引文件（index.php，index.html，index.htm或default.htm）时，将生成目录列表。"
+
+msgid "A firmware upgrade is in progress."
+msgstr "正在进行固件升级。"
 
 msgid ""
 "A host name alias. This option can appear multiple times, for each domain "
@@ -230,6 +228,9 @@ msgstr "为执行需求的动作，已挂载的磁盘或分区将临时取消挂
 msgid "A reload request has been sent to the daemon."
 msgstr "已重新发送需求至守护进程。"
 
+msgid "A rescan has been issued."
+msgstr "已经进行重复扫描"
+
 msgid "A route to this destination network already exists."
 msgstr "到目标网段的路由设置已经存在。"
 
@@ -239,6 +240,7 @@ msgid ""
 "been turned entirely off (disconnected from power source) and when the hard "
 "disk returns from having previously been put to sleep mode."
 msgstr ""
+"主轴启动/停止循环的计数。 在硬盘在完全关闭（与电源断开）之前以及当硬盘从之前已经被置于睡眠模式返回时，硬盘被接通时，主轴打开，因此计数增加。"
 
 msgid "A valid IP address must be specified."
 msgstr "请输入一个有效的IP位址。"
@@ -247,9 +249,11 @@ msgid ""
 "A valid IP address or CIDR notation must be specified for the hosts allow."
 msgstr "请记为允许主机(host allow) 输入一个有效的IP 位址或CIDR 标记。"
 
-msgid ""
-"A valid IPv4 address must be specified for the primary/secondary DNS server."
-msgstr "请输入一个有效的 DNS IPv4 位址。"
+msgid "A valid IPv4 address must be specified for the primary DNS server."
+msgstr "必须为主DNS服务器指定有效的IPv4地址。"
+
+msgid "A valid IPv4 address must be specified for the secondary DNS server."
+msgstr "必须为辅助DNS服务器指定有效的IPv4地址。"
 
 msgid "A valid IPv4 address must be specified."
 msgstr "请输入一个有效的 IPv4 位址。"
@@ -260,9 +264,11 @@ msgstr "请输入一个有效的 IPv4 网路位元数（IPv4 network bit count�
 msgid "A valid IPv6 Gateway address must be specified."
 msgstr "请输入一个有效的 IPv6 网关地址。"
 
-msgid ""
-"A valid IPv6 address must be specified for the primary/secondary DNS server."
-msgstr "请输入一个有效的主/备用 DNS 伺服器 IPv6 位址。"
+msgid "A valid IPv6 address must be specified for the primary DNS server."
+msgstr "必须为主DNS服务器指定有效的IPv6地址。"
+
+msgid "A valid IPv6 address must be specified for the secondary DNS server."
+msgstr "必须为辅助DNS服务器指定有效的IPv6地址。"
 
 msgid "A valid IPv6 address must be specified."
 msgstr "请输入一个有效的 IPv6 地址。"
@@ -300,8 +306,8 @@ msgstr "ACL继承"
 msgid "ACL mode"
 msgstr "ACL模式"
 
-msgid "AD authentication disabled"
-msgstr "关闭 AD 认证"
+msgid "AD authentication is disabled."
+msgstr "AD身份验证被禁用。"
 
 msgid "AD or PDC name."
 msgstr "AD或PDC 的名称。"
@@ -309,19 +315,19 @@ msgstr "AD或PDC 的名称。"
 msgid "AFP"
 msgstr "AFP"
 
-msgid "AFP compatibility"
-msgstr "AFP 兼容性"
+msgid "AFP Compatibility"
+msgstr "AFP兼容性"
 
 msgid "AG"
 msgstr "AG"
 
-msgid "AIO module"
+msgid "AIO Module"
 msgstr "AIO模块"
 
-msgid "AIO read size"
-msgstr "AIO 读取大小"
+msgid "AIO Read Size"
+msgstr "AIO读取大小"
 
-msgid "AIO write size"
+msgid "AIO Write Size"
 msgstr "AIO写入大小"
 
 msgid "ALL Interfaces"
@@ -354,9 +360,6 @@ msgstr "存取权限"
 msgid "Access Time (atime)"
 msgstr "访问时间(atime)"
 
-msgid "Access mode"
-msgstr "存取模式"
-
 msgid "Access the webGUI with the new IP address"
 msgstr "用新IP地址访问webGUI"
 
@@ -378,13 +381,10 @@ msgid ""
 msgstr "如果您想在检测到新的错误或SMART命令失败时获得通知，请开启电邮报告功能。"
 
 msgid "Active"
-msgstr ""
+msgstr "活动"
 
 msgid "Active Directory"
 msgstr "活动目录"
-
-msgid "Active Directory List"
-msgstr "Active Directory 列表"
 
 msgid "Active Shares"
 msgstr "活跃分享区"
@@ -393,10 +393,10 @@ msgid "Active Users"
 msgstr "活跃用户"
 
 msgid "Activities"
-msgstr ""
+msgstr "活动事件"
 
 msgid "Activity"
-msgstr ""
+msgstr "Activity(活动)"
 
 msgid "Adaptive (Low Power Consumption)"
 msgstr "自适应（节能）"
@@ -404,23 +404,62 @@ msgstr "自适应（节能）"
 msgid "Add"
 msgstr "添加"
 
+msgid "Add Bridge"
+msgstr "添加网桥"
+
+msgid "Add CARP"
+msgstr "添加CARP"
+
 msgid "Add Dataset"
 msgstr "添加数据集"
+
+msgid "Add Encrypted Volume"
+msgstr "添加加密卷"
+
+msgid "Add Group"
+msgstr "新增群组"
 
 msgid "Add Host"
 msgstr "添加主机"
 
+msgid "Add LAGG"
+msgstr "添加LAGG"
+
 msgid "Add MIB"
 msgstr "添加MIB"
+
+msgid "Add NFS Share"
+msgstr "添加NFS共享"
+
+msgid "Add Option"
+msgstr ""
+
+msgid "Add Pool"
+msgstr "添加池"
 
 msgid "Add RAID"
 msgstr "添加RAID"
 
+msgid "Add Record"
+msgstr "新增记录"
+
+msgid "Add Resource"
+msgstr "添加资源"
+
 msgid "Add Route"
 msgstr "添加路由"
 
-msgid "Add Rsync job"
-msgstr "添加 Rsync 任务"
+msgid "Add Rsync Job"
+msgstr "添加Rsync作业"
+
+msgid "Add Rsync Module"
+msgstr "添加Rsync模块"
+
+msgid "Add Samba Share"
+msgstr "添加Samba共享"
+
+msgid "Add Share"
+msgstr "添加共享"
 
 msgid "Add Snapshot"
 msgstr "增加快照"
@@ -428,23 +467,32 @@ msgstr "增加快照"
 msgid "Add URL"
 msgstr "添加 URL"
 
+msgid "Add User Account"
+msgstr "添加用户账户"
+
+msgid "Add VLAN"
+msgstr "添加VLAN"
+
 msgid "Add Virtual Device"
 msgstr "添加虚拟设备"
 
 msgid "Add Volume"
 msgstr "添加卷"
 
+msgid "Add WLAN"
+msgstr "添加WLAN"
+
 msgid "Add a cache device to a pool"
-msgstr ""
+msgstr "给库添加一个缓存设备"
 
 msgid "Add a log device to a pool"
-msgstr ""
+msgstr "给库添加一个日志设备"
 
 msgid "Add a spare device to a pool"
-msgstr ""
+msgstr "给库添加一个热备设备"
 
 msgid "Add a virtual device to a pool"
-msgstr ""
+msgstr "给库添加一个虚拟设备"
 
 msgid "Add additional scheduled self-test."
 msgstr "添加附加的计划自我检测"
@@ -467,9 +515,6 @@ msgstr "添加磁盘"
 msgid "Add extent"
 msgstr "添加 extent"
 
-msgid "Add group"
-msgstr "添加组群"
-
 msgid "Add initiator"
 msgstr "添加启动器"
 
@@ -482,23 +527,11 @@ msgstr "添加介面"
 msgid "Add job"
 msgstr "添加任务"
 
-msgid "Add module"
-msgstr "添加模组"
-
 msgid "Add mount point"
 msgstr "添加挂载点"
 
-msgid "Add option"
-msgstr "添加选项"
-
-msgid "Add pool"
-msgstr "添加储存池"
-
 msgid "Add portal group"
 msgstr "添加门户组"
-
-msgid "Add resource"
-msgstr "添加资源"
 
 msgid "Add rule"
 msgstr "添加规则"
@@ -506,28 +539,20 @@ msgstr "添加规则"
 msgid "Add self-test"
 msgstr "添加自我检测"
 
-msgid "Add share"
-msgstr "添加分享区"
-
 msgid "Add target"
 msgstr "添加目标"
 
-msgid "Add user"
-msgstr "添加用户"
+msgid "Additional Group"
+msgstr "附加组"
 
 msgid "Additional Network"
 msgstr "其他网络"
 
+msgid "Additional Parameters"
+msgstr "附加参数"
+
 msgid "Additional Storage"
 msgstr "额外的存储"
-
-msgid "Additional group"
-msgstr "其他群组"
-
-msgid ""
-"Additional parameters to the hardware-specific part of the driver for second "
-"UPS."
-msgstr ""
 
 msgid "Additional parameters to the hardware-specific part of the driver."
 msgstr "驱动程序中与硬件相关到附加参数。"
@@ -538,26 +563,23 @@ msgstr "位址"
 msgid "Address of the remote hastd daemon. It must be a static IP address."
 msgstr "hastd 远程守护进程的位址。它必须是一个静态IP位址。"
 
-msgid "Admin password"
-msgstr "管理员密码"
+msgid "Admin Password"
+msgstr "管理密码"
 
-msgid "Administration password"
+msgid "Administration Password"
 msgstr "管理员密码"
 
 msgid "Administrative WebGUI"
 msgstr "网页管理界面"
 
-msgid "Administrator name"
-msgstr "管理员帐号"
+msgid "Administrator Name"
+msgstr "管理员名称"
 
 msgid "Advanced"
 msgstr "高级设定"
 
-msgid "Advanced Configuration"
-msgstr "高级配置"
-
 msgid "Advanced Format"
-msgstr ""
+msgstr "高级格式化"
 
 msgid "Advanced Options"
 msgstr "高级选项"
@@ -571,19 +593,22 @@ msgstr "高级设置"
 msgid "Advanced settings"
 msgstr "高级设置"
 
-msgid "Advertisement skew"
-msgstr "廣告的毫秒級值"
+msgid "Advertisement Skew"
+msgstr "广告偏斜"
+
+msgid "Afrikaans"
+msgstr "南非荷兰语(Afrikaans)"
 
 msgid "After"
-msgstr ""
+msgstr "在此之后"
 
 msgid "After - File-deletions will be done after the transfer has completed."
-msgstr ""
+msgstr "在传输完成后将 -File-deletions"
 
 msgid ""
 "After you click \"Save\" you may also have to do one or more of the "
 "following steps before you can access this server again:"
-msgstr ""
+msgstr "点击“保存”后你或许需要做以下步骤来再次连通服务器："
 
 msgid ""
 "After you click \"Save\" you must reboot the server to make the changes take "
@@ -591,9 +616,9 @@ msgid ""
 msgstr "点击保存后必须重启服务器来让改变生效。"
 
 msgid "Age"
-msgstr ""
+msgstr "时间"
 
-msgid "Aggregation protocol"
+msgid "Aggregation Protocol"
 msgstr "聚合协议"
 
 msgid "Aggressive"
@@ -604,14 +629,20 @@ msgid ""
 "value is 50 less for some models. Marked as obsolete.)"
 msgstr "西部数据硬盘气流温度 (等同于温度，但是有些硬盘次项温度读数偏低50度。标记为过期参数。 )"
 
-msgid "Albanian"
-msgstr "阿尔巴尼亚文"
-
 msgid "Alert Level"
 msgstr "警报等级"
 
+msgid "Algorithm"
+msgstr "算法"
+
 msgid "All"
 msgstr "全部"
+
+msgid "All Dirs"
+msgstr "所有目录"
+
+msgid "All data from the following statistics have been deleted:"
+msgstr "以下统计的所有数据已经被删除："
 
 msgid ""
 "All data in the path is overwritten. To avoid invalid data/permission, using "
@@ -621,15 +652,15 @@ msgstr "路径中的全部数据都将被覆盖，推荐使用空的UFS目录以
 msgid "All data will be lost when you activate this option!"
 msgstr "当你激活此选项所有的数据将会丢失"
 
-msgid "All dirs"
-msgstr "所有目录"
-
 #, php-format
 msgid "All dirs requires mounted path, but Path %s is not mounted."
 msgstr "所有目录都需要已挂载的路径，但路径 %s 尚未挂载。"
 
 msgid "All disks are imported."
 msgstr "已经导入所有硬盘。"
+
+msgid "All encrypted disks have been imported."
+msgstr "所有加密的磁盘都已导入"
 
 msgid ""
 "All shares use the option 'usedots' thus making the filenames .Parent and "
@@ -639,14 +670,14 @@ msgstr "所有分享区使用'usedots' 选项，导致任何以.Parent 和.Apple
 msgid "All software raid disks are imported."
 msgstr "已经导入所有软体RAID的硬盘。"
 
-msgid "All users will have the root privilege."
-msgstr "让所有的用户都有 root 权限。"
-
 msgid "Alloc"
 msgstr "分派"
 
 msgid "Allow"
 msgstr "允许"
+
+msgid "Allow New Files"
+msgstr "允许新文件"
 
 msgid "Allow TLS connections only."
 msgstr "只允许TLS连接。"
@@ -660,12 +691,6 @@ msgstr "允许使用者以 OS/2 延伸属性于分享区储存档案。"
 
 msgid "Allow clients to resume interrupted uploads and downloads."
 msgstr "允许客户端在上传和下载时断点续传"
-
-msgid "Allow group"
-msgstr "允许群组"
-
-msgid "Allow new files"
-msgstr "允许新文件"
 
 msgid "Allow new files to be created."
 msgstr "允许创建新文件."
@@ -699,18 +724,21 @@ msgid ""
 "STANDBY IMMEDIATE as the last command (regardless of PLI activity using "
 "capacitor power). Normalized value is always 100."
 msgstr ""
+"根据常规HDD术语，也称为“关闭电源退出计数”。 "
+"原始值报告在SSD的整个使用寿命期间累积的不正常关机次数，其中“不正常关机”是除去电源，而不是STANDBY "
+"IMMEDIATE作为最后一个命令（不考虑使用电容器功率的PLI活动）。 归一化值始终为100。"
 
 msgid "AltRoot"
 msgstr "AltRoot"
 
-msgid "Alternate TCP port. Default is 22"
-msgstr "备用TCP端口。默认为 22"
+msgid "Alternate Data Streams"
+msgstr "备用数据流"
 
-msgid "Alternate TCP port. Default is 873"
-msgstr "备用TCP端口。默认为 873"
+msgid "Alternate TCP port. (Default is 873)."
+msgstr "备用TCP端口。 （默认值为873）。"
 
-msgid "Alternative configuration directory (usually empty)."
-msgstr "备用配置目录（通常是空的） 。"
+msgid "Alternative configuration directory."
+msgstr ""
 
 msgid "Always"
 msgstr "总是"
@@ -718,8 +746,8 @@ msgstr "总是"
 msgid "Always On"
 msgstr "永远开机"
 
-msgid "Always scan"
-msgstr "永远扫描"
+msgid "Always Scan"
+msgstr "总是扫描"
 
 msgid "Ambient Conditions From External Probe Equipment"
 msgstr "外探测器的环境条件"
@@ -731,29 +759,32 @@ msgid "Ambient temperature (degrees C)"
 msgstr "环境温度（摄氏度）"
 
 msgid "Amount of surge current used to spin up the drive."
-msgstr ""
+msgstr "用于上拉驱动器的浪涌电流量。"
 
 msgid ""
 "Amplitude of 'thrashing' (distance of repetitive forward/reverse head "
 "motion)."
-msgstr ""
+msgstr "“抖动”幅度（重复正向/反向头运动的距离）。"
 
 msgid ""
 "An Auth Group is identified by a tag number and is optional. If the Target "
 "does not use CHAP authentication it defines authorised users and secrets for "
 "additional security."
-msgstr ""
+msgstr "认证组由标签号标识，并且是可选的。 如果目标不使用CHAP身份验证，它定义授权的用户和秘密以获得额外的安全性。"
 
 msgid "An Extent defines the storage area of the Target."
-msgstr ""
+msgstr "范围定义目标的存储区域。"
 
 msgid ""
 "An Initiator Group is identified by a tag number and defines authorised "
 "initiator names and networks."
-msgstr ""
+msgstr "启动器组由标签号标识并定义授权的启动器名称和网络。"
+
+msgid "An empty field is default."
+msgstr "默认空白"
 
 msgid "An error occured."
-msgstr ""
+msgstr "发生错误。"
 
 msgid "An host with this name already exists."
 msgstr "已经有一个相同的主机名称存在了。"
@@ -761,11 +792,14 @@ msgstr "已经有一个相同的主机名称存在了。"
 msgid "An interface with the specified description already exists."
 msgstr "已经有一个相同的介面存在。"
 
-msgid "Anonymous bind"
+msgid "Anonymous Bind"
 msgstr "匿名绑定"
 
-msgid "Anonymous user bandwidth"
-msgstr "匿名用户带宽"
+msgid "Anonymous Users"
+msgstr "匿名用户"
+
+msgid "Anonymous access has been deprecated starting from SMB2."
+msgstr "从SMB2开始匿名访问已被废除。"
 
 msgid ""
 "Anonymous user download bandwith in KB/s. An empty field means infinity."
@@ -775,8 +809,15 @@ msgid ""
 "Anonymous user upload bandwith in KB/s. An empty field means infinity."
 msgstr "匿名用户上传带宽，以 KB/s 为单位。空白表示没限制。"
 
-msgid "Anonymous users only"
-msgstr "只允许匿名用户"
+msgid ""
+"Another DLNA/UPnP service is already running. Enabling Fuppes might cause "
+"issues."
+msgstr "另一个 DLNA/UPnP 服务已在运行。开启 Fuppes 可能导致问题。"
+
+msgid ""
+"Another DLNA/UPnP service is already running. Enabling MiniDLNA might cause "
+"issues."
+msgstr "另一个 DLNA/UPnP 服务已在运行。开启 MiniDLNA 可能导致问题。"
 
 msgid "Any"
 msgstr "任何"
@@ -787,8 +828,11 @@ msgstr "追加用户自定义的用户共享"
 msgid "Apple Filing Protocol"
 msgstr "苹果文件协议（Apple Filing Protocol）"
 
+msgid "Apply"
+msgstr "应用"
+
 msgid "Apply Filter"
-msgstr ""
+msgstr "应用过滤器"
 
 msgid "Apply changes"
 msgstr "套用变更"
@@ -805,28 +849,31 @@ msgstr "存档"
 msgid "Archive mode."
 msgstr "存档模式。"
 
-msgid "Are you sure you want to proceed?"
-msgstr "您确定要继续进行？"
-
 msgid "Are you sure you want to reboot the server?"
 msgstr "是否确定重启系统？"
+
+msgid "Are you sure you want to reset the server to factory defaults?"
+msgstr "请确认重置服务器到出厂设置？"
 
 msgid "Are you sure you want to shutdown the server?"
 msgstr "是否确定关闭系统？"
 
-msgid "Asynchronous I/O (AIO)"
-msgstr "异步 I/O (AIO)"
+msgid "Asynchronous I/O"
+msgstr "匿名I/O"
 
 msgid ""
 "At the highest level, a target is what is presented to the initiator, and is "
 "made up of one or more extents."
 msgstr "目标器是由一个或多个extent 组成，然后呈现给启动器。"
 
+msgid "Attach"
+msgstr "挂接"
+
 msgid "Attach a data device"
-msgstr ""
+msgstr "附加数据设备"
 
 msgid "Attach a log device"
-msgstr ""
+msgstr "附加日志设备"
 
 msgid "Attached"
 msgstr "连接成功"
@@ -839,7 +886,7 @@ msgid ""
 "Attempting to use other file formats such as FAT, FAT32, EXT2, EXT3, EXT4 or "
 "NTFS can result in unpredictable results, file corruption and the loss of "
 "data!"
-msgstr ""
+msgstr "试图使用其它文件类型，如FAT，FAT32，EXT2，EXT3，EXT4，或者NTFS，可能导致不可预测结果，如文件崩溃或数据丢失！"
 
 msgid "Audio"
 msgstr "音频"
@@ -853,23 +900,44 @@ msgstr "八月"
 msgid "Auth Group"
 msgstr "认证组（Auth Group）"
 
+msgid "Auth Group Settings"
+msgstr "授权组设置"
+
 msgid "Auth Groups"
 msgstr "认证群组（Auth Groups）"
+
+msgid ""
+"Auth Groups contains authorised users and secrets for additional security."
+msgstr "授权组包含授权用户和机密以提高额外的安全性。"
 
 msgid "Auth Method"
 msgstr "认证模式"
 
+msgid "Authenticate Path & Realm"
+msgstr "授权路径和领域"
+
 msgid "Authenticate URL"
 msgstr "认证 URL"
 
-msgid "Authenticate path & realm"
-msgstr ""
+msgid "Authenticated Users"
+msgstr "授权用户"
+
+msgid ""
+"Authenticated user download bandwith in KB/s. An empty field means infinity."
+msgstr "已认证的用户下载带宽（KBps）。 空字段表示无穷大。"
+
+msgid ""
+"Authenticated user upload bandwith in KB/s. An empty field means infinity."
+msgstr "已认证的用户上传带宽（KBps）。 空字段表示无穷大。"
 
 msgid "Authentication"
 msgstr "认证方式"
 
-msgid "Authentication method"
-msgstr "认证模式"
+msgid "Authentication Method"
+msgstr "验证方式"
+
+msgid "Authorised Network"
+msgstr "授权网络"
 
 msgid "Authorised network"
 msgstr "认可网路"
@@ -883,11 +951,23 @@ msgstr "自动"
 msgid "Auto Snapshot"
 msgstr "自动快照"
 
+msgid "Auto Snapshot Settings"
+msgstr "自动快照设置"
+
+msgid "Auto page refresh."
+msgstr "页面自动刷新。"
+
 msgid "Auto size"
 msgstr "自动大小"
 
 msgid "AutoScale"
 msgstr "自动扩展"
+
+msgid "Autoscale"
+msgstr "自动缩放"
+
+msgid "Autoscale for graphs."
+msgstr "图形的自动缩放。"
 
 msgid "Autoselect"
 msgstr "自动选择"
@@ -895,31 +975,37 @@ msgstr "自动选择"
 msgid "Auxiliary device firmware"
 msgstr "辅助设备固件"
 
-msgid "Auxiliary parameters"
-msgstr "辅助参数"
-
 msgid "Avail"
-msgstr ""
+msgstr "可用"
 
 msgid "Available"
 msgstr "可用"
+
+msgid "Available Graphs"
+msgstr "可用图表"
 
 msgid ""
 "Average performance of seek operations of the magnetic heads. If this "
 "attribute is decreasing, it is a sign of problems in the mechanical "
 "subsystem."
-msgstr ""
+msgstr "磁头寻道操作的平均性能。 如果该属性减小，则它是机械子系统中的问题的标志。"
 
 msgid "Average time of spindle spin up (from zero RPM to fully operational)."
-msgstr ""
+msgstr "主轴上升的平均时间（从零RPM到完全运行）。"
 
 msgid "Back"
-msgstr ""
+msgstr "后退"
+
+msgid "Background"
+msgstr "后台"
+
+msgid "Backup"
+msgstr "备份"
 
 msgid "Backup Configuration"
 msgstr "备份设定"
 
-msgid "Backup file"
+msgid "Backup File"
 msgstr "备份文件"
 
 msgid "Backup/Restore"
@@ -934,8 +1020,11 @@ msgstr "均衡算法"
 msgid "Ban List"
 msgstr "封禁名单"
 
-msgid "Ban list rule"
-msgstr "封禁名单规则"
+msgid "Ban List Rule"
+msgstr "禁用列表规则"
+
+msgid "Ban List Rule Settings"
+msgstr "禁用列表规则设置"
 
 msgid "Banner"
 msgstr "欢迎信息"
@@ -994,13 +1083,17 @@ msgid "Battery voltage"
 msgstr "电池电压"
 
 msgid "Before"
-msgstr ""
+msgstr "之前"
 
 msgid "Before - File-deletions will be done before the transfer starts."
-msgstr ""
+msgstr "之前 - 文件删除将在传输开始之前完成。"
 
 msgid "Before - File-deletions will be performed before the transfer starts."
-msgstr ""
+msgstr "之前 - 文件删除将在传输开始之前执行。"
+
+msgid ""
+"Before a Unison Client can start to work, you need to perform the following:"
+msgstr "在Unison客户端可以开始工作之前，您需要执行以下操作："
 
 msgid "Best available"
 msgstr "现有最佳"
@@ -1008,7 +1101,7 @@ msgstr "现有最佳"
 msgid "Bind DN"
 msgstr "绑定 DN （Bind DN）"
 
-msgid "Bind password"
+msgid "Bind Password"
 msgstr "绑定密码"
 
 msgid "BitTorrent"
@@ -1018,16 +1111,13 @@ msgstr "BitTorrent"
 msgid ""
 "BitTorrent needs at least read & execute permissions at the mount point for "
 "directory %s!"
-msgstr ""
+msgstr "BitTorrent至少需要读取和执行权限在目录%s的安装点！"
 
-msgid "Blank time"
-msgstr "空闲时间"
+msgid "Blank Time"
+msgstr "空白时间"
 
 msgid "Block Size"
 msgstr "块大小"
-
-msgid "Block size"
-msgstr "数据块大小"
 
 msgid "Blocksize"
 msgstr "数据块大小"
@@ -1048,9 +1138,9 @@ msgstr "启动程序（例如：%s）"
 
 #, php-format
 msgid ""
-"Boot partition is too small. You need reinstall from LiveCD or LiveUSB, or "
+"Boot partition is too small. You need to reinstall from LiveCD/LiveUSB or "
 "resize boot partition of %s.\n"
-msgstr "启动分区是太小了。您需要从LiveCD 或 LiveUSB 重新安装或调整的 %s 启动分区。\n"
+msgstr "引导分区太小。 您需要从LiveCD / LiveUSB重新安装或调整%s的引导分区。\n"
 
 msgid "Bootloader"
 msgstr "启动程序"
@@ -1058,10 +1148,26 @@ msgstr "启动程序"
 msgid "Bridge"
 msgstr "Bridge"
 
-msgid "Bring a device online"
-msgstr ""
+msgid "Bridge Settings"
+msgstr "桥接设置"
 
-msgid "Broadcast interval"
+msgid ""
+"Bridge cannot be deleted because it is still being used as an interface."
+msgstr "无法删除网桥，因为它仍在用作接口。"
+
+msgid "Bridge is marked for deletion"
+msgstr "网桥被标记为删除"
+
+msgid "Bridge is protected"
+msgstr "网桥被保护"
+
+msgid "Bridge is unlocked"
+msgstr "网桥被解锁"
+
+msgid "Bring a device online"
+msgstr "使设备联机"
+
+msgid "Broadcast Interval"
 msgstr "广播间隔"
 
 msgid ""
@@ -1075,20 +1181,33 @@ msgstr "浏览目录"
 msgid "Browseable"
 msgstr "可浏览"
 
-msgid "Building database in progress"
-msgstr "正在建设数据库中"
-
 msgid "Bulgarian"
 msgstr "保加利亚文"
 
 msgid "By default, only already existing files can be uploaded."
 msgstr "默认是只有已经存在的文件可以上传。"
 
+msgid "Bytes/sec"
+msgstr "字节/秒"
+
 msgid "CACHE"
 msgstr "缓存"
 
 msgid "CARP"
 msgstr "CARP"
+
+msgid ""
+"CARP cannot be deleted because it is still being used as an interface."
+msgstr "无法删除CARP，因为它仍在用作接口。"
+
+msgid "CARP is marked for deletion"
+msgstr "CARP标记为删除"
+
+msgid "CARP is protected"
+msgstr "CARP被保护"
+
+msgid "CARP is unlocked"
+msgstr "CARP被解锁"
 
 msgid "CARP only"
 msgstr "只是 CARP"
@@ -1117,11 +1236,11 @@ msgstr "CHAP 用户"
 msgid "CIFS/SMB"
 msgstr "CIFS/SMB/网芳"
 
-msgid "CIFS/SMB disabled"
-msgstr "CIFS/SMB 伺服器关闭中"
+msgid "CIFS/SMB Information"
+msgstr "CIFS/SMB信息"
 
-msgid "CIFS/SMB informations"
-msgstr "CIFS/SMB 资讯"
+msgid "CIFS/SMB is disabled."
+msgstr "CIFS/SMB被禁用"
 
 msgid "CIFS/SMB is enabled."
 msgstr "CIFS/ SMB 已启用。"
@@ -1156,23 +1275,32 @@ msgstr "CP949 (韩文)"
 msgid "CP950 (Traditional Chinese Big5)"
 msgstr "CP950 (繁体中文 Big5)"
 
+msgid "CPU Core Usage"
+msgstr "CPU核心使用"
+
+msgid "CPU Frequency"
+msgstr "CPU 频率"
+
 msgid "CPU Load"
 msgstr "CPU 负载"
 
-msgid "CPU frequency"
-msgstr "CPU 频率"
+msgid "CPU Maximum Frequency"
+msgstr "CPU最大频率"
 
-msgid "CPU frequency:"
-msgstr "CPU 频率："
+msgid "CPU Minimum Frequency"
+msgstr "CPU最小频率"
+
+msgid "CPU Temperature"
+msgstr "CPU温度"
+
+msgid "CPU Usage"
+msgstr "CPU 使用情况"
+
+msgid "CPU frequencies:"
+msgstr "CPU频率"
 
 msgid "CPU load"
 msgstr "CPU 负载"
-
-msgid "CPU temperature"
-msgstr "CPU 温度"
-
-msgid "CPU usage"
-msgstr "CPU 使用率"
 
 msgid ""
 "CRC Error Count. Counts the number of CRC error (read/write data FIS CRC "
@@ -1206,8 +1334,14 @@ msgstr "LAN 的网络介面不能使用DHCP。"
 msgid "Capacity"
 msgstr "容量"
 
+msgid "Carp Settings"
+msgstr "CARP设置"
+
 msgid "Case Sensitivity"
 msgstr "大小写敏感"
+
+msgid "Catalan"
+msgstr "加泰罗尼亚语"
 
 msgid ""
 "Causes the server to display the network information for the specified IP "
@@ -1225,14 +1359,11 @@ msgstr "更改"
 msgid "Change below file"
 msgstr "更改下列文件"
 
-msgid "Change password"
-msgstr "更改密码"
-
 msgid "Change the IP address of your computer"
-msgstr ""
+msgstr "更改你的电脑IP地址"
 
 msgid "Change the IP address of your server"
-msgstr ""
+msgstr "更改你的服务器IP地址"
 
 msgid "Changes to this option will take effect after a reboot."
 msgstr "重新启动系统之后，更改的设置才会生效。"
@@ -1244,23 +1375,20 @@ msgid "Charging Battery"
 msgstr "充电中"
 
 msgid "Check System|General Setup before initializing"
-msgstr ""
+msgstr "在初始化之前检查系统|常规设置"
 
 msgid "Check and replace cable"
 msgstr "检查并更换电缆"
 
-msgid "Check interval"
-msgstr "检查间隔"
-
-msgid "Check shared secret:"
-msgstr "检查分享密文："
+msgid "Check shared secret"
+msgstr "检查共享密钥"
 
 msgid ""
 "Check the FreeBSD documentation for detailed information about TCP Wrappers"
-msgstr ""
+msgstr "有关TCP Wrappers的详细信息，请参阅FreeBSD文档"
 
 msgid "Check the list of available drivers"
-msgstr ""
+msgstr "检查可用驱动程序列表"
 
 msgid "Chinese (Simplified)"
 msgstr "中文（简体）"
@@ -1289,11 +1417,11 @@ msgstr "清除和导入磁盘设置"
 msgid "Clear Config & Import Software Raid Disks"
 msgstr "清除和导入软体RAID设置"
 
-msgid "Clear config and Import disks"
-msgstr "清除和导入磁盘设置"
+msgid "Clear Config And Import Disks"
+msgstr "清除配置并导入磁盘"
 
 msgid "Clear device errors"
-msgstr ""
+msgstr "清除设备错误"
 
 msgid ""
 "Click this button to download the server configuration in encrypted GZIP "
@@ -1302,6 +1430,12 @@ msgstr "点击此按钮以下载已加密的伺服器配置GZIP文件或XML格�
 
 msgid "Client"
 msgstr "客户端"
+
+msgid "Client Max. Protocol"
+msgstr "客户端最大协议"
+
+msgid "Client Min. Protocol"
+msgstr "客户端最小协议"
 
 msgid "Clone"
 msgstr "克隆"
@@ -1317,17 +1451,26 @@ msgstr "栏"
 
 msgid ""
 "Comma-separated list of group names that are permitted to login to the FTP "
-"server. (empty is ftp group)"
-msgstr ""
+"server. (empty = ftp group)."
+msgstr "允许登录到FTP服务器的组名称的逗号分隔列表。 （空白= ftp组）。"
 
 msgid "Command"
 msgstr "指令"
 
+msgid "Command Output"
+msgstr "指令输出"
+
+msgid "Command Output:"
+msgstr "指令输出："
+
 msgid "Command Scripts"
 msgstr "命令脚本"
 
+msgid "Command Scripts (Maintenance Only)"
+msgstr "命令脚本（仅限维护）"
+
 msgid "Command execution was successful"
-msgstr ""
+msgstr "命令执行成功"
 
 #, php-format
 msgid "Command for LINK_DOWN event (e.g. %s)."
@@ -1336,6 +1479,15 @@ msgstr "LINK_DOWN 事件的指令（例如 %s）。"
 #, php-format
 msgid "Command for LINK_UP event (e.g. %s)."
 msgstr "LINK_UP 事件的指令（例如 %s）。"
+
+msgid "Command is marked for removal"
+msgstr "命令已标记为要删除"
+
+msgid "Command is protected"
+msgstr "命令被保护"
+
+msgid "Command is unlocked"
+msgstr "命令解锁"
 
 msgid "Command output"
 msgstr "命令输出"
@@ -1352,7 +1504,7 @@ msgstr "网路文件共享系统（CIFS）"
 msgid "Community"
 msgstr "社群"
 
-msgid "Compilations directories"
+msgid "Compilations Directories"
 msgstr "汇编目录"
 
 msgid "Compiled"
@@ -1379,17 +1531,20 @@ msgstr "如果您的网际网路连线速度很慢，开启资料压缩可以增
 msgid "Configuration"
 msgstr "配置"
 
-msgid "Configuration directory"
+msgid "Configuration Directory"
 msgstr "配置目录"
 
 msgid "Configuring"
 msgstr "设置中"
 
+msgid "Confirm New Password"
+msgstr "确认新密码"
+
 msgid "Confirmation"
 msgstr "确认"
 
 msgid "Connect to hidden network"
-msgstr ""
+msgstr "连接到隐藏网络"
 
 msgid "Connected FTP Users & Status"
 msgstr "FTP连接用户和状态"
@@ -1400,11 +1555,11 @@ msgstr "考虑更换此驱动器"
 msgid "Console Menu"
 msgstr "控制台菜单"
 
+msgid "Console Screensaver"
+msgstr "控制台屏幕保护程序"
+
 msgid "Console Settings"
 msgstr "控制台设置"
-
-msgid "Console screensaver"
-msgstr "控制台屏幕保护程序"
 
 msgid "Contact"
 msgstr "联系人"
@@ -1420,6 +1575,15 @@ msgstr "容器"
 msgid "Content"
 msgstr "内容"
 
+msgid "Content Locations"
+msgstr "内容位置"
+
+msgid "Continue"
+msgstr "继续"
+
+msgid "Control"
+msgstr "控制"
+
 msgid "Controller"
 msgstr "控制器"
 
@@ -1428,6 +1592,9 @@ msgstr "控制器的认证组"
 
 msgid "Controller Auth Method"
 msgstr "控制器认证方法"
+
+msgid "Controller Authorised Network"
+msgstr "控制器授权网络"
 
 msgid "Controller Authorised network"
 msgstr "控制器授权网络"
@@ -1444,37 +1611,44 @@ msgstr "控制器型号"
 msgid "Controller TCP Port"
 msgstr "控制器的TCP端口"
 
-msgid "Controls power consumption."
-msgstr "控制电源模式。"
-
 msgid "Controls the behavior of synchronous requests."
 msgstr "控制同步请求。"
 
 msgid ""
-"Controls the compression algorithm used for this dataset. The 'lzjb' "
-"compression algorithm is optimized for performance while providing decent "
-"data compression. Setting compression to 'On' uses the 'lzjb' compression "
-"algorithm. You can specify the 'gzip' level by using the value 'gzip-N', "
+"Controls the compression algorithm used for this dataset. 'LZ4' is now the "
+"recommended compression algorithm. Setting compression to 'On' uses the LZ4 "
+"compression algorithm if the feature flag lz4_compress is active, otherwise "
+"LZJB is used. You can specify the 'GZIP' level by using the value 'GZIP-N', "
 "where N is an integer from 1 (fastest) to 9 (best compression ratio). "
-"Currently, 'gzip' is equivalent to 'gzip-6'."
+"Currently, 'GZIP' is equivalent to 'GZIP-6'."
 msgstr ""
-"控制数据集的压缩算法。 'lzjb' 压缩算法优化了性能，同时提供良好的数据压缩。压缩设置为'On' (开)，使用'lzjb' "
-"压缩算法。您可以使用gzip-N 值来指定'gzip' 的压缩算法阶段，其中N是一个整数，从1（最快）到9（最好压缩比）。目前，'gzip' "
-"的压缩阶段是 'gzip-6' 。"
+"控制用于此数据集的压缩算法。 'LZ4'现在是推荐的压缩算法。 "
+"如果特征标志lz4_compress处于活动状态，则将压缩设置为“On”使用LZ4压缩算法，否则使用LZJB。 您可以使用值“GZIP-"
+"N”指定“GZIP”级别，其中N是从1（最快）到9（最佳压缩比）的整数。 目前，“GZIP”相当于“GZIP-6”。"
 
 msgid ""
-"Controls the compression algorithm used for this volume. The 'lzjb' "
-"compression algorithm is optimized for performance while providing decent "
-"data compression. Setting compression to 'On' uses the 'lzjb' compression "
-"algorithm. You can specify the 'gzip' level by using the value 'gzip-N', "
+"Controls the compression algorithm used for this volume. 'LZ4' is now the "
+"recommended compression algorithm. Setting compression to 'On' uses the LZ4 "
+"compression algorithm if the feature flag lz4_compress is active, otherwise "
+"LZJB is used. You can specify the 'GZIP' level by using the value 'GZIP-N', "
 "where N is an integer from 1 (fastest) to 9 (best compression ratio). "
-"Currently, 'gzip' is equivalent to 'gzip-6'."
+"Currently, 'GZIP' is equivalent to 'GZIP-6'."
 msgstr ""
-"控制卷的压缩算法。 'lzjb' 压缩算法优化了性能，同时提供良好的数据压缩。压缩设置为'On' (开)，使用'lzjb' 压缩算法。您可以使用gzip-"
-"N 值来指定'gzip' 的压缩算法阶段，其中N是一个整数，从1（最快）到9（最好压缩比）。目前，'gzip' 的压缩阶段是 'gzip-6' 。"
+"控制用于此卷的压缩算法。 'LZ4'现在是推荐的压缩算法。 "
+"如果特征标志lz4_compress处于活动状态，则将压缩设置为“On”使用LZ4压缩算法，否则使用LZJB。 您可以使用值“GZIP-"
+"N”指定“GZIP”级别，其中N是从1（最快）到9（最佳压缩比）的整数。 目前，“GZIP”相当于“GZIP-6”。"
 
 msgid "Controls the dedup method."
-msgstr ""
+msgstr "控制重复数据删除方法。"
+
+msgid "Controls the power consumption mode."
+msgstr "控制功耗模式。"
+
+msgid ""
+"Controls whether the access time for files is updated when they are read. "
+"Turning this Off avoids producing write traffic when reading files and can "
+"result in significant performance gains."
+msgstr "控制文件的访问时间是否在读取时更新。 关闭此功能可以避免在读取文件时产生写入通信，并且可以显着提高性能。"
 
 msgid "Controls whether this dataset can be modified."
 msgstr "控制此数据集能否被修改。"
@@ -1482,13 +1656,19 @@ msgstr "控制此数据集能否被修改。"
 msgid ""
 "Convert DOS attributes to UNIX execution bits when Store DOS attributes is "
 "disabled."
-msgstr ""
+msgstr "禁用存储DOS属性时将DOS属性转换为UNIX执行位。"
+
+msgid "Conveyance Self-Test"
+msgstr "输送自检"
+
+msgid "Core"
+msgstr "核心"
 
 msgid "Count"
 msgstr "次数"
 
 msgid "Count of 'Free Fall Events' detected."
-msgstr ""
+msgstr "检测到“自由落体事件”的计数。"
 
 msgid ""
 "Count of 'unstable' sectors (waiting to be remapped, because of "
@@ -1507,16 +1687,20 @@ msgid ""
 "successful write operation, then the drive will never remap these problem "
 "sectors."
 msgstr ""
+"计数“不稳定”扇区（等待重新映射，因为无法恢复的读取错误）。如果随后成功读取不稳定扇区，则重新映射该扇区并且减小该值。扇区上的读取错误不会立即重新映射扇区"
+"（因为不能读取正确的值，因此重新映射的值不为已知，并且稍后可能变得可读）。相反，驱动器固件会记住该扇区需要重新映射，并在下次写入时重新映射该扇区。然而，一"
+"些驱动器在写入时不会立即重新映射这样的扇区;驱动器将首先尝试写入问题扇区，如果写入操作成功，则扇区将被标记为良好（在这种情况下，“重新分配事件计数”（0x"
+"C4）不会增加）。这是一个严重的缺点，如果这样的驱动器包含边缘扇区，其在成功的写操作之后经过一段时间之后一直失败，则驱动器将永远不会重映射这些问题扇区。"
 
 msgid "Count of Data Address Mark errors (or vendor-specific)."
-msgstr ""
+msgstr "数据地址标记错误（或供应商指定）。"
 
 msgid "Count of attempts to compensate for platter speed variations."
-msgstr ""
+msgstr "尝试补偿盘片速度变化的计数。"
 
 msgid ""
 "Count of buzz routines needed to spin up the drive due to insufficient power."
-msgstr ""
+msgstr "由于功率不足，需要旋转驱动器的蜂鸣例程的计数。"
 
 msgid "Count of errors corrected by software ECC."
 msgstr "ECC软件纠正的错误数量。"
@@ -1531,13 +1715,13 @@ msgid ""
 "Count of hours in power-on state. The raw value of this attribute shows "
 "total count of hours (or minutes, or seconds, depending on manufacturer) in "
 "power-on state."
-msgstr ""
+msgstr "开机状态下的小时数。 此属性的原始值显示开机状态下的总小时数（或分钟或秒，具体取决于制造商）。"
 
 msgid "Count of load/unload cycles into head landing zone position."
-msgstr ""
+msgstr "装载/卸载循环到头部着陆区位置的计数。"
 
 msgid "Count of off-track errors."
-msgstr ""
+msgstr "偏离磁道错误计数。"
 
 msgid ""
 "Count of reallocated sectors. When the hard drive finds a "
@@ -1556,12 +1740,17 @@ msgid ""
 "speed is critical, the remapped sectors can be manually marked as bad blocks "
 "in the file system in order to prevent their use."
 msgstr ""
+"重新分配扇区的计数。当硬盘驱动器发现读/写/验证错误时，它将该扇区标记为“重新分配”，并将数据传输到特殊保留区（备用区）。这个过程也被称为重映射，并且重新"
+"分配的扇区被称为“重映射”。原始值通常表示已经找到并重映射的坏扇区的计数。因此，属性值越高，驱动器必须重新分配的扇区越多。这允许具有坏扇区的驱动器继续操作"
+";然而，具有任何重新分配的驱动器在不久的将来显然更可能失败。虽然主要用作驱动器预期寿命的指标，但此数字也会影响性能。随着重新分配的扇区的计数增加，读取/写"
+"入速度趋于变得更糟，因为每当访问重新映射时，驱动头被强制寻找到保留区域。如果顺序存取速度是关键的，则重新映射的扇区可以被手动标记为文件系统中的坏块，以防止"
+"它们的使用。"
 
 msgid ""
 "Count of remap operations. The raw value of this attribute shows the total "
 "count of attempts to transfer data from reallocated sectors to a spare area. "
 "Both successful & unsuccessful attempts are counted."
-msgstr ""
+msgstr "重映射操作的计数。 此属性的原始值显示尝试将数据从重新分配的扇区传输到备用区的总计数。 计数成功和不成功尝试。"
 
 msgid ""
 "Count of retry of spin start attempts. This attribute stores a total count "
@@ -1569,6 +1758,7 @@ msgid ""
 "condition that the first attempt was unsuccessful). An increase of this "
 "attribute value is a sign of problems in the hard disk mechanical subsystem."
 msgstr ""
+"自旋启动尝试的重试次数。 该属性存储达到完全操作速度的旋转开始尝试的总计数（在第一尝试不成功的条件下）。 该属性值的增加是硬盘机械子系统中的问题的标志。"
 
 msgid "Count of times head changes position."
 msgstr "磁头改变位置次数。"
@@ -1576,43 +1766,41 @@ msgstr "磁头改变位置次数。"
 msgid ""
 "Count of times the heads are loaded off the media. Heads can be unloaded "
 "without actually powering off."
-msgstr ""
+msgstr "磁头从介质上装载的次数计数。 头可以卸载而不需要关闭电源。"
 
 msgid "Count of times the link is reset during a data transfer."
 msgstr "数据传输期间链接重置次数。"
 
 msgid "Counts the maximum worst erase count on any block."
-msgstr ""
+msgstr "计算任何块上的最大擦除计数。"
 
 msgid ""
 "Counts the number of SATA PHY errors. This value includes all PHY error "
 "counts, ex data FIS CRC , code errors, disparity errors, command FIS crc. "
 "Value clears upon system power-down."
 msgstr ""
+"计算SATA PHY错误的数量。 该值包括所有PHY错误计数，Ex数据FIS CRC，代码错误，差异错误，命令FIS crc。 系统掉电时值清零。"
 
 msgid "Create 4KB wrapper (nop device)."
 msgstr "创建4KB封套（NOP装置）。"
 
 msgid "Create Date"
-msgstr ""
+msgstr "创建日期"
 
 msgid "Create HVM Guest"
 msgstr "创建HVM客户机"
+
+msgid "Create Mask"
+msgstr "创建掩码"
 
 msgid "Create PV Guest"
 msgstr "创建PV客户机"
 
 msgid "Create ZFS on a GPT partition."
-msgstr ""
+msgstr "在GPT分区上创建ZFS。"
 
 msgid "Create and initialize RAID."
 msgstr "建立并初始 RAID。"
-
-msgid "Create encrypted volume"
-msgstr "建立加密卷"
-
-msgid "Create mask"
-msgstr "创建掩码"
 
 msgid "Create work directory if it doesn't exist."
 msgstr "如果工作目录不存在，则创建目录"
@@ -1645,7 +1833,7 @@ msgid "Critical"
 msgstr "严重"
 
 msgid "Critical Error Level"
-msgstr ""
+msgstr "严重错误级别"
 
 msgid "Cron"
 msgstr "定时任务（Cron）"
@@ -1656,8 +1844,11 @@ msgstr "定时任务"
 msgid "Current"
 msgstr "目前"
 
-msgid "Current Version:"
-msgstr "目前版本："
+msgid "Current Password"
+msgstr "当前密码"
+
+msgid "Current Version"
+msgstr "当前版本"
 
 msgid "Current internal temperature."
 msgstr "当前的内部温度。"
@@ -1669,8 +1860,11 @@ msgid ""
 "Current password is default password. You should use your own password."
 msgstr "现在的密码是默认密码。您应该设定自己的密码。"
 
+msgid "Current password is incorrectly entered."
+msgstr "输入的当前密码错误"
+
 msgid "Current state of drive operation based upon the Life Curve."
-msgstr ""
+msgstr "基于寿命曲线的驱动器操作的当前状态。"
 
 msgid "Current value of apparent power (Volt-Amps)"
 msgstr "当前的视在功率（伏安）"
@@ -1720,22 +1914,14 @@ msgstr "DLNA/UPnP MiniDLNA"
 msgid "DNS"
 msgstr "DNS"
 
-msgid "DNS domain"
-msgstr "DNS域名"
+msgid "DNS Domain"
+msgstr "DNS域"
 
-msgid "DNS forwarder"
+msgid "DNS Forwarder"
 msgstr "DNS转发器"
 
 msgid "DNS server is empty."
 msgstr "DNS伺服器是空白的。"
-
-msgid "DO NOT abort the firmware upgrade process once it has started."
-msgstr ""
-
-#, php-format
-msgid ""
-"DO NOT try to flash other files than a valid '%s-%s-embedded.img.xz' file."
-msgstr ""
 
 msgid "DVD"
 msgstr "DVD"
@@ -1752,11 +1938,14 @@ msgstr "守护进程记录"
 msgid "Danish"
 msgstr "丹麥文"
 
+msgid "Data Integrity"
+msgstr "数据的完整性"
+
 msgid "Data digest"
 msgstr "数据摘要"
 
-msgid "Data integrity"
-msgstr "数据完整性"
+msgid "Database Directory"
+msgstr "数据库目录"
 
 msgid "Database directory"
 msgstr "数据库目录"
@@ -1777,13 +1966,16 @@ msgid "Datasets"
 msgstr "数据集（Datasets）"
 
 msgid "Date"
-msgstr ""
+msgstr "日期"
 
 msgid "Date & Time"
 msgstr "日期与时间"
 
-msgid "Date format"
+msgid "Date Format"
 msgstr "日期格式"
+
+msgid "Day"
+msgstr "日"
 
 msgid "Days"
 msgstr "天"
@@ -1803,10 +1995,10 @@ msgstr "十二月"
 msgid ""
 "Decoded as: byte 0-1-2 = average erase count (big endian) and byte 3-4-5 = "
 "max erase count (big endian)."
-msgstr ""
+msgstr "解码为：字节0-1-2 =平均擦除计数（大端）和字节3-4-5 =最大擦除计数（大端）。"
 
-msgid "Decrypt password"
-msgstr "解码"
+msgid "Decrypt Password"
+msgstr "解密密码"
 
 msgid "Dedup"
 msgstr "重复数据删除（Dedup）"
@@ -1818,21 +2010,19 @@ msgid ""
 "Default - Rsync will choose the 'during' algorithm when talking to rsync "
 "3.0.0 or newer and the 'before' algorithm when talking to an older rsync."
 msgstr ""
+"默认 - 当谈到rsync 3.0.0或更新的rsync时，rsync将选择“在期间”算法，当谈到旧的rsync时，选择'before'算法。"
 
 msgid ""
 "Default - Rsync will choose the 'during' algorithm when talking to rsync "
 "3.0.0 or newer, and the 'before' algorithm when talking to an older rsync."
 msgstr ""
+"默认 - 当谈到rsync 3.0.0或更新的rsync时，rsync将选择“在期间”算法，当谈到旧的rsync时，选择'before'算法。"
 
 msgid "Default Device Settings"
 msgstr "默认设备设置"
 
-#, php-format
-msgid "Default is %s."
-msgstr "默认是 %s 。"
-
-msgid "Default root"
-msgstr "默认 root"
+msgid "Default Root"
+msgstr "默认Root"
 
 msgid "Default user name is 'admin'."
 msgstr "默认用户名是 'admin'。"
@@ -1850,17 +2040,17 @@ msgid "Defines when the shutdown is initiated."
 msgstr "设定何时关机。"
 
 msgid "Delay"
-msgstr ""
+msgstr "延迟"
 
 msgid ""
 "Delay - File-deletions will be computed during the transfer and will be done "
 "after the transfer."
-msgstr ""
+msgstr "延迟 - 文件删除将在传输期间计算，并将在传输后完成。"
 
 msgid ""
 "Delay - File-deletions will be computed during the transfer, and then "
 "removed after the transfer completes."
-msgstr ""
+msgstr "延迟 - 文件删除将在传输期间计算，然后在传输完成后删除。"
 
 msgid "Delete"
 msgstr "删除"
@@ -1874,17 +2064,32 @@ msgstr "删除主机"
 msgid "Delete Login Info"
 msgstr "删除登入资讯"
 
-msgid "Delete Route"
-msgstr "删除路由"
+msgid "Delete Selected Bridges"
+msgstr "删除所选网桥"
 
-msgid "Delete Rsync job"
-msgstr "删除 Rsync 任务"
+msgid "Delete Selected CARPs"
+msgstr "删除所选CARPs"
+
+msgid "Delete Selected Commands"
+msgstr "删除所选命令"
 
 msgid "Delete Selected Datasets"
 msgstr "删除选中的数据集"
 
+msgid "Delete Selected Encrypted Volumes"
+msgstr "删除所选的加密卷"
+
+msgid "Delete Selected Groups"
+msgstr "删除所选的组"
+
 msgid "Delete Selected Jobs"
 msgstr "删除选中的任务"
+
+msgid "Delete Selected LAGGs"
+msgstr "删除所选的LAGGs"
+
+msgid "Delete Selected NFS Shares"
+msgstr "删除所选的NFS共享"
 
 msgid "Delete Selected Options"
 msgstr "删除选中的选项"
@@ -1895,14 +2100,44 @@ msgstr "删除选中的池"
 msgid "Delete Selected RAID Volumes"
 msgstr "删除选中的RAID卷"
 
+msgid "Delete Selected Records"
+msgstr "删除所选的记录"
+
+msgid "Delete Selected Resources"
+msgstr "删除所选的源"
+
+msgid "Delete Selected Routes"
+msgstr "删除所选的路由"
+
+msgid "Delete Selected Rsync Jobs"
+msgstr "删除所选的同步任务"
+
+msgid "Delete Selected Rsync Modules"
+msgstr "删除所选的Rsync模块"
+
+msgid "Delete Selected Samba Shares"
+msgstr "删除所选的Samba共享"
+
+msgid "Delete Selected Shares"
+msgstr "删除所选的共享"
+
 msgid "Delete Selected Snapshots"
-msgstr ""
+msgstr "删除所选的快照"
+
+msgid "Delete Selected User Accounts"
+msgstr "删除所选的用户账号"
+
+msgid "Delete Selected VLANs"
+msgstr "删除所选的VLANs"
 
 msgid "Delete Selected Virtual Devices"
 msgstr "删除选中的虚拟设备"
 
 msgid "Delete Selected Volumes"
 msgstr "删除选中的卷"
+
+msgid "Delete Selected WLANs"
+msgstr "删除所选的WLANs"
 
 msgid "Delete URL"
 msgstr "删除 URL"
@@ -1929,7 +2164,7 @@ msgid "Delete clone"
 msgstr "删除克隆"
 
 msgid "Delete command"
-msgstr "删除指令"
+msgstr "删除命令"
 
 msgid "Delete disk"
 msgstr "删除硬盘"
@@ -1940,9 +2175,6 @@ msgstr "删除 extent"
 msgid "Delete files on the receiving side that don't exist on sender."
 msgstr "删除存在接收端但不存在发送端的文件。"
 
-msgid "Delete group"
-msgstr "删除群组"
-
 msgid "Delete initiator"
 msgstr "删除启动器"
 
@@ -1952,17 +2184,11 @@ msgstr "删除启动器组"
 msgid "Delete interface"
 msgstr "删除介面"
 
-msgid "Delete module"
-msgstr "删除模组"
-
 msgid "Delete mount point"
 msgstr "删除挂载点"
 
 msgid "Delete portal group"
 msgstr "删除门户组"
-
-msgid "Delete resource"
-msgstr "删除资源"
 
 msgid "Delete rule"
 msgstr "删除规则"
@@ -1970,14 +2196,8 @@ msgstr "删除规则"
 msgid "Delete self-test"
 msgstr "删除自我检测"
 
-msgid "Delete share"
-msgstr "删除共享区"
-
 msgid "Delete target"
 msgstr "删除目标"
-
-msgid "Delete user"
-msgstr "删除用户"
 
 msgid "Deletes the recursive snapshot."
 msgstr "删除递归快照"
@@ -1994,7 +2214,7 @@ msgstr "删除 MBR 和分区表中"
 msgid ""
 "Delta between most-worn and least-worn Flash blocks. It describes how "
 "good/bad the wearleveling of the SSD works on a more technical way."
-msgstr ""
+msgstr "大部分磨损和最少磨损的闪存块之间的差值。 它描述了SSD的磨损如何在更技术的方式工作的好/坏。"
 
 msgid "Deny"
 msgstr "拒绝"
@@ -2005,6 +2225,9 @@ msgstr "说明"
 msgid "Destination"
 msgstr "目的端"
 
+msgid "Destination Network"
+msgstr "目的网络"
+
 msgid "Destination Share"
 msgstr "共享目的端"
 
@@ -2014,51 +2237,57 @@ msgstr "电邮目的端。"
 msgid "Destination email address. Separate email addresses by semi-colon."
 msgstr "目的地邮件地址。多个邮件地址用分号分开。"
 
-msgid "Destination host name or IP number."
-msgstr "目的端主机名称或 IP 位址。"
-
-msgid "Destination network"
-msgstr "目的端网络"
+msgid "Destination host name or IP address."
+msgstr "目标主机名和IP地址"
 
 msgid "Destination network bit count"
 msgstr "目的端网络位数"
 
-msgid "Destination network for this static route"
-msgstr "此静态路由的目的端网络"
+msgid "Destination network for this static route."
+msgstr "此静态路由的目的网络"
 
 msgid "Destination port"
 msgstr "目的地端口"
 
-msgid "Destination share"
-msgstr "共享目的端"
-
 msgid "Destroy a pool"
-msgstr ""
+msgstr "销毁一个池"
 
 msgid ""
 "Destroy any snapshots and bookmarks more recent than the one specified."
-msgstr ""
+msgstr "销毁比所指的更新的任何快照和书签。"
 
 msgid "Destroyed"
-msgstr ""
+msgstr "已销毁"
+
+msgid "Detach"
+msgstr "分离"
 
 msgid "Detach a data device from a mirror"
-msgstr ""
+msgstr "从镜像中分离数据设备"
 
 msgid "Detach a log device from a mirrored log"
-msgstr ""
+msgstr "从镜像日志中分离日志设备"
+
+msgid "Detailed"
+msgstr "详细信息"
 
 msgid "Detected"
 msgstr "检测到"
 
-msgid "Detected Language:"
-msgstr ""
+msgid "Detected Disks"
+msgstr "检测到的磁盘"
 
-msgid "Detected RSYNC remote shares"
-msgstr "删除 RSYNC 远端共享"
+msgid "Detected Language:"
+msgstr "检测到的语言"
+
+msgid "Detected RSYNC Remote Shares"
+msgstr "检测到的RSYNC远程共享"
 
 msgid "Detected an error while importing."
 msgstr "在导入时检测到一个错误。"
+
+msgid "Detected shares on this server"
+msgstr "此服务器上检测到的共享"
 
 msgid ""
 "Determine the default timeout, in microseconds, before the first packet is "
@@ -2084,26 +2313,23 @@ msgstr "设备列表"
 msgid "Device Model"
 msgstr "设备型号"
 
-msgid "Device Name"
-msgstr ""
-
 msgid "Device Pass-through"
 msgstr "设备直通（Device Pass-through）"
 
-msgid "Device Path"
-msgstr ""
+msgid "Device Polling"
+msgstr "设备轮询"
 
 msgid "Device Serial"
 msgstr "设备编号"
 
 msgid "Device contains boot partition"
-msgstr ""
+msgstr "设备包含引导分区"
 
 msgid "Device is mounted"
-msgstr ""
+msgstr "设备已挂载"
 
 msgid "Device not found"
-msgstr ""
+msgstr "设备未找到"
 
 msgid "Device polling"
 msgstr "设备轮询"
@@ -2140,14 +2366,18 @@ msgstr "方向"
 msgid "Directory"
 msgstr "目录"
 
+#, php-format
+msgid "Directory %s doesn't exist!"
+msgstr "目录 %s 不存在"
+
+msgid "Directory Mask"
+msgstr "目录掩码"
+
 msgid "Directory for incomplete files. An empty field means disable."
 msgstr "未完毕档案的目录。空白表示关闭。"
 
 msgid "Directory listing"
 msgstr "目录清单"
-
-msgid "Directory mask"
-msgstr "目录掩码"
 
 msgid "Directory that contains removable media. (e.g /mnt/iscsi/)"
 msgstr "含有可移动媒体的目录。 （例如 /mnt/iscsi/）"
@@ -2155,14 +2385,29 @@ msgstr "含有可移动媒体的目录。 （例如 /mnt/iscsi/）"
 msgid "Directory to watch for new .torrent files."
 msgstr "监视新 .torrent 文件的目录。"
 
-msgid "Disable Firmware Update"
-msgstr "关闭固件更新"
+msgid "Disable"
+msgstr "禁用"
+
+msgid "Disable Firmware Upgrade"
+msgstr "禁止固件升级"
+
+msgid "Disable Selected Commands"
+msgstr "禁用所选的命令"
 
 msgid "Disable Selected Jobs"
 msgstr "禁止选中的任务"
 
 msgid "Disable Selected Options"
 msgstr "禁止选中的选项"
+
+msgid "Disable Selected Records"
+msgstr "禁用所选记录"
+
+msgid "Disable Selected Rsync Jobs"
+msgstr "禁止所选的Rsync任务"
+
+msgid "Disable Selected Rsync Modules"
+msgstr "禁止所选的Rsync模块"
 
 msgid "Disable TCP wrapper (mod_wrap module)."
 msgstr "关闭 TCP Wrapper（mod_wrap 模块）。"
@@ -2177,7 +2422,7 @@ msgid "Disable firmware version check."
 msgstr "禁止固件版本检查。"
 
 msgid "Disable speaker beep on startup and shutdowns."
-msgstr ""
+msgstr "在启动和关闭时禁用扬声器蜂鸣。"
 
 msgid "Disable the compression of repeated line."
 msgstr "禁止对重复行压缩。"
@@ -2186,10 +2431,10 @@ msgid "Disabled"
 msgstr "关闭"
 
 msgid "Discard - Discard ACL"
-msgstr ""
+msgstr "丢弃 - 丢弃ACL"
 
 msgid "Discard - Do not inherit entries"
-msgstr ""
+msgstr "Discard - 不继承条目"
 
 #, php-format
 msgid "Discovered iSCSI target for %s"
@@ -2204,64 +2449,76 @@ msgstr "目标搜索认证方法"
 msgid "Disk"
 msgstr "硬盘"
 
+msgid "Disk Partition Information"
+msgstr "磁盘分区信息"
+
 msgid "Disk Selection"
 msgstr "选择磁盘"
 
-msgid "Disk space usage"
-msgstr "磁盘空间使用情况"
+msgid "Disk Settings"
+msgstr "磁盘设置"
+
+msgid "Disk Space Usage"
+msgstr "磁盘空间使用率"
+
+msgid "Disk Usage"
+msgstr "磁盘使用情况"
 
 msgid "Disks"
 msgstr "硬盘"
 
-msgid "Disks (ATA)"
-msgstr "硬盘（ATA）"
+msgid "Disks (Info)"
+msgstr "磁盘（信息）"
 
-msgid "Disks (ATA) information"
-msgstr "磁盘(ATA)信息"
+msgid "Disks (Info) Information"
+msgstr "磁盘（信息）信息"
 
 msgid "Disks | Mount Point | Management"
-msgstr ""
+msgstr "磁盘| 挂载点| 管理"
 
 msgid "Display"
 msgstr "显示"
 
 msgid "Display ZFS command history"
-msgstr ""
+msgstr "显示ZFS命令历史记录"
 
 msgid ""
 "Distance the disk has shifted relative to the spindle (usually due to shock "
 "or temperature). Unit of measure is unknown."
-msgstr ""
+msgstr "磁盘相对于主轴的距离（通常由于冲击或温度）。 计量单位未知。"
 
-msgid "Distributed hash table"
-msgstr "分布式杂凑表"
+msgid "Distributed Hash Table"
+msgstr "分布式哈希表"
+
+msgid "Do not abort the firmware upgrade process once it has started."
+msgstr "一旦启动，请勿中止固件升级过程。"
 
 msgid "Do not activate this option if you want to add an existing RAID."
-msgstr ""
+msgstr "如果要添加现有的RAID，请不要激活此选项。"
 
 msgid ""
 "Do not erase the Master Boot Record (useful for some RAID controller cards)."
-msgstr ""
+msgstr "不要擦除主引导记录（对某些RAID控制器卡很有用）。"
 
 #, php-format
 msgid ""
 "Do not let the server check for newer firmware versions when the %s page "
 "gets loaded."
-msgstr ""
+msgstr "在加载 %s 页面时，不要让服务器检查较新的固件版本。"
 
 msgid ""
 "Do you really want to clear and import?\\nThe existing config will be "
 "cleared and overwritten."
 msgstr "您确定要清除并导入吗？\\n现有的配置将被清除和覆盖。"
 
+msgid "Do you really want to delete all data from the selected statistics?"
+msgstr "您确定要从所选统计信息中删除所有数据吗？"
+
 msgid "Do you really want to delete all rules?"
 msgstr "您确定要删除所有规则吗？"
 
 msgid "Do you really want to delete all scheduled self-tests?"
 msgstr "您确定要删除所有自我测试任务吗?"
-
-msgid "Do you really want to delete this Rsync job?"
-msgstr "您确定要删除这个 Rsync 任务吗？"
 
 msgid "Do you really want to delete this URL?"
 msgstr "您确定要删除这个 URL 吗？"
@@ -2278,9 +2535,6 @@ msgstr "您确定要删除这个自动快照吗？"
 msgid "Do you really want to delete this clone?"
 msgstr "您确认要删除这个克隆吗？"
 
-msgid "Do you really want to delete this command?"
-msgstr "您确认要删除这个指令吗？"
-
 msgid ""
 "Do you really want to delete this disk? All elements that still use it will "
 "become invalid (e.g. share)!"
@@ -2288,9 +2542,6 @@ msgstr "您确定要删除这个硬盘吗？所有使用此硬盘的元件都会
 
 msgid "Do you really want to delete this extent?"
 msgstr "您确定要删除这个 extent 吗？"
-
-msgid "Do you really want to delete this group?"
-msgstr "您确定要删这个组吗？"
 
 msgid "Do you really want to delete this host?"
 msgstr "您确定要删除这个主机吗？"
@@ -2303,12 +2554,6 @@ msgid ""
 "will become invalid (e.g. share)!"
 msgstr "您确定要删除这个启动器吗？所有存取这个初始器的元件都将失效！"
 
-msgid "Do you really want to delete this interface?"
-msgstr "您确定要删除这个介面吗？"
-
-msgid "Do you really want to delete this module?"
-msgstr "您确定要删除这个模组吗？"
-
 msgid ""
 "Do you really want to delete this mount point? All elements that still use "
 "it will become invalid (e.g. share)!"
@@ -2317,31 +2562,14 @@ msgstr "您确定要删除这个挂载点吗？所有使用此挂载点的元件
 msgid "Do you really want to delete this portal group?"
 msgstr "您确定要删除这个门户组吗？"
 
-msgid "Do you really want to delete this resource?"
-msgstr "您确定要删除这个资源吗？"
-
-msgid "Do you really want to delete this route?"
-msgstr "您确定要删除这个路由资讯吗？"
-
 msgid "Do you really want to delete this rule?"
 msgstr "您确定要删除这个规则吗？"
 
 msgid "Do you really want to delete this scheduled self-test?"
 msgstr "您确定要删除这项自我检测流程吗？"
 
-msgid "Do you really want to delete this share?"
-msgstr "您确定要删除这个分享区吗？"
-
 msgid "Do you really want to delete this target?"
 msgstr "您确定要删除这个iSCSI目标吗？"
-
-msgid "Do you really want to delete this user?"
-msgstr "您确定要删除这个用户吗？"
-
-msgid ""
-"Do you really want to delete this volume?\\n!!! Note, all data will get lost "
-"and can not be recovered. !!!"
-msgstr "您确定要删除这个卷吗？\\n！ ！ ！请注意，所有数据都将会消失，无法恢复。！ ！ ！"
 
 msgid ""
 "Do you really want to import?\\nThe existing config may be overwritten."
@@ -2353,82 +2581,166 @@ msgstr "您确定从列表中删除所选项目吗？"
 msgid "Do you really want to uninstall this package?"
 msgstr "您确定要卸载这个套件吗？"
 
+msgid "Do you want to apply these settings?"
+msgstr "您要应用这些设置吗？"
+
 msgid "Do you want to create a JBOD from selected disks?"
 msgstr "是否从选中的磁盘创建JBOD？"
 
 msgid "Do you want to create a RAID-0 from selected disks?"
-msgstr ""
+msgstr "是否要从所选的磁盘创建RAID-0？"
 
 msgid "Do you want to create a RAID-1 from selected disks?"
-msgstr ""
+msgstr "是否要从所选的磁盘创建RAID-1？"
 
 msgid "Do you want to create a RAID-5 from selected disks?"
-msgstr ""
+msgstr "是否要从所选的磁盘创建RAID-5？"
 
 msgid "Do you want to create a RAID-Z1 from selected disks?"
-msgstr ""
+msgstr "是否要从所选的磁盘创建RAID-Z1？"
 
 msgid "Do you want to create a RAID-Z2 from selected disks?"
-msgstr ""
+msgstr "是否要从所选的磁盘创建RAID-Z2？"
 
 msgid "Do you want to create a RAID-Z3 from selected disks?"
-msgstr ""
+msgstr "是否要从所选的磁盘创建RAID-Z3？"
 
 msgid "Do you want to create a cache device from selected disks?"
-msgstr ""
+msgstr "是否要从所选磁盘创建缓存设备？"
 
 msgid "Do you want to create a hot spare device from selected disk?"
-msgstr ""
+msgstr "您要从所选磁盘创建热备份设备吗？"
 
 msgid "Do you want to create a log device from selected disk?"
-msgstr ""
+msgstr "您要从所选磁盘创建日志设备吗？"
 
 msgid "Do you want to create a mirrored log device from selected disks?"
-msgstr ""
+msgstr "是否要从所选磁盘创建镜像日志设备？"
 
 msgid "Do you want to create a mirrored virtual device from selected disks?"
-msgstr ""
+msgstr "是否要从所选磁盘创建镜像虚拟设备？"
 
 msgid "Do you want to create a striped virtual device from selected disks?"
-msgstr ""
+msgstr "是否要从所选磁盘创建条带化虚拟设备？"
+
+msgid "Do you want to delete selected CARPs?"
+msgstr "您要删除所选的CARP吗？"
+
+msgid "Do you want to delete selected LAGGs?"
+msgstr "要删除所选的LAGGs吗？"
+
+msgid "Do you want to delete selected NFS shares?"
+msgstr "您要删除所选的NFS共享吗？"
 
 msgid "Do you want to delete selected RAID volumes?"
-msgstr ""
+msgstr "是否要删除所选的RAID卷？"
+
+msgid "Do you want to delete selected Samba shares?"
+msgstr "是否要删除所选的Samba共享？"
+
+msgid "Do you want to delete selected VLANs?"
+msgstr "是否要删除选定的VLAN？"
+
+msgid "Do you want to delete selected WLANs?"
+msgstr "要删除所选的WLAN吗？"
+
+msgid "Do you want to delete selected bridges?"
+msgstr "您要删除所选的网桥吗？"
+
+msgid "Do you want to delete selected commands?"
+msgstr "要删除所选的命令吗？"
 
 msgid "Do you want to delete selected datasets?"
-msgstr ""
+msgstr "要删除选定的数据集吗？"
+
+msgid "Do you want to delete selected encrypted volumes?"
+msgstr "是否要删除所选的加密卷？"
+
+msgid "Do you want to delete selected groups?"
+msgstr "您要删除所选的群组吗？"
 
 msgid "Do you want to delete selected jobs?"
-msgstr ""
+msgstr "您要删除所选的任务吗？"
 
 msgid "Do you want to delete selected options?"
 msgstr ""
 
 msgid "Do you want to delete selected pools?"
-msgstr ""
+msgstr "要删除所选池吗？"
+
+msgid "Do you want to delete selected records?"
+msgstr "要删除所选记录吗？"
+
+msgid "Do you want to delete selected resources?"
+msgstr "您要删除所选资源吗？"
+
+msgid "Do you want to delete selected routes?"
+msgstr "要删除所选路线吗？"
+
+msgid "Do you want to delete selected rsync jobs?"
+msgstr "是否要删除所选的rsync任务？"
+
+msgid "Do you want to delete selected rsync modules?"
+msgstr "要删除所选的rsync模块吗？"
+
+msgid "Do you want to delete selected shares?"
+msgstr "要删除所选共享吗？"
 
 msgid "Do you want to delete selected snapshots?"
-msgstr ""
+msgstr "要删除所选快照吗？"
+
+msgid "Do you want to delete selected user accounts?"
+msgstr "45/5000 要删除所选的用户帐户吗？"
 
 msgid "Do you want to delete selected virtual devices?"
-msgstr ""
+msgstr "您要删除所选的虚拟设备吗？"
 
 msgid "Do you want to delete selected volumes?"
-msgstr ""
+msgstr "要删除所选卷吗？"
+
+msgid "Do you want to delete this command?"
+msgstr "是否要删除此命令？"
+
+msgid "Do you want to disable selected commands?"
+msgstr "您要禁用所选命令吗？"
 
 msgid "Do you want to disable selected jobs?"
-msgstr ""
+msgstr "您要禁用所选任务吗？"
 
 msgid "Do you want to disable selected options?"
-msgstr ""
+msgstr "要禁用所选选项吗？"
+
+msgid "Do you want to disable selected records?"
+msgstr "要禁用所选记录吗？"
+
+msgid "Do you want to disable selected rsync jobs?"
+msgstr "是否要禁用所选的rsync任务？"
+
+msgid "Do you want to disable selected rsync modules?"
+msgstr "是否要禁用所选的rsync模块？"
+
+msgid "Do you want to enable selected commands?"
+msgstr "是否要启用所选命令？"
 
 msgid "Do you want to enable selected jobs?"
-msgstr ""
+msgstr "您要启用所选任务吗？"
 
 msgid "Do you want to enable selected options?"
 msgstr ""
 
-msgid "Do you want to install this firmware anyway (at your own risk)?"
+msgid "Do you want to enable selected records?"
+msgstr ""
+
+msgid "Do you want to enable selected rsync jobs?"
+msgstr ""
+
+msgid "Do you want to enable selected rsync modules?"
+msgstr ""
+
+msgid "Do you want to lock selected records?"
+msgstr ""
+
+msgid "Do you want to toggle selected commands?"
 msgstr ""
 
 msgid "Do you want to toggle selected jobs?"
@@ -2437,8 +2749,20 @@ msgstr ""
 msgid "Do you want to toggle selected options?"
 msgstr ""
 
-msgid "Document root"
-msgstr "文件根目录"
+msgid "Do you want to toggle selected records?"
+msgstr ""
+
+msgid "Do you want to toggle selected rsync jobs?"
+msgstr ""
+
+msgid "Do you want to toggle selected rsync modules?"
+msgstr ""
+
+msgid "Do you want to unlock selected records?"
+msgstr ""
+
+msgid "Document Root"
+msgstr ""
 
 msgid "Document root of the webserver. Home of the web page files."
 msgstr "网页伺服器文件根目录。"
@@ -2449,20 +2773,20 @@ msgstr ""
 msgid "Domain"
 msgstr "网域"
 
-msgid "Domain controller name"
-msgstr "网域控制器名称"
+msgid "Domain Controller Name"
+msgstr ""
 
-msgid "Domain have no 2nd level name."
-msgstr "域没有二级域名。"
+msgid "Domain Name"
+msgstr ""
 
-msgid "Domain name"
-msgstr "网域名称"
+msgid "Domain Name (DNS/Realm-Name)"
+msgstr ""
 
-msgid "Domain name (DNS/Realm-Name)"
-msgstr "网域名称（DNS/Realm-Name）"
+msgid "Domain Name (NetBIOS-Name)"
+msgstr ""
 
-msgid "Domain name (NetBIOS-Name)"
-msgstr "网域名称（NetBIOS-Name）"
+msgid "Domain is missing 2nd level name."
+msgstr ""
 
 msgid "Domain name in old format, e.g. EXAMPLE."
 msgstr "旧式网域名称，例如：DOMAIN"
@@ -2479,23 +2803,20 @@ msgstr "完成"
 msgid "Done."
 msgstr "完成。"
 
-msgid "Dos charset"
-msgstr "DOS 字符集"
+msgid "Dos Charset"
+msgstr ""
 
 msgid "Download"
 msgstr "下载"
 
+msgid "Download Bandwidth"
+msgstr ""
+
 msgid "Download Configuration"
 msgstr "下载配置"
 
-msgid "Download bandwidth"
-msgstr "下载带宽"
-
-msgid "Download directory"
-msgstr "下载目录"
-
-msgid "Download firewall rules."
-msgstr "下载防火墙规则。"
+msgid "Download Directory"
+msgstr ""
 
 msgid "Drive Temperature."
 msgstr "硬盘温度。"
@@ -2506,11 +2827,11 @@ msgstr ""
 msgid "Driver"
 msgstr "驱动程式"
 
-msgid "Driver list"
-msgstr "驱动程式列表"
+msgid "Driver List"
+msgstr ""
 
-msgid "Driver parameters"
-msgstr "驱动程式参数"
+msgid "Driver Parameter"
+msgstr ""
 
 msgid "Driver used"
 msgstr "所使用的驱动程序"
@@ -2543,8 +2864,8 @@ msgstr "动态 DNS"
 msgid "Dynamic IP (DHCP) can not be used for HAST resources."
 msgstr "HAST资源不能使用动态IP（DHCP）。"
 
-msgid "EA support"
-msgstr "延伸属性（EA）支援"
+msgid "EA Support"
+msgstr ""
 
 msgid "EFI/GPT partition can be use with UFS only."
 msgstr "EFI/GPT 只相容于 UFS 文件系统。"
@@ -2555,29 +2876,74 @@ msgstr "错误："
 msgid "Edit"
 msgstr "编辑"
 
+msgid "Edit Bridge"
+msgstr ""
+
+msgid "Edit CARP"
+msgstr ""
+
 msgid "Edit Dataset"
+msgstr ""
+
+msgid "Edit Encrypted Volume"
+msgstr ""
+
+msgid "Edit Group"
 msgstr ""
 
 msgid "Edit Host"
 msgstr "编辑主机资讯"
 
+msgid "Edit LAGG"
+msgstr ""
+
 msgid "Edit MIB"
 msgstr "编辑MIB"
+
+msgid "Edit NFS Share"
+msgstr ""
+
+msgid "Edit Option"
+msgstr ""
+
+msgid "Edit Pool"
+msgstr ""
 
 msgid "Edit RAID"
 msgstr "编辑RAID"
 
+msgid "Edit Record"
+msgstr ""
+
+msgid "Edit Resource"
+msgstr ""
+
 msgid "Edit Route"
 msgstr "编辑路由"
 
-msgid "Edit Rsync job"
-msgstr "编辑 Rsync 任务"
+msgid "Edit Rsync Job"
+msgstr ""
+
+msgid "Edit Rsync Module"
+msgstr ""
+
+msgid "Edit Samba Share"
+msgstr ""
+
+msgid "Edit Share"
+msgstr ""
 
 msgid "Edit Snapshot"
 msgstr ""
 
 msgid "Edit URL"
 msgstr "编辑 URL"
+
+msgid "Edit User Account"
+msgstr ""
+
+msgid "Edit VLAN"
+msgstr ""
 
 msgid "Edit VM"
 msgstr "编辑 VM"
@@ -2586,6 +2952,9 @@ msgid "Edit Virtual Device"
 msgstr ""
 
 msgid "Edit Volume"
+msgstr ""
+
+msgid "Edit WLAN"
 msgstr ""
 
 msgid "Edit auth group"
@@ -2603,38 +2972,20 @@ msgstr "编辑硬盘"
 msgid "Edit extent"
 msgstr "编辑 extent"
 
-msgid "Edit group"
-msgstr "编辑群组"
-
 msgid "Edit initiator"
 msgstr "编辑启动器"
 
 msgid "Edit initiator group"
 msgstr "编辑启动器组"
 
-msgid "Edit interface"
-msgstr "编辑介面"
-
 msgid "Edit job"
 msgstr "编辑任务"
-
-msgid "Edit module"
-msgstr "编辑模组"
 
 msgid "Edit mount point"
 msgstr "编辑挂载点"
 
-msgid "Edit option"
-msgstr "编辑选项"
-
-msgid "Edit pool"
-msgstr "编辑池"
-
 msgid "Edit portal group"
 msgstr "编辑门户组"
-
-msgid "Edit resource"
-msgstr "编辑资源"
 
 msgid "Edit rule"
 msgstr "编辑规则"
@@ -2642,14 +2993,8 @@ msgstr "编辑规则"
 msgid "Edit self-test"
 msgstr "编辑自我检测流程"
 
-msgid "Edit share"
-msgstr "编辑分享区"
-
 msgid "Edit target"
 msgstr "编辑目标"
-
-msgid "Edit user"
-msgstr "编辑用户"
 
 msgid ""
 "Efficiency of the UPS (Ratio of the output current on the input current)"
@@ -2661,29 +3006,35 @@ msgstr "电子邮件"
 msgid "Email Report"
 msgstr "电邮报告"
 
-msgid "Emergency Level"
+msgid "Email Reports"
 msgstr ""
 
-msgid "Empty as default."
-msgstr "默认值为空白。"
+msgid "Email Reports Setup"
+msgstr ""
+
+msgid "Email Setup"
+msgstr ""
+
+msgid "Emergency Level"
+msgstr ""
 
 msgid "Enable"
 msgstr "启动"
 
-msgid "Enable 'Asynchronous I/O (AIO)' switch."
+msgid "Enable 'Asynchronous I/O (AIO).' switch."
 msgstr ""
 
 msgid "Enable 'Large read/write' switch."
 msgstr ""
 
-msgid "Enable ACL inheritance"
-msgstr "启用ACL继承"
+msgid "Enable ACL inheritance."
+msgstr ""
 
 msgid "Enable Advanced Format (4KB Sector Size)."
 msgstr ""
 
-msgid "Enable Asynchronous I/O (AIO)"
-msgstr "启用异步I / O（AIO）"
+msgid "Enable Asynchronous I/O. (AIO)."
+msgstr ""
 
 msgid "Enable Challenge-Response Authentication"
 msgstr ""
@@ -2691,8 +3042,8 @@ msgstr ""
 msgid "Enable FXP protocol."
 msgstr "启用 FXP 协议。"
 
-msgid "Enable Firmware Update"
-msgstr "启用固件更新"
+msgid "Enable Firmware Upgrade"
+msgstr ""
 
 msgid "Enable NFSv4 server."
 msgstr "启用NFSv4的伺服器。"
@@ -2713,10 +3064,22 @@ msgid ""
 "use SSL."
 msgstr "启用STARTTLS加密。这并不意味着你必须使用TLS，您可以使用SSL。"
 
+msgid "Enable Selected Commands"
+msgstr ""
+
 msgid "Enable Selected Jobs"
 msgstr ""
 
 msgid "Enable Selected Options"
+msgstr ""
+
+msgid "Enable Selected Records"
+msgstr ""
+
+msgid "Enable Selected Rsync Jobs"
+msgstr ""
+
+msgid "Enable Selected Rsync Modules"
 msgstr ""
 
 msgid "Enable TLS connections."
@@ -2728,8 +3091,8 @@ msgstr "启用TiVo的支持。"
 msgid "Enable Time Machine support"
 msgstr "启用Time Machine的支持"
 
-msgid "Enable ZFS ACL"
-msgstr "启用ZFS存取控制清单（ACL）"
+msgid "Enable ZFS ACL."
+msgstr ""
 
 msgid "Enable Zeroconf/Bonjour to advertise services of this device."
 msgstr ""
@@ -2739,6 +3102,42 @@ msgstr "启用匿名绑定。"
 
 msgid "Enable authentication."
 msgstr "启用认证。"
+
+msgid "Enable collecting CPU frequency statistics."
+msgstr ""
+
+msgid "Enable collecting CPU temperature statistics."
+msgstr ""
+
+msgid "Enable collecting CPU usage statistics."
+msgstr ""
+
+msgid "Enable collecting UPS statistics."
+msgstr ""
+
+msgid "Enable collecting ZFS ARC usage statistics."
+msgstr ""
+
+msgid "Enable collecting average system load statistics."
+msgstr ""
+
+msgid "Enable collecting disk space usage statistics."
+msgstr ""
+
+msgid "Enable collecting memory usage statistics."
+msgstr ""
+
+msgid "Enable collecting network latency statistics."
+msgstr ""
+
+msgid "Enable collecting network traffic statistics."
+msgstr ""
+
+msgid "Enable collecting system process statistics."
+msgstr ""
+
+msgid "Enable collecting uptime statistics."
+msgstr ""
 
 msgid "Enable compression."
 msgstr "启用资料压缩。"
@@ -2761,8 +3160,8 @@ msgstr "启用网域通配符。"
 msgid "Enable encryption."
 msgstr "启用加密。"
 
-msgid "Enable extended attribute support"
-msgstr "启用延伸属性支援"
+msgid "Enable extended attribute support."
+msgstr ""
 
 msgid "Enable extended attributes for this file system."
 msgstr "启用此档案系统的延伸属性。"
@@ -2771,9 +3170,6 @@ msgid ""
 "Enable foreground/background file system consistency check during boot "
 "process."
 msgstr "开启开机阶段的前台/后台文件系统完整性检查。"
-
-msgid "Enable guest access"
-msgstr "启用访客（guest）访问"
 
 msgid "Enable guest access."
 msgstr "允许访客（游客）登入。"
@@ -2784,13 +3180,13 @@ msgstr ""
 msgid "Enable keyboard-interactive authentication."
 msgstr "开启键盘认证。"
 
-msgid "Enable large read/write"
-msgstr "开启大笔资料读/写"
+msgid "Enable large read/write."
+msgstr ""
 
 msgid "Enable local user authentication."
 msgstr "启用本地用户验证。"
 
-msgid "Enable mapping DOS attributes"
+msgid "Enable mapping DOS attributes."
 msgstr ""
 
 msgid "Enable module listing."
@@ -2805,17 +3201,17 @@ msgstr ""
 msgid "Enable peer exchange (PEX)."
 msgstr "启用对等交换(PEX)"
 
-msgid "Enable permission inheritance"
-msgstr "开启权限继承"
+msgid "Enable permission inheritance."
+msgstr ""
 
 msgid "Enable port forwarding via NAT-PMP or UPnP."
 msgstr "启用通过NAT-PMP或UPnP的的端口转发。"
 
 msgid "Enable proxy authentication."
-msgstr "启用 Proxy 认证。"
+msgstr ""
 
-msgid "Enable recycle bin"
-msgstr "启用垃圾桶"
+msgid "Enable recycle bin."
+msgstr ""
 
 msgid "Enable remote monitoring of the local connected UPS."
 msgstr "启用 UPS 的远程监控。"
@@ -2835,16 +3231,24 @@ msgstr ""
 msgid "Enable serial console."
 msgstr ""
 
-msgid "Enable shadow copy"
-msgstr "启用阴影复制"
+msgid "Enable service SSH when disabled"
+msgstr ""
 
-msgid "Enable store DOS attributes"
-msgstr "启用 DOS 属性储存"
+msgid "Enable shadow copy."
+msgstr ""
+
+msgid "Enable store DOS attributes."
+msgstr ""
 
 msgid "Enable the ident protocol (RFC1413)."
 msgstr "启用 ident 协议（RFC1413）。"
 
 msgid "Enable the server power control utility."
+msgstr ""
+
+msgid ""
+"Enable this option if you want to edit configuration pages directly without "
+"the need to switch to edit mode."
 msgstr ""
 
 msgid "Enable to strictly adhere to DLNA standards."
@@ -2862,11 +3266,17 @@ msgstr ""
 msgid "Enable tuning switch"
 msgstr ""
 
+msgid "Enable white background graphs. (black as default)"
+msgstr ""
+
 msgid "Enable write cache mode."
 msgstr "开启写入缓存模式。"
 
 msgid "Enabled"
 msgstr "已启用"
+
+msgid "Encrypt Password"
+msgstr ""
 
 msgid "Encrypt password"
 msgstr "加密密码"
@@ -2880,6 +3290,15 @@ msgstr "已加密"
 msgid "Encrypted configuration is automatically gzipped."
 msgstr "加密的配置会自动以gzip压缩。"
 
+msgid "Encrypted volume is marked for deletion"
+msgstr ""
+
+msgid "Encrypted volume is protected"
+msgstr ""
+
+msgid "Encrypted volume is unlocked"
+msgstr ""
+
 #, php-format
 msgid "Encrypting '%s'... Please wait"
 msgstr "正在加密 '%s'... 请稍待..."
@@ -2887,22 +3306,71 @@ msgstr "正在加密 '%s'... 请稍待..."
 msgid "Encryption"
 msgstr "加密方式"
 
+msgid "Encryption Management"
+msgstr ""
+
+msgid "Encryption Settings"
+msgstr ""
+
+msgid "Encryption Tools"
+msgstr ""
+
 msgid "Encryption algorithm"
 msgstr "加密演算法"
-
-msgid "Encryption algorithm to use."
-msgstr "使用加密演算法"
 
 msgid "English"
 msgstr "英文"
 
-msgid "Enhanced compatibility with Netatalk AFP server"
+msgid "Enhanced compatibility with Netatalk AFP server."
+msgstr ""
+
+msgid "Enter Command"
+msgstr ""
+
+msgid "Enter a comment"
 msgstr ""
 
 msgid ""
 "Enter a custom port number for the WebGUI if you want to override the "
 "default (80 for HTTP, 443 for HTTPS)."
 msgstr "如果您想覆盖默认值的话，请输入自定的网页界面 的端口编号（80为HTTP，HTTPS为443）。"
+
+msgid ""
+"Enter a custom port number if you want to override the default port (default "
+"is 69)."
+msgstr ""
+
+#, php-format
+msgid ""
+"Enter a custom port number if you want to override the default port. "
+"(Default is %s)."
+msgstr ""
+
+msgid ""
+"Enter a custom port number if you want to override the default port. "
+"(Default is 22)."
+msgstr ""
+
+msgid "Enter a description"
+msgstr ""
+
+msgid "Enter a description for your reference."
+msgstr ""
+
+msgid "Enter a group description."
+msgstr ""
+
+msgid "Enter a group name."
+msgstr ""
+
+msgid "Enter a name"
+msgstr ""
+
+msgid "Enter a name for the command."
+msgstr ""
+
+msgid "Enter a name for this volume"
+msgstr ""
 
 msgid ""
 "Enter a space-separated list of tap devices. The devices will be created and "
@@ -2917,10 +3385,35 @@ msgid ""
 "select it."
 msgstr "请输入系统时间（格式为 MM/DD/YYYY hh:mm），或点选图标来选择时间。"
 
+msgid "Enter full name of the user."
+msgstr ""
+
+msgid "Enter hostname or IP address."
+msgstr ""
+
+msgid "Enter login name of the user."
+msgstr ""
+
+msgid "Enter the IP address or DNS name of the iSCSI target."
+msgstr ""
+
+msgid ""
+"Enter the UPS identifier and host IP address of the machine where the UPS is "
+"connected to. (this also can be a remote host)"
+msgstr ""
+
+msgid "Enter the command"
+msgstr ""
+
 msgid ""
 "Enter the passphrase that will be used in WPA-PSK mode. This must be between "
 "8 and 63 characters long."
 msgstr "请输入在 WPA-PSK 模式中使用的密码短语。这个密语长度必须在 8 到 63 个字元之间。"
+
+msgid ""
+"Enter the path to the database directory. The config files will be created "
+"under the specified directory."
+msgstr ""
 
 msgid ""
 "Enter the path to the home directory of VirtualBox. VM config and HDD image "
@@ -2933,12 +3426,15 @@ msgid ""
 msgstr "请输入该用户的主目录的路径。将此字段留空以使用默认的路径到 /mnt。"
 
 msgid ""
-"Enter the path to the home directory. The config will be created under the "
-"specified directory."
+"Enter the path to the home directory. This directory will store the "
+"statistical data and gets updated every 5 minutes!"
 msgstr ""
 
 msgid "Enter the port to send the traps to (default 162)."
 msgstr "请输入 Traps 传输端口（默认为 162）"
+
+msgid "Enter the user password."
+msgstr ""
 
 msgid "Enter trap host name."
 msgstr "请输入 Trap 主机名。"
@@ -2963,20 +3459,23 @@ msgstr ""
 msgid "Error Level"
 msgstr ""
 
+msgid "Errors have been detected during import."
+msgstr ""
+
 msgid "Event"
 msgstr "事件"
 
-msgid "Event selection"
+msgid "Event Selection"
 msgstr ""
 
-msgid "Example: pkg add packagename."
+msgid "Example: pkg install packagename."
 msgstr ""
 
 msgid "Execute"
 msgstr "执行"
 
-msgid "Execute command"
-msgstr "执行命令"
+msgid "Execute Command"
+msgstr ""
 
 msgid ""
 "Execute command pre or post system initialization (booting) or before system "
@@ -3000,6 +3499,9 @@ msgstr ""
 
 msgid "Export all the directories in the specified path."
 msgstr "导出指定的路径中的所有目录。"
+
+msgid "Export firewall rules."
+msgstr ""
 
 msgid "Exported"
 msgstr ""
@@ -3025,6 +3527,9 @@ msgstr "Extent"
 msgid "Extent Name"
 msgstr "Extent 名称"
 
+msgid "Extent Settings"
+msgstr ""
+
 msgid "Extent name"
 msgstr "Extent 名称"
 
@@ -3033,8 +3538,8 @@ msgid ""
 "more than once."
 msgstr "使用 Extent 之前必须先定义，而 extents 不能够被使用超过一次。"
 
-msgid "Extra options"
-msgstr "额外选项"
+msgid "Extra Options"
+msgstr ""
 
 msgid "Extra options (usually empty)."
 msgstr "额外选项（通常为空白）。"
@@ -3047,9 +3552,8 @@ msgstr "用于/etc/ssh/sshd_config 中的额外选项（通常为空白）。注
 msgid "Extra options to ifconfig (usually empty)."
 msgstr "ifconfig 的额外选项（通常为空白）。"
 
-msgid ""
-"Extra options to pass over rpc using transmission-remote (usually empty)."
-msgstr "额外的选项来使用 transmission-remote 传递的RPC（通常为空白）。"
+msgid "Extra options to pass over rpc using transmission-remote."
+msgstr ""
 
 msgid "Extra options to rsync (usually empty)."
 msgstr "rsync 的额外选项（通常为空白）。"
@@ -3060,17 +3564,20 @@ msgstr ""
 msgid "FEC (Fast EtherChannel)"
 msgstr "FEC (Fast EtherChannel)"
 
+msgid "FRU Information"
+msgstr ""
+
 msgid "FTP"
 msgstr "FTP"
 
-msgid "FTP - Ban module"
-msgstr "FTP - 封禁模组"
+msgid "FTP - Ban Module"
+msgstr ""
 
-msgid "FTP - File transfer"
-msgstr "FTP - 文件传输"
+msgid "FTP - File Transfer"
+msgstr ""
 
 msgid "FTP Proxy"
-msgstr "FTP 代理伺服器"
+msgstr ""
 
 msgid "FTP events"
 msgstr "FTP 事件"
@@ -3078,8 +3585,8 @@ msgstr "FTP 事件"
 msgid "FTP log"
 msgstr "FTP 记录"
 
-msgid "FTP server disabled"
-msgstr "关闭 FTP 伺服器"
+msgid "FTP service is disabled."
+msgstr ""
 
 msgid "FXP"
 msgstr "FXP"
@@ -3095,8 +3602,8 @@ msgstr ""
 msgid "Failed"
 msgstr "失败"
 
-msgid "Failed to create in-memory file system."
-msgstr "无法创建 RAM Disk"
+msgid "Failed to access in-memory file system."
+msgstr ""
 
 msgid "Failed to execute command zfs."
 msgstr ""
@@ -3132,8 +3639,14 @@ msgstr "失败"
 msgid "Failover"
 msgstr "故障转移"
 
+msgid "Fast"
+msgstr ""
+
 msgid "Fatal"
 msgstr "致命"
+
+msgid "Fdisk Partition Information"
+msgstr ""
 
 msgid "Feb"
 msgstr ""
@@ -3149,6 +3662,9 @@ msgstr "文件编辑器"
 
 msgid "File Manager"
 msgstr "文件管理程式"
+
+msgid "File Mask"
+msgstr ""
 
 msgid "File Path"
 msgstr "文件路径"
@@ -3215,8 +3731,14 @@ msgstr ""
 msgid "Firmware Update"
 msgstr ""
 
+msgid "Firmware upgrade check has been disabled."
+msgstr ""
+
 msgid "Firmware upload failed (out of memory?)"
 msgstr "固件上传失败（内存不足？）"
+
+msgid "Firmware upload failed with error message:"
+msgstr ""
 
 msgid "Firmware uploading is not supported on this platform."
 msgstr "此系统并不支持固件上传功能。."
@@ -3239,14 +3761,14 @@ msgstr "跟随"
 msgid "Force Operation"
 msgstr ""
 
+msgid "Force Use"
+msgstr ""
+
 msgid "Force delete"
 msgstr ""
 
-msgid "Force use"
-msgstr "强制使用"
-
-msgid "Forced update period"
-msgstr "强制更新间隔"
+msgid "Forced Update Period"
+msgstr ""
 
 msgid ""
 "Forces use of vdevs, even if they appear in use or specify different size. "
@@ -3261,9 +3783,6 @@ msgstr ""
 
 msgid "Format Program"
 msgstr ""
-
-msgid "Format the report for phpBB forum."
-msgstr "将报告格式化成适合 phpBB 论坛的形式"
 
 msgid "Forum"
 msgstr "论坛"
@@ -3307,12 +3826,13 @@ msgstr "Fuppes"
 msgid "Fuppes Media Server"
 msgstr ""
 
-msgid ""
-"Fuppes is enabled. If you wish to use MiniDLNA, you will need to disable "
-"Fuppes first."
+msgid "Fuppes Media Server Administration"
 msgstr ""
 
 msgid "GEOM"
+msgstr ""
+
+msgid "GEOM Partition Information"
 msgstr ""
 
 msgid "GEOM Software RAID"
@@ -3342,9 +3862,6 @@ msgstr "一般设定"
 msgid "General Setup"
 msgstr "一般设定"
 
-msgid "Generate"
-msgstr "生成"
-
 msgid "Generate a new unique identifier for a pool"
 msgstr ""
 
@@ -3372,35 +3889,51 @@ msgstr "指定媒体库的友好名称。"
 msgid "Grant access to the user portal."
 msgstr "授予用户门户网站的访问权。"
 
-msgid "Graph"
-msgstr "图表"
-
 msgid "Graph shows last 120 seconds"
 msgstr "图表显示最近120秒"
+
+#, php-format
+msgid "Graph updates every %d seconds."
+msgstr ""
+
+msgid "Graphs Height"
+msgstr ""
 
 msgid "Greek"
 msgstr "希腊文"
 
-msgid "Greeting banner displayed by FTP when a connection first comes in."
-msgstr "当用户刚连接上FTP所显示的信息。"
+msgid "Greeting banner displayed to client when firts connection comes in."
+msgstr ""
 
 msgid "Group"
 msgstr "群组"
 
+msgid "Group Allow"
+msgstr ""
+
+msgid "Group Compilations"
+msgstr ""
+
 msgid "Group ID"
 msgstr "群组 ID"
 
-msgid "Group compilations"
+msgid "Group Settings"
 msgstr ""
 
-msgid "Group name."
-msgstr "群组名称。"
+msgid "Group Suffix"
+msgstr ""
+
+msgid "Group is marked for deletion"
+msgstr ""
+
+msgid "Group is protected"
+msgstr ""
+
+msgid "Group is unlocked"
+msgstr ""
 
 msgid "Group numeric id."
 msgstr "群组的数字 id。"
-
-msgid "Group suffix"
-msgstr "群组后缀"
 
 msgid "Groupmask - Mask ACL with mode"
 msgstr ""
@@ -3411,8 +3944,8 @@ msgstr "群组"
 msgid "Guest"
 msgstr "访客（Guest）"
 
-msgid "Guest account"
-msgstr "访客帐号"
+msgid "Guest Account"
+msgstr ""
 
 msgid "HAST"
 msgstr "HAST"
@@ -3426,8 +3959,8 @@ msgstr ""
 msgid "HAST Resource"
 msgstr ""
 
-msgid "HAST disabled"
-msgstr "HAST关闭"
+msgid "HAST is disabled."
+msgstr ""
 
 msgid "HAST volume"
 msgstr "HAST卷"
@@ -3458,16 +3991,13 @@ msgid "HOT SPARE"
 msgstr ""
 
 msgid "HTTP Proxy"
-msgstr "HTTP 代理伺服器"
+msgstr ""
 
 msgid "HVM Guest"
 msgstr ""
 
 msgid "Hard Disk"
 msgstr "硬盘"
-
-msgid "Hardware"
-msgstr "硬体"
 
 msgid "Header and Data digest"
 msgstr "头摘要和数据摘要"
@@ -3484,14 +4014,21 @@ msgid ""
 "increases the chances of a read/write error."
 msgstr ""
 
+#, php-format
+msgid "Height of the graphs. (default %s pixels)"
+msgstr ""
+
 msgid "Help"
 msgstr "说明"
 
 msgid "Hiadaptive (High Performance)"
 msgstr ""
 
-msgid "Hide dot files"
-msgstr "隐藏以点开头的文件"
+msgid "Hide Default Groups"
+msgstr ""
+
+msgid "Hide Dot Files"
+msgstr ""
 
 msgid "High voltage boosting transfer point"
 msgstr "高升压转换点"
@@ -3508,17 +4045,14 @@ msgstr "语法高亮度显示"
 msgid "Hint"
 msgstr "提示"
 
-msgid "Home directory"
-msgstr "个人目录（Home）"
+msgid "Home Directory"
+msgstr ""
 
 msgid "Host"
 msgstr "主机"
 
-msgid "Host access control"
-msgstr "主机访问控制"
-
-msgid "Host name"
-msgstr "主机名称"
+msgid "Host Access Control"
+msgstr ""
 
 msgid "Host resources"
 msgstr "主机资源"
@@ -3526,20 +4060,23 @@ msgstr "主机资源"
 msgid "Hostname"
 msgstr "主机名称"
 
-msgid "Hostname database"
-msgstr "主机名数据库"
+msgid "Hostname Database"
+msgstr ""
 
 msgid "Hosts"
 msgstr "主机列表"
 
+msgid "Hosts Allow"
+msgstr ""
+
+msgid "Hosts Deny"
+msgstr ""
+
 msgid "Hosts Setup"
 msgstr ""
 
-msgid "Hosts allow"
-msgstr "允许主机"
-
-msgid "Hosts deny"
-msgstr "拒绝主机"
+msgid "Hour"
+msgstr ""
 
 msgid "Hours"
 msgstr "小时"
@@ -3594,35 +4131,32 @@ msgstr "Rsync 的远程伺服器的 IP 或 FQDN 地址"
 msgid "IP type mismatch for network and gateway."
 msgstr "IP地址类型和网关不匹配。"
 
-msgid "IPMI FRU"
-msgstr ""
-
-msgid "IPMI Sensor"
-msgstr ""
-
 msgid "IPMI Stats"
 msgstr ""
 
-msgid "IPv4 Configuration"
-msgstr "IPv4 配置"
+msgid "IPv4 DNS Servers"
+msgstr ""
 
-msgid "IPv4 DNS servers"
-msgstr "IPv4 DNS 伺服器"
+msgid "IPv4 Settings"
+msgstr ""
 
 msgid "IPv4 addresses"
 msgstr "IPv4 地址"
 
-msgid "IPv6 Configuration"
-msgstr "IPv6 配置"
+msgid "IPv6 Address"
+msgstr ""
 
-msgid "IPv6 DNS servers"
-msgstr "IPv6 DNS 伺服器"
+msgid "IPv6 DNS Servers"
+msgstr ""
 
 msgid "IPv6 Gateway"
 msgstr "IPv6 网关"
 
 msgid "IPv6 Prefix"
 msgstr "IPv6 前缀"
+
+msgid "IPv6 Settings"
+msgstr ""
 
 msgid "IPv6 address"
 msgstr "IPv6 地址"
@@ -3643,11 +4177,11 @@ msgstr ""
 msgid "ISO file to be mounted."
 msgstr "要挂载的 ISO 文件。"
 
-msgid "ISP DNS servers"
-msgstr "ISP DNS 伺服器"
+msgid "ISP DNS Servers"
+msgstr ""
 
-msgid "Ident protocol"
-msgstr "Ident 协议"
+msgid "IdentLookups"
+msgstr ""
 
 msgid "Identifier"
 msgstr "识别码"
@@ -3667,6 +4201,12 @@ msgid ""
 "client from a portion of the host system filespace."
 msgstr ""
 "如果启用了默认的root ，当客户端进行身份验证后， chroot 操作将立即执行。这可以用来有效地从主机系统一部分的档案空间隔离客户端。"
+
+#, php-format
+msgid ""
+"If only specific statistics needs to be reset, clear all other check boxes "
+"before performing '%s'."
+msgstr ""
 
 msgid ""
 "If the server is behind a proxy set these parameters to give local services "
@@ -3705,19 +4245,6 @@ msgid ""
 "If this property is enabled, the snapshots are displayed into .zfs directory."
 msgstr "如果启用此属性，.zfs 目录里会显示快照。"
 
-#, php-format
-msgid ""
-"If you click 'Yes', The server will be reset to factory defaults and will "
-"reboot immediately. The entire system configuration will be overwritten. The "
-"LAN IP address will be reset to %s and the password will be set to '%s'."
-msgstr ""
-"如果单击“是”，服务器将被重置到出厂默认设置，接着将立即重新启动。整个系统的配置将被覆盖。 LAN IP 位址将被重置为%s 和密码将被设置为'%s' 。"
-
-msgid ""
-"If you want to change the password for accessing the WebGUI, enter it here "
-"twice."
-msgstr "如果您想更改访问网页界面的密码，请在这里输入两次。"
-
 msgid "Import"
 msgstr "导入"
 
@@ -3754,20 +4281,17 @@ msgstr "大多数的情况下，这里应该是'public'"
 msgid "In slave mode it is the UPS name (Identifier) at the UPS master."
 msgstr "在从模式(Slave mode)下，它是主模式UPS (UPS master) 的 UPS 名称（标识）。"
 
-msgid "In/Out errors"
-msgstr "输入/输出错误"
+msgid "In/Out Errors"
+msgstr ""
 
-msgid "In/Out packets"
-msgstr "输入/输出数据包"
-
-msgid "Include basic hardware information."
-msgstr "包括基本的硬件资讯。"
+msgid "In/Out Packets"
+msgstr ""
 
 msgid "Incoming Line/Power Information"
 msgstr "输入线/电源信息"
 
-msgid "Incomplete directory"
-msgstr "未完毕档案的目录"
+msgid "Incomplete Directory"
+msgstr ""
 
 msgid ""
 "Indicates the approximate SSD life left, in terms of program/erase cycles or "
@@ -3792,11 +4316,14 @@ msgstr "资讯和手册"
 msgid "Information & Manuals"
 msgstr "资讯和手册"
 
+msgid "Information & Status"
+msgstr ""
+
 msgid "Inherit ACL"
 msgstr "继承ACL"
 
-msgid "Inherit permissions"
-msgstr "权限继承"
+msgid "Inherit Permissions"
+msgstr ""
 
 msgid "Inhibit some of the syslog diagnostics for bad lines in /etc/exports."
 msgstr "系统记录程序发现一些错误在 /etc/exports。"
@@ -3823,16 +4350,24 @@ msgstr "初始化中..."
 msgid "Initiator Group"
 msgstr "启动器组"
 
+msgid "Initiator Group Settings"
+msgstr ""
+
 msgid "Initiator Groups"
 msgstr "启动器群组"
+
+msgid ""
+"Initiator Groups contains authorised initiator names and networks to access "
+"the target."
+msgstr ""
+
+msgid "Initiator Name"
+msgstr ""
 
 msgid ""
 "Initiator authorised to access to the iSCSI target.  It takes a name or "
 "'ALL' for any initiators."
 msgstr "启动器群组授权访问 iSCSI 目标。任何启动器可以使用一个名称或者'ALL'。"
-
-msgid "Initiator name"
-msgstr "启动器名称"
 
 msgid "Initiator side secret. (for mutual CHAP authentication)"
 msgstr "启动器端秘密。 （CHAP 相互认证）"
@@ -3908,8 +4443,8 @@ msgstr "介面"
 msgid "Interface Management"
 msgstr "网络介面管理"
 
-msgid "Interface selection"
-msgstr "介面选择"
+msgid "Interface Selection"
+msgstr ""
 
 msgid "Interfaces"
 msgstr "网路介面"
@@ -3925,6 +4460,9 @@ msgstr "UPS 内部时钟的日期"
 
 msgid "Internal UPS clock time"
 msgstr "UPS 内部时钟的时间"
+
+msgid "Interval"
+msgstr ""
 
 msgid "Interval between self tests"
 msgstr "自检的时间间隔"
@@ -3951,8 +4489,8 @@ msgid "Invalid file format."
 msgstr "文件格式无效。"
 
 #, php-format
-msgid "Invalid max. block size! It must be in the range from %d to %d."
-msgstr "数据块的最大值无效！它必须是从 %d 到 %d 的范围。"
+msgid "Invalid maximum block size! It must be in the range from %d to %d."
+msgstr ""
 
 msgid "Invalid username or password."
 msgstr ""
@@ -3965,13 +4503,10 @@ msgid ""
 "time."
 msgstr "任何时候可以通过标准SCSI 模式页从客户端更改。"
 
-msgid "It cannot be used combining SMB2 and Anonymous."
-msgstr "不能同时使用SMB2 和匿名用户选项。"
-
 msgid ""
-"It is impossible to enable 'Anonymous users only' and 'Local users only' "
-"authentication simultaneously."
-msgstr "不能同时启用“匿名用户” 和“本地用户“ 的认证。"
+"It is impossible to enable 'Anonymous Users' and 'Authenticated Users' both "
+"at the same time."
+msgstr ""
 
 msgid ""
 "It is not recommanded to import non healthy pools nor virtual devices that "
@@ -4046,17 +4581,11 @@ msgstr "内核文件（如 %s）。"
 msgid "Key"
 msgstr "密钥"
 
+msgid "Key Length"
+msgstr ""
+
 msgid "Key Management Protocol"
 msgstr "密钥管理协议"
-
-msgid "Key length"
-msgstr "密钥长度"
-
-msgid "Key length to use with the given cryptographic algorithm."
-msgstr "加密算法用的密钥长度。"
-
-msgid "Kill encrypted volume"
-msgstr "删除加密硬盘"
 
 msgid "Korean"
 msgstr "韩文"
@@ -4070,11 +4599,30 @@ msgstr "LACP（链路汇聚控制协议）"
 msgid "LAGG"
 msgstr "LAGG"
 
+msgid "LAGG Settings"
+msgstr ""
+
+msgid ""
+"LAGG cannot be deleted because it is still being used as an interface."
+msgstr ""
+
+msgid "LAGG is marked for deletion"
+msgstr ""
+
+msgid "LAGG is protected"
+msgstr ""
+
+msgid "LAGG is unlocked"
+msgstr ""
+
 msgid "LAN Management"
 msgstr "区域网路管理"
 
 msgid "LAN Only"
 msgstr "只有区域网路"
+
+msgid "LAN interface is not configured."
+msgstr ""
 
 msgid "LAN net"
 msgstr "区域网络"
@@ -4106,8 +4654,8 @@ msgstr "语言"
 msgid "Language to use on front panel"
 msgstr "前置面板的语言"
 
-msgid "Large read/write"
-msgstr "大笔资料 读／写"
+msgid "Large Read/Write"
+msgstr ""
 
 msgid ""
 "Last test result as microseconds to discharge cap, saturated at its maximum "
@@ -4122,15 +4670,12 @@ msgid ""
 msgstr ""
 
 #, php-format
-msgid "Latest Beta Build: %s"
-msgstr "最新的 Beta 版：%s"
+msgid "Latest Beta Release: %s"
+msgstr ""
 
 #, php-format
 msgid "Latest Release: %s"
 msgstr "最新版本：%s"
-
-msgid "Latvian"
-msgstr "拉脱维亚文"
 
 msgid "Leave already configured auto snapshots."
 msgstr "保留已经配置的自动快照。"
@@ -4159,10 +4704,6 @@ msgstr ""
 msgid "Level 64 - Intermediate Power Usage with Standby"
 msgstr ""
 
-#, php-format
-msgid "Levels (MHz/mW): %s"
-msgstr "水平 (MHz/mW): %s"
-
 msgid "License"
 msgstr "授权"
 
@@ -4188,20 +4729,14 @@ msgstr ""
 "限制数据集与其所有后代的可用空间。此属性强硬限制可用空间量。这包括其所有后代，文件系统和快照占用的空间。请使用以下的后缀来指定大小（例如'k'，'KB'，"
 "'M'，'Gb' 等）。"
 
-msgid "Link Aggregation and Failover"
-msgstr "链路聚合和故障切换"
+msgid "Link Down Action"
+msgstr ""
 
-msgid "Link down action"
-msgstr "未连接动作"
-
-msgid "Link up action"
-msgstr "连接动作"
+msgid "Link Up Action"
+msgstr ""
 
 msgid "List"
 msgstr "列表"
-
-msgid "List Detected Disks"
-msgstr "列出检测到的磁盘"
 
 msgid "List Imported Users"
 msgstr "列出导入的用户"
@@ -4219,6 +4754,9 @@ msgstr ""
 
 msgid "Load"
 msgstr "载入"
+
+msgid "Load Averages"
+msgstr ""
 
 msgid "Load averages"
 msgstr "系统负载"
@@ -4244,24 +4782,6 @@ msgstr "本机分享区(目标)"
 msgid "Local User"
 msgstr "本机用户"
 
-msgid "Local share (destination)"
-msgstr "本机分享区(目标)"
-
-msgid "Local shares to be synchronized"
-msgstr "欲同步的本机分享区"
-
-msgid "Local user bandwidth"
-msgstr "局域用户频宽"
-
-msgid "Local user download bandwith in KB/s. An empty field means infinity."
-msgstr "局域用户下载频宽 (KB/s 单位)。空白表示没限制。"
-
-msgid "Local user upload bandwith in KB/s. An empty field means infinity."
-msgstr "局域用户上载频宽 (KB/s 单位)。空白表示没限制。"
-
-msgid "Local users only"
-msgstr "只允许本机用户"
-
 msgid "Location"
 msgstr "位置"
 
@@ -4273,22 +4793,33 @@ msgstr "位置信息，例：这台机器实际存放的地点：'哪栋大楼�
 msgid "Location of the files to share."
 msgstr "文件的分享位置。"
 
+msgid "Location of the media content database."
+msgstr ""
+
 msgid "Location where the content database file will be stored."
 msgstr "储存内容资料库文件的位置。"
 
-msgid "Location where the database with media contents will be stored."
-msgstr "媒体内容的数据库的储存位置。"
-
 #, php-format
-msgid ""
-"Location where the working files will be stored, e.g. %s/backup/.unison"
-msgstr "存储使用文件的位置，例如：%s/backup/.unison"
+msgid "Location where the work files will be stored, e.g. %s/backup/.unison"
+msgstr ""
+
+msgid "Lock Selected Records"
+msgstr ""
+
+msgid "Locked Files"
+msgstr ""
 
 msgid "Log"
 msgstr "记录档"
 
+msgid "Log Filter"
+msgstr ""
+
 msgid "Log Level"
 msgstr "记录档层级"
+
+msgid "Log Order"
+msgstr ""
 
 msgid "Log Settings"
 msgstr ""
@@ -4296,17 +4827,14 @@ msgstr ""
 msgid "Log file is empty."
 msgstr ""
 
-msgid "Log level"
-msgstr "记录档层级"
-
-msgid "Log order"
-msgstr ""
-
 msgid "Log packets that are handled by this rule to syslog."
 msgstr "这条规则所处理的记录档到 syslog。"
 
-msgid "Logical Block Length"
-msgstr "逻辑块长度"
+msgid "Logarithmic Scaling"
+msgstr ""
+
+msgid "Logical Block"
+msgstr ""
 
 #, php-format
 msgid "Logical Unit Controller Authorised network (%s by default)"
@@ -4329,11 +4857,11 @@ msgstr "映射到 LUN 的逻辑单元类型。"
 msgid "Login"
 msgstr "登录"
 
-msgid "Login name of user."
-msgstr "登录用户名。"
-
 msgid "Logout"
 msgstr "登出"
+
+msgid "Long Self-Test"
+msgstr ""
 
 msgid "Low voltage boosting transfer point"
 msgstr "低电压升压转换点"
@@ -4355,9 +4883,6 @@ msgstr "最低值是更优先。对于主节点，使用0或1。如果启用抢�
 msgid "MAC Address"
 msgstr "MAC地址"
 
-msgid "MAC address"
-msgstr "MAC地址"
-
 msgid "MBR partition"
 msgstr "MBR 分区"
 
@@ -4368,6 +4893,9 @@ msgid "MIB is locked"
 msgstr ""
 
 msgid "MIB is marked for deletion"
+msgstr ""
+
+msgid "MIB is unlocked"
 msgstr ""
 
 msgid "MIRROR"
@@ -4394,8 +4922,8 @@ msgstr "MS 网域"
 msgid "MTU"
 msgstr "最大传输单元(MTU)"
 
-msgid "Machine suffix"
-msgstr "电脑后缀"
+msgid "Machine Suffix"
+msgstr ""
 
 msgid "Maintenance"
 msgstr ""
@@ -4409,6 +4937,9 @@ msgstr "请确定您已经启用装置的 S.M.A.R.T.。"
 msgid "Make sure you have already configured your email settings"
 msgstr ""
 
+msgid "Manage content locations."
+msgstr ""
+
 msgid "Management"
 msgstr "管理"
 
@@ -4418,16 +4949,19 @@ msgstr "制造商"
 msgid "Manufacturing date"
 msgstr "制造日期"
 
-msgid "Map all users to root"
-msgstr "视所有用户为root"
+msgid "Map all users to root, all users will have root privileges."
+msgstr ""
 
-msgid "Map to guest"
-msgstr "对应为访客（guest）"
+msgid "Map to Guest"
+msgstr ""
 
-msgid "Map to user"
-msgstr "對應為用戶"
+msgid "Map to Root"
+msgstr ""
 
-msgid "Mapping DOS attributes"
+msgid "Map to User"
+msgstr ""
+
+msgid "Mapping DOS Attributes"
 msgstr ""
 
 msgid "Mar"
@@ -4441,42 +4975,35 @@ msgid ""
 "not specified."
 msgstr ""
 
-msgid "Masquerade address"
-msgstr "伪装位址"
-
-msgid "Max Protocol"
-msgstr "最高协议"
-
-msgid "Max entries"
+msgid "Masquerade Address"
 msgstr ""
 
-msgid "Max. TTL"
-msgstr "最大 TTL 值"
+msgid "Max Entries"
+msgstr ""
 
-msgid "Max. block size"
-msgstr "最大数据块值"
+msgid "Max. Block Size"
+msgstr ""
 
-msgid "Max. conn. per IP"
-msgstr "每个IP的连线数目上限"
+msgid "Max. Clients"
+msgstr ""
 
-msgid "Max. connections"
-msgstr "IP 连线数目上限"
+msgid "Max. Connections"
+msgstr ""
 
-msgid "Max. login attempts"
-msgstr "最多登录尝试次数目"
+msgid "Max. Connections Per Host"
+msgstr ""
 
-msgid "Max. passive port"
-msgstr "最大被动端口"
+msgid "Max. Login Attempts"
+msgstr ""
+
+msgid "Max. Passive Port"
+msgstr ""
+
+msgid "Max. Sessions"
+msgstr ""
 
 msgid "Max. pre-send R2T"
 msgstr "最大 pre=send R2T"
-
-msgid "Max. sessions"
-msgstr "最多会话（sessions）数目"
-
-msgid ""
-"Max. time-to-live (max. number of hops) used in outgoing probe packets."
-msgstr "最大TTL 值（最大跳数），用于发送探测数据包。"
 
 msgid "MaxBurstLength"
 msgstr "MaxBurstLength"
@@ -4493,12 +5020,6 @@ msgstr ""
 msgid "Maximum Performance, Maximum Acoustic Output"
 msgstr ""
 
-msgid "Maximum connections"
-msgstr "连线数目上限"
-
-msgid "Maximum frequency"
-msgstr "最大频率"
-
 msgid "Maximum idle time in seconds."
 msgstr "最大闲置时间（秒）"
 
@@ -4508,12 +5029,13 @@ msgstr "可见的最大输入电压"
 msgid "Maximum number of allowed password attempts before disconnection."
 msgstr "断线前允许的最多密码尝试次数。"
 
+msgid ""
+"Maximum number of connections allowed per IP address. (0 = unlimited)."
+msgstr ""
+
 #, php-format
 msgid "Maximum number of connections in each session (%d by default)."
 msgstr "每个会话（session）的最多连线数（默认为 %d）。"
-
-msgid "Maximum number of connections per IP address (0 = unlimited)."
-msgstr "来自相同IP的连接数目上限(0 = 不限制)。"
 
 #, php-format
 msgid ""
@@ -4525,11 +5047,11 @@ msgstr "每个连接的前发送R2T最大数量（默认值为 %d）。实际数
 msgid "Maximum number of sessions holding at same time (%d by default)."
 msgstr "在同一时间举行的最多会话（session）数（默认值为 %d）。"
 
-msgid "Maximum number of simultaneous clients."
-msgstr "连接数目上限。"
-
 msgid "Maximum number of simultaneous connections. Default is 0 (unlimited)."
 msgstr "同时最高连接数目。默认为0(不限制)。"
+
+msgid "Maximum number of users that can connect to the server."
+msgstr ""
 
 msgid "Maximum relative humidity seen (percent)"
 msgstr "最高相对湿度（百分比）"
@@ -4546,8 +5068,14 @@ msgstr "介质（Media）"
 msgid "Media Directory"
 msgstr "媒体目录"
 
+msgid "Media Library"
+msgstr ""
+
 msgid "Media library"
 msgstr "媒体库"
+
+msgid "Media server name"
+msgstr ""
 
 msgid "Medium Acoustic Output"
 msgstr ""
@@ -4561,8 +5089,8 @@ msgstr "介面成员"
 msgid "Memory (MiB)"
 msgstr ""
 
-msgid "Memory usage"
-msgstr "内存使用情况"
+msgid "Memory Usage"
+msgstr ""
 
 msgid "Message Board"
 msgstr ""
@@ -4576,8 +5104,8 @@ msgstr "MiB"
 msgid "MibII"
 msgstr "MibII"
 
-msgid "Min. passive port"
-msgstr "最小被动端口"
+msgid "Min. Passive Port"
+msgstr ""
 
 msgid "MiniDLNA"
 msgstr "MiniDLNA"
@@ -4585,12 +5113,7 @@ msgstr "MiniDLNA"
 msgid "MiniDLNA A/V Media Server"
 msgstr ""
 
-msgid ""
-"MiniDLNA is enabled. If you wish to use Fuppes, you will need to disable "
-"MiniDLNA first."
-msgstr ""
-
-msgid "Minidlna configuration has been updated."
+msgid "MiniDLNA Media Server WebGUI"
 msgstr ""
 
 msgid "Minimum"
@@ -4608,9 +5131,6 @@ msgstr ""
 msgid "Minimum battery level for UPS restart after power-off"
 msgstr "断电后UPS重启的最小电池电量"
 
-msgid "Minimum frequency"
-msgstr "最小频率"
-
 msgid "Minimum incoming voltage seen"
 msgstr "可见的最小输入电压"
 
@@ -4619,6 +5139,9 @@ msgstr "最低相对湿度（百分比）"
 
 msgid "Minimum temperature seen (degrees C)"
 msgstr "最低气温（摄氏度）"
+
+msgid "Minute"
+msgstr ""
 
 msgid "Minutes"
 msgstr "分钟"
@@ -4650,11 +5173,17 @@ msgstr "型号名"
 msgid "Modified"
 msgstr "已修改"
 
+msgid "Modify Service"
+msgstr ""
+
 msgid "Modifying"
 msgstr "更改中"
 
 msgid "Module"
 msgstr "模组"
+
+msgid "Module Settings"
+msgstr ""
 
 msgid "Modules"
 msgstr "模块"
@@ -4665,20 +5194,34 @@ msgstr ""
 msgid "Monday"
 msgstr ""
 
-msgid "Monday Tuesday Wednesday Thursday Friday Saturday Sunday"
-msgstr "星期一 星期二 星期三 星期四 星期五 星期六 星期日"
+msgid "Monitoring"
+msgstr ""
+
+msgid "Monitoring Setup"
+msgstr ""
 
 msgid "Months"
 msgstr "月"
 
+msgid ""
+"More than one DLNA/UPnP service is active. This configuration might cause "
+"issues."
+msgstr ""
+
 msgid "Mount Point"
 msgstr "挂载点"
 
-msgid "Mount Points"
+msgid "Mount Point Fsck"
 msgstr ""
 
-msgid "Mount point"
-msgstr "挂载点"
+msgid "Mount Point Management"
+msgstr ""
+
+msgid "Mount Point Tools"
+msgstr ""
+
+msgid "Mount Points"
+msgstr ""
 
 msgid "Mount point name"
 msgstr "挂载点名称"
@@ -4717,6 +5260,15 @@ msgstr "CHAP 相互验证用户"
 msgid "NFS"
 msgstr "NFS"
 
+msgid "NFS share is marked for deletion"
+msgstr ""
+
+msgid "NFS share is protected"
+msgstr ""
+
+msgid "NFS share is unlocked"
+msgstr ""
+
 msgid "NFSv4"
 msgstr "NFSv4"
 
@@ -4736,8 +5288,14 @@ msgstr "尚未公布"
 msgid "NOTE"
 msgstr ""
 
-msgid "NT1"
-msgstr "NT1"
+msgid "NT1 (CIFS)"
+msgstr ""
+
+msgid "NTFS ACLs"
+msgstr ""
+
+msgid "NTP Time Server"
+msgstr ""
 
 msgid "NTP is not enabled."
 msgstr "必须启用NTP。"
@@ -4773,14 +5331,17 @@ msgstr "改名名称。"
 msgid "Nested HVM"
 msgstr ""
 
-msgid "NetBIOS domain"
-msgstr "NetBIOS域名"
+msgid "NetBIOS Domain"
+msgstr ""
 
-msgid "NetBIOS name"
-msgstr "NetBIOS 名称"
+msgid "NetBIOS Name"
+msgstr ""
 
 msgid "Netgraph"
 msgstr "网络图"
+
+msgid "Netstat"
+msgstr ""
 
 msgid "Network"
 msgstr "网络"
@@ -4790,6 +5351,12 @@ msgstr "网络适配器"
 
 msgid "Network File System"
 msgstr "网络文件系统"
+
+msgid "Network Latency"
+msgstr ""
+
+msgid "Network Traffic"
+msgstr ""
 
 msgid ""
 "Network authorised to access to the iSCSI target. It takes IP or CIDR "
@@ -4816,6 +5383,14 @@ msgid ""
 "a disk which is spun-down to be spun-up when it is checked."
 msgstr "永不- 任何功耗模式都轮询（检查）装置。这可能会导致降速中的磁盘增速。"
 
+msgid "New Password"
+msgstr ""
+
+msgid ""
+"New Password does not match the confirmation password. Please ensure both "
+"passwords are the same."
+msgstr ""
+
 msgid "New password"
 msgstr "新密码"
 
@@ -4824,6 +5399,9 @@ msgstr ""
 
 msgid "No"
 msgstr "否"
+
+msgid "No DNS server have been configured."
+msgstr ""
 
 msgid "No DNS setting found."
 msgstr "找不到 DNS 配置。"
@@ -4834,7 +5412,7 @@ msgstr ""
 msgid "No IPMI FRU data available."
 msgstr ""
 
-msgid "No IPMI sensor data available."
+msgid "No IPMI Sensor data available."
 msgstr ""
 
 msgid "No Initiator Group has been configured."
@@ -4843,8 +5421,8 @@ msgstr ""
 msgid "No Portal Group has been configured."
 msgstr ""
 
-msgid "No RSYNC Client configured"
-msgstr "尚未配置RSYNC客户端配置"
+msgid "No RSYNC Client configured."
+msgstr ""
 
 msgid "No configured Auth Group."
 msgstr ""
@@ -4870,10 +5448,14 @@ msgstr "尚未配置硬盘"
 msgid "No disks available."
 msgstr ""
 
-msgid ""
-"No disks configured, please add disks to see the diagnostic information of "
-"disks!"
-msgstr "尚未配置硬盘。请先添加新的硬盘再看硬盘的诊断信息！"
+msgid "No disks configured, please add disks to view diagnostic information!"
+msgstr ""
+
+msgid "No disks found."
+msgstr ""
+
+msgid "No fdisk information found."
+msgstr ""
 
 msgid "No file was uploaded."
 msgstr "没有文件被上传。"
@@ -4881,8 +5463,14 @@ msgstr "没有文件被上传。"
 msgid "No new disk found."
 msgstr "没有发现新的硬盘。"
 
+msgid "No new encrypted disks have been found."
+msgstr ""
+
 msgid "No new software raid disk found."
 msgstr "没有发现新的软体RAID的硬盘。"
+
+msgid "No partition information found."
+msgstr ""
 
 msgid "No pool devices have been selected"
 msgstr ""
@@ -4971,6 +5559,11 @@ msgstr "无"
 msgid "Normal"
 msgstr "正常"
 
+msgid ""
+"Normally this option should not be set as the automatic negotiation phase in "
+"the SMB protocol takes care of choosing the appropriate protocol."
+msgstr ""
+
 msgid "Norwegian (Bokmal)"
 msgstr "挪威文 (博克马尔语)"
 
@@ -5023,17 +5616,14 @@ msgstr ""
 msgid "Now"
 msgstr "现在"
 
-msgid "Null passwords"
-msgstr "密码空白"
+msgid "Null Passwords"
+msgstr ""
 
 msgid "Number of bad battery packs"
 msgstr "坏电池组的数量"
 
 msgid "Number of battery packs"
 msgstr "电池组的数量"
-
-msgid "Number of clients"
-msgstr "连接数目"
 
 msgid "Number of hours elapsed in the power-on state."
 msgstr ""
@@ -5048,9 +5638,6 @@ msgid ""
 "Number of physical erase cycles completed on the drive as a percentage of "
 "the maximum physical erase cycles the drive is designed to endure."
 msgstr ""
-
-msgid "Number of servers"
-msgstr "伺服器数量"
 
 msgid "Numeric identifier of the group."
 msgstr "群组的数字识别码。"
@@ -5079,16 +5666,16 @@ msgstr ""
 msgid "Off"
 msgstr "关闭"
 
-msgid "Old passphrase"
-msgstr "旧密码短语"
+msgid "Offline Immediate Test"
+msgstr ""
 
-msgid "Old password"
-msgstr "旧密码"
+msgid "Old Passphrase"
+msgstr ""
 
 msgid "On"
 msgstr "开"
 
-msgid "Online"
+msgid "Online Information"
 msgstr ""
 
 msgid ""
@@ -5099,11 +5686,6 @@ msgstr "只允许匿名用户。使用在公共而且拒绝远端帐号连线的
 msgid "Only allow authenticated users. Anonymous logins are prohibited."
 msgstr "只允许授权用户，匿名用户无法登录。"
 
-msgid ""
-"Only install firmwares that come from sources that you trust, and make sure "
-"that the firmware has not been tampered with."
-msgstr ""
-
 msgid "Option"
 msgstr "选项"
 
@@ -5111,6 +5693,12 @@ msgid "Option is locked"
 msgstr ""
 
 msgid "Option is marked for deletion"
+msgstr ""
+
+msgid "Option is protected"
+msgstr ""
+
+msgid "Option is unlocked"
 msgstr ""
 
 msgid "Optional user-friendly string of the target."
@@ -5176,6 +5764,9 @@ msgstr "PG"
 msgid "PHP Command"
 msgstr "PHP 指令"
 
+msgid "PHP Command Output"
+msgstr ""
+
 msgid "PPPoE"
 msgstr "PPPoE"
 
@@ -5206,6 +5797,12 @@ msgstr "套件上传失败（记忆体不足？）"
 msgid "Packages"
 msgstr "套件"
 
+msgid "Packages Installer"
+msgstr ""
+
+msgid "Page Refresh"
+msgstr ""
+
 msgid "Painfully aggressive"
 msgstr "Painfully aggressive"
 
@@ -5233,8 +5830,8 @@ msgstr "分割区类型"
 msgid "Partitions"
 msgstr "分割区"
 
-msgid "Passive ports"
-msgstr "被动端口"
+msgid "Passive Port"
+msgstr ""
 
 msgid ""
 "Passive ports restricts the range of ports from which the server will select "
@@ -5250,6 +5847,9 @@ msgstr ""
 
 msgid "Passphrase"
 msgstr "密码短语"
+
+msgid "Passphrase Confirmation"
+msgstr ""
 
 msgid "Passphrase don't match."
 msgstr "密码短语不匹配。"
@@ -5269,14 +5869,25 @@ msgstr "密码"
 msgid "Password (confirmed)"
 msgstr "密码（确认）"
 
-msgid "Password authentication"
-msgstr "密码认证"
+msgid "Password Authentication"
+msgstr ""
+
+msgid "Password Encryption"
+msgstr ""
+
+msgid "Password Server"
+msgstr ""
+
+msgid "Password Suffix"
+msgstr ""
+
+msgid ""
+"Password does not match the confirmation password. Please ensure both "
+"passwords are the same."
+msgstr ""
 
 msgid "Password don't match."
 msgstr "密码不匹配。"
-
-msgid "Password encryption"
-msgstr "密码加密"
 
 msgid "Password for the administrative pages."
 msgstr "管理页面的密码。"
@@ -5284,15 +5895,9 @@ msgstr "管理页面的密码。"
 msgid "Password of domain administrator account."
 msgstr "网域管理员户口的密码。"
 
-msgid "Password server"
-msgstr "密码伺服器"
-
 msgid ""
 "Password server name or IP address (e.g. Active Directory domain controller)."
 msgstr "密码伺服器的名称或IP 位址（例如 Active Directory 域控制器）。"
-
-msgid "Password suffix"
-msgstr "密码后缀"
 
 msgid "Paste a RSA PRIVATE KEY in PEM format here."
 msgstr ""
@@ -5309,6 +5914,9 @@ msgstr "路径"
 msgid "Path of the URL relative to document root."
 msgstr "URL 相对路径（从根目录开始）。"
 
+msgid "Path to be shared to be synchronized."
+msgstr ""
+
 msgid "Path to be shared."
 msgstr "欲共享的路径"
 
@@ -5316,17 +5924,17 @@ msgstr "欲共享的路径"
 msgid "Path to the local device. (e.g. %s)"
 msgstr "本地设备的路径。 （例如 %s）"
 
+msgid "Peer Exchange"
+msgstr ""
+
+msgid "Peer Port"
+msgstr ""
+
 msgid "Peer Secret"
 msgstr "对等秘密"
 
 msgid "Peer User"
 msgstr "对等用户"
-
-msgid "Peer exchange"
-msgstr "对等交流（Peer exchange）"
-
-msgid "Peer port"
-msgstr "对等端口（Peer port）"
 
 msgid "Performance Settings"
 msgstr ""
@@ -5335,16 +5943,16 @@ msgstr ""
 msgid "Permanent samba data path (e.g. %s)."
 msgstr "永久Samba数据路径（如 %s）。"
 
-msgid "Permit root login"
-msgstr "允许root登录"
+msgid "Permission"
+msgstr ""
+
+msgid "Permit Root Login"
+msgstr ""
 
 msgid "Permit to do SSH Tunneling."
 msgstr "允许 SSH Tunneling"
 
 msgid "Physical Interface"
-msgstr "实体介面"
-
-msgid "Physical interface"
 msgstr "实体介面"
 
 msgid "Pictures"
@@ -5353,11 +5961,17 @@ msgstr "图片"
 msgid "Ping"
 msgstr "Ping"
 
-msgid "Ping Test"
+msgid "Ping Host"
 msgstr ""
 
-msgid "Ping winbindd to see if it is alive:"
-msgstr "Ping winbindd 看看是否 alive :"
+msgid "Ping Output"
+msgstr ""
+
+msgid "Ping may take a while, please be patient."
+msgstr ""
+
+msgid "Ping winbindd to see if it is alive"
+msgstr ""
 
 msgid "Ping/Traceroute"
 msgstr "Ping/Traceroute"
@@ -5402,6 +6016,10 @@ msgstr ""
 msgid "Please add new pools first."
 msgstr ""
 
+#, php-format
+msgid "Please check the %s documentation%s."
+msgstr ""
+
 msgid "Please check the documentation"
 msgstr ""
 
@@ -5411,10 +6029,10 @@ msgstr ""
 msgid "Please check the log files"
 msgstr ""
 
-msgid "Please define the Database directory location."
+msgid "Please define one or more content locations."
 msgstr ""
 
-msgid "Please define the Media library location."
+msgid "Please define the location for the database directory."
 msgstr ""
 
 msgid "Please note that blanks in path names are not allowed."
@@ -5426,8 +6044,8 @@ msgstr ""
 msgid "Polish"
 msgstr "波兰语"
 
-msgid "Polling time"
-msgstr "轮询时间"
+msgid "Polling Time"
+msgstr ""
 
 msgid "Pool"
 msgstr "存储池"
@@ -5450,7 +6068,7 @@ msgstr ""
 msgid "Pool cannot be changed."
 msgstr ""
 
-msgid "Pool is marked for removal"
+msgid "Pool is marked for deletion"
 msgstr ""
 
 msgid "Pool is protected"
@@ -5472,12 +6090,16 @@ msgstr "端口 "
 msgid "Port %ld is already used by another service."
 msgstr "端口 %ld 已被其他服务使用。"
 
-msgid "Port forwarding"
-msgstr "端口映射"
+msgid "Port Forwarding"
+msgstr ""
 
 #, php-format
-msgid "Port to listen for incoming peer connections. Default port is %d."
-msgstr "侦听接收对等连接的端口。默认端口是 %d。"
+msgid "Port number must be in the range between %d and %d."
+msgstr ""
+
+#, php-format
+msgid "Port to listen for incoming peer connections. (Default is %d)."
+msgstr ""
 
 msgid "Port to listen on. Default iTunes port is 3689."
 msgstr "监听端口。iTunes的默认端口是3689 。"
@@ -5495,8 +6117,16 @@ msgstr "监听端口。只有动态或私有端口可以使用（从 %d 到 %d  
 msgid "Portal Group"
 msgstr "门户组（Portal Group）"
 
+msgid "Portal Group Settings"
+msgstr ""
+
 msgid "Portal Groups"
 msgstr "门户群组"
+
+msgid ""
+"Portal Groups contains IP addresses and listening on TCP ports to connect "
+"the target from the initiator."
+msgstr ""
 
 msgid "Portals"
 msgstr "门户网站（Portals）"
@@ -5525,9 +6155,6 @@ msgstr "电源模式"
 msgid "Power management"
 msgstr "电源管理"
 
-msgid "Power mode"
-msgstr "电源模式"
-
 msgid "Pre-Fail' Attribute used at least in HP devices."
 msgstr ""
 
@@ -5537,7 +6164,7 @@ msgstr ""
 msgid "PreInit"
 msgstr "前置初始动作（PreInit）"
 
-msgid "Predefined Groups"
+msgid "Preallocation"
 msgstr ""
 
 msgid "Preferred"
@@ -5549,17 +6176,17 @@ msgstr "前缀"
 msgid "Preformatted file system"
 msgstr "已格式化的文件系统"
 
-msgid "Presentation WebGUI"
+msgid "Preserve Extended Attributes"
 msgstr ""
 
-msgid "Preserve extended attributes"
-msgstr "保留扩展属性"
+msgid "Preserve Extended attributes"
+msgstr ""
+
+msgid "Preserve Permissions"
+msgstr ""
 
 msgid "Preserve modification times."
 msgstr "保留更改次数。"
-
-msgid "Preserve permissions"
-msgstr "保留权限"
 
 msgid "Prevent deep discharge of battery"
 msgstr "防止电池深度漏电"
@@ -5582,17 +6209,20 @@ msgstr "私钥"
 msgid "Process"
 msgstr "程序"
 
+msgid "Process Status"
+msgstr ""
+
 msgid "Processes"
 msgstr "程序"
-
-msgid "Processes Information"
-msgstr "程序信息"
 
 msgid "Product ID"
 msgstr "产品编号"
 
 msgid "Profile"
 msgstr "设定档"
+
+msgid "Properties"
+msgstr ""
 
 msgid "Proto"
 msgstr "协议"
@@ -5713,6 +6343,15 @@ msgstr ""
 msgid "RAW info"
 msgstr "RAW 信息"
 
+#, php-format
+msgid ""
+"RRDGraphs needs at least read & execute permissions at the mount point for "
+"directory %s! Set the Read and Execute bits for Others (Access Restrictions "
+"| Mode) for the mount point %s (in <a href='disks_mount.php'>Disks | Mount "
+"Point | Management</a> or <a href='disks_zfs_dataset.php'>Disks | ZFS | "
+"Datasets</a>) and hit Save in order to take them effect."
+msgstr ""
+
 msgid "RSYNC"
 msgstr "RSYNC"
 
@@ -5731,6 +6370,9 @@ msgstr "RSYNC 客户端"
 msgid "RSYNC Client Information & Status"
 msgstr "RSYNC 客户端信息和状态"
 
+msgid "RSYNC client number"
+msgstr ""
+
 msgid "RSYNC events"
 msgstr "RSYNC 事件"
 
@@ -5742,6 +6384,9 @@ msgstr ""
 
 msgid "Read"
 msgstr "读取"
+
+msgid "Read Only"
+msgstr ""
 
 msgid "Read Only (ro)"
 msgstr "唯读 (ro)"
@@ -5794,10 +6439,25 @@ msgstr "上次转移到电池的原因（*不透明）"
 msgid "Reboot"
 msgstr "重启"
 
-msgid "Receive Buffer Size"
-msgstr "接收缓冲区的大小"
+msgid "Receive Buffer"
+msgstr ""
+
+msgid "Record Information"
+msgstr ""
+
+msgid "Record Maintenance"
+msgstr ""
 
 msgid "Record is locked"
+msgstr ""
+
+msgid "Record is marked for deletion"
+msgstr ""
+
+msgid "Record is protected"
+msgstr ""
+
+msgid "Record is unlocked"
 msgstr ""
 
 msgid "Recurse into directories."
@@ -5806,8 +6466,8 @@ msgstr "递归入目录。"
 msgid "Recursive"
 msgstr "递归"
 
-msgid "Recycle bin"
-msgstr "垃圾桶"
+msgid "Recycle Bin"
+msgstr ""
 
 msgid "Refresh"
 msgstr "刷新"
@@ -5836,20 +6496,20 @@ msgstr "远程地址"
 msgid "Remote Module (Source)"
 msgstr ""
 
+msgid "Remote Monitoring"
+msgstr ""
+
+msgid "Remote Rsync Daemon"
+msgstr ""
+
 msgid "Remote Rsync Server"
 msgstr "远端 Rsync 伺服器"
 
-msgid "Remote Syslog Server"
+msgid "Remote Syslog Messages"
 msgstr ""
 
-msgid "Remote module (source)"
-msgstr "远端模组（来源）"
-
-msgid "Remote module name"
-msgstr "远端模组名称"
-
-msgid "Remote monitoring"
-msgstr "远端监控"
+msgid "Remote Syslog Server"
+msgstr ""
 
 msgid ""
 "Remote monitoring password. Must be equal on both master and slave system."
@@ -5859,10 +6519,10 @@ msgid ""
 "Remote monitoring username. Must be equal on both master and slave system."
 msgstr ""
 
-msgid "Remote rsync daemon"
-msgstr "远程rsync进程"
+msgid "Remote server address"
+msgstr ""
 
-msgid "Remote syslog messages"
+msgid "Remote share name configured"
 msgstr ""
 
 msgid "Removable"
@@ -5887,14 +6547,14 @@ msgstr "移除所有ARP table内的项目"
 msgid "Remove the %s first before proceeding."
 msgstr ""
 
+msgid "Reorder Commands"
+msgstr ""
+
 msgid "Replace Battery UPS"
 msgstr "更换UPS电池"
 
 msgid "Replace a device"
 msgstr ""
-
-msgid "Report Generator"
-msgstr "报告生成"
 
 msgid ""
 "Report if the temperature had changed by at least N degrees Celsius since "
@@ -5915,11 +6575,14 @@ msgstr "需要认证。"
 msgid "Required"
 msgstr "必填"
 
+msgid "Rescan"
+msgstr ""
+
 msgid "Rescan Disks"
 msgstr "重新扫描磁盘"
 
-msgid "Rescan database in progress"
-msgstr "重新扫描数据库正在进行"
+msgid "Rescan Interval"
+msgstr ""
 
 msgid "Rescan interval"
 msgstr "重新扫描间隔"
@@ -5927,17 +6590,14 @@ msgstr "重新扫描间隔"
 msgid "Reservation"
 msgstr "预留"
 
+msgid "Reset Graphs"
+msgstr ""
+
 msgid "Resistance caused by friction in mechanical parts while operating."
 msgstr ""
 
-msgid "Resolve"
-msgstr "解决"
-
 msgid "Resolve IP"
 msgstr ""
-
-msgid "Resolve IP addresses to hostnames"
-msgstr "将 IP 解析成主机名称"
 
 msgid "Resolve IP addresses to hostnames."
 msgstr ""
@@ -5945,11 +6605,23 @@ msgstr ""
 msgid "Resource"
 msgstr "资源"
 
-msgid "Resource name"
-msgstr "资源名称"
+msgid "Resource Name"
+msgstr ""
+
+msgid "Resource is marked for deletion"
+msgstr ""
+
+msgid "Resource is protected"
+msgstr ""
+
+msgid "Resource is unlocked"
+msgstr ""
 
 msgid "Resources"
 msgstr "资源"
+
+msgid "Restore"
+msgstr ""
 
 msgid "Restore Configuration"
 msgstr "还原配置"
@@ -5963,8 +6635,8 @@ msgstr ""
 msgid "Restricted - Inherit all but \"write ACL\" and \"change owner\""
 msgstr ""
 
-msgid "Results for net rpc testjoin:"
-msgstr "Net rpc testjoin 结果："
+msgid "Results for net rpc testjoin"
+msgstr ""
 
 msgid "Results of last self test"
 msgstr "上一个自检的结果"
@@ -5981,8 +6653,8 @@ msgstr "返回到命令网页"
 msgid "Reverse DNS lookup"
 msgstr "反向DNS查找"
 
-msgid "Reverse direction"
-msgstr "反向"
+msgid "Reverse Direction"
+msgstr ""
 
 msgid "Role"
 msgstr "角色"
@@ -5996,11 +6668,11 @@ msgstr "罗马尼亚文"
 msgid "Root"
 msgstr "根目录（root）"
 
-msgid "Root bind DN"
-msgstr "Root bind DN"
+msgid "Root Bind DN"
+msgstr ""
 
-msgid "Root bind password"
-msgstr "Root bind 密码"
+msgid "Root Bind Password"
+msgstr ""
 
 msgid "Rotation Rate"
 msgstr "旋转速率"
@@ -6011,11 +6683,20 @@ msgstr "轮替式读"
 msgid "Roundrobin"
 msgstr "轮替式"
 
+msgid "Route is marked for deletion"
+msgstr ""
+
+msgid "Route is protected"
+msgstr ""
+
+msgid "Route is unlocked"
+msgstr ""
+
 msgid "Routes"
 msgstr "路由"
 
-msgid "Routing tables"
-msgstr "路由表"
+msgid "Routing Tables"
+msgstr ""
 
 msgid "Rows"
 msgstr "行"
@@ -6026,6 +6707,24 @@ msgstr "Rsync"
 msgid "Rsync Job"
 msgstr "Rsync 任务"
 
+msgid "Rsync Module is marked for deletion"
+msgstr ""
+
+msgid "Rsync Module is protected"
+msgstr ""
+
+msgid "Rsync Module is unlocked"
+msgstr ""
+
+msgid "Rsync job is marked for deletion"
+msgstr ""
+
+msgid "Rsync job is protected"
+msgstr ""
+
+msgid "Rsync job is unlocked"
+msgstr ""
+
 msgid "Rule"
 msgstr "规则"
 
@@ -6034,9 +6733,6 @@ msgstr "规则编号"
 
 msgid "Rules"
 msgstr "规则"
-
-msgid "Run as"
-msgstr "执行为"
 
 msgid "Run now"
 msgstr "立刻执行"
@@ -6048,8 +6744,8 @@ msgid "Running"
 msgstr "执行中"
 
 msgid ""
-"Running the service as user root is not recommended for security reasons, "
-"use at your own risk!"
+"Running this service as root is not recommended for security reasons, use at "
+"your own risk!"
 msgstr ""
 
 msgid "Russian"
@@ -6079,9 +6775,13 @@ msgstr "SMB2"
 msgid "SMB3"
 msgstr "SMB3"
 
-msgid ""
-"SMB3 is for recent OS like Windows 10 and 8. SMB2 is for OS like Windows 7 "
-"and Vista. NT1 is for legacy OS."
+msgid "SMB3 (Windows 8)"
+msgstr ""
+
+msgid "SMB3 (Windows 8.1)"
+msgstr ""
+
+msgid "SMB3_11 (Windows 10)"
 msgstr ""
 
 msgid "SMTP Server"
@@ -6099,9 +6799,6 @@ msgstr "SSH"
 msgid "SSH events"
 msgstr "SSH 事件"
 
-msgid "SSHD"
-msgstr ""
-
 msgid "SSHD log"
 msgstr "SSHD 记录"
 
@@ -6117,17 +6814,26 @@ msgstr "Samba AD"
 msgid "Samba Active Directory Domain Controller"
 msgstr "Samba 活动目录域控制器"
 
+msgid "Samba Share is marked for deletion"
+msgstr ""
+
+msgid "Samba Share is protected"
+msgstr ""
+
+msgid "Samba Share is unlocked"
+msgstr ""
+
 #, php-format
 msgid ""
 "Samba will read from file asynchronously when size of request is bigger than "
-"this value. (%d by default)"
-msgstr "当大小要求大于这个数值时，Samba将异步读取文件。 （默认为 %d）"
+"this value. (%d by default)."
+msgstr ""
 
 #, php-format
 msgid ""
 "Samba will write to file asynchronously when size of request is bigger than "
-"this value. (%d by default)"
-msgstr "当大小要求大于这个数值时，Samba将异步写入文件。 （默认为 %d）"
+"this value. (%d by default)."
+msgstr ""
 
 msgid "Sat"
 msgstr ""
@@ -6150,6 +6856,9 @@ msgstr "将登录讯息储存在设定档内。"
 msgid "Saved file to"
 msgstr "将文件储存至"
 
+msgid "Scan Mode"
+msgstr ""
+
 msgid "Scan Targets"
 msgstr "扫描目标"
 
@@ -6160,9 +6869,6 @@ msgid ""
 "administrative web interface."
 msgstr ""
 "每N 秒扫描档案系统以查看是否有任何档案被加入或移除。设为 0 则停用背景扫描。如果停用背景扫描，仍然可以使用管理网页介面的状态页来强制扫描。"
-
-msgid "Scan type"
-msgstr "扫描类型"
 
 msgid "Schedule Time"
 msgstr "排程时间"
@@ -6179,11 +6885,20 @@ msgstr "定时重启"
 msgid "Scheduled Self-Test"
 msgstr "定时自我检测"
 
+msgid "Scheduled Self-Test Settings"
+msgstr ""
+
 msgid "Scheduled Shutdown"
 msgstr "定时关机"
 
-msgid "Scheduled tests"
-msgstr "定时测试"
+msgid "Scheduled Tests"
+msgstr ""
+
+msgid "Script"
+msgstr ""
+
+msgid "Script has been uploaded."
+msgstr ""
 
 msgid "Scrub a pool"
 msgstr ""
@@ -6197,8 +6912,14 @@ msgstr ""
 msgid "Search for and import all disks found"
 msgstr ""
 
+msgid "Second"
+msgstr ""
+
 msgid "Secondary"
 msgstr "次要"
+
+msgid "Seconds"
+msgstr ""
 
 msgid "Secret"
 msgstr "秘密"
@@ -6231,36 +6952,42 @@ msgid ""
 "formatted drive or if you want to import disks from other OS."
 msgstr ""
 
+msgid "Select Cache Device"
+msgstr ""
+
+msgid "Select Data Device"
+msgstr ""
+
+msgid "Select Device"
+msgstr ""
+
 msgid ""
 "Select Hypertext Transfer Protocol (HTTP) or Hypertext Transfer Protocol "
 "Secure (HTTPS) for the WebGUI."
 msgstr "请在网页界面中选择超文本传输​​协议（HTTP）或安全超文本传输​​协议（HTTPS）。"
 
-msgid "Select a cache device"
+msgid "Select Log Device"
 msgstr ""
 
-msgid "Select a data device"
+msgid "Select Pool"
+msgstr ""
+
+msgid "Select Pool Device"
+msgstr ""
+
+msgid "Select Pools"
+msgstr ""
+
+msgid "Select Spare Device"
 msgstr ""
 
 msgid "Select a date format."
 msgstr ""
 
-msgid "Select a device"
-msgstr ""
-
 msgid "Select a disk that is enabled for S.M.A.R.T. monitoring."
 msgstr "请选择已开启 S.M.A.R.T. 监测的硬盘。"
 
-msgid "Select a log device"
-msgstr ""
-
-msgid "Select a pool"
-msgstr ""
-
-msgid "Select a pool device"
-msgstr ""
-
-msgid "Select a spare device"
+msgid "Select an encryption algorithm to use."
 msgstr ""
 
 msgid "Select file system format."
@@ -6272,20 +6999,21 @@ msgstr "选择固件："
 msgid "Select item to remove from the list"
 msgstr "请从列表中选择要删除的项目"
 
+msgid ""
+"Select max time-to-live (max number of hops) used in outgoing probe packets."
+msgstr ""
+
 msgid "Select mount point where to create the swap file."
 msgstr "请选择欲创建 Swap 档的挂载点。"
 
-msgid "Select one or more spare devices"
+msgid "Select number of ICMP ECHO REQUEST packets."
 msgstr ""
 
 msgid ""
 "Select option 'Unformatted' for unformatted disks and format them with the"
 msgstr ""
 
-msgid "Select pool device"
-msgstr ""
-
-msgid "Select pools"
+msgid "Select pre-allocation mode for files. (Default is Fast)."
 msgstr ""
 
 msgid "Select read balance algorithm."
@@ -6294,20 +7022,34 @@ msgstr ""
 msgid "Select the FreeBSD package to be installed."
 msgstr "请选择要安装的 FreeBSD 套件。"
 
+msgid ""
+"Select the interface (only selectable if your server has more than one) to "
+"use for the source IP address in outgoing packets."
+msgstr ""
+
 msgid "Select the language of the WebGUI."
 msgstr "请选择网页界面的语言。"
 
 msgid "Select the location closest to you."
 msgstr "请选择最邻近的区域。"
 
+msgid "Select the permission for running this service. (www by default)."
+msgstr ""
+
 msgid ""
 "Select the server configuration encrypted GZIP file or XML file and click "
 "the button below to restore the configuration."
 msgstr "选择已加密的伺服器配置 GZIP文件或XML文件，并点击下面的按钮来恢复配置。"
 
+msgid "Select which interface to use."
+msgstr ""
+
 msgid ""
 "Select which interface to use. (Only selectable if your server has more than "
-"one)"
+"one interface)"
+msgstr ""
+
+msgid "Select which key length to use for given cryptographic algorithm."
 msgstr ""
 
 msgid "Selected"
@@ -6322,14 +7064,20 @@ msgstr "选定的设备或标签不存在。"
 msgid "Selected file isn't an valid ISO file."
 msgstr "所选择的文件不是一个有效的 ISO 文件。"
 
+msgid "Selected graph:"
+msgstr ""
+
+msgid "Selected interface:"
+msgstr ""
+
 msgid "Self-Monitoring, Analysis & Reporting Technology"
 msgstr ""
 
 msgid "Self-tests Management"
 msgstr "自我测试管理"
 
-msgid "Send Buffer Size"
-msgstr "发送缓冲区的大小"
+msgid "Send Buffer"
+msgstr ""
 
 msgid "Send Command!"
 msgstr "发送命令！"
@@ -6343,13 +7091,16 @@ msgstr "发送测试电子邮件"
 msgid "Send a TEST warning email on startup."
 msgstr "启动时传送测试警示电邮。"
 
-msgid "Send now"
-msgstr "立刻发送"
-
 msgid "Sensitive"
 msgstr ""
 
 msgid "Sensor"
+msgstr ""
+
+msgid "Sensor Information"
+msgstr ""
+
+msgid "Sensor List"
 msgstr ""
 
 msgid "Sep"
@@ -6373,6 +7124,12 @@ msgstr "序号"
 msgid "Server"
 msgstr "伺服器"
 
+msgid "Server Max. Protocol"
+msgstr ""
+
+msgid "Server Min. Protocol"
+msgstr ""
+
 msgid "Server Name"
 msgstr "伺服器名称"
 
@@ -6382,14 +7139,17 @@ msgstr "伺服器说明。通常可以留空白。"
 msgid "Server information"
 msgstr "伺服器讯息"
 
-msgid "Server name"
-msgstr "伺服器名称"
-
 msgid "Server version"
 msgstr "伺服器版本"
 
+msgid "Servers"
+msgstr ""
+
 msgid "Service"
 msgstr "服务"
+
+msgid "Service Enabled"
+msgstr ""
 
 msgid "Services"
 msgstr "服务"
@@ -6397,11 +7157,16 @@ msgstr "服务"
 msgid "Set additional group memberships for this account."
 msgstr "设置此帐户的其他群组资格。"
 
-msgid "Set browseable"
-msgstr "设为可浏览"
+msgid "Set browseable."
+msgstr ""
 
-msgid "Set read only"
-msgstr "设成只读"
+msgid ""
+"Set interval between disk checks to N seconds. The minimum allowed value is "
+"10."
+msgstr ""
+
+msgid "Set read only."
+msgstr ""
 
 msgid "Set share password."
 msgstr "设置共享密码。"
@@ -6432,16 +7197,14 @@ msgstr ""
 msgid "Set title scrolling speed between 0-10 (default 10)."
 msgstr "设置标题滚动速度 0-10（默认为10）。"
 
-msgid "Set under which user the service should run (www by default)."
+msgid "Set user login shell."
+msgstr ""
+
+msgid "Setkey"
 msgstr ""
 
 msgid "Sets an alternate mount point for the root dataset. Default is /mnt."
 msgstr "设置根数据集的备用挂载点。默认为 /mnt。"
-
-msgid ""
-"Sets the interval between disk checks to N seconds. The minimum allowed "
-"value is 10."
-msgstr "设置硬盘检查间隔时间，单位是秒，最少是 10。"
 
 msgid ""
 "Sets the umask for newly created files to the specified value. The default "
@@ -6451,11 +7214,14 @@ msgstr "设置新文件的 umask 预设值。默认值是 0（任何人都可读
 msgid "Settings"
 msgstr "设置"
 
+msgid "Setup user to get shell access"
+msgstr ""
+
 msgid "Shadow Copy"
 msgstr "阴影复制"
 
-msgid "Shadow Copy format"
-msgstr "阴影复制格式"
+msgid "Shadow Copy Format"
+msgstr ""
 
 msgid "Share"
 msgstr "分享区"
@@ -6465,6 +7231,18 @@ msgstr "共享的字符编码"
 
 msgid "Share Password"
 msgstr "共享密码"
+
+msgid "Share Settings"
+msgstr ""
+
+msgid "Share is marked for deletion"
+msgstr ""
+
+msgid "Share is protected"
+msgstr ""
+
+msgid "Share is unlocked"
+msgstr ""
 
 msgid "Share passwords can not be more than 8 characters."
 msgstr "共享文件夹密码不能够超过 8 个字符。"
@@ -6476,6 +7254,12 @@ msgid "Shell"
 msgstr "命令壳 (shell)"
 
 msgid "Shock During Write."
+msgstr ""
+
+msgid "Short Self-Test"
+msgstr ""
+
+msgid "Show Default Groups"
 msgstr ""
 
 msgid "Show Process Information"
@@ -6490,14 +7274,20 @@ msgstr "显示UPS信息"
 msgid "Show log entries in reverse order (newest entries on top)."
 msgstr ""
 
+#, php-format
+msgid ""
+"Show positive/negative values for %s graphs. (can not be used together with "
+"logarithmic scaling)"
+msgstr ""
+
 msgid "Shutdown"
 msgstr "关机"
 
-msgid "Shutdown mode"
-msgstr "关机模式"
+msgid "Shutdown Mode"
+msgstr ""
 
-msgid "Shutdown timer"
-msgstr "关机倒数"
+msgid "Shutdown Timer"
+msgstr ""
 
 msgid "Simple Network Management Protocol"
 msgstr "简单网络管理协议"
@@ -6513,6 +7303,9 @@ msgstr "接收缓冲区的大小（默认为 %d）。"
 msgid "Size of send buffer (%d by default)."
 msgstr "传送缓冲区的大小（默认为 %d）。"
 
+msgid "Size offered to the initiator. (up to 8EiB=8388608TiB)."
+msgstr ""
+
 msgid ""
 "Size offered to the initiator. (up to 8EiB=8388608TiB. actual size is depend "
 "on your disks.)"
@@ -6521,8 +7314,11 @@ msgstr "设定启动器的硬盘容量。 （最多到8EiB=8388608TiB。实际�
 msgid "Skew"
 msgstr "级值"
 
-msgid "Skip first scan"
-msgstr "跳过第一次扫描"
+msgid "Skip First Scan"
+msgstr ""
+
+msgid "Skip View Mode"
+msgstr ""
 
 msgid "Sleep - Check the device unless it is in SLEEP mode."
 msgstr "睡眠 - 除了睡眠模式之外的设备都将检查。"
@@ -6563,6 +7359,9 @@ msgstr "快照（Snapshots）"
 msgid "Sockets"
 msgstr "套接字（Sockets）"
 
+msgid "Sockstat"
+msgstr ""
+
 msgid "SoftRaid"
 msgstr "软体RAID"
 
@@ -6570,6 +7369,9 @@ msgid "Software RAID"
 msgstr "软体RAID"
 
 msgid "Software Used"
+msgstr ""
+
+msgid "Sort"
 msgstr ""
 
 msgid "Source"
@@ -6583,9 +7385,6 @@ msgstr "要备份的资料夹。"
 
 msgid "Source port"
 msgstr "来源端口"
-
-msgid "Source share"
-msgstr "来源位置"
 
 msgid "Space Usage"
 msgstr ""
@@ -6691,11 +7490,8 @@ msgstr "静态"
 msgid "Static Routes"
 msgstr "静态路由"
 
-msgid "Static Routes Setup"
+msgid "Static Routes Settings"
 msgstr ""
-
-msgid "Static routes"
-msgstr "静态路由"
 
 msgid "Status"
 msgstr "状态"
@@ -6721,20 +7517,14 @@ msgstr "已停止"
 msgid "Storage"
 msgstr "储存空间"
 
-msgid "Store DOS attributes"
-msgstr "储存 DOS 属性"
+msgid "Store DOS Attributes"
+msgstr ""
 
-msgid "Store NTFS acls"
-msgstr "储存NTFS ACL"
+msgid "Store NTFS ACLs in Extended Attributes."
+msgstr ""
 
-msgid "Store NTFS acls in Extended Attributes"
-msgstr "将NTFS ACL储存在扩展属性"
-
-msgid "Store alternate data streams"
-msgstr "存储交换数据流"
-
-msgid "Store alternate data streams in Extended Attributes"
-msgstr "存储交换数据流于扩展属性"
+msgid "Store alternate data streams in Extended Attributes."
+msgstr ""
 
 msgid "Strict DLNA"
 msgstr ""
@@ -6749,11 +7539,11 @@ msgstr "Extent 的字符串标识符。"
 msgid "Subject"
 msgstr "主题"
 
-msgid "Subnet bit count"
-msgstr "子网位元数"
+msgid "Subnet Bit Count"
+msgstr ""
 
-msgid "Subnet mask"
-msgstr "子网掩码"
+msgid "Subnet Mask"
+msgstr ""
 
 msgid "Subsystem"
 msgstr "子系统"
@@ -6788,11 +7578,11 @@ msgstr "交换分区信息和状态"
 msgid "Swap Memory"
 msgstr "交换内存"
 
-msgid "Swap disabled"
-msgstr "关闭 Swap"
+msgid "Swap Usage"
+msgstr ""
 
-msgid "Swap usage"
-msgstr "Swap 使用量"
+msgid "Swap is disabled."
+msgstr ""
 
 msgid "Swedish"
 msgstr "瑞典语"
@@ -6816,8 +7606,8 @@ msgstr "切换到 %s/s"
 msgid "Sync"
 msgstr "同步"
 
-msgid "Synchronization time"
-msgstr "同步时间"
+msgid "Synchronization Time"
+msgstr ""
 
 msgid "Synchronize"
 msgstr "同步"
@@ -6839,6 +7629,18 @@ msgstr ""
 msgid "System"
 msgstr "系统"
 
+msgid "System BIOS"
+msgstr ""
+
+msgid "System Config Change"
+msgstr ""
+
+msgid "System Email Report Settings"
+msgstr ""
+
+msgid "System Email Settings"
+msgstr ""
+
 msgid "System Information"
 msgstr "系统资料"
 
@@ -6848,11 +7650,20 @@ msgstr "系统负载"
 msgid "System Message"
 msgstr ""
 
+msgid "System Monitoring Settings"
+msgstr ""
+
+msgid "System Processes"
+msgstr ""
+
 msgid "System Settings"
 msgstr ""
 
-msgid "System bios"
-msgstr "系統BIOS"
+msgid "System Time"
+msgstr ""
+
+msgid "System Uptime"
+msgstr ""
 
 msgid "System events"
 msgstr "系统事件"
@@ -6860,26 +7671,23 @@ msgstr "系统事件"
 msgid "System info"
 msgstr "系统信息"
 
-msgid "System last config change"
-msgstr "系统最后一次配置更改"
-
 msgid "System log"
 msgstr "系统记录"
 
 msgid "System message buffer"
 msgstr "系统消息缓冲区"
 
-msgid "System time"
-msgstr "系统时间"
-
 msgid "System tuning"
 msgstr "系统微调"
 
-msgid "System uptime"
-msgstr "系统运行时间"
+msgid "TCP Forwarding"
+msgstr ""
 
-msgid "TCP forwarding"
-msgstr "TCP 转送"
+msgid "TCP Port"
+msgstr ""
+
+msgid "TCP Wrapper"
+msgstr ""
 
 msgid "TCP port"
 msgstr "TCP 端口"
@@ -6890,9 +7698,6 @@ msgstr ""
 msgid "TCP port to bind the server to."
 msgstr "绑定伺服器的TCP端口。"
 
-msgid "TCP wrapper"
-msgstr "TCP wrapper"
-
 msgid "TFTP"
 msgstr "TFTP"
 
@@ -6902,17 +7707,20 @@ msgstr "TKIP"
 msgid "TLS"
 msgstr "TLS"
 
+msgid "TLS Mode"
+msgstr ""
+
+msgid "TLS Only"
+msgstr ""
+
 msgid "TLS Server Certificate Check"
 msgstr ""
 
-msgid "TLS mode"
-msgstr "TLS模式"
-
-msgid "TLS only"
-msgstr "只是TLS"
-
 msgid "Tag"
 msgstr "标签"
+
+msgid "Tag Number"
+msgstr ""
 
 msgid "Tag number"
 msgstr "标签号码"
@@ -6928,7 +7736,7 @@ msgstr "标签%d （%s）"
 msgid "Take a device offline"
 msgstr ""
 
-msgid "Tap device"
+msgid "Tap Device"
 msgstr ""
 
 msgid "Tape"
@@ -6937,14 +7745,14 @@ msgstr "磁带"
 msgid "Target"
 msgstr "目标"
 
+msgid "Target Address"
+msgstr ""
+
 msgid "Target Alias"
 msgstr "目標別名"
 
 msgid "Target Name"
 msgstr "目标名称"
-
-msgid "Target address"
-msgstr "目标位置"
 
 msgid "Target directory."
 msgstr "目标目录。"
@@ -6958,9 +7766,6 @@ msgstr "尚未选定目标。"
 msgid "Target list"
 msgstr "目标列表"
 
-msgid "Target name"
-msgstr "目标名称"
-
 msgid "Target side secret."
 msgstr "目标端的秘密。"
 
@@ -6969,6 +7774,9 @@ msgstr "目标端的用户名。它通常是默认的启动器名称。"
 
 msgid "Targets"
 msgstr "目标器（Targets）"
+
+msgid "Temp"
+msgstr ""
 
 msgid "Temperature"
 msgstr "温度"
@@ -6994,11 +7802,11 @@ msgstr "临时目录。"
 msgid "Temporary directory to store transcoded files."
 msgstr "用来存储转换文件的临时目录。"
 
-msgid "Test Mode"
+msgid "Test Email"
 msgstr ""
 
-msgid "Test email"
-msgstr "邮件测试"
+msgid "Test Mode"
+msgstr ""
 
 #, php-format
 msgid "Test email from host: %s"
@@ -7024,11 +7832,13 @@ msgstr "在HAST 成为主节点（Primary node）之前无法使用HAST 卷。"
 msgid "The IP address of the UPS master."
 msgstr "主模式 UPS (UPS master) 的 IP 地址。"
 
+msgid "The IP address of the device."
+msgstr ""
+
 msgid "The IP address that this hostname represents."
 msgstr "主机名称所代表的 IP 位址。"
 
-#, php-format
-msgid "The MIB '%s' already exists."
+msgid "The LAN IP address will be reset to"
 msgstr ""
 
 #, php-format
@@ -7046,8 +7856,11 @@ msgid ""
 "manufacturing."
 msgstr ""
 
-msgid "The TCP port must be a valid port number."
-msgstr "请输入一个有效的连接端口号码。"
+msgid "The TCP Port must be a valid port number."
+msgstr ""
+
+msgid "The UPS identifier and IP address"
+msgstr ""
 
 msgid "The VLAN ID must be between 1 and 4094."
 msgstr "VLAN ID必须在1和4094之间。"
@@ -7057,8 +7870,14 @@ msgid ""
 "specified below."
 msgstr "数据包（packet）符合以下规定的标准时，将执行该动作。"
 
+msgid "The actual size is depend on your disks."
+msgstr ""
+
 msgid "The administrator has been notified to apply your changes."
 msgstr "已通知来管理员套用您的更改。"
+
+msgid "The administrator password will be reset to"
+msgstr ""
 
 #, php-format
 msgid "The associated MIB files can be found at %s."
@@ -7190,9 +8009,8 @@ msgstr "'%s' 必须小于 '%s'。"
 msgid "The attribute '%s' must contain at least one entry."
 msgstr "'%s' 必须有至少一个项目。"
 
-#, php-format
-msgid "The attribute '%s': use a port in the range from %d to %d."
-msgstr "属性'%s'：从 %d 到 %d 的范围使用一个端口。"
+msgid "The attribute 'Data directory' is required."
+msgstr ""
 
 #, php-format
 msgid "The attribute 'Port': port '%ld' is already taken by another service."
@@ -7295,9 +8113,6 @@ msgstr "绑定密码。"
 msgid "The cron job has been executed successfully."
 msgstr "cron 工作已执行成功。"
 
-msgid "The current password is incorrectly entered."
-msgstr "输入的密码并不正确。"
-
 #, php-format
 msgid ""
 "The custom format of the snapshot for shadow copy service can be specified. "
@@ -7311,16 +8126,8 @@ msgstr "预设的 SMTP 邮件伺服器连接端口，如：25 或 587。"
 msgid "The default base distinguished name (DN) to use for searches, e.g. %s"
 msgstr "预设的搜索用基本可分辨名称（base distinguished name）（DN），如： %s"
 
-msgid ""
-"The default key lengths are: 128 for AES, 128 for Blowfish, 128 for Camellia "
-"and 192 for 3DES."
-msgstr "预设的密钥长度是：AES 为128，Blowfish 为128，Camellia 为128 和3DES 为192。"
-
 msgid "The default time in seconds to display a screen."
 msgstr "显示在屏幕的时间的默认值（秒）。"
-
-msgid "The device's IP address."
-msgstr "设备的IP地址。"
 
 msgid ""
 "The device(s) in config are different to actual device(s). Please remove the "
@@ -7364,14 +8171,17 @@ msgstr ""
 msgid "The encrypted device is currently mounted!"
 msgstr ""
 
+msgid "The entire system configuration will be overwritten."
+msgstr ""
+
 msgid "The extent name already exists."
 msgstr "Extent 名称已经存在。"
 
 msgid "The file you try to flash is not for this platform"
 msgstr ""
 
-msgid "The firmware file is corrupt"
-msgstr "固件文件已损坏"
+msgid "The firmware file is corrupt."
+msgstr ""
 
 msgid ""
 "The firmware is now being installed. The server will reboot automatically."
@@ -7421,10 +8231,16 @@ msgid ""
 "specific Auth Group."
 msgstr "启动器可以以正确的用户和特定认证组的秘密发现目标器。"
 
+msgid "The interface is unknown."
+msgstr ""
+
 msgid ""
 "The istgtcontrol can access the targets with correct user and secret in "
 "specific Auth Group."
 msgstr "istgtcontrol 可以以正确的用户和特定认证组的秘密访问目标器。"
+
+msgid "The location of the \"Database Directory\" is not a valid location."
+msgstr ""
 
 msgid "The login name contains invalid characters."
 msgstr "登入帐号含有无效的字元。"
@@ -7435,15 +8251,19 @@ msgstr "登入帐号是一个保留帐号。"
 msgid "The login name is limited to 16 characters."
 msgstr "登入帐号名称最多只能有 16 个字符。"
 
-msgid "The max. connection per IP must be either 0 (unlimited) or greater."
-msgstr "每个 IP 的最大连接数必需是 0 （不限制）或更大。"
+msgid ""
+"The max. connections per IP address must be either 0 (unlimited) or greater."
+msgstr ""
+
+msgid "The max. number of clients must be in the range from 1 to 50."
+msgstr ""
 
 msgid ""
 "The maximum download bandwith in KiB/s. An empty field means infinity."
 msgstr "最大下载频宽于 KiB/s。空白表示没限制。"
 
-msgid "The maximum idle time be a number."
-msgstr "最大闲置时间必须是一个数字。"
+msgid "The maximum idle time must be a number."
+msgstr ""
 
 msgid ""
 "The maximum port to allocate for PASV style data connections (0 = use any "
@@ -7496,6 +8316,12 @@ msgid ""
 "The name of the RAID may only consist of the characters a-z, A-Z, 0-9."
 msgstr ""
 
+msgid "The name of the media server cannot be empty."
+msgstr ""
+
+msgid "The name of the media server is missing."
+msgstr ""
+
 msgid "The name of the pool cannot be changed."
 msgstr ""
 
@@ -7507,16 +8333,6 @@ msgid "The network '%s' is invalid."
 msgstr "'%s' 网络无效。"
 
 msgid ""
-"The new password does not match. Please ensure the passwords match exactly."
-msgstr "新密码不相符。请确保密码完全相符。"
-
-msgid "The new password is also the default root password of the system!"
-msgstr ""
-
-msgid "The number of clients must be between 1 and 50."
-msgstr "客户端上限必须介于 1 至 50。"
-
-msgid ""
 "The number of errors caused by incorrect checksum during the error "
 "correction."
 msgstr ""
@@ -7525,7 +8341,7 @@ msgid "The old password is not correct."
 msgstr "旧的密码不正确。"
 
 msgid "The password contains the illegal character ':'."
-msgstr "密码包含了无效的字元 ':'。"
+msgstr ""
 
 msgid "The password encryption protocol to use."
 msgstr "此参数指定密码加密协议。"
@@ -7557,11 +8373,6 @@ msgstr ""
 "新文件和目录的权限通常是由创建掩码（create mask）和目录面具（directory mask）参数管辖，但继承权限参数覆盖这些参数。\r\n"
 "这在多用户的系统上特别有用，让每个用户灵活的使用分享区。"
 
-msgid ""
-"The port to listen to. The default is to listen to the tftp port specified "
-"in /etc/services."
-msgstr "要侦听的端口。默认是侦听在 /etc/services 中指定的 tftp 端口。"
-
 #, php-format
 msgid "The portal '%s' is invalid."
 msgstr "门户网站 '%s' 无效。"
@@ -7585,10 +8396,6 @@ msgid "The queuedepth range is invalid."
 msgstr "伫列深度（queuedepth）范围无效。"
 
 #, php-format
-msgid "The recommended length for compatibility is %d."
-msgstr "建议的兼容长度为 %d。"
-
-#, php-format
 msgid "The recommended queue depth is %d."
 msgstr "建议的队列深度是 %d。"
 
@@ -7608,15 +8415,16 @@ msgstr ""
 msgid "The server advertises itself as a time server to Windows clients."
 msgstr "向Windows客户端广播本时间伺服器。"
 
-msgid ""
-"The server has been reset to factory defaults and is now rebooting. This may "
-"take one minute."
-msgstr "伺服器已被重置到出厂默认设置，现在重新启动。这可能需要一分钟的时间。"
+msgid "The server is halting now."
+msgstr ""
 
-msgid "The server is halting now. This may take one minute."
+msgid "The server is now reset to factory defaults and will reboot."
 msgstr ""
 
 msgid "The server is rebooting now."
+msgstr ""
+
+msgid "The server will be reset to factory defaults and will reboot."
 msgstr ""
 
 msgid "The server will reboot after restoring the configuration."
@@ -7682,22 +8490,16 @@ msgstr "上传的文件大小超过在php.ini 里指定的upload_max_filesize �
 msgid "The uploaded file was only partially uploaded."
 msgstr "只上传了部分的文件。"
 
-msgid "The user's login shell."
-msgstr "用户的登入 shell。"
-
 msgid "The value of the variable."
 msgstr "变数的数值。"
 
-msgid "The volume must be detached before it can be deleted."
-msgstr "硬盘必需先移除才可以删除。"
+msgid "The work directory does not exist."
+msgstr ""
 
 msgid ""
 "The workgroup in which the server will appear when queried by Windows or SMB "
-"clients (maximum 15 characters)."
-msgstr "伺服器的 Workgroup 名称（最多15个字符）。"
-
-msgid "The working directory does not exist."
-msgstr "工作目录不存在。"
+"clients. (maximum 15 characters)."
+msgstr ""
 
 msgid "There are too many additional groups."
 msgstr "有太多的附加组。"
@@ -7765,6 +8567,15 @@ msgstr "这些参数将被添加到 %s 的[Global] 区域。"
 msgid "These parameters are added to [Share] section of %s."
 msgstr "这些参数将被添加到 %s 的 [Share] 区域。"
 
+msgid ""
+"These parameters are added to the hardware-specific part of the driver for "
+"the second UPS."
+msgstr ""
+
+msgid ""
+"These parameters are added to the hardware-specific part of the driver."
+msgstr ""
+
 #, php-format
 msgid "These parameters will be added to %s."
 msgstr "这些参数将被添加到 %s 。"
@@ -7781,28 +8592,11 @@ msgid ""
 "These parameters will be added to the module configuration in rsyncd.conf."
 msgstr "这些参数将被添加到 rsyncd.conf 中的模块配置（module configuration） 。"
 
-msgid ""
-"This Bridge cannot be deleted because it is still being used as an interface."
-msgstr "此Bridge 不能被删除，因为它仍然被用作为一个介面。"
-
-msgid ""
-"This CARP cannot be deleted because it is still being used as an interface."
-msgstr "此CARP 不能被删除，因为它仍然被用作为一个介面。"
-
-msgid ""
-"This LAGG cannot be deleted because it is still being used as an interface."
-msgstr "此LAGG 不能被删除，因为它仍然被用作为一个介面。"
+msgid "These parameters will be added to the ping command."
+msgstr ""
 
 msgid "This URL is already configured."
 msgstr "此 URL 已经配置。"
-
-msgid ""
-"This VLAN cannot be deleted because it is still being used as an interface."
-msgstr "此VLAN 不能被删除，因为它仍然被用来做为一个介面。"
-
-msgid ""
-"This WLAN cannot be deleted because it is still being used as an interface."
-msgstr "无法侦测到无线局域网因为另一个界面正在使用中。"
 
 msgid ""
 "This allows you to lower the power consumption of the disk, at the expense "
@@ -7812,7 +8606,9 @@ msgstr ""
 msgid "This allows you to set how loud the drive is while it's operating."
 msgstr "这是硬盘的运作噪音控制选项。"
 
-msgid "This allows you to set the transfer mode for ATA/IDE disks."
+msgid ""
+"This allows you to set the transfer mode for ATA/IDE disks. You can set "
+"'Automatic' to enable the automatic mode for all SATA/ATA/IDE disks."
 msgstr ""
 
 msgid ""
@@ -7824,8 +8620,7 @@ msgid ""
 "This attribute determines the behavior of Access Control List inheritance."
 msgstr ""
 
-msgid ""
-"This attribute indicates the count of full hard disk power on/off cycles."
+msgid "This attribute indicates the count of full disk power on/off cycles."
 msgstr ""
 
 msgid ""
@@ -7878,7 +8673,7 @@ msgstr "此 extent 正在使用中。"
 msgid "This group already exists in the group list."
 msgstr "此群组已存在群组列表中。"
 
-msgid "This is a very powerful tool. Use it on your own risk!"
+msgid "This is a very powerful tool. Use at your own risk!"
 msgstr ""
 
 msgid ""
@@ -7891,12 +8686,7 @@ msgid ""
 "Zeroconf/Bonjour/Rendezvous, and the name of the database exported via DAAP."
 msgstr "此伺服器名称被用于Zeroconf/Bonjour/Rendezvous，也是通过DAAP 导出的数据库名称。"
 
-msgid "This is for information only (not using during iSCSI negotiation)."
-msgstr "仅供参考（不在iSCSI 的交涉中使用）。"
-
-msgid ""
-"This means that the firmware you flashed is not an official/supported "
-"firmware and may lead to unexpected behavior or security compromises."
+msgid "This is for information only. (not used during iSCSI negotiation)."
 msgstr ""
 
 msgid "This name already exists in the disk list."
@@ -8000,6 +8790,9 @@ msgid ""
 "use default settings."
 msgstr "此选项指定本模块传输文件时应采用的用户名或用户ID。结合'%s' 选项以决定可用的档案权限。将此字段留空以使用默认的设置。"
 
+msgid "This page is for maintenance only."
+msgstr ""
+
 msgid ""
 "This page reflects the configuration that has been created with the WebGUI."
 msgstr "本页反映在网页界面创建的配置。"
@@ -8019,6 +8812,16 @@ msgid ""
 "This parameter says that if N occurrences of the event happen within the "
 "given time interval, then a ban is automatically added."
 msgstr "此参数指定，如果在指定的时间间隔内发生N次事件，禁令会自动添加。"
+
+msgid ""
+"This parameter sets the highest protocol level that will be supported by the "
+"client."
+msgstr ""
+
+msgid ""
+"This parameter sets the highest protocol level that will be supported by the "
+"server."
+msgstr ""
 
 #, php-format
 msgid ""
@@ -8044,6 +8847,12 @@ msgid ""
 "added to the LDAP directory, e.g. %s"
 msgstr "此参数指定当用户被添加到LDAP 目录时使用的后缀，例如%s"
 
+msgid "This password is required to access the admin web interface."
+msgstr ""
+
+msgid "This password is the root password of the system."
+msgstr ""
+
 msgid "This pool name already exists."
 msgstr "此池（pool）名称已经存在"
 
@@ -8059,14 +8868,21 @@ msgstr "此规则在选定的事件发生时会被触发。"
 msgid "This server uses default swap!"
 msgstr ""
 
+msgid ""
+"This setting controls the minimum protocol version that the client will "
+"attempt to use."
+msgstr ""
+
+msgid ""
+"This setting controls the minimum protocol version that the server will "
+"allow the client to use."
+msgstr ""
+
 msgid "This tag already exists."
 msgstr "此标签已经存在。"
 
 msgid "This tag is used."
 msgstr "此标签在使用中。"
-
-msgid "This the IP address or DNS name of the iSCSI target."
-msgstr "这是 iSCSI 目标器（iSCSI target）的 IP 地址或 DNS 名称。"
 
 msgid "This user already exists in the user list."
 msgstr "用户列表中已经有此用户存在。"
@@ -8079,7 +8895,7 @@ msgstr "此虚拟设备的名称已经存在。"
 
 msgid ""
 "This will allow server-side downscaling of very large JPEG images, it can "
-"hurt JPEG serving performance on (at least) Sony DLNA products."
+"impact JPEG serving performance on some DLNA products."
 msgstr ""
 
 msgid "This will create a recycle bin on the share."
@@ -8090,14 +8906,14 @@ msgid ""
 "add an existing encrypted disk."
 msgstr "这将删除所选磁盘上的所有数据！如果您想再次添加已存在的加密磁盘，请不要使用这个选项。"
 
-msgid "This will provide NTFS acls without ZFS ACL support such as UFS."
-msgstr "这将提供NTFS ACL支援，而不是ZFS ACL的支援，例如UFS。"
+msgid "This will provide NTFS ACLs without ZFS ACL support such as UFS."
+msgstr ""
 
-msgid "This will provide ZFS ACL support. (ZFS only)"
-msgstr "这将提供ZFS ACL 支持。（只是 ZFS）"
+msgid "This will provide ZFS ACL support. (ZFS only)."
+msgstr ""
 
-msgid "This will provide shadow copy created by auto snapshot. (ZFS only)"
-msgstr "这将提供自动快照创建的阴影复制。（只是 ZFS）"
+msgid "This will provide shadow copy created by auto snapshot. (ZFS only)."
+msgstr ""
 
 msgid ""
 "This will support streaming .jpg and .mp3 files to a TiVo supporting HMO."
@@ -8112,16 +8928,25 @@ msgstr ""
 msgid "TiB"
 msgstr "TiB"
 
-msgid "TiVo support"
-msgstr "TiVo 支持"
+msgid "TiVo Support"
+msgstr ""
 
 msgid "Time"
 msgstr "时间"
 
+msgid "Time Interval"
+msgstr ""
+
 msgid "Time Machine"
 msgstr "Time Machine"
 
+msgid "Time Server"
+msgstr ""
+
 msgid "Time Synchronization"
+msgstr ""
+
+msgid "Time Zone"
 msgstr ""
 
 msgid "Time before the load will be rebooted"
@@ -8133,12 +8958,6 @@ msgstr "负载将被关闭之前的时间"
 msgid "Time before the load will be started"
 msgstr "负载将启动之前的时间"
 
-msgid "Time interval"
-msgstr "统计间隔"
-
-msgid "Time server"
-msgstr "时间伺服器"
-
 msgid "Time spent during the positioning of the drive heads."
 msgstr ""
 
@@ -8149,14 +8968,14 @@ msgstr ""
 msgid "Time update interval"
 msgstr "时间同步间隔"
 
-msgid "Time zone"
-msgstr "时区"
-
 msgid "Timeout"
 msgstr "失效时间"
 
 msgid "Times"
 msgstr "次数"
+
+msgid "Title Speed"
+msgstr ""
 
 msgid "TitleSpeed"
 msgstr "标题滚动速度"
@@ -8165,9 +8984,6 @@ msgid "To Email Address"
 msgstr ""
 
 msgid "To e-mail"
-msgstr "发送电​​邮"
-
-msgid "To email"
 msgstr "发送电​​邮"
 
 msgid ""
@@ -8201,10 +9017,22 @@ msgstr "您必须装载每个目录才能使用子目录。 （如 %s）"
 msgid "Toggle Mode"
 msgstr ""
 
+msgid "Toggle Selected Commands"
+msgstr ""
+
 msgid "Toggle Selected Jobs"
 msgstr ""
 
 msgid "Toggle Selected Options"
+msgstr ""
+
+msgid "Toggle Selected Records"
+msgstr ""
+
+msgid "Toggle Selected Rsync Jobs"
+msgstr ""
+
+msgid "Toggle Selected Rsync Modules"
 msgstr ""
 
 msgid "Tolerated"
@@ -8265,13 +9093,14 @@ msgstr "总共： %s | 已使用： %s | 空闲： %s"
 msgid "Traceroute"
 msgstr "路由追踪（Traceroute）"
 
-msgid "Traceroute Test"
+msgid "Traceroute Host"
 msgstr ""
 
-msgid ""
-"Traceroute may take a while to complete. You may hit the Stop button on your "
-"browser at any time to see the progress of failed traceroutes."
-msgstr "路由追踪需要一段时间才能完成。您可以随时按下浏览器的停止按键并观看结果。"
+msgid "Traceroute Output"
+msgstr ""
+
+msgid "Traceroute may take a while, please be patient."
+msgstr ""
 
 msgid ""
 "Tracks whose path contains one or more of these comma separated strings will "
@@ -8281,20 +9110,23 @@ msgstr ""
 msgid "Transcoding"
 msgstr "转码"
 
+msgid "Transcoding Directory"
+msgstr ""
+
 msgid "Transfer Rate"
 msgstr "传输速率"
 
 msgid "Transfer mode"
 msgstr "传输模式"
 
-msgid "Trap host"
-msgstr "Trap 主机"
+msgid "Trap Host"
+msgstr ""
 
-msgid "Trap port"
-msgstr "Trap 端口"
+msgid "Trap Port"
+msgstr ""
 
-msgid "Trap string"
-msgstr "Trap 字符串"
+msgid "Trap String"
+msgstr ""
 
 msgid "Trap string."
 msgstr "Trap 字符串。"
@@ -8305,8 +9137,8 @@ msgstr "Traps"
 msgid "Trivial File Transfer Protocol"
 msgstr "简单文件传输传输协议（TFTP）"
 
-msgid "Trusted domains"
-msgstr "受信任域"
+msgid "Trusted Domains"
+msgstr ""
 
 msgid "Try to force import."
 msgstr "尝试强制导入。"
@@ -8325,9 +9157,6 @@ msgstr "微调"
 
 msgid "Turkish"
 msgstr "土耳其文"
-
-msgid "Turn access time on or off for this dataset."
-msgstr "开启或关闭数据集的使用时间记录。"
 
 msgid "Turn the monitor to standby after N seconds."
 msgstr "N 秒后，显示器进入待机。"
@@ -8369,6 +9198,12 @@ msgstr "UID"
 msgid "UPS"
 msgstr "UPS"
 
+msgid "UPS Identifier"
+msgstr ""
+
+msgid "UPS Identifier and IP address"
+msgstr ""
+
 msgid "UPS Information & Status"
 msgstr "UPS 信息和状态"
 
@@ -8380,6 +9215,9 @@ msgstr "UPS 使用电池中"
 
 msgid "UPS On Line"
 msgstr "UPS 在线"
+
+msgid "UPS Statistics"
+msgstr ""
 
 msgid "UPS Status"
 msgstr "UPS 状态"
@@ -8450,6 +9288,9 @@ msgstr "URL"
 msgid "Ukrainian"
 msgstr "乌克兰语"
 
+msgid "Umask"
+msgstr ""
+
 msgid "Unavailable"
 msgstr "无法使用"
 
@@ -8474,16 +9315,19 @@ msgstr "Unison"
 msgid "Unison File Synchronisation"
 msgstr "Unison 文件同步机制"
 
+msgid "Unix Charset"
+msgstr ""
+
 msgid "Unix Command"
 msgstr "Unix 命令"
-
-msgid "Unix charset"
-msgstr "Unix 字符编码"
 
 msgid "Unknown"
 msgstr "不详"
 
 msgid "Unknown Activity"
+msgstr ""
+
+msgid "Unknown or Unformatted"
 msgstr ""
 
 msgid "Unknown or unformatted"
@@ -8494,6 +9338,9 @@ msgstr ""
 
 msgid "Unload"
 msgstr "卸载"
+
+msgid "Unlock Selected Records"
+msgstr ""
 
 msgid "Unmount Disk/Partition"
 msgstr ""
@@ -8507,11 +9354,11 @@ msgstr "卸载中..."
 msgid "Up"
 msgstr "上"
 
+msgid "Update Period"
+msgstr ""
+
 msgid "Update period"
 msgstr "更新间隔"
-
-msgid "Updating in 5 seconds."
-msgstr "五秒内更新"
 
 msgid "Upgrade Firmware"
 msgstr "升级固件"
@@ -8519,20 +9366,29 @@ msgstr "升级固件"
 msgid "Upgrade ZFS and add all supported feature flags on a pool"
 msgstr ""
 
-msgid "Upload"
-msgstr "上传"
+msgid "Upload Bandwidth"
+msgstr ""
 
-msgid "Upload bandwidth"
-msgstr "上传带宽"
+msgid "Upload Directory"
+msgstr ""
 
-msgid "Upload directory"
-msgstr "上传目录"
+msgid "Upload Script"
+msgstr ""
 
 #, php-format
 msgid "Upload directory of the webserver. The default is %s."
 msgstr "网页伺服器的上传目录。默认值是 %s。"
 
 msgid "Upper"
+msgstr ""
+
+msgid "Uptime"
+msgstr ""
+
+msgid "Uptime Statistics"
+msgstr ""
+
+msgid "Use Bytes/sec instead of Bits/sec for network throughput display."
 msgstr ""
 
 msgid ""
@@ -8549,9 +9405,11 @@ msgstr ""
 msgid "Use inotify monitoring to automatically discover new files."
 msgstr ""
 
+#, php-format
 msgid ""
-"Use the following IP address as the source address in outgoing packets."
-msgstr "使用以下的IP位址作为传出数据包的来源位址。"
+"Use logarithmic y-axis scaling for %s graphs. (can not be used together with "
+"positive/negative y-axis range)"
+msgstr ""
 
 msgid ""
 "Use the new 64k streaming read and write variant SMB requests introduced "
@@ -8567,8 +9425,8 @@ msgstr ""
 #, php-format
 msgid ""
 "Use this option to override the default permission modes for newly created "
-"files (%s by default)."
-msgstr "使用此选项来覆盖新创建的文件的默认权限模式（默认为%s）。"
+"files. (%s by default)."
+msgstr ""
 
 msgid ""
 "Use this option to override the directory creation mask (022 by default)."
@@ -8603,35 +9461,38 @@ msgstr "已用空间"
 msgid "User"
 msgstr "用户"
 
-msgid "User Defined Groups"
-msgstr "用户定义的群组"
-
 msgid "User ID"
 msgstr "用户 ID"
 
-msgid "User Setup"
+msgid "User Mask"
 msgstr ""
 
-msgid "User full name."
-msgstr "用户全名"
+msgid "User Password Settings"
+msgstr ""
 
-msgid "User mask"
-msgstr "用户掩码"
+msgid "User Portal"
+msgstr ""
+
+msgid "User Settings"
+msgstr ""
+
+msgid "User Shares"
+msgstr ""
+
+msgid "User Suffix"
+msgstr ""
+
+msgid "User account is marked for deletion"
+msgstr ""
+
+msgid "User account is protected"
+msgstr ""
+
+msgid "User account is unlocked"
+msgstr ""
 
 msgid "User numeric id."
 msgstr "用户的数字 ID"
-
-msgid "User password."
-msgstr "用户密码"
-
-msgid "User portal"
-msgstr "用户门户网站"
-
-msgid "User shares"
-msgstr "用户共享"
-
-msgid "User suffix"
-msgstr "用户名称后缀"
 
 msgid "Username"
 msgstr "用户名"
@@ -8666,14 +9527,24 @@ msgstr "VHID"
 msgid "VLAN"
 msgstr "虚拟局域网（VLAN）"
 
+msgid "VLAN Settings"
+msgstr ""
+
 msgid "VLAN Tag"
 msgstr "VLAN 标签"
 
-msgid "VLAN tag"
-msgstr "VLAN 标签"
+msgid ""
+"VLAN cannot be deleted because it is still being used as an interface."
+msgstr ""
 
-msgid "VM"
-msgstr "VM"
+msgid "VLAN is marked for deletion"
+msgstr ""
+
+msgid "VLAN is protected"
+msgstr ""
+
+msgid "VLAN is unlocked"
+msgstr ""
 
 msgid "VM Type"
 msgstr "VM 类型"
@@ -8688,8 +9559,8 @@ msgid "Value"
 msgstr "值"
 
 msgid ""
-"Value is equal to (100-temp. &deg;C), allowing manufacturer to set a minimum "
-"threshold which corresponds to a maximum temperature."
+"Value is equal to (100-temp. Celsius), allowing manufacturer to set a "
+"minimum threshold which corresponds to a maximum temperature."
 msgstr ""
 
 msgid "Variable"
@@ -8703,6 +9574,9 @@ msgstr ""
 
 msgid "Version"
 msgstr "版本"
+
+msgid "Version:"
+msgstr ""
 
 msgid "Vibration During Write."
 msgstr ""
@@ -8755,10 +9629,16 @@ msgstr "虚拟设备"
 msgid "VirtualBox"
 msgstr "VirtualBox"
 
+msgid "Virtualization"
+msgstr ""
+
 msgid "Volume"
 msgstr "卷（Volume）"
 
 msgid "Volume Label"
+msgstr ""
+
+msgid "Volume Mode"
 msgstr ""
 
 msgid "Volume Name"
@@ -8782,9 +9662,6 @@ msgid ""
 "serial number."
 msgstr ""
 
-msgid "Volume mode"
-msgstr ""
-
 msgid "Volumes"
 msgstr "卷（Volumes）"
 
@@ -8797,14 +9674,30 @@ msgstr ""
 msgid "WEP"
 msgstr "WEP"
 
-msgid "WINS server"
-msgstr "WINS 伺服器"
+msgid "WINS Server"
+msgstr ""
 
 msgid "WINS server IP address (e.g. from MS Active Directory server)."
 msgstr "WINS 伺服器位置 (AD Server)"
 
 msgid "WLAN"
 msgstr "无线局域网"
+
+msgid "WLAN Settings"
+msgstr ""
+
+msgid ""
+"WLAN cannot be deleted because it is still being used as an interface."
+msgstr ""
+
+msgid "WLAN is marked for deletion"
+msgstr ""
+
+msgid "WLAN is protected"
+msgstr ""
+
+msgid "WLAN is unlocked"
+msgstr ""
 
 msgid "WPA"
 msgstr "WPA"
@@ -8821,6 +9714,9 @@ msgstr "WPA-PSK WPA-EAP"
 msgid "WPA2"
 msgstr "WPA2"
 
+msgid "Wait Time"
+msgstr ""
+
 msgid "Wait time"
 msgstr "等待时间"
 
@@ -8833,16 +9729,14 @@ msgstr "警告"
 msgid "Warning Level"
 msgstr ""
 
-msgid ""
-"Warning: You are going to delete an encrypted volume. All data will get lost "
-"and can not be recovered."
-msgstr "警告：您即将删除一个加密卷。所有资料将会遗失，而且无法恢复。"
-
-msgid "Watch directory"
-msgstr "关注目录"
+msgid "Watch Directory"
+msgstr ""
 
 msgid "WebGUI"
 msgstr "网页界面"
+
+msgid "WebGUI and Root Password"
+msgstr ""
 
 msgid "Webserver"
 msgstr "网页伺服器"
@@ -8854,6 +9748,9 @@ msgid "Wed"
 msgstr ""
 
 msgid "Wednesday"
+msgstr ""
+
+msgid "Week Days"
 msgstr ""
 
 msgid "Week days"
@@ -8884,12 +9781,6 @@ msgid ""
 "attempt to identify the remote username."
 msgstr "当客户端最初连接到伺服器时使用ident 协议来识别远程用户名。"
 
-msgid ""
-"When the negotiation is complete, you will not be able to change the SMB "
-"protocol. If you change it, you will need to restart the client connected to "
-"this server."
-msgstr "当交涉完成后，您将无法改变SMB协议。如果改变的话，您将需要重新启动连接到该服务器的客户端。"
-
 msgid "Where to save downloaded data."
 msgstr "在哪里储存下载的数据。"
 
@@ -8913,11 +9804,11 @@ msgstr "通配符"
 msgid "Wireless configuration"
 msgstr "无线网络配置"
 
+msgid "Work Directory"
+msgstr ""
+
 msgid "Workgroup"
 msgstr "工作群组（Workgroup）"
-
-msgid "Working directory"
-msgstr "工作目录"
 
 msgid "Write"
 msgstr "写入"
@@ -8941,11 +9832,14 @@ msgstr "Xen"
 msgid "Xen Virtual Machine"
 msgstr "Xen 虚拟机"
 
+msgid "Y-axis Range"
+msgstr ""
+
 msgid "Yes"
 msgstr "是"
 
 msgid ""
-"You can also install a package via SSH or console using the the pkg add "
+"You can also install a package via SSH or console using the pkg install "
 "command."
 msgstr ""
 
@@ -8993,8 +9887,9 @@ msgid ""
 msgstr "您可以指定 SCSI INQUIRY 数据。默认情况下是空白的。 （最多 %d 个 ASCII 字符）"
 
 #, php-format
-msgid "You may specify logical block length (%d by default)."
-msgstr "您可以指定逻辑块长度（默认为 %d）"
+msgid ""
+"You may specify logical block size. (default is %dB for compatibility)."
+msgstr ""
 
 msgid ""
 "You must add at least a Portal Group, an Initiator Group and an Extent "
@@ -9017,11 +9912,12 @@ msgstr "要使用iSCSI目标的话，您必须有至少 %d MiB RAM。"
 msgid "You must initialize data before enabling."
 msgstr "启用之前，必须先初始化数据。"
 
-msgid "You must reboot the server before you can upgrade the firmware"
-msgstr ""
-
 msgid "You must select at least one authentication method."
 msgstr "请至少选择一种认证方式。"
+
+msgid ""
+"You need to update your browser or use Internet Explorer 10 or higher."
+msgstr ""
 
 msgid "You should use HTTPS as WebGUI protocol for sending passphrase."
 msgstr "建议您使用HTTPS 作为网页界面协议来传送密码短语。"
@@ -9029,17 +9925,29 @@ msgstr "建议您使用HTTPS 作为网页界面协议来传送密码短语。"
 msgid "Your ZFS system is not healthy."
 msgstr "您的ZFS系统有问题。"
 
+msgid "Your browser does not support this svg object type."
+msgstr ""
+
 msgid "ZFS"
 msgstr "ZFS"
 
 msgid "ZFS ACL"
 msgstr "ZFS 存取控制清单（ACL）"
 
+msgid "ZFS ARC"
+msgstr ""
+
+msgid "ZFS ARC Usage"
+msgstr ""
+
 msgid "ZFS Dataset Information & Status"
 msgstr "ZFS 数据集信息和状态"
 
 msgid "ZFS Dataset Properties"
 msgstr "ZFS 数据集属性"
+
+msgid "ZFS Pool I/O Statistics"
+msgstr ""
 
 msgid "ZFS Pool Tools"
 msgstr ""
@@ -9067,14 +9975,11 @@ msgstr ""
 
 msgid ""
 "ZFS volume size. To specify the size use the following human-readable "
-"suffixes (for example, 'k', 'KB', 'M', 'Gb', etc.)."
-msgstr "ZFS 卷的容量。要指定的容量大小使用以下后缀（例如'k'，'KB'，'M'，'Gb' 等）。"
+"suffixes (for example, 'K', 'KB', 'M', 'GB', etc.)."
+msgstr ""
 
 msgid "Zeroconf/Bonjour"
 msgstr "Zeroconf/Bonjour"
-
-msgid "all encrypted disks are imported."
-msgstr "已经导入所有加密硬盘。"
 
 msgid "and"
 msgstr ""
@@ -9085,19 +9990,10 @@ msgstr "更改失败。"
 msgid "chroot() everyone, but root."
 msgstr "chroot() 所有用户，除了 root。"
 
-msgid "day(s)"
-msgstr "天"
-
-msgid "debug"
-msgstr "调试"
-
 msgid ""
 "decoded as: byte 0-1-2 = good block count (big endian) and byte 3-4 = "
 "system(free) block count."
 msgstr ""
-
-msgid "detected an error while importing."
-msgstr "在导入时检测到一个错误。"
 
 #, php-format
 msgid "e.g. %s"
@@ -9115,11 +10011,11 @@ msgstr "最大可设定高电压转换点"
 msgid "greatest settable low voltage transfer point"
 msgstr "最大可设置的低电压转换点"
 
-msgid "hour(s)"
-msgstr "小时"
-
 msgid "iSCSI Initiator"
 msgstr "iSCSI 启动器（iSCSI Initiator）"
+
+msgid "iSCSI Initiator Settings"
+msgstr ""
 
 msgid "iSCSI Target"
 msgstr "iSCSI 目标器（iSCSI Target）"
@@ -9134,8 +10030,8 @@ msgstr "iSCSI 目标器信息和状态"
 msgid "iSCSI initial parameter (%d by default)."
 msgstr "iSCSI 的初始参数（默认值为 %d）"
 
-msgid "iSCSI initiator disabled"
-msgstr "关闭 iSCSI 启动器"
+msgid "iSCSI initiator disabled."
+msgstr ""
 
 msgid "iTunes/DAAP"
 msgstr "iTunes/DAAP"
@@ -9149,29 +10045,30 @@ msgstr "加载/卸载失败。"
 msgid "loader.conf"
 msgstr "loader.conf"
 
-msgid "minute(s)"
-msgstr "分"
-
 msgid "mount"
 msgstr "挂载"
 
 msgid "mount point"
 msgstr ""
 
+msgid "must be defined!"
+msgstr ""
+
+#, php-format
+msgid "must be in the format: %s."
+msgstr ""
+
 msgid "n/a"
 msgstr "无资料"
 
-msgid "no new encrypted disk found."
-msgstr "没有发现新的加密硬盘。"
+msgid "network traffic"
+msgstr ""
 
 msgid "noVNC"
 msgstr "noVNC"
 
 msgid "none"
 msgstr "无"
-
-msgid "phpBB"
-msgstr "phpBB"
 
 msgid "phpVirtualBox"
 msgstr "phpVirtualBox"
@@ -9188,8 +10085,8 @@ msgstr "修订版本"
 msgid "scan target failed."
 msgstr "扫描目标失败"
 
-msgid "second(s)"
-msgstr "秒"
+msgid "seconds)"
+msgstr ""
 
 msgid "smallest settable high voltage transfer point"
 msgstr "最小可设定高电压转换点"
@@ -9209,20 +10106,5 @@ msgstr "路径已有 sysvol。"
 msgid "to"
 msgstr "到"
 
-msgid "umask"
-msgstr "档案预设权限（umask）"
-
 msgid "umount"
 msgstr "卸载"
-
-msgid "user"
-msgstr ""
-
-msgid "version:"
-msgstr "版本："
-
-#~ msgid "List Mount Points"
-#~ msgstr "列出挂载点"
-
-#~ msgid "Memory Usage"
-#~ msgstr "内存使用情况"

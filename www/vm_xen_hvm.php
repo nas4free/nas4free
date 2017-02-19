@@ -30,44 +30,35 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("VM"), gtext("Xen"), gtext("HVM Guest"), isset($uuid) ? gtext("Edit") : gtext("Add"));
-
-if (!isset($config['xen']['vms']['param']) || !is_array($config['xen']['vms']['param']))
-	$config['xen']['vms']['param'] = array();
-
-if (!isset($config['vinterfaces']['bridge']) || !is_array($config['vinterfaces']['bridge']))
-	$config['vinterfaces']['bridge'] = array();
-
-$a_vms = &$config['xen']['vms']['param'];
-
-$a_bridge = &$config['vinterfaces']['bridge'];
-array_sort_key($a_bridge, "if");
-
-if (!sizeof($a_bridge)) {
+$a_vms = &array_make_branch($config,'xen','vms','param');
+$a_bridge = &array_make_branch($config,'vinterfaces','bridge');
+if(empty($a_bridge)):
 	$errormsg = gtext('No configured bridge interfaces.')
 		. ' '
 		. '<a href="' . 'interfaces_bridge.php' . '">'
 		. gtext('Please add a bridge interface first.')
 		. '</a>';
-}
+else:
+	array_sort_key($a_bridge, "if");
+endif;
 
 function get_vnic_mac_base()
 {
 	global $config;
 	// OUI 24bits + random 20bits + I/F# 4bits
 	do {
-		$bytes = array(0x00, 0x16, 0x3e, // OUI
+		$bytes = [0x00, 0x16, 0x3e, // OUI
 			mt_rand(0x00, 0x07f),
 			mt_rand(0x00, 0x0ff),
-			mt_rand(0x00, 0x0f) << 4);
+			mt_rand(0x00, 0x0f) << 4];
 		$mac = implode(':',
 			array_map(function ($v) { return sprintf("%02x",$v); },
 			$bytes));
@@ -117,7 +108,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_vms, "uuid")))
 } else {
 	// find next unused display
 	$vncdisplay = 0;
-	$a_vncdisplay = array();
+	$a_vncdisplay = [];
 	foreach($a_vms as $v)
 		$a_vncdisplay[] = $v['vncdisplay'];
 	while (true === in_array($vncdisplay, $a_vncdisplay))
@@ -174,30 +165,30 @@ if ($_POST) {
 	}
 
 	// input validation
-	$reqdfields = explode(" ", "name mem vcpus");
-	$reqdfieldsn = array(gtext("Name"), gtext("Memory (MiB)"), gtext("VCPUs"));
-	$reqdfieldst = explode(" ", "string numericint numericint");
+	$reqdfields = ['name','mem','vcpus'];
+	$reqdfieldsn = [gtext('Name'),gtext('Memory (MiB)'),gtext('VCPUs')];
+	$reqdfieldst = ['string','numericint','numericint'];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
 	// VNC display
 	if (trim($_POST['vncdisplay']) != "") {
 		/*
-		$reqdfields = explode(" ", "vncdisplay vncpassword");
-		$reqdfieldsn = array(gtext("VNC Display"), gtext("VNC Password"));
-		$reqdfieldst = explode(" ", "numericint string");
+		$reqdfields = ['vncdisplay','vncpassword'];
+		$reqdfieldsn = [gtext('VNC Display'),gtext('VNC Password')];
+		$reqdfieldst = ['numericint','string'];
 		*/
-		$reqdfields = explode(" ", "vncdisplay");
-		$reqdfieldsn = array(gtext("VNC Display"));
-		$reqdfieldst = explode(" ", "numericint");
+		$reqdfields = ['vncdisplay'];
+		$reqdfieldsn = [gtext('VNC Display')];
+		$reqdfieldst = ['numericint'];
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 		do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 	}
 
 	// mac address
-	$reqdfields = explode(" ", "mac1 mac2 mac3 mac4");
-	$reqdfieldsn = array(gtext("MAC Address")." 1", gtext("MAC Address")." 2", gtext("MAC Address")." 3", gtext("MAC Address")." 4");
-	$reqdfieldst = explode(" ", "macaddr macaddr macaddr macaddr");
+	$reqdfields = ['mac1','mac2','mac3','mac4'];
+	$reqdfieldsn = [gtext('MAC Address').' 1', gtext('MAC Address').' 2', gtext('MAC Address').' 3', gtext('MAC Address').' 4'];
+	$reqdfieldst = ['macaddr','macaddr','macaddr','macaddr'];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
@@ -219,7 +210,7 @@ if ($_POST) {
 	}
 
 	if (empty($input_errors)) {
-		$vm = array();
+		$vm = [];
 		$vm['uuid'] = $_POST['uuid'];
 		$vm['name'] = $_POST['name'];
 		$vm['type'] = "hvm";
@@ -272,71 +263,85 @@ if ($_POST) {
 		exit;
 	}
 }
+$pgtitle = [gtext('Virtualization'),gtext('Xen'),gtext('HVM Guest'),isset($uuid) ? gtext("Edit") : gtext("Add")];
 ?>
-<?php include("fbegin.inc");?>
-<script type="text/javascript">//<![CDATA[
+<?php include 'fbegin.inc';?>
+<script type="text/javascript">
+//<![CDATA[
+$(window).on("load",function() {
+<?php // Init spinner.?>
+	$("#iform").submit(function() { spinner(); });
+	$(".spin").click(function() { spinner(); });
+}); 
 $(document).ready(function(){
 });
 //]]>
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  <tr>
-    <td class="tabcont">
-      <form action="vm_xen_hvm.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-	<?php if (!empty($errormsg)) print_error_box($errormsg);?>
-	<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-	<?php if (!empty($savemsg)) print_info_box($savemsg);?>
-	<table width="100%" border="0" cellpadding="6" cellspacing="0">
-	<?php html_titleline(gtext("Settings"));?>
-	<?php html_inputbox("name", gtext("Name"), $pconfig['name'], "", true, 20);?>
-	<?php html_inputbox("mem", gtext("Memory (MiB)"), $pconfig['mem'], "", true, 10);?>
-	<?php html_inputbox("vcpus", gtext("VCPUs"), $pconfig['vcpus'], "", true, 10);?>
-	<?php html_checkbox("nestedhvm", gtext("Nested HVM"), !empty($pconfig['nestedhvm']) ? true : false, gtext("Enable nested virtualization"), "", false);?>
-	<?php html_inputbox("desc", gtext("Description"), $pconfig['desc'], gtext("You may enter a description here for your reference."), false, 40);?>
-
-	<?php html_separator();?>
-	<?php html_titleline(gtext("Display"));?>
-	<?php html_inputbox("vncdisplay", gtext("VNC Display"), $pconfig['vncdisplay'], gtext("TCP port is 5900+N, where N is VNC display number."), true, 10);?>
-	<?php html_passwordbox("vncpassword", gtext("VNC Password"), $pconfig['vncpassword'], "", false, 15);?>
-
-	<?php html_separator();?>
-	<?php html_titleline(gtext("Network"));?>
-	<?php $a_bridgeif = array("none" => gtext("None")); foreach ($a_bridge as $bridge) { $a_bridgeif[$bridge['if']] = htmlspecialchars("{$bridge['if']}".(!empty($bridge['desc']) ? " ({$bridge['desc']})" : "")); }?>
-	<?php html_combobox("nic1", gtext("Network Adapter")." 1", $pconfig['nic1'], $a_bridgeif, "", true);?>
-	<?php html_inputbox("mac1", gtext("MAC Address")." 1", $pconfig['mac1'], "", true, 20);?>
-
-	<?php html_separator();?>
-	<?php html_titleline(gtext("Storage"));?>
-	<?php html_filechooser("disk1", gtext("Hard Disk")." 1", $pconfig['disk1'], sprintf(gtext("File path (e.g. %s) or ZFS volume (e.g. %s) used as Hard disk image."), "/mnt/sharename/disk.img", "/dev/zvol/tank/volume"), $g['media_path'], true);?>
-	<?php html_filechooser("cdrom", gtext("CD/DVD drive"), $pconfig['cdrom'], sprintf(gtext("ISO file path (e.g. %s) used as CD/DVD drive."), "/mnt/sharename/image.iso"), $g['media_path'], false);?>
-	<?php html_filechooser("disk2", gtext("Hard Disk")." 2", $pconfig['disk2'], "", $g['media_path'], false);?>
-	<?php html_filechooser("disk3", gtext("Hard Disk")." 3", $pconfig['disk3'], "", $g['media_path'], false);?>
-
-	<?php html_separator();?>
-	<?php html_titleline(gtext("Additional Network"));?>
-	<?php html_combobox("nic2", gtext("Network Adapter")." 2", $pconfig['nic2'], $a_bridgeif, "", false);?>
-	<?php html_inputbox("mac2", gtext("MAC Address")." 2", $pconfig['mac2'], "", false, 20);?>
-	<?php html_combobox("nic3", gtext("Network Adapter")." 3", $pconfig['nic3'], $a_bridgeif, "", false);?>
-	<?php html_inputbox("mac3", gtext("MAC Address")." 3", $pconfig['mac3'], "", false, 20);?>
-	<?php html_combobox("nic4", gtext("Network Adapter")." 4", $pconfig['nic4'], $a_bridgeif, "", false);?>
-	<?php html_inputbox("mac4", gtext("MAC Address")." 4", $pconfig['mac4'], "", false, 20);?>
-
-	<?php html_separator();?>
-	<?php html_titleline(gtext("Additional Storage"));?>
-	<?php html_filechooser("disk4", gtext("Hard Disk")." 4", $pconfig['disk4'], "", $g['media_path'], false);?>
-	<?php html_filechooser("disk5", gtext("Hard Disk")." 5", $pconfig['disk5'], "", $g['media_path'], false);?>
-	<?php html_filechooser("disk6", gtext("Hard Disk")." 6", $pconfig['disk6'], "", $g['media_path'], false);?>
-	<?php html_filechooser("disk7", gtext("Hard Disk")." 7", $pconfig['disk7'], "", $g['media_path'], false);?>
-
-	</table>
-	<div id="submit">
-	  <button type="submit" class="formbtn" name="action" value="Submit"><?=((isset($uuid) && (FALSE !== $cnid))) ? gtext("Save") : gtext("Add");?></button>
-	  <button type="submit" class="formbtn" name="action" value="Cancel"><?=gtext("Cancel");?></button>
-	  <input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
-	</div>
-	<?php include("formend.inc");?>
-      </form>
-    </td>
-  </tr>
+	<tr>
+		<td class="tabcont">
+			<form action="vm_xen_hvm.php" method="post" name="iform" id="iform" onsubmit="spinner()">
+				<?php
+				if(!empty($errormsg)):
+					print_error_box($errormsg);
+				endif;
+				if(!empty($input_errors)):
+					print_input_errors($input_errors);
+				endif;
+				if(!empty($savemsg)):
+					print_info_box($savemsg);
+				endif;
+				?>
+				<table width="100%" border="0" cellpadding="6" cellspacing="0">
+					<?php
+					html_titleline(gtext("Settings"));
+					html_inputbox("name", gtext("Name"), $pconfig['name'], "", true, 20);
+					html_inputbox("mem", gtext("Memory (MiB)"), $pconfig['mem'], "", true, 10);
+					html_inputbox("vcpus", gtext("VCPUs"), $pconfig['vcpus'], "", true, 10);
+					html_checkbox("nestedhvm", gtext("Nested HVM"), !empty($pconfig['nestedhvm']) ? true : false, gtext("Enable nested virtualization"), "", false);
+					html_inputbox("desc", gtext("Description"), $pconfig['desc'], gtext("You may enter a description here for your reference."), false, 40);
+					html_separator();
+					html_titleline(gtext("Display"));
+					html_inputbox("vncdisplay", gtext("VNC Display"), $pconfig['vncdisplay'], gtext("TCP port is 5900+N, where N is VNC display number."), true, 10);
+					html_passwordbox("vncpassword", gtext("VNC Password"), $pconfig['vncpassword'], "", false, 15);
+					html_separator();
+					html_titleline(gtext("Network"));
+					$a_bridgeif = ['none' => gtext('None')];
+					foreach($a_bridge as $bridge):
+						$a_bridgeif[$bridge['if']] = htmlspecialchars("{$bridge['if']}".(!empty($bridge['desc']) ? " ({$bridge['desc']})" : ""));
+					endforeach;
+					html_combobox("nic1", gtext("Network Adapter")." 1", $pconfig['nic1'], $a_bridgeif, "", true);
+					html_inputbox("mac1", gtext("MAC Address")." 1", $pconfig['mac1'], "", true, 20);
+					html_separator();
+					html_titleline(gtext("Storage"));
+					html_filechooser("disk1", gtext("Hard Disk")." 1", $pconfig['disk1'], sprintf(gtext("File path (e.g. %s) or ZFS volume (e.g. %s) used as Hard disk image."), "/mnt/sharename/disk.img", "/dev/zvol/tank/volume"), $g['media_path'], true);
+					html_filechooser("cdrom", gtext("CD/DVD drive"), $pconfig['cdrom'], sprintf(gtext("ISO file path (e.g. %s) used as CD/DVD drive."), "/mnt/sharename/image.iso"), $g['media_path'], false);
+					html_filechooser("disk2", gtext("Hard Disk")." 2", $pconfig['disk2'], "", $g['media_path'], false);
+					html_filechooser("disk3", gtext("Hard Disk")." 3", $pconfig['disk3'], "", $g['media_path'], false);
+					html_separator();
+					html_titleline(gtext("Additional Network"));
+					html_combobox("nic2", gtext("Network Adapter")." 2", $pconfig['nic2'], $a_bridgeif, "", false);
+					html_inputbox("mac2", gtext("MAC Address")." 2", $pconfig['mac2'], "", false, 20);
+					html_combobox("nic3", gtext("Network Adapter")." 3", $pconfig['nic3'], $a_bridgeif, "", false);
+					html_inputbox("mac3", gtext("MAC Address")." 3", $pconfig['mac3'], "", false, 20);
+					html_combobox("nic4", gtext("Network Adapter")." 4", $pconfig['nic4'], $a_bridgeif, "", false);
+					html_inputbox("mac4", gtext("MAC Address")." 4", $pconfig['mac4'], "", false, 20);
+					html_separator();
+					html_titleline(gtext("Additional Storage"));
+					html_filechooser("disk4", gtext("Hard Disk")." 4", $pconfig['disk4'], "", $g['media_path'], false);
+					html_filechooser("disk5", gtext("Hard Disk")." 5", $pconfig['disk5'], "", $g['media_path'], false);
+					html_filechooser("disk6", gtext("Hard Disk")." 6", $pconfig['disk6'], "", $g['media_path'], false);
+					html_filechooser("disk7", gtext("Hard Disk")." 7", $pconfig['disk7'], "", $g['media_path'], false);
+					?>
+				</table>
+				<div id="submit">
+					<button type="submit" class="formbtn" name="action" value="Submit"><?=((isset($uuid) && (FALSE !== $cnid))) ? gtext("Save") : gtext("Add");?></button>
+					<button type="submit" class="formbtn" name="action" value="Cancel"><?=gtext("Cancel");?></button>
+					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
+				</div>
+				<?php include 'formend.inc';?>
+			</form>
+		</td>
+	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

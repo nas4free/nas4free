@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
 $sphere_scriptname = basename(__FILE__);
 $sphere_header = 'Location: '.$sphere_scriptname;
@@ -44,13 +44,19 @@ $prerequisites_ok = true;
 
 $mode_page = ($_POST) ? PAGE_MODE_POST : (($_GET) ? PAGE_MODE_EDIT : PAGE_MODE_ADD); // detect page mode
 if (PAGE_MODE_POST == $mode_page) { // POST is Cancel or not Submit => cleanup
-	if (isset($_POST['Cancel']) && $_POST['Cancel']) {
-		header($sphere_header_parent);
-		exit;
-	}
-	if (!(isset($_POST['Submit']) && $_POST['Submit'])) {
-		header($sphere_header_parent);
-		exit;
+	if(isset($_POST['submit'])) {
+		switch($_POST['submit']) {
+			case 'save':
+				break;
+			case 'cancel':
+				header($sphere_header_parent);
+				exit;
+				break;
+			default:
+				header($sphere_header_parent);
+				exit;
+				break;
+		}
 	}
 }
 
@@ -65,22 +71,16 @@ if ((PAGE_MODE_POST == $mode_page) && isset($_POST['uuid']) && is_uuid_v4($_POST
 	}
 }
 
-if (!(isset($config['system']) && is_array($config['system']))) {
-	$config['system'] = [];
-}
-if (!(isset($config['system']['rcconf']) && is_array($config['system']['rcconf']))) {
-	$config['system']['rcconf'] = [];
-}
-if (!(isset($config['system']['rcconf']['param']) && is_array($config['system']['rcconf']['param']))) {
-	$config['system']['rcconf']['param'] = [];
-}
-array_sort_key($config['system']['rcconf']['param'], "name");
-$sphere_array = &$config['system']['rcconf']['param'];
+$sphere_array = &array_make_branch($config,'system','rcconf','param');
+if(empty($sphere_array)):
+else:
+	array_sort_key($config['system']['rcconf']['param'],'name');
+endif;
 
-$index = array_search_ex($sphere_record['uuid'], $sphere_array, "uuid");
+$index_uuid = array_search_ex($sphere_record['uuid'], $sphere_array, "uuid");
 $mode_updatenotify = updatenotify_get_mode("rcconf", $sphere_record['uuid']); // get updatenotify mode for uuid
 $mode_record = RECORD_ERROR;
-if (false !== $index) { // uuid found
+if (false !== $index_uuid) { // uuid found
 	if ((PAGE_MODE_POST == $mode_page || (PAGE_MODE_EDIT == $mode_page))) { // POST or EDIT
 		switch ($mode_updatenotify) {
 			case UPDATENOTIFY_MODE_NEW:
@@ -130,7 +130,7 @@ if (PAGE_MODE_POST == $mode_page) {  // We know POST is "Submit", already checke
 			$sphere_array[] = $sphere_record;
 			updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_NEW, $sphere_record['uuid']);
 		} else {
-			$sphere_array[$index] = $sphere_record;
+			$sphere_array[$index_uuid] = $sphere_record;
 			if (UPDATENOTIFY_MODE_UNKNOWN == $mode_updatenotify) {
 				updatenotify_set($sphere_notifier, UPDATENOTIFY_MODE_MODIFIED, $sphere_record['uuid']);
 			}
@@ -149,20 +149,30 @@ if (PAGE_MODE_POST == $mode_page) {  // We know POST is "Submit", already checke
 			break;
 		case RECORD_NEW_MODIFY:
 		case RECORD_MODIFY:
-			$sphere_record['enable'] = isset($sphere_array[$index]['enable']);
-			$sphere_record['name'] = isset($sphere_array[$index]['name']) ? trim($sphere_array[$index]['name']) : '';
-			$sphere_record['value'] = $sphere_array[$index]['value'] ?? '';
-			$sphere_record['comment'] = $sphere_array[$index]['comment'] ?? '';
+			$sphere_record['enable'] = isset($sphere_array[$index_uuid]['enable']);
+			$sphere_record['name'] = isset($sphere_array[$index_uuid]['name']) ? trim($sphere_array[$index_uuid]['name']) : '';
+			$sphere_record['value'] = $sphere_array[$index_uuid]['value'] ?? '';
+			$sphere_record['comment'] = $sphere_array[$index_uuid]['comment'] ?? '';
 			break;
 	}
 }
-$pgtitle = array(gtext('System'), gtext('Advanced'), gtext('rc.conf'), $isrecordnew ? gtext('Add') : gtext('Edit'));
+$pgtitle = [gtext('System'), gtext('Advanced'), gtext('rc.conf'), $isrecordnew ? gtext('Add') : gtext('Edit')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
+<script type="text/javascript">
+//<![CDATA[
+$(window).on("load", function() {
+<?php	// Init spinner onsubmit()?>
+	$("#iform").submit(function() { spinner(); });
+});
+//]]>
+</script>
 <table id="area_navigator"><tbody>
 	<tr><td class="tabnavtbl"><ul id="tabnav">
 		<li class="tabinact"><a href="system_advanced.php"><span><?=gtext("Advanced");?></span></a></li>
 		<li class="tabinact"><a href="system_email.php"><span><?=gtext("Email");?></span></a></li>
+		<li class="tabinact"><a href="system_email_reports.php"><span><?=gtext("Email Reports");?></span></a></li>
+		<li class="tabinact"><a href="system_monitoring.php"><span><?=gtext("Monitoring");?></span></a></li>
 		<li class="tabinact"><a href="system_swap.php"><span><?=gtext("Swap");?></span></a></li>
 		<li class="tabinact"><a href="system_rc.php"><span><?=gtext("Command Scripts");?></span></a></li>
 		<li class="tabinact"><a href="system_cron.php"><span><?=gtext("Cron");?></span></a></li>
@@ -171,7 +181,7 @@ $pgtitle = array(gtext('System'), gtext('Advanced'), gtext('rc.conf'), $isrecord
 		<li class="tabinact"><a href="system_sysctl.php"><span><?=gtext("sysctl.conf");?></span></a></li>
 	</ul></td></tr>
 </tbody></table>
-<table id="area_data"><tbody><tr><td id="area_data_frame"><form action="<?=$sphere_scriptname;?>" method="post" name="iform" id="iform" onsubmit="spinner()">
+<table id="area_data"><tbody><tr><td id="area_data_frame"><form action="<?=$sphere_scriptname;?>" method="post" name="iform" id="iform">
 	<?php
 		if (!empty($errormsg)) {
 			print_error_box($errormsg);
@@ -183,23 +193,29 @@ $pgtitle = array(gtext('System'), gtext('Advanced'), gtext('rc.conf'), $isrecord
 			print_info_box(get_std_save_message(0));
 		}
 	?>
-	<table id="area_data_settings">
+	<table class="area_data_settings">
+		<colgroup>
+			<col class="area_data_settings_col_tag">
+			<col class="area_data_settings_col_data">
+		</colgroup>
 		<thead>
 			<?php html_titleline_checkbox2('enable', gtext('Configuration'), $sphere_record['enable'], gtext('Enable'));?>
 		</thead>
 		<tbody>
 			<?php
-				html_inputbox2('name', gtext('Name'), $sphere_record['name'], gtext('Name of the variable.'), true, 67);
-				html_inputbox2('value', gtext('Value'), $sphere_record['value'], gtext('The value of the variable.'), true, 67);
-				html_inputbox2('comment', gtext('Comment'), $sphere_record['comment'], gtext('You may enter a description here for your reference.'), false, 67);
+				html_inputbox2('name', gtext('Name'), $sphere_record['name'], gtext('Name of the variable.'), true, 60);
+				html_inputbox2('value', gtext('Value'), $sphere_record['value'], gtext('The value of the variable.'), true, 60);
+				html_inputbox2('comment', gtext('Comment'), $sphere_record['comment'], gtext('You may enter a description here for your reference.'), false, 60);
 			?>
 		</tbody>
 	</table>
 	<div id="submit">
-		<input name="Submit" type="submit" class="formbtn" value="<?=$isrecordnew ? gtext('Add') : gtext('Save')?>"/>
-		<input name="Cancel" type="submit" class="formbtn" value="<?=gtext('Cancel');?>"/>
+		<?php
+		echo html_button('save',$isrecordnew ? gtext('Add') : gtext('Save'));
+		echo html_button('cancel',gtext('Cancel'));
+		?>
 		<input name="uuid" type="hidden" value="<?=$sphere_record['uuid'];?>"/>
 	</div>
-	<?php require("formend.inc");?>
+	<?php require 'formend.inc';?>
 </form></td></tr></tbody></table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

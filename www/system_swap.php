@@ -31,10 +31,10 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("System"), gtext("Advanced"), gtext("Swap"));
+$pgtitle = [gtext('System'),gtext('Advanced'),gtext('Swap')];
 
 $pconfig['enable'] = isset($config['system']['swap']['enable']);
 $pconfig['type'] = $config['system']['swap']['type'];
@@ -55,18 +55,18 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	if (isset($_POST['enable'])) {
-		$reqdfields = explode(" ", "type");
-		$reqdfieldsn = array(gtext("Type"));
-		$reqdfieldst = explode(" ", "string");
+		$reqdfields = ['type'];
+		$reqdfieldsn = [gtext('Type')];
+		$reqdfieldst = ['string'];
 
 		if ("device" === $_POST['type']) {
-			$reqdfields = array_merge($reqdfields, explode(" ", "devicespecialfile"));
-			$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Device")));
-			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "string"));
+			$reqdfields = array_merge($reqdfields, ['devicespecialfile']);
+			$reqdfieldsn = array_merge($reqdfieldsn, [gtext('Device')]);
+			$reqdfieldst = array_merge($reqdfieldst, ['string']);
 		} else {
-			$reqdfields = array_merge($reqdfields, explode(" ", "mountpoint size"));
-			$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Mount point"), gtext("Size")));
-			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "string numeric"));
+			$reqdfields = array_merge($reqdfields, ['mountpoint','size']);
+			$reqdfieldsn = array_merge($reqdfieldsn, [gtext('Mount Point'),gtext('Size')]);
+			$reqdfieldst = array_merge($reqdfieldst, ['string','numeric']);
 		}
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -97,7 +97,7 @@ if ($_POST) {
 	}
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -127,16 +127,18 @@ function type_change() {
 </script>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav">
-				<li class="tabinact"><a href="system_advanced.php"><span><?=gtext("Advanced");?></span></a></li>
-				<li class="tabinact"><a href="system_email.php"><span><?=gtext("Email");?></span></a></li>
-				<li class="tabact"><a href="system_swap.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Swap");?></span></a></li>
-				<li class="tabinact"><a href="system_rc.php"><span><?=gtext("Command Scripts");?></span></a></li>
-				<li class="tabinact"><a href="system_cron.php"><span><?=gtext("Cron");?></span></a></li>
-				<li class="tabinact"><a href="system_loaderconf.php"><span><?=gtext("loader.conf");?></span></a></li>
-				<li class="tabinact"><a href="system_rcconf.php"><span><?=gtext("rc.conf");?></span></a></li>
-				<li class="tabinact"><a href="system_sysctl.php"><span><?=gtext("sysctl.conf");?></span></a></li>
+	<td class="tabnavtbl">
+		<ul id="tabnav">
+			<li class="tabinact"><a href="system_advanced.php"><span><?=gtext("Advanced");?></span></a></li>
+			<li class="tabinact"><a href="system_email.php"><span><?=gtext("Email");?></span></a></li>
+			<li class="tabinact"><a href="system_email_reports.php"><span><?=gtext("Email Reports");?></span></a></li>
+			<li class="tabinact"><a href="system_monitoring.php"><span><?=gtext("Monitoring");?></span></a></li>
+			<li class="tabact"><a href="system_swap.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Swap");?></span></a></li>
+			<li class="tabinact"><a href="system_rc.php"><span><?=gtext("Command Scripts");?></span></a></li>
+			<li class="tabinact"><a href="system_cron.php"><span><?=gtext("Cron");?></span></a></li>
+			<li class="tabinact"><a href="system_loaderconf.php"><span><?=gtext("loader.conf");?></span></a></li>
+			<li class="tabinact"><a href="system_rcconf.php"><span><?=gtext("rc.conf");?></span></a></li>
+			<li class="tabinact"><a href="system_sysctl.php"><span><?=gtext("sysctl.conf");?></span></a></li>
 			</ul>
 		</td>
 	</tr>
@@ -187,14 +189,14 @@ function type_change() {
 				<?php endif;?>
 				<tr>
 					<?php html_combobox("type", gtext("Type"), $pconfig['type'], array("file" => gtext("File"), "device" => gtext("Device")), "", true, false, "type_change()");?>
-					<?php html_mountcombobox("mountpoint", gtext("Mount point"), $pconfig['mountpoint'], gtext("Select mount point where to create the swap file."), true);?>
+					<?php html_mountcombobox("mountpoint", gtext("Mount Point"), $pconfig['mountpoint'], gtext("Select mount point where to create the swap file."), true);?>
 					<?php html_inputbox("size", gtext("Size"), $pconfig['size'], gtext("The size of the swap file in MB."), true, 10);?>
 					<?php html_inputbox("devicespecialfile", gtext("Device"), $pconfig['devicespecialfile'], sprintf(gtext("Name of the device to use as swap device, e.g. %s."), "/dev/da0s2b"), true, 20);?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save");?>" onclick="enable_change(true)" />
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
@@ -205,4 +207,4 @@ enable_change(false);
 type_change(false);
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

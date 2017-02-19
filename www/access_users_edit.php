@@ -31,21 +31,22 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+
+$pgtitle = [gtext('Access'),gtext('Users'),isset($uuid) ? gtext('Edit') : gtext('Add')];
 
 if (isset($_GET['uuid']))
 	$uuid = $_GET['uuid'];
 if (isset($_POST['uuid']))
 	$uuid = $_POST['uuid'];
 
-$pgtitle = array(gtext("Access"), gtext("Users"), isset($uuid) ? gtext("Edit") : gtext("Add"));
+$a_user = &array_make_branch($config,'access','user');
+if(empty($a_user)):
+else:
+	array_sort_key($a_user,'login');
+endif;
 
-if (!isset($config['access']['user']) || !is_array($config['access']['user']))
-	$config['access']['user'] = array();
-
-array_sort_key($config['access']['user'], "login");
-$a_user = &$config['access']['user'];
 $a_user_system = system_get_user_list();
 $a_group = system_get_group_list();
 
@@ -57,7 +58,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_user, "uuid"))
 	$pconfig['passwordconf'] = $pconfig['password'];
 	$pconfig['userid'] = $a_user[$cnid]['id'];
 	$pconfig['primarygroup'] = $a_user[$cnid]['primarygroup'];
-	$pconfig['group'] = !empty($a_user[$cnid]['group']) ? $a_user[$cnid]['group'] : array();
+	$pconfig['group'] = !empty($a_user[$cnid]['group']) ? $a_user[$cnid]['group'] : [];
 	$pconfig['shell'] = $a_user[$cnid]['shell'];
 	$pconfig['homedir'] = $a_user[$cnid]['homedir'];
 	$pconfig['userportal'] = isset($a_user[$cnid]['userportal']);
@@ -69,7 +70,7 @@ if (isset($uuid) && (FALSE !== ($cnid = array_search_ex($uuid, $a_user, "uuid"))
 	$pconfig['passwordconf'] = "";
 	$pconfig['userid'] = get_nextuser_id();
 	$pconfig['primarygroup'] = $a_group['guest'];
-	$pconfig['group'] = array();
+	$pconfig['group'] = [];
 	$pconfig['shell'] = "nologin";
 	$pconfig['homedir'] = "";
 	$pconfig['userportal'] = FALSE;
@@ -84,10 +85,17 @@ if ($_POST) {
 		exit;
 	}
 
-	$reqdfields = explode(" ", "login fullname primarygroup userid shell");
-	$reqdfieldsn = array(gtext("Name"), gtext("Full Name"), gtext("Primary Group"), gtext("User ID"), gtext("Shell"));
-	$reqdfieldst = explode(" ", "string string numeric numeric string");
-
+	// Input validation
+	$reqdfields = ['login','fullname','password','primarygroup','userid','shell'];
+	$reqdfieldsn = [
+		gtext('Name'),
+		gtext('Full Name'),
+		gtext('Password'),
+		gtext('Primary Group'),
+		gtext('User ID'),
+		gtext('Shell')
+	];
+	$reqdfieldst = ['string','string','string','numeric','numeric','string'];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 
@@ -142,7 +150,7 @@ if ($_POST) {
 	}
 
 	if (empty($input_errors)) {
-		$user = array();
+		$user = [];
 		$user['uuid'] = $_POST['uuid'];
 		$user['login'] = $_POST['login'];
 		$user['fullname'] = $_POST['fullname'];
@@ -194,41 +202,48 @@ function get_nextuser_id() {
 	return $id;
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td class="tabnavtbl">
-			<ul id="tabnav">
-				<li class="tabact"><a href="access_users.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Users");?></span></a></li>
-				<li class="tabinact"><a href="access_users_groups.php"><span><?=gtext("Groups");?></span></a></li>
-			</ul>
-		</td>
-	</tr>
+	<tr><td class="tabnavtbl"><ul id="tabnav">
+		<li class="tabact"><a href="access_users.php" title="<?=gtext('Reload page');?>"><span><?=gtext("Users");?></span></a></li>
+		<li class="tabinact"><a href="access_users_groups.php"><span><?=gtext("Groups");?></span></a></li>
+	</ul></td></tr>
 	<tr>
 		<td class="tabcont">
 			<form action="access_users_edit.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-				<?php if (!empty($nogroup_errors)) print_input_errors($nogroup_errors); ?>
-				<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
+				<?php
+				if(!empty($nogroup_errors)):
+					print_input_errors($nogroup_errors);
+				endif;
+				if(!empty($input_errors)):
+					print_input_errors($input_errors);
+				endif;
+				?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_inputbox("login", gtext("Name"), $pconfig['login'], gtext("Login name of user."), true, 20, isset($uuid) && (FALSE !== $cnid));?>
-					<?php html_inputbox("fullname", gtext("Full Name"), $pconfig['fullname'], gtext("User full name."), true, 20);?>
-					<?php html_passwordconfbox("password", "passwordconf", gtext("Password"), $pconfig['password'], $pconfig['passwordconf'], gtext("User password."), true);?>
-					<?php html_inputbox("userid", gtext("User ID"), $pconfig['userid'], gtext("User numeric id."), true, 20, isset($uuid) && (FALSE !== $cnid));?>
-					<?php html_combobox("shell", gtext("Shell"), $pconfig['shell'], array("nologin" => "nologin", "scponly" => "scponly", "sh" => "sh",  "csh" => "csh", "tcsh" => "tcsh", "bash" => "bash"), gtext("The user's login shell."), true);?>
-					<?php $grouplist = array(); foreach ($a_group as $groupk => $groupv) { $grouplist[$groupv] = $groupk; } ?>
-					<?php html_combobox("primarygroup", gtext("Primary Group"), $pconfig['primarygroup'], $grouplist, gtext("Set the account's primary group to the given group."), true);?>
-					<?php html_listbox("group", gtext("Additional group"), !empty($pconfig['group']) ? $pconfig['group'] : array(), $grouplist, gtext("Set additional group memberships for this account.")."<br />".gtext("Note: Ctrl-click (or command-click on the Mac) to select and deselect groups."));?>
-					<?php html_filechooser("homedir", gtext("Home directory"), $pconfig['homedir'], gtext("Enter the path to the home directory of that user. Leave this field empty to use default path /mnt."), $g['media_path'], false, 60);?>
-					<?php html_checkbox("userportal", gtext("User portal"), !empty($pconfig['userportal']) ? true : false, gtext("Grant access to the user portal."), "", false);?>
+					<?php html_titleline(gtext("User Settings"));
+					html_inputbox("login", gtext("Name"), $pconfig['login'], gtext("Enter login name of the user."), true, 28, isset($uuid) && (FALSE !== $cnid));
+					html_inputbox("fullname", gtext("Full Name"), $pconfig['fullname'], gtext("Enter full name of the user."), true, 28);
+					html_passwordconfbox("password", "passwordconf", gtext("Password"), $pconfig['password'], $pconfig['passwordconf'], gtext("Enter the user password."), true);
+					html_inputbox("userid", gtext("User ID"), $pconfig['userid'], gtext("User numeric id."), true, 12, isset($uuid) && (FALSE !== $cnid));
+					html_combobox("shell", gtext("Shell"), $pconfig['shell'], ['nologin' => 'nologin','scponly' => 'scponly','sh' => 'sh', 'csh' => 'csh','tcsh' => 'tcsh','bash' => 'bash'], gtext("Set user login shell."), true);
+					$grouplist = [];
+					foreach($a_group as $groupk => $groupv):
+						$grouplist[$groupv] = $groupk;
+					endforeach;
+					html_combobox("primarygroup", gtext("Primary Group"), $pconfig['primarygroup'], $grouplist, gtext("Set the account's primary group to the given group."), true);
+					html_listbox("group", gtext("Additional Group"), !empty($pconfig['group']) ? $pconfig['group'] : [], $grouplist, gtext("Set additional group memberships for this account.")."<br />".gtext("Note: Ctrl-click (or command-click on the Mac) to select and deselect groups."));
+					html_filechooser("homedir", gtext("Home Directory"), $pconfig['homedir'], gtext("Enter the path to the home directory of that user. Leave this field empty to use default path /mnt."), $g['media_path'], false, 60);
+					html_checkbox("userportal", gtext("User Portal"), !empty($pconfig['userportal']) ? true : false, gtext("Grant access to the user portal."), "", false);
+					?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=(isset($uuid) && (FALSE !== $cnid)) ? gtext("Save") : gtext("Add")?>" />
 					<input name="Cancel" type="submit" class="formbtn" value="<?=gtext("Cancel");?>" />
 					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

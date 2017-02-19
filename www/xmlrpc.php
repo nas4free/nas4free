@@ -6,15 +6,12 @@
 	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -34,11 +31,11 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("config.inc");
-require_once("util.inc");
-require_once("system.inc");
-require_once("XMLRPC/xmlrpc.inc");
-require_once("XMLRPC/xmlrpcs.inc");
+require_once 'config.inc';
+require_once 'util.inc';
+require_once 'system.inc';
+require_once 'XMLRPC/xmlrpc.inc';
+require_once 'XMLRPC/xmlrpcs.inc';
 
 function xmlrpc_system_getinfo($xmlrpcmsg) {
 	$value = system_get_sysinfo();
@@ -53,7 +50,7 @@ if (empty($request_xml))
 
 // Create XMLRPC server.
 $xmlrpc_server = new xmlrpc_server(array(
-	"systemGetInfo" => array(
+		"systemGetInfo" => array(
 		"function" => "xmlrpc_system_getinfo",
 		"signature" => array(array($xmlrpcStruct)),
 		"docstring" => "Get various system informations.")), false);

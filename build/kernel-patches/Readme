@@ -1,7 +1,6 @@
 Kernel build howto:
 
-- Patches should be applied only once. Multiple times will fail (e.g. when
-  using patch command by ./make.sh file.
+- Patches should be applied only once. Multiple times will fail (e.g. when using patch command by ./make.sh file).
 
   You can create a backup from the kernel source to revert them quickly.
   # cp -r /usr/src /usr/src.orig

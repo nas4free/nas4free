@@ -31,209 +31,440 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-require("services.inc");
-unset($currentconfig);
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'services.inc';
+require 'co_sphere.php';
 
-$pgtitle = array(gtext("Services"),gtext("DLNA/UPnP MiniDLNA"));
-
-$homechanged =0;
-
-if (!isset($config['minidlna']) || !is_array($config['minidlna'])) {
-	$config['minidlna'] = array();
-	$config['minidlna']['inotify'] = true;
-}
-
-if (!isset($config['minidlna']['content']) || !is_array($config['minidlna']['content']))
-	$config['minidlna']['content'] = array();
-
-sort($config['minidlna']['content']);
-
-$pconfig['enable'] = isset($config['minidlna']['enable']);
-$pconfig['name'] = !empty($config['minidlna']['name']) ? $config['minidlna']['name'] : $pconfig['name'] = $config['system']['hostname'];
-$pconfig['if'] = !empty($config['minidlna']['if']) ? $config['minidlna']['if'] : "";
-$pconfig['port'] = !empty($config['minidlna']['port']) ? $config['minidlna']['port'] : "8200";
-$pconfig['home'] = !empty($config['minidlna']['home']) ? $config['minidlna']['home'] : "";
-$pconfig['notify_int'] = !empty($config['minidlna']['notify_int']) ? $config['minidlna']['notify_int'] : "300";
-$pconfig['strict'] = isset($config['minidlna']['strict']);
-$pconfig['loglevel'] = !empty($config['minidlna']['loglevel']) ? $config['minidlna']['loglevel'] : "warn";
-$pconfig['tivo'] = isset($config['minidlna']['tivo']);
-$pconfig['content'] = $config['minidlna']['content'];
-$pconfig['container'] = !empty($config['minidlna']['container']) ? $config['minidlna']['container'] : "B";
-$pconfig['inotify'] = isset($config['minidlna']['inotify']);
-
-if ($_POST) {
-
-	if (isset($_POST['Submit']) && $_POST['Submit']) {
-	unset($input_errors);
-
-	// Input validation.
-	if ( !is_array ($_POST['content'])) $input_errors[] = gtext("Please define the Media library location.");
-	if ( empty ($_POST['home']) || !is_dir ($_POST['home'])) $input_errors[] = gtext("Please define the Database directory location.");
-	$pconfig = $_POST;
-
-	if (empty($input_errors)) {
-		if (isset ($config['minidlna']['content']) || is_array ($config['minidlna']['content'])) $currentconfig = $config['minidlna']; else unset($currentconfig);
-
-		if (!isset($config['minidlna']['home']) || ($config['minidlna']['home'] !== $_POST['home'])) {
-			$homechanged = 1;
-			chown($_POST['home'], "dlna");
-			chmod ($_POST['home'], 0755);
-			unlink_if_exists ($_POST['home']."/files.db");
-		}
-		$config['minidlna']['enable'] = isset($_POST['enable']) ? true : false;
-		$config['minidlna']['name'] = $_POST['name'];
-		$config['minidlna']['if'] = $_POST['if'];
-		$config['minidlna']['port'] = $_POST['port'];
-		$config['minidlna']['notify_int'] = $_POST['notify_int'];
-		$config['minidlna']['home'] = $_POST['home'];
-		$config['minidlna']['strict'] = isset($_POST['strict']) ? true : false;
-		$config['minidlna']['inotify'] = isset($_POST['inotify']) ? true : false;
-		$config['minidlna']['tivo'] =  isset($_POST['tivo']) ? true : false;
-		$config['minidlna']['content'] = $_POST['content'];
-		$config['minidlna']['loglevel'] =  $_POST['loglevel'];
-		$config['minidlna']['container'] =  $_POST['container'];
-
-		if (empty ($currentconfig['content']) || $homechanged == 1) {
-		updatenotify_set("minidlna", UPDATENOTIFY_MODE_NEW, gtext("Building database in progress"));
-		}	else {
-			$a_content = $config['minidlna']['content'];
-			$b_content = $currentconfig['content'];
-			sort ($a_content);
-			sort ($b_content);
-			$check_differences = array_merge (  array_diff_assoc ( $a_content ,$b_content ), array_diff_assoc ( $b_content ,  $a_content));
-			if (count ($check_differences) > 0 ) {
-				updatenotify_set("minidlna", UPDATENOTIFY_MODE_MODIFIED, gtext("Rescan database in progress"));
-					} else {
-				updatenotify_set("minidlna", UPDATENOTIFY_MODE_DIRTY, gtext("Minidlna configuration has been updated."));
-			}
-	}
+function services_minidlna_get_sphere() {
+	global $config;
+	$sphere = new co_sphere_settings('services_minidlna','php');
+	$sphere->row_default = [
+		'enable' => false,
+		'name' => '',
+		'if' => '',
+		'port' => '8200',
+		'home' => '',
+		'notify_int' => '300',
+		'strict' => false,
+		'loglevel' => 'info',
+		'tivo' => false,
+		'content' => [],
+		'container' => 'B',
+		'inotify' => true
+	];
+	$sphere->grid = &array_make_branch($config,'minidlna');
+	if(empty($sphere->grid)):
+		$sphere->grid = $sphere->row_default;
 		write_config();
-		header("Location: services_minidlna.php");
+		header($sphere->header());
 		exit;
-	}
+	endif;
+	array_make_branch($config,'minidlna','content');
+	return $sphere;
 }
-
-// End POST save
-	if (isset($_POST['apply']) && $_POST['apply']) {
-			$retval =0;
-			if (!file_exists($d_sysrebootreqd_path)) {
-					config_lock();
-					$retval != rc_stop_service('minidlna') ;
-					$retval = $retval << 1;
-					$retval |=  rc_update_service ( 'minidlna' );
-					$retval = $retval << 1;
-					$retval |= rc_update_service("mdnsresponder");
-					config_unlock();
-					$savemsg = get_std_save_message($retval);
-					if ($retval === 0) {
-					unset ($savemsg);
-					$notification = updatenotify_get("minidlna");			
-					$savemsg = $notification[0]['data'];
-					updatenotify_delete("minidlna"); }
-				}
-	}
-}
-
+$sphere = &services_minidlna_get_sphere();
+$gt_button_apply_confirm = gtext('Do you want to apply these settings?');
+$input_errors = [];
+$a_message = [];
+sort($sphere->grid['content']);
+//	we need information about other DLNA services
+array_make_branch($config,'upnp');
+/*	calculate initial page mode and page action.
+ *	at the end of this section a valid page mode and a valid page action are available.
+ *	page_action cancel is switched to view mode.
+ *	mode_page: page_action:
+ *		PAGE_MODE_EDIT: edit
+ *		PAGE_MODE_POST: enable, disable, rescan, save
+ *		PAGE_MODE_VIEW: view
+ */
+$mode_page = ($_POST) ? PAGE_MODE_POST : PAGE_MODE_VIEW;
+switch($mode_page):
+	case PAGE_MODE_POST:
+		if(isset($_POST['submit'])):
+			$page_action = $_POST['submit'];
+			switch($page_action):
+				case 'edit':
+					$mode_page = PAGE_MODE_EDIT;
+					break;
+				case 'rescan':
+					break;
+				case 'save':
+					break;
+				case 'enable':
+					break;
+				case 'disable':
+					break;
+				case 'cancel':
+					$mode_page = PAGE_MODE_VIEW;
+					$page_action = 'view';
+					break;
+				default:
+					$mode_page = PAGE_MODE_VIEW;
+					$page_action = 'view';
+					break;
+			endswitch;
+		else:
+			$mode_page = PAGE_MODE_VIEW;
+			$page_action = 'view';
+		endif;
+		break;
+	case PAGE_MODE_VIEW:
+		$page_action = 'view';
+		break;
+	case PAGE_MODE_EDIT:
+		$mode_page = PAGE_MODE_VIEW;
+		$page_action = 'view';
+		break;			
+	default:
+		$mode_page = PAGE_MODE_VIEW;
+		$page_action = 'view';
+		break;
+endswitch;
+//	get configuration data, depending on the source
+switch($page_action):
+	case 'save':
+		$source = $_POST;
+		break;
+	default:
+		$source = $sphere->grid;
+		break;
+endswitch;
+$sphere->row['enable'] = isset($source['enable']);
+$sphere->row['name'] = $source['name'] ?? $sphere->row_default['name'];
+$sphere->row['if'] = $source['if'] ?? $sphere->row_default['if'];
+$sphere->row['port'] = $source['port'] ?? $sphere->row_default['port'];
+$sphere->row['home'] = $source['home'] ?? $sphere->row_default['home'];
+$sphere->row['notify_int'] = $source['notify_int'] ?? $sphere->row_default['notify_int'];
+$sphere->row['strict'] = isset($source['strict']);
+$sphere->row['loglevel'] = $source['loglevel'] ?? $sphere->row_default['loglevel'];
+$sphere->row['tivo'] = isset($source['tivo']);
+$sphere->row['content'] = $source['content'] ?? $sphere->row_default['content'];
+$sphere->row['container'] = $source['container'] ?? $sphere->row_default['container'];
+$sphere->row['inotify'] = isset($source['inotify']);
+//	process enable and rescan
+switch($page_action):
+	case 'enable':
+		if($sphere->row['enable']):
+			$mode_page = PAGE_MODE_VIEW;
+			$page_action = 'view'; 
+		else: // enable and run a full validation
+			$sphere->row['enable'] = true;
+			$page_action = 'save'; // continue with save procedure
+		endif;
+		break;
+	case 'rescan':
+		if($sphere->row['enable']):
+			mwexec_bg('service minidlna rescan');
+			$a_message[] = gtext('A rescan has been issued.');
+		endif;
+		$mode_page = PAGE_MODE_VIEW;
+		$page_action = 'view';
+		break;
+endswitch;
+//	process save and disable
+switch($page_action):
+	case 'save':
+		//	validate name
+		if(is_string($sphere->row['name'])):
+			if(preg_match('/\S/',$sphere->row['name'])):
+			else:
+				$input_errors[] = gtext('The name of the media server cannot be empty.');
+				$sphere->row['name'] = '';
+			endif;
+		else:
+			$input_errors[] = gtext('The name of the media server is missing.');
+			$sphere->row['name'] = '';
+		endif;
+		//	validate interface
+		if(is_string($sphere->row['if'])):
+			if(preg_match('/\S/',$sphere->row['if'])):
+				// check if if is on the list of interfaces
+				if(true):
+				else:
+					$input_errors[] = gtext('The interface is unknown.');
+				endif;
+			endif;
+		else:
+			$sphere->row['if'] = '';
+		endif;
+		//	check port range.
+		if(!is_string($sphere->row['port'])):
+			$sphere->row['port'] = $sphere->row_default['port'];
+		endif;
+		if((1024 > $sphere->row['port']) || (65535 < $sphere->row['port'])):
+			$input_errors[] = sprintf(gtext("Port number must be in the range between %d and %d."),1024,65535);
+		endif;
+		//	check home folder
+		if(!is_string($sphere->row['home'])):
+			$sphere->row['home'] = '';
+		endif;
+		if(preg_match('/\S/',$sphere->row['home'])):
+			if(is_dir($sphere->row['home'])):
+			else:
+				$input_errors[] = gtext('The location of the "Database Directory" is not a valid location.');
+			endif;
+		else:
+			$input_errors[] = gtext('Please define the location for the database directory.');
+		endif;
+		if(!is_string($sphere->row['notify_int'])):
+			$sphere->row['notify_int'] = '300';
+		endif;
+		if(!is_string($sphere->row['loglevel'])):
+			$sphere->row['loglevel'] = 'info';
+		endif;
+		if(!is_array($sphere->row['content'])):
+			$sphere->row['content'] = [];
+		endif;
+		if(empty($sphere->row['content'])):
+			$input_errors[] = gtext('Please define one or more content locations.');
+		endif;
+		if(!is_string($sphere->row['container'])):
+			$sphere->row['container'] = 'B';
+		endif;
+		// all checks passed
+		if(empty($input_errors)):
+			$sphere->grid = $sphere->row;
+			write_config();
+			$retval = 0;
+			chown($sphere->row['home'],'dlna');
+			chmod($sphere->row['home'],0755);
+			config_lock();
+			$retval != rc_stop_service('minidlna');
+			$retval = $retval << 1;
+			$retval |=  rc_update_service('minidlna');
+			$retval = $retval << 1;
+			$retval |= rc_update_service('mdnsresponder');
+			config_unlock();
+			header($sphere->header());
+			exit;
+		else:
+			$mode_page = PAGE_MODE_EDIT;
+			$page_action = 'edit';
+		endif;
+		break;
+	case 'disable':
+		if($sphere->row['enable']): // if enabled, disable it
+			$sphere->row['enable'] = false;
+			$sphere->grid = $sphere->row;
+			write_config();
+			$retval = 0;
+			config_lock();
+			$retval |= rc_update_service('minidlna');
+			$retval |= rc_update_service('mdnsresponder');
+			config_unlock();
+			header($sphere->header());
+			exit;
+		endif;
+		$mode_page = PAGE_MODE_VIEW;
+		$page_action = 'view';
+		break;
+endswitch;
+//	determine final page mode
+switch($mode_page):
+	case PAGE_MODE_EDIT:
+		break;
+/*
+	case PAGE_MODE_VIEW:
+ */
+	default:
+		if(isset($config['system']['skipviewmode'])):
+			$mode_page = PAGE_MODE_EDIT;
+			$page_action = 'edit';
+		else:
+			$mode_page = PAGE_MODE_VIEW;
+			$page_action = 'view';
+		endif;
+		break;
+endswitch;
+//	list of configured interfaces
 $a_interface = get_interface_list();
-
-// Use first interface as default if it is not set.
-if (empty($pconfig['if']) && is_array($a_interface))
-	$pconfig['if'] = key($a_interface);
-
-include("fbegin.inc"); ?>
+$l_interfaces = [];
+foreach($a_interface as $k_interface => $ifinfo):
+	$ifinfo = get_interface_info($k_interface);
+	switch($ifinfo['status']):
+		case 'up':
+		case 'associated':
+			$l_interfaces[$k_interface] = $k_interface;
+			break;
+	endswitch;
+endforeach;
+//	list of container types
+$l_container = [
+	'.' => gtext('Standard'),
+	'B' => gtext('Browse Directory'),
+	'M' => gtext('Music'),
+	'V' => gtext('Video'),
+	'P' => gtext('Pictures')
+];
+//	list of log levels
+$l_loglevel = [
+	'off' => gtext('Off'),
+	'fatal' => gtext('Fatal'),
+	'error' => gtext('Error'),
+	'warn' => gtext('Warning'),
+	'info' => gtext('Info'),
+	'debug' => gtext('Debug')
+];
+//	identifiy enabled DLNA services
+$dlna_count = 0;
+$dlna_count += isset($config['minidlna']['enable']) ? 1 : 0;
+$dlna_count += isset($config['upnp']['enable']) ? 2 : 0;
+//	everything greater than 1 indicates that another DLNA service is running somewhere else
+//	every odd number indicates that this DLNA service is enabled.
+switch($dlna_count):
+	case 0:
+		$dlna_option = 0; // DLNA can be enabled, no access to link
+		break;
+	case 1:
+		$dlna_option = 1; // DLNA can be disabled, access to link
+		break;
+	default:
+		if($dlna_count & 1):
+			$dlna_option = 3; // Warning, DLNA can be disabled, access to link
+			$a_message[] = gtext('More than one DLNA/UPnP service is active. This configuration might cause issues.');
+		else:
+			$dlna_option = 2; // Warning, DLNA no access to enable, no access to link
+			$a_message[] = gtext('Another DLNA/UPnP service is already running. Enabling MiniDLNA might cause issues.');
+		endif;
+		break;
+endswitch;
+$pgtitle = [gtext('Services'),gtext('DLNA/UPnP MiniDLNA')];
+include 'fbegin.inc';
+switch($mode_page):
+	case PAGE_MODE_VIEW:
+?>
 <script type="text/javascript">
-<!--
-function enable_change(enable_change) {
-	var endis = !(document.iform.enable.checked || enable_change);
-	document.iform.name.disabled = endis;
-	document.iform.xif.disabled = endis;
-	document.iform.port.disabled = endis;
-	document.iform.notify_int.disabled = endis;
-	document.iform.content.disabled = endis;
-	document.iform.contentfiletype.disabled = endis;
-	document.iform.contentaddbtn.disabled = endis;
-	document.iform.contentchangebtn.disabled = endis;
-	document.iform.contentdeletebtn.disabled = endis;
-	document.iform.contentdata.disabled = endis;
-	document.iform.contentbrowsebtn.disabled = endis;
-	document.iform.home.disabled = endis;
-	document.iform.homebrowsebtn.disabled = endis;
-	document.iform.inotify.disabled = endis;
-	document.iform.container.disabled = endis;
-	document.iform.strict.disabled = endis;
-	document.iform.tivo.disabled = endis;
-	document.iform.loglevel.disabled = endis;
-}
-//-->
+//<![CDATA[
+$(window).on("load", function() {
+	$("#iform").submit(function() {
+		spinner();
+	});
+});
+//]]>
 </script>
-<form action="services_minidlna.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-	<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	<tr id="tabnavtbl"><td class="tabnavtbl">
-		<ul id="tabnav">
-			<li class="tabinact"><a href="services_fuppes.php"><span><?=gtext("Fuppes")?></span></a></li>
-		    <li class="tabact"><a href="services_minidlna.php"><span><?=gtext("MiniDLNA");?></span></a></li>
-			</ul>
-		</td></tr>
-		   <tr>
-			<td class="tabcont">
-				<?php if (true === isset($config['upnp']['enable'])) {
-				$savemsg = gtext("Fuppes is enabled. If you wish to use MiniDLNA, you will need to disable Fuppes first.");
-				if (!empty($savemsg)) print_info_box($savemsg);
-				}else{?>
-			<?php if (!empty($input_errors)) print_input_errors($input_errors); ?>
-			<?php if (!empty($savemsg)) print_info_box($savemsg); ?>
-			<?php if (updatenotify_exists("minidlna" )) print_config_change_box();?>
-			<table width="100%" border="0" cellpadding="6" cellspacing="0">
-			<?php html_titleline_checkbox("enable", gtext("MiniDLNA A/V Media Server"), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)" ); ?>
-			<?php html_inputbox("name", gtext("Name"), $pconfig['name'], gtext("Give your media library a friendly name."), true, 35);?>
-			<tr>
-					<td width="22%" valign="top" class="vncellreq"><?=gtext("Interface selection");?></td>
-					<td width="78%" class="vtable">
-					<select name="if" class="formfld" id="xif">
-						<?php foreach($a_interface as $if => $ifinfo):?>
-							<?php $ifinfo = get_interface_info($if); if (("up" == $ifinfo['status']) || ("associated" == $ifinfo['status'])):?>
-							<option value="<?=$if;?>"<?php if ($if == $pconfig['if']) echo "selected=\"selected\"";?>><?=$if?></option>
-							<?php endif;?>
-						<?php endforeach;?>
-					</select>
-					<br /><?=gtext("Select which interface to use. (Only selectable if your server has more than one)");?>
-					</td>
-				</tr>
-					<?php html_inputbox("port", gtext("Port"), $pconfig['port'], sprintf(gtext("Port to listen on. Only dynamic or private ports can be used (from %d through %d). Default port is %d."), 1025, 65535, 8200), true, 5);?>
-					<?php html_inputbox("notify_int", gtext("Broadcast interval"), $pconfig['notify_int'], sprintf(gtext("Broadcasts its availability every N seconds on the network. (Default 300 seconds)"), 1025, 65535, 60), true, 5);?>
-					<?php html_filechooser("home", gtext("Database directory"), $pconfig['home'], gtext("Location where the database with media contents will be stored."), $g['media_path'], true, 67);?>
-					<?php html_minidlnabox("content", gtext("Media library"), !empty($pconfig['content']) ? $pconfig['content'] : array(), gtext("Set the content location(s) to or from the media library."), $g['media_path'], true);?>
-					<?php html_checkbox ("inotify", gtext("Inotify"), !empty($pconfig['inotify']) ? true : false, gtext("Enable inotify."), gtext("Use inotify monitoring to automatically discover new files."), false);?>
-					<?php html_combobox("container", gtext("Container"), $pconfig['container'], array("." => gtext("Standard"), "B" => gtext("Browse Directory"), "M" => gtext("Music"), "V" => gtext("Video"), "P" => gtext("Pictures")), gtext("Use different container as root of the tree."), false, false, "" );?>
-					<?php html_checkbox ("strict", gtext("Strict DLNA"), !empty($pconfig['strict']) ? true : false, gtext("Enable to strictly adhere to DLNA standards."), gtext("This will allow server-side downscaling of very large JPEG images, it can hurt JPEG serving performance on (at least) Sony DLNA products."), false);?>
-					<?php html_checkbox ("tivo", gtext("TiVo support"), !empty($pconfig['tivo']) ? true : false, gtext("Enable TiVo support."), gtext("This will support streaming .jpg and .mp3 files to a TiVo supporting HMO."), false);?>
-					<?php html_combobox("loglevel", gtext("Log level"), $pconfig['loglevel'], array("off" => gtext("Off"), "fatal" => gtext("Fatal"), "error" => gtext("Error"), "warn" => gtext("Warning"), "info" => gtext("Info"),"debug" => gtext("debug")), "", false, false, "" );?>
-					<?php html_separator();?>
-					<?php html_titleline(gtext("Presentation WebGUI"));?>
-					<?php
-						$if = get_ifname($pconfig['if']);
-						$ipaddr = get_ipaddr($if);
-						$url = htmlspecialchars("http://{$ipaddr}:{$pconfig['port']}/status");
-						$text = "<a href='{$url}' target='_blank'>{$url}</a>";
-					?>
-					<?php html_text("url", gtext("URL"), $text);?>
-				</table>
-				<div id="submit">
-					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save & Restart");?>" onclick="onsubmit_content(); enable_change(true)" />
-					<input name="uuid" type="hidden" value="<?=$pconfig['uuid'];?>" />
-				</div>
-			</td>
-		</tr>
+<?php
+		break;
+	case PAGE_MODE_EDIT:
+?>
+<script type="text/javascript">
+//<![CDATA[
+$(window).on("load", function() {
+	$("#iform").submit(function() {
+		onsubmit_content();
+		spinner();
+	});
+	$("#button_save").click(function () {
+		return confirm("<?=$gt_button_apply_confirm;?>");
+	});
+});
+//]]>
+</script>
+<?php
+		break;
+endswitch;	
+?>
+<table id="area_navigator"><tbody><tr><td class="tabnavtbl">
+	<ul id="tabnav">
+		<li class="tabinact"><a href="services_fuppes.php"><span><?=gtext('Fuppes')?></span></a></li>
+		<li class="tabact"><a href="services_minidlna.php"><span><?=gtext('MiniDLNA');?></span></a></li>
+	</ul>
+</td></tr></tbody></table>
+<form action="<?=$sphere->scriptname();?>" method="post" name="iform" id="iform"><table id="area_data"><tbody><tr><td id="area_data_frame">
+<?php 
+	if(!empty($input_errors)):
+		print_input_errors($input_errors);
+	endif;
+	foreach($a_message as $r_message):
+		print_info_box($r_message);
+	endforeach;
+?>
+	<table class="area_data_settings">
+		<colgroup>
+			<col class="area_data_settings_col_tag">
+			<col class="area_data_settings_col_data">
+		</colgroup>
+		<thead>
+<?php
+			switch($mode_page):
+				case PAGE_MODE_VIEW:
+					html_titleline2(gtext('MiniDLNA A/V Media Server'));
+					break;
+				case PAGE_MODE_EDIT:
+					html_titleline_checkbox2('enable',gtext('MiniDLNA A/V Media Server'),$sphere->row['enable'],gtext('Enable'));
+					break;
+			endswitch;
+?>
+		</thead>
+		<tbody>
+<?php
+			switch($mode_page):
+				case PAGE_MODE_VIEW:
+					html_text2('enable',gtext('Service Enabled'),$sphere->row['enable'] ? gtext('Yes') : gtext('No'));
+					html_text2('name',gtext('Name'), htmlspecialchars($sphere->row['name']));
+					html_text2('if',gtext('Interface Selection'), htmlspecialchars($sphere->row['if']));
+					html_text2('port',gtext('Port'), htmlspecialchars($sphere->row['port']));
+					html_text2('notify_int',gtext('Broadcast Interval'), htmlspecialchars($sphere->row['notify_int']));
+					html_text2('home',gtext('Database Directory'), htmlspecialchars($sphere->row['home']));
+					$helpinghand = implode("\n",$sphere->row['content']);
+					html_textarea2('content',gtext('Content Locations'),$helpinghand,'',false,67,5,true,false);
+					html_checkbox2('inotify',gtext('Inotify'),$sphere->row['inotify'],'','',false,true);
+					html_text2('container',gtext('Container'),$l_container[$sphere->row['container']] ?? '');
+					html_checkbox2('strict',gtext('Strict DLNA'),$sphere->row['strict'],'','',false,true);
+					html_checkbox2('tivo',gtext('TiVo Support'),$sphere->row['tivo'],'','',false,true);
+					html_text2('loglevel',gtext('Log Level'),$l_loglevel[$sphere->row['loglevel']] ?? '');
+					break;
+				case PAGE_MODE_EDIT:
+					html_inputbox2('name',gtext('Name'),$sphere->row['name'],gtext('Give your media library a friendly name.'),true,35,false,false,35,gtext('Media server name'));
+					html_combobox2('if',gtext('Interface Selection'),$sphere->row['if'],$l_interfaces,gtext('Select which interface to use. (Only selectable if your server has more than one interface)'),true);
+					html_inputbox2('port',gtext('Port'),$sphere->row['port'],sprintf(gtext('Port to listen on. Only dynamic or private ports can be used (from %d through %d). Default port is %d.'),1025,65535, 8200),true,5);
+					html_inputbox2('notify_int',gtext('Broadcast Interval'),$sphere->row['notify_int'],gtext('Broadcasts its availability every N seconds on the network. (Default 300 seconds)'),true,5);
+					html_filechooser2('home',gtext('Database Directory'),$sphere->row['home'],gtext('Location of the media content database.'),$g['media_path'],true,67);
+					html_minidlnabox2('content',gtext('Content Locations'),$sphere->row['content'],gtext('Manage content locations.'),$g['media_path'],true);
+					html_checkbox2('inotify',gtext('Inotify'),$sphere->row['inotify'],gtext('Enable inotify.'),gtext('Use inotify monitoring to automatically discover new files.'),false);
+					html_combobox2('container',gtext('Container'),$sphere->row['container'],$l_container,gtext('Use different container as root of the tree.'),false,false,'');
+					html_checkbox2('strict',gtext('Strict DLNA'),$sphere->row['strict'],gtext('Enable to strictly adhere to DLNA standards.'),gtext('This will allow server-side downscaling of very large JPEG images, it can impact JPEG serving performance on some DLNA products.'),false);
+					html_checkbox2('tivo',gtext('TiVo Support'),$sphere->row['tivo'],gtext('Enable TiVo support.'),gtext('This will support streaming .jpg and .mp3 files to a TiVo supporting HMO.'),false);
+					html_combobox2('loglevel',gtext('Log Level'),$sphere->row['loglevel'],$l_loglevel,'',false,false,'');
+					break;
+			endswitch;
+			if($dlna_option & 1):
+				html_separator2();
+				html_titleline2(gtext('MiniDLNA Media Server WebGUI'));
+				$if = get_ifname($sphere->row['if']);
+				$ipaddr = get_ipaddr($if);
+				$url = htmlspecialchars(sprintf('http://%s:%s/status',$ipaddr,$sphere->row['port']));
+				$text = sprintf('<a href="%s" target="_blank">%s</a>',$url,$url);
+				html_text2('url',gtext('URL'),$text);
+			endif;
+?>
+		</tbody>
 	</table>
-	<?php include("formend.inc");?>
-</form>
-<?php } ?>
-<script type="text/javascript">
-<!--
-enable_change(false);
-//-->
-</script>
-
-<?php include("fend.inc");?>
+	<div id="submit">
+<?php
+		switch($mode_page):
+			case PAGE_MODE_VIEW;
+				echo html_button('edit',gtext('Edit'));
+				if($dlna_option & 1):
+					echo html_button('rescan',gtext('Rescan'));
+				endif;
+				if($sphere->row['enable']):
+					echo html_button('disable',gtext('Disable'));
+				else:
+					echo html_button('enable',gtext('Enable'));
+				endif;
+				break;
+			case PAGE_MODE_EDIT:
+				echo html_button('save',gtext('Apply'));
+				echo html_button('cancel',gtext('Cancel'));
+				break;
+		endswitch;
+?>
+	</div>
+<?php
+include 'formend.inc';
+?>
+</td></tr></tbody></table></form>
+<?php
+include 'fend.inc';
+?>

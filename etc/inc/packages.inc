@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("functions.inc");
-require_once("util.inc");
+require_once 'functions.inc';
+require_once 'util.inc';
 
 // Get list of installed packages.
 // Result is in the form:
@@ -43,7 +43,7 @@ require_once("util.inc");
 // )
 // Return array of installed packages
 function packages_get_installed() {
-	$packages = array();
+	$packages = [];
 	$id = 0;
 
 	exec("/usr/local/sbin/pkg info", $rawdata);
@@ -52,7 +52,7 @@ function packages_get_installed() {
 		$pkgname = substr($line,0,$pos);
 		$pkgdesc = substr($line,$pos+1);
 
-		$packages[$id] = array();
+		$packages[$id] = [];
 		$packages[$id]['name'] = $pkgname;
 		$packages[$id]['desc'] = $pkgdesc;
 

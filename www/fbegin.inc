@@ -31,18 +31,16 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-
-function gentitle($title) {
-	$navlevelsep = "|"; // Navigation level separator string.
-	return join($navlevelsep, $title);
+function gentitle(array $title = []) {
+	$navlevelsep = htmlspecialchars(' > '); // Navigation level separator string.
+	return implode($navlevelsep, $title);
 }
-
-function genhtmltitle($title) {
-	return htmlspecialchars(system_get_hostname()) . " - " . gentitle($title);
+function genhtmltitle(array $title = []) {
+	return htmlspecialchars(system_get_hostname()) . (empty($title) ? '' : ' - ' . gentitle($title));
 }
-
-$isAdminSession = Session::isAdmin();
 // Menu items.
+$isAdminSession = Session::isAdmin();
+
 // System
 $menu['system']['desc'] = gtext('System');
 $menu['system']['visible'] = TRUE;
@@ -129,9 +127,9 @@ if ('dom0' !== $g['arch']) {
 	$menu['services']['menuitem'][] = ['desc' => gtext('UPS'), 'link' => 'services_ups.php', 'visible' => true];
 }
 
-// VM
+// Virtualization
 if ('x64' == $g['arch']) {
-	$menu['vm']['desc'] = gtext('VM');
+	$menu['vm']['desc'] = gtext('Virtualization');
 	$menu['vm']['visible'] = $isAdminSession;
 	$menu['vm']['link'] = '';
 	$menu['vm']['menuitem'] = [];
@@ -160,24 +158,23 @@ $menu['status']['visible'] = $isAdminSession;
 $menu['status']['link'] = 'index.php';
 $menu['status']['menuitem'] = [];
 $menu['status']['menuitem'][] = ['desc' => gtext('System'), 'link' => 'index.php', 'visible' => true];
-$menu['status']['menuitem'][] = ['desc' => gtext('Process'), 'link' => 'status_process.php', 'visible' => true];
+$menu['status']['menuitem'][] = ['desc' => gtext('Processes'), 'link' => 'status_process.php', 'visible' => true];
 $menu['status']['menuitem'][] = ['desc' => gtext('Services'), 'link' => 'status_services.php', 'visible' => true];
 $menu['status']['menuitem'][] = ['desc' => gtext('Interfaces'), 'link' => 'status_interfaces.php', 'visible' => true];
 $menu['status']['menuitem'][] = ['desc' => gtext('Disks'), 'link' => 'status_disks.php', 'visible' => true];
-$menu['status']['menuitem'][] = ['desc' => gtext('Graph'), 'link' => 'status_graph.php', 'visible' => true];
-$menu['status']['menuitem'][] = ['desc' => gtext('Email Report'), 'link' => 'status_report.php', 'visible' => true];
+$menu['status']['menuitem'][] = ['desc' => gtext('Monitoring'), 'link' => 'status_graph.php', 'visible' => true];
 
-// Advanced
-$menu['advanced']['desc'] = gtext('Advanced');
-$menu['advanced']['visible'] = TRUE;
-$menu['advanced']['link'] = '';
-$menu['advanced']['menuitem'] = [];
-$menu['advanced']['menuitem'][] = ['desc' => gtext('File Editor'), 'link' => 'system_edit.php', 'visible' => $isAdminSession];
+// Tools
+$menu['tools']['desc'] = gtext('Tools');
+$menu['tools']['visible'] = TRUE;
+$menu['tools']['link'] = '';
+$menu['tools']['menuitem'] = [];
+$menu['tools']['menuitem'][] = ['desc' => gtext('File Editor'), 'link' => 'system_edit.php', 'visible' => $isAdminSession];
 if (!isset($config['system']['disablefm'])) {
-	$menu['advanced']['menuitem'][] = ['desc' => gtext('File Manager'), 'link' => '/quixplorer/system_filemanager.php', 'visible' => true];
+	$menu['tools']['menuitem'][] = ['desc' => gtext('File Manager'), 'link' => '/quixplorer/system_filemanager.php', 'visible' => true];
 }
-$menu['advanced']['menuitem'][] = ['type' => 'separator', 'visible' => $isAdminSession];
-$menu['advanced']['menuitem'][] = ['desc' => gtext('Command'), 'link' => 'exec.php', 'visible' => $isAdminSession];
+$menu['tools']['menuitem'][] = ['type' => 'separator', 'visible' => $isAdminSession];
+$menu['tools']['menuitem'][] = ['desc' => gtext('Command'), 'link' => 'exec.php', 'visible' => $isAdminSession];
 
 // Diagnostics
 $menu['diagnostics']['desc'] = gtext('Diagnostics');
@@ -185,7 +182,7 @@ $menu['diagnostics']['visible'] = $isAdminSession;
 $menu['diagnostics']['link'] = '';
 $menu['diagnostics']['menuitem'] = [];
 $menu['diagnostics']['menuitem'][] = ['desc' => gtext('Log'), 'link' => 'diag_log.php', 'visible' => true];
-$menu['diagnostics']['menuitem'][] = ['desc' => gtext('Information'), 'link' => 'diag_infos.php', 'visible' => true];
+$menu['diagnostics']['menuitem'][] = ['desc' => gtext('Information'), 'link' => 'diag_infos_disks.php', 'visible' => true];
 $menu['diagnostics']['menuitem'][] = ['type' => 'separator', 'visible' => true];
 $menu['diagnostics']['menuitem'][] = ['desc' => gtext('Ping/Traceroute'), 'link' => 'diag_ping.php', 'visible' => true];
 $menu['diagnostics']['menuitem'][] = ['desc' => gtext('ARP Tables'), 'link' => 'diag_arp.php', 'visible' => true];
@@ -206,7 +203,7 @@ $menu['help']['menuitem'][] = ['desc' => gtext('Donate'), 'link' => 'https://www
 function display_menu($menuid) {
 	global $menu;
 
-	// Is menu visible?
+// Is menu visible?
 	if (!$menu[$menuid]['visible'])
 		return;
 
@@ -217,7 +214,6 @@ function display_menu($menuid) {
 	if ((preg_match('/iPhone/i', $agent)) || (preg_match('/android/i', $agent))) {
 		echo "<a href=\"javascript:mopen('{$menuid}');\" onmouseout=\"mclosetime()\">".$menu[$menuid]['desc']."</a>\n";
 	} else {
-//		echo "<a href=\"{$link}\" onmouseover=\"mopen('{$menuid}')\" onmouseout=\"mclosetime()\">".$menu[$menuid]['desc']."</a>\n";
 		echo "<a href=\"{$link}\" onclick=\"spinner()\" onmouseover=\"mopen('{$menuid}')\" onmouseout=\"mclosetime()\">".$menu[$menuid]['desc']."</a>\n";
 	}
 	echo "	<div id=\"{$menuid}\" onmouseover=\"mcancelclosetime()\" onmouseout=\"mclosetime()\">\n";
@@ -232,7 +228,6 @@ function display_menu($menuid) {
 			# Display menuitem.
 			$link = $menuv['link'];
 			if ($link == '') $link = 'index.php';
-//			echo "<a href=\"{$link}\" target=\"" . (empty($menuv['target']) ? "_self" : $menuv['target']) . "\" title=\"".$menuv['desc']."\">".$menuv['desc']."</a>\n";
 			echo '<a href="', $link, '" onclick="spinner()" target="', (empty($menuv['target']) ? "_self" : $menuv['target']), '" title="', $menuv['desc'], '">', $menuv['desc'], '</a>', "\n";
 		} else {
 			# Display separator.
@@ -253,13 +248,13 @@ function display_menu($menuid) {
   echo "\n";
 */
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php
+echo '<!DOCTYPE html>', "\n"
+?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?=system_get_language_code();?>" lang="<?=system_get_language_code();?>">
 <head>
-	<title><?=genhtmltitle($pgtitle);?></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=<?=system_get_language_codeset();?>" />
-	<meta http-equiv="Content-Script-Type" content="text/javascript" />
-	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta charset="<?=system_get_language_codeset();?>"/>
+	<title><?=genhtmltitle($pgtitle ?? []);?></title>
 	<?php if (isset($pgrefresh) && $pgrefresh):?>
 	<meta http-equiv="refresh" content="<?=$pgrefresh;?>" />
 	<?php endif;?>
@@ -268,7 +263,7 @@ function display_menu($menuid) {
 	<link href="/css/tabs.css" rel="stylesheet" type="text/css" />	
 	<script type="text/javascript" src="/js/jquery.min.js"></script>
 	<script type="text/javascript" src="/js/gui.js"></script>
-	<?php include("js/spinner.inc");?>
+	<script type="text/javascript" src="/js/spinner.js"></script>
 	<script type="text/javascript" src="/js/spin.min.js"></script>
 	<?php
 	if (isset($pglocalheader) && !empty($pglocalheader)) {
@@ -282,78 +277,78 @@ function display_menu($menuid) {
 			echo "\n";
 		}
 	}
-	?>
+?>
 </head>
-<body>
-<div id="header">
-	<div id="headerlogo">
-		<a title="www.<?=get_product_url();?>" href="http://<?=get_product_url();?>" target="_blank"><img src="/images/header_logo.png" alt="logo" /></a>
-	</div>
-	<div id="headerrlogo">
-		<div class="hostname">
-			<span><?=system_get_hostname();?>&nbsp;</span>
+<body id="main">
+<div id="spinner_main"></div>
+<div id="spinner_overlay" style="display: none; background-color: white; position: fixed; left:0; top:0; height:100%; width:100%; opacity: 0.25;"></div>
+<header id="g4h">
+	<div id="header">
+		<div id="headerrlogo">
+			<div class="hostname">
+				<span><?=system_get_hostname();?>&nbsp;</span>
+			</div>
+		</div>
+		<div id="headerlogo">
+			<a title="www.<?=get_product_url();?>" href="http://<?=get_product_url();?>" target="_blank"><img src="/images/header_logo.png" alt="logo" /></a>
 		</div>
 	</div>
-</div>
-<div id="headernavbar">
-	<ul id="navbarmenu">
-		<?=display_menu('system');?>
-		<?=display_menu('network');?>
-		<?=display_menu('disks');?>
-		<?=display_menu('services');?>
-		<!-- Begin extension section -->
-		<?php if ($isAdminSession && is_dir("{$g['www_path']}/ext")):?>
-		<li>
-		<?php
-			$agent = $_SERVER['HTTP_USER_AGENT']; // Put browser name into local variable for desktop/mobile detection
-			if ((preg_match('/iPhone/i', $agent)) || (preg_match('/android/i', $agent))) {
-				echo "<a href=\"javascript:mopen('extensions');\" onmouseout=\"mclosetime()\">".gtext('Extensions')."</a>";
-			} else {
-//				echo "<a href=\"index.php\" onmouseover=\"mopen('extensions')\" onmouseout=\"mclosetime()\">".gtext('Extensions')."</a>";
-				echo "<a href=\"index.php\" onclick=\"spinner()\" onmouseover=\"mopen('extensions')\" onmouseout=\"mclosetime()\">".gtext('Extensions')."</a>";
-			}
-		?>
-		<div id="extensions" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
-		<?php
-			$dh = @opendir("{$g['www_path']}/ext");
-			if ($dh) {
-				while (($extd = readdir($dh)) !== false) {
-					if (($extd === '.') || ($extd === '..'))
-						continue;
-					@include("{$g['www_path']}/ext/" . $extd . "/menu.inc");
-				}
-				closedir($dh);
-		}?>
-		</div>
-		</li>
-		<?php endif;?>
-		<!-- End extension section -->
-		<?=display_menu('vm');?>
-		<?=display_menu('access');?>
-		<?=display_menu('status');?>
-		<?=display_menu('diagnostics');?>
-		<?=display_menu('advanced');?>
-		<?=display_menu('help');?>
-	</ul>
-	<div style="clear:both"></div>
-</div>
+	<div id="headernavbar">
+		<ul id="navbarmenu">
+			<?=display_menu('system');?>
+			<?=display_menu('network');?>
+			<?=display_menu('disks');?>
+			<?=display_menu('access');?>
+			<?=display_menu('services');?>
+			<?=display_menu('vm');?>
+			<?=display_menu('status');?>
+			<?=display_menu('diagnostics');?>
+			<?=display_menu('tools');?>
+			<?php // Begin extension section.?>
+			<?php if ($isAdminSession && is_dir("{$g['www_path']}/ext")):?>
+				<li>
+					<?php
+					$agent = $_SERVER['HTTP_USER_AGENT']; // Put browser name into local variable for desktop/mobile detection
+					if ((preg_match('/iPhone/i', $agent)) || (preg_match('/android/i', $agent))) {
+						echo "<a href=\"javascript:mopen('extensions');\" onmouseout=\"mclosetime()\">".gtext('Extensions')."</a>";
+					} else {
+						echo "<a href=\"index.php\" onclick=\"spinner()\" onmouseover=\"mopen('extensions')\" onmouseout=\"mclosetime()\">".gtext('Extensions')."</a>";
+					}
+					?>
+					<div id="extensions" onmouseover="mcancelclosetime()" onmouseout="mclosetime()">
+					<?php
+					$dh = @opendir("{$g['www_path']}/ext");
+					if ($dh) {
+						while (($extd = readdir($dh)) !== false) {
+							if (($extd === '.') || ($extd === '..'))
+								continue;
+							@include("{$g['www_path']}/ext/" . $extd . "/menu.inc");
+						}
+						closedir($dh);
+					}
+					?>
+					</div>
+				</li>
+			<?php endif;?>
+			<?php // End extension section.?>
+			<?=display_menu('help');?>
+		</ul>
+		<div style="clear:both"></div>
+	</div>
+	<div id="gapheader"></div>
+</header>
 <script type="text/javascript">
 //<![CDATA[
 $(window).on("load", function() {
-	// init spinner on tabnav
+<?php // init spinner on tabnav.?>
 	$("#tabnav").on('click', function() { spinner(); });
-	// and his mate
+<?php // and his mate.?>
 	$("#tabnav2").on('click', function() { spinner(); });
 });
 //]]>
 </script>
+<main id="g4m">
 <div id="pagecontent">
-<table width="100%" border="0" cellspacing="0" cellpadding="2">
-<tr valign="top">
-<td>
-	<table width="100%" border="0" cellpadding="10" cellspacing="0">
-	<tr>
-	<td>
 <?php if (!isset($pgtitle_omit) || !$pgtitle_omit): ?>
 	<p class="pgtitle"><?=gentitle($pgtitle);?></p>
 <?php endif;?>

@@ -50,7 +50,7 @@ samba_recycle_subdir_mode="${samba_recycle_subdir_mode:-"0700"}"
 samba_idmap_range="${samba_idmap_range:-"10000-39999"}"
 samba_idmap_uid="${samba_idmap_uid:-"10000-39999"}"
 samba_idmap_gid="${samba_idmap_gid:-"10000-39999"}"
-samba_socket_options="${samba_socket_options:-"TCP_NODELAY"}"
+samba_socket_options="${samba_socket_options:-"TCP_NODELAY IPTOS_LOWDELAY"}"
 samba_create_mask="${samba_create_mask:-"0666"}"
 samba_directory_mask="${samba_directory_mask:-"0777"}"
 
@@ -123,8 +123,10 @@ samba_mkconf_cmd()
 		-v "concat('workgroup = ',//samba/workgroup)" -n \
 		-v "concat('server string = ',//samba/serverdesc)" -n \
 		-v "concat('security = ',//samba/security)" -n \
-		-v "concat('max protocol = ',//samba/maxprotocol)" -n \
-		-v "concat('client max protocol = ',//samba/maxprotocol)" -n \
+		-i "string-length(//samba/maxprotocol) > 0" -v "concat('server max protocol = ',//samba/maxprotocol)" -n -b \
+		-i "string-length(//samba/minprotocol) > 0" -v "concat('server min protocol = ',//samba/minprotocol)" -n -b \
+		-i "string-length(//samba/clientmaxprotocol) > 0" -v "concat('client max protocol = ',//samba/clientmaxprotocol)" -n -b \
+		-i "string-length(//samba/clientminprotocol) > 0" -v "concat('client min protocol = ',//samba/clientminprotocol)" -n -b \
 		-o "dns proxy = no" -n \
 		-o "# Settings to enhance performance:" -n \
 		-o "strict locking = no" -n \
@@ -139,13 +141,13 @@ samba_mkconf_cmd()
 			-v "concat('SO_SNDBUF=',//samba/sndbuf,' ')" \
 		-b \
 		-i "string-length(//samba/sndbuf) = 0" \
-			-o "SO_SNDBUF=64240 " \
+			-o "SO_SNDBUF=65536 " \
 		-b \
 		-i "string-length(//samba/rcvbuf) > 0" \
 			-v "concat('SO_RCVBUF=',//samba/rcvbuf,' ')" \
 		-b \
 		-i "string-length(//samba/rcvbuf) = 0" \
-			-o "SO_RCVBUF=64240 " \
+			-o "SO_RCVBUF=65536 " \
 		-b \
 		-n -o "# End of performance section" -n \
 		-i "string-length(//samba/pwdsrv) > 0" \

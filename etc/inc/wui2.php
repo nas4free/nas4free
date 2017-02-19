@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("config.inc");
-require_once("array.inc");
+require_once 'config.inc';
+require_once 'array.inc';
 
 class HTMLBaseControl2 {
 	var $_ctrlname = "";
@@ -165,6 +165,7 @@ class HTMLBaseControlJS2 extends HTMLBaseControl2 {
 class HTMLEditBox2 extends HTMLBaseControl2 {
 	var $_size = 40;
 	var $_maxlength = 40;
+	var $_placeholder = '';
 	var $_classinputtext = 'formfld';
 	var $_classinputtextro = 'formfldro';
 	
@@ -176,6 +177,7 @@ class HTMLEditBox2 extends HTMLBaseControl2 {
 	// get methods
 	function GetSize() { return $this->_size; }
 	function GetMaxLength() { return $this->_maxlength; }
+	function GetPlaceholder() { return $this->_placeholder; }
 	function GetClassInputText() { return $this->_classinputtext; }
 	function GetClassInputTextRO() { return $this->_classinputtextro; }	
 	// set methods
@@ -189,6 +191,9 @@ class HTMLEditBox2 extends HTMLBaseControl2 {
 	function SetMaxLength($maxlength) {
 		$this->_maxlength = $maxlength;
 	}
+	function SetPlaceholder(string $placeholder = '') {
+		$this->_placeholder = $placeholder;
+	}
 	function SetClassInputText($param) { $this->_classinputtext = $param; }
 	function SetClassInputTextRO($param) { $this->_classinputtextro = $param; }
 	// support functions
@@ -196,6 +201,9 @@ class HTMLEditBox2 extends HTMLBaseControl2 {
 		$param = '';
 		if (true === $this->IsReadOnly()) { 
 			$param .= 'readonly="readonly" ';
+		}
+		if(preg_match('/\S/',$this->GetPlaceholder())) {
+			$param .= sprintf('placeholder="%s" ',$this->GetPlaceholder());
 		}
 		return $param;
 	}
@@ -289,7 +297,7 @@ class HTMLTextArea2 extends HTMLEditBox2 {
 	var $_rows = 5;
 	var $_wrap = true;
 	var $_classtextarea = 'formpre';
-	var $_classtextarearo = 'formpre';
+	var $_classtextarearo = 'formprero';
 	// constructor method
 	function __construct($ctrlname, $title, $value, $description, $columns, $rows) {
 		$this->SetCtrlName($ctrlname);
@@ -478,7 +486,7 @@ class HTMLCheckBox2 extends HTMLBaseControlJS2 {
 }
 class HTMLSelectControl2 extends HTMLBaseControlJS2 {
 	var $_ctrlclass = "";
-	var $_options = array();
+	var $_options = [];
 
 	function __construct($ctrlclass, $ctrlname, $title, $value, $options, $description) {
 		parent::__construct($ctrlname, $title, $value, $description);
@@ -502,7 +510,7 @@ class HTMLSelectControl2 extends HTMLBaseControlJS2 {
 		$this->_options = $options;
 		if (empty($this->_options)) {
 			unset($this->_options);
-			$this->_options = array();
+			$this->_options = [];
 		}
 	}
 
@@ -576,13 +584,8 @@ class HTMLMountComboBox2 extends HTMLComboBox2 {
 		global $config;
 
 		// Generate options.
-		if (!(isset($config['mounts']) && is_array($config['mounts']))) {
-			$config['mounts'] = [];
-		}
-		if (!(isset($config['mounts']['mount']) && is_array($config['mounts']['mount']))) {
-			$config['mounts']['mount'] = [];
-		}
-		array_sort_key($config['mounts']['mount'], "devicespecialfile");
+		array_make_branch($config,'mounts','mount');
+		array_sort_key($config['mounts']['mount'],'devicespecialfile');
 
 		$options = [];
 		$options[""] = gtext("Must choose one");
@@ -605,7 +608,7 @@ class HTMLTimeZoneComboBox2 extends HTMLComboBox2 {
 		sort($timezonelist);
 
 		// Generate options.
-		$options = array();
+		$options = [];
 		foreach ($timezonelist as $tzv) {
 			if (!empty($tzv)) {
 				$tzv = substr($tzv, 2); // Remove leading './'
@@ -621,7 +624,7 @@ class HTMLLanguageComboBox2 extends HTMLComboBox2 {
 		global $g_languages;
 
 		// Generate options.
-		$options = array();
+		$options = [];
 		foreach ($g_languages as $languagek => $languagev) {
 			$options[$languagek] = gtext($languagev['desc']);
 		}
@@ -701,7 +704,7 @@ class HTMLTitleLine2 extends HTMLBaseControl2 {
 		$colspan = $this->GetColSpan();
 		$classtopic = $this->GetClassOfTopic();
 		echo ($this->_idname != '') ? "<tr id='{$this->_idname}'>\n" : "<tr>\n";
-		echo "	<td colspan='{$colspan}' class='{$classtopic}'>{$title}</td>\n";
+		echo "	<th colspan='{$colspan}' class='{$classtopic}'>{$title}</th>\n";
 		echo "</tr>\n";
 	}
 }
@@ -965,6 +968,34 @@ class HTMLFolderBox12 extends HTMLFolderBox2 {
 		echo "    <input name='{$ctrlname}browsebtn' type='button' class='formbtn' id='{$ctrlname}browsebtn' onclick='ifield = form.{$ctrlname}data; filechooser = window.open(\"filechooser.php?p=\"+encodeURIComponent(ifield.value)+\"&amp;sd={$path}\", \"filechooser\", \"scrollbars=yes,toolbar=no,menubar=no,statusbar=no,width=550,height=300\"); filechooser.ifield = ifield; window.ifield = ifield;' value='...' />\n";
 		echo "    <input name='{$ctrlname}addbtn' type='button' class='formbtn' id='{$ctrlname}addbtn' value='".gtext("Add")."' onclick='onclick_add_{$ctrlname}()' />\n";
 		echo "    <input name='{$ctrlname}changebtn' type='button' class='formbtn' id='{$ctrlname}changebtn' value='".gtext("Change")."' onclick='onclick_change_{$ctrlname}()' />\n";
+	}
+}
+class co_DOMElement extends DOMElement {
+	public function addAttributes($attributes = []) {
+		foreach($attributes as $key => $value) {
+			$this->setAttribute($key, $value);
+		}
+		return $this;
+	}
+	public function addElement(string $name, array $attributes = [], string $value = NULL, string $namespaceURI = NULL) {
+		$node = $this->appendChild(new co_DOMElement($name, $value, $namespaceURI));
+		$node->addAttributes($attributes);
+		return $node;
+	}
+}
+class co_DOMDocument extends DOMDocument {
+	public function __construct(string $version = '1.0', string $encoding = 'UTF-8') {
+		parent::__construct($version, $encoding);
+		$this->formatOutput = true;
+		$this->registerNodeClass('DOMElement', 'co_DOMElement');
+	}
+	public function addElement(string $name, array $attributes = [], string $value = NULL, string $namespaceURI = NULL) {
+		$node = $this->appendChild(new co_DOMElement($name, $value, $namespaceURI));
+		$node->addAttributes($attributes);
+		return $node;
+	}
+	public function render() {
+		return $this->saveHTML();
 	}
 }
 ?>

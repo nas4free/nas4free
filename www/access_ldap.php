@@ -31,24 +31,14 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Access"), gtext("LDAP"));
-
-if (!isset($config['ldap']) || !is_array($config['ldap'])) {
-	$config['ldap'] = array();
-}
-
-if (!isset($config['samba']) || !is_array($config['samba'])) {
-	$config['samba'] = array();
-
-}
+array_make_branch($config,'ldap');
+array_make_branch($config,'samba');
 
 //LDAP take priority over MS ActiveDirectory (NAS4Free choicee), then disable AD:
-if (!isset($config['ad']) || !is_array($config['ad'])) {
-	$config['ad'] = array();
-}
+array_make_branch($config,'ad');
 
 $pconfig['enable'] = isset($config['ldap']['enable']);
 $pconfig['hostname'] = $config['ldap']['hostname'];
@@ -74,14 +64,13 @@ if ($_POST) {
 
 	// Input validation.
 	if (isset($_POST['enable']) && $_POST['enable']) {
-		$reqdfields = explode(" ", "hostname base rootbinddn rootbindpw user_suffix group_suffix password_suffix machine_suffix");
-		$reqdfieldsn = array(gtext("Host name"), gtext("Base DN"), gtext("Root bind DN"), gtext("Root bind password"), gtext("User suffix"), gtext("Group suffix"), gtext("Password suffix"), gtext("Machine suffix"));
-		$reqdfieldst = explode(" ", "string string string password string string string string");
-
+		$reqdfields = ['hostname','base','rootbinddn','rootbindpw','user_suffix','group_suffix','password_suffix','machine_suffix'];
+		$reqdfieldsn = [gtext('URI'),gtext('Base DN'),gtext('Root Bind DN'),gtext('Root Bind Password'),gtext('User Suffix'),gtext('Group Suffix'),gtext('Password Suffix'),gtext('Machine Suffix')];
+		$reqdfieldst = ['string','string','string','password','string','string','string','string'];
 		if (empty($_POST['anonymousbind'])) {
-			$reqdfields = array_merge($reqdfields, explode(" ", "binddn bindpw"));
-			$reqdfieldsn = array_merge($reqdfieldsn, array(gtext("Bind DN"), gtext("Bind password")));
-			$reqdfieldst = array_merge($reqdfieldst, explode(" ", "string password"));
+			$reqdfields = array_merge($reqdfields, ['binddn','bindpw']);
+			$reqdfieldsn = array_merge($reqdfieldsn,[gtext('Bind DN'),gtext('Bind Password')]);
+			$reqdfieldst = array_merge($reqdfieldst, ['string','password']);
 		}
 
 		do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
@@ -89,7 +78,7 @@ if ($_POST) {
 	}
 
 	if (($_POST['bindpw'] !== $_POST['bindpw2'])) {
-		$input_errors[] = gtext("The confirmed password does not match. Please ensure the passwords match exactly.");
+		$input_errors[] = gtext("Password does not match the confirmation password. Please ensure both passwords are the same.");
 	}
 
 	if (empty($input_errors)) {
@@ -135,8 +124,10 @@ if ($_POST) {
 		$savemsg = get_std_save_message($retval);
 	}
 }
+$pgtitle = [gtext('Access'),gtext('LDAP')];
+
 ?>
-<?php include("fbegin.inc"); ?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">
 <!--
 function enable_change(enable_change) {
@@ -180,20 +171,22 @@ function anonymousbind_change() {
 				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<table width="100%" border="0" cellpadding="6" cellspacing="0">
-					<?php html_titleline_checkbox("enable", sprintf("%s (%s)",gtext("Lightweight Directory Access Protocol"),gtext("Client")), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");?>
-					<?php html_inputbox("hostname", gtext("URI"), $pconfig['hostname'], gtext("The space-separated list of URIs for the LDAP server."), true, 60);?>
-					<?php html_inputbox("base", gtext("Base DN"), $pconfig['base'], sprintf(gtext("The default base distinguished name (DN) to use for searches, e.g. %s"), "dc=test,dc=org"), true, 40);?>
-					<?php html_checkbox("anonymousbind", gtext("Anonymous bind"), !empty($pconfig['anonymousbind']) ? true : false, gtext("Enable anonymous bind."), "", true, "anonymousbind_change()");?>
-					<?php html_inputbox("binddn", gtext("Bind DN"), $pconfig['binddn'], sprintf(gtext("The distinguished name to bind to the directory server, e.g. %s"), "cn=admin,dc=test,dc=org"), true, 40);?>
-					<?php html_passwordconfbox("bindpw", "bindpw2", gtext("Bind password"), $pconfig['bindpw'], $pconfig['bindpw2'], gtext("The cleartext credentials with which to bind."), true);?>
-					<?php html_inputbox("rootbinddn", gtext("Root bind DN"), $pconfig['rootbinddn'], sprintf(gtext("The distinguished name with which to bind to the directory server, e.g. %s"), "cn=admin,dc=test,dc=org"), true, 40);?>
-					<?php html_passwordconfbox("rootbindpw", "rootbindpw2", gtext("Root bind password"), $pconfig['rootbindpw'], $pconfig['rootbindpw2'], gtext("The credentials with which to bind."), true);?>
-					<?php html_combobox("pam_password", gtext("Password encryption"), $pconfig['pam_password'], array("clear" => "clear", "crypt" => "crypt", "md5" => "md5", "nds" => "nds", "racf" => "racf", "ad" => "ad", "exop" => "exop"), gtext("The password encryption protocol to use."), true);?>
-					<?php html_inputbox("user_suffix", gtext("User suffix"), $pconfig['user_suffix'], sprintf(gtext("This parameter specifies the suffix that is used for users when these are added to the LDAP directory, e.g. %s"), "ou=Users"), true, 20);?>
-					<?php html_inputbox("group_suffix", gtext("Group suffix"), $pconfig['group_suffix'], sprintf(gtext("This parameter specifies the suffix that is used for groups when these are added to the LDAP directory, e.g. %s"), "ou=Groups"), true, 20);?>
-					<?php html_inputbox("password_suffix", gtext("Password suffix"), $pconfig['password_suffix'], sprintf(gtext("This parameter specifies the suffix that is used for passwords when these are added to the LDAP directory, e.g. %s"), "ou=Users"), true, 20);?>
-					<?php html_inputbox("machine_suffix", gtext("Machine suffix"), $pconfig['machine_suffix'], sprintf(gtext("This parameter specifies the suffix that is used for machines when these are added to the LDAP directory, e.g. %s"), "ou=Computers"), true, 20);?>
-					<?php html_textarea("auxparam", gtext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gtext("These parameters are added to %s."), "ldap.conf"), false, 65, 5, false, false);?>
+					<?php
+					html_titleline_checkbox("enable", sprintf("%s (%s)",gtext("Lightweight Directory Access Protocol"),gtext("Client")), !empty($pconfig['enable']) ? true : false, gtext("Enable"), "enable_change(false)");
+					html_inputbox("hostname", gtext("URI"), $pconfig['hostname'], gtext("The space-separated list of URIs for the LDAP server."), true, 60);
+					html_inputbox("base", gtext("Base DN"), $pconfig['base'], sprintf(gtext("The default base distinguished name (DN) to use for searches, e.g. %s"), "dc=test,dc=org"), true, 40);
+					html_checkbox("anonymousbind", gtext("Anonymous Bind"), !empty($pconfig['anonymousbind']) ? true : false, gtext("Enable anonymous bind."), "", true, "anonymousbind_change()");
+					html_inputbox("binddn", gtext("Bind DN"), $pconfig['binddn'], sprintf(gtext("The distinguished name to bind to the directory server, e.g. %s"), "cn=admin,dc=test,dc=org"), true, 40);
+					html_passwordconfbox("bindpw", "bindpw2", gtext("Bind Password"), $pconfig['bindpw'], $pconfig['bindpw2'], gtext("The cleartext credentials with which to bind."), true);
+					html_inputbox("rootbinddn", gtext("Root Bind DN"), $pconfig['rootbinddn'], sprintf(gtext("The distinguished name with which to bind to the directory server, e.g. %s"), "cn=admin,dc=test,dc=org"), true, 40);
+					html_passwordconfbox("rootbindpw", "rootbindpw2", gtext("Root Bind Password"), $pconfig['rootbindpw'], $pconfig['rootbindpw2'], gtext("The credentials with which to bind."), true);
+					html_combobox("pam_password", gtext("Password Encryption"), $pconfig['pam_password'], ['clear' => 'clear','crypt' => 'crypt','md5' => 'md5','nds' => 'nds','racf' => 'racf','ad' => 'ad','exop' => 'exop'], gtext("The password encryption protocol to use."), true);
+					html_inputbox("user_suffix", gtext("User Suffix"), $pconfig['user_suffix'], sprintf(gtext("This parameter specifies the suffix that is used for users when these are added to the LDAP directory, e.g. %s"), "ou=Users"), true, 20);
+					html_inputbox("group_suffix", gtext("Group Suffix"), $pconfig['group_suffix'], sprintf(gtext("This parameter specifies the suffix that is used for groups when these are added to the LDAP directory, e.g. %s"), "ou=Groups"), true, 20);
+					html_inputbox("password_suffix", gtext("Password Suffix"), $pconfig['password_suffix'], sprintf(gtext("This parameter specifies the suffix that is used for passwords when these are added to the LDAP directory, e.g. %s"), "ou=Users"), true, 20);
+					html_inputbox("machine_suffix", gtext("Machine Suffix"), $pconfig['machine_suffix'], sprintf(gtext("This parameter specifies the suffix that is used for machines when these are added to the LDAP directory, e.g. %s"), "ou=Computers"), true, 20);
+					html_textarea("auxparam", gtext("Additional Parameters"), $pconfig['auxparam'], sprintf(gtext("These parameters are added to %s."), "ldap.conf"), false, 65, 5, false, false);
+					?>
 				</table>
 				<div id="submit">
 					<input name="Submit" type="submit" class="formbtn" value="<?=gtext("Save");?>" onclick="enable_change(true)" />
@@ -201,7 +194,7 @@ function anonymousbind_change() {
 			</td>
 		</tr>
 	</table>
-	<?php include("formend.inc");?>
+	<?php include 'formend.inc';?>
 </form>
 <script type="text/javascript">
 <!--
@@ -209,4 +202,4 @@ anonymousbind_change();
 enable_change(false);
 //-->
 </script>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

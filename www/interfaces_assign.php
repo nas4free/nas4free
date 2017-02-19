@@ -31,10 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-
-$pgtitle = array(gtext("Network"), gtext("Interface Management"));
+require 'auth.inc';
+require 'guiconfig.inc';
 
 /*
 	In this file, "port" refers to the physical port name,
@@ -45,36 +43,39 @@ $pgtitle = array(gtext("Network"), gtext("Interface Management"));
 $portlist = get_interface_list();
 
 // Add WLAN interfaces.
-if (isset($config['vinterfaces']['wlan']) && is_array($config['vinterfaces']['wlan']) && count($config['vinterfaces']['wlan'])) {
-	foreach ($config['vinterfaces']['wlan'] as $wlanv) {
+array_make_branch($config,'vinterfaces','wlan');
+if(count($config['vinterfaces']['wlan'])):
+	foreach($config['vinterfaces']['wlan'] as $wlanv):
 		$portlist[$wlanv['if']] = $wlanv;
 		$portlist[$wlanv['if']]['isvirtual'] = true;
-	}
-}
+	endforeach;
+endif;
 
 // Add VLAN interfaces.
-if (isset($config['vinterfaces']['vlan']) && is_array($config['vinterfaces']['vlan']) && count($config['vinterfaces']['vlan'])) {
-	foreach ($config['vinterfaces']['vlan'] as $vlanv) {
+array_make_branch($config,'vinterfaces','vlan');
+if(count($config['vinterfaces']['vlan'])):
+	foreach($config['vinterfaces']['vlan'] as $vlanv):
 		$portlist[$vlanv['if']] = $vlanv;
 		$portlist[$vlanv['if']]['isvirtual'] = true;
-	}
-}
+	endforeach;
+endif;
 
 // Add LAGG interfaces.
-if (isset($config['vinterfaces']['lagg']) && is_array($config['vinterfaces']['lagg']) && count($config['vinterfaces']['lagg'])) {
-	foreach ($config['vinterfaces']['lagg'] as $laggv) {
+array_make_branch($config,'vinterfaces','lagg');
+if(count($config['vinterfaces']['lagg'])):
+	foreach($config['vinterfaces']['lagg'] as $laggv):
 		$portlist[$laggv['if']] = $laggv;
 		$portlist[$laggv['if']]['isvirtual'] = true;
-	}
-}
+	endforeach;
+endif;
 
 if ($_POST) {
 	unset($input_errors);
 
 	/* Build a list of the port names so we can see how the interfaces map */
-	$portifmap = array();
+	$portifmap = [];
 	foreach ($portlist as $portname => $portinfo)
-		$portifmap[$portname] = array();
+		$portifmap[$portname] = [];
 
 	/* Go through the list of ports selected by the user,
 	   build a list of port-to-interface mappings in portifmap */
@@ -97,33 +98,30 @@ if ($_POST) {
 		}
 	}
 
-	if (empty($input_errors)) {
+	if(empty($input_errors)):
 		/* No errors detected, so update the config */
-		foreach ($_POST as $ifname => $ifport) {
-			if (($ifname == 'lan') || (substr($ifname, 0, 3) == 'opt')) {
-				if (!is_array($ifport)) {
+		foreach ($_POST as $ifname => $ifport):
+			if(($ifname == 'lan') || (substr($ifname,0,3) == 'opt')):
+				if(!is_array($ifport)):
 					$config['interfaces'][$ifname]['if'] = $ifport;
-
 					/* check for wireless interfaces, set or clear ['wireless'] */
-					if (preg_match($g['wireless_regex'], $ifport)) {
-						if (!is_array($config['interfaces'][$ifname]['wireless']))
-							$config['interfaces'][$ifname]['wireless'] = array();
-					} else {
+					if(preg_match($g['wireless_regex'],$ifport)):
+						array_make_branch($config,'interfaces',$ifname,'wireless');
+					else:
 						unset($config['interfaces'][$ifname]['wireless']);
-					}
-
+					endif;
 					/* make sure there is a name for OPTn */
-					if (substr($ifname, 0, 3) == 'opt') {
-						if (!isset($config['interfaces'][$ifname]['descr']))
+					if(substr($ifname, 0, 3) == 'opt'):
+						if(!isset($config['interfaces'][$ifname]['descr'])):
 							$config['interfaces'][$ifname]['descr'] = strtoupper($ifname);
-					}
-				}
-			}
-		}
-
+						endif;
+					endif;
+				endif;
+			endif;
+		endforeach;
 		write_config();
 		touch($d_sysrebootreqd_path);
-	}
+	endif;
 }
 
 if (isset($_GET['act']) && $_GET['act'] == "del") {
@@ -167,37 +165,40 @@ if (isset($_GET['act']) && $_GET['act'] == "add") {
 		$i++;
 
 	$newifname = 'opt' . $i;
-	$config['interfaces'][$newifname] = array();
-	$config['interfaces'][$newifname]['descr'] = "OPT" . $i;
+	array_make_branch($config,'interfaces',$newifname);
+	$config['interfaces'][$newifname] = [];
+	$config['interfaces'][$newifname]['descr'] = 'OPT' . $i;
 
 	// Set IPv4 to 'DHCP' and IPv6 to 'Auto' per default.
-	$config['interfaces'][$newifname]['ipaddr'] = "dhcp";
-	$config['interfaces'][$newifname]['ipv6addr'] = "auto";
+	$config['interfaces'][$newifname]['ipaddr'] = 'dhcp';
+	$config['interfaces'][$newifname]['ipv6addr'] = 'auto';
 
 	/* Find an unused port for this interface */
-	foreach ($portlist as $portname => $portinfo) {
+	foreach($portlist as $portname => $portinfo):
 		$portused = false;
-		foreach ($config['interfaces'] as $ifname => $ifdata) {
-			if (isset($ifdata['if']) && $ifdata['if'] == $portname) {
+		foreach($config['interfaces'] as $ifname => $ifdata):
+			if(isset($ifdata['if']) && $ifdata['if'] == $portname):
 				$portused = true;
 				break;
-			}
-		}
-		if (!$portused) {
+			endif;
+		endforeach;
+		if(!$portused):
 			$config['interfaces'][$newifname]['if'] = $portname;
-			if (preg_match($g['wireless_regex'], $portname))
-				$config['interfaces'][$newifname]['wireless'] = array();
+			if(preg_match($g['wireless_regex'], $portname)):
+				$config['interfaces'][$newifname]['wireless'] = []; // OK, see array_make_branch above
+			endif;
 			break;
-		}
-	}
+		endif;
+	endforeach;
 
 	write_config();
 	touch($d_sysrebootreqd_path);
 	header("Location: interfaces_assign.php");
 	exit;
 }
+$pgtitle = [gtext('Network'),gtext('Interface Management')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabnavtbl">
@@ -214,59 +215,67 @@ if (isset($_GET['act']) && $_GET['act'] == "add") {
 	<tr>
 		<td class="tabcont">
 			<form action="interfaces_assign.php" method="post" name="iform" id="iform" onsubmit="spinner()">
-				<?php if (!empty($input_errors)) print_input_errors($input_errors);?>
-				<?php if (file_exists($d_sysrebootreqd_path)) print_info_box(get_std_save_message(0));?>
-				<table border="0" cellpadding="0" cellspacing="0">
+				<?php
+				if(!empty($input_errors)):
+					print_input_errors($input_errors);
+				endif;
+				if(file_exists($d_sysrebootreqd_path)):
+					print_info_box(get_std_save_message(0));
+				endif;
+				?>
+				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+					<?php html_titleline2(gtext('Overview'), 3);?>
 					<tr>
 						<td class="listhdrlr"><?=gtext("Interface");?></td>
 						<td class="listhdrr"><?=gtext("Network port");?></td>
 						<td class="list">&nbsp;</td>
 					</tr>
 					<?php foreach ($config['interfaces'] as $ifname => $iface):
-					if (isset($iface['descr']) && $iface['descr'])
-						$ifdescr = $iface['descr'];
-					else
-						$ifdescr = strtoupper($ifname);
-					?>
-					<tr>
-						<td class="listlr" valign="middle"><strong><?=$ifdescr;?></strong></td>
-						<td valign="middle" class="listr">
-							<select name="<?=$ifname;?>" class="formfld" id="<?=$ifname;?>">
-							  <?php foreach ($portlist as $portname => $portinfo):?>
-							  <option value="<?=$portname;?>" <?php if ($portname == $iface['if']) echo "selected=\"selected\"";?>>
-							  	<?php
-									if (isset($portinfo['isvirtual']) && $portinfo['isvirtual']) {
-										$descr = $portinfo['if'];
-										if ($portinfo['desc']) {
-											$descr .= " ({$portinfo['desc']})";
-										}
-										echo htmlspecialchars($descr);
-									} else {
-										echo htmlspecialchars($portname . " (" . $portinfo['mac'] . ")");
-									}
-							  	?>
-							  </option>
-							  <?php endforeach;?>
-							</select>
-						</td>
-						<td valign="middle" class="list">
-							<?php if (($ifname != 'lan') && ($ifname != 'wan')):?>
-							<a href="interfaces_assign.php?act=del&amp;id=<?=$ifname;?>"><img src="images/delete.png" title="<?=gtext("Delete interface");?>" border="0" alt="<?=gtext("Delete interface");?>" /></a>
-							<?php endif;?>
-						</td>
-					</tr>
+						if (isset($iface['descr']) && $iface['descr']):
+							$ifdescr = $iface['descr'];
+						else:
+							$ifdescr = strtoupper($ifname);
+						endif;
+						?>
+						<tr>
+							<td class="listlr" valign="middle"><strong><?=$ifdescr;?></strong></td>
+							<td valign="middle" class="listr">
+								<select name="<?=$ifname;?>" class="formfld" id="<?=$ifname;?>">
+									<?php foreach ($portlist as $portname => $portinfo):?>
+										<option value="<?=$portname;?>" <?php if ($portname == $iface['if']) echo "selected=\"selected\"";?>>
+											<?php
+											if(isset($portinfo['isvirtual']) && $portinfo['isvirtual']):
+												$descr = $portinfo['if'];
+												if($portinfo['desc']):
+													$descr .= " ({$portinfo['desc']})";
+												endif;
+												echo htmlspecialchars($descr);
+											else:
+												echo htmlspecialchars($portname . " (" . $portinfo['mac'] . ")");
+											endif;
+											?>
+										</option>
+									<?php endforeach;?>
+								</select>
+							</td>
+							<td valign="middle" class="list">
+								<?php if (($ifname != 'lan') && ($ifname != 'wan')):?>
+									<a href="interfaces_assign.php?act=del&amp;id=<?=$ifname;?>"><img src="images/delete.png" title="<?=gtext("Delete interface");?>" border="0" alt="<?=gtext("Delete interface");?>" /></a>
+								<?php endif;?>
+							</td>
+						</tr>
 					<?php endforeach;?>
 					<?php if (count($config['interfaces']) < count($portlist)):?>
-					<tr>
-						<td class="list" colspan="2"></td>
-						<td class="list" nowrap="nowrap">
-							<a href="interfaces_assign.php?act=add"><img src="images/add.png" title="<?=gtext("Add interface");?>" border="0" alt="<?=gtext("Add interface");?>" /></a>
-						</td>
-					</tr>
+						<tr>
+							<td class="list" colspan="2"></td>
+							<td class="list" nowrap="nowrap">
+								<a href="interfaces_assign.php?act=add"><img src="images/add.png" title="<?=gtext("Add interface");?>" border="0" alt="<?=gtext("Add interface");?>" /></a>
+							</td>
+						</tr>
 					<?php else:?>
-					<tr>
-						<td class="list" colspan="3" height="10"></td>
-					</tr>
+						<tr>
+							<td class="list" colspan="3" height="10"></td>
+						</tr>
 					<?php endif;?>
 				</table>
 				<div id="submit">
@@ -275,18 +284,18 @@ if (isset($_GET['act']) && $_GET['act'] == "add") {
 				<div id="remarks">
 					<?php
 					$helpinghand = gtext('After you click "Save" you must reboot the server to make the changes take effect.')
-						. ' '
-						. gtext('You may also have to do one or more of the following steps before you can access your server again:')
-						. '<ul>'
-						. '<li><span class="vexpl">' . gtext('Change the IP address of your server') . '</span></li>'
-						. '<li><span class="vexpl">' . gtext('Access the webGUI with the new IP address') . '</span></li>'
-						. '</ul>';
+					. ' '
+					. gtext('You may also have to do one or more of the following steps before you can access your server again:')
+					. '<ul>'
+					. '<li><span class="vexpl">' . gtext('Change the IP address of your server') . '</span></li>'
+					. '<li><span class="vexpl">' . gtext('Access the webGUI with the new IP address') . '</span></li>'
+					. '</ul>';
 					html_remark("warning", gtext('Warning'), $helpinghand);
 					?>
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

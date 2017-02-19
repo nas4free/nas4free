@@ -6,15 +6,12 @@
 	Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 	All rights reserved.
 
-	Portions of freenas (http://www.freenas.org).
-	Copyright (c) 2005-2011 by Olivier Cochard <olivier@freenas.org>.
-	All rights reserved.
-
 	Redistribution and use in source and binary forms, with or without
 	modification, are permitted provided that the following conditions are met:
 
 	1. Redistributions of source code must retain the above copyright notice, this
 	   list of conditions and the following disclaimer.
+
 	2. Redistributions in binary form must reproduce the above copyright notice,
 	   this list of conditions and the following disclaimer in the documentation
 	   and/or other materials provided with the distribution.
@@ -34,24 +31,24 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
-require("zfs.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
+require 'zfs.inc';
 
-$pgtitle = array(gtext("Disks"), gtext("ZFS"), gtext("Snapshots"), gtext("Clone"));
+$pgtitle = [gtext('Disks'),gtext('ZFS'),gtext('Snapshots'),gtext('Clone')];
 
-if (!isset($config['zfs']['snapshots']['snapshot']) || !is_array($config['zfs']['snapshots']['snapshot']))
-	$config['zfs']['snapshots']['snapshot'] = array();
-
-array_sort_key($config['zfs']['snapshots']['snapshot'], "name");
-$a_snapshot = &$config['zfs']['snapshots']['snapshot'];
+$a_snapshot = &array_make_branch($config,'zfs','snapshots','snapshot');
+if(empty($a_snapshot)):
+else:
+	array_sort_key($a_snapshot,'name');
+endif;
 
 function get_zfs_clones() {
-	$result = array();
+	$result = [];
 	mwexec2("zfs list -H -o name,origin,creation -t filesystem,volume 2>&1", $rawdata);
 	foreach ($rawdata as $line) {
 		$a = preg_split("/\t/", $line);
-		$r = array();
+		$r = [];
 		$name = $a[0];
 		$r['path'] = $name;
 		if (preg_match('/^([^\/\@]+)(\/([^\@]+))?$/', $name, $m)) {
@@ -72,7 +69,7 @@ if ($_POST) {
 	$pconfig = $_POST;
 
 	if (isset($_POST['apply']) && $_POST['apply']) {
-		$ret = array("output" => array(), "retval" => 0);
+		$ret = ['output' => [],'retval' => 0];
 
 		if (!file_exists($d_sysrebootreqd_path)) {
 			// Process notifications
@@ -91,7 +88,7 @@ if ($_POST) {
 }
 
 if (isset($_GET['act']) && $_GET['act'] === "del") {
-	$clone = array();
+	$clone = [];
 	$clone['path'] = $_GET['path'];
 	updatenotify_set("zfsclone", UPDATENOTIFY_MODE_DIRTY, serialize($clone));
 	header("Location: disks_zfs_snapshot_clone.php");
@@ -101,7 +98,7 @@ if (isset($_GET['act']) && $_GET['act'] === "del") {
 function zfsclone_process_updatenotification($mode, $data) {
 	global $config;
 
-	$ret = array("output" => array(), "retval" => 0);
+	$ret = ['output' => [],'retval' => 0];
 
 	switch ($mode) {
 		case UPDATENOTIFY_MODE_NEW:
@@ -123,7 +120,7 @@ function zfsclone_process_updatenotification($mode, $data) {
 	return $ret;
 }
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td class="tabnavtbl">
@@ -153,6 +150,7 @@ function zfsclone_process_updatenotification($mode, $data) {
 				<?php if (!empty($savemsg)) print_info_box($savemsg);?>
 				<?php if (updatenotify_exists("zfsclone")) print_config_change_box();?>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
+				<?php html_titleline2(gtext('Overview'), 4);?>
 					<tr>
 						<td width="30%" class="listhdrlr"><?=gtext("Path");?></td>
 						<td width="40%" class="listhdrr"><?=gtext("Origin");?></td>
@@ -160,7 +158,7 @@ function zfsclone_process_updatenotification($mode, $data) {
 						<td width="10%" class="list"></td>
 					</tr>
 					<?php foreach ($a_clone as $clonev):?>
-					<?php $notificationmode = updatenotify_get_mode("zfsclone", serialize(array('path' => $clonev['path'])));?>
+					<?php $notificationmode = updatenotify_get_mode("zfsclone", serialize(['path' => $clonev['path']]));?>
 					<tr>
 						<td class="listlr"><?=htmlspecialchars($clonev['path']);?>&nbsp;</td>
 						<td class="listr"><?=htmlspecialchars($clonev['origin']);?>&nbsp;</td>
@@ -178,9 +176,9 @@ function zfsclone_process_updatenotification($mode, $data) {
 					</tr>
 					<?php endforeach;?>
 				</table>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

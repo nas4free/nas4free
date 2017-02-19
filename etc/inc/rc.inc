@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require_once("globals.inc");
-require_once("util.inc");
+require_once 'globals.inc';
+require_once 'util.inc';
 
 // Execute rc script.
 // Return 0 if successful, otherwise 1.
@@ -103,6 +103,19 @@ function rc_reload_service($name) {
 	}	else {
 		write_log("Failed to reload service {$name}");
 	}
+	return $retval;
+}
+
+// Rescan service.
+// Return 0 if successful, otherwise 1.
+function rc_rescan_service($name) {
+	// Execute script.
+	$retval = rc_exec_script(sprintf('/etc/rc.d/%s rescan',$name));
+	if(0 == $retval):
+		write_log(sprintf('%s: rescan command issued',$name));
+	else:
+		write_log(sprintf('%s: rescan command failed',$name));
+	endif;
 	return $retval;
 }
 

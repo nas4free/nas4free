@@ -31,17 +31,12 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 
-$pgtitle = array(gtext("Services"), gtext("HAST"));
-
-if (!isset($config['hast']['auxparam']) || !is_array($config['hast']['auxparam']))
-	$config['hast']['auxparam'] = array();
-//if (!isset($config['hast']['hastresource']) || !is_array($config['hast']['hastresource']))
-//	$config['hast']['hastresource'] = array();
-if (!isset($config['vinterfaces']['carp']) || !is_array($config['vinterfaces']['carp']))
-	$config['vinterfaces']['carp'] = array();
+array_make_branch($config,'hast','auxparam');
+//	array_make_branch($config,'hast','hastresource');
+array_make_branch($config,'vinterfaces','carp');
 
 $pconfig['enable'] = isset($config['hast']['enable']);
 //$pconfig['role'] = $config['hast']['role'];
@@ -140,10 +135,9 @@ if ($_POST) {
 
 	// Input validation.
 /*
-	$reqdfields = explode(" ", "role");
-	$reqdfieldsn = array(gtext("HAST role"));
-	$reqdfieldst = explode(" ", "string");
-
+	$reqdfields = ['role'];
+	$reqdfieldsn = [gtext('HAST role')];
+	$reqdfieldst = ['string'];
 	do_input_validation($_POST, $reqdfields, $reqdfieldsn, $input_errors);
 	do_input_validation_type($_POST, $reqdfields, $reqdfieldsn, $reqdfieldst, $input_errors);
 */
@@ -164,22 +158,39 @@ if ($_POST) {
 
 		if ($old_enable == false && $config['hast']['enable'] == true) {
 			// disable services
+			array_make_branch($config,'samba');
 			$config['samba']['enable'] = false;
+			array_make_branch($config,'ftpd');
 			$config['ftpd']['enable'] = false;
+			array_make_branch($config,'tftpd');
 			$config['tftpd']['enable'] = false;
-			//$config['sshd']['enable'] = false;
+			//	array_make_branch($config,'sshd');
+			//	$config['sshd']['enable'] = false;
+			array_make_branch($config,'nfsd');
 			$config['nfsd']['enable'] = false;
+			array_make_branch($config,'afp');
 			$config['afp']['enable'] = false;
+			array_make_branch($config,'rsyncd');
 			$config['rsyncd']['enable'] = false;
+			array_make_branch($config,'unison');
 			$config['unison']['enable'] = false;
+			array_make_branch($config,'iscsitarget');
 			$config['iscsitarget']['enable'] = false;
+			array_make_branch($config,'upnp');
 			$config['upnp']['enable'] = false;
+			array_make_branch($config,'daap');
 			$config['daap']['enable'] = false;
+			array_make_branch($config,'dynamicdns');
 			$config['dynamicdns']['enable'] = false;
+			array_make_branch($config,'snmpd');
 			$config['snmpd']['enable'] = false;
+			array_make_branch($config,'ups');
 			$config['ups']['enable'] = false;
+			array_make_branch($config,'websrv');
 			$config['websrv']['enable'] = false;
+			array_make_branch($config,'bittorrent');
 			$config['bittorrent']['enable'] = false;
+			array_make_branch($config,'lcdproc');
 			$config['lcdproc']['enable'] = false;
 
 			// update config
@@ -225,8 +236,9 @@ if ($_POST) {
 		$savemsg = get_std_save_message($retval);
 	}
 }
+$pgtitle = [gtext('Services'),gtext('HAST')];
 ?>
-<?php include("fbegin.inc");?>
+<?php include 'fbegin.inc';?>
 <script type="text/javascript">//<![CDATA[
 $(document).ready(function(){
 	function enable_change(enable_change) {
@@ -264,15 +276,15 @@ $(document).ready(function(){
 					<?php echo html_text("nodeid", gtext("Node ID"), htmlspecialchars($nodeid)); ?>
 					<?php echo html_text("nodename", gtext("Node Name"), htmlspecialchars($nodename)); ?>
 					<?php
-					$a_vipaddrs = array();
+					$a_vipaddrs = [];
 					foreach ($a_carp as $carp) {
 						$ifinfo = get_carp_info($carp['if']);
 						//$a_vipaddrs[] = $carp['vipaddr']." ({$ifinfo['state']},{$ifinfo['advskew']})";
 						$a_vipaddrs[] = $carp['vipaddr']." ({$ifinfo['state']})";
 					}
 					?>
-					<?php echo html_text("vipaddr", gtext("Virtual IP address"), (!empty($a_vipaddrs) ? htmlspecialchars(join(', ', $a_vipaddrs)) : sprintf("<span class='red'>%s</span>", gtext("No configured CARP interfaces.")))); ?>
-					<?php //html_combobox("role", gtext("HAST role"), $pconfig['role'], array("primary" => gtext("Primary"), "secondary" => gtext("Secondary")), "", true);?>
+					<?php echo html_text("vipaddr", gtext("Virtual IP Address"), (!empty($a_vipaddrs) ? htmlspecialchars(join(', ', $a_vipaddrs)) : sprintf("<span class='red'>%s</span>", gtext("No configured CARP interfaces.")))); ?>
+					<?php //html_combobox("role", gtext("HAST role"), $pconfig['role'], ['primary' => gtext('Primary'),'secondary' => gtext('Secondary')], "", true);?>
 					<tr id="control_btn">
 						<td colspan="2">
 							<input id="switch_backup" name="switch_backup" type="submit" class="formbtn" value="<?php echo gtext("Switch VIP to BACKUP"); ?>" />
@@ -286,11 +298,11 @@ $(document).ready(function(){
 					html_titleline(gtext("Advanced Settings"));
 					
 					$helpinghand = '<a href="'
-						. 'http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/disks-hast.html'
-						. '" target="_blank">'
-						. gtext('Please check the documentation')
-						. '</a>.';
-					html_textarea("auxparam", gtext("Auxiliary parameters"), $pconfig['auxparam'], sprintf(gtext("These parameters are added to %s."), "hast.conf") . " " . $helpinghand, false, 65, 5, false, false);
+					. 'http://www.freebsd.org/doc/en_US.ISO8859-1/books/handbook/disks-hast.html'
+					. '" target="_blank">'
+					. gtext('Please check the documentation')
+					. '</a>.';
+					html_textarea("auxparam", gtext("Additional Parameters"), $pconfig['auxparam'], sprintf(gtext("These parameters are added to %s."), "hast.conf") . " " . $helpinghand, false, 65, 5, false, false);
 					?>
 				</table>
 				<div id="submit">
@@ -299,9 +311,9 @@ $(document).ready(function(){
 				<div id="remarks">
 					<?php html_remark("note", gtext('Note'), sprintf("<div id='enumeration'><ul><li>%s</li><li>%s</li><li>%s</li></ul></div>", gtext("When HAST is enabled, the local devices, the local services and the additional packages which do not support HAST volume cannot be used."), gtext("The HAST volumes can not be accessed until HAST node becomes Primary."), gtext("Dynamic IP (DHCP) can not be used for HAST resources.")));?>
 				</div>
-				<?php include("formend.inc");?>
+				<?php include 'formend.inc';?>
 			</form>
 		</td>
 	</tr>
 </table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>

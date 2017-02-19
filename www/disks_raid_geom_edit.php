@@ -31,8 +31,8 @@
 	of the authors and should not be interpreted as representing official policies,
 	either expressed or implied, of the NAS4Free Project.
 */
-require("auth.inc");
-require("guiconfig.inc");
+require 'auth.inc';
+require 'guiconfig.inc';
 require 'disks_raid_geom_fun.inc';
 
 $sphere_scriptname = basename(__FILE__);
@@ -302,14 +302,14 @@ $l_balance = [
 	'prefer' => gtext('Read from biggest priority')
 ];
 // give it a title
-$pgtitle = array(gtext('Disks'), gtext('Software RAID'), gtext('GEOM'), ($isrecordnew) ? gtext('Add') : gtext('Edit'));
+$pgtitle = [gtext('Disks'),gtext('Software RAID'),gtext('GEOM'),($isrecordnew) ? gtext('Add') : gtext('Edit')];
 ?>
-<?php include("fbegin.inc"); ?>
+<?php include 'fbegin.inc';?>
 <?php if ($isrecordnewornewmodify):?>
 <script type="text/javascript">
 //<![CDATA[
 $(window).on("load", function() {
-	$("input[name='<?=$checkbox_member_name;?>[]").click(function() {
+	$("input[name='<?=$checkbox_member_name;?>[]']").click(function() {
 		controlactionbuttons(this, '<?=$checkbox_member_name;?>[]');
 	});
 	$("#togglebox").click(function() {
@@ -392,10 +392,10 @@ function toggleselection(ego, triggerbyname) {
 			<?php endforeach;?>
 		</div>
 	<?php endif;?>
-	<table id="area_data_settings">
+	<table class="area_data_settings">
 		<colgroup>
-			<col id="area_data_settings_col_tag">
-			<col id="area_data_settings_col_data">
+			<col class="area_data_settings_col_tag">
+			<col class="area_data_settings_col_data">
 		</colgroup>
 		<thead>
 			<?php html_titleline2(gtext('Settings'));?>
@@ -421,7 +421,7 @@ function toggleselection(ego, triggerbyname) {
 			?>
 		</tbody>
 	</table>
-	<table id="area_data_selection">
+	<table class="area_data_selection">
 		<colgroup>
 			<col style="width:5%"> <!--// checkbox -->
 			<col style="width:10%"><!--// Device -->
@@ -515,6 +515,6 @@ function toggleselection(ego, triggerbyname) {
 		<input name="Cancel" id="cancel_button" type="submit" class="formbtn" value="<?=gtext('Cancel');?>" />
 		<input name="uuid" type="hidden" value="<?=$sphere_record['uuid'];?>" />
 	</div>
-	<?php include("formend.inc");?>
+	<?php include 'formend.inc';?>
 </form></td></tr></tbody></table>
-<?php include("fend.inc");?>
+<?php include 'fend.inc';?>
