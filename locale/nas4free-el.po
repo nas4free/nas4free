@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: NAS4Free\n"
 "Report-Msgid-Bugs-To: zoon01 <zoon01@nas4free.org>\n"
 "POT-Creation-Date: 2017-02-18 21:02+0000\n"
-"PO-Revision-Date: 2017-02-15 12:45+0000\n"
+"PO-Revision-Date: 2017-02-20 09:56+0000\n"
 "Last-Translator: ChriZathens <c_kan1@hotmail.com>\n"
 "Language-Team: NAS4Free\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2017-02-19 09:41+0000\n"
+"X-Launchpad-Export-Date: 2017-02-20 10:33+0000\n"
 "X-Generator: Launchpad (build 18326)\n"
 "X-Poedit-Country: Greece\n"
 "Language: \n"
@@ -493,7 +493,7 @@ msgid "Add NFS Share"
 msgstr "Προσθήκη Κοινόχρηστου NFS"
 
 msgid "Add Option"
-msgstr ""
+msgstr "Προσθήκη Επιλογής"
 
 msgid "Add Pool"
 msgstr "Προσθήκη Pool"
@@ -833,7 +833,7 @@ msgid "Alternate TCP port. (Default is 873)."
 msgstr "Εναλλακτική θύρα TCP. (Προεπιλεγμένη είναι η 873)."
 
 msgid "Alternative configuration directory."
-msgstr ""
+msgstr "Εναλλακτικός φάκελος αρχείου ρυθμίσεων"
 
 msgid "Always"
 msgstr "Πάντα"
@@ -3200,7 +3200,7 @@ msgid "Edit NFS Share"
 msgstr "Επεξεργασία Κοινόχρηστου NFS"
 
 msgid "Edit Option"
-msgstr ""
+msgstr "Επεξεργασία Επιλογής"
 
 msgid "Edit Pool"
 msgstr "Επεξεργασία Pool"
@@ -3904,6 +3904,8 @@ msgstr "Επιπλέον επιλογές στο ifconfig (συνήθως κεν
 
 msgid "Extra options to pass over rpc using transmission-remote."
 msgstr ""
+"Επιπλέον επιλογές που θα περάσουν μέσω του rpc κατά τη χρήση του "
+"transmission-remote."
 
 msgid "Extra options to rsync (usually empty)."
 msgstr "Επιπλέον επιλογές στο rsync (συνήθως κενό)."
@@ -3993,7 +3995,7 @@ msgid "Failover"
 msgstr "Ανακατεύθυνση"
 
 msgid "Fast"
-msgstr ""
+msgstr "Γρήγορη"
 
 msgid "Fatal"
 msgstr "Κρίσιμο"
@@ -4290,10 +4292,10 @@ msgid "Group is marked for deletion"
 msgstr "Η ομάδα έχει σημειωθεί προς διαγραφή"
 
 msgid "Group is protected"
-msgstr ""
+msgstr "Η ομάδα είναι προστατευμένη"
 
 msgid "Group is unlocked"
-msgstr ""
+msgstr "Η ομάδα είναι ξεκλείδωτη"
 
 msgid "Group numeric id."
 msgstr "Αριθμητική ταυτότητα ομάδας."
@@ -6222,10 +6224,10 @@ msgid "Option is marked for deletion"
 msgstr "Η επιλογή έχει σημειωθεί προς διαγραφή"
 
 msgid "Option is protected"
-msgstr ""
+msgstr "Η επιλογή είναι προστατευμένη"
 
 msgid "Option is unlocked"
-msgstr ""
+msgstr "Η επιλογή είναι ξεκλείδωτη"
 
 msgid "Optional user-friendly string of the target."
 msgstr "Προαιρετικό, φιλικό προς το χρήστη, όνομα του προορισμού."
@@ -6613,7 +6615,7 @@ msgid "Pool cannot be changed."
 msgstr "Το Pool δεν μπορεί να αλλαχτεί."
 
 msgid "Pool is marked for deletion"
-msgstr ""
+msgstr "Το pool έχει σημειωθεί προς διαγραφή"
 
 msgid "Pool is protected"
 msgstr "Το Pool είναι προστατευμένο"
@@ -6644,6 +6646,8 @@ msgstr "Το νούμερο της θύρας πρέπει να είναι σε 
 #, php-format
 msgid "Port to listen for incoming peer connections. (Default is %d)."
 msgstr ""
+"Θύρα που θα περιμένει για εισερχόμενες συνδέσεις των peer. (Η προεπιλογή "
+"είναι %d)."
 
 msgid "Port to listen on. Default iTunes port is 3689."
 msgstr "Θύρα ακρόασης. Η προεπιλεγμένη θύρα για το iTunes είναι 3689."
@@ -6716,7 +6720,7 @@ msgid "PreInit"
 msgstr "Πριν τη διαδικασία έναρξης"
 
 msgid "Preallocation"
-msgstr ""
+msgstr "Προκατανομή"
 
 msgid "Preferred"
 msgstr "Προτιμώμενη"
@@ -7620,6 +7624,8 @@ msgstr ""
 
 msgid "Select pre-allocation mode for files. (Default is Fast)."
 msgstr ""
+"Επιλέξτε τη λειτουργία προκατανομής για τα αρχεία. (Η προεπιλογή είναι "
+"Γρήγορη)."
 
 msgid "Select read balance algorithm."
 msgstr "Επιλογή αλγόριθμου ισορροπίας ανάγνωσης."
@@ -10449,6 +10455,9 @@ msgid ""
 "Use this option to override the default permission modes for newly created "
 "files. (%s by default)."
 msgstr ""
+"Χρησιμοποιήστε αυτή την επιλογή για να παρακάμψετε τις προεπιλεγμένες "
+"λειτουργίες δικαιωμάτων για τα νέα αρχεία που δημιουργούνται. (%s από "
+"προεπιλογή)."
 
 msgid ""
 "Use this option to override the directory creation mask (022 by default)."
@@ -10522,10 +10531,10 @@ msgid "User account is marked for deletion"
 msgstr "Ο λογαριασμός χρήστη έχει σημειωθεί προς διαγραφή"
 
 msgid "User account is protected"
-msgstr ""
+msgstr "Ο λογαριασμός χρήστη είναι προστατευμένος"
 
 msgid "User account is unlocked"
-msgstr ""
+msgstr "Ο λογαριασμός χρήστη είναι ξεκλείδωτος"
 
 msgid "User numeric id."
 msgstr "Αριθμητική ταυτότητα χρήστη."
