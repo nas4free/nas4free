@@ -3,8 +3,6 @@
 # Copyright (c) 2012-2017 The NAS4Free Project <info@nas4free.org>.
 # All rights reserved.
 #
-# $FreeBSD: src/etc/root/dot.cshrc 242850 2012-11-10 06:05:04Z eadler $
-#
 # .cshrc - csh resource script, read at beginning of execution by each shell
 #
 
@@ -30,6 +28,7 @@ setenv	EDITOR nano
 
 if ($?prompt) then
 	# An interactive shell -- set some stuff up
+	echo ""
 	set prompt="%{\033[1;32m%}%m: %{\033[1;32m%}%.%{\033[0m%}%# "
 	set promptchars = "%#"
 	set filec
